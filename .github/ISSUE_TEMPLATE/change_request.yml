@@ -1,0 +1,42 @@
+name: Change Request
+description: Something's missing or outdated? Make a proposal to add or update content in the docs.
+title: "Change required: "
+labels: ["documentation"]
+assignees:
+  - CharlieSYH, hengm3467
+
+        
+  - type: input
+    attributes:
+      label: Related code PR
+      description: If this doc change proposal reflects the latest code changes in the software, provide the link to the related pull request in the code repo.
+      placeholder: e.g. https://github.com/singularity-data/risingwave/pull/3494
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Which part(s) of the docs might be affected or should be updated? And how?
+      description: Please link to the doc page or describe the area you would like to see updated. And give your thoughts on the possible changes to the docs.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Reference
+      description: Add any other context or references that could help us deliver the result faster.
+    validations:
+      required: false
+
+- type: checkboxes
+  attributes:
+    label: Before you submit
+    options:
+      - label: Select a software version in the Milestone section on the sidebar.
+        required: true
+
+- type: markdown
+    attributes:
+      label: Before you submit
+      value: |
+        - If this issue is version-specific (e.g. a new SQL feature introduced in the latest or unreleased version of RisingWave), select the corresponding software version in the Milestone section on the right sidebar. Leave it empty if you are not sure.
