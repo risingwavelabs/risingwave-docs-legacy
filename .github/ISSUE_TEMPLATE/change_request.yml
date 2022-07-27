@@ -3,7 +3,7 @@ description: Something's missing or outdated? Make a proposal to add or update c
 title: "Change required: "
 labels: ["documentation"]
 assignees:
-  - CharlieSYH, hengm3467
+  - 
 
 body:   
   - type: input
