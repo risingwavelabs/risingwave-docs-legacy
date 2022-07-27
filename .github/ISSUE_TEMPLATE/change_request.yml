@@ -39,4 +39,4 @@ assignees:
     attributes:
       label: Before you submit
       value: |
-        - If this issue is version-specific (e.g. a new SQL feature introduced in the latest or unreleased version of RisingWave), select the corresponding software version in the Milestone section on the right sidebar. Leave it empty if you are not sure.
+        - If this issue is version-specific (e.g. a new SQL feature introduced in the latest or upcoming version of RisingWave), select the corresponding software version in the Milestone section on the right sidebar. Leave it empty if you are not sure.
