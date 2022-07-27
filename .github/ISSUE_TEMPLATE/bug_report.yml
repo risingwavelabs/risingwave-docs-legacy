@@ -23,4 +23,5 @@ body:
       label: Describe the bug
       description: Tell us more about the bug you spotted. And if you have a revision suggestion in mind, we would love to hear it.
       value: "I noticed that there is a [typo/misused term/inconsistency/ambiguity] in [this sentence/paragraph/figure/section/screenshot]. [This] is incorrect because [...]. If you take a look at [this reference] you will agree with me. I think you folks should replace [this] with [that]. Cheers."
+    validations:
       required: true

@@ -5,7 +5,7 @@ labels: ["documentation"]
 assignees:
   - CharlieSYH, hengm3467
 
-        
+body:   
   - type: input
     attributes:
       label: Related code PR
@@ -28,14 +28,7 @@ assignees:
     validations:
       required: false
 
-- type: checkboxes
-  attributes:
-    label: Before you submit
-    options:
-      - label: Select a software version in the Milestone section on the sidebar.
-        required: true
-
-- type: markdown
+  - type: markdown
     attributes:
       label: Before you submit
       value: |
