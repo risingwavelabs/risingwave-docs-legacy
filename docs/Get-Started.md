@@ -28,13 +28,13 @@ You can run RisingWave in these ways:
 1. Download the pre-built library.
  
     ```shell
-    wget https://github.com/singularity-data/risingwave/releases/download/v0.1.10/risingwave-v0.1.10-x86_64-unknown-linux.tar.gz
+    wget https://github.com/singularity-data/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     ```
 
 2. Unzip the library.
 
     ```shell
-    tar xvf risingwave-v0.1.10-x86_64-unknown-linux.tar.gz
+    tar xvf risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     ```
 
 3. Run RisingWave.
@@ -56,7 +56,7 @@ Ensure you have Docker Desktop installed on your machine. For installation instr
 Start RisingWave in single-binary playground mode:
     
 ```sh
-docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/singularity-data/risingwave:v0.1.10 playground
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/singularity-data/risingwave:v0.1.11 playground
 ```
 
 ### Set up a multi-node cluster via Docker (Linux & macOS)
@@ -183,12 +183,12 @@ CREATE SOURCE KAFKA_TOPIC_1 (
    COLUMN_NAME DATA_TYPE, ...
 )
 with (
-   'connector'='kafka',
-   'kafka.topic'='demo_topic',
-   'kafka.brokers'='172.10.1.1:9090,172.10.1.2:9090',
-   'kafka.scan.startup.mode'='earliest|latest',
-   'kafka.time.offset'='140000000',
-   'kafka.consumer.group'='XXX_CONSUMER_NAME'
+   connector='kafka',
+   kafka.topic='demo_topic',
+   kafka.brokers='172.10.1.1:9090,172.10.1.2:9090',
+   kafka.scan.startup.mode='earliest|latest',
+   kafka.time.offset='140000000',
+   kafka.consumer.group='XXX_CONSUMER_NAME'
 )
 ROW FORMAT 'json' 
 [ROW SCHEMA LOCATION 's3://path'];
