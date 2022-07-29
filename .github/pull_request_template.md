@@ -4,6 +4,7 @@
   |----|----|
   |Related code PR|***Paste the link to the code PR here. For example, https://github.com/singularity-data/risingwave/pull/4085.***|
   |Description|***What's changed?***|
+  |Notes|***Any additional information?***|
 
 ## Before merging,
   - [ ] (For version-specific PR) I have selected the corresponding software version in **Milestone** and linked related doc issue to this PR in **Development**. 
