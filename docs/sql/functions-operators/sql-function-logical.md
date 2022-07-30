@@ -15,7 +15,7 @@ title: Logical operators
 **Example**
 
 | a | b | a AND b | a OR b | NOT a | 
-| ----------- | ----------- | ----------- | ----------- | ----------- |
+| - | - | ------- | ------ | ----- |
 | TRUE | TRUE | TRUE | TRUE | FALSE |
 | TRUE | FALSE | FALSE | TRUE | FALSE |
 | TRUE | NULL | NULL | TRUE | FALSE |
