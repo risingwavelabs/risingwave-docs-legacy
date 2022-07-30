@@ -9,17 +9,17 @@ title: String functions and operators
 
 |Function|Description|Example|
 |---|---|---|
-|REPLACE (string varchar, from varchar, to varchar) → varchar|Replaces all occurrences in string of substring from with substring to.|`REPLACE('abcdefabcdef', 'cd', 'XX')` → `abXXefabXXef`|
-|TRIM (string varchar) → varchar|Removes the longest string containing only spaces from the start and end of string.|`TRIM(' cake   ')` → `cake`|
-|LTRIM (string varchar) → varchar|Removes the longest string containing only spaces from the start of string.|`LTRIM('   cake')` → `cake`|
-|RTRIM (string varchar) → varchar|Removes the longest string containing only spaces from the end of string|`RTRIM('cake   ')` → `cake`|
-|SUBSTR (string varchar, start integer [, count integer ]) → varchar|Extracts the substring of string starting at the start-th character, and extending for count characters if that is specified.| `SUBSTR('alphabet', 3)` → `phabet`; <br /> `SUBSTR('alphabet', 3, 2)` → `ph`|
-|UPPER (varchar) → varchar|Converts the string to all upper case.|`UPPER('tom')` → `TOM`|
-|LOWER (varchar) → varchar|Converts the string to all lower case.|`LOWER('TOM')` → `tom`|
-|POSITION (string varchar, substring varchar) → integer	|Returns first starting index of the specified substring within string, or zero if it is not present.|`POSITION('high', 'ig')` → `2`|
-|LENGTH (varchar) → integer|Returns the number of characters in the string.|`LENGTH('jose')` → `4`|
+|REPLACE (string varchar, from_string varchar, to_string varchar) → varchar|Replaces all occurrences of substring *from_string* in *string* with substring *to_string*.|`REPLACE('abcdefabcdef', 'cd', 'XX')` → `abXXefabXXef`|
+|TRIM (string varchar) → varchar|Removes the longest string containing only spaces from the start and end of *string*.|`TRIM(' cake ')` → 'cake'|
+|LTRIM (string varchar) → varchar|Removes the longest string containing only spaces from the start of *string*.|`LTRIM(' cake ')` → 'cake '|
+|RTRIM (string varchar) → varchar|Removes the longest string containing only spaces from the end of *string*|`RTRIM(' cake ')` → ' cake'|
+|SUBSTR/SUBSTRING (string varchar, start int [, count int ]) → varchar|Extracts the substring from *string* starting at position *start* and extending for *count* characters, if specified. *start* should be equal to or larger than 1.| `SUBSTR('alphabet', 3)` → `phabet`; <br /> `SUBSTRING('alphabet', 3, 2)` → `ph`|
+|UPPER (varchar) → varchar|Converts the string to all uppercase.|`UPPER('tom')` → `TOM`|
+|LOWER (varchar) → varchar|Converts the string to all lowercase.|`LOWER('TOM')` → `tom`|
+|POSITION (string varchar, substring varchar) → int	|Returns first starting index of the specified *substring* within *string*, or zero if it is not present.|`POSITION('high', 'ig')` → `2`|
+|LENGTH (varchar) → int|Returns the number of characters in the string.|`LENGTH('jose')` → `4`|
 |CONCAT_WS (sep varchar, val1 any [, val2 any [, ...] ]) → varchar | Concatenates strings with a separator. The first argument is used as the separator, and should not be NULL. Other NULL arguments are ignored. | `CONCAT_WS(',', 'abcde', 2, NULL, 22)` → `abcde,2,22` |
-|SPLIT_PART (string varchar, delimiter varchar, n int) → varchar | Splits string at occurrences of delimiter and returns the n'th field (counting from one), or when n is negative, returns the \|n\|'th-from-last field. When n is zero, returns a 'InvalidParameterValue' error. When the input delimiter is an empty string, returns the input string if querying the first or last field. Otherwise, returns an empty string. | `SPLIT_PART('abc~@~def~@~ghi', '~@~', 2)` → `def` |
+|SPLIT_PART (string varchar, delimiter varchar, n int) → varchar | Splits *string* at occurrences of *delimiter* and returns the *n*'th field (counting from one), or when *n* is negative, returns the \|*n*\|'th-from-last field. When n is zero, returns an 'InvalidParameterValue' error. When the input *delimiter* is an empty string, returns the input *string* if querying the first or last field. Otherwise, returns an empty string. | `SPLIT_PART('abc~@~def~@~ghi', '~@~', 2)` → `def` |
 
 
 ## String matching operators

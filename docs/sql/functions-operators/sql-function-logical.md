@@ -14,12 +14,12 @@ title: Logical operators
 
 **Example**
 
-| NOT a | a | b | a AND b | a OR b |
+| a | b | a AND b | a OR b | NOT a | 
 | ----------- | ----------- | ----------- | ----------- | ----------- |
-| FALSE | TRUE | TRUE | TRUE | TRUE |
-| FALSE | TRUE | FALSE | FALSE | TRUE |
-| FALSE | TRUE | NULL | NULL | TRUE |
-| TRUE | FALSE | FALSE | FALSE | FALSE |
-| TRUE | FALSE | NULL | FALSE | NULL |
+| TRUE | TRUE | TRUE | TRUE | FALSE |
+| TRUE | FALSE | FALSE | TRUE | FALSE |
+| TRUE | NULL | NULL | TRUE | FALSE |
+| FALSE | FALSE | FALSE | FALSE | TRUE |
+| FALSE | NULL | FALSE | NULL | TRUE |
 | NULL | NULL | NULL | NULL | NULL |
 
