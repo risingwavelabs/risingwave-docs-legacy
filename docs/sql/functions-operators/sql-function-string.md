@@ -16,7 +16,7 @@ title: String functions and operators
 |SUBSTR/SUBSTRING (string varchar, start int [, count int ]) → varchar|Extracts the substring from *string* starting at position *start* and extending for *count* characters, if specified. *start* should be equal to or larger than 1.| `SUBSTR('alphabet', 3)` → `phabet`; <br /> `SUBSTRING('alphabet', 3, 2)` → `ph`|
 |UPPER (varchar) → varchar|Converts the string to all uppercase.|`UPPER('tom')` → `TOM`|
 |LOWER (varchar) → varchar|Converts the string to all lowercase.|`LOWER('TOM')` → `tom`|
-|POSITION (string varchar, substring varchar) → int	|Returns first starting index of the specified *substring* within *string*, or zero if it is not present.|`POSITION('high', 'ig')` → `2`|
+|POSITION (string varchar, substring varchar) → int	|Returns the starting index of the specified *substring* within *string*, or zero if it is not present.|`POSITION('high', 'ig')` → `2`|
 |LENGTH (varchar) → int|Returns the number of characters in the string.|`LENGTH('jose')` → `4`|
 |CONCAT_WS (sep varchar, val1 any [, val2 any [, ...] ]) → varchar | Concatenates strings with a separator. The first argument is used as the separator, and should not be NULL. Other NULL arguments are ignored. | `CONCAT_WS(',', 'abcde', 2, NULL, 22)` → `abcde,2,22` |
 |SPLIT_PART (string varchar, delimiter varchar, n int) → varchar | Splits *string* at occurrences of *delimiter* and returns the *n*'th field (counting from one), or when *n* is negative, returns the \|*n*\|'th-from-last field. When n is zero, returns an 'InvalidParameterValue' error. When the input *delimiter* is an empty string, returns the input *string* if querying the first or last field. Otherwise, returns an empty string. | `SPLIT_PART('abc~@~def~@~ghi', '~@~', 2)` → `def` |
