@@ -1,5 +1,5 @@
 name: Bug Report
-description: Notice any typos, misused terms, inconsistencies, or ambiguities in the docs? Give us a little hint!
+description: Noticed any typos, misused terms, inconsistencies, or ambiguities in the docs? Let us know!
 title: "Bug: "
 labels: ["bug"]
 assignees:
@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        What an astute observer! I guess no bugs can escape from your penetrating insight, huh? Thanks for making the docs better! 
+        What an astute observer! Please describe the bug by filling out the form below. Thanks for making the docs better! 
   - type: input
     id: link
     attributes:
@@ -22,6 +22,6 @@ body:
     attributes:
       label: Describe the bug
       description: Tell us more about the bug you spotted. And if you have a revision suggestion in mind, we would love to hear it.
-      value: "I noticed that there is a [typo/misused term/inconsistency/ambiguity] in [this sentence/paragraph/figure/section/screenshot]. [This] is incorrect because [...]. If you take a look at [this reference] you will agree with me. I think you folks should replace [this] with [that]. Cheers."
+      value: "e.g. I noticed that there is a [typo/misused term/inconsistency/ambiguity] in [this sentence/paragraph/figure/section/screenshot]. [This] is incorrect because [...]. If you take a look at [this reference] you will agree with me. I think you folks should replace [this] with [that]. Cheers."
     validations:
       required: true
