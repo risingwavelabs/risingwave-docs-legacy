@@ -6,10 +6,10 @@ assignees:
   - 
 
 body:   
-  - type: input
+  - type: textarea
     attributes:
       label: Related code PR
-      description: If this doc change proposal reflects the latest code changes in the software, provide the link to the related pull request in the code repo.
+      description: If this doc change proposal reflects the latest code changes in the software, provide the link to the related pull request(s) of the code repo.
       placeholder: e.g. https://github.com/singularity-data/risingwave/pull/3494
     validations:
       required: false
