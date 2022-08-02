@@ -5,7 +5,7 @@
 [ What's changed? ]
 
 - **Related code PR**: 
-[ Paste the link to the code PR here. For example, https://github.com/singularity-data/risingwave/pull/4085. ]
+[ Provide link to the code PR here. For example, https://github.com/singularity-data/risingwave/pull/4085. Delete this part if there's no code PR related. ]
 
 - **Notes**: 
 [ Any additional information? ]
