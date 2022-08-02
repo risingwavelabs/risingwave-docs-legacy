@@ -49,7 +49,7 @@ END
 
 
 #### Example
-The following statement categorizes the distance of each trip in the table 'taxi_trips' under four levels. (Syntax 1)
+The following statement (using Syntax 1) classifies the distance of each trip in the table 'taxi_trips' into four levels. (Syntax 1)
 
 ```sql
 SELECT id, distance,
