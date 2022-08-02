@@ -12,7 +12,7 @@
 
 <!--You DON'T need to edit the following sections when creating this pull request.-->
 
-## Before merging,
+## Before merging
 ☑️ if true or not applicable:
   - [ ] (For version-specific PR) I have selected the corresponding software version in **Milestone** and linked related doc issue to this PR in **Development**. 
   - [ ] I have accquired the approval from the owner (and optionally the reviewers) of the code PR and at least one tech writer (`bernscode`, `CharlieSYH`, `emile-00`, & `hengm3467`). 
