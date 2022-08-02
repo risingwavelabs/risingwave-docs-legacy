@@ -49,9 +49,9 @@ You can run RisingWave in these ways:
 
 ### Install and run from a Docker image (Linux & macOS)
 
-You can install and run RisingWave from a Docker image on x86_64 systems. Images for ARM64 systems (including macOS devices with Apple M1 chips) might be available for testing purpose, but it is not guaranteed.
+You can install and run RisingWave from a Docker image on x86_64 systems. Images for ARM64 systems (including macOS devices with an Apple M1 chip) might be available for testing purpose, but it is not guaranteed.
 
-Ensure you have Docker Desktop installed on your machine. For installation instructions, see [Get Docker](https://docs.docker.com/get-docker/).
+As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment.
 
 Start RisingWave in single-binary playground mode:
     
@@ -79,7 +79,7 @@ Therefore, it will start 8 processes.
 
 As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment. Ensure that it is running before launching the cluster.
 
-Then, clone the [risingwave-demo](https://github.com/singularity-data/risingwave-demo) repository:
+Then, clone the [risingwave-demo](https://github.com/singularity-data/risingwave-demo) repository.
 
 ```shell
 git clone https://github.com/singularity-data/risingwave-demo.git
@@ -94,9 +94,9 @@ docker-compose up -d
 
 ### Build from source (Linux & macOS)
 
-You can build from source on both x86_64 and ARM64 systems (including macOS devices with Apple M1 chips).
+You can build from source on both x86_64 and ARM64 systems (including macOS devices with an Apple M1 chip).
 
-1. Download the source code of RisingWave.
+1. clone the [risingwave](https://github.com/singularity-data/risingwave) repository.
 
     ```shell
     git clone https://github.com/singularity-data/risingwave.git
@@ -200,7 +200,7 @@ For supported streaming sources and sample SQL statements, see [CREATE SOURCE](/
 
 RisingWave uses Postgres-compatible SQL as the interface to manage and query data.
 
-Before we start, ensure that you have connected to RisingWave via `psql`. 
+Before we start, ensure that you have [connected to RisingWave via `psql`](#connect-to-risingwave). 
 
 Now let us create a table to store data about taxi trips.
 

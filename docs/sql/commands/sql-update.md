@@ -22,7 +22,7 @@ UPDATE table_name
 |---------------------------|-----------------------|
 |*table_name*               |The table whose rows you want to update.|
 |**SET** *col_name* = *value*  |Assign a value or result of an expression to a specific column.|
-|**WHERE** *condition*      |Specify which rows you want to update using an expression that returns a boolean value. Rows for which this expression returns true will be updated. <br/> :::CAUTION  If you omit the WHERE clause, all rows in the table will be updated.:::|
+|**WHERE** *condition*      |Specify which rows you want to update using an expression that returns a boolean value. Rows for which this expression returns true will be updated. <br/> If you omit the WHERE clause, all rows in the table will be updated.|
 
 
 ## Example
