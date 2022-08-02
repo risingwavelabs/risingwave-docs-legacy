@@ -21,5 +21,3 @@
 
 ## Published doc pages
   [ After merging this PR, edit the description to include the links to the updated doc pages here. For example, https://www.risingwave.dev/docs/latest/intro/. ]
-  
-  
