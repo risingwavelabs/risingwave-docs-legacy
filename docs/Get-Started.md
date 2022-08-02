@@ -243,7 +243,7 @@ Here is the result we get.
 ```sql
  no_of_trips | total_distance | total_duration | avg_speed      
 -------------+----------------+----------------+------------
-           1 |              5 |             10 | 0.4
+           1 |              4 |             10 | 0.4
 ```
 
 Now let us add a new record.
