@@ -13,6 +13,6 @@
   - [ ] (For version-specific PR) I have confirmed that this PR is for a released version. If the software version is not released, put it on hold.
 
 ## Published doc pages
-  ***After merging this PR, paste the links to the updated doc pages here. For example, https://www.risingwave.dev/docs/latest/intro/.***
+  ***After merging this PR, edit the description to include the links to the updated doc pages here. For example, https://www.risingwave.dev/docs/latest/intro/.***
   
   
