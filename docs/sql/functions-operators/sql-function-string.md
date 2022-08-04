@@ -29,7 +29,7 @@ title: String functions and operators
 |SPLIT_PART (string varchar, delimiter varchar, n int) → varchar | Splits *string* at occurrences of *delimiter* and returns the *n*'th field (counting from one), or when *n* is negative, returns the \|*n*\|'th-from-last field. When n is zero, returns an 'InvalidParameterValue' error. When the input *delimiter* is an empty string, returns the input *string* if querying the first or last field. Otherwise, returns an empty string. | `SPLIT_PART('abc~@~def~@~ghi', '~@~', 2)` → `def` |
 
 
-## String matching operators
+## Pattern matching expressions
 
 ```sql
 string NOT LIKE pattern
