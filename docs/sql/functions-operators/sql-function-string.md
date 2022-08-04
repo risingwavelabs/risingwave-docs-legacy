@@ -9,7 +9,7 @@ title: String functions and operators
 
 | Operator | Expression & Description | Example |
 | ----------- | ----------- | ----------- |
-| \|\| | <pre> expression1 || expression2 [ || expression ] ...</pre> <br /> Concatenates two or more expressions. <br /> | <code>'Abcde' || 1 || 23 </code> → `Abcde123` |
+| \|\| | <code> expression1 || expression2 [ || expression ] ...</code> <br /> Concatenates two or more expressions. <br /> | <code>'Abcde' || 1 || 23 </code> → `Abcde123` |
 
 ## String functions
 
