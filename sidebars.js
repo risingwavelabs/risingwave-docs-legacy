@@ -132,6 +132,11 @@ const sidebars = {
         
         ]
         },
+        {
+          type: 'doc',
+          id: 'sql/time-window-functions',
+          label: 'Time window functions',
+        },
       {
       type: 'category',
       label: 'Commands',
