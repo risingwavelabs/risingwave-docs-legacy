@@ -33,7 +33,7 @@ CREATE USER user_name
 
 ## Example
 
-The following statement creates a user account with the username "user1" and password 'pAssword12345'.
+The following statement creates a user account with the name "user1" and password 'pAssword12345'.
 
 ```sql
 CREATE USER user1 
@@ -41,7 +41,7 @@ CREATE USER user1
 ```
 
 :::tip
-The newly created user is a superuser who can log into RisingWave and create new databases.
+You can connect to RisingWave with the newly created user account.
 :::
 
 
