@@ -19,6 +19,7 @@ title: String functions and operators
 |POSITION (string varchar, substring varchar) → int	|Returns the starting index of the specified *substring* within *string*, or zero if it is not present.|`POSITION('high', 'ig')` → `2`|
 |LENGTH (varchar) → int|Returns the number of characters in the string.|`LENGTH('jose')` → `4`|
 |CONCAT_WS (sep varchar, val1 any [, val2 any [, ...] ]) → varchar | Concatenates strings with a separator. The first argument is used as the separator, and should not be NULL. Other NULL arguments are ignored. | `CONCAT_WS(',', 'abcde', 2, NULL, 22)` → `abcde,2,22` |
+|REPEAT ( string varchar, times int ) → varchar|Repeats *string* specific times.|`REPEAT('A1b2', 3)` → `A1b2A1b2A1b2`|
 |SPLIT_PART (string varchar, delimiter varchar, n int) → varchar | Splits *string* at occurrences of *delimiter* and returns the *n*'th field (counting from one), or when *n* is negative, returns the \|*n*\|'th-from-last field. When n is zero, returns an 'InvalidParameterValue' error. When the input *delimiter* is an empty string, returns the input *string* if querying the first or last field. Otherwise, returns an empty string. | `SPLIT_PART('abc~@~def~@~ghi', '~@~', 2)` → `def` |
 
 
