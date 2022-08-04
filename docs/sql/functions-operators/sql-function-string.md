@@ -16,7 +16,7 @@ title: String functions and operators
 |Function|Description|Example|
 |---|---|---|
 |REPLACE (string varchar, from_string varchar, to_string varchar) → varchar|Replaces all occurrences of substring *from_string* in *string* with substring *to_string*.|`REPLACE('abcdefabcdef', 'cd', 'XX')` → `abXXefabXXef`|
-|TRIM (string varchar) → varchar|Removes the longest string containing only spaces from the start and end of *string*.|`TRIM(' cake ')` → 'cake'|<!--Author: I didn't use the code tag `` for what's returned because `` truncates the empty spaces at the beginning and the end, and in this case, spaces should be kept. So I used '' which keeps the spaces. Same for the next two functions.>
+|TRIM (string varchar) → varchar|Removes the longest string containing only spaces from the start and end of *string*.|`TRIM(' cake ')` → 'cake'|<!--Author: I didn't use the code tag `` for what's returned because `` truncates the empty spaces at the beginning and the end, and in this case, spaces should be kept. So I used '' which keeps the spaces. Same for the next two functions.-->
 |LTRIM (string varchar) → varchar|Removes the longest string containing only spaces from the start of *string*.|`LTRIM(' cake ')` → 'cake '|
 |RTRIM (string varchar) → varchar|Removes the longest string containing only spaces from the end of *string*|`RTRIM(' cake ')` → ' cake'|
 |SUBSTR/SUBSTRING (string varchar, start int [, count int ]) → varchar|Extracts the substring from *string* starting at position *start* and extending for *count* characters, if specified. *start* should be equal to or larger than 1.| `SUBSTR('alphabet', 3)` → `phabet`; <br /> `SUBSTRING('alphabet', 3, 2)` → `ph`|
