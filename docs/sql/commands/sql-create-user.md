@@ -28,6 +28,7 @@ CREATE USER user_name
 | CREATEDB <br/><br/> NOCREATEDB | Grants/denies the user the ability to create databases. <br/> If not specified, NOCREATEDB is the default. |
 | LOGIN <br/><br/> NOLOGIN | Grants/denies the user the ability to log in when [establishing connection with RisingWave](../Get-Started.md/#connect-to-risingwave). <br/> If not specified, LOGIN is the default. |
 | [ ENCRYPTED ] PASSWORD ' password ' <br/><br/> PASSWORD NULL | Sets the password for the user account. You need to provide the password for authentication when during login. <br/> If you do not want password authentication for the user, omit the PASSWORD option. <br/> Currently, a null password or empty string password means password authentication is not needed. | <!-- Behavior for a null/empty password might change in the future. Track: https://github.com/singularity-data/risingwave/issues/4428 -->
+<!-- New options will be added in the future. Track: https://github.com/singularity-data/risingwave/issues/4440 -->
 
 
 ## Example
