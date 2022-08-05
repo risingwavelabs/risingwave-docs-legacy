@@ -80,7 +80,7 @@ const sidebars = {
         
         {type: 'ref', 
         label: 'Use time window functions', 
-        id: 'sql/functions-operators/sql-function-time-window'
+        id: 'sql/sql-function-time-window'
         }
       ]
     },
@@ -144,11 +144,6 @@ const sidebars = {
           },
         
         ]
-        },
-        {
-          type: 'doc',
-          id: 'sql/time-window-functions',
-          label: 'Time window functions',
         },
       {
       type: 'category',
