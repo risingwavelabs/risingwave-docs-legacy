@@ -1,6 +1,6 @@
 ---
-id: time-window-functions
-slug: /time-window-functions
+id: sql-function-time-window
+slug: /sql-function-time-window
 title: Time window functions
 ---
 
