@@ -13,7 +13,7 @@ RisingWave supports two types of time windows:
 
 For each type of time window, there is a corresponding time windowing function (hereafter referred to as “time window function”) that creates a window of this type. For tumbling windows, the function is `tumble()`. For hopping windows, the function is `hop()`.
 
-In RisingWave, the result of a time windowing function  is a table in which each row carries data for a time window. A time window function extends the schema of the original table with two new columns, `window_start` and `window_ends`, which indicate the starts and ends of time windows respectively.
+In RisingWave, the result of a time windowing function  is a table in which each row carries data for a time window. A time window function extends the schema of the original table with two new columns, `window_start` and `window_end`, which indicate the starts and ends of time windows respectively.
 
 In RisingWave, time window functions are invoked in the **FROM** clause. See the sections below for the syntaxes of two time window functions.
 
@@ -43,6 +43,8 @@ Suppose that we have a table, "taxi_trips", that consists of these columns: `id`
 |5|	1005|	2022-07-01 22:05:00	|2|
 |6|	1006|	2022-07-01 22:05:30	|8|
 
+
+
 Here is an example that uses tumble window function.
 
 
@@ -57,12 +59,12 @@ The result looks like this:
 ```
 trip_id | taxi_id | completed_at | window_start | window_end 
 ---------+---------+---------------------+---------------------+---------------------
-1 | 1001 | 2022-07-01 22:00:00 | 2022-07-01 22:00:00 | 2022-07-01 22 (tel:2022070122):02:00
-2 | 1002 | 2022-07-01 22:01:00 | 2022-07-01 22:00:00 | 2022-07-01 22 (tel:2022070122):02:00
-3 | 1003 | 2022-07-01 22:02:10 | 2022-07-01 22:02:00 | 2022-07-01 22 (tel:2022070122):04:00
-4 | 1004 | 2022-07-01 22:03:00 | 2022-07-01 22:02:00 | 2022-07-01 22 (tel:2022070122):04:00
-5 | 1005 | 2022-07-01 22:05:00 | 2022-07-01 22:04:00 | 2022-07-01 22 (tel:2022070122):06:00
-6 | 1006 | 2022-07-01 22:06:00 | 2022-07-01 22:06:00 | 2022-07-01 22 (tel:2022070122):08:00
+1 | 1001 | 2022-07-01 22:00:00 | 2022-07-01 22:00:00 | 2022-07-01 22:02:00
+2 | 1002 | 2022-07-01 22:01:00 | 2022-07-01 22:00:00 | 2022-07-01 22:02:00
+3 | 1003 | 2022-07-01 22:02:10 | 2022-07-01 22:02:00 | 2022-07-01 22:04:00
+4 | 1004 | 2022-07-01 22:03:00 | 2022-07-01 22:02:00 | 2022-07-01 22:04:00
+5 | 1005 | 2022-07-01 22:05:00 | 2022-07-01 22:04:00 | 2022-07-01 22:06:00
+6 | 1006 | 2022-07-01 22:06:00 | 2022-07-01 22:06:00 | 2022-07-01 22:08:00
 ```
 
 
@@ -129,10 +131,10 @@ The result looks like this:
 ```
  window_start | window_end | no_of_trips | total_distance 
 ---------------------+---------------------+-------------+----------------
- 2022-07-01 22 (tel:2022070122):00:00 | 2022-07-01 22 (tel:2022070122):02:00 | 2 | 10
- 2022-07-01 22 (tel:2022070122):02:00 | 2022-07-01 22 (tel:2022070122):04:00 | 2 | 10
- 2022-07-01 22 (tel:2022070122):04:00 | 2022-07-01 22 (tel:2022070122):06:00 | 1 | 2
- 2022-07-01 22 (tel:2022070122):06:00 | 2022-07-01 22 (tel:2022070122):08:00 | 1 | 8
+ 2022-07-01 22:00:00 | 2022-07-01 22:02:00 | 2 | 10
+ 2022-07-01 22:02:00 | 2022-07-01 22:04:00 | 2 | 10
+ 2022-07-01 22:04:00 | 2022-07-01 22:06:00 | 1 | 2
+ 2022-07-01 22:06:00 | 2022-07-01 22:08:00 | 1 | 8
 ```
 
 ### Hop window aggregations
@@ -151,14 +153,14 @@ The result looks like this:
 ```
  window_start | window_end | no_of_trips | total_distance 
 ---------------------+---------------------+-------------+----------------
- 2022-07-01 21 (tel:2022070121):59:00 | 2022-07-01 22 (tel:2022070122):01:00 | 1 | 4
- 2022-07-01 22 (tel:2022070122):00:00 | 2022-07-01 22 (tel:2022070122):02:00 | 2 | 10
- 2022-07-01 22 (tel:2022070122):01:00 | 2022-07-01 22 (tel:2022070122):03:00 | 2 | 9
- 2022-07-01 22 (tel:2022070122):02:00 | 2022-07-01 22 (tel:2022070122):04:00 | 2 | 10
- 2022-07-01 22 (tel:2022070122):03:00 | 2022-07-01 22 (tel:2022070122):05:00 | 1 | 7
- 2022-07-01 22 (tel:2022070122):04:00 | 2022-07-01 22 (tel:2022070122):06:00 | 1 | 2
- 2022-07-01 22 (tel:2022070122):05:00 | 2022-07-01 22 (tel:2022070122):07:00 | 2 | 10
- 2022-07-01 22 (tel:2022070122):06:00 | 2022-07-01 22 (tel:2022070122):08:00 | 1 | 8
+ 2022-07-01 21:59:00 | 2022-07-01 22:01:00 | 1 | 4
+ 2022-07-01 22:00:00 | 2022-07-01 22:02:00 | 2 | 10
+ 2022-07-01 22:01:00 | 2022-07-01 22:03:00 | 2 | 9
+ 2022-07-01 22:02:00 | 2022-07-01 22:04:00 | 2 | 10
+ 2022-07-01 22:03:00 | 2022-07-01 22:05:00 | 1 | 7
+ 2022-07-01 22:04:00 | 2022-07-01 22:06:00 | 1 | 2
+ 2022-07-01 22:05:00 | 2022-07-01 22:07:00 | 2 | 10
+ 2022-07-01 22:06:00 | 2022-07-01 22:08:00 | 1 | 8
 ```
 
 ## Window joins
@@ -182,12 +184,12 @@ The result looks like this:
 ```
  window_start | window_end | distance | company 
 ---------------------+---------------------+----------+------------
- 2022-07-01 22 (tel:2022070122):00:00 | 2022-07-01 22 (tel:2022070122):02:00 | 6 | SAFE TAXI
- 2022-07-01 22 (tel:2022070122):00:00 | 2022-07-01 22 (tel:2022070122):02:00 | 4 | SUPER TAXI
- 2022-07-01 22 (tel:2022070122):02:00 | 2022-07-01 22 (tel:2022070122):04:00 | 3 | FAST TAXI
- 2022-07-01 22 (tel:2022070122):02:00 | 2022-07-01 22 (tel:2022070122):04:00 | 7 | BEST TAXI
- 2022-07-01 22 (tel:2022070122):04:00 | 2022-07-01 22 (tel:2022070122):06:00 | 2 | WEST TAXI
- 2022-07-01 22 (tel:2022070122):06:00 | 2022-07-01 22 (tel:2022070122):08:00 | 8 | EAST TAXI
+ 2022-07-01 22:00:00 | 2022-07-01 22:02:00 | 6 | SAFE TAXI
+ 2022-07-01 22:00:00 | 2022-07-01 22:02:00 | 4 | SUPER TAXI
+ 2022-07-01 22:02:00 | 2022-07-01 22:04:00 | 3 | FAST TAXI
+ 2022-07-01 22:02:00 | 2022-07-01 22:04:00 | 7 | BEST TAXI
+ 2022-07-01 22:04:00 | 2022-07-01 22:06:00 | 2 | WEST TAXI
+ 2022-07-01 22:06:00 | 2022-07-01 22:08:00 | 8 | EAST TAXI
 ```
 
 ### Window joins
@@ -198,7 +200,7 @@ In the example below, we join two tumble time windows to get both trip and fare 
 SELECT trip.window_start, trip.window_end, trip.distance, fare.total_fare, fare.payment_status
 FROM TUMBLE (taxi_trips, completed_at, INTERVAL '2 MINUTES') as trip
 JOIN TUMBLE (taxi_fare, completed_at, INTERVAL '2 MINUTES') as fare
-ON trip.trip_id = fare.trip_id
+ON trip.trip_id = fare.trip_id and trip.window_start = fare.window_start
 ORDER BY trip.window_start ASC;
 ```
 
@@ -207,10 +209,10 @@ The result looks like this.
 ```
  window_start | window_end | distance | total_fare | payment_status 
 ---------------------+---------------------+----------+------------+----------------
- 2022-07-01 22 (tel:2022070122):00:00 | 2022-07-01 22 (tel:2022070122):02:00 | 4 | 8 | COMPLETED
- 2022-07-01 22 (tel:2022070122):00:00 | 2022-07-01 22 (tel:2022070122):02:00 | 6 | 12 | PROCESSING
- 2022-07-01 22 (tel:2022070122):02:00 | 2022-07-01 22 (tel:2022070122):04:00 | 7 | 15 | COMPLETED
- 2022-07-01 22 (tel:2022070122):02:00 | 2022-07-01 22 (tel:2022070122):04:00 | 3 | 5 | COMPLETED
- 2022-07-01 22 (tel:2022070122):04:00 | 2022-07-01 22 (tel:2022070122):06:00 | 2 | 5 | REJECTED
- 2022-07-01 22 (tel:2022070122):06:00 | 2022-07-01 22 (tel:2022070122):08:00 | 8 | 20 | COMPLETED
+ 2022-07-01 22:00:00 | 2022-07-01 22:02:00 | 4 | 8 | COMPLETED
+ 2022-07-01 22:00:00 | 2022-07-01 22:02:00 | 6 | 12 | PROCESSING
+ 2022-07-01 22:02:00 | 2022-07-01 22:04:00 | 7 | 15 | COMPLETED
+ 2022-07-01 22:02:00 | 2022-07-01 22:04:00 | 3 | 5 | COMPLETED
+ 2022-07-01 22:04:00 | 2022-07-01 22:06:00 | 2 | 5 | REJECTED
+ 2022-07-01 22:06:00 | 2022-07-01 22:08:00 | 8 | 20 | COMPLETED
 ```
