@@ -80,7 +80,7 @@ const sidebars = {
         
         {type: 'ref', 
         label: 'Use time window functions', 
-        id: 'sql/sql-function-time-window'
+        id: 'sql/functions-operators/sql-function-time-window'
         }
       ]
     },
