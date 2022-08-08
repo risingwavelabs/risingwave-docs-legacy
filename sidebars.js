@@ -129,6 +129,11 @@ const sidebars = {
             id: 'sql/functions-operators/sql-function-conditional',
             label: 'Conditional',
           },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-value',
+            label: 'Value',
+          },
         
         ]
         },
