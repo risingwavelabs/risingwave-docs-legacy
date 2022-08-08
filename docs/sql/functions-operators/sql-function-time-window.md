@@ -200,7 +200,7 @@ In the example below, we join two tumble time windows to get both trip and fare 
 SELECT trip.window_start, trip.window_end, trip.distance, fare.total_fare, fare.payment_status
 FROM TUMBLE (taxi_trips, completed_at, INTERVAL '2 MINUTES') as trip
 JOIN TUMBLE (taxi_fare, completed_at, INTERVAL '2 MINUTES') as fare
-ON trip.trip_id = fare.trip_id and trip.window_start = fare.window_start
+ON trip.trip_id = fare.trip_id AND trip.window_start = fare.window_start
 ORDER BY trip.window_start ASC;
 ```
 
