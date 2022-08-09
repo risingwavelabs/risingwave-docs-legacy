@@ -17,7 +17,7 @@ RisingWave supports the following data types:
 |numeric|decimal|Exact numeric. We do not support specifying precision and scale as of now.|
 |real| |Single precision floating-point number (4 bytes)|
 |double precision|double|Double precision floating-point number (8 bytes)|
-|character varying|varchar|Variable-length character string. We do not support specifying the maximum length as of now.|
+|character varying|string|Variable-length character string. We do not support specifying the maximum length as of now.|
 |date| |Calendar date (year, month, day)|
 |time| |Time of day (no time zone)|
 |timestamp without time zone|timestamp|Date and time (no time zone)|
