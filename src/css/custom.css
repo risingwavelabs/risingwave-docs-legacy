@@ -238,3 +238,7 @@ table tbody tr td {
 [data-theme="dark"] td {
   border-top: 1px solid #393939;
 }
+
+[data-theme="dark"] thead tr:first-child {
+  border-bottom: none;
+}

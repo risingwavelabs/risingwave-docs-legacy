@@ -6,7 +6,7 @@ import ThemedImage from "@theme/ThemedImage";
 import HomePageWave from "@site/src/components/HomePageWave";
 import LogoSvg from "@site/static/img/logo.svg";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import { useColorMode } from '@docusaurus/theme-common'
+import { useColorMode } from "@docusaurus/theme-common";
 import HomepageFeature from "@site/src/components/HomepageFeature";
 import HomepageBanner from "@site/src/components/HomepageBanner";
 import useWindowSize from "@site/src/hooks/useWindowSize";
@@ -14,8 +14,8 @@ import { Button } from "@mui/material";
 import styled from "@emotion/styled";
 import Translate from "@docusaurus/Translate";
 import HomepageIntro from "@site/src/components/HomepageIntro";
-import TextSvgLight from "@site/static/img/rw-text-white.svg";
-import TextSvgDark from "@site/static/img/rw-text-black.svg";
+import TextSVGBlack from "./TextSVGBlack";
+import TextSVGWhite from "./TextSVGWhite";
 
 const ButtonGroup = styled("div")((props) => ({
   display: "flex",
@@ -48,11 +48,11 @@ function HomepageHeader() {
       <div>
         <LogoSvg width={windowSize.height * 0.17} height={windowSize.height * 0.17} />
       </div>
-      <div >
+      <div>
         {isDarkTheme ? (
-          <TextSvgLight width={windowSize.height * 0.25} height={windowSize.height * 0.1} />
+          <TextSVGWhite width="250" height="100" />
         ) : (
-          <TextSvgDark width={windowSize.height * 0.25} height={windowSize.height * 0.1}/>
+          <TextSVGBlack width="250" height="100" />
         )}
       </div>
       <ButtonGroup windoWidth={windowSize.width}>
@@ -62,7 +62,15 @@ function HomepageHeader() {
           </Button>
         </Link>
         <Link to={`https://playground.risingwave.dev/`}>
-          <Button variant="outlined" sx={{ width: 200, margin: "5px", textTransform: "none" }}>
+          <Button
+            variant="outlined"
+            sx={{
+              width: 200,
+              margin: "5px",
+              textTransform: "none",
+              color: isDarkTheme ? "#fff" : "#1976d2",
+            }}
+          >
             <Translate>Try it out</Translate>
           </Button>
         </Link>
@@ -82,15 +90,21 @@ export default function Home() {
         {/* <HomepageBanner content={
           <span>🥇 Join our first code camp! <Link to="https://www.singularity-data.com/events/code-camp/">Learn More</Link></span>
         } /> */}
-        <div style={{
-          height: "100vh",
-          minHeight: "700px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between"
-        }}>
-          <div style={{ zIndex: 2 }}><HomepageHeader /></div>
-          <div style={{ zIndex: 1 }}><HomePageWave /></div>
+        <div
+          style={{
+            height: "100vh",
+            minHeight: "700px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ zIndex: 2 }}>
+            <HomepageHeader />
+          </div>
+          <div style={{ zIndex: 1 }}>
+            <HomePageWave />
+          </div>
         </div>
 
         {/* <div style={{ marginLeft: "5vw", marginRight: "5vw" }}>
