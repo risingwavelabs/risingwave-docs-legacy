@@ -90,8 +90,6 @@ Support the Datagen Source Connector, which can be used to generate mock data fo
     * Compaction and object-store  [#2573](https://github.com/singularity-data/risingwave/pull/2573) [#2761](https://github.com/singularity-data/risingwave/pull/2761)
     * Iterator and cache [#2709](https://github.com/singularity-data/risingwave/pull/2709)
     * Streaming exchange service [#2906](https://github.com/singularity-data/risingwave/pull/2906)
-
-
 * Support listing KVs by epoch and table in the risectl tool. [#2640](https://github.com/singularity-data/risingwave/pull/2640)
 
 #### Deployment
