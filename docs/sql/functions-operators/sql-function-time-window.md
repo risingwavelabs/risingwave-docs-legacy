@@ -13,7 +13,7 @@ RisingWave supports two types of time windows:
 
 For each type of time window, there is a corresponding time windowing function (hereafter referred to as “time window function”) that creates a window of this type. For tumbling windows, the function is `tumble()`. For hopping windows, the function is `hop()`.
 
-In RisingWave, the result of a time window function  is a table in which each row carries data for a time window. A time window function extends the schema of the original table with two new columns, `window_start` and `window_end`, which indicate the start and end of time windows respectively.
+In RisingWave, the result of a time window function is a table in which each row carries data for a time window. A time window function extends the schema of the original table with two new columns, `window_start` and `window_end`, which indicate the start and end of time windows respectively.
 
 In RisingWave, time window functions are invoked in the **FROM** clause. See the sections below for the syntaxes of two time window functions.
 
