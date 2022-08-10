@@ -15,7 +15,7 @@ import styled from "@emotion/styled";
 import Translate from "@docusaurus/Translate";
 import HomepageIntro from "@site/src/components/HomepageIntro";
 import TextSVGBlack from "./TextSVGBlack";
-import TextSVGWhite from "./TextSVGWhite";
+import SVGText from "./RisingWaveText";
 
 const ButtonGroup = styled("div")((props) => ({
   display: "flex",
@@ -49,11 +49,7 @@ function HomepageHeader() {
         <LogoSvg width={windowSize.height * 0.17} height={windowSize.height * 0.17} />
       </div>
       <div>
-        {isDarkTheme ? (
-          <TextSVGWhite width="250" height="100" />
-        ) : (
-          <TextSVGBlack width="250" height="100" />
-        )}
+        <SVGText width="250" height="100" fill={isDarkTheme ? "white" : "black"} />
       </div>
       <ButtonGroup windoWidth={windowSize.width}>
         <Link to={`/docs/${siteMetadata.siteVersion}/intro`}>
