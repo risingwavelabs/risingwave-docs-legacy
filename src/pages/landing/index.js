@@ -43,6 +43,10 @@ function HomepageHeader() {
   const { siteMetadata } = useDocusaurusContext();
   const { isDarkTheme } = useColorMode();
 
+  useEffect(() => {
+    console.log(isDarkTheme);
+  }, [isDarkTheme]);
+
   return (
     <HeroBanner>
       <div>
