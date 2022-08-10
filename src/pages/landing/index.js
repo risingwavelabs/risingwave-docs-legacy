@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -42,18 +42,19 @@ function HomepageHeader() {
   const windowSize = useWindowSize();
   const { siteMetadata } = useDocusaurusContext();
   const { isDarkTheme } = useColorMode();
+  const [dark, setDark] = useState(false);
 
   useEffect(() => {
-    console.log(isDarkTheme);
+    setDark(isDarkTheme);
   }, [isDarkTheme]);
 
   return (
     <HeroBanner>
       <div>
-        <LogoSvg width={windowSize.height * 0.17} height={windowSize.height * 0.17} />
+        <LogoSvg width="200" height="200" />
       </div>
       <div>
-        <SVGText width="250" height="100" fill={isDarkTheme ? "white" : "black"} />
+        <SVGText width="250" height="100" fill={dark ? "#fff" : "#000"} />
       </div>
       <ButtonGroup windoWidth={windowSize.width}>
         <Link to={`/docs/${siteMetadata.siteVersion}/intro`}>
@@ -68,7 +69,7 @@ function HomepageHeader() {
               width: 200,
               margin: "5px",
               textTransform: "none",
-              color: isDarkTheme ? "#fff" : "#1976d2",
+              color: dark ? "#fff" : "#1976d2",
             }}
           >
             <Translate>Try it out</Translate>
