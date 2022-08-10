@@ -12,6 +12,7 @@ title: Date/time functions and operators
 | ----------- | ----------- | ----------- |
 | date + interval → timestamp | Add an interval to a date. | `date '2022-04-08' + interval '10 hour'` → `2022-04-08 10:00:00` |
 | date - interval → timestamp | Subtract an interval to a date. | `date '2022-04-08' - interval '10 hour'` → `2022-04-07 14:00:00` |
+| real * interval → time | Multiply an interval by a float. | `real '6.1' * interval '1' second` → `00:00:06.1` <br /> `interval '1' second * real '6.1'` → `00:00:06.1` |
 
 ## Date/time functions
 
