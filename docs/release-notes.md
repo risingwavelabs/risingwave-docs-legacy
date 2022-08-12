@@ -58,7 +58,7 @@ This version was released on July 5, 2022.
 
 ### Assets
 
-* [prebuilt library for Linux](https://github.com/singularity-data/risingwave/releases/download/v0.1.10/risingwave-v0.1.10-x86_64-unknown-linux.tar.gz) 
+* [Prebuilt library for Linux](https://github.com/singularity-data/risingwave/releases/download/v0.1.10/risingwave-v0.1.10-x86_64-unknown-linux.tar.gz) 
 * [Source code (zip)](https://github.com/singularity-data/risingwave/archive/refs/tags/v0.1.10.zip)
 * [Source code (tar.gz)](https://github.com/singularity-data/risingwave/archive/refs/tags/v0.1.10.tar.gz)
 
@@ -101,6 +101,6 @@ Support the Datagen Source Connector, which can be used to generate mock data fo
 
 ### Assets
 
-* [prebuilt library for Linux](https://github.com/singularity-data/risingwave/releases/download/v0.1.8/risingwave-v0.1.8-x86_64-unknown-linux.tar.gz)
+* [Prebuilt library for Linux](https://github.com/singularity-data/risingwave/releases/download/v0.1.8/risingwave-v0.1.8-x86_64-unknown-linux.tar.gz)
 * [Source code (zip)](https://github.com/singularity-data/risingwave/archive/refs/tags/v0.1.8.zip) 
 * [Source code (tar.gz)](https://github.com/singularity-data/risingwave/archive/refs/tags/v0.1.8.tar.gz)
