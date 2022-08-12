@@ -10,7 +10,6 @@ title: Date/time functions and operators
 
 | Operation | Description | Example |
 | ----------- | ----------- | ----------- |
-| interval → time | Convert string interval to time. | `interval '4 hour'` → `04:00:00` <br /> `interval '3 day'` → `3 days 00:00:00` |
 | date + interval → timestamp | Add an interval to a date. | `date '2022-04-08' + interval '10 hour'` → `2022-04-08 10:00:00` |
 | date - interval → timestamp | Subtract an interval to a date. | `date '2022-04-08' - interval '10 hour'` → `2022-04-07 14:00:00` |
 
