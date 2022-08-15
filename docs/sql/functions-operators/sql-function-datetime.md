@@ -12,7 +12,7 @@ title: Date/time functions and operators
 | ----------- | ----------- | ----------- |
 | date + interval → timestamp | Add an interval to a date. | `date '2022-04-08' + interval '10 hour'` → `2022-04-08 10:00:00` |
 | date - interval → timestamp | Subtract an interval to a date. | `date '2022-04-08' - interval '10 hour'` → `2022-04-07 14:00:00` |
-| date + int → date | Add an int to a date. | `date '2022-06-23' + 4` → `2022-06-27` <br /> `4 + Date '2022-06-23'` → `2022-06-27` |
+| date + int → date | Add an integer to a date. | `date '2022-06-23' + 4` → `2022-06-27` <br /> `4 + Date '2022-06-23'` → `2022-06-27` |
 | date - int → date | Subtract an int from a date. | `date '2022-06-23' - 4` → `2022-06-19` |
 | date + time → timestamp | Add time to a date. | `date '2022-06-23' + time '19:24:00'` → `2022-06-23 19:24:00` <br /> `time '19:24:00' +  date '2022-06-23'` → `2022-06-23 19:24:00` |
 | time - time → time | Subtract time from time. | `time '18:20:49' -  time '16:07:16'` → `02:13:33` |
