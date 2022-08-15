@@ -23,7 +23,7 @@ This version was released on July 29, 2022.
     * `string_agg ()`: Concatenates the values into a string. [#3952](https://github.com/singularity-data/risingwave/pull/3952) [#4183](https://github.com/singularity-data/risingwave/pull/4183)
     * `current_database()`: Returns the current database.  [#3650](https://github.com/singularity-data/risingwave/pull/3650)
 * New SQL commands:
-    * `SHOW ALL`: Lists all configuration parameters. Use SHOW <parameter> to show the value of a configuration parameter. [#3694](https://github.com/singularity-data/risingwave/pull/3694) [#3664](https://github.com/singularity-data/risingwave/pull/3664)
+    * `SHOW ALL`: Lists all configuration parameters. Use `SHOW parameter` to show the value of a configuration parameter. [#3694](https://github.com/singularity-data/risingwave/pull/3694) [#3664](https://github.com/singularity-data/risingwave/pull/3664)
     * `CREATE SINK`: Sinks data to Kafka. [#3923](https://github.com/singularity-data/risingwave/pull/3923) [#3682](https://github.com/singularity-data/risingwave/pull/3682) [#3674](https://github.com/singularity-data/risingwave/pull/3674)
     * `EXPLAIN TRACE`: Traces each optimization stage of the optimizer. [#3945](https://github.com/singularity-data/risingwave/pull/3945)
 * Support for lookup joins. Currently, lookup joins can only be performed in local query mode. To use lookup joins, users need to set the configuration parameter `rw_batch_enable_lookup_join`  to true.  [#3859](https://github.com/singularity-data/risingwave/pull/3859) [#3763](https://github.com/singularity-data/risingwave/pull/3763)
