@@ -22,7 +22,7 @@ RisingWave supports the following data types:
 |time| |Time of day (no time zone)|
 |timestamp without time zone|timestamp|Date and time (no time zone)|
 |timestamp with time zone | |Timestamp with time zone|
-|interval| |Time span. Input in string format. Units include: second/s, minute/s, hour/s, day/s, month/s, and year/s.<p>Examples:</p><p>`interval '4 hour'` → `04:00:00` <br /> `interval '3 day'` → `3 days 00:00:00`</p>|
+|interval| |Time span. Input in string format. Units include: second/seconds/s, minute/minutes/min/m, hour/hours/hr/h, day/days/d, month/months/mon, and year/years/yr/y.<p>Examples:</p><p>`interval '4 hour'` → `04:00:00` <br /> `interval '3 day'` → `3 days 00:00:00`</p>|
 |struct| |<p>Use this type to define a nested table. A nested table is a table that is embedded in another table.</p><p>Example:</p><p>`CREATE TABLE t1 (v1 int, v2 struct<v3 int, v4 struct<v5 varchar, v6 date>>);`</p>|
 
 
