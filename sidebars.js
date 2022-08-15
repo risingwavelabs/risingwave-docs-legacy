@@ -132,7 +132,7 @@ const sidebars = {
           {
             type: 'doc',
             id: 'sql/functions-operators/sql-function-sys-info',
-            label: 'System Information',
+            label: 'System information',
           },
         
         ]
