@@ -7,6 +7,49 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes. 
 
+## v0.1.11
+
+This version was released on July 29, 2022.
+
+### Main changes
+
+#### SQL features
+
+* New SQL functions:
+    * `overlay()`: Replaces a substring. [#3671](https://github.com/singularity-data/risingwave/pull/3671)
+    * `count()` with the distinct clause: Returns the number of unique values in a column or expression. [#3920](https://github.com/singularity-data/risingwave/pull/3920)
+    * `generate_series()`: Generates a series of values from the starting point to the ending point. [#4030](https://github.com/singularity-data/risingwave/pull/4030)
+    * `regexp_match()`, `regexp_matches()`: Compares a string against a regular expression pattern and returns matched substrings. [#3702](https://github.com/singularity-data/risingwave/pull/3702) [#4062](https://github.com/singularity-data/risingwave/pull/4062)
+    * `string_agg ()`: Concatenates the values into a string. [#3952](https://github.com/singularity-data/risingwave/pull/3952) [#4183](https://github.com/singularity-data/risingwave/pull/4183)
+    * `current_database()`: Returns the current database.  [#3650](https://github.com/singularity-data/risingwave/pull/3650)
+* New SQL commands:
+    * `SHOW ALL`: Lists all configuration parameters. Use SHOW <parameter> to show the value of a configuration parameter. [#3694](https://github.com/singularity-data/risingwave/pull/3694) [#3664](https://github.com/singularity-data/risingwave/pull/3664)
+    * `CREATE SINK`: Sinks data to Kafka. [#3923](https://github.com/singularity-data/risingwave/pull/3923) [#3682](https://github.com/singularity-data/risingwave/pull/3682) [#3674](https://github.com/singularity-data/risingwave/pull/3674)
+    * `EXPLAIN TRACE`: Traces each optimization stage of the optimizer. [#3945](https://github.com/singularity-data/risingwave/pull/3945)
+* Support for lookup joins. Currently, lookup joins can only be performed in local query mode. To use lookup joins, users need to set the configuration parameter `rw_batch_enable_lookup_join`  to true.  [#3859](https://github.com/singularity-data/risingwave/pull/3859) [#3763](https://github.com/singularity-data/risingwave/pull/3763)
+* An ORDER BY clause in the CREATE MATERIALIZED VIEW statement is allowed but not considered as part of the definition of the materialized view. It is only used in the initial creation of the materialized view. It is not used during refreshes. This is a behavior change due to the introduction of parallel table scans. [#3670](https://github.com/singularity-data/risingwave/pull/3670)
+* Support for aggregate functions in the select query when creating a materialized view. [#4114](https://github.com/singularity-data/risingwave/pull/4114)
+
+### **Connectors**
+
+* RisingWave can now sink data to Kafka topics in append-only mode and Debezium mode. [#3923](https://github.com/singularity-data/risingwave/pull/3923) [#3682](https://github.com/singularity-data/risingwave/pull/3682) [#3674](https://github.com/singularity-data/risingwave/pull/3674)
+* Syntax change for CREATE SOURCE: A parameter name is no longer wrapped by single quotation marks. [#3997](https://github.com/singularity-data/risingwave/pull/3997). See the example:
+    * Old: `CREATE SOURCE s1 WITH ( 'connector' = 'kafka', 'kafka.topic' = 'kafka_1_partition_topic', 'kafka.brokers' = '127.0.0.1:29092' ) ROW FORMAT json;`  
+    * New: `CREATE SOURCE s WITH ( connector = 'kafka', kafka.topic = 'kafka_1_partition_topic', kafka.brokers = '127.0.0.1:29092' ) ROW FORMAT json;`
+
+### Observability
+
+* RisingWave dashboard adds support for dynamic filter nodes. [#3793](https://github.com/singularity-data/risingwave/pull/3793)
+
+## Assets
+
+* [Prebuilt library for Linux](https://github.com/singularity-data/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz)
+* [Source code (zip)](https://github.com/singularity-data/risingwave/archive/refs/tags/v0.1.11.zip)
+* [Source code (tar.gz)](https://github.com/singularity-data/risingwave/archive/refs/tags/v0.1.11.tar.gz)
+
+
+
+
 ## v0.1.10
 
 This version was released on July 5, 2022.
