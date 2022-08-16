@@ -39,7 +39,7 @@ This version was released on July 29, 2022.
 
 ## Assets
 
-* Run this version from Docker: <br>`run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/singularity-data/risingwave:v0.1.11 playground`
+* Run this version from Docker: <br/>`run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/singularity-data/risingwave:v0.1.11 playground`
 * [Prebuilt library for Linux](https://github.com/singularity-data/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz)
 * [Source code (zip)](https://github.com/singularity-data/risingwave/archive/refs/tags/v0.1.11.zip)
 * [Source code (tar.gz)](https://github.com/singularity-data/risingwave/archive/refs/tags/v0.1.11.tar.gz)
