@@ -96,7 +96,7 @@ docker-compose up -d
 
 You can build from source on both x86_64 and ARM64 systems (including macOS devices with an Apple M1 chip).
 
-1. clone the [risingwave](https://github.com/singularity-data/risingwave) repository.
+1. Clone the [risingwave](https://github.com/singularity-data/risingwave) repository.
 
     ```shell
     git clone https://github.com/singularity-data/risingwave.git
