@@ -17,7 +17,6 @@ This version was released on July 29, 2022.
 
 * New SQL functions:
     * `overlay()`: Replaces a substring. [#3671](https://github.com/singularity-data/risingwave/pull/3671)
-    * `count()` with the distinct clause: Returns the number of unique values in a column or expression. [#3920](https://github.com/singularity-data/risingwave/pull/3920)
     * `generate_series()`: Generates a series of values from the starting point to the ending point. [#4030](https://github.com/singularity-data/risingwave/pull/4030)
     * `regexp_match()`, `regexp_matches()`: Compares a string against a regular expression pattern and returns matched substrings. [#3702](https://github.com/singularity-data/risingwave/pull/3702) [#4062](https://github.com/singularity-data/risingwave/pull/4062)
     * `string_agg ()`: Concatenates the values into a string. [#3952](https://github.com/singularity-data/risingwave/pull/3952) [#4183](https://github.com/singularity-data/risingwave/pull/4183)
@@ -28,7 +27,7 @@ This version was released on July 29, 2022.
     * `EXPLAIN TRACE`: Traces each optimization stage of the optimizer. [#3945](https://github.com/singularity-data/risingwave/pull/3945)
 * Support for lookup joins. Currently, lookup joins can only be performed in local query mode. To use lookup joins, users need to set the configuration parameter `rw_batch_enable_lookup_join`  to true.  [#3859](https://github.com/singularity-data/risingwave/pull/3859) [#3763](https://github.com/singularity-data/risingwave/pull/3763)
 * An `ORDER BY` clause in the `CREATE MATERIALIZED VIEW` statement is allowed but not considered as part of the definition of the materialized view. It is only used in the initial creation of the materialized view. It is not used during refreshes. This is a behavior change due to the introduction of parallel table scans. [#3670](https://github.com/singularity-data/risingwave/pull/3670)
-* Support for aggregate functions in the select query when creating a materialized view. [#4114](https://github.com/singularity-data/risingwave/pull/4114)
+* Support for filter clauses in aggregate functions. [#4114](https://github.com/singularity-data/risingwave/pull/4114)
 
 ### **Connectors**
 
