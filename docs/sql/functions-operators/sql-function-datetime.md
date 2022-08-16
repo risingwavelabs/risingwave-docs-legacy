@@ -11,7 +11,10 @@ title: Date/time functions and operators
 | Operation | Description | Example |
 | ----------- | ----------- | ----------- |
 | date + interval → timestamp | Add an interval to a date. | `date '2022-04-08' + interval '10 hour'` → `2022-04-08 10:00:00` |
+
 | date - interval → timestamp | Subtract an interval from a date. | `date '2022-04-08' - interval '10 hour'` → `2022-04-07 14:00:00` |
+| interval = interval → bool | Compare interval equality. | `interval '1' month = interval '30' day` → `t` |
+
 
 ## Date/time functions
 
