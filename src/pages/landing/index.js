@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -6,7 +6,7 @@ import ThemedImage from "@theme/ThemedImage";
 import HomePageWave from "@site/src/components/HomePageWave";
 import LogoSvg from "@site/static/img/logo.svg";
 import useBaseUrl from "@docusaurus/useBaseUrl";
-import { useColorMode } from '@docusaurus/theme-common'
+import { useColorMode } from "@docusaurus/theme-common";
 import HomepageFeature from "@site/src/components/HomepageFeature";
 import HomepageBanner from "@site/src/components/HomepageBanner";
 import useWindowSize from "@site/src/hooks/useWindowSize";
@@ -14,8 +14,8 @@ import { Button } from "@mui/material";
 import styled from "@emotion/styled";
 import Translate from "@docusaurus/Translate";
 import HomepageIntro from "@site/src/components/HomepageIntro";
-import TextSvgLight from "@site/static/img/rw-text-white.svg";
-import TextSvgDark from "@site/static/img/rw-text-black.svg";
+import TextSVGBlack from "./TextSVGBlack";
+import SVGText from "./RisingWaveText";
 
 const ButtonGroup = styled("div")((props) => ({
   display: "flex",
@@ -42,18 +42,19 @@ function HomepageHeader() {
   const windowSize = useWindowSize();
   const { siteMetadata } = useDocusaurusContext();
   const { isDarkTheme } = useColorMode();
+  const [dark, setDark] = useState(false);
+
+  useEffect(() => {
+    setDark(isDarkTheme);
+  }, [isDarkTheme]);
 
   return (
     <HeroBanner>
       <div>
-        <LogoSvg width={windowSize.height * 0.17} height={windowSize.height * 0.17} />
+        <LogoSvg width="200" height="200" />
       </div>
-      <div >
-        {isDarkTheme ? (
-          <TextSvgLight width={windowSize.height * 0.25} height={windowSize.height * 0.1} />
-        ) : (
-          <TextSvgDark width={windowSize.height * 0.25} height={windowSize.height * 0.1}/>
-        )}
+      <div>
+        <SVGText width="250" height="100" fill={dark ? "#fff" : "#000"} />
       </div>
       <ButtonGroup windoWidth={windowSize.width}>
         <Link to={`/docs/${siteMetadata.siteVersion}/intro`}>
@@ -62,7 +63,15 @@ function HomepageHeader() {
           </Button>
         </Link>
         <Link to={`https://playground.risingwave.dev/`}>
-          <Button variant="outlined" sx={{ width: 200, margin: "5px", textTransform: "none" }}>
+          <Button
+            variant="outlined"
+            sx={{
+              width: 200,
+              margin: "5px",
+              textTransform: "none",
+              color: dark ? "#fff" : "#1976d2",
+            }}
+          >
             <Translate>Try it out</Translate>
           </Button>
         </Link>
@@ -82,15 +91,21 @@ export default function Home() {
         {/* <HomepageBanner content={
           <span>🥇 Join our first code camp! <Link to="https://www.singularity-data.com/events/code-camp/">Learn More</Link></span>
         } /> */}
-        <div style={{
-          height: "100vh",
-          minHeight: "700px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between"
-        }}>
-          <div style={{ zIndex: 2 }}><HomepageHeader /></div>
-          <div style={{ zIndex: 1 }}><HomePageWave /></div>
+        <div
+          style={{
+            height: "100vh",
+            minHeight: "700px",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+        >
+          <div style={{ zIndex: 2 }}>
+            <HomepageHeader />
+          </div>
+          <div style={{ zIndex: 1 }}>
+            <HomePageWave />
+          </div>
         </div>
 
         {/* <div style={{ marginLeft: "5vw", marginRight: "5vw" }}>

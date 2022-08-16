@@ -119,18 +119,8 @@ h2 {
   border-bottom: 1px solid #dbdbdb;
 }
 
-[data-theme="dark"] table thead th {
-  background-color: #474748;
-  border: 1px solid #606770;
-}
-
 body {
   overflow-x: hidden;
-}
-
-table thead th {
-  background-color: #e7e7e7;
-  border: 1px solid #dadde1;
 }
 
 @media (max-width: 700px) {
@@ -195,12 +185,29 @@ table thead th {
   }
 }
 
-table {
+table,
+[data-theme="dark"] table {
   width: 100%;
   height: 100%;
   max-width: 100%;
   position: relative;
   overflow: initial;
+  text-indent: 0;
+  border-collapse: separate;
+  border-spacing: 0px;
+}
+
+table tr:nth-child(2n) {
+  background-color: white;
+}
+
+[data-theme="dark"] table tr:nth-child(2n) {
+  background-color: var(--ifm-table-background);
+}
+
+table tr:first-child td,
+table tr:first-child {
+  border-top: none;
 }
 
 thead {
@@ -209,8 +216,29 @@ thead {
   position: sticky;
 }
 
-thead th {
+table thead th {
   text-align: left;
   padding-top: 6px;
-  padding-bottom: 6px;
+  padding-bottom: 12px;
+  border: none;
+  background-color: white;
+  border-bottom: 2px solid var(--ifm-tabs-color-active);
+}
+
+[data-theme="dark"] table th {
+  background-color: #17191a;
+}
+
+table tbody tr td {
+  border: none;
+  border-spacing: 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+[data-theme="dark"] td {
+  border-top: 1px solid #393939;
+}
+
+[data-theme="dark"] thead tr:first-child {
+  border-bottom: none;
 }
