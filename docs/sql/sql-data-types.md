@@ -28,9 +28,9 @@ RisingWave supports the following data types:
 ## Casts
 Certain data types can be cast to and from other types automatically or deliberately.
 
-- Implicit:
-- Assignment:
-- Explicit: 
+- Implicit: Values can be automatically converted to the target type.
+- Assignment: Values can be automatically converted when inserted to a column of the target type.
+- Explicit: Values can be converted to the target type only when you use the [`cast`](functions-operators/sql-function-cast.md) function or operator.
 
 | From \ To | boolean | smallint | integer | bigint | numeric | real | double | varchar | date | timestamp | timestamp with time zone | time | interval |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
