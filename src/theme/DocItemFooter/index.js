@@ -52,6 +52,42 @@ export default function DocItemFooter(props) {
   let formattedDate = new Date(formattedLastUpdatedAt);
   formattedDate = formattedDate.toLocaleDateString("en-US", dateOptions);
 
+  const getTableWidth = () => {
+    const viewWidth = document.querySelector("article");
+    const computedStyles = document.defaultView.getComputedStyle(viewWidth);
+    const paddingLeft = parseFloat(computedStyles.paddingLeft);
+    const paddingRight = parseFloat(computedStyles.paddingRight);
+    return viewWidth.clientWidth - (paddingLeft + paddingRight);
+  };
+
+  const scrollable = (table) => {
+    return table?.tBodies[0].childNodes[0].scrollWidth > getTableWidth();
+  };
+
+  const reDisplay = (targetTable) => {
+    targetTable.lastChild.classList.remove("invisible");
+    targetTable.lastChild.classList.add("visible");
+  };
+
+  const addHintNode = (targetTable) => {
+    const hintNode = document.createElement("div");
+    hintNode.className = "scrollHint visible";
+    hintNode.innerText = "";
+
+    !targetTable.querySelectorAll("div.scrollHint").length
+      ? targetTable.appendChild(hintNode.cloneNode(true), targetTable)
+      : reDisplay(targetTable);
+  };
+
+  const removeHintNode = (targetTable) => {
+    const childs = targetTable.parentNode.querySelectorAll("div.scrollHint");
+    childs.forEach((child) => targetTable.removeChild(child));
+  };
+
+  const hideHint = (e) => {
+    e.target.parentNode.lastChild.className = "scrollHint invisible";
+  };
+
   useEffect(() => {
     const theads = document.querySelectorAll("thead>tr");
     const tbodys = document.querySelectorAll("tbody");
@@ -63,12 +99,22 @@ export default function DocItemFooter(props) {
         tbodys[i].setAttribute("name", "table" + i);
       }
     }
+
     const script = document.createElement("script");
     script.src = "https://asvd.github.io/syncscroll/syncscroll.js";
     script.async = true;
     document.body.appendChild(script);
+
+    document.querySelectorAll("table").forEach((table) => {
+      scrollable(table) ? addHintNode(table) : removeHintNode(table);
+      table.tBodies[0].addEventListener("scroll", (e) => hideHint(e));
+    });
+
     return () => {
       document.body.removeChild(script);
+      theads.forEach((tr) => {
+        tr.addEventListener("scroll", (e) => hideHint(e));
+      });
     };
   }, []);
 

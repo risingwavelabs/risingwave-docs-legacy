@@ -230,3 +230,41 @@ table tr:first-child td,
 table tr:first-child {
   border-top: none;
 }
+
+.scrollHint {
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  width: 80px;
+  height: 68px;
+  max-height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 6px 6px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 50;
+}
+
+.scrollHint.visible {
+  display: flex;
+}
+
+.scrollHint.invisible {
+  display: none;
+}
+
+.scrollHint::before {
+  opacity: 0.6;
+  display: block;
+  width: 50%;
+  height: 50%;
+  background: url(../../static/img/hand.png) 50% / contain no-repeat;
+  content: "";
+}
