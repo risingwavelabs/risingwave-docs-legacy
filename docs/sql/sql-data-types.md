@@ -33,7 +33,7 @@ Certain data types can be cast to and from other types automatically or delibera
 - Explicit: Values can be converted to the target type only when you use the [`cast`](functions-operators/sql-function-cast.md) function or operator.
 
 | From \ To | boolean | smallint | integer | bigint | numeric | real | double | varchar | date | timestamp | timestamp with time zone | time | interval |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **boolean** |  | ❌ | Explicit | ❌ | ❌ | ❌ | ❌ | Assignment | ❌ | ❌ | ❌ | ❌ | ❌ |
 | **smallint** | ❌ |  | Implicit | Implicit | Implicit | Implicit | Implicit | Assignment | ❌ | ❌ | ❌ | ❌ | ❌ |
 | **integer** | Explicit | Assignment |  | Implicit | Implicit | Implicit | Implicit | Assignment | ❌ | ❌ | ❌ | ❌ | ❌ |
