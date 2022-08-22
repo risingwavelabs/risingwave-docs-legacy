@@ -15,9 +15,9 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 FROM sink_from
 WITH (
    connector='kafka',
-   kafka.brokers=`broker_address`,
-   kafka.topic=`topic_address`,
-   format=`format`
+   kafka.brokers='broker_address',
+   kafka.topic='topic_address',
+   format='format'
 );
 ```
 
