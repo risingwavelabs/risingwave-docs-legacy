@@ -94,7 +94,7 @@ In this tutorial, we will create a few different materialized views. The first v
 
 First, we will create the materialized view that contains all relevant TCP values. We use the tumble function to map all events into 1-minute windows and calculate the average metric value for each device within each time window. Next, the average TCP and NIC metrics are calculated separately before joining on device names and time windows. We will keep the records measuring the volume of bytes transferred by the interface and where the average utilization is greater than or equal to 50.
 
-Please refer to this [guide](https://www.risingwave.dev/docs/latest/sql-function-time-window/) for an explanation of the tumble function and aggregations.
+Please refer to this [guide](/sql/functions-operators/sql-function-time-window.md) for an explanation of the tumble function and aggregations.
 
 ```sql
 CREATE MATERIALIZED VIEW high_util_tcp_metrics AS
