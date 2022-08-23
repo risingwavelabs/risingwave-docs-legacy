@@ -53,8 +53,8 @@ const sidebars = {
       items: [
         {
           type: 'doc',
-          id: 'tutorials/perform-real-time-ad-performance-analysis',
-          label: 'Perform real-time ad performance analysis',
+          id: 'tutorials/real-time-ad-performance-analysis',
+          label: 'Real-time ad performance analysis',
         },
         {
           type: 'doc',

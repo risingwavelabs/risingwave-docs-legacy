@@ -165,7 +165,7 @@ Here is an example result.
 RisingWave supports creating materialized views based on materialized views. Materialized views used as the source are the upstream materialized views, while the materialized views created based on other materialized views are downstream materialized views. As the values of upstream materialized views change, downstream materialized views will change automatically.
 
 <img
-  src={require('../images/server_perf_mv_on_mv').default}
+  src={require('../images/server_perf_mv_on_mv.png').default}
   alt="MV on MV example"
 />
 
