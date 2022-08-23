@@ -6,9 +6,9 @@ sidebar_position: 1
 ---
 
 
-RisingWave is a cloud-native streaming database that uses SQL as the interface. It is designed to reduce the complexity and cost of building real-time applications. RisingWave consumes streaming data, performs continuous queries, and updates results dynamically. As a database system, RisingWave maintains results in its own storage so that users can access data efficiently.
+RisingWave is a cloud-native streaming database that uses SQL as the interface. It is designed to reduce the complexity and cost of building real-time applications. RisingWave consumes streaming data, performs incremental computations when new data come in, and updates results dynamically. As a database system, RisingWave maintains results in its own storage so that users can access data efficiently. You can sink data from RisingWave to an external stream for storage or additional processing.
 
-RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Kinesis, Redpanda, and materialized CDC sources.
+RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Kinesis, Redpanda, and materialized CDC sources. It supports outputing data to Kafka streams.
 
 <img
   src={require('./images/archi_simple.png').default}
@@ -22,12 +22,13 @@ Everything you do in RisingWave is via Postgres-compatible SQL. You can:
 * Collect and transform data from streams.
 * Create materialized views for the data that need to be incrementally aggregated.
 * Query for data in RisingWave, including persisted data and data you add or import to RisingWave.
+* Output data to external streams for storage or additional processing.
 
 ## How does RisingWave work?
 
 - See [Get started](Get-Started.md) to learn about how to get started with RisingWave. 
 - For the architecture of RisingWave, see [Architecture](Architecture.md).
-- To learn about the supported stream sources and how to connect to the sources, see [CREATE SOURCE](/sql/commands/create-source.md).
+- To learn about the supported stream sources/sinks and how to connect to the sources/sinks, see [CREATE SOURCE](/sql/commands/create-source.md) and [CREATE SINK](/sql/commands/sql-create-sink.md).
 - For the supported SQL data types, operators, and commands, please navigate to SQL reference.
 
 

@@ -10,7 +10,6 @@ export default function HomePageWave() {
 
   useEffect(() => {
     if (svgContainer.current) {
-      console.log("rerender wave");
       svg = d3.select(svgContainer.current).attr("viewBox", [0, 200, 4096, 300]);
 
       let g = svg.append("g");
