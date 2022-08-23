@@ -22,18 +22,16 @@ WITH (
 );
 ```
 
+## Parameters
+
+All WITH options are required.
+
 |Parameter | Description|
 |---|---|
 |sink_name| Name of the sink to be created|
 |sink_from| The source from which data will be output. It can be a materialized source, a materialized view, or a table.|
+|connector| Sink connector type. Currently, only `‘kafka’` is supported.|
+|kafka.brokers|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
+|kafka.topic|Address of the Kafka topic. One sink can only correspond to one topic.|
+|format	| Data format. Allowed formats: `‘append-only’`, `‘debezium’`.|
 
-
-## WITH options
-
-
-|Parameter|	Default|Type|Description|Required?|
-|---|---|---|---|---|
-|connector| None|String|Sink connector type. Currently, only `kafka` is supported.| Yes|
-|kafka.brokers|None|String|Address of the Kafka broker. Format: `ip:port`. If there are multiple brokers, separate them with commas. |Yes|
-|kafka.topic|None|String|Address of the Kafka topic. One sink can only correspond to one topic.|Yes|
-|format	| None|String|Data format. Allowed formats: `append-only`, `debezium`.|Yes|
