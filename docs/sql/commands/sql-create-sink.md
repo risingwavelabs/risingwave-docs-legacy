@@ -3,6 +3,7 @@ id: sql-create-sink
 title: CREATE SINK
 description: Create a sink.
 slug: /sql-create-sink
+
 ---
 
 Use the `CREATE SINK` command to create a sink. A sink is a connection to a stream that RisingWave can send data to.
@@ -20,6 +21,7 @@ WITH (
    format='format'
 );
 ```
+
 
 |Parameter|	Default|Type|Description|Required?|
 |---|---|---|---|---|
