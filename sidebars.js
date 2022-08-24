@@ -119,6 +119,11 @@ const sidebars = {
           },
           {
             type: 'doc',
+            id: 'sql/functions-operators/sql-function-cast',
+            label: 'Cast',
+          },
+          {
+            type: 'doc',
             id: 'sql/functions-operators/sql-function-mathematical',
             label: 'Mathematical',
           },
