@@ -7,6 +7,66 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes. 
 
+## v0.1.12
+
+This version was released on August 29, 2022.
+
+### Main changes
+
+#### SQL features
+
+* SQL commands:
+    * `EXPLAIN` now supports specifying options. Supported options: `trace`, `verbose`, and `type`. [#4730](https://github.com/singularity-data/risingwave/pull/4730)
+    * Adds support for `ALTER USER`. [#4261](https://github.com/singularity-data/risingwave/pull/4261)
+    * `CREATE/ALTER USER` now has new options `CREATEUSER` and `NOCREATEUSER`, which specifiy whether or not the user has the privilege to create, alter, or drop other users. [#4447](https://github.com/singularity-data/risingwave/pull/4447)
+    * Adds support for EXPLAIN CREATE SINK. [#4430](https://github.com/singularity-data/risingwave/pull/4430)
+* SQL functions:
+    * Adds support for new system information functions: `current_schema`, `current_schema()`, and `session_user`. [#4358](https://github.com/singularity-data/risingwave/pull/4358)
+* The `pg_namespace` catalog now has a new namespace column `nspacl` for storing access privileges. [#4326](https://github.com/singularity-data/risingwave/pull/4326)
+
+#### Connectors
+
+* Some connector parameters were renamed. The old parameter names are still functional but may be deprecated in the future. [#4503](https://github.com/singularity-data/risingwave/pull/4503)
+
+    * Kafka & Redpanda
+        * `kafka.brokers` -> `properties.bootstrap.server`
+        * `kafka.topic` -> `topic`
+        * `kafka.scan.startup.mode` -> `scan.starup.mode`
+        * `kafka.scan.startup.mode` -> `scan.startup.timestamp_millis`
+        * `kafka.consumer.group` -> `consumer.group.id`
+
+    * Kinesis
+        * `kinesis.stream.name` -> `stream`
+        * `kinesis.stream.region` -> `aws.region`
+        * `kinesis.endpoint` -> `endpoint`
+        * `kinesis.credentials.access` -> `aws.credentials.access_key_id`
+        * `kinesis.credentials.secret` -> `aws.credentials.secret_access_key`
+        * `kinesis.credentials.session_token` -> `aws.credentials.session_token`
+        * `kinesis.assumerole.arn` -> `aws.credentials.role.arn`
+        * `kinesis.assumerole.external_id` -> `aws.credentials.role.external_id`
+    * Pulsar
+        * `pulsar.topic` -> `topic`
+        * `pulsar.admin.url` -> `admin.url`
+        * `pulsar.service.url` -> `service.url`
+        * `pulsar.scan.startup.mode` -> `scan.startup.mode`
+        * `pulsar.time.offset` -> `scan.startup.timestamp_millis`
+* The row format name, `debezium json`, for CDC stream sources, has been renamed to `debezium_json`. [#4494](https://github.com/singularity-data/risingwave/pull/4494)
+
+#### Configuration changes
+
+* The default batch query execution mode was changed from distributed to local. [#4789](https://github.com/singularity-data/risingwave/pull/4789)
+* The configuration parameter for date styles is renamed from date_style to datestyle. [#4506](https://github.com/singularity-data/risingwave/pull/4506)
+
+### Assets
+
+* Run this version from Docker:
+    `run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/singularity-data/risingwave:v0.1.12 playground`
+* [Prebuilt library for Linux](https://github.com/singularity-data/risingwave/releases/download/v0.1.12/risingwave-v0.1.12-x86_64-unknown-linux.tar.gz)
+* [Source code (zip)](https://github.com/singularity-data/risingwave/archive/refs/tags/v0.1.12.zip)
+* [Source code (tar.gz)](https://github.com/singularity-data/risingwave/archive/refs/tags/v0.1.12.tar.gz)
+
+
+
 ## v0.1.11
 
 This version was released on July 29, 2022.
