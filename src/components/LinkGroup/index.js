@@ -79,14 +79,14 @@ export default function LinkGroup(props) {
     <div className={styles.container}>
       <div className={styles.flexBox}>
         <LinkItem
-          link="https://www.singularity-data.com"
+          link="https://www.risingwavelabs.com"
           focusing={s9yFocus}
           setFocus={setS9yFocus}
-          label="Singularity Data"
-          imgUrl={useBaseUrl("/img/home/logo.svg")}
+          label="Risingwave Labs"
+          imgUrl={useBaseUrl("/img/logo.svg")}
         />
         <LinkItem
-          link="https://github.com/singularity-data/risingwave"
+          link="https://github.com/risingwavelabs/risingwave"
           focusing={githubFocus}
           setFocus={setGithubFocus}
           label="Github/RisingWave"
