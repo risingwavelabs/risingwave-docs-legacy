@@ -73,15 +73,15 @@ export default function LinkGroup(props) {
   const [slackFocus, setSlackFocus] = useState(false);
   const [twitterFocus, setTwitterFocus] = useState(false);
   const [githubFocus, setGithubFocus] = useState(false);
-  const [s9yFocus, setS9yFocus] = useState(false);
+  const [rwFocus, setRWFocus] = useState(false);
 
   return (
     <div className={styles.container}>
       <div className={styles.flexBox}>
         <LinkItem
           link="https://www.risingwavelabs.com"
-          focusing={s9yFocus}
-          setFocus={setS9yFocus}
+          focusing={rwFocus}
+          setFocus={setRWFocus}
           label="Risingwave Labs"
           imgUrl={useBaseUrl("/img/logo.svg")}
         />
