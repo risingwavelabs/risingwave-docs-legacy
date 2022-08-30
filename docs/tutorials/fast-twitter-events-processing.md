@@ -2,7 +2,7 @@
 id: fast-twitter-events-processing
 slug: /fast-twitter-events-processing
 title: Fast Twitter events processing
-description: RisingWave makes it possible to do process and analyze Twitter events in a low code manner.
+description: RisingWave makes it possible to process and analyze Twitter events in a low code manner.
 ---
 
 ## Overview
