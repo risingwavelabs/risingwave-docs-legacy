@@ -82,7 +82,7 @@ export default function LinkGroup(props) {
           link="https://www.risingwave-labs.com"
           focusing={rwFocus}
           setFocus={setRWFocus}
-          label="Risingwave Labs"
+          label="RisingWave Labs"
           imgUrl={useBaseUrl("/img/logo.svg")}
         />
         <LinkItem
