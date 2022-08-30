@@ -79,7 +79,7 @@ export default function LinkGroup(props) {
     <div className={styles.container}>
       <div className={styles.flexBox}>
         <LinkItem
-          link="https://www.risingwavelabs.com"
+          link="https://www.risingwave-labs.com"
           focusing={rwFocus}
           setFocus={setRWFocus}
           label="Risingwave Labs"
