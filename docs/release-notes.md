@@ -55,7 +55,7 @@ This version was released on August 29, 2022.
 #### Configuration changes
 
 * The default batch query execution mode was changed from distributed to local. [#4789](https://github.com/singularity-data/risingwave/pull/4789)
-* The configuration parameter for date styles is renamed from date_style to datestyle. [#4506](https://github.com/singularity-data/risingwave/pull/4506)
+
 
 ### Assets
 
