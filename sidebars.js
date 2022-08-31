@@ -73,7 +73,7 @@ const sidebars = {
       [ 
         {type: 'category', 
         label: 'Connect to a streaming source', 
-        link: {type: 'doc', id: 'sql/commands/create-source'},
+        link: {type: 'doc', id: 'sql/commands/sql-create-source'},
         items: 
         [
           {
