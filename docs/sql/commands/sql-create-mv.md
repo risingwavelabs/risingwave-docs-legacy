@@ -22,4 +22,4 @@ CREATE MATERIALIZED VIEW mv_name AS select_query;
 
 
 ## Examples
-Refer to this [tutorial](../tutorials/server-performance-anomaly-detection.md) for instructions on setting up a materialized view based on external data sources and creating new materialized views based on the existing materialized view.
+Refer to this [tutorial](../tutorials/server-performance-anomaly-detection.md) for instructions on setting up a materialized view based on external data sources and creating new materialized views based on an existing materialized view.
