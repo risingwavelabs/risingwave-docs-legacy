@@ -2,8 +2,7 @@ name: Bug Report
 description: Noticed any typos, misused terms, inconsistencies, or ambiguities in the docs? Let us know!
 title: "Bug: "
 labels: ["bug"]
-assignees:
-  - CharlieSYH, hengm3467
+assignees: [CharlieSYH, hengm3467]
 body:
   - type: markdown
     attributes:
@@ -22,11 +21,6 @@ body:
     attributes:
       label: Describe the bug
       description: Tell us more about the bug you spotted. And if you have a revision suggestion in mind, we would love to hear it.
-      value: "e.g.
-I noticed that there is a [typo/misused term/inconsistency/ambiguity] in [this sentence/paragraph/figure/section/screenshot].
-[This] is incorrect because [...]. 
-I think you folks should replace [this] with [that].
-If you take a look at [this reference] you will agree with me.
-Cheers."
+      value: "e.g. \n I noticed that there is a [typo/misused term/inconsistency/ambiguity] in [this sentence/paragraph/figure/section/screenshot]. \n [This] is incorrect because [...]. \n I think you folks should replace [this] with [that]. \n If you take a look at [this reference] you will agree with me. \n Cheers."
     validations:
       required: true
