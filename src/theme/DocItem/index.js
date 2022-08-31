@@ -16,17 +16,14 @@ import TOCCollapsible from "@theme/TOCCollapsible";
 import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
 import Stack from "@mui/material/Stack";
-import { Button } from "@mui/material";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { ThemeClassNames, useWindowSize } from "@docusaurus/theme-common";
-import DocBreadcrumbs from "@theme/DocBreadcrumbs";
 import FeedbackForm from "@site/src/components/FeedbackForm";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 export default function DocItem(props) {
   const { siteConfig } = useDocusaurusContext();
   const { customFields } = siteConfig;
-  const { docsUrl, requestUrl } = customFields;
+  const { docsUrl, bugReportUrl } = customFields;
 
   const { content: DocContent } = props;
   const { metadata, frontMatter, assets } = DocContent;
@@ -47,10 +44,9 @@ export default function DocItem(props) {
   const canRenderTOC = !hideTableOfContents && DocContent.toc && DocContent.toc.length > 0;
   const renderTocDesktop = canRenderTOC && (windowSize === "desktop" || windowSize === "ssr");
 
-  const fileUrl = metadata.source.split("/");
-  const requestIssueUrl = `${requestUrl}File: [/main/${fileUrl[fileUrl.length - 1]}](${docsUrl}${
+  const requestIssueUrl = `${bugReportUrl}${docsUrl}${
     metadata.permalink
-  })`;
+  }`;
 
   return (
     <>
