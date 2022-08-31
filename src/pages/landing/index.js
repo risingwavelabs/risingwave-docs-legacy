@@ -89,7 +89,7 @@ export default function Home() {
     <Layout title={`Home`} description="RisingWave Community and Docs">
       <main>
         {/* <HomepageBanner content={
-          <span>🥇 Join our first code camp! <Link to="https://www.singularity-data.com/events/code-camp/">Learn More</Link></span>
+          <span>🥇 Join our first code camp! <Link to="https://www.risingwave.com/events/code-camp/">Learn More</Link></span>
         } /> */}
         <div
           style={{
