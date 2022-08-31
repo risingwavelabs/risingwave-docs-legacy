@@ -177,7 +177,7 @@ docker-compose down -v
 
 In this tutorial, we learn:
 
-* How to define a nested table with RisingWave
-* How to extract character combinations from a string using RegEx 
+* How to define a nested table with RisingWave.
+* How to extract character combinations from a string using regular expressions.
 
 
