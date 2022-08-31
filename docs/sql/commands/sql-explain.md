@@ -5,6 +5,8 @@ description: Show the execution plan of a statement.
 slug: /sql-explain
 ---
 
+<!--Track the implementation progress of EXPALIN here: https://github.com/risingwavelabs/risingwave/issues/4856-->
+
 Use the `EXPLAIN` command to show the execution plan of a statement. 
 
 ## Syntax
