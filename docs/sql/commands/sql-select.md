@@ -63,7 +63,7 @@ The table `taxi` includes the columns `taxi_id` and `trip_id`, where `trip_id` a
 ```sql
 {
   "taxi_id": VARCHAR,
-  "trip_id": VARCHAR,
+  "trip_id": VARCHAR
 }
 ```
 
@@ -71,11 +71,11 @@ The table `company` includes the columns `company_id` and `taxi_id`, where `taxi
 ```sql
 {
   "company_id": VARCHAR,
-  "taxi_id": VARCHAR,
+  "taxi_id": VARCHAR
 }
 ```
 
-The following query returns the total distance and duration of trips that are beyond the initial charge ($2.50) of each taxi from the company "Yellow Taxi". 
+The following query returns the total distance and duration of trips that are beyond the initial charge ($2.50) of each taxi from the company "Yellow Taxi" and "FabCab". 
 ```sql
 SELECT 
     taxi.taxi_id, 
@@ -86,8 +86,8 @@ LEFT JOIN taxi ON trips.id = taxi.trip_id
 WHERE taxi_id IN
     (SELECT taxi_id
     FROM company
-    WHERE company_id = 'Yellow Taxi')
-    AND fare > 2.50
+    WHERE company_id in ('Yellow Taxi','FabCab'))
+    AND trips.fare > 2.50
 GROUP BY taxi_id
 ORDER BY total_distance, total_duration;
 ```
