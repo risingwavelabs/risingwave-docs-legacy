@@ -174,7 +174,7 @@ You can now issue SQL queries to manage your streams and data.
 
 ## Connect to a streaming source
 
-For supported streaming sources and sample SQL statements, see [CREATE SOURCE](/sql/commands/create-source.md).
+For supported streaming sources and sample SQL statements, see [CREATE SOURCE](/sql/commands/sql-create-source.md).
 
 ## Query and manage data
 
