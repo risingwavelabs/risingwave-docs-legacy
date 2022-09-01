@@ -5,7 +5,7 @@ description: Remove a source.
 slug: /sql-drop-source
 ---
 
-Use the `DROP SOURCE` command to remove a [source](create-source.md) if you no longer need the data inflow from the source.
+Use the `DROP SOURCE` command to remove a [source](sql-create-source.md) if you no longer need the data inflow from the source.
 
 Before you can remove a source, you must use [DROP MATERIALIZED VIEW](sql-drop-mv.md) to remove all its dependent materialized views.
 
