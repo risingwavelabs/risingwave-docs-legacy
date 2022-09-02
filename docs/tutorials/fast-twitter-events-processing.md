@@ -27,7 +27,7 @@ First, clone the [risingwave-demo](https://github.com/singularity-data/risingwav
 git clone https://github.com/singularity-data/risingwave-demo.git
 ```
 
-Now navigate to the `ad-ctr` directory and start the demo cluster from the docker compose file. 
+Now navigate to the `twitter` directory and start the demo cluster from the docker compose file. 
 
 ```shell
 cd twitter
