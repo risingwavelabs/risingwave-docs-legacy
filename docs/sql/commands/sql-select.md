@@ -83,11 +83,12 @@ SELECT
     sum(trips.duration) AS total_duration
 FROM taxi_trips AS trips
 LEFT JOIN taxi ON trips.id = taxi.trip_id
-WHERE taxi_id IN
-    (SELECT taxi_id
-    FROM company
-    WHERE company_id in ('Yellow Taxi','FabCab'))
-    AND trips.fare > 2.50
+WHERE taxi_id IN (
+          SELECT taxi_id
+          FROM company
+          WHERE company_id IN ('Yellow Taxi', 'FabCab')
+      )
+      AND trips.fare > 2.50
 GROUP BY taxi_id
 ORDER BY total_distance, total_duration;
 ```
