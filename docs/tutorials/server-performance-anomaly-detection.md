@@ -31,10 +31,10 @@ In this tutorial, you will learn how to automate anomaly detection from streams 
 
 In the demo cluster, we packaged RisingWave and a workload generator. The workload generator will start to generate random traffic and feed them into Kafka as soon as the cluster is started.
 
-First, clone the [risingwave-demo](https://github.com/singularity-data/risingwave-demo) repository to the environment.
+First, clone the [risingwave-demo](https://github.com/risingwavelabs/risingwave-demo) repository to the environment.
 
 ```shell
-git clone https://github.com/singularity-data/risingwave-demo.git
+git clone https://github.com/risingwavelabs/risingwave-demo.git
 ```
 
 Now navigate to the `cdn-metrics` directory and start the demo cluster from the docker compose file. 
