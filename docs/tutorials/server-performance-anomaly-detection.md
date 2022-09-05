@@ -103,7 +103,7 @@ SELECT
     tcp.window_end AS window_end,
     tcp.metric_name AS metric_name,
     tcp.metric_value AS metric_value,
-    nic.avg_util as tcp_avg_bandwidth_util
+    nic.avg_util AS tcp_avg_bandwidth_util
 FROM
     (
         SELECT
