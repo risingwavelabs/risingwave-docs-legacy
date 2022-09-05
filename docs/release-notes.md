@@ -32,7 +32,7 @@ This version was released on August 31, 2022.
         * `kafka.brokers` -> `properties.bootstrap.server`
         * `kafka.topic` -> `topic`
         * `kafka.scan.startup.mode` -> `scan.starup.mode`
-        * `kafka.scan.startup.mode` -> `scan.startup.timestamp_millis`
+        * `kafka.time.offset` -> `scan.startup.timestamp_millis`
         * `kafka.consumer.group` -> `consumer.group.id`
 
     * Kinesis
