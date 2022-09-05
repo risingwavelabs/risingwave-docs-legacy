@@ -24,13 +24,13 @@ In the demo cluster, we packaged RisingWave and a workload generator. The worklo
 First, clone the [risingwave-demo](https://github.com/singularity-data/risingwave-demo) repository to the environment.
 
 ```shell
-git clone https://github.com/singularity-data/risingwave-demo.git
+git clone https://github.com/risingwavelabs/risingwave-demo.git
 ```
 
 Now navigate to the `twitter` directory and start the demo cluster from the docker compose file. 
 
 ```shell
-cd twitter
+cd risingwave-demo/twitter
 docker-compose up -d
 ```
 
