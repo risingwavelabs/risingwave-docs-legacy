@@ -92,6 +92,7 @@ The execution plan looks like this:
            BatchScan { table: person, columns: [id, name, city, state] }
 ```
 -->
+<br />
 
 The following statement shows the execution plan of a `CREATE MATERIALIZED VIEW` statement.
 
