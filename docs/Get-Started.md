@@ -56,7 +56,7 @@ As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/g
 Start RisingWave in single-binary playground mode:
     
 ```sh
-docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:v0.1.11 playground
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:nightly-20220905 playground
 ```
 
 ### Set up a multi-node cluster via Docker (Linux & macOS)
