@@ -14,10 +14,11 @@ If you are not familiar with writing and formatting on GitHub, get started by re
 Use `docusaurus` if you would like to view your docs locally during development. Just run
 
 ```sh 
-npm i docusaurus 
-cd docs 
-npm start
+yarn # install all dependencies
+yarn start # start a local development server 
 ```
+
+If you don't have `yarn` in your local machine, run `npm i -g yarn` to install it. 
 
 # Visit our official doc site
 
