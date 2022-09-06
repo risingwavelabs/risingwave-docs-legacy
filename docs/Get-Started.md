@@ -92,7 +92,18 @@ cd docker
 docker-compose up -d
 ```
 
-If you are on mac and receive an error about an invalid `docker-compose.yaml`, make sure to `Use Docker Compose V2` in docker desktop. 
+:::note
+
+If the following error occurs:
+```shell
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+'name' does not match any of the regexes: '^x-'
+```
+Use `docker compose` instead of `docker-compose`, or enable **Use Docker Compose V2** on the Settings page of Docker Desktop.
+
+For more information, see [Docker Documentation](https://docs.docker.com/compose/#compose-v2-and-the-new-docker-compose-command).
+
+:::
 
 ### Build from source (Linux & macOS)
 
