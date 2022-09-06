@@ -11,6 +11,14 @@ To help us improve the RisingWave user documentation, you may:
 
 If you are not familiar with writing and formatting on GitHub, get started by reading [Basic writing and formatting syntax on GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
+Use `docusaurus` if you would like to view your docs locally during development. Just run
+
+```sh 
+npm i docusaurus 
+cd docs 
+npm start
+```
+
 # Visit our official doc site
 
 Check out the published user docs at [RisingWave Docs](https://www.risingwave.dev/).
