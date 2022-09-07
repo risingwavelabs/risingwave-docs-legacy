@@ -92,6 +92,19 @@ cd docker
 docker-compose up -d
 ```
 
+:::note
+
+If the following error occurs:
+```shell
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+'name' does not match any of the regexes: '^x-'
+```
+Use `docker compose` instead of `docker-compose`, or enable **Use Docker Compose V2** on the Settings page of Docker Desktop.
+
+For more information, see [Docker Documentation](https://docs.docker.com/compose/#compose-v2-and-the-new-docker-compose-command).
+
+:::
+
 ### Build from source (Linux & macOS)
 
 You can build from source on both x86_64 and ARM64 systems (including macOS devices with an Apple M1 chip).
