@@ -28,7 +28,7 @@ You can run RisingWave in these ways:
 1. Download the pre-built library.
  
     ```shell
-    wget https://github.com/singularity-data/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
+    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     ```
 
 2. Unzip the library.
@@ -56,7 +56,7 @@ As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/g
 Start RisingWave in single-binary playground mode:
     
 ```sh
-docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/singularity-data/risingwave:v0.1.11 playground
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:nightly-20220905 playground
 ```
 
 ### Set up a multi-node cluster via Docker (Linux & macOS)
@@ -79,10 +79,10 @@ Therefore, it will start 8 processes.
 
 As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment. Ensure that it is running before launching the cluster.
 
-Then, clone the [risingwave-demo](https://github.com/singularity-data/risingwave-demo) repository.
+Then, clone the [risingwave-demo](https://github.com/risingwavelabs/risingwave-demo) repository.
 
 ```shell
-git clone https://github.com/singularity-data/risingwave-demo.git
+git clone https://github.com/risingwavelabs/risingwave-demo.git
 ```
 
 Now navigate to the `docker` directory and start the cluster from the docker-compose file.
@@ -92,14 +92,27 @@ cd docker
 docker-compose up -d
 ```
 
+:::note
+
+If the following error occurs:
+```shell
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+'name' does not match any of the regexes: '^x-'
+```
+Use `docker compose` instead of `docker-compose`, or enable **Use Docker Compose V2** on the Settings page of Docker Desktop.
+
+For more information, see [Docker Documentation](https://docs.docker.com/compose/#compose-v2-and-the-new-docker-compose-command).
+
+:::
+
 ### Build from source (Linux & macOS)
 
 You can build from source on both x86_64 and ARM64 systems (including macOS devices with an Apple M1 chip).
 
-1. Clone the [risingwave](https://github.com/singularity-data/risingwave) repository.
+1. Clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
 
     ```shell
-    git clone https://github.com/singularity-data/risingwave.git
+    git clone https://github.com/risingwavelabs/risingwave.git
     ```
 
 2. Install dependencies.
@@ -174,7 +187,7 @@ You can now issue SQL queries to manage your streams and data.
 
 ## Connect to a streaming source
 
-For supported streaming sources and sample SQL statements, see [CREATE SOURCE](/sql/commands/create-source.md).
+For supported streaming sources and sample SQL statements, see [CREATE SOURCE](/sql/commands/sql-create-source.md).
 
 ## Query and manage data
 

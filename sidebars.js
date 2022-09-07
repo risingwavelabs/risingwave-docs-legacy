@@ -61,6 +61,11 @@ const sidebars = {
           id: 'tutorials/server-performance-anomaly-detection',
           label: 'Server performance anomaly detection',
         },
+        {
+          type: 'doc',
+          id: 'tutorials/fast-twitter-events-processing',
+          label: 'Fast Twitter events processing',
+        },
       ]
     },
 
@@ -73,7 +78,7 @@ const sidebars = {
       [ 
         {type: 'category', 
         label: 'Connect to a streaming source', 
-        link: {type: 'doc', id: 'sql/commands/create-source'},
+        link: {type: 'doc', id: 'sql/commands/sql-create-source'},
         items: 
         [
           {
