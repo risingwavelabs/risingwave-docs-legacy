@@ -162,6 +162,11 @@ const sidebars = {
             id: 'sql/functions-operators/sql-function-sys-info',
             label: 'System information',
           },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-array',
+            label: 'Array',
+          },
         
         ]
         },
