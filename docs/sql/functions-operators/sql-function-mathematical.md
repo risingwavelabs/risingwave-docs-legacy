@@ -22,9 +22,9 @@ title: Mathematical functions and operators
 
 | Function | Description | Example |
 | ----------- | ----------- | ----------- | 
-| ABS (x) | Returns the absolute value of *x*. | ABS(-3) → 3 |
-| ROUND (x numeric, y int) → numeric | Rounds *x* to *y* decimal places. *y* cannot be negative. | ROUND(1.23559, 2) → 1.24 |
-| ROUND (numeric) → numeric <br /> ROUND (double precision) → double precision | Rounds to the nearest integer. | ROUND(1.23559) → 1 |
-| FLOOR (numeric) → numeric <br /> FLOOR (double precision) → double precision | Returns the nearest integer less than or equal to the argument. | FLOOR(1.23559) → 1 <br /> FLOOR(-1.23559) → -2 |
-| CEIL (numeric) → numeric <br /> FLOOR (double precision) → double precision | Returns the nearest integer greater than or equal to the argument. | CEIL(1.23559) → 2 <br /> CEIL(-1.23559) → -1 |
+| abs ( *input_value* ) → *absolute_value* | Returns the absolute value of *input_value*. The *input_value* can be type int or decimal. The return type is the same as the *input_value* type. | abs(-3) → 3 |
+| round ( *x_numeric*, *y_int* ) → *output_value* | Rounds *x_numeric* to *y_int* decimal places. *y* cannot be negative. | round(1.23559, 2) → 1.24 |
+| round ( *numeric_input* ) → *numeric_output* <br /> round ( *double_precision_input* ) → *double_precision_output* | Rounds to the nearest integer. | round(1.23559) → 1 |
+| floor ( *numeric_input* ) → *numeric_output* <br /> floor ( *double_precision_input* ) → *double_precision_output* | Returns the nearest integer less than or equal to the argument. | floor(1.23559) → 1 <br /> floor(-1.23559) → -2 |
+| ceil ( *numeric_input* ) → *numeric_output* <br /> ceil ( *double_precision_input* ) → *double_precision_output* | Returns the nearest integer greater than or equal to the argument. | ceil(1.23559) → 2 <br /> ceil(-1.23559) → -1 |
 
