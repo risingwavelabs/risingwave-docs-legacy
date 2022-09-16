@@ -28,5 +28,5 @@ title: Date/time functions and operators
 
 |Function|Description|Example|
 |---|---|---|
-| EXTRACT (*field* FROM *source*) → numeric |Extract the value of a data or timestamp. <br /> *field* is one of: YEAR, MONTH, DAY, HOUR, MINUTE, SECOND, DOY, DOW. <br /> *source* is one of: date,  timestamp.|`EXTRACT(day from date '2022-04-07')` → `7` <br /> `EXTRACT (hour from timestamp '2022-04-07 22:00:30')` → `22`|
-| to_char (timestamp, text) → text |Converts time stamp to string according to the given format.|`to_char(timestamp '2002-04-20 17:31:12.66', 'HH12:MI:SS')` → `05:31:12` <br /> `to_char(timestamp '2006-01-02 15:04:05', 'YYYY-MM-DD HH24:MI:SS')` → `2006-01-02 15:04:05`|
+| extract ( *field* FROM *source* ) → *numeric_ouput* | Extract the value of a date or timestamp. <br /> *field* can be year, month, day, hour, minute, second, doy, or dow. <br /> *source* can be the date or timestamp.|`extract(day from date '2022-04-07')` → `7` <br /> `extract(hour from timestamp '2022-04-07 22:00:30')` → `22`|
+| to_char ( *timestamp*, *format* ) → *output_string* |Converts timestamp to string according to the given format.|`to_char(timestamp '2002-04-20 17:31:12.66', 'HH12:MI:SS')` → `05:31:12` <br /> `to_char(timestamp '2006-01-02 15:04:05', 'YYYY-MM-DD HH24:MI:SS')` → `2006-01-02 15:04:05`|
