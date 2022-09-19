@@ -61,7 +61,7 @@ This version was released on September 7, 2022.
 
 * Run this version from Docker:
     `docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:v0.1.12 playground`
-* [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.1.12/risingwave-v0.1.12-x86_64-unknown-linux.tar.gz)
+* Prebuilt library for Linux is not available in this release.
 * [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.12.zip)
 * [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.12.tar.gz)
 
