@@ -30,6 +30,9 @@ You can run RisingWave in these ways:
     ```shell
     wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     ```
+    :::note
+    The pre-built library is not available for the latest release (v0.1.12).
+    :::
 
 2. Unzip the library.
 
@@ -56,7 +59,7 @@ As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/g
 Start RisingWave in single-binary playground mode:
     
 ```sh
-docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:nightly-20220905 playground
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:v0.1.12 playground
 ```
 
 ### Set up a multi-node cluster via Docker (Linux & macOS)
