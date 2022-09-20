@@ -24,7 +24,7 @@ title: Mathematical functions and operators
 | ----------- | ----------- | ----------- | 
 | abs ( *input_value* ) → *absolute_value* | Returns the absolute value of *input_value*. The *input_value* can be type int or decimal. The return type is the same as the *input_value* type. | abs(-3) → 3 |
 | round ( *x_numeric*, *y_int* ) → *output_value* | Rounds *x_numeric* to *y_int* decimal places. *y* cannot be negative. | round(1.23559, 2) → 1.24 |
-| round ( *numeric_input* ) → *numeric_output* <br /> round ( *double_precision_input* ) → *double_precision_output* | Rounds to the nearest integer. | round(1.23559) → 1 |
-| floor ( *numeric_input* ) → *numeric_output* <br /> floor ( *double_precision_input* ) → *double_precision_output* | Returns the nearest integer less than or equal to the argument. | floor(1.23559) → 1 <br /> floor(-1.23559) → -2 |
-| ceil ( *numeric_input* ) → *numeric_output* <br /> ceil ( *double_precision_input* ) → *double_precision_output* | Returns the nearest integer greater than or equal to the argument. | ceil(1.23559) → 2 <br /> ceil(-1.23559) → -1 |
+| round ( *numeric_input* ) → *integer_output* <br /> round ( *double_precision_input* ) → *integer_output* | Rounds to the nearest integer. | round(1.23559) → 1 |
+| floor ( *numeric_input* ) → *integer_output* <br /> floor ( *double_precision_input* ) → *integer_output* | Returns the nearest integer less than or equal to the argument. | floor(1.23559) → 1 <br /> floor(-1.23559) → -2 |
+| ceil ( *numeric_input* ) → *integer_output* <br /> ceil ( *double_precision_input* ) → *integer_output* | Returns the nearest integer greater than or equal to the argument. | ceil(1.23559) → 2 <br /> ceil(-1.23559) → -1 |
 
