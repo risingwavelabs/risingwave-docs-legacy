@@ -31,7 +31,7 @@ You can run RisingWave in these ways:
     wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     ```
     :::note
-    The prebuilt library is not available for the latest release (v0.1.12).
+    The pre-built library is not available for the latest release (v0.1.12).
     :::
 
 2. Unzip the library.
