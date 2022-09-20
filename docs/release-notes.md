@@ -7,6 +7,66 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes. 
 
+## v0.1.12
+
+This version was released on September 7, 2022.
+
+### Main changes
+
+#### SQL features
+
+* SQL commands:
+    * `EXPLAIN` now supports specifying options. Supported options: `trace`, `verbose`, and `type`. Unlike PostgreSQL, each option should be separated by a comma and wrapped by parentheses as a whole. [#4730](https://github.com/risingwavelabs/risingwave/pull/4730)
+    * Adds support for `ALTER USER`. [#4261](https://github.com/risingwavelabs/risingwave/pull/4261)
+    * `CREATE/ALTER USER` now has new options `CREATEUSER` and `NOCREATEUSER`, which specifiy whether or not the user has the privilege to create, alter, or drop other users. [#4447](https://github.com/risingwavelabs/risingwave/pull/4447)
+    * Adds support for EXPLAIN CREATE SINK. [#4430](https://github.com/risingwavelabs/risingwave/pull/4430)
+* SQL functions:
+    * Adds support for new system information functions: `current_schema`, `current_schema()`, and `session_user`. [#4358](https://github.com/risingwavelabs/risingwave/pull/4358)
+* The `pg_namespace` catalog now has a new namespace column `nspacl` for storing access privileges. [#4326](https://github.com/risingwavelabs/risingwave/pull/4326)
+
+#### Connectors
+
+* Some connector parameters were renamed. The old parameter names are still functional but may be deprecated in the future. [#4503](https://github.com/risingwavelabs/risingwave/pull/4503)
+
+    * Kafka & Redpanda
+        * `kafka.brokers` -> `properties.bootstrap.server`
+        * `kafka.topic` -> `topic`
+        * `kafka.scan.startup.mode` -> `scan.starup.mode`
+        * `kafka.time.offset` -> `scan.startup.timestamp_millis`
+        * `kafka.consumer.group` -> `consumer.group.id`
+
+    * Kinesis
+        * `kinesis.stream.name` -> `stream`
+        * `kinesis.stream.region` -> `aws.region`
+        * `kinesis.endpoint` -> `endpoint`
+        * `kinesis.credentials.access` -> `aws.credentials.access_key_id`
+        * `kinesis.credentials.secret` -> `aws.credentials.secret_access_key`
+        * `kinesis.credentials.session_token` -> `aws.credentials.session_token`
+        * `kinesis.assumerole.arn` -> `aws.credentials.role.arn`
+        * `kinesis.assumerole.external_id` -> `aws.credentials.role.external_id`
+    * Pulsar
+        * `pulsar.topic` -> `topic`
+        * `pulsar.admin.url` -> `admin.url`
+        * `pulsar.service.url` -> `service.url`
+        * `pulsar.scan.startup.mode` -> `scan.startup.mode`
+        * `pulsar.time.offset` -> `scan.startup.timestamp_millis`
+* The row format name, `debezium json`, for CDC stream sources, has been renamed to `debezium_json`. [#4494](https://github.com/risingwavelabs/risingwave/pull/4494)
+
+#### Configuration changes
+
+* The default batch query execution mode was changed from distributed to local. [#4789](https://github.com/risingwavelabs/risingwave/pull/4789)
+
+
+### Assets
+
+* Run this version from Docker:
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:v0.1.12 playground`
+* Prebuilt library for Linux is not available in this release.
+* [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.12.zip)
+* [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.12.tar.gz)
+
+
+
 ## v0.1.11
 
 This version was released on July 29, 2022.
@@ -29,7 +89,7 @@ This version was released on July 29, 2022.
 * An `ORDER BY` clause in the `CREATE MATERIALIZED VIEW` statement is allowed but not considered as part of the definition of the materialized view. It is only used in the initial creation of the materialized view. It is not used during refreshes. This is a behavior change due to the introduction of parallel table scans. [#3670](https://github.com/risingwavelabs/risingwave/pull/3670)
 * Support for filter clauses on aggregate functions. [#4114](https://github.com/risingwavelabs/risingwave/pull/4114)
 
-### **Connectors**
+#### Connectors
 
 * RisingWave can now sink data to Kafka topics in append-only mode and Debezium mode. [#3923](https://github.com/risingwavelabs/risingwave/pull/3923) [#3682](https://github.com/risingwavelabs/risingwave/pull/3682) [#3674](https://github.com/risingwavelabs/risingwave/pull/3674)
 * Syntax change for `CREATE SOURCE`: A parameter name is no longer wrapped by single quotation marks. [#3997](https://github.com/risingwavelabs/risingwave/pull/3997). See the example:

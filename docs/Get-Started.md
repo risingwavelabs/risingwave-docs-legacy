@@ -30,6 +30,9 @@ You can run RisingWave in these ways:
     ```shell
     wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     ```
+    :::note
+    The pre-built library is not available for the latest release (v0.1.12).
+    :::
 
 2. Unzip the library.
 
@@ -56,7 +59,7 @@ As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/g
 Start RisingWave in single-binary playground mode:
     
 ```sh
-docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:v0.1.11 playground
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:v0.1.12 playground
 ```
 
 ### Set up a multi-node cluster via Docker (Linux & macOS)
@@ -91,6 +94,19 @@ Now navigate to the `docker` directory and start the cluster from the docker-com
 cd docker
 docker-compose up -d
 ```
+
+:::note
+
+If the following error occurs:
+```shell
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+'name' does not match any of the regexes: '^x-'
+```
+Use `docker compose` instead of `docker-compose`, or enable **Use Docker Compose V2** on the Settings page of Docker Desktop.
+
+For more information, see [Docker Documentation](https://docs.docker.com/compose/#compose-v2-and-the-new-docker-compose-command).
+
+:::
 
 ### Build from source (Linux & macOS)
 

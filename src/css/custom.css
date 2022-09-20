@@ -17,7 +17,7 @@
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
-  --ifm-font-family-base: NotoSans;
+  --ifm-font-family-base: NotoSansSC, NotoSans;
   --ifm-paragraph-margin-bottom: 0.5rem;
   --ifm-list-paragraph-margin: 0.2rem;
   letter-spacing: 0px;
@@ -44,6 +44,14 @@ h3 {
 
 h4 {
   font-family: NotoSans-SemiBold !important;
+}
+
+@font-face {
+  font-family: NotoSansSC;
+  src: local("NotoSansSC"), url(/static/font/NotoSansSC-Regular.otf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  unicode-range: U+2192;
 }
 
 @font-face {

@@ -61,6 +61,11 @@ const sidebars = {
           id: 'tutorials/server-performance-anomaly-detection',
           label: 'Server performance anomaly detection',
         },
+        {
+          type: 'doc',
+          id: 'tutorials/fast-twitter-events-processing',
+          label: 'Fast Twitter events processing',
+        },
       ]
     },
 
@@ -156,6 +161,11 @@ const sidebars = {
             type: 'doc',
             id: 'sql/functions-operators/sql-function-sys-info',
             label: 'System information',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-array',
+            label: 'Array',
           },
         
         ]

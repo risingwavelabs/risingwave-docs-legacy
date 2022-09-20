@@ -30,6 +30,8 @@ title: String functions and operators
 |SPLIT_PART (string varchar, delimiter varchar, n int) → varchar | Splits *string* at occurrences of *delimiter* and returns the *n*'th field (counting from one), or when *n* is negative, returns the \|*n*\|'th-from-last field. When n is zero, returns an 'InvalidParameterValue' error. When the input *delimiter* is an empty string, returns the input *string* if querying the first or last field. Otherwise, returns an empty string. | `SPLIT_PART('abc~@~def~@~ghi', '~@~', 2)` → `def` |
 |regexp_match(*input_string*, *pattern*) → *matched_string*[] | Returns a string array of captured substring(s) resulting from the first match of a POSIX regular expression pattern to a string. If there is no match, the result is NULL.| `REGEXP_MATCH('foobarbequebaz', '(bar)(beque)')` → `[bar,beque]` <br /> `REGEXP_MATCH('abc', 'd')` → `NULL`|
 |regexp_matches(*input_string*, *pattern*) → *set_of_matched_string*[] | Returns a set of string arrays of captured substring(s) resulting from matching a POSIX regular expression pattern to a string. Returns all matches by default.| `REGEXP_MATCHES('foobarbequebazilbarfbonk', '(b[^b]+)(b[^b]+)')` → <br /> `{bar,beque}` <br /> `{bazil,barf}`|
+|OVERLAY(string PLACING substr string FROM start int [ FOR len int ]) → string | Replaces a substring in *string* with *substr*, starting at *start* and with length *len*. If *len* is omitted, its value is the length of *substr*.| `OVERLAY('yabadoo' PLACING 'daba' FROM 5 FOR 0)` → `yabadabadoo` <br /> `OVERLAY('abcdef' PLACING '45' FROM 4)` → `abc45f`|
+
 
 
 ## Pattern matching expressions
