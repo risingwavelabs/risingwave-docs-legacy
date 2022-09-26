@@ -66,6 +66,11 @@ const sidebars = {
           id: 'tutorials/fast-twitter-events-processing',
           label: 'Fast Twitter events processing',
         },
+        {
+          type: 'doc',
+          id: 'tutorials/clickstream-analysis',
+          label: 'Clickstream analysis',
+        },
       ]
     },
 
