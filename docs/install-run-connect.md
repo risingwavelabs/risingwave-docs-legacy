@@ -5,6 +5,7 @@ description: Install, run, and connect to RisingWave.
 slug: /install-run-connect
 ---
 
+## Install and run RisingWave
 
 You can install and run RisingWave in one of these ways:
 

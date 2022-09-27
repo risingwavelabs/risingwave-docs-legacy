@@ -9,8 +9,7 @@ sidebar_position: 2
 
 This guide will help you get started with RisingWave.
 
-- [Install and run RisingWave]()
-- [Connect to RisingWave]()
-- [Connect to a streaming source]()
-- [Query and manage data]()
+- [Install, run, and connect to RisingWave](install-run-connect.md)
+- Connect to a streaming source
+- Query and manage data
 
