@@ -57,6 +57,55 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/ri
 </details>
 
 <details>
+  <summary>Set up a multi-node cluster via Docker (Linux & macOS)</summary>
+
+You can set up a full-featured RisingWave cluster via Docker  Desktop. The cluster is composed of multiple RisingWave components, including:
+
+* A frontend node
+* A compute node
+* A meta node
+* A compactor node
+
+RisingWave also incorporates these third-party components:
+
+* Grafana
+* Etcd
+* MinIO
+* Prometheus
+
+Therefore, it will start 8 processes.
+
+As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment. Ensure that it is running before launching the cluster.
+
+Then, clone the [risingwave-demo](https://github.com/risingwavelabs/risingwave-demo) repository.
+
+```shell
+git clone https://github.com/risingwavelabs/risingwave-demo.git
+```
+
+Now navigate to the `docker` directory and start the cluster from the docker-compose file.
+
+```shell
+cd docker
+docker-compose up -d
+```
+
+:::note
+
+If the following error occurs:
+```shell
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+'name' does not match any of the regexes: '^x-'
+```
+Use `docker compose` instead of `docker-compose`, or enable **Use Docker Compose V2** on the Settings page of Docker Desktop.
+
+For more information, see [Docker Documentation](https://docs.docker.com/compose/#compose-v2-and-the-new-docker-compose-command).
+
+:::
+    
+</details>
+
+<details>
   <summary>Build from source (Linux & macOS)</summary>
 
 You can build from source on both x86_64 and ARM64 systems (including macOS devices with an Apple M1 chip).
