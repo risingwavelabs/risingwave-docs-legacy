@@ -15,12 +15,25 @@ You can install and run RisingWave in one of these ways:
   <ol>
   <li>Download the pre-built library.
  
-    ```shell
+    <pre>
     wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
-    ```
+    </pre>
+    
     :::note
     The pre-built library is not available for the latest release (v0.1.12).
     :::
+
+    import Admonition from '@theme/Admonition';
+
+    export default function MyReactPage() {
+    return (
+        <div>
+        <Admonition type="note">
+            <p>The pre-built library is not available for the latest release (v0.1.12).</p>
+        </Admonition>
+        </div>
+    );
+    }
   </li>
   <li>Unzip the library.
 
