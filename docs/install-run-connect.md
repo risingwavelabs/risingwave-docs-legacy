@@ -235,8 +235,6 @@ You can build from source on both x86_64 and ARM64 systems (including macOS devi
 
     Select your operating system and run the following commands to install the dependencies.
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 <div style={{marginLeft:"2rem"}}>
 <Tabs>
