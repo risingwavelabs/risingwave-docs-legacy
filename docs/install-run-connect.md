@@ -9,44 +9,23 @@ slug: /install-run-connect
 
 You can install and run RisingWave in one of these ways:
 
-import Admonition from '@theme/Admonition';
-
-        <div>
-        <Admonition type="note">
-            <p>The pre-built library is not available for the latest release (v0.1.12).</p>
-        </Admonition>
-        </div>
 
 <details>
   <summary>Use the pre-built library (Linux)</summary>
-  <div>
+
   <ol>
   <li>Download the pre-built library.
  
-    <pre>
+    <pre language="shell">
     wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     </pre>
-
-    import Admonition from '@theme/Admonition';
-
-    export default function MyReactPage() {
-    return (
-        <div>
-        <Admonition type="note">
-            <p>The pre-built library is not available for the latest release (v0.1.12).</p>
-        </Admonition>
-        </div>
-    );
-    }
-
-    import Admonition from '@theme/Admonition';
-
-        <div>
-        <Admonition type="note">
-            <p>The pre-built library is not available for the latest release (v0.1.12).</p>
-        </Admonition>
-        </div>
     
+    :::note
+
+    The pre-built library is not available for the latest release (v0.1.12).
+    
+    :::
+
 
   </li>
   <li>Unzip the library.
@@ -64,7 +43,6 @@ import Admonition from '@theme/Admonition';
   </li>
   </ol>
 
-  </div>
 </details>
 
 <details>
