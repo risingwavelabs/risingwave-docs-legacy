@@ -1,7 +1,7 @@
 ---
 id: install-run-connect
 title: Install, run, and connect to RisingWave
-description: Install and run RisingWave.
+description: Install, run, and connect to RisingWave.
 slug: /install-run-connect
 ---
 
