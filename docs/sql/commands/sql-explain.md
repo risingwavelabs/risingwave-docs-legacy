@@ -12,14 +12,21 @@ Use the `EXPLAIN` command to show the execution plan of a statement.
 ## Syntax
 
 ```sql
-EXPLAIN statement;
+EXPLAIN [ ( option [ , ... ] ) ]statement;
 ```
 
 ## Parameters
 
 |Parameter      | Description|
 |---------------|------------|
-|*statement*        | A statement that is executable in RisingWave.          |
+|*statement*    | A statement that is executable in RisingWave.|
+|**EXPLAIN** *option*    | See the table below.|
+
+#### `EXPLAIN` options
+
+|Parameter      | Description|
+|---------------|------------|
+|||
 
 
 ## Examples
