@@ -23,7 +23,7 @@ You can install and run RisingWave in one of these ways:
     :::note
 
     The pre-built library is not available for the latest release (v0.1.12).
-    
+
     :::
 
 
@@ -47,7 +47,6 @@ You can install and run RisingWave in one of these ways:
 
 <details>
   <summary>Install and run from a Docker image (Linux & macOS)</summary>
-  <div>
 
   You can install and run RisingWave from a Docker image on x86_64 systems. Images for ARM64 systems (including macOS devices with an Apple M1 chip) might be available for testing purpose, but it is not guaranteed.
   
@@ -59,7 +58,75 @@ You can install and run RisingWave in one of these ways:
     docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:v0.1.12 playground
     ```
     
-  </div>
+</details>
+
+<details>
+  <summary>Build from source (Linux & macOS)</summary>
+
+You can build from source on both x86_64 and ARM64 systems (including macOS devices with an Apple M1 chip).
+
+1. Clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
+
+    ```shell
+    git clone https://github.com/risingwavelabs/risingwave.git
+    ```
+
+2. Install dependencies.
+
+    RisingWave has the following dependencies. Please ensure all the dependencies have been installed before running RisingWave.
+
+    * Rust
+    * CMake
+    * Protocol Buffers
+    * OpenSSL
+    * PostgreSQL terminal (14.1 or higher)
+    * Tmux
+
+    Select your operating system and run the following commands to install the dependencies.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<div style={{marginLeft:"2rem"}}>
+<Tabs>
+<TabItem value="macos" label="macOS" default>
+
+
+```shell
+brew install postgresql cmake protobuf openssl tmux
+```
+Run one of the following cammands to install [rustup](https://rustup.rs):
+```shell
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+or
+```shell
+brew install rustup-init && rustup-init
+```
+</TabItem>
+<TabItem value="linux" label="Linux">
+
+```shell
+sudo apt update
+sudo apt upgrade
+sudo apt install make build-essential cmake protobuf-compiler curl openssl libssl-dev libcurl4-openssl-dev pkg-config postgresql-client tmux lld
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+</TabItem>
+</Tabs>
+</div>
+
+3. Run RisingWave.
+
+    To run RisingWave, in the terminal, navigate to the directory where RisingWave is downloaded, and run the following command.
+  
+    ```shell
+    ./risedev playground
+    ```
+
+    All services in RisingWave will be started.
+    
 </details>
 
 ### Use the pre-built library (Linux)
