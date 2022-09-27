@@ -9,6 +9,14 @@ slug: /install-run-connect
 
 You can install and run RisingWave in one of these ways:
 
+import Admonition from '@theme/Admonition';
+
+        <div>
+        <Admonition type="note">
+            <p>The pre-built library is not available for the latest release (v0.1.12).</p>
+        </Admonition>
+        </div>
+
 <details>
   <summary>Use the pre-built library (Linux)</summary>
   <div>
@@ -18,10 +26,6 @@ You can install and run RisingWave in one of these ways:
     <pre>
     wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     </pre>
-    
-    :::note
-    The pre-built library is not available for the latest release (v0.1.12).
-    :::
 
     import Admonition from '@theme/Admonition';
 
@@ -34,6 +38,16 @@ You can install and run RisingWave in one of these ways:
         </div>
     );
     }
+
+    import Admonition from '@theme/Admonition';
+
+        <div>
+        <Admonition type="note">
+            <p>The pre-built library is not available for the latest release (v0.1.12).</p>
+        </Admonition>
+        </div>
+    
+
   </li>
   <li>Unzip the library.
 
