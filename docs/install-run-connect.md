@@ -20,13 +20,11 @@ You can install and run RisingWave in one of these ways:
     :::note
     The pre-built library is not available for the latest release (v0.1.12).
     :::
-
 2. Unzip the library.
 
     ```shell
     tar xvf risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     ```
-
 3. Run RisingWave.
 
     ```shell
@@ -64,13 +62,11 @@ You can install and run RisingWave in one of these ways:
     :::note
     The pre-built library is not available for the latest release (v0.1.12).
     :::
-
 2. Unzip the library.
 
     ```shell
     tar xvf risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     ```
-
 3. Run RisingWave.
 
     ```shell
