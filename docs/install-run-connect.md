@@ -11,8 +11,8 @@ You can install and run RisingWave in one of these ways:
 <details>
   <summary>Use the pre-built library (Linux)</summary>
   <div>
-
-  1. Download the pre-built library.
+  <ol>
+  <li>Download the pre-built library.
  
     ```shell
     wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
@@ -20,17 +20,21 @@ You can install and run RisingWave in one of these ways:
     :::note
     The pre-built library is not available for the latest release (v0.1.12).
     :::
-2. Unzip the library.
+  </li>
+  <li>Unzip the library.
 
     ```shell
     tar xvf risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     ```
-3. Run RisingWave.
+  </li>
+  <li>Run RisingWave.
 
     ```shell
     ./risingwave playground
     ```
     RisingWave is now started.
+  </li>
+  </ol>
 
   </div>
 </details>
