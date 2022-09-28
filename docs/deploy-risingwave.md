@@ -1,11 +1,11 @@
 ---
-id: install-run-connect
+id: deploy-risingwave
 title: Install, run, and connect to RisingWave
 description: Install, run, and connect to RisingWave.
-slug: /install-run-connect
+slug: /deploy-risingwave
 ---
 
-## Install and run RisingWave
+## Step 1. Install and run RisingWave
 
 You can install and run RisingWave in one of these ways:
 
@@ -175,7 +175,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 </details>
 
 
-## Connect to RisingWave
+## Step 2. Connect to RisingWave
 
 After RisingWave is up and running, you can connect to it via the Postgres interactive terminal `psql`.
 

@@ -48,7 +48,7 @@ const sidebars = {
       items: [
         {
           type: 'doc',
-          id: 'install-run-connect',
+          id: 'deploy-risingwave',
           label: 'Deploy RisingWave',
         },
         {
