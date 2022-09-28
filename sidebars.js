@@ -68,11 +68,10 @@ const sidebars = {
           id: 'query-manage-data',
           label: 'Query and manage data',
         },
-        {
-          type: 'link',
-          label: 'Output processed data',
-          href: 'sql/commands/sql-create-sink.md',
-        },
+        {type: 'ref', 
+        label: 'Use time window functions', 
+        id: 'sql/commands/sql-create-sink'
+        }
       ]
     },
     
@@ -80,7 +79,7 @@ const sidebars = {
       type: 'category',
       label: 'Tutorials',
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: 'doc',
@@ -109,7 +108,7 @@ const sidebars = {
       type: 'category',
       label: 'How-to guides',
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: 
       [ 
         {type: 'ref', 
@@ -123,7 +122,7 @@ const sidebars = {
     type: 'category',
     label: 'SQL reference',
     collapsible: true,
-    collapsed: false,
+    collapsed: true,
     items: 
     ['sql/sql-data-types', 
       {
