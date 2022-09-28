@@ -183,6 +183,6 @@ After RisingWave is up and running, you can connect to it via the Postgres inter
 psql -h localhost -p 4566 -d dev -U root
 ```
     
-You can now issue SQL queries to manage your streams and data.
+You can now [connect a streaming source to RisingWave](sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](query-manage-data.md).
 
 
