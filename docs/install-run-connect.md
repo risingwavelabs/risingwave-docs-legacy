@@ -59,7 +59,7 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/ri
 <details>
   <summary>Set up a multi-node cluster via Docker (Linux & macOS)</summary>
 
-You can set up a full-featured RisingWave cluster via Docker  Desktop. The cluster is composed of multiple RisingWave components, including:
+You can set up a full-featured RisingWave cluster via Docker Desktop. The cluster is composed of multiple RisingWave components, including:
 
 * A frontend node
 * A compute node
