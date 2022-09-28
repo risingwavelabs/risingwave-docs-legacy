@@ -1,6 +1,6 @@
 ---
 id: deploy-risingwave
-title: Install, run, and connect to RisingWave
+title: Deploy RisingWave
 description: Install, run, and connect to RisingWave.
 slug: /deploy-risingwave
 ---
@@ -16,7 +16,7 @@ You can install and run RisingWave in one of these ways:
 1. Download the pre-built library.
 
     ```shell
-        wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
+    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz
     ```
         
     :::note
