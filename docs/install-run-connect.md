@@ -1,8 +1,8 @@
 ---
-id: deploy-risingwave
-title: Deploy RisingWave
+id: install-run-connect
+title: Install, run, and connect RisingWave
 description: Install, run, and connect to RisingWave.
-slug: /deploy-risingwave
+slug: /install-run-connect
 ---
 
 ## Step 1. Install and run RisingWave

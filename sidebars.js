@@ -48,8 +48,8 @@ const sidebars = {
       items: [
         {
           type: 'doc',
-          id: 'deploy-risingwave',
-          label: 'Deploy RisingWave',
+          id: 'install-run-connect',
+          label: 'Install, run, and connect RisingWave',
         },
         {
           type: 'category', 
@@ -69,7 +69,7 @@ const sidebars = {
           label: 'Query and manage data',
         },
         {type: 'ref', 
-        label: 'Output processed data', 
+        label: 'Output data', 
         id: 'sql/commands/sql-create-sink'
         }
       ]
