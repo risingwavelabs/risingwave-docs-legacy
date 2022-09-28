@@ -49,7 +49,7 @@ const sidebars = {
         {
           type: 'doc',
           id: 'install-run-connect',
-          label: 'Install, run, and connect RisingWave',
+          label: 'Install, run, and connect to RisingWave',
         },
         {
           type: 'category', 
