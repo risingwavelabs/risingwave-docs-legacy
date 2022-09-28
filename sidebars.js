@@ -71,7 +71,7 @@ const sidebars = {
         {
           type: 'link',
           label: 'Output processed data',
-          href: 'sql/commands/sql-create-sink',
+          href: 'sql/commands/sql-create-sink.md',
         },
       ]
     },
