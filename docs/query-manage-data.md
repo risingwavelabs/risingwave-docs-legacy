@@ -7,7 +7,7 @@ slug: /query-manage-data
 
 RisingWave uses Postgres-compatible SQL as the interface to manage and query data.
 
-Before we start, ensure that you have [connected to RisingWave via `psql`](#connect-to-risingwave). 
+Before we start, ensure that you have [connected to RisingWave via `psql`](install-run-connect.md/#connect-to-risingwave). 
 
 Now let us create a table to store data about taxi trips.
 

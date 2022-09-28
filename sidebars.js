@@ -67,7 +67,12 @@ const sidebars = {
           type: 'doc',
           id: 'query-manage-data',
           label: 'Query and manage data',
-        }
+        },
+        {
+          type: 'link',
+          label: 'Output processed data',
+          href: 'sql/commands/sql-create-sink',
+        },
       ]
     },
     
