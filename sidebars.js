@@ -69,7 +69,7 @@ const sidebars = {
           label: 'Query and manage data',
         },
         {type: 'ref', 
-        label: 'Use time window functions', 
+        label: 'Output processed data', 
         id: 'sql/commands/sql-create-sink'
         }
       ]
