@@ -17,7 +17,7 @@
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
-  --ifm-font-family-base: NotoSans;
+  --ifm-font-family-base: NotoSansSC, NotoSans;
   --ifm-paragraph-margin-bottom: 0.5rem;
   --ifm-list-paragraph-margin: 0.2rem;
   letter-spacing: 0px;
@@ -33,6 +33,8 @@ h1 {
 }
 
 h2 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dbdbdb;
   font-family: NotoSans !important;
 }
 
@@ -42,6 +44,14 @@ h3 {
 
 h4 {
   font-family: NotoSans-SemiBold !important;
+}
+
+@font-face {
+  font-family: NotoSansSC;
+  src: local("NotoSansSC"), url(/static/font/NotoSansSC-Regular.otf) format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  unicode-range: U+2192;
 }
 
 @font-face {
@@ -114,75 +124,8 @@ h4 {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-h2 {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #dbdbdb;
-}
-
 body {
   overflow-x: hidden;
-}
-
-@media (max-width: 700px) {
-  table {
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    position: relative;
-    overflow: initial;
-    table-layout: fixed;
-  }
-
-  thead {
-    top: 55px;
-    z-index: 20;
-    display: block;
-    position: sticky;
-  }
-
-  table thead tr {
-    width: 100%;
-    display: block;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  thead tr th,
-  tbody tr td {
-    min-width: 10rem;
-    width: 20%;
-    max-width: 100%;
-  }
-
-  thead tr th:first-child,
-  tbody tr td:first-child {
-    min-width: 12rem;
-    width: 20%;
-    max-width: 100%;
-  }
-
-  thead tr th:nth-child(2),
-  tbody tr td:nth-child(2) {
-    min-width: 14rem;
-    width: 20%;
-    max-width: 100%;
-  }
-
-  tbody {
-    width: 100%;
-    display: block;
-    overflow: auto;
-    scroll-snap-type: x mandatory;
-  }
-
-  thead tr::-webkit-scrollbar {
-    display: none;
-  }
-
-  thead tr {
-    overflow-x: hidden;
-  }
 }
 
 table,
@@ -192,9 +135,68 @@ table,
   max-width: 100%;
   position: relative;
   overflow: initial;
+  table-layout: fixed;
   text-indent: 0;
   border-collapse: separate;
   border-spacing: 0px;
+}
+
+thead tr {
+  overflow-x: hidden;
+}
+
+thead {
+  top: 55px;
+  z-index: 20;
+  display: block;
+  position: sticky;
+}
+
+tbody {
+  width: 100%;
+  display: block;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+}
+
+table thead tr {
+  width: 100%;
+  display: block;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+thead tr th,
+tbody tr td {
+  min-width: 10rem;
+  width: 20%;
+  max-width: 100%;
+}
+
+thead tr th:first-child,
+tbody tr td:first-child {
+  min-width: 12rem;
+  width: 10%;
+  max-width: 100%;
+}
+
+thead tr th:nth-child(2),
+tbody tr td:nth-child(2) {
+  min-width: 14rem;
+  width: 30%;
+  max-width: 100%;
+}
+
+thead tr th:nth-child(3),
+tbody tr td:nth-child(3) {
+  min-width: 14rem;
+  width: 30%;
+  max-width: 100%;
+}
+
+thead tr::-webkit-scrollbar {
+  display: none;
 }
 
 table tr:nth-child(2n) {
@@ -203,17 +205,6 @@ table tr:nth-child(2n) {
 
 [data-theme="dark"] table tr:nth-child(2n) {
   background-color: var(--ifm-table-background);
-}
-
-table tr:first-child td,
-table tr:first-child {
-  border-top: none;
-}
-
-thead {
-  top: 55px;
-  z-index: 20;
-  position: sticky;
 }
 
 table thead th {
@@ -239,6 +230,53 @@ table tbody tr td {
   border-top: 1px solid #393939;
 }
 
-[data-theme="dark"] thead tr:first-child {
+thead tr:first-child {
   border-bottom: none;
+}
+
+table tr:first-child td,
+table tr:first-child {
+  border-top: none;
+}
+
+.scrollHint {
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  width: 80px;
+  height: 68px;
+  max-height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 6px 6px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 50;
+}
+
+[data-theme="dark"] .scrollHint {
+  background-color: rgba(255, 255, 255, 0.65);
+}
+
+.scrollHint.visible {
+  display: flex;
+}
+
+.scrollHint.invisible {
+  display: none;
+}
+
+.scrollHint::before {
+  opacity: 0.6;
+  display: block;
+  width: 50%;
+  height: 50%;
+  background: url(../../static/img/hand.png) 50% / contain no-repeat;
+  content: "";
 }
