@@ -205,6 +205,7 @@ const sidebars = {
         
         ]
         },
+     'sql/psql-commands',
       ],
     },
 
