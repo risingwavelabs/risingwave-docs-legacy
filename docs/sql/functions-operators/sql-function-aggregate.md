@@ -15,5 +15,5 @@ The DISTINCT option, ORDER BY clauses, and FILTER clauses can be used in aggrega
 |count( *expression* ) → bigint|Returns the number of non-null rows. Input types include bool, smallint, int, bigint, numeric, real, double precision, and string.|
 |max( *expression* ) → same as input type|Returns the maximum value in a set of values. Input types include smallint, int, bigint, numeric, real, double precision, and string.|
 |min( *expression* ) → same as input type|Returns the minimum value in a set of values. Input types include smallint, int, bigint, numeric, real, double precision, and string.|
-|string_agg( *expression*, *delimiter_string* ) → *output_string*|Combines non-null values into a string, separated by the *delimiter_string*. The ORDER BY clause, DISTINCT option, and FILTER clause are optional.|
+|string_agg( *expression*, *delimiter_string* ) → *output_string*|Combines non-null values into a string, separated by the *delimiter_string*.|
 |sum ( *expression* )|Returns the sum of all input values. Input types include smallint, int, bigint, numeric, real, and double precision. Return type is bigint for smallint  or int inputs, numeric for bigint inputs, otherwise the same as the input data type.|
