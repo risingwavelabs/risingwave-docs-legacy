@@ -4,12 +4,16 @@ slug: /sql-function-aggregate
 title: Aggregate functions
 ---
 
+Aggregate functions compute a single result from a set of input values. 
+
+The DISTINCT option, ORDER BY clauses, and FILTER clauses can be used in aggregate expressions. The DISTINCT option cannot be used with an ORDER BY clause. For details about the supported syntax, see [Aggregate expression](../syntax/sql-syntax-value-exp.md).
+
 
 |Function|Description|
 |---|---|
-|avg( *input_value/s* ) → see description| Average (arithmetic mean) of all input values. Input types include smallint, int, bigint, numeric, real and double precision. Return type is numeric for integer inputs and double precision for float point inputs.|
-|count( *input_value/s* ) → bigint|Number of input rows for which the value is not null. Input types include bool, smallint, int, bigint, numeric, real, double precision, and string.|
-|max( *input_value/s* ) → same as input type|Maximum value of all input values. Input types include smallint, int, bigint, numeric, real, double precision, and string.|
-|min( *input_value/s* ) → same as input type|Minimum value of all input values. Input types include smallint, int, bigint, numeric, real, double precision, and string.|
-|string_agg( *input_string*, *delimiter_string* ) → *output_string*|Combines non-null values into a string, separated by the *delimiter_string*. The ORDER BY clause, DISTINCT option, and FILTER clause are optional.|
-|sum( smallint ) → bigint <br /> sum( int ) → bigint <br /> sum( bigint ) → numeric <br /> sum( numeric ) → same as input type <br /> sum( real ) → same as input type <br /> sum( double precision ) → same as input type|Sum of all input values. Input types include smallint, int, bigint, numeric, real, and double precision. Return type is bigint for smallint  or int inputs, numeric for bigint inputs, otherwise the same as the input data type.|
+|avg( *expression* ) → see description| Returns the average (arithmetic mean) of the selected values. Input types include smallint, int, bigint, numeric, real and double precision. Return type is numeric for integer inputs and double precision for float point inputs.|
+|count( *expression* ) → bigint|Returns the number of non-null rows. Input types include bool, smallint, int, bigint, numeric, real, double precision, and string.|
+|max( *expression* ) → same as input type|Returns the maximum value in a set of values. Input types include smallint, int, bigint, numeric, real, double precision, and string.|
+|min( *expression* ) → same as input type|Returns the minimum value in a set of values. Input types include smallint, int, bigint, numeric, real, double precision, and string.|
+|string_agg( *expression*, *delimiter_string* ) → *output_string*|Combines non-null values into a string, separated by the *delimiter_string*. The ORDER BY clause, DISTINCT option, and FILTER clause are optional.|
+|sum ( *expression* )|Returns the sum of all input values. Input types include smallint, int, bigint, numeric, real, and double precision. Return type is bigint for smallint  or int inputs, numeric for bigint inputs, otherwise the same as the input data type.|
