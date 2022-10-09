@@ -124,7 +124,24 @@ const sidebars = {
     collapsible: true,
     collapsed: true,
     items: 
-    ['sql/sql-data-types', 
+    [{
+      type: 'category',
+      label: 'SQL syntax',
+      items: 
+        [
+          {
+            type: 'doc',
+            id: 'sql/syntax/sql-syntax-value-exp',
+            label: 'Value expressions',
+          },
+        
+        ]
+        },
+      {
+        type: 'doc',
+        id: 'sql/sql-data-types',
+        label: 'Data types',
+    }, 
       {
       type: 'category',
       label: 'Functions and operators',
