@@ -95,7 +95,7 @@ const sidebars = {
 
         {
           type: 'doc',
-          id: 'guides/nested-columns',
+          id: 'guides/nested-columns-arrays',
           label: 'Define and access nested columns',
         },
         
