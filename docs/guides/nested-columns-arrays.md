@@ -8,7 +8,7 @@ This guide describes how to create a schema that contains nested columns and arr
 
 ## Define nested columns and arrays
 
-To create a column with nested data, set the data type of the column to `STRUCT`, and use angle brackets to enclose nested columns. Columns nested under the same column can be in different data types. A nested column can contain nested data.
+To create a column with nested data, set the data type of the column to `STRUCT`, and use angle brackets to enclose nested columns. Columns nested under the same column can be in different data types. A nested column can contain nested data. For more information about the `STRUCT` data type, see [Data types](../sql/sql-data-types.md).
 
 
 To create a column with repeated data (that is, an array), append [] to the data type of the column when you define the schema. For example, you can use `trip_id VARCHAR[]` to create an array that stores trip IDs.
