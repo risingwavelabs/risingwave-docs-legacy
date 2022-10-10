@@ -12,7 +12,7 @@ Use the `EXPLAIN` command to show the execution plan of a statement.
 ## Syntax
 
 ```sql
-EXPLAIN [ ( option [ , ... ] ) ]statement;
+EXPLAIN [ ( option [ , ... ] ) ] statement;
 ```
 
 ## Parameters
@@ -24,9 +24,19 @@ EXPLAIN [ ( option [ , ... ] ) ]statement;
 
 #### `EXPLAIN` options
 
-|Parameter      | Description|
+|Option         | Description|
 |---------------|------------|
-|||
+|**VERBOSE** [ TRUE \| FALSE ]|Show additional information regarding the execution plan such as the table catalog of the state table and the schema of each operator.|
+|[ VERBOSE ] **TRACE** [ TRUE \| FALSE ]|Show the trace of each optimization stage, not only the final plan.|
+|[ **TYPE** ] { PHYSICAL \| *More parameters are coming soon.* }|Show the execution plan of a specific phase.<ul><li>PHYSICAL — Show the batch plan or stream plan.</li></ul>|
+
+<!-- ⬆️ EXPLAIN (TYPE LOGICAL) stmt is currently not supported. Track the progress: https://github.com/risingwavelabs/risingwave/issues/4856. See the explanation for the option: https://singularity-data.quip.com/fek1AUiMz5lz/RFC-Option-based-Explain-Syntax-->
+<!-- EXPLAIN (TYPE DIST) stmt is currently not supported. Track the progress: https://github.com/risingwavelabs/risingwave/issues/3710-->
+<!-- |**FORMAT** { TREE \| JSON }|Specify the output format.<ul><li>TREE — </li><li>JSON — </li></ul>| is currently not supported. Track the progress: https://github.com/risingwavelabs/risingwave/issues/4856. See the explanation for the option: https://singularity-data.quip.com/fek1AUiMz5lz/RFC-Option-based-Explain-Syntax. See reference here: https://dev.mysql.com/doc/refman/8.0/en/explain.html-->
+
+:::note
+The boolean parameter `[ TRUE | FALSE ]` specifies whether the specified option should be enabled or disabled. Use `TRUE` to enable the option, and `FALSE` to disable it. It defaults to `TRUE` if you omit the parameter.
+:::
 
 
 ## Examples
