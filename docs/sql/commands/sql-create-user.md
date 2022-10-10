@@ -21,7 +21,7 @@ CREATE USER user_name
 | **WITH** *option* | See the table below. |
 
 #### `WITH` options
-| Parameter | Description           |
+| Option | Description           |
 | --------- | --------------------- |
 | <ul><li>SUPERUSER</li><li>NOSUPERUSER</li></ul> | Grants/denies the user superuser permission. A superuser can override all access restrictions. <br/> NOSUPERUSER is the default value. |
 | <ul><li>CREATEDB</li><li>NOCREATEDB</li></ul> | Grants/denies the user the ability to create databases. <br/> NOCREATEDB is the default value. |
