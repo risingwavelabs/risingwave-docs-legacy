@@ -6,7 +6,7 @@ title: Date/time functions and operators
 
 
 
-## Date/time operators
+## Date and time operators
 
 | Operation | Description | Example |
 | ----------- | ----------- | ----------- |
@@ -24,7 +24,7 @@ title: Date/time functions and operators
 | interval = interval → bool | Compare interval equality. | `interval '1' month = interval '30' day` → `t` |
 | real * interval → time | Multiply an interval by a float. | `real '6.1' * interval '1' second` → `00:00:06.1` <br /> `interval '1' second * real '6.1'` → `00:00:06.1` |
 
-## Date/time functions
+## Date and time functions
 
 |Function|Description|Example|
 |---|---|---|
