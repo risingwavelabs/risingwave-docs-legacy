@@ -1,7 +1,7 @@
 ---
 id: sql-function-datetime
 slug: /sql-function-datetime
-title: Date/time functions and operators
+title: Date and time functions and operators
 ---
 
 
