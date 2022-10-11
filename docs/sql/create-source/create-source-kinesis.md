@@ -23,14 +23,14 @@ ROW FORMAT JSON | PROTOBUF MESSAGE 'main_message';
 
 |Field|	Default|	Type|	Description|	Required?|
 |---|---|---|---|---|
-|kinesis.stream.name	|None	|String|	The stream name identifies the stream.	|True|
-|kinesis.stream.region	|None	|String|	AWS service region. For example, US East (N. Virginia).	|True|
-|kinesis.endpoint	|None	|String	|The URL of the entry point for the AWS Kinesis service.| False|
-|kinesis.credentials.access	|None	|String	|Indicates the Access key ID of AWS. Must appear in pairs with kinesis.credentials.secret.	|False|
-|kinesis.credentials.secret	|None	|String	|Indicates the secret access key of AWS. Must appear in pairs with kinesis.credentials.access.	|False|
-|kinesis.credentials.session_token	|None	|String	|The session token associated with the credentials. Temporary Session Credentials.	|False|
-|kinesis.assumerole.arn	|None	|String |The Amazon Resource Name (ARN) of the role to assume.		|False|
-|kinesis.assumerole.external_id	|None	|String	|The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources.	|False|
+|stream	|None	|String|	The stream name identifies the stream.	|True|
+|aws.region	|None	|String|	AWS service region. For example, US East (N. Virginia).	|True|
+|endpoint	|None	|String	|The URL of the entry point for the AWS Kinesis service.| False|
+|aws.credentials.access_key_id	|None	|String	|Indicates the Access key ID of AWS. Must appear in pairs with aws.credentials.secret_access_key.	|False|
+|aws.credentials.secret_access_key	|None	|String	|Indicates the secret access key of AWS. Must appear in pairs with aws.credentials.access_key_id.	|False|
+|aws.credentials.session_token	|None	|String	|The session token associated with the credentials. Temporary Session Credentials.	|False|
+|aws.credentials.role.arn	|None	|String |The Amazon Resource Name (ARN) of the role to assume.		|False|
+|aws.credentials.role.external_id	|None	|String	|The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources.	|False|
 
 ## Example
 Here is an example of connecting RisingWave to Kinesis Data Streams to read data from individual streams.
@@ -42,12 +42,12 @@ CREATE [MATERIALIZED] SOURCE [IF NOT EXISTS] source_name (
 ) 
 WITH (
    connector='kinesis',
-   kinesis.stream.name='kafka',
-   kinesis.stream.region='user_test_topic',
-   kinesis.endpoint='172.10.1.1:9090,172.10.1.2:9090',
-   kinesis.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
-   kinesis.assumerole.arn='arn:aws-cn:iam::602389639824:role/demo_role',
-   kinesis.assumerole.external_id='demo_external_id'
+   stream='kafka',
+   aws.region='user_test_topic',
+   endpoint='172.10.1.1:9090,172.10.1.2:9090',
+   aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
+   aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
+   aws.credentials.role.external_id='demo_external_id'
 ) 
 ROW FORMAT JSON;
 ```
