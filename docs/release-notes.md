@@ -46,13 +46,13 @@ This version was released on October xx (to be revised later), 2022.
         
         `' 1 '::int` → `1`
         
-- New psql meta-commands are supported.
-    - `\d`: List all relations in the current database. (Materialized) sources are not supported yet.
-    - `\dt`: List all tables in the current database.
-    - `\dm`: List all materialized views in the current database.
-    - `\di`: List all indexes in the current database.
+- Adds new system catalog and psql meta-commands. [#5127](https://github.com/risingwavelabs/risingwave/pull/5127), [#5742](https://github.com/risingwavelabs/risingwave/pull/5742)
+    - `\d`: Lists all relations in the current database. (Materialized) sources are not supported yet.
+    - `\dt`: Lists all tables in the current database.
+    - `\dm`: Lists all materialized views in the current database.
+    - `\di`: Lists all indexes in the current database.
+    - `pg_catalog.pg_index`: Contains information about indexes.
     
-    ![](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6b9ad16f-ff72-448e-856d-743e7093992b/Untitled.png)
     
 #### Connectors
 
