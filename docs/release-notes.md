@@ -47,7 +47,7 @@ This version was released on October xx (to be revised later), 2022.
         `' 1 '::int` → `1`
         
 - New psql meta-commands are supported.
-    - `\d`: List all relations in the current database, together with indexes (originally not supported in psql). (Materialized) sources are not supported yet.
+    - `\d`: List all relations in the current database. (Materialized) sources are not supported yet.
     - `\dt`: List all tables in the current database.
     - `\dm`: List all materialized views in the current database.
     
