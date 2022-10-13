@@ -50,6 +50,7 @@ This version was released on October xx (to be revised later), 2022.
     - `\d`: List all relations in the current database. (Materialized) sources are not supported yet.
     - `\dt`: List all tables in the current database.
     - `\dm`: List all materialized views in the current database.
+    - `\di`: List all indexes in the current database.
     
     ![](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6b9ad16f-ff72-448e-856d-743e7093992b/Untitled.png)
     
