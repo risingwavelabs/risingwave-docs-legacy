@@ -7,6 +7,66 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes. 
 
+## v0.1.13
+
+This version was released on October xx (to be revised later), 2022.
+
+### Main changes
+
+#### SQL features
+
+- SQL commands:
+    - Improves the formatting of response messages of `EXPLAIN` statements. https://github.com/risingwavelabs/risingwave/pull/5541
+
+- SQL functions:
+    - `to_char()` now supports specifying output format in lowercase. [#5032](https://github.com/risingwavelabs/risingwave/pull/5032)
+        
+        `to_char(timestamp '2006-01-02 15:04:05', 'yyyy-mm-dd hh24:mi:ss')` → `2006-01-02 15:04:05`
+        
+    - `generate_series` now supports negative steps. [#5231](https://github.com/risingwavelabs/risingwave/pull/5231)
+        
+        ```sql
+        SELECT * FROM generate_series(5,1,-2);
+        generate_series 
+        -----------------
+                       5
+                       3
+                       1
+        (3 rows)
+        ```
+        
+    - Adds support for sum/min/max functions over interval-type data. [#5105](https://github.com/risingwavelabs/risingwave/pull/5105), [#5549](https://github.com/risingwavelabs/risingwave/pull/5549)
+    - Adds support for array concatenation. [#5060](https://github.com/risingwavelabs/risingwave/pull/5060), [#5345](https://github.com/risingwavelabs/risingwave/pull/5345)
+    - Adds support for specifying empty arrays. [#5402](https://github.com/risingwavelabs/risingwave/pull/5402)
+    - Casting from array to varchar is now supported. [#5081](https://github.com/risingwavelabs/risingwave/pull/5081)
+        
+        `array[1,2]::varchar` → `{1,2}`
+        
+    - Casting from varchar to integer allows leading and trailing spaces. [#5452](https://github.com/risingwavelabs/risingwave/pull/5452)
+        
+        `' 1 '::int` → `1`
+        
+- New psql meta-commands are supported.
+    - `\d`: List all relations in the current database, together with indexes (originally not supported in psql). (Materialized) sources are not supported yet.
+    - `\dt`: List all tables in the current database.
+    - `\dm`: List all materialized views in the current database.
+    
+    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6b9ad16f-ff72-448e-856d-743e7093992b/Untitled.png)
+    
+#### Connectors
+
+- Nested columns are now supported for the datagen connector. [#5550](https://github.com/risingwavelabs/risingwave/pull/5550)
+
+
+### Assets
+
+* Run this version from Docker:
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:v0.1.13 playground`
+* [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.1.13/risingwave-v0.1.13-x86_64-unknown-linux.tar.gz)
+* [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.13.zip)
+* [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.13.tar.gz)
+
+
 ## v0.1.12
 
 This version was released on September 7, 2022.
