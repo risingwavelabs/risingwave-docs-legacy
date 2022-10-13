@@ -51,7 +51,7 @@ This version was released on October xx (to be revised later), 2022.
     - `\dt`: List all tables in the current database.
     - `\dm`: List all materialized views in the current database.
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6b9ad16f-ff72-448e-856d-743e7093992b/Untitled.png)
+    ![](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6b9ad16f-ff72-448e-856d-743e7093992b/Untitled.png)
     
 #### Connectors
 
