@@ -25,7 +25,7 @@ WITH (
    connector='kafka',
    field_name='value', ...
 ) 
-ROW FORMAT DEBEZIUM JSON;
+ROW FORMAT DEBEZIUM_JSON;
 ```
 
 ### `WITH` options
