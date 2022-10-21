@@ -11,9 +11,8 @@ Use the `CREATE USER` command to create a new user account in RisingWave.
 
 ```sql
 CREATE USER user_name 
-    [ WITH option [ ... ] ]
+    [ [ WITH ] option [ ... ] ]
 ```
-<!-- 'WITH' will be optional in v0.1.12. (Now 'WITH' is required if you want to specify options.) Track: https://github.com/risingwavelabs/risingwave/pull/4414 -->
 
 ## Parameters
 | Parameter or clause | Description           |
@@ -22,13 +21,14 @@ CREATE USER user_name
 | **WITH** *option* | See the table below. |
 
 #### `WITH` options
-| Parameter | Description           |
+| Option | Description           |
 | --------- | --------------------- |
 | <ul><li>SUPERUSER</li><li>NOSUPERUSER</li></ul> | Grants/denies the user superuser permission. A superuser can override all access restrictions. <br/> NOSUPERUSER is the default value. |
 | <ul><li>CREATEDB</li><li>NOCREATEDB</li></ul> | Grants/denies the user the ability to create databases. <br/> NOCREATEDB is the default value. |
-| <ul><li>LOGIN</li><li>NOLOGIN</li></ul> | Grants/denies the user the ability to log in when [establishing connection with RisingWave](../install-run-connect.md/#step-2-connect-to-risingwave). <br/> LOGIN is the default value. |
+| <ul><li>CREATEUSER</li><li>NOCREATEUSER</li></ul> | Grants/denies the user the ability to create new users and/or alter and drop existing users. <br/> NOCREATEUSER is the default value. |
+| <ul><li>LOGIN</li><li>NOLOGIN</li></ul> | Grants/denies the user the ability to log in when [establishing connection with RisingWave](../Get-Started.md/#connect-to-risingwave). <br/> LOGIN is the default value. |
 | <ul><li>[ ENCRYPTED ] PASSWORD ' password '</li><li>PASSWORD NULL</li></ul> | Sets the password for the user account. You need to provide the password for authentication when during login. <br/> If you do not want password authentication for the user, omit the PASSWORD option. <br/> Currently, a null password or empty string password means password authentication is not needed. | <!-- Behavior for a null/empty password might change in the future. Track: https://github.com/risingwavelabs/risingwave/issues/4428 -->
-<!-- New options will be added in the future. Track: https://github.com/risingwavelabs/risingwave/issues/4440 -->
+
 
 
 ## Example

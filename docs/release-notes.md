@@ -7,6 +7,67 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes. 
 
+## v0.1.13
+
+This version was released on October 17, 2022.
+
+### Main changes
+
+#### SQL features
+
+- SQL commands:
+    - Improves the formatting of response messages of `EXPLAIN` statements. [#5541](https://github.com/risingwavelabs/risingwave/pull/5541)
+
+- SQL functions:
+    - `to_char()` now supports specifying output format in lowercase. [#5032](https://github.com/risingwavelabs/risingwave/pull/5032)<br/>
+        
+        `to_char(timestamp '2006-01-02 15:04:05', 'yyyy-mm-dd hh24:mi:ss')` → `2006-01-02 15:04:05`
+        
+    - `generate_series` now supports negative steps. [#5231](https://github.com/risingwavelabs/risingwave/pull/5231)<br/>
+        
+        ```sql
+        SELECT * FROM generate_series(5,1,-2);
+        generate_series 
+        -----------------
+                       5
+                       3
+                       1
+        (3 rows)
+        ```
+        
+    - Adds support for sum/min/max functions over interval-type data. [#5105](https://github.com/risingwavelabs/risingwave/pull/5105), [#5549](https://github.com/risingwavelabs/risingwave/pull/5549)
+    - Adds support for array concatenation. [#5060](https://github.com/risingwavelabs/risingwave/pull/5060), [#5345](https://github.com/risingwavelabs/risingwave/pull/5345)
+    - Adds support for specifying empty arrays. [#5402](https://github.com/risingwavelabs/risingwave/pull/5402)
+    - Casting from array to varchar is now supported. [#5081](https://github.com/risingwavelabs/risingwave/pull/5081)<br/>
+        
+        `array[1,2]::varchar` → `{1,2}`
+        
+    - Casting from varchar to integer allows leading and trailing spaces. [#5452](https://github.com/risingwavelabs/risingwave/pull/5452)<br/>
+        
+        `' 1 '::int` → `1`
+        
+- Adds new system catalog and psql meta-commands. [#5127](https://github.com/risingwavelabs/risingwave/pull/5127), [#5742](https://github.com/risingwavelabs/risingwave/pull/5742)
+    - `\d`: Lists all relations in the current database. (Materialized) sources are not supported yet.
+    - `\dt`: Lists all tables in the current database.
+    - `\dm`: Lists all materialized views in the current database.
+    - `\di`: Lists all indexes in the current database.
+    - `pg_catalog.pg_index`: Contains information about indexes.
+    
+    
+#### Connectors
+
+- Nested columns are now supported for the datagen connector. [#5550](https://github.com/risingwavelabs/risingwave/pull/5550)
+
+
+### Assets
+
+* Run this version from Docker:<br/>
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:v0.1.13 playground`
+* [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.1.13/risingwave-v0.1.13-x86_64-unknown-linux.tar.gz)
+* [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.13.zip)
+* [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.13.tar.gz)
+
+
 ## v0.1.12
 
 This version was released on September 7, 2022.
@@ -97,7 +158,7 @@ This version was released on July 29, 2022.
     * New: `CREATE SOURCE s WITH ( connector = 'kafka', kafka.topic = 'kafka_1_partition_topic', kafka.brokers = '127.0.0.1:29092' ) ROW FORMAT json;`
 
 
-## Assets
+### Assets
 
 * Run this version from Docker: <br/>`run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:v0.1.11 playground`
 * [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.1.11/risingwave-v0.1.11-x86_64-unknown-linux.tar.gz)
@@ -163,44 +224,3 @@ This version was released on July 5, 2022.
 * [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.10.tar.gz)
 
 
-## v0.1.8
-
-This version was released on May 14, 2022. 
-
-### Main changes
-
-#### SQL features
-
-* Support SQL functions: `concat_ws()`, `abs()`, `round()`, `ceil()`, `floor()`. [#2589](https://github.com/risingwavelabs/risingwave/pull/2589) [#2531](https://github.com/risingwavelabs/risingwave/pull/2531) [#2716](https://github.com/risingwavelabs/risingwave/pull/2716)
-* Support casts from number types (*smallint*, *integer*, *bigint*, *numeric*, *real*, and *double precision*) to *varchar* using the `to_string` method. [#2522](https://github.com/risingwavelabs/risingwave/pull/2522)
-* Support creating a table with nested columns. [#2434](https://github.com/risingwavelabs/risingwave/pull/2434)
-* Support non-literals in the `IN` operator. [#2588](https://github.com/risingwavelabs/risingwave/pull/2588)
-* Support the `IS [NOT] DISTINCT FROM` expression. [#2582](https://github.com/risingwavelabs/risingwave/pull/2582)
-* Support the `UPDATE` command. Subqueries on the right side of multi-value assignments are not supported yet. [#2602](https://github.com/risingwavelabs/risingwave/pull/2602)
-* Support table alias in window table functions. [#2633](https://github.com/risingwavelabs/risingwave/pull/2633)
-* Support database user management. [#2943](https://github.com/risingwavelabs/risingwave/pull/2943)
-
-#### Connectors
-
-Support the Datagen Source Connector, which can be used to generate mock data for testing purposes. [#2737](https://github.com/risingwavelabs/risingwave/pull/2737)
-
-#### Observability
-
-* Add metrics for these components in Grafana.
-    * Compaction and object-store  [#2573](https://github.com/risingwavelabs/risingwave/pull/2573) [#2761](https://github.com/risingwavelabs/risingwave/pull/2761)
-    * Iterator and cache [#2709](https://github.com/risingwavelabs/risingwave/pull/2709)
-    * Streaming exchange service [#2906](https://github.com/risingwavelabs/risingwave/pull/2906)
-
-
-* Support listing KVs by epoch and table in the risectl tool. [#2640](https://github.com/risingwavelabs/risingwave/pull/2640)
-
-#### Deployment
-
-* RisingWave docker images support the playground mode in the bridge Docker networking mode. [#2921](https://github.com/risingwavelabs/risingwave/pull/2921)
-* CA certificates are bundled into RisingWave docker images so that docker images can be used with S3. [#2853](https://github.com/risingwavelabs/risingwave/pull/2853)
-
-### Assets
-
-* [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.1.8/risingwave-v0.1.8-x86_64-unknown-linux.tar.gz)
-* [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.8.zip) 
-* [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.8.tar.gz)

@@ -114,7 +114,14 @@ const sidebars = {
         {type: 'ref', 
         label: 'Use time window functions', 
         id: 'sql/functions-operators/sql-function-time-window'
-        }
+        },
+
+        {
+          type: 'doc',
+          id: 'guides/nested-columns-arrays',
+          label: 'Define and access nested columns',
+        },
+        
       ]
     },
 
@@ -124,7 +131,36 @@ const sidebars = {
     collapsible: true,
     collapsed: true,
     items: 
-    ['sql/sql-data-types', 
+    [{
+      type: 'category',
+      label: 'SQL syntax',
+      items: 
+        [
+          {
+            type: 'doc',
+            id: 'sql/syntax/sql-syntax-value-exp',
+            label: 'Value expressions',
+          },
+        
+        ]
+        },
+      {
+        type: 'doc',
+        id: 'sql/sql-data-types',
+        label: 'Data types',
+      },
+      {
+        type: 'category',
+        label: 'Queries',
+        items: 
+        [
+          {
+            type: 'doc',
+            id: 'sql/queries/sql-queries-top-n',
+            label: 'Top-N',
+          },
+        ]
+      },  
       {
       type: 'category',
       label: 'Functions and operators',

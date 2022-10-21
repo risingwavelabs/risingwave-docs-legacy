@@ -49,12 +49,13 @@ Where `from_item` can be:
 ## Example
 Below are the tables within the same schema that we will be writing queries from. 
 
-The table `taxi_trips` includes the columns `id`, `distance`, and `duration`, where `id` identifies each unique trip.
+The table `taxi_trips` includes the columns `id`, `distance`, `duration`, and `fare`, where `id` identifies each unique trip.
 ```sql
 {
   "id": VARCHAR,
   "distance": DOUBLE PRECISION,
-  "duration": DOUBLE PRECISION
+  "duration": DOUBLE PRECISION,
+  "fare": DOUBLE PRECISION
 }
 ```
 
@@ -62,7 +63,7 @@ The table `taxi` includes the columns `taxi_id` and `trip_id`, where `trip_id` a
 ```sql
 {
   "taxi_id": VARCHAR,
-  "trip_id": VARCHAR,
+  "trip_id": VARCHAR
 }
 ```
 
@@ -70,22 +71,24 @@ The table `company` includes the columns `company_id` and `taxi_id`, where `taxi
 ```sql
 {
   "company_id": VARCHAR,
-  "taxi_id": VARCHAR,
+  "taxi_id": VARCHAR
 }
 ```
 
-The following query selects the total distance and duration for each taxi from the company "Yellow Taxi".
+The following query returns the total distance and duration of trips that are beyond the initial charge ($2.50) of each taxi from the company "Yellow Taxi" and "FabCab". 
 ```sql
 SELECT 
     taxi.taxi_id, 
-    sum(trips.distance) as total_distance, 
-    sum(trips.duration) as total_duration
-FROM taxi_trips as trips
+    sum(trips.distance) AS total_distance, 
+    sum(trips.duration) AS total_duration
+FROM taxi_trips AS trips
 LEFT JOIN taxi ON trips.id = taxi.trip_id
-WHERE taxi_id IN
-    (SELECT taxi_id
-    FROM company_id
-    WHERE company_id = 'Yellow Taxi')
+WHERE taxi_id IN (
+          SELECT taxi_id
+          FROM company
+          WHERE company_id IN ('Yellow Taxi', 'FabCab')
+      )
+      AND trips.fare > 2.50
 GROUP BY taxi_id
 ORDER BY total_distance, total_duration;
 ```
