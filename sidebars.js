@@ -156,7 +156,7 @@ const sidebars = {
         [
           {
             type: 'doc',
-            id: 'sql/queries/top-n',
+            id: 'sql/queries/sql-queries-top-n',
             label: 'Top-N',
           },
         ]
