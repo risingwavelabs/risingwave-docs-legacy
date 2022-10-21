@@ -8,7 +8,8 @@ RisingWave supports the following psql commands:
 
 |Command|Description|
 |---|-------|
-|\d|Lists all relations in the current database together with indexes (originally not supported in psql). Sources (including materialized sources) are not yet supported.|
+|\d|Lists all relations in the current database. Sources (including materialized sources) are not yet supported.|
+|\di|Lists all indexes in the current database.|
 |\dm|Lists all materialized views in the current database.|
 |\dt|Lists all tables in the current database.|
 |\q|Quits psql.|
