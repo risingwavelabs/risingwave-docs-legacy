@@ -150,9 +150,16 @@ const sidebars = {
         label: 'Data types',
       },
       {
-        type: 'doc',
-        id: 'sql/sql-queries',
+        type: 'category',
         label: 'Queries',
+        items: 
+        [
+          {
+            type: 'doc',
+            id: 'sql/queries/top-n',
+            label: 'Top-N',
+          },
+        ]
       },  
       {
       type: 'category',
