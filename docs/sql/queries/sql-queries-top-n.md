@@ -25,7 +25,7 @@ WHERE rank <= N [AND conditions];
 
 |Parameter|Description|
 |---|---|
-|`ROW_NUMBER()`|Assigns a unique, sequential number to each row, starting with one, according to the ordering of rows within the partition. `RANK()` is also supported for streaming but not batch.|
+|`ROW_NUMBER()`|Assigns a unique, sequential number to each row, starting with one, according to the ordering of rows within the partition. `RANK()` is supported for materialized views but not tables.|
 |`PARTITION BY col1[, col2...]`|Specifies the partition columns. Each partition will have a Top-N result.|
 |<code>ORDER BY col1 [asc&#124;desc][, col2 [asc&#124;desc]...]</code>|Specifies the ordering columns.|
 |`WHERE rank <= N`|Required to recognize the query as a Top-N query.|
