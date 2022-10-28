@@ -14,12 +14,12 @@ Click a connector name to see the SQL syntax, options, and sample statement of c
 
 | Connector | Version | Format | Materialized? | Limitations |
 |---------|---------|---------|---------|---------|
-|[Kafka](../create-source/create-source-kafka-redpanda.md)|3.1.0 or later versions	|Avro, JSON, protobuf|	Materialized & non-materialized|-
-|[Redpanda](../create-source/create-source-kafka-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|Materialized & non-materialized|	-
-|[Pulsar](../create-source/create-source-pulsar.md)|	2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized|	-
-|[Kinesis](../create-source/create-source-kinesis.md)|	Latest|	[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized|	-
-|[PostgreSQL CDC](../create-source/create-source-cdc.md)|	10, 11, 12, 13, 14|[Avro](#avro), [Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
-|[MySQL CDC](../create-source/create-source-cdc.md)|	5.7, 8.0|[Avro](#avro), [Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
+|[Kafka](../create-source/create-source-kafka-redpanda.md)|3.1.0 or later versions	|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
+|[Redpanda](../create-source/create-source-kafka-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|Materialized & non-materialized| |
+|[Pulsar](../create-source/create-source-pulsar.md)|	2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
+|[Kinesis](../create-source/create-source-kinesis.md)|	Latest|	[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
+|[PostgreSQL CDC](../create-source/create-source-cdc.md)|	10, 11, 12, 13, 14|[Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
+|[MySQL CDC](../create-source/create-source-cdc.md)|	5.7, 8.0|[Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
 
 :::note
 When the connection to a source is established, RisingWave does not ingest data immediately. Only after a materialized view is created based on the source, RisingWave starts to process data.
