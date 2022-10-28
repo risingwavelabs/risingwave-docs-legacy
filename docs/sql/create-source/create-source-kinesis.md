@@ -17,7 +17,7 @@ WITH (
    connector='kinesis',
    field_name='value', ...
 ) 
-ROW FORMAT JSON | PROTOBUF MESSAGE 'main_message';
+ROW FORMAT AVRO | JSON | PROTOBUF MESSAGE 'main_message';
 ```
 ### `WITH` options
 
@@ -35,6 +35,30 @@ ROW FORMAT JSON | PROTOBUF MESSAGE 'main_message';
 ## Example
 Here is an example of connecting RisingWave to Kinesis Data Streams to read data from individual streams.
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<div style={{marginLeft:"2rem"}}>
+<Tabs>
+<TabItem value="avro" label="Avro" default>
+
+```sql
+CREATE [MATERIALIZED] SOURCE [IF NOT EXISTS] source_name
+WITH (
+   connector='kinesis',
+   stream='kafka',
+   aws.region='user_test_topic',
+   endpoint='172.10.1.1:9090,172.10.1.2:9090',
+   aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
+   aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
+   aws.credentials.role.external_id='demo_external_id'
+) 
+ROW FORMAT AVRO MESSAGE 'main_message'
+ROW SCHEMA LOCATION 'file:///risingwave/avro-simple-schema.avsc';
+```
+</TabItem>
+<TabItem value="json" label="JSON" default>
+
 ```sql
 CREATE [MATERIALIZED] SOURCE [IF NOT EXISTS] source_name (
    column1 varchar,
@@ -51,3 +75,23 @@ WITH (
 ) 
 ROW FORMAT JSON;
 ```
+</TabItem>
+<TabItem value="pb" label="Protobuf" default>
+
+```sql
+CREATE [MATERIALIZED] SOURCE [IF NOT EXISTS] source_name
+WITH (
+   connector='kinesis',
+   stream='kafka',
+   aws.region='user_test_topic',
+   endpoint='172.10.1.1:9090,172.10.1.2:9090',
+   aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
+   aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
+   aws.credentials.role.external_id='demo_external_id'
+) 
+ROW FORMAT PROTOBUF MESSAGE 'main_message'
+ROW SCHEMA LOCATION 'file:///risingwave/proto-complex-schema';
+```
+</TabItem>
+</Tabs>
+</div>

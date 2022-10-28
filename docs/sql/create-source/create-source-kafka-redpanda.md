@@ -17,7 +17,7 @@ WITH (
    connector='kafka',
    field_name='value', ...
 )
-ROW FORMAT JSON | PROTOBUF MESSAGE 'main_message'
+ROW FORMAT AVRO | JSON | PROTOBUF MESSAGE 'main_message'
 [ ROW SCHEMA LOCATION 's3://path' ];
 ```
 ### `WITH` options
@@ -35,6 +35,29 @@ ROW FORMAT JSON | PROTOBUF MESSAGE 'main_message'
 
 Here is an example of connecting RisingWave to a Kafka broker to read data from individual topics.
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<div style={{marginLeft:"2rem"}}>
+<Tabs>
+<TabItem value="avro" label="Avro" default>
+
+```sql
+CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc 
+WITH (
+   connector='kafka',
+   topic='demo_topic',
+   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
+   scan.startup.mode='latest',
+   scan.startup.timestamp_millis='140000000',
+   properties.group.id='demo_consumer_name'
+)
+ROW FORMAT AVRO MESSAGE 'main_message'
+ROW SCHEMA LOCATION 'file:///risingwave/avro-complex-schema.avsc';
+```
+</TabItem>
+<TabItem value="json" label="JSON" default>
+
 ```sql
 CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc (
    column1 varchar,
@@ -50,3 +73,24 @@ WITH (
 )
 ROW FORMAT JSON;
 ```
+</TabItem>
+<TabItem value="pb" label="Protobuf" default>
+
+```sql
+CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc 
+WITH (
+   connector='kafka',
+   topic='demo_topic',
+   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
+   scan.startup.mode='latest',
+   scan.startup.timestamp_millis='140000000',
+   properties.group.id='demo_consumer_name'
+)
+ROW FORMAT PROTOBUF MESSAGE 'main_message'
+ROW SCHEMA LOCATION 'file:///risingwave/proto-complex-schema';
+```
+</TabItem>
+</Tabs>
+</div>
+
+
