@@ -81,7 +81,7 @@ export default function DocItemFooter(props) {
 
   const removeHintNode = (targetTable) => {
     const childs = targetTable.parentNode.querySelectorAll("div.scrollHint");
-    childs.forEach((child) => targetTable.removeChild(child));
+    if (childs) childs.forEach((child) => targetTable.removeChild(child));
   };
 
   const hideHint = (e) => {
@@ -106,7 +106,8 @@ export default function DocItemFooter(props) {
     document.body.appendChild(script);
 
     document.querySelectorAll("table").forEach((table) => {
-      scrollable(table) ? addHintNode(table) : removeHintNode(table);
+      const isScroll = scrollable(table);
+      isScroll ? addHintNode(table) : removeHintNode(table);
       table.tBodies[0].addEventListener("scroll", (e) => hideHint(e));
     });
 
