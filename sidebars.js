@@ -143,7 +143,7 @@ const sidebars = {
           },
           {
             type: 'doc',
-            id: 'sql/syntax/top-n-by-group',
+            id: 'sql/syntax/sql-queries-top-n',
             label: 'Top-N by group',
           },
 
