@@ -1,7 +1,7 @@
 ---
 id: sql-queries-top-n
 slug: /sql-queries-top-n
-title: Top-N
+title: Top-N by group
 ---
 
 Top-N queries provide the N largest or smallest values ordered by columns. Top-N queries are helpful to display only the N top-most or the N bottom-most records.
