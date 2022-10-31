@@ -38,7 +38,6 @@ Here is an example of connecting RisingWave to Kinesis Data Streams to read data
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<div style={{marginLeft:"2rem"}}>
 <Tabs>
 <TabItem value="avro" label="Avro" default>
 
@@ -94,4 +93,3 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.pr
 ```
 </TabItem>
 </Tabs>
-</div>
