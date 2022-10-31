@@ -32,6 +32,16 @@ ROW FORMAT AVRO | JSON | PROTOBUF MESSAGE 'main_message';
 |aws.credentials.role.arn	|None	|String |The Amazon Resource Name (ARN) of the role to assume.		|False|
 |aws.credentials.role.external_id	|None	|String	|The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources.	|False|
 
+### Formats
+
+Specify the format of the stream in the `ROW FORMAT` section of your statement.
+
+|Format|Syntax| Notes|
+|---|---|---|
+|Avro|`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`| Message and schema location are required.|
+|JSON| `ROW FORMAT JSON`| |
+|Protobuf|`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`|Message and schema location are required.|
+
 ## Example
 Here is an example of connecting RisingWave to Kinesis Data Streams to read data from individual streams.
 

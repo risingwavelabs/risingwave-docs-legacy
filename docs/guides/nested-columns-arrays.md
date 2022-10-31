@@ -16,7 +16,7 @@ To create a column with repeated data (that is, an array), append \[\] to the da
 
 ## Add values to nested columns and arrays
 
-To add values to nested columns, enclose the nested data with () in the SQL statement. 
+To add values to nested columns, enclose the nested data with () in the SQL statement. For example, `(1, true)`. Alternatively, you can also use `row(1, true)`. 
 
 To add values to an array, in the SQL statement, use `ARRAY` to indicate that this is an array, and then enclose the data in the array with \[\]. For example, `ARRAY ['ABCD1234', 'ABCD1235', 'ABCD1236', 'ABCD1237']`.
 
@@ -118,7 +118,7 @@ INSERT INTO trip VALUES
 INSERT INTO taxi VALUES
         (
             'FAST0001',
-            ('ABCD1234', 'ABCD1235', 'ABCD1236', 'ABCD1237') 
+            ARRAY('ABCD1234', 'ABCD1235', 'ABCD1236', 'ABCD1237') 
             'N5432N', 
             'FAST TAXI', 
             '2030-12-31', 
