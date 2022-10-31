@@ -118,7 +118,7 @@ INSERT INTO trip VALUES
 INSERT INTO taxi VALUES
         (
             'FAST0001',
-            ARRAY('ABCD1234', 'ABCD1235', 'ABCD1236', 'ABCD1237') 
+            ARRAY['ABCD1234', 'ABCD1235', 'ABCD1236', 'ABCD1237'],
             'N5432N', 
             'FAST TAXI', 
             '2030-12-31', 
