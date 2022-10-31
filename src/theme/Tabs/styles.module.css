@@ -11,10 +11,10 @@
 }
 
 .tabs {
-  /* border-bottom: var(--ifm-tabs-color-active-border) !important; */
-  border-bottom: 3px solid var(--ifm-tabs-color-active-border) !important;
+  border-bottom: 1px solid var(--ifm-tabs-color-active-border) !important;
 }
 
 .tabsActive {
-  background-color: rgb(242, 242, 242) !important;
+  color: #95adee;
+  border-bottom: 3px solid var(--ifm-tabs-color-active-border) !important;
 }
