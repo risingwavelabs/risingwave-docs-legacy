@@ -55,7 +55,7 @@ WITH (
    scan.startup.timestamp_millis='140000000'
 )
 ROW FORMAT AVRO MESSAGE 'FooMessage'
-ROW SCHEMA LOCATION 'file:///risingwave/avro-simple-schema.avsc';
+ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
 ```
 </TabItem>
 <TabItem value="json" label="JSON" default>

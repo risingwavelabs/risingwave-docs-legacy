@@ -54,7 +54,7 @@ WITH (
    aws.credentials.role.external_id='demo_external_id'
 ) 
 ROW FORMAT AVRO MESSAGE 'main_message'
-ROW SCHEMA LOCATION 'file:///risingwave/avro-simple-schema.avsc';
+ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
 ```
 </TabItem>
 <TabItem value="json" label="JSON" default>
@@ -90,7 +90,7 @@ WITH (
    aws.credentials.role.external_id='demo_external_id'
 ) 
 ROW FORMAT PROTOBUF MESSAGE 'main_message'
-ROW SCHEMA LOCATION 'file:///risingwave/proto-complex-schema';
+ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
 ```
 </TabItem>
 </Tabs>

@@ -53,7 +53,7 @@ WITH (
    properties.group.id='demo_consumer_name'
 )
 ROW FORMAT AVRO MESSAGE 'main_message'
-ROW SCHEMA LOCATION 'file:///risingwave/avro-complex-schema.avsc';
+ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
 ```
 </TabItem>
 <TabItem value="json" label="JSON" default>
@@ -87,7 +87,7 @@ WITH (
    properties.group.id='demo_consumer_name'
 )
 ROW FORMAT PROTOBUF MESSAGE 'main_message'
-ROW SCHEMA LOCATION 'file:///risingwave/proto-complex-schema';
+ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
 ```
 </TabItem>
 </Tabs>
