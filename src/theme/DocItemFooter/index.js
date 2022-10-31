@@ -109,7 +109,7 @@ export default function DocItemFooter(props) {
 
     document.querySelectorAll("table").forEach((table) => {
       const isScroll = scrollable(table);
-      isScroll && table ? addHintNode(table) : removeHintNode(table);
+      isScroll && addHintNode(table);
       table.tBodies[0].addEventListener("scroll", (e) => hideHint(e));
     });
 
