@@ -146,6 +146,7 @@ const sidebars = {
             id: 'sql/syntax/top-n-by-group',
             label: 'Top-N by group',
           },
+
         ]
         },
       {
