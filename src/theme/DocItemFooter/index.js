@@ -115,8 +115,10 @@ export default function DocItemFooter(props) {
 
     return () => {
       document.body.removeChild(script);
-      theads.forEach((tr) => {
-        tr.addEventListener("scroll", (e) => hideHint(e));
+      document.querySelectorAll("table").forEach((table) => {
+        const isScroll = scrollable(table);
+        isScroll && removeHintNode(table);
+        table.tBodies[0].removeEventListener("scroll", (e) => hideHint(e));
       });
     };
   }, []);
