@@ -258,7 +258,7 @@ table tr:first-child {
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 50;
-  animation: slide-left 1s ease-in infinite both;
+  animation: slide-left 2s ease-in infinite both;
 }
 
 [data-theme="dark"] .scrollHint {
@@ -286,29 +286,30 @@ table tr:first-child {
 
 @-webkit-keyframes slide-left {
   0%,
-  70% {
+  30% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
   }
-
-  75%,
+  90%,
   100% {
-    -webkit-transform: translateX(-20px);
-    transform: translateX(-20px);
+    -webkit-transform: translateX(-25px);
+    transform: translateX(-25px);
     opacity: 0;
   }
 }
 
 @keyframes slide-left {
-  0% {
+  0%,
+  30% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
   }
+  90%,
   100% {
-    -webkit-transform: translateX(-15px);
-    transform: translateX(-15px);
+    -webkit-transform: translateX(-25px);
+    transform: translateX(-25px);
     opacity: 0;
   }
 }
