@@ -247,17 +247,38 @@ table tr:first-child {
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  width: 80px;
-  height: 68px;
+  width: 32px;
+  height: 64px;
   max-height: 100%;
   background: rgba(0, 0, 0, 0.15);
   border-radius: 6px 6px;
   position: absolute;
   top: 50%;
-  left: 50%;
+  right: 0;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 50;
+  animation: shake 6s ease infinite;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
 }
 
 [data-theme="dark"] .scrollHint {
@@ -277,6 +298,6 @@ table tr:first-child {
   display: block;
   width: 50%;
   height: 50%;
-  background: url(../../static/img/hand.png) 50% / contain no-repeat;
+  background: url(../../static/img/right-arrow.png) 50% / contain no-repeat;
   content: "";
 }
