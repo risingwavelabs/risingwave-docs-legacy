@@ -247,10 +247,10 @@ table tr:first-child {
   align-items: center;
   justify-content: center;
   flex-flow: column;
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   max-height: 100%;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 1000px;
   position: absolute;
   top: 50%;
@@ -258,19 +258,44 @@ table tr:first-child {
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 50;
-  /* animation: shake 6s ease infinite; */
-  animation: slide-left 1.5s ease-in-out infinite forwards;
+  animation: slide-left 1s ease-in infinite both;
+}
+
+[data-theme="dark"] .scrollHint {
+  background-color: rgba(25, 25, 25, 0.85);
+}
+
+.scrollHint.visible {
+  display: flex;
+}
+
+.scrollHint.invisible {
+  display: none;
+}
+
+.scrollHint::before {
+  display: block;
+  width: 50%;
+  height: 50%;
+  background: url(../../static/img/swipe-left.png) 50% / contain no-repeat;
+  content: "";
+}
+
+[data-theme="dark"] .scrollHint::before {
 }
 
 @-webkit-keyframes slide-left {
-  0% {
+  0%,
+  70% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
   }
+
+  75%,
   100% {
-    -webkit-transform: translateX(10px);
-    transform: translateX(10px);
+    -webkit-transform: translateX(-20px);
+    transform: translateX(-20px);
     opacity: 0;
   }
 }
@@ -282,8 +307,8 @@ table tr:first-child {
     opacity: 1;
   }
   100% {
-    -webkit-transform: translateX(10px);
-    transform: translateX(10px);
+    -webkit-transform: translateX(-15px);
+    transform: translateX(-15px);
     opacity: 0;
   }
 }
@@ -414,29 +439,4 @@ table tr:first-child {
   80% {
     transform: translateX(4px);
   }
-}
-
-[data-theme="dark"] .scrollHint {
-  background-color: rgba(255, 255, 255, 0.85);
-}
-
-.scrollHint.visible {
-  display: flex;
-}
-
-.scrollHint.invisible {
-  display: none;
-}
-
-.scrollHint::before {
-  opacity: 0.6;
-  display: block;
-  width: 50%;
-  height: 50%;
-  background: url(../../static/img/right-arrow.png) 50% / contain no-repeat;
-  content: "";
-}
-
-[data-theme="dark"] .scrollHint::before {
-  background: url(../../static/img/right-arrow-dark.png) 50% / contain no-repeat;
 }
