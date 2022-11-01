@@ -248,10 +248,10 @@ table tr:first-child {
   justify-content: center;
   flex-flow: column;
   width: 32px;
-  height: 64px;
+  height: 32px;
   max-height: 100%;
   background: rgba(0, 0, 0, 0.15);
-  border-radius: 6px 6px;
+  border-radius: 1000px;
   position: absolute;
   top: 50%;
   right: 0;
@@ -271,18 +271,18 @@ table tr:first-child {
   50%,
   70%,
   90% {
-    transform: translateX(-5px);
+    transform: translateX(-4px);
   }
   20%,
   40%,
   60%,
   80% {
-    transform: translateX(5px);
+    transform: translateX(4px);
   }
 }
 
 [data-theme="dark"] .scrollHint {
-  background-color: rgba(255, 255, 255, 0.65);
+  background-color: rgba(255, 255, 255, 0.85);
 }
 
 .scrollHint.visible {
@@ -300,4 +300,8 @@ table tr:first-child {
   height: 50%;
   background: url(../../static/img/right-arrow.png) 50% / contain no-repeat;
   content: "";
+}
+
+[data-theme="dark"] .scrollHint::before {
+  background: url(../../static/img/right-arrow-dark.png) 50% / contain no-repeat;
 }

@@ -73,7 +73,9 @@ export default function DocItemFooter(props) {
     const hintNode = document.createElement("div");
     hintNode.className = "scrollHint visible";
     hintNode.innerText = "";
-
+    hintNode.onclick = () => {
+      console.log("asdasd");
+    };
     !targetTable.querySelectorAll("div.scrollHint").length
       ? targetTable.appendChild(hintNode.cloneNode(true), targetTable)
       : reDisplay(targetTable);
