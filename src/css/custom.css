@@ -250,7 +250,7 @@ table tr:first-child {
   width: 48px;
   height: 48px;
   max-height: 100%;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(211, 211, 211, 0.85);
   border-radius: 1000px;
   position: absolute;
   top: 50%;
@@ -262,7 +262,7 @@ table tr:first-child {
 }
 
 [data-theme="dark"] .scrollHint {
-  background-color: rgba(25, 25, 25, 0.85);
+  background-color: rgba(199, 199, 199, 0.95);
 }
 
 .scrollHint.visible {
