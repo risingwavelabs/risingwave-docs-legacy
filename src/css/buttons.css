@@ -242,3 +242,43 @@ button {
 .light:-webkit-details-marker {
   display: none;
 }
+
+.pulse {
+  color: #fff;
+  cursor: pointer;
+  font-size: var(--ifm-font-size-base);
+  font-weight: 400;
+  line-height: 32px;
+  margin: 0 0 2em;
+  position: relative;
+  text-decoration: none;
+  padding: 4px 24px;
+  border: 0 solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+  outline: 1px solid;
+  outline-color: rgba(55, 44, 211, 0.5);
+  outline-offset: 0px;
+  text-shadow: none;
+  transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+  background-color: var(--ifm-color-primary-dark);
+  border: 1px solid var(--ifm-color-primary-darker);
+}
+
+[data-theme="dark"] .pulse {
+  outline-color: rgba(255, 255, 255, 0.5);
+}
+
+.pulse:hover {
+  border: 1px solid;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+  outline-color: rgba(51, 45, 140, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #427388;
+}
+
+[data-theme="dark"] .pulse:hover {
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+  outline-color: rgba(255, 255, 255, 0);
+  outline-offset: 15px;
+  text-shadow: 1px 1px 2px #427388;
+}
