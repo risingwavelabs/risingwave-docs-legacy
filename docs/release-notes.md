@@ -16,8 +16,6 @@ This version was released on October 17, 2022.
 
 <rollButton text="Get Started" />
 
-<button class="pulse"> Pulse Button </button> 
-
 ### Main changes
 
 #### SQL features

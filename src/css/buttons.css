@@ -128,7 +128,7 @@ button {
 .default {
   appearance: none;
   font-size: var(--ifm-font-size-base);
-  background-color: var(--ifm-color-primary-dark);
+  background-color: var(--ifm-color-primary-darker);
   border: 1px solid var(--ifm-color-primary-darker);
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
@@ -145,6 +145,7 @@ button {
   touch-action: manipulation;
   vertical-align: middle;
   white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.3, 0, 0.5, 1);
 }
 
 .default:focus:not(:focus-visible):not(.focus-visible) {
@@ -153,8 +154,13 @@ button {
 }
 
 .default:hover {
-  background-color: var(--ifm-color-primary-dark);
-  border: 1px solid var(--ifm-color-primary-dark);
+  background-color: #3d67d7;
+  border: 1px solid #3d67d7;
+}
+
+[data-theme="dark"] .default:hover {
+  background-color: #8da3e1;
+  border: 1px solid #8da3e1;
 }
 
 .default:focus {
@@ -201,13 +207,14 @@ button {
 }
 
 [data-theme="dark"] .light {
-  background-color: var(--ifm-code-background);
-  border: 1px solid #000309;
+  box-shadow: none;
+  background-color: transparent;
+  border: 1px solid #3d67d7;
   color: #fff;
 }
 
 [data-theme="dark"] .light:hover {
-  background-color: var(--ifm-scrollbar-track-background-color);
+  background-color: #6986d7;
   text-decoration: none;
   transition-duration: 0.1s;
 }
