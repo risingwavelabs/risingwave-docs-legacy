@@ -95,98 +95,10 @@ button {
   background: #a46bf5;
 }
 
-/* circle animation button */
-.button-3 {
-  position: relative;
-  outline: none;
-  border: 0;
-  vertical-align: middle;
-  text-decoration: none;
-  background: transparent;
-  padding: 0;
-}
-
-.button-3.learn-more {
-  width: 12rem;
-  height: auto;
-}
-
-[data-theme="dark"] .button-3.learn-more .button-text {
-  color: #fff;
-}
-
-.button-3.learn-more .circle {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: relative;
-  display: block;
-  margin: 0;
-  width: 3rem;
-  height: 3rem;
-  background: #282936;
-  border-radius: 1.625rem;
-}
-
-.button-3.learn-more .circle .icon {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.button-3.learn-more .circle .icon.arrow {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  left: 0.625rem;
-  width: 1.125rem;
-  height: 0.125rem;
-  background: none;
-}
-
-.button-3.learn-more .circle .icon.arrow::before {
-  position: absolute;
-  content: "";
-  top: -0.29rem;
-  right: 0.0625rem;
-  width: 0.625rem;
-  height: 0.625rem;
-  border-top: 0.125rem solid #fff;
-  border-right: 0.125rem solid #fff;
-  transform: rotate(45deg);
-}
-
-.button-3.learn-more .button-text {
-  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 0.75rem 0;
-  margin: 0 0 0 1.85rem;
-  color: #282936;
-  font-weight: 700;
-  line-height: 1.6;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.button-3:hover .circle {
-  width: 100%;
-}
-
-.button-3:hover .circle .icon.arrow {
-  background: #fff;
-  transform: translate(1rem, 0);
-}
-
-.button-3:hover .button-text {
-  color: #fff;
-}
-
-/* light green button */
 .button-4 {
-  background-color: #13aa52;
-  border: 1px solid #13aa52;
+  font-size: var(--ifm-font-size-base);
+  background-color: var(--ifm-color-primary-darker);
+  border: 1px solid var(--ifm-color-primary-darker);
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px 0;
   box-sizing: border-box;
@@ -213,11 +125,11 @@ button {
   }
 }
 
-/* dark green button */
-.button-5 {
+.default {
   appearance: none;
-  background-color: #2ea44f;
-  border: 1px solid rgba(27, 31, 35, 0.15);
+  font-size: var(--ifm-font-size-base);
+  background-color: var(--ifm-color-primary-darker);
+  border: 1px solid var(--ifm-color-primary-darker);
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
   box-sizing: border-box;
@@ -235,34 +147,37 @@ button {
   white-space: nowrap;
 }
 
-.button-5:focus:not(:focus-visible):not(.focus-visible) {
+.default:focus:not(:focus-visible):not(.focus-visible) {
   box-shadow: none;
   outline: none;
 }
 
-.button-5:hover {
-  background-color: #2c974b;
+.default:hover {
+  background-color: var(--ifm-color-primary-dark);
+  border: 1px solid var(--ifm-color-primary-dark);
 }
 
-.button-5:focus {
-  box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
+.default:focus {
+  background-color: var(--ifm-color-primary-darker);
+  border: 1px solid var(--ifm-color-primary-darker);
   outline: none;
 }
 
-.button-5:disabled {
-  background-color: #94d3a2;
-  border-color: rgba(27, 31, 35, 0.1);
+.default:disabled {
+  background-color: var(--ifm-color-primary-darker);
+  border: 1px solid var(--ifm-color-primary-darker);
   color: rgba(255, 255, 255, 0.8);
   cursor: default;
 }
 
-.button-5:active {
-  background-color: #298e46;
-  box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
+.default:active {
+  background-color: var(--ifm-color-primary);
+  border: 1px solid var(--ifm-color-primary);
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
 }
 
-/* github button */
-.button-6 {
+.light {
   appearance: none;
   background-color: #fafbfc;
   border: 1px solid rgba(27, 31, 35, 0.15);
@@ -284,33 +199,33 @@ button {
   word-wrap: break-word;
 }
 
-.button-6:hover {
+.light:hover {
   background-color: #f3f4f6;
   text-decoration: none;
   transition-duration: 0.1s;
 }
 
-.button-6:disabled {
+.light:disabled {
   background-color: #fafbfc;
   border-color: rgba(27, 31, 35, 0.15);
   color: #959da5;
   cursor: default;
 }
 
-.button-6:active {
+.light:active {
   background-color: #edeff2;
   box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
   transition: none 0s;
 }
 
-.button-6:focus {
+.light:focus {
   outline: 1px transparent;
 }
 
-.button-6:before {
+.light:before {
   display: none;
 }
 
-.button-6:-webkit-details-marker {
+.light:-webkit-details-marker {
   display: none;
 }

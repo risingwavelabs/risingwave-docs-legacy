@@ -10,6 +10,13 @@ This page summarizes changes in each version of RisingWave, including new featur
 ## v0.1.13
 
 This version was released on October 17, 2022.
+<button class="default">This is a button</button>
+<button class="light">This is a button</button>
+
+import RollButton from '@theme/RollButton';
+
+<RollButton text="Go " />
+
 
 ### Main changes
 
