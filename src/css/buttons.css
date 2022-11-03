@@ -128,7 +128,7 @@ button {
 .default {
   appearance: none;
   font-size: var(--ifm-font-size-base);
-  background-color: var(--ifm-color-primary-darker);
+  background-color: var(--ifm-color-primary-dark);
   border: 1px solid var(--ifm-color-primary-darker);
   border-radius: 6px;
   box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
@@ -179,6 +179,7 @@ button {
 
 .light {
   appearance: none;
+  font-size: var(--ifm-font-size-base);
   background-color: #fafbfc;
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 6px;
@@ -197,6 +198,18 @@ button {
   vertical-align: middle;
   white-space: nowrap;
   word-wrap: break-word;
+}
+
+[data-theme="dark"] .light {
+  background-color: var(--ifm-code-background);
+  border: 1px solid #000309;
+  color: #fff;
+}
+
+[data-theme="dark"] .light:hover {
+  background-color: var(--ifm-scrollbar-track-background-color);
+  text-decoration: none;
+  transition-duration: 0.1s;
 }
 
 .light:hover {
