@@ -18,8 +18,7 @@ Resolves [ Provide the link to the doc issue here. ]
 ## Before merging
   - [ ] (For version-specific PR) I have selected the corresponding software version in **Milestone** and linked the related doc issue to this PR in **Development**.
   - [ ] I have acquired the approval from the owner (and optionally the reviewers) of the code PR and at least one tech writer (`bernscode`, `CharlieSYH`, `emile-00`, & `hengm3467`). 
-  - [ ] I have checked the doc site preview and the updated parts look all good. <details><summary>How?</summary><img width="852" alt="image" src="https://user-images.githubusercontent.com/100549427/180817529-5ab18ea5-f36b-4663-8002-a43d511be7ab.png"></details>
-  - [ ] (For version-specific PR) I have confirmed that this PR is for a released version. If the software version is not released, put it on hold.
+  - [ ] I have checked the doc site preview, and the updated parts look good. <details><summary>How?</summary><img width="852" alt="image" src="https://user-images.githubusercontent.com/100549427/180817529-5ab18ea5-f36b-4663-8002-a43d511be7ab.png"></details>
 
 
 ## Published doc pages

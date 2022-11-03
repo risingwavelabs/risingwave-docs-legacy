@@ -25,7 +25,7 @@ WITH (
    connector='kafka',
    field_name='value', ...
 ) 
-ROW FORMAT DEBEZIUM JSON;
+ROW FORMAT DEBEZIUM_JSON;
 ```
 
 ### `WITH` options
@@ -33,11 +33,11 @@ ROW FORMAT DEBEZIUM JSON;
 
 |Field|	Default|	Type|	Description|	Required?|
 |---|---|---|---|---|
-|kafka.topic|None|String|Address of the Kafka topic. One source can only correspond to one topic.|True
-|kafka.brokers	|None	|String	|Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|True|
-|kafka.scan.startup.mode	|earliest	|String	|The Kafka consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`.	|False
-|kafka.time.offset	|None	|Int64	|Specify the offset in seconds from a certain point of time.	|False|
-|kafka.consumer.group	|None	|String	|Name of the Kafka consumer group	|True|
+|topic|None|String|Address of the Kafka topic. One source can only correspond to one topic.|True
+|properties.bootstrap.server	|None	|String	|Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|True|
+|scan.startup.mode	|earliest	|String	|The Kafka consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`.	|False
+|scan.startup.timestamp_millis	|None	|Int64	|Specify the offset in seconds from a certain point of time.	|False|
+|properties.group.id	|None	|String	|Name of the Kafka consumer group	|True|
 
 
 ## Example
@@ -51,10 +51,10 @@ CREATE MATERIALIZED SOURCE [IF NOT EXISTS] source_name (
 ) 
 WITH (
    connector='kafka',
-   kafka.topic='user_test_topic',
-   kafka.brokers='172.10.1.1:9090,172.10.1.2:9090',
-   kafka.scan.startup.mode='earliest',
-   kafka.consumer.group='demo_consumer_name'
+   topic='user_test_topic',
+   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
+   scan.startup.mode='earliest',
+   properties.group.id='demo_consumer_name'
 ) 
-ROW FORMAT DEBEZIUM JSON;
+ROW FORMAT DEBEZIUM_JSON;
 ```

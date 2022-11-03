@@ -29,7 +29,7 @@ FROM TUMBLE(table_or_source, start_time, window_size);
 ```
 
 
-*window_size* is in the format of `INTERVAL '<i>interval</i>'`. Example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported.
+*window_size* is in the format of `INTERVAL 'interval'`. Example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported.
 
 
 Suppose that we have a table, "taxi_trips", that consists of these columns: `id`, `taxi_id`, `completed_at`, and `distance`.

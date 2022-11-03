@@ -81,7 +81,9 @@ export default function DocItemFooter(props) {
 
   const removeHintNode = (targetTable) => {
     const childs = targetTable.parentNode.querySelectorAll("div.scrollHint");
-    childs.forEach((child) => targetTable.removeChild(child));
+    childs.forEach((child) => {
+      if (targetTable) targetTable.removeChild(child);
+    });
   };
 
   const hideHint = (e) => {
@@ -106,14 +108,17 @@ export default function DocItemFooter(props) {
     document.body.appendChild(script);
 
     document.querySelectorAll("table").forEach((table) => {
-      scrollable(table) ? addHintNode(table) : removeHintNode(table);
+      const isScroll = scrollable(table);
+      isScroll && addHintNode(table);
       table.tBodies[0].addEventListener("scroll", (e) => hideHint(e));
     });
 
     return () => {
       document.body.removeChild(script);
-      theads.forEach((tr) => {
-        tr.addEventListener("scroll", (e) => hideHint(e));
+      document.querySelectorAll("table").forEach((table) => {
+        const isScroll = scrollable(table);
+        isScroll && removeHintNode(table);
+        table.tBodies[0].removeEventListener("scroll", (e) => hideHint(e));
       });
     };
   }, []);

@@ -17,22 +17,54 @@ WITH (
    connector='kafka',
    field_name='value', ...
 )
-ROW FORMAT JSON | PROTOBUF MESSAGE 'main_message'
+ROW FORMAT AVRO | JSON | PROTOBUF MESSAGE 'main_message'
 [ ROW SCHEMA LOCATION 's3://path' ];
 ```
 ### `WITH` options
 
 |Field|	Default|	Type|	Description|	Required?|
 |---|---|---|---|---|
-|kafka.topic|None|String|Address of the Kafka topic. One source can only correspond to one topic.|True
-|kafka.brokers	|None	|String	|Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|True|
-|kafka.scan.startup.mode	|earliest	|String	|The Kafka consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`.	|False
-|kafka.time.offset	|None	|Int64	|Specify the offset in seconds from a certain point of time.	|False|
-|kafka.consumer.group	|None	|String	|Name of the Kafka consumer group	|True|
+|topic|None|String|Address of the Kafka topic. One source can only correspond to one topic.|True
+|properties.bootstrap.server	|None	|String	|Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|True|
+|scan.startup.mode	|earliest	|String	|The Kafka consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`.	|False
+|scan.startup.timestamp_millis	|None	|Int64	|Specify the offset in seconds from a certain point of time.	|False|
+|properties.group.id	|None	|String	|Name of the Kafka consumer group	|True|
+
+### Formats
+
+Specify the format of the stream in the `ROW FORMAT` section of your statement.
+
+|Format|Syntax| Notes|
+|---|---|---|
+|Avro|`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`| Message and schema location are required.|
+|JSON| `ROW FORMAT JSON`| |
+|Protobuf|`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`|Message and schema location are required.|
 
 ## Example
 
 Here is an example of connecting RisingWave to a Kafka broker to read data from individual topics.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="avro" label="Avro" default>
+
+```sql
+CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc 
+WITH (
+   connector='kafka',
+   topic='demo_topic',
+   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
+   scan.startup.mode='latest',
+   scan.startup.timestamp_millis='140000000',
+   properties.group.id='demo_consumer_name'
+)
+ROW FORMAT AVRO MESSAGE 'main_message'
+ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
+```
+</TabItem>
+<TabItem value="json" label="JSON" default>
 
 ```sql
 CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc (
@@ -41,11 +73,31 @@ CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc (
 )
 WITH (
    connector='kafka',
-   kafka.topic='demo_topic',
-   kafka.brokers='172.10.1.1:9090,172.10.1.2:9090',
-   kafka.scan.startup.mode='latest',
-   kafka.time.offset='140000000',
-   kafka.consumer.group='demo_consumer_name'
+   topic='demo_topic',
+   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
+   scan.startup.mode='latest',
+   scan.startup.timestamp_millis='140000000',
+   properties.group.id='demo_consumer_name'
 )
 ROW FORMAT JSON;
 ```
+</TabItem>
+<TabItem value="pb" label="Protobuf" default>
+
+```sql
+CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc 
+WITH (
+   connector='kafka',
+   topic='demo_topic',
+   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
+   scan.startup.mode='latest',
+   scan.startup.timestamp_millis='140000000',
+   properties.group.id='demo_consumer_name'
+)
+ROW FORMAT PROTOBUF MESSAGE 'main_message'
+ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
+```
+</TabItem>
+</Tabs>
+
+

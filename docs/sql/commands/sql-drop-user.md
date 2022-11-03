@@ -10,7 +10,7 @@ Use the `DROP USER` command to remove a user from RisingWave.
 ## Syntax
 
 ```sql
-DROP ROLE [ IF EXISTS ] user_name [ , ... ];
+DROP USER [ IF EXISTS ] user_name [ , ... ];
 ```
 
 
@@ -19,7 +19,7 @@ DROP ROLE [ IF EXISTS ] user_name [ , ... ];
 | Parameter                 | Description           |
 | ------------------------- | --------------------- |
 | **IF EXISTS**             | Do not return an error if the specified user does not exist. |
-| *user_name* | The user you want to drop. You cannot remove the current user account. |
+| *user_name* | The user you want to drop. <br /> - You cannot drop the current user; <br /> - To drop a superuser (user with the SUPERUSER privilege), you must be a superuser yourself; <br /> - To drop a non-superuser, you must have the CREATEUSER privilege. |
 
 
 

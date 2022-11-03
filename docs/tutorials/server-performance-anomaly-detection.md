@@ -40,9 +40,22 @@ git clone https://github.com/risingwavelabs/risingwave-demo.git
 Now navigate to the `cdn-metrics` directory and start the demo cluster from the docker compose file. 
 
 ```shell
-cd cdn-metrics
+cd risingwave-demo/cdn-metrics
 docker-compose up -d
 ```
+
+:::note
+
+If the following error occurs:
+```shell
+ERROR: The Compose file './docker-compose.yml' is invalid because:
+'name' does not match any of the regexes: '^x-'
+```
+Use `docker compose` instead of `docker-compose`, or enable **Use Docker Compose V2** on the Settings page of Docker Desktop.
+
+For more information, see [Docker Documentation](https://docs.docker.com/compose/#compose-v2-and-the-new-docker-compose-command).
+
+:::
 
 Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics.
 
@@ -66,9 +79,9 @@ CREATE SOURCE nics_metrics (
     metric_value DOUBLE PRECISION
 ) WITH (
     connector = 'kafka',
-    kafka.topic = 'nics_metrics',
-    kafka.brokers = 'message_queue:29092',
-    kafka.scan.startup.mode = 'earliest'
+    topic = 'nics_metrics',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
 ) ROW FORMAT JSON;
 ```
 
@@ -80,9 +93,9 @@ CREATE SOURCE tcp_metrics (
     metric_value DOUBLE PRECISION
 ) WITH (
     connector = 'kafka',
-    kafka.topic = 'tcp_metrics',
-    kafka.brokers = 'message_queue:29092',
-    kafka.scan.startup.mode = 'earliest'
+    topic = 'tcp_metrics',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
 ) ROW FORMAT JSON;
 ```
 

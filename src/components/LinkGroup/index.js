@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./index.module.css";
-import { Stack, Collapse } from "@mui/material";
+import Collapse from "@mui/material/Collapse";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styled from "@emotion/styled";
 
@@ -93,7 +93,7 @@ export default function LinkGroup(props) {
           imgUrl={useBaseUrl("/img/home/github.png")}
         />
         <LinkItem
-          link="https://twitter.com/SingularityData"
+          link="https://twitter.com/risingwavelabs"
           focusing={twitterFocus}
           setFocus={setTwitterFocus}
           label="Follow us on Twitter"

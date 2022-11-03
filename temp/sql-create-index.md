@@ -1,47 +1,49 @@
 ---
 id: sql-create-index
 title: CREATE INDEX
-description: Create an index on a column of a table or materialized view to speed up data retrieval.
+description: Create an index on a column of a source, materialized view, or table to speed up data retrieval.
 slug: /sql-create-index
 ---
 
-Use the `CREATE INDEX` command to construct an index on a column of a table or materialized view. The main purpose of creating indexes is to improve data retrieval performance. Indexes can also be used to create materialized views.
+Use the `CREATE INDEX` command to construct an index on a source, materialized view, or table. The main purpose of creating indexes is to improve data retrieval performance. Indexes can also be used to create materialized views.
 
 
 ## Syntax
 
 ```sql
-CREATE INDEX index_name ON table_name(col_name);
+CREATE INDEX index_name ON table_name(column_name)
+[ INCLUDE ( column_name [, ...] ) ];
 ```
 
 ## Parameters
 
-| Parameter| Descriptiion|
+| Parameter or clause| Descriptiion|
 |-----------|-------------|
 |*index_name*    |The name of the index to be created.|
 |*table_name*    |The name of the table or materialized view for which the index is created.|
-|*col_name*      |The name of the column on which the index is created.|
+|*column_name*   |The name of the column on which the index is created.|
+|**INCLUDE** clause|Specify the columns to be included in the index as non-key columns. <br /> An index-only query can return the values of non-key columns without having to visit the indexed table thus improving the performance.|
 
 ## Examples
 
-The following statement creates an index on the `id` column in the `taxi_trips` table:
+The following statement creates an index on the `id` column in the `taxi_trips` table and includes the `distance` and `city` columns as non-key columns in the index.
 
 ```sql
-CREATE INDEX id_index ON taxi_trips(id);
+CREATE INDEX id_index ON taxi_trips(id) INCLUDE (distance, city);
 ```
 
-To see the indexes of a table, run the `DESCRIBE` statement.
+To see the indexes of a table, run the `DESCRIBE` statement. For example:
 
 ```sql
 DESCRIBE taxi_trips;
 ```
 ```
-   Name   |   Type    
-----------+-----------
+   Name   |               Type                
+----------+-----------------------------------
  id       | Int32
  distance | Float64
  city     | Varchar
- id_index | index(id)
+ id_index | index(id) include(distance, city)
 (4 rows)
 ```
 

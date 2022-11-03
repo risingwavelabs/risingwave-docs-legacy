@@ -38,7 +38,7 @@ git clone https://github.com/risingwavelabs/risingwave-demo.git
 Now navigate to the `ad-ctr` directory and start the demo cluster from the docker compose file. 
 
 ```shell
-cd ad-ctr
+cd risingwave-demo/ad-ctr
 docker-compose up -d
 ```
 
@@ -98,9 +98,9 @@ CREATE SOURCE ad_impression (
     impression_timestamp TIMESTAMP
 ) WITH (
     connector = 'kafka',
-    kafka.topic = 'ad_impression',
-    kafka.brokers = 'message_queue:29092',
-    kafka.scan.startup.mode = 'earliest'
+    topic = 'ad_impression',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
 ) ROW FORMAT JSON;
 ```
 
@@ -110,14 +110,14 @@ CREATE SOURCE ad_click (
     click_timestamp TIMESTAMP
 ) WITH (
     connector = 'kafka',
-    kafka.topic = 'ad_click',
-    kafka.brokers = 'message_queue:29092',
-    kafka.scan.startup.mode = 'earliest'
+    topic = 'ad_click',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
 ) ROW FORMAT JSON;
 ```
 
 :::tip
-`kafka.scan.startup.mode = 'earliest'` means the source will start streaming from the earliest entry in Kafka. Internally, RisingWave will record the consumed offset in the persistent state so that during a failure recovery, it will resume from the last consumed offset.
+`scan.startup.mode = 'earliest'` means the source will start streaming from the earliest entry in Kafka. Internally, RisingWave will record the consumed offset in the persistent state so that during a failure recovery, it will resume from the last consumed offset.
 :::
 
 Now we have connected RisingWave to the streams, but RisingWave has not started to consume data yet. For data to be processed, we need to define materialized views. After a materialized view is created, RisingWave will start to consume data from the specified offset.
