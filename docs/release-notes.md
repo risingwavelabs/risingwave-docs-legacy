@@ -15,7 +15,7 @@ This version was released on October 17, 2022.
 
 import RollButton from '@theme/RollButton';
 
-<RollButton text="Go " />
+<RollButton text="Go" />
 
 
 ### Main changes
