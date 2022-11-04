@@ -13,8 +13,8 @@ RisingWave offers two modes for different testing purposes:
 |---|---|---|
 |**Purpose**|Temporary tests|Advanced tests and demos|
 |**Starts in**|A single-node instance|A full-featured, multi-node cluster|
-|**Persistence**|Data is stored solely in memory and will not be persisted after the service is terminated.|Data is persisted in storage.|
-|**Auto Termination**|Service is automatically terminated after 30 minutes of inactivity.|No automatic termination.|
+|**Data persistence**|Data is stored solely in memory and will not be persisted after the service is terminated.|Data is persisted in storage.|
+|**Auto termination**|Service is automatically terminated after 30 minutes of inactivity.|No automatic termination.|
 
 Select a mode that suits your need:
 
