@@ -53,9 +53,9 @@ Select one of the following ways to install and run RisingWave in playground mod
 
 <details>
   <summary>Install and run from a Docker image (Linux & macOS)</summary>
-  
+
 As prerequisites, you need to install and run [Docker Desktop](https://docs.docker.com/get-docker/) in your environment.
-  
+
 Start RisingWave in single-binary playground mode.
 
 ```shell
