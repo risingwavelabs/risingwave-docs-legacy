@@ -26,27 +26,29 @@ You can install and run RisingWave in one of these ways:
     tar xvf risingwave-v0.1.13-x86_64-unknown-linux.tar.gz
     ```
   
-3. Run RisingWave.
+3. Start RisingWave in playground mode.
 
     ```shell
     ./risingwave playground
     ```
 
-    RisingWave is now started.
+    :::caution
+    Playground mode is intended for testing purposes only. In this mode, RisingWave service is automatically terminated after 30 minutes of inactivity and does not persist any data after termination.
+    :::
  
 </details>
 
 <details>
   <summary>Install and run from a Docker image (Linux & macOS)</summary>
 
-  You can install and run RisingWave from a Docker image on x86_64 systems. Images for ARM64 systems (including macOS devices with an Apple M1 chip) might be available for testing purpose, but it is not guaranteed.
+  You can install and run RisingWave from a Docker image.
   
-  As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment.
+  As prerequisites, you need to install and run [Docker Desktop](https://docs.docker.com/get-docker/) in your environment.
   
   Start RisingWave in single-binary playground mode:
     
 ```shell
-docker run -it --pull=always -p 4566:4566 -p 5691:5691 ghcr.io/risingwavelabs/risingwave:v0.1.13 playground
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:latest playground
 ```
     
 </details>
@@ -81,7 +83,7 @@ git clone https://github.com/risingwavelabs/risingwave-demo.git
 Now navigate to the `docker` directory and start the cluster from the docker-compose file.
 
 ```shell
-cd docker
+cd risingwave-demo/docker
 docker-compose up -d
 ```
 
@@ -181,3 +183,17 @@ psql -h localhost -p 4566 -d dev -U root
 You can now [connect a streaming source to RisingWave](sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](query-manage-data.md).
 
 
+
+
+
+<div style={{ width: "50%" }}>
+
+Column 1...
+
+</div>
+
+<div style={{ width: "50%" }}>
+
+Column 2...
+
+</div>
