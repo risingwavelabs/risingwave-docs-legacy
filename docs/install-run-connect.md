@@ -9,12 +9,14 @@ slug: /install-run-connect
 
 RisingWave offers two modes for different testing purposes:
 
-||Playground mode|Full-featured mode|
+|Comparison \ Mode|Playground mode|Full-featured mode|
 |---|---|---|
 |**Purpose**|Temporary tests|Advanced tests and demos|
 |**Starts in**|A single-node instance|A full-featured, multi-node cluster|
 |**Persistence**|Data is stored solely in memory and will not be persisted after the service is terminated.|Data is persisted in storage.|
-|**Termination**|Service is automatically terminated after 30 minutes of inactivity.|No self-termination.|
+|**Auto Termination**|Service is automatically terminated after 30 minutes of inactivity.|No automatic termination.|
+
+Select a mode that suits your need:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -22,7 +24,7 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="playground_mode" label="Playground mode" default>
 
-Select one of the following ways to install and run RisingWave:
+Select one of the following ways to install and run RisingWave in playground mode:
 
 
 <details>
@@ -41,7 +43,7 @@ Select one of the following ways to install and run RisingWave:
     tar xvf risingwave-v0.1.13-x86_64-unknown-linux.tar.gz
     ```
   
-3. Start RisingWave in playground mode.
+3. Run RisingWave in playground mode.
 
     ```shell
     ./risingwave playground
@@ -51,8 +53,6 @@ Select one of the following ways to install and run RisingWave:
 
 <details>
   <summary>Install and run from a Docker image (Linux & macOS)</summary>
-
-  You can install and run RisingWave from a Docker image.
   
   As prerequisites, you need to install and run [Docker Desktop](https://docs.docker.com/get-docker/) in your environment.
   
@@ -66,8 +66,6 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
 
 <details>
   <summary>Build from source (Linux & macOS)</summary>
-
-You can build from source on both x86_64 and ARM64 systems (including macOS devices with an Apple M1 chip).
 
 1. Clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
 
@@ -85,6 +83,7 @@ You can build from source on both x86_64 and ARM64 systems (including macOS devi
     * OpenSSL
     * PostgreSQL terminal (14.1 or higher)
     * Tmux
+
 
     Select your operating system and run the following commands to install the dependencies.
 
