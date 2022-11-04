@@ -84,9 +84,7 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
     * PostgreSQL terminal (14.1 or higher)
     * Tmux
 
-
     Select your operating system and run the following commands to install the dependencies.
-
 
 <div style={{marginLeft:"2rem"}}>
 <Tabs>
