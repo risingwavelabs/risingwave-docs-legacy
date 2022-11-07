@@ -17,7 +17,7 @@ export default function DefaultButton({ text, docs, url, block }: Props) {
         if (docs) history.push(`/docs/latest/${docs}`);
         else if (url) window.open(url, "_blank", "noopener,noreferrer");
       }}
-      className={block ? "default block" : "light"}
+      className={block ? "default block" : "default"}
     >
       {text}
     </button>
