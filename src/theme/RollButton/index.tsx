@@ -4,17 +4,17 @@ import "./style.css";
 
 type Props = {
   text: string;
-  docs?: string;
+  doc?: string;
   url?: string;
 };
 
-export default function RollButton({ text, docs, url }: Props) {
+export default function RollButton({ text, doc, url }: Props) {
   const history = useHistory();
   return (
     <div>
       <button
         onClick={() => {
-          if (docs) history.push(`/docs/latest/${docs}`);
+          if (doc) history.push(`/docs/latest/${doc}`);
           else if (url) window.open(url, "_blank", "noopener,noreferrer");
         }}
         className="button-3 learn-more"

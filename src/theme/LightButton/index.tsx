@@ -4,17 +4,17 @@ import "./style.css";
 
 type Props = {
   text: string;
-  docs?: string;
+  doc?: string;
   url?: string;
   block?: boolean;
 };
 
-export default function LightButton({ text, docs, url, block }: Props) {
+export default function LightButton({ text, doc, url, block }: Props) {
   const history = useHistory();
   return (
     <button
       onClick={() => {
-        if (docs) history.push(`/docs/latest/${docs}`);
+        if (doc) history.push(`/docs/latest/${doc}`);
         else if (url) window.open(url, "_blank", "noopener,noreferrer");
       }}
       className={block ? "light block" : "light"}
