@@ -1,12 +1,24 @@
+import { useHistory } from "@docusaurus/router";
 import React from "react";
 import "./style.css";
 
-export default function RollButton(props) {
-  const { text } = props;
+type Props = {
+  text: string;
+  docs?: string;
+  url?: string;
+};
 
+export default function RollButton({ text, docs, url }: Props) {
+  const history = useHistory();
   return (
     <div>
-      <button className="button-3 learn-more">
+      <button
+        onClick={() => {
+          if (docs) history.push(`/docs/latest/${docs}`);
+          else if (url) window.open(url, "_blank", "noopener,noreferrer");
+        }}
+        className="button-3 learn-more"
+      >
         <span className="circle" aria-hidden="true">
           <span className="icon arrow"></span>
         </span>

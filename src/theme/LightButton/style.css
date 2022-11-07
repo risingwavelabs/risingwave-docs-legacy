@@ -1,0 +1,77 @@
+.light {
+  margin: 10px 4px;
+  display: inline-block;
+  appearance: none;
+  font-size: var(--ifm-font-size-base);
+  background-color: #fafbfc;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #24292e;
+  font-weight: 500;
+  line-height: 20px;
+  list-style: none;
+  padding: 6px 16px;
+  position: relative;
+  transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: break-word;
+}
+
+.light:hover {
+  background-color: #b5b9c21c;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+[data-theme="dark"] .light {
+  box-shadow: none;
+  background-color: transparent;
+  border: 1px solid #3d67d7;
+  color: #fff;
+}
+
+[data-theme="dark"] .light:hover {
+  background-color: #6986d7;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+
+[data-theme="dark"] .default:active {
+  background-color: #3962d4;
+  border: 1px solid #5a7ee1;
+  transition-duration: 0.1s;
+}
+
+.light:disabled {
+  background-color: #fafbfc;
+  border-color: rgba(27, 31, 35, 0.15);
+  color: #959da5;
+  cursor: default;
+}
+
+.light:active {
+  background-color: #edeff2;
+  transition: none 0s;
+}
+
+[data-theme="dark"] .light:active {
+  background-color: #567de6;
+  transition: none 0s;
+}
+
+.light:focus {
+  outline: 1px transparent;
+}
+
+.light:before {
+  display: none;
+}
+
+.light:-webkit-details-marker {
+  display: none;
+}
