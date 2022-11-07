@@ -6,9 +6,10 @@ type Props = {
   text: string;
   docs?: string;
   url?: string;
+  block?: boolean;
 };
 
-export default function LightButton({ text, docs, url }: Props) {
+export default function LightButton({ text, docs, url, block }: Props) {
   const history = useHistory();
   return (
     <button
@@ -16,7 +17,7 @@ export default function LightButton({ text, docs, url }: Props) {
         if (docs) history.push(`/docs/latest/${docs}`);
         else if (url) window.open(url, "_blank", "noopener,noreferrer");
       }}
-      className="light"
+      className={block ? "light block" : "light"}
     >
       {text}
     </button>

@@ -46,3 +46,7 @@
 [data-theme="dark"] .default:focus {
   border: 1px solid #c3d0f3;
 }
+
+.block {
+  display: block;
+}

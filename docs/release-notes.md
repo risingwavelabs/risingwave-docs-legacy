@@ -14,7 +14,9 @@ This version was released on October 17, 2022.
 <rollButton text="Get Started" url="https://www.risingwave-labs.com" />
 <defaultButton text="Home Page" url="https://www.risingwave-labs.com" />
 <defaultButton text="Value expressions" docs="sql-syntax-value-exp" />
-<lightButton text="Top-N by group" docs="sql-queries-top-n" />
+<lightButton text="Top-N by group" docs="sql-queries-top-n" block />
+<lightButton text="Get Started" docs="get-started" />
+<lightButton text="Architecture" docs="Architecture"  />
 
 ### Main changes
 

@@ -75,3 +75,7 @@
 .light:-webkit-details-marker {
   display: none;
 }
+
+.block {
+  display: block;
+}
