@@ -181,6 +181,13 @@ For more information, see [Docker Documentation](https://docs.docker.com/compose
     
 </details>
 
+<details>
+  <summary>Deploy in Kubernetes (Linux & macOS)</summary>
+
+ You can deploy a local RisingWave cluster in Kubernetes with Kubernetes Operator for RisingWave. See detailed instructions in **[doc link]**.
+    
+</details>
+
 </TabItem>
 </Tabs>
 
