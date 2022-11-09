@@ -46,83 +46,83 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
   <Tabs>
   <TabItem value="library" label="Pre-built library (Linux)">
 
-  1. Download the pre-built library.
+1. Download the pre-built library.
 
     ```shell
     wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.13/risingwave-v0.1.13-x86_64-unknown-linux.tar.gz
     ```
-  
-  1. Unzip the library.
 
-      ```shell
-      tar xvf risingwave-v0.1.13-x86_64-unknown-linux.tar.gz
-      ```
-  
-  1. Start RisingWave in playground mode.
+2. Unzip the library.
 
-      ```shell
-      ./risingwave playground
-      ```
+    ```shell
+    tar xvf risingwave-v0.1.13-x86_64-unknown-linux.tar.gz
+    ```
+
+3. Start RisingWave in playground mode.
+
+    ```shell
+    ./risingwave playground
+    ```
 
   </TabItem>
   <TabItem value="source" label="Build from source (Linux & macOS)">
 
-  1. Clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
+1. Clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
 
-      ```shell
-      git clone https://github.com/risingwavelabs/risingwave.git
-      ```
+    ```shell
+    git clone https://github.com/risingwavelabs/risingwave.git
+    ```
 
-  2. Install dependencies.
+2. Install dependencies.
 
-      RisingWave has the following dependencies. Please ensure all the dependencies have been installed before running RisingWave.
+    RisingWave has the following dependencies. Please ensure all the dependencies have been installed before running RisingWave.
 
-      * Rust
-      * CMake
-      * Protocol Buffers
-      * OpenSSL
-      * PostgreSQL terminal (14.1 or higher)
-      * Tmux
+    * Rust
+    * CMake
+    * Protocol Buffers
+    * OpenSSL
+    * PostgreSQL terminal (14.1 or higher)
+    * Tmux
 
-      Select your operating system and run the following commands to install the dependencies.
+    Select your operating system and run the following commands to install the dependencies.
 
-      <div style={{marginLeft:"1rem"}}>
-      <Tabs>
-      <TabItem value="macos" label="macOS" default>
+    <div style={{marginLeft:"1rem"}}>
+    <Tabs>
+    <TabItem value="macos" label="macOS" default>
 
 
-      ```shell
-      brew install postgresql cmake protobuf openssl tmux
-      ```
-      Run one of the following cammands to install [rustup](https://rustup.rs):
-      ```shell
-      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-      ```
-      or
-      ```shell
-      brew install rustup-init && rustup-init
-      ```
-      </TabItem>
-      <TabItem value="linux" label="Linux">
+    ```shell
+    brew install postgresql cmake protobuf openssl tmux
+    ```
+    Run one of the following cammands to install [rustup](https://rustup.rs):
+    ```shell
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    ```
+    or
+    ```shell
+    brew install rustup-init && rustup-init
+    ```
+    </TabItem>
+    <TabItem value="linux" label="Linux">
 
-      ```shell
-      sudo apt update
-      sudo apt upgrade
-      sudo apt install make build-essential cmake protobuf-compiler curl openssl libssl-dev libcurl4-openssl-dev pkg-config postgresql-client tmux lld
-      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-      ```
+    ```shell
+    sudo apt update
+    sudo apt upgrade
+    sudo apt install make build-essential cmake protobuf-compiler curl openssl libssl-dev libcurl4-openssl-dev pkg-config postgresql-client tmux lld
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    ```
 
-      </TabItem>
-      </Tabs>
-      </div>
+    </TabItem>
+    </Tabs>
+    </div>
 
-  3. Start RisingWave.
+3. Start RisingWave.
 
-      To start RisingWave, in the terminal, navigate to the directory where RisingWave is downloaded, and run the following command.
-    
-      ```shell
-      ./risedev playground
-      ```
+    To start RisingWave, in the terminal, navigate to the directory where RisingWave is downloaded, and run the following command.
+  
+    ```shell
+    ./risedev playground
+    ```
 
   </TabItem>
   </Tabs>
