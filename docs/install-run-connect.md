@@ -159,7 +159,7 @@ Select one of the following ways to run RisingWave in a full-featured cluster:
 </TabItem>
 </Tabs>
 
-> Currently, RisingWave does not support Windows.<br/> Use a macOS or Linux device to run RisingWave locally.
+> Currently, RisingWave does not support Windows.<br/> Use a macOS or Linux device to run RisingWave.
 
 
 ## Step 2. Connect to RisingWave
