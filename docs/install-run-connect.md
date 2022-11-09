@@ -28,23 +28,10 @@ Select one of the following ways to install and run RisingWave in playground mod
 
 
 <details>
-  <summary>Run in Docker</summary>
-You can install and run RisingWave from a Docker image.
-
-As prerequisites, you need to install and run [Docker Desktop](https://docs.docker.com/get-docker/) in your environment.
-
-Start RisingWave in single-binary playground mode.
-
-```shell
-docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:latest playground
-```
-
-</details>
-<details>
   <summary>Run locally</summary>
 
-  <Tabs>
-  <TabItem value="library" label="Pre-built library (Linux)">
+<Tabs>
+<TabItem value="library" label="Pre-built library (Linux)">
 
 1. Download the pre-built library.
 
@@ -64,8 +51,8 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
     ./risingwave playground
     ```
 
-  </TabItem>
-  <TabItem value="source" label="Build from source (Linux & macOS)">
+</TabItem>
+<TabItem value="source" label="Build from source (Linux & macOS)">
 
 1. Clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
 
@@ -86,22 +73,25 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
 
     Select your operating system and run the following commands to install the dependencies.
 
-    <div style={{marginLeft:"1rem"}}>
     <Tabs>
     <TabItem value="macos" label="macOS" default>
-
 
     ```shell
     brew install postgresql cmake protobuf openssl tmux
     ```
+
     Run one of the following cammands to install [rustup](https://rustup.rs):
+
     ```shell
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     ```
+
     or
+
     ```shell
     brew install rustup-init && rustup-init
     ```
+
     </TabItem>
     <TabItem value="linux" label="Linux">
 
@@ -114,7 +104,6 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
 
     </TabItem>
     </Tabs>
-    </div>
 
 3. Start RisingWave.
 
@@ -124,8 +113,22 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
     ./risedev playground
     ```
 
-  </TabItem>
-  </Tabs>
+</TabItem>
+</Tabs>
+
+</details>
+
+<details>
+  <summary>Run in Docker</summary>
+You can install and run RisingWave from a Docker image.
+
+As prerequisites, you need to install and run [Docker Desktop](https://docs.docker.com/get-docker/) in your environment.
+
+Pull and start RisingWave in single-binary playground mode.
+
+```shell
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:latest playground
+```
 
 </details>
 
@@ -136,7 +139,7 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
 Select one of the following ways to run RisingWave in a full-featured cluster:
 
 <details>
-  <summary>Run in Docker (Linux & macOS)</summary>
+  <summary>Run in Docker</summary>
 
   You can set up a full-featured multi-node RisingWave cluster via Docker Desktop.
 
@@ -145,7 +148,7 @@ Select one of the following ways to run RisingWave in a full-featured cluster:
 </details>
 
 <details>
-  <summary>Run in Kubernetes (Linux & macOS)</summary>
+  <summary>Run in Kubernetes</summary>
 
  You can deploy a local RisingWave cluster in Kubernetes with Kubernetes Operator for RisingWave.
  
@@ -156,7 +159,7 @@ Select one of the following ways to run RisingWave in a full-featured cluster:
 </TabItem>
 </Tabs>
 
-
+> Currently, RisingWave does not support Windows.<br/> Use a macOS or Linux device to run RisingWave locally.
 
 
 ## Step 2. Connect to RisingWave

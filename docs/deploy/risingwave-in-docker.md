@@ -52,4 +52,4 @@ For more information, see [Docker Documentation](https://docs.docker.com/compose
 
 ## What's next
 
-[Connect to RisingWave](/install-run-connect.md/#step-2-connect-to-risingwave)
+[Connect to RisingWave](/install-run-connect.md/#step-2-connect-to-risingwave) via the Postgres interactive terminal `psql`.
