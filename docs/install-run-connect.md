@@ -28,9 +28,7 @@ Select one of the following ways to install and run RisingWave in playground mod
 
 
 <details>
-
-<details>
-  <summary>Run in Docker (Linux & macOS)</summary>
+  <summary>Run in Docker</summary>
 You can install and run RisingWave from a Docker image.
 
 As prerequisites, you need to install and run [Docker Desktop](https://docs.docker.com/get-docker/) in your environment.
@@ -42,7 +40,8 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
 ```
 
 </details>
-  <summary>Run locally with pre-built library (Linux)</summary>
+<details>
+  <summary>Run locally</summary>
 
   <Tabs>
   <TabItem value="library" label="Pre-built library (Linux)">
@@ -87,35 +86,35 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
 
       Select your operating system and run the following commands to install the dependencies.
 
-  <div style={{marginLeft:"2rem"}}>
-  <Tabs>
-  <TabItem value="macos" label="macOS" default>
+    <div style={{marginLeft:"1rem"}}>
+    <Tabs>
+    <TabItem value="macos" label="macOS" default>
 
 
-  ```shell
-  brew install postgresql cmake protobuf openssl tmux
-  ```
-  Run one of the following cammands to install [rustup](https://rustup.rs):
-  ```shell
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  ```
-  or
-  ```shell
-  brew install rustup-init && rustup-init
-  ```
-  </TabItem>
-  <TabItem value="linux" label="Linux">
+    ```shell
+    brew install postgresql cmake protobuf openssl tmux
+    ```
+    Run one of the following cammands to install [rustup](https://rustup.rs):
+    ```shell
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    ```
+    or
+    ```shell
+    brew install rustup-init && rustup-init
+    ```
+    </TabItem>
+    <TabItem value="linux" label="Linux">
 
-  ```shell
-  sudo apt update
-  sudo apt upgrade
-  sudo apt install make build-essential cmake protobuf-compiler curl openssl libssl-dev libcurl4-openssl-dev pkg-config postgresql-client tmux lld
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-  ```
+    ```shell
+    sudo apt update
+    sudo apt upgrade
+    sudo apt install make build-essential cmake protobuf-compiler curl openssl libssl-dev libcurl4-openssl-dev pkg-config postgresql-client tmux lld
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    ```
 
-  </TabItem>
-  </Tabs>
-  </div>
+    </TabItem>
+    </Tabs>
+    </div>
 
   3. Start RisingWave.
 
@@ -124,7 +123,6 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
       ```shell
       ./risedev playground
       ```
-
 
   </TabItem>
   </Tabs>
