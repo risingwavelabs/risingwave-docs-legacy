@@ -55,12 +55,12 @@ const sidebars = {
           items: [
             {
               type: 'doc',
-              id: 'risingwave-in-docker',
+              id: 'deploy/risingwave-in-docker',
               label: 'Run in Docker',
             },
             {
               type: 'doc',
-              id: 'risingwave-in-kubernetes',
+              id: 'deploy/risingwave-in-kubernetes',
               label: 'Run in Kubernetes',
             }
           ]
