@@ -32,7 +32,7 @@ CREATE TABLE taxi_trips(
     id VARCHAR,
     distance DOUBLE PRECISION,
     city VARCHAR
-) WITH ('appendonly' = true);
+) WITH (appendonly = true);
 ```
 
 The statement below creates a table that includes nested tables.
