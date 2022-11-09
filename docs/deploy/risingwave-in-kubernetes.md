@@ -1,8 +1,8 @@
 ---
-id: deploy-kubernetes
-title: Deploy a RisingWave cluster in Kubernetes
-description: Deploy a RisingWave cluster in Kubernetes with the Kubernetes Operator for RisingWave.
-slug: /deploy-kubernetes
+id: risingwave-in-kubernetes
+title: Set up a local RisingWave cluster in Kubernetes
+description: Deploy RisingWave in a local Kubernetes cluster with the Kubernetes Operator for RisingWave.
+slug: /risingwave-in-kubernetes
 ---
 
 You can use the [Kubernetes Operator for RisingWave](https://github.com/risingwavelabs/risingwave-operator) (hereinafter ‘the Operator’) to deploy a RisingWave cluster in Kubernetes.

@@ -131,62 +131,23 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 <TabItem value="full_featured_mode" label="Full-featured mode">
 
+Select one of the following ways to run RisingWave in a full-featured cluster:
+
 <details>
-  <summary>Set up a multi-node cluster via Docker (Linux & macOS)</summary>
+  <summary>Run in Docker (Linux & macOS)</summary>
 
-You can set up a full-featured RisingWave cluster via Docker Desktop. The cluster is composed of multiple RisingWave components, including:
+  You can set up a full-featured multi-node RisingWave cluster via Docker Desktop.
 
-* A frontend node
-* A compute node
-* A meta node
-* A compactor node
-* A datagen source connector
-* A message queue
+  See detailed instructions in [Set up a local RisingWave cluster in Docker](/deploy/risingwave-in-docker.md).
 
-RisingWave also incorporates these third-party components:
-
-* Grafana
-* Etcd
-* MinIO
-* Prometheus
-
-
-As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment. Ensure that it is running before launching the cluster.
-
-Then, clone the [risingwave-demo](https://github.com/risingwavelabs/risingwave-demo) repository.
-
-```shell
-git clone https://github.com/risingwavelabs/risingwave-demo.git
-```
-
-Now navigate to the `docker` directory and start the cluster from the docker-compose file.
-
-```shell
-cd risingwave-demo/docker
-docker-compose up -d
-```
-
-:::note
-
-If the following error occurs:
-```shell
-ERROR: The Compose file './docker-compose.yml' is invalid because:
-'name' does not match any of the regexes: '^x-'
-```
-Use `docker compose` instead of `docker-compose`, or enable **Use Docker Compose V2** on the Settings page of Docker Desktop.
-
-For more information, see [Docker Documentation](https://docs.docker.com/compose/#compose-v2-and-the-new-docker-compose-command).
-
-:::
-    
 </details>
 
 <details>
-  <summary>Deploy in Kubernetes (Linux & macOS)</summary>
+  <summary>Run in Kubernetes (Linux & macOS)</summary>
 
  You can deploy a local RisingWave cluster in Kubernetes with Kubernetes Operator for RisingWave.
  
- See detailed instructions in **[doc link]**.
+ See detailed instructions in [Set up a local RisingWave cluster in Kubernetes](/deploy/risingwave-in-kubernetes.md).
     
 </details>
 
