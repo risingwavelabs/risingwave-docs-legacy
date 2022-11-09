@@ -31,7 +31,7 @@ The statement below creates a table that has three columns.
 CREATE TABLE taxi_trips(
     id VARCHAR,
     distance DOUBLE PRECISION,
-    duration DOUBLE PRECISION
+    city VARCHAR
 ) WITH ('appendonly' = true);
 ```
 
