@@ -1,4 +1,5 @@
 ---
+<<<<<<< Updated upstream
 id: python-client-libraries
 title: Python
 description: Connect to RisingWave from a Python application
@@ -9,13 +10,31 @@ slug: /python-client-libraries
 As RisingWave is wire-compatible with PostgreSQL, you can use third-party PostgreSQL drivers to interact with RisingWave from your Python applications.
 
 In this guide, we use the [`psycopg2`](https://pypi.org/project/psycopg2/) driver to connect to RisingWave.
+=======
+id: python-libraries
+title: Connect to RisingWave from a Python application
+description: Connect to RisingWave from a Python application
+slug: /python-libraries
+---
+
+
+RisingWave is wire-compatible with PostgreSQL. You can use third-party PostgreSQL adapters to interact with RisingWave from your Python applications.
+
+In this guide, we use the [`psycopg2`](https://pypi.org/project/psycopg2/) adapter to connect to RisingWave.
+>>>>>>> Stashed changes
 
 
 ## Start RisingWave
 
+<<<<<<< Updated upstream
 We recommend you set up a local cluster with Docker Compose. 
 
 For the detailed steps, see [Set up a local cluster with Docker Compose](../install-run-connect.md#step-1-install-and-run-risingwave).
+=======
+We recommend you set up a local multi-node cluster via Docker Desktop. 
+
+For the detailed steps, see [Set up a multi-node cluster via Docker](../install-run-connect.md#step-1-install-and-run-risingwave).
+>>>>>>> Stashed changes
 
 
 ## Install the psgcopg2 driver

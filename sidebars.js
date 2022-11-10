@@ -125,6 +125,19 @@ const sidebars = {
       ]
     },
 
+    {
+      type: 'category',
+      label: `Client libraries`,
+      collapsible: true,
+      collapsed: true,
+      items:
+      [{
+        type: 'doc',
+        id: 'dev/code-python',
+        label: 'Python',
+      }]
+    },
+
   {
     type: 'category',
     label: 'SQL reference',
