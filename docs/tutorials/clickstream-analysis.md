@@ -49,7 +49,7 @@ For more information, see [Docker Documentation](https://docs.docker.com/compose
 
 :::
 
-Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, the data generated will be stored in the MinIO instance.
+Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, the data will be stored in the MinIO instance.
 
 Now connect to RisingWave to manage data streams and perform data analysis.
 
