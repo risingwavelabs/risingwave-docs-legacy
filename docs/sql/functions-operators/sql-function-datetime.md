@@ -23,6 +23,9 @@ title: Date and time functions and operators
 | time - interval → time | Subtracts an interval from a time. | `time '18:20:49' -  interval '2 hours'` → `16:20:49` |
 | interval = interval → bool | Compares interval equality. | `interval '1' month = interval '30' day` → `t` |
 | real * interval → time | Multiplies an interval by a float. | `real '6.1' * interval '1' second` → `00:00:06.1` <br /> `interval '1' second * real '6.1'` → `00:00:06.1` |
+| timestamptz + interval → timestamptz | Adds an interval to a timestamp with time zone (i.e., timestamptz). The 'Z' at the end of timestamp with time zone stands for UTC time zone. | `'2022-03-13 09:00:00Z'::timestamp with time zone + interval '24' hour` → `2022-03-14 09:00:00+00:00`|
+| interval + timestamptz → timestamptz | Adds a timestamp with time zone (i.e., timestamptz) to an interval. The 'Z' at the end of timestamp with time zone stands for UTC time zone. | `'interval '24' hour + '2022-03-13 09:00:00Z'::timestamp with time zone` → `2022-03-14 09:00:00+00:00`|
+| timestamptz - interval → timestamptz | Subtracts an interval from a timestamp with time zone (i.e., timestamptz). The 'Z' at the end of timestamp with time zone stands for UTC time zone. | `'2022-03-14 09:00:00Z'::timestamp with time zone - interval '24' hour` → `2022-03-13 09:00:00+00:00`|
 
 ## Date and time functions
 
