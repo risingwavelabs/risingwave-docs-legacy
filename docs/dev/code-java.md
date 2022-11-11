@@ -28,7 +28,7 @@ To connect to RisingWave with the JDBC driver, specify the connection parameters
 import java.sql.*;
 import java.util.Properties;
 
-public class connect {
+public class RisingWaveConnect {
 
     public static void main (String arg[]) {
         String url = "jdbc:postgresql://localhost:4566/dev";
