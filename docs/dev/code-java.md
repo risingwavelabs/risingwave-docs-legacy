@@ -12,14 +12,12 @@ In this guide, we use the [PostgreSQL JDBC](https://pypi.org/project/psycopg2/) 
 
 ## Start RisingWave
 
-We recommend you set up a local multi-process cluster with Docker Compose. 
-
-For the detailed steps, see [Set up a local cluster with Docker Compose](../install-run-connect.md#step-1-install-and-run-risingwave).
+To learn about how to start RisingWave, see [Install, run and connect to RisingWave](../install-run-connect.md).
 
 
 ## Download the PostgreSQL JDBC driver
 
-Download the correct version of the PostgreSQL JDBC driver from the [PostgreSQL JDBC website](https://jdbc.postgresql.org/) based on the Java version in your environment.
+Download the correct version of the PostgreSQL JDBC driver from the [PostgreSQL JDBC website](https://jdbc.postgresql.org/) based on the Java version in your environment. Ensure the JDBC driver is added to your Java project.
 
 
 ## Connect to RisingWave
@@ -30,18 +28,29 @@ To connect to RisingWave with the JDBC driver, specify the connection parameters
 import java.sql.*;
 import java.util.Properties;
 
-public class Test {
+public class connect {
 
-    public void testSimpleJdbcQuery() throws Exception {
+    public static void main (String arg[]) {
         String url = "jdbc:postgresql://localhost:4566/dev";
         Properties props = new Properties();
         props.setProperty("user", "root");
         props.setProperty("password", "secret");
         props.setProperty("ssl", "false");
-        Connection conn = DriverManager.getConnection(url, props);
+
+        try (Connection conn = DriverManager.getConnection(url, props)) {
+            if (conn != null) {
+                System.out.println("Connected to RisingWave.");
+            } else {
+                System.out.println("Failed to connect to RisingWave.");
+            }
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //If needed, add the code for issuing queries here.
-        st.close();
-    }
+    }   
 }
 ```
 
@@ -53,9 +62,9 @@ The code below creates a source with the `datagen` connector, and fetches all th
 import java.sql.*;
 import java.util.Properties;
 
-public class Test {
-    
-    public void testSimpleJdbcQuery() throws Exception {
+public class source {
+
+    public static void main (String arg[]) throws SQLException {
         String url = "jdbc:postgresql://localhost:4566/dev";
         Properties props = new Properties();
         props.setProperty("user", "root");
@@ -63,26 +72,23 @@ public class Test {
         props.setProperty("ssl", "false");
         Connection conn = DriverManager.getConnection(url, props);
 
-        PreparedStatement st = conn.prepareStatement("CREATE MATERIALIZED SOURCE trip (id INT, distance INT) WITH" +
-            "(connector = 'datagen'," +
-            "fields.id.kind = 'sequence'," +
-            "fields.id.start = '1'," +
-            "fields.id.end  = '10'," +
-            "fields.distance.kind = 'sequence'," +
-            "fields.distance.start = '11'," +
-            "fields.distance.end = '20'," +
-            "datagen.rows.per.second='15'," +
-            "datagen.split.num = '1') " +
-            "row format json");
-        ResultSet rs = st.executeQuery();
-        while (rs.next()) {
-            System.out.print("Column 1 returned ");
-            System.out.println(rs.getString(1));
-}
-rs.close();
-st.close();
+        String sql_query = "CREATE MATERIALIZED SOURCE trip (id INT, distance INT) WITH" +
+        "(connector = 'datagen'," +
+        "fields.id.kind = 'sequence'," +
+        "fields.id.start = '1'," +
+        "fields.id.end  = '10'," +
+        "fields.distance.kind = 'sequence'," +
+        "fields.distance.start = '11'," +
+        "fields.distance.end = '20'," +
+        "datagen.rows.per.second='15'," +
+        "datagen.split.num = '1') " +
+        "ROW FORMAT JSON";
+
+        PreparedStatement st = conn.prepareStatement(sql_query);
+        st.execute();
+        st.close();
     }
-}
+    }
 ```
 
 :::note
@@ -94,15 +100,15 @@ All the code examples in this guide include a section for connecting to RisingWa
 
 ## Create a materialized view
 
-The code in this section creates a materialized view `avg_speed`, and queries all materialized views in the database.
+The code in this section creates a materialized view `mv1` to capture the latest amount of trips and total distance.
 
 ```java
 import java.sql.*;
 import java.util.Properties;
 
-public class Test {
-    
-    public void testSimpleJdbcQuery() throws Exception {
+public class create_mv {
+
+    public static void main (String arg[]) throws SQLException {
         String url = "jdbc:postgresql://localhost:4566/dev";
         Properties props = new Properties();
         props.setProperty("user", "root");
@@ -110,35 +116,30 @@ public class Test {
         props.setProperty("ssl", "false");
         Connection conn = DriverManager.getConnection(url, props);
 
-        PreparedStatement st = conn.prepareStatement("CREATE MATERIALIZED VIEW avg_speed" +
-        "AS" +
-        "SUM(distance) as total_distance," +
-        "SUM(duration) as total_duration," +
-        "SUM(distance) / SUM(duration) as avg_speed" +
-        "FROM s1;");
+        String sql_query = "CREATE MATERIALIZED VIEW mv1 AS " +
+        "SELECT count(id) AS no_of_trips, sum(distance) AS total_distance " +
+        "FROM trip; ";
 
-        ResultSet rs = st.executeQuery();
-        while (rs.next()) {
-            System.out.print("Column 1 returned ");
-            System.out.println(rs.getString(1));
-}
-rs.close();
-st.close();
+        try (PreparedStatement st = conn.prepareStatement(sql_query)){ 
+            st.executeQuery();
+        }
+
+        conn.close();
     }
 }
 ```
 
 ## Query a materialized view
 
-The code below queries the materialized view that is created above.
+The code in this section queries the materialized view `mv1` to get the real-time numbers.
 
 ```java
 import java.sql.*;
 import java.util.Properties;
 
-public class Test {
-    
-    public void testSimpleJdbcQuery() throws Exception {
+public class retrieve {
+
+    public static void main (String arg[]) throws SQLException {
         String url = "jdbc:postgresql://localhost:4566/dev";
         Properties props = new Properties();
         props.setProperty("user", "root");
@@ -146,15 +147,17 @@ public class Test {
         props.setProperty("ssl", "false");
         Connection conn = DriverManager.getConnection(url, props);
 
-        PreparedStatement st = conn.prepareStatement("SELECT * FROM avg_speed;");
-
-        ResultSet rs = st.executeQuery();
-        while (rs.next()) {
-            System.out.print("Column 1 returned ");
-            System.out.println(rs.getString(1));
+        try (PreparedStatement show_mv = conn.prepareStatement(
+            "SELECT * FROM mv1;")) {
+            try (ResultSet rs = show_mv.executeQuery()) {
+                while (rs.next()) {
+                    System.out.println("Number of trips: " + rs.getString("no_of_trips"));
+                    System.out.println("Total distance: "+ rs.getString("total_distance"));
+                }
+            }
+        }
+    }
 }
-rs.close();
-st.close();
 ```
 
 
