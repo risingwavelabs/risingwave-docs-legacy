@@ -26,7 +26,6 @@ For information about how to install `psycopg` and the difference between `psyco
 To connect to RisingWave via `psycopg2`:
 
 ```python
-
 import psycopg2
 
 conn = psycopg2.connect(host="127.0.0.1", port=4566, user="root", dbname="dev")
