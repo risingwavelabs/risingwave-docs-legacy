@@ -42,22 +42,24 @@ conn = psycopg2.connect(host="localhost", port=4566, user="root", dbname="dev")
 conn.autocommit = True
 
 with conn.cursor() as cur:
-    cur.execute("CREATE MATERIALIZED SOURCE walk(distance INT, duration INT) with " \
-    "(connector = 'datagen'," \
-    "fields.distance.kind = 'sequence'," \
-    "fields.distance.start = '1'," \
-    "fields.distance.end  = '60'," \
-    "fields.duration.kind = 'sequence'," \
-    "fields.duration.start = '1'," \
-    "fields.duration.end = '30'," \
-    "datagen.rows.per.second='15'," \
-    "datagen.split.num = '1') " \
-"ROW FORMAT JSON")
+    cur.execute("""
+CREATE MATERIALIZED SOURCE walk(distance INT, duration INT)
+WITH (
+    connector = 'datagen',
+    fields.distance.kind = 'sequence',
+    fields.distance.start = '1',
+    fields.distance.end  = '60',
+    fields.duration.kind = 'sequence',
+    fields.duration.start = '1',
+    fields.duration.end = '30',
+    datagen.rows.per.second='15',
+    datagen.split.num = '1'
+) ROW FORMAT JSON""")
 
-with conn.cursor () as cur:
+# Display all the created sources.
+with conn.cursor() as cur:
     cur.execute("SHOW SOURCES;")
     print(cur.fetchall())
-
 conn.close()
 ```
 
