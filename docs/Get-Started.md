@@ -9,7 +9,7 @@ This guide will help you get started with RisingWave.
 
 |Stages | |
 |---|---|
-|<img src={require('./images/data_process_0.png').default} alt="RisingWave Architecture" width='250'/>|[**Run RisingWave**](get-started.md/#run-risingwave) — Install, start, and connect to RisingWave.|
+|<img src={require('./images/data_process_0.png').default} alt="RisingWave Architecture" width='250'/>|[**Run RisingWave**](#run-risingwave) — Install, start, and connect to RisingWave.|
 |<img src={require('./images/data_process_1.png').default} alt="RisingWave Architecture" width='250'/>|[**Ingest streaming data**](/sql/commands/sql-create-source.md) — Connect a streaming data source to RisingWave.|
 |<img src={require('./images/data_process_2.png').default} alt="RisingWave Architecture" width='250'/>|**Query and manage data** <ul><li>[RisingWave SQL 101](risingwave-sql-101.md) — A simple yet typical data processing quickstart guide for RisingWave first-timers.</li><li>[Tutorials](/tutorials/real-time-ad-performance-analysis.md) — A series of guided tours in solving real-world stream processing tasks with simulated data.</li><li>**SQL reference** — Navigate to **SQL reference** on the sidebar if you are familiar with PostgreSQL and materialized views.</li></ul>|
 |<img src={require('./images/data_process_3.png').default} alt="RisingWave Architecture" width='250'/>|[**Output data**](/sql/commands/sql-create-sink.md) — Output data from RisingWave to data sinks.|
