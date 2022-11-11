@@ -18,7 +18,7 @@ To learn about how to start RisingWave, see [Install, run and connect to RisingW
 
 ## Install the psgcopg2 driver
 
-For information about how to install `psycopg` and the difference between `psycopg` and `psycopg-binary`, see [the official psycopg documentation](https://www.psycopg.org/docs/install.html).
+For information about how to install `psycopg` and the difference between `psycopg` and `psycopg-binary`, see the [official psycopg documentation](https://www.psycopg.org/docs/install.html).
 
 
 ## Connect to RisingWave
@@ -34,7 +34,7 @@ conn = psycopg2.connect(host="127.0.0.1", port=4566, user="root", dbname="dev")
 
 ## Create a source
 
-The code below creates a source with the `datagen` connector, and fetches all the sources in the database.
+The code below creates a source `counter` with the `datagen` connector, and fetches all the sources in the database. The `datagen` connector is used to generate mock data.
 
 ```python
 import psycopg2
@@ -43,17 +43,17 @@ conn = psycopg2.connect(host="localhost", port=4566, user="root", dbname="dev")
 conn.autocommit = True
 
 with conn.cursor() as cur:
-    cur.execute("create materialized source s1 (id int,  ) with " \
+    cur.execute("CREATE MATERIALIZED SOURCE walk(distance INT, duration INT) with " \
     "(connector = 'datagen'," \
-    "fields.id.kind = 'sequence'," \
-    "fields.v1.start = '1'," \
-    "fields.v1.end  = '10'," \
-    "fields.v2.kind = 'sequence'," \
-    "fields.v2.start = '11'," \
-    "fields.v2.end = '20'," \
+    "fields.distance.kind = 'sequence'," \
+    "fields.distance.start = '1'," \
+    "fields.distance.end  = '60'," \
+    "fields.duration.kind = 'sequence'," \
+    "fields.duration.start = '1'," \
+    "fields.duration.end = '30'," \
     "datagen.rows.per.second='15'," \
     "datagen.split.num = '1') " \
-"row format json")
+"ROW FORMAT JSON")
 
 with conn.cursor () as cur:
     cur.execute("SHOW SOURCES;")
@@ -71,7 +71,7 @@ All the code examples in this guide include a section for connecting to RisingWa
 
 ## Create a materialized view
 
-The code in this section creates a materialized view `avg_speed`, and queries all materialized views in the database.
+The code in this section creates a materialized view `counter`, and queries all materialized views in the database.
 
 ```python
 import psycopg2
@@ -80,12 +80,11 @@ conn = psycopg2.connect(host="localhost", port=4566, user="root", dbname="dev")
 conn.autocommit = True
 
 with conn.cursor() as cur:
-    cur.execute("CREATE MATERIALIZED VIEW avg_speed" \
+    cur.execute("CREATE MATERIALIZED VIEW counter" \
     "AS" \ 
     "SUM(distance) as total_distance," \
     "SUM(duration) as total_duration," \
-    "SUM(distance) / SUM(duration) as avg_speed"\
-    "FROM s1;")
+    "FROM walk;")
 
 
 with conn.cursor () as cur:
@@ -97,7 +96,7 @@ conn.close()
 
 ## Query a materialized view
 
-The code below queries the materialized view that is created above.
+The code in this section queries the materialized view `counter` to get the real-time data.
 
 ```python
 import psycopg2
@@ -106,7 +105,7 @@ conn = psycopg2.connect(host="localhost", port=4566, user="root", dbname="dev")
 conn.autocommit = True
 
 with conn.cursor () as cur:
-    cur.execute("SELECT * FROM avg_speed;")
+    cur.execute("SELECT * FROM counter;")
     print(cur.fetchall())
 
 conn.close()

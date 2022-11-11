@@ -72,21 +72,23 @@ public class source {
         props.setProperty("ssl", "false");
         Connection conn = DriverManager.getConnection(url, props);
 
-        String sql_query = "CREATE MATERIALIZED SOURCE trip (id INT, distance INT) WITH" +
+        String sql_query = "CREATE MATERIALIZED SOURCE walk (distance INT, duration INT) WITH " +
         "(connector = 'datagen'," +
-        "fields.id.kind = 'sequence'," +
-        "fields.id.start = '1'," +
-        "fields.id.end  = '10'," +
         "fields.distance.kind = 'sequence'," +
-        "fields.distance.start = '11'," +
-        "fields.distance.end = '20'," +
+        "fields.distance.start = '1'," +
+        "fields.distance.end  = '10'," +
+        "fields.duration.kind = 'sequence'," +
+        "fields.duration.start = '11'," +
+        "fields.duration.end = '20'," +
         "datagen.rows.per.second='15'," +
         "datagen.split.num = '1') " +
         "ROW FORMAT JSON";
 
-        PreparedStatement st = conn.prepareStatement(sql_query);
-        st.execute();
-        st.close();
+        try (PreparedStatement st = conn.prepareStatement(sql_query)){ 
+            st.executeQuery();
+        }
+
+        conn.close();
     }
     }
 ```
@@ -100,7 +102,7 @@ All the code examples in this guide include a section for connecting to RisingWa
 
 ## Create a materialized view
 
-The code in this section creates a materialized view `mv1` to capture the latest amount of trips and total distance.
+The code in this section creates a materialized view `counter` to capture the latest total distance and duration.
 
 ```java
 import java.sql.*;
@@ -116,9 +118,9 @@ public class create_mv {
         props.setProperty("ssl", "false");
         Connection conn = DriverManager.getConnection(url, props);
 
-        String sql_query = "CREATE MATERIALIZED VIEW mv1 AS " +
-        "SELECT count(id) AS no_of_trips, sum(distance) AS total_distance " +
-        "FROM trip; ";
+        String sql_query = "CREATE MATERIALIZED VIEW counter AS " +
+        "SELECT sum(distance) AS total_distance, sum(duration) AS total_duration " +
+        "FROM walk; ";
 
         try (PreparedStatement st = conn.prepareStatement(sql_query)){ 
             st.executeQuery();
@@ -131,7 +133,7 @@ public class create_mv {
 
 ## Query a materialized view
 
-The code in this section queries the materialized view `mv1` to get the real-time numbers.
+The code in this section queries the materialized view `counter` to get the real-time numbers.
 
 ```java
 import java.sql.*;
@@ -148,11 +150,11 @@ public class retrieve {
         Connection conn = DriverManager.getConnection(url, props);
 
         try (PreparedStatement show_mv = conn.prepareStatement(
-            "SELECT * FROM mv1;")) {
+            "SELECT * FROM counter;")) {
             try (ResultSet rs = show_mv.executeQuery()) {
                 while (rs.next()) {
-                    System.out.println("Number of trips: " + rs.getString("no_of_trips"));
-                    System.out.println("Total distance: "+ rs.getString("total_distance"));
+                    System.out.println("Total distance: " + rs.getString("total_distance"));
+                    System.out.println("Total duration: "+ rs.getString("total_duration"));
                 }
             }
         }
