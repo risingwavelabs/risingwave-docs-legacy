@@ -125,19 +125,6 @@ const sidebars = {
       ]
     },
 
-    {
-      type: 'category',
-      label: `Client libraries`,
-      collapsible: true,
-      collapsed: true,
-      items:
-      [{
-        type: 'doc',
-        id: 'dev/code-python',
-        label: 'Python',
-      }]
-    },
-
   {
     type: 'category',
     label: 'SQL reference',
@@ -249,6 +236,24 @@ const sidebars = {
         },
      'sql/psql-commands',
       ],
+    },
+
+    {
+      type: 'category',
+      label: `Client libraries`,
+      collapsible: true,
+      collapsed: true,
+      items:
+      [{
+        type: 'doc',
+        id: 'dev/python-client-libraries',
+        label: 'Python',
+      },
+      {
+        type: 'doc',
+        id: 'dev/java-client-libraries',
+        label: 'Java',
+      }]
     },
 
     {
