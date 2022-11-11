@@ -13,7 +13,7 @@ If you are not familiar with writing and formatting on GitHub, get started by re
 
 Use `docusaurus` if you would like to view your docs locally during development. Just run
 
-```sh 
+```shell 
 yarn # install all dependencies
 yarn start # start a local development server 
 ```

@@ -1,11 +1,11 @@
 ---
-id: risingwave-in-kubernetes
+id: risingwave-kubernetes
 title: Set up a local RisingWave cluster in Kubernetes
 description: Deploy RisingWave in a local Kubernetes cluster with the Kubernetes Operator for RisingWave.
-slug: /risingwave-in-kubernetes
+slug: /risingwave-kubernetes
 ---
 
-You can use the [Kubernetes Operator for RisingWave](https://github.com/risingwavelabs/risingwave-operator) (hereinafter ‘the Operator’) to deploy a RisingWave cluster in Kubernetes.
+This article will help you use the [Kubernetes Operator for RisingWave](https://github.com/risingwavelabs/risingwave-operator) (hereinafter ‘the Operator’) to deploy a RisingWave cluster in Kubernetes.
 
 The Operator is a deployment and management system for RisingWave. It runs on top of Kubernetes and provides functionalities like provisioning, upgrading, scaling, and destroying the RisingWave instances inside the cluster. 
 
@@ -279,6 +279,6 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
 
 <br />
 
-You can now [connect a streaming source to RisingWave](sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](query-manage-data.md).
+You can now [connect a streaming source to RisingWave](sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](risingwave-sql-101.md).
 
 
