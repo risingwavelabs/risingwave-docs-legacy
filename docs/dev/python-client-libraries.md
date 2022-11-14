@@ -16,7 +16,7 @@ In this guide, we use the [`psycopg2`](https://pypi.org/project/psycopg2/) drive
 To learn about how to start RisingWave, see [Install, run and connect to RisingWave](../install-run-connect.md).
 
 
-## Install the psgcopg2 driver
+## Install the `psgcopg2` driver
 
 For information about how to install `psycopg` and the difference between `psycopg` and `psycopg-binary`, see the [official psycopg documentation](https://www.psycopg.org/docs/install.html).
 
