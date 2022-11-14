@@ -1,7 +1,7 @@
 ---
 id: python-client-libraries
-title: Python
-description: Connect to RisingWave from a Python application
+title: Use RisingWave in your Python application
+description: Use RisingWave in your Python application
 slug: /python-client-libraries
 ---
 

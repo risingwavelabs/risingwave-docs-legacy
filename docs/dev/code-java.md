@@ -1,7 +1,7 @@
 ---
 id: java-client-libraries
-title: Java
-description: Connect to RisingWave from a Java application
+title: Use RisingWave in your Java application
+description: Use RisingWave in your Java application
 slug: /java-client-libraries
 ---
 
