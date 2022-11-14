@@ -11,13 +11,13 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 
 ## Prerequisites
 
-* **[Install kubectl](http://pwittrock.github.io/docs/tasks/tools/install-kubectl/)**
+* **[Install `kubectl`](http://pwittrock.github.io/docs/tasks/tools/install-kubectl/)**
 
-    Ensure that the Kubernetes command-line tool [kubectl](https://kubernetes.io/docs/reference/kubectl/) is installed in your environment.
+    Ensure that the Kubernetes command-line tool [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) is installed in your environment.
 
-* **[Install psql](https://www.postgresql.org/download/)**
+* **[Install `psql`](https://www.postgresql.org/download/)**
 
-    Ensure that the PostgreSQL interactive terminal [psql](https://www.postgresql.org/docs/current/app-psql.html) is installed in your environment.
+    Ensure that the PostgreSQL interactive terminal [`psql`](https://www.postgresql.org/docs/current/app-psql.html) is installed in your environment.
 
 * **[Install and run Docker](https://docs.docker.com/get-docker/)**
     
@@ -29,9 +29,9 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 
 **Steps:**
 
-1. [Install kind](https://kind.sigs.k8s.io/docs/user/quick-start#installation).
+1. [Install `kind`](https://kind.sigs.k8s.io/docs/user/quick-start#installation).
 
-    [kind](https://kind.sigs.k8s.io/) is a tool for running local Kubernetes clusters using Docker containers as cluster nodes. You can see the available tags of kind on [Docker Hub](https://hub.docker.com/r/kindest/node/tags).
+    [`kind`](https://kind.sigs.k8s.io/) is a tool for running local Kubernetes clusters using Docker containers as cluster nodes. You can see the available tags of `kind` on [Docker Hub](https://hub.docker.com/r/kindest/node/tags).
 
 1. Create a cluster.
 
@@ -50,13 +50,13 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 Before the deployment, ensure that the following requirements are satisfied.
 
 * Docker version ≥ 18.09
-* kubectl version ≥ 1.18
-* kind version ≥ 0.8.0
-* For Linux, set the value of the sysctl parameter [net.ipv4.ip_forward](https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux) to 1.
+* `kubectl` version ≥ 1.18
+* `kind` version ≥ 0.8.0
+* For Linux, set the value of the `sysctl` parameter [net.ipv4.ip_forward](https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux) to 1.
 
 **Steps:**
 
-1. [Install cert-manager](https://cert-manager.io/docs/installation/).
+1. [Install `cert-manager`](https://cert-manager.io/docs/installation/).
 
 1. Install the Operator.
 
@@ -164,7 +164,7 @@ By default, the Operator creates a service for the frontend component, through w
     kubectl exec -it psql-console bash
     ```
 
-1. Connect to RisingWave via psql.
+1. Connect to RisingWave via `psql`.
     <Tabs groupId="storage_selection">
     <TabItem value="minio" label="etcd+MinIO">
 
