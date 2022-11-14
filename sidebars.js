@@ -232,16 +232,18 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items:
-      [{
-        type: 'doc',
-        id: 'dev/python-client-libraries',
-        label: 'Python',
-      },
+      [
       {
         type: 'doc',
         id: 'dev/java-client-libraries',
         label: 'Java',
-      }]
+      },
+      {
+        type: 'doc',
+        id: 'dev/python-client-libraries',
+        label: 'Python',
+      },
+    ]
     },
 
     {
