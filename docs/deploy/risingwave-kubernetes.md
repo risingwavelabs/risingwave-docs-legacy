@@ -33,13 +33,13 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 
     [kind](https://kind.sigs.k8s.io/) is a tool for running local Kubernetes clusters using Docker containers as cluster nodes. You can see the available tags of kind on [Docker Hub](https://hub.docker.com/r/kindest/node/tags).
 
-1. Create a cluster by running the following command.
+1. Create a cluster.
 
     ```shell
     kind create cluster
     ```
 
-1. ***(Optional)*** Check if the cluster is created properly by running the following command.
+1. ***(Optional)*** Check if the cluster is created properly.
 
     ```shell
     kubectl cluster-info
@@ -58,13 +58,13 @@ Before the deployment, ensure that the following requirements are satisfied.
 
 1. [Install cert-manager](https://cert-manager.io/docs/installation/).
 
-1. Install the Operator by running the following command.
+1. Install the Operator.
 
     ```shell
     kubectl apply -f https://github.com/risingwavelabs/risingwave-operator/releases/latest/download/risingwave-operator.yaml
     ```
 
-1. ***(Optional)*** Check if the Pods are running by running the following commands.
+1. ***(Optional)*** Check if the Pods are running.
 
     ```shell
     kubectl -n cert-manager get pods
@@ -96,7 +96,7 @@ RisingWave supports using Amazon S3 as the object storage.
 
 **Steps:**
 
-1. Create a Secret with the name ‘s3-credentials’ by running the following command.
+1. Create a Secret with the name ‘s3-credentials’.
 
     ```shell
     kubectl create secret generic s3-credentials —from-literal AccessKeyID=${ACCESS_KEY} —from-literal SecretAccessKey=${SECRET_ACCESS_KEY} —from-literal Region=${AWS_REGION}
@@ -104,7 +104,7 @@ RisingWave supports using Amazon S3 as the object storage.
 
 1. On the S3 console, [create a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) with the name ‘hummock001’.
 
-1. Deploy a RisingWave instance with S3 as the object storage by running the following command.
+1. Deploy a RisingWave instance with S3 as the object storage.
 
     ```shell
     kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/risingwave/risingwave-etcd-s3.yaml
@@ -152,19 +152,19 @@ By default, the Operator creates a service for the frontend component, through w
 
 **Steps:**
 
-1. Create a Pod by running the following command.
+1. Create a Pod.
 
     ```shell
     kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/psql/psql-console.yaml
     ```
 
-1. Attach to the Pod by running the following command so that you can execute commands inside the container.
+1. Attach to the Pod so that you can execute commands inside the container.
 
     ```shell
     kubectl exec -it psql-console bash
     ```
 
-1. Connect to RisingWave via psql by running the following command.
+1. Connect to RisingWave via psql.
     <Tabs groupId="storage_selection">
     <TabItem value="minio" label="etcd+MinIO">
 

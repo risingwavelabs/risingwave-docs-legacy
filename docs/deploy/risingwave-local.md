@@ -100,7 +100,7 @@ import TabItem from '@theme/TabItem';
     To start RisingWave, in the terminal, navigate to the directory where RisingWave is downloaded, and run the following command.
   
     ```shell
-    ./risedev playground    #Or ./risedev p
+    ./risingwave playground
     ```
 
 
