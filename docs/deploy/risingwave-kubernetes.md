@@ -19,9 +19,9 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 
     Ensure that the PostgreSQL interactive terminal [psql](https://www.postgresql.org/docs/current/app-psql.html) is installed in your environment.
 
-* **[Install and run Docker Desktop](https://docs.docker.com/get-docker/)**
+* **[Install and run Docker](https://docs.docker.com/get-docker/)**
     
-    Ensure that [Docker Desktop](https://www.docker.com/products/docker-desktop/) is installed in your environment and running.
+    Ensure that [Docker](https://docs.docker.com/desktop/) is installed in your environment and running.
 
 
 
@@ -50,7 +50,7 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 Before the deployment, ensure that the following requirements are satisfied.
 
 * Docker version ≥ 18.09
-* kubectl version ≥ 1.12
+* kubectl version ≥ 1.18
 * kind version ≥ 0.8.0
 * For Linux, set the value of the sysctl parameter [net.ipv4.ip_forward](https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux) to 1.
 
@@ -155,7 +155,7 @@ By default, the Operator creates a service for the frontend component, through w
 1. Create a Pod by running the following command.
 
     ```shell
-    kubectl apply -f examples/psql/psql-console.yaml
+    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/psql/psql-console.yaml
     ```
 
 1. Attach to the Pod by running the following command so that you can execute commands inside the container.
