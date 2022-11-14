@@ -33,7 +33,7 @@ conn = psycopg2.connect(host="127.0.0.1", port=4566, user="root", dbname="dev")
 
 ## Create a source
 
-The code below creates a source `walk` with the `datagen` connector. The `datagen` connector is used to generate mock data.
+The code below creates a source `walk` with the `datagen` connector. The `datagen` connector is used to generate mock data. The `walk` source consists of two columns, `distance` and `duration`, which respectively represent the distance and the duration of a walk. The source is a simplified version of the data that is tracked by smart watches.
 
 ```python
 import psycopg2
