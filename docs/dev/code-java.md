@@ -46,7 +46,7 @@ public class RisingWaveConnect {
 
 ## Create a source
 
-The code in this section creates a source `counter` with the `datagen` connector. The `datagen` connector is used to generate mock data.
+The code in this section creates a source `walk` with the `datagen` connector. The `datagen` connector is used to generate mock data.
 
 ```java
 import java.sql.*;
@@ -69,9 +69,9 @@ public class source {
         "datagen.rows.per.second='15'," +
         "datagen.split.num = '1') " +
         "ROW FORMAT JSON";
-        PreparedStatement st = conn.prepareStatement(sqlQuery);
-        st.executeQuery();
-        conn.close();
+        PreparedStatement st = conn.prepareStatement(sqlQuery); //Define a query and pass it to a PreparedStatement object.
+        st.executeQuery(); //Execute the query.
+        conn.close();  //Close the connection.
     }
 }
 ```
@@ -109,7 +109,7 @@ public class create_mv {
 
 ## Query a materialized view
 
-The code in this section queries the materialized view `counter` to get the real-time numbers.
+The code in this section queries the materialized view `counter` to get the real-time data.
 
 ```java
 import java.sql.*;
