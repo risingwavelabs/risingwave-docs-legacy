@@ -33,13 +33,13 @@ conn = psycopg2.connect(host="127.0.0.1", port=4566, user="root", dbname="dev")
 
 ## Create a source
 
-The code below creates a source `counter` with the `datagen` connector. The `datagen` connector is used to generate mock data.
+The code below creates a source `walk` with the `datagen` connector. The `datagen` connector is used to generate mock data.
 
 ```python
 import psycopg2
 
-conn = psycopg2.connect(host="localhost", port=4566, user="root", dbname="dev")
-conn.autocommit = True
+conn = psycopg2.connect(host="localhost", port=4566, user="root", dbname="dev") # Connect to RisingWave.
+conn.autocommit = True # Set queries to be automatically committed.
 
 with conn.cursor() as cur:
     cur.execute("""
@@ -54,9 +54,9 @@ WITH (
     fields.duration.end = '30',
     datagen.rows.per.second='15',
     datagen.split.num = '1'
-) ROW FORMAT JSON""")
+) ROW FORMAT JSON""") # Execute the query.
 
-conn.close()
+conn.close() # Close the connection.
 ```
 
 :::note

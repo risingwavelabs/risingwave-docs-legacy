@@ -62,10 +62,10 @@ public class source {
         "(connector = 'datagen'," +
         "fields.distance.kind = 'sequence'," +
         "fields.distance.start = '1'," +
-        "fields.distance.end  = '10'," +
+        "fields.distance.end  = '60'," +
         "fields.duration.kind = 'sequence'," +
-        "fields.duration.start = '11'," +
-        "fields.duration.end = '20'," +
+        "fields.duration.start = '1'," +
+        "fields.duration.end = '30'," +
         "datagen.rows.per.second='15'," +
         "datagen.split.num = '1') " +
         "ROW FORMAT JSON";
@@ -75,13 +75,6 @@ public class source {
     }
 }
 ```
-
-:::note
-
-All the code examples in this guide include a section for connecting to RisingWave. If you perform multiple actions within one connection session, you do not need to repeat this section.
-
-:::
-
 
 ## Create a materialized view
 
