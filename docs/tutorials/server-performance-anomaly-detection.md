@@ -5,11 +5,6 @@ title: Server performance anomaly detection
 description: RisingWave makes it possible to detect server anomalies in a low code manner.
 ---
 
-<img
-  src={require('../images/server_perf_anomaly.png').default}
-  alt="Tutorial title image"
-/>
-
 ## Overview
 
 Detecting performance anomalies in a large fleet of servers and responding as soon as possible has been a challenge for DevOps teams. They set up various metrics to monitor server performance, yet diagnosing performance issues is complex and time-consuming, as the volume of diagnostic data can be huge. There is a growing consensus that it should be automated. But how?
