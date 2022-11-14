@@ -33,7 +33,7 @@ conn = psycopg2.connect(host="127.0.0.1", port=4566, user="root", dbname="dev")
 
 ## Create a source
 
-The code below creates a source `counter` with the `datagen` connector, and fetches all the sources in the database. The `datagen` connector is used to generate mock data.
+The code below creates a source `counter` with the `datagen` connector. The `datagen` connector is used to generate mock data.
 
 ```python
 import psycopg2
@@ -56,10 +56,6 @@ WITH (
     datagen.split.num = '1'
 ) ROW FORMAT JSON""")
 
-# Display all the created sources.
-with conn.cursor() as cur:
-    cur.execute("SHOW SOURCES;")
-    print(cur.fetchall())
 conn.close()
 ```
 
@@ -72,7 +68,7 @@ All the code examples in this guide include a section for connecting to RisingWa
 
 ## Create a materialized view
 
-The code in this section creates a materialized view `counter`, and queries all materialized views in the database.
+The code in this section creates a materialized view `counter` to capture the latest total distance and duration..
 
 ```python
 import psycopg2
@@ -81,16 +77,11 @@ conn = psycopg2.connect(host="localhost", port=4566, user="root", dbname="dev")
 conn.autocommit = True
 
 with conn.cursor() as cur:
-    cur.execute("CREATE MATERIALIZED VIEW counter" \
-    "AS" \ 
-    "SUM(distance) as total_distance," \
-    "SUM(duration) as total_duration," \
-    "FROM walk;")
-
-
-with conn.cursor () as cur:
-    cur.execute("SHOW MATERIALIZED VIEWS;")
-    print(cur.fetchall())
+    cur.execute("""CREATE MATERIALIZED VIEW counter
+    AS
+    SUM(distance) as total_distance,
+    SUM(duration) as total_duration,
+    FROM walk;""")
 
 conn.close()
 ```
@@ -105,17 +96,8 @@ import psycopg2
 conn = psycopg2.connect(host="localhost", port=4566, user="root", dbname="dev")
 conn.autocommit = True
 
-with conn.cursor () as cur:
+with conn.cursor() as cur:
     cur.execute("SELECT * FROM counter;")
     print(cur.fetchall())
-
 conn.close()
 ```
-
-
-
-
-
-
-
-

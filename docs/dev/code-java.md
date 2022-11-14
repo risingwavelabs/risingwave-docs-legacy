@@ -30,26 +30,16 @@ import java.util.Properties;
 
 public class RisingWaveConnect {
 
-    public static void main (String arg[]) {
+    public static void main (String arg[]) throws SQLException{
         String url = "jdbc:postgresql://localhost:4566/dev";
         Properties props = new Properties();
         props.setProperty("user", "root");
         props.setProperty("password", "secret");
         props.setProperty("ssl", "false");
+        Connection conn = DriverManager.getConnection(url, props)
 
-        try (Connection conn = DriverManager.getConnection(url, props)) {
-            if (conn != null) {
-                System.out.println("Connected to RisingWave.");
-            } else {
-                System.out.println("Failed to connect to RisingWave.");
-            }
-
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         //If needed, add the code for issuing queries here.
+        
     }   
 }
 ```
@@ -65,14 +55,10 @@ import java.util.Properties;
 public class source {
 
     public static void main (String arg[]) throws SQLException {
-        String url = "jdbc:postgresql://localhost:4566/dev";
-        Properties props = new Properties();
-        props.setProperty("user", "root");
-        props.setProperty("password", "secret");
-        props.setProperty("ssl", "false");
-        Connection conn = DriverManager.getConnection(url, props);
 
-        String sql_query = "CREATE MATERIALIZED SOURCE walk (distance INT, duration INT) WITH " +
+        //If necessary, add the code for connecting to RisingWave here.
+
+        String sqlQuery = "CREATE MATERIALIZED SOURCE walk (distance INT, duration INT) WITH " +
         "(connector = 'datagen'," +
         "fields.distance.kind = 'sequence'," +
         "fields.distance.start = '1'," +
@@ -83,14 +69,11 @@ public class source {
         "datagen.rows.per.second='15'," +
         "datagen.split.num = '1') " +
         "ROW FORMAT JSON";
-
-        try (PreparedStatement st = conn.prepareStatement(sql_query)){ 
-            st.executeQuery();
-        }
-
+        PreparedStatement st = conn.prepareStatement(sqlQuery);
+        st.executeQuery();
         conn.close();
     }
-    }
+}
 ```
 
 :::note
@@ -111,21 +94,14 @@ import java.util.Properties;
 public class create_mv {
 
     public static void main (String arg[]) throws SQLException {
-        String url = "jdbc:postgresql://localhost:4566/dev";
-        Properties props = new Properties();
-        props.setProperty("user", "root");
-        props.setProperty("password", "secret");
-        props.setProperty("ssl", "false");
-        Connection conn = DriverManager.getConnection(url, props);
 
-        String sql_query = "CREATE MATERIALIZED VIEW counter AS " +
+        //If necessary, add the code for connecting to RisingWave here.
+
+        String sqlQuery = "CREATE MATERIALIZED VIEW counter AS " +
         "SELECT sum(distance) AS total_distance, sum(duration) AS total_duration " +
         "FROM walk; ";
-
-        try (PreparedStatement st = conn.prepareStatement(sql_query)){ 
-            st.executeQuery();
-        }
-
+        PreparedStatement st = conn.prepareStatement(sqlQuery); 
+        st.executeQuery();
         conn.close();
     }
 }
@@ -142,30 +118,15 @@ import java.util.Properties;
 public class retrieve {
 
     public static void main (String arg[]) throws SQLException {
-        String url = "jdbc:postgresql://localhost:4566/dev";
-        Properties props = new Properties();
-        props.setProperty("user", "root");
-        props.setProperty("password", "secret");
-        props.setProperty("ssl", "false");
-        Connection conn = DriverManager.getConnection(url, props);
 
-        try (PreparedStatement show_mv = conn.prepareStatement(
-            "SELECT * FROM counter;")) {
-            try (ResultSet rs = show_mv.executeQuery()) {
-                while (rs.next()) {
-                    System.out.println("Total distance: " + rs.getString("total_distance"));
-                    System.out.println("Total duration: "+ rs.getString("total_duration"));
-                }
-            }
+        //If necessary, add the code for connecting to RisingWave here.
+
+        PreparedStatement showMV = conn.prepareStatement("SELECT * FROM counter;");
+        ResultSet rs = showMV.executeQuery();
+        while (rs.next()) {
+            System.out.println("Total distance: " + rs.getString("total_distance"));
+            System.out.println("Total duration: " + rs.getString("total_duration"));
         }
     }
 }
 ```
-
-
-
-
-
-
-
-
