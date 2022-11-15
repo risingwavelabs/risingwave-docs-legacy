@@ -128,7 +128,7 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community.`,
       },
       prism: {
-        additionalLanguages: ["sql"],
+        additionalLanguages: ["sql", "java"],
       },
       algolia: {
         appId: "AL59AMDUO6",

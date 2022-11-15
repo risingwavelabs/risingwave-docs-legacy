@@ -166,24 +166,7 @@ const sidebars = {
     collapsible: true,
     collapsed: true,
     items: 
-    [{
-      type: 'category',
-      label: 'SQL syntax',
-      items: 
-        [
-          {
-            type: 'doc',
-            id: 'sql/syntax/sql-syntax-value-exp',
-            label: 'Value expressions',
-          },
-          {
-            type: 'doc',
-            id: 'sql/syntax/sql-queries-top-n',
-            label: 'Top-N by group',
-          },
-
-        ]
-      },
+    [
       {
         type: 'doc',
         id: 'sql/sql-data-types',
@@ -271,6 +254,26 @@ const sidebars = {
         },
      'sql/psql-commands',
       ],
+    },
+
+    {
+      type: 'category',
+      label: `Client libraries`,
+      collapsible: true,
+      collapsed: true,
+      items:
+      [
+      {
+        type: 'doc',
+        id: 'dev/java-client-libraries',
+        label: 'Java',
+      },
+      {
+        type: 'doc',
+        id: 'dev/python-client-libraries',
+        label: 'Python',
+      },
+    ]
     },
 
     {
