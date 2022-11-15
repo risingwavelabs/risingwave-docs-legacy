@@ -24,7 +24,6 @@ RisingWave offers two modes for different testing purposes:
 |**Purpose**|Quick tests|Advanced tests and demos|
 |**Starts in**|A single-node instance|A full-featured, multi-node cluster|
 |**Data persistence**|Data is stored solely in memory and will not be persisted after the service is terminated.|Data is persisted in storage.|
-|**Auto termination**|Service is automatically terminated after 30 minutes of inactivity.|No automatic termination.|
 |**Choose a method to run RisingWave**|Run a single-node instance in<br /><lightButton text="Local environment" doc="risingwave-local"/><lightButton text="Docker" doc="risingwave-docker-image"/>|Set up a local cluster with<br /><lightButton text="Docker Compose" doc="risingwave-docker-compose"/><lightButton text="Kubernetes" doc="risingwave-kubernetes"/>|
 
 > Currently, RisingWave does not support Windows. Use a macOS or Linux machine to run RisingWave.
