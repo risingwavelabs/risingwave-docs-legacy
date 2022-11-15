@@ -48,7 +48,7 @@ For more information, see [Docker Documentation](https://docs.docker.com/compose
 
 :::
 
-Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics.
+Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, data of materialized views will be stored in the MinIO instance.
 
 Now connect to RisingWave to manage data streams and perform data analysis.
 
@@ -213,7 +213,7 @@ When you finish, run the following command to disconnect RisingWave.
 \q
 ```
 
-Run the following command to remove the Docker containers and the generated data.
+Optional: To remove the containers and the data generated, use the following command.
 
 ```shell
 docker-compose down -v
