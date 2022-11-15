@@ -60,6 +60,7 @@ import TabItem from '@theme/TabItem';
     * OpenSSL
     * psql (14.1 or higher)
     * Tmux
+    * LLVM (macOS only)
 
     Select your operating system and run the following commands to install the dependencies.
 
@@ -67,19 +68,8 @@ import TabItem from '@theme/TabItem';
     <TabItem value="macos" label="macOS" default>
 
     ```shell
-    brew install postgresql cmake protobuf openssl tmux
-    ```
-
-    Run one of the following cammands to install [rustup](https://rustup.rs):
-
-    ```shell
+    brew install postgresql cmake protobuf openssl tmux cyrus-sasl llvm
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    ```
-
-    or
-
-    ```shell
-    brew install rustup-init && rustup-init
     ```
 
     </TabItem>
@@ -88,7 +78,7 @@ import TabItem from '@theme/TabItem';
     ```shell
     sudo apt update
     sudo apt upgrade
-    sudo apt install make build-essential cmake protobuf-compiler curl openssl libssl-dev libcurl4-openssl-dev pkg-config postgresql-client tmux lld
+    sudo apt install make build-essential cmake protobuf-compiler curl openssl libssl-dev libsasl2-dev libcurl4-openssl-dev pkg-config postgresql-client tmux lld
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     ```
 
