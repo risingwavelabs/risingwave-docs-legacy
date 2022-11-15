@@ -89,7 +89,7 @@ const sidebars = {
     },
     {
       type: 'category', 
-      label: 'Ingest streaming data', 
+      label: 'Ingest data', 
       link: {type: 'doc', id: 'sql/commands/sql-create-source'},
       collapsible: true,
       collapsed: true,
@@ -102,7 +102,7 @@ const sidebars = {
       ]
     },
     {type: 'ref', 
-    label: 'Output data', 
+    label: 'Deliver data', 
     id: 'sql/commands/sql-create-sink'
     },
     {
