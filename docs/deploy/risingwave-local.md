@@ -60,7 +60,6 @@ import TabItem from '@theme/TabItem';
     * OpenSSL
     * psql (14.1 or higher)
     * Tmux
-    * LLVM (macOS only)
 
     Select your operating system and run the following commands to install the dependencies.
 
@@ -68,9 +67,13 @@ import TabItem from '@theme/TabItem';
     <TabItem value="macos" label="macOS" default>
 
     ```shell
-    brew install postgresql cmake protobuf openssl tmux cyrus-sasl llvm
+    brew install postgresql cmake protobuf openssl tmux cyrus-sasl
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     ```
+
+    :::note
+    If you are using a Mac with Apple silicon (such as the M1 / M2 chip), you need to install `LLVM` by running `brew llvm`.
+    :::
 
     </TabItem>
     <TabItem value="linux" label="Linux">
