@@ -10,9 +10,10 @@ As RisingWave is wire-compatible with PostgreSQL, you can use third-party Postgr
 In this guide, we use the [PostgreSQL JDBC](https://jdbc.postgresql.org/) driver to connect to RisingWave.
 
 
-## Start RisingWave
+## Run RisingWave
 
-To learn about how to start RisingWave, see [Install, run and connect to RisingWave](../install-run-connect.md).
+To learn about how to run RisingWave, see [Run RisingWave](../get-started.md#run-risingwave).
+> You do not need to connect to RisingWave at this stage.
 
 
 ## Download the PostgreSQL JDBC driver
