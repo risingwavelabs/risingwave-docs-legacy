@@ -4,11 +4,14 @@ import Collapse from "@mui/material/Collapse";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styled from "@emotion/styled";
 
-const buttonSize = 40;
+const buttonSize = 36;
 
 const LinkButton = styled("div")({
   backgroundColor: "#EBEDF0",
-  padding: "10px",
+  // padding: "10px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   width: `${buttonSize}px`,
   height: `${buttonSize}px`,
   borderRadius: "10px",
@@ -35,35 +38,36 @@ const FoldedTab = styled("div")({
 
 const FoldedTabContainer = styled(Collapse)({
   position: "absolute",
-  top: `${buttonSize / 4}px`,
+  top: `${buttonSize / 3.6}px`,
   right: `${buttonSize}px`,
 });
 
 const LinkImg = styled("img")({
-  width: "20px",
-  height: "20px",
+  width: "18px",
+  height: "18px",
 });
 
 const LinkItem = (props) => {
+  const openWindow = function (link) {
+    window && window.open(link);
+  }
   return (
     <div
-      style={{ position: "relative" }}
+      className={styles.linkItem}
+      style={{ position: "relative", cursor: "pointer" }}
       onMouseEnter={() => props.setFocus(true)}
       onMouseLeave={() => props.setFocus(false)}
+      onClick={() => { openWindow(props.link) }}
     >
       <FoldedTabContainer className={styles.foldedTab} orientation="horizontal" in={props.focusing}>
         <FoldedTab>
           <FoldedTextSpan>
-            <a href={props.link} target="_blank">
-              {props.label}
-            </a>
+            {props.label}
           </FoldedTextSpan>
         </FoldedTab>
       </FoldedTabContainer>
       <LinkButton className={styles.button}>
-        <a href={props.link} target="_blank">
-          <LinkImg src={props.imgUrl} />
-        </a>
+        <LinkImg src={props.imgUrl} />
       </LinkButton>
     </div>
   );
@@ -74,6 +78,7 @@ export default function LinkGroup(props) {
   const [twitterFocus, setTwitterFocus] = useState(false);
   const [githubFocus, setGithubFocus] = useState(false);
   const [rwFocus, setRWFocus] = useState(false);
+  const [linkedInFocus, setLinkedInFocus] = useState(false);
 
   return (
     <div className={styles.container}>
@@ -105,6 +110,13 @@ export default function LinkGroup(props) {
           setFocus={setSlackFocus}
           label="Let's chat on Slack"
           imgUrl={useBaseUrl("/img/home/slack.png")}
+        />
+        <LinkItem
+          link="https://www.linkedin.com/company/risingwave-labs/"
+          focusing={linkedInFocus}
+          setFocus={setLinkedInFocus}
+          label="Follow us on LinkedIn"
+          imgUrl={useBaseUrl("/img/home/linkedin.png")}
         />
       </div>
     </div>

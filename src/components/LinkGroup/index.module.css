@@ -30,6 +30,10 @@
 
   .button {
     margin: 0px;
+    /* margin-right: 10px; */
+  }
+  .linkItem {
     margin-right: 10px;
   }
+  
 }
