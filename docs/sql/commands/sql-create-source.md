@@ -20,6 +20,7 @@ Click a connector name to see the SQL syntax, options, and sample statement of c
 |[Kinesis](../create-source/create-source-kinesis.md)|	Latest|	[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
 |[PostgreSQL CDC](../create-source/create-source-cdc.md)|	10, 11, 12, 13, 14|[Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
 |[MySQL CDC](../create-source/create-source-cdc.md)|	5.7, 8.0|[Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
+|[Load generator](../create-source/create-source-datagen.md)|Built-in|[JSON](#json)|Materialized only||
 
 :::note
 When the connection to a source is established, RisingWave does not ingest data immediately. Only after a materialized view is created based on the source, RisingWave starts to process data.
