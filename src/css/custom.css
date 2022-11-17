@@ -176,7 +176,7 @@ tbody tr td {
 
 thead tr th:first-child,
 tbody tr td:first-child {
-  min-width: 12rem;
+  min-width: 17rem;
   width: 10%;
   max-width: 100%;
 }
@@ -190,6 +190,13 @@ tbody tr td:nth-child(2) {
 
 thead tr th:nth-child(3),
 tbody tr td:nth-child(3) {
+  min-width: 14rem;
+  width: 30%;
+  max-width: 100%;
+}
+
+thead tr th:nth-child(4),
+tbody tr td:nth-child(4) {
   min-width: 14rem;
   width: 30%;
   max-width: 100%;
