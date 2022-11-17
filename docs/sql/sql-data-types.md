@@ -11,12 +11,12 @@ RisingWave supports the following data types:
 |Type|Aliases|Description|
 |---|---|-------|
 |boolean|bool|Logical Boolean. It follows a three-valued logic system (true, false, and null).|
-|smallint| |Two-byte integer. <br> Range: -32768 to 32767|
-|integer|int|Four-byte integer. <br> Range: -2147483648 to 2147483647|
-|bigint| |Eight-byte integer. <br> Range: -9223372036854775808 to 9223372036854775807|
-|numeric|decimal|Exact numeric. We do not support specifying precision and scale as of now. <br> Range: Up to 131072 digits before the decimal point; up to 16383 digits after the decimal point|
-|real| |Single precision floating-point number (4 bytes). <br> Range: 6 decimal digits precision|
-|double precision|double|Double precision floating-point number (8 bytes) <br> Range: 15 decimal digits precision|
+|smallint| |Two-byte integer. <p>Range: -32768 to 32767</p>|
+|integer|int|Four-byte integer. <p>Range: -2147483648 to 2147483647</p>|
+|bigint| |Eight-byte integer. <p>Range: -9223372036854775808 to 9223372036854775807</p>|
+|numeric|decimal|Exact numeric. We do not support specifying precision and scale as of now. <p>Range: Up to 131072 digits before the decimal point; up to 16383 digits after the decimal point</p>|
+|real| |Single precision floating-point number (4 bytes). <p>Range: 6 decimal digits precision</p>|
+|double precision|double|Double precision floating-point number (8 bytes) <p>Range: 15 decimal digits precision</p>|
 |character varying|varchar, string|Variable-length character string. We do not support specifying the maximum length as of now.|
 |date| |Calendar date (year, month, day). <p>Examples:</p><p>`date '2022-04-08'`</p>|
 |time without time zone|time|Time of day (no time zone)<p>Examples:</p><p>`time '18:20:49'`</p>|
