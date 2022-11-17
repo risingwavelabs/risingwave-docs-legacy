@@ -169,10 +169,35 @@ table thead tr {
 
 thead tr th,
 tbody tr td {
-  min-width: 9rem;
+  min-width: 8rem;
   width: 20%;
   max-width: 100%;
   word-break: break-word;
+}
+
+thead tr th:first-child,
+tbody tr td:first-child {
+  min-width: 12rem;
+  width: 10%;
+  max-width: 100%;
+}
+
+thead tr th:nth-child(2),
+tbody tr td:nth-child(2) {
+  width: 30%;
+  max-width: 100%;
+}
+
+thead tr th:nth-child(3),
+tbody tr td:nth-child(3) {
+  width: 30%;
+  max-width: 100%;
+}
+
+thead tr th:nth-child(4),
+tbody tr td:nth-child(4) {
+  width: 30%;
+  max-width: 100%;
 }
 
 thead tr::-webkit-scrollbar {
