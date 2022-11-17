@@ -39,7 +39,7 @@ const FoldedTab = styled("div")({
 const FoldedTabContainer = styled(Collapse)({
   position: "absolute",
   top: `${buttonSize / 3.6}px`,
-  right: `${buttonSize}px`,
+  right: `${buttonSize + 2}px`,
 });
 
 const LinkImg = styled("img")({
