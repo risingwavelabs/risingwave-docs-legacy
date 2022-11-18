@@ -5,11 +5,6 @@ title: Server performance anomaly detection
 description: RisingWave makes it possible to detect server anomalies in a low code manner.
 ---
 
-<img
-  src={require('../images/server_perf_anomaly.png').default}
-  alt="Tutorial title image"
-/>
-
 ## Overview
 
 Detecting performance anomalies in a large fleet of servers and responding as soon as possible has been a challenge for DevOps teams. They set up various metrics to monitor server performance, yet diagnosing performance issues is complex and time-consuming, as the volume of diagnostic data can be huge. There is a growing consensus that it should be automated. But how?
@@ -57,7 +52,7 @@ For more information, see [Docker Documentation](https://docs.docker.com/compose
 
 :::
 
-Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics.
+Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, data of materialized views will be stored in the MinIO instance.
 
 ## Step 2: Connect RisingWave to data streams
 
@@ -249,7 +244,8 @@ When you finish, run the following command to disconnect RisingWave.
 \q
 ```
 
-Run the following command to remove the Docker containers and the generated data.
+Optional: To remove the containers and the data generated, use the following command.
+
 ```shell
 docker-compose down -v
 ```
