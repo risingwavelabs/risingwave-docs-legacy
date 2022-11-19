@@ -11,10 +11,14 @@ RisingWave is an open-source cloud-native streaming database that uses SQL as th
 
 RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Kinesis, Redpanda, and materialized CDC sources. It supports outputting data to Kafka streams.
 
+<rollButton text="&nbsp;&nbsp;Get Started" doc="get-started" block />
+<br/>
+
 <img
   src={require('./images/archi_simple.png').default}
   alt="RisingWave Architecture"
 />
+
 
 ## What can you do with RisingWave?
 
@@ -25,13 +29,11 @@ Everything you do in RisingWave is via Postgres-compatible SQL. You can:
 * Query data in RisingWave, including persisted data and data you add or import to RisingWave.
 * Output data to external streams for storage or additional processing.
 
+<defaultButton text="Try it out" doc="get-started"/>
+<lightButton text="Supported sources" doc="sql-create-source#supported-sources"/>
+<lightButton text="Supported sinks" doc="sql-create-sink"/>
+
 ## How does RisingWave work?
-
-- See [Get started](Get-Started.md) to learn about how to get started with RisingWave. 
-- For the architecture of RisingWave, see [Architecture](Architecture.md).
-- To learn about the supported stream sources/sinks and how to connect to the sources/sinks, see [CREATE SOURCE](/sql/commands/sql-create-source.md) and [CREATE SINK](/sql/commands/sql-create-sink.md).
-- For the supported SQL data types, operators, and commands, please navigate to SQL reference.
-
 
 ### SQL as the interface to manage and query data
 
@@ -55,4 +57,6 @@ When data is processed in batches, if a job goes wrong, you can do some troubles
 
 In RisingWave, data correctness is ensured by a checkpoint-based mechanism. Every time a checkpoint is triggered, the internal states of each operator will be flushed to the cloud storage. Upon failovers, the operator recovers from the latest checkpoint on the cloud storage. 
 
-
+<lightButton text="See the architecture" doc="architecture"/>
+<lightButton text="Access the source code ⧉" url="https://github.com/risingwavelabs/risingwave"/>
+<br/>

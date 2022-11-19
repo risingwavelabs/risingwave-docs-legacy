@@ -11,14 +11,16 @@ To help us improve the RisingWave user documentation, you may:
 
 If you are not familiar with writing and formatting on GitHub, get started by reading [Basic writing and formatting syntax on GitHub](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
-Use `docusaurus` if you would like to view your docs locally during development. Just run
+# Test locally
+If you would like to view your changes on the docs locally before submitting a pull request:
+1. If you don't have `yarn` in your local machine, run `npm i -g yarn` to install it.
+1. Open the `risingwave-docs` repo in terminal and run:
 
-```sh 
-yarn # install all dependencies
-yarn start # start a local development server 
-```
-
-If you don't have `yarn` in your local machine, run `npm i -g yarn` to install it. 
+    ```sh 
+    yarn
+    yarn start
+    ```
+ 1. The rendered docs will open in your browser automatically.
 
 # Visit our official doc site
 

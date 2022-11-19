@@ -41,7 +41,10 @@ const config = {
           editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: [
+            require.resolve("./src/css/custom.css"),
+            require.resolve("./src/css/buttons.css"),
+          ],
         },
         // googleAnalytics: {
         //   trackingID: 'myID',
@@ -125,7 +128,7 @@ const config = {
         copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community.`,
       },
       prism: {
-        additionalLanguages: ["sql"],
+        additionalLanguages: ["sql", "java"],
       },
       algolia: {
         appId: "AL59AMDUO6",
@@ -148,7 +151,8 @@ const config = {
   customFields: {
     docsUrl: "https://www.risingwave.dev",
     requestUrl: "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
-    bugReportUrl: "https://github.com/risingwavelabs/risingwave-docs/issues/new?assignees=CharlieSYH%2C+hengm3467&labels=bug&template=bug_report.yml&title=Bug%3A+&link=",
+    bugReportUrl:
+      "https://github.com/risingwavelabs/risingwave-docs/issues/new?assignees=CharlieSYH%2C+hengm3467&labels=bug&template=bug_report.yml&title=Bug%3A+&link=",
   },
   scripts: [
     {
