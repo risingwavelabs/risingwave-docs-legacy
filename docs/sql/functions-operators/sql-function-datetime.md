@@ -45,7 +45,7 @@ title: Date and time functions and operators
 
 :::note
 
-*interval_fixed* can only contain hour/minute/second (i.e., fixed length) but not year/month/day (i.e., variable length).
+*interval_fixed* can contain hour/minute/second (i.e., fixed length) but not year/month/day (i.e., variable length).
 
 :::
 
