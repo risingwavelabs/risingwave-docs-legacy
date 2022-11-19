@@ -1,0 +1,52 @@
+.default {
+  margin: 10px 4px;
+  display: inline-block;
+  appearance: none;
+  font-size: var(--ifm-font-size-base);
+  background-color: var(--ifm-color-primary-darker);
+  border: 1px solid #a9bcf0;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #fff;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+}
+
+.default:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.default:hover {
+  background-color: #3d67d7;
+}
+
+[data-theme="dark"] .default:hover {
+  background-color: #8da3e1;
+  border: 1px solid #a7b6e0;
+}
+
+.default:focus {
+  background-color: var(--ifm-color-primary-darker);
+  outline: none;
+}
+
+.default:active {
+  background-color: var(--ifm-color-primary);
+  transition: none 0s;
+}
+
+[data-theme="dark"] .default:focus {
+  border: 1px solid #c3d0f3;
+}
+
+.block {
+  display: block !important;
+}

@@ -28,6 +28,7 @@ SELECT [ ALL | DISTINCT ] [ * | expression [ AS output_name ] [, expression [ AS
 FROM TUMBLE(table_or_source, start_time, window_size);
 ```
 
+*start_time* can be in either timestamp or timestamp with time zone format. Example of timestamp with time zone format: 2022-01-01 10:00:00+00:00.
 
 *window_size* is in the format of `INTERVAL 'interval'`. Example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported.
 
@@ -78,6 +79,8 @@ See below for the syntax of the `hop()` window function.
 SELECT [ ALL | DISTINCT] [ * | expression [ AS output_name ] [, expression [ AS output_name ]...] ]
 FROM HOP(table_or_source, start_time, hop_size, window_size);
 ```
+
+*start_time* can be in either timestamp or timestamp with time zone format. Example of timestamp with time zone format: 2022-01-01 10:00:00+00:00.
 
 Both *hop_size* and *window_size* are in the format of `INTERVAL '<interval>'`. For example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported.
 
