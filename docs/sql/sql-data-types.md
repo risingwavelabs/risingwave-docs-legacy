@@ -8,22 +8,22 @@ title: Data types
 
 RisingWave supports the following data types:
 
-|Type|Aliases|Description|
-|---|---|-------|
-|boolean|bool|Logical Boolean. It follows a three-valued logic system (true, false, and null).|
-|smallint| |Two-byte integer. <p>Range: -32768 to 32767</p>|
-|integer|int|Four-byte integer. <p>Range: -2147483648 to 2147483647</p>|
-|bigint| |Eight-byte integer. <p>Range: -9223372036854775808 to 9223372036854775807</p>|
-|numeric|decimal|Exact numeric. We do not support specifying precision and scale as of now. <p>Range: Up to 131072 digits before the decimal point; up to 16383 digits after the decimal point</p>|
-|real| |Single precision floating-point number (4 bytes). <p>Range: 6 decimal digits precision</p>|
-|double precision|double|Double precision floating-point number (8 bytes) <p>Range: 15 decimal digits precision</p>|
-|character varying|varchar, string|Variable-length character string. We do not support specifying the maximum length as of now.|
-|date| |Calendar date (year, month, day). <p>Examples:</p><p>`date '2022-04-08'`</p>|
-|time without time zone|time|Time of day (no time zone)<p>Examples:</p><p>`time '18:20:49'`</p>|
-|timestamp without time zone|timestamp|Date and time (no time zone)<p>Examples:</p><p>`'2022-03-13 01:00:00'::timestamp`</p>|
-|timestamp with time zone |timestamptz|Timestamp with time zone. The 'Z' at the end stands for UTC (Coordinated Universal Time).<p>Examples:</p><p>`'2022-03-13 01:00:00Z'::timestamptz`</p>|
-|interval| |Time span. Input in string format. Units include: second/seconds/s, minute/minutes/min/m, hour/hours/hr/h, day/days/d, month/months/mon, and year/years/yr/y.<p>Examples:</p><p>`interval '4 hour'` → `04:00:00` <br /> `interval '3 day'` → `3 days 00:00:00`</p>|
-|struct| |<p>Use this type to define a column that contains nested data.</p><p>Example:</p><p>`CREATE TABLE t1 (v1 int, v2 struct<v3 int, v4 struct<v5 varchar, v6 date>>);`</p> <p>To insert a new row to the table:</p><p>`INSERT INTO t1 VALUES (1,(2,('Abc',date '2049-01-01')));`</p>|
+|Type|Aliases|Description|Value|
+|---|---|-------|-------|
+|boolean|bool|Logical Boolean. It follows a three-valued logic system (true, false, or null). | true, false, or null |
+|smallint| |Two-byte integer. | Range: -32768 to 32767 |
+|integer|int|Four-byte integer. | Range: -2147483648 to 2147483647 |
+|bigint| |Eight-byte integer. | Range: -9223372036854775808 to 9223372036854775807 |
+|numeric|decimal|Exact numeric. We do not support specifying precision and scale as of now. | Range: Up to 131072 digits before the decimal point; up to 16383 digits after the decimal point |
+|real| |Single precision floating-point number (4 bytes). | Range: 6 decimal digits precision |
+|double precision|double|Double precision floating-point number (8 bytes) | Range: 15 decimal digits precision |
+|character varying|varchar, string|Variable-length character string. We do not support specifying the maximum length as of now. | Example: `'Hello World!'` |
+|date| |Calendar date (year, month, day). | Example: `date '2022-04-08'` |
+|time without time zone|time|Time of day (no time zone) | Example: `time '18:20:49'` |
+|timestamp without time zone|timestamp|Date and time (no time zone) | Example: `'2022-03-13 01:00:00'::timestamp` |
+|timestamp with time zone |timestamptz|Timestamp with time zone. The 'Z' at the end stands for UTC (Coordinated Universal Time). | Example: `'2022-03-13 01:00:00Z'::timestamptz` |
+|interval| |Time span. Input in string format. Units include: second/seconds/s, minute/minutes/min/m, hour/hours/hr/h, day/days/d, month/months/mon, and year/years/yr/y. | Examples: `interval '4 hour'` → `04:00:00` <br /> `interval '3 day'` → `3 days 00:00:00` |
+|struct| |Use this type to define a column that contains nested data. | <p>Example: `CREATE TABLE t1 (v1 int, v2 struct<v3 int, v4 struct<v5 varchar, v6 date>>);`</p> <p>To insert a new row to the table:</p><p>`INSERT INTO t1 VALUES (1,(2,('Abc',date '2049-01-01')));`</p>|
 
 ## Casts
 Certain data types can be cast to and from other types automatically or deliberately.
