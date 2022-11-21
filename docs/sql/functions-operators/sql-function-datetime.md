@@ -40,7 +40,7 @@ title: Date and time functions and operators
 
 | Operation | Description | Example |
 | ----------- | ----------- | ----------- |
-| timestamptz + *interval_fixed* → timestamptz | Adds a fixed interval to a timestamp with time zone. See note below. | `'2022-03-13 01:00:00'::timestamp + interval '24' hour` → `2022-03-14 01:00:00` |
+| timestamptz + *interval_fixed* → timestamptz | Adds a fixed interval to a timestamp with time zone. See note below. | `''2022-03-13 01:00:00Z'::timestamp with time zone + interval '24' hour` → `2022-03-14 01:00:00+00:00` |
 | timestamptz - *interval_fixed* → timestamptz | Subtracts a fixed interval from a timestamp with time zone. See note below. | `'2022-03-14 01:00:00Z'::timestamp with time zone - interval '24' hour` → `2022-03-13 01:00:00+00:00` |
 
 :::note
