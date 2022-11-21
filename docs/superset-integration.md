@@ -27,20 +27,20 @@ Install the `sqlalchemy-risingwave` driver within the Docker containers for Supe
 
 Create `requirements-local.txt`:
 
-```markdown
+```shell
 #From the repo root...
 touch ./docker/requirements-local.txt
 ```
 
 Add the driver selected in the step above:
 
-```markdown
+```shell
 echo "sqlalchemy-risingwave" >>/docker/requirements-local.txt
 ```
 
 Rebuild your local image with the new driver baked in:
 
-```markdown
+```shell
 docker-compose build --force-rm
 ```
 
