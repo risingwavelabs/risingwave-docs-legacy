@@ -23,6 +23,13 @@ ROW FORMAT JSON;
 
 ### `WITH` options - *`column_parameter`*
 
+The following table shows the available load generator types for each data type.
+
+|Generator &#92; Data|Number|Timestamp|Varchar|
+|---|---|---|---|
+|Sequence|✓|✕|✕|
+|Random|✓|✓|✓|
+
 Select a generator type:
 
 import Tabs from '@theme/Tabs';
@@ -37,9 +44,9 @@ Specify the following fields for every column.
 
 |Field|Description|Value|Required?|
 |---|---|---|---|
-|fields.*column_name*.kind|Generator type|Set to `sequence`.|True|
-|fields.*column_name*.start|Starting number<br/>Must be smaller than the ending number.|Any number of the column data type<br/>Example: `50`<br/>Default: `0`|False|
-|fields.*column_name*.end|Ending number<br/>Must be larger than the starting number.|Any number of the column data type<br/>Example: `100`<br/>Default: `32767`|False|
+|fields.*column_name*.kind|Generator type|Set to `sequence`.|False<br/>Default: `random`|
+|fields.*column_name*.start|Starting number<br/>Must be smaller than the ending number.|Any number of the column data type<br/>Example: `50`|False<br/>Default: `0`|
+|fields.*column_name*.end|Ending number<br/>Must be larger than the starting number.|Any number of the column data type<br/>Example: `100`|False<br/>Default: `32767`|
 
 </TabItem>
 <TabItem value="random" label="Random">
@@ -53,10 +60,10 @@ And select the type of data to be generated:
 
    |Field|Description|Value|Required?|
    |---|---|---|---|
-   |fields.*column_name*.kind|Generator type|Set to `random`.|True|
-   |fields.*column_name*.min|The minimum number can be generated.<br/>Must be smaller than the maximum number.|Any number of the column data type<br/>Example: `50`<br/>Default: `0`|False|
-   |fields.*column_name*.max|The maximum number can be generated.<br/>Must be larger than the minimum number.|Any number of the column data type<br/>Example: `100`<br/>Default: `32767`|False|
-   |fields.*column_name*.seed|Seed number initializes the random generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the genrator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`<br/>Default: `[TBD]`|False|
+   |fields.*column_name*.kind|Generator type|Set to `random`.|False<br/>Default: `random`|
+   |fields.*column_name*.min|The minimum number can be generated.<br/>Must be smaller than the maximum number.|Any number of the column data type<br/>Example: `50`|False<br/>Default: `0`|
+   |fields.*column_name*.max|The maximum number can be generated.<br/>Must be larger than the minimum number.|Any number of the column data type<br/>Example: `100`|False<br/>Default: `32767`|
+   |fields.*column_name*.seed|Seed number initializes the random load generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the genrator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`|False<br/>If not specified, the genrator will produce the same sequence of numbers.|
 
    
 
@@ -69,9 +76,9 @@ And select the type of data to be generated:
    
    |Field|Description|Value|Required?|
    |---|---|---|---|
-   |fields.*column_name*.kind|Generator type|Set to `random`.|True|
-   |fields.*column_name*.max_past|Specify the maximum time interval to determine the earliest timestamp can be generated.|An [interval](../sql-data-types.md)<br/>Example: `2h 37min`<br/>Default: `1 day`|False|
-   |fields.*column_name*.seed|Seed number initializes the random generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the genrator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`<br/>Default: `[TBD]`|False|
+   |fields.*column_name*.kind|Generator type|Set to `random`.|False<br/>Default: `random`|
+   |fields.*column_name*.max_past|Specify the maximum time interval to determine the earliest timestamp can be generated.|An [interval](../sql-data-types.md)<br/>Example: `2h 37min`|False<br/>Default: `1 day`|
+   |fields.*column_name*.seed|Seed number initializes the random load generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the genrator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`|False<br/>If not specified, the genrator will produce the same sequence of numbers.|
 
 
    </TabItem>
@@ -83,9 +90,9 @@ And select the type of data to be generated:
 
    |Field|Description|Value|Required?|
    |---|---|---|---|
-   |fields.*column_name*.kind|Generator type|Set to `random`.|True|
-   |fields.*column_name*.length|The length of the varchar to be generated.|A positive integer<br/>Example: `100`<br/>Default: `10`|False|
-   |fields.*column_name*.seed|Seed number initializes the random generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the genrator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`<br/>Default: `[TBD]`|False|
+   |fields.*column_name*.kind|Generator type|Set to `random`.|False<br/>Default: `random`|
+   |fields.*column_name*.length|The length of the varchar to be generated.|A positive integer<br/>Example: `100`|False<br/>Default: `10`|
+   |fields.*column_name*.seed|Seed number initializes the random load generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the genrator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`|False<br/>If not specified, the genrator will produce the same sequence of numbers.|
 
    </TabItem>
    </Tabs>
