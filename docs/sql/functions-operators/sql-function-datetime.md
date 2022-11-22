@@ -6,23 +6,50 @@ title: Date and time functions and operators
 
 
 
-## Date and time operators
+## Timespan operators
 
 | Operation | Description | Example |
 | ----------- | ----------- | ----------- |
-| date + interval → timestamp | Adds an interval to a date. | `date '2022-04-08' + interval '10 hour'` → `2022-04-08 10:00:00` |
-| interval / int → time | Divides an interval by an int. Error is thrown for division by zero. | `interval '14000' / int '14'` → `00:16:40` |
-| interval / float → time | Divides an interval by a float. Error is thrown for division by zero. | `interval '20' / float '12.5'` → `00:00:1.6` |
-| interval / decimal → time | Divides an interval by a decimal. Error is thrown for division by zero. | `interval '12 days' / 4.2` → `2 days 20:34:17.143` |
-| date - interval → timestamp | Subtracts an interval from a date. | `date '2022-04-08' - interval '10 hour'` → `2022-04-07 14:00:00` |
-| date + int → date | Adds a number of days to a date. | `date '2022-06-23' + 4` → `2022-06-27` <br /> `4 + Date '2022-06-23'` → `2022-06-27` |
-| date - int → date | Subtracts a number of days from a date. | `date '2022-06-23' - 4` → `2022-06-19` |
-| date + time → timestamp | Adds a time to a date. | `date '2022-06-23' + time '19:24:00'` → `2022-06-23 19:24:00` <br /> `time '19:24:00' +  date '2022-06-23'` → `2022-06-23 19:24:00` |
-| time - time → time | Subtracts a time from a time. | `time '18:20:49' -  time '16:07:16'` → `02:13:33` |
+| interval * double precision → interval | Multiplies an interval by a double. | `real '6.1' * interval '1' second` → `00:00:06.1` <br /> `interval '1' second * real '6.1'` → `00:00:06.1` |
+| interval / double precision → interval | Divides an interval by a double. Error is thrown for division by zero. | `interval '12 days' / 4.2` → `2 days 20:34:17.143` <br /> `interval '14000' / int '14'` → `00:16:40`|
+| interval + interval → interval | Adds an interval to an interval. | `interval '20' hour + interval '10' hour` → `30:00:00`|
+| interval - interval → interval | Subtracts an interval from an interval. | `interval '20' hour - interval '10' hour` → `10:00:00`|
 | time + interval → time | Adds an interval to a time. | `time '18:20:49' +  interval '1 hour'` → `19:20:49` |
 | time - interval → time | Subtracts an interval from a time. | `time '18:20:49' -  interval '2 hours'` → `16:20:49` |
-| interval = interval → bool | Compares interval equality. | `interval '1' month = interval '30' day` → `t` |
-| real * interval → time | Multiplies an interval by a float. | `real '6.1' * interval '1' second` → `00:00:06.1` <br /> `interval '1' second * real '6.1'` → `00:00:06.1` |
+| time - time → interval | Subtracts a time from a time. | `time '18:20:49' -  time '16:07:16'` → `02:13:33` |
+
+
+
+## Offsetting operators
+
+| Operation | Description | Example |
+| ----------- | ----------- | ----------- |
+| timestamp + interval → timestamp | Adds an interval to a timestamp. | `'2022-03-13 01:00:00'::timestamp + interval '24' hour` → `2022-03-14 01:00:00` |
+| timestamp - interval → timestamp | Subtracts an interval from a timestamp. | `'2022-03-14 01:00:00'::timestamp - interval '24' hour` → `2022-03-13 01:00:00` |
+| timestamp - timestamp → interval | Subtracts a timestamp from a timestamp. | `'2022-03-13 03:00:00'::timestamp - '2022-03-13 01:00:00'` → `02:00:00` |
+| date + int → date | Adds a number of days to a date. | `date '2022-06-23' + 4` → `2022-06-27` <br /> `4 + Date '2022-06-23'` → `2022-06-27` |
+| date - int → date | Subtracts a number of days from a date. | `date '2022-06-23' - 4` → `2022-06-19` |
+| date - date → int | Subtracts a date from a date. | `date '2020-03-01' - '2020-02-01'` → `29` |
+| date + interval → timestamp | Adds an interval to a date. | `date '2022-04-08' + interval '10 hour'` → `2022-04-08 10:00:00` |
+| date - interval → timestamp | Subtracts an interval from a date. | `date '2022-04-08' - interval '10 hour'` → `2022-04-07 14:00:00` |
+| date + time → timestamp | Adds a time to a date. | `date '2022-06-23' + time '19:24:00'` → `2022-06-23 19:24:00` <br /> `time '19:24:00' +  date '2022-06-23'` → `2022-06-23 19:24:00` |
+
+
+
+## Timestamp with time zone operators
+
+| Operation | Description | Example |
+| ----------- | ----------- | ----------- |
+| timestamptz + *interval_fixed* → timestamptz | Adds a fixed interval to a timestamp with time zone. See note below. | `'2022-03-13 01:00:00Z'::timestamp with time zone + interval '24' hour` → `2022-03-14 01:00:00+00:00` |
+| timestamptz - *interval_fixed* → timestamptz | Subtracts a fixed interval from a timestamp with time zone. See note below. | `'2022-03-14 01:00:00Z'::timestamp with time zone - interval '24' hour` → `2022-03-13 01:00:00+00:00` |
+
+:::note
+
+*interval_fixed* can contain hour/minute/second (i.e., fixed length) but not year/month/day (i.e., variable length).
+
+:::
+
+
 
 ## Date and time functions
 
