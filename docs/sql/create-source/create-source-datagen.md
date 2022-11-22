@@ -23,12 +23,12 @@ ROW FORMAT JSON;
 
 ### `WITH` options - *`column_parameter`*
 
-The following table shows the available load generator types for each data type.
+The following table shows the data types that can be generated for each load generator type.
 
 |Generator &#92; Data|Number|Timestamp|Varchar|
 |---|---|---|---|
-|Sequence|✓|✕|✕|
-|Random|✓|✓|✓|
+|**Sequence**|✓|✕|✕|
+|**Random**|✓|✓|✓|
 
 Select a generator type:
 
@@ -63,7 +63,7 @@ And select the type of data to be generated:
    |fields.*column_name*.kind|Generator type|Set to `random`.|False<br/>Default: `random`|
    |fields.*column_name*.min|The minimum number can be generated.<br/>Must be smaller than the maximum number.|Any number of the column data type<br/>Example: `50`|False<br/>Default: `0`|
    |fields.*column_name*.max|The maximum number can be generated.<br/>Must be larger than the minimum number.|Any number of the column data type<br/>Example: `100`|False<br/>Default: `32767`|
-   |fields.*column_name*.seed|Seed number initializes the random load generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the generator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`|False<br/>If not specified, the genrator will produce the same sequence of numbers if the value range is unchanged.|
+   |fields.*column_name*.seed|A seed number that initializes the random load generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the generator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of numbers will be generated.|
 
    
 
@@ -78,7 +78,7 @@ And select the type of data to be generated:
    |---|---|---|---|
    |fields.*column_name*.kind|Generator type|Set to `random`.|False<br/>Default: `random`|
    |fields.*column_name*.max_past|Specify the maximum time interval to determine the earliest timestamp can be generated.|An [interval](../sql-data-types.md)<br/>Example: `2h 37min`|False<br/>Default: `1 day`|
-   |fields.*column_name*.seed|Seed number initializes the random load generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the generator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`|False<br/>If not specified, the genrator will produce the same sequence of timestamps if the system time and interval is unchanged.|
+   |fields.*column_name*.seed|A seed number that initializes the random load generator. The sequence of the generated timestamps is determined by the seed value. If given the same seed number, the generator will produce the same sequence of timestamps.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of timestamps will be generated (if the system time is constant).|
 
 
    </TabItem>
@@ -91,8 +91,8 @@ And select the type of data to be generated:
    |Field|Description|Value|Required?|
    |---|---|---|---|
    |fields.*column_name*.kind|Generator type|Set to `random`.|False<br/>Default: `random`|
-   |fields.*column_name*.length|The length of the varchar to be generated.|A positive integer<br/>Example: `100`|False<br/>Default: `10`|
-   |fields.*column_name*.seed|Seed number initializes the random load generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the genrator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`|False<br/>If not specified, the generator will produce the same sequence of characters if the length is unchanged.|
+   |fields.*column_name*.length|The length of the varchar to be generated.|A positive integer<br/>Example: `16`|False<br/>Default: `10`|
+   |fields.*column_name*.seed|A seed number that initializes the random load generator. The sequence of the generated characters is determined by the seed value. If given the same seed number, the generator will produce the same sequence of characters.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of characters will be generated.|
 
    </TabItem>
    </Tabs>
