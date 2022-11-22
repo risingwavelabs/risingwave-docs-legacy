@@ -13,7 +13,7 @@ This guide will go over how to connect RisingWave to Superset.
 
 ## Install and Start RisingWave
 
-To install and start RisingWave locally, see the [Get started](https://www.risingwave.dev/docs/latest/get-started/) guide. We recommend running RisingWave locally. 
+To install and start RisingWave locally, see the [Get started](https://www.risingwave.dev/docs/latest/get-started/) guide. We recommend running RisingWave locally for demo purposes.
 
 Connect to a streaming source. For details on connecting to streaming sources and what sources are supported with RisingWave, see [Create source](https://www.risingwave.dev/docs/latest/sql-create-source/).
 
