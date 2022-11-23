@@ -36,7 +36,14 @@ const sidebars = {
           type: 'doc',
           id: 'architecture',
           label: 'Architecture',
-        }
+        },
+
+        {
+          type: 'doc',
+          id: 'rw-integration-summary',
+          label: 'Integrations',
+        },
+
       ]
     },
 
