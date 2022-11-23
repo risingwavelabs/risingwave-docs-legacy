@@ -28,7 +28,7 @@ We at RisingWave aim to minimize the hassel of integrating RisingWave with your 
 ## Query engines
 |System | Supported | Notes|
 |---|---|----|
-|Apache Spark| No | |
+|Apache Spark| Not yet | |
 |Presto|Not yet| |
 |AWS Athena| Not yet | |
 
@@ -38,8 +38,8 @@ We at RisingWave aim to minimize the hassel of integrating RisingWave with your 
 |---|---|----|
 |MySQL | Yes | Supported as both a source and a sink.|
 |Postgres| Yes| Supported as a source. The support for exporting data to Postgres is in development.|
-|AWS Aurora (MySQL)| |
-|AWS Aurora (Postgres)| |
+|AWS Aurora (MySQL)| | |
+|AWS Aurora (Postgres)| | |
 |Clickhouse|Not yet| |
 |Apache Pinot| Not yet| |
 |Apache Druid| Not yet| |
