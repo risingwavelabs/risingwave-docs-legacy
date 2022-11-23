@@ -66,9 +66,11 @@ Once the Kafka topic is ready, we can prepare the RisingWave SQL pipeline. The f
 
 ```sql
 CREATE SOURCE prometheus (
-    labels STRUCT < __name__ VARCHAR,
-    instance VARCHAR,
-    job VARCHAR >,
+    labels STRUCT <
+        __name__ VARCHAR,
+        instance VARCHAR,
+        job VARCHAR
+    >,
     name VARCHAR,
     timestamp TIMESTAMP,
     value VARCHAR
