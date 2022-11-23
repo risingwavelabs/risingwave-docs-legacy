@@ -138,8 +138,8 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'tutorials/using-risingwave-to-monitor-risingwave-metrics',
-          label: 'Using RisingWave to monitor RisingWave metrics',
+          id: 'tutorials/use-risingwave-to-monitor-risingwave-metrics',
+          label: 'Use RisingWave to monitor RisingWave metrics',
         },
       ]
     },

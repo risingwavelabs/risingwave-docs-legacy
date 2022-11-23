@@ -1,13 +1,13 @@
 ---
-id: using-risingwave-to-monitor-risingwave-metrics
-slug: /using-risingwave-to-monitor-risingwave-metrics
-title: Using RisingWave to monitor RisingWave metrics
+id: use-risingwave-to-monitor-risingwave-metrics
+slug: /use-risingwave-to-monitor-risingwave-metrics
+title: Use RisingWave to monitor RisingWave metrics
 description: Use RisingWave to monitor Risingwave metrics.
 ---
 
 ## Overview
 
-RisingWave uses Prometheus to collect the system metrics. Prometheus is a powerful monitoring platform that provides an end-to-end solution from instrumenting applications to querying metrics. However, Prometheus’s local storage is limited to single-node durability and scalability. To replicate the data from local storage to remote storage systems, we can use a proxy service that sends data in JSON format to Kafka. Then RisingWave can read, store, and perform complex queries on the data from Kafka.
+RisingWave uses Prometheus to collect the system metrics. Prometheus is a powerful monitoring platform that provides an end-to-end solution from instrumenting applications to querying metrics. However, Prometheus’s local storage is limited to single-node durability and scalability. To replicate data from local storage to remote storage systems, we can use a proxy service that sends data in JSON format to Kafka. Then RisingWave can read, store, and perform complex queries on the data from Kafka.
 
 There are numerous RisingWave system metrics that Prometheus collects. The most convenient method of tracking these metrics would be using a live dashboard. Luckily, since RisingWave is Postgres-compatible, we can use Grafana to visualize the metrics changing over time by creating dashboards.
 
@@ -35,7 +35,7 @@ cd risingwave-demo/prometheus
 docker-compose up -d
 ```
 
-Necessary RisingWave components, Prometheus, and Grafana will be started.  Prometheus will start collecting data from RisingWave and write them to Kafka topics. In this demo cluster, the data ingested from the Kafka topic will be stored in the MinIO instance.
+Necessary RisingWave components, Prometheus, and Grafana will be started. Prometheus will start collecting data from RisingWave and write them to Kafka topics. In this demo cluster, the data ingested from the Kafka topic will be stored in the MinIO instance.
 
 Now connect to RisingWave to manage data streams and perform data analysis.
 
