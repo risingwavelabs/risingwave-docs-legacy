@@ -17,7 +17,7 @@ WITH (
    connector='kinesis',
    field_name='value', ...
 ) 
-ROW FORMAT encode_format
+ROW FORMAT data_format
 [ MESSAGE 'main_message' ]
 [ ROW SCHEMA LOCATION 'location' ]
 ```

@@ -32,7 +32,7 @@ When creating a source, specify the format in the `ROW FORMAT` section of the `C
 
 ### Avro
 
-For data in Avro format, you must specify a message and the schema. You can specify the schema by using either a location or a schema registry link (for Kafka topics). The location can be a local location, a Web location (https://<domain_name>/<path>), or an S3 bucket link that is in either `https://...` or `S3://...` format.
+For data in Avro format, you must specify a message and the schema. You can specify the schema by using either a location or a schema registry link (for Kafka topics). The location can be a local location, a Web location (`https://<domain_name>/<path>`), or an S3 bucket link that is in either `https://...` or `S3://...` format.
 
 Syntax:
 ```sql
@@ -53,7 +53,7 @@ ROW FORMAT JSON
 
 ### Protobuf
 
-For data in Protobuf format, you must specify a message and the schema. You can specify the schema by using either its location or a schema registry link (for Kafka topics). The location can be a local location, a Web location (https://<domain_name>/<path>), or an S3 bucket link that is in either `https://...` or `S3://...` format.
+For data in Protobuf format, you must specify a message and the schema. You can specify the schema by using either its location or a schema registry link (for Kafka topics). The location can be a local location, a Web location (`https://<domain_name>/<path>`), or an S3 bucket link that is in either `https://...` or `S3://...` format.
 
 
 Syntax:
