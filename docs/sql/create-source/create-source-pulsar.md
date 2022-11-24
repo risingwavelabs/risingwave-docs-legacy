@@ -18,10 +18,11 @@ WITH (
    connector='pulsar',
    field_name='value', ...
 )
-ROW FORMAT AVRO | JSON | PROTOBUF MESSAGE 'main_message'
-ROW SCHEMA LOCATION 'local_or_remote_location';
+ROW FORMAT encode_format 
+[MESSAGE 'main_message']
+[ROW SCHEMA LOCATION 'location'];
 ```
-### `WITH` options
+### `WITH` parameters
 
 |Field|	Default|	Type|	Description|	Required?|
 |---|---|---|---|---|
@@ -29,18 +30,17 @@ ROW SCHEMA LOCATION 'local_or_remote_location';
 |service.url	|None	|String	|Address of the Pulsar service	|True|
 |admin.url	|None	|String	|Address of the Pulsar admin	|True|
 |scan.startup.mode	|earliest	|String	|The Pulsar consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`.	|False|
-|scan.startup.timestamp_millis	|None	|Int64	|Specify the offset in seconds from a certain point of time.	|False|
+|scan.startup.timestamp_millis	|None	|Int64	|Specify the offset in milliseconds from a certain point of time.	|False|
 
-### Formats
+### Row format parameters
 
 Specify the format of the stream in the `ROW FORMAT` section of your statement.
 
-|Format|Syntax| Notes|
-|---|---|---|
-|Avro|`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`| Message and schema location are required.|
-|JSON| `ROW FORMAT JSON`| |
-|Protobuf|`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`|Message and schema location are required.|
-
+|Parameter | Description|
+|---|---|
+|*encode_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
+|MESSAGE |Message for the format. Required when *encode_format* is `AVRO` or `PROTOBUF`.|
+|ROW SCHEMA LOCATION| Location of the schema file. Required when *encode_format* is `AVRO` or `PROTOBUF`. It can be a local or remote location of the schema file, or an S3 bucket link that points to the schema file.  Example:<ul><li> `file:///risingwave/proto-simple-schema.proto`</li><li>`https://<example_host>/risingwave/proto-simple-schema.proto`</li><li>`s3://risingwave-demo/schema-location`</li></ul>|
 
 ## Example
 Here is an example of connecting RisingWave to a Pulsar broker to read data from individual topics.

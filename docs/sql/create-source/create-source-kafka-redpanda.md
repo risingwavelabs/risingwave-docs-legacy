@@ -5,6 +5,7 @@ description: Connect RisingWave to a Kafka/Redpanda broker.
 slug: /create-source-kafka-redpanda
 ---
 
+RisingWave supports ingesting data from Kafka or Redpanda topics
 Use the SQL statement below to connect RisingWave to a Kafka/Redpanda broker.
 
 ## Syntax
@@ -15,30 +16,35 @@ CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name (
 )
 WITH (
    connector='kafka',
+   topic='value',
    field_name='value', ...
 )
-ROW FORMAT AVRO | JSON | PROTOBUF MESSAGE 'main_message'
-[ ROW SCHEMA LOCATION 's3://path' ];
+ROW FORMAT encode_format 
+[ MESSAGE 'main_message' ]
+[ ROW SCHEMA LOCATION 'location' ]
+[ ROW SCHEMA CONFLUENT SCHEMA REGISTRY 'schema_registry_link' ];
 ```
-### `WITH` options
+### `WITH` parameters
 
-|Field|	Default|	Type|	Description|	Required?|
-|---|---|---|---|---|
-|topic|None|String|Address of the Kafka topic. One source can only correspond to one topic.|True
-|properties.bootstrap.server	|None	|String	|Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|True|
-|scan.startup.mode	|earliest	|String	|The Kafka consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`.	|False
-|scan.startup.timestamp_millis	|None	|Int64	|Specify the offset in seconds from a certain point of time.	|False|
-|properties.group.id	|None	|String	|Name of the Kafka consumer group	|True|
+|Field|	Required?| 	Notes|
+|---|---|---|
+|topic|Yes|Address of the Kafka topic. One source can only correspond to one topic.|
+|properties.bootstrap.server	|Yes|Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
+|properties.group.id	|Yes|Name of the Kafka consumer group	|
+|scan.startup.mode|No|The Kafka consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`. If not specified, the default value `earliest` will be used.|
+|scan.startup.timestamp_millis|No|Specify the offset in milliseconds from a certain point of time.	|
 
-### Formats
+
+### Row format parameters
 
 Specify the format of the stream in the `ROW FORMAT` section of your statement.
 
-|Format|Syntax| Notes|
-|---|---|---|
-|Avro|`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`| Message and schema location are required.|
-|JSON| `ROW FORMAT JSON`| |
-|Protobuf|`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`|Message and schema location are required.|
+|Parameter | Description|
+|---|---|
+|*encode_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
+|MESSAGE |Message for the format. Required when *encode_format* is `AVRO` or `PROTOBUF`.|
+|ROW SCHEMA LOCATION| Location of the schema file. Required when *encode_format* is `AVRO` or `PROTOBUF`. It can be a local or remote location of the schema file, or an S3 bucket link that points to the schema file.  Example:<ul><li> `file:///risingwave/proto-simple-schema.proto`</li><li>`https://<example_host>/risingwave/proto-simple-schema.proto`</li><li>`s3://risingwave-demo/schema-location`</li></ul> <br/>For Avro and Protobuf, you need to specify the schema. You can specify the schema by using either a schema location or a schema registry link.|
+|ROW SCHEMA CONFLUENT SCHEMA REGISTRY| Schema registry link. For Avro and Protobuf, you need to specify the schema by using either a schema location or a schema registry link. Example: `http://127.0.0.1:8081` |
 
 ## Example
 
@@ -97,6 +103,7 @@ WITH (
 ROW FORMAT PROTOBUF MESSAGE 'main_message'
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
 ```
+
 </TabItem>
 </Tabs>
 

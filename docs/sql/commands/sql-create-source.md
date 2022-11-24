@@ -32,34 +32,43 @@ When creating a source, specify the format in the `ROW FORMAT` section of the `C
 
 ### Avro
 
-For data in Avro format, you must specify a message and a schema location. Both local and remote locations are supported.
+For data in Avro format, you must specify a message and the schema. You can specify the schema by using either a location or a schema registry link (for Kafka topics). The location can be a local location, a Web location (https://<domain_name>/<path>), or an S3 bucket link that is in either `https://...` or `S3://...` format.
 
 Syntax:
-
-`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`
+```sql
+ROW FORMAT AVRO 
+MESSAGE 'main_message' 
+ROW SCHEMA LOCATION 'location'
+```
 
 ### JSON
 
 RisingWave decodes JSON directly from external sources. When creating a source from streams in JSON, you need to define the schema of the source within the parentheses after the source name, and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
-
-`ROW FORMAT JSON`
+```sql
+ROW FORMAT JSON
+```
 
 
 ### Protobuf
 
-For data in Protobuf format, you must specify a message and a schema location. Both local and Web locations are supported.
+For data in Protobuf format, you must specify a message and the schema. You can specify the schema by using either its location or a schema registry link (for Kafka topics). The location can be a local location, a Web location (https://<domain_name>/<path>), or an S3 bucket link that is in either `https://...` or `S3://...` format.
+
 
 Syntax:
-
-`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`
+```sql
+ROW FORMAT AVRO 
+MESSAGE 'main_message' 
+ROW SCHEMA LOCATION 'location'
+```
 
 ### Debezium JSON
 
 When creating a source from streams in Debezium JSON, you need to define the schema of the source within the parentheses after the source name, and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
-
-`ROW FORMAT DEBEZIUM_JSON`
+```sql
+ROW FORMAT DEBEZIUM_JSON
+```
 
