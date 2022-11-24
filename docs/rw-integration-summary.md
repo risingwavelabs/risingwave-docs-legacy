@@ -9,12 +9,12 @@ We aim to minimize the hassel of integrating RisingWave with your existing data 
 
 ## Message brokers
 
-|Broker | Supported | Notes|
+|Broker | Source | Sink | Notes|
 |---|---|---|
-|Kafka| Yes |Supported as both a source and a sink.|
-|Redpanda| Yes| Supported as both a source and a sink.|
-|Apache Pulsar| Yes | Supported as a source but not a sink.|
-|Kinesis Data Streams| Yes | Supported as a source but not a sink.|
+|Kafka| Yes| |Supported as both a source and a sink.|
+|Redpanda| Yes|| Supported as both a source and a sink.|
+|Apache Pulsar|| Yes | Supported as a source but not a sink.|
+|Kinesis Data Streams| | | Supported as a source but not a sink.|
 
 ## ETL/ELT and data integration
 
@@ -34,15 +34,15 @@ We aim to minimize the hassel of integrating RisingWave with your existing data 
 
 ## Databases
 
-|System | Supported | Notes|
+|System | Source | Sink | Notes|
 |---|---|----|
-|MySQL | Yes | Supported as both a source and a sink.|
-|Postgres| Yes| Supported as a source. The support for exporting data to Postgres is in development.|
-|AWS Aurora (MySQL)| | |
-|AWS Aurora (Postgres)| | |
-|Clickhouse|Not yet| |
-|Apache Pinot| Not yet| |
-|Apache Druid| Not yet| |
+|MySQL | Yes || Supported as both a source and a sink.|
+|Postgres| Yes| | Supported as a source. The support for exporting data to Postgres is in development.|
+|AWS Aurora (MySQL)|| | |
+|AWS Aurora (Postgres)|| | |
+|Clickhouse|Not yet| | |
+|Apache Pinot| Not yet| ||
+|Apache Druid| Not yet| ||
 
 ## Data warehouses
 
