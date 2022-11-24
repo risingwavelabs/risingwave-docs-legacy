@@ -5,7 +5,7 @@ description: Summary of integrations
 slug: /rw-integration-summary
 ---
 
-We aim to minimize the hassel of integrating RisingWave with your existing data stack. With that purpose in mind, we will try to support the mainstream data formats and as many modern-data-stack systems as possible, which is no small feat. If an integration with a system is crucial to you but has not been supported, please let us know in our [Slack workspace](https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw). We will prioritize the development based on the number of requests for each system. 
+We aim to minimize the hassel of integrating RisingWave with your existing data stack. With that purpose in mind, we will try to support the mainstream data formats and as many modern-data-stack systems as possible. However, with limited resources, we cannot achieve this goal in a short period of time. If an integration with a system is crucial to you but has not been supported, please let us know in our [Slack workspace](https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw). We will prioritize the development based on the number of requests for each system. 
 
 ## Message brokers
 
