@@ -40,9 +40,9 @@ Specify the format of the stream in the `ROW FORMAT` section of your statement.
 
 |Parameter | Description|
 |---|---|
-|*encode_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
-|MESSAGE |Message for the format. Required when *encode_format* is `AVRO` or `PROTOBUF`.|
-|ROW SCHEMA LOCATION| Location of the schema file. Required when *encode_format* is `AVRO` or `PROTOBUF`. It can be a local or remote location of the schema file, or an S3 bucket link that points to the schema file.  Example:<ul><li> `file:///risingwave/proto-simple-schema.proto`</li><li>`https://<example_host>/risingwave/proto-simple-schema.proto`</li><li>`s3://risingwave-demo/schema-location`</li></ul> |
+|*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
+|MESSAGE |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
+|ROW SCHEMA LOCATION| Location of the schema file. Required when *data_format* is `AVRO` or `PROTOBUF`. It can be a local or remote location of the schema file, or an S3 bucket link that points to the schema file.  Example:<ul><li> `file:///risingwave/proto-simple-schema.proto`</li><li>`https://<example_host>/risingwave/proto-simple-schema.proto`</li><li>`s3://risingwave-demo/schema-location`</li></ul> |
 
 
 ## Example

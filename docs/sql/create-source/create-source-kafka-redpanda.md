@@ -5,7 +5,8 @@ description: Connect RisingWave to a Kafka/Redpanda broker.
 slug: /create-source-kafka-redpanda
 ---
 
-RisingWave supports ingesting data from Kafka or Redpanda topics
+RisingWave supports ingesting data from Kafka topics. For 
+
 Use the SQL statement below to connect RisingWave to a Kafka/Redpanda broker.
 
 ## Syntax
@@ -19,7 +20,7 @@ WITH (
    topic='value',
    field_name='value', ...
 )
-ROW FORMAT encode_format 
+ROW FORMAT data_format 
 [ MESSAGE 'main_message' ]
 [ ROW SCHEMA LOCATION 'location' ]
 [ ROW SCHEMA CONFLUENT SCHEMA REGISTRY 'schema_registry_link' ];
@@ -41,8 +42,8 @@ Specify the format of the stream in the `ROW FORMAT` section of your statement.
 
 |Parameter | Description|
 |---|---|
-|*encode_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
-|MESSAGE |Message for the format. Required when *encode_format* is `AVRO` or `PROTOBUF`.|
+|*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
+|MESSAGE |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
 |ROW SCHEMA LOCATION| Location of the schema file. Required when *encode_format* is `AVRO` or `PROTOBUF`. It can be a local or remote location of the schema file, or an S3 bucket link that points to the schema file.  Example:<ul><li> `file:///risingwave/proto-simple-schema.proto`</li><li>`https://<example_host>/risingwave/proto-simple-schema.proto`</li><li>`s3://risingwave-demo/schema-location`</li></ul> <br/>For Avro and Protobuf, you need to specify the schema. You can specify the schema by using either a schema location or a schema registry link.|
 |ROW SCHEMA CONFLUENT SCHEMA REGISTRY| Schema registry link. For Avro and Protobuf, you need to specify the schema by using either a schema location or a schema registry link. Example: `http://127.0.0.1:8081` |
 
