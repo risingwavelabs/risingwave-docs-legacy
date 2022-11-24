@@ -5,9 +5,9 @@ description: Connect RisingWave to a Kafka/Redpanda broker.
 slug: /create-source-kafka-redpanda
 ---
 
-RisingWave supports ingesting data from Kafka topics. For 
+RisingWave supports ingesting data from Kafka topics.
 
-Use the SQL statement below to connect RisingWave to a Kafka/Redpanda broker.
+Use the SQL statement below to connect RisingWave to a Kafka broker.
 
 ## Syntax
 
