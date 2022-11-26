@@ -11,12 +11,12 @@ This page summarizes changes in each version of RisingWave, including new featur
 
 This version was released on October 17, 2022.
 
-| System    | Supported | Notes            |
-| --------- | --------- | ---------------- |
-| Fivetran  | Not yet   | <notifyButton /> |
-| Airbyte   | Not yet   |                  |
-| dbt       | Not yet   |                  |
-| Hightouch | Not yet   |                  |
+| System    | Supported | Notes                            |
+| --------- | --------- | -------------------------------- |
+| Fivetran  | Not yet   | <notifyButton note="Fivetran" /> |
+| Airbyte   | Not yet   |                                  |
+| dbt       | Not yet   |                                  |
+| Hightouch | Not yet   |                                  |
 
 ### Main changes
 

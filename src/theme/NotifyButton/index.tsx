@@ -1,29 +1,65 @@
-import React, { useEffect, useState } from "react";
-import { Popover } from "react-tiny-popover";
-import "./style.css";
-import { useColorMode } from "@docusaurus/theme-common";
-type Props = {};
+import React, { useEffect, useState } from 'react';
+import { Popover } from 'react-tiny-popover';
+import './style.css';
+import { useColorMode } from '@docusaurus/theme-common';
+import { toast } from 'react-toastify';
+import { postNotification } from '../../api/feedback';
 
-function NotifyButton({}: Props) {
+type Props = {
+  note: string;
+};
+
+function NotifyButton({ note }: Props) {
   const [shown, setShown] = useState(false);
   const { isDarkTheme } = useColorMode();
   const [dark, setDark] = useState(false);
+  const [email, setEmail] = useState('');
 
   useEffect(() => {
     setDark(isDarkTheme);
   }, [isDarkTheme]);
 
+  const getNotify = () => {
+    const emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+    if (!emailValid) {
+      toast.error('Email address is invalid!');
+      return;
+    }
+
+    postNotification(email, note)
+      .then((res) => console.log(res))
+      .catch((err) => {
+        if (err.response) toast.info(err.response.data.msg ?? 'Something went wrong :(');
+        else if (err.request) toast.error('Something went wrong :(');
+      })
+      .finally(() => setEmail(''));
+  };
+
   return (
     <Popover
       isOpen={shown}
-      positions={["bottom"]}
+      positions={['bottom']}
       onClickOutside={() => setShown(false)}
       content={
         <div className="container">
           <div className="container__item">
             <form className="form">
-              <input type="email" className="form-field" placeholder="Email Address" />
-              <button type="button" className="btn btn--primary btn--inside uppercase">
+              <input
+                type="email"
+                className="form-field"
+                placeholder="Email Address"
+                value={email}
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="btn btn--primary btn--inside uppercase"
+                onClick={(e) => {
+                  e.preventDefault();
+                  getNotify();
+                }}
+              >
                 Notify
               </button>
             </form>
