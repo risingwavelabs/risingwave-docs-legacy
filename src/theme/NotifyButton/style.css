@@ -37,7 +37,7 @@ a:hover {
   background: #95adee;
   color: #fff;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
+  border-radius: 6px;
   padding: 12px 36px;
 }
 
@@ -51,25 +51,30 @@ a:hover {
 }
 
 .btn--inside {
-  margin-left: -96px;
+  margin-left: -108px;
 }
 
 .form-field {
-  width: 320px;
+  border-radius: 6px;
+  width: 300px;
   background: #fff;
   color: #a3a3a3;
   font: inherit;
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 6px 10px 0 rgba(0, 0, 0, 0.2), -2px -6px 10px 0 rgba(0, 0, 0, 0.2);
   border: 0;
   outline: 0;
   padding: 18px 16px;
 }
 
-[data-theme="dark"] .form-field {
+[data-theme='dark'] .form-field {
   background: #aaaaaacc;
   color: #fff;
 }
 
-[data-theme="dark"] .form-field::placeholder {
+[data-theme='dark'] .form-field::placeholder {
   color: #fff;
+}
+
+.notify {
+  cursor: pointer;
 }

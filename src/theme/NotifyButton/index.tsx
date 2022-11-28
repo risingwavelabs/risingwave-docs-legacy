@@ -39,6 +39,7 @@ function NotifyButton({ note }: Props) {
     <Popover
       isOpen={shown}
       positions={['bottom']}
+      align="start"
       onClickOutside={() => setShown(false)}
       content={
         <div className="container">
@@ -47,20 +48,20 @@ function NotifyButton({ note }: Props) {
               <input
                 type="email"
                 className="form-field"
-                placeholder="Email Address"
+                placeholder="Email address"
                 value={email}
                 required
                 onChange={(e) => setEmail(e.target.value)}
               />
               <button
                 type="submit"
-                className="btn btn--primary btn--inside uppercase"
+                className="btn btn--primary btn--inside"
                 onClick={(e) => {
                   e.preventDefault();
                   getNotify();
                 }}
               >
-                Notify
+                Notify me
               </button>
             </form>
           </div>
@@ -78,7 +79,13 @@ export default NotifyButton;
 
 const NotifyIcon = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+    <svg
+      className="notify"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+    >
       <path fill="none" d="M0 0h24v24H0z" />
       <path
         d="M5 18h14v-6.969C19 7.148 15.866 4 12 4s-7 3.148-7 7.031V18zm7-16c4.97 0 9 4.043 9 9.031V20H3v-8.969C3 6.043 7.03 2 12 2zM9.5 21h5a2.5 2.5 0 1 1-5 0z"
@@ -90,7 +97,13 @@ const NotifyIcon = () => {
 
 const NotifyIconFill = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+    <svg
+      className="notify"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+    >
       <path fill="none" d="M0 0h24v24H0z" />
       <path d="M5 18h14v-6.969C19 7.148 15.866 4 12 4s-7 3.148-7 7.031V18zm7-16c4.97 0 9 4.043 9 9.031V20H3v-8.969C3 6.043 7.03 2 12 2zM9.5 21h5a2.5 2.5 0 1 1-5 0z" />
     </svg>
