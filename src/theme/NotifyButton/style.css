@@ -81,7 +81,7 @@ a:hover {
 
 .searchbox-wrap {
   display: flex;
-  width: 360px;
+  width: 100%;
   border-radius: 18px;
   box-shadow: rgb(0 0 0 / 19%) -5px 0px 6px 1px, rgb(0 0 0 / 19%) 5px 4px 6px 1px;
 }
@@ -130,6 +130,7 @@ a:hover {
   color: #fff;
   background-color: #95adee;
   border-radius: 14px;
+  white-space: nowrap;
   box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.19);
 }
 
