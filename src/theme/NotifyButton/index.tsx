@@ -45,29 +45,25 @@ function NotifyButton({ note }: Props) {
       align="start"
       onClickOutside={() => setShown(false)}
       content={
-        <div className="container">
-          <div className="container__item">
-            <form className="form">
-              <input
-                type="email"
-                className="form-field"
-                placeholder="Email address"
-                value={email}
-                required
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <button
-                type="submit"
-                className="btn btn--primary btn--inside"
-                onClick={(e) => {
-                  e.preventDefault();
-                  getNotify();
-                }}
-              >
-                Notify me
-              </button>
-            </form>
-          </div>
+        <div className="">
+          <form className="searchbox-wrap">
+            <input
+              type="email"
+              placeholder="Email address"
+              value={email}
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <button
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                getNotify();
+              }}
+            >
+              <span>Notify me</span>
+            </button>
+          </form>
         </div>
       }
     >

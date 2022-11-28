@@ -78,3 +78,62 @@ a:hover {
 .notify {
   cursor: pointer;
 }
+
+.searchbox-wrap {
+  display: flex;
+  width: 360px;
+  border-radius: 18px;
+  box-shadow: rgb(0 0 0 / 19%) -5px 0px 6px 1px, rgb(0 0 0 / 19%) 5px 4px 6px 1px;
+}
+
+.searchbox-wrap input {
+  flex: 1;
+  padding: 20px 16px;
+  font-size: 14px;
+  -webkit-border-top-left-radius: 18px;
+  -webkit-border-bottom-left-radius: 18px;
+  -moz-border-radius-topleft: 18px;
+  -moz-border-radius-bottomleft: 18px;
+  border-top-left-radius: 18px;
+  border-bottom-left-radius: 18px;
+  box-shadow: none;
+  border: none;
+}
+
+.searchbox-wrap input:focus {
+  outline: none;
+}
+
+.searchbox-wrap button {
+  padding-right: 10px;
+  background-color: #fff;
+  -webkit-border-top-right-radius: 18px;
+  -webkit-border-bottom-right-radius: 18px;
+  -moz-border-radius-topright: 18px;
+  -moz-border-radius-bottomright: 18px;
+  border-top-right-radius: 18px;
+  border-bottom-right-radius: 18px;
+  border: none;
+  cursor: pointer;
+  cursor: hand;
+}
+
+[data-theme='dark'] .searchbox-wrap button {
+  background-color: field;
+}
+
+.searchbox-wrap button span {
+  margin-left: 18px;
+  padding: 14px 28px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #fff;
+  background-color: #95adee;
+  border-radius: 14px;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.19);
+}
+
+.searchbox-wrap button span:hover {
+  background-color: #6c7ff2;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.19);
+}
