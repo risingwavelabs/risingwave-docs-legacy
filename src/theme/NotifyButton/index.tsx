@@ -27,7 +27,10 @@ function NotifyButton({ note }: Props) {
     }
 
     postNotification(email, note)
-      .then((res) => console.log(res))
+      .then(() => {
+        toast.success('Congratulation! You have subscribed this feature.');
+        setShown(false);
+      })
       .catch((err) => {
         if (err.response) toast.info(err.response.data.msg ?? 'Something went wrong :(');
         else if (err.request) toast.error('Something went wrong :(');
