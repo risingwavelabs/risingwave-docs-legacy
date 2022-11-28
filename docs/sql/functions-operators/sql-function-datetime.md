@@ -40,6 +40,7 @@ title: Date and time functions and operators
 
 | Operation | Description | Example |
 | ----------- | ----------- | ----------- |
+| *timestamp_value* AT TIME ZONE *zone* → *timestamptz_value* <br /><br /> *timestamptz_value* AT TIME ZONE *zone* → *timestamp_value* | Converts times from timestamp to timestamptz (i.e., timestamp with time zone) or timestamptz to timestamp. Invalid local time during daylight saving forward is not supported. Ambiguous local time during daylight saving backward is interpreted as after the transition. | `'2021-12-31 16:00:00'::timestamp AT TIME ZONE 'us/pacific'` → `2022-01-01 00:00:00+00:00` <br /><br /> `'2022-01-01 00:00:00Z'::timestamptz AT TIME ZONE 'us/pacific'` → `2021-12-31 16:00:00` |
 | timestamptz + *interval_fixed* → timestamptz | Adds a fixed interval to a timestamp with time zone. See note below. | `'2022-03-13 01:00:00Z'::timestamp with time zone + interval '24' hour` → `2022-03-14 01:00:00+00:00` |
 | timestamptz - *interval_fixed* → timestamptz | Subtracts a fixed interval from a timestamp with time zone. See note below. | `'2022-03-14 01:00:00Z'::timestamp with time zone - interval '24' hour` → `2022-03-13 01:00:00+00:00` |
 

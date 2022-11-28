@@ -136,6 +136,11 @@ const sidebars = {
           id: 'tutorials/live-stream-metrics-analysis',
           label: 'Live stream metrics analysis',
         },
+        {
+          type: 'doc',
+          id: 'tutorials/use-risingwave-to-monitor-risingwave-metrics',
+          label: 'Use RisingWave to monitor RisingWave metrics',
+        },
       ]
     },
 
