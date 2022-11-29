@@ -21,7 +21,7 @@ WITH (
 )
 ROW FORMAT data_format 
 [ MESSAGE 'main_message']
-[ ROW SCHEMA LOCATION 'schema_location' | ROW SCHEMA CONFLUENT SCHEMA REGISTRY 'schema_registry_link' ];
+[ ROW SCHEMA LOCATION 'schema_location' | ROW SCHEMA CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ];
 ```
 ### `WITH` parameters
 
@@ -41,7 +41,7 @@ ROW FORMAT data_format
 |data_format| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
 |message | Message for the format. Required for Avro and Protobuf.|
 |schema_location| Location of the schema file. It can be a local location, or a Web location that is in `s3://...` or `https://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
-|schema_registry_link| Confluent Schema Registry link. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a schema registry but not both.|
+|schema_registry_url| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a schema registry but not both.|
 
 
 ## Example
@@ -119,10 +119,13 @@ ROW SCHEMA LOCATION 'location'
 
 Confluent Schema Registry provides a serving layer for your metadata. It provides a RESTful interface for storing and retrieving your schemas.
 
+RisingWave supports reading schemas from a Schema Registry. The latest schema will be retrieved from the specified Schema Registry using the `TopicNameStrategy` strategy at the time the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
+
 To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement. 
+
 ```sql
 ...
-ROW FORMAT CONFLUENT SCHEMA REGISTRY 'schema_registry_link;
+ROW FORMAT CONFLUENT SCHEMA REGISTRY 'schema_registry_url;
 ```
 
 To learn more about Confluent Schema Registry and how to set up a Schema Registry, refer to the [Confluent Schema Registry documentation](https://docs.confluent.io/platform/current/schema-registry/index.html).
