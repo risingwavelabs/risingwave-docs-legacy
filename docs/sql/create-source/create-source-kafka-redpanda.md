@@ -121,9 +121,11 @@ Confluent Schema Registry provides a serving layer for your metadata. It provide
 
 RisingWave supports reading schemas from a Schema Registry. The latest schema will be retrieved from the specified Schema Registry using the `TopicNameStrategy` strategy at the time the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
 
-### Source schema change
+### Schema evolution
 
-As long as the writer schema changes in a compatible way, RisingWave will continue using the original reader schema definition by mapping values from the new to the old schema version. To use a newer version of the writer schema in RisingWave, you need to drop and recreate the source.
+Based on the compatibility type that is configured for the schema registry, some changes are allowed without changing the schema to a different version. In this case, RisingWave will continue using the original schema definition. To use a newer version of the writer schema in RisingWave, you need to drop and recreate the source.
+
+To learn about compatibility types for schema registry and the changes allowed, see [Compatibility Types](https://docs.confluent.io/platform/current/schema-registry/avro.html#compatibility-types).
 
 To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement. 
 
