@@ -307,6 +307,10 @@ table tr:first-child {
 [data-theme="dark"] .scrollHint::before {
 }
 
+.row {
+  width: 100%;
+}
+
 @-webkit-keyframes slide-left {
   0%,
   30% {
