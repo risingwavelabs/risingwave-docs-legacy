@@ -66,12 +66,12 @@ a:hover {
   padding: 18px 16px;
 }
 
-[data-theme='dark'] .form-field {
+[data-theme="dark"] .form-field {
   background: #aaaaaacc;
   color: #fff;
 }
 
-[data-theme='dark'] .form-field::placeholder {
+[data-theme="dark"] .form-field::placeholder {
   color: #fff;
 }
 
@@ -118,7 +118,7 @@ a:hover {
   cursor: hand;
 }
 
-[data-theme='dark'] .searchbox-wrap button {
+[data-theme="dark"] .searchbox-wrap button {
   background-color: field;
 }
 
