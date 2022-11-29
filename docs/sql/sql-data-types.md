@@ -27,7 +27,7 @@ RisingWave supports the following data types:
 
 :::note
 
-Scientific notation (e.g., 1e6, 1.25e5, and 1e-4) is supported in SELECT and INSERT queries.
+Scientific notation (e.g., 1e6, 1.25e5, and 1e-4) is supported in SELECT and INSERT statements.
 
 :::
 
