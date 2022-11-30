@@ -67,7 +67,7 @@ WITH (
    properties.group.id='demo_consumer_name'
 )
 ROW FORMAT AVRO MESSAGE 'main_message'
-ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
+ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
 </TabItem>
 <TabItem value="json" label="JSON" default>
@@ -113,7 +113,7 @@ RisingWave supports reading schemas from a local or Web location, or a Confluent
 
 A Web location can be in `https://...` or `S3://...` format.
 
-For Protobuf, if a schema location is specified, the schema file must be a `FileDescriptorSet`. It can be compiled from a .proto file with a command like this:
+For Protobuf, if a schema location is specified, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
 
 ```shell
 protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.proto
@@ -140,7 +140,6 @@ To learn about compatibility types for Schema Registry and the changes allowed, 
 To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement. 
 
 ```sql
-...
 ROW FORMAT LOCATION CONFLUENT SCHEMA REGISTRY 'schema_registry_url;
 ```
 
