@@ -13,7 +13,7 @@ This guide will go over how to:
 * Connect RisingWave to Superset.
 * Create a dashboard.
 
-## Establish the connection between Superset and RisingWave
+## Prerequisites
 
 ### Install and Start RisingWave
 
@@ -24,6 +24,8 @@ Connect to a streaming source. For details on connecting to streaming sources an
 ### Install Apache Superset
 
 To install Apache Superset, follow the guide on [Installing locally using Docker Compose](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose#installing-superset-locally-using-docker-compose). This tutorial will go over how to install the database driver in Docker so we recommend installing using Docker Compose. 
+
+## Establish the connection between Superset and RisingWave
 
 ### Add the sqlalchemy-risingwave driver
 
