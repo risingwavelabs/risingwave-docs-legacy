@@ -37,10 +37,10 @@ public class RisingWaveConnect {
         props.setProperty("user", "root");
         props.setProperty("password", "secret");
         props.setProperty("ssl", "false");
-        Connection conn = DriverManager.getConnection(url, props)
+        Connection conn = DriverManager.getConnection(url, props);
 
         //If needed, add the code for issuing queries here.
-        
+        conn.close();
     }   
 }
 ```
