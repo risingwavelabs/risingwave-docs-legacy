@@ -152,7 +152,7 @@ RisingWave supports four SASL authentication mechanisms:
 - SASL/GSSAPI
 - SASL/OAUTHBEARER
 
-SSL encryption can be used concurrently with SASL authentication mechanisms. Due to a limitation, RisingWave does not support using SSL with SASL/OAUTHBEARER but supports using SSL with the other three SASL authentication mechanisms.
+SSL encryption can be used concurrently with SASL authentication mechanisms.
 
 To learn about how to enable SSL encryption and SASL authentication in Kafka, including how to generate the keys and certificates, see the [Security Tutorial](https://docs.confluent.io/platform/current/security/security_tutorial.html#overview) from Confluent.
 
@@ -346,6 +346,14 @@ ROW FORMAT JSON;
 ```
 
 ### SASL/OAUTHBEARER
+
+:::caution
+
+ The implementation of SASL/OAUTHBEARER in RisingWave validates only [unsecured client side tokens](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_oauth.html#unsecured-client-side-token-creation-options-for-sasl-oauthbearer), and does not support OpenID Connect (OIDC) authentication. Therefore, it should not be used in production environments.
+
+For the same reason, you only need to specify one OAUTHBEARER parameter: `properties.sasl.oautberer.config`. 
+
+:::
 
 |Parameter| Notes|
 |---|---|
