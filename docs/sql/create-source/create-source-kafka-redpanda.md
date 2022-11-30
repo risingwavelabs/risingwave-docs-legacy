@@ -22,7 +22,7 @@ WITH (
    field_name='value', ...
 )
 ROW FORMAT data_format 
-[ MESSAGE 'main_message' ]
+[ MESSAGE 'message' ]
 [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
 
@@ -40,10 +40,10 @@ ROW FORMAT data_format
 
 |Field | Notes|
 |---|----|
-|data_format| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
-|message | Message for the format. Required for Avro and Protobuf.|
-|schema_location| Location of the schema file. It can be a local location, or a Web location that is in `s3://...` or `https://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
-|schema_registry_url| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a schema registry but not both.|
+|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
+|*message* | Message for the format. Required for Avro and Protobuf.|
+|*location*| Web location of the schema file in `s3://...` or `https://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
+|*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a schema registry but not both.|
 
 
 ## Example
@@ -109,9 +109,7 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.pr
 
 ## Read schemas from locations
 
-RisingWave supports reading schemas from a local or Web location, or a Confluent Schema Registry for Kafka data in Avro or Protobuf format.
-
-A Web location can be in `https://...` or `S3://...` format.
+RisingWave supports reading schemas from a Web location in `https://...` or `S3://...` format, or a Confluent Schema Registry for Kafka data in Avro or Protobuf format.
 
 For Protobuf, if a schema location is specified, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
 

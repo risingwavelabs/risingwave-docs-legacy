@@ -18,7 +18,7 @@ WITH (
    field_name='value', ...
 ) 
 ROW FORMAT data_format
-[ MESSAGE 'main_message' ]
+[ MESSAGE 'message' ]
 [ ROW SCHEMA LOCATION 'location' ]
 ```
 ### `WITH` parameters
@@ -41,8 +41,8 @@ Specify the format of the stream in the `ROW FORMAT` section of your statement.
 |Parameter | Description|
 |---|---|
 |*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
-|MESSAGE |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
-|ROW SCHEMA LOCATION| Location of the schema file. Required when *data_format* is `AVRO` or `PROTOBUF`. It can be a local or remote location of the schema file, or an S3 bucket link that points to the schema file.  Examples:<br/> `file:///risingwave/proto-simple-schema.proto`<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
+|*message* |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
+|*location*| Web location of the schema file in `s3://...` or `https://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 
 
 ## Example
