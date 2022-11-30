@@ -32,7 +32,7 @@ When creating a source, specify the format in the `ROW FORMAT` section of the `C
 
 ### Avro
 
-For data in Avro format, you must specify a message and the schema. You can specify the schema by providing a Web location (`https://<domain_name>/<path>`), or an S3 bucket link that is in either `https://...` or `S3://...` format. For Kafka data in Avro, instead of providing a schema location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](../create-source/create-source-kafka-redpanda.md#read-schemas-from-schema-registry).
+For data in Avro format, you must specify a message and the schema. You can specify the schema by providing a Web location that is in either `https://...` or `S3://...` format. For Kafka data in Avro, instead of providing a schema location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](../create-source/create-source-kafka-redpanda.md#read-schemas-from-schema-registry).
 
 Syntax:
 ```sql
@@ -53,7 +53,7 @@ ROW FORMAT JSON
 
 ### Protobuf
 
-For data in Protobuf format, you must specify a message and the schema. You can specify the schema by providing a Web location (`https://<domain_name>/<path>`), or an S3 bucket link that is in either `https://...` or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Regsitry that RisingWave can get the schema from.
+For data in Protobuf format, you must specify a message and the schema. You can specify the schema by providing a Web location that is in either `https://...` or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Regsitry that RisingWave can get the schema from.
 
 If you specify the schema by providing a location, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
 
