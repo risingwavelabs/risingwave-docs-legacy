@@ -38,7 +38,7 @@ Syntax:
 ```sql
 ROW FORMAT AVRO 
 MESSAGE 'main_message' 
-ROW SCHEMA LOCATION 'location'
+ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ]
 ```
 
 ### JSON
@@ -65,7 +65,7 @@ Syntax:
 ```sql
 ROW FORMAT AVRO 
 MESSAGE 'main_message' 
-ROW SCHEMA LOCATION 'location'
+ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ]
 ```
 
 ### Debezium JSON
