@@ -10,7 +10,7 @@ Use the SQL statement below to connect RisingWave to a CDC source.
 
 :::note
 
-Currently, RisingWave only supports materialized CDC sources with primary keys, and the data format must be Debezium JSON.
+Currently, RisingWave only supports materialized CDC sources with primary keys, and the data format must be Debezium JSON or Maxwell JSON.
 
 :::
 
@@ -25,7 +25,7 @@ WITH (
    connector='kafka',
    field_name='value', ...
 ) 
-ROW FORMAT DEBEZIUM_JSON;
+ROW FORMAT { DEBEZIUM_JSON | MAXWELL };
 ```
 
 ### `WITH` options
