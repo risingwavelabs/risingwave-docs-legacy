@@ -1,7 +1,7 @@
 ---
 id: create-source-kinesis
 title: Kinesis
-description: Connect RisingWave to Kinesis data stream.
+description: Connect RisingWave to Kinesis Data streams.
 slug: /create-source-kinesis
 ---
 
