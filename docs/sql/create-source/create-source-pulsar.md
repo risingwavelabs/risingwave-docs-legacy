@@ -13,6 +13,7 @@ Use the SQL statement below to connect RisingWave to a Pulsa broker.
 ```sql
 CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name (
    column_name data_type [ PRIMARY KEY ], ...
+   [ PRIMARY KEY ( column_name, ... ) ]
 )
 WITH (
    connector='pulsar',

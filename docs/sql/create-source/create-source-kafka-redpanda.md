@@ -14,6 +14,7 @@ To connect to a Kafka or Redpanda broker, you need to use the `CREATE SOURCE` co
 ```sql
 CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name (
    column_name data_type [ PRIMARY KEY ], ...
+   [ PRIMARY KEY ( column_name, ... ) ]
 )
 WITH (
    connector='kafka',
