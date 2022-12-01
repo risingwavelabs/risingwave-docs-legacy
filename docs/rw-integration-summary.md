@@ -11,8 +11,8 @@ We aim to minimize the hassel of integrating RisingWave with your existing data 
 
 |Broker | Source | Sink | Notes|
 |---|---|---|
-|Kafka| Yes| |Supported as both a source and a sink.|
-|Redpanda| Yes|| Supported as both a source and a sink.|
+|Kafka <notifyButton note="integration_kafka" />| Yes| |Supported as both a source and a sink.|
+|Redpanda <notifyButton note="integration_redpanda" />| Yes|| Supported as both a source and a sink.|
 |Apache Pulsar|| Yes | Supported as a source but not a sink.|
 |Kinesis Data Streams| | | Supported as a source but not a sink.|
 
