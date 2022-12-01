@@ -90,6 +90,6 @@ first_half|second_half
 
 :::note
 
-Only the UNION ALL operator is supported for streaming queries.
+UNION and UNION ALL operator are both supported for streaming queries.
 
 :::
