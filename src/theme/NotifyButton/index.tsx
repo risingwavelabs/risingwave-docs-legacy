@@ -7,9 +7,10 @@ import { postNotification } from "../../api/feedback";
 
 type Props = {
   note: string;
+  size?: string;
 };
 
-function NotifyButton({ note }: Props) {
+function NotifyButton({ note, size }: Props) {
   const [shown, setShown] = useState(false);
   const { isDarkTheme } = useColorMode();
   const [dark, setDark] = useState(false);
@@ -43,7 +44,9 @@ function NotifyButton({ note }: Props) {
       isOpen={shown}
       positions={["bottom"]}
       align="start"
-      onClickOutside={() => setShown(false)}
+      onClickOutside={() => {
+        setShown(false);
+      }}
       content={
         <div className="">
           <form className="searchbox-wrap">
@@ -67,8 +70,12 @@ function NotifyButton({ note }: Props) {
         </div>
       }
     >
-      <div className="notify-button" onClick={() => setShown(!shown)}>
-        <NotifyIconDefault />
+      <div
+        data-tooltip="Notify me when it's available."
+        className="notify-button"
+        onClick={() => setShown(!shown)}
+      >
+        <NotifyIconDefault size={size} />
       </div>
     </Popover>
   );
@@ -76,9 +83,18 @@ function NotifyButton({ note }: Props) {
 
 export default NotifyButton;
 
-const NotifyIconDefault = () => {
+type ButtonSize = {
+  size?: string;
+};
+
+const NotifyIconDefault = ({ size }: ButtonSize) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={size ?? "16px"}
+      height={size ?? "16px"}
+    >
       <path fill="none" d="M0 0h24v24H0z" />
       <path
         fill="#95adee"
