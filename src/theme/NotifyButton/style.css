@@ -2,14 +2,6 @@
   width: 100%;
 }
 
-a {
-  color: inherit;
-}
-
-a:hover {
-  color: #95adee;
-}
-
 .container {
   display: flex;
   flex-direction: column;
