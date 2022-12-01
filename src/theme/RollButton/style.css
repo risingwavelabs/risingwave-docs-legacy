@@ -74,7 +74,7 @@
 }
 
 .button-3:hover .circle {
-  width: 100%;
+  width: 10rem;
 }
 
 .button-3:hover .circle .icon.arrow {
