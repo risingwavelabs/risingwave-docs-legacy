@@ -2,6 +2,7 @@
   vertical-align: middle;
   display: inline;
   width: 100%;
+  cursor: pointer;
 }
 
 .container {
