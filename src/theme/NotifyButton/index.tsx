@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { Popover } from 'react-tiny-popover';
-import './style.css';
-import { useColorMode } from '@docusaurus/theme-common';
-import { toast } from 'react-toastify';
-import { postNotification } from '../../api/feedback';
+import React, { useEffect, useState } from "react";
+import { Popover } from "react-tiny-popover";
+import "./style.css";
+import { useColorMode } from "@docusaurus/theme-common";
+import { toast } from "react-toastify";
+import { postNotification } from "../../api/feedback";
 
 type Props = {
   note: string;
@@ -13,7 +13,7 @@ function NotifyButton({ note }: Props) {
   const [shown, setShown] = useState(false);
   const { isDarkTheme } = useColorMode();
   const [dark, setDark] = useState(false);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     setDark(isDarkTheme);
@@ -22,26 +22,26 @@ function NotifyButton({ note }: Props) {
   const getNotify = () => {
     const emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
     if (!emailValid) {
-      toast.error('Email address is invalid!');
+      toast.error("Email address is invalid!");
       return;
     }
 
     postNotification(email, note)
       .then(() => {
-        toast.success('Congratulation! You have subscribed this feature.');
+        toast.success("Congratulation! You have subscribed this feature.");
         setShown(false);
       })
       .catch((err) => {
-        if (err.response) toast.info(err.response.data.msg ?? 'Something went wrong :(');
-        else if (err.request) toast.error('Something went wrong :(');
+        if (err.response) toast.info(err.response.data.msg ?? "Something went wrong :(");
+        else if (err.request) toast.error("Something went wrong :(");
       })
-      .finally(() => setEmail(''));
+      .finally(() => setEmail(""));
   };
 
   return (
     <Popover
       isOpen={shown}
-      positions={['bottom']}
+      positions={["bottom"]}
       align="start"
       onClickOutside={() => setShown(false)}
       content={
@@ -68,7 +68,7 @@ function NotifyButton({ note }: Props) {
       }
     >
       <div className="notify-button" onClick={() => setShown(!shown)}>
-        {dark ? <NotifyIcon /> : <NotifyIconFill />}
+        <NotifyIconDefault />
       </div>
     </Popover>
   );
@@ -76,35 +76,14 @@ function NotifyButton({ note }: Props) {
 
 export default NotifyButton;
 
-const NotifyIcon = () => {
+const NotifyIconDefault = () => {
   return (
-    <svg
-      className="notify"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
       <path fill="none" d="M0 0h24v24H0z" />
       <path
-        d="M5 18h14v-6.969C19 7.148 15.866 4 12 4s-7 3.148-7 7.031V18zm7-16c4.97 0 9 4.043 9 9.031V20H3v-8.969C3 6.043 7.03 2 12 2zM9.5 21h5a2.5 2.5 0 1 1-5 0z"
-        fill="rgba(255,255,255,1)"
+        fill="#95adee"
+        d="M18 10a6 6 0 1 0-12 0v8h12v-8zm2 8.667l.4.533a.5.5 0 0 1-.4.8H4a.5.5 0 0 1-.4-.8l.4-.533V10a8 8 0 1 1 16 0v8.667zM9.5 21h5a2.5 2.5 0 1 1-5 0z"
       />
-    </svg>
-  );
-};
-
-const NotifyIconFill = () => {
-  return (
-    <svg
-      className="notify"
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
-    >
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path d="M5 18h14v-6.969C19 7.148 15.866 4 12 4s-7 3.148-7 7.031V18zm7-16c4.97 0 9 4.043 9 9.031V20H3v-8.969C3 6.043 7.03 2 12 2zM9.5 21h5a2.5 2.5 0 1 1-5 0z" />
     </svg>
   );
 };
