@@ -14,8 +14,17 @@ To ingest data streams, you should [create sources](sql-create-source.md) instea
 ## Syntax
 
 ```sql
-CREATE TABLE table_name (col_name data_type [, col_name data_type ...]);
+CREATE TABLE table_name (
+    col_name data_type [ PRIMARY KEY ], 
+    ...
+    [ PRIMARY KEY (col_name, ... ) ]
+);
 ```
+
+:::note
+For tables with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record.
+:::
+
 
 ## Parameters
 
