@@ -1,7 +1,7 @@
 ---
 id: create-source-kinesis
 title: Kinesis
-description: Connect RisingWave to Kinesis Data Streams
+description: Connect RisingWave to a Kinesis.
 slug: /create-source-kinesis
 ---
 
@@ -31,6 +31,8 @@ ROW FORMAT AVRO | JSON | PROTOBUF MESSAGE 'main_message';
 |aws.credentials.session_token	|None	|String	|The session token associated with the credentials. Temporary Session Credentials.	|False|
 |aws.credentials.role.arn	|None	|String |The Amazon Resource Name (ARN) of the role to assume.		|False|
 |aws.credentials.role.external_id	|None	|String	|The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources.	|False|
+|scan.startup.mode |earliest  |String| The Kinesis consumer starts consuming data from the commit offset. This includes three values: 'earliest', 'latest', and 'sequence_number'.|False|
+|scan.startup.sequence_number |None | int64| Specify the sequence number to start consuming from. | True if `scan.startup.mode` = 'sequence_number', otherwise False| 
 
 ### Formats
 
