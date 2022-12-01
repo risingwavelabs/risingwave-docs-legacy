@@ -5,7 +5,11 @@ description: Create a table.
 slug: /sql-create-table
 ---
 
-Use the `CREATE TABLE` command to create a new table.
+Use the `CREATE TABLE` command to create a new table. Tables consist of fixed columns and insertable rows. Rows can be added using the [`INSERT`](sql-insert.md) command.
+
+:::info
+To ingest data streams, you should [create sources](sql-create-source.md) instead.
+:::
 
 ## Syntax
 

@@ -23,6 +23,11 @@ ROW FORMAT data_format
 [ MESSAGE 'main_message']
 [ ROW SCHEMA LOCATION 'schema_location' | ROW SCHEMA CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ];
 ```
+
+:::note
+RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
+:::
+
 ### `WITH` parameters
 
 |Field|	Default|	Type|	Description|	Required?|

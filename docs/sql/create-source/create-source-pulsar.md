@@ -21,6 +21,11 @@ WITH (
 ROW FORMAT AVRO | JSON | PROTOBUF MESSAGE 'main_message'
 ROW SCHEMA LOCATION 'local_or_remote_location';
 ```
+
+:::note
+RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
+:::
+
 ### `WITH` options
 
 |Field|	Default|	Type|	Description|	Required?|
