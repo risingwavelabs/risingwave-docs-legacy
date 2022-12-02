@@ -9,6 +9,7 @@ This topic describes how to connect RisingWave to a Kafka broker that you want t
 
 To connect to a Kafka or Redpanda broker, you need to use the `CREATE SOURCE` command to create a source for that broker.
 
+
 ## Syntax
 
 ```sql
@@ -18,11 +19,12 @@ CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name (
 )
 WITH (
    connector='kafka',
+   topic='value',
    field_name='value', ...
 )
 ROW FORMAT data_format 
-[ MESSAGE 'main_message']
-[ ROW SCHEMA LOCATION 'schema_location' | ROW SCHEMA CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ];
+[ MESSAGE 'message' ]
+[ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
 
 :::note
@@ -33,23 +35,22 @@ For materialized sources with primary key constraints, if a new data record with
 
 ### `WITH` parameters
 
-|Field|	Default|	Type|	Description|	Required?|
-|---|---|---|---|---|
-|topic|None|String|Address of the Kafka topic. One source can only correspond to one topic.|True
-|properties.bootstrap.server	|None	|String	|Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|True|
-|scan.startup.mode	|earliest	|String	|The Kafka consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`.	|False
-|scan.startup.timestamp_millis	|None	|Int64	|Specify the offset in seconds from a certain point of time.	|False|
-|properties.group.id	|None	|String	|Name of the Kafka consumer group	|True|
-
+|Field|	Required?| 	Notes|
+|---|---|---|
+|topic|Yes|Address of the Kafka topic. One source can only correspond to one topic.|
+|properties.bootstrap.server	|Yes|Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
+|properties.group.id	|Yes|Name of the Kafka consumer group	|
+|scan.startup.mode|No|The Kafka consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`. If not specified, the default value `earliest` will be used.|
+|scan.startup.timestamp_millis|No|Specify the offset in milliseconds from a certain point of time.	|
 
 ### `ROW FORMAT` parameters
 
 |Field | Notes|
 |---|----|
-|data_format| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
-|message | Message for the format. Required for Avro and Protobuf.|
-|schema_location| Location of the schema file. It can be a local location, or a Web location that is in `s3://...` or `https://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
-|schema_registry_url| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a schema registry but not both.|
+|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
+|*message* | Message for the format. Required for Avro and Protobuf.|
+|*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
+|*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a schema registry but not both.|
 
 
 ## Example
@@ -73,7 +74,7 @@ WITH (
    properties.group.id='demo_consumer_name'
 )
 ROW FORMAT AVRO MESSAGE 'main_message'
-ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
+ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
 </TabItem>
 <TabItem value="json" label="JSON" default>
@@ -109,14 +110,19 @@ WITH (
 ROW FORMAT PROTOBUF MESSAGE 'main_message'
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
 ```
+
 </TabItem>
 </Tabs>
 
 ## Read schemas from locations
 
-RisingWave supports reading schemas from a local or Web location, or a Confluent Schema Registry for Kafka data in Avro or Protobuf format.
+RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Avro or Protobuf format.
 
-A Web location can be in `https://...` or `S3://...` format.
+For Protobuf, if a schema location is specified, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
+
+```shell
+protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.proto
+```
 
 To specify a schema location, add this clause to a `CREATE SOURCE` statement.
 ```SQL
@@ -129,21 +135,19 @@ Confluent Schema Registry provides a serving layer for your metadata. It provide
 
 RisingWave supports reading schemas from a Schema Registry. The latest schema will be retrieved from the specified Schema Registry using the `TopicNameStrategy` strategy when the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
 
+To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement. 
+
+```sql
+ROW FORMAT LOCATION CONFLUENT SCHEMA REGISTRY 'schema_registry_url;
+```
+
+To learn more about Confluent Schema Registry and how to set up a Schema Registry, refer to the [Confluent Schema Registry documentation](https://docs.confluent.io/platform/current/schema-registry/index.html).
+
 ### Schema evolution
 
 Based on the compatibility type that is configured for the schema registry, some changes are allowed without changing the schema to a different version. In this case, RisingWave will continue using the original schema definition. To use a newer version of the writer schema in RisingWave, you need to drop and recreate the source.
 
 To learn about compatibility types for Schema Registry and the changes allowed, see [Compatibility Types](https://docs.confluent.io/platform/current/schema-registry/avro.html#compatibility-types).
-
-To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement. 
-
-```sql
-...
-ROW FORMAT CONFLUENT SCHEMA REGISTRY 'schema_registry_url;
-```
-
-To learn more about Confluent Schema Registry and how to set up a Schema Registry, refer to the [Confluent Schema Registry documentation](https://docs.confluent.io/platform/current/schema-registry/index.html).
-
 
 ## TLS/SSL encryption and SASL authentication
 
