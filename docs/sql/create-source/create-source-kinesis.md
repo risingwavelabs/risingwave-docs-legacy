@@ -1,7 +1,7 @@
 ---
 id: create-source-kinesis
 title: Kinesis
-description: Connect RisingWave to a Kinesis.
+description: Connect RisingWave to Kinesis Data Streams
 slug: /create-source-kinesis
 ---
 
@@ -17,9 +17,11 @@ WITH (
    connector='kinesis',
    field_name='value', ...
 ) 
-ROW FORMAT AVRO | JSON | PROTOBUF MESSAGE 'main_message';
+ROW FORMAT data_format
+[ MESSAGE 'message' ]
+[ ROW SCHEMA LOCATION 'location' ]
 ```
-### `WITH` options
+### `WITH` parameters
 
 |Field|	Default|	Type|	Description|	Required?|
 |---|---|---|---|---|
@@ -31,16 +33,19 @@ ROW FORMAT AVRO | JSON | PROTOBUF MESSAGE 'main_message';
 |aws.credentials.session_token	|None	|String	|The session token associated with the credentials. Temporary Session Credentials.	|False|
 |aws.credentials.role.arn	|None	|String |The Amazon Resource Name (ARN) of the role to assume.		|False|
 |aws.credentials.role.external_id	|None	|String	|The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources.	|False|
+|scan.startup.mode |earliest  |String| The startup mode for Kinesis consumer. Supported modes: 'earliest' (starts from the earliest offset), 'latest' (starts from the latest offset), and 'sequence_number' (starts from specific sequence number, specified by 'scan.startup.sequence_number').|False|
+|scan.startup.sequence_number |None | String| Specify the sequence number to start consuming from. | True if `scan.startup.mode` = 'sequence_number', otherwise False| 
 
-### Formats
+### Row format parameters
 
 Specify the format of the stream in the `ROW FORMAT` section of your statement.
 
-|Format|Syntax| Notes|
-|---|---|---|
-|Avro|`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`| Message and schema location are required.|
-|JSON| `ROW FORMAT JSON`| |
-|Protobuf|`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`|Message and schema location are required.|
+|Parameter | Description|
+|---|---|
+|*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
+|*message* |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
+|*location*| Web location of the schema file in  `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
+
 
 ## Example
 Here is an example of connecting RisingWave to Kinesis Data Streams to read data from individual streams.

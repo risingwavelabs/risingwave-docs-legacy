@@ -1,13 +1,8 @@
 .notify-button {
+  vertical-align: middle;
+  display: inline;
   width: 100%;
-}
-
-a {
-  color: inherit;
-}
-
-a:hover {
-  color: #95adee;
+  cursor: pointer;
 }
 
 .container {
@@ -89,6 +84,7 @@ a:hover {
 .searchbox-wrap input {
   flex: 1;
   padding: 20px 16px;
+  background-color: field;
   font-size: 14px;
   -webkit-border-top-left-radius: 18px;
   -webkit-border-bottom-left-radius: 18px;
@@ -98,13 +94,16 @@ a:hover {
   border-bottom-left-radius: 18px;
   box-shadow: none;
   border: none;
+  margin: 0;
 }
 
 .searchbox-wrap input:focus {
   outline: none;
+  background-color: field;
 }
 
 .searchbox-wrap button {
+  margin: 0;
   padding-right: 10px;
   background-color: #fff;
   -webkit-border-top-right-radius: 18px;

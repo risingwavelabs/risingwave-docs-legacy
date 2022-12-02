@@ -32,34 +32,48 @@ When creating a source, specify the format in the `ROW FORMAT` section of the `C
 
 ### Avro
 
-For data in Avro format, you must specify a message and a schema location. Both local and remote locations are supported.
+For data in Avro format, you must specify a message and the schema. You can specify the schema by providing a Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Avro, instead of providing a schema location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](../create-source/create-source-kafka-redpanda.md#read-schemas-from-schema-registry).
 
 Syntax:
-
-`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`
+```sql
+ROW FORMAT AVRO 
+MESSAGE 'main_message' 
+ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ]
+```
 
 ### JSON
 
 RisingWave decodes JSON directly from external sources. When creating a source from streams in JSON, you need to define the schema of the source within the parentheses after the source name, and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
-
-`ROW FORMAT JSON`
+```sql
+ROW FORMAT JSON
+```
 
 
 ### Protobuf
 
-For data in Protobuf format, you must specify a message and a schema location. Both local and Web locations are supported.
+For data in Protobuf format, you must specify a message and the schema. You can specify the schema by providing a Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Regsitry that RisingWave can get the schema from.
+
+If you specify the schema by providing a location, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
+
+```shell
+protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.proto
+```
 
 Syntax:
-
-`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`
+```sql
+ROW FORMAT AVRO 
+MESSAGE 'main_message' 
+ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ]
+```
 
 ### Debezium JSON
 
 When creating a source from streams in Debezium JSON, you need to define the schema of the source within the parentheses after the source name, and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
-
-`ROW FORMAT DEBEZIUM_JSON`
+```sql
+ROW FORMAT DEBEZIUM_JSON
+```
 
