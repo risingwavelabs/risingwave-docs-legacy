@@ -33,14 +33,14 @@ FROM tables
 
 
 
-Suppose that we have a table, "points_scored_current_week", that consists of these columns: `id`, `first_half`, and `second_half`.
+Suppose that we have a table,`points_scored_current_week`, that consists of these columns: `id`, `first_half`, and `second_half`.
 
 |  id   |first_half|second_half|
 |-------|----------|-----------|
 |   1   |   10     |    20     |
 
 
-Next, suppose that we have a second table, "points_scored_last_week", that consists of these columns: `id`, `first_half`, and `second_half`.
+Next, suppose that we have a second table, `points_scored_last_week`, that consists of these columns: `id`, `first_half`, and `second_half`.
 
 |  id   |first_half|second_half|
 |-------|----------|-----------|
