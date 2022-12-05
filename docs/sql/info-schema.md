@@ -8,7 +8,7 @@ The information schema consists of a set of views that contain information about
 
 ## Tables and views
 
-The  `information_schema.tables` view contains all tables and views (including materialized views) defined in the current database. Only those tables and views that the current user has access to are shown.
+The  `information_schema.tables` view contains all tables and views (including materialized views) defined in the current database.
 
 :::note
 
@@ -28,7 +28,7 @@ The `information_schema.tables` view contains the following columns.
 
 ## Columns
 
-The `information_shcema.columns` view contains information about all table columns (or view columns) in the database. System columns (ctid, etc.) are not included. Only those columns that the current user has access to are shown.
+The `information_shcema.columns` view contains information about all table columns (or view columns) in the database. System columns such as `ctid` are not included.
 
 The `information_schema.tables` view contains the following columns.
 
