@@ -242,6 +242,11 @@ const sidebars = {
             id: 'sql/functions-operators/sql-function-array',
             label: 'Array',
           },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-set',
+            label: 'Set',
+          },
         
         ]
         },
