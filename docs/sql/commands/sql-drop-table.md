@@ -12,7 +12,7 @@ Before you can remove a table, you must remove all its dependent objects (indexe
 ## Syntax
 
 ```sql
-DROP TABLE [schema_name.]table_name;
+DROP TABLE [ IF EXISTS ] [schema_name.]table_name;
 ```
 
 
@@ -36,5 +36,5 @@ DROP TABLE taxi_trips;
 This statement removes the "taxi_trips" table in the "rw_schema" schema from the database:
 
 ```sql
-DROP TABLE rw_schema.taxi_trips;
+DROP TABLE IF EXISTS rw_schema.taxi_trips;
 ```
