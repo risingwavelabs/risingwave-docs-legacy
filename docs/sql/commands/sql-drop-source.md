@@ -12,7 +12,7 @@ Before you can remove a source, you must use [DROP MATERIALIZED VIEW](sql-drop-m
 ## Syntax
 
 ```sql
-DROP SOURCE [schema_name.]source_name;
+DROP SOURCE [ IF EXISTS ] [schema_name.]source_name;
 ```
 
 
@@ -37,5 +37,5 @@ DROP SOURCE rw_source;
 This statement removes the "rw_source" source in the "rw_schema" schema from the database:
 
 ```sql
-DROP SOURCE rw_schema.rw_source;
+DROP SOURCE IF EXISTS rw_schema.rw_source;
 ```

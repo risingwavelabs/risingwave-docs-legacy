@@ -12,7 +12,7 @@ Before you can remove a materialzied view, you must remove all its dependent mat
 ## Syntax
 
 ```sql
-DROP MATERIALIZED VIEW [schema_name.]mv_name;
+DROP MATERIALIZED VIEW [ IF EXISTS ] [schema_name.]mv_name;
 ```
 
 
@@ -36,5 +36,5 @@ DROP MATERIALIZED VIEW ad_ctr_5min;
 This statement removes the "ad_ctr_5min" materialized view in the "rw_schema" schema from the database:
 
 ```sql
-DROP MATERIALIZED VIEW rw_schema.ad_ctr_5min;
+DROP MATERIALIZED VIEW IF EXISTS rw_schema.ad_ctr_5min;
 ```
