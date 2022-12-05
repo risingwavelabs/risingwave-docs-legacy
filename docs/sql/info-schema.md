@@ -10,7 +10,7 @@ The information schema consists of a set of views that contain information about
 
 The  `information_schema.tables` view contains all tables and views (including materialized views) defined in the current database. Only those tables and views that the current user has access to are shown.
 
-::: note
+:::note
 
 Materialized views are specific to the information schema of RisingWave. They are not included in the information schema of PostgreSQL.
 
