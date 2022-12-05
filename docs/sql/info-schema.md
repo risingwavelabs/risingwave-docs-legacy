@@ -20,11 +20,11 @@ The `information_schema.tables` view contains the following columns.
 
 |Column|Type|Description|
 |---|---|---|
-|`table_catalog`|varchar|Name of the database that contains the table or view (always the current database) |
-|`table_schema` |varchar| Name of the schema that contains the table or view|
+|`table_catalog`|varchar|Name of the current database |
+|`table_schema` |varchar| Name of the schema that contains the table, view, or materialized view. The default schema for user-created objects is `public`.|
 |`table_name` | varchar|Name of the table, view, or materialized view|
-|`table_type` | varchar| Type of the table, view, or materialized view. `BASE TABLE` for a base table, `VIEW` for a view, `MATERIALIZED VIEW` for a materialized view, `SYSTEM TABLE` for a system table.|
-|`is_insertable_into`|varchar|`YES` if the table or view is insertable into, `NO` if not. Base tables are always insertable into, views and materialized views not necessarily.|
+|`table_type` | varchar| Type of the table, view, or materialized view. `BASE TABLE` for a user-defined table, `VIEW` for a non-materialized view, `MATERIALIZED VIEW` for a materialized view, and `SYSTEM TABLE` for a system table.|
+|`is_insertable_into`|varchar|`YES` if the table or view is insertable into, `NO` if not. User-defined tables are always insertable, while views and materialized views are not necessarily.|
 
 ## Columns
 
@@ -34,8 +34,8 @@ The `information_schema.tables` view contains the following columns.
 
 |Column|Type|Description|
 |---|---|---|
-|`table_catalog`|varchar| Name of the database that contains the table or view (always the current database)|
-|`table_schema` |varchar| Name of the schema containing the table or view|
+|`table_catalog`|varchar| Name of the current database|
+|`table_schema` |varchar| Name of the schema that contains the table, view, or materialized view. The default schema for user-created objects is `public`.|
 |`table_name` | varchar| Name of the table, view, or materialized view|
 |`column_name` | varchar| Name of the column|
 |`ordinal_position`|int32| Ordinal position of the column within the table (count starts at 1)|
@@ -46,10 +46,10 @@ The `information_schema.tables` view contains the following columns.
 
 You can use various information schema views to determine the makeup of tables, views, and materialized views in a database. 
 
-For example, you can query for all of the tables, views, and materialized views in the current database:
+For example, you can query for names and types of all the tables, views, and materialized views in the current database:
 
 ```sql
-SELECT table_name
+SELECT table_name, table_type
 FROM information_schema.tables;
 ```
 
