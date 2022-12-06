@@ -11,13 +11,8 @@ type Props = {
 
 function NotifyButton({ note }: Props) {
   const [shown, setShown] = useState(false);
-  const { isDarkTheme } = useColorMode();
-  const [dark, setDark] = useState(false);
+  const [valid, setValid] = useState(false);
   const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    setDark(isDarkTheme);
-  }, [isDarkTheme]);
 
   const getNotify = () => {
     const emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -45,26 +40,21 @@ function NotifyButton({ note }: Props) {
       align="start"
       onClickOutside={() => setShown(false)}
       content={
-        <div className="">
-          <form className="searchbox-wrap">
-            <input
-              type="email"
-              placeholder="Email address"
-              value={email}
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <button
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                getNotify();
-              }}
-            >
-              <span>Notify me</span>
-            </button>
-          </form>
-        </div>
+        <form className={valid ? "newsletter-form valid" : "newsletter-form"}>
+          <input
+            type="email"
+            placeholder="Email address"
+            value={email}
+            required
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setValid(!!e.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
+            }}
+          />
+          <button type="submit" disabled={!valid} onClick={getNotify}>
+            <span className=""> Notify Me </span>
+          </button>
+        </form>
       }
     >
       <div className="notify-button" onClick={() => setShown(!shown)}>

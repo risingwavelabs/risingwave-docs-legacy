@@ -13,6 +13,7 @@ This version was released on December 1, 2022.
 
 <defaultNotify note="hello" text="defaultNotify"/>
 <lightNotify note="hello" text="lightNotify" block/>
+<notifyButton note="hello" />
 
 ### Main changes
 

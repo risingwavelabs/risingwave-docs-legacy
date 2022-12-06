@@ -13,13 +13,8 @@ type Props = {
 
 function LightNotify({ note, text, block }: Props) {
   const [shown, setShown] = useState(false);
-  const { isDarkTheme } = useColorMode();
-  const [dark, setDark] = useState(false);
   const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    setDark(isDarkTheme);
-  }, [isDarkTheme]);
+  const [valid, setValid] = useState(false);
 
   const getNotify = () => {
     const emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -47,26 +42,21 @@ function LightNotify({ note, text, block }: Props) {
       align="start"
       onClickOutside={() => setShown(false)}
       content={
-        <div className="mt-2 -ml-2">
-          <form className="searchbox-wrap light-shadow">
-            <input
-              type="email"
-              placeholder="Email address"
-              value={email}
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <button
-              type="submit"
-              onClick={(e) => {
-                e.preventDefault();
-                getNotify();
-              }}
-            >
-              <span>Notify me</span>
-            </button>
-          </form>
-        </div>
+        <form className={valid ? "newsletter-form valid mt-2" : "newsletter-form mt-2"}>
+          <input
+            type="email"
+            placeholder="Email address"
+            value={email}
+            required
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setValid(!!e.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
+            }}
+          />
+          <button type="submit" disabled={!valid} onClick={getNotify}>
+            <span className=""> Notify Me </span>
+          </button>
+        </form>
       }
     >
       <button className={block ? "light block" : "light"} onClick={() => setShown(!shown)}>
