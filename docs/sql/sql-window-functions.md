@@ -4,8 +4,6 @@ slug: /sql-window-functions
 title: Window functions
 ---
 
-## What are window functions?
-
 A window function performs a calculation across a set of table rows that are related to the current row, and returns a single result for each row. It is different from an aggregate function, which returns a single result for a group of rows.
 
 A window function includes an OVER clause, which defines a window of rows around the row being evaluated.
@@ -21,8 +19,10 @@ The syntax for a window function:
 
 ```sql
 function_name over_clause
+```
 
-over_clause:
+The syntax for `over_clause`:
+```sql
 OVER ([ PARTITION BY column [ , column.. ]]
 ORDER BY column [ ASC | DESC ] [, col [ ASC | DESC ]]...
 )
@@ -40,7 +40,7 @@ SELECT [column_list]
 WHERE rank <= N [AND conditions];
 ```
 
-In the syntax above, `table_name` is the name of a table, view, or materialized view, and the WHERE clause specify the ranking condition for the top N query.
+In the syntax above, `table_name` is the name of a table, view, or materialized view, and the WHERE clause specifies the ranking condition for the top N query.
 
 
 ```sql
