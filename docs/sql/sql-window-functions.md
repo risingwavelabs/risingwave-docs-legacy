@@ -40,7 +40,7 @@ SELECT [column_list]
 WHERE rank <= N [AND conditions];
 ```
 
-In the syntax above, `table_name` is the name of a table, view, or materialized view, and the WHERE clause specifies the ranking condition for the top N query.
+In the syntax above, `table_name` is the name of a table, view, or materialized view, and the WHERE clause specifies the ranking condition for the top N query. You can specify additional conditions in the WHERE clause. For example, you can narrow down the scope of results by specifying both the upper limit and the lower limit (`rank <= N AND rank > M`) in the clause.
 
 
 ```sql
