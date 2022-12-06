@@ -168,6 +168,7 @@
 
 [data-theme="dark"] .newsletter-form {
   background-color: #181a1b;
+  box-shadow: inset 0 0 0 var(--border-width, 1px) #747986;
 }
 
 .newsletter-form input:-webkit-autofill {
