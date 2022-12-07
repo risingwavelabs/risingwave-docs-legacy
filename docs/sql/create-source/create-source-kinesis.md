@@ -11,7 +11,8 @@ Use the SQL statement below to connect RisingWave to Kinesis Data Streams.
 
 ```sql
 CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name (
-   column_name data_type, ...
+   column_name data_type [ PRIMARY KEY ], ...
+   [ PRIMARY KEY ( column_name, ... ) ]
 ) 
 WITH (
    connector='kinesis',
@@ -21,6 +22,13 @@ ROW FORMAT data_format
 [ MESSAGE 'message' ]
 [ ROW SCHEMA LOCATION 'location' ]
 ```
+
+:::note
+RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
+
+For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
+:::
+
 ### `WITH` parameters
 
 |Field|	Default|	Type|	Description|	Required?|
@@ -33,6 +41,8 @@ ROW FORMAT data_format
 |aws.credentials.session_token	|None	|String	|The session token associated with the credentials. Temporary Session Credentials.	|False|
 |aws.credentials.role.arn	|None	|String |The Amazon Resource Name (ARN) of the role to assume.		|False|
 |aws.credentials.role.external_id	|None	|String	|The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources.	|False|
+|scan.startup.mode |earliest  |String| The startup mode for Kinesis consumer. Supported modes: 'earliest' (starts from the earliest offset), 'latest' (starts from the latest offset), and 'sequence_number' (starts from specific sequence number, specified by 'scan.startup.sequence_number').|False|
+|scan.startup.sequence_number |None | String| Specify the sequence number to start consuming from. | True if `scan.startup.mode` = 'sequence_number', otherwise False| 
 
 ### Row format parameters
 

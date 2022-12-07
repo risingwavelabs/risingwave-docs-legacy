@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Popover } from "react-tiny-popover";
 import "./style.css";
-import { useColorMode } from "@docusaurus/theme-common";
 import { toast } from "react-toastify";
 import { postNotification } from "../../api/feedback";
 
 type Props = {
   note: string;
-  size?: string;
+  text: string;
+  block?: boolean;
 };
 
-function NotifyButton({ note, size }: Props) {
+function LightNotify({ note, text, block }: Props) {
   const [shown, setShown] = useState(false);
-  const [valid, setValid] = useState(false);
   const [email, setEmail] = useState("");
+  const [valid, setValid] = useState(false);
 
   const getNotify = () => {
     const emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -39,11 +39,9 @@ function NotifyButton({ note, size }: Props) {
       isOpen={shown}
       positions={["bottom"]}
       align="start"
-      onClickOutside={() => {
-        setShown(false);
-      }}
+      onClickOutside={() => setShown(false)}
       content={
-        <form className={valid ? "newsletter-form valid" : "newsletter-form"}>
+        <form className={valid ? "newsletter-form valid mt-2" : "newsletter-form mt-2"}>
           <input
             type="email"
             placeholder="Email address"
@@ -60,36 +58,11 @@ function NotifyButton({ note, size }: Props) {
         </form>
       }
     >
-      <div
-        data-tooltip="Notify me when it's available."
-        className="notify-button"
-        onClick={() => setShown(!shown)}
-      >
-        <NotifyIconDefault size={size} />
-      </div>
+      <button className={block ? "light block" : "light"} onClick={() => setShown(!shown)}>
+        {text}
+      </button>
     </Popover>
   );
 }
 
-export default NotifyButton;
-
-type ButtonSize = {
-  size?: string;
-};
-
-const NotifyIconDefault = ({ size }: ButtonSize) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      width={size ?? "16px"}
-      height={size ?? "16px"}
-    >
-      <path fill="none" d="M0 0h24v24H0z" />
-      <path
-        fill="#95adee"
-        d="M18 10a6 6 0 1 0-12 0v8h12v-8zm2 8.667l.4.533a.5.5 0 0 1-.4.8H4a.5.5 0 0 1-.4-.8l.4-.533V10a8 8 0 1 1 16 0v8.667zM9.5 21h5a2.5 2.5 0 1 1-5 0z"
-      />
-    </svg>
-  );
-};
+export default LightNotify;
