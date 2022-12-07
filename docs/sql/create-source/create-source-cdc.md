@@ -5,7 +5,7 @@ description: Connect RisingWave to a CDC source.
 slug: /create-source-cdc
 ---
 
-A change data capture (CDC) tool can record row-level changes (INSERT, UPDATE, and DELETE activities) that apply to tables in a upstream database and stream the data change event records to Kafka topics. You can subscribe to the Kafka topics to receive the data changes.
+> Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time. <br/> CDC tools and platforms can record row-level changes (INSERT, UPDATE, and DELETE activities) that apply to tables in a upstream database and stream the data change event records to event streaming platforms such as Kafka. You can connect RisingWave to the Kafka topics to receive the data changes.
 
 To subscribe to a Kafka topic that reads data from a CDC tool, use the `CREATE SOURCE` command to create a source connector.
 
@@ -42,7 +42,7 @@ ROW FORMAT { DEBEZIUM_JSON | MAXWELL };
 
 ### `ROW FORMAT` parameters
 
-- `DEBEZIUM_JSON` — [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures. Supported data type: JSON.
+- `DEBEZIUM_JSON` — [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures. Supported serialization format: JSON.
 - `MAXWELL` — [Maxwell](https://maxwells-daemon.io) is a log-based CDC tool that can capture row changes from MySQL and write them as JSON to Kafka.
 
 
