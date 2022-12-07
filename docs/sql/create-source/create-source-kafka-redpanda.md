@@ -14,7 +14,8 @@ To connect to a Kafka or Redpanda broker, you need to use the `CREATE SOURCE` co
 
 ```sql
 CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name (
-   column_name data_type, ...
+   column_name data_type [ PRIMARY KEY ], ...
+   [ PRIMARY KEY ( column_name, ... ) ]
 )
 WITH (
    connector='kafka',
@@ -25,6 +26,12 @@ ROW FORMAT data_format
 [ MESSAGE 'message' ]
 [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
+
+:::note
+RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
+
+For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
+:::
 
 ### `WITH` parameters
 

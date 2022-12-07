@@ -151,11 +151,6 @@ const sidebars = {
       collapsed: true,
       items: 
       [ 
-        {type: 'ref', 
-        label: 'Use time window functions', 
-        id: 'sql/functions-operators/sql-function-time-window'
-        },
-
         {
           type: 'doc',
           id: 'guides/nested-columns-arrays',
@@ -262,6 +257,7 @@ const sidebars = {
         
         ]
         },
+     'sql/information-schema',
      'sql/psql-commands',
       ],
     },
