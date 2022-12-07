@@ -205,7 +205,8 @@
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
-=======
+}
+
 .newsletter-form {
   --primary: #6386e6;
   --primary-dark: #2055ee;
