@@ -13,8 +13,8 @@ We aim to minimize the hassel of integrating RisingWave with your existing data 
 |---|---|---|
 |Kafka <notifyButton note="integration_kafka" />| Yes| |Supported as both a source and a sink.|
 |Redpanda <notifyButton note="integration_redpanda" />| Yes|| Supported as both a source and a sink.|
-|Apache Pulsar|| Yes | Supported as a source but not a sink.|
-|Kinesis Data Streams| | | Supported as a source but not a sink.|
+|Apache Pulsar|<defaultNotify note="integration_kinesis" text="Request it"/>| Yes | Supported as a source but not a sink.|
+|Kinesis Data Streams| <lightNotify note="integration_kinesis" text="Request"/>| <lightNotify note="integration_kinesis" text="Notify me"/>| Supported as a source but not a sink.|
 
 ## ETL/ELT and data integration
 
