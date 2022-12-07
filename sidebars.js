@@ -64,7 +64,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Set up a local cluster with',
+          label: 'Set up a cluster with',
           collapsible: true,
           collapsed: false,
           items: [
