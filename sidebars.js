@@ -36,6 +36,12 @@ const sidebars = {
           type: 'doc',
           id: 'architecture',
           label: 'Architecture',
+        },
+
+        {
+          type: 'doc',
+          id: 'key-concepts',
+          label: 'Key concepts and terms',
         }
       ]
     },
