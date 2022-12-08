@@ -12,11 +12,6 @@ This page explains key concepts and terms that are used throughout the documenta
 
 Avro is an open source data serialization system that facilitates data exchange between systems, programming languages, and processing frameworks. Avro has a JSON like data model, but can be represented as either JSON or in a compact binary form. RisingWave can decode Avro data. You need to specify the schema by providing either a schema location or a schema registry URL (only for Kafka topics).
 
-### Batch processing
-
-Batch processing is a method of running high-volume, repetitive data jobs. The batch method allows users to process data when computing resources are available, and with little or no user interaction.
-With batch processing, users collect and store data, and then process the data during an event known as a batch window. Batch processing improves efficiency by setting processing priorities and completing data jobs at a time that makes the most sense.
-With batch processing, the most recent data will only be processed after a batch job is done. If the batch frequency is once per day, the most fresh analysis you can get is for yesterday and earlier.
 
 ### Change data capture (CDC)
 
@@ -46,9 +41,6 @@ When the results of a view expression are stored in a database system, they are 
 
 Object storage, or object-based storage, is a technology that stores data in a hierarchy-free manner. Data in object storage exists as discrete units (objects) at the same level in a storage pool. Each object has a unique, identifying name that an application uses to retrieve it. The benefits of using object storage include massive scalability and cost efficiency.
 
-### OLAP
-
-OLAP (for online analytical processing) is software technology you can use to perform multidimensional analysis at high speeds on large volumes of data from a data warehouse or some other unified, centralized data store.
 
 ### Protobuf
 
