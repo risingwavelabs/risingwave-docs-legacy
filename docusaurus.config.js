@@ -37,6 +37,7 @@ const config = {
             },
             '0.1.14': {
               badge: false,
+              path: "/latest",
               banner: 'none',
             },
           },
