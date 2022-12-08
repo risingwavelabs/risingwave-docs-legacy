@@ -42,7 +42,7 @@ touch ./docker/requirements-local.txt
 echo "sqlalchemy-risingwave" >>/docker/requirements-local.txt
 ```
 
-3. Rebuild your local image with the new driver baked in:
+3. Rebuild your local image with the new driver:
 ```shell
 docker-compose build --force-rm
 ```
