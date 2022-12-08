@@ -69,7 +69,7 @@ The following UI page should appear.
 5. Click **Test Connection** then **Connect**.
 
 <img
-  src={require('../images/supersetdb.png').default}
+  src={require('../docs/images/supersetdb.png').default}
   alt="Add database in Superset"
 />
 
@@ -110,7 +110,7 @@ To create a dashboard based on the table `t`:
 6. Click **Update chart**. The query results will be rendered into a line chart.
 
 <img
-  src={require('../images/superset-dashboard.png').default}
+  src={require('../docs/images/superset-dashboard.png').default}
   alt="Create a dashboard in Superset"
 />
 
