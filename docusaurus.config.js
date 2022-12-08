@@ -7,7 +7,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "RisingWave",
-  tagline: "Get started to RisingWave in 5 minutes",
+  tagline: "Get started with RisingWave",
   url: "https://www.risingwave-labs.com",
   baseUrl: "/",
   trailingSlash: true,
@@ -24,14 +24,20 @@ const config = {
           anonymizeIP: true,
         },
         docs: {
-          lastVersion: "current",
+          lastVersion: "0.1.14",
           sidebarPath: require.resolve("./sidebars.js"),
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "Latest",
-              path: "/latest",
+              label: "Beta",
+              path: "/beta",
+              badge: true,
+              banner: 'unreleased',
+            },
+            '0.1.14': {
+              badge: false,
+              banner: 'none',
             },
           },
           editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
@@ -75,11 +81,11 @@ const config = {
           //   label: 'Docs',
           // },
           // {to: '/blog', label: 'Blog', position: 'left'},
-          // {
-          //   type: 'docsVersionDropdown',
-          //   docsPluginId: 'default',
-          //   position: 'right'
-          // },
+           {
+             type: 'docsVersionDropdown',
+             docsPluginId: 'default',
+             position: 'right'
+           },
           {
             href: "https://github.com/risingwavelabs/risingwave",
             label: "GitHub",
