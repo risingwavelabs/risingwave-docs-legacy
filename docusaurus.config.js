@@ -29,8 +29,8 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "Dev",
-              path: "/dev",
+              label: "Upcoming",
+              path: "/upcoming",
               badge: false,
               banner: 'unreleased',
             },
