@@ -32,12 +32,13 @@ const config = {
             current: {
               label: "Beta",
               path: "/beta",
-              badge: true,
+              badge: false,
               banner: 'unreleased',
+              noIndex?: true
             },
             '0.1.14': {
+              label: "0.1.14 (Latest)",
               badge: false,
-              path: "/latest",
               banner: 'none',
             },
           },
