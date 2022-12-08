@@ -180,6 +180,18 @@ const sidebars = {
           ]
           },
       {
+            type: 'category',
+            label: 'Patterns',
+            items:
+            [
+              {
+                type: 'doc',
+                id: 'sql/syntax/sql-pattern-topn',
+                label: 'Top N by group'
+              }
+            ]
+          }, 
+      {
         type: 'doc',
         id: 'sql/sql-data-types',
         label: 'Data types',
@@ -257,7 +269,6 @@ const sidebars = {
         
         ]
         },
-     'sql/sql-window-functions',
      'sql/information-schema',
      'sql/psql-commands',
       ],
