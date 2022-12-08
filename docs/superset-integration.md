@@ -15,7 +15,7 @@ This guide will go over how to:
 
 ## Prerequisites
 
-### Install and Start RisingWave
+### Install and start RisingWave
 
 To install and start RisingWave locally, see the [Get started](https://www.risingwave.dev/docs/latest/get-started/) guide. We recommend running RisingWave locally for demo purposes.
 
