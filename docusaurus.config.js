@@ -34,7 +34,6 @@ const config = {
               path: "/dev",
               badge: false,
               banner: 'unreleased',
-              noIndex: true
             },
             '0.1.14': {
               label: "0.1.14 (Latest)",
