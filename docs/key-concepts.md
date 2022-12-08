@@ -34,11 +34,11 @@ Debezium is an open-source distributed platform for [change data capture (CDC)](
 
 Indexes in a database are typically created on one or more columns of a table, and they allow the database management system (DBMS) to quickly locate and retrieve the desired data from the table. This can greatly improve the performance of database queries, especially for large tables or tables that are frequently accessed.
 
-### Materialized source
+### Materialized sources
 
 If you want to store all the data from a source into the database, you can create a materialized source. As the data size continues to grow, a materialized source can consume a large amount of storage space. You need to use the `CREATE MATERIALIZED SOURCE` statement to create a materialized source. For details, see [CREATE SOURCE](../docs/sql/commands/sql-create-source.md).
 
-### Materialized view
+### Materialized views
 
 When the results of a view expression are stored in a database system, they are called materialized views. In RisingWave, the result of a materialized view is updated when a relevant event arrives in the system. When you query the result, it is returned instantly as the computation has already been completed when the data comes in. You need to use the [`CREATE MATERIALIZED VIEW`](../docs/sql/commands/sql-create-mv.md) statement to create a materialized source.
 
@@ -62,11 +62,11 @@ Protocol buffers (commonly known as Protobuf) are Google's language-neutral, pla
 
 In stream processing, serialization is the process of converting business objects into bytes so that they can be easily saved or transmitted. The reverse process, recreating the data structure or object from a stream of bytes, is called deserialization. Common data serialization formats include JSON, [Avro](#avro), Protobuf (protocol buffers), and CSV.
 
-### Sink
+### Sinks
 
 A sink is an external target you can send data to. RisingWave now supports exporting data to Kafka topics. Before you can stream data out of RisingWave to a sink, you need to create a sink using the [`CREATE SINK`](../docs/sql/commands/sql-create-sink.md) statement to establish the connection.
 
-### Source
+### Sources
 
 A source is a resource that RisingWave can read data from. Common sources include message brokers such as Apache Kafka and Apache Pulsar and databases such as MySQL and PostgreSQL. To establish a connection to a source, you need to create a source by using the [`CREATE SOURCE`](../docs/sql/commands/sql-create-source.md) statement. There are two types of sources you can create, non-materialized source (default) and [materialized sources](#materialized-source). The difference between these two types of sources is data from a materialized source is stored in RisingWave, while data from a non-materialized source is not stored in RisingWave. For both types of sources, you can create materialized views to allow the results to be stored in RisingWave.
 
@@ -79,7 +79,7 @@ A streaming database is broadly defined as a data store designed to collect, pr
 Stream processing is the processing of data in motion, or in other words, computing on data directly as it is produced or received.
 The majority of data are born as continuous streams: sensor events, user activity on a website, financial trades, and so on – all these data are created as a series of events over time.
 
-### View 
+### Views 
 
 A view is a virtual relation that acts as an actual relation. It is not a part of logical relational model of the database system. Results of a non-materialized view are not stored in the database system. Results of a non-materialized view are calculated every time the view is accessed. Query expression of the view is stored in the databases system. 
 
@@ -89,26 +89,26 @@ A wire protocol is a format for interactions between a database server and its c
 
 ## RisingWave architecture terms
 
-### Cluster
+### Clusters
 
 A group of interconnected nodes and services that acts as a single system running an instance of RisingWave.
 
-### Node
+### Nodes
 
-A logical collection of IT resources that handles specific workloads based on their types. There are three types of nodes in RisingWave: 
+A node is a logical collection of IT resources that handles specific workloads based on their types. There are three types of nodes in RisingWave: 
 - Frontend node
 - Compute node
 - Compactor node
 
-### Frontend node
+### Frontend nodes
 
 A frontend node acts as a stateless proxy that accepts user queries through Postgres protocol. It is responsible for parsing and validating queries, optimizing query execution plans, and delivering query results.
 
-### Compute node
+### Compute nodes
 
 A computer node executes the optimized query plans and handles data ingestion and output.
 
-### Compactor node
+### Compactor nodes
 
 A stateless worker node that compacts data for the storage engine.
 
