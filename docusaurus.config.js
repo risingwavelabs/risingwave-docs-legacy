@@ -24,7 +24,6 @@ const config = {
           anonymizeIP: true,
         },
         docs: {
-          lastVersion: "0.1.14",
           sidebarPath: require.resolve("./sidebars.js"),
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
