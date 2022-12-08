@@ -30,11 +30,11 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "Beta",
-              path: "/beta",
+              label: "Dev",
+              path: "/dev",
               badge: false,
               banner: 'unreleased',
-              noIndex?: true
+              noIndex: true
             },
             '0.1.14': {
               label: "0.1.14 (Latest)",
