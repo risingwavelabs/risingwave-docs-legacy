@@ -56,7 +56,7 @@ If it is your first time starting Superset and the webpage asks for a username a
 The following UI page should appear.
 
 <img
-  src={require('../images/supersetui.png').default}
+  src={require('../docs/images/supersetui.png').default}
   alt="Supset UI"
 />
 
