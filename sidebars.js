@@ -101,10 +101,29 @@ const sidebars = {
         }
       ]
     },
-    {type: 'ref', 
+    {type: 'category', 
     label: 'Deliver data', 
-    id: 'sql/commands/sql-create-sink'
+    collapsible: true,
+    collapsed: true,
+    items: [
+      {
+        type: 'doc',
+        label: 'Overview',
+        id: 'ov-deliver-data'
+      },
+      {
+        type: 'ref',
+        label: 'Create a sink',
+        id: 'sql/commands/sql-create-sink',
+      },
+      {
+        type: 'doc',
+        label: 'Connect RisingWave to Superset',
+        id: 'superset-integration'
+      }
+    ]
     },
+
     {
       type: 'category',
       label: 'Tutorials',
