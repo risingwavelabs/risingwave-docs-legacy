@@ -92,7 +92,7 @@ INSERT INTO t VALUES (1.0, '2022-11-15 15:35:40'),
 
 Export the data from materialized views or tables in RisingWave to Superset:
 
-1. Export materialized view or table data to Superset by selecting **Datasets** then **+ Dataset***.
+1. Select **Datasets** then **+ Dataset***.
 2. In the window that pops up, under **Database**, select RisingWave.
 3. Under **Schema**, select the schema the table or materialized view was created in. By default, they are in the `public` schema.
 4. Select the materialized view or table to be exported to Superset.
@@ -103,10 +103,10 @@ Once the materialized view has been added as a dataset, it can be used to create
 
 To create a dashboard based on the table `t`:
 1. Click the **Create chart** button.
-2. Select table t.
+2. Select table `t`.
 3. Use **Time-series line chart** as the rendering method.
-4. Specify “ts” as the time column.
-5. Specify “AVG(v)” as the metric.
+4. Specify `ts` as the time column.
+5. Specify `AVG(v)` as the metric.
 6. Click **Update chart**. The query results will be rendered into a line chart.
 
 <img
