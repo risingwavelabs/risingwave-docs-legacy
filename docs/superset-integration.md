@@ -1,6 +1,6 @@
 ---
 id: superset-integration
-title: Connect RisingWave to Superset
+title: Superset integration
 description: Connect RisingWave to Apache Superset and create a dashboard.
 slug: /superset-integration
 ---

@@ -118,7 +118,7 @@ const sidebars = {
       },
       {
         type: 'doc',
-        label: 'Connect RisingWave to Superset',
+        label: 'Superset integration',
         id: 'superset-integration'
       }
     ]
