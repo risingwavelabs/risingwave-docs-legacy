@@ -29,13 +29,13 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "Upcoming",
+              label: "main (upcoming release)",
               path: "/upcoming",
               badge: false,
               banner: 'unreleased',
             },
             '0.1.14': {
-              label: "0.1.14 (Latest)",
+              label: "0.1.14 (current release)",
               path: "/latest",
               badge: false,
               banner: 'none',
