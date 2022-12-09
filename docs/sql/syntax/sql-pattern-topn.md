@@ -37,7 +37,8 @@ You must follow the pattern exactly to construct a valid Top-N query.
 |*function_name*| RisingWave supports two functions in Top-N queries: <br />`row_number()`: Returns the number of the current row within its partition, counting from 1.<br />`rank()`: Returns the ordinal (1-based) rank of the current row within its partition, with gaps. All peer rows receive the same rank value. The next row or set of peer rows receives a rank value which increments by the number of peers with the previous rank value.|
 |`PARTITION BY` clause |Specifies the partition columns. Each partition will have a Top-N result.|
 |`ORDER BY` clause|Specifies the ordering columns.|
-|`WHERE rank <= N`|Required for the query to be recognized as a Top-N query. You can specify an additional condition to further narrow down the scope of results. For example: `WHERE rank <=N AND rank > M`|
+|`WHERE rank <= N`|Required for the query to be recognized as a Top-N query.|
+|`[AND conditions]`|You can specify any additional conditions to further filter the results. |
 
 ## Example
 
