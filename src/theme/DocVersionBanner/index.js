@@ -19,11 +19,12 @@ export default function DocVersionBannerWrapper(props) {
           role="alert"
         >
           <div>You are viewing the documentation of an unreleased version of RisingWave.</div>
-
-          <a href={`/docs/current/${location.pathname.split("/").at(-2)}`}>
-            {" "}
-            → Switch to the current public release
-          </a>
+          <b>
+            <a href={`/docs/current/${location.pathname.split("/").at(-2)}`}>
+              {" "}
+              Switch to the current public release →
+            </a>
+          </b>
         </div>
       )}
       {/* <DocVersionBanner {...props} /> */}
