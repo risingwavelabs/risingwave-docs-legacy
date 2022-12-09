@@ -31,11 +31,14 @@ When creating a source, specify the format in the `ROW FORMAT` section of the `C
 
 ### Avro
 
-For data in Avro format, you must specify a message and a schema location. Both local and remote locations are supported.
+For data in Avro format, you must specify a message and a schema location (in the format of `S3://...`, `http://...`, or `https://...`).
 
 Syntax:
 
-`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`
+```sql
+ROW FORMAT AVRO
+MESSAGE 'main_message' 
+ROW SCHEMA LOCATION 'local_or_remote_location'`
 
 ### JSON
 
@@ -43,16 +46,21 @@ RisingWave decodes JSON directly from external sources. When creating a source f
 
 Syntax:
 
-`ROW FORMAT JSON`
-
+```sql
+ROW FORMAT JSON
+```
 
 ### Protobuf
 
-For data in Protobuf format, you must specify a message and a schema location. Both local and Web locations are supported.
+For data in Protobuf format, you must specify a message and a schema location (in the format of `S3://...`, `http://...`, or `https://...`).
 
 Syntax:
 
-`ROW FORMAT AVRO MESSAGE 'main_message' ROW SCHEMA LOCATION 'local_or_remote_location'`
+```sql
+ROW FORMAT PROTOBUF 
+MESSAGE 'main_message' 
+ROW SCHEMA LOCATION 'local_or_remote_location'
+```
 
 ### Debezium JSON
 
