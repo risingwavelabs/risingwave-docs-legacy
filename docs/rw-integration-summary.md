@@ -41,10 +41,8 @@ However, with limited resources, we cannot achieve this goal in a short period o
 
 |System | Source | Sink | Notes|
 |---|---|----|---|
-|MySQL | Yes || |
-|Postgres| Yes| | |
-|AWS Aurora (MySQL)|| | |
-|AWS Aurora (Postgres)|| | |
+|Postgres| In Progress | | |
+|AWS Aurora (Postgres)|| In Progress | |
 
 ### MySQL
 
