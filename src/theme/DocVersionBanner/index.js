@@ -3,11 +3,11 @@ import { useLocation } from "@docusaurus/router";
 
 export default function DocVersionBannerWrapper(props) {
   const location = useLocation();
-  const [shown, setShown] = useState(true);
+  const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    if (location.pathname.includes("current")) {
-      setShown(false);
+    if (!location.pathname.includes("current")) {
+      setShown(true);
     }
   }, [location.pathname]);
 
@@ -18,9 +18,12 @@ export default function DocVersionBannerWrapper(props) {
           className="theme-doc-version-banner alert alert--warning margin-bottom--md"
           role="alert"
         >
-          You are viewing the documentation of an unreleased version of RisingWave.{" "}
+          <div>You are viewing the documentation of an unreleased version of RisingWave.</div>
           <b>
-            <a href="/docs/current/architecture/"> → Switch to the current public release</a>
+            <a href={`/docs/current/${location.pathname.split("/").at(-2)}`}>
+              {" "}
+              → Switch to the current public release
+            </a>
           </b>
         </div>
       )}
