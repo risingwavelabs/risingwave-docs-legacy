@@ -4,7 +4,7 @@ slug: /sql-pattern-topn
 title: Top N by group
 ---
 
-Top-N queries are queries that limit the result to a specific number of rows. Top N queries are helpful to display only the N top-most or the N bottom-most records from a table or view based on a condition.
+Top-N queries return only the N top-most or the N bottom-most records from a table or view based on a condition.
 
 In RisingWave, a Top-N query includes an `OVER` clause and a filter condition. In an `OVER` clause, you can include a `PARTITION BY` clause to fetch top N rows per group.
 
