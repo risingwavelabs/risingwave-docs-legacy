@@ -7,7 +7,7 @@ slug: /superset-integration
 
 # Integration with Apache Superset
 
-Apache Superset is an open-source data exploration and data visualization software application. To connect Superset to an additional database, a Python database driver needs to be installed.
+Apache Superset is an open-source data exploration and data visualization software application. A Python database driver must be installed to connect Superset to an additional database.
 
 This guide will go over how to:
 * Connect RisingWave to Superset.
@@ -23,13 +23,13 @@ Connect to a streaming source. For details on connecting to streaming sources an
 
 ### Install Apache Superset
 
-To install Apache Superset, follow the guide on [Installing locally using Docker Compose](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose#installing-superset-locally-using-docker-compose). This tutorial will go over how to install the database driver in Docker so we recommend installing using Docker Compose. 
+To install Apache Superset, follow the guide on [Installing locally using Docker Compose](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose#installing-superset-locally-using-docker-compose). This tutorial will cover how to install the database driver in Docker, so we recommend installing it using Docker Compose.
 
 ## Establish the connection between Superset and RisingWave
 
 ### Add the sqlalchemy-risingwave driver
 
-Install the `sqlalchemy-risingwave` driver within the Docker containers for Superset. The general steps are outlined in the [Adding new database drivers in Docker](https://superset.apache.org/docs/databases/docker-add-drivers/#2-install-mysql-driver) guide. 
+Install the `sqlalchemy-risingwave` driver within the Docker containers for Superset. The [Adding new database drivers in Docker](https://superset.apache.org/docs/databases/docker-add-drivers/#2-install-mysql-driver) guide outline the general steps. 
 
 1. Create `requirements-local.txt`:
 ```shell
