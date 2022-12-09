@@ -187,7 +187,7 @@ const sidebars = {
               {
                 type: 'doc',
                 id: 'sql/syntax/sql-pattern-topn',
-                label: 'Top N by group'
+                label: 'Top-N by group'
               }
             ]
           }, 
