@@ -48,8 +48,8 @@ However, with limited resources, we cannot achieve this goal in a short period o
 
 |System | Source | Sink | Notes|
 |---|---|----|--|
-|MySQL | Yes || |
-|AWS Aurora (MySQL)|| | |
+|MySQL | In Progress || |
+|AWS Aurora (MySQL)| In Progress | | |
 
 ### Other databases
 
