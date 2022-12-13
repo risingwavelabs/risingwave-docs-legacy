@@ -15,7 +15,6 @@ This guide will go over how to:
 
 ### Install and start RisingWave
 
-To install and start RisingWave locally, see [Run RisingWave](get-started.md#run-risingwave). We recommend running RisingWave locally for demo purposes.
 To install and start RisingWave locally, see the [Get started](..//docs/get-started.md) guide. We recommend running RisingWave locally for demo purposes.
 
 Connect to a streaming source. For details on connecting to streaming sources and what sources are supported with RisingWave, see [CREATE SOURCE](../docs/sql/commands/sql-create-source.md).
@@ -65,7 +64,7 @@ The following UI page should appear.
 2. Click **+ Database**.
 3. In the window that pops up, under **Supported databases**, select **Other** from the dropdown menu.
 4. Fill in the primary credentials with SQLALCHEMY URI as `risingwave://root:@host.docker.internal:4566/dev`.
-5. Select **Test Connection** -> **Connect**.
+5. Select **Test Connection** then **Connect**.
 
 <img
   src={require('../docs/images/supersetdb.png').default}
@@ -93,8 +92,8 @@ INSERT INTO t VALUES (1.0, '2022-11-15 15:35:40'),
 
 Export the data from materialized views or tables in RisingWave to Superset:
 
-1. Select **Datasets** then **+ Dataset***.
-2. In the window that pops up, under **Database**, select RisingWave.
+1. Select **Datasets** then **+ Dataset**.
+2. In the window that pops up, under **Database**, select **RisingWave**.
 3. Under **Schema**, select the schema the table or materialized view was created in. By default, they are in the `public` schema.
 4. Select the materialized view or table to be exported to Superset. In this guide, we'll select `t`.
 
