@@ -15,6 +15,9 @@ import "./styles.css"; // MDX elements are wrapped through the MDX pragma. In so
 import RollButton from "@theme/RollButton";
 import DefaultButton from "@theme/DefaultButton";
 import LightButton from "@theme/LightButton";
+import NotifyButton from "@theme/NotifyButton";
+import DefaultNotify from "@theme/DefaultNotify";
+import LightNotify from "@theme/LightNotify";
 
 function unwrapMDXElement(element) {
   if (element?.props?.mdxType && element?.props?.originalType) {
@@ -68,7 +71,10 @@ const MDXComponents = {
   h5: (props) => <Heading as="h5" {...props} />,
   h6: (props) => <Heading as="h6" {...props} />,
   rollButton: RollButton,
+  notifyButton: NotifyButton,
   defaultButton: DefaultButton,
   lightButton: LightButton,
+  defaultNotify: DefaultNotify,
+  lightNotify: LightNotify,
 };
 export default MDXComponents;
