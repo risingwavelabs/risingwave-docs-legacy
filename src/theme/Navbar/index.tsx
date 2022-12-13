@@ -25,6 +25,7 @@ import Logo from "@theme/Logo";
 import IconMenu from "@theme/IconMenu";
 import IconClose from "@theme/IconClose";
 import styles from "./styles.module.css";
+import { useHistory } from "@docusaurus/router";
 
 // retrocompatible with v1
 const DefaultNavItemPosition = "right";
@@ -195,6 +196,8 @@ export default function Navbar(): JSX.Element {
     navbar: { hideOnScroll, style },
   } = useThemeConfig();
 
+  const history = useHistory();
+
   const mobileSidebar = useMobileSidebar();
   const colorModeToggle = useColorModeToggle();
   const activeDocPlugin = useActivePlugin();
@@ -203,6 +206,16 @@ export default function Navbar(): JSX.Element {
   const items = useNavbarItems();
   const hasSearchNavbarItem = items.some((item) => item.type === "search");
   const { leftItems, rightItems } = splitNavItemsByPosition(items);
+
+  useEffect(() => {
+    const paths = location.pathname.split("/");
+    const version = paths[2];
+
+    if (version === "latest") {
+      const res = window.location.href.replace(version, "current");
+      window.location.replace(res);
+    }
+  }, []);
 
   return (
     <nav
