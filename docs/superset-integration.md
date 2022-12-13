@@ -17,9 +17,9 @@ This guide will go over how to:
 
 ### Install and start RisingWave
 
-To install and start RisingWave locally, see the [Get started](https://www.risingwave.dev/docs/latest/get-started/) guide. We recommend running RisingWave locally for demo purposes.
+To install and start RisingWave locally, see [Run RisingWave](get-started.md#run-risingwave). We recommend running RisingWave locally for demo purposes.
 
-Connect to a streaming source. For details on connecting to streaming sources and what sources are supported with RisingWave, see [CREATE SOURCE](https://www.risingwave.dev/docs/latest/sql-create-source/).
+Connect to a streaming source. For details on connecting to streaming sources and what sources are supported with RisingWave, see [CREATE SOURCE](sql/commands/sql-create-source).
 
 ### Install Apache Superset
 
@@ -31,18 +31,18 @@ To install Apache Superset, follow the guide on [Installing locally using Docker
 
 Install the `sqlalchemy-risingwave` driver within the Docker containers for Superset. The [Adding new database drivers in Docker](https://superset.apache.org/docs/databases/docker-add-drivers/#2-install-mysql-driver) guide outline the general steps. 
 
-1. Create `requirements-local.txt`:
+1. Create `requirements-local.txt`.
 ```shell
 #From the repo root...
 touch ./docker/requirements-local.txt
 ```
 
-2. Add the driver selected in the step above:
+2. Add the driver selected in the step above.
 ```shell
 echo "sqlalchemy-risingwave" >>/docker/requirements-local.txt
 ```
 
-3. Rebuild your local image with the new driver:
+3. Rebuild your local image with the new driver.
 ```shell
 docker-compose build --force-rm
 ```
@@ -80,7 +80,7 @@ The following UI page should appear.
 Instead of using Superset to create materialized views or tables, use RisingWave. For this guide, we will create the table `t` and insert some data.
 
 ```sql
-CREATE TABLE t (v FLOAT, ts TIMESTAMP);
+CREATE TABLE t (v float, ts timestamp);
 INSERT INTO t VALUES (1.0, '2022-11-15 15:35:40'),
 (2.1, '2022-11-15 15:36:24'),
 (3.5, '2022-11-15 15:37:32'),
@@ -92,8 +92,8 @@ INSERT INTO t VALUES (1.0, '2022-11-15 15:35:40'),
 
 Export the data from materialized views or tables in RisingWave to Superset:
 
-1. Select **Datasets** then **+ Dataset***.
-2. In the window that pops up, under **Database**, select RisingWave.
+1. Select **Datasets** then **+ Dataset**.
+2. In the window that pops up, under **Database**, select **RisingWave**.
 3. Under **Schema**, select the schema the table or materialized view was created in. By default, they are in the `public` schema.
 4. Select the materialized view or table to be exported to Superset.
 

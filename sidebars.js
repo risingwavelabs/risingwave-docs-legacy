@@ -103,6 +103,7 @@ const sidebars = {
     },
     {type: 'category', 
     label: 'Deliver data', 
+    link: {type: 'doc', id: 'ov-deliver-data'},
     collapsible: true,
     collapsed: true,
     items: [
