@@ -27,7 +27,7 @@ To install Apache Superset, follow the instructions in [Installing locally using
 
 ### Add the sqlalchemy-risingwave driver
 
-Install the `sqlalchemy-risingwave` driver within the Docker containers for Superset. The [Adding new database drivers in Docker](https://superset.apache.org/docs/databases/docker-add-drivers/#2-install-mysql-driver) guide outlines the general steps. 
+Install the [`sqlalchemy-risingwave`](https://pypi.org/project/sqlalchemy-risingwave/) driver within the Docker containers for Superset. The [Adding new database drivers in Docker](https://superset.apache.org/docs/databases/docker-add-drivers/#2-install-mysql-driver) guide outlines the general steps. 
 
 1. Create `requirements-local.txt`.
 ```shell
