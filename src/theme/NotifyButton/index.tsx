@@ -4,6 +4,7 @@ import "./style.css";
 import { useColorMode } from "@docusaurus/theme-common";
 import { toast } from "react-toastify";
 import { postNotification } from "../../api/feedback";
+import Tooltip from "@mui/material/Tooltip";
 
 type Props = {
   note: string;
@@ -35,39 +36,39 @@ function NotifyButton({ note, size }: Props) {
   };
 
   return (
-    <Popover
-      isOpen={shown}
-      positions={["bottom"]}
-      align="start"
-      onClickOutside={() => {
-        setShown(false);
-      }}
-      content={
-        <form className={valid ? "newsletter-form valid" : "newsletter-form"}>
-          <input
-            type="email"
-            placeholder="Email address"
-            value={email}
-            required
-            onChange={(e) => {
-              setEmail(e.target.value);
-              setValid(!!e.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
-            }}
-          />
-          <button type="submit" disabled={!valid} onClick={getNotify}>
-            <span className=""> Notify Me </span>
-          </button>
-        </form>
-      }
-    >
-      <div
-        data-tooltip="Notify me when it's available."
-        className="notify-button"
-        onClick={() => setShown(!shown)}
+    <>
+      <Popover
+        isOpen={shown}
+        positions={["bottom"]}
+        align="start"
+        onClickOutside={() => {
+          setShown(false);
+        }}
+        content={
+          <form className={valid ? "newsletter-form valid" : "newsletter-form"}>
+            <input
+              type="email"
+              placeholder="Email address"
+              value={email}
+              required
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setValid(!!e.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
+              }}
+            />
+            <button type="submit" disabled={!valid} onClick={getNotify}>
+              <span className=""> Notify Me </span>
+            </button>
+          </form>
+        }
       >
-        <NotifyIconDefault size={size} />
-      </div>
-    </Popover>
+        <Tooltip title="Notify me when it's available" arrow>
+          <div className="notify-button" id="app-title" onClick={() => setShown(!shown)}>
+            <NotifyIconDefault size={size} />
+          </div>
+        </Tooltip>
+      </Popover>
+    </>
   );
 }
 
