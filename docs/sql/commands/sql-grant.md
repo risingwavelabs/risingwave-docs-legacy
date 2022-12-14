@@ -19,7 +19,8 @@ TO <user_name> [WITH GRANT OPTION] [GRANTED BY <user_name>];
 Grant a user materialized view privileges.
 ```sql
 GRANT {SELECT | ALL [PRIVILEGES]} 
-ON MATERIALIZED VIEW <mv_name> 
+ON {MATERIALIZED VIEW <mv_name> [, ...] 
+    | ALL MATERIALIZED VIEWS IN SCHEMA <schema_name> [, ...] }
 TO <user_name> [WITH GRANT OPTION] [GRANTED BY <user_name>];
 ```
 
