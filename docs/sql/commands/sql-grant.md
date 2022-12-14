@@ -12,7 +12,7 @@ Use the `GRANT` command to give a user specific privileges.
 Grant a user database privileges.
 ```sql
 GRANT {{CONNECT | CREATE}[, ...]| ALL [PRIVILEGES]} 
-ON DATABASE <db_name> 
+ON DATABASE <db_name> [, ...]
 TO <user_name> [WITH GRANT OPTION] [GRANTED BY <user_name>];
 ```
 
