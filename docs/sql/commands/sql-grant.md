@@ -27,14 +27,14 @@ TO <user_name> [WITH GRANT OPTION] [GRANTED BY <user_name>];
 Grant a user schema privileges.
 ```sql
 GRANT {CREATE | ALL [PRIVILEGES]} 
-ON SCHEMA <schema_name> 
+ON SCHEMA <schema_name> [, ...]
 TO <user_name> [WITH GRANT OPTION] [GRANTED BY <user_name>];
 ```
 
 Grant a user source privileges.
 ```sql
 GRANT {{SELECT | UPDATE | INSERT | DELETE} [, ...]| ALL [PRIVILEGES]} 
-ON SOURCE <source_name> 
+ON SOURCE <source_name> [, ...]
 TO <user_name> [WITH GRANT OPTION] [GRANTED BY <user_name>];
 ```
 
