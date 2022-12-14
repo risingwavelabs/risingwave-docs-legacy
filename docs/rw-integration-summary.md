@@ -16,7 +16,7 @@ However, with limited resources, we cannot achieve this goal in a short period o
 |Kafka | Yes| Yes| For details, see [Kafka as source](../docs/sql/create-source/create-source-kafka-redpanda.md) and [CREATE SINK](../docs/sql/commands/sql-create-sink.md).|
 |Redpanda | Yes|Yes|For details, see [Kafka as source](../docs/sql/create-source/create-source-kafka-redpanda.md) and [CREATE SINK](../docs/sql/commands/sql-create-sink.md).|
 |Apache Pulsar|Yes | No <notifyButton note="integration_pulsar_sink" />| For details, see [Pulsar as source](../docs/sql/create-source/create-source-pulsar.md).|
-|Kinesis Data Streams|Yes |No<notifyButton note="integration_kinesis_sink" />| For details, see [Kinesis as source](../docs/sql/create-source/create-source-kinesis.md) |
+|Kinesis Data Streams|Yes |No <notifyButton note="integration_kinesis_sink" />| For details, see [Kinesis as source](../docs/sql/create-source/create-source-kinesis.md) |
 
 ## ETL/ELT and data integration
 
