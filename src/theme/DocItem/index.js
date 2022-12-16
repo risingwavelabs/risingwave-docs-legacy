@@ -5,6 +5,7 @@ import DocItemMetadata from "@theme/DocItem/Metadata";
 import DocItemLayout from "@theme/DocItem/Layout";
 import FeedbackForm from "@site/src/components/FeedbackForm";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import styles from "./styles.module.css";
 
 export default function DocItem(props) {
   const { siteConfig } = useDocusaurusContext();
@@ -27,7 +28,7 @@ export default function DocItem(props) {
         </DocItemLayout>
       </HtmlClassNameProvider>
       {metadata.editUrl && (
-        <div className="col margin-top--sm" style={{ padding: "0" }}>
+        <div className="row">
           <FeedbackForm editUrl={metadata.editUrl} requestIssueUrl={requestIssueUrl} />
         </div>
       )}
