@@ -12,40 +12,40 @@ Use the `GRANT` command to give a user specific privileges.
 Grant a user database privileges.
 ```sql
 GRANT {{CONNECT | CREATE}[, ...]| ALL [PRIVILEGES]} 
-ON DATABASE <db_name> [, ...]
-TO <user_name> [WITH GRANT OPTION] [GRANTED BY <user_name>];
+ON DATABASE database_name [, ...]
+TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 ```
 
 Grant a user materialized view privileges.
 ```sql
 GRANT {SELECT | ALL [PRIVILEGES]} 
-ON {MATERIALIZED VIEW <mv_name> [, ...] 
-    | ALL MATERIALIZED VIEWS IN SCHEMA <schema_name> [, ...] }
-TO <user_name> [WITH GRANT OPTION] [GRANTED BY <user_name>];
+ON {MATERIALIZED VIEW mv_name [, ...] 
+    | ALL MATERIALIZED VIEWS IN SCHEMA schema_name [, ...] }
+TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 ```
 
 Grant a user schema privileges.
 ```sql
 GRANT {CREATE | ALL [PRIVILEGES]} 
-ON SCHEMA <schema_name> [, ...]
-TO <user_name> [WITH GRANT OPTION] [GRANTED BY <user_name>];
+ON SCHEMA schema_name [, ...]
+TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 ```
 
 Grant a user source privileges.
 ```sql
 GRANT {{SELECT | UPDATE | INSERT | DELETE} [, ...]| ALL [PRIVILEGES]} 
-ON {SOURCE <source_name> [, ...]
-    | ALL SOURCES IN SCHEMA <schema_name> [, ...] }
-TO <user_name> [WITH GRANT OPTION] [GRANTED BY <user_name>];
+ON {SOURCE source_name [, ...]
+    | ALL SOURCES IN SCHEMA schema_name [, ...] }
+TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 ```
 
 ## Parameters
 |Parameter or clause    | Description|
 |---------------|------------|
-|db_name |A database. |
-|mv_name |A materialized view. |
-|schema_name |A schema. |
-|source_name |A data source. |
+|database_name |The database the user will be granted privilege to. |
+|mv_name |The materialized view the user will be granted privilege to. |
+|schema_name |The schema the user will be granted privilege to. |
+|source_name |The data source the user will be granted privilege to. |
 |user_name |A Postgres user. |
 |**WITH GRANT OPTION** clause |The WITH GRANT OPTION clause allows the grantee to grant the privilege to other users.    |
 |**GRANTED BY** clause |The specified user after the GRANTED BY clause must be the current user. By default, the current user is `root`.   |
