@@ -35,7 +35,7 @@ Connecting to RisingWave and running a query is normally done together. Therefor
 const { Pool } = require('pg')
 
 const credentials = {
- user: 'root',
+   user: 'root',
   host: '127.0.0.1',
   database: 'dev',
   password: 'secret',
