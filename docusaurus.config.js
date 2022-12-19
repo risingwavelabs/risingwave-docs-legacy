@@ -16,7 +16,7 @@ const config = {
   favicon: "img/favicon.ico",
   presets: [
     [
-      "classic",
+      "@docusaurus/preset-classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         gtag: {
@@ -24,6 +24,10 @@ const config = {
           anonymizeIP: true,
         },
         docs: {
+          admonitions: {
+            tag: ":::",
+            keywords: ["note", "tip", "info", "caution", "danger"],
+          },
           sidebarPath: require.resolve("./sidebars.js"),
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,

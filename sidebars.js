@@ -295,6 +295,11 @@ const sidebars = {
       },
       {
         type: 'doc',
+        id: 'dev/nodejs-client-libraries',
+        label: 'Node.js',
+      },
+      {
+        type: 'doc',
         id: 'dev/python-client-libraries',
         label: 'Python',
       },
