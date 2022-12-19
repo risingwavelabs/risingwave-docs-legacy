@@ -85,7 +85,7 @@ const start = async () => {
     const res = await pool.query(createsource);
     console.log(res);
     await pool.end();
-      }
+}
 start().catch(console.error);
 ```
 
