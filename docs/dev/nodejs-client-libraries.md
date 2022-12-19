@@ -146,6 +146,6 @@ const start = async () => {
     const res = await pool.query("SELECT * from counter;");
     console.log(res.rows); // Print out only the actual data.
     await pool.end();
-      }
+}
 start().catch(console.error);
 ```
