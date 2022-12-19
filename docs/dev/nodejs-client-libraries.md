@@ -122,7 +122,7 @@ const start = async () => {
     const res = await pool.query(createmv);
     console.log(res);
     await pool.end();
-      }
+}
 start().catch(console.error);
 ```
 
