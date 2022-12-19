@@ -57,29 +57,22 @@ If a connector or integration is not available yet, you can click the small bell
 |MySQL | In Progress|Not yet Not yet <notifyButton note="mysql_sink" />|
 |AWS Aurora (MySQL)|In Progress| Not yet Not yet <notifyButton note="mysql_sink" /> |
 
-### Other databases
+### OLAP databases
 
 |System | Source| Sink |
 |---|---|----|
-|Clickhouse|Not yet <notifyButton note="clickhouse_source" />| Not yet <notifyButton note="clickhouse_sink" />|
-|Apache Pinot| Not yet <notifyButton note="pinot_source" />| Not yet <notifyButton note="pinot_sink" />|
 |Apache Druid| Not yet <notifyButton note="druid_source" />|Not yet <notifyButton note="druid_sink" /> |
-|Oracle| Not yet <notifyButton note="oracle_source" />|Not yet <notifyButton note="oracle_sink" /> |
-|SQL Server| Not yet <notifyButton note="sql_server_source" />|Not yet <notifyButton note="sql_server_sink" /> |
-|MongoDB| Not yet <notifyButton note="mongodb_source" />|Not yet <notifyButton note="mongodb_sink" /> |
-|Db2| Not yet <notifyButton note="db2_source" />|Not yet <notifyButton note="db2_sink" /> |
-|TiDB| Not yet <notifyButton note="tidb_source" />|Not yet <notifyButton note="tidb_sink" /> |
+|Apache Pinot| Not yet <notifyButton note="pinot_source" />| Not yet <notifyButton note="pinot_sink" />|
+|AWS Redshift| Not yet <notifyButton note="redshift_source" />|Not yet <notifyButton note="redshift_sink" />|
+|Clickhouse|Not yet <notifyButton note="clickhouse_source" />| Not yet <notifyButton note="clickhouse_sink" />|
 |CockroachDB| Not yet <notifyButton note="cockroachdb_source" />|Not yet <notifyButton note="cockroachdb_sink" /> |
-
-
-
-## Data warehouses
-
-|System | Supported |
-|---|---|
-|Snowflake| Not yet <notifyButton note="snowflake" />|
-|AWS Redshift| Not yet <notifyButton note="redshift" />|
-|Google BigQuery| Not yet <notifyButton note="bigquery" />|
+|Db2| Not yet <notifyButton note="db2_source" />|Not yet <notifyButton note="db2_sink" /> |
+|Google BigQuery| Not yet <notifyButton note="bigquery_source" />| Not yet <notifyButton note="bigquery_sink" />|
+|MongoDB| Not yet <notifyButton note="mongodb_source" />|Not yet <notifyButton note="mongodb_sink" /> |
+|Oracle| Not yet <notifyButton note="oracle_source" />|Not yet <notifyButton note="oracle_sink" /> |
+|Snowflake| Not yet <notifyButton note="snowflake_source" />| Not yet <notifyButton note="snowflake_sink" />|
+|SQL Server| Not yet <notifyButton note="sql_server_source" />|Not yet <notifyButton note="sql_server_sink" /> |
+|TiDB| Not yet <notifyButton note="tidb_source" />|Not yet <notifyButton note="tidb_sink" /> |
 
 ## Data lakes
 
@@ -98,7 +91,7 @@ If a connector or integration is not available yet, you can click the small bell
 |Grafana| Yes|
 |Jupyter Notebook| Not yet <notifyButton note="jupyter" />|
 |Looker| Not yet <notifyButton note="looker" /> |
-|Metabase | Not yet <notifyButton note="metabase" />|
+|Metabase | In progress|
 
 
 ## Other systems
