@@ -48,7 +48,7 @@ const start = async () => {
     Replace it with your own query. */
     console.log(res); //Print out the results.
     await pool.end();
-      }
+}
 
 start().catch(console.error);
 ```
