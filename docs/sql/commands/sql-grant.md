@@ -42,11 +42,11 @@ TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 ## Parameters
 |Parameter or clause    | Description|
 |---------------|------------|
-|database_name |The database the user will be granted privilege to. |
-|mv_name |The materialized view the user will be granted privilege to. |
-|schema_name |The schema the user will be granted privilege to. |
-|source_name |The data source the user will be granted privilege to. |
-|user_name |A Postgres user. |
+|*database_name* |The database the user will be granted privilege to. |
+|*mv_name* |The materialized view the user will be granted privilege to. |
+|*schema_name* |The schema the user will be granted privilege to. |
+|*source_name* |The data source the user will be granted privilege to. |
+|*user_name* |A Postgres user. |
 |**WITH GRANT OPTION** clause |The WITH GRANT OPTION clause allows the grantee to grant the privilege to other users.    |
 |**GRANTED BY** clause |The specified user after the GRANTED BY clause must be the current user. By default, the current user is `root`.   |
 
