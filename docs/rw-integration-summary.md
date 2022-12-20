@@ -48,14 +48,14 @@ If a connector or integration is not available yet, you can click the small bell
 |System | Source | Sink |
 |---|---|----|
 |Postgres| In Progress | Not yet <notifyButton note="pg_sink" />|
-|AWS Aurora (Postgres)| In Progress |Not yet <notifyButton note="aurora_sink" />|
+|AWS Aurora (Postgres)| In Progress |Not yet <notifyButton note="aurora_pg_sink" />|
 
 ### MySQL
 
 |System | Source | Sink |
 |---|---|----|
-|MySQL | In Progress|Not yet Not yet <notifyButton note="mysql_sink" />|
-|AWS Aurora (MySQL)|In Progress| Not yet Not yet <notifyButton note="mysql_sink" /> |
+|MySQL | In Progress| Not yet <notifyButton note="mysql_sink" />|
+|AWS Aurora (MySQL)|In Progress| Not yet <notifyButton note="aurora_mysql_sink" /> |
 
 ### OLAP databases
 
