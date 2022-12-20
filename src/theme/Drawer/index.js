@@ -8,7 +8,7 @@ export default function Drawer(props) {
     <div className="svg-box" style={{}}>
       <svg
         className="svg-container"
-        style={{ marginTop: "20px", width: SVG.attrs.width }}
+        style={{ marginTop: "20px", width: SVG.attrs.width, height: SVG.attrs.height }}
         ref={(element) => {
           element && element.appendChild(SVG.toSVG());
         }}

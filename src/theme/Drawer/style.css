@@ -2,12 +2,6 @@ svg.railroad-diagram {
   background-color: hsl(30, 20%, 95%);
 }
 
-svg.railroad-diagram path {
-  stroke-width: 3;
-  stroke: black;
-  fill: rgba(0, 0, 0, 0);
-}
-
 svg.railroad-diagram text {
   font: bold 12px NotoSans;
   text-anchor: middle;
@@ -35,9 +29,27 @@ svg.railroad-diagram g.non-terminal text {
 }
 
 svg.railroad-diagram rect {
-  stroke-width: 3;
+  stroke-width: 2;
   stroke: black;
-  fill: #95adee;
+  fill: #fff;
+}
+
+svg.railroad-diagram path {
+  stroke-width: 2;
+  stroke: black;
+  fill: rgba(0, 0, 0, 0);
+}
+
+[data-theme="dark"] svg.railroad-diagram rect {
+  stroke-width: 2;
+  stroke: #555555;
+  fill: #ebebeb;
+}
+
+[data-theme="dark"] svg.railroad-diagram path {
+  stroke-width: 2;
+  stroke: #474748;
+  fill: rgba(0, 0, 0, 0);
 }
 
 svg.railroad-diagram rect.group-box {
@@ -57,18 +69,7 @@ svg.railroad-diagram g.diagram-text:hover path.diagram-text {
 }
 
 div.svg-box {
+  height: 100%;
   width: 100%;
   overflow: auto;
-}
-
-[data-theme="dark"] svg.railroad-diagram path {
-  stroke-width: 3;
-  stroke: #474748;
-  fill: rgba(0, 0, 0, 0);
-}
-
-[data-theme="dark"] svg.railroad-diagram rect {
-  stroke-width: 3;
-  stroke: gray;
-  fill: #95adee;
 }
