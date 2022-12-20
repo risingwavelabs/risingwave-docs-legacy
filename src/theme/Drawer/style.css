@@ -35,7 +35,7 @@ svg.railroad-diagram rect {
 }
 
 svg.railroad-diagram path {
-  stroke-width: 2;
+  stroke-width: 1.5;
   stroke: black;
   fill: rgba(0, 0, 0, 0);
 }
@@ -47,7 +47,6 @@ svg.railroad-diagram path {
 }
 
 [data-theme="dark"] svg.railroad-diagram path {
-  stroke-width: 2;
   stroke: #474748;
   fill: rgba(0, 0, 0, 0);
 }
