@@ -58,7 +58,7 @@ Then, when adding RisingWave as a database, fill in the **User** and **Password*
 To allow the read-only user to query from a materialized view, use the following SQL query:
 
 ```sql
-GRANT SELECT ON MATERIALIZED VIEW materialized_view TO grafanareader;
+GRANT SELECT ON MATERIALIZED VIEW mv_name TO grafanareader;
 ```
 
 See the GRANT command for more details.
