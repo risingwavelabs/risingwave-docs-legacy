@@ -19,20 +19,20 @@ Connect to streaming sources. For details on connecting to a streaming source an
 
 ### Install and launch Grafana
 
-To install Grafana locally, see the [Install Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/) guide. Next, to start Grafana, follow the ****Sign in to Grafana**** step of the [Build your first dashboard](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/) guide. 
+To install Grafana locally, see the [Install Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/) guide. Next, to start Grafana, follow the **Sign in to Grafana** step of the [Build your first dashboard](https://grafana.com/docs/grafana/latest/getting-started/build-first-dashboard/) guide. 
 
 ## Establish a connection between RisingWave and Grafana
 
 ### Add RisingWave as a data source
 
-1. Go to **Configuration > Data source.***
+1. Go to **Configuration > Data source.**
 2. Click the **Add data source** button.
 3. Select **PostgreSQL** from the list of supported databases.
 4. Fill in the **PostgreSQL Connection** fields like so:
 
 <img
-  src={require('../images/grafana-integration.png').default}
-  alt="Adding RisingWave as a database in Grafana"
+  src={require('./images/grafana-integration.png').default}
+  alt="Connect RW as database"
 />
 
 :::note 
