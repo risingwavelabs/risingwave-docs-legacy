@@ -6,7 +6,7 @@ slug: /key-concepts
 
 This page explains key concepts and terms that are used throughout the documentation.
 
-## RisingWave key concepts
+## Key concepts of RisingWave
 
 ### Sources
 
