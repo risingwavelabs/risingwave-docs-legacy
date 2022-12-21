@@ -119,8 +119,8 @@ const sidebars = {
       },
       {
         type: 'doc',
-        label: 'Superset integration',
-        id: 'superset-integration'
+        label: 'Grafana integration',
+        id: 'grafana-integration'
       }
     ]
     },
