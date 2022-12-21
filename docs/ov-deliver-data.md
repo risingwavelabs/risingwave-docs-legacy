@@ -11,4 +11,4 @@ Before you can write data from RisingWave to Kafka or Redpanda, you need to crea
 
 To learn about the syntax and parameters, see [CREATE SINK](../docs/sql/commands/sql-create-sink.md).
 
-To see how you can connect RisingWave to Superset, see [Integration with Apache Superset](../docs/superset-integration.md).
+To see how you can connect RisingWave to Grafana, see [Integration with Grafana](../docs/grafana-integration.md).
