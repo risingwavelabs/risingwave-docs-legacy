@@ -57,7 +57,7 @@ function HomepageHeader() {
         <SVGText width="250" height="100" fill={dark ? "#fff" : "#000"} />
       </div>
       <ButtonGroup windoWidth={windowSize.width}>
-        <Link to={`/docs/${siteMetadata.siteVersion}/intro`}>
+        <Link to={`/docs/current/intro`}>
           <Button variant="contained" sx={{ width: 200, margin: "5px", textTransform: "none" }}>
             <Translate>Docs</Translate>
           </Button>
