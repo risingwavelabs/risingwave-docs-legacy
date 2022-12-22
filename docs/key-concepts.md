@@ -10,19 +10,19 @@ This page explains key concepts and terms that are used throughout the documenta
 
 ### Sources
 
-A source is a resource that RisingWave can read data from. Common sources include message brokers such as Apache Kafka and Apache Pulsar and databases such as MySQL and PostgreSQL. To establish a connection to a source, you need to create a source by using the [`CREATE SOURCE`](../docs/sql/commands/sql-create-source.md) statement. There are two types of sources you can create, non-materialized source (default) and [materialized sources](#materialized-source). The difference between these two types of sources is data from a materialized source is stored in RisingWave, while data from a non-materialized source is not stored in RisingWave. For both types of sources, you can create materialized views to allow the results to be stored in RisingWave.
+A source is a resource that RisingWave can read data from. Common sources include message brokers such as Apache Kafka and Apache Pulsar and databases such as MySQL and PostgreSQL. You need to create a source by using the [`CREATE SOURCE`](../docs/sql/commands/sql-create-source.md) statement to establish a connection to a source. You can create two types of sources: non-materialized sources (default) and [materialized sources](#materialized-source). The difference between these two types of sources is data from a materialized source is stored in RisingWave, while data from a non-materialized source is not stored in RisingWave. For both types of sources, you can create materialized views to store the results in RisingWave.
 
 ### Materialized sources
 
-If you want to store all the data from a source into the database, you can create a materialized source. As the data size continues to grow, a materialized source can consume a large amount of storage space. You need to use the `CREATE MATERIALIZED SOURCE` statement to create a materialized source. For details, see [CREATE SOURCE](../docs/sql/commands/sql-create-source.md).
+You can create a materialized source if you want to store all the data from a source into the database. As the data grows, a materialized source can consume a large amount of storage space. You must use the `CREATE MATERIALIZED SOURCE` statement to create a materialized source. For details, see [CREATE SOURCE](../docs/sql/commands/sql-create-source.md).
 
 ### Sinks
 
-A sink is an external target you can send data to. RisingWave now supports exporting data to Kafka topics. Before you can stream data out of RisingWave to a sink, you need to create a sink using the [`CREATE SINK`](../docs/sql/commands/sql-create-sink.md) statement to establish the connection.
+A sink is an external target to which you can send data. RisingWave now supports exporting data to Kafka topics. Before you stream data out of RisingWave to a sink, you need to create a sink using the [`CREATE SINK`](../docs/sql/commands/sql-create-sink.md) statement to establish the connection.
 
 ### Views 
 
-A view is a virtual relation that acts as an actual relation. It is not a part of logical relational model of the database system. Results of a non-materialized view are not stored in the database system. Results of a non-materialized view are calculated every time the view is accessed. Query expression of the view is stored in the databases system.
+A view is a virtual relation that acts as an actual relation. It is not a part of the logical relational model of the database system. The query expression of the view is stored in the database system. The results of a non-materialized view are not stored in the database system and are calculated every time the view is accessed.
 
 ### Materialized views
 
@@ -30,7 +30,7 @@ When the results of a view expression are stored in a database system, they are 
 
 ### Indexes
 
-Indexes in a database are typically created on one or more columns of a table, and they allow the database management system (DBMS) to quickly locate and retrieve the desired data from the table. This can greatly improve the performance of database queries, especially for large tables or tables that are frequently accessed.
+Indexes in a database are typically created on one or more columns of a table, allowing the database management system (DBMS) to  locate and retrieve the desired data from the table quickly. This can greatly improve the performance of database queries, especially for large tables or frequently accessed tables.
 
 ### Streaming database
 
@@ -88,7 +88,7 @@ Data persistence means that data survives after the process that generated the d
 
 ### Debezium
 
-Debezium is an open-source distributed platform for [change data capture (CDC)](#change-data-capture-cdc). It converts change records from existing databases into event streams in the form of Kafka topics. Debezium provides a unified format schema for changelog and support serializing messages in JSON and Apache Avro.
+Debezium is an open-source distributed platform for [change data capture (CDC)](#change-data-capture-cdc). It converts change records from existing databases into event streams in the form of Kafka topics. Debezium provides a unified format schema for changelog and supports serializing messages in JSON and Apache Avro.
 
 
 ### Object storage
@@ -111,5 +111,5 @@ In stream processing, serialization is the process of converting business object
 
 ### Wire protocol
 
-A wire protocol is a format for interactions between a database server and its clients. It consists of authentication, sending queries, and receiving responses. The wire protocol for PostgreSQL is called pgwire. If a tool or database is compatible with pgwire, that means that it can work with the majority of PostgreSQL database tools.
+A wire protocol is a format for interactions between a database server and its clients. It consists of authentication, sending queries, and receiving responses. The wire protocol for PostgreSQL is called pgwire. If a tool or database is compatible with pgwire, it can work with most PostgreSQL database tools.
 
