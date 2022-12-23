@@ -26,6 +26,6 @@ Refer to this [tutorial](/tutorials/server-performance-anomaly-detection.md) for
 
 :::note
 
-Scientific notation (e.g., 1e6, 1.25e5, and 1e-4) is supported in SELECT and INSERT statements.
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
 
 :::
