@@ -102,7 +102,7 @@ Protocol buffers (commonly known as Protobuf) are Google's language-neutral, pla
 
 ### `psql`
 
-`psql` is a terminal-based front-end to PostgreSQL and other databases that are compatible with the PostgreSQL [wire protocol](#wire-protocol), such as RisingWave. With `psql`, you can type queries interatively, issue these queries to RisingWave, and see the query results. In addition, `psql` provides a number of meta-commands and various shell-like features to facilitate writing scripts and automating a wide variety of tasks.
+`psql` is a terminal-based front-end to PostgreSQL and other databases that are compatible with the PostgreSQL [wire protocol](#wire-protocol), such as RisingWave. With `psql`, you can type queries interactively, issue these queries to RisingWave, and see the query results. In addition, `psql` provides a number of meta-commands and various shell-like features to facilitate writing scripts and automating a wide variety of tasks.
 
 ### Serialization
 
