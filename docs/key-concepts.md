@@ -34,7 +34,7 @@ Indexes in a database are typically created on one or more columns of a table, a
 
 ### Streaming database
 
-A streaming database is broadly defined as a data store designed to collect, process, and/or enrich streams of data in real-time, typically immediately after the data is created.
+A streaming database is broadly defined as a data store designed to collect, process, and/or enrich streams of data in real time, typically immediately after the data is created.
 
 ### Stream processing
 
@@ -75,12 +75,12 @@ The central metadata management service. It also acts as a failure detector that
 
 ### Avro
 
-Avro is an open source data serialization system that facilitates data exchange between systems, programming languages, and processing frameworks. Avro has a JSON like data model, but can be represented as either JSON or in a compact binary form. RisingWave can decode Avro data. You need to specify the schema by providing either a schema location or a schema registry URL (only for Kafka topics).
+Avro is an open-source data serialization system that facilitates data exchange between systems, programming languages, and processing frameworks. Avro has a JSON-like data model, but it can be represented as either JSON or in a compact binary form. RisingWave can decode Avro data. You need to specify the schema by providing either a schema location or a schema registry URL (only for Kafka topics).
 
 
 ### Change data capture (CDC)
 
-Change data capture refers to the process of identifying and capturing changes as they are made in a database or source application, then delivering those changes in real-time to a downstream process, system, or data lake. RisingWave supports ingesting CDC events in Debezium JSON or [Maxwell](https://maxwells-daemon.io/) JSON from Kafka topics.
+Change data capture refers to the process of identifying and capturing changes as they are made in a database or source application, then delivering those changes in real time to a downstream process, system, or data lake. RisingWave supports ingesting CDC events in Debezium JSON or [Maxwell](https://maxwells-daemon.io/) JSON from Kafka topics.
 
 ### Data persistence
 
@@ -98,11 +98,11 @@ Object storage, or object-based storage, is a technology that stores data in a h
 
 ### Protobuf
 
-Protocol buffers (commonly known as Protobuf) are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data. It is similar to XML, but smaller, faster, and simpler. RisingWave supports decoding Protobuf data. When creating a source that uses Protobuf format, you need to specify the schema. For details about the requirements, see [Protobuf requirements](../docs/sql/commands/sql-create-source.md#protobuf).
+Protocol buffers (commonly known as Protobuf) are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data. It is similar to XML, but smaller, faster, and simpler. RisingWave supports decoding Protobuf data. When creating a source that uses the Protobuf format, you need to specify the schema. For details about the requirements, see [Protobuf requirements](../docs/sql/commands/sql-create-source.md#protobuf).
 
 ### `psql`
 
-`psql` is a terminal-based front-end to PostgreSQL and other databases that are compatible with the PostgreSQL [wire protocol](#wire-protocol), such as RisingWave. With `psql`, you can type queries interatively, issue these query to RisingWave, and see the query results. In addition, `psql` provides a number of meta-commands and various shell-like features to facilitate writing scripts and automating a wide variety of tasks.
+`psql` is a terminal-based front-end to PostgreSQL and other databases that are compatible with the PostgreSQL [wire protocol](#wire-protocol), such as RisingWave. With `psql`, you can type queries interatively, issue these queries to RisingWave, and see the query results. In addition, `psql` provides a number of meta-commands and various shell-like features to facilitate writing scripts and automating a wide variety of tasks.
 
 ### Serialization
 
