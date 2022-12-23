@@ -65,3 +65,10 @@ SELECT * FROM v3;
  585 |  2 | FT7BRdifYMrRgIyI
  601 |  3 | 0zsMbNLxQh9yYtHh
 ```
+
+
+:::note
+
+Scientific notation (e.g., 1e6, 1.25e5, and 1e-4) is supported in SELECT and INSERT statements.
+
+:::

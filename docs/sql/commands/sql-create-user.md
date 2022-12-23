@@ -54,3 +54,10 @@ To switch to the new user account:
 psql -h localhost -p 4566 -d dev -U user1
 ```
 Enter the password to log in.
+
+
+:::note
+
+Scientific notation (e.g., 1e6, 1.25e5, and 1e-4) is supported in SELECT and INSERT statements.
+
+:::

@@ -56,3 +56,9 @@ CREATE TABLE taxi_trips(
     fare STRUCT<initial_charge DOUBLE PRECISION, subsequent_charge DOUBLE PRECISION, surcharge DOUBLE PRECISION, tolls DOUBLE PRECISION>
 );
 ```
+
+:::note
+
+Scientific notation (e.g., 1e6, 1.25e5, and 1e-4) is supported in SELECT and INSERT statements.
+
+:::

@@ -35,3 +35,10 @@ All WITH options are required.
 |kafka.topic|Address of the Kafka topic. One sink can only correspond to one topic.|
 |format	| Data format. Allowed formats: `‘append-only’`, `‘debezium’`.|
 
+
+
+:::note
+
+Scientific notation (e.g., 1e6, 1.25e5, and 1e-4) is supported in SELECT and INSERT statements.
+
+:::

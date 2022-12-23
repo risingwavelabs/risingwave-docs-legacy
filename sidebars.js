@@ -201,7 +201,12 @@ const sidebars = {
         type: 'doc',
         id: 'sql/sql-data-types',
         label: 'Data types',
-      },  
+      },
+      {
+        type: 'doc',
+        id: 'sql/sql-identifiers',
+        label: 'Identifiers',
+      },    
       {
       type: 'category',
       label: 'Functions and operators',

@@ -23,3 +23,9 @@ CREATE MATERIALIZED VIEW mv_name AS select_query;
 
 ## Examples
 Refer to this [tutorial](/tutorials/server-performance-anomaly-detection.md) for examples of creating materialized views based on external sources or existing materialized views.
+
+:::note
+
+Scientific notation (e.g., 1e6, 1.25e5, and 1e-4) is supported in SELECT and INSERT statements.
+
+:::

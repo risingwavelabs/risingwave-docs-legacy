@@ -23,3 +23,9 @@ CREATE SCHEMA [IF NOT EXISTS] [database_name.]schema_name;
 ```sql
 CREATE SCHEMA IF NOT EXISTS schema_1;
 ```
+
+:::note
+
+Scientific notation (e.g., 1e6, 1.25e5, and 1e-4) is supported in SELECT and INSERT statements.
+
+:::
