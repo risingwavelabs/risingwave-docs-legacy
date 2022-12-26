@@ -93,6 +93,46 @@ const sidebars = {
         },
       ]
     },
+
+    {
+      type: 'category',
+      label: 'Tutorials',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: 'doc',
+          id: 'tutorials/real-time-ad-performance-analysis',
+          label: 'Real-time ad performance analysis',
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/server-performance-anomaly-detection',
+          label: 'Server performance anomaly detection',
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/fast-twitter-events-processing',
+          label: 'Fast Twitter events processing',
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/clickstream-analysis',
+          label: 'Clickstream analysis',
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/live-stream-metrics-analysis',
+          label: 'Live stream metrics analysis',
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/use-risingwave-to-monitor-risingwave-metrics',
+          label: 'Use RisingWave to monitor RisingWave metrics',
+        },
+      ]
+    },
+    
     {
       type: 'category', 
       label: 'Data ingestion', 
@@ -151,44 +191,7 @@ const sidebars = {
         label: 'Create a sink',
       },
     ]},
-    {
-      type: 'category',
-      label: 'Tutorials',
-      collapsible: true,
-      collapsed: true,
-      items: [
-        {
-          type: 'doc',
-          id: 'tutorials/real-time-ad-performance-analysis',
-          label: 'Real-time ad performance analysis',
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/server-performance-anomaly-detection',
-          label: 'Server performance anomaly detection',
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/fast-twitter-events-processing',
-          label: 'Fast Twitter events processing',
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/clickstream-analysis',
-          label: 'Clickstream analysis',
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/live-stream-metrics-analysis',
-          label: 'Live stream metrics analysis',
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/use-risingwave-to-monitor-risingwave-metrics',
-          label: 'Use RisingWave to monitor RisingWave metrics',
-        },
-      ]
-    },
+   
 
     {
       type: 'category',
