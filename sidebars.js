@@ -106,48 +106,46 @@ const sidebars = {
           id: 'ingestion-overview',
         },
         {
-          type: 'category',
-          label: 'Connectors',
-          items:
-          [
-            {
-              type: 'doc',
-              label: 'CDC',
-              id: 'sql/create-source/create-source-cdc',
-            },
-            {
-              type: 'doc',
-              label: 'Load generator',
-              id: 'sql/create-source/create-source-datagen',
-            },
-            {
-              type: 'doc',
-              label: 'Kafka',
-              id: 'sql/create-source/create-source-kafka-redpanda',
-            },
-            {
-              type: 'doc',
-              label: 'Redpanda',
-              id: 'sql/create-source/create-source-kafka-redpanda',
-            },
-            {
-              type: 'doc',
-              label: 'Kinesis',
-              id: 'sql/create-source/create-source-kinesis',
-            },
-            {
-              type: 'doc',
-              label: 'Pulsar',
-              id: 'sql/create-source/create-source-pulsar',
-            },
-          ]
-        }
+          type: 'doc',
+          label: 'CDC',
+          id: 'create-source/create-source-cdc',
+        },
+        {
+          type: 'doc',
+          label: 'Kafka',
+          id: 'create-source/create-source-kafka-redpanda',
+        },
+        {
+          type: 'doc',
+          label: 'Redpanda',
+          id: 'create-source/create-source-kafka-redpanda',
+        },
+        {
+          type: 'doc',
+          label: 'Kinesis',
+          id: 'create-source/create-source-kinesis',
+        },
+        {
+          type: 'doc',
+          label: 'Pulsar',
+          id: 'create-source/create-source-pulsar',
+        },
+        {
+          type: 'doc',
+          label: 'Load generator',
+          id: 'create-source/create-source-datagen',
+        },
       ]
     },
-    {type: 'ref', 
-    label: 'Deliver data', 
-    id: 'sql/commands/sql-create-sink'
-    },
+    {type: 'category',
+    label: 'Data delivery',
+    items:[
+      {
+        type: 'doc',
+        id: 'sql/commands/sql-create-sink',
+        label: 'Create a sink',
+      },
+    ]},
     {
       type: 'category',
       label: 'Tutorials',

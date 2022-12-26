@@ -9,7 +9,16 @@ You can ingest data into RisingWave in two ways:
 - Connect to and ingest data from external sources such as databases and message brokers.
 - Insert data to tables directly.
 
-## Ingest data from external sources
+## Ingest data from external data sources
+
+### Materialized and non-materialized source connections
+
+A source is a resource that RisingWave can read data from. You can create two types of source connections in RisingWave: non-materialized and materialized source connections. The difference between these two types of connections is data from a materialized source connection is stored in RisingWave, while data from a non-materialized source is not.
+
+Use the [`CREATE SOURCE`](./sql/commands/sql-create-source.md) command to create a non-materialized source connection. After a non-materialized source connection is created, the input data is not stored in RisingWave. You need to create materialized views ([`CREATE MATERIALIXED VIEW`](./sql/commands/sql-create-mv.md)) to process the data and store the results in RisingWave.
+
+Use the [`CREATE MATERIALIZED SOURCE`](./sql/commands/sql-create-source.md) command to create a materialized source connection. Once a materialized source connection is created, all data from the source is ingested into RisingWave.
+
 
 RisingWave supports ingesting data from these external sources:
 
@@ -20,19 +29,12 @@ RisingWave supports ingesting data from these external sources:
 - [Kinesis](./create-source/create-source-kinesis.md)
 - [Pulsar](./create-source/create-source-pulsar.md)
 
-RisingWave provides connectors for these sources. Click the links above to learn about how to ingest data from the sources.
+For most of the data sources, you can create either a materialized or non-materialized connection.
 
-You need to use the `CREATE SOURCE` command to establish a connection to these sources.
+### Supported data formats
 
-### Data formats
-
-RisingWave supports ingesting data in these formats:
-
-- Protobuf
-- Avro
-- JSON
-
+To learn about the supported data formats, see [Data formats](./sql/commands/sql-create-source.md#supported-formats).
 
 ## Insert data to tables
 
-As a database, RisingWave supports inserting data using the `INSERT INTO VALUES` command. For syntax and parameters, see [INSERT](sql/commands/sql-insert.md).
+As a database, RisingWave supports creating tables ([`CREATE TABLE`](./sql/commands/sql-create-table.md)) and inserting data to tables ([`INSERT`](./sql/commands/sql-insert.md)).
