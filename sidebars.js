@@ -95,39 +95,53 @@ const sidebars = {
     },
     {
       type: 'category', 
-      label: 'Ingest data', 
+      label: 'Data ingestion', 
       collapsible: true,
       collapsed: false,
       items: 
       [
         {
           type: 'doc',
+          label: 'Overview',
           id: 'ingestion-overview',
         },
         {
-          type: 'doc',
-          id: 'sql/commands/sql-create-source',
-        },
-        {
-          type: 'doc',
-          id: 'sql/create-source/create-source-cdc',
-        },
-        {
-          type: 'doc',
-          id: 'sql/create-source/create-source-datagen',
-        },
-        {
-          type: 'doc',
-          id: 'sql/create-source/create-source-kafka-redpanda',
-        },
-        {
-          type: 'doc',
-          id: 'sql/create-source/create-source-kinesis',
-        },
-        {
-          type: 'doc',
-          id: 'sql/create-source/create-source-pulsar',
-        },
+          type: 'category',
+          label: 'Connectors',
+          items:
+          [
+            {
+              type: 'doc',
+              label: 'CDC',
+              id: 'sql/create-source/create-source-cdc',
+            },
+            {
+              type: 'doc',
+              label: 'Load generator',
+              id: 'sql/create-source/create-source-datagen',
+            },
+            {
+              type: 'doc',
+              label: 'Kafka',
+              id: 'sql/create-source/create-source-kafka-redpanda',
+            },
+            {
+              type: 'doc',
+              label: 'Redpanda',
+              id: 'sql/create-source/create-source-kafka-redpanda',
+            },
+            {
+              type: 'doc',
+              label: 'Kinesis',
+              id: 'sql/create-source/create-source-kinesis',
+            },
+            {
+              type: 'doc',
+              label: 'Pulsar',
+              id: 'sql/create-source/create-source-pulsar',
+            },
+          ]
+        }
       ]
     },
     {type: 'ref', 
