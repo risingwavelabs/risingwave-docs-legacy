@@ -142,6 +142,11 @@ const sidebars = {
     items:[
       {
         type: 'doc',
+        id: 'delivery-overview',
+        label: 'Overview',
+      },
+      {
+        type: 'doc',
         id: 'sql/commands/sql-create-sink',
         label: 'Create a sink',
       },
