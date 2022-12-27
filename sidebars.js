@@ -137,7 +137,7 @@ const sidebars = {
       type: 'category', 
       label: 'Data ingestion', 
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: 
       [
         {
