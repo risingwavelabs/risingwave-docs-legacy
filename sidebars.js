@@ -136,6 +136,7 @@ const sidebars = {
     {
       type: 'category', 
       label: 'Data ingestion', 
+      link: {type: 'doc', id: 'ingestion-overview'},
       collapsible: true,
       collapsed: true,
       items: 
@@ -179,6 +180,7 @@ const sidebars = {
     },
     {type: 'category',
     label: 'Data delivery',
+    link: {type: 'doc', id: 'delivery-overview'},
     items:[
       {
         type: 'doc',
