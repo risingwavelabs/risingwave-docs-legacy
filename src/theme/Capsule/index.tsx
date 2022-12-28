@@ -11,10 +11,11 @@ type Props = {
 };
 
 function Capsule({ note }: Props) {
-  const [clicked, setClicked] = useState(localStorage.getItem(note) === "clicked");
+  const [clicked, setClicked] = useState(false);
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    setClicked(localStorage.getItem(note) === "clicked") 
     getLike(note)
       .then((res) => setCount(res.data?.like))
       .catch((err) => console.error(err));
