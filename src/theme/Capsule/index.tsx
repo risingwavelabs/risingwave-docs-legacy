@@ -15,13 +15,27 @@ function Capsule({ note }: Props) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setClicked(localStorage.getItem(note) === "clicked") 
+    if (!note) return;
+
+    setClicked(localStorage.getItem(note) === "clicked");
     getLike(note)
       .then((res) => setCount(res.data?.like))
       .catch((err) => console.error(err));
-  }, [note]);
+  }, []);
+
+  useEffect(() => {
+    if (!note) return;
+    
+    const timer = setTimeout(() => {
+      getLike(note).then((r) => setCount(r.data?.like));
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [clicked]);
 
   const LikeFeature = () => {
+    if (!note) return;
+
     const isClicked = localStorage.getItem(note);
     if (isClicked) {
       setClicked(true);
@@ -32,8 +46,8 @@ function Capsule({ note }: Props) {
     postLike(note)
       .then(() => {
         localStorage.setItem(note, "clicked");
-        getLike(note).then((r) => setCount(r.data?.like));
         setClicked(true);
+        setCount(count + 1);
       })
       .catch((err) => console.error(err));
   };
