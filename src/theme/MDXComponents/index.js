@@ -22,6 +22,7 @@ import Admonition from "@theme/Admonition";
 import Drawer from "@theme/Drawer";
 import Capsule from "@theme/Capsule";
 
+
 function unwrapMDXElement(element) {
   if (element?.props?.mdxType && element?.props?.originalType) {
     const { mdxType, originalType, ...newProps } = element.props;
