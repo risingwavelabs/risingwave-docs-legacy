@@ -14,8 +14,8 @@ To ingest data streams, you should [create sources](sql-create-source.md) instea
 ## Syntax
 
 ```sql
-CREATE TABLE table_name (
-    col_name data_type [ PRIMARY KEY ], 
+CREATE TABLE [ IF NOT EXISTS ] table_name (
+    col_name data_type [ PRIMARY KEY ],
     ...
     [ PRIMARY KEY (col_name, ... ) ]
 );
