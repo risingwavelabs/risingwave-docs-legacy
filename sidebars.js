@@ -146,6 +146,19 @@ const sidebars = {
 
     {
       type: 'category',
+      label: 'Integrations',
+      items:
+      [
+        {
+        type: 'doc',
+        label: 'Grafana',
+        id: 'guides/grafana-integration'
+        },
+      ]
+    },
+
+    {
+      type: 'category',
       label: 'How-to guides',
       collapsible: true,
       collapsed: true,

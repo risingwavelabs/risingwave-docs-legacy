@@ -1,7 +1,7 @@
 ---
 id: grafana-integration
-title: Grafana integration
-description: Connect RisingWave to Grafana.
+title: Visualize RisingWave data in Grafana
+description: Visualize RisingWave data in Grafana
 slug: /grafana-integration
 ---
 
@@ -13,7 +13,7 @@ This guide will go over how to add RisingWave as a data source in Grafana.
 
 ### Install and launch RisingWave
 
-To install and start RisingWave locally, see the [Get started](..//docs/get-started.md) guide. We recommend running RisingWave locally for testing purposes. 
+To install and start RisingWave locally, see the [Get started](../docs/get-started.md) guide. We recommend running RisingWave locally for testing purposes. 
 
 Connect to streaming sources. For details on connecting to a streaming source and what connectors are supported with RisingWave, see [CREATE SOURCE](../docs/sql/commands/sql-create-source.md).
 
@@ -31,7 +31,7 @@ To install Grafana locally, see the [Install Grafana](https://grafana.com/docs/g
 4. Fill in the **PostgreSQL Connection** fields like so:
 
 <img
-  src={require('./images/grafana-integration.png').default}
+  src={require('../images/grafana-integration.png').default}
   alt="Connect to RW database in Grafana"
 />
 
