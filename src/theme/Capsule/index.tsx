@@ -25,10 +25,10 @@ function Capsule({ note }: Props) {
 
   useEffect(() => {
     if (!note) return;
-    
+
     const timer = setTimeout(() => {
       getLike(note).then((r) => setCount(r.data?.like));
-    }, 2000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, [clicked]);
