@@ -243,9 +243,32 @@ const sidebars = {
             ]
           }, 
       {
-        type: 'doc',
-        id: 'sql/sql-data-types',
+        type: 'category',
         label: 'Data types',
+        items:
+        [
+          {
+            type: 'doc',
+            id: 'sql/sql-data-types',
+            label: 'Overview',
+          },
+          {
+            type: 'doc',
+            id: 'sql/data-types/data-type-casting',
+            label: 'Casting',
+          },
+          {
+            type: 'doc',
+            id: 'sql/data-types/data-type-array',
+            label: 'Array',
+          },
+          {
+            type: 'doc',
+            id: 'sql/data-types/data-type-struct',
+            label: 'Struct',
+          },
+
+        ]
       },  
       {
       type: 'category',
