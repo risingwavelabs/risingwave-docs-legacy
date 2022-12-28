@@ -81,6 +81,6 @@ const MDXComponents = {
   lightNotify: LightNotify,
   admonition: Admonition,
   drawer: Drawer,
-  capsule: Capsule,
+  voteNotify: Capsule,
 };
 export default MDXComponents;

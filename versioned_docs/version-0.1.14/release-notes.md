@@ -9,7 +9,7 @@ This page summarizes changes in each version of RisingWave, including new featur
 
 ## v0.1.14
 
-<capsule feature="te2st-33" />
+<voteNotify note="te2st-33" />
 
 This version was released on December 1, 2022.
 

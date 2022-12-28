@@ -4,32 +4,37 @@ import styles from "./styles.module.css";
 import Tooltip from "@mui/material/Tooltip";
 import Divider from "@mui/material/Divider";
 import { getLike, postLike } from "../../api/feedback";
+import { toast } from "react-toastify";
 
 type Props = {
-  feature: string;
+  note: string;
 };
 
-function Capsule({ feature }: Props) {
-  const [clicked, setClicked] = useState(localStorage.getItem(feature) === "clicked");
+function Capsule({ note }: Props) {
+  const [clicked, setClicked] = useState(localStorage.getItem(note) === "clicked");
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    getLike(feature).then((res) => setCount(res.data?.like));
-  }, [feature]);
+    getLike(note)
+      .then((res) => setCount(res.data?.like))
+      .catch((err) => console.error(err));
+  }, [note]);
 
   const LikeFeature = () => {
-    const isClicked = localStorage.getItem(feature);
+    const isClicked = localStorage.getItem(note);
     if (isClicked) {
       setClicked(true);
-      getLike(feature).then((res) => setCount(res.data?.like));
+      getLike(note).then((res) => setCount(res.data?.like));
       return;
     }
 
-    postLike(feature).then(() => {
-      localStorage.setItem(feature, "clicked");
-      getLike(feature).then((r) => setCount(r.data?.like));
-      setClicked(true);
-    });
+    postLike(note)
+      .then(() => {
+        localStorage.setItem(note, "clicked");
+        getLike(note).then((r) => setCount(r.data?.like));
+        setClicked(true);
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -48,7 +53,7 @@ function Capsule({ feature }: Props) {
       </Tooltip>
       <Divider light orientation="vertical" flexItem variant="middle" />
       <div className={styles.capsuleRight}>
-        <NotifyButton note="test" size="16px" />
+        <NotifyButton note={note} size="16px" />
       </div>
     </div>
   );
