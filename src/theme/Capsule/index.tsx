@@ -11,19 +11,12 @@ function Capsule({}: Props) {
     <div className={styles.capsule}>
       <Tooltip title="I need this feature" arrow>
         <div className={styles.capsuleLeft}>
-          <ThumbsUpIcon size="18px" />
+          <ThumbsUpIcon size="16px" />
         </div>
       </Tooltip>
-      <Divider
-        sx={{
-          bgcolor: "#95adee",
-        }}
-        orientation="vertical"
-        flexItem
-        variant="middle"
-      />
+      <Divider light orientation="vertical" flexItem variant="middle" />
       <div className={styles.capsuleRight}>
-        <NotifyButton note="test" size="18px" />
+        <NotifyButton note="test" size="16px" />
       </div>
     </div>
   );

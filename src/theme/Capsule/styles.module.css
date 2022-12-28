@@ -1,34 +1,35 @@
 .capsule {
-  height: 36px;
-  width: 80px;
-  padding-left: 8px;
-  padding-right: 8px;
-  display: inline-flex;
+  height: 32px;
+  width: 96px;
+  padding: 0 4px;
   margin: 0 auto;
+  display: inline-flex;
   background: transparent;
   border-radius: 80px;
-  border: 1px solid #95adee;
+  border: 1px solid #bec3c9;
   align-items: center;
   justify-content: space-between;
 }
 
 .capsuleLeft {
   width: 50%;
-  display: inline;
-  justify-content: center;
-  padding: 8px;
-  padding-top: 14px;
-  padding-left: 6px;
-  vertical-align: middle;
+  display: flex;
+  padding: 0 8px;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 
 .capsuleRight {
   width: 50%;
   display: flex;
-  justify-content: center;
+  padding: 0 8px;
   align-items: center;
-  padding: 8px;
-  padding-top: 14px;
+  justify-content: center;
+}
+
+.capsuleRight div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
