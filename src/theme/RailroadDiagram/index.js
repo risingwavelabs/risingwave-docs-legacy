@@ -24,7 +24,7 @@ export const Options = {
   DIAGRAM_CLASS: "railroad-diagram", // class to put on the root <svg>
   STROKE_ODD_PIXEL_LENGTH: true, // is the stroke width an odd (1px, 3px, etc) pixel length?
   INTERNAL_ALIGNMENT: "center", // how to align items when they have extra space. left/right/center
-  CHAR_WIDTH: 8.5, // width of each monospace character. play until you find the right value for your font
+  CHAR_WIDTH: 6.5, // width of each monospace character. play until you find the right value for your font
   COMMENT_CHAR_WIDTH: 7, // comments are in smaller text by default
 };
 
