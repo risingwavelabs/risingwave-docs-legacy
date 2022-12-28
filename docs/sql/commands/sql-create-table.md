@@ -49,7 +49,7 @@ CREATE TABLE taxi_trips(
 The statement below creates a table that includes nested tables.
 
 ```sql
-CREATE TABLE taxi_trips(
+CREATE TABLE IF NOT EXISTS taxi_trips(
     id VARCHAR,
     distance DOUBLE PRECISION,
     duration DOUBLE PRECISION,

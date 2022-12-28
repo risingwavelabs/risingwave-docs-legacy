@@ -197,6 +197,19 @@ const sidebars = {
 
     {
       type: 'category',
+      label: 'Integrations',
+      items:
+      [
+        {
+        type: 'doc',
+        label: 'Grafana',
+        id: 'guides/grafana-integration'
+        },
+      ]
+    },
+
+    {
+      type: 'category',
       label: 'How-to guides',
       collapsible: true,
       collapsed: true,
@@ -206,6 +219,10 @@ const sidebars = {
           type: 'doc',
           id: 'guides/nested-columns-arrays',
           label: 'Specify nested columns and arrays',
+        },
+        {
+          type: 'doc',
+          id: 'guides/install-psql-without-postgresql',
         },
         
       ]
