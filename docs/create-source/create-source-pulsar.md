@@ -1,6 +1,6 @@
 ---
 id: create-source-pulsar
-title: Pulsar
+title: Ingest data from Pursar
 description: Connect RisingWave to a Pulsa broker.
 slug: /create-source-pulsar
 ---
