@@ -22,7 +22,6 @@ const sidebars = {
     {
       type: 'category',
       label: 'Introduction',
-      link: {type: 'doc', id: 'intro'},
       collapsible: true,
       collapsed: false,
       items: [
@@ -49,7 +48,6 @@ const sidebars = {
     {
       type: 'category',
       label: 'Get started',
-      link: {type: 'doc', id: 'get-started'},
       collapsible: true,
       collapsed: true,
       items: [
@@ -136,7 +134,6 @@ const sidebars = {
     {
       type: 'category', 
       label: 'Data ingestion', 
-      link: {type: 'doc', id: 'ingestion-overview'},
       collapsible: true,
       collapsed: true,
       items: 
@@ -180,7 +177,6 @@ const sidebars = {
     },
     {type: 'category',
     label: 'Data delivery',
-    link: {type: 'doc', id: 'delivery-overview'},
     items:[
       {
         type: 'doc',
