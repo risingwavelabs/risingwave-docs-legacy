@@ -1,6 +1,5 @@
 .capsule {
   height: 32px;
-  width: 96px;
   padding: 0 4px;
   margin: 0 auto;
   display: inline-flex;
@@ -12,7 +11,7 @@
 }
 
 .capsuleLeft {
-  width: 50%;
+  width: 100%;
   display: flex;
   padding: 0 8px;
   align-items: center;
@@ -21,7 +20,7 @@
 }
 
 .capsuleRight {
-  width: 50%;
+  width: 100%;
   display: flex;
   padding: 0 8px;
   align-items: center;
@@ -32,4 +31,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.count {
+  font-size: 14px;
+  padding-left: 4px;
+  padding-top: 1px;
 }

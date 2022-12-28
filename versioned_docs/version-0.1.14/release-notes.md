@@ -9,9 +9,9 @@ This page summarizes changes in each version of RisingWave, including new featur
 
 ## v0.1.14
 
-<capsule />
+<capsule feature="test-32223" />
 
-This version was released on December 1, 2022. <notifyButton note="test" />
+This version was released on December 1, 2022.
 
 ### Main changes
 

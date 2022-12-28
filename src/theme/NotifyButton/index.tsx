@@ -36,39 +36,37 @@ function NotifyButton({ note, size }: Props) {
   };
 
   return (
-    <>
-      <Popover
-        isOpen={shown}
-        positions={["bottom"]}
-        align="start"
-        onClickOutside={() => {
-          setShown(false);
-        }}
-        content={
-          <form className={valid ? "newsletter-form valid" : "newsletter-form"}>
-            <input
-              type="email"
-              placeholder="Email address"
-              value={email}
-              required
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setValid(!!e.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
-              }}
-            />
-            <button type="submit" disabled={!valid} onClick={getNotify}>
-              <span className=""> Notify Me </span>
-            </button>
-          </form>
-        }
-      >
-        <Tooltip title="Notify me when it's available" arrow>
-          <div className="notify-button" id="app-title" onClick={() => setShown(!shown)}>
-            <NotifyIconDefault size={size} />
-          </div>
-        </Tooltip>
-      </Popover>
-    </>
+    <Popover
+      isOpen={shown}
+      positions={["bottom"]}
+      align="start"
+      onClickOutside={() => {
+        setShown(false);
+      }}
+      content={
+        <form className={valid ? "newsletter-form valid" : "newsletter-form"}>
+          <input
+            type="email"
+            placeholder="Email address"
+            value={email}
+            required
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setValid(!!e.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
+            }}
+          />
+          <button type="submit" disabled={!valid} onClick={getNotify}>
+            <span className=""> Notify Me </span>
+          </button>
+        </form>
+      }
+    >
+      <Tooltip title="Notify me when it's available" arrow>
+        <div className="notify-button" id="app-title" onClick={() => setShown(!shown)}>
+          <NotifyIconDefault size={size} />
+        </div>
+      </Tooltip>
+    </Popover>
   );
 }
 
