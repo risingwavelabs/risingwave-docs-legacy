@@ -11,9 +11,9 @@ CDC tools and platforms can record row-level changes (INSERT, UPDATE, and DELETE
 
 To ingest CDC data from MySQL or PostgreSQL into RisingWave, you can use a CDC tool to convert data change streams in databases to Kafka topics, and then use the native Kafka connector in RisingWave to consume data from the Kafka topics.
 
-For the Kafka connector to ingest CDC data, you must create a materialized source connection (`CREATE MATERIALIZED SOURCE`) and specify primary keys.
+For RisingWave to ingest CDC data, you must create a materialized source connection (`CREATE MATERIALIZED SOURCE`) and specify primary keys.
 
-The difference between a non-materialized You can create two types of source connections in RisingWave: non-materialized and materialized source connections. The difference between these two types of connections is data from a materialized source connection is stored in RisingWave, while data from a non-materialized source is not.
+The difference between a non-materialized and materialized source connection is data from a materialized source connection is stored in RisingWave, while data from a non-materialized source connection is not.
 
 The supported CDC data formats are [Debezium](https://debezium.io) JSON (for both MySQL and PostgreSQL) and [Maxwell](https://maxwells-daemon.io) JSON (for MySQL only). 
 
