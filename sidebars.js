@@ -193,23 +193,6 @@ const sidebars = {
         label: 'Create a sink',
       },
     ]},
-   
-
-    {
-      type: 'category',
-      label: 'How-to guides',
-      collapsible: true,
-      collapsed: true,
-      items: 
-      [ 
-        {
-          type: 'doc',
-          id: 'guides/nested-columns-arrays',
-          label: 'Specify nested columns and arrays',
-        },
-        
-      ]
-    },
 
   {
     type: 'category',
