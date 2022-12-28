@@ -1,6 +1,6 @@
 ---
 id: create-source-datagen
-title: Load generator
+title: Generate test data
 description: Connect RisingWave to a built-in load generator.
 slug: /create-source-datagen
 ---
