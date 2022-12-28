@@ -32,4 +32,4 @@ Scientific notation (e.g., 1e6, 1.25e5, and 1e-4) is supported in SELECT and INS
 
 ## Casting
 
-For details about data type casting, see 
+For details about data type casting, see [Casting](./data-types/data-type-casting.md).
