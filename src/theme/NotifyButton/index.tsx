@@ -4,12 +4,14 @@ import "./style.css";
 import { useColorMode } from "@docusaurus/theme-common";
 import { toast } from "react-toastify";
 import { postNotification } from "../../api/feedback";
+import Tooltip from "@mui/material/Tooltip";
 
 type Props = {
   note: string;
+  size?: string;
 };
 
-function NotifyButton({ note }: Props) {
+function NotifyButton({ note, size }: Props) {
   const [shown, setShown] = useState(false);
   const [valid, setValid] = useState(false);
   const [email, setEmail] = useState("");
@@ -38,7 +40,9 @@ function NotifyButton({ note }: Props) {
       isOpen={shown}
       positions={["bottom"]}
       align="start"
-      onClickOutside={() => setShown(false)}
+      onClickOutside={() => {
+        setShown(false);
+      }}
       content={
         <form className={valid ? "newsletter-form valid" : "newsletter-form"}>
           <input
@@ -57,18 +61,29 @@ function NotifyButton({ note }: Props) {
         </form>
       }
     >
-      <div className="notify-button" onClick={() => setShown(!shown)}>
-        <NotifyIconDefault />
-      </div>
+      <Tooltip title="Notify me when it's available" arrow>
+        <div className="notify-button" id="app-title" onClick={() => setShown(!shown)}>
+          <NotifyIconDefault size={size} />
+        </div>
+      </Tooltip>
     </Popover>
   );
 }
 
 export default NotifyButton;
 
-const NotifyIconDefault = () => {
+type ButtonSize = {
+  size?: string;
+};
+
+const NotifyIconDefault = ({ size }: ButtonSize) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width={size ?? "16px"}
+      height={size ?? "16px"}
+    >
       <path fill="none" d="M0 0h24v24H0z" />
       <path
         fill="#95adee"

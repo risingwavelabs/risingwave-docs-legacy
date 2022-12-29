@@ -19,6 +19,9 @@ import NotifyButton from "@theme/NotifyButton";
 import DefaultNotify from "@theme/DefaultNotify";
 import LightNotify from "@theme/LightNotify";
 import Admonition from "@theme/Admonition";
+import Drawer from "@theme/Drawer";
+import Capsule from "@theme/Capsule";
+
 
 function unwrapMDXElement(element) {
   if (element?.props?.mdxType && element?.props?.originalType) {
@@ -78,5 +81,7 @@ const MDXComponents = {
   defaultNotify: DefaultNotify,
   lightNotify: LightNotify,
   admonition: Admonition,
+  drawer: Drawer,
+  voteNotify: Capsule,
 };
 export default MDXComponents;
