@@ -72,7 +72,7 @@ INSERT INTO taxi VALUES
 
 ### Retrieve data in an array
 
-To retrieve data in an array, use the `ARRAY_COLUMN[RELATIVE_POSITION]` syntax. Relative positions start from 1. For example, to access `ABCD1234`, the first object in the `trip_id` array, we can specify trip_id[1].
+To retrieve data in an array, use the `ARRAY_COLUMN[RELATIVE_POSITION]` syntax. Relative positions start from 1. For example, to access `ABCD1234`, the first object in the `trip_id` array, we can specify `trip_id[1]`.
 
 #### Examples
 
