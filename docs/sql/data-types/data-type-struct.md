@@ -6,14 +6,14 @@ title: Struct
 
 Use the struct data type to create a column that contains nested columns. The nested columns can be of different data types, including the struct type.
 
-### Define a struct type
+## Define a struct type
 
 Syntax:
 `STRUCT< >`
 
 Struct types are declared using the angle brackets (`<` and `>`).
 
-#### Examples
+### Examples
 
 The statement below creates a table `x` that contains struct `a`, which contains two nested columns (`b` and `c`) that are both integers.
 
@@ -44,11 +44,11 @@ CREATE TABLE trip (
         );
 ```
 
-### Add values to a struct
+## Add values to a struct
 
 To add values to structs, enclose the nested data with `()` in the SQL statement. For example, `(1, true)`. Alternatively, you can also use `ROW(1, true)`.
 
-#### Examples
+### Examples
 
 The statement below adds values to table `x`.
 
@@ -74,11 +74,11 @@ INSERT INTO trip VALUES
         );
 ```
 
-### Retrieve data in a struct
+## Retrieve data in a struct
 
-To retrieve data in a struct, enclose the struct name with () and use the dot operator to specify the nested column. For example, to access the `initial_charge` column under `fare` in the `trip` schema, use `(fare).initial_charge`.
+To retrieve data in a struct, enclose the struct name with `()` and use the dot operator to specify the nested column. For example, to access the `initial_charge` column under `fare` in the `trip` schema, use `(fare).initial_charge`.
 
-#### Examples
+### Examples
 
 ```sql
 SELECT (a).b, d
@@ -93,4 +93,22 @@ FROM y
 ```sql
 SELECT id, (fare).initial_charge 
 FROM trip;
+```
+
+## Casting
+
+Structs can be casted explicitly or implictly to structs if the nested expressions and types can be casted.
+
+### Examples
+
+```sql
+SELECT (1, (2, 3))::STRUCT<i BIGINT, j STRUCT<a BIGINT, b VARCHAR>>;
+-----Result
+(1,(2,3))
+```
+
+```sql
+SELECT ROW(1, ROW('1', 1)) = ROW('1', ROW(1, '1'));
+-----
+t
 ```
