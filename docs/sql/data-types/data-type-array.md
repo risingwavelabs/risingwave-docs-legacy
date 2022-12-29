@@ -83,7 +83,7 @@ SELECT a[2] FROM x;
 {2,3}
 ```
 
-Retrieve the first array in array `trip_id` from the `taxi` table.
+Retrieve the first element in array `trip_id` from the `taxi` table.
 
 ```sql
 SELECT trip_id[1] 
