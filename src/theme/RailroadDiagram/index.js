@@ -19,13 +19,13 @@ export default funcs;
 
 export const Options = {
   DEBUG: false, // if true, writes some debug information into attributes
-  VS: 8, // minimum vertical separation between things. For a 3px stroke, must be at least 4
-  AR: 10, // radius of arcs
+  VS: 15, // minimum vertical separation between things. For a 3px stroke, must be at least 4
+  AR: 8, // radius of arcs
   DIAGRAM_CLASS: "railroad-diagram", // class to put on the root <svg>
   STROKE_ODD_PIXEL_LENGTH: true, // is the stroke width an odd (1px, 3px, etc) pixel length?
-  INTERNAL_ALIGNMENT: "center", // how to align items when they have extra space. left/right/center
-  CHAR_WIDTH: 6.5, // width of each monospace character. play until you find the right value for your font
-  COMMENT_CHAR_WIDTH: 7, // comments are in smaller text by default
+  INTERNAL_ALIGNMENT: "left", // how to align items when they have extra space. left/right/center
+  CHAR_WIDTH: 7, // width of each monospace character. play until you find the right value for your font
+  COMMENT_CHAR_WIDTH: 5, // comments are in smaller text by default
 };
 
 export const defaultCSS = `
