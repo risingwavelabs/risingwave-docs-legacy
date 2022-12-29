@@ -24,7 +24,7 @@ CREATE TABLE x (a STRUCT <b INTEGER, c INTEGER>, d INTEGER);
 The statement below creates a table `y` that contains struct `a`, which contains another struct `c`.
 
 ```sql
-CRESTE TABLE y (a STRUCT <b STRUCT<c INTEGER>, d INTEGER>, e VARCHAR);
+CREATE TABLE y (a STRUCT <b STRUCT<c INTEGER>, d INTEGER>, e VARCHAR);
 ```
 
 Belos is a real world example.
