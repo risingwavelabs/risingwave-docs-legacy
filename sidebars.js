@@ -175,7 +175,7 @@ const sidebars = {
         {
           type: 'doc',
           label: 'DataStax Astra Streaming',
-          id: 'create-source/create-source-pulsar',
+          id: 'guides/connector-astra-streaming',
         },
         {
           type: 'doc',
