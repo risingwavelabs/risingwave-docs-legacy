@@ -1,6 +1,6 @@
 ---
 id: create-source-kafka-redpanda
-title: Kafka & Redpanda
+title: Ingest data from Kafka and Redpanda
 description: Connect RisingWave to a Kafka/Redpanda broker.
 slug: /create-source-kafka-redpanda
 ---
