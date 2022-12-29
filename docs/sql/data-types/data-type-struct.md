@@ -27,7 +27,7 @@ The statement below creates a table `y` that contains struct `a`, which contains
 CREATE TABLE y (a STRUCT <b STRUCT<c INTEGER>, d INTEGER>, e VARCHAR);
 ```
 
-Belos is a real world example.
+Below is a real world example.
 
 ```sql
 CREATE TABLE trip (
