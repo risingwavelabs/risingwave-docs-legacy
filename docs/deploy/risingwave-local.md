@@ -67,7 +67,9 @@ import TabItem from '@theme/TabItem';
     <TabItem value="macos" label="macOS" default>
 
     ```shell
-    brew install postgresql cmake protobuf openssl tmux cyrus-sasl
+    brew update
+    brew install libpq cmake protobuf openssl tmux cyrus-sasl
+    brew link --force libpq
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     ```
 
