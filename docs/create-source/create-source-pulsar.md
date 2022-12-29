@@ -45,7 +45,13 @@ For materialized sources with primary key constraints, if a new data record with
 :::
 
 
-### Parameters
+|Field|Notes|
+|---|---|
+|topic|Required. Address of the Pulsar topic. One source can only correspond to one topic.	|
+|service.url| Required. Address of the Pulsar service	|
+|admin.url	| Required. Address of the Pulsar admin	|
+|scan.startup.mode| The Pulsar consumer starts consuming data from the commit offset. Supported modes are `earliest` and `latest`. If not specified, the default value `earliest` will be used.|
+|scan.startup.timestamp_millis|The offset in milliseconds from a certain point of time.|
 
 |Field|Notes|
 |---|---|

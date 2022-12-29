@@ -174,6 +174,11 @@ const sidebars = {
         },
         {
           type: 'doc',
+          label: 'DataStax Astra Streaming',
+          id: 'create-source/create-source-pulsar',
+        },
+        {
+          type: 'doc',
           label: 'Load generator',
           id: 'create-source/create-source-datagen',
         },
