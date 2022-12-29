@@ -87,7 +87,7 @@ FROM x;
 
 ```sql
 SELECT ((a).b).c, e
-FROM y
+FROM y;
 ```
 
 ```sql
