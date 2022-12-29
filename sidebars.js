@@ -22,7 +22,6 @@ const sidebars = {
     {
       type: 'category',
       label: 'Introduction',
-      link: {type: 'doc', id: 'intro'},
       collapsible: true,
       collapsed: false,
       items: [
