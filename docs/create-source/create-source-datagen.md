@@ -180,7 +180,7 @@ The following statement creates a source `s1` with four columns:
 
 * `i1` — Integers starting from 1 and incrementing by 1
 * `v1` — Structs that contain random integers `v2` ranging from -10 to 10 and random floating-point numbers `v3` ranging from 15 to 55
-* `t1` — Random timestamps from as early as 10 days prior to the current system date and time
+* `t1` — Random timestamps from as early as 10 days prior to the source creation time
 * `c1` — Random strings with each consists of 16 characters
 
 
