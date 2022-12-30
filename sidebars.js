@@ -22,7 +22,6 @@ const sidebars = {
     {
       type: 'category',
       label: 'Introduction',
-      link: {type: 'doc', id: 'intro'},
       collapsible: true,
       collapsed: false,
       items: [
@@ -49,7 +48,6 @@ const sidebars = {
     {
       type: 'category',
       label: 'Get started',
-      link: {type: 'doc', id: 'get-started'},
       collapsible: true,
       collapsed: true,
       items: [
@@ -136,7 +134,6 @@ const sidebars = {
     {
       type: 'category', 
       label: 'Data ingestion', 
-      link: {type: 'doc', id: 'ingestion-overview'},
       collapsible: true,
       collapsed: true,
       items: 
@@ -180,7 +177,6 @@ const sidebars = {
     },
     {type: 'category',
     label: 'Data delivery',
-    link: {type: 'doc', id: 'delivery-overview'},
     items:[
       {
         type: 'doc',
@@ -193,7 +189,6 @@ const sidebars = {
         label: 'Create a sink',
       },
     ]},
-   
 
     {
       type: 'category',
@@ -215,11 +210,6 @@ const sidebars = {
       collapsed: true,
       items: 
       [ 
-        {
-          type: 'doc',
-          id: 'guides/nested-columns-arrays',
-          label: 'Specify nested columns and arrays',
-        },
         {
           type: 'doc',
           id: 'guides/install-psql-without-postgresql',
@@ -260,9 +250,32 @@ const sidebars = {
             ]
           }, 
       {
-        type: 'doc',
-        id: 'sql/sql-data-types',
+        type: 'category',
         label: 'Data types',
+        items:
+        [
+          {
+            type: 'doc',
+            id: 'sql/sql-data-types',
+            label: 'Overview',
+          },
+          {
+            type: 'doc',
+            id: 'sql/data-types/data-type-casting',
+            label: 'Casting',
+          },
+          {
+            type: 'doc',
+            id: 'sql/data-types/data-type-array',
+            label: 'Array',
+          },
+          {
+            type: 'doc',
+            id: 'sql/data-types/data-type-struct',
+            label: 'Struct',
+          },
+
+        ]
       },  
       {
       type: 'category',

@@ -21,7 +21,8 @@ svg.railroad-diagram text.label {
 }
 
 svg.railroad-diagram text.comment {
-  font: italic 12px NotoSans;
+  font: italic 10.5px NotoSans;
+  fill: gray;
 }
 
 svg.railroad-diagram g.non-terminal text {
@@ -35,8 +36,8 @@ svg.railroad-diagram rect {
 }
 
 svg.railroad-diagram path {
-  stroke-width: 1.2;
-  stroke: #9f9f9f;
+  stroke-width: 1;
+  stroke: #b6b6b6;
   fill: transparent;
 }
 
@@ -61,7 +62,7 @@ svg.railroad-diagram path.diagram-text {
 }
 
 svg.railroad-diagram text {
-  font: normal 12px NotoSans;
+  font: normal 13px NotoSans;
   fill: #1c1e21;
 }
 
