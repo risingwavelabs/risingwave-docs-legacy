@@ -11,7 +11,7 @@ Use the SQL statement below to connect RisingWave to Kinesis Data Streams.
 
 ```sql
 CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name 
-schema_definition
+[schema_definition]
 WITH (
    connector='kinesis',
    field_name='value', ...
