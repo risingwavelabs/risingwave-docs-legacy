@@ -7,18 +7,18 @@ slug: /create-source-cdc
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time. 
 
-CDC tools and platforms can record row-level changes (INSERT, UPDATE, and DELETE activities) that apply to tables in a upstream database and stream the data change event records to event streaming platforms such as Kafka. You can connect RisingWave to the Kafka topics to receive the data changes.
+CDC tools and platforms can record row-level changes (INSERT, UPDATE, and DELETE activities) that apply to tables in an upstream database and stream the data change event records to event streaming platforms such as Kafka. You can connect RisingWave to the Kafka topics to receive the data changes.
 
 To ingest CDC data from MySQL or PostgreSQL into RisingWave, you can use a CDC tool to convert data change streams in databases to Kafka topics, and then use the native Kafka connector in RisingWave to consume data from the Kafka topics.
 
-For RisingWave to ingest CDC data, you must create a materialized source connection (`CREATE MATERIALIZED SOURCE`) and specify primary keys.
+For RisingWave to ingest CDC data, you must create a materialized source (`CREATE MATERIALIZED SOURCE`) and specify primary keys.
 
-The difference between a non-materialized and materialized source connection is data from a materialized source connection is stored in RisingWave, while data from a non-materialized source connection is not.
+The difference between a non-materialized and materialized source is that data from a materialized source is stored in RisingWave, while data from a non-materialized source is not.
 
 The supported CDC data formats are [Debezium](https://debezium.io) JSON (for both MySQL and PostgreSQL) and [Maxwell](https://maxwells-daemon.io) JSON (for MySQL only). 
 
 - Debezium JSON (`ROW FORMAT DEBEZIUM_JSON`): You can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) to convert MySQL or PostgreSQL data change streams to Kafka topics. To learn about how to configure MySQL and deploy the Debezium connector for MySQL, see the [Debezium connector for MySQL documentation](https://debezium.io/documentation/reference/stable/connectors/mysql.html).
-- Maxwell JSON (`ROW FORMAT MAXWELL`): You can use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to kafka topics. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
+- Maxwell JSON (`ROW FORMAT MAXWELL`): You can use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
 
 
 ## Syntax
