@@ -11,10 +11,8 @@ Use the SQL statement below to connect RisingWave to a Pulsa broker.
 ## Syntax
 
 ```sql
-CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name (
-   column_name data_type [ PRIMARY KEY ], ...
-   [ PRIMARY KEY ( column_name, ... ) ]
-)
+CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name 
+[schema_definition]
 WITH (
    connector='pulsar',
    field_name='value', ...
@@ -24,21 +22,37 @@ ROW FORMAT data_format
 [ROW SCHEMA LOCATION 'location'];
 ```
 
+**schema_definition**:
+```sql
+(
+   column_name data_type [ PRIMARY KEY ], ...
+   [ PRIMARY KEY ( column_name, ... ) ]
+)
+```
+
+:::info
+
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided in a Web location in the `ROW SCHEMA LOCATION` section.
+
+:::
+
 :::note
+
 RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
 
 For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
+
 :::
 
 ### `WITH` parameters
 
-|Field|	Default|	Type|	Description|	Required?|
-|---|---|---|---|---|
-|topic	|None	|String	|Address of the Pulsar topic. One source can only correspond to one topic.	|True|
-|service.url	|None	|String	|Address of the Pulsar service	|True|
+|Field|Notes|
+|---|---|
+|topic	|Required. Address of the Pulsar topic. One source can only correspond to one topic.|
+|service.url| Required. Address of the Pulsar service	|
 |admin.url	|None	|String	|Address of the Pulsar admin	|True|
-|scan.startup.mode	|earliest	|String	|The Pulsar consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`.	|False|
-|scan.startup.timestamp_millis	|None	|Int64	|Specify the offset in milliseconds from a certain point of time.	|False|
+|scan.startup.mode｜The Pulsar consumer starts consuming data from the commit offset. The supported modes are `'earliest'` and `'latest'`. This field is optional. If not specified, the default mode `earliest` will be used.|
+|scan.startup.timestamp_millis.| Offset in milliseconds from a certain point of time. This field is optional.|
 
 ### Row format parameters
 

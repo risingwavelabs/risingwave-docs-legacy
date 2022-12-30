@@ -13,13 +13,10 @@ To connect to a Kafka or Redpanda broker, you need to use the `CREATE SOURCE` co
 ## Syntax
 
 ```sql
-CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name (
-   column_name data_type [ PRIMARY KEY ], ...
-   [ PRIMARY KEY ( column_name, ... ) ]
-)
+CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name 
+[schema_definition]
 WITH (
    connector='kafka',
-   topic='value',
    field_name='value', ...
 )
 ROW FORMAT data_format 
@@ -27,21 +24,37 @@ ROW FORMAT data_format
 [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
 
+**schema_definition**:
+```sql
+(
+   column_name data_type [ PRIMARY KEY ], ...
+   [ PRIMARY KEY ( column_name, ... ) ]
+)
+```
+
+:::info
+
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a schema registry link in the `ROW SCHEMA LOCATION` section.
+
+:::
+
 :::note
+
 RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
 
-For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
+For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
+
 :::
 
 ### `WITH` parameters
 
-|Field|	Required?| 	Notes|
-|---|---|---|
-|topic|Yes|Address of the Kafka topic. One source can only correspond to one topic.|
-|properties.bootstrap.server	|Yes|Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
-|properties.group.id	|Yes|Name of the Kafka consumer group	|
-|scan.startup.mode|No|The Kafka consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`. If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis|No|Specify the offset in milliseconds from a certain point of time.	|
+|Field|Notes|
+|---|---|
+|topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
+|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
+|properties.group.id	|Required. Name of the Kafka consumer group	|
+|scan.startup.mode|Optional. The Kafka consumer starts consuming data from the commit offset. The two supported modes are `earliest` and `latest`. If not specified, the default value `earliest` will be used.|
+|scan.startup.timestamp_millis|Optional. The offset in milliseconds from a certain point of time.	|
 
 ### `ROW FORMAT` parameters
 
