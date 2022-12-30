@@ -45,6 +45,7 @@ ROW FORMAT { DEBEZIUM_JSON | MAXWELL };
 |scan.startup.mode|Optional. The Kafka consumer starts consuming data from the commit offset. The two supported modes are `earliest` and `latest`. If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. The offset in milliseconds from a certain point of time.	|
 
+
 ## Example
 
 Here is an example of creating a materialized source using the Kafka connector to consume data from Kafka topics.
