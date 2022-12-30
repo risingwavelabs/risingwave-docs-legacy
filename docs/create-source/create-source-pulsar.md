@@ -32,7 +32,7 @@ ROW FORMAT data_format
 
 :::info
 
-For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided in a Web location in the `ROW SCHEMA LOCATION` section.
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` or `CREATE MATERIALIZED SOURCE` statement. The schema should be provided in a Web location in the `ROW SCHEMA LOCATION` section.
 
 :::
 
@@ -49,16 +49,16 @@ For materialized sources with primary key constraints, if a new data record with
 |Field|Notes|
 |---|---|
 |topic	|Required. Address of the Pulsar topic. One source can only correspond to one topic.|
-|service.url| Required. Address of the Pulsar service	|
-|admin.url	|None	|String	|Address of the Pulsar admin	|True|
-|scan.startup.mode｜The Pulsar consumer starts consuming data from the commit offset. The supported modes are `'earliest'` and `'latest'`. This field is optional. If not specified, the default mode `earliest` will be used.|
+|service.url| Required. Address of the Pulsar service.	|
+|admin.url	|Required. Address of the Pulsar admin.|
+|scan.startup.mode|The Pulsar consumer starts consuming data from the commit offset. The supported modes are `'earliest'` and `'latest'`. This field is optional. If not specified, the default mode `earliest` will be used.|
 |scan.startup.timestamp_millis.| Offset in milliseconds from a certain point of time. This field is optional.|
 
 ### Row format parameters
 
 Specify the format of the stream in the `ROW FORMAT` section of your statement.
 
-|Parameter | Description|
+|Parameter | Notes|
 |---|---|
 |*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
 |*message* |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
