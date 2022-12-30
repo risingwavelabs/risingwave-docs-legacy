@@ -151,12 +151,12 @@ const sidebars = {
         {
           type: 'doc',
           label: 'Kafka',
-          id: 'create-source/create-source-kafka-redpanda',
+          id: 'create-source/create-source-kafka',
         },
         {
           type: 'doc',
           label: 'Redpanda',
-          id: 'create-source/create-source-kafka-redpanda',
+          id: 'create-source/create-source-redpanda',
         },
         {
           type: 'doc',

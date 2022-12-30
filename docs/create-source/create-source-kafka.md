@@ -1,14 +1,17 @@
 ---
-id: create-source-kafka-redpanda
-title: Ingest data from Kafka and Redpanda
-description: Connect RisingWave to a Kafka/Redpanda broker.
-slug: /create-source-kafka-redpanda
+id: create-source-kafka
+title: Ingest data from Kafka
+description: Connect RisingWave to a Kafka broker.
+slug: /create-source-kafka
 ---
 
 This topic describes how to connect RisingWave to a Kafka broker that you want to receive data from, and how to specify data formats, schemas, and security (encryption and authentication) settings.
 
-To connect to a Kafka or Redpanda broker, you need to use the `CREATE SOURCE` command to create a source for that broker.
+You can create two types of sources in RisingWave: non-materialized and materialized sources. The difference between these two types of sources is data from a materialized source is stored in RisingWave, while data from a non-materialized source is not.
 
+Use the [`CREATE SOURCE`](./sql/commands/sql-create-source.md) command to create a non-materialized source. After a non-materialized source is created, the input data is not stored in RisingWave. You need to create materialized views ([`CREATE MATERIALIZED VIEW`](./sql/commands/sql-create-mv.md)) to process the data and store the results in RisingWave.
+
+Use the [`CREATE MATERIALIZED SOURCE`](./sql/commands/sql-create-source.md) command to create a materialized source. Once a materialized source is created, all data from the source is ingested into RisingWave.
 
 ## Syntax
 

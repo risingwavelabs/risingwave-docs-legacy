@@ -24,12 +24,12 @@ RisingWave supports ingesting data from these external sources:
 
 - [PostgreSQL CDC](./create-source/create-source-cdc.md)
 - [MySQL CDC](./create-source/create-source-cdc.md)
-- [Kafka](./create-source/create-source-kafka-redpanda.md)
-- [Redpanda](./create-source/create-source-kafka-redpanda.md)
+- [Kafka](./create-source/create-source-kafka.md)
+- [Redpanda](./create-source/create-source-redpanda.md)
 - [Kinesis](./create-source/create-source-kinesis.md)
 - [Pulsar](./create-source/create-source-pulsar.md)
 
-For most of the data sources, you can create either a materialized or non-materialized connection.
+For most of the data sources, you can create either a materialized or non-materialized source.
 
 ### Supported data formats
 
