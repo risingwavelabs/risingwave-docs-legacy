@@ -13,11 +13,11 @@ You can ingest data into RisingWave in two ways:
 
 ### Materialized and non-materialized source connections
 
-A source is a resource that RisingWave can read data from. You can create two types of source connections in RisingWave: non-materialized and materialized source connections. The difference between these two types of connections is data from a materialized source connection is stored in RisingWave, while data from a non-materialized source is not.
+A source is a resource that RisingWave can read data from. You can create two types of sources in RisingWave: non-materialized and materialized sources. The difference between these two types of sources is data from a materialized source is stored in RisingWave, while data from a non-materialized source is not.
 
-Use the [`CREATE SOURCE`](./sql/commands/sql-create-source.md) command to create a non-materialized source connection. After a non-materialized source connection is created, the input data is not stored in RisingWave. You need to create materialized views ([`CREATE MATERIALIZED VIEW`](./sql/commands/sql-create-mv.md)) to process the data and store the results in RisingWave.
+Use the [`CREATE SOURCE`](./sql/commands/sql-create-source.md) command to create a non-materialized source. After a non-materialized source is created, the input data is not stored in RisingWave. You need to create materialized views ([`CREATE MATERIALIZED VIEW`](./sql/commands/sql-create-mv.md)) to process the data and store the results in RisingWave.
 
-Use the [`CREATE MATERIALIZED SOURCE`](./sql/commands/sql-create-source.md) command to create a materialized source connection. Once a materialized source connection is created, all data from the source is ingested into RisingWave.
+Use the [`CREATE MATERIALIZED SOURCE`](./sql/commands/sql-create-source.md) command to create a materialized source. Once a materialized source is created, all data from the source is ingested into RisingWave.
 
 
 RisingWave supports ingesting data from these external sources:
