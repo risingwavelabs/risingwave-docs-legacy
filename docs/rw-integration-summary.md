@@ -63,12 +63,12 @@ For tools or integrations that you would like to use but are not listed in the t
 
 |System | Source |Sink |
 |---|---|---|
-|Apache Druid| Not applicable| Not yet <voteNotify note="druid_sink" /> |
-|Apache Pinot| Not applicable|Not yet <voteNotify note="pinot_sink" />|
-|AWS Redshift| Not applicable|Not yet <voteNotify note="redshift_sink" />|
-|Clickhouse|Not applicable |Not yet <voteNotify note="clickhouse_sink" />|
-|Snowflake| Not applicable|Not yet <voteNotify note="snowflake_sink" />|
-|Google BigQuery| Not applicable |Not yet <voteNotify note="bigquery_sink" />|
+|Apache Druid| No plan| Not yet <voteNotify note="druid_sink" /> |
+|Apache Pinot| No plan|Not yet <voteNotify note="pinot_sink" />|
+|AWS Redshift| No plan|Not yet <voteNotify note="redshift_sink" />|
+|Clickhouse|No plan |Not yet <voteNotify note="clickhouse_sink" />|
+|Snowflake| No plan|Not yet <voteNotify note="snowflake_sink" />|
+|Google BigQuery| No plan |Not yet <voteNotify note="bigquery_sink" />|
 |DataStax Astra DB / Apache Cassandra| Not yet <voteNotify note="cassandra_source" /> |In progress |
 |CockroachDB| Not yet <voteNotify note="cockroachdb_source" />|Not yet <voteNotify note="cockroachdb_sink" /> |
 |Db2| Not yet <voteNotify note="db2_source" />|Not yet <voteNotify note="db2_sink" /> |
