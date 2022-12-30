@@ -11,6 +11,8 @@ However, with limited resources, we cannot achieve this goal in a short period o
 
 If you wish to receive notifications when a connector or integration is available, you can click the small bell icon to enter your email address.
 
+For tools or integrations that you would like to use but are not listed in the tables below, you can [submit a feature request](https://github.com/risingwavelabs/risingwave/issues/new?assignees=&labels=type%2Ffeature&template=feature_request.yml), or let us know in the Slack workspace.
+
 
 ## Message brokers or streaming services
 
@@ -19,7 +21,7 @@ If you wish to receive notifications when a connector or integration is availabl
 |Kafka | Yes. See [Ingest data from Kafka](../docs/sql/create-source/create-source-kafka-redpanda.md) for details. | Yes. See [Deliver data to Kafka](../docs/sql/commands/sql-create-sink.md) for details.| |
 |Redpanda | Yes. See [Ingest data from Kafka](../docs/sql/create-source/create-source-kafka-redpanda.md) for details. |Yes. See [Deliver data to Kafka](../docs/sql/commands/sql-create-sink.md) for details.|
 |Apache Pulsar|Yes. See [Ingest data from Pulsar](../docs/sql/create-source/create-source-pulsar.md) for details. | Not yet <voteNotify note="pulsar_sink" />|
-|Astra Streaming| Yes | Not yet <voteNotify note="astra_streaming_sink" />|
+|DataStax Astra Streaming| Yes | Not yet <voteNotify note="astra_streaming_sink" />|
 |StreamNative Cloud| Yes| Not yet <voteNotify note="streamnative_cloud_sink" />|
 |Kinesis Data Streams|Yes. See [Ingest data from Kinesis](../docs/sql/create-source/create-source-kinesis.md) for details.|Not yet <voteNotify note="kinesis_sink" />|
 
@@ -57,20 +59,21 @@ If you wish to receive notifications when a connector or integration is availabl
 |MySQL | In Progress| Not yet <voteNotify note="mysql_sink" />|
 |AWS Aurora (MySQL)|In Progress| Not yet <voteNotify note="aurora_mysql_sink" /> |
 
-### OLAP databases
+### Other databases
 
-|System | Source| Sink |
-|---|---|----|
-|Apache Druid| Not yet <voteNotify note="druid_source" />|Not yet <voteNotify note="druid_sink" /> |
-|Apache Pinot| Not yet <voteNotify note="pinot_source" />| Not yet <voteNotify note="pinot_sink" />|
-|AWS Redshift| Not yet <voteNotify note="redshift_source" />|Not yet <voteNotify note="redshift_sink" />|
-|Clickhouse|Not yet <voteNotify note="clickhouse_source" />| Not yet <voteNotify note="clickhouse_sink" />|
+|System | Source |Sink |
+|---|---|---|
+|Apache Druid| Not applicable| Not yet <voteNotify note="druid_sink" /> |
+|Apache Pinot| Not applicable|Not yet <voteNotify note="pinot_sink" />|
+|AWS Redshift| Not applicable|Not yet <voteNotify note="redshift_sink" />|
+|Clickhouse|Not applicable |Not yet <voteNotify note="clickhouse_sink" />|
+|Snowflake| Not applicable|Not yet <voteNotify note="snowflake_sink" />|
+|Google BigQuery| Not applicable |Not yet <voteNotify note="bigquery_sink" />|
+|DataStax Astra DB / Apache Cassandra| Not yet <voteNotify note="cassandra_source" /> |In progress |
 |CockroachDB| Not yet <voteNotify note="cockroachdb_source" />|Not yet <voteNotify note="cockroachdb_sink" /> |
 |Db2| Not yet <voteNotify note="db2_source" />|Not yet <voteNotify note="db2_sink" /> |
-|Google BigQuery| Not yet <voteNotify note="bigquery_source" />| Not yet <voteNotify note="bigquery_sink" />|
 |MongoDB| Not yet <voteNotify note="mongodb_source" />|Not yet <voteNotify note="mongodb_sink" /> |
-|Oracle| Not yet <voteNotify note="oracle_source" />|Not yet <voteNotify note="oracle_sink" /> |
-|Snowflake| Not yet <voteNotify note="snowflake_source" />| Not yet <voteNotify note="snowflake_sink" />|
+|Oracle Database| Not yet <voteNotify note="oracle_source" />|Not yet <voteNotify note="oracle_sink" /> |
 |SQL Server| Not yet <voteNotify note="sql_server_source" />|Not yet <voteNotify note="sql_server_sink" /> |
 |TiDB| Not yet <voteNotify note="tidb_source" />|Not yet <voteNotify note="tidb_sink" /> |
 
