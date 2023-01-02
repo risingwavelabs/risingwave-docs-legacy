@@ -41,7 +41,7 @@ ROW FORMAT { DEBEZIUM_JSON | MAXWELL };
 |---|---|
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
-|properties.group.id	|Required. Name of the Kafka consumer group	|
+|properties.group.id	|Required. Name of the Kafka consumer group.	|
 |scan.startup.mode|Optional. The Kafka consumer starts consuming data from the commit offset. The two supported modes are `earliest` and `latest`. If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. The offset in milliseconds from a certain point of time.	|
 
