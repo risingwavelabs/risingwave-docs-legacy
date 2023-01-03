@@ -13,7 +13,7 @@ To ingest CDC data from MySQL or PostgreSQL into RisingWave, you can use a CDC t
 
 For RisingWave to ingest CDC data, you must create a materialized source (`CREATE MATERIALIZED SOURCE`) and specify primary keys. Materializing a source means that you want to persist the data from the source in RisingWave. For CDC data, the source must be materalized.
 
-The supported CDC data formats are [Debezium](https://debezium.io) JSON (for both MySQL and PostgreSQL) and [Maxwell](https://maxwells-daemon.io) JSON (for MySQL only). 
+The supported CDC data formats are [Debezium](https://debezium.io) JSON (for both MySQL and PostgreSQL) and [Maxwell](https://maxwells-daemon.io) JSON (for MySQL only).
 
 - Debezium JSON (`ROW FORMAT DEBEZIUM_JSON`): You can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) to convert MySQL or PostgreSQL data change streams to Kafka topics. To learn about how to configure MySQL and deploy the Debezium connector for MySQL, see the [Debezium connector for MySQL documentation](https://debezium.io/documentation/reference/stable/connectors/mysql.html).
 - Maxwell JSON (`ROW FORMAT MAXWELL`): You can use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
