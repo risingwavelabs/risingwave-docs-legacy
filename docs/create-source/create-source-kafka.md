@@ -7,7 +7,7 @@ slug: /create-source-kafka
 
 This topic describes how to connect RisingWave to a Kafka broker that you want to receive data from, and how to specify data formats, schemas, and security (encryption and authentication) settings.
 
-A source is a resource that RisingWave can get data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by adding `MATERIALIZED` in between `CREATE` and `SOURCE`. 
+A source is a resource that RisingWave can get data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by adding `MATERIALIZED` in between `CREATE` and `SOURCE` (that is, `CREATE MATERIALIZED SOURCE`). 
 
 Regardless whether the data is persisted in RisingWave or not, you can create materialized views or sinks to perform analysis and transformations.
 
