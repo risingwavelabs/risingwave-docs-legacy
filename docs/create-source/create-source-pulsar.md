@@ -44,22 +44,17 @@ For materialized sources with primary key constraints, if a new data record with
 
 :::
 
-### `WITH` parameters
+
+### Parameters
 
 |Field|Notes|
 |---|---|
+|`MATERIALIZED`| When you materialize a source, you choose to persist the data from the source in RisingWave.|
 |topic	|Required. Address of the Pulsar topic. One source can only correspond to one topic.|
 |service.url| Required. Address of the Pulsar service.	|
 |admin.url	|Required. Address of the Pulsar admin.|
-|scan.startup.mode|The Pulsar consumer starts consuming data from the commit offset. The supported modes are `'earliest'` and `'latest'`. This field is optional. If not specified, the default mode `earliest` will be used.|
-|scan.startup.timestamp_millis.| Offset in milliseconds from a certain point of time. This field is optional.|
-
-### Row format parameters
-
-Specify the format of the stream in the `ROW FORMAT` section of your statement.
-
-|Parameter | Notes|
-|---|---|
+|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
+|scan.startup.timestamp_millis.| Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
 |*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
 |*message* |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |

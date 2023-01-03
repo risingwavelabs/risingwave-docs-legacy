@@ -11,13 +11,11 @@ You can ingest data into RisingWave in two ways:
 
 ## Ingest data from external data sources
 
-### Materialized and non-materialized source connections
+### Materialized and non-materialized source
 
-A source is a resource that RisingWave can read data from. You can create two types of sources in RisingWave: non-materialized and materialized sources. The difference between these two types of sources is data from a materialized source is stored in RisingWave, while data from a non-materialized source is not.
+A source is a resource that RisingWave can get data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by adding `MATERIALIZED` in between `CREATE` and `SOURCE` (that is, ). 
 
-Use the [`CREATE SOURCE`](./sql/commands/sql-create-source.md) command to create a non-materialized source. After a non-materialized source is created, the input data is not stored in RisingWave. You need to create materialized views ([`CREATE MATERIALIZED VIEW`](./sql/commands/sql-create-mv.md)) to process the data and store the results in RisingWave.
-
-Use the [`CREATE MATERIALIZED SOURCE`](./sql/commands/sql-create-source.md) command to create a materialized source. Once a materialized source is created, all data from the source is ingested into RisingWave.
+Regardless whether the data is persisted in RisingWave or not, you can create materialized views or sinks to perform analysis and transformations.
 
 
 RisingWave supports ingesting data from these external sources:
@@ -29,7 +27,6 @@ RisingWave supports ingesting data from these external sources:
 - [Kinesis](./create-source/create-source-kinesis.md)
 - [Pulsar](./create-source/create-source-pulsar.md)
 
-For most of the data sources, you can create either a materialized or non-materialized source.
 
 ### Supported data formats
 

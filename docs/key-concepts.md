@@ -10,11 +10,13 @@ This page explains key concepts and terms that are used throughout the documenta
 
 ### Sources
 
-A source is a resource that RisingWave can read data from. Common sources include message brokers such as Apache Kafka and Apache Pulsar and databases such as MySQL and PostgreSQL. You need to create a source by using the [`CREATE SOURCE`](../docs/sql/commands/sql-create-source.md) statement to establish a connection to a source. You can create two types of sources: non-materialized sources (default) and [materialized sources](#materialized-source). The difference between these two types of sources is data from a materialized source is stored in RisingWave, while data from a non-materialized source is not stored in RisingWave. For both types of sources, you can create materialized views to store the results in RisingWave.
+A source is a resource that RisingWave can read data from. Common sources include message brokers such as Apache Kafka and Apache Pulsar and databases such as MySQL and PostgreSQL. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source by adding `MATERIALIZED` in between `CREATE` and `SOURCE` (that is, `CREATE MATERIALIZED SOURCE`). 
+
+Regardless whether the data is persisted in RisingWave or not, you can create materialized views or sinks to perform analysis and transformations.
 
 ### Materialized sources
 
-You can create a materialized source if you want to store all the data from a source into the database. As the data grows, a materialized source can consume a large amount of storage space. You must use the `CREATE MATERIALIZED SOURCE` statement to create a materialized source. For details, see [CREATE SOURCE](../docs/sql/commands/sql-create-source.md).
+To materialize a source is to persist the data from the source into RisingWave. As the data grows, a materialized source can consume a large amount of storage space. You must use the `CREATE MATERIALIZED SOURCE` statement to create a materialized source. For details, see [CREATE SOURCE](../docs/sql/commands/sql-create-source.md).
 
 ### Sinks
 

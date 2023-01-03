@@ -7,11 +7,9 @@ slug: /create-source-kafka
 
 This topic describes how to connect RisingWave to a Kafka broker that you want to receive data from, and how to specify data formats, schemas, and security (encryption and authentication) settings.
 
-You can create two types of sources in RisingWave: non-materialized and materialized sources. The difference between these two types of sources is data from a materialized source is stored in RisingWave, while data from a non-materialized source is not.
+A source is a resource that RisingWave can get data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by adding `MATERIALIZED` in between `CREATE` and `SOURCE`. 
 
-Use the [`CREATE SOURCE`](./sql/commands/sql-create-source.md) command to create a non-materialized source. After a non-materialized source is created, the input data is not stored in RisingWave. You need to create materialized views ([`CREATE MATERIALIZED VIEW`](./sql/commands/sql-create-mv.md)) to process the data and store the results in RisingWave.
-
-Use the [`CREATE MATERIALIZED SOURCE`](./sql/commands/sql-create-source.md) command to create a materialized source. Once a materialized source is created, all data from the source is ingested into RisingWave.
+Regardless whether the data is persisted in RisingWave or not, you can create materialized views or sinks to perform analysis and transformations.
 
 ## Syntax
 
@@ -37,7 +35,7 @@ ROW FORMAT data_format
 
 :::info
 
-For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a schema registry link in the `ROW SCHEMA LOCATION` section.
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a Confluence Schema Registry link in the `ROW SCHEMA LOCATION` section.
 
 :::
 
@@ -49,24 +47,20 @@ For materialized sources with primary key constraints, if a new data record with
 
 :::
 
-### `WITH` parameters
+### Parameters
 
 |Field|Notes|
 |---|---|
+|`MATERIALIZED`| When you materialize a source, you choose to persist the data from the source in RisingWave.|
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
 |properties.group.id	|Required. Name of the Kafka consumer group	|
-|scan.startup.mode|Optional. The Kafka consumer starts consuming data from the commit offset. The two supported modes are `earliest` and `latest`. If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis|Optional. The offset in milliseconds from a certain point of time.	|
-
-### `ROW FORMAT` parameters
-
-|Field | Notes|
-|---|----|
+|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
+|scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
 |*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
 |*message* | Message for the format. Required for Avro and Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
-|*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a schema registry but not both.|
+|*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 
 
 ## Example

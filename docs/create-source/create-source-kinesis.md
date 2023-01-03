@@ -42,10 +42,11 @@ RisingWave performs primary key constraint checks on materialized sources but no
 For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
 :::
 
-### `WITH` parameters
+### Parameters
 
 |Field|	Notes|
 |---|---|
+|`MATERIALIZED`| When you materialize a source, you choose to persist the data from the source in RisingWave.|
 |stream	|Required. Name of the stream.|
 |aws.region	|Required. AWS service region. For example, US East (N. Virginia).|
 |endpoint	|Optional. URL of the entry point for the AWS Kinesis service.|
@@ -56,17 +57,9 @@ For materialized sources with primary key constraints, if a new data record with
 |aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources.	|
 |scan.startup.mode |Optional. The startup mode for Kinesis consumer. Supported modes: 'earliest' (starts from the earliest offset), 'latest' (starts from the latest offset), and 'sequence_number' (starts from specific sequence number, specified by 'scan.startup.sequence_number'). The default mode is `earliest`.|
 |scan.startup.sequence_number |Optional. This field specifies the sequence number to start consuming from. True if `scan.startup.mode` = `sequence_number`, otherwise False.| 
-
-### Row format parameters
-
-Specify the format of the stream in the `ROW FORMAT` section of your statement.
-
-|Parameter | Description|
-|---|---|
 |*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
 |*message* |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
 |*location*| Web location of the schema file in  `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
-
 
 ## Example
 Here is an example of connecting RisingWave to Kinesis Data Streams to read data from individual streams.
