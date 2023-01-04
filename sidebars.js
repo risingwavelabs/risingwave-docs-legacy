@@ -389,7 +389,7 @@ const sidebars = {
       [ 
         {
           type: 'doc',
-          id: 'meta-backup',
+          id: 'manage/meta-backup',
         },
         
       ]
