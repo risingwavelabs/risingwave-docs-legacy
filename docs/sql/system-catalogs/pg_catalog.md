@@ -3,7 +3,11 @@ id: pg-catalog
 slug: /pg-catalog
 title: pg_catalog
 ---
-RisingWave supports the following system catalogs or views of PostgreSQL. 
+RisingWave supports the following system catalogs or views of PostgreSQL.
+
+:::note
+Currently, RisingWave does not fully support all columns in the system catalogs.
+:::
 
 - [`pg_am`](https://www.postgresql.org/docs/current/catalog-pg-am.html)
 - [`pg_attrdef`](https://www.postgresql.org/docs/current/catalog-pg-attrdef.html)
