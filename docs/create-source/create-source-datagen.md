@@ -11,15 +11,85 @@ Use the SQL statement below to connect RisingWave to the built-in load generator
 
 ## Syntax
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="diagram" label="Diagram">
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+rr.Stack(
+   rr.Sequence(
+      rr.Terminal('CREATE MATERIALIZED SOURCE'),
+      rr.NonTerminal('source_name', 'skip'),
+      rr.Terminal('('),
+      rr.OneOrMore (rr.Sequence ( rr.Terminal ('column_name'), rr.Terminal ('data_type')), ','),
+      rr.Terminal(')'),
+   ),
+   rr.Sequence(
+      rr.Terminal('WITH'),
+      rr.Terminal('('),
+      rr.Stack(
+         rr.Stack(
+            rr.Sequence(
+               rr.Terminal('connector = \' datagen \''),
+               rr.Terminal(',')
+            ),
+            rr.OneOrMore (
+               rr.Sequence(
+                  rr.Terminal('fields'),
+                  rr.Terminal('.'),
+                  rr.NonTerminal('column_name'),
+                  rr.Terminal('.'),
+                  rr.NonTerminal('column_parameter'),
+                  rr.Terminal('='),
+                  rr.Terminal('\''),
+                  rr.NonTerminal('value'),
+                  rr.Terminal('\''),
+                  rr.Terminal(','),
+               ),rr.Comment('Configure each column. See detailed information below.'),
+            ),
+            rr.Sequence(
+               rr.Terminal('datagen.rows.per.second'),
+               rr.Terminal('='),
+               rr.Terminal('\''),
+               rr.NonTerminal('rows_integer'),
+               rr.Terminal('\''),
+               rr.Comment('Number of rows to generate per second'),
+            ),
+            rr.Terminal(')'),
+         ),
+      ),
+   ),
+   rr.Sequence( 
+      rr.Terminal('ROW FORMAT JSON'),
+      rr.Terminal(';'),
+   )
+      
+)
+);
+
+<drawer SVG={svg} />
+
+</TabItem>
+
+<TabItem value="code" label="Code">
+
 ```sql
 CREATE MATERIALIZED SOURCE source_name ( column_name data_type, ... ) 
 WITH (
    connector = ' datagen ',
-   column_parameter = ' value ', ...  -- Configure the generator for each column. See detailed information below.
+   fields.column_name.column_parameter = ' value ', ...  -- Configure the generator for each column. See detailed information below.
    datagen.rows.per.second = ' rows_integer '  -- Specify how many rows of records to generate every second. For example, '20'.
 ) 
 ROW FORMAT JSON;
 ```
+
+</TabItem>
+
+</Tabs>
 
 ### `WITH` options - *`column_parameter`*
 
@@ -32,8 +102,6 @@ The following table shows the data types that can be generated for each load gen
 
 Select a generator type:
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 <Tabs>
 <TabItem value="sequence" label="Sequence">
@@ -42,11 +110,11 @@ The sequence load generator can generate numbers, incremented by 1, from the sta
 
 Specify the following fields for every column.
 
-|Field|Description|Value|Required?|
+|`column_parameter`|Description|Value|Required?|
 |---|---|---|---|
-|fields.*column_name*.kind|Generator type|Set to `sequence`.|False<br/>Default: `random`|
-|fields.*column_name*.start|Starting number<br/>Must be smaller than the ending number.|Any number of the column data type<br/>Example: `50`|False<br/>Default: `0`|
-|fields.*column_name*.end|Ending number<br/>Must be larger than the starting number.|Any number of the column data type<br/>Example: `100`|False<br/>Default: `32767`|
+|`kind`|Generator type|Set to `sequence`.|False<br/>Default: `random`|
+|`start`|Starting number<br/>Must be smaller than the ending number.|Any number of the column data type<br/>Example: `50`|False<br/>Default: `0`|
+|`end`|Ending number<br/>Must be larger than the starting number.|Any number of the column data type<br/>Example: `100`|False<br/>Default: `32767`|
 
 </TabItem>
 <TabItem value="random" label="Random">
@@ -58,27 +126,28 @@ And select the type of data to be generated:
    
    Specify the following fields for every column in the source you are creating.
 
-   |Field|Description|Value|Required?|
+   |`column_parameter`|Description|Value|Required?|
    |---|---|---|---|
-   |fields.*column_name*.kind|Generator type|Set to `random`.|False<br/>Default: `random`|
-   |fields.*column_name*.min|The minimum number can be generated.<br/>Must be smaller than the maximum number.|Any number of the column data type<br/>Example: `50`|False<br/>Default: `0`|
-   |fields.*column_name*.max|The maximum number can be generated.<br/>Must be larger than the minimum number.|Any number of the column data type<br/>Example: `100`|False<br/>Default: `32767`|
-   |fields.*column_name*.seed|A seed number that initializes the random load generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the generator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of numbers will be generated.|
+   |`kind`|Generator type|Set to `random`.|False<br/>Default: `random`|
+   |`min`|The minimum number can be generated.<br/>Must be smaller than the maximum number.|Any number of the column data type<br/>Example: `50`|False<br/>Default: `0`|
+   |`max`|The maximum number can be generated.<br/>Must be larger than the minimum number.|Any number of the column data type<br/>Example: `100`|False<br/>Default: `32767`|
+   |`seed`|A seed number that initializes the random load generator. The sequence of the generated numbers is determined by the seed value. If given the same seed number, the generator will produce the same sequence of numbers.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of numbers will be generated.|
 
    
 
    </TabItem>
    <TabItem value="timestamp" label="Timestamp">
 
-   The random timestamp generator produces random timestamp earlier than the current date and time.
+   The random timestamp generator produces random timestamp earlier than the current date and time or the source creation time.
 
    Specify the following fields for every column in the source you are creating.
    
-   |Field|Description|Value|Required?|
+   |`column_parameter`|Description|Value|Required?|
    |---|---|---|---|
-   |fields.*column_name*.kind|Generator type|Set to `random`.|False<br/>Default: `random`|
-   |fields.*column_name*.max_past|Specify the maximum time interval to determine the earliest timestamp can be generated.|An [interval](../sql-data-types.md)<br/>Example: `2h 37min`|False<br/>Default: `1 day`|
-   |fields.*column_name*.seed|A seed number that initializes the random load generator. The sequence of the generated timestamps is determined by the seed value. If given the same seed number, the generator will produce the same sequence of timestamps.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of timestamps will be generated (if the system time is constant).|
+   |`kind`|Generator type|Set to `random`.|False<br/>Default: `random`|
+   |`max_past`|Specify the maximum deviation from the baseline timestamp to determine the earliest possible timestamp can be generated. |An [interval](../sql-data-types.md)<br/>Example: `2h 37min`|False<br/>Default: `1 day`|
+   |`max_past_mode`|Specify the baseline timestamp. <br/> The range for generated timestamps is [baseline - `max_past` , baseline]|`absolute` — Baseline is set to the creation time of the source.<br />`relative` —  Baseline is the current system time.|False<br/>Default: `absolute`|
+   |`seed`|A seed number that initializes the random load generator. The sequence of the generated timestamps is determined by the seed value. If given the same seed number, the generator will produce the same sequence of timestamps.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of timestamps will be generated (if the system time is constant).|
 
 
    </TabItem>
@@ -88,11 +157,11 @@ And select the type of data to be generated:
    
    Specify the following fields for every column in the source you are creating.
 
-   |Field|Description|Value|Required?|
+   |`column_parameter`|Description|Value|Required?|
    |---|---|---|---|
-   |fields.*column_name*.kind|Generator type|Set to `random`.|False<br/>Default: `random`|
-   |fields.*column_name*.length|The length of the varchar to be generated.|A positive integer<br/>Example: `16`|False<br/>Default: `10`|
-   |fields.*column_name*.seed|A seed number that initializes the random load generator. The sequence of the generated characters is determined by the seed value. If given the same seed number, the generator will produce the same sequence of characters.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of characters will be generated.|
+   |`kind`|Generator type|Set to `random`.|False<br/>Default: `random`|
+   |`length`|The length of the varchar to be generated.|A positive integer<br/>Example: `16`|False<br/>Default: `10`|
+   |`seed`|A seed number that initializes the random load generator. The sequence of the generated characters is determined by the seed value. If given the same seed number, the generator will produce the same sequence of characters.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of characters will be generated.|
 
    </TabItem>
    </Tabs>
@@ -111,7 +180,7 @@ The following statement creates a source `s1` with four columns:
 
 * `i1` — Integers starting from 1 and incrementing by 1
 * `v1` — Structs that contain random integers `v2` ranging from -10 to 10 and random floating-point numbers `v3` ranging from 15 to 55
-* `t1` — Random timestamps from as early as 10 days prior to the current system date and time
+* `t1` — Random timestamps from as early as 10 days prior to the source creation time
 * `c1` — Random strings with each consists of 16 characters
 
 
