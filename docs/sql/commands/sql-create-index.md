@@ -1,11 +1,11 @@
 ---
 id: sql-create-index
 title: CREATE INDEX
-description: Create an index on a column of a source, materialized view, or table to speed up data retrieval.
+description: Create an index on a column of a table or a materialized view to speed up data retrieval.
 slug: /sql-create-index
 ---
 
-Use the `CREATE INDEX` command to construct an index on a table or materialized view.
+Use the `CREATE INDEX` command to construct an index on a table or a materialized view.
 
 ## About indexes
 
@@ -92,7 +92,7 @@ WHERE c_phone = '123456789';
 
 ### How to decide which columns to be included?
 
-By default, RisingWave creates an index that includes all columns of a table or materialized view if you omit the `INCLUDE` clause. This differs from the standard PostgreSQL. Why? RisingWave's design as a cloud-native streaming database includes several key differences from PostgreSQL, including the use of anobject store for more cost-effective storage and the desire to make index creation as simple as possible for users who are not experienced with database systems. By including all columns, RisingWave ensures that an index will cover all of the columns touched by a query and eliminate the need for a primary table lookup, which can be slower in a cloud environment due to network communication. However, RisingWave still provides the option to include only specific columns using the `INCLUDE` clause for users who wish to do so.
+By default, RisingWave creates an index that includes all columns of a table or a materialized view if you omit the `INCLUDE` clause. This differs from the standard PostgreSQL. Why? RisingWave's design as a cloud-native streaming database includes several key differences from PostgreSQL, including the use of anobject store for more cost-effective storage and the desire to make index creation as simple as possible for users who are not experienced with database systems. By including all columns, RisingWave ensures that an index will cover all of the columns touched by a query and eliminate the need for a primary table lookup, which can be slower in a cloud environment due to network communication. However, RisingWave still provides the option to include only specific columns using the `INCLUDE` clause for users who wish to do so.
 
 For example:
 
@@ -159,4 +159,4 @@ CREATE MATERIALIZED VIEW ad_id_index_mv AS
 
 ## See also
 
-[`DROP INDEX`](sql-drop-index.md) — Remove an index constructed on a table or materialized view.
+[`DROP INDEX`](sql-drop-index.md) — Remove an index constructed on a table or a materialized view.
