@@ -350,7 +350,23 @@ const sidebars = {
         
         ]
         },
-     'sql/information-schema',
+        {
+          type: 'category',
+          label: 'System catalogs',
+          items: [
+            {
+              type: 'doc',
+              id: 'sql/system-catalogs/information-schema',
+              label: 'information_schema',
+          },
+          {
+              type: 'doc',
+              id: 'sql/system-catalogs/pg-catalog',
+              label: 'pg_catalog',
+          },
+          
+          ]
+        },
      'sql/psql-commands',
       ],
     },
