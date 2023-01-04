@@ -27,21 +27,21 @@ For tools or integrations that you would like to use but are not listed in the t
 
 ## ETL/ELT and data integration
 
-|System | Supported |
-|--|---|
-|Fivetran| Not yet <voteNotify note="fivetran" /> |
-|Airbyte | Not yet  <voteNotify note="airbyte" /> |
-|dbt| Not yet <voteNotify note="dbt" />|
-|Hightouch| Not yet <voteNotify note="hightouch" />|
+|System | |Supported |
+|---|---|---|
+|Fivetran| |Not yet <voteNotify note="fivetran" /> |
+|Airbyte | |Not yet  <voteNotify note="airbyte" /> |
+|dbt| |Not yet <voteNotify note="dbt" />|
+|Hightouch| |Not yet <voteNotify note="hightouch" />|
 
 ## Query engines
 
-|System | Supported |
-|---|---|
-|Apache Spark| Not yet <voteNotify note="spark" />|
-|AWS Athena| Not yet <voteNotify note="athena" />|
-|Presto|Not yet <voteNotify note="presto" />|
-|Trino| Not yet <voteNotify note="trino" />|
+|System | |Supported |
+|---|---|---|
+|Apache Spark| |Not yet <voteNotify note="spark" />|
+|AWS Athena| |Not yet <voteNotify note="athena" />|
+|Presto| |Not yet <voteNotify note="presto" />|
+|Trino| |Not yet <voteNotify note="trino" />|
 
 ## Databases
 
@@ -79,27 +79,27 @@ For tools or integrations that you would like to use but are not listed in the t
 
 ## Data lakes
 
-|System | Supported |
-|---|---|
-|Delta Lake| Not yet <voteNotify note="deltalake" />|
-|Apache Hudi| Not yet <voteNotify note="hudi" />|
-|Apache Iceberg| Not yet <voteNotify note="iceberg" />|
+|System | |Supported |
+|---|---|---|
+|Delta Lake| |Not yet <voteNotify note="deltalake" />|
+|Apache Hudi| |Not yet <voteNotify note="hudi" />|
+|Apache Iceberg| |Not yet <voteNotify note="iceberg" />|
 
 ## BI and data analytics platforms
 
-|System | Supported |
-|---|---|
-|Apache Superset| Yes |
-|Cube.js|Not yet <voteNotify note="cubejs" />|
-|DBeaver| In progress|
-|Grafana| Yes. See [Visualize RisingWave data in Grafana](./guides/grafana-integration.md) for details.|
-|Jupyter Notebook| Not yet <voteNotify note="jupyter" />|
-|Looker| Not yet <voteNotify note="looker" /> |
-|Metabase | In progress|
+|System | |Supported |
+|---|---|---|
+|Apache Superset|| Yes |
+|Cube.js| |Not yet <voteNotify note="cubejs" />|
+|DBeaver| |In progress|
+|Grafana| |Yes. See [Visualize RisingWave data in Grafana](./guides/grafana-integration.md) for details.|
+|Jupyter Notebook| |Not yet <voteNotify note="jupyter" />|
+|Looker| |Not yet <voteNotify note="looker" /> |
+|Metabase | |In progress|
 
 
 ## Other systems
 
-|System | Supported |
-|---|---|
-|Alluxio|Not yet <voteNotify note="alluxio" />|
+|System | |Supported |
+|---|---|---|
+|Alluxio| |Not yet <voteNotify note="alluxio" />|
