@@ -84,7 +84,7 @@ Use the following steps to restore from a meta snapshot.
 
 ## Access historical data backed up by meta snapshot
 
-Sometimes, a meta snapshot is used to support historical data access, known as a time travel query.
+Meta snapshot is used to support historical data access, also known as time travel query.
 
 Use the following steps to perform a time travel query.
 
