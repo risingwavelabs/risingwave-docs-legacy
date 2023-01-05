@@ -123,6 +123,6 @@ Use the following steps to perform a time travel query.
 
 :::note
 
-Limitation: Only support access of historical data at point-in-time backed by at least one meta snapshot.
+Limitation: Only supports historical data access at a specific point in time backed by at least one meta snapshot.
 
 :::
