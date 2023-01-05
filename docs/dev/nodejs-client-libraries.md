@@ -5,7 +5,7 @@ description: Use RisingWave in your Node.js application
 slug: /nodejs-client-libraries
 ---
 
-As RisingWave is wire-compatible with PostgreSQL, you can use third-party PostgreSQL drivers to interact with RisingWave from your Python applications.
+As RisingWave is wire-compatible with PostgreSQL, you can use third-party PostgreSQL drivers to interact with RisingWave from your Node.js applications.
 
 In this guide, we use the [Node.js pg driver](https://www.npmjs.com/package/pg) to connect to RisingWave.
 
@@ -35,7 +35,7 @@ Connecting to RisingWave and running a query is normally done together. Therefor
 const { Pool } = require('pg')
 
 const credentials = {
-   user: 'root',
+  user: 'root',
   host: '127.0.0.1',
   database: 'dev',
   password: 'secret',
@@ -55,7 +55,7 @@ start().catch(console.error);
 
 ## Create a source
 
-The code below creates a source `walk` with the `datagen` connector. The `datagen` connector is used to generate mock data. The `walk` source consists of two columns, `distance` and `duration`, which respectively represent the distance and the duration of a walk. The source is a simplified version of the data that is tracked by smart watches.
+The code below creates a source `walk` with the [`datagen`](/create-source/create-source-datagen.md) connector. The `datagen` connector is used to generate mock data. The `walk` source consists of two columns, `distance` and `duration`, which respectively represent the distance and the duration of a walk. The source is a simplified version of the data that is tracked by smart watches.
 
 ```js
 const { Pool } = require('pg')

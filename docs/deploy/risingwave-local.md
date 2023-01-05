@@ -24,7 +24,7 @@ import TabItem from '@theme/TabItem';
 1. Download the pre-built binary.
 
     ```shell
-    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.14/risingwave-v0.1.14-x86_64-unknown-linux.tar.gz
+    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.15/risingwave-v0.1.15-x86_64-unknown-linux.tar.gz
     ```
 
     > You can find previous binary releases in [Release notes](/release-notes.md).
@@ -32,7 +32,7 @@ import TabItem from '@theme/TabItem';
 2. Unzip the binary.
 
     ```shell
-    tar xvf risingwave-v0.1.14-x86_64-unknown-linux.tar.gz
+    tar xvf risingwave-v0.1.15-x86_64-unknown-linux.tar.gz
     ```
 
 3. Start RisingWave in playground mode.
