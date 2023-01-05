@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import NotifyButton from "../NotifyButton";
 import styles from "./styles.module.css";
 import Tooltip from "@mui/material/Tooltip";
-import Divider from "@mui/material/Divider";
 import { getLike, postLike } from "../../api/feedback";
-import { toast } from "react-toastify";
 
 type Props = {
   note: string;

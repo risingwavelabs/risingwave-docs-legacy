@@ -6,7 +6,7 @@
   background: transparent;
   /* border-radius: 80px; */
   /* border: 1px solid #bec3c9; */
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
   vertical-align: bottom;
   padding-bottom: 4px;
