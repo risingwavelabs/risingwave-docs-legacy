@@ -37,7 +37,7 @@ CREATE INDEX index_name ON object_name ( index_column [, ...] )
 |*index_name*    |The name of the index to be created.|
 |*object_name*    |The name of the table or materialized view where the index is created.|
 |*index_column*   |The name of the column on which the index is created.|
-|**INCLUDE** clause|Specify the columns to be included in the index as non-key columns.<ul><li>An index-only query can return the values of non-key columns without having to visit the indexed table thus improving the performance.</li><li>If you omit the `INCLUDE` clause, all columns of the table or materialized view will be indexed. This is recommended in RisingWave.</li><li>If you only want to include the `index_column`, use `CREATE INDEX ON object_name(index_column) INCLUDE(index_column);`.</li><li>See [How to decide which columns to be included](#how-to-decide-which-columns-to-be-included) for more information.</li></ul>|
+|**INCLUDE** clause|Specify the columns to be included in the index as non-key columns.<ul><li>An index-only query can return the values of non-key columns without having to visit the indexed table thus improving the performance.</li><li>If you omit the `INCLUDE` clause, all columns of the table or materialized view will be indexed. This is recommended in RisingWave.</li><li>If you only want to include the `index_column`, use `CREATE INDEX ON object_name(index_column) INCLUDE(index_column);`.</li><li>See [How to decide which columns to include](#how-to-decide-which-columns-to-include) for more information.</li></ul>|
 |**DISTRIBUTED BY** clause|Specify the index distribution key.<ul><li>As a distributed database, RisingWave distributes the data across multiple nodes. When an index is created, the distribution key is used to determine how the data should be distributed across these nodes.</li><li>If you omit the `DISTRIBUTED BY` clause, `index_column` will be be used as the default distribution key.</li><li>`distributed_column` has to be the prefix of `index_column`.</li><li>See [How to decide the index distribution key](#how-to-decide-the-index-distribution-key) for more information.</li></ul>|
 
 ## Examples
@@ -90,9 +90,9 @@ SELECT * FROM customers JOIN orders ON c_custkey = o_custkey
 WHERE c_phone = '123456789';
 ```
 
-### How to decide which columns to be included?
+### How to decide which columns to include?
 
-By default, RisingWave creates an index that includes all columns of a table or a materialized view if you omit the `INCLUDE` clause. This differs from the standard PostgreSQL. Why? RisingWave's design as a cloud-native streaming database includes several key differences from PostgreSQL, including the use of anobject store for more cost-effective storage and the desire to make index creation as simple as possible for users who are not experienced with database systems. By including all columns, RisingWave ensures that an index will cover all of the columns touched by a query and eliminate the need for a primary table lookup, which can be slower in a cloud environment due to network communication. However, RisingWave still provides the option to include only specific columns using the `INCLUDE` clause for users who wish to do so.
+By default, RisingWave creates an index that includes all columns of a table or a materialized view if you omit the `INCLUDE` clause. This differs from the standard PostgreSQL. Why? RisingWave's design as a cloud-native streaming database includes several key differences from PostgreSQL, including the use of an object store for more cost-effective storage and the desire to make index creation as simple as possible for users who are not experienced with database systems. By including all columns, RisingWave ensures that an index will cover all of the columns touched by a query and eliminates the need for a primary table lookup, which can be slower in a cloud environment due to network communication. However, RisingWave still provides the option to include only specific columns using the `INCLUDE` clause for users who wish to do so.
 
 For example:
 
@@ -111,7 +111,7 @@ You can use the [`EXPLAIN`](sql-explain.md) statement to view the execution plan
 
 ### How to decide the index distribution key?
 
-RisingWave will use the `index_column` to be the `distributed_column` by default if you omit the `DISTRIBUTED BY` clause. RisingWave distributes the data across multiple nodes and uses the `distributed_column` to determine how to distribute the data based on the index. If your queries are intended to use indexes but only provide the prefix of the `index_column`, it could be a problem for RisingWave to determine which node to access the index data from. To address this issue, you can specify the `distributed_column`s yourself, ensuring that these columns should be the prefix of the `index_column`.
+RisingWave will use the `index_column` to be the `distributed_column` by default if you omit the `DISTRIBUTED BY` clause. RisingWave distributes the data across multiple nodes and uses the `distributed_column` to determine how to distribute the data based on the index. If your queries intend to use indexes but only provide the prefix of the `index_column`, it could be a problem for RisingWave to determine which node to access the index data from. To address this issue, you can specify the `distributed_column` yourself, ensuring that these columns should be the prefix of the `index_column`.
 
 For example:
 
