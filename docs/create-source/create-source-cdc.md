@@ -1,7 +1,7 @@
 ---
 id: create-source-cdc
-title: Ingest data from databases via CDC
-description: Connect RisingWave to a CDC source.
+title: Ingest data from databases with CDC
+description: Ingest data from databases with CDC.
 slug: /create-source-cdc
 ---
 
@@ -11,11 +11,9 @@ CDC tools and platforms can record row-level changes (INSERT, UPDATE, and DELETE
 
 To ingest CDC data from MySQL or PostgreSQL into RisingWave, you can use a CDC tool to convert data change streams in databases to Kafka topics, and then use the native Kafka connector in RisingWave to consume data from the Kafka topics.
 
-For RisingWave to ingest CDC data, you must create a materialized source (`CREATE MATERIALIZED SOURCE`) and specify primary keys.
+For RisingWave to ingest CDC data, you must create a materialized source (`CREATE MATERIALIZED SOURCE`) and specify primary keys. Materializing a source means that you want to persist the data from the source in RisingWave. For CDC data, the source must be materalized.
 
-The difference between a non-materialized and materialized source is that data from a materialized source is stored in RisingWave, while data from a non-materialized source is not.
-
-The supported CDC data formats are [Debezium](https://debezium.io) JSON (for both MySQL and PostgreSQL) and [Maxwell](https://maxwells-daemon.io) JSON (for MySQL only). 
+The supported CDC data formats are [Debezium](https://debezium.io) JSON (for both MySQL and PostgreSQL) and [Maxwell](https://maxwells-daemon.io) JSON (for MySQL only).
 
 - Debezium JSON (`ROW FORMAT DEBEZIUM_JSON`): You can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) to convert MySQL or PostgreSQL data change streams to Kafka topics. To learn about how to configure MySQL and deploy the Debezium connector for MySQL, see the [Debezium connector for MySQL documentation](https://debezium.io/documentation/reference/stable/connectors/mysql.html).
 - Maxwell JSON (`ROW FORMAT MAXWELL`): You can use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
@@ -37,18 +35,18 @@ ROW FORMAT { DEBEZIUM_JSON | MAXWELL };
 
 ### `WITH` parameters
 
-
-|Field|	Default|	Type|	Description|	Required?|
-|---|---|---|---|---|
-|topic|None|String|Address of the Kafka topic. One source can only correspond to one topic.|True
-|properties.bootstrap.server	|None	|String	|Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|True|
-|scan.startup.mode	|earliest	|String	|The Kafka consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`.	|False
-|scan.startup.timestamp_millis	|None	|Int64	|Specify the offset in seconds from a certain point of time.	|False|
-|properties.group.id	|None	|String	|Name of the Kafka consumer group	|True|
+|Field|Notes|
+|---|---|
+|topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
+|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
+|properties.group.id	|Optional. Name of the Kafka consumer group.	|
+|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
+|scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
 
 
 ## Example
-Here is an example of connecting RisingWave to a CDC service to read data from individual streams.
+
+Here is an example of creating a materialized source using the Kafka connector to consume data from Kafka topics.
 
 ```sql
 CREATE MATERIALIZED SOURCE [IF NOT EXISTS] source_name (

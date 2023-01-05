@@ -151,12 +151,12 @@ const sidebars = {
         {
           type: 'doc',
           label: 'Kafka',
-          id: 'create-source/create-source-kafka-redpanda',
+          id: 'create-source/create-source-kafka',
         },
         {
           type: 'doc',
           label: 'Redpanda',
-          id: 'create-source/create-source-kafka-redpanda',
+          id: 'create-source/create-source-redpanda',
         },
         {
           type: 'doc',
@@ -195,6 +195,11 @@ const sidebars = {
       label: 'Integrations',
       items:
       [
+        {
+        type: 'doc',
+        label: 'Overview',
+        id: 'rw-integration-summary',
+        },
         {
         type: 'doc',
         label: 'Grafana',
@@ -350,7 +355,23 @@ const sidebars = {
         
         ]
         },
-     'sql/information-schema',
+        {
+          type: 'category',
+          label: 'System catalogs',
+          items: [
+            {
+              type: 'doc',
+              id: 'sql/system-catalogs/information-schema',
+              label: 'information_schema',
+          },
+          {
+              type: 'doc',
+              id: 'sql/system-catalogs/pg-catalog',
+              label: 'pg_catalog',
+          },
+          
+          ]
+        },
      'sql/psql-commands',
       ],
     },

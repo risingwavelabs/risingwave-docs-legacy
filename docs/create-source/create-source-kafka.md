@@ -1,25 +1,23 @@
 ---
-id: create-source-kafka-redpanda
-title: Ingest data from Kafka and Redpanda
-description: Connect RisingWave to a Kafka/Redpanda broker.
-slug: /create-source-kafka-redpanda
+id: create-source-kafka
+title: Ingest data from Kafka
+description: Connect RisingWave to a Kafka broker.
+slug: /create-source-kafka
 ---
 
 This topic describes how to connect RisingWave to a Kafka broker that you want to receive data from, and how to specify data formats, schemas, and security (encryption and authentication) settings.
 
-To connect to a Kafka or Redpanda broker, you need to use the `CREATE SOURCE` command to create a source for that broker.
+A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by adding `MATERIALIZED` in between `CREATE` and `SOURCE` (that is, `CREATE MATERIALIZED SOURCE`). 
 
+Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or sinks for data transformations.
 
 ## Syntax
 
 ```sql
-CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name (
-   column_name data_type [ PRIMARY KEY ], ...
-   [ PRIMARY KEY ( column_name, ... ) ]
-)
+CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name 
+[schema_definition]
 WITH (
    connector='kafka',
-   topic='value',
    field_name='value', ...
 )
 ROW FORMAT data_format 
@@ -27,30 +25,42 @@ ROW FORMAT data_format
 [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
 
-:::note
-RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
+**schema_definition**:
+```sql
+(
+   column_name data_type [ PRIMARY KEY ], ...
+   [ PRIMARY KEY ( column_name, ... ) ]
+)
+```
 
-For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
+:::info
+
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a Confluence Schema Registry link in the `ROW SCHEMA LOCATION` section.
+
 :::
 
-### `WITH` parameters
+:::note
 
-|Field|	Required?| 	Notes|
-|---|---|---|
-|topic|Yes|Address of the Kafka topic. One source can only correspond to one topic.|
-|properties.bootstrap.server	|Yes|Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
-|properties.group.id	|Yes|Name of the Kafka consumer group	|
-|scan.startup.mode|No|The Kafka consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`. If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis|No|Specify the offset in milliseconds from a certain point of time.	|
+RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
 
-### `ROW FORMAT` parameters
+For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
 
-|Field | Notes|
-|---|----|
+:::
+
+### Parameters
+
+|Field|Notes|
+|---|---|
+|`MATERIALIZED`| When you materialize a source, you choose to persist the data from the source in RisingWave.|
+|topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
+|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
+|properties.group.id	|Required. Name of the Kafka consumer group	|
+|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
+|scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
 |*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
 |*message* | Message for the format. Required for Avro and Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
-|*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a schema registry but not both.|
+|*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 
 
 ## Example

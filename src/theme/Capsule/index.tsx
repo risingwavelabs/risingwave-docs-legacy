@@ -57,16 +57,16 @@ function Capsule({ note }: Props) {
       <Tooltip title="I need this feature" arrow>
         <div className={styles.capsuleLeft} onClick={LikeFeature}>
           {clicked ? (
-            <>
-              <FillThumbsUpIcon size="16px" />
+            <div className={styles.countLeft}>
+              <FillThumbsUpIcon size="16" />
               <span className={styles.count}>{count}</span>
-            </>
+            </div>
           ) : (
-            <ThumbsUpIcon size="16px" />
+            <ThumbsUpIcon size="16" />
           )}
         </div>
       </Tooltip>
-      <Divider light orientation="vertical" flexItem variant="middle" />
+      <div className={styles.divider}></div>
       <div className={styles.capsuleRight}>
         <NotifyButton note={note} size="16px" />
       </div>
