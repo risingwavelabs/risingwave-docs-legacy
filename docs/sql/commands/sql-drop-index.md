@@ -5,7 +5,7 @@ description: Remove an index.
 slug: /sql-drop-index
 ---
 
-Use the `DROP INDEX` command to remove an index from a table or materialized view.
+Use the `DROP INDEX` command to remove an index from a table or a materialized view.
 
 ## Syntax
 
@@ -37,3 +37,6 @@ This statement removes the "ad_id_index" index from the "ad_ctr_5min" materializ
 DROP INDEX rw_schema.id_index;
 ```
 
+## See also
+
+[`CREATE INDEX`](sql-create-index.md) — Construct an index on a table or a materialized view to speed up queries.
