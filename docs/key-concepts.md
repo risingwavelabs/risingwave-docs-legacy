@@ -12,7 +12,7 @@ This page explains key concepts and terms that are used throughout the documenta
 
 A source is a resource that RisingWave can read data from. Common sources include message brokers such as Apache Kafka and Apache Pulsar and databases such as MySQL and PostgreSQL. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source by adding `MATERIALIZED` in between `CREATE` and `SOURCE` (that is, `CREATE MATERIALIZED SOURCE`). 
 
-Regardless whether the data is persisted in RisingWave or not, you can create materialized views or sinks to perform analysis and transformations.
+Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or sinks for data transformations.
 
 ### Materialized sources
 
