@@ -7,7 +7,7 @@ Certain data types can be cast to and from other types implicitly or explicitly.
 
 - 🟢 Implicit: Values can be automatically converted to the target type.
 - 🟠 Assignment: Values can be automatically converted when inserted to a column of the target type.
-- 🔷 Explicit: Values can be converted to the target type only when you use the [`cast`](functions-operators/sql-function-cast.md) function or the `::` operator.
+- 🔷 Explicit: Values can be converted to the target type only when you use the [`cast`](/sql/functions-operators/sql-function-cast.md) function or the `::` operator.
 
 | From \ To | boolean | smallint | integer | bigint | numeric | real | double | varchar | date | timestamp | timestamp with time zone | time | interval |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
