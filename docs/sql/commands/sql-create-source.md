@@ -30,13 +30,13 @@ Click a connector name to see the SQL syntax, options, and sample statement of c
 
 | Connector | Version | Format | Materialized? | Limitations |
 |---------|---------|---------|---------|---------|
-|[Kafka](../create-source/create-source-kafka.md)|3.1.0 or later versions	|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
-|[Redpanda](../create-source/create-source-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|Materialized & non-materialized| |
-|[Pulsar](../create-source/create-source-pulsar.md)|	2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
-|[Kinesis](../create-source/create-source-kinesis.md)|	Latest|	[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
-|[PostgreSQL CDC](../create-source/create-source-cdc.md)|	10, 11, 12, 13, 14|[Debezium JSON](#debezium-json), [Maxwell JSON](#maxwell-json)|	Materialized only|	Must have primary key|
-|[MySQL CDC](../create-source/create-source-cdc.md)|	5.7, 8.0|[Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
-|[Load generator](../create-source/create-source-datagen.md)|Built-in|[JSON](#json)|Materialized only||
+|[Kafka](/create-source/create-source-kafka.md)|3.1.0 or later versions	|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
+|[Redpanda](/create-source/create-source-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|Materialized & non-materialized| |
+|[Pulsar](/create-source/create-source-pulsar.md)|	2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
+|[Kinesis](/create-source/create-source-kinesis.md)|	Latest|	[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	Materialized & non-materialized| |
+|[PostgreSQL CDC](/create-source/create-source-cdc.md)|	10, 11, 12, 13, 14|[Debezium JSON](#debezium-json), [Maxwell JSON](#maxwell-json)|	Materialized only|	Must have primary key|
+|[MySQL CDC](/create-source/create-source-cdc.md)|	5.7, 8.0|[Debezium JSON](#debezium-json)|	Materialized only|	Must have primary key|
+|[Load generator](/create-source/create-source-datagen.md)|Built-in|[JSON](#json)|Materialized only||
 
 :::note
 When a source is created, RisingWave does not ingest data immediately. RisingWave starts to process data when a materialized view is created based on the source.
@@ -48,7 +48,7 @@ When creating a source, specify the format in the `ROW FORMAT` section of the `C
 
 ### Avro
 
-For data in Avro format, you must specify a message and a schema file location. The schema file location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Avro, instead of a schema file location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](../create-source/create-source-kafka-redpanda.md#read-schemas-from-schema-registry). 
+For data in Avro format, you must specify a message and a schema file location. The schema file location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Avro, instead of a schema file location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry). 
 
 :::info
 
@@ -75,7 +75,7 @@ ROW FORMAT JSON
 
 ### Protobuf
 
-For data in Protobuf format, you must specify a message and a schema location. The schema location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Regsitry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](../create-source/create-source-kafka-redpanda.md#read-schemas-from-schema-registry).
+For data in Protobuf format, you must specify a message and a schema location. The schema location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Regsitry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
 
 :::info
 

@@ -18,12 +18,12 @@ For tools or integrations that you would like to use but are not listed in the t
 
 |Broker or streaming service| Source | Sink |
 |---|---|---|
-|Kafka | Yes. See [Ingest data from Kafka](../docs/sql/create-source/create-source-kafka-redpanda.md) for details. | Yes. See [Deliver data to Kafka](../docs/sql/commands/sql-create-sink.md) for details.| |
-|Redpanda | Yes. See [Ingest data from Kafka](../docs/sql/create-source/create-source-kafka-redpanda.md) for details. |Yes. See [Deliver data to Kafka](../docs/sql/commands/sql-create-sink.md) for details.|
-|Apache Pulsar|Yes. See [Ingest data from Pulsar](../docs/sql/create-source/create-source-pulsar.md) for details. | Not yet <voteNotify note="pulsar_sink" />|
+|Kafka | Yes. See [Ingest data from Kafka](/create-source/create-source-kafka.md) for details. | Yes. See [Deliver data to Kafka](/sql/commands/sql-create-sink.md) for details.| |
+|Redpanda | Yes. See [Ingest data from Kafka](/create-source/create-source-redpanda.md) for details. |Yes. See [Deliver data to Kafka](/sql/commands/sql-create-sink.md) for details.|
+|Apache Pulsar|Yes. See [Ingest data from Pulsar](/create-source/create-source-pulsar.md) for details. | Not yet <voteNotify note="pulsar_sink" />|
 |DataStax Astra Streaming| Yes | Not yet <voteNotify note="astra_streaming_sink" />|
 |StreamNative Cloud| Yes| Not yet <voteNotify note="streamnative_cloud_sink" />|
-|Kinesis Data Streams|Yes. See [Ingest data from Kinesis](../docs/sql/create-source/create-source-kinesis.md) for details.|Not yet <voteNotify note="kinesis_sink" />|
+|Kinesis Data Streams|Yes. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Not yet <voteNotify note="kinesis_sink" />|
 
 ## ETL/ELT and data integration
 

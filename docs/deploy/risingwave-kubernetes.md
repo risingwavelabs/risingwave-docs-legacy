@@ -15,7 +15,7 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 
     Ensure that the Kubernetes command-line tool [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) is installed in your environment.
 
-* **[Install `psql`](../guides/install-psql-without-full-postgres.md)**
+* **[Install `psql`](/guides/install-psql-without-full-postgres.md)**
 
     Ensure that the PostgreSQL interactive terminal [`psql`](https://www.postgresql.org/docs/current/app-psql.html) is installed in your environment.
 

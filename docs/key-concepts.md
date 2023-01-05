@@ -16,11 +16,11 @@ Regardless of whether the data is persisted in RisingWave, you can create materi
 
 ### Materialized sources
 
-To materialize a source is to persist the data from the source into RisingWave. As the data grows, a materialized source can consume a large amount of storage space. You must use the `CREATE MATERIALIZED SOURCE` statement to create a materialized source. For details, see [CREATE SOURCE](../docs/sql/commands/sql-create-source.md).
+To materialize a source is to persist the data from the source into RisingWave. As the data grows, a materialized source can consume a large amount of storage space. You must use the `CREATE MATERIALIZED SOURCE` statement to create a materialized source. For details, see [CREATE SOURCE](/sql/commands/sql-create-source.md).
 
 ### Sinks
 
-A sink is an external target to which you can send data. RisingWave now supports exporting data to Kafka topics. Before you stream data out of RisingWave to a sink, you need to create a sink using the [`CREATE SINK`](../docs/sql/commands/sql-create-sink.md) statement to establish the connection.
+A sink is an external target to which you can send data. RisingWave now supports exporting data to Kafka topics. Before you stream data out of RisingWave to a sink, you need to create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md) statement to establish the connection.
 
 ### Views 
 
@@ -28,7 +28,7 @@ A view is a virtual relation that acts as an actual relation. It is not a part o
 
 ### Materialized views
 
-When the results of a view expression are stored in a database system, they are called materialized views. In RisingWave, the result of a materialized view is updated when a relevant event arrives in the system. When you query the result, it is returned instantly as the computation has already been completed when the data comes in. You need to use the [`CREATE MATERIALIZED VIEW`](../docs/sql/commands/sql-create-mv.md) statement to create a materialized source.
+When the results of a view expression are stored in a database system, they are called materialized views. In RisingWave, the result of a materialized view is updated when a relevant event arrives in the system. When you query the result, it is returned instantly as the computation has already been completed when the data comes in. You need to use the [`CREATE MATERIALIZED VIEW`](/sql/commands/sql-create-mv.md) statement to create a materialized source.
 
 ### Indexes
 
@@ -100,7 +100,7 @@ Object storage, or object-based storage, is a technology that stores data in a h
 
 ### Protobuf
 
-Protocol buffers (commonly known as Protobuf) are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data. It is similar to XML, but smaller, faster, and simpler. RisingWave supports decoding Protobuf data. When creating a source that uses the Protobuf format, you need to specify the schema. For details about the requirements, see [Protobuf requirements](../docs/sql/commands/sql-create-source.md#protobuf).
+Protocol buffers (commonly known as Protobuf) are Google's language-neutral, platform-neutral, extensible mechanism for serializing structured data. It is similar to XML, but smaller, faster, and simpler. RisingWave supports decoding Protobuf data. When creating a source that uses the Protobuf format, you need to specify the schema. For details about the requirements, see [Protobuf requirements](/sql/commands/sql-create-source.md#protobuf).
 
 ### `psql`
 

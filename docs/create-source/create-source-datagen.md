@@ -145,7 +145,7 @@ And select the type of data to be generated:
    |`column_parameter`|Description|Value|Required?|
    |---|---|---|---|
    |`kind`|Generator type|Set to `random`.|False<br/>Default: `random`|
-   |`max_past`|Specify the maximum deviation from the baseline timestamp to determine the earliest possible timestamp can be generated. |An [interval](../sql-data-types.md)<br/>Example: `2h 37min`|False<br/>Default: `1 day`|
+   |`max_past`|Specify the maximum deviation from the baseline timestamp to determine the earliest possible timestamp can be generated. |An [interval](/sql/sql-data-types.md)<br/>Example: `2h 37min`|False<br/>Default: `1 day`|
    |`max_past_mode`|Specify the baseline timestamp. <br/> The range for generated timestamps is [baseline - `max_past` , baseline]|`absolute` — Baseline is set to the creation time of the source.<br />`relative` —  Baseline is the current system time.|False<br/>Default: `absolute`|
    |`seed`|A seed number that initializes the random load generator. The sequence of the generated timestamps is determined by the seed value. If given the same seed number, the generator will produce the same sequence of timestamps.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of timestamps will be generated (if the system time is constant).|
 
