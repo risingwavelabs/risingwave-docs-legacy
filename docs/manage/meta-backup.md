@@ -19,9 +19,8 @@ storage_url = "s3://[bucket]"
 storage_directory = "backup"
 ```
 
-Typically, `storage_url` and `storage_directory` should not be changed after initializing the cluster. If they are changed, all meta snapshots taken previously become invalidated and shouldn't be used because meta backup and recovery don't replicate SST files. 
-
-Additionally, meta service maintains the retention time for SSTs required by meta snapshots via monitoring the snapshot storage in use to ensure consistency between meta snapshots and SST files. Thus, SST files required by meta snapshots from a snapshot storage that is not in use may be garbage collected at any time.
+Typically, `storage_url` and `storage_directory` should not be changed after initializing the cluster. Otherwise, if they are changed, all meta snapshots taken previously become invalidated and shouldn't be used anymore.
+This is because the meta backup and recovery process does not replicate SST files. To ensure consistency between meta snapshots and SST files, the meta service additionally maintains the retention time for SSTs required by meta snapshots via monitoring the snapshot storage in use. That is to say, SST files required by meta snapshots from a snapshot storage that is not in use may be garbage collected at any time.
 
 
 ## Create a meta snapshot
@@ -100,8 +99,8 @@ Use the following steps to perform a time travel query.
     ```
         safe_epoch    |      safe_epoch_ts      | max_committed_epoch | max_committed_epoch_ts  
     ------------------+-------------------------+---------------------+-------------------------
-    3603859827458048 | 2022-12-28 11:08:56.918 |    3603862776381440 | 2022-12-28 11:09:41.915
-    3603898821640192 | 2022-12-28 11:18:51.922 |    3603900263432192 | 2022-12-28 11:19:13.922
+     3603859827458048 | 2022-12-28 11:08:56.918 |    3603862776381440 | 2022-12-28 11:09:41.915
+     3603898821640192 | 2022-12-28 11:18:51.922 |    3603900263432192 | 2022-12-28 11:19:13.922
     ```
 
    Valid epochs are within range (`safe_epoch`,`max_committed_epoch`). For example, any epochs in [3603859827458048, 3603862776381440] or in [3603898821640192, 3603900263432192] are acceptable.  
