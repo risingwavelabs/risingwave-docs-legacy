@@ -55,7 +55,7 @@ The following UI page should appear.
 
 <img
   src={require('../docs/images/supersetui.png').default}
-  alt="Supset UI"
+  alt="Superset UI"
 />
 
 ### Connect to RisingWave
