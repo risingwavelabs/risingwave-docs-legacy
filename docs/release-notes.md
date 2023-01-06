@@ -9,7 +9,7 @@ This page summarizes changes in each version of RisingWave, including new featur
 
 ## v0.1.15
 
-This version was released on January 3, 2022. 
+This version was released on January 3, 2023. 
 
 ### Main changes
 
