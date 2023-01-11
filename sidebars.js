@@ -89,6 +89,10 @@ const sidebars = {
           id: 'risingwave-sql-101',
           label: 'RisingWave SQL 101',
         },
+        {
+          type: 'doc',
+          id: 'guides/install-psql-without-postgresql',
+        },
       ]
     },
 
@@ -205,21 +209,6 @@ const sidebars = {
         label: 'Grafana',
         id: 'guides/grafana-integration'
         },
-      ]
-    },
-
-    {
-      type: 'category',
-      label: 'How-to guides',
-      collapsible: true,
-      collapsed: true,
-      items: 
-      [ 
-        {
-          type: 'doc',
-          id: 'guides/install-psql-without-postgresql',
-        },
-        
       ]
     },
 
