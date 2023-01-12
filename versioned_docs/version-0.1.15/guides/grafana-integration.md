@@ -1,7 +1,7 @@
 ---
 id: grafana-integration
-title: Visualize RisingWave data in Grafana
-description: Visualize RisingWave data in Grafana
+title: Configure Grafana to read data from RisingWave
+description: Configure Grafana to read data from RisingWave.
 slug: /grafana-integration
 ---
 
