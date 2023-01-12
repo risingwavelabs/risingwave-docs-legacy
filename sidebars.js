@@ -119,7 +119,7 @@ const sidebars = {
       },
       {
         type: 'doc',
-        label: 'Superset integration',
+        label: 'Superset',
         id: 'superset-integration'
       }
     ]
