@@ -15,9 +15,9 @@ This guide will go over how to:
 
 ### Install and start RisingWave
 
-To install and start RisingWave locally, see the [Get started](..//docs/get-started.md) guide. We recommend running RisingWave locally for demo purposes.
+To install and start RisingWave locally, see the [Get started](../get-started.md) guide. We recommend running RisingWave locally for demo purposes.
 
-Connect to a streaming source. For details on connecting to streaming sources and what sources are supported with RisingWave, see [CREATE SOURCE](../docs/sql/commands/sql-create-source.md).
+Connect to a streaming source. For details on connecting to streaming sources and what sources are supported with RisingWave, see [CREATE SOURCE](../sql/commands/sql-create-source.md).
 
 ### Install Apache Superset
 
@@ -54,7 +54,7 @@ If it is your first time starting Superset and the webpage asks for a username a
 The following UI page should appear.
 
 <img
-  src={require('../docs/images/supersetui.png').default}
+  src={require('../images/supersetui.png').default}
   alt="Superset UI"
 />
 
@@ -67,7 +67,7 @@ The following UI page should appear.
 5. Select **Test Connection** then **Connect**.
 
 <img
-  src={require('../docs/images/supersetdb.png').default}
+  src={require('../images/supersetdb.png').default}
   alt="Add database in Superset"
 />
 
