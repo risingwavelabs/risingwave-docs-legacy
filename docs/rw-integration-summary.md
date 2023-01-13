@@ -20,29 +20,29 @@ For tools or integrations that you would like to use but are not listed in the t
 |---|---|---|
 |Kafka | Available. See [Ingest data from Kafka](/create-source/create-source-kafka.md) for details. | Available. See [CREATE SINK](/sql/commands/sql-create-sink.md) for details.| |
 |Redpanda | Available. See [Ingest data from Redpanda](/create-source/create-source-redpanda.md) for details. |Available. See [CREATE SINK](/sql/commands/sql-create-sink.md) for details.|
-|Apache Pulsar|Available. See [Ingest data from Pulsar](/create-source/create-source-pulsar.md) for details. | Planning <voteNotify note="pulsar_sink" />|
-|DataStax Astra Streaming| Available | Planning <voteNotify note="astra_streaming_sink" />|
-|StreamNative Cloud| Available| Planning <voteNotify note="streamnative_cloud_sink" />|
-|Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Planning <voteNotify note="kinesis_sink" />|
-|Redis|Planning <voteNotify note="redis_source" />|Upcoming <voteNotify note="redis_sink" />|
+|Apache Pulsar|Available. See [Ingest data from Pulsar](/create-source/create-source-pulsar.md) for details. | Researching <voteNotify note="pulsar_sink" />|
+|DataStax Astra Streaming| Available | Researching <voteNotify note="astra_streaming_sink" />|
+|StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
+|Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Researching <voteNotify note="kinesis_sink" />|
+|Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
 
 ## ETL/ELT and data integration
 
 |System | |Availability |
 |---|---|---|
-|Fivetran| |Planning <voteNotify note="fivetran" /> |
-|Airbyte | |Planning  <voteNotify note="airbyte" /> |
-|dbt| |Planning <voteNotify note="dbt" />|
-|Hightouch| |Planning <voteNotify note="hightouch" />|
+|Fivetran| |Researching <voteNotify note="fivetran" /> |
+|Airbyte | |Researching  <voteNotify note="airbyte" /> |
+|dbt| |Researching <voteNotify note="dbt" />|
+|Hightouch| |Researching <voteNotify note="hightouch" />|
 
 ## Query engines
 
 |System | |Availability |
 |---|---|---|
-|Apache Spark| |Planning <voteNotify note="spark" />|
-|AWS Athena| |Planning <voteNotify note="athena" />|
-|Presto| |Planning <voteNotify note="presto" />|
-|Trino| |Planning <voteNotify note="trino" />|
+|Apache Spark| |Researching <voteNotify note="spark" />|
+|AWS Athena| |Researching <voteNotify note="athena" />|
+|Presto| |Researching <voteNotify note="presto" />|
+|Trino| |Researching <voteNotify note="trino" />|
 
 ## Databases
 
@@ -50,58 +50,58 @@ For tools or integrations that you would like to use but are not listed in the t
 
 |System | Source | Sink |
 |---|---|----|
-|Postgres| Upcoming <voteNotify note="pg_source" />| Planning <voteNotify note="pg_sink" />|
-|AWS Aurora (Postgres)| Upcoming <voteNotify note="aurora_pg_source" />|Planning <voteNotify note="aurora_pg_sink" />|
+|Postgres| In progress <voteNotify note="pg_source" />| Researching <voteNotify note="pg_sink" />|
+|AWS Aurora (Postgres)| In progress <voteNotify note="aurora_pg_source" />|Researching <voteNotify note="aurora_pg_sink" />|
 
 ### MySQL
 
 |System | Source | Sink |
 |---|---|----|
-|MySQL | Upcoming <voteNotify note="mysql_source" />| Planning <voteNotify note="mysql_sink" />|
-|AWS Aurora (MySQL)|Upcoming <voteNotify note="aurora_mysql_source" />| Planning <voteNotify note="aurora_mysql_sink" /> |
+|MySQL | In progress <voteNotify note="mysql_source" />| Researching <voteNotify note="mysql_sink" />|
+|AWS Aurora (MySQL)|In progress <voteNotify note="aurora_mysql_source" />| Researching <voteNotify note="aurora_mysql_sink" /> |
 
 ### Other databases
 
 |System | Source |Sink |
 |---|---|---|
-|Apache Druid| No plan| Planning <voteNotify note="druid_sink" /> |
-|Apache Pinot| No plan|Planning <voteNotify note="pinot_sink" />|
-|AWS Redshift| No plan|Planning <voteNotify note="redshift_sink" />|
-|Clickhouse|No plan |Planning <voteNotify note="clickhouse_sink" />|
-|Snowflake| No plan|Planning <voteNotify note="snowflake_sink" />|
-|Google BigQuery| No plan |Planning <voteNotify note="bigquery_sink" />|
-|DataStax Astra DB & Apache Cassandra| Planning <voteNotify note="cassandra_source" /> |Upcoming <voteNotify note="cassandra_sink" />|
-|CockroachDB| Planning <voteNotify note="cockroachdb_source" />|Planning <voteNotify note="cockroachdb_sink" /> |
-|Db2| Planning <voteNotify note="db2_source" />|Planning <voteNotify note="db2_sink" /> |
-|MongoDB| Planning <voteNotify note="mongodb_source" />|Planning <voteNotify note="mongodb_sink" /> |
-|Oracle Database| Planning <voteNotify note="oracle_source" />|Planning <voteNotify note="oracle_sink" /> |
-|SQL Server| Planning <voteNotify note="sql_server_source" />|Planning <voteNotify note="sql_server_sink" /> |
-|TiDB| Planning <voteNotify note="tidb_source" />|Planning <voteNotify note="tidb_sink" /> |
-|Redis|Planning <voteNotify note="redis_source" />|Upcoming <voteNotify note="redis_sink" />|
+|Apache Druid| No plan| Researching <voteNotify note="druid_sink" /> |
+|Apache Pinot| No plan|Researching <voteNotify note="pinot_sink" />|
+|AWS Redshift| No plan|Researching <voteNotify note="redshift_sink" />|
+|Clickhouse|No plan |Researching <voteNotify note="clickhouse_sink" />|
+|Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
+|Google BigQuery| No plan |Researching <voteNotify note="bigquery_sink" />|
+|DataStax Astra DB & Apache Cassandra| Researching <voteNotify note="cassandra_source" /> |In progress <voteNotify note="cassandra_sink" />|
+|CockroachDB| Researching <voteNotify note="cockroachdb_source" />|Researching <voteNotify note="cockroachdb_sink" /> |
+|Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
+|MongoDB| Researching <voteNotify note="mongodb_source" />|Researching <voteNotify note="mongodb_sink" /> |
+|Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
+|SQL Server| Researching <voteNotify note="sql_server_source" />|Researching <voteNotify note="sql_server_sink" /> |
+|TiDB| Researching <voteNotify note="tidb_source" />|Researching <voteNotify note="tidb_sink" /> |
+|Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
 
 ## Data lakes
 
 |System | |Availability |
 |---|---|---|
-|Delta Lake| |Planning <voteNotify note="deltalake" />|
-|Apache Hudi| |Planning <voteNotify note="hudi" />|
-|Apache Iceberg| |Planning <voteNotify note="iceberg" />|
+|Delta Lake| |Researching <voteNotify note="deltalake" />|
+|Apache Hudi| |Researching <voteNotify note="hudi" />|
+|Apache Iceberg| |Researching <voteNotify note="iceberg" />|
 
 ## BI and data analytics platforms
 
 |System | |Availability |
 |---|---|---|
 |Apache Superset|| Available |
-|Cube.js| |Planning <voteNotify note="cubejs" />|
-|DBeaver| |Upcoming <voteNotify note="dbeaver" />|
+|Cube.js| |Researching <voteNotify note="cubejs" />|
+|DBeaver| |In progress <voteNotify note="dbeaver" />|
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](./guides/grafana-integration.md) for details.|
-|Jupyter Notebook| |Planning <voteNotify note="jupyter" />|
-|Looker| |Planning <voteNotify note="looker" /> |
-|Metabase | |Upcoming <voteNotify note="metabase" />|
+|Jupyter Notebook| |Researching <voteNotify note="jupyter" />|
+|Looker| |Researching <voteNotify note="looker" /> |
+|Metabase | |In progress <voteNotify note="metabase" />|
 
 
 ## Other systems
 
 |System | |Availability |
 |---|---|---|
-|Alluxio| |Planning <voteNotify note="alluxio" />|
+|Alluxio| |Researching <voteNotify note="alluxio" />|
