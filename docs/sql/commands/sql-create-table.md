@@ -14,8 +14,8 @@ To ingest data streams, you should [create sources](sql-create-source.md) instea
 ## Syntax
 
 ```sql
-CREATE TABLE table_name (
-    col_name data_type [ PRIMARY KEY ], 
+CREATE TABLE [ IF NOT EXISTS ] table_name (
+    col_name data_type [ PRIMARY KEY ],
     ...
     [ PRIMARY KEY (col_name, ... ) ]
 );
@@ -25,6 +25,11 @@ CREATE TABLE table_name (
 For tables with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record.
 :::
 
+:::note
+
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+
+:::
 
 ## Parameters
 
@@ -49,16 +54,15 @@ CREATE TABLE taxi_trips(
 The statement below creates a table that includes nested tables.
 
 ```sql
-CREATE TABLE taxi_trips(
+CREATE TABLE IF NOT EXISTS taxi_trips(
     id VARCHAR,
     distance DOUBLE PRECISION,
     duration DOUBLE PRECISION,
-    fare STRUCT<initial_charge DOUBLE PRECISION, subsequent_charge DOUBLE PRECISION, surcharge DOUBLE PRECISION, tolls DOUBLE PRECISION>
-);
+    fare STRUCT<
+      initial_charge DOUBLE PRECISION, 
+      subsequent_charge DOUBLE PRECISION, 
+      surcharge DOUBLE PRECISION, 
+      tolls DOUBLE PRECISION>);
 ```
 
-:::note
 
-Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
-
-:::
