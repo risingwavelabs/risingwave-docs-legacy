@@ -120,7 +120,7 @@ const sidebars = {
       {
         type: 'doc',
         label: 'Superset',
-        id: 'superset-integration'
+        id: 'guides/superset-integration'
       }
     ]
     },
