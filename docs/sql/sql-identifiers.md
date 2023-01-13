@@ -14,6 +14,8 @@ title: Identifiers
 
 ## Case sensitivity
 
-Identifiers are case-insensitive (e.g., `wave`, `WAVE`, and `wAve` are all the same). This can cause issues when column names come from data sources that do support case-sensitive names, such as Avro-formatted sources or CSV headers.
+Identifiers are case-insensitive. It means `wave`, `WAVE`, and `wAve` are the same identifier in RisingWave. This can cause issues when column names come from data sources that do support case-sensitive names, such as Avro-formatted sources or CSV headers.
 
 To avoid conflicts, double-quote all field names (e.g., `"field_name"`) when working with case-sensitive sources.
+
+RisingWave processes unquoted identifers as in lower cases. If you create a table named `WAVE`, it will display as `wave` when you choose to list all tables. You can reference it by `wave`, `WAVE`, or a combination of upper- and lower cases in SQL statements.
