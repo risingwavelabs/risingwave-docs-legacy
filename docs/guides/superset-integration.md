@@ -110,7 +110,7 @@ To create a dashboard based on the table `t`:
 6. Click **Update chart**. The query results will be rendered into a line chart.
 
 <img
-  src={require('../docs/images/superset-dashboard.png').default}
+  src={require('../images/superset-dashboard.png').default}
   alt="Create a dashboard in Superset"
 />
 
