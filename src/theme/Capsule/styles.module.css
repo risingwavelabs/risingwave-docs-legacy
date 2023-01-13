@@ -1,0 +1,55 @@
+.capsule {
+  height: 24px;
+  padding: 0 4px;
+  margin: 0 auto;
+  display: inline-flex;
+  background: transparent;
+  /* border-radius: 80px; */
+  /* border: 1px solid #bec3c9; */
+  align-items: flex-end;
+  justify-content: space-between;
+  vertical-align: bottom;
+  padding-bottom: 4px;
+}
+
+.capsuleLeft {
+  width: 100%;
+  display: flex;
+  padding: 0 8px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.capsuleRight {
+  width: 100%;
+  display: flex;
+  padding: 0 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.capsuleRight div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.count {
+  font-size: 14px;
+  padding-left: 4px;
+  padding-top: 1px;
+}
+
+.divider {
+  border-left: 1px solid #bec3c9;
+  height: 12px;
+  margin-bottom: 2px;
+  margin-left: 0;
+}
+
+.countLeft {
+  display: flex;
+  height: 16px;
+  align-items: center;
+}
