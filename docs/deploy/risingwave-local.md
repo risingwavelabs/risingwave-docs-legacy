@@ -8,7 +8,7 @@ slug: /risingwave-local
 This article will help you start a RisingWave standalone instance in your environment.
 
 :::caution
-This method starts RisingWave in playground mode, where data is not persisted after the service is terminated.<br/>Start RisingWave in full-featured mode for data persistence and stable performance. <br/>[→ See the comparison](/get-started.md#run-risingwave)
+This method starts RisingWave in playground mode, where data is not persisted after the service is terminated.<br/>Start RisingWave in full-featured mode for data persistence and stable performance. <br/>[→ See the comparison](../get-started.md#run-risingwave)
 :::
 
 ## Install and start RisingWave
@@ -19,35 +19,35 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-<TabItem value="library" label="Pre-built package (Linux)">
+<TabItem value="library" label="Pre-built library (Linux)">
 
-1. Download the pre-built binary.
+1. Download the pre-built library.
 
     ```shell
-    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.15/risingwave-v0.1.15-x86_64-unknown-linux.tar.gz
+    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.14/risingwave-v0.1.14-x86_64-unknown-linux.tar.gz
     ```
 
     > You can find previous binary releases in [Release notes](/release-notes.md).
 
-2. Unzip the binary.
+2. Unzip the library.
 
     ```shell
-    tar xvf risingwave-v0.1.15-x86_64-unknown-linux.tar.gz
+    tar xvf risingwave-v0.1.14-x86_64-unknown-linux.tar.gz
     ```
 
 3. Start RisingWave in playground mode.
 
     ```shell
-    ./risingwave playground
+    ./risedev playground    #Or ./risedev p
     ```
 
 </TabItem>
 <TabItem value="source" label="Build from source (Linux & macOS)">
 
-1. Clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository and enter the directory.
+1. Clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
 
     ```shell
-    git clone https://github.com/risingwavelabs/risingwave.git && cd risingwave
+    git clone https://github.com/risingwavelabs/risingwave.git
     ```
 
 2. Install dependencies.
@@ -67,9 +67,7 @@ import TabItem from '@theme/TabItem';
     <TabItem value="macos" label="macOS" default>
 
     ```shell
-    brew update
-    brew install libpq cmake protobuf openssl tmux cyrus-sasl
-    brew link --force libpq
+    brew install postgresql cmake protobuf openssl tmux cyrus-sasl
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     ```
 
@@ -92,10 +90,10 @@ import TabItem from '@theme/TabItem';
 
 3. Start RisingWave.
 
-    To compile and start RisingWave, you can use [RiseDev](https://github.com/risingwavelabs/risingwave/blob/main/docs/developer-guide.md#set-up-the-development-environment), the developer's tool for RisingWave.
+    To start RisingWave, in the terminal, navigate to the directory where RisingWave is downloaded, and run the following command.
   
     ```shell
-    ./risedev playground    #Or ./risedev p
+    ./risingwave playground
     ```
 
 

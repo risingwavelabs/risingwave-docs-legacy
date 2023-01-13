@@ -16,7 +16,7 @@ const config = {
   favicon: "img/favicon.ico",
   presets: [
     [
-      "@docusaurus/preset-classic",
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         gtag: {
@@ -24,10 +24,6 @@ const config = {
           anonymizeIP: true,
         },
         docs: {
-          admonitions: {
-            tag: ":::",
-            keywords: ["note", "tip", "info", "caution", "danger"],
-          },
           sidebarPath: require.resolve("./sidebars.js"),
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
@@ -38,15 +34,9 @@ const config = {
               badge: false,
               banner: "unreleased",
             },
-            "0.1.15": {
-              label: "0.1.15 (current)",
-              path: "/current",
-              badge: false,
-              banner: "none",
-            },
             "0.1.14": {
-              label: "0.1.14",
-              path: "/0.1.14",
+              label: "0.1.14 (current)",
+              path: "/current",
               badge: false,
               banner: "none",
             },
@@ -74,15 +64,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      hideableSidebar: true,
       colorMode: {
         disableSwitch: false,
         respectPrefersColorScheme: true,
-      },
-      docs: {
-        sidebar: {
-          hideable: true,
-          autoCollapseCategories: true,
-        },
       },
       navbar: {
         title: "",

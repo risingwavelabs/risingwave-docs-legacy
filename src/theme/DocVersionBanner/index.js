@@ -6,8 +6,7 @@ export default function DocVersionBannerWrapper(props) {
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
-    const version = location.pathname.split("/")[2];
-    if (version === "upcoming") {
+    if (!location.pathname.includes("current")) {
       setShown(true);
     }
   }, [location.pathname]);

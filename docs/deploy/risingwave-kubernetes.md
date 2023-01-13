@@ -15,7 +15,7 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 
     Ensure that the Kubernetes command-line tool [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) is installed in your environment.
 
-* **[Install `psql`](/guides/install-psql-without-full-postgres.md)**
+* **[Install `psql`](https://www.postgresql.org/download/)**
 
     Ensure that the PostgreSQL interactive terminal [`psql`](https://www.postgresql.org/docs/current/app-psql.html) is installed in your environment.
 
@@ -102,7 +102,7 @@ RisingWave supports using Amazon S3 as the object storage.
 1. Create a Secret with the name ‘s3-credentials’.
 
     ```shell
-    kubectl create secret generic s3-credentials --from-literal AccessKeyID=${ACCESS_KEY} --from-literal SecretAccessKey=${SECRET_ACCESS_KEY} --from-literal Region=${AWS_REGION}
+    kubectl create secret generic s3-credentials —from-literal AccessKeyID=${ACCESS_KEY} —from-literal SecretAccessKey=${SECRET_ACCESS_KEY} —from-literal Region=${AWS_REGION}
     ```
 
 1. On the S3 console, [create a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) with the name ‘hummock001’.
