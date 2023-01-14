@@ -73,11 +73,11 @@ The following UI page should appear.
 
 ## Create a dashboard
 
-### Create a table or materialized view in RisingWave
+### Create tables or materialized views in RisingWave
 
 Instead of using Superset to create materialized views or tables, use RisingWave. For this guide, we will create the table `t` and insert some data.
 
-Ensure RisingWave is started, and ensure the following statements in `psql`.
+Once RisingWave starts, use the following queries to create the table `t` and insert some values to the table.
 
 ```sql
 CREATE TABLE t (v float, ts timestamp);
@@ -88,7 +88,7 @@ INSERT INTO t VALUES (1.0, '2022-11-15 15:35:40'),
 (4.2, '2022-11-15 15:38:21');
 ```
 
-### Create and export materialized views or tables
+### Create and export tables or materialized views
 
 Export the data from materialized views or tables in RisingWave to Superset:
 
