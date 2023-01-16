@@ -6,7 +6,7 @@ slug: /sql-create-sink
 
 ---
 
-Use the `CREATE SINK` command to create a sink. A sink is a connection to a stream that RisingWave can send data to. You can create a sink from a materialized source, a materialized view, or a table.
+Use the `CREATE SINK` command to create a sink. A sink is an external target that RisingWave can send data to. You can create a sink from a materialized source, a materialized view, or a table.
 
 
 ## Syntax
@@ -35,3 +35,10 @@ All WITH options are required.
 |kafka.topic|Address of the Kafka topic. One sink can only correspond to one topic.|
 |format	| Data format. Allowed formats: `‘append-only’`, `‘debezium’`.|
 
+
+
+:::note
+
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+
+:::
