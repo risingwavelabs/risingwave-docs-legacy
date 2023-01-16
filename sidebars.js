@@ -174,7 +174,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          label: 'DataStax Astra Streaming',
+          label: 'Astra Streaming',
           id: 'guides/connector-astra-streaming',
         },
         {

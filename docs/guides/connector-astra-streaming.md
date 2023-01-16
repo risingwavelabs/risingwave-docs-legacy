@@ -1,7 +1,7 @@
 ---
 id: connector-astra-streaming
-title: Ingest data from Astra Streaming
-description: Ingest data from Astra Streaming.
+title: Ingest data from DataStax Astra Streaming
+description: Ingest data from DataStax Astra Streaming.
 slug: /connector-astra-streaming
 ---
 
