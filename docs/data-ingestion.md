@@ -1,19 +1,19 @@
 ---
-id: ingestion-overview
+id: data-ingestion
 title: Overview of data ingestion
-slug: /ingestion-overview
+slug: /data-ingestion
 ---
 
 You can ingest data into RisingWave in two ways:
 
 - Connect to and ingest data from external sources such as databases and message brokers.
-- Insert data directly using the [`INSERT`](/sql/commands/sql-insert.md) command from the `psql` terminal or via PostgreSQL drivers from your applications.
+- Insert data to tables directly.
 
 ## Ingest data from external data sources
 
 ### Materialized and non-materialized source
 
-A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command. When creating a source, you can choose to persist the data from the source in RisingWave by adding `MATERIALIZED` in between `CREATE` and `SOURCE` (that is, `CREATE MATERIALIZED SOURCE`). 
+A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by adding `MATERIALIZED` in between `CREATE` and `SOURCE` (that is, `CREATE MATERIALIZED SOURCE`). 
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or sinks for data transformations.
 
@@ -32,6 +32,6 @@ RisingWave supports ingesting data from these external sources:
 
 To learn about the supported data formats, see [Data formats](./sql/commands/sql-create-source.md#supported-formats).
 
-## Insert data directly
+## Insert data into tables
 
-You can insert data directly to RisingWave by using the [`INSERT`](./sql/commands/sql-insert.md) command from the `psql` terminal or via PostgreSQL drivers from your applications. To learn about supported PostgreSQL drivers for different programming languages, see [Client libraries](/dev/java-client-libraries.md).
+As a database, RisingWave supports creating tables ([`CREATE TABLE`](./sql/commands/sql-create-table.md)) and inserting data to tables ([`INSERT`](./sql/commands/sql-insert.md)).

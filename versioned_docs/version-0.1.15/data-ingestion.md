@@ -1,7 +1,7 @@
 ---
-id: ingestion-overview
+id: data-ingestion
 title: Overview of data ingestion
-slug: /ingestion-overview
+slug: /data-ingestion
 ---
 
 You can ingest data into RisingWave in two ways:

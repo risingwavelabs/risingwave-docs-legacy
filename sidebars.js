@@ -145,7 +145,7 @@ const sidebars = {
         {
           type: 'doc',
           label: 'Overview',
-          id: 'ingestion-overview',
+          id: 'data-ingestion',
         },
         {
           type: 'doc',
