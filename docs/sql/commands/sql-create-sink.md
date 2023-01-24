@@ -11,6 +11,7 @@ Use the `CREATE SINK` command to create a sink. A sink is a target that RisingWa
 You can create a sink from a materialized source, a materialized view, a table, or a `SELECT` query.
 
 
+
 ## Syntax
 
 ```sql
@@ -84,4 +85,14 @@ WITH (
    format='append_only'
 )
 
+
 ```
+
+
+
+:::note
+
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+
+:::
+

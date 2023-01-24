@@ -54,3 +54,10 @@ To switch to the new user account:
 psql -h localhost -p 4566 -d dev -U user1
 ```
 Enter the password to log in.
+
+
+:::note
+
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+
+:::

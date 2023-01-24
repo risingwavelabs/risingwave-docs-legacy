@@ -25,6 +25,11 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
 For tables with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record.
 :::
 
+:::note
+
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+
+:::
 
 ## Parameters
 
@@ -53,6 +58,11 @@ CREATE TABLE IF NOT EXISTS taxi_trips(
     id VARCHAR,
     distance DOUBLE PRECISION,
     duration DOUBLE PRECISION,
-    fare STRUCT<initial_charge DOUBLE PRECISION, subsequent_charge DOUBLE PRECISION, surcharge DOUBLE PRECISION, tolls DOUBLE PRECISION>
-);
+    fare STRUCT<
+      initial_charge DOUBLE PRECISION, 
+      subsequent_charge DOUBLE PRECISION, 
+      surcharge DOUBLE PRECISION, 
+      tolls DOUBLE PRECISION>);
 ```
+
+

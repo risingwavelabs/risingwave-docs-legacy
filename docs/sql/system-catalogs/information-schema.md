@@ -28,7 +28,7 @@ The `information_schema.tables` view contains the following columns.
 
 ## Columns
 
-The `information_shcema.columns` view contains information about columns of all tables, views, and materialized views in the database.
+The `information_schema.columns` view contains information about columns of all tables, views, and materialized views in the database.
 
 The `information_schema.tables` view contains the following columns.
 

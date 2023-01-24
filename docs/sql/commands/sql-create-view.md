@@ -65,3 +65,10 @@ SELECT * FROM v3;
  585 |  2 | FT7BRdifYMrRgIyI
  601 |  3 | 0zsMbNLxQh9yYtHh
 ```
+
+
+:::note
+
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+
+:::

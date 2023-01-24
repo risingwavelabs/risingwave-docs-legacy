@@ -1,7 +1,7 @@
 ---
 id: grafana-integration
-title: Visualize RisingWave data in Grafana
-description: Visualize RisingWave data in Grafana
+title: Configure Grafana to read data from RisingWave
+description: Configure Grafana to read data from RisingWave
 slug: /grafana-integration
 ---
 
@@ -13,9 +13,9 @@ This guide will go over how to add RisingWave as a data source in Grafana.
 
 ### Install and launch RisingWave
 
-To install and start RisingWave locally, see the [Get started](../docs/get-started.md) guide. We recommend running RisingWave locally for testing purposes. 
+To install and start RisingWave locally, see the [Get started](/get-started.md) guide. We recommend running RisingWave locally for testing purposes. 
 
-Connect to streaming sources. For details on connecting to a streaming source and what connectors are supported with RisingWave, see [CREATE SOURCE](../docs/sql/commands/sql-create-source.md).
+Connect to streaming sources. For details on connecting to a streaming source and what connectors are supported with RisingWave, see [CREATE SOURCE](/sql/commands/sql-create-source.md).
 
 ### Install and launch Grafana
 
@@ -53,7 +53,7 @@ To add a new read-only user, use the following SQL query:
 CREATE USER grafanareader WITH PASSWORD 'password';
 ```
 
-Then, when adding RisingWave as a database, fill in the **User** and **Password** fields with the name and password of the new user created. For more details on creating a user, see the [CREATE USER](../docs/sql/commands/sql-create-user.md) command. 
+Then, when adding RisingWave as a database, fill in the **User** and **Password** fields with the name and password of the new user created. For more details on creating a user, see the [CREATE USER](/sql/commands/sql-create-user.md) command. 
 
 To allow the read-only user to query from a materialized view, use the following SQL query:
 
@@ -61,6 +61,6 @@ To allow the read-only user to query from a materialized view, use the following
 GRANT SELECT ON MATERIALIZED VIEW mv_name TO grafanareader;
 ```
 
-See the [GRANT](../docs/sql/commands/sql-grant.md) command for more details.
+See the [GRANT](/sql/commands/sql-grant.md) command for more details.
 
-Now that RisingWave is added as a database, you can start creating dashboards within Grafana using the data in RisingWave. For an extensive tutorial that covers how to create dashboards in Grafana with data queried from RisingWave, check out the [Use RisingWave to monitor RisingWave metrics](../docs/tutorials/monitor-rw-metrics.md) tutorial, which uses a demo cluster so you can easily try it out on your device.
+Now that RisingWave is added as a database, you can start creating dashboards within Grafana using the data in RisingWave. For an extensive tutorial that covers how to create dashboards in Grafana with data queried from RisingWave, check out the [Use RisingWave to monitor RisingWave metrics](/tutorials/monitor-rw-metrics.md) tutorial, which uses a demo cluster so you can easily try it out on your device.
