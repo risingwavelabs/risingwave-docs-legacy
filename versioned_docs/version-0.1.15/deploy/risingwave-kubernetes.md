@@ -89,7 +89,7 @@ RisingWave supports using MinIO as the object storage.
 Run the following command to deploy a RisingWave instance with MinIO as the object storage.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/risingwave/risingwave-etcd-minio.yaml
+kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/risingwave/risingwave-etcd-minio.yaml
 ```
 
 </TabItem>
@@ -110,7 +110,7 @@ RisingWave supports using Amazon S3 as the object storage.
 1. Deploy a RisingWave instance with S3 as the object storage.
 
     ```shell
-    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/risingwave/risingwave-etcd-s3.yaml
+    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/risingwave/risingwave-etcd-s3.yaml
     ```
 
 </TabItem>
@@ -158,7 +158,7 @@ By default, the Operator creates a service for the frontend component, through w
 1. Create a Pod.
 
     ```shell
-    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/psql/psql-console.yaml
+    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/psql/psql-console.yaml
     ```
 
 1. Attach to the Pod so that you can execute commands inside the container.
