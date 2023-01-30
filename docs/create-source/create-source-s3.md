@@ -1,7 +1,7 @@
 ---
 id: create-source-s3
-title: Ingest data from databases with S3 source.
-description: Ingest data from databases with S3 source.
+title: Ingest data from S3 buckets.
+description: Ingest data from S3 buckets.
 slug: /create-source-s3
 ---
 Use the SQL statement below to connect RisingWave to an Amazon S3 source.
@@ -30,7 +30,6 @@ ROW FORMAT csv [WITHOUT HEADER] DELIMITED BY ',';
 
 |Field|Notes|
 |---|---|
-|`MATERIALIZED`| When you materialize a source, you choose to persist the data from the source in RisingWave.|
 |s3.region_name	|Required. The service region.|
 |s3.bucket_name	|Required. The name of the bucket the data source is stored in.	|
 |s3.credentials.access| Conditional. This field indicates the access key ID of AWS. It must be used with `s3.credentials.secret`. If not specified, RisingWave will automatically try to use `~/.aws/credentials`.|

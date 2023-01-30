@@ -179,7 +179,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          label: 'S3',
+          label: 'Amazon S3',
           id: 'create-source/create-source-s3',
         },
         {
