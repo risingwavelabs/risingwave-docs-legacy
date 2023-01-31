@@ -22,7 +22,7 @@ import rr from '@theme/RailroadDiagram'
 export const svg = rr.Diagram(
 rr.Stack(
    rr.Sequence(
-      rr.Terminal('CREATE MATERIALIZED SOURCE'),
+      rr.Terminal('CREATE TABLE'),
       rr.NonTerminal('source_name', 'skip'),
       rr.Terminal('('),
       rr.OneOrMore (rr.Sequence ( rr.Terminal ('column_name'), rr.Terminal ('data_type')), ','),
@@ -78,7 +78,7 @@ rr.Stack(
 <TabItem value="code" label="Code">
 
 ```sql
-CREATE MATERIALIZED SOURCE source_name ( column_name data_type, ... ) 
+CREATE TABLE source_name ( column_name data_type, ... ) 
 WITH (
    connector = ' datagen ',
    fields.column_name.column_parameter = ' value ', ...  -- Configure the generator for each column. See detailed information below.
@@ -185,7 +185,7 @@ The following statement creates a source `s1` with four columns:
 
 
 ```sql
-CREATE MATERIALIZED SOURCE s1 (i1 int, v1 struct<v2 int, v3 double>, t1 timestamp, c1 varchar) 
+CREATE TABLE s1 (i1 int, v1 struct<v2 int, v3 double>, t1 timestamp, c1 varchar) 
 WITH (
      connector = 'datagen',
      fields.i1.kind = 'sequence',
