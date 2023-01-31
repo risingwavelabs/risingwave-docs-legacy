@@ -53,17 +53,5 @@ SELECT t1.* FROM t1
 WHERE t1.k > (select MAX(erase_ts) from t_erase_ts)
 ```
 
-Then, dynamic filter will be adopted to run this streaming query:
+`MAX(erase_ts)` updates as new data comes in. When that happens, the data retrieved will change, and some data will be trimmed.
 
-```
- StreamMaterialize { columns: [k, value], pk_columns: [k] }
- └─StreamDynamicFilter { predicate: (t1.value >= max(max(t_erase_ts.erase_ts))) }
-   ├─StreamTableScan { table: t1, columns: [k, value] }
-   └─StreamExchange { dist: Broadcast }
-     └─StreamProject { exprs: [max(max(t_erase_ts.erase_ts))] }
-       └─StreamGlobalSimpleAgg { aggs: [sum0(count), max(max(t_erase_ts.erase_ts))] }
-         └─StreamExchange { dist: Single }
-           └─StreamHashAgg { group_key: [Vnode(t_erase_ts._row_id)], aggs: [count, max(t_erase_ts.erase_ts)] }
-             └─StreamProject { exprs: [t_erase_ts.erase_ts, t_erase_ts._row_id, Vnode(t_erase_ts._row_id)] }
-               └─StreamTableScan { table: t_erase_ts, columns: [erase_ts, _row_id] }
-```
