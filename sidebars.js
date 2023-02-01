@@ -370,8 +370,8 @@ const sidebars = {
           },
           {
               type: 'doc',
-              id: 'sql/system-catalogs/pg-catalog',
-              label: 'pg_catalog',
+              id: 'sql/system-catalogs/pg-catalog-function',
+              label: 'PostgreSQL catalogs and functions',
           },
           
           ]
