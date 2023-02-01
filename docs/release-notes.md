@@ -26,7 +26,7 @@ This version was released on February 1, 2023.
 - Adds support for `SHOW CREATE TABLE` . You can use this statement to show the definition of a table. [#7152](https://github.com/risingwavelabs/risingwave/pull/7152)
 - Adds support for the `pg_stat_activity` system catalog and several system functions. [#7274](https://github.com/risingwavelabs/risingwave/pull/7274)
 - Adds the `_rw_kafka_timestamp` parameter to show the timestamps of Kafka messages. Users can now specify the scope of Kafka messages by timestamps. [#7275](https://github.com/risingwavelabs/risingwave/pull/7275), [#7150](https://github.com/risingwavelabs/risingwave/pull/7150)
-- Adds support for displaying PostgreSQL and RisingWave version in `version()`. [#7314](https://github.com/risingwavelabs/risingwave/pull/7314)
+- Adds support for displaying PostgreSQL and RisingWave versions in `version()`. [#7314](https://github.com/risingwavelabs/risingwave/pull/7314)
 - Adds support for displaying internal tables using the `SHOW INTERNAL TABLES` statement. [#7348](https://github.com/risingwavelabs/risingwave/pull/7348)
 - Adds support for `SET VISIBILITY_MODE` You can use this session variable to configure whether only checkpoint data is readable for batch query. [#5850](https://github.com/risingwavelabs/risingwave/pull/5850)
 - Adds support for `SET STREAMING_PARALLELISM` . You can use this session variable to configure parallelism for streaming queries. [#7370](https://github.com/risingwavelabs/risingwave/pull/7370)
