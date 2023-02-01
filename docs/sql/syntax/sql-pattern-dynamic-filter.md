@@ -8,6 +8,7 @@ Dynamic filter functions as a filter operator, but the filter condition contains
 
 The conditions must be `left_col cond right_col`, where `cond` can be one of `==, <>, <, <=, >, >=`. Furthermore, it can be easily extended to multiple conditions like `left_col cond_1 right_col_1 AND left_col cond_2 right_col_2 AND ...`.
 
+A streaming query is a type of query that processes incoming data in real-time as it arrives instead of waiting for all data to be loaded into the database in bulk before processing it all at once, as is done with a batch query. This enables continuous, low-latency processing of data streams, allowing applications to respond quickly to new data as it arrives.
 
 General non-equal joins are not supported in streaming, except for one special case. If a query with non-equal conditions meets the conditions below:
 - The inner side always contains exactly one row.
