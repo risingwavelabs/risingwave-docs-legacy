@@ -57,6 +57,7 @@ For materialized sources with primary key constraints, if a new data record with
 |properties.group.id	|Required. Name of the Kafka consumer group	|
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+|is_timestamp | Optional. If true, RisingWave will create the `_rw_kafka_timestamp` column to store the Kafka timestamp of each message. To query messages based on this timestamp, use a conditional statement like `_rw_kafka_timestamp > '2023-01-01 00:00:00.00'.|
 |*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
 |*message* | Message for the format. Required for Avro and Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
