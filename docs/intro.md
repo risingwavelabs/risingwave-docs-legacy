@@ -9,7 +9,7 @@ RisingWave is a distributed SQL database for stream processing. It is designed t
 
 RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Kinesis, Redpanda, and materialized CDC sources. 
 
-Data in RisingWave can be transferred to external targets such as message brokers, data warehouses, and data lakes for storage or additional processing.
+Data in RisingWave can be output to external targets such as message brokers, data warehouses, and data lakes for storage or additional processing.
 
 <rollButton text="&nbsp;&nbsp;Get Started" doc="get-started" block />
 <br/>
