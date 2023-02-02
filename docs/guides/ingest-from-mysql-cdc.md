@@ -28,7 +28,7 @@ You can ingest CDC data from MySQL in two ways:
 
 ### Set up MySQL
 
-Before using the native MySQL CDC connector in RisingWave, you need to complete several configurations on MySQL. For details, see [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql).
+Before using the native MySQL CDC connector in RisingWave, you need to complete several configurations on MySQL. For details, see [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql). Ensure that the binlog is enabled.
 
 ### Enable the connector node in RisingWave
 
@@ -38,22 +38,22 @@ The native MySQL CDC connector is implemented by a connector node. A connector n
 
 ### Create a materialized source connection using the native CDC connector
 
-To ensure all data changes are captured, you must create a materialized source connection (`CREATE MATERIALIZED SOURCE`) and specify primary keys. The data format must be Debezium JSON.
+To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON.
 
 
 #### Syntax
 
 ```sql
-CREATE MATERIALIZED SOURCE [ IF NOT EXISTS ] source_name (
-   column_name data_type [ PRIMARY KEY ], ...
+CREATE TABLE [ IF NOT EXISTS ] source_name (
+   column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
 ) 
 WITH (
    connector='mysql-cdc',
    <field>=<value>, ...
-) 
-ROW FORMAT DEBEZIUM_JSON;
+);
 ```
+Note that a primary key is required.
 
 #### WITH parameters
 
@@ -65,19 +65,19 @@ All the fields listed below are required.
 |port| Port number of the database.|
 |username| User name of the database.|
 |password| Password of the database. |
-|database.name| Name of the database. |
+|database.name| Name of the database. Note that RisingWave can not read data from a built-in MySQL database, such as `mysql`.|
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster.|
 
 #### Data format
 
-`DEBEZIUM_JSON` — Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data.
+`DEBEZIUM_JSON` — Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified.
 
 
 #### Example
 
 ```sql
-CREATE MATERIALIZED SOURCE orders (
+CREATE TABLE orders (
    order_id INT,
    order_date BIGINT,
    customer_name STRING,
@@ -94,7 +94,7 @@ CREATE MATERIALIZED SOURCE orders (
  database.name = 'mydb',
  table.name = 'orders',
  server.id = '5454'
-) ROW FORMAT DEBEZIUM_JSON;
+);
 ```
 
 ## Use a CDC tool and the Kafka connector
@@ -111,11 +111,10 @@ You need to download and configure the [Debezium connector for MySQL](https://de
 
 #### Create a materialized source connection using the Kafka connector
 
-To ensure all data changes are captured, you must create a materialized source connection (`CREATE MATERIALIZED SOURCE`) and specify primary keys. The data format must be Debezium JSON.
-
+To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON.
 
 ```sql
-CREATE MATERIALIZED SOURCE source_name (
+CREATE TABLE source_name (
    column1 VARCHAR,
    column2 INTEGER,
    PRIMARY KEY (column1)
@@ -126,8 +125,7 @@ WITH (
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='earliest',
    properties.group.id='demo_consumer_name'
-) 
-ROW FORMAT DEBEZIUM_JSON;
+);
 ```
 
 ### Use the Maxwell's daemon
@@ -138,11 +136,11 @@ You need to configure MySQL and run Maxwell's daemon to convert data changes to 
 
 #### Create a materialized source connection using the Kafka connector
 
-To ensure all data changes are captured, you must create a materialized source connection (`CREATE MATERIALIZED SOURCE`) and specify primary keys. The data format must be Maxwell JSON.
+To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Maxwell JSON.
 
 
 ```sql
-CREATE MATERIALIZED SOURCE source_name (
+CREATE TABLE source_name (
    column1 VARCHAR,
    column2 INTEGER,
    PRIMARY KEY (column1)
