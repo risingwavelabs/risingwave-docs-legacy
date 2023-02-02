@@ -38,8 +38,8 @@ Currently, RisingWave does not fully support all columns in the system catalogs 
 
 |Function|Description|
 |---|---|
-|`pg_cancel_backend ()`|Cancel a backend's current query. You can execute this against another backend that has exactly the same role as the user calling the function. In all other cases, you must be a superuser. For more details, see [System Administration Functions](https://www.postgresql.org/docs/current/functions-admin.html).|
-|`pg_terminate_backend ()`| Terminate a backend. You can execute this against another backend that has exactly the same role as the user calling the function. In all other cases, you must be a superuser. For more details, see [System Administration Functions](https://www.postgresql.org/docs/current/functions-admin.html).|
+|`pg_cancel_backend()`|Cancel a backend's current query. You can execute this against another backend that has exactly the same role as the user calling the function. In all other cases, you must be a superuser. For more details, see [System Administration Functions](https://www.postgresql.org/docs/current/functions-admin.html).|
+|`pg_terminate_backend()`| Terminate a backend. You can execute this against another backend that has exactly the same role as the user calling the function. In all other cases, you must be a superuser. For more details, see [System Administration Functions](https://www.postgresql.org/docs/current/functions-admin.html).|
 |`pg_backend_pid()`| Process ID of the server process attached to the current session. For more details, see [System Information Functions and Operators](https://www.postgresql.org/docs/current/functions-info.html).|
 |`version()` | Display the PostgreSQL version and the RisingWave version implemented in the current instance of RisingWave. Output example: `PostgreSQL 13.9-RW-0.2.0-alpha`.|
 
