@@ -11,7 +11,7 @@ CDC tools and platforms can record row-level changes (INSERT, UPDATE, and DELETE
 
 To ingest CDC data from MySQL or PostgreSQL into RisingWave, you can use a CDC tool to convert data change streams in databases to Kafka topics, and then use the native Kafka connector in RisingWave to consume data from the Kafka topics.
 
-For RisingWave to ingest CDC data, you must create a materialized source (`CREATE MATERIALIZED SOURCE`) and specify primary keys. Materializing a source means that you want to persist the data from the source in RisingWave. For CDC data, the source must be materalized.
+For RisingWave to ingest CDC data, you must create a materialized source (`CREATE TABLE`) and specify primary keys. Materializing a source means that you want to persist the data from the source in RisingWave. For CDC data, the source must be materalized.
 
 The supported CDC data formats are [Debezium](https://debezium.io) JSON (for both MySQL and PostgreSQL) and [Maxwell](https://maxwells-daemon.io) JSON (for MySQL only).
 
@@ -22,7 +22,7 @@ The supported CDC data formats are [Debezium](https://debezium.io) JSON (for bot
 ## Syntax
 
 ```sql
-CREATE MATERIALIZED SOURCE [ IF NOT EXISTS ] source_name (
+CREATE TABLE [ IF NOT EXISTS ] source_name (
    column_name data_type [ PRIMARY KEY ], ...
    PRIMARY KEY ( column_name, ... )
 ) 
@@ -49,7 +49,7 @@ ROW FORMAT { DEBEZIUM_JSON | MAXWELL };
 Here is an example of creating a materialized source using the Kafka connector to consume data from Kafka topics.
 
 ```sql
-CREATE MATERIALIZED SOURCE [IF NOT EXISTS] source_name (
+CREATE TABLE [IF NOT EXISTS] source_name (
    column1 varchar,
    column2 integer,
    PRIMARY KEY (column1)

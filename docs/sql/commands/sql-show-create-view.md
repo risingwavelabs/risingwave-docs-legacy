@@ -36,3 +36,5 @@ Here is the result.
 ## Related topics
 
 [SHOW CREATE MATERIALIZED VIEW](sql-show-create-mv.md)
+
+[SHOW CREATE TABLE](sql-show-create-table.md)
