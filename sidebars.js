@@ -179,6 +179,11 @@ const sidebars = {
         },
         {
           type: 'doc',
+          label: 'Amazon S3',
+          id: 'create-source/create-source-s3',
+        },
+        {
+          type: 'doc',
           label: 'Load generator',
           id: 'create-source/create-source-datagen',
         },
