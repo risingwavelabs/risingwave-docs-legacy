@@ -56,7 +56,6 @@ For materialized sources with primary key constraints, if a new data record with
 |properties.group.id	|Required. Name of the Kafka consumer group	|
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
-|is_timestamp | Optional. If true, RisingWave will create the `_rw_kafka_timestamp` column to store the Kafka timestamp of each message. To query messages based on this timestamp, use a conditional statement like `_rw_kafka_timestamp > '2023-01-01 00:00:00.00'.|
 |*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
 |*message* | Message for the format. Required for Avro and Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
@@ -123,6 +122,26 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.pr
 
 </TabItem>
 </Tabs>
+
+## Query Kafka timestamp
+
+For each Kafka source created, the virtual column, `_rw_kafka_timestamp`, will also exist. This column includes the timestamp of the Kafka message.
+
+To store this column, users can use the following query.
+
+```sql
+CREATE MATERIALIZED VIEW v1 AS
+SELECT _rw_kafka_timestamp, col1
+FROM source_name;
+```
+
+If directly querying from the source, users can use `_rw_kafka_timestamp` to query messages sent within a specific time period. For example, the following query only selects messages sent in the past 10 minutes.
+
+```sql
+SELECT * FROM source_name
+WHERE _rw_kafka_timestamp > now() - interval '10 minute';
+```
+
 
 ## Read schemas from locations
 
