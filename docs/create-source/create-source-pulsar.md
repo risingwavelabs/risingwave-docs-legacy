@@ -8,10 +8,12 @@ slug: /create-source-pulsar
 
 Use the SQL statement below to connect RisingWave to a Pulsar broker.
 
+When creating a source, you can choose to persist the data from the source in RisingWave by using `CREATE TABLE` instead of `CREATE SOURCE` and specifying the connection settings and data format.
+
 ## Syntax
 
 ```sql
-CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name 
+CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
 [schema_definition]
 WITH (
    connector='pulsar',
@@ -32,7 +34,7 @@ ROW FORMAT data_format
 
 :::info
 
-For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` or `CREATE MATERIALIZED SOURCE` statement. The schema should be provided in a Web location in the `ROW SCHEMA LOCATION` section.
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` or `CREATE TABLE` statement. The schema should be provided in a Web location in the `ROW SCHEMA LOCATION` section.
 
 :::
 
@@ -55,7 +57,6 @@ For materialized sources with primary key constraints, if a new data record with
 
 |Field|Notes|
 |---|---|
-|`MATERIALIZED`| When you materialize a source, you choose to persist the data from the source in RisingWave.|
 |topic	|Required. Address of the Pulsar topic. One source can only correspond to one topic.|
 |service.url| Required. Address of the Pulsar service.	|
 |admin.url	|Required. Address of the Pulsar admin.|
@@ -75,7 +76,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="avro" label="Avro" default>
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc 
+CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc 
 WITH (
    connector='pulsar',
    topic='demo_topic',
@@ -91,7 +92,7 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.av
 <TabItem value="json" label="JSON" default>
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc (
+CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
    column1 string,
    column2 integer,
 )
@@ -109,7 +110,7 @@ ROW FORMAT JSON;
 <TabItem value="pb" label="Protobuf" default>
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc (
+CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
    column1 string,
    column2 integer,
 )
