@@ -8,6 +8,7 @@ slug: /create-source-pulsar
 
 Use the SQL statement below to connect RisingWave to a Pulsar broker.
 
+
 When creating a source, you can choose to persist the data from the source in RisingWave by using `CREATE TABLE` instead of `CREATE SOURCE` and specifying the connection settings and data format.
 
 ## Syntax
