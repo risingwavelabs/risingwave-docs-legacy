@@ -7,6 +7,12 @@ slug: /sql-insert
 
 Use the `INSERT` command to insert new rows into an existing table.
 
+:::info
+
+For tables with primary keys, if you insert a row with an existing key, the new row will overwrite the existing row.
+
+:::
+
 ## Syntax
 
 ```sql

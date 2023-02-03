@@ -7,10 +7,12 @@ slug: /create-source-kinesis
 
 Use the SQL statement below to connect RisingWave to Kinesis Data Streams.
 
+When creating a source, you can choose to persist the data from the source in RisingWave by using `CREATE TABLE` instead of `CREATE SOURCE` and specifying the connection settings and data format.
+
 ## Syntax
 
 ```sql
-CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name 
+CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
 [schema_definition]
 WITH (
    connector='kinesis',
@@ -18,7 +20,7 @@ WITH (
 ) 
 ROW FORMAT data_format
 [ MESSAGE 'message' ]
-[ ROW SCHEMA LOCATION 'location' ]
+[ ROW SCHEMA LOCATION 'location' ];
 ```
 
 **schema_definition**:
@@ -31,7 +33,7 @@ ROW FORMAT data_format
 
 :::info
 
-For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` or `CREATE MATERIALIZED SOURCE` statement. The schema should be provided in a Web location in the `ROW SCHEMA LOCATION` section.
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` or `CREATE TABLE` statement. The schema should be provided in a Web location in the `ROW SCHEMA LOCATION` section.
 
 :::
 
@@ -46,7 +48,6 @@ For materialized sources with primary key constraints, if a new data record with
 
 |Field|	Notes|
 |---|---|
-|`MATERIALIZED`| When you materialize a source, you choose to persist the data from the source in RisingWave.|
 |stream	|Required. Name of the stream.|
 |aws.region	|Required. AWS service region. For example, US East (N. Virginia).|
 |endpoint	|Optional. URL of the entry point for the AWS Kinesis service.|
@@ -71,7 +72,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="avro" label="Avro" default>
 
 ```sql
-CREATE [MATERIALIZED] SOURCE [IF NOT EXISTS] source_name
+CREATE {TABLE | SOURCE} [IF NOT EXISTS] source_name
 WITH (
    connector='kinesis',
    stream='kafka',
@@ -88,7 +89,7 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.av
 <TabItem value="json" label="JSON" default>
 
 ```sql
-CREATE [MATERIALIZED] SOURCE [IF NOT EXISTS] source_name (
+CREATE {TABLE | SOURCE} [IF NOT EXISTS] source_name (
    column1 varchar,
    column2 integer,
 ) 
@@ -107,7 +108,7 @@ ROW FORMAT JSON;
 <TabItem value="pb" label="Protobuf" default>
 
 ```sql
-CREATE [MATERIALIZED] SOURCE [IF NOT EXISTS] source_name
+CREATE {TABLE | SOURCE} [IF NOT EXISTS] source_name
 WITH (
    connector='kinesis',
    stream='kafka',

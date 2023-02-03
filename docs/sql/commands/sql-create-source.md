@@ -5,14 +5,15 @@ description: Supported data sources and how to connect RisingWave to the sources
 slug: /sql-create-source
 ---
 
-A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by adding `MATERIALIZED` in between `CREATE` and `SOURCE` (that is, `CREATE MATERIALIZED SOURCE`). 
+A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. 
+If you  choose to persist the data from the source in RisingWave, use the `CREATE TABLE` command with connector settings. See [CREATE TABLE](sql-create-table.md) for more details.
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or sinks for data transformations.
 
 ## Syntax
 
 ```sql
-CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name 
+CREATE SOURCE [ IF NOT EXISTS ] source_name 
 [schema_definition]
 WITH (
    connector='connector_name',
@@ -50,7 +51,7 @@ When a source is created, RisingWave does not ingest data immediately. RisingWav
 
 ## Supported formats
 
-When creating a source, specify the format in the `ROW FORMAT` section of the `CREATE SOURCE` or `CREATE MATERIALIZED SOURCE` statement.
+When creating a source, specify the format in the `ROW FORMAT` section of the `CREATE SOURCE` or `CREATE TABLE` statement.
 
 ### Avro
 
@@ -58,7 +59,7 @@ For data in Avro format, you must specify a message and a schema file location. 
 
 :::info
 
-For Avro data, you cannot specify the schema in the `schema_definition` section of a `CREATE SOURCE` or `CREATE MATERIALIZED SOURCE` statement.
+For Avro data, you cannot specify the schema in the `schema_definition` section of a `CREATE SOURCE` or `CREATE TABLE` statement.
 
 :::
 
@@ -86,7 +87,7 @@ For data in Protobuf format, you must specify a message and a schema location. T
 
 :::info
 
-For protobuf data, you cannot specify the schema in the `schema_definition` section of a `CREATE SOURCE` or `CREATE MATERIALIZED SOURCE`statement.
+For protobuf data, you cannot specify the schema in the `schema_definition` section of a `CREATE SOURCE` or `CREATE TABLE` statement.
 
 :::
 
