@@ -23,18 +23,17 @@ You can ingest CDC data from MySQL in two ways:
 - Using a CDC tool and the Kafka connector
   You can use either the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data change streams to Kafka topics, and then use the Kafka connector in RisingWave to consume data from the Kafka topics.
 
-## Set up MySQL
-Before using the any connector, you need to complete several configurations on MySQL.
 
-### Set up MySQL locally
+## Using the native MySQL CDC connector
 
-#### For the direct MySQL CDC connector and Debezium connector
+### Set up MySQL
+
+Before using the native MySQL CDC connector in RisingWave, you need to complete several configurations on MySQL.
+
+#### Set up MySQL locally
 See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql) and follow the steps on creating a user, granting the user required permissions, and enabling the binlog.
 
-#### For Maxwell's daemon connector
-See the [Quick Start](https://maxwells-daemon.io/quickstart/#configure-mysql) from Maxwell's Daemon on how to configure MySQL.
-
-### Set up AWS RDS MySQL
+#### Set up AWS RDS MySQL
 If your MySQL is hosted on AWS RDS, the configuration process is different. We will use a standard class MySQL instance without Multi-AZ deployment for illustration.
 
 1. Turn on binary logging and choose a non-zero value for the **Retention period**.
@@ -75,8 +74,6 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
   alt="Save changes made to MySQL RDS instance"
 />
 
-
-## Using the native MySQL CDC connector
 
 ### Enable the connector node in RisingWave
 
@@ -148,6 +145,10 @@ CREATE TABLE orders (
 
 ### Use the Debezium connector for MySQL
 
+#### Set up MySQL
+
+Before using the Debezium connector for MySQL, you need to complete several configurations on MySQL. For details, see [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql).
+
 #### Deploy the Debezium connector for MySQL
 
 You need to download and configure the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), and then add the configuration to your Kafka Connect cluster. For details, see [Deploying the MySQL connector](https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-deploying-a-connector).
@@ -173,9 +174,10 @@ WITH (
 
 ### Use the Maxwell's daemon
 
-#### Run Maxwell's daemon
+#### Configure MySQL and run Maxwell's daemon
 
-After setting up MySQL, you need to run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's Daemon.
+ You need to configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's Daemon.
+
 
 #### Create a materialized source connection using the Kafka connector
 
