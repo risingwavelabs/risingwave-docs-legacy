@@ -179,6 +179,11 @@ const sidebars = {
         },
         {
           type: 'doc',
+          label: 'Amazon S3',
+          id: 'create-source/create-source-s3',
+        },
+        {
+          type: 'doc',
           label: 'Load generator',
           id: 'create-source/create-source-datagen',
         },
@@ -370,8 +375,8 @@ const sidebars = {
           },
           {
               type: 'doc',
-              id: 'sql/system-catalogs/pg-catalog',
-              label: 'pg_catalog',
+              id: 'sql/system-catalogs/pg-catalog-function',
+              label: 'PostgreSQL catalogs and functions',
           },
           
           ]
