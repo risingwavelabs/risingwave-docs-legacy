@@ -23,17 +23,64 @@ You can ingest CDC data from MySQL in two ways:
 - Using a CDC tool and the Kafka connector
   You can use either the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data change streams to Kafka topics, and then use the Kafka connector in RisingWave to consume data from the Kafka topics.
 
+## Set up MySQL
+Before using the any connector, you need to complete several configurations on MySQL.
+
+### Set up MySQL locally
+
+#### For the direct MySQL CDC connector and Debezium connector
+See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql) and follow the steps on creating a user, granting the user required permissions, and enabling the binlog.
+
+#### For Maxwell's daemon connector
+See the [Quick Start](https://maxwells-daemon.io/quickstart/#configure-mysql) from Maxwell's Daemon on how to configure MySQL.
+
+### Set up AWS RDS MySQL
+If your MySQL is hosted on AWS RDS, the configuration process is different. We will use a standard class MySQL instance without Multi-AZ deployment for illustration.
+
+1. Turn on binary logging and choose a non-zero value for the **Retention period**.
+<img
+  src={require('../images/ret-period.png').default}
+  alt="Set retention period to a nonzero value"
+/>
+
+2. Create a parameter group for MySQL instances. We created a parameter group named MySQL-CDC for the instance that runs MySQL 5.7.x.
+<img
+  src={require('../images/parameter-group.png').default}
+  alt="Create a parameter group"
+/>
+
+3. Click the MySQL-CDC parameter group to edit the values of **binlog_format** to **ROW** and **binlog_row_image** to **full**.
+<img
+  src={require('../images/binlog-format.png').default}
+  alt="Set binlog_format to row"
+/>
+<img
+  src={require('../images/binlog-row.png').default}
+  alt="Set binlog_row_image to full"
+/>
+
+4. Modify your RDS instance and apply the modified paramter group to your database.
+<img
+  src={require('../images/modify-RDS.png').default}
+  alt="Select modify"
+/>
+<img
+  src={require('../images/apply-to-database.png').default}
+  alt="Apply changes to database"
+/>
+
+5. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save the changes. Remember to reboot your MySQL instance.
+<img
+  src={require('../images/save-changes.png').default}
+  alt="Save changes made to MySQL RDS instance"
+/>
+
 
 ## Using the native MySQL CDC connector
-
-### Set up MySQL
-
-Before using the native MySQL CDC connector in RisingWave, you need to complete several configurations on MySQL. For details, see [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql). Ensure that the binlog is enabled.
 
 ### Enable the connector node in RisingWave
 
 The native MySQL CDC connector is implemented by a connector node. A connector node handles the connections with upstream and downstream systems, and it is currently only available in RiseDev, the developer tool of RisingWave. 
-
 
 
 ### Create a materialized source connection using the native CDC connector
@@ -101,10 +148,6 @@ CREATE TABLE orders (
 
 ### Use the Debezium connector for MySQL
 
-#### Set up MySQL
-
-Before using the Debezium connector for MySQL, you need to complete several configurations on MySQL. For details, see [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql).
-
 #### Deploy the Debezium connector for MySQL
 
 You need to download and configure the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), and then add the configuration to your Kafka Connect cluster. For details, see [Deploying the MySQL connector](https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-deploying-a-connector).
@@ -130,9 +173,9 @@ WITH (
 
 ### Use the Maxwell's daemon
 
-#### Configure MySQL and run Maxwell's daemon
+#### Run Maxwell's daemon
 
-You need to configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's Daemon.
+After setting up MySQL, you need to run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's Daemon.
 
 #### Create a materialized source connection using the Kafka connector
 
