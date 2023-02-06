@@ -158,7 +158,7 @@ CREATE TABLE orders (
 
 #### Set up MySQL
 
-Before using the Debezium connector for MySQL, you need to complete several configurations on MySQL. For details, see [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql).
+Before using the Debezium connector for MySQL, you need to complete several configurations on MySQL. For details, see [Setting up MySQL](#set-up-mysql).
 
 #### Deploy the Debezium connector for MySQL
 
