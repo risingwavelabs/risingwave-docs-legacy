@@ -30,10 +30,15 @@ You can ingest CDC data from MySQL in two ways:
 
 Before using the native MySQL CDC connector in RisingWave, you need to complete several configurations on MySQL.
 
-#### Set up MySQL locally
+<Tabs>
+<TabItem value='self-hosted MySQL' label='Self-hosted'>
+
 See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql) and follow the steps on creating a user, granting the user required permissions, and enabling the binlog.
 
-#### Set up AWS RDS MySQL
+</TabItem>
+
+<TabItem value='AWS RDS MySQL' label='AWS RDS MySQL'>
+
 If your MySQL is hosted on AWS RDS, the configuration process is different. We will use a standard class MySQL instance without Multi-AZ deployment for illustration.
 
 1. Turn on binary logging and choose a non-zero value for the **Retention period**.
@@ -74,6 +79,8 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
   alt="Save changes made to MySQL RDS instance"
 />
 
+</TabItem>
+</Tabs>
 
 ### Enable the connector node in RisingWave
 
@@ -84,7 +91,7 @@ The native MySQL CDC connector is implemented by the connector node in RisingWav
   Download the latest source file of RisingWave. Run `./risedev configure` in the root directory of RisingWave and enable the **RisingWave Connector** component. Alternatively, you can edit the `risedev.yml` file and uncomment the line of code `- use: connector:node` for the default configuration. After you complete the changes, you need to run `./risedev dev` to launch the cluster with the new configuration.
 
 
-### Create a materialized source using the native CDC connector
+### Create a materialized source using the native CDC connector in RisingWave
 
 To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON.
 
@@ -157,7 +164,7 @@ Before using the Debezium connector for MySQL, you need to complete several conf
 
 You need to download and configure the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), and then add the configuration to your Kafka Connect cluster. For details, see [Deploying the MySQL connector](https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-deploying-a-connector).
 
-#### Create a materialized source connection using the Kafka connector
+#### Create a materialized source using the Kafka connector in RisingWave
 
 To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON.
 
@@ -183,7 +190,7 @@ WITH (
  You need to configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's Daemon.
 
 
-#### Create a materialized source connection using the Kafka connector
+#### Create a materialized source connection using the Kafka connector in RisingWave
 
 To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Maxwell JSON.
 
