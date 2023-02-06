@@ -33,7 +33,7 @@ Prism.languages.sql = {
     /[-+*\/=%^~]|&&?|\|\|?|!=?|<(?:=>?|<|>)?|>[>=]?|\b(?:AND|BETWEEN|DIV|ILIKE|IN|IS|LIKE|OR|REGEXP|RLIKE|SOUNDS LIKE|XOR)\b/i,
   not: /\b(?:NOT)\b/i,
   datatype:
-    /\b(?:NUMERIC|BOOL(?:EAN)|TIME(?:STAMP)?|VAR(?:BINARY|CHAR|CHARACTER|YING)|BIGINT|DOUBLE|FLOAT|PRECISION|INT|INTEGER|INTERVAL|STRING|DECIMAL|CHAR(?:ACTER|SET)?|DATE(?:TIME)?)\b/i,
+    /\b(?:NUMERIC|ARRAY|BOOL(?:EAN)|TIME(?:STAMP)?|VAR(?:BINARY|CHAR|CHARACTER|YING)|BIGINT|DOUBLE|FLOAT|PRECISION|INT|INTEGER|INTERVAL|STRING|STRUCT|DECIMAL|CHAR(?:ACTER|SET)?|DATE(?:TIME)?)\b/i,
   punctuation: /[;[\]()`,.]/,
   custom: /\b(?:[a-z0-9]+((?:_[a-z0-9]*)*))\b/,
 };
