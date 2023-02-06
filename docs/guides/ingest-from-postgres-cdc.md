@@ -42,13 +42,13 @@ Keep in mind that changing the `wal_level` requires a restart of the Postgres in
 
 For PostgreSQL connector to work properly, you should grant the user following privileges:
 
-- `Replication` privileges in the database to add the table to a publication.
+- `REPLICATION` privileges in the database to add the table to a publication.
     
     ```sql
     ALTER USER <username> REPLICATION;
     ```
     
-- `CREATE` privileges on the database to add publications.
+- `CREATEDB` privileges on the database to add publications.
     
     ```sql
     ALTER USER <username> CREATEDB;
@@ -127,9 +127,9 @@ To ensure all data changes are captured, you must create a materialized source c
 
  |Field|Notes|
  |---|---|
- |hostname| Host name of the database. |
+ |hostname| Hostname of the database. |
  |port| Port number of the database.|
- |username| User name of the database.|
+ |username| Username of the database.|
  |password| Password of the database. |
  |database.name| Name of the database.|
  |schema.name| Name of the schema. |
@@ -145,13 +145,13 @@ To ensure all data changes are captured, you must create a materialized source c
 
  ```sql
  CREATE TABLE shipments (
-    shipment_id INTEGER,
-    order_id INTEGER,
-    origin STRING,
-    destination STRING,
+    shipment_id integer,
+    order_id integer,
+    origin string,
+    destination string,
     is_arrived boolean,
     PRIMARY KEY (shipment_id)
-) with (
+) WITH (
  connector = 'postgres-cdc',
  hostname = '127.0.0.1',
  port = '5432',
@@ -177,12 +177,12 @@ You need to download and configure the [Debezium connector for PostgreSQL](https
 
 ### Create a materialized source using the Kafka connector
 
- To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON. For details
+ To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON. 
 
  ```sql
  CREATE TABLE source_name (
     column1 VARCHAR,
-    column2 INTEGER,
+    column2 integer,
     PRIMARY KEY (column1)
  ) 
  WITH (

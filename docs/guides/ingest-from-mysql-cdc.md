@@ -63,7 +63,7 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
   alt="Set binlog_row_image to full"
 />
 
-4. Modify your RDS instance and apply the modified paramter group to your database.
+4. Modify your RDS instance and apply the modified parameter group to your database.
 <img
   src={require('../images/modify-RDS.png').default}
   alt="Select modify"
@@ -116,11 +116,11 @@ All the fields listed below are required.
 
 |Field|Notes|
 |---|---|
-|hostname| Host name of the database. |
+|hostname| Hostname of the database. |
 |port| Port number of the database.|
-|username| User name of the database.|
+|username| Username of the database.|
 |password| Password of the database. |
-|database.name| Name of the database. Note that RisingWave can not read data from a built-in MySQL database, such as `mysql`.|
+|database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`.|
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster.|
 
@@ -187,7 +187,7 @@ WITH (
 
 #### Configure MySQL and run Maxwell's daemon
 
- You need to configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's Daemon.
+ You need to configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
 
 
 #### Create a materialized source connection using the Kafka connector in RisingWave
