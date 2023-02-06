@@ -17,7 +17,8 @@ For tables with primary keys, if you insert a row with an existing key, the new 
 
 ```sql
 INSERT INTO table_name [ ( col_name [ , ... ] ) ]
-      { VALUES ( value [ , ... ] ) [ , ( ... ) ] | select_query } [ RETURNING col_name ];
+      { VALUES ( value [ , ... ] ) [ , ( ... ) ] | select_query } 
+      [ RETURNING col_name ];
 ```
 
 
@@ -71,5 +72,6 @@ The following statement inserts all rows in another table name "taxi_trips_new" 
 
 ```sql
 INSERT INTO taxi_trips 
-    SELECT * FROM taxi_trips_new RETURNING id;
+    SELECT * FROM taxi_trips_new 
+    RETURNING id;
 ```
