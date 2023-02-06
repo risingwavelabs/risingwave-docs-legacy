@@ -127,7 +127,7 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.pr
 
 For each Kafka source created, the virtual column, `_rw_kafka_timestamp`, will also exist. This column includes the timestamp of the Kafka message.
 
-To store this column, users can use the following query.
+You can include this column in your views or materialized views to display the Kafka timestamp. Here is an example.
 
 ```sql
 CREATE MATERIALIZED VIEW v1 AS
@@ -135,7 +135,7 @@ SELECT _rw_kafka_timestamp, col1
 FROM source_name;
 ```
 
-If directly querying from the source, users can use `_rw_kafka_timestamp` to query messages sent within a specific time period. For example, the following query only selects messages sent in the past 10 minutes.
+If directly querying from the source, you can use `_rw_kafka_timestamp` to filter messages sent within a specific time period. For example, the following query only selects messages sent in the past 10 minutes.
 
 ```sql
 SELECT * FROM source_name
