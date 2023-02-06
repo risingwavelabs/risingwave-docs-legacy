@@ -4,6 +4,9 @@
 - **Description**: 
 [ What's changed? ]
 
+- **Preview**: 
+[ Paste the preview link to the edited page here. ]
+
 - **Related code PR**: 
 [ Provide the link to the code PR here. For example, https://github.com/risingwavelabs/risingwave/pull/4085. Delete this part if there's no code PR related. ]
 
@@ -20,7 +23,3 @@ Resolves [ Provide the link to the doc issue here. ]
   - [ ] I have acquired the approval from the owner (and optionally the reviewers) of the code PR and at least one tech writer (`bernscode`, `CharlieSYH`, `emile-00`, & `hengm3467`). 
   - [ ] I have checked the doc site preview, and the updated parts look good. <details><summary>How?</summary>Scroll down and open this link: <img width="916" alt="image" src="https://user-images.githubusercontent.com/100549427/199641563-82967cd0-2c5c-4f40-bcdb-5ac80f03ffd8.png">
 </details>
-
-
-## Published doc pages
-  [ After merging this PR, edit the description to include the links to the updated doc pages here. For example, https://www.risingwave.dev/docs/latest/intro/. ]
