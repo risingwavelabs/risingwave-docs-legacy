@@ -8,7 +8,7 @@ slug: /risingwave-local
 This article will help you start a RisingWave standalone instance in your environment.
 
 :::caution
-This method starts RisingWave in playground mode, where data is not persisted after the service is terminated.<br/>Start RisingWave in full-featured mode for data persistence and stable performance. <br/>[→ See the comparison](../get-started.md#run-risingwave)
+This method starts RisingWave in playground mode, where data is not persisted after the service is terminated.<br/>Start RisingWave in full-featured mode for data persistence and stable performance. <br/>[→ See the comparison](/get-started.md#run-risingwave)
 :::
 
 ## Install and start RisingWave
@@ -24,7 +24,7 @@ import TabItem from '@theme/TabItem';
 1. Download the pre-built binary.
 
     ```shell
-    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.14/risingwave-v0.1.14-x86_64-unknown-linux.tar.gz
+    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.16/risingwave-v0.1.16-x86_64-unknown-linux.tar.gz
     ```
 
     > You can find previous binary releases in [Release notes](/release-notes.md).
@@ -32,7 +32,7 @@ import TabItem from '@theme/TabItem';
 2. Unzip the binary.
 
     ```shell
-    tar xvf risingwave-v0.1.14-x86_64-unknown-linux.tar.gz
+    tar xvf risingwave-v0.1.16-x86_64-unknown-linux.tar.gz
     ```
 
 3. Start RisingWave in playground mode.
@@ -67,7 +67,9 @@ import TabItem from '@theme/TabItem';
     <TabItem value="macos" label="macOS" default>
 
     ```shell
-    brew install postgresql cmake protobuf openssl tmux cyrus-sasl
+    brew update
+    brew install libpq cmake protobuf openssl tmux cyrus-sasl
+    brew link --force libpq
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     ```
 

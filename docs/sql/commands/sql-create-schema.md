@@ -23,3 +23,9 @@ CREATE SCHEMA [IF NOT EXISTS] [database_name.]schema_name;
 ```sql
 CREATE SCHEMA IF NOT EXISTS schema_1;
 ```
+
+:::note
+
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+
+:::
