@@ -81,7 +81,7 @@ The native MySQL CDC connector is implemented by the connector node in RisingWav
 - Using the latest docker-compose file of RisingWave demo
   The connector node is enabled by default in this docker-compose file. To learn about how to start RisingWave with this file, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
 - Using RiseDev, the developer's tool
-  Download the latest source file of RisingWave. Run `./risedev configure` in the root directory of RisingWave and enable the **RisingWave Connector** component. Alternatively, you can edit the `risedev.yml` file and uncomment the line of code `- use: connector:node` for the default configuration.
+  Download the latest source file of RisingWave. Run `./risedev configure` in the root directory of RisingWave and enable the **RisingWave Connector** component. Alternatively, you can edit the `risedev.yml` file and uncomment the line of code `- use: connector:node` for the default configuration. After you complete the changes, you need to run `./risedev dev` to launch the cluster with the new configuration.
 
 
 ### Create a materialized source using the native CDC connector
