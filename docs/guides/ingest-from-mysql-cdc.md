@@ -36,7 +36,65 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="self-hosted MySQL" label="Self-hosted" default>
 
-See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql) and follow the steps on creating a user, granting the user required permissions, and enabling the binlog.
+To use the MySQL CDC features, we need to create a MySQL user account with appropriate privileges for all databases RisingWave will read from.
+
+#### Create a user and grant privileges
+
+1. Create a MySQL user with the following query.
+
+```sql
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+```
+
+2. Grant the appropriate privileges to the user.
+
+```sql
+GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user'@'localhost';
+```
+
+3. Finalize the privileges.
+
+```sql
+FLUSH PRIVILEGES;
+``` 
+
+#### Enable the binlog
+
+The binlog must be enabled for MySQL replication. The binary logs record transaction updates for replication tools to propagate changes.
+
+1. Check if the `log-bin` is already on.
+
+```sql
+SHOW VARIABLES LIKE 'log_bin';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| log_bin       | OFF   |
++---------------+-------+
+```
+
+2. If it is `OFF`, configure your MySQL server configuration file (my.cnf) with the following properties described in the table below. Restart your MySQL server to let the configurations take effect.
+
+```terminal
+server-id         = 223344
+log_bin           = mysql-bin
+binlog_format     = ROW
+binlog_row_image  = FULL
+expire_logs_days  = 10
+```
+
+3. Confirm your changes by checking the `log-bin` again.
+
+```sql
+SHOW VARIABLES LIKE 'log_bin';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| log_bin       | ON    |
++---------------+-------+
+```
+
+See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql) for more details.
 
 </TabItem>
 <TabItem value="AWS RDS MySQL" label="AWS RDS MySQL" default>
@@ -87,13 +145,15 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
 ### Enable the connector node in RisingWave
 
 The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can enable the connector node in two ways:
+
 - Using the latest docker-compose file of RisingWave demo
   The connector node is enabled by default in this docker-compose file. To learn about how to start RisingWave with this file, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
+
 - Using RiseDev, the developer's tool
-  Download the latest source file of RisingWave. Run `./risedev configure` in the root directory of RisingWave and enable the **RisingWave Connector** component. Alternatively, you can edit the `risedev.yml` file and uncomment the line of code `- use: connector:node` for the default configuration. After you complete the changes, you need to run `./risedev dev` to launch the cluster with the new configuration.
+  Download the latest source file of RisingWave. Run `./risedev configure` in the root directory of RisingWave and enable the **RisingWave Connector** component. Edit the `risedev.yml` file and uncomment the line of code `- use: connector:node` for the default configuration. After you complete the changes, you need to run `./risedev dev` to launch the cluster with the new configuration.
 
 
-### Create a materialized source using the native CDC connector in RisingWave
+### Create a table using the native CDC connector in RisingWave
 
 To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON.
 
@@ -122,7 +182,7 @@ All the fields listed below are required.
 |port| Port number of the database.|
 |username| Username of the database.|
 |password| Password of the database. |
-|database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`.|
+|database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster.|
 
@@ -166,7 +226,7 @@ Before using the Debezium connector for MySQL, you need to complete several conf
 
 You need to download and configure the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), and then add the configuration to your Kafka Connect cluster. For details, see [Deploying the MySQL connector](https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-deploying-a-connector).
 
-#### Create a materialized source using the Kafka connector in RisingWave
+#### Create a table using the Kafka connector in RisingWave
 
 To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON.
 
