@@ -30,6 +30,9 @@ You can ingest CDC data from MySQL in two ways:
 
 Before using the native MySQL CDC connector in RisingWave, you need to complete several configurations on MySQL.
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 <Tabs>
 <TabItem value='self-hosted MySQL' label='Self-hosted'>
 

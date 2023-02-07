@@ -23,6 +23,9 @@ You can ingest CDC data from PostgreSQL in two ways:
 
 ### Set up PostgreSQL
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 <Tabs>
 <TabItem value="pg_self_hosted" label="Self-hosted">
 
@@ -66,7 +69,6 @@ postgres   | Superuser, Create role, Create DB, Replication, Bypass RLS |    {}
 ```
 
 </TabItem>
-
 <TabItem value='AWS_rds_pg' label='AWS RDS PostgreSQL' >
 
 Here we will use a standard class instance without Multi-AZ deployment as an example.
