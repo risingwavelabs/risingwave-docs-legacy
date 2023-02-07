@@ -27,7 +27,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-<TabItem value="pg_self_hosted" label="Self-hosted">
+<TabItem value="pg_self_hosted" label="Self-hosted" default>
 
 Ensure that the `wal_value` of your Postgres is `logical`. Check by using the following query.
 
@@ -69,7 +69,7 @@ postgres   | Superuser, Create role, Create DB, Replication, Bypass RLS |    {}
 ```
 
 </TabItem>
-<TabItem value='AWS_rds_pg' label='AWS RDS PostgreSQL' >
+<TabItem value='AWS_rds_pg' label='AWS RDS PostgreSQL' default>
 
 Here we will use a standard class instance without Multi-AZ deployment as an example.
 

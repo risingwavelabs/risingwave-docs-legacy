@@ -34,13 +34,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-<TabItem value='self-hosted MySQL' label='Self-hosted'>
+<TabItem value='self-hosted MySQL' label='Self-hosted' default>
 
 See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql) and follow the steps on creating a user, granting the user required permissions, and enabling the binlog.
 
 </TabItem>
-
-<TabItem value='AWS RDS MySQL' label='AWS RDS MySQL'>
+<TabItem value='AWS RDS MySQL' label='AWS RDS MySQL' default>
 
 If your MySQL is hosted on AWS RDS, the configuration process is different. We will use a standard class MySQL instance without Multi-AZ deployment for illustration.
 
