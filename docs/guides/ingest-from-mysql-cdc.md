@@ -34,12 +34,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-<TabItem value='self-hosted MySQL' label='Self-hosted' default>
+<TabItem value="self-hosted MySQL" label="Self-hosted" default>
 
 See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql) and follow the steps on creating a user, granting the user required permissions, and enabling the binlog.
 
 </TabItem>
-<TabItem value='AWS RDS MySQL' label='AWS RDS MySQL' default>
+<TabItem value="AWS RDS MySQL" label="AWS RDS MySQL" default>
 
 If your MySQL is hosted on AWS RDS, the configuration process is different. We will use a standard class MySQL instance without Multi-AZ deployment for illustration.
 
@@ -128,7 +128,7 @@ All the fields listed below are required.
 
 #### Data format
 
-`DEBEZIUM_JSON` — Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified.
+`DEBEZIUM_JSON` — Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
 
 
 #### Example
@@ -182,7 +182,8 @@ WITH (
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='earliest',
    properties.group.id='demo_consumer_name'
-);
+)
+ROW FORMAT DEBEZIUM JSON;
 ```
 
 ### Use the Maxwell's daemon

@@ -69,7 +69,7 @@ postgres   | Superuser, Create role, Create DB, Replication, Bypass RLS |    {}
 ```
 
 </TabItem>
-<TabItem value='AWS_rds_pg' label='AWS RDS PostgreSQL' default>
+<TabItem value="AWS_rds_pg" label="AWS RDS PostgreSQL" default>
 
 Here we will use a standard class instance without Multi-AZ deployment as an example.
 
@@ -140,7 +140,7 @@ To ensure all data changes are captured, you must create a materialized source c
 
  #### Data format
 
- `DEBEZIUM_JSON` — Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified.
+ `DEBEZIUM_JSON` — Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
 
 
  #### Example
@@ -175,7 +175,7 @@ Before using the native PostgreSQL CDC connector in RisingWave, you need to comp
 
 ### Deploy the Debezium connector for PostgreSQL
 
-You need to download and configure the [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), and then add the configuration to your Kafka Connect cluster. For details, see [Deployment](https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-deployment) section.
+You need to download and configure the [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), and then add the configuration to your Kafka Connect cluster. For details, see the [Deployment](https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-deployment) section.
 
 ### Create a materialized source using the Kafka connector
 
@@ -193,7 +193,8 @@ You need to download and configure the [Debezium connector for PostgreSQL](https
     properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
     scan.startup.mode='earliest',
     properties.group.id='demo_consumer_name'
- );
+ )
+ ROW FORMAT DEBEZIUM JSON;
  ```
 
 
