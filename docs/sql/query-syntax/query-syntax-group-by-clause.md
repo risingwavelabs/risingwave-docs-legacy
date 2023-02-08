@@ -25,40 +25,13 @@ You can use more than one column in the `GROUP BY` clause.
 
 Basic `GROUP BY` example:
 
-
-Suppose that we have a table,`sales_commissions`, that consists of these columns: `id`, `name`,`age`, and `commission_amount`.
-
-| id | name  | age | commission_amount |
-|----|-------|-----|-------------------|
-|  1 | Paul  |  32 |  20000            |
-|  2 | Allen |  25 |  15000            |
-|  3 | Teddy |  23 |  20000            |
-|  4 | Mark  |  25 |  65000            |
-|  5 | David |  27 |  85000            |
-|  6 | Kim   |  22 |  45000            |
-|  7 | James |  24 |  10000            |
-|  8 | Paul  |  24 |  20000            |
-|  9 | James |  44 |   5000            |
-| 10 | James |  45 |   5000            |
-
-
-To obtain the total amount of sales commissions for each person, we could use the following `GROUP BY` query using the optional `ORDER BY` clause:
-
 ```sql
-SELECT name, SUM(commission_amount)
-FROM sales_commissions
-GROUP BY name 
-ORDER BY name
+-- compute the average income per city per street_name
+SELECT department, job_title, AVG(salary)
+FROM employees
+GROUP BY department, job_title;
 ```
 
-Output:
+This query retrieves the average salary of employees in different departments and with different job titles. The query selects the department, job title, and average salary of employees from the "employees" table. The data is grouped by department and job title, which means that the average salary is calculated separately for each combination of department and job title.
 
-| name  |  sum  |
-|-------|-------|
-| Allen | 15000 |
-| David | 85000 |
-| James | 20000 |
-| Kim   | 45000 |
-| Mark  | 65000 |
-| Paul  | 40000 |
-| Teddy | 20000 |
+This query results in a table with columns for department, job title, and average salary. Each row represents the average salary for a unique department and job title combination.
