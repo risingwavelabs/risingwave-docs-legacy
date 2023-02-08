@@ -13,7 +13,7 @@ The supported PostgreSQL versions are 10, 11, 12, 13, and 14.
 
 You can ingest CDC data from PostgreSQL in two ways:
 
-- Using the direct PostgreSQL CDC connector
+- Using the PostgreSQL CDC connector
     This connector is included in RisingWave. With this connector, RisingWave can connect to PostgreSQL directly to obtain data from the binlog without starting additional services.
 
 - Using a CDC tool and the Kafka connector
@@ -29,19 +29,19 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="pg_self_hosted" label="Self-hosted" default>
 
-Ensure that the `wal_value` of your Postgres is `logical`. Check by using the following query.
+Ensure that the `wal_value` of your PostgreSQL is `logical`. Check by using the following query.
 
 ```sql
 SHOW wal_level;
 ```
 
-By default, it will be `replica`. For CDC, you will need to set it to logical in the database configuration file (postgresql.conf) or via a psql command. The following command will change the `wal_value`.
+By default, it will be `replica`. For CDC, you will need to set it to logical in the database configuration file (`postgresql.conf`) or via a `psql` command. The following command will change the `wal_value`.
 
 ```sql
 ALTER SYSTEM SET wal_value = logical;
 ```
 
-Keep in mind that changing the `wal_level` requires a restart of the Postgres instance and can affect database performance.
+Keep in mind that changing the `wal_level` requires a restart of the PostgreSQL instance and can affect database performance.
 
 For PostgreSQL connector to work properly, you should grant the user following privileges:
 
@@ -69,7 +69,8 @@ postgres   | Superuser, Create role, Create DB, Replication, Bypass RLS |    {}
 ```
 
 </TabItem>
-<TabItem value="AWS_rds_pg" label="AWS RDS PostgreSQL" default>
+
+<TabItem value="AWS_rds_pg" label="AWS RDS" default>
 
 Here we will use a standard class instance without Multi-AZ deployment as an example.
 
@@ -99,11 +100,7 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 
 ### Enable the connector node in RisingWave
 
-The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can enable the connector node in two ways:
-- Using the latest docker-compose file of RisingWave demo
-  The connector node is enabled by default in this docker-compose file. To learn about how to start RisingWave with this file, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
-- Using RiseDev, the developer's tool
-  Download the latest source file of RisingWave. Run `./risedev configure` in the root directory of RisingWave and enable the **RisingWave Connector** component. Edit the `risedev.yml` file and uncomment the line of code `- use: connector:node` for the default configuration. After you complete the changes, you need to run `./risedev dev` to launch the cluster with the new configuration.
+The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo, in which the connector node is enabled by default. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
 
 ### Create a table using the native CDC connector
 
@@ -171,7 +168,7 @@ To ensure all data changes are captured, you must create a materialized source c
 
 ### Set up PostgreSQL
 
-Before using the native PostgreSQL CDC connector in RisingWave, you need to complete several configurations for PostgreSQL. For details, see [Setting up PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html#setting-up-postgresql). There are instructions on how to set up the self-hosted Postgres and AWS RDS.
+Before using the native PostgreSQL CDC connector in RisingWave, you need to complete several configurations for PostgreSQL. For details, see [Set up PostgreSQL](#set-up-postgresql). There are instructions on how to set up the self-hosted PostgreSQL and AWS RDS.
 
 ### Deploy the Debezium connector for PostgreSQL
 
