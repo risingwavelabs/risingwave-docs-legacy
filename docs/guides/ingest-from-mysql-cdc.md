@@ -208,7 +208,7 @@ CREATE TABLE orders (
 );
 ```
 
-## Use a CDC tool and the Kafka connector
+## Using a CDC tool and the Kafka connector
 
 ### Use the Debezium connector for MySQL
 
@@ -226,8 +226,8 @@ To ensure all data changes are captured, you must create a materialized source c
 
 ```sql
 CREATE TABLE source_name (
-   column1 VARCHAR,
-   column2 INTEGER,
+   column1 varchar,
+   column2 integer,
    PRIMARY KEY (column1)
 ) 
 WITH (
@@ -237,7 +237,7 @@ WITH (
    scan.startup.mode='earliest',
    properties.group.id='demo_consumer_name'
 )
-ROW FORMAT DEBEZIUM JSON;
+ROW FORMAT DEBEZIUM_JSON;
 ```
 
 ### Use the Maxwell's daemon
@@ -254,8 +254,8 @@ To ensure all data changes are captured, you must create a materialized source c
 
 ```sql
 CREATE TABLE source_name (
-   column1 VARCHAR,
-   column2 INTEGER,
+   column1 varchar,
+   column2 integer,
    PRIMARY KEY (column1)
 ) 
 WITH (

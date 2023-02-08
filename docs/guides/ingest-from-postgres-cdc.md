@@ -180,7 +180,7 @@ You need to download and configure the [Debezium connector for PostgreSQL](https
 
  ```sql
  CREATE TABLE source_name (
-    column1 VARCHAR,
+    column1 varchar,
     column2 integer,
     PRIMARY KEY (column1)
  ) 
@@ -191,7 +191,7 @@ You need to download and configure the [Debezium connector for PostgreSQL](https
     scan.startup.mode='earliest',
     properties.group.id='demo_consumer_name'
  )
- ROW FORMAT DEBEZIUM JSON;
+ ROW FORMAT DEBEZIUM_JSON;
  ```
 
 
