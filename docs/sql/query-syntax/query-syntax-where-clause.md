@@ -28,3 +28,19 @@ SELECT *
 FROM table_name
 WHERE id=2 OR id=3;
 ```
+
+Syntax diagram:
+
+import rr from '@theme/RailroadDiagram'
+
+
+export const svg = rr.Diagram(
+rr.Stack(
+   rr.Sequence(
+      rr.Terminal('WHERE'),
+      rr.NonTerminal('expression')
+   ),      
+)
+);
+
+<drawer SVG={svg} />
