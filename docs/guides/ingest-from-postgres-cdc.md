@@ -104,7 +104,7 @@ The native PostgreSQL CDC connector is implemented by the connector node in Risi
 
 ### Create a table using the native CDC connector
 
-To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON.
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON. 
 
  #### Syntax
 
@@ -137,7 +137,7 @@ To ensure all data changes are captured, you must create a materialized source c
 
  #### Data format
 
- `DEBEZIUM_JSON` — Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
+ Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
 
 
  #### Example
@@ -176,7 +176,7 @@ You need to download and configure the [Debezium connector for PostgreSQL](https
 
 ### Create a table using the Kafka connector
 
- To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON. 
+ To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON. 
 
  ```sql
  CREATE TABLE source_name (

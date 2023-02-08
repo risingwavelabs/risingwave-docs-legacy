@@ -34,9 +34,9 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-<TabItem value="self-hosted MySQL" label="Self-hosted" default>
+<TabItem value="self-hosted MySQL" label="Self-hosted">
 
-To use the MySQL CDC features, we need to create a MySQL user account with appropriate privileges for all databases RisingWave will read from.
+To use the MySQL CDC features, we need to create a MySQL user account with appropriate privileges on all databases for which RisingWave will read from.
 
 #### Create a user and grant privileges
 
@@ -73,7 +73,7 @@ SHOW VARIABLES LIKE 'log_bin';
 +---------------+-------+
 ```
 
-2. If it is `OFF`, configure your MySQL server configuration file (my.cnf) with the following properties described in the table below. Restart your MySQL server to let the configurations take effect.
+2. If it is `OFF`, configure your MySQL server configuration file, my.cnf, with the following properties described below. Restart your MySQL server to let the configurations take effect.
 
 ```terminal
 server-id         = 223344
@@ -149,7 +149,7 @@ The native MySQL CDC connector is implemented by the connector node in RisingWav
 
 ### Create a table using the native CDC connector in RisingWave
 
-To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON.
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
 
 
 #### Syntax
@@ -182,7 +182,7 @@ All the fields listed below are required.
 
 #### Data format
 
-`DEBEZIUM_JSON` — Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
+Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
 
 
 #### Example
@@ -211,7 +211,7 @@ CREATE TABLE orders (
 ## Using a CDC tool and the Kafka connector
 
 <Tabs>
-<TabItem value='Debezium connector for MySQL' label='Debezium connector for MySQL' default>
+<TabItem value="Debezium connector for MySQL" label="Debezium connector for MySQL" default>
 
 ### Set up MySQL
 
@@ -223,7 +223,7 @@ You need to download and configure the [Debezium connector for MySQL](https://de
 
 ### Create a table using the Kafka connector in RisingWave
 
-To ensure all data changes are captured, you must create a materialized source (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON.
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
 
 ```sql
 CREATE TABLE source_name (
@@ -241,18 +241,16 @@ WITH (
 ROW FORMAT DEBEZIUM_JSON;
 ```
 </TabItem>
-
-<TabItem value='Maxwell daemon' label='Maxwell daemon'>
+<TabItem value="Maxwell daemon" label="Maxwell daemon">
 
 ### Configure MySQL and run Maxwell's daemon
 
  You need to configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
 
 
-### Create a materialized source connection using the Kafka connector in RisingWave
+### Create a table using the Kafka connector in RisingWave
 
-To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Maxwell JSON.
-
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Maxwell JSON.
 
 ```sql
 CREATE TABLE source_name (
