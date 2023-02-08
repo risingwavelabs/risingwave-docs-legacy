@@ -29,7 +29,7 @@ FROM table_name
 WHERE id=2 OR id=3;
 ```
 
-Syntax diagram:
+<!-- Syntax diagram:
 
 import rr from '@theme/RailroadDiagram'
 
@@ -43,4 +43,4 @@ rr.Stack(
 )
 );
 
-<drawer SVG={svg} />
+<drawer SVG={svg} /> -->
