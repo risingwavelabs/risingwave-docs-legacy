@@ -10,6 +10,14 @@ It helps break down complicated and large queries into simpler, easily readable 
 
 CTEs can reference each other and can be nested. The `WITH` clause must be defined before it's used in the query.
 
+Here is the basic syntax of a SELECT statement with the optional `WITH` clause:
+
+```sql
+WITH name_for_summary_data AS (SELECT statement)
+SELECT columns
+FROM name_for_summary_data
+```
+
 
 Basic CTE examples:
 
