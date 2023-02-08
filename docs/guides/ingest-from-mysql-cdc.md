@@ -210,19 +210,20 @@ CREATE TABLE orders (
 
 ## Using a CDC tool and the Kafka connector
 
-### Use the Debezium connector for MySQL
+<Tabs>
+<TabItem value='Debezium connector for MySQL' label='Debezium connector for MySQL' default>
 
-#### Set up MySQL
+### Set up MySQL
 
 Before using the Debezium connector for MySQL, you need to complete several configurations on MySQL. For details, see [Setting up MySQL](#set-up-mysql).
 
-#### Deploy the Debezium connector for MySQL
+### Deploy the Debezium connector for MySQL
 
 You need to download and configure the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), and then add the configuration to your Kafka Connect cluster. For details, see [Deploying the MySQL connector](https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-deploying-a-connector).
 
-#### Create a table using the Kafka connector in RisingWave
+### Create a table using the Kafka connector in RisingWave
 
-To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON.
+To ensure all data changes are captured, you must create a materialized source (`CREATE TABLE`) and specify primary keys. The data format must be Debezium JSON.
 
 ```sql
 CREATE TABLE source_name (
@@ -239,15 +240,16 @@ WITH (
 )
 ROW FORMAT DEBEZIUM_JSON;
 ```
+</TabItem>
 
-### Use the Maxwell's daemon
+<TabItem value='Maxwell daemon' label='Maxwell daemon'>
 
-#### Configure MySQL and run Maxwell's daemon
+### Configure MySQL and run Maxwell's daemon
 
  You need to configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
 
 
-#### Create a materialized source connection using the Kafka connector in RisingWave
+### Create a materialized source connection using the Kafka connector in RisingWave
 
 To ensure all data changes are captured, you must create a materialized source connection (`CREATE TABLE`) and specify primary keys. The data format must be Maxwell JSON.
 
@@ -267,3 +269,5 @@ WITH (
 ) 
 ROW FORMAT MAXWELL;
 ```
+</TabItem>
+</Tabs>
