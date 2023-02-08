@@ -22,10 +22,10 @@ ORDER BY column1, column2
 Basic `HAVING` clause example:
 
 ```sql
--- count the number of entries in the "addresses" table that belong to each different city
--- filtering out cities with a count below 40
-SELECT city, COUNT(*)
-FROM addresses
-GROUP BY city
-HAVING COUNT(*) >= 40;
+-- compute the average salary per department per job_title
+-- filtering the result set to only include the departments and job titles with an average salary of at least $50,000
+SELECT department, job_title, AVG(salary)
+FROM employees
+GROUP BY department, job_title
+HAVING AVG(salary) >= 50000;
 ```
