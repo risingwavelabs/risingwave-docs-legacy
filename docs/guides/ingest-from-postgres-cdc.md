@@ -70,7 +70,7 @@ postgres   | Superuser, Create role, Create DB, Replication, Bypass RLS |    {}
 
 </TabItem>
 
-<TabItem value="AWS_rds_pg" label="AWS RDS" default>
+<TabItem value="AWS_rds_pg" label="AWS RDS">
 
 Here we will use a standard class instance without Multi-AZ deployment as an example.
 

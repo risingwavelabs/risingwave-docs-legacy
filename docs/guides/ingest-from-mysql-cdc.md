@@ -97,7 +97,7 @@ SHOW VARIABLES LIKE 'log_bin';
 See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql) for more details.
 
 </TabItem>
-<TabItem value="AWS RDS MySQL" label="AWS RDS MySQL" default>
+<TabItem value="AWS RDS MySQL" label="AWS RDS">
 
 If your MySQL is hosted on AWS RDS, the configuration process is different. We will use a standard class MySQL instance without Multi-AZ deployment for illustration.
 
@@ -144,15 +144,7 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
 
 ### Enable the connector node in RisingWave
 
-The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can enable the connector node in two ways:
-
-- Using the latest docker-compose file of RisingWave demo
-
-  The connector node is enabled by default in this docker-compose file. To learn about how to start RisingWave with this file, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
-
-- Using RiseDev, the developer's tool
-
-  Download the latest source file of RisingWave. Run `./risedev configure` in the root directory of RisingWave and enable the **RisingWave Connector** component. Edit the `risedev.yml` file and uncomment the line of code `- use: connector:node` for the default configuration. After you complete the changes, you need to run `./risedev dev` to launch the cluster with the new configuration.
+The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo. The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
 
 
 ### Create a table using the native CDC connector in RisingWave
