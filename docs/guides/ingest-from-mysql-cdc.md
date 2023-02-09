@@ -189,12 +189,12 @@ Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based 
 
 ```sql
 CREATE TABLE orders (
-   order_id INT,
-   order_date BIGINT,
-   customer_name STRING,
-   price DECIMAL,
-   product_id INT,
-   order_status SMALLINT,
+   order_id int,
+   order_date bigint,
+   customer_name string,
+   price decimal,
+   product_id int,
+   order_status smallint,
    PRIMARY KEY (order_id)
 ) WITH (
  connector = 'mysql-cdc',
