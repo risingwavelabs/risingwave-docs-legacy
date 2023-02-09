@@ -29,3 +29,9 @@ FROM employees
 GROUP BY department, job_title
 HAVING AVG(salary) >= 50000;
 ```
+
+This query retrieves the average salary of employees in different departments and with different job titles, where the average salary is at least $50,000. The query selects the department, job title, and average salary of employees from the `employees` table. The data is grouped by `department` and `job_title`, which means that the average salary is calculated separately for each combination of department and job title.
+
+The `HAVING` clause filters the result set only to include the departments and job titles with an average salary of at least $50,000. The `HAVING` clause operates on the result of the `GROUP BY` clause and filters out groups that do not meet the specified condition. In this case, only the departments and job titles with an average salary of at least $50,000 are returned.
+
+This query results in a table with columns for department, job title, and average salary. Each row represents the average salary for a unique combination of department and job title, and only those groups with an average salary of at least $50,000 are returned.
