@@ -1,22 +1,25 @@
 ---
 id: create-source-cdc
-title: Ingest data from databases with CDC
-description: Ingest data from databases with CDC.
+title: CDC via Kafka
+description: Ingest CDC data via Kafka.
 slug: /create-source-cdc
 ---
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time. 
 
-CDC tools and platforms can record row-level changes (INSERT, UPDATE, and DELETE activities) that apply to tables in an upstream database and stream the data change event records to event streaming platforms such as Kafka. You can connect RisingWave to the Kafka topics to receive the data changes.
+RisingWave provides native MySQL and PostgreSQL CDC connectors. With these CDC connectors, you can ingest CDC data from these databases directly, without setting up additional services like Kafka.
 
-To ingest CDC data from MySQL or PostgreSQL into RisingWave, you can use a CDC tool to convert data change streams in databases to Kafka topics, and then use the native Kafka connector in RisingWave to consume data from the Kafka topics.
+If Kafka is part of your technical stack, you can also use the Kafka connector in RisingWave to ingest CDC data in the form of Kafka topics from databases into RisingWave. You need to use a CDC tool such as [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Maxwell's daemon](https://maxwells-daemon.io/) to convert CDC data into Kafka topics.
 
-For RisingWave to ingest CDC data, you must create a materialized source (`CREATE TABLE`) and specify primary keys. Materializing a source means that you want to persist the data from the source in RisingWave. For CDC data, the source must be materalized.
+This topic describes the configurations for using the Kafka connector in RisingWave to ingest CDC data. For complete step-to-step guides about using the native CDC connector to ingest MySQL and PostgreSQL data, see [Ingest data from MySQL](../guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](../guides/ingest-from-postgres-cdc.md). For completeness, instructions about using additional CDC tools and the Kafka connector to ingest CDC data are also included in these two topics.
 
-The supported CDC data formats are [Debezium](https://debezium.io) JSON (for both MySQL and PostgreSQL) and [Maxwell](https://maxwells-daemon.io) JSON (for MySQL only).
+For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with primary keys and connector settings. This is different from creating a standard source, as CDC data needs to be persisted in RisingWave to ensure correctness.
 
-- Debezium JSON (`ROW FORMAT DEBEZIUM_JSON`): You can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) to convert MySQL or PostgreSQL data change streams to Kafka topics. To learn about how to configure MySQL and deploy the Debezium connector for MySQL, see the [Debezium connector for MySQL documentation](https://debezium.io/documentation/reference/stable/connectors/mysql.html).
-- Maxwell JSON (`ROW FORMAT MAXWELL`): You can use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
+The Kafka connector in RisingWave accepts [Debezium](https://debezium.io) JSON (for both MySQL and PostgreSQL) and [Maxwell](https://maxwells-daemon.io) JSON (for MySQL only) as the CDC data format. 
+
+For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka topics.
+
+For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
 
 
 ## Syntax
@@ -46,7 +49,7 @@ ROW FORMAT { DEBEZIUM_JSON | MAXWELL };
 
 ## Example
 
-Here is an example of creating a materialized source using the Kafka connector to consume data from Kafka topics.
+Here is an example of creating a table using the Kafka connector to ingest CDC data from Kafka topics.
 
 ```sql
 CREATE TABLE [IF NOT EXISTS] source_name (
