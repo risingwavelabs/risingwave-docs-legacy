@@ -23,7 +23,7 @@ Basic `HAVING` clause example:
 
 ```sql
 -- compute the average salary per department per job_title
--- filtering the result set to only include the departments and job titles with an average salary of at least $50,000
+-- filtering the result set only to include the departments and job titles with an average salary of at least $50,000
 SELECT department, job_title, AVG(salary)
 FROM employees
 GROUP BY department, job_title

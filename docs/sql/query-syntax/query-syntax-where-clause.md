@@ -16,18 +16,27 @@ WHERE condition
 
 Here, `condition` is any expression that evaluates to a result of type boolean. Any row that does not satisfy this condition will be removed from the output. A row satisfies the condition if it returns true when the actual row values are substituted for any variable references.
 
-Basic `WHERE` clause examples:
+Basic `WHERE` clause example:
 
 ```sql
--- select all rows that have id equal to 5
-SELECT *
-FROM table_name
-WHERE id=5;
--- select all rows that match the given composite expression
-SELECT *
-FROM table_name
-WHERE id=2 OR id=3;
+-- compute the average salary per department per job_title
+-- filtering the result set only to include the departments and job titles with an average salary of at least $50,000
+SELECT department, job_title, AVG(salary)
+FROM employees
+WHERE salary >= 50000
+GROUP BY department, job_title;
 ```
+
+This query selects the department, job title, and the average salary of employees from the `employees` table, where the salary is at least $50,000. The data is grouped by `department` and `job_title`, which means that the average salary is calculated separately for each combination of department and job title.
+
+The `WHERE` clause filters the rows in the `employees` table based on the condition `salary >= 50000`. Only the rows with a salary of at least $50,000 are included in the average salary calculation.
+
+This query results in a table with columns for department, job title, and average salary. Each row represents the average salary for a unique combination of department and job title, and only those groups with an average salary of at least $50,000 are returned.
+
+Notice that the `WHERE` clause comes before the `GROUP BY` clause in this example because the `WHERE` clause is used to filter the rows in a table before any aggregations are performed. In contrast, the `HAVING` clause filters data after aggregations are performed.
+
+
+
 
 <!-- Syntax diagram:
 
