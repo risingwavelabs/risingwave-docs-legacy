@@ -18,9 +18,11 @@ The supported MySQL versions are 5.7 and 8.0.x.
 You can ingest CDC data from MySQL in two ways:
 
 - Using the direct MySQL CDC connector
+
   This connector is included in RisingWave. With this connector, RisingWave can connect to MySQL directly to obtain data from the binlog without starting additional services.
 
 - Using a CDC tool and the Kafka connector
+
   You can use either the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data change streams to Kafka topics, and then use the Kafka connector in RisingWave to consume data from the Kafka topics.
 
 

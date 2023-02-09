@@ -14,9 +14,11 @@ The supported PostgreSQL versions are 10, 11, 12, 13, and 14.
 You can ingest CDC data from PostgreSQL in two ways:
 
 - Using the PostgreSQL CDC connector
+
     This connector is included in RisingWave. With this connector, RisingWave can connect to PostgreSQL directly to obtain data from the binlog without starting additional services.
 
 - Using a CDC tool and the Kafka connector
+
     You can use the [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) and then use the Kafka connector in RisingWave to consume data from the Kafka topics.
 
 ## Using the native PostgreSQL CDC connector
