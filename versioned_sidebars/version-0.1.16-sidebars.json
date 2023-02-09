@@ -75,7 +75,7 @@
     },
     {
       "type": "category",
-      "label": "Tutorials",
+      "label": "Use cases",
       "collapsible": true,
       "collapsed": true,
       "items": [
@@ -124,11 +124,6 @@
         },
         {
           "type": "doc",
-          "label": "CDC",
-          "id": "create-source/create-source-cdc"
-        },
-        {
-          "type": "doc",
           "label": "Kafka",
           "id": "create-source/create-source-kafka"
         },
@@ -156,6 +151,21 @@
           "type": "doc",
           "label": "Amazon S3",
           "id": "create-source/create-source-s3"
+        },
+        {
+          "type": "doc",
+          "label": "MySQL CDC",
+          "id": "guides/ingest-from-mysql-cdc"
+        },
+        {
+          "type": "doc",
+          "label": "PostgreSQL CDC",
+          "id": "guides/ingest-from-postgres-cdc"
+        },
+        {
+          "type": "doc",
+          "label": "CDC via Kafka",
+          "id": "create-source/create-source-cdc"
         },
         {
           "type": "doc",
