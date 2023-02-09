@@ -21,7 +21,7 @@ const sidebars = {
   MainSidebar: [
     {
       type: 'category',
-      label: 'Introduction',
+      label: 'About RisingWave',
       collapsible: true,
       collapsed: false,
       items: [
