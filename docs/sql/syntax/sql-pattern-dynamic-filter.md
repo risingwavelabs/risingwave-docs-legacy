@@ -13,9 +13,10 @@ Dynamic filter enables filtering data streams in real-time. It allows a conditio
 A streaming query is a type of query that processes incoming data in real-time as it arrives instead of waiting for all data to be loaded into the database in bulk before processing it all at once, as is done with a batch query. This enables continuous, low-latency processing of data streams, allowing applications to respond quickly to new data as it arrives. 
 
 General non-equal joins are not supported in streaming, except for one special case. If a query with non-equal conditions meets the conditions below:
-The inner side always contains exactly one row.
-None of the columns from the inner side is required to output.
-The filter condition can be incrementally evaluated when the inner row changes.
+
+- The inner side always contains exactly one row.
+- None of the columns from the inner side is required to output.
+- The filter condition can be incrementally evaluated when the inner row changes.
 
 
 
