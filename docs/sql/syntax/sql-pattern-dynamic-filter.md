@@ -6,53 +6,66 @@ title: Dynamic filter
 
 Dynamic filter functions as a filter operator, but the filter condition contains a dynamic variable determined by the inner stream.
 
-The conditions must be `left_col cond right_col`, where `cond` can be one of `==, <>, <, <=, >, >=`. Furthermore, it can be easily extended to multiple conditions like `left_col cond_1 right_col_1 AND left_col cond_2 right_col_2 AND ...`.
+The terms "outer" and "inner" come from the concept of nested-loop join operator, which uses a 2-layer nested looping process. These terms describe the relationship between the two tables being joined, with the "outer" table providing the data for each iteration of the inner loop and the "inner" table being the one used to match and return the corresponding data for each iteration. Dynamic filter is a specialized subset of nested-loop join.
 
-A streaming query is a type of query that processes incoming data in real-time as it arrives instead of waiting for all data to be loaded into the database in bulk before processing it all at once, as is done with a batch query. This enables continuous, low-latency processing of data streams, allowing applications to respond quickly to new data as it arrives.
+Dynamic filter enables filtering data streams in real-time. It allows a condition to be defined that incoming data must meet in order to be processed. Therefore, it only captures the relevant data and ignores the rest, thus improving performance and reducing the amount of data stored.
+
+A streaming query is a type of query that processes incoming data in real-time as it arrives instead of waiting for all data to be loaded into the database in bulk before processing it all at once, as is done with a batch query. This enables continuous, low-latency processing of data streams, allowing applications to respond quickly to new data as it arrives. 
 
 General non-equal joins are not supported in streaming, except for one special case. If a query with non-equal conditions meets the conditions below:
-- The inner side always contains exactly one row.
-- None of the columns from the inner side is required to output.
-- The filter condition can be incrementally evaluated when the inner row changes.
+The inner side always contains exactly one row.
+None of the columns from the inner side is required to output.
+The filter condition can be incrementally evaluated when the inner row changes.
 
 
-Here's a special use case using a one-row table as a variable. For example, `t_erase_ts` is a table to save the minimal timestamp of querying data:
 
-```
-┌──────────────┐
-│   erase_ts   │
-├──────────────┤
-│  1673241158  │
-└──────────────┘
-```
-
-Then the following materialized view shows all the data above that timestamp:
+The following example query calculates the parts that cost more than 0.01% of the total money spent.
 
 ```sql
-CREATE MATERIALIZED VIEW data_not_erased AS
-SELECT t1.* FROM t1 JOIN t_erase_ts
-WHERE t1.k > erase_ts
-
-ERROR:  QueryError: Feature is not yet implemented: stream nested-loop join
+SELECT
+  ps_partkey,
+  sum(ps_supplycost * ps_availqty) AS value
+FROM
+  partsupp
+GROUP BY
+  ps_partkey
+HAVING
+  sum(ps_supplycost * ps_availqty) > (
+    SELECT
+      sum(ps_supplycost * ps_availqty) * 0.0001
+    FROM
+      partsupp
+  )
 ```
 
-OR
+The query above retrieves the sum of the product of `ps_supplycost` and `ps_availqty` for each unique `ps_partkey` value in the `partsupp` table. The result is grouped by `ps_partkey` and filtered by a condition in the `HAVING` clause, where the sum of the product of `ps_supplycost` and `ps_availqty` must be greater than 0.01% of the sum of the product of `ps_supplycost` and `ps_availqty` for all rows in the `partsupp` table.
+
+The query returns two columns: `ps_partkey` and `value`, where `value` is the sum of the product of `ps_supplycost` and `ps_availqty` for each unique `ps_partkey`.
+
+To add a dynamic filter to this query, we can change the hard-coded value of 0.0001 to a parameter called `threshold`. Now, the value of `threshold` can then be changed dynamically.
+
+
+
+The following example query returns the name of all products whose profit margin is greater than the maximum profit margin recorded in the `sales` table.
+
+
 
 ```sql
-CREATE MATERIALIZED VIEW data_not_erased AS
-SELECT t1.* FROM t1
-WHERE t1.value >= (select erase_ts from t_erase_ts);
-
-ERROR:  QueryError: internal error: Scalar subquery might produce more than one row.
+WITH max_profit AS (SELECT max(profit_margin) max FROM sales) 
+SELECT product_name FROM products, max_profit 
+WHERE product_profit > max;
 ```
 
-However, those queries will be rejected because RisingWave doesn't know there is always only one row in table `t_erase_ts`. To make it work, add an aggregation there:
 
-```sql
-CREATE MATERIALIZED VIEW data_not_erased AS
-SELECT t1.* FROM t1
-WHERE t1.k > (select MAX(erase_ts) from t_erase_ts)
-```
+In the example above, the subquery `max_profit` calculates the maximum profit margin recorded in the `sales` table. The main query selects the product name and compares it to the maximum profit margin to determine if it is greater.
 
-`MAX(erase_ts)` updates as new data comes in. When that happens, the data retrieved will change, and some data will be trimmed.
+The dynamic filter in this query is in the `WHERE` clause. The filter condition `product_profit > max` compares the `product_profit` column from the `products` table to the maximum value of the `profit_margin` column from the `sales` table, which is stored in the subquery `max_profit`. The value of the maximum profit margin is dynamic and changes based on the values in the `sales` table.
+
+
+
+
+
+
+
+
 
