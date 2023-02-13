@@ -12,7 +12,7 @@ matrix:
   - pyspelling.filters.markdown:
       markdown_extensions:
       - markdown.extensions.extra:
-  - pyspelling.filters.text:
+  - pyspelling.filters.html:
       comments: false
       attributes:
       - alt
