@@ -41,7 +41,7 @@ ALTER USER user_name
 
 import rr from '@theme/RailroadDiagram'
 
-export const svg = rr.Diagram(
+export const svgtwo = rr.Diagram(
 rr.Stack(
    rr.Sequence(
       rr.Terminal('ALTER USER'),
@@ -62,7 +62,7 @@ rr.Stack(
 )
 );
 
-<drawer SVG={svg} />
+<drawer SVG={svgtwo} />
 
 
 ## Parameters
