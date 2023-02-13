@@ -1,5 +1,6 @@
 RisingWave
 Docusaurus
+docusaurus
 Postgres
 datagen
 Grafana
