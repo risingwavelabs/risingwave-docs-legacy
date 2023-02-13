@@ -23,6 +23,7 @@ General non-equal joins are not supported in streaming, except for one special c
 The following example query calculates the parts that cost more than 0.01% of the total money spent.
 
 ```sql
+CREATE MATERIALIZED VIEW mv1 AS
 SELECT
   ps_partkey,
   sum(ps_supplycost * ps_availqty) AS value
