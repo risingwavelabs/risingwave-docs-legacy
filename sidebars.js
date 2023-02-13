@@ -242,7 +242,7 @@ const sidebars = {
 
   {
     type: 'category',
-    label: 'SQL reference',
+    label: 'SQL',
     collapsible: true,
     collapsed: true,
     items: 
@@ -261,7 +261,7 @@ const sidebars = {
         },
       {
         type: 'category',
-        label: 'Query Syntax',
+        label: 'Query syntax',
         items: 
         [
           {
