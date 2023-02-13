@@ -1,8 +1,8 @@
 matrix:
 - name: Markdown
-  expect_match: false
   apsell:
-    mode: en
+    ignore-case: true
+    lang: en
   dictionary:
     wordlists:
     - .wordlist.txt
@@ -11,19 +11,13 @@ matrix:
   pipeline:
   - pyspelling.filters.markdown:
       markdown_extensions:
-      - markdown.extensions.extra:
+      - pymdownx.superfences
   - pyspelling.filters.html:
       comments: false
-      attributes:
-      - alt
       ignores:
-      - ':matches(code, pre)'
-      - 'code'
       - code
       - pre
-      - 'pre'
-      - 'blockquote'
   sources:
-  - '*.md'
-  - 'docs/**/*.md'
-  - 'versioned_docs/**/*.md'
+  - 'docs/*.md'
+  - 'versioned_docs/*.md'
+  default_encoding: utf-8
