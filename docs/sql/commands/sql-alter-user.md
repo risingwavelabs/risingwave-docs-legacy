@@ -45,14 +45,10 @@ rr.Stack(
       rr.Terminal('ALTER USER'),
       rr.NonTerminal('user_name', 'skip'),
    ),
-   rr.Optional(
-      rr.Stack(
-         rr.Sequence(
-            rr.Terminal('WITH'),
-         ),
-         rr.Sequence(
-            rr.NonTerminal('option'),
-      ),
+   rr.Sequence(
+      rr.Optional(rr.Terminal('WITH')),
+      rr.OneOrMore(rr.Sequence(
+      rr.NonTerminal('option', 'skip')))
    ),
 )
 );
