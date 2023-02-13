@@ -39,6 +39,8 @@ ALTER USER user_name
     [ [ WITH ] option [ ... ] ]
 ```
 
+import rr from '@theme/RailroadDiagram'
+
 export const svg = rr.Diagram(
 rr.Stack(
    rr.Sequence(
