@@ -1,1 +1,16 @@
 RisingWave
+Docusaurus
+Postgres
+datagen
+Grafana
+Etcd
+MinIO
+CMake
+OpenSSL
+psql
+RiseDev
+Tmux
+Kubernetes
+frontend
+NodePort
+kubectl
