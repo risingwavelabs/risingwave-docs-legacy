@@ -11,18 +11,14 @@ matrix:
   pipeline:
   - pyspelling.filters.markdown:
       markdown_extensions:
-      - markdown.extensions.extra:
+      - pymdownx.superfences
   - pyspelling.filters.html:
       comments: false
       attributes:
       - alt
       ignores:
-      - ':matches(code, pre)'
-      - 'code'
       - code
       - pre
-      - 'pre'
-      - 'blockquote'
   sources:
   - '*.md'
   - 'docs/**/*.md'
