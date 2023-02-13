@@ -19,6 +19,8 @@ matrix:
       ignores:
       - ':matches(code, pre)'
       - 'code'
+      - code
+      - pre
       - 'pre'
       - 'blockquote'
   sources:
