@@ -50,11 +50,8 @@ rr.Stack(
          rr.Sequence(
             rr.Terminal('WITH'),
          ),
-         rr.OneOrMore (
-            rr.Sequence(
-               rr.NonTerminal('option'),
-            ),rr.Comment('Option can be a property of the user, such as password, role, etc.'),
-         ),
+         rr.Sequence(
+            rr.NonTerminal('option'),
       ),
    ),
 )
