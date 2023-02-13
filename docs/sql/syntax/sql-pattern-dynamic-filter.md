@@ -8,7 +8,7 @@ Dynamic filter functions as a filter operator, but the filter condition contains
 
 The terms "outer" and "inner" come from the concept of nested-loop join operator, which uses a 2-layer nested looping process. These terms describe the relationship between the two tables being joined, with the "outer" table providing the data for each iteration of the inner loop and the "inner" table being the one used to match and return the corresponding data for each iteration. Dynamic filter is a specialized subset of nested-loop join.
 
-Dynamic filter enables filtering data streams in real-time. It allows a condition to be defined that incoming data must meet in order to be processed. Therefore, it only captures the relevant data and ignores the rest, thus improving performance and reducing the amount of data stored.
+Dynamic filter enables filtering data streams in real-time. It allows a condition to be defined that incoming data must meet in order to be processed.
 
 A streaming query is a type of query that processes incoming data in real-time as it arrives instead of waiting for all data to be loaded into the database in bulk before processing it all at once, as is done with a batch query. This enables continuous, low-latency processing of data streams, allowing applications to respond quickly to new data as it arrives. 
 
