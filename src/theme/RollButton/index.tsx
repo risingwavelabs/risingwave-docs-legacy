@@ -1,4 +1,5 @@
-import { useHistory } from "@docusaurus/router";
+import { useHistory, useLocation } from "@docusaurus/router";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import React from "react";
 import "./style.css";
 
@@ -10,12 +11,22 @@ type Props = {
 
 export default function RollButton({ text, doc, url }: Props) {
   const history = useHistory();
+  const { globalData } = useDocusaurusContext();
+  const location = useLocation();
+
   return (
     <div>
       <button
         onClick={() => {
-          if (doc) history.push(`/docs/latest/${doc}`);
-          else if (url) window.open(url, "_blank", "noopener,noreferrer");
+          if (doc) {
+            globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
+              if (location.pathname.includes(v.path)) {
+                history.push(`${v.path}/${doc}`);
+              }
+            });
+          } else if (url) {
+            window.open(url, "_blank", "noopener,noreferrer");
+          }
         }}
         className="button-3 learn-more"
       >
