@@ -43,7 +43,6 @@ The query above retrieves the sum of the product of `ps_supplycost` and `ps_avai
 
 The query returns two columns: `ps_partkey` and `value`, where `value` is the sum of the product of `ps_supplycost` and `ps_availqty` for each unique `ps_partkey`.
 
-To add a dynamic filter to this query, we can change the hard-coded value of 0.0001 to a parameter called `threshold`. Now, the value of `threshold` can then be changed dynamically.
 
 
 
