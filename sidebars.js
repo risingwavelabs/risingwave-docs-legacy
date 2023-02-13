@@ -205,9 +205,10 @@ const sidebars = {
         },
       ]
     },
-    {type: 'category',
-    label: 'Data delivery',
-    items:[
+    {
+      type: 'category',
+      label: 'Data delivery',
+      items:[
       {
         type: 'doc',
         id: 'delivery-overview',
@@ -218,7 +219,8 @@ const sidebars = {
         id: 'sql/commands/sql-create-sink',
         label: 'Create a sink',
       },
-    ]},
+    ]
+  },
 
     {
       type: 'category',
@@ -292,7 +294,6 @@ const sidebars = {
             id: 'sql/query-syntax/query-syntax-with-clause',
             label: 'WITH',
           },
-          
         ]
         },
 
@@ -392,7 +393,9 @@ const sidebars = {
             type: 'doc',
             id: 'sql/functions-operators/sql-function-set',
             label: 'Set',
-          },
+          }
+        ]
+      },
       
         {
           type: 'category',
@@ -429,9 +432,11 @@ const sidebars = {
           
           ]
         },
-        
-     'sql/psql-commands',
-      ],
+       {
+        type: 'doc',
+        id: 'sql/psql-commands'
+       } 
+      ]
     },
 
     {
