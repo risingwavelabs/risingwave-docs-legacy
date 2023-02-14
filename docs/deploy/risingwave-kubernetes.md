@@ -28,7 +28,7 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 ## Create a Kubernetes cluster
 
 :::info
-The steps in this section are intented for creating a Kubernetes cluster in your local environment.<br/>If you are using a managed Kubernetes service such as AKS, GKE, and EKS, refer to the corresponding documentation for instructions.
+The steps in this section are intended for creating a Kubernetes cluster in your local environment.<br/>If you are using a managed Kubernetes service such as AKS, GKE, and EKS, refer to the corresponding documentation for instructions.
 :::
 
 **Steps:**
@@ -55,7 +55,7 @@ Before the deployment, ensure that the following requirements are satisfied.
 
 * Docker version ≥ 18.09
 * `kubectl` version ≥ 1.18
-* For Linux, set the value of the `sysctl` parameter [net.ipv4.ip_forward](https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux) to 1.
+* For Linux, set the value of the `sysctl` parameter [`net.ipv4.ip_forward`](https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux) to 1.
 
 **Steps:**
 
