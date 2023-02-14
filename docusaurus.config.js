@@ -172,7 +172,7 @@ const config = {
       metadata: [
         {
           name: "keywords",
-          content: "docs, blog, risingwave, streaming, database",
+          content: "streaming database, documentation, risingwave",
         },
       ],
       items: [{ label: "Latest", to: "docs/latest/intro" }],
