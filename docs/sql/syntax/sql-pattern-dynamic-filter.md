@@ -42,13 +42,14 @@ HAVING
 
 The query above retrieves the sum of the product of `ps_supplycost` and `ps_availqty` for each unique `ps_partkey` value in the `partsupp` table. The result is grouped by `ps_partkey` and filtered by a condition in the `HAVING` clause, where the sum of the product of `ps_supplycost` and `ps_availqty` must be greater than 0.01% of the sum of the product of `ps_supplycost` and `ps_availqty` for all rows in the `partsupp` table.
 
-The query returns two columns: `ps_partkey` and `value`, where `value` is the sum of the product of `ps_supplycost` and `ps_availqty` for each unique `ps_partkey`.
+Under the hood, RisingWave maintains this materialized view with a continuous streaming job that filters the aggregation results according to the `HAVING` clause. Note that the subquery result, which is 0.01% of the total cost, is constantly changing, either increasing or decreasing, depending on the incoming changes to the `partsupp` table.
 
+As this value increases, more results will satisfy this condition and be output; conversely, as this value decreases, more rows are filtered out, and fewer results will be output. 
 
+RisingWave implements this using the dynamic filter, an internal stateful operator that keeps a full set of results before filtering and decides which changes should be output according to both sides - the original dataset or the "outer" side and the filtering condition or the "inner" side.
 
 
 The following example query returns the name of all products whose profit margin is greater than the maximum profit margin recorded in the `sales` table.
-
 
 
 ```sql
