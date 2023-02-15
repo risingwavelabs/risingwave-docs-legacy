@@ -16,6 +16,7 @@ OAUTHBEARER
 Docusaurus
 docusaurus
 Postgres
+postgres
 datagen
 Grafana
 Etcd
@@ -59,6 +60,7 @@ integrations
 macOS
 quickstart
 substring
+substrings
 gz
 dev
 CTEs
