@@ -3,6 +3,7 @@ Redpanda
 Kinesis
 Astra
 Debezium
+debezium
 JSON
 struct
 varchar
@@ -15,6 +16,7 @@ OAUTHBEARER
 Docusaurus
 docusaurus
 Postgres
+postgres
 datagen
 Grafana
 Etcd
@@ -58,12 +60,20 @@ integrations
 macOS
 quickstart
 substring
+substrings
 gz
 dev
-CTE
+CTEs
 namespace
 deserialization
 scalability
 changelog
 failover
 risingwave
+sql
+js
+rw
+pgwire
+json
+mv
+mysql
