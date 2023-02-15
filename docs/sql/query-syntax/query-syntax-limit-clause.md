@@ -20,7 +20,7 @@ LIMIT 5;
 
 The `ORDER BY` clause sorts the rows in the result set based on the value of the specified expression, in this case the average salary.
 
-It's possible to remove the `GROUP BY` clause from the query and retrieve the first 5 rows of the result set without sorting the data, as shown in the example below. However, the result set will contain 5 random rows from the "employees" table, as the data is not sorted.
+It's possible to remove the `GROUP BY` clause from the query and retrieve the first 5 rows of the result set without sorting the data, as shown in the example below. However, the result set will contain 5 random rows from the `employees` table, as the data is not sorted.
 
 ```sql
 -- provide the result set by the average salary without sorting and return only the first 5 rows of the result set

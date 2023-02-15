@@ -32,6 +32,4 @@ FROM employees
 GROUP BY department, job_title;
 ```
 
-This query retrieves the average salary of employees in different departments and with different job titles. The query selects the department, job title, and average salary of employees from the `employees` table. The data is grouped by `department` and `job_title`, which means that the average salary is calculated separately for each combination of department and job title.
-
 This query results in a table with columns for department, job title, and average salary. Each row represents the average salary for a unique department and job title combination.

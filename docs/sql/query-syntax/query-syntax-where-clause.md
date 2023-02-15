@@ -27,10 +27,6 @@ WHERE salary >= 50000
 GROUP BY department, job_title;
 ```
 
-This query selects the department, job title, and the average salary of employees from the `employees` table, where the salary is at least $50,000. The data is grouped by `department` and `job_title`, which means that the average salary is calculated separately for each combination of department and job title.
-
-The `WHERE` clause filters the rows in the `employees` table based on the condition `salary >= 50000`. Only the rows with a salary of at least $50,000 are included in the average salary calculation.
-
 This query results in a table with columns for department, job title, and average salary. Each row represents the average salary for a unique combination of department and job title, and only those groups with an average salary of at least $50,000 are returned.
 
 Notice that the `WHERE` clause comes before the `GROUP BY` clause in this example because the `WHERE` clause is used to filter the rows in a table before any aggregations are performed. In contrast, the `HAVING` clause filters data after aggregations are performed.
