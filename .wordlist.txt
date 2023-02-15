@@ -3,6 +3,7 @@ Redpanda
 Kinesis
 Astra
 Debezium
+debezium
 JSON
 struct
 varchar
@@ -74,4 +75,3 @@ pgwire
 json
 mv
 mysql
-
