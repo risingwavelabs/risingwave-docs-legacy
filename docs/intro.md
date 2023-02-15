@@ -3,6 +3,7 @@ id: intro
 title: What is RisingWave?
 slug: /intro
 sidebar_position: 1
+keywords: [streaming database, risingwave, introduction]
 ---
 
 RisingWave is a distributed SQL database for stream processing. It is designed to reduce the complexity and cost of building real-time applications. RisingWave consumes streaming data, performs incremental computations when new data comes in, and updates results dynamically. As a database system, RisingWave maintains results in its own storage so that users can access data efficiently.
