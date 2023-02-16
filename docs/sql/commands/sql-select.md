@@ -92,3 +92,14 @@ WHERE taxi_id IN (
 GROUP BY taxi_id
 ORDER BY total_distance, total_duration;
 ```
+
+
+
+|Query syntax resources|
+|---|
+|[**FROM clause**](/sql/query-syntax/query-syntax-from-clause.md)|
+|[**GROUP BY clause**](/sql/query-syntax/query-syntax-group-by-clause.md)|
+|[**HAVING clause**](/sql/query-syntax/query-syntax-having-clause.md)|
+|[**LIMIT clause**](/sql/query-syntax/query-syntax-limit-clause.md)|
+|[**WHERE clause**](/sql/query-syntax/query-syntax-where-clause.md)|
+|[**WITH clause**](/sql/query-syntax/query-syntax-with-clause.md)|

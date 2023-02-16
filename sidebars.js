@@ -205,9 +205,10 @@ const sidebars = {
         },
       ]
     },
-    {type: 'category',
-    label: 'Data delivery',
-    items:[
+    {
+      type: 'category',
+      label: 'Data delivery',
+      items:[
       {
         type: 'doc',
         id: 'delivery-overview',
@@ -218,7 +219,8 @@ const sidebars = {
         id: 'sql/commands/sql-create-sink',
         label: 'Create a sink',
       },
-    ]},
+    ]
+  },
 
     {
       type: 'category',
@@ -240,7 +242,7 @@ const sidebars = {
 
   {
     type: 'category',
-    label: 'SQL reference',
+    label: 'SQL',
     collapsible: true,
     collapsed: true,
     items: 
@@ -257,24 +259,45 @@ const sidebars = {
               
           ]
         },
-        {
-          type: 'category',
-          label: 'Patterns',
-          items:
-            [
-              {
-                type: 'doc',
-                id: 'sql/syntax/sql-pattern-topn',
-                label: 'Top-N by group'
-              }
-            ]
-         }, 
-        {
-          type: 'doc',
-          id: 'sql/sql-identifiers',
-          label: 'Identifiers',
-        }, 
-        {
+      {
+        type: 'category',
+        label: 'Query syntax',
+        items: 
+        [
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-from-clause',
+            label: 'FROM',
+          },
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-group-by-clause',
+            label: 'GROUP BY',
+          },
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-having-clause',
+            label: 'HAVING',
+          },
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-limit-clause',
+            label: 'LIMIT',
+          },
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-where-clause',
+            label: 'WHERE',
+          },
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/query-syntax-with-clause',
+            label: 'WITH',
+          },
+        ]
+        },
+
+       {
           type: 'category',
           label: 'Data types',
           items:
@@ -370,9 +393,26 @@ const sidebars = {
             type: 'doc',
             id: 'sql/functions-operators/sql-function-set',
             label: 'Set',
-          },
-        
+          }
         ]
+      },
+      
+        {
+          type: 'category',
+          label: 'Patterns',
+          items:
+            [
+              {
+                type: 'doc',
+                id: 'sql/syntax/sql-pattern-topn',
+                label: 'Top-N by group'
+              }
+            ]
+         }, 
+        {
+          type: 'doc',
+          id: 'sql/sql-identifiers',
+          label: 'Identifiers',
         },
       
         {
@@ -392,9 +432,11 @@ const sidebars = {
           
           ]
         },
-        
-     'sql/psql-commands',
-      ],
+       {
+        type: 'doc',
+        id: 'sql/psql-commands'
+       } 
+      ]
     },
 
     {
