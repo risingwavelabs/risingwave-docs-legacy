@@ -17,6 +17,44 @@ UPDATE table_name
 ```
 
 
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+  rr.Stack(
+    rr.Sequence(
+      rr.Terminal("UPDATE"),
+      rr.NonTerminal("table_name"),
+    ),
+    rr.Sequence(
+      rr.Terminal("SET"),
+      rr.OneOrMore(
+        rr.Sequence(
+          rr.NonTerminal("col_name"),
+          rr.Terminal("="),
+          rr.NonTerminal("value"),
+        ),
+        rr.Terminal(",")
+      ),
+    ),
+    rr.Optional(
+      rr.Sequence(
+        rr.Terminal("WHERE"),
+        rr.NonTerminal("condition"),
+      ),
+    ),
+    rr.Optional(
+      rr.Sequence(
+        rr.Terminal("RETURNING"),
+        rr.NonTerminal("col_name"),
+      ),
+    ),
+  ),
+);
+
+<drawer SVG={svg} />
+
+
+
 ## Parameters
 
 |Parameter or clause        | Description           |
