@@ -14,9 +14,11 @@ A streaming query is a type of query that processes incoming data in real-time a
 
 General non-equal joins are not supported in streaming, except for one special case. If a query with non-equal conditions meets the conditions below:
 
-- The inner side always contains exactly one row.
-- None of the columns from the inner side is required to output.
-- The filter condition can be incrementally evaluated when the inner row changes.
+  * The inner side always contains exactly one row.
+
+  * None of the columns from the inner side is required to output.
+
+  * The filter condition can be incrementally evaluated when the inner row changes.
 
 
 
