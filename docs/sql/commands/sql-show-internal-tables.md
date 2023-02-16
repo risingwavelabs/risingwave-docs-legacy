@@ -5,13 +5,14 @@ description: Show internal tables to learn about the existing internal states.
 slug: /sql-show-internal-tables
 ---
 
-Use the `SHOW INTERNAL TABLES` command to view the existing internal tables in RisingWave. Internal tables are tables that store intermediate results (also known as internal states) of streaming queries.
+Use the `SHOW INTERNAL TABLES` command to view the existing internal tables in RisingWave. Internal tables are tables that store intermediate results (also known as internal states) of queries.
 
 ## Syntax
 
 ```sql
 SHOW INTERNAL TABLES [FROM schema_name];
 ```
+
 ## Parameters
 |Parameter   | Description           |
 |---------------------------|-----------------------|
