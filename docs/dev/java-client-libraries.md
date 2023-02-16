@@ -59,7 +59,7 @@ public class source {
 
         //If necessary, add the code for connecting to RisingWave here.
 
-        String sqlQuery = "CREATE MATERIALIZED SOURCE walk (distance INT, duration INT) WITH " +
+        String sqlQuery = "CREATE TABLE walk (distance INT, duration INT) WITH " +
         "(connector = 'datagen'," +
         "fields.distance.kind = 'sequence'," +
         "fields.distance.start = '1'," +
@@ -92,7 +92,7 @@ public class create_mv {
         //If necessary, add the code for connecting to RisingWave here.
 
         String sqlQuery = "CREATE MATERIALIZED VIEW counter AS " +
-        "SELECT sum(distance) AS total_distance, sum(duration) AS total_duration " +
+        "SELECT sum(distance) AS SELECT total_distance, sum(duration) AS total_duration " +
         "FROM walk; ";
         PreparedStatement st = conn.prepareStatement(sqlQuery); 
         st.executeQuery();
