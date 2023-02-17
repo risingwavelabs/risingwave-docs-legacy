@@ -28,7 +28,7 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 ## Create a Kubernetes cluster
 
 :::info
-The steps in this section are intented for creating a Kubernetes cluster in your local environment.<br/>If you are using a managed Kubernetes service such as AKS, GKE, and EKS, refer to the corresponding documentation for instructions.
+The steps in this section are intended for creating a Kubernetes cluster in your local environment.<br/>If you are using a managed Kubernetes service such as AKS, GKE, and EKS, refer to the corresponding documentation for instructions.
 :::
 
 **Steps:**
@@ -55,7 +55,7 @@ Before the deployment, ensure that the following requirements are satisfied.
 
 * Docker version ≥ 18.09
 * `kubectl` version ≥ 1.18
-* For Linux, set the value of the `sysctl` parameter [net.ipv4.ip_forward](https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux) to 1.
+* For Linux, set the value of the `sysctl` parameter [`net.ipv4.ip_forward`](https://linuxconfig.org/how-to-turn-on-off-ip-forwarding-in-linux) to 1.
 
 **Steps:**
 
@@ -89,7 +89,7 @@ RisingWave supports using MinIO as the object storage.
 Run the following command to deploy a RisingWave instance with MinIO as the object storage.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/risingwave/risingwave-etcd-minio.yaml
+kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/risingwave/risingwave-etcd-minio.yaml
 ```
 
 </TabItem>
@@ -110,7 +110,7 @@ RisingWave supports using Amazon S3 as the object storage.
 1. Deploy a RisingWave instance with S3 as the object storage.
 
     ```shell
-    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/risingwave/risingwave-etcd-s3.yaml
+    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/risingwave/risingwave-etcd-s3.yaml
     ```
 
 </TabItem>
@@ -158,7 +158,7 @@ By default, the Operator creates a service for the frontend component, through w
 1. Create a Pod.
 
     ```shell
-    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/examples/psql/psql-console.yaml
+    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/psql/psql-console.yaml
     ```
 
 1. Attach to the Pod so that you can execute commands inside the container.

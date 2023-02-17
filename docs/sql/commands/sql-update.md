@@ -12,8 +12,47 @@ Use the `UPDATE` command to modify values of existing rows in a table.
 ```sql
 UPDATE table_name
     SET col_name = value [ , col_name = value , ... ]
-    [ WHERE condition ];
+    [ WHERE condition ]
+    [ RETURNING col_name ];
 ```
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+  rr.Stack(
+    rr.Sequence(
+      rr.Terminal("UPDATE"),
+      rr.NonTerminal("table_name"),
+    ),
+    rr.Sequence(
+      rr.Terminal("SET"),
+      rr.OneOrMore(
+        rr.Sequence(
+          rr.NonTerminal("col_name"),
+          rr.Terminal("="),
+          rr.NonTerminal("value"),
+        ),
+        rr.Terminal(",")
+      ),
+    ),
+    rr.Optional(
+      rr.Sequence(
+        rr.Terminal("WHERE"),
+        rr.NonTerminal("condition"),
+      ),
+    ),
+    rr.Optional(
+      rr.Sequence(
+        rr.Terminal("RETURNING"),
+        rr.NonTerminal("col_name"),
+      ),
+    ),
+  ),
+);
+
+<drawer SVG={svg} />
+
 
 
 ## Parameters
@@ -23,6 +62,7 @@ UPDATE table_name
 |*table_name*               |The table whose rows you want to update.|
 |**SET** *col_name* = *value*  |Assign a value or result of an expression to a specific column.|
 |**WHERE** *condition*      |Specify which rows you want to update using an expression that returns a boolean value. Rows for which this expression returns true will be updated. <br/> If you omit the WHERE clause, all rows in the table will be updated.|
+|**RETURNING**               |Returns the values of any column based on each updated row.|
 
 
 ## Example
@@ -41,12 +81,13 @@ SELECT * FROM taxi_trips;
 (3 rows)
 ```
 
-The following statement updates the city name from 'Yerba Buena' to 'San Francisco'.
+The following statement updates the city name from 'Yerba Buena' to 'San Francisco'. Also, it returns the value of *id* for the updated rows.
 
 ```sql
 UPDATE taxi_trips 
 SET city = 'San Francisco' 
-WHERE city = 'Yerba Buena';
+WHERE city = 'Yerba Buena'
+RETURNING id;
 ```
 
 The following statement converts the distance unit from kilometer to mile.

@@ -59,7 +59,7 @@ public class source {
 
         //If necessary, add the code for connecting to RisingWave here.
 
-        String sqlQuery = "CREATE MATERIALIZED SOURCE walk (distance INT, duration INT) WITH " +
+        String sqlQuery = "CREATE TABLE walk (distance INT, duration INT) WITH " +
         "(connector = 'datagen'," +
         "fields.distance.kind = 'sequence'," +
         "fields.distance.start = '1'," +

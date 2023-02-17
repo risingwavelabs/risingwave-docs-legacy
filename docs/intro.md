@@ -3,13 +3,14 @@ id: intro
 title: What is RisingWave?
 slug: /intro
 sidebar_position: 1
+keywords: [streaming database, risingwave, introduction]
 ---
 
+RisingWave is a distributed SQL database for stream processing. It is designed to reduce the complexity and cost of building real-time applications. RisingWave consumes streaming data, performs incremental computations when new data comes in, and updates results dynamically. As a database system, RisingWave maintains results in its own storage so that users can access data efficiently.
 
+RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Kinesis, Redpanda, and materialized CDC sources. 
 
-RisingWave is an open-source cloud-native streaming database that uses SQL as the interface to manage and query data. It is designed to reduce the complexity and cost of building real-time applications. RisingWave consumes streaming data, performs incremental computations when new data come in, and updates results dynamically. As a database system, RisingWave maintains results in its own storage so that users can access data efficiently. You can sink data from RisingWave to an external stream for storage or additional processing.
-
-RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Kinesis, Redpanda, and materialized CDC sources. It supports outputting data to Kafka streams.
+Data in RisingWave can be output to external targets such as message brokers, data warehouses, and data lakes for storage or additional processing.
 
 <rollButton text="&nbsp;&nbsp;Get Started" doc="get-started" block />
 <br/>
@@ -55,7 +56,7 @@ RisingWave is cost-effective. You pay for what you use as you scale. As compute 
 
 When data is processed in batches, if a job goes wrong, you can do some troubleshooting and rerun the job. However, it's not practical to rerun a stream processing job, because the stream never ends. In stream processing, it is crucial that data is calculated correctly and events are not missed or calculated twice. Otherwise, the data will not match the data in upstream or downstream systems.
 
-In RisingWave, data correctness is ensured by a checkpoint-based mechanism. Every time a checkpoint is triggered, the internal states of each operator will be flushed to the cloud storage. Upon failovers, the operator recovers from the latest checkpoint on the cloud storage. 
+In RisingWave, data correctness is ensured by a checkpoint-based mechanism. Every time a checkpoint is triggered, the internal states of each operator will be flushed to the cloud storage. When a failover occurs, the operator recovers from the latest checkpoint on the cloud storage. 
 
 <lightButton text="See the architecture" doc="architecture"/>
 <lightButton text="Access the source code ⧉" url="https://github.com/risingwavelabs/risingwave"/>

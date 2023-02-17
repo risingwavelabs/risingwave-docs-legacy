@@ -7,14 +7,14 @@ slug: /create-source-kafka
 
 This topic describes how to connect RisingWave to a Kafka broker that you want to receive data from, and how to specify data formats, schemas, and security (encryption and authentication) settings.
 
-A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by adding `MATERIALIZED` in between `CREATE` and `SOURCE` (that is, `CREATE MATERIALIZED SOURCE`). 
+A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by using the `CREATE TABLE` command and specifying the connection settings and data format.
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or sinks for data transformations.
 
 ## Syntax
 
 ```sql
-CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name 
+CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
 [schema_definition]
 WITH (
    connector='kafka',
@@ -51,7 +51,6 @@ For materialized sources with primary key constraints, if a new data record with
 
 |Field|Notes|
 |---|---|
-|`MATERIALIZED`| When you materialize a source, you choose to persist the data from the source in RisingWave.|
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
 |properties.group.id	|Required. Name of the Kafka consumer group	|
@@ -74,7 +73,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="avro" label="Avro" default>
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc 
+CREATE SOURCE IF NOT EXISTS source_abc 
 WITH (
    connector='kafka',
    topic='demo_topic',
@@ -90,7 +89,7 @@ ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 <TabItem value="json" label="JSON" default>
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc (
+CREATE TABLE IF NOT EXISTS source_abc (
    column1 varchar,
    column2 integer,
 )
@@ -108,7 +107,7 @@ ROW FORMAT JSON;
 <TabItem value="pb" label="Protobuf" default>
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_abc 
+CREATE SOURCE IF NOT EXISTS source_abc 
 WITH (
    connector='kafka',
    topic='demo_topic',
@@ -123,6 +122,26 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.pr
 
 </TabItem>
 </Tabs>
+
+## Query Kafka timestamp
+
+For each Kafka source created, the virtual column, `_rw_kafka_timestamp`, will also exist. This column includes the timestamp of the Kafka message.
+
+You can include this column in your views or materialized views to display the Kafka timestamp. Here is an example.
+
+```sql
+CREATE MATERIALIZED VIEW v1 AS
+SELECT _rw_kafka_timestamp, col1
+FROM source_name;
+```
+
+If directly querying from the source, you can use `_rw_kafka_timestamp` to filter messages sent within a specific time period. For example, the following query only selects messages sent in the past 10 minutes.
+
+```sql
+SELECT * FROM source_name
+WHERE _rw_kafka_timestamp > now() - interval '10 minute';
+```
+
 
 ## Read schemas from locations
 
@@ -169,10 +188,10 @@ Simple Authentication and Security Layer (SASL) is a framework for authenticatio
 
 RisingWave supports four SASL authentication mechanisms:
 
-- SASL/PLAIN
-- SASL/SCRAM
-- SASL/GSSAPI
-- SASL/OAUTHBEARER
+- `SASL/PLAIN`
+- `SASL/SCRAM`
+- `SASL/GSSAPI`
+- `SASL/OAUTHBEARER`
 
 SSL encryption can be used concurrently with SASL authentication mechanisms.
 
@@ -186,11 +205,11 @@ To read data encrypted with SSL without SASL authentication, specify these param
 
 |Parameter| Notes|
 |---|---|
-|properties.security.protocol|Set to `SSL`.|
-|properties.ssl.ca.location| |
-|properties.ssl.certificate.location| |
-|properties.ssl.key.location| |
-|properties.ssl.key.password| |
+|`properties.security.protocol`|Set to `SSL`.|
+|`properties.ssl.ca.location`| |
+|`properties.ssl.certificate.location`| |
+|`properties.ssl.key.location`| |
+|`properties.ssl.key.password`| |
 
 :::note
 
@@ -198,10 +217,10 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 
 :::
 
-Here is an example of creating a source encrypted with SSL without using SASL authentication.
+Here is an example of creating a materialized source encrypted with SSL without using SASL authentication.
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_1 (
+CREATE TABLE IF NOT EXISTS source_1 (
    column1 varchar,
    column2 integer,
 )                  
@@ -219,14 +238,14 @@ WITH (
 ROW FORMAT JSON;
 ```
 
-### SASL/PLAIN
+### `SASL/PLAIN`
 
 |Parameter| Notes|
 |---|---|
-|properties.security.protocol| For SASL/PLAIN without SSL, set to `SASL_PLAINTEXT`. For SASL/PLAIN with SSL, set to `SASL_SSL`.|
-|properties.sasl.mechanism|Set to `PLAIN`.|
-|properties.sasl.username| |
-|properties.sasl.password| |
+|`properties.security.protocol`| For SASL/PLAIN without SSL, set to `SASL_PLAINTEXT`. For SASL/PLAIN with SSL, set to `SASL_SSL`.|
+|`properties.sasl.mechanism`|Set to `PLAIN`.|
+|`properties.sasl.username`| |
+|`properties.sasl.password`| |
 
 :::note
 
@@ -236,15 +255,15 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 
 For SASL/PLAIN with SSL, you need to include these SSL parameters:
 
-- properties.ssl.ca.location
-- properties.ssl.certificate.location
-- properties.ssl.key.location
-- properties.ssl.key.password
+- `properties.ssl.ca.location`
+- `properties.ssl.certificate.location`
+- `properties.ssl.key.location`
+- `properties.ssl.key.password`
 
 Here is an example of creating a source authenticated with SASL/PLAIN without SSL encryption.
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_2 (
+CREATE SOURCE IF NOT EXISTS source_2 (
    column1 varchar,
    column2 integer,
 )                  
@@ -263,7 +282,7 @@ ROW FORMAT JSON;
 This is an example of creating a source authenticated with SASL/PLAIN with SSL encryption.
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_3 (
+CREATE SOURCE IF NOT EXISTS source_3 (
    column1 varchar,
    column2 integer,
 )                  
@@ -284,14 +303,14 @@ WITH (
 ROW FORMAT JSON;
 ```
 
-### SASL/SCRAM
+### `SASL/SCRAM`
 
 |Parameter| Notes|
 |---|---|
-|properties.security.protocol| For SASL/SCRAM without SSL, set to `SASL_PLAINTEXT`. For SASL/SCRAM with SSL, set to `SASL_SSL`.|
-|properties.sasl.mechanism|Set to `SCRAM-SHA-256` or `SCRAM-SHA-512` depending on the encryption method used.|
-|properties.sasl.username| |
-|properties.sasl.password| |
+|`properties.security.protocol`| For SASL/SCRAM without SSL, set to `SASL_PLAINTEXT`. For SASL/SCRAM with SSL, set to `SASL_SSL`.|
+|`properties.sasl.mechanism`|Set to `SCRAM-SHA-256` or `SCRAM-SHA-512` depending on the encryption method used.|
+|`properties.sasl.username`| |
+|`properties.sasl.password`| |
 
 :::note
 
@@ -306,10 +325,10 @@ For SASL/SCRAM with SSL, you also need to include these SSL parameters:
 - properties.ssl.key.location
 - properties.ssl.key.password
 
-Here is an example of creating a source authenticated with SASL/SCRAM without SSL encryption.
+Here is an example of creating a materialized source authenticated with SASL/SCRAM without SSL encryption.
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_4 (
+CREATE TABLE IF NOT EXISTS source_4 (
    column1 varchar,
    column2 integer,
 )                  
@@ -326,17 +345,17 @@ WITH (
 ROW FORMAT JSON;
 ```
 
-### SASL/GSSAPI
+### `SASL/GSSAPI`
 
 |Parameter| Notes|
 |---|---|
-|properties.security.protocol| Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSPI with SSL.|
-|properties.sasl.mechanism| Set to `GSSAPI`.|
-|properties.sasl.kerberos.service.name| |
-|properties.sasl.kerberos.keytab| |
-|properties.sasl.kerberos.principal| |
-|properties.sasl.kerberos.kinit.cmd=| |
-|properties.sasl.kerberos.min.time.before.relogin| |
+|`properties.security.protocol`| Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSPI with SSL.|
+|`properties.sasl.mechanism`| Set to `GSSAPI`.|
+|`properties.sasl.kerberos.service.name`| |
+|`properties.sasl.kerberos.keytab`| |
+|`properties.sasl.kerberos.principal`| |
+|`properties.sasl.kerberos.kinit.cmd`| |
+|`properties.sasl.kerberos.min.time.before.relogin`| |
 
 :::note
 
@@ -347,7 +366,7 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 Here is an example of creating a source authenticated with SASL/GSSAPI without SSL encryption.
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_5 (
+CREATE SOURCE IF NOT EXISTS source_5 (
    column1 varchar,
    column2 integer,
 )                  
@@ -367,7 +386,7 @@ WITH (
 ROW FORMAT JSON;
 ```
 
-### SASL/OAUTHBEARER
+### `SASL/OAUTHBEARER`
 
 :::caution
 
@@ -377,9 +396,9 @@ ROW FORMAT JSON;
 
 |Parameter| Notes|
 |---|---|
-|properties.security.protocol| For SASL/OAUTHBEARER without SSL, set to `SASL_PLAINTEXT`. For SASL/OAUTHBEARER with SSL, set to `SASL_SSL`.|
-|properties.sasl.mechanism|Set to `OAUTHBEARER`.|
-|properties.sasl.oauthbearer.config| |
+|`properties.security.protocol`| For SASL/OAUTHBEARER without SSL, set to `SASL_PLAINTEXT`. For SASL/OAUTHBEARER with SSL, set to `SASL_SSL`.|
+|`properties.sasl.mechanism`|Set to `OAUTHBEARER`.|
+|`properties.sasl.oauthbearer.config`| |
 
 :::note
 
@@ -389,15 +408,15 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 
 For SASL/OAUTHBEARER with SSL, you also need to include these SSL parameters:
 
-- properties.ssl.ca.location
-- properties.ssl.certificate.location
-- properties.ssl.key.location
-- properties.ssl.key.password
+- `properties.ssl.ca.location`
+- `properties.ssl.certificate.location`
+- `properties.ssl.key.location`
+- `properties.ssl.key.password`
 
-This is an example of creating a source authenticated with SASL/OAUTHBEARER without SSL encryption.
+This is an example of creating a materialized source authenticated with SASL/OAUTHBEARER without SSL encryption.
 
 ```sql
-CREATE MATERIALIZED SOURCE IF NOT EXISTS source_6 (
+CREATE TABLE IF NOT EXISTS source_6 (
    column1 varchar,
    column2 integer,
 )                  
