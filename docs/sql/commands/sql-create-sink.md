@@ -31,15 +31,16 @@ rr.Stack(
       rr.Terminal('CREATE SINK'),
       rr.Optional(rr.Terminal('IF NOT EXISTS')),
       rr.NonTerminal('sink_name', 'skip'),
-   ),
-   rr.Optional(
+      rr.ZeroOrMore(
       rr.Sequence(
          rr.Terminal('FROM'),
-         rr.NonTerminal('sink_from', 'skip'),
-         rr.Comment('OR'),
-         rr.Terminal('AS'),
-         rr.NonTerminal('select_query', 'skip'),
+         rr.NonTerminal('sink_from', 'skip')
       ),
+      rr.Sequence(
+         rr.Terminal('AS'),
+         rr.NonTerminal('select_query', 'skip')
+      ),
+   ),
    ),
    rr.Sequence(
       rr.Terminal('WITH'),
