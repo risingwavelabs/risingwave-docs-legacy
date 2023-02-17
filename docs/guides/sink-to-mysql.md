@@ -99,7 +99,7 @@ CREATE TABLE personnel (
 </TabItem>
 </Tabs>
 
-## Create a sink in RisingWave
+## Set up RisingWave
 
 ### Install and launch RisingWave
 
@@ -110,10 +110,12 @@ To install and start RisingWave locally, see the [Get started](/get-started.md) 
 
 The native JDBC sink connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo. The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md).
 
+## Create a sink in RisingWave
+
 <Tabs>
 <TabItem value="AWS RDS MySQL" label="AWS RDS">
 
-### Create sink in RisingWave
+### Create table and sink
 
 To sink to the RDS instance, make sure that RisingWave and the connector node share the same table schema. Use the following queries in RisingWave to create a table and sink.
 
@@ -131,6 +133,8 @@ CREATE SINK s_mysql FROM personnel WITH (
 	table.name='personnel'
 );
 ```
+
+### Update table
 
 Insert some data with the following query. Remember to use the `FLUSH` command to commit the update.
 
@@ -163,7 +167,7 @@ SELECT * FROM testdb.personnel;
 </TabItem>
 <TabItem value="Self-hosted MySQL" label="Self-hosted MySQL">
 
-### Create sink in RisingWave
+### Create table and sink 
 
 To sink to the MySQL server, make sure that RisingWave and the destination table share the same table schema. Use the following queries in RisingWave to create a table and sink.
 
@@ -181,6 +185,7 @@ CREATE SINK s_mysql FROM personnel WITH (
 	table.name='personnel'
 );
 ```
+### Update table
 
 Insert some data with the following query. Remember to use the `FLUSH` command to commit the update.
 
