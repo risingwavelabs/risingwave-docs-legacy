@@ -110,16 +110,39 @@ To install and start RisingWave locally, see the [Get started](/get-started.md) 
 
 The native JDBC sink connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo. The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md).
 
-## Create a sink in RisingWave
+## Create a sink
 
-<Tabs groupId="operating-systems">
-<TabItem value="AWS RDS MySQL" label="AWS RDS">
+### Syntax
+
+```sql
+CREATE SINK [ IF NOT EXISTS ] sink_name
+[FROM sink_from | AS select_query]
+WITH (
+   connector='jdbc',
+   field_name = 'field', ...
+);
+```
+
+### Parameters
+
+All WITH options are required.
+
+|Parameter or clause|Description|
+|---|---|
+|sink_name| Name of the sink to be created.|
+|sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
+|AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](../commands/sql-select.md) for the syntax and examples of the SELECT command.|
+|connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, go to the [Integrations Overview](../../rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
+|jdbc.url| The JDBC URL of the destination database necessary for the driver to recognize and connect to the database.|
+|table.name| The table in the destination database you want to sink to.|
+
+## Sinking data from RisingWave to MySQL
 
 ### Create a table and sink
 
-To sink to the RDS instance, make sure that RisingWave and the connector node share the same table schema. Use the following queries in RisingWave to create a table and sink.
+To sink to MySQL, make sure that RisingWave and the connector node share the same table schema. Use the following queries in RisingWave to create a table and sink.
 
-Remember to fill in the AWS endpoint, username, and password based on the RDS instance you created. 
+The `jdbc.url` must be accurate. The format varies slightly depending on if you are using AWS RDS MySQL or a self-hosted version of MySQL. If your MySQL is self-hosted, the `jdbc.url` would have the following format: `jdbc:mysql://127.0.0.1:3306/testdb?user=<username>&password=<password>`. 
 
 ```sql
 CREATE TABLE personnel (
@@ -146,59 +169,7 @@ FLUSH;
 
 ### Verify the sink connection
 
-The changes will then be synced to the RDS instance. To verify the update, connect to the AWS RDS instance and query the table. The changes you made to the table should be reflected.
-
-```terminal
-mysql -h rw-to-mysql.xxxxxx.us-east-1.rds.amazonaws.com -P 3306 -u <username> -p <password>
-```
-
-```sql
-SELECT * FROM testdb.personnel;
-
-+------+-------+
-| id   | name  |
-+------+-------+
-|    1 | Alice |
-+------+-------+
-|    2 | Bob   |
-+------+-------+
-```
-
-</TabItem>
-<TabItem value="Self-hosted MySQL" label="Self-hosted MySQL">
-
-### Create a table and sink 
-
-To sink to the MySQL server, make sure that RisingWave and the destination table share the same table schema. Use the following queries in RisingWave to create a table and sink.
-
-Remember to fill in the username and password accordingly. The JDBC URL must be accurate. 
-
-```sql
-CREATE TABLE personnel (
-	id integer,
-	name varchar,
-);
-
-CREATE SINK s_mysql FROM personnel WITH (
-	connector='jdbc',
-	jdbc.url='jdbc:mysql://127.0.0.1:3306/testdb?user=<username>&password=<password>',
-	table.name='personnel'
-);
-```
-### Update the table
-
-Insert some data with the following query. Remember to use the `FLUSH` command to commit the update.
-
-```sql
-INSERT INTO personnel VALUES (1, 'Alice'), (2, 'Bob');
-
-FLUSH;
-```
-
-### Verify the sink connection
-
-The changes will then be synced to the table in the MySQL database. To verify the update, query the table in MySQL. The changes you made to the table should be reflected.
-
+The changes will then be synced to MySQL. To verify the update, connect to MySQL and query the table. The changes you made to the table should be reflected.
 
 ```sql
 SELECT * FROM personnel;
@@ -211,6 +182,3 @@ SELECT * FROM personnel;
 |    2 | Bob   |
 +------+-------+
 ```
-
-</TabItem>
-</Tabs>
