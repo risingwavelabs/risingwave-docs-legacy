@@ -1,51 +1,51 @@
 ---
 id: sink-to-mysql-with-jdbc
-title: Sink data from RisingWave to MySQL with JDBC connector
-description: Sink data from RisingWave to MySQL with JDBC connector.
+title: Sink data from RisingWave to MySQL with the JDBC connector
+description: Sink data from RisingWave to MySQL with the JDBC connector.
 slug: /sink-to-mysql-with-jdbc
 ---
 
-In this guide, we will introduce how to sink data from RisingWave to JDBC-available databases using the JDBC sink connector. We also show how to create and connect to a database established on the cloud to minimize the efforts. Cloud databases can become an indispensable data sink for applications. As the largest cloud provider, AWS hosts Relational Database Services (RDS) that waive the need for setup and maintenance effort and has high availability and scalability options.
+In this guide, we will introduce how to sink data from RisingWave to JDBC-available databases using the JDBC sink connector. We also show how to create and connect to a database established on the cloud to minimize the efforts. Cloud databases can become an indispensable data sink for applications. AWS hosts Relational Database Services (RDS) that waive the need for setup and maintenance effort and has high availability and scalability options.
 
 ## Set up a MySQL database
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs>
+<Tabs groupID = "operating-systems">
 <TabItem value="AWS RDS MySQL" label="AWS RDS">
 
 Before using the native MySQL CDC connector in RisingWave, you need to complete several configurations on MySQL.
 
-### Set up an MySQL RDS instance on AWS
+### Set up a MySQL RDS instance on AWS
 
 1. Log in to the AWS console. Search “RDS” in services and select the **RDS** panel.
 
-<img
-  src={require('../images/search-rds.png').default}
-  alt="Search for RDS"
-/>
+	<img
+	src={require('../images/search-rds.png').default}
+	alt="Search for RDS"
+	/>
 
 2. Create a database with **MySQL** as the **Engine type**. We recommend setting up a username and password or using other security options.
 
-<img
-  src={require('../images/mysql-config.png').default}
-  alt="Configurations for setting up a MySQL RDS"
-/>
+	<img
+	src={require('../images/mysql-config.png').default}
+	alt="Configurations for setting up a MySQL RDS"
+	/>
 
 3. When the new instance becomes available, click on its panel. 
 
-<img
-  src={require('../images/new-panel.png').default}
-  alt="MySQL instance panel"
-/>
+	<img
+	src={require('../images/new-panel.png').default}
+	alt="MySQL instance panel"
+	/>
 
-4. From the **Connectivity** panel, we can find the enpoint and connection port information.
+4. From the **Connectivity** panel, we can find the endpoint and connection port information.
 
-<img
-  src={require('../images/connectivity.png').default}
-  alt="Endpoint and port information"
-/>
+	<img
+	src={require('../images/connectivity.png').default}
+	alt="Endpoint and port information"
+	/>
 
 ### Connect to the RDS instance from MySQL
 
@@ -57,11 +57,11 @@ mysql -h rw-to-mysql.xxxxxx.us-east-1.rds.amazonaws.com -P 3306 -u <username> -p
 
 For more login options, refer to the [RDS connection guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToInstance.html).
 
-### Set up destination table
+### Set up a destination table
 
 Use the following query to set up a database and a table in the RDS instance.
 
-```mysql
+```sql
 CREATE TABLE test_db.personnel (
 	id integer,
 	name varchar(200)
@@ -70,7 +70,7 @@ CREATE TABLE test_db.personnel (
 
 If the creation is successful, expect a returned message.
 
-```mysql
+```sql
 Query OK, 0 rows affected (0.10 sec)
 ```
 
@@ -85,7 +85,7 @@ Connect to your MySQL server. See the [Connect to MySQL server](https://www.mysq
 
 Use the following queries to set up a database and table in MySQL.
 
-```mysql
+```sql
 CREATE DATABASE test_db;
 
 USE test_db;
@@ -112,10 +112,10 @@ The native JDBC sink connector is implemented by the connector node in RisingWav
 
 ## Create a sink in RisingWave
 
-<Tabs>
+<Tabs groupId="operating-systems">
 <TabItem value="AWS RDS MySQL" label="AWS RDS">
 
-### Create table and sink
+### Create a table and sink
 
 To sink to the RDS instance, make sure that RisingWave and the connector node share the same table schema. Use the following queries in RisingWave to create a table and sink.
 
@@ -134,7 +134,7 @@ CREATE SINK s_mysql FROM personnel WITH (
 );
 ```
 
-### Update table
+### Update the table
 
 Insert some data with the following query. Remember to use the `FLUSH` command to commit the update.
 
@@ -144,7 +144,7 @@ INSERT INTO personnel VALUES (1, 'Alice'), (2, 'Bob');
 FLUSH;
 ```
 
-### Verify sink connection
+### Verify the sink connection
 
 The changes will then be synced to the RDS instance. To verify the update, connect to the AWS RDS instance and query the table. The changes you made to the table should be reflected.
 
@@ -167,7 +167,7 @@ SELECT * FROM testdb.personnel;
 </TabItem>
 <TabItem value="Self-hosted MySQL" label="Self-hosted MySQL">
 
-### Create table and sink 
+### Create a table and sink 
 
 To sink to the MySQL server, make sure that RisingWave and the destination table share the same table schema. Use the following queries in RisingWave to create a table and sink.
 
@@ -185,7 +185,7 @@ CREATE SINK s_mysql FROM personnel WITH (
 	table.name='personnel'
 );
 ```
-### Update table
+### Update the table
 
 Insert some data with the following query. Remember to use the `FLUSH` command to commit the update.
 
@@ -195,7 +195,7 @@ INSERT INTO personnel VALUES (1, 'Alice'), (2, 'Bob');
 FLUSH;
 ```
 
-### Verify sink connection
+### Verify the sink connection
 
 The changes will then be synced to the table in the MySQL database. To verify the update, query the table in MySQL. The changes you made to the table should be reflected.
 
