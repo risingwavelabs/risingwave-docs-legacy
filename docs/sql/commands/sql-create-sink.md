@@ -23,6 +23,64 @@ WITH (
 );
 ```
 
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+rr.Stack(
+   rr.Sequence(
+      rr.Terminal('CREATE SINK'),
+      rr.Optional(rr.Terminal('IF NOT EXISTS')),
+      rr.NonTerminal('sink_name', 'skip'),
+      rr.ZeroOrMore(
+      rr.Sequence(
+         rr.Terminal('FROM'),
+         rr.NonTerminal('sink_from', 'skip')
+      ),
+      rr.Sequence(
+         rr.Terminal('AS'),
+         rr.NonTerminal('select_query', 'skip')
+      ),
+   ),
+   ),
+   rr.Sequence(
+      rr.Terminal('WITH'),
+      rr.Terminal('('),
+      rr.Stack(
+         rr.Stack(
+            rr.Sequence(
+               rr.Terminal('connector'),
+               rr.Terminal('='),
+               rr.Terminal('\'kafka\''),
+               rr.Terminal(','),
+            ),
+            rr.Sequence(
+               rr.Terminal('kafka.brokers'),
+               rr.Terminal('='),
+               rr.Terminal('\'broker_address\''),
+               rr.Terminal(','),
+            ),
+            rr.Sequence(
+               rr.Terminal('kafka.topic'),
+               rr.Terminal('='),
+               rr.Terminal('\'topic_address\''),
+               rr.Terminal(','),
+            ),
+            rr.Sequence(
+               rr.Terminal('format'),
+               rr.Terminal('='),
+               rr.Terminal('\'format\''),
+            ),
+         ),
+      ),
+      rr.Terminal(')'),
+   ),
+   rr.Terminal(';'),
+)
+);
+
+<drawer SVG={svg} />
+
+
 ## Parameters
 
 All WITH options are required.

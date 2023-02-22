@@ -20,6 +20,7 @@
     "@docusaurus/theme-search-algolia": "^2.2.0",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
+    "@giscus/react": "^2.2.6",
     "@mdx-js/react": "^1.6.22",
     "@mui/icons-material": "^5.5.0",
     "@mui/material": "^5.5.0",

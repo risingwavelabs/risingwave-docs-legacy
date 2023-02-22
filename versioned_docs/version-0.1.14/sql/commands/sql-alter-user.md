@@ -9,14 +9,14 @@ Use the `ALTER USER` command to modify the name, password, privileges, and other
 
 ## Syntax
 
-```sql title="Alter user name."
+```sql title="Alter user name"
 ALTER USER user_name 
-    RENAME TO new_user_name
+    RENAME TO new_user_name;
 ```
 
-```sql title="Alter user properties."
+```sql title="Alter user properties"
 ALTER USER user_name 
-    [ [ WITH ] option [ ... ] ]
+    [ [ WITH ] option [ ... ] ];
 ```
 
 

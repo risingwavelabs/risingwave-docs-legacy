@@ -11,7 +11,7 @@ Use the `CREATE USER` command to create a new user account in RisingWave.
 
 ```sql
 CREATE USER user_name 
-    [ [ WITH ] option [ ... ] ]
+    [ [ WITH ] option [ ... ] ];
 ```
 
 ## Parameters

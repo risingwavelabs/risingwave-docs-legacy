@@ -1,6 +1,6 @@
 ---
 id: create-source-s3
-title: Ingest data from S3 buckets.
+title: Ingest data from S3 buckets
 description: Ingest data from S3 buckets
 slug: /create-source-s3
 ---
