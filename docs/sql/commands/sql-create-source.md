@@ -21,7 +21,7 @@ WITH (
 )
 ROW FORMAT data_format 
 [MESSAGE 'message']
-[ROW SCHEMA LOCATION 'location'];
+[ROW SCHEMA LOCATION {'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' }];
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -126,7 +126,7 @@ Syntax:
 ```sql
 ROW FORMAT AVRO 
 MESSAGE 'main_message' 
-ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ]
+ROW SCHEMA LOCATION { 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' }
 ```
 
 ### JSON
