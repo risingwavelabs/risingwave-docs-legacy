@@ -21,7 +21,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
 )
 [ WITH (
    connector='connector_name',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT data_format 
 [MESSAGE 'message']

@@ -16,7 +16,7 @@ CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [schema_definition]
 WITH (
    connector='kinesis',
-   field_name='value', ...
+   connector_parameter='value', ...
 ) 
 ROW FORMAT data_format
 [ MESSAGE 'message' ]
@@ -44,7 +44,7 @@ RisingWave performs primary key constraint checks on materialized sources but no
 For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
 :::
 
-### `WITH` Parameters
+### Connector Parameters
 
 |Field|	Notes|
 |---|---|

@@ -17,7 +17,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
 [schema_definition]
 WITH (
    connector='connector_name',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT data_format 
 [MESSAGE 'message']

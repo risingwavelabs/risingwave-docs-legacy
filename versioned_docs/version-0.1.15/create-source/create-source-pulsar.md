@@ -15,7 +15,7 @@ CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name
 [schema_definition]
 WITH (
    connector='pulsar',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT data_format 
 [MESSAGE 'message']
@@ -45,7 +45,7 @@ For materialized sources with primary key constraints, if a new data record with
 :::
 
 
-### `WITH` Parameters
+### Connector Parameters
 
 |Field|Notes|
 |---|---|
