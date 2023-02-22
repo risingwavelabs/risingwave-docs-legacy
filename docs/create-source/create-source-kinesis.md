@@ -61,6 +61,8 @@ For materialized sources with primary key constraints, if a new data record with
 
 ### Other Parameters
 
+|Field|	Notes|
+|---|---|
 |*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
 |*message* |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
 |*location*| Web location of the schema file in  `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
