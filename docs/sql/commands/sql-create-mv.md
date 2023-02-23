@@ -13,6 +13,22 @@ Use the `CREATE MATERIALIZED VIEW` command to create a materialized view. A mate
 CREATE MATERIALIZED VIEW mv_name AS select_query;
 ```
 
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+rr.Stack(
+   rr.Sequence(
+      rr.Terminal("CREATE MATERIALIZED VIEW"),
+      rr.NonTerminal("mv_name", "skip"),
+      rr.Terminal("AS"),
+      rr.NonTerminal("select_query", "skip"),
+      rr.Terminal(";")
+   )
+)
+);
+
+<drawer SVG={svg} />
+
 ## Parameters
 
 |Parameter or clause        | Description           |
