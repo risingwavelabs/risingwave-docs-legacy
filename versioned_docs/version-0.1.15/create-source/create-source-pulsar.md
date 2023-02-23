@@ -45,7 +45,7 @@ For materialized sources with primary key constraints, if a new data record with
 :::
 
 
-### Connector Parameters
+### Connector parameters
 
 |Field|Notes|
 |---|---|
@@ -56,7 +56,7 @@ For materialized sources with primary key constraints, if a new data record with
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis.| Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
 
-### Other Parameters
+### Other parameters
 
 |Field|	Notes|
 |---|---|

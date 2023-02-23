@@ -36,7 +36,7 @@ WITH (
 ROW FORMAT { DEBEZIUM_JSON | MAXWELL };
 ```
 
-### Connector Parameters
+### Connector parameters
 
 |Field|Notes|
 |---|---|

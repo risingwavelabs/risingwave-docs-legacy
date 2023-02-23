@@ -42,7 +42,7 @@ RisingWave performs primary key constraint checks on materialized sources but no
 For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
 :::
 
-### Connector Parameters
+### Connector parameters
 
 |Field|	Notes|
 |---|---|
@@ -58,7 +58,7 @@ For materialized sources with primary key constraints, if a new data record with
 |scan.startup.mode |Optional. The startup mode for Kinesis consumer. Supported modes: 'earliest' (starts from the earliest offset), 'latest' (starts from the latest offset), and 'sequence_number' (starts from specific sequence number, specified by 'scan.startup.sequence_number'). The default mode is `earliest`.|
 |scan.startup.sequence_number |Optional. This field specifies the sequence number to start consuming from. True if `scan.startup.mode` = `sequence_number`, otherwise False.| 
 
-### Other Parameters
+### Other parameters
 
 |Field|	Notes|
 |---|---|
