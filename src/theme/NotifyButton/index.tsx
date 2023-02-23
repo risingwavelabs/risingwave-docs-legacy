@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Popover } from "react-tiny-popover";
 import "./style.css";
-import { useColorMode } from "@docusaurus/theme-common";
 import { toast } from "react-toastify";
 import { postNotification } from "../../api/feedback";
 import Tooltip from "@mui/material/Tooltip";

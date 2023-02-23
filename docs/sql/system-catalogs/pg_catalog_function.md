@@ -19,6 +19,7 @@ Currently, RisingWave does not fully support all columns in the system catalogs 
 - [`pg_collation`](https://www.postgresql.org/docs/current/catalog-pg-collation.html)
 - [`pg_database`](https://www.postgresql.org/docs/current/catalog-pg-database.html)
 - [`pg_description`](https://www.postgresql.org/docs/current/catalog-pg-description.html)
+- [`pg_enum`](https://www.postgresql.org/docs/current/catalog-pg-enum.html)
 - [`pg_index`](https://www.postgresql.org/docs/current/catalog-pg-index.html)
 - [`pg_matviews`](https://www.postgresql.org/docs/current/view-pg-matviews.html)
 - [`pg_namespace`](https://www.postgresql.org/docs/current/catalog-pg-namespace.html)

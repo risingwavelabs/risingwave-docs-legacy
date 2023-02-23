@@ -21,7 +21,7 @@ WITH (
 )
 ROW FORMAT data_format 
 [MESSAGE 'message']
-[ROW SCHEMA LOCATION 'location'];
+[ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ]];
 ```
 
 :::note

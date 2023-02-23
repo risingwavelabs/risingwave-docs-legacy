@@ -14,10 +14,46 @@ ALTER USER user_name
     RENAME TO new_user_name
 ```
 
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+rr.Stack(
+   rr.Sequence(
+      rr.Terminal("ALTER USER"),
+      rr.NonTerminal("user_name", "skip"),
+   ),
+   rr.Sequence(
+      rr.Terminal("RENAME TO"),
+      rr.NonTerminal("new_user_name", "skip"),
+   ),
+)
+);
+
+<drawer SVG={svg} />
+
+
+
 ```sql title="Alter user properties."
 ALTER USER user_name 
     [ [ WITH ] option [ ... ] ]
 ```
+
+export const svgtwo = rr.Diagram(
+rr.Stack(
+   rr.Sequence(
+      rr.Terminal('ALTER USER'),
+      rr.NonTerminal('user_name', 'skip'),
+   ),
+   rr.Sequence(
+      rr.Optional(rr.Terminal('WITH')),
+      rr.OneOrMore(rr.Sequence(
+      rr.NonTerminal('option', 'skip')))
+   ),
+)
+);
+
+<drawer SVG={svgtwo} />
 
 
 ## Parameters
