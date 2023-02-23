@@ -31,16 +31,16 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="pg_self_hosted" label="Self-hosted" default>
 
-Ensure that the `wal_value` of your PostgreSQL is `logical`. Check by using the following query.
+Ensure that the `wal_level` of your PostgreSQL is `logical`. Check by using the following query.
 
 ```sql
 SHOW wal_level;
 ```
 
-By default, it will be `replica`. For CDC, you will need to set it to logical in the database configuration file (`postgresql.conf`) or via a `psql` command. The following command will change the `wal_value`.
+By default, it will be `replica`. For CDC, you will need to set it to logical in the database configuration file (`postgresql.conf`) or via a `psql` command. The following command will change the `wal_level`.
 
 ```sql
-ALTER SYSTEM SET wal_value = logical;
+ALTER SYSTEM SET wal_level = logical;
 ```
 
 Keep in mind that changing the `wal_level` requires a restart of the PostgreSQL instance and can affect database performance.
