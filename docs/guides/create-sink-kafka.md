@@ -28,7 +28,7 @@ All WITH options are required except `force_append_only`.
 |---|---|
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
-|AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](../commands/sql-select.md) for the syntax and examples of the SELECT command.|
+|AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](../commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, see the [Integrations Overview](../../rw-integration-summary.md) page for a full list of connectors and integrations we are working on. |
 |properties.bootstrap.server|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |topic|Address of the Kafka topic. One sink can only correspond to one topic.|
@@ -124,6 +124,23 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 
 :::
 
+Here is an example of creating a sink encrypted with SSL without using SASL authentication.
+
+```sql
+CREATE SINK sink1 FROM mv1                 
+WITH (
+   connector='kafka',
+   kafka.topic='quickstart-events',
+   kafka.brokers='localhost:9093',
+   format = 'append_only',
+   properties.security.protocol='SSL',
+   properties.ssl.ca.location='/home/ubuntu/kafka/secrets/ca-cert',
+   properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
+   properties.ssl.key.location='/home/ubuntu/kafka/secrets/client_risingwave_client.key',
+   properties.ssl.key.password='abcdefgh'
+);
+```
+
 ### `SASL/PLAIN`
 
 |Parameter| Notes|
@@ -145,6 +162,41 @@ For SASL/PLAIN with SSL, you need to include these SSL parameters:
 - `properties.ssl.certificate.location`
 - `properties.ssl.key.location`
 - `properties.ssl.key.password`
+
+Here is an example of creating a sink authenticated with SASL/PLAIN without SSL encryption.
+
+```sql
+CREATE SINK sink1 FROM mv1                 
+WITH (
+   connector='kafka',
+   kafka.topic='quickstart-events',
+   kafka.brokers='localhost:9093',
+   format = 'append_only',
+   properties.sasl.mechanism='PLAIN',
+   properties.security.protocol='SASL_PLAINTEXT',
+   properties.sasl.username='admin',
+   properties.sasl.password='admin-secret'
+);
+```
+This is an example of creating a sink authenticated with SASL/PLAIN with SSL encryption.
+
+```sql
+CREATE SINK sink1 FROM mv1                 
+WITH (
+   connector='kafka',
+   kafka.topic='quickstart-events',
+   kafka.brokers='localhost:9093',
+   format = 'append_only',
+   properties.sasl.mechanism='PLAIN',
+   properties.security.protocol='SASL_SSL',
+   properties.sasl.username='admin',
+   properties.sasl.password='admin-secret',
+   properties.ssl.ca.location='/home/ubuntu/kafka/secrets/ca-cert',
+   properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
+   properties.ssl.key.location='/home/ubuntu/kafka/secrets/client_risingwave_client.key',
+   properties.ssl.key.password='abcdefgh'
+);
+```
 
 ### `SASL/SCRAM`
 
@@ -168,6 +220,22 @@ For SASL/SCRAM with SSL, you also need to include these SSL parameters:
 - properties.ssl.key.location
 - properties.ssl.key.password
 
+Here is an example of creating a sink authenticated with SASL/SCRAM without SSL encryption.
+
+```sql
+CREATE SINK sink1 FROM mv1                 
+WITH (
+   connector='kafka',
+   kafka.topic='quickstart-events',
+   kafka.brokers='localhost:9093',
+   format = 'append_only',
+   properties.sasl.mechanism='SCRAM-SHA-256',
+   properties.security.protocol='SASL_PLAINTEXT',
+   properties.sasl.username='admin',
+   properties.sasl.password='admin-secret'
+);
+```
+
 ### `SASL/GSSAPI`
 
 |Parameter| Notes|
@@ -183,6 +251,27 @@ For SASL/SCRAM with SSL, you also need to include these SSL parameters:
 :::note
 
 For the definitions of the parameters, see the [librdkafka properties list](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md). Note that the parameters in the list assumes all parameters start with `properties.` and therefore do not include this prefix.
+
+:::
+
+Here is an example of creating a sink authenticated with SASL/GSSAPI without SSL encryption.
+
+```sql
+CREATE SINK sink1 FROM mv1                 
+WITH (
+   connector='kafka',
+   kafka.topic='quickstart-events',
+   kafka.brokers='localhost:9093',
+   format = 'append_only',
+   properties.sasl.mechanism='GSSAPI',
+   properties.security.protocol='SASL_PLAINTEXT',
+   properties.sasl.kerberos.service.name='kafka',
+   properties.sasl.kerberos.keytab='/etc/krb5kdc/kafka.client.keytab',
+   properties.sasl.kerberos.principal='kafkaclient4@AP-SOUTHEAST-1.COMPUTE.INTERNAL',
+   properties.sasl.kerberos.kinit.cmd='sudo kinit -R -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal} || sudo kinit -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal}',
+   properties.sasl.kerberos.min.time.before.relogin='10000'
+);
+```
 
 ### `SASL/OAUTHBEARER`
 
@@ -211,6 +300,20 @@ For SASL/OAUTHBEARER with SSL, you also need to include these SSL parameters:
 - `properties.ssl.key.location`
 - `properties.ssl.key.password`
 
+This is an example of creating a sink authenticated with SASL/OAUTHBEARER without SSL encryption.
+
+```sql
+CREATE SINK sink1 FROM mv1                 
+WITH (
+   connector='kafka',
+   kafka.topic='quickstart-events',
+   kafka.brokers='localhost:9093',
+   format = 'append_only',
+   properties.sasl.mechanism='OAUTHBEARER',
+   properties.security.protocol='SASL_PLAINTEXT',
+   properties.sasl.oauthbearer.config='principal=bob'
+);
+```
 
 :::note
 

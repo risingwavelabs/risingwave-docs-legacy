@@ -215,9 +215,9 @@ const sidebars = {
       },
       {
         type: 'doc',
-        id: 'sql/commands/sql-create-sink',
-        label: 'Create a sink',
-      },
+        label: 'Create Kafka sink',
+        id: 'guides/create-sink-kafka'
+        },
     ]},
 
     {
