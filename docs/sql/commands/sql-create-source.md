@@ -71,7 +71,13 @@ export const svg = rr.Diagram(
          rr.Optional(
             rr.Sequence(
                rr.Terminal('ROW SCHEMA LOCATION'),
-               rr.NonTerminal('location', 'skip'),
+               rr.Choice(1,
+                  rr.Terminal('location'),
+                  rr.Sequence(
+                     rr.Terminal('CONFLUENT SCHEMA REGISTRY'),
+                     rr.NonTerminal('schema_registry_url', 'skip'),
+                  ),
+               ),
             ),
          ),
          rr.Terminal(';'),
