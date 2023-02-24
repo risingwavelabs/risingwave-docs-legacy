@@ -1,19 +1,12 @@
 ---
 id: view-statement-progress
 title: View statement progress
-description: View the progress of a statement and abort it if it takes too long.
+description: View the progress of a statement in RisingWave and abort it if it takes too long.
 slug: /view-statement-progress
 ---
+SQL statements like `CREATE MATERIALIZED VIEW`, `CREATE INDEX`, or `CREATE SINK` might take a while to complete, because they may consume a lot of data. In RisingWave, you can view the progress of such a statement, and abort it if necessary.
 
-This topic talks about how to view the progress of a DDL statement. A DDL (Data Definition Language) statement is a statement used to define a database schema. 
-
-In RisingWave, DDL statements include:
-
-- `CREATE`
-- `DROP`
-- `ALTER`
-
-To view the progress of a DDL statement, run the following command:
+To view the progress of a running `CREATE MATERIALIZED VIEW`, `CREATE INDEX`, or `CREATE SINK` statement, run the following command:
 
 ```sql
 SELECT * FROM rw_catalog.rw_ddl_progress;
@@ -25,7 +18,7 @@ SELECT * FROM rw_catalog.rw_ddl_progress;
 
 ```
 
-For a streaming statement that already takes too long, you can abort it by pressing `CTRL+C` (or `Control+C`). A streaming statement is a statement that creates or modifies a source, materialized view, index, or sink.
+To abort a running `CREATE MATERIALIZED VIEW`, `CREATE INDEX`, or `CREATE SINK` statement, press `CTRL+C` (or `Control+C`). 
 
 For example:
 
