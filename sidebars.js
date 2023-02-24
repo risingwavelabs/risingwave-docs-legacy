@@ -470,7 +470,10 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: 
-      [ 
+      [ {
+        type: 'doc',
+        id: 'manage/view-statement-progress',
+      },
         {
           type: 'doc',
           id: 'manage/meta-backup',
