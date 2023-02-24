@@ -5,7 +5,8 @@ description: Sink data from RisingWave to MySQL with the JDBC connector.
 slug: /sink-to-mysql-with-jdbc
 ---
 
-In this guide, we will introduce how to sink data from RisingWave to JDBC-available databases using the JDBC sink connector. We also show how to create and connect to a database established on the cloud to minimize the efforts. Cloud databases can become an indispensable data sink for applications. AWS hosts Relational Database Services (RDS) that waive the need for setup and maintenance effort and has high availability and scalability options.
+This guide will introduce how to sink data from RisingWave to JDBC-available databases using the JDBC sink connector. MySQL is a commonly used RDS with a JDBC driver and it is available as a cloud database through AWS for easy setup and maintenance. We will show you how to configure MySQL and RisingWave to create a MySQL sink. The configurations for RisingWave when connecting to any JDBC-available database will be the same.
+
 
 ## Set up a MySQL database
 
@@ -49,7 +50,7 @@ Before using the native MySQL CDC connector in RisingWave, you need to complete 
 
 ### Connect to the RDS instance from MySQL
 
-Now we can connect to the RDS instance. On your local machine, make sure you have installed MySQL, and start a MySQL prompt. Fill in the endpoint, the port, and login credentials in the connection parameters. 
+Now we can connect to the RDS instance. Make sure you have installed MySQL on your local machine, and start a MySQL prompt. Fill in the endpoint, the port, and login credentials in the connection parameters. 
 
 ```terminal
 mysql -h rw-to-mysql.xxxxxx.us-east-1.rds.amazonaws.com -P 3306 -u <username> -p <password>
@@ -108,7 +109,7 @@ To install and start RisingWave locally, see the [Get started](/get-started.md) 
 
 ### Enable the connector node in RisingWave
 
-The native JDBC sink connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo. The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md).
+The connector node implements the native JDBC sink connector in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo, and the connector node is enabled by default in this docker-compose configuration. To start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md).
 
 ## Create a sink
 
@@ -136,7 +137,7 @@ All WITH options are required.
 |jdbc.url| The JDBC URL of the destination database necessary for the driver to recognize and connect to the database.|
 |table.name| The table in the destination database you want to sink to.|
 
-## Sinking data from RisingWave to MySQL
+## Sink data from RisingWave to MySQL
 
 ### Create a table and sink
 
