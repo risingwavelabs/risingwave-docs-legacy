@@ -15,7 +15,7 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 [FROM sink_from | AS select_query]
 WITH (
    connector='connector_name',
-   field_nake = 'value', ...
+   connector_parameter = 'value', ...
 );
 ```
 

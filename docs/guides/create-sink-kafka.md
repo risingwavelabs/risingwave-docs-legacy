@@ -1,7 +1,7 @@
 ---
 id: create-sink-kafka
-title: SINK TO KAFKA
-description: Sink to Kafka.
+title: Sink to Kafka
+description: Sink data from RisingWave to Kafka topics.
 slug: /create-sink-kafka
 ---
 
@@ -16,11 +16,11 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 [FROM sink_from | AS select_query]
 WITH (
    connector='kafka',
-   field_nake = 'value', ...
+   connector_parameter = 'value', ...
 );
 ```
 
-## Parameters
+## Basic Parameters
 
 All WITH options are required except `force_append_only`.
 
@@ -34,6 +34,7 @@ All WITH options are required except `force_append_only`.
 |topic|Address of the Kafka topic. One sink can only correspond to one topic.|
 |format|Data format. Allowed formats:<ul><li> `append_only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li></ul>|
 |force_append_only| If `true`, forces the sink to be `append_only`, even if it cannot be.| 
+|use_transaction| |
 
 ## Examples
 

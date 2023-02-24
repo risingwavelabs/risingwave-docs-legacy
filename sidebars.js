@@ -216,7 +216,7 @@ const sidebars = {
       },
       {
         type: 'doc',
-        label: 'Create Kafka sink',
+        label: 'Kafka',
         id: 'guides/create-sink-kafka'
         },
     ]},
