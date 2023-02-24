@@ -13,7 +13,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
 schema_definition
 WITH (
    connector='s3',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT csv [WITHOUT HEADER] DELIMITED BY ','; 
 ```

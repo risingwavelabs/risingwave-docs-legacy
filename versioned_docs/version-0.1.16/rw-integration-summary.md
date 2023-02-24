@@ -96,11 +96,11 @@ For tools or integrations that you would like to use but are not listed in the t
 |Apache Superset| |Available. See [Visualize RisingWave data in Superset](/guides/grafana-integration.md) for details. |
 |Cube.js| | Researching <voteNotify note="cubejs" />|
 |DBeaver| |In progress <voteNotify note="dbeaver" />|
-|Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
-|Jupyter Notebook||Researching <voteNotify note="jupyter" />|
-|Looker||Researching <voteNotify note="looker" /> |
-|Metabase ||In progress <voteNotify note="metabase" />|
-
+|Grafana| |Available. See [Visualize RisingWave data in Grafana](./guides/grafana-integration.md) for details.|
+|Jupyter Notebook| |Researching <voteNotify note="jupyter" />|
+|Looker| |Researching <voteNotify note="looker" /> |
+|Metabase | |In progress <voteNotify note="metabase" />|
+|Redash || Available |
 
 ## Other systems
 
