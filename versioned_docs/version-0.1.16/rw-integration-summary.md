@@ -98,7 +98,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |Jupyter Notebook| |Researching <voteNotify note="jupyter" />|
 |Looker| |Researching <voteNotify note="looker" /> |
 |Metabase | |In progress <voteNotify note="metabase" />|
-
+|Redash || Available |
 
 ## Other systems
 
