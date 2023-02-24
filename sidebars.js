@@ -222,7 +222,7 @@ const sidebars = {
       {
         type: 'doc',
         id: 'guides/sink-to-mysql-with-jdbc',
-        label: 'Sink to MySQL',
+        label: 'MySQL',
       },
     ]
   },
