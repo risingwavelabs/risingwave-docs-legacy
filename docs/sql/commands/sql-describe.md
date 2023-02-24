@@ -38,6 +38,6 @@ DESCRIBE t1;
 -------------+-----------------
  col1        | Int32
  col2        | Int32
- idx1        | Int64
  primary key | col1
+ idx1        | index(col2) distributed by(col2)
 ```
