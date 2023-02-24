@@ -47,7 +47,7 @@ export const svg = rr.Diagram(
                ),
                rr.OneOrMore(
                   rr.Sequence(
-                     rr.NonTerminal('field_name', 'skip'),
+                     rr.NonTerminal('connector_parameter', 'skip'),
                      rr.Terminal('='),
                      rr.NonTerminal('value', 'skip'),
                      rr.Terminal(','),
