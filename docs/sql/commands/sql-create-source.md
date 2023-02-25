@@ -20,8 +20,8 @@ WITH (
    connector_parameter='value', ...
 )
 ROW FORMAT data_format 
-[MESSAGE 'message']
-[ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ]];
+[ MESSAGE 'message' ]
+[ ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
 
 import rr from '@theme/RailroadDiagram'
