@@ -13,7 +13,7 @@ When creating a source, you can choose to persist the data from the source in Ri
 
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
-[schema_definition]
+[ schema_definition ]
 WITH (
    connector='kinesis',
    connector_parameter='value', ...

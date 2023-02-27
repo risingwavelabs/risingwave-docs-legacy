@@ -15,7 +15,7 @@ Regardless of whether the data is persisted in RisingWave, you can create materi
 
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
-[schema_definition]
+[ schema_definition ]
 WITH (
    connector='kafka',
    connector_parameter='value', ...
