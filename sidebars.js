@@ -219,7 +219,8 @@ const sidebars = {
         label: 'Kafka',
         id: 'guides/create-sink-kafka'
         },
-    ]},
+    ]
+    },
 
     {
       type: 'category',
@@ -295,7 +296,6 @@ const sidebars = {
           },
         ]
         },
-
        {
           type: 'category',
           label: 'Data types',
@@ -400,7 +400,11 @@ const sidebars = {
           type: 'category',
           label: 'Patterns',
           items:
-            [
+            [  {
+                type: 'doc',
+                id: 'sql/syntax/sql-pattern-dynamic-filter',
+                label: 'Dynamic filter'
+              },
               {
                 type: 'doc',
                 id: 'sql/syntax/sql-pattern-topn',
@@ -469,7 +473,10 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: 
-      [ 
+      [ {
+        type: 'doc',
+        id: 'manage/view-statement-progress',
+      },
         {
           type: 'doc',
           id: 'manage/meta-backup',

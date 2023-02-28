@@ -50,14 +50,16 @@ For tools or integrations that you would like to use but are not listed in the t
 
 |System | Source | Sink |
 |---|---|----|
-|Postgres| In progress <voteNotify note="pg_source" />| Researching <voteNotify note="pg_sink" />|
+|Postgres| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details.| Researching <voteNotify note="pg_sink" />|
+|AWS RDS (Postgres)| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. |Researching <voteNotify note="aurora_pg_sink" />|
 |AWS Aurora (Postgres)| In progress <voteNotify note="aurora_pg_source" />|Researching <voteNotify note="aurora_pg_sink" />|
 
 ### MySQL
 
 |System | Source | Sink |
 |---|---|----|
-|MySQL | In progress <voteNotify note="mysql_source" />| Researching <voteNotify note="mysql_sink" />|
+|MySQL | Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Researching <voteNotify note="mysql_sink" />|
+|AWS RDS (MySQL)|Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Researching <voteNotify note="aurora_mysql_sink" /> |
 |AWS Aurora (MySQL)|In progress <voteNotify note="aurora_mysql_source" />| Researching <voteNotify note="aurora_mysql_sink" /> |
 
 ### Other databases
@@ -89,15 +91,15 @@ For tools or integrations that you would like to use but are not listed in the t
 
 ## BI and data analytic platforms
 
-|System | |Availability |
-|---|---|---|
-|Apache Superset|| Available |
-|Cube.js| |Researching <voteNotify note="cubejs" />|
+|System ||Availability |
+|---|-|--|
+|Apache Superset| |Available. See [Visualize RisingWave data in Superset](/guides/grafana-integration.md) for details. |
+|Cube.js| | Researching <voteNotify note="cubejs" />|
 |DBeaver| |In progress <voteNotify note="dbeaver" />|
-|Grafana| |Available. See [Visualize RisingWave data in Grafana](./guides/grafana-integration.md) for details.|
-|Jupyter Notebook| |Researching <voteNotify note="jupyter" />|
-|Looker| |Researching <voteNotify note="looker" /> |
-|Metabase | |In progress <voteNotify note="metabase" />|
+|Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
+|Jupyter Notebook||Researching <voteNotify note="jupyter" />|
+|Looker||Researching <voteNotify note="looker" /> |
+|Metabase ||In progress <voteNotify note="metabase" />|
 
 
 ## Other systems

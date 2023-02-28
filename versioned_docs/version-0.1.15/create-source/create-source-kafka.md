@@ -18,7 +18,7 @@ CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name
 [schema_definition]
 WITH (
    connector='kafka',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT data_format 
 [ MESSAGE 'message' ]
@@ -47,7 +47,7 @@ For materialized sources with primary key constraints, if a new data record with
 
 :::
 
-### Parameters
+### Connector parameters
 
 |Field|Notes|
 |---|---|
@@ -57,11 +57,15 @@ For materialized sources with primary key constraints, if a new data record with
 |properties.group.id	|Required. Name of the Kafka consumer group	|
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+
+### Other parameters
+
+|Field|	Notes|
+|---|---|
 |*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
 |*message* | Message for the format. Required for Avro and Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
 |*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
-
 
 ## Example
 
