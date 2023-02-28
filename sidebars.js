@@ -219,6 +219,11 @@ const sidebars = {
         label: 'Kafka',
         id: 'guides/create-sink-kafka'
         },
+      {
+        type: 'doc',
+        label: 'MySQL',
+        id: 'guides/sink-to-mysql-with-jdbc'
+      },
     ]
     },
 
