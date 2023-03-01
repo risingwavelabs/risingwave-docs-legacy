@@ -107,3 +107,5 @@ MapReduce
 dataflow
 pipelined
 flink
+Flink's
+RisingWave's
