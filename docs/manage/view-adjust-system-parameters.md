@@ -9,11 +9,11 @@ slug: /view-adjust-system-parameters
 
 System parameters in RisingWave refer to the parameters that advanced users can use to adjust how internal components work in RisingWave.
 
-Currently, these system parameters are availble in RisingWave. Note that only `barrier_interval_ms` and `checkpoint_interval` can be set.
+Currently, these system parameters are availble in RisingWave.
 
 | Parameter           |    Description    |
 |---|---|
-|barrier_interval_ms      | The time interval of the periodic barriers. The value must be a positive integer.|
+|barrier_interval_ms      | The time interval of the periodic barriers.|
 |checkpoint_interval      | Specify the number of barriers for which a checkpoint will be created. The value must be a positive integer.|
 |sstable_size_mb          | There will be a checkpoint for every n barrier.|
 |block_size_kb            | The size of each block in bytes in SSTable.|
@@ -46,7 +46,7 @@ SHOW PARAMETERS;
 
 ## How to adjust system parameters?
 
-You can use the `ALTER SYSTEM SET` statement to revise the setting of a system parameter. Note that only `barrier_interval_ms` and `checkpoint_interval` can be set.
+You can use the `ALTER SYSTEM SET` statement to revise the setting of a system parameter. Note that only `checkpoint_interval` can be set.
 
 The full syntax of the `ALTER SYSTEM SET` statement is:
 
