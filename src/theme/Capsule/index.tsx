@@ -15,29 +15,18 @@ function Capsule({ note }: Props) {
   useEffect(() => {
     if (!note) return;
 
-    setClicked(localStorage.getItem(note) === "clicked");
+    const isClicked = localStorage.getItem(note) === "clicked";
+    setClicked(isClicked);
     getLike(note)
       .then((res) => setCount(res.data?.like))
       .catch((err) => console.error(err));
   }, []);
-
-  useEffect(() => {
-    if (!note) return;
-
-    const timer = setTimeout(() => {
-      getLike(note).then((r) => setCount(r.data?.like));
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, [clicked]);
 
   const LikeFeature = () => {
     if (!note) return;
 
     const isClicked = localStorage.getItem(note);
     if (isClicked) {
-      setClicked(true);
-      getLike(note).then((res) => setCount(res.data?.like));
       return;
     }
 

@@ -50,16 +50,16 @@ For tools or integrations that you would like to use but are not listed in the t
 
 |System | Source | Sink |
 |---|---|----|
-|Postgres| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details.| Researching <voteNotify note="pg_sink" />|
-|AWS RDS (Postgres)| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. |Researching <voteNotify note="aurora_pg_sink" />|
+|Postgres| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details.| In progress <voteNotify note="pg_sink" />|
+|AWS RDS (Postgres)| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. |In progress <voteNotify note="aurora_pg_sink" />|
 |AWS Aurora (Postgres)| In progress <voteNotify note="aurora_pg_source" />|Researching <voteNotify note="aurora_pg_sink" />|
 
 ### MySQL
 
 |System | Source | Sink |
 |---|---|----|
-|MySQL | Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Researching <voteNotify note="mysql_sink" />|
-|AWS RDS (MySQL)|Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Researching <voteNotify note="aurora_mysql_sink" /> |
+|MySQL | Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md).|
+|AWS RDS (MySQL)|Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md).|
 |AWS Aurora (MySQL)|In progress <voteNotify note="aurora_mysql_source" />| Researching <voteNotify note="aurora_mysql_sink" /> |
 
 ### Other databases
@@ -100,6 +100,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |Jupyter Notebook||Researching <voteNotify note="jupyter" />|
 |Looker||Researching <voteNotify note="looker" /> |
 |Metabase ||In progress <voteNotify note="metabase" />|
+|Redash || Available |
 
 
 ## Other systems
