@@ -42,12 +42,18 @@ const sidebars = {
           id: 'key-concepts',
           label: 'Key concepts and terms',
         },
-
+        
         {
           type: 'doc',
           label: 'Integrations',
           id: 'rw-integration-summary',
           },
+
+          {
+            type: 'doc',
+            label: 'RisingWave vs. Flink',
+            id: 'risingwave-flink-comparison',
+            },
       ]
     },
 
