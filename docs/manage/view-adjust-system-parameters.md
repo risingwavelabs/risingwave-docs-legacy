@@ -1,19 +1,19 @@
 ---
-id: view-adjust-system-settings
-title: View and adjust system settings
+id: view-adjust-system-parameters
+title: View and adjust system parameters
 description: View the system parameters and revise the settings if needed.
-slug: /view-adjust-system-settings
+slug: /view-adjust-system-parameters
 ---
 
-## What are system settings?
+## What are system parameters?
 
-System settings in RisingWave refer to the parameters that advanced users can use to adjust how internal components work in RisingWave.
+System parameters in RisingWave refer to the parameters that advanced users can use to adjust how internal components work in RisingWave.
 
 Currently, these system parameters are availble in RisingWave. Note that only `barrier_interval_ms` and `checkpoint_interval` can be set.
 
 | Parameter           |    Description    |
 |---|---|
-|barrier_interval_ms      | The time interval of the periodic barriers. Its value must be than 1.|
+|barrier_interval_ms      | The time interval of the periodic barriers. Its value must be greater than 1.|
 |checkpoint_interval      | Specify the number of barriers for which a checkpoint will be created. Its value must be greater than 1.|
 |sstable_size_mb          | There will be a checkpoint for every n barrier.|
 |block_size_kb            | The size of each block in bytes in SSTable.|
@@ -23,9 +23,9 @@ Currently, these system parameters are availble in RisingWave. Note that only `b
 |backup_storage_url       | The URL of the remote storage for backups.|
 |backup_storage_directory | The directory of the remote storage for backups.|
 
-## How to view system settings?
+## How to view system parameters?
 
-You can use the `SHOW PARAMTERS` statement to view the system parameters and their settings.
+You can use the `SHOW PARAMETERS` statement to view the system parameters and their settings.
 
 ```sql
 SHOW PARAMETERS;
@@ -44,7 +44,7 @@ SHOW PARAMETERS;
  backup_storage_directory | backup
 ```
 
-## How to adjust system settings?
+## How to adjust system parameters?
 
 You can use the `ALTER SYSTEM SET` statement to revise the setting of a system parameter. Note that only `barrier_interval_ms` and `checkpoint_interval` can be set.
 
