@@ -482,6 +482,10 @@ const sidebars = {
         type: 'doc',
         id: 'manage/view-statement-progress',
       },
+      {
+        type: 'doc',
+        id: 'manage/view-adjust-system-settings',
+      },
         {
           type: 'doc',
           id: 'manage/meta-backup',
