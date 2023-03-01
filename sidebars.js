@@ -42,12 +42,18 @@ const sidebars = {
           id: 'key-concepts',
           label: 'Key concepts and terms',
         },
-
+        
         {
           type: 'doc',
           label: 'Integrations',
           id: 'rw-integration-summary',
           },
+
+          {
+            type: 'doc',
+            label: 'RisingWave vs. Flink',
+            id: 'risingwave-flink-comparison',
+            },
       ]
     },
 
@@ -219,6 +225,11 @@ const sidebars = {
         label: 'Kafka',
         id: 'guides/create-sink-kafka'
         },
+      {
+        type: 'doc',
+        label: 'MySQL',
+        id: 'guides/sink-to-mysql-with-jdbc'
+      },
     ]
     },
 
