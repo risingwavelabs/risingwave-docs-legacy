@@ -81,3 +81,4 @@ json
 mv
 mysql
 JDBC
+Redash
