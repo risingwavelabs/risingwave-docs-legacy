@@ -24,7 +24,6 @@ For tools or integrations that you would like to use but are not listed in the t
 |DataStax Astra Streaming| Available | Researching <voteNotify note="astra_streaming_sink" />|
 |StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
 |Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Researching <voteNotify note="kinesis_sink" />|
-|Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
 
 ## ETL/ELT and data integration
 
