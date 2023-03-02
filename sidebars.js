@@ -42,12 +42,18 @@ const sidebars = {
           id: 'key-concepts',
           label: 'Key concepts and terms',
         },
-
+        
         {
           type: 'doc',
           label: 'Integrations',
           id: 'rw-integration-summary',
           },
+
+          {
+            type: 'doc',
+            label: 'RisingWave vs. Flink',
+            id: 'risingwave-flink-comparison',
+            },
       ]
     },
 
@@ -216,11 +222,16 @@ const sidebars = {
       },
       {
         type: 'doc',
-        id: 'sql/commands/sql-create-sink',
-        label: 'Create a sink',
+        label: 'Kafka',
+        id: 'guides/create-sink-kafka'
+        },
+      {
+        type: 'doc',
+        label: 'MySQL',
+        id: 'guides/sink-to-mysql-with-jdbc'
       },
     ]
-  },
+    },
 
     {
       type: 'category',
@@ -473,7 +484,10 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: 
-      [ 
+      [ {
+        type: 'doc',
+        id: 'manage/view-statement-progress',
+      },
         {
           type: 'doc',
           id: 'manage/meta-backup',
