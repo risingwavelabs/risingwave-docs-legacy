@@ -34,7 +34,7 @@ All WITH options are required except `force_append_only`.
 |topic|Address of the Kafka topic. One sink can only correspond to one topic.|
 |format|Data format. Allowed formats:<ul><li> `append_only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li></ul>|
 |force_append_only| If `true`, forces the sink to be `append_only`, even if it cannot be.| 
-|use_transaction| If `false`, changes to at least once processing, allowing for non-atomic writes. This might cause duplicated results. By default, `use_transaction` is `true`.|
+|use_transaction| If set to `false`, the connector will use at-least-once processing, allowing for non-atomic writes. This might cause duplicated results. By default, `use_transaction` is `true`.|
 
 ## Examples
 
