@@ -109,3 +109,4 @@ pipelined
 flink
 Flink's
 RisingWave's
+Redash
