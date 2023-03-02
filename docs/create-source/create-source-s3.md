@@ -18,6 +18,61 @@ WITH (
 ROW FORMAT csv [WITHOUT HEADER] DELIMITED BY ','; 
 ```
 
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Terminal('CREATE SOURCE'),
+            rr.Optional(rr.Terminal('IF NOT EXISTS')),
+            rr.NonTerminal('source_name', 'skip')
+        ),
+        rr.NonTerminal('schema_definition', 'skip'),
+        rr.Sequence(
+            rr.Terminal('WITH'),
+            rr.Terminal('('),
+            rr.Stack(
+                rr.Stack(
+                    rr.Sequence(
+                        rr.Terminal('connector'),
+                        rr.Terminal('='),
+                        rr.NonTerminal('s3', 'skip'),
+                        rr.Terminal(','),
+                    ),
+                    rr.OneOrMore(
+                        rr.Sequence(
+                            rr.NonTerminal('connector_parameter', 'skip'),
+                            rr.Terminal('='),
+                            rr.NonTerminal('value', 'skip'),
+                            rr.Terminal(','),
+                        ),
+                    ),
+                ),
+                rr.Terminal(')'),
+            ),
+        ),
+        rr.Sequence(
+            rr.Sequence(
+                rr.Terminal('ROW FORMAT'),
+                rr.NonTerminal('csv', 'skip'),
+            ),
+            rr.Optional(rr.Terminal('WITHOUT HEADER')),
+            rr.Terminal('DELIMITED BY'),
+            rr.Terminal(','),
+            rr.Terminal(';'),
+        ),
+    )
+);
+
+
+<drawer SVG={svg} />
+
+
+
+
+
 **schema_definition**:
 ```sql
 (
