@@ -75,7 +75,6 @@ export const svg = rr.Diagram(
             rr.Sequence(
                 rr.Terminal('ROW SCHEMA LOCATION'),
                 rr.Terminal('location'),
-                rr.Terminal(';'),
             ),
         ),
         rr.Terminal(';'),
