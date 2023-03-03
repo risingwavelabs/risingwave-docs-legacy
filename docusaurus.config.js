@@ -38,9 +38,15 @@ const config = {
               badge: false,
               banner: "unreleased",
             },
-            "0.1.16": {
-              label: "0.1.16 (current)",
+            "0.1.17": {
+              label: "0.1.17 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            "0.1.16": {
+              label: "0.1.16",
+              path: "/0.1.16",
               badge: false,
               banner: "none",
             },
