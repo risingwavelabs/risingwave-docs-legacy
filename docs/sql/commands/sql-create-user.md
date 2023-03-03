@@ -14,6 +14,37 @@ CREATE USER user_name
     [ [ WITH ] option [ ... ] ];
 ```
 
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Terminal('CREATE USER'),
+            rr.NonTerminal('user_name', 'skip')
+        ),
+        rr.Optional(
+            rr.Sequence(
+                rr.Optional(rr.Terminal('WITH')),
+                rr.NonTerminal('option', 'stack'),
+                rr.ZeroOrMore(
+                    rr.Sequence(
+                        rr.Terminal(','),
+                        rr.NonTerminal('option', 'stack')
+                    )
+                )
+            )
+        ),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
+
 ## Parameters
 | Parameter or clause | Description           |
 | ------------------- | --------------------- |
