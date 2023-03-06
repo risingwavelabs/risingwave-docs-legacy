@@ -50,6 +50,9 @@ Now the source connector is created.
 
 ### Run RisingWave
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 <Tabs>
 <TabItem value="Amazon EC2" label="Amazon EC2">
 

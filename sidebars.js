@@ -167,7 +167,7 @@ const sidebars = {
         {
           type: 'doc',
           label: 'Confluent',
-          id: 'create-source/confluent-kafka-source',
+          id: 'guides/confluent-kafka-source',
         },
         {
           type: 'doc',
