@@ -418,6 +418,11 @@ const sidebars = {
               },
               {
                 type: 'doc',
+                id: 'sql/syntax/sql-pattern-temporal-filter',
+                label: 'Temporal filter'
+              },
+              {
+                type: 'doc',
                 id: 'sql/syntax/sql-pattern-topn',
                 label: 'Top-N by group'
               }
