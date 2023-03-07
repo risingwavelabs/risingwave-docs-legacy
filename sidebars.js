@@ -166,7 +166,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          label: 'Confluent',
+          label: 'Confluent Cloud',
           id: 'guides/confluent-kafka-source',
         },
         {

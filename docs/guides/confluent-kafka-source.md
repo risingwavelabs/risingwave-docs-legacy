@@ -1,6 +1,6 @@
 ---
 id: confluent-kafka-source
-title: Connect to Confluent
+title: Ingest data from Confluent Cloud
 description: How to connect to Kafka on Confluent Cloud
 slug: /confluent-kafka-source
 ---
@@ -38,7 +38,7 @@ Now the source connector is created.
 
 ## Connect to the data source on RisingWave
 
-### Create a new client on Confluent
+### Create a new client on Confluent Cloud
 
 1. Click on **Clients** from the sidebar. 
 2. Click **+ New client**.
