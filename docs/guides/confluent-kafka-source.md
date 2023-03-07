@@ -102,12 +102,12 @@ CREATE TABLE s (
 ) WITH ( 
     connector = 'kafka',
     topic = 'topic_0',
-	kafka.brokers = 'pkc-n00kk.us-east-1.aws.confluent.cloud:9092',
+	kafka.brokers = 'xyz-x00xx.us-east-1.aws.confluent.cloud:9092',
     scan.startup.mode = 'earliest', 
     properties.security.protocol = 'SASL_SSL', 
     properties.sasl.mechanism = 'PLAIN', 
-    properties.sasl.username = '55OY4BK7QP33DTVK', 
-    properties.sasl.password = 'o484P1Wd6gBhJNWMckUqn8c7yF1725IrvrD5JXAxPIK37omnSWcAhJ3BXPSoyEix'
+    properties.sasl.username = 'username', 
+    properties.sasl.password = 'password'
 ) ROW FORMAT JSON;
 ```
 
