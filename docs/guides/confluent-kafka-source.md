@@ -32,7 +32,7 @@ This guide will go over how to set up a Kafka cluster on Confluent Cloud so you 
 5. In the **Add datagen source connector** page, select the topic just made, and click **Continue**.
 6. Click on **Generate API key & download** to generate the credentials.  Click **Continue**.
 7. Select the preferred output format and template. For this guide, we will be using **JSON** and **Orders**. Click **Continue**.
-8. Adjust the connector sizing if applicable. Otherwise, leave it at 1. Click **Continue**.
+8. Adjust the connector sizing if applicable. Otherwise, leave it at one. Click **Continue**.
 
 Now the source connector is created.
 
