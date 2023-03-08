@@ -12,7 +12,7 @@ The following example query returns all rows from the `sales` table where the `s
 ```sql
 SELECT * 
 FROM sales 
-WHERE sale_date + INTERVAL '1 week' > NOW();
+WHERE sale_date > NOW() - INTERVAL '1 week';
 ```
 
 The temporal filter in this query is `sale_date + INTERVAL '1 week' > NOW()`. It filters the rows based on the `sale_date` column and checks if it is within one week of the current time or `NOW()`.
