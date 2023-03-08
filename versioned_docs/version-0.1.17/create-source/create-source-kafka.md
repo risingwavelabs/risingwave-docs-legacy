@@ -124,7 +124,6 @@ For materialized sources with primary key constraints, if a new data record with
 |---|---|
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
-|properties.group.id	|Required. Name of the Kafka consumer group	|
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
 
