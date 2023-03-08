@@ -11,6 +11,45 @@ Use the `CREATE TABLE` command to create a new table or a materialized source. T
 If you choose to not persist the data from the source in RisingWave, you should use [`CREATE SOURCE`](sql-create-source.md).
 :::
 
+
+import Drawer from '@theme/Drawer';
+import {Diagram, Stack, Sequence, Optional, Terminal, Comment, NonTerminal, ZeroOrMore, Choice} from '@theme/RailroadDiagram'
+
+export const svg = new Diagram(
+    new Stack(
+        new Sequence(
+            new Terminal('CREATE TABLE'), 
+            new Optional('IF NOT EXIST', 'skip'), 
+            new Optional(
+                new Sequence(
+                    new Terminal('schema-name'), 
+                    new Terminal('.')
+                    ), 
+                    'skip'),
+            new Terminal('table-name'), 
+                    ), 
+        new Sequence(
+            new Choice(0,
+                new Sequence(
+                    new Terminal('('),
+                    new Terminal ('column_name'),
+                    new Terminal ('data_type'),
+                    new ZeroOrMore (new Sequence ( new Terminal ('column_name'), new Terminal ('data_type')), ',')
+                ),
+                new Sequence(
+                    new Terminal('AS'), 
+                    new Terminal('select-query')))))
+                    );
+
+<Drawer SVG={svg} />
+
+```js
+export const svg = new Diagram(new Stack(new Terminal('CREATE TABLE'),
+  new Optional('IF NOT EXIST', 'skip'),
+  new Optional(new Sequence(new Comment('schema-name'), new Comment('.')), 'skip'),
+  new Comment('table-name')));
+```
+
 ## Syntax
 
 ```sql
