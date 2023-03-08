@@ -153,8 +153,7 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
+   scan.startup.timestamp_millis='140000000'
 )
 ROW FORMAT AVRO MESSAGE 'main_message'
 ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
@@ -172,8 +171,7 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
+   scan.startup.timestamp_millis='140000000'
 )
 ROW FORMAT JSON;
 ```
@@ -187,8 +185,7 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
+   scan.startup.timestamp_millis='140000000'
 )
 ROW FORMAT PROTOBUF MESSAGE 'main_message'
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
