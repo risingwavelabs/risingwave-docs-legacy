@@ -40,6 +40,18 @@ DROP SCHEMA rw_db.public;
 DROP DATABASE rw_db;
 ```
 
+export const svgtwo = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('DROP DATABASE'),
+        rr.Optional(rr.Terminal('IF EXISTS')),
+        rr.NonTerminal('database_name', 'skip'),
+        rr.Terminal(';'),
+    )
+);
+
+<drawer SVG={svgtwo} />
+
+
 Use this statement if you don't want RisingWave to return an error if the database you want to remove does not exist:
 
 ```sql
