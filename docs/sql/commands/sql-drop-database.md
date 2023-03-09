@@ -40,6 +40,8 @@ DROP SCHEMA rw_db.public;
 DROP DATABASE rw_db;
 ```
 
+import rr from '@theme/RailroadDiagram'
+
 export const svgtwo = rr.Diagram(
     rr.Sequence(
         rr.Terminal('DROP DATABASE'),
