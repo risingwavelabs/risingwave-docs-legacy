@@ -1,12 +1,12 @@
 ---
-id: sql-pattern-dynamic-filter
-slug: /sql-pattern-dynamic-filter
-title: Dynamic filter
+id: sql-pattern-dynamic-filters
+slug: /sql-pattern-dynamic-filters
+title: Dynamic filters
 ---
 
-Dynamic filter functions as a filter operator, but the filter condition contains a dynamic variable. It enables filtering data streams in real-time and allows a condition to be defined that incoming data must meet in order to be processed.
+Dynamic filters function as filter operators, but the filter condition contains a dynamic variable. They enable filtering data streams in real-time and allow a condition to be defined that incoming data must meet in order to be processed.
 
-The following example query returns the name of all products whose profit margin is greater than the maximum profit margin recorded in the `sales` table.
+The following query returns the name of all products whose profit margin is greater than the maximum profit margin recorded in the `sales` table.
 
 ```sql
 WITH max_profit AS (SELECT max(profit_margin) max FROM sales) 
@@ -17,7 +17,7 @@ WHERE product_profit > max;
 The dynamic filter in this query is in the `WHERE` clause. The filter condition `product_profit > max` compares the `product_profit` column from the `products` table to the maximum value of the `profit_margin` column from the `sales` table, which is stored in the subquery `max_profit`. The value of the maximum profit margin is dynamic and changes based on the values in the `sales` table.
 
 
-The following example query calculates the parts that cost more than 0.01% of the total money spent.
+The following query calculates the parts that cost more than 0.01% of the total money spent.
 
 ```sql
 CREATE MATERIALIZED VIEW mv1 AS
@@ -41,4 +41,4 @@ Under the hood, RisingWave maintains this materialized view with a continuous st
 
 As this value increases, more results will satisfy this condition and be output; conversely, as this value decreases, more rows are filtered out, and fewer results will be output.
 
-RisingWave implements this using the dynamic filter, an internal stateful operator that keeps a full set of results before filtering and decides which changes should be output.
+RisingWave implements this using dynamic filters, internal stateful operators that keep a full set of results before filtering and decides which changes should be output.
