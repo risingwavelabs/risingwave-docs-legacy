@@ -22,18 +22,14 @@ export const svg = rr.Diagram(
     rr.Stack(
         rr.Sequence(
             rr.Terminal('CREATE USER'),
-            rr.NonTerminal('user_name', 'skip')
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.Optional(rr.Terminal('WITH')),
-                rr.NonTerminal('option', 'stack'),
-                rr.ZeroOrMore(
-                    rr.Sequence(
-                        rr.Terminal(','),
-                        rr.NonTerminal('option', 'stack')
-                    )
-                )
+            rr.NonTerminal('user_name'),
+            rr.Optional(
+               rr.Sequence(
+                  rr.Optional(rr.Terminal('WITH')),
+                  rr.OneOrMore(
+                     rr.NonTerminal('option'), rr.Comment('space as delimiter')
+                    ),
+               )
             )
         ),
         rr.Terminal(';')
