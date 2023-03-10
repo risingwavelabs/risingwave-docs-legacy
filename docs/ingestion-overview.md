@@ -13,7 +13,7 @@ You can ingest data into RisingWave in two ways:
 
 ### Materialized and non-materialized source
 
-A source is a resource that RisingWave can get data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by adding `MATERIALIZED` in between `CREATE` and `SOURCE` (that is, `CREATE MATERIALIZED SOURCE`). 
+A source is a resource that RisingWave can get data from. You can create a source in RisingWave using the `CREATE SOURCE` command. If you want to persist the data from the source, you need to create a table with connector settings using the `CREATE TABLE` command.
 
 Regardless whether the data is persisted in RisingWave or not, you can create materialized views or sinks to perform analysis and transformations.
 

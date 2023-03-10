@@ -18,31 +18,32 @@ Ensure that you have [started and connected to RisingWave](get-started.md/#run-r
 Now let's create a table to store data about taxi trips.
 
 ```sql
-CREATE TABLE taxi_trips(
-    id VARCHAR,
-    distance DOUBLE PRECISION,
-    duration DOUBLE PRECISION
-);
+CREATE TABLE taxi_trips (
+    trip_id int, 
+    taxi_id int, 
+    completed_at timestamp, 
+    distance double precision, 
+    duration double precision);
 ```
 
 And let's add some data to the table.
 
 ```sql
-INSERT INTO taxi_trips
-VALUES
-    ('1', 4, 10);
+INSERT INTO taxi_trips VALUES 
+(1, 1001, '2022-07-01 22:00:00', 4, 6), 
+(2, 1002, '2022-07-01 22:01:00', 6, 9);
 ```
 
-> In this guide, we use a user-defined table to better explain the mechanism of materialized views.<br/>The best and most common practice is to [create a source connector](sql/commands/sql-create-source.md) to ingest streaming data from a data source, not inserting records into a table.
+> In this guide, we use a user-defined table to better explain the mechanism of materialized views.<br/>The best and most common practice is to [create a source](sql/commands/sql-create-source.md) to ingest streaming data from a data source, not inserting records into a table.
 
 ## Create a materialized view
 
-We want to create a materialized view to dynamically calculate the average speed of all trips.
+We want to create a materialized view to dynamically calculate the average speed of all rides.
 
 ```sql
 CREATE MATERIALIZED VIEW mv_avg_speed
 AS
-    SELECT COUNT(id) as no_of_trips,
+    SELECT COUNT(trip_id) as no_of_trips,
     SUM(distance) as total_distance,
     SUM(duration) as total_duration,
     SUM(distance) / SUM(duration) as avg_speed
@@ -62,17 +63,16 @@ SELECT * FROM mv_avg_speed;
 Here is the result we get. 
 
 ```
- no_of_trips | total_distance | total_duration | avg_speed      
--------------+----------------+----------------+------------
-           1 |              4 |             10 | 0.4
+ no_of_trips | total_distance | total_duration |     avg_speed      
+-------------+----------------+----------------+--------------------
+           2 |             10 |             15 | 0.6666666666666666
+(1 row)
 ```
 
 Now let's add a new record.
 
 ```sql
-INSERT INTO taxi_trips
-VALUES
-    ('2', 6, 10);
+INSERT INTO taxi_trips VALUES (3, 1003, '2022-07-01 22:02:00', 3, 5);
 ```
 
 As soon as we insert the new record, the materialized view `mv_avg_speed` will be refreshed to re-calculate the results. Let us see if the results are updated.
@@ -84,9 +84,10 @@ SELECT * FROM mv_avg_speed;
 Here is the result we get. 
 
 ```
- no_of_trips | total_distance | total_duration | avg_speed      
--------------+----------------+----------------+------------
-           2 |             10 |             20 | 0.5
+ no_of_trips | total_distance | total_duration | avg_speed 
+-------------+----------------+----------------+-----------
+           3 |             13 |             20 |      0.65
+(1 row)
 
 ```
 
@@ -103,7 +104,7 @@ CREATE MATERIALIZED VIEW debezium_json_mysql_mv
 AS 
     SELECT COLUMN1, COLUMN2, COLUMN3 FROM debezium_json_mysql_source;
 ```
-> For details about creating a source connector, see [CREATE SOURCE](sql/commands/sql-create-source.md).
+> For details about creating a source, see [CREATE SOURCE](sql/commands/sql-create-source.md).
 
 ## Create a materialized view on materialized views
 
@@ -117,11 +118,12 @@ AS
     INNER JOIN m2 ON m1.v1 = m2.v1;
 ```
 
-## Create a data sink connector
+## Create a data sink
 
-Finally, we can output the processed data to a data sink using [CREATE SINK](sql/commands/sql-create-sink.md).
+Finally, we can output the processed data to a data sink using [CREATE SINK](sql/commands/sql-create-sink.md). A sink is an external target that we can send data to.
 
 ## More to read
+
 We also prepared several [tutorials](/tutorials/real-time-ad-performance-analysis.md), each focusing on solving a real-world stream processing task, with simulated data.
 
 

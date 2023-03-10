@@ -124,7 +124,6 @@ For materialized sources with primary key constraints, if a new data record with
 |---|---|
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
-|properties.group.id	|Required. Name of the Kafka consumer group	|
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
 
@@ -154,8 +153,7 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
+   scan.startup.timestamp_millis='140000000'
 )
 ROW FORMAT AVRO MESSAGE 'main_message'
 ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
@@ -173,8 +171,7 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
+   scan.startup.timestamp_millis='140000000'
 )
 ROW FORMAT JSON;
 ```
@@ -188,8 +185,7 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
+   scan.startup.timestamp_millis='140000000'
 )
 ROW FORMAT PROTOBUF MESSAGE 'main_message'
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
