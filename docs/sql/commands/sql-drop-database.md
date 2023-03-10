@@ -19,6 +19,19 @@ Before you can remove a database, you must use [DROP SCHEMA](sql-drop-schema.md)
 DROP DATABASE [ IF EXISTS ] database_name;
 ```
 
+import rr from '@theme/RailroadDiagram'
+
+export const svgtwo = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('DROP DATABASE'),
+        rr.Optional(rr.Terminal('IF EXISTS')),
+        rr.NonTerminal('database_name', 'skip'),
+        rr.Terminal(';'),
+    )
+);
+
+<drawer SVG={svgtwo} />
+
 
 ## Parameters
 
@@ -39,20 +52,6 @@ DROP SCHEMA rw_db.rw_schema;
 DROP SCHEMA rw_db.public;
 DROP DATABASE rw_db;
 ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svgtwo = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP DATABASE'),
-        rr.Optional(rr.Terminal('IF EXISTS')),
-        rr.NonTerminal('database_name', 'skip'),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svgtwo} />
-
 
 Use this statement if you don't want RisingWave to return an error if the database you want to remove does not exist:
 
