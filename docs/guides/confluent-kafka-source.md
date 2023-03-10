@@ -12,20 +12,25 @@ This guide will go over how to set up a Kafka cluster on Confluent Cloud so you 
 ### Create a Kafka cluster 
 
 1. Create a new cluster. Click on **Begin configuration** under the appropriate cluster type.
+
     <img
     src={require('../images/create-cluster.png').default}
     alt="Create Kafka cluster on Confluent"
     />
+
 2. Select **AWS** and the appropriate **Region** and **Availability**. Click **Continue**.
+
 3. Name the cluster accordingly. Click **Launch cluster**.
 
 ### Produce sample data
 
 1. Under **Cluster overview > Dashboard**, select **Get started** under **Produce sample data**.
+
     <img
     src={require('../images/produce-data.png').default}
     alt="Start producing sample data"
     />
+
 2. Click **Add a new topic**.
 3. Name the topic and input the number of partitions.
 4. Click **Create with defaults**.
@@ -36,13 +41,14 @@ This guide will go over how to set up a Kafka cluster on Confluent Cloud so you 
 
 Now the source connector is created.
 
-## Connect to the data source on RisingWave
+## Connect RisingWave to Confluent Cloud
 
 ### Create a new client on Confluent Cloud
 
 1. Click on **Clients** from the sidebar. 
 2. Click **+ New client**.
 3. Select **Rust** as the language then click **Create Kafka cluster API key**.
+
     <img
     src={require('../images/new-client.png').default}
     alt="Create new client"
