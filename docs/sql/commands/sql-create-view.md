@@ -17,29 +17,21 @@ CREATE VIEW view_name [ ( column_name [, ...] ) ] AS select_query;
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE VIEW'),
-            rr.NonTerminal('view_name', 'skip'),
-            rr.Optional(
-                rr.Stack(
-                    rr.Terminal('('),
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.ZeroOrMore(
-                        rr.Sequence(
-                            rr.Terminal(','),
-                            rr.NonTerminal('column_name', 'skip'),
-                        )
-                    ),
-                    rr.Terminal(')'),
+    rr.Sequence(
+        rr.Terminal('CREATE VIEW'),
+        rr.NonTerminal('view_name', 'wrap'),
+        rr.Optional(
+            rr.Sequence(
+                rr.Terminal('('),
+                rr.OneOrMore(
+                     rr.NonTerminal('column_name'), rr.Comment('space as delimiter')
                 ),
+                rr.Terminal(')'),
             ),
         ),
-        rr.Sequence(
-            rr.Terminal('AS'),
-            rr.NonTerminal('select_query', 'skip'),
-            rr.Terminal(';'),
-        )
+        rr.Terminal('AS'),
+        rr.NonTerminal('select_query', 'skip'),
+        rr.Terminal(';'),
     )
 );
 
