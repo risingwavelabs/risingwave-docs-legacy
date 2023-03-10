@@ -10,8 +10,7 @@ Use the `CREATE USER` command to create a new user account in RisingWave.
 ## Syntax
 
 ```sql
-CREATE USER user_name 
-    [ [ WITH ] option [ ... ] ];
+CREATE USER user_name [ [ WITH ] option [ ... ] ];
 ```
 
 
