@@ -24,8 +24,7 @@ export const svg = rr.Diagram(
             rr.Sequence(
                 rr.Terminal('('),
                 rr.OneOrMore(
-                     rr.NonTerminal('column_name'), rr.Comment('space as delimiter')
-                ),
+                     rr.NonTerminal('column_name'), rr.Terminal(',')),
                 rr.Terminal(')'),
             ),
         ),
