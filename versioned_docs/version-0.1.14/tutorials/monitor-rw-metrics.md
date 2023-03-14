@@ -76,9 +76,9 @@ CREATE SOURCE prometheus (
     value VARCHAR
 ) WITH (
     connector = 'kafka',
-    kafka.topic = 'prometheus',
-    kafka.brokers = 'message_queue:29092',
-    kafka.scan.startup.mode = 'earliest'
+    topic = 'prometheus',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
 ) ROW FORMAT JSON;
 ```
 

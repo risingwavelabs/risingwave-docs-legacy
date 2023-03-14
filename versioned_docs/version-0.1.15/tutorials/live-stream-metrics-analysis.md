@@ -28,10 +28,10 @@ First, clone the [risingwave-demo](https://github.com/singularity-data/risingwav
 git clone https://github.com/risingwavelabs/risingwave-demo.git
 ```
 
-Now navigate to the live-stream directory and start the demo cluster from the docker compose file.
+Now navigate to the `livestream` directory and start the demo cluster from the docker compose file.
 
 ```
-cd risingwave-demo/live-stream
+cd risingwave-demo/livestream
 docker-compose up -d
 ```
 
@@ -75,9 +75,9 @@ CREATE SOURCE live_stream_metrics (
     country VARCHAR
 ) WITH (
     connector = 'kafka',
-    kafka.topic = 'live_stream_metrics',
-    kafka.brokers = 'message_queue:29092',
-    kafka.scan.startup.mode = 'earliest'
+    topic = 'live_stream_metrics',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
 ) ROW FORMAT JSON;
 ```
 

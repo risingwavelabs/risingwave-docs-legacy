@@ -68,7 +68,7 @@ const credentials = {
     port: 4566,
 }
 
-const createsource = `CREATE MATERIALIZED SOURCE walk(distance INT, duration INT)
+const createsource = `CREATE TABLE walk(distance INT, duration INT)
 WITH ( connector = 'datagen',
     fields.distance.kind = 'sequence',
     fields.distance.start = '1',

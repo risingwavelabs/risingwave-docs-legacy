@@ -1,7 +1,7 @@
 ---
  id: ingest-from-postgres-cdc
  title: Ingest data from PostgreSQL CDC
- description: Describes how to ngest data from PostgreSQL CDC.
+ description: Describes how to ingest data from PostgreSQL CDC.
  slug: /ingest-from-postgres-cdc
 ---
 
@@ -31,44 +31,74 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="pg_self_hosted" label="Self-hosted" default>
 
-Ensure that the `wal_level` of your PostgreSQL is `logical`. Check by using the following query.
+1. Ensure that the `wal_level` of your PostgreSQL is `logical`. Check by using the following statement.
 
-```sql
-SHOW wal_level;
-```
-
-By default, it will be `replica`. For CDC, you will need to set it to logical in the database configuration file (`postgresql.conf`) or via a `psql` command. The following command will change the `wal_level`.
-
-```sql
-ALTER SYSTEM SET wal_level = logical;
-```
-
-Keep in mind that changing the `wal_level` requires a restart of the PostgreSQL instance and can affect database performance.
-
-For PostgreSQL connector to work properly, you should grant the user following privileges:
-
-- `REPLICATION` privileges in the database to add the table to a publication.
-    
     ```sql
-    ALTER USER <username> REPLICATION;
+    SHOW wal_level;
     ```
-    
-- `CREATEDB` privileges on the database to add publications.
-    
-    ```sql
-    ALTER USER <username> CREATEDB;
-    ```
-    
-- `SELECT` privileges on the tables to copy the initial table data. Table owners automatically have `SELECT` permission for the table.
 
-You can check your privileges by using the `\du` psql command:
-```
-dev-# \du
-List of roles
-Role name  |                        Attributes                          | Member of
------------+------------------------------------------------------------+-----------
-postgres   | Superuser, Create role, Create DB, Replication, Bypass RLS |    {}
-```
+    By default, it is `replica`. For CDC, you will need to set it to logical in the database configuration file (`postgresql.conf`) or via a `psql` command. The following command will change the `wal_level`.
+
+    ```sql
+    ALTER SYSTEM SET wal_level = logical;
+    ```
+
+    Keep in mind that changing the `wal_level` requires a restart of the PostgreSQL instance and can affect database performance.
+
+2. Assign `REPLICATION`, `LOGIN` and `CREATEDB` role attributes to the user.
+
+    For an existing user, run the following statement to assign the attributes:
+
+    `ALTER USER <username> REPLICATION LOGIN CREATEDB;`
+
+    For a new user, run the following statement to create the user and assign the attributes:
+
+    `CREATE USER <username> REPLICATION LOGIN CREATEDB;`
+
+    You can check your role attributes by using the `\du` psql command:
+
+    ```
+    dev-# \du
+                                       List of roles
+    Role name |                         Attributes                         | Member of
+    -----------+-----------------------------------------------------------+---------
+    rw        | Create DB, Replication                                     | {}
+    postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+    ```
+
+3. Grant required priviledges to the user.
+
+    Run the following statements to grant the required priviledges to the user.
+
+    ```sql
+    GRANT CONNECT ON DATABASE <database_name> TO <username>;   
+    GRANT USAGE ON SCHEMA <schema_name> TO <username>;  
+    GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>; 
+    ```
+
+    You can use the following statement to check the priviledges of the user to the tables:
+    ```sql
+    postgres=# SELECT table_name, grantee, privilege_type
+    FROM information_schema.role_table_grants
+    WHERE  grantee='<username>';
+    ```
+
+    An example result:
+
+    ```sql
+     table_name | grantee | privilege_type
+     -----------+---------+----------------
+     lineitem   | rw      | SELECT
+     customer   | rw      | SELECT
+     nation     | rw      | SELECT
+     orders     | rw      | SELECT
+     part       | rw      | SELECT
+     partsupp   | rw      | SELECT
+     supplier   | rw      | SELECT
+     region     | rw      | SELECT
+     (8 rows)
+    ```
+
 
 </TabItem>
 
@@ -279,5 +309,3 @@ You need to download and configure the [Debezium connector for PostgreSQL](https
  )
  ROW FORMAT DEBEZIUM_JSON;
  ```
-
-
