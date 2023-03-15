@@ -11,7 +11,7 @@ You can ingest data into RisingWave in two ways:
 
 ## Ingest data from sources
 
-A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md)command. If you want to persist the data from the source, you need to create a table with connector settings using the [`CREATE TABLE`](/sql/commands/sql-create-source.md) command.
+A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command. If you want to persist the data from the source, you need to create a table with connector settings using the [`CREATE TABLE`](/sql/commands/sql-create-source.md) command.
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or sinks for data transformations.
 
@@ -118,7 +118,7 @@ ROW FORMAT DEBEZIUM_JSON
 
 ### Maxwell JSON
 
-When creating a source from streams in Maxwell JSON, you can define the schema of the source within the parentheses after the source name ((`schema_definition` in the syntax), and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
+When creating a source from streams in Maxwell JSON, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
 ```sql
@@ -126,7 +126,7 @@ ROW FORMAT MAXWELL
 ```
 ### Canal JSON
 
-RisingWave supports the TiCDC dialect of the Canal CDC format. When creating a source from streams in TiCDC, you can define the schema of the source within the parentheses after the source name ((`schema_definition` in the syntax), and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
+RisingWave supports the TiCDC dialect of the Canal CDC format. When creating a source from streams in TiCDC, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
 ```sql
