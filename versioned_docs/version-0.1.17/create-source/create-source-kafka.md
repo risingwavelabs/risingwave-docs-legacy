@@ -106,7 +106,7 @@ export const svg = rr.Diagram(
 
 :::info
 
-For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a Confluence Schema Registry link in the `ROW SCHEMA LOCATION` section.
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a Confluent Schema Registry link in the `ROW SCHEMA LOCATION` section.
 
 :::
 

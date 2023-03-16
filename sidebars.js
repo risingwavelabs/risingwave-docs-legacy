@@ -166,6 +166,11 @@ const sidebars = {
         },
         {
           type: 'doc',
+          label: 'Confluent Cloud',
+          id: 'guides/confluent-kafka-source',
+        },
+        {
+          type: 'doc',
           label: 'Redpanda',
           id: 'create-source/create-source-redpanda',
         },
@@ -413,8 +418,13 @@ const sidebars = {
           items:
             [  {
                 type: 'doc',
-                id: 'sql/syntax/sql-pattern-dynamic-filter',
-                label: 'Dynamic filter'
+                id: 'sql/syntax/sql-pattern-dynamic-filters',
+                label: 'Dynamic filters'
+              },
+              {
+                type: 'doc',
+                id: 'sql/syntax/sql-pattern-temporal-filters',
+                label: 'Temporal filters'
               },
               {
                 type: 'doc',

@@ -106,7 +106,7 @@ export const svg = rr.Diagram(
 
 :::info
 
-For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a Confluence Schema Registry link in the `ROW SCHEMA LOCATION` section.
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a Confluent Schema Registry link in the `ROW SCHEMA LOCATION` section.
 
 :::
 
@@ -132,7 +132,7 @@ For materialized sources with primary key constraints, if a new data record with
 |Field|Notes|
 |---|---|
 |*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
-|*message* | Message for the format. Required for Avro and Protobuf.|
+|*message* | Message name of the main Message in schema definition. Required for Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
 |*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 
@@ -155,7 +155,7 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 )
-ROW FORMAT AVRO MESSAGE 'main_message'
+ROW FORMAT AVRO
 ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
 </TabItem>
