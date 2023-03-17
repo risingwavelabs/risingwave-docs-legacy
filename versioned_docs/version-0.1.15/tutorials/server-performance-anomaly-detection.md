@@ -36,7 +36,7 @@ git clone https://github.com/risingwavelabs/risingwave.git
 Now navigate to the `integration_tests/cdn-metrics` directory and start the demo cluster from the docker compose file. 
 
 ```shell
-cd integration_tests/cdn-metrics
+cd risingwave/integration_tests/cdn-metrics
 docker compose up -d
 ```
 
