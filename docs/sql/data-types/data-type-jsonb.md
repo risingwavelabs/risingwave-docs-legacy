@@ -4,7 +4,12 @@ slug: /data-type-jsonb
 title: JSONB
 ---
 
-Use the jsonb data type to create a column that can store JSON data in binary format. The jsonb data type provides additional query capabilities and supports indexing.
+Use the jsonb data type to create a column that can store JSON data.
+
+Caveats:
+  - Numbers not representable by IEEE 754 double precision floating point may have poor interoperability, notably `bigint`s larger than `(2**53)-1`.
+  - Avoid using a jsonb column for `GROUP BY`, `ORDER BY`, `PRIMARY`, or `INDEX` keys. The exact behavior may change in the future.
+    - The suggested usage is to extract the target field and cast to a simple type.
 
 ## Define a jsonb type
 
@@ -29,7 +34,6 @@ Below is a real world example.
 
 ```sql
 CREATE TABLE product (
-        id SERIAL PRIMARY KEY,
         name VARCHAR,
         price NUMERIC,
         attributes JSONB
@@ -39,7 +43,7 @@ CREATE TABLE product (
 
 ## Add values to a jsonb column
 
-To add values to a jsonb column, use the JSON data format in the SQL statement. For example, `{"key": "value"}`.
+To add values to a jsonb column, simply write the JSON as a string. For example, `'{"key": "value"}'`.
 
 ### Examples
 
@@ -67,44 +71,26 @@ VALUES
 ```
 
 
-## Retrieve data from a jsonb column
+## Retrieve data from a jsonb column and casting
 
 To retrieve data from a jsonb column, use the `->` or `->>` operators to access the JSON object's properties. The `->` operator returns a jsonb value, while the `->>` operator returns a text value.
 
+Jsonb data types can be cast to other data types such as bool, smallint, int, bigint, decimal, real, and double precision. Casting is performed using the `::data-type` cast notation, such as `::int` for casting to an integer data type.
+
 ### Examples
 
-```sql
-SELECT j_data -> 'a', d
-FROM x;
-```
+Here are some examples for retrieving data and casting:
 
 ```sql
-SELECT metadata ->> 'color'
-FROM y;
-```
+INSERT INTO product VALUES ('USB cable', 4.99, '{"lengthInFeet": 3, "backorder": true, "brand": "sin90", "compatible": ["pc", "mac", "phone"]}');
 
-```sql
-SELECT id, name, price, attributes ->> 'color' as color
+SELECT
+  (attributes -> 'lengthInFeet')::INT * 30.48 AS cm,
+  NOT (attributes -> 'backorder')::BOOL AS available,
+  UPPER(attributes ->> 'brand') AS brand_good,
+  UPPER((attributes -> 'brand')::VARCHAR) AS brand_bad,
+  attributes -> 'compatible'
 FROM product;
-```
-
-
-## Casting
-
-Jsonb data types can be cast to other data types such as bool, smallint, int, bigint, decimal, real, and double precision. To cast the other data types to jsonb, you can use the `to_jsonb()` function.
-
-### Examples
-
-```sql
-SELECT '{"a": 1, "b": 2}'::jsonb;
------Result
-{"a": 1, "b": 2}
-```
-
-```sql
-SELECT '{"name": "Alice", "age": 30, "city": "New York"}'::jsonb;
------Result
-{"name": "Alice", "age": 30, "city": "New York"}
 ```
 
 
