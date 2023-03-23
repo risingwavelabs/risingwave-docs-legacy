@@ -82,7 +82,7 @@ WITH (
    connector='kafka',
    kafka.brokers='localhost:9092',
    kafka.topic='test',
-   format='append-only'
+   type = 'append-only'
 );
 
 ```
@@ -134,7 +134,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append-only',
+   type = 'append-only',
    properties.security.protocol='SSL',
    properties.ssl.ca.location='/home/ubuntu/kafka/secrets/ca-cert',
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
@@ -173,7 +173,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append-only',
+   type = 'append-only',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -188,7 +188,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append-only',
+   type = 'append-only',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_SSL',
    properties.sasl.username='admin',
@@ -230,7 +230,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append-only',
+   type = 'append-only',
    properties.sasl.mechanism='SCRAM-SHA-256',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -264,7 +264,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append-only',
+   type = 'append-only',
    properties.sasl.mechanism='GSSAPI',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.kerberos.service.name='kafka',
@@ -310,7 +310,7 @@ WITH (
    connector='kafka',
    kafka.topic='quickstart-events',
    kafka.brokers='localhost:9093',
-   format = 'append-only',
+   type = 'append-only',
    properties.sasl.mechanism='OAUTHBEARER',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.oauthbearer.config='principal=bob'
