@@ -25,12 +25,21 @@ The syntax of the `tumble()` window function is as follows:
 
 ```sql
 SELECT [ ALL | DISTINCT ] [ * | expression [ AS output_name ] [, expression [ AS output_name ]...] ]
-FROM TUMBLE(table_or_source, start_time, window_size);
+FROM TUMBLE ( table_or_source, start_time, window_size [, offset ] );
 ```
 
-*start_time* can be in either timestamp or timestamp with time zone format. Example of timestamp with time zone format: 2022-01-01 10:00:00+00:00.
+- *start_time* can be in either timestamp or timestamp with time zone format.
 
-*window_size* is in the format of `INTERVAL 'interval'`. Example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported.
+    Example of timestamp with time zone format: 2022-01-01 10:00:00+00:00.
+
+- *window_size* is in the format of `INTERVAL 'interval'`.
+
+    Example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported.
+
+- *offset* is an optional parameter that allows you to adjust the starting point of the tumbling windows.
+    
+    By default, tumbling windows are inclusive in the end of the window and exclusive in the beginning. By specifying *offset*, you can shift *start_time* by the specified duration.
+
 
 
 Suppose that we have a table, `taxi_trips`, that consists of these columns: `trip_id`, `taxi_id`, `completed_at`, `distance`, and `duration`.
@@ -77,12 +86,20 @@ See below for the syntax of the `hop()` window function.
 
 ```sql
 SELECT [ ALL | DISTINCT] [ * | expression [ AS output_name ] [, expression [ AS output_name ]...] ]
-FROM HOP(table_or_source, start_time, hop_size, window_size);
+FROM HOP ( table_or_source, start_time, hop_size, window_size [, offset ]);
 ```
 
-*start_time* can be in either timestamp or timestamp with time zone format. Example of timestamp with time zone format: 2022-01-01 10:00:00+00:00.
+- *start_time* can be in either timestamp or timestamp with time zone format.
 
-Both *hop_size* and *window_size* are in the format of `INTERVAL '<interval>'`. For example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported.
+    Example of timestamp with time zone format: 2022-01-01 10:00:00+00:00.
+
+- Both *hop_size* and *window_size* are in the format of `INTERVAL '<interval>'`.
+
+    For example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported.
+
+- *offset* is an optional parameter that allows you to adjust the starting point of the hopping windows.
+    
+    By default, hopping windows are inclusive in the end of the window and exclusive in the beginning. By specifying *offset*, you can shift *start_time* by the specified duration.
 
 Here is an example.
 
