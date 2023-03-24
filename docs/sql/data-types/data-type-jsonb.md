@@ -91,11 +91,19 @@ SELECT
   UPPER((attributes -> 'brand')::VARCHAR) AS brand_bad,
   attributes -> 'compatible'
 FROM product;
+
+-----Result
+
+  cm   | available | brand_good | brand_bad |        ?column?        
+-------+-----------+------------+-----------+------------------------
+ 91.44 | f         | SIN90      | "SIN90"   | ["pc", "mac", "phone"]
+(1 row)
+
 ```
 
+The output shows that the `brand_bad` column contains additional double quotes. So when the target column is a varchar, stick to the dedicated operator `->>` directly rather than using the cast. Only cast a boolean or a number.
 
 
-## Operators
 
 The following operators represent a transformation process involving extraction, casting, and reconversion between jsonb and other data types.
 
