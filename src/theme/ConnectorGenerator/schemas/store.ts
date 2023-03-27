@@ -46,6 +46,19 @@ type Element = {
   elements?: Element[];
 };
 
+export const Connectors = [
+  "Kafka",
+  "Redpanda",
+  "Pulsar",
+  "Astra Streaming",
+  "Kinesis",
+  "S3",
+  "MySQL CDC",
+  "PostgreSQL CDC",
+];
+
+export const Sinks = ["Kafka", "JDBC"];
+
 export type UISchema = UISchemaElement & {
   elements: Element[];
 };

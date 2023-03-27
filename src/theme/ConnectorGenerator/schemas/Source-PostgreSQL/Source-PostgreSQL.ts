@@ -131,6 +131,7 @@ export const PostgreSQLInitialData = {
   password: "",
   databaseName: "",
   tableName: "",
+  schemaName: "",
   slotName: "",
   sourceSchema: [
     {

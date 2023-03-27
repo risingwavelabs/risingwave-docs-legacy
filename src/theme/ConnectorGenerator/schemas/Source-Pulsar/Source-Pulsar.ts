@@ -1,8 +1,8 @@
-import { JsonSchema } from "@jsonforms/core";
+import { JsonSchema, RuleEffect } from "@jsonforms/core";
 import { UISchema } from "../store";
+import { DataType, RowFormat } from "../Source-Kafka/Source-Kafka";
 
 const StartupMode = ["Earliest", "Latest"];
-const RowFormat = ["JSON", "Avro", "Protobuf", "Debezium JSON", "Maxwell JSON"];
 
 export const pulsarSchema: JsonSchema = {
   type: "object",
@@ -35,6 +35,24 @@ export const pulsarSchema: JsonSchema = {
     },
     schemaLocation: {
       type: "string",
+    },
+    sourceSchema: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          columnName: {
+            type: "string",
+          },
+          dataType: {
+            type: "string",
+            enum: DataType,
+          },
+          selectAsPrimaryKey: {
+            type: "boolean",
+          },
+        },
+      },
     },
   },
   required: ["name", "topic", "serviceURL", "adminURL"],
@@ -90,12 +108,49 @@ export const pulsarUISchema: UISchema = {
       },
     },
     {
-      type: "Control",
-      scope: "#/properties/message",
+      type: "Group",
+      rule: {
+        effect: RuleEffect.SHOW,
+        condition: {
+          scope: "#/properties/rowFormat",
+          schema: {
+            not: { const: RowFormat[0] },
+          },
+        },
+      },
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/message",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/schemaLocation",
+        },
+      ],
     },
     {
-      type: "Control",
-      scope: "#/properties/schemaLocation",
+      type: "Group",
+      rule: {
+        effect: RuleEffect.SHOW,
+        condition: {
+          scope: "#/properties/rowFormat",
+          schema: {
+            const: RowFormat[0],
+          },
+        },
+      },
+      elements: [
+        {
+          type: "VerticalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/sourceSchema",
+            },
+          ],
+        },
+      ],
     },
   ],
 };
@@ -108,4 +163,12 @@ export const pulsarInitialData = {
   startupMode: StartupMode[0],
   startupTimestampOffset: "",
   rowFormat: RowFormat[0],
+  schemaLocation: "",
+  sourceSchema: [
+    {
+      columnName: "name",
+      dataType: DataType[0],
+      selectAsPrimaryKey: true,
+    },
+  ],
 };

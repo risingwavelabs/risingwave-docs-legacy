@@ -19,25 +19,29 @@ import { useColorMode } from "@docusaurus/theme-common";
 
 import sleep from "../../utils/sleep";
 import styles from "./styles.module.css";
-import { Connectors, Sinks } from "./types";
+
 import { JsonForms } from "@jsonforms/react";
 import {
   materialRenderers,
   materialCells,
 } from "@jsonforms/material-renderers";
 
-import { kafkaInitialdata } from "./schemas/Source-Kafka/Source-Kafka";
-import { mapToInitialdata, mapToSchema, mapToUISchema } from "./schemas/store";
+import {
+  SSLSettings,
+  kafkaInitialdata,
+} from "./schemas/Source-Kafka/Source-Kafka";
+import {
+  Connectors,
+  Sinks,
+  mapToInitialdata,
+  mapToSchema,
+  mapToUISchema,
+} from "./schemas/store";
 
 type ConnectorType = "Source" | "Sink";
 
 type SourceData = {
-  name?: string;
-  topic?: string;
-  bootstrapServers?: string;
-  scanStartupMode?: string;
-  startupTimestampOffset?: string;
-  [key: string]: string;
+  [key: string]: any;
 };
 
 type Props = {};
@@ -76,6 +80,204 @@ export const ConnectorGenerator = ({}: Props) => {
       }),
     [colorMode]
   );
+
+  const generateSSLSetting = (data: SourceData) => {
+    if (data?.SSLandSSALSettings === SSLSettings[0]) {
+      return `
+  properties.security.protocol='SSL',
+  properties.ssl.ca.location='/home/ubuntu/kafka/secrets/ca-cert',
+  properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
+  properties.ssl.key.location='/home/ubuntu/kafka/secrets/client_risingwave_client.key',
+  properties.ssl.key.password='abcdefgh'`;
+    } else if (data?.SSLandSSALSettings === SSLSettings[1]) {
+      return `
+  properties.sasl.mechanism='PLAIN',
+  properties.security.protocol='SASL_PLAINTEXT',
+  properties.sasl.username='admin',
+  properties.sasl.password='admin-secret'`;
+    } else if (data?.SSLandSSALSettings === SSLSettings[2]) {
+      return `
+  properties.sasl.mechanism='SCRAM-SHA-256',
+  properties.security.protocol='SASL_PLAINTEXT',
+  properties.sasl.username='admin',
+  properties.sasl.password='admin-secret'`;
+    } else if (data?.SSLandSSALSettings === SSLSettings[3]) {
+      return `
+   properties.sasl.mechanism='GSSAPI',
+   properties.security.protocol='SASL_PLAINTEXT',
+   properties.sasl.kerberos.service.name='kafka',
+   properties.sasl.kerberos.keytab='/etc/krb5kdc/kafka.client.keytab',
+   properties.sasl.kerberos.principal='kafkaclient4@AP-SOUTHEAST-1.COMPUTE.INTERNAL',
+   properties.sasl.kerberos.kinit.cmd='sudo kinit -R -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal} || sudo kinit -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal}',
+   properties.sasl.kerberos.min.time.before.relogin='10000'`;
+    } else if (data?.SSLandSSALSettings === SSLSettings[4]) {
+      return `
+  properties.sasl.mechanism='OAUTHBEARER',
+  properties.security.protocol='SASL_PLAINTEXT',
+  properties.sasl.oauthbearer.config='principal=bob'`;
+    } else return "";
+  };
+
+  const generateConnectorURL = (data: SourceData) => {
+    if (data?.bootstrapServers) {
+      return `properties.bootstrap.server='${data?.bootstrapServers}',`;
+    } else if (data?.serviceURL) {
+      return `service.url='${data?.serviceURL}',
+  admin.url='${data?.adminURL}'`;
+    } else if (data?.AWSRegion && data?.serviceEntryPointURL) {
+      return `aws.region='${data?.AWSRegion || "user_test_topic"}'
+  endpoint='${data?.serviceEntryPointURL || "172.10.1.1:9090,172.10.1.2:9090"}',
+  aws.credentials.session_token='${data?.AWSSessionToken}',
+  aws.credentials.role.arn='${data?.IAMRoleARN}',
+  aws.credentials.role.external_id='${data?.externalID}'`;
+    } else {
+      return `connector_parameter='value', ...`;
+    }
+  };
+
+  const generateLocation = (data: SourceData) => {
+    if (data?.schemaLocation) {
+      return `'${data?.schemaLocation}'`;
+    } else if (data?.confluentSchemaRegistryURL) {
+      return `'CONFLUENT SCHEMA REGISTRY ${data?.confluentSchemaRegistryURL}'`;
+    } else {
+      return "'location'";
+    }
+  };
+
+  const generateConnectionCode = () => {
+    // CDC
+    if (connector === "MySQL CDC") {
+      return `CREATE TABLE source_name (
+  ${data?.sourceSchema
+    ?.map(
+      (d) =>
+        `${d.columnName}  ${d.dataType} ${
+          d.selectAsPrimaryKey ? "PRIMARY KEY" : ""
+        }`
+    )
+    .join(",\n  ")}
+) 
+WITH (
+  connector='mysql-cdc',
+  hostname = '${data?.host}',
+  port = '${data?.port}',
+  username = '${data?.username}',
+  password = '${data?.password}',
+  database.name = '${data?.databaseName}',
+  table.name = '${data?.tableName}',
+  server.id = '${data?.serverID}'
+)
+ROW FORMAT DEBEZIUM_JSON;`;
+    }
+
+    if (connector === "PostgreSQL CDC") {
+      return `CREATE TABLE source_name (
+  ${data?.sourceSchema
+    ?.map(
+      (d) =>
+        `${d.columnName}  ${d.dataType} ${
+          d.selectAsPrimaryKey ? "PRIMARY KEY" : ""
+        }`
+    )
+    .join(",\n  ")}
+) WITH (
+  connector = 'postgres-cdc',
+  hostname = '${data?.host}',
+  port = '${data?.port}',
+  username = '${data?.username}',
+  password = '${data?.password}',
+  database.name = '${data?.databaseName}',
+  schema.name = '${data?.schemaName}',
+  table.name = '${data?.tableName}',
+  slot.name = '${data?.slotName}'
+);`;
+    }
+
+    // S3
+    if (connector === "S3") {
+      return `CREATE TABLE s(
+  ${data?.sourceSchema
+    ?.map(
+      (d) =>
+        `${d.columnName}  ${d.dataType} ${
+          d.selectAsPrimaryKey ? "PRIMARY KEY" : ""
+        }`
+    )
+    .join(",\n  ")}
+) WITH (
+    connector = 's3',
+    s3.region_name = '${data?.regionName || "region_name"}',
+    s3.bucket_name = '${data?.bucketName || "bucket_name"}',
+    s3.credentials.access = '${data?.AWSAccessKeyID}',
+    s3.credentials.secret = '${data?.AWSSecretAccessKey}'
+) ROW FORMAT csv WITHOUT HEADER DELIMITED BY ',';`;
+    }
+
+    // JSON
+    if (data?.rowFormat === "JSON") {
+      return `CREATE TABLE IF NOT EXISTS ${
+        data?.sourceName || data?.name || `${connectorType?.toLowerCase()}_name`
+      } (
+  ${data?.sourceSchema
+    ?.map(
+      (d) =>
+        `${d.columnName}  ${d.dataType} ${
+          d.selectAsPrimaryKey ? "PRIMARY KEY" : ""
+        }`
+    )
+    .join(",\n  ")}
+)
+WITH (
+  connector='${connector.toLowerCase()}',${
+        data?.stream ? `\n  stream='${data?.stream}'` : ""
+      }
+  topic='${data?.topic || "demo_topic"}', 
+  ${generateConnectorURL(data)},${
+        data?.scanStartupMode
+          ? `\n  scan.startup.mode='${
+              data?.scanStartupMode?.toLowerCase() || "earliest"
+            },`
+          : ""
+      }${
+        data?.startupTimestampOffset
+          ? `\n  scan.startup.timestamp_millis='${
+              data?.startupTimestampOffset || 1400000
+            }',`
+          : ""
+      }
+)
+ROW FORMAT JSON;`;
+    }
+
+    // Avro, Protobuf
+    return `CREATE ${connectorType?.toUpperCase()} IF NOT EXISTS ${
+      data?.sourceName || `${connectorType?.toLowerCase()}_name`
+    } 
+WITH (
+  connector='${connector?.toLowerCase()}',${
+      data?.stream ? `\n  stream='${data?.stream}',` : ""
+    }
+  topic='${data?.topic || "demo_topic"}', 
+  ${generateConnectorURL(data)}${
+      data?.scanStartupMode
+        ? `scan.startup.mode='${
+            data?.scanStartupMode?.toLowerCase() || "earliest"
+          },`
+        : ""
+    }${
+      data?.startupTimestampOffset
+        ? `\n  scan.startup.timestamp_millis='${
+            data?.startupTimestampOffset || 1400000
+          }',`
+        : ""
+    }${generateSSLSetting(data)}
+) 
+ROW FORMAT ${data?.rowFormat?.toUpperCase() || "JSON"} ${
+      data?.message ? "MESAAGE '" + data?.message + "'" : ""
+    }
+ROW SCHEMA LOCATION ${generateLocation(data)};`;
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -174,28 +376,7 @@ export const ConnectorGenerator = ({}: Props) => {
             Generate SQL statement
           </LoadingButton>
         </Stack>
-        <CodeBlock language="sql">
-          {`CREATE ${connectorType.toUpperCase()} IF NOT EXISTS ${
-            data?.sourceName || `${connectorType.toLowerCase()}_name`
-          } 
-WITH (
-  connector='${connector.toLowerCase()}',  
-  topic='${data?.topic || "demo_topic"}', 
-  properties.bootstrap.server='${
-    data?.bootstrapServers || "172.10.1.1:9090,172.10.1.2:9090"
-  }', 
-  scan.startup.mode='${data?.scanStartupMode || "earliest"}', 
-  scan.startup.timestamp_millis='${
-    data?.startupTimestampOffset || "140000000"
-  }', 
-  properties.group.id='demo_consumer_name' 
-) 
-ROW FORMAT ${data?.rowFormat || "JSON"} ${
-            data?.message ? "MESAAGE '" + data?.message + "'" : ""
-          }
-ROW SCHEMA LOCATION CONFLUENT
-SCHEMA REGISTRY 'http://127.0.0.1:8081';`}
-        </CodeBlock>
+        <CodeBlock language="sql">{generateConnectionCode()}</CodeBlock>
       </Box>
     </ThemeProvider>
   );

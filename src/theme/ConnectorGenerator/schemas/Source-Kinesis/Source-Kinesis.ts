@@ -1,8 +1,8 @@
-import { JsonSchema } from "@jsonforms/core";
+import { JsonSchema, RuleEffect } from "@jsonforms/core";
 import { UISchema } from "../store";
+import { DataType, RowFormat } from "../Source-Kafka/Source-Kafka";
 
 const StartupMode = ["Earliest", "Latest", "Sequence Number"];
-const RowFormat = ["JSON", "Avro", "Protobuf"];
 
 export const kinesisSchema: JsonSchema = {
   type: "object",
@@ -54,6 +54,24 @@ export const kinesisSchema: JsonSchema = {
     description: {
       title: "",
       type: "string",
+    },
+    sourceSchema: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          columnName: {
+            type: "string",
+          },
+          dataType: {
+            type: "string",
+            enum: DataType,
+          },
+          selectAsPrimaryKey: {
+            type: "boolean",
+          },
+        },
+      },
     },
   },
   required: ["name", "stream", "AWSRegion"],
@@ -136,12 +154,49 @@ export const kinesisUISchema: UISchema = {
       },
     },
     {
-      type: "Control",
-      scope: "#/properties/message",
+      type: "Group",
+      rule: {
+        effect: RuleEffect.SHOW,
+        condition: {
+          scope: "#/properties/rowFormat",
+          schema: {
+            not: { const: RowFormat[0] },
+          },
+        },
+      },
+      elements: [
+        {
+          type: "Control",
+          scope: "#/properties/message",
+        },
+        {
+          type: "Control",
+          scope: "#/properties/schemaLocation",
+        },
+      ],
     },
     {
-      type: "Control",
-      scope: "#/properties/schemaLocation",
+      type: "Group",
+      rule: {
+        effect: RuleEffect.SHOW,
+        condition: {
+          scope: "#/properties/rowFormat",
+          schema: {
+            const: RowFormat[0],
+          },
+        },
+      },
+      elements: [
+        {
+          type: "VerticalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/sourceSchema",
+            },
+          ],
+        },
+      ],
     },
   ],
 };
@@ -160,4 +215,11 @@ export const kinesisInitialData = {
   rowFormat: RowFormat[0],
   description:
     "If needed, please specify both of the followings at the same time:",
+  sourceSchema: [
+    {
+      columnName: "name",
+      dataType: DataType[0],
+      selectAsPrimaryKey: true,
+    },
+  ],
 };

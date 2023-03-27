@@ -1,14 +1,29 @@
-import { JsonSchema } from "@jsonforms/core";
+import { JsonSchema, RuleEffect } from "@jsonforms/core";
 import { UISchema } from "../store";
 
 const StartupMode = ["Earliest", "Latest"];
-const RowFormat = ["JSON", "Avro", "Protobuf", "Debezium JSON", "Maxwell JSON"];
-const SSLSettings = [
+export const RowFormat = ["JSON", "Avro", "Protobuf"];
+export const SSLSettings = [
   "SSL without SASL",
   "SASL/PLAIN",
   "SASL/SCRAM",
   "SASL/GSSAPI",
   "SASL/OAUTHBEARER",
+];
+export const DataType = [
+  "varchar",
+  "boolean",
+  "smallint",
+  "integer",
+  "bigint",
+  "numeric",
+  "real",
+  "double",
+  "date",
+  "time",
+  "timestamp",
+  "timestamptz",
+  "interval",
 ];
 
 export const kafkaSchema: JsonSchema = {
@@ -50,6 +65,24 @@ export const kafkaSchema: JsonSchema = {
     SSLandSSALSettings: {
       type: "string",
       enum: SSLSettings,
+    },
+    sourceSchema: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          columnName: {
+            type: "string",
+          },
+          dataType: {
+            type: "string",
+            enum: DataType,
+          },
+          selectAsPrimaryKey: {
+            type: "boolean",
+          },
+        },
+      },
     },
   },
   required: ["sourceName", "topic", "bootstrapServers"],
@@ -99,35 +132,72 @@ export const kafkaUISchema: UISchema = {
       },
     },
     {
-      type: "Control",
-      scope: "#/properties/message",
-    },
-    {
-      type: "Control",
-      scope: "#/properties/description",
-      options: {
-        readOnly: true,
+      type: "Group",
+      rule: {
+        effect: RuleEffect.SHOW,
+        condition: {
+          scope: "#/properties/rowFormat",
+          schema: {
+            not: { const: RowFormat[0] },
+          },
+        },
       },
-    },
-    {
-      type: "HorizontalLayout",
       elements: [
         {
           type: "Control",
-          scope: "#/properties/schemaLocation",
+          scope: "#/properties/message",
         },
         {
           type: "Control",
-          scope: "#/properties/confluentSchemaRegistryURL",
+          scope: "#/properties/description",
+          options: {
+            readOnly: true,
+          },
+        },
+        {
+          type: "HorizontalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/schemaLocation",
+            },
+            {
+              type: "Control",
+              scope: "#/properties/confluentSchemaRegistryURL",
+            },
+          ],
+        },
+        {
+          type: "Control",
+          scope: "#/properties/SSLandSSALSettings",
+          options: {
+            trim: true,
+          },
         },
       ],
     },
     {
-      type: "Control",
-      scope: "#/properties/SSLandSSALSettings",
-      options: {
-        trim: true,
+      type: "Group",
+      rule: {
+        effect: RuleEffect.SHOW,
+        condition: {
+          scope: "#/properties/rowFormat",
+          schema: {
+            const: RowFormat[0],
+          },
+        },
       },
+      elements: [
+        {
+          type: "VerticalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/sourceSchema",
+            },
+          ],
+        },
+      ],
     },
   ],
 };
@@ -135,9 +205,19 @@ export const kafkaUISchema: UISchema = {
 export const kafkaInitialdata = {
   sourceName: "",
   topic: "",
+  rowFormat: RowFormat[0],
   bootstrapServers: "",
   scanStartupMode: StartupMode[0],
   startupTimestampOffset: "",
   description: "Please specify one of the following locations:",
+  confluentSchemaRegistryURL: "",
+  schemaLocation: "",
   SSLandSSALSettings: SSLSettings[0],
+  sourceSchema: [
+    {
+      columnName: "name",
+      dataType: DataType[0],
+      selectAsPrimaryKey: true,
+    },
+  ],
 };

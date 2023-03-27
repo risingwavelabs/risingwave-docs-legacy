@@ -1,5 +1,6 @@
 import { JsonSchema } from "@jsonforms/core";
 import { UISchema } from "../store";
+import { DataType } from "../Source-Kafka/Source-Kafka";
 
 export const S3Schema: JsonSchema = {
   type: "object",
@@ -22,6 +23,24 @@ export const S3Schema: JsonSchema = {
     description: {
       title: "",
       type: "string",
+    },
+    sourceSchema: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          columnName: {
+            type: "string",
+          },
+          dataType: {
+            type: "string",
+            enum: DataType,
+          },
+          selectAsPrimaryKey: {
+            type: "boolean",
+          },
+        },
+      },
     },
   },
   required: ["AWSRegion", "bucketName"],
@@ -70,6 +89,20 @@ export const S3UISchema: UISchema = {
         trim: true,
       },
     },
+    {
+      type: "Group",
+      elements: [
+        {
+          type: "VerticalLayout",
+          elements: [
+            {
+              type: "Control",
+              scope: "#/properties/sourceSchema",
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 
@@ -81,4 +114,11 @@ export const S3InitialData = {
   matchPattern: "",
   description:
     "If needed, please specify both of the followings at the same time (if not specified, RisingWave will try to use the AWS credentials):",
+  sourceSchema: [
+    {
+      columnName: "name",
+      dataType: DataType[0],
+      selectAsPrimaryKey: true,
+    },
+  ],
 };
