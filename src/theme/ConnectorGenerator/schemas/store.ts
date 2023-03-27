@@ -32,6 +32,16 @@ import {
   PostgreSQLSchema,
   PostgreSQLUISchema,
 } from "./Source-PostgreSQL/Source-PostgreSQL";
+import {
+  sinkKafkaInitialdata,
+  sinkKafkaSchema,
+  sinkKafkaUISchema,
+} from "./Sink-Kafka/Sink-Kafka";
+import {
+  sinkJDBCInitialdata,
+  sinkJDBCSchema,
+  sinkJDBCUISchema,
+} from "./Sink-JDBC/Sink-JDBC";
 
 type Element = {
   type: string;
@@ -70,6 +80,12 @@ export const mapToInitialdata = new Map<string, any>();
 mapToSchema.set("Source-Kafka", kafkaSchema);
 mapToUISchema.set("Source-Kafka", kafkaUISchema);
 mapToInitialdata.set("Source-Kafka", kafkaInitialdata);
+mapToSchema.set("Sink-Kafka", sinkKafkaSchema);
+mapToUISchema.set("Sink-Kafka", sinkKafkaUISchema);
+mapToInitialdata.set("Sink-Kafka", sinkKafkaInitialdata);
+mapToSchema.set("Sink-JDBC", sinkJDBCSchema);
+mapToUISchema.set("Sink-JDBC", sinkJDBCUISchema);
+mapToInitialdata.set("Sink-JDBC", sinkJDBCInitialdata);
 mapToSchema.set("Source-Redpanda", kafkaSchema);
 mapToUISchema.set("Source-Redpanda", kafkaUISchema);
 mapToInitialdata.set("Source-Redpanda", kafkaInitialdata);

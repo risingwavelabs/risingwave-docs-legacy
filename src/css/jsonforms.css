@@ -11,7 +11,8 @@
   div.MuiTextField-root:has(
     label[id^="#/properties/rowFormat"],
     label[id^="#/properties/SSLandSSALSettings-input-label"],
-    label[id^="#/properties/description"]
+    label[id^="#/properties/description"],
+    label[id^="#/properties/format"]
   ) {
   width: 50%;
 }

@@ -146,6 +146,24 @@ export const ConnectorGenerator = ({}: Props) => {
   };
 
   const generateConnectionCode = () => {
+    if (connectorType === "Sink") {
+      return `CREATE SINK IF NOT EXISTS ${data?.sinkName || "sink_name"} ${
+        data?.sinkFrom === "Query"
+          ? `AS ${data?.query}`
+          : `FROM ${data?.tableName || "table_name"}`
+      }
+WITH (
+  connector='${connector === "Kafka" ? "kafka" : "jdbc"}',${
+        data?.topic ? `\n  topic='${data?.topic}',` : ""
+      }${
+        data?.bootstrapServer
+          ? `\n  properties.bootstrap.server='${data?.bootstrapServer}',`
+          : ""
+      }${data?.JDBCURL ? `\n  jdbc.url='${data?.JDBCURL}',` : ""}${
+        data?.targetTableName ? `\n  table.name='${data?.targetTableName}'` : ""
+      }${data?.forceAppendOnly ? "\n  format='append_only'" : ""}
+);`;
+    }
     // CDC
     if (connector === "MySQL CDC") {
       return `CREATE TABLE source_name (
