@@ -310,6 +310,10 @@ const sidebars = {
             id: 'sql/query-syntax/query-syntax-with-clause',
             label: 'WITH',
           },
+          {
+            type: 'doc',
+            id: 'sql/query-syntax/user-defined-functions',
+          },
         ]
         },
        {
