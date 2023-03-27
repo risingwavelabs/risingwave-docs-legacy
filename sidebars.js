@@ -235,6 +235,11 @@ const sidebars = {
         label: 'MySQL',
         id: 'guides/sink-to-mysql-with-jdbc'
       },
+      {
+        type: 'doc',
+        label: 'Apache Iceberg',
+        id: 'guides/sink-to-iceberg'
+      },
     ]
     },
 
