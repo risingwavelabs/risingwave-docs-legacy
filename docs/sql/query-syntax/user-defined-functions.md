@@ -12,9 +12,8 @@ This article provides a step-by-step guide for installing the RisingWave UDF API
 
 ## Prerequisites
 
-- Ensure that you have [Python](https://www.python.org/downloads/) installed on your computer.
+Ensure that you have [Python](https://www.python.org/downloads/) (3.8 or later) installed on your computer.
 
-- Ensure that [RisingWave is up and running](get-started.md#run-risingwave) and you have connected to it.
 
 ## 1. Install the RisingWave UDF API for Python
 
@@ -77,12 +76,21 @@ Here we take the Vim text editor as an example.
 # Import components from the risingwave.udf module
 from risingwave.udf import udf, udtf, UdfServer
 
-# Define a scalar function
+# Define a scalar functio that returns a single value
 @udf(input_types=['INT', 'INT'], result_type='INT')
 def gcd(x, y):
     while y != 0:
         (x, y) = (y, x % y)
     return x
+
+# Define a scalar function that returns multiple values (within a struct)
+@udf(input_types=['BINARY'], result_type='STRUCT<src_ip VARCHAR, dst_ip VARCHAR, src_port SMALLINT, dst_port SMALLINT>')
+def extract_tcp_info(tcp_packet: bytes):
+    src_addr, dst_addr = struct.unpack('!4s4s', tcp_packet[12:20])
+    src_port, dst_port = struct.unpack('!HH', tcp_packet[20:24])
+    src_addr = socket.inet_ntoa(src_addr)
+    dst_addr = socket.inet_ntoa(dst_addr)
+    return src_addr, dst_addr, src_port, dst_port
 
 # Define a table function
 @udtf(input_types='INT', result_types='INT')
@@ -92,8 +100,9 @@ def series(n):
 
 # Start a UDF server
 if __name__ == '__main__':
-    server = UdfServer(location="0.0.0.0:8815")
+    server = UdfServer(location="0.0.0.0:8815") # You can use any available port in your system. Here we use port 8815.
     server.add_function(gcd)
+    server.add_function(extract_tcp_info)
     server.add_function(series)
     server.serve()
 ```
@@ -102,14 +111,25 @@ if __name__ == '__main__':
 
 The script first imports three components from the `risingwave.udf` module - `udf`, `udtf`, and `UdfServer`.
 
-`udf` and `udtf` are decorators used to define scalar and table functions respectively. `@udf` is used to define a scalar function named `gcd` that takes two integer inputs and returns the greatest common divisor of the two integers. `@udtf` is used to define a table function named `series` that takes an integer input and yields a sequence of integers from 0 to n-1.
+`udf` and `udtf` are decorators used to define scalar and table functions respectively.
 
-Finally, the script starts a UDF server using `UdfServer` and listens for incoming requests on port 8815 of the local machine. It then adds the `gcd` and `series` functions to the server and starts the server using the `serve()` method. The `if __name__ == '__main__':` conditional is used to ensure that the server is only started if the script is run directly, rather than being imported as a module.
+The code defines two scalar functions and one table function:
+
+- The scalar function `gcd`, decorated with `@udf`, takes two integer inputs and returns the greatest common divisor of the two integers.
+- The scalar function `extract_tcp_info`, decorated with `@udf`, takes a single binary input and returns a structured output.
+
+    The function takes a single argument `tcp_packet` of type bytes and uses the struct module to unpack the source and destination addresses and port numbers from `tcp_packet`, and then converts the binary IP addresses to strings using `socket.inet_ntoa`.
+
+    The function returns a tuple containing the source IP address, destination IP address, source port number, and destination port number, all converted to their respective types. The return type is specified as a struct with four fields using the `result_type` argument.
+
+- The table function `series`, decorated by `@udtf`, takes an integer input and yields a sequence of integers from 0 to n-1.
+
+Finally, the script starts a UDF server using `UdfServer` and listens for incoming requests on port 8815 of the local machine. It then adds the `gcd`, `extract_tcp_info` and `series` functions to the server and starts the server using the `serve()` method. The `if __name__ == '__main__':` conditional is used to ensure that the server is only started if the script is run directly, rather than being imported as a module.
 
 </details>
 
 
-## 3. Start a UDF server
+## 3. Start the UDF server
 
 1. In a terminal window, navigate to the directory where `udf.py` is saved.
 
@@ -121,10 +141,13 @@ Finally, the script starts a UDF server using `UdfServer` and listens for incomi
 
 The UDF server will start running, allowing you to call the defined UDFs from RisingWave.
 
+## 4. Run and connect to RisingWave
 
-## 4. Declare your functions in RisingWave
 
-Use the `CREATE FUNCTION` command to declare the functions defined in Python in RisingWave.
+
+## 5. Declare your functions in RisingWave
+
+In RisingWave, use the `CREATE FUNCTION` command to declare the functions defined in Python in RisingWave.
 
 #### Syntax
 
@@ -194,25 +217,30 @@ CREATE FUNCTION function_name ( argument_type [, ...] )
 | --- | --- |
 | *function_name* | The name of the UDF that you want to declare in RisingWave. |
 | *argument_type* | The data type of the input parameter(s) that the UDF expects to receive.|
-| **RETURNS** *return_type* | Specifies the data type of the return value from the UDF. |
-| **RETURNS TABLE** | Specifies the structure of the table that the UDF returns. |
+| **RETURNS** *return_type* | Use this if the function returns a single value (i.e., scalar). It specifies the data type of the return value from the UDF.<br />The struct type, which can contain multiple values, is supported. But the field names must be consistent between Python and SQL definitions, or it will be considered a type mismatch.<br/>The array and JSONB types are not supported in this version. |
+| **RETURNS TABLE** | Use this if the function is a table-valued function (TVF). It specifies the structure of the table that the UDF returns. |
 | **LANGUAGE** | Specifies the programming language used to implement the UDF. <br/> Currently, only `python` is supported.|
 | **AS** *function_name_defined_in_server* | Specifies the function name defined in the UDF server.|
 | **USING LINK** '*udf_server_address*' | Specifies the server address where the UDF implementation resides. |
 
 #### Example
 
-Here's an example of how to declare the two UDFs defined in [step 2](#2-define-your-functions-in-a-python-file), `gcd` and `series`.
+Here's the SQL statements for declaring the three UDFs defined in [step 2](#2-define-your-functions-in-a-python-file).
 
 ```sql
 CREATE FUNCTION gcd(int, int) RETURNS int
 LANGUAGE python AS gcd USING LINK 'http://localhost:8815';
 
+CREATE FUNCTION extract_tcp_info(bytea)
+RETURNS struct<src_ip varchar, dst_ip varchar, src_port smallint, dst_port smallint>
+LANGUAGE python AS extract_tcp_info USING LINK 'http://localhost:8815';
+
+
 CREATE FUNCTION series(int) RETURNS TABLE (x int)
 LANGUAGE python AS series USING LINK 'http://localhost:8815';
 ```
 
-## 5. Use your functions in RisingWave
+## 6. Use your functions in RisingWave
 
 After you have declared your UDFs in RisingWave, you can use them in SQL queries just like any built-in functions.
 
@@ -220,6 +248,12 @@ After you have declared your UDFs in RisingWave, you can use them in SQL queries
 
 ```sql
 SELECT gcd(25, 15);
+---
+
+SELECT extract_tcp_info(E'\\x45000034a8a8400040065b8ac0a8000ec0a80001035d20b6d971b900000000080020200493310000020405b4' :: bytea);
+---
+(192.168.0.14,192.168.0.1,861,8374)
 
 SELECT * FROM series(10);
+---
 ```
