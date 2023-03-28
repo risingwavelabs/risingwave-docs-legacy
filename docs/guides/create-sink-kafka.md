@@ -44,9 +44,9 @@ Create a sink by selecting an entire materialized view.
 CREATE SINK sink1 FROM mv1 
 WITH (
    connector='kafka',
-   kafka.brokers='localhost:9092',
-   kafka.topic='test',
    type='append-only'
+   properties.bootstrap.server='localhost:9092',
+   topic='test'
 );
 ```
 
@@ -80,9 +80,9 @@ SELECT
 FROM taxi_trips
 WITH (
    connector='kafka',
-   kafka.brokers='localhost:9092',
-   kafka.topic='test',
    type = 'append-only'
+   properties.bootstrap.server='localhost:9092',
+   topic='test'
 );
 
 ```
@@ -132,9 +132,9 @@ Here is an example of creating a sink encrypted with SSL without using SASL auth
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
    type = 'append-only',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
    properties.security.protocol='SSL',
    properties.ssl.ca.location='/home/ubuntu/kafka/secrets/ca-cert',
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
@@ -171,9 +171,8 @@ Here is an example of creating a sink authenticated with SASL/PLAIN without SSL 
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   type = 'append-only',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -186,9 +185,9 @@ This is an example of creating a sink authenticated with SASL/PLAIN with SSL enc
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
    type = 'append-only',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_SSL',
    properties.sasl.username='admin',
@@ -228,9 +227,9 @@ Here is an example of creating a sink authenticated with SASL/SCRAM without SSL 
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
    type = 'append-only',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
    properties.sasl.mechanism='SCRAM-SHA-256',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -262,9 +261,9 @@ Here is an example of creating a sink authenticated with SASL/GSSAPI without SSL
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
    type = 'append-only',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
    properties.sasl.mechanism='GSSAPI',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.kerberos.service.name='kafka',
@@ -308,9 +307,9 @@ This is an example of creating a sink authenticated with SASL/OAUTHBEARER withou
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
    type = 'append-only',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
    properties.sasl.mechanism='OAUTHBEARER',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.oauthbearer.config='principal=bob'

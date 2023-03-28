@@ -13,6 +13,20 @@ Use the `SHOW SCHEMAS` command to show schemas in the "dev" database.
 SHOW SCHEMAS;
 ```
 
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('SHOW SCHEMAS'),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
 ## Example
 
 ```sql
