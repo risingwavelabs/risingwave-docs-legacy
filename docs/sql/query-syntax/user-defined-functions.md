@@ -214,7 +214,7 @@ LANGUAGE python AS series USING LINK 'http://localhost:8815';
 
 ## 5. Use your functions in RisingWave
 
-After you have declared your UFDs in RisingWave, you can use them in SQL queries just like any built-in functions.
+After you have declared your UDFs in RisingWave, you can use them in SQL queries just like any built-in functions.
 
 #### Example
 
