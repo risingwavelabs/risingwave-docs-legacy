@@ -20,7 +20,7 @@ Run the following command to pull and start the latest release of RisingWave in 
 ```shell
 docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:latest playground
 ```
-> You can find the previous releases and nightly builds on [Docker Hub](https://hub.docker.com/r/risingwavelabs/risingwave/tags).<br/>For example, if you would like to use RisingWave v0.1.16, run:
+> You can find the previous releases and nightly builds on [Docker Hub](https://hub.docker.com/r/risingwavelabs/risingwave/tags).<br/>For example, if you would like to use RisingWave v0.1.17, run:
 ```shell
 docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v0.1.17 playground
 ```
