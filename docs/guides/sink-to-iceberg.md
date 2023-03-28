@@ -17,7 +17,7 @@ As an example, the following `spark-sql` command creates an Iceberg table named 
 
 Note that only S3-compatible object store is supported, such as AWS S3, or MinIO.
 
-```sql
+```terminal
 spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.1.0,org.apache.hadoop:hadoop-aws:3.3.2\
     --conf spark.jars.ivy=/spark-script/.ivy \
     --conf spark.sql.catalog.demo=org.apache.iceberg.spark.SparkCatalog \
@@ -28,20 +28,20 @@ spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.1.0,org
     --conf spark.sql.catalog.demo.hadoop.fs.s3a.access.key=${ACCESS_KEY} \
     --conf spark.sql.catalog.demo.hadoop.fs.s3a.secret.key=${SECRET_KEY} \
     --conf spark.sql.defaultCatalog=demo \
-    ---e "drop table if exists demo.dev.`table`;
+    --e "drop table if exists demo.dev.`table`;
 CREATE TABLE demo.dev.`table`
 (
   seq_id bigint, 
   user_id bigint,
   user_name string
-) TBLPROPERTIES ('format-version'='2');
+) TBLPROPERTIES ('format-version'='2')";
 ```
 
 ## Install and launch RisingWave
 
 To install and start RisingWave locally, see the [Get started](/get-started.md) guide. We recommend running RisingWave locally for testing purposes.
 
-## Create a Sink
+## Create a sink
 
 ### Syntax
 
@@ -68,7 +68,7 @@ WITH (
 | table.name | The name of the target Iceberg table. |
 
 :::note
-Iceberg sinks with `upsert` support is slower than `append-only`.
+Iceberg sinks with `upsert` type is slower than `append-only`.
 :::
 
 ## Sink data from RisingWave to Iceberg
