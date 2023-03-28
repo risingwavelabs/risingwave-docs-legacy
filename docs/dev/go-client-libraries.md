@@ -37,7 +37,8 @@ import (
 )
 
 func main() {
-	connStr := "postgres://root:secret@localhost:4566/dev"
+         // Please replace the placeholders with the actual configuration.
+	connStr := "postgres://USER:PASSWORD@localhost:4566/DATABASE"
 	conn, err := pgx.Connect(context.Background(), connStr)
 	if err != nil {
 		log.Fatalf("Unable to connect to RisingWave: %v\n", err)
