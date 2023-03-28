@@ -22,7 +22,7 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
 ```
 > You can find the previous releases and nightly builds on [Docker Hub](https://hub.docker.com/r/risingwavelabs/risingwave/tags).<br/>For example, if you would like to use RisingWave v0.1.16, run:
 ```shell
-docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v0.1.16 playground
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v0.1.17 playground
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;If you see the logs, you have successfully started RisingWave.
