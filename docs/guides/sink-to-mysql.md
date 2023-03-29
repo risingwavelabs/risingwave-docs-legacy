@@ -141,7 +141,7 @@ All WITH options are required.
 |connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, go to the [Integrations](../rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
 |jdbc.url| The JDBC URL of the destination database necessary for the driver to recognize and connect to the database.|
 |table.name| The table in the destination database you want to sink to.|
-|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. </li></ul>|
+|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul>|
 
 ## Sink data from RisingWave to MySQL
 
