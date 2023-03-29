@@ -10,6 +10,6 @@ Astra Streaming is a multi-cloud streaming-as-a-service product built on Apache 
 
 To ingest data from Astra Streaming into RisingWave, you need to set up an Astra Streaming account and create an Astra Streaming topic first. You can then create a materialized or non-materialized source connection using the Pulsar connector in RisingWave to consume data from the Astra Streaming topic.
 
-To learn about how to set up an Astra Streaming account and create a topic, see the [Astra Streaming QuickStart](https://docs.datastax.com/en/streaming/astra-streaming/getting-started/astream-quick-start.html).
+To learn about how to set up an Astra Streaming account and create a topic, see the [Astra Streaming QuickStart](https://docs.datastax.com/en/streaming/astra-streaming/getting-started/index.html).
 
 To learn about how to consume data from a Pulsar topic, see [Ingest data from Pulsar](../create-source/create-source-pulsar.md).
