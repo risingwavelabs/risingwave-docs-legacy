@@ -75,6 +75,11 @@ VALUES
 
 To retrieve data from a jsonb column, use the `->` or `->>` operators to access the JSON object's properties. The `->` operator returns a jsonb value, while the `->>` operator returns a text value.
 
+`jsonb -> int` → `jsonb` <br />
+`jsonb -> varchar` → `jsonb` <br />
+`jsonb ->> int` → `varchar` <br />
+`jsonb ->> varchar` → `varchar`
+
 Jsonb data types can be cast to other data types such as bool, smallint, int, bigint, decimal, real, and double precision. Casting is performed using the `::data-type` cast notation, such as `::int` for casting to an integer data type.
 
 ### Examples
@@ -105,15 +110,7 @@ The output shows that the `brand_bad` column contains additional double quotes. 
 
 
 
-The following operators represent a transformation process involving extraction, casting, and reconversion between jsonb and other data types.
-
-`jsonb -> int -> jsonb` <br />
-`jsonb -> varchar -> jsonb` <br />
-`jsonb ->> int -> varchar` <br />
-`jsonb ->> varchar -> varchar` <br />
-
-
 ## Functions
 
-`jsonb_typeof(jsonb) -> varchar` <br />
-`jsonb_array_length(jsonb) -> int`
+`jsonb_typeof(jsonb)` → `varchar` <br />
+`jsonb_array_length(jsonb)` → `int`
