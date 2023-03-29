@@ -13,6 +13,33 @@ Use the `CREATE VIEW` command to create a non-materialized view, which runs ever
 CREATE VIEW view_name [ ( column_name [, ...] ) ] AS select_query;
 ```
 
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('CREATE VIEW'),
+        rr.NonTerminal('view_name', 'wrap'),
+        rr.Optional(
+            rr.Sequence(
+                rr.Terminal('('),
+                rr.OneOrMore(
+                     rr.NonTerminal('column_name'), rr.Terminal(',')),
+                rr.Terminal(')'),
+            ),
+        ),
+        rr.Terminal('AS'),
+        rr.NonTerminal('select_query', 'skip'),
+        rr.Terminal(';'),
+    )
+);
+
+
+<drawer SVG={svg} />
+
+
+
+
 ## Parameters
 
 |Parameter                  | Description           |

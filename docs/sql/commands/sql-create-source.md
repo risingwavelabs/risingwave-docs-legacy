@@ -95,7 +95,7 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 :::
 
-## Supported sources
+## Supported sources and formats
 
 Click a connector name to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
 
@@ -144,9 +144,6 @@ Syntax:
 ```sql
 ROW FORMAT JSON
 ```
-
-
-### Protobuf
 
 For data in Protobuf format, you must specify a message and a schema location. The schema location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Regsitry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
 
@@ -204,3 +201,6 @@ Syntax:
 ```sql
 ROW FORMAT UPSERT_AVRO
 ```
+
+For supported sources and formats, see [Data ingestion overview](data-ingestion.md).
+

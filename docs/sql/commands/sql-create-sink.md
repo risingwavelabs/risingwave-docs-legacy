@@ -46,25 +46,14 @@ rr.Stack(
             rr.Sequence(
                rr.Terminal('connector'),
                rr.Terminal('='),
-               rr.Terminal('\'kafka\''),
+               rr.Terminal('\'connector_name\''),
                rr.Terminal(','),
             ),
             rr.Sequence(
-               rr.Terminal('kafka.brokers'),
+               rr.Terminal('connector_parameter'),
                rr.Terminal('='),
-               rr.Terminal('\'broker_address\''),
+               rr.Terminal('\'value\''),
                rr.Terminal(','),
-            ),
-            rr.Sequence(
-               rr.Terminal('kafka.topic'),
-               rr.Terminal('='),
-               rr.Terminal('\'topic_address\''),
-               rr.Terminal(','),
-            ),
-            rr.Sequence(
-               rr.Terminal('format'),
-               rr.Terminal('='),
-               rr.Terminal('\'format\''),
             ),
          ),
       ),

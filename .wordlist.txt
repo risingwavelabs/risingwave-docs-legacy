@@ -82,6 +82,7 @@ mv
 mysql
 Redash
 JDBC
+Redash
 analytics
 Flink
 JVM
@@ -111,3 +112,6 @@ flink
 Flink's
 RisingWave's
 Redash
+protobuf
+Protobuf
+TiCDC

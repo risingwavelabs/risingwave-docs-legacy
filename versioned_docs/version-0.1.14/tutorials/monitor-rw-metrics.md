@@ -22,17 +22,17 @@ In this tutorial, you will learn how to use RisingWave as a metrics store to mon
 
 In the demo cluster, we packaged RisingWave, Prometheus, and Grafana. Prometheus has been set up to collect metrics from RisingWave.
 
-First, clone the [risingwave-demo](https://github.com/singularity-data/risingwave-demo) repository to the environment.
+First, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository to the environment.
 
 ```shell
-git clone https://github.com/risingwavelabs/risingwave-demo.git
+git clone https://github.com/risingwavelabs/risingwave.git
 ```
 
-Now navigate to the `prometheus` directory and start the demo cluster from the docker compose file.
+Now navigate to the `integration_tests/prometheus` directory and start the demo cluster from the docker compose file. 
 
 ```shell
-cd risingwave-demo/prometheus
-docker-compose up -d
+cd risingwave/integration_tests/prometheus
+docker compose up -d
 ```
 
 Necessary RisingWave components, Prometheus, and Grafana will be started. Prometheus will start collecting data from RisingWave and write them to Kafka topics. In this demo cluster, the data ingested from the Kafka topic will be stored in the MinIO instance.
