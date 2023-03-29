@@ -37,7 +37,7 @@ import (
 )
 
 func main() {
-         // Please replace the placeholders with the actual configuration.
+         // Please replace the placeholders with the actual credentials.
 	connStr := "postgres://USER:PASSWORD@localhost:4566/DATABASE"
 	conn, err := pgx.Connect(context.Background(), connStr)
 	if err != nil {
@@ -53,9 +53,10 @@ func main() {
 
 The code below creates a source `walk` with the `datagen` connector. The `datagen` connector is used to generate mock data. The `walk` source consists of two columns, `distance` and `duration`, which respectively represent the distance and the duration of a walk. The source is a simplified version of the data that is tracked by smart watches.
 
+Note that you need to place the code inside a function.
+
 ```go
-    sql := `
-       CREATE TABLE walk(distance INT, duration INT)
+sql := `CREATE TABLE walk(distance INT, duration INT)
         WITH ( 
             connector = 'datagen',
             fields.distance.kind = 'sequence',
@@ -66,58 +67,45 @@ The code below creates a source `walk` with the `datagen` connector. The `datage
             fields.duration.end = '30',
             datagen.rows.per.second='15',
             datagen.split.num = '1'
-        ) ROW FORMAT JSON
-    `
+        ) ROW FORMAT JSON`
 
-    _, err := conn.Exec(context.Background(), sql)
-    return err
-
+_, err := conn.Exec(context.Background(), sql)
+return err
 ```
 ## Create a materialized view
 
-The code in this section creates a materialized view `counter` to capture the latest total distance and duration..
+The code in this section creates a materialized view `counter` to capture the latest total distance and duration. Note that you need to place the code inside a function.
 
 ```go
-sql := `
-		CREATE MATERIALIZED VIEW counter AS 
+sql := `CREATE MATERIALIZED VIEW counter AS 
         SELECT
             SUM(distance) as total_distance,
             SUM(duration) as total_duration
-        FROM walk
-	`
+        FROM walk`
 
-	_, err := conn.Exec(context.Background(), sql)
-	return err
+_, err := conn.Exec(context.Background(), sql)
+return err
 ```
 
 ## Query a materialized view
 
-The code in this section queries the materialized view `counter` to get the real-time data.
+The code in this section queries the materialized view `counter` to get the real-time data. Note that you need to place the code inside a function.
 
 ```go
-type CounterRow struct {  //Define a struct to contain results from the materialized view
-	total_distance float64
-	total_duration float64
-}
-
 sql := `SELECT * FROM counter`
-	rows, err := conn.Query(context.Background(), sql)
+rows, err := conn.Query(context.Background(), sql)
+if err != nil {
+	return err
+}
+defer rows.Close()
+
+for rows.Next() {
+	var total_distance, total_duration float64
+	err = rows.Scan(&total_distance, &total_duration)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	defer rows.Close()
-
-var results []CounterRow
-	for rows.Next() {
-		var row CounterRow
-		err = rows.Scan(&row.total_distance, &row.total_duration)
-		if err != nil {
-			return nil, err
-		}
-		results = append(results, row) //Handle multiple rows of data
-	}
-
-	return results, rows.Err()
-//You might want to print the results by using fmt.Printf or fmt.PrintLn functions
-
+	fmt.Printf("Total Distance: %.2f, Total Duration: %.2f\n", total_distance, total_duration)
+}
+return rows.Err()
 ```
