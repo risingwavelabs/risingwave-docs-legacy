@@ -485,6 +485,11 @@ const sidebars = {
         id: 'dev/python-client-libraries',
         label: 'Python',
       },
+      {
+        type: 'doc',
+        id: 'dev/go-client-libraries',
+        label: 'Go',
+      },
     ]
     },
 

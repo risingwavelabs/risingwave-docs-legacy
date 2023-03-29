@@ -50,13 +50,13 @@ rr.Stack(
                rr.Terminal(','),
             ),
             rr.Sequence(
-               rr.Terminal('kafka.brokers'),
+               rr.Terminal('properties.bootstrap.server'),
                rr.Terminal('='),
                rr.Terminal('\'broker_address\''),
                rr.Terminal(','),
             ),
             rr.Sequence(
-               rr.Terminal('kafka.topic'),
+               rr.Terminal('topic'),
                rr.Terminal('='),
                rr.Terminal('\'topic_address\''),
                rr.Terminal(','),
