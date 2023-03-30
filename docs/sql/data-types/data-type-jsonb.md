@@ -1,30 +1,30 @@
 ---
 id: data-type-jsonb
 slug: /data-type-jsonb
-title: JSONB
+title: `JSONB`
 ---
 
-Use the jsonb data type to create a column that can store JSON data.
+Use the `JSONB` data type to create a column that can store JSON data.
 
-Caveats:
-  - Numbers not representable by IEEE 754 double precision floating point may have poor interoperability, notably `bigint`s larger than `(2**53)-1`.
-  - Avoid using a jsonb column for `GROUP BY`, `ORDER BY`, `PRIMARY`, or `INDEX` keys. The exact behavior may change in the future.
+Notes:
+  - Numbers not representable by IEEE 754 double precision floating point may have poor interoperability, notably numbers in the `bigint` type larger than `(2**53)-1`.
+  - Avoid using a `JSONB` column for `GROUP BY` and `ORDER BY` clauses or `PRIMARY` and `INDEX` keys. The exact behavior may change in the future.
     - The suggested usage is to extract the target field and cast to a simple type.
 
-## Define a jsonb type
+## Define a JSONB type
 
 Syntax:
 `JSONB`
 
 ### Examples
 
-The statement below creates a table `x` that contains a jsonb column named `j_data`.
+The statement below creates a table `x` that contains a `JSONB` column named `j_data`.
 
 ```sql
 CREATE TABLE x (j_data JSONB, d INTEGER);
 ```
 
-The statement below creates a table `y` that contains a jsonb column named `metadata`.
+The statement below creates a table `y` that contains a `JSONB` column named `metadata`.
 
 ```sql
 CREATE TABLE y (id VARCHAR, metadata JSONB);
@@ -41,9 +41,9 @@ CREATE TABLE product (
 ```
 
 
-## Add values to a jsonb column
+## Add values to a JSONB column
 
-To add values to a jsonb column, simply write the JSON as a string. For example, `'{"key": "value"}'`.
+To add values to a `JSONB` column, simply write the JSON as a string. For example, `'{"key": "value"}'`.
 
 ### Examples
 
@@ -71,16 +71,16 @@ VALUES
 ```
 
 
-## Retrieve data from a jsonb column and casting
+## Retrieve data from a JSONB column and casting
 
-To retrieve data from a jsonb column, use the `->` or `->>` operators to access the JSON object's properties. The `->` operator returns a jsonb value, while the `->>` operator returns a text value.
+To retrieve data from a `JSONB` column, use the `->` or `->>` operators to access the JSON object's properties. The `->` operator returns a `JSONB` value, while the `->>` operator returns a text value.
 
-`jsonb -> int` → `jsonb` <br />
-`jsonb -> varchar` → `jsonb` <br />
-`jsonb ->> int` → `varchar` <br />
-`jsonb ->> varchar` → `varchar`
+`JSONB -> int` → `JSONB` <br />
+`JSONB -> varchar` → `JSONB` <br />
+`JSONB ->> int` → `varchar` <br />
+`JSONB ->> varchar` → `varchar`
 
-Jsonb data types can be cast to other data types such as bool, smallint, int, bigint, decimal, real, and double precision. Casting is performed using the `::data-type` cast notation, such as `::int` for casting to an integer data type.
+`JSONB` data types can be cast to other data types such as bool, smallint, int, bigint, decimal, real, and double precision. Casting is performed using the `::data-type` cast notation, such as `::int` for casting to an integer data type.
 
 ### Examples
 

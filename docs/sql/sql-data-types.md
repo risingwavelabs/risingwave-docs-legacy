@@ -24,7 +24,7 @@ RisingWave supports the following data types:
 |interval| |Time span. <br/>Input in string format. Units include: second/seconds/s, minute/minutes/min/m, hour/hours/hr/h, day/days/d, month/months/mon, and year/years/yr/y. | Examples: `interval '4 hour'` → `04:00:00` <br /> `interval '3 day'` → `3 days 00:00:00` |
 |struct| |A struct is a column that contains nested data. For syntax and examples, see [Struct](./data-types/data-type-struct.md). | |
 |array| | An array is an ordered list of zero or more elements that share the same data type including the array type. For syntax and examples, see [Array](./data-types/data-type-array.md).|
-|jsonb| | A (binary) JSON value that ignores semantically-insignificant whitespaces or order of object keys. For syntax and examples, see [Jsonb](./data-types/data-type-jsonb.md).|
+|JSONB| | A (binary) JSON value that ignores semantically-insignificant whitespaces or order of object keys. For syntax and examples, see [JSONB](./data-types/data-type-jsonb.md).|
 
 :::note
 
