@@ -321,7 +321,12 @@ const sidebars = {
               type: 'doc',
               id: 'sql/sql-data-types',
               label: 'Overview',
-              },
+            },
+            {
+              type: 'doc',
+              id: 'sql/data-types/data-type-array',
+              label: 'Array',
+            },
             {
               type: 'doc',
               id: 'sql/data-types/data-type-casting',
@@ -329,9 +334,9 @@ const sidebars = {
             },
             {
               type: 'doc',
-              id: 'sql/data-types/data-type-array',
-              label: 'Array',
-              },
+              id: 'sql/data-types/data-type-jsonb',
+              label: 'JSONB',
+            },
             {
               type: 'doc',
               id: 'sql/data-types/data-type-struct',
