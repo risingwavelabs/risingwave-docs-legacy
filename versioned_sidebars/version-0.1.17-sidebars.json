@@ -410,6 +410,10 @@
         {
           "type": "doc",
           "id": "sql/psql-commands"
+        },
+        {
+          "type": "doc",
+          "id": "sql/sql-connector"
         }
       ]
     },
