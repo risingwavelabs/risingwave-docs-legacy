@@ -12,10 +12,15 @@ type Props = {
 
 export default function ResponsiveGrid({ nums, cols, children }: Props) {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={{ xs: 2, md: 3 }} alignItems="center" justifyItems="center">
+    <Box sx={{ flexGrow: 1, flexWrap: "wrap" }}>
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        alignItems="center"
+        justifyItems="center"
+      >
         {Array.from(Array(nums)).map((_, index) => (
-          <Grid item xs={12} sm={12 / cols} md={12 / cols} key={index}>
+          <Grid item xs={12} sm={6} md={6} lg={12 / cols} key={index}>
             {children[index]}
           </Grid>
         ))}

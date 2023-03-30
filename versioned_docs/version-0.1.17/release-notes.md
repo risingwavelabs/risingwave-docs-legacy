@@ -49,6 +49,7 @@ nums={3}
 cols={3}
 children={[
 <card
+width="280px"
 title="Choose a tenant plan"
 content="When creating a tenant, you can choose a tenant plan
 and configure tenant resources according to your needs."
@@ -58,6 +59,7 @@ links={[
 {text:"cloud", url:"https://www.risingwave.cloud"}]}
 />,
 <card
+width="280px"
 title="Choose a tenant plan"
 content="When creating a tenant, you can choose a tenant plan
 and configure tenant resources according to your needs."
@@ -67,6 +69,7 @@ links={[
 {text:"cloud", url:"https://www.risingwave.cloud"}]}
 />,
 <card
+width="280px"
 title="Choose a tenant plan"
 content="When creating a tenant, you can choose a tenant plan
 and configure tenant resources according to your needs."

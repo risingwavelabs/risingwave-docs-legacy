@@ -5,9 +5,13 @@ div.boxContainer {
 }
 
 div.cardContainer {
-  border-radius: 8px;
+  border-radius: 3px;
   transition: all 300ms ease;
   cursor: pointer;
+}
+
+div.defaultContainer {
+  border-radius: 3px;
 }
 
 div.cardContainer:hover {

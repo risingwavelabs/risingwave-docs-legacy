@@ -24,10 +24,20 @@ type Props = {
   url?: string;
   btn?: string;
   maxWidth?: string;
+  width?: string;
   links?: LinkProps[];
 };
 
-export default function OutlinedCard({ title, content, doc, url, links, btn, maxWidth }: Props) {
+export default function OutlinedCard({
+  title,
+  content,
+  doc,
+  url,
+  links,
+  btn,
+  width,
+  maxWidth,
+}: Props) {
   const history = useHistory();
   const { globalData } = useDocusaurusContext();
   const location = useLocation();
@@ -39,11 +49,13 @@ export default function OutlinedCard({ title, content, doc, url, links, btn, max
       onClick={() => {
         if (links) return;
         if (doc) {
-          globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
-            if (location.pathname.includes(v.path)) {
-              history.push(`${v.path}/${doc}`);
+          globalData["docusaurus-plugin-content-docs"].default["versions"].map(
+            (v) => {
+              if (location.pathname.includes(v.path)) {
+                history.push(`${v.path}/${doc}`);
+              }
             }
-          });
+          );
         } else if (url) {
           window.open(url, "_blank", "noopener,noreferrer");
         }
@@ -51,6 +63,9 @@ export default function OutlinedCard({ title, content, doc, url, links, btn, max
     >
       <Card
         variant="outlined"
+        sx={{
+          width: width ? width : "100%",
+        }}
         className={`${links ? styles.defaultContainer : styles.cardContainer}`}
       >
         <CardContent className={styles.cardContent}>
@@ -70,17 +85,19 @@ export default function OutlinedCard({ title, content, doc, url, links, btn, max
                       if (link.url) {
                         window.open(link.url, "_blank", "noopener,noreferrer");
                       } else if (link.docs) {
-                        globalData["docusaurus-plugin-content-docs"].default["versions"].map(
-                          (v) => {
-                            if (location.pathname.includes(v.path)) {
-                              history.push(`${v.path}/${link.docs}`);
-                            }
+                        globalData["docusaurus-plugin-content-docs"].default[
+                          "versions"
+                        ].map((v) => {
+                          if (location.pathname.includes(v.path)) {
+                            history.push(`${v.path}/${link.docs}`);
                           }
-                        );
+                        });
                       }
                     }}
                   >
-                    <Typography className={styles.cardLink}>{link.text}</Typography>
+                    <Typography className={styles.cardLink}>
+                      {link.text}
+                    </Typography>
                     <RightArrow />
                   </div>
                 );
@@ -102,7 +119,12 @@ export default function OutlinedCard({ title, content, doc, url, links, btn, max
 }
 
 const RightArrow = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width="16"
+    height="16"
+  >
     <path fill="none" d="M0 0h24v24H0z" />
     <path
       d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
