@@ -27,31 +27,18 @@ RisingWave also incorporates these third-party components:
 
 As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment. Ensure that it is running before launching the cluster.
 
-Then, clone the [risingwave-demo](https://github.com/risingwavelabs/risingwave-demo) repository.
+Then, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
 
 ```shell
-git clone https://github.com/risingwavelabs/risingwave-demo.git
+git clone https://github.com/risingwavelabs/risingwave.git
 ```
 
 Now run the following commands to navigate to the `docker` directory and start the cluster from the pre-defined docker-compose file.
 
 ```shell
-cd risingwave-demo/docker
-docker-compose up -d
+cd docker
+docker compose up -d
 ```
-
-:::note
-
-If the following error occurs:
-```shell
-ERROR: The Compose file './docker-compose.yml' is invalid because:
-'name' does not match any of the regexes: '^x-'
-```
-Use `docker compose` instead of `docker-compose`, or enable **Use Docker Compose V2** on the Settings page of Docker Desktop.
-
-For more information, see [Docker Documentation](https://docs.docker.com/compose/#compose-v2-and-the-new-docker-compose-command).
-
-:::
 
 ## Connect to RisingWave
 

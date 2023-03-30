@@ -21,6 +21,23 @@ Use the `DESCRIBE` command to view columns in the specified table, source, or ma
 ```sql
 DESCRIBE table_name;
 ```
+
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('DESCRIBE'),
+        rr.NonTerminal('table_name', 'skip'),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
 ## Parameters
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
@@ -34,10 +51,10 @@ This statement shows the columns and indexes of the "t1" table:
 DESCRIBE t1;
 ```
 ```
- Name |   Type    
-------+-----------
- col1 | Int32
- col2 | Int32
- idx1 | index(col2)
-(3 rows)
+    Name     |      Type
+-------------+-----------------
+ col1        | Int32
+ col2        | Int32
+ primary key | col1
+ idx1        | index(col2) distributed by(col2)
 ```

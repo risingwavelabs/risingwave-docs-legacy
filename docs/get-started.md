@@ -17,7 +17,7 @@ This guide will help you get started with RisingWave.
 
 ## Run RisingWave
 
-RisingWave offers two modes for different testing purposes:
+RisingWave offers two running modes and several running options. Please see the table below for comparisons. If you intend to deploy RisingWave in production environments, please use the Kubernetes Operator for RisingWave. This is because it has better support for resource management, and we do comprehensive tests for it.
 
 |Comparison \ Mode|Playground mode|Full-featured mode|
 |---|---|---|

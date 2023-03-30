@@ -43,7 +43,7 @@ conn.autocommit = True # Set queries to be automatically committed.
 
 with conn.cursor() as cur:
     cur.execute("""
-CREATE MATERIALIZED SOURCE walk(distance INT, duration INT)
+CREATE TABLE walk(distance INT, duration INT)
 WITH (
     connector = 'datagen',
     fields.distance.kind = 'sequence',

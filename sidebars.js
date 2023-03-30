@@ -42,13 +42,20 @@ const sidebars = {
           id: "key-concepts",
           label: "Key concepts and terms",
         },
-
+        
         {
-          type: "doc",
-          label: "Integrations",
-          id: "rw-integration-summary",
-        },
-      ],
+
+          type: 'doc',
+          label: 'Integrations',
+          id: 'rw-integration-summary',
+          },
+
+          {
+            type: 'doc',
+            label: 'RisingWave vs. Flink',
+            id: 'risingwave-flink-comparison',
+            },
+      ]
     },
 
     {
@@ -158,9 +165,14 @@ const sidebars = {
           id: "create-source/create-source-kafka",
         },
         {
-          type: "doc",
-          label: "Redpanda",
-          id: "create-source/create-source-redpanda",
+          type: 'doc',
+          label: 'Confluent Cloud',
+          id: 'guides/confluent-kafka-source',
+        },
+        {
+          type: 'doc',
+          label: 'Redpanda',
+          id: 'create-source/create-source-redpanda',
         },
         {
           type: "doc",
@@ -205,20 +217,25 @@ const sidebars = {
       ],
     },
     {
-      type: "category",
-      label: "Data delivery",
-      items: [
-        {
-          type: "doc",
-          id: "delivery-overview",
-          label: "Overview",
+      type: 'category',
+      label: 'Data delivery',
+      items:[
+      {
+        type: 'doc',
+        id: 'delivery-overview',
+        label: 'Overview',
+      },
+      {
+        type: 'doc',
+        label: 'Kafka',
+        id: 'guides/create-sink-kafka'
         },
-        {
-          type: "doc",
-          id: "sql/commands/sql-create-sink",
-          label: "Create a sink",
-        },
-      ],
+      {
+        type: 'doc',
+        label: 'MySQL',
+        id: 'guides/sink-to-mysql-with-jdbc'
+      },
+    ]
     },
 
     {
@@ -290,37 +307,11 @@ const sidebars = {
             },
           ],
         },
-
-        {
-          type: "category",
-          label: "Data types",
-          items: [
-            {
-              type: "doc",
-              id: "sql/sql-data-types",
-              label: "Overview",
-            },
-            {
-              type: "doc",
-              id: "sql/data-types/data-type-casting",
-              label: "Casting",
-            },
-            {
-              type: "doc",
-              id: "sql/data-types/data-type-array",
-              label: "Array",
-            },
-            {
-              type: "doc",
-              id: "sql/data-types/data-type-struct",
-              label: "Struct",
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Functions and operators",
-          items: [
+       {
+          type: 'category',
+          label: 'Data types',
+          items:
+          [
             {
               type: "doc",
               id: "sql/functions-operators/sql-function-logical",
@@ -341,57 +332,111 @@ const sidebars = {
               id: "sql/functions-operators/sql-function-cast",
               label: "Cast",
             },
-            {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-mathematical",
-              label: "Mathematical",
-            },
-            {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-bitstring",
-              label: "Bit string",
-            },
-            {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-string",
-              label: "String",
-            },
-            {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-datetime",
-              label: "Date/time",
-            },
-            {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-aggregate",
-              label: "Aggregate",
-            },
-            {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-conditional",
-              label: "Conditional",
-            },
-            {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-sys-info",
-              label: "System information",
-            },
-            {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-array",
-              label: "Array",
-            },
-            {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-set",
-              label: "Set",
-            },
-          ],
-        },
-
+            ]
+      },  
+      {
+      type: 'category',
+      label: 'Functions and operators',
+      items: 
+        [
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-logical',
+            label: 'Logical',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-comparison',
+            label: 'Comparison',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-time-window',
+            label: 'Time window',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-cast',
+            label: 'Cast',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-mathematical',
+            label: 'Mathematical',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-bitstring',
+            label: 'Bit string',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-string',
+            label: 'String',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-datetime',
+            label: 'Date/time',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-aggregate',
+            label: 'Aggregate',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-conditional',
+            label: 'Conditional',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-sys-info',
+            label: 'System information',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-array',
+            label: 'Array',
+          },
+          {
+            type: 'doc',
+            id: 'sql/functions-operators/sql-function-set',
+            label: 'Set',
+          }
+        ]
+      },
+      
         {
-          type: "category",
-          label: "Patterns",
+          type: 'category',
+          label: 'Patterns',
+          items:
+            [  {
+                type: 'doc',
+                id: 'sql/syntax/sql-pattern-dynamic-filters',
+                label: 'Dynamic filters'
+              },
+              {
+                type: 'doc',
+                id: 'sql/syntax/sql-pattern-temporal-filters',
+                label: 'Temporal filters'
+              },
+              {
+                type: 'doc',
+                id: 'sql/syntax/sql-pattern-topn',
+                label: 'Top-N by group'
+              }
+            ]
+         }, 
+        {
+          type: 'doc',
+          id: 'sql/sql-identifiers',
+          label: 'Identifiers',
+        },
+      
+        {
+          type: 'category',
+          label: 'System catalogs',
           items: [
             {
               type: "doc",
@@ -434,23 +479,29 @@ const sidebars = {
       label: `Client libraries`,
       collapsible: true,
       collapsed: true,
-      items: [
-        {
-          type: "doc",
-          id: "dev/java-client-libraries",
-          label: "Java",
-        },
-        {
-          type: "doc",
-          id: "dev/nodejs-client-libraries",
-          label: "Node.js",
-        },
-        {
-          type: "doc",
-          id: "dev/python-client-libraries",
-          label: "Python",
-        },
-      ],
+      items:
+      [
+      {
+        type: 'doc',
+        id: 'dev/java-client-libraries',
+        label: 'Java',
+      },
+      {
+        type: 'doc',
+        id: 'dev/nodejs-client-libraries',
+        label: 'Node.js',
+      },
+      {
+        type: 'doc',
+        id: 'dev/python-client-libraries',
+        label: 'Python',
+      },
+      {
+        type: 'doc',
+        id: 'dev/go-client-libraries',
+        label: 'Go',
+      },
+    ]
     },
 
     {
@@ -458,7 +509,15 @@ const sidebars = {
       label: "Manage RisingWave",
       collapsible: true,
       collapsed: true,
-      items: [
+      items: 
+      [ {
+        type: 'doc',
+        id: 'manage/view-statement-progress',
+      },
+      {
+        type: 'doc',
+        id: 'manage/view-adjust-system-parameters',
+      },
         {
           type: "doc",
           id: "manage/meta-backup",
