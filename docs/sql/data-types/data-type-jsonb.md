@@ -1,7 +1,7 @@
 ---
 id: data-type-jsonb
 slug: /data-type-jsonb
-title: `JSONB`
+title: JSONB
 ---
 
 Use the `JSONB` data type to create a column that can store JSON data.
