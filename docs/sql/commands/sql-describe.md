@@ -53,8 +53,8 @@ DESCRIBE t1;
 ```
     Name     |      Type
 -------------+-----------------
- col1        | Int32
- col2        | Int32
+ col1        | integer
+ col2        | integer
  primary key | col1
  idx1        | index(col2) distributed by(col2)
 ```
