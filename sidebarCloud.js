@@ -43,12 +43,12 @@ module.exports = {
         },
         {
           type: "link",
-          label: "2. Create a tenant",
+          label: "2. Create a cluster",
           href: "/cloud/quickstart/?step=2",
         },
         {
           type: "link",
-          label: "3. Connect to a tenant",
+          label: "3. Connect to a cluster",
           href: "/cloud/quickstart/?step=3",
         },
         {
@@ -65,37 +65,37 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Tenant & database",
+      label: "Cluster & database",
       collapsible: false,
       collapsed: false,
-      link:{type: 'doc', id:'tenant-overview'},
+      link:{type: 'doc', id:'cluster-overview'},
       items: [
         {
           type: "category",
-          label: "Manage tenants",
+          label: "Manage clusters",
           collapsible: true,
           items: [
             {
               type: "doc",
-              id: "tenant-manage-tenants",
+              id: "cluster-manage-clusters",
               label: "Overview",
             },
             {
               type: "doc",
-              id: "tenant-choose-a-tenant-plan",
+              id: "cluster-choose-a-cluster-plan",
             },
             {
               type: "doc",
-              id: "tenant-connect-to-a-tenant",
+              id: "cluster-connect-to-a-cluster",
             },
             {
               type: "doc",
-              id: "tenant-check-status-and-metrics",
+              id: "cluster-check-status-and-metrics",
               label: "Check status and metrics",
             },
             {
               type: "doc",
-              id: "tenant-stop-and-delete-tenants",
+              id: "cluster-stop-and-delete-clusters",
             },
           ],
         },
@@ -107,29 +107,29 @@ module.exports = {
           items: [
             {
               type: "doc",
-              id: "tenant-manage-database-users",
+              id: "cluster-manage-database-users",
               label: "Overview",
             },
             {
               type: "doc",
-              id: "tenant-create-a-database-user",
+              id: "cluster-create-a-database-user",
               label: "Create a user",
             },
             {
               type: "doc",
-              id: "tenant-change-database-user-password",
+              id: "cluster-change-database-user-password",
               label: "Change user password",
             },
             {
               type: "doc",
-              id: "tenant-delete-a-database-user",
+              id: "cluster-delete-a-database-user",
               label: "Delete a user",
             },
           ],
         },
         {
           type: "doc",
-          id: "tenant-monitor-materialized-views",
+          id: "cluster-monitor-materialized-views",
         },
       ],
     },

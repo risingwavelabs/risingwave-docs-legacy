@@ -1,13 +1,13 @@
 ---
-id: tenant-connect-to-a-tenant
-title: Connect to a tenant
-description: Connect to a tenant using the console or terminal.
-slug: /tenant-connect-to-a-tenant
+id: cluster-connect-to-a-cluster
+title: Connect to a cluster
+description: Connect to a cluster using the console or terminal.
+slug: /cluster-connect-to-a-cluster
 ---
 
-After [getting a tenant up and running](tenant-manage-tenants.md#create-a-tenant), you need to connect to it so that you can interact with RisingWave.
+After [getting a cluster up and running](cluster-manage-clusters.md#create-a-cluster), you need to connect to it so that you can interact with RisingWave.
 
-You can choose from the following two ways to connect to your tenant.
+You can choose from the following two ways to connect to your cluster.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -40,7 +40,7 @@ To connect via the console:
 
 <TabItem value="terminal" label="Terminal">
 
-For terminal enthusiasts, you can still connect to a tenant through your local terminal.
+For terminal enthusiasts, you can still connect to a cluster through your local terminal.
 
 [screenshot]
 
@@ -48,16 +48,16 @@ For terminal enthusiasts, you can still connect to a tenant through your local t
 
     `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
 
-2. Select the **Tenants** tab.
+2. Select the **Clusters** tab.
     
     [screenshot]
     
-3. Click the **Connect** button on the tenant you want to connect to.
+3. Click the **Connect** button on the cluster you want to connect to.
     
     [screenshot]
 
     :::tip
-    If the status of the tenant is **Stopped**, you need to click **Start** to restart it before you can connect to it.
+    If the status of the cluster is **Stopped**, you need to click **Start** to restart it before you can connect to it.
     :::
     
 4. Select an existing database user or create a new one.

@@ -1,11 +1,11 @@
 ---
-id: tenant-choose-a-tenant-plan
-title: Choose a tenant plan
-description: Choose a plan when you create a tenant.
-slug: /tenant-choose-a-tenant-plan
+id: cluster-choose-a-cluster-plan
+title: Choose a cluster plan
+description: Choose a plan when you create a cluster.
+slug: /cluster-choose-a-cluster-plan
 ---
 
-When creating a tenant, you can choose a tenant plan and configure tenant resources according to your needs.
+When creating a cluster, you can choose a cluster plan and configure cluster resources according to your needs.
 
 Select the plan below to see the details.
 
@@ -21,14 +21,14 @@ The free tier plan provides all the necessary resources for you to test and expl
 [screenshot]
 
 :::note
-Tenants created under the free tier plan will expire after five days. Do not choose this plan for production.
+Clusters created under the free tier plan will expire after five days. Do not choose this plan for production.
 :::
 
 #### Configuration
 
-- **Tenant name**
+- **Cluster name**
 
-    Name of the tenant. Assigning a descriptive name to each tenant can be helpful when managing multiple tenants.
+    Name of the cluster. Assigning a descriptive name to each cluster can be helpful when managing multiple clusters.
 
 - **Region**
 
@@ -53,9 +53,9 @@ Get in touch with our sales at [risingwave-labs.com/contact](https://www.risingw
 
 #### Configuration
 
-- **Tenant name**
+- **Cluster name**
 
-    Name of the tenant. Assigning a descriptive name to each tenant can be helpful when managing multiple tenants.
+    Name of the cluster. Assigning a descriptive name to each cluster can be helpful when managing multiple clusters.
 
 - **Region**
 

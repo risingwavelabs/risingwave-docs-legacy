@@ -1,13 +1,13 @@
 ---
-id: tenant-delete-a-database-user
+id: cluster-delete-a-database-user
 title: Delete a database user
 description: If you no longer need a database user, you can delete it.
-slug: /tenant-delete-a-database-user
+slug: /cluster-delete-a-database-user
 ---
 
 If you no longer need a database user, you can delete it.
 
-1. Go to the [tenant details page](tenant-check-status-and-metrics.md#check-the-detailed-metrics-of-a-tenant).
+1. Go to the [cluster details page](cluster-check-status-and-metrics.md#check-the-detailed-metrics-of-a-cluster).
     
     [screenshot]
     

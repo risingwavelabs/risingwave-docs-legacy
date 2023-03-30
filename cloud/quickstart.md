@@ -28,27 +28,27 @@ We prepared a quickstart wizard for an easy and guided setup after you log in. O
 
 </TabItem>
 
-<TabItem value="2" label="2. Create a tenant">
+<TabItem value="2" label="2. Create a cluster">
 
-## Create a tenant
+## Create a cluster
 
-A tenant is a dedicated RisingWave cluster with its own set of components, such as compute nodes, frontend nodes, a meta server, and etcd service, along with computing and storage resources. Within a tenant, you can create and manage database users and databases.
+A cluster is a dedicated RisingWave cluster with its own set of components, such as compute nodes, frontend nodes, a meta server, and etcd service, along with computing and storage resources. Within a cluster, you can create and manage database users and databases.
 
-<defaultButton text="Create a tenant" url="https://risingwave-cloud.com/tenants/"/>
+<defaultButton text="Create a cluster" url="https://risingwave-cloud.com/clusters/"/>
 
-You can choose to create a free tenant or a customizable tenant if you have an invitation code.
+You can choose to create a free cluster or a customizable cluster if you have an invitation code.
 
-See [Choose a tenant plan](https://www.notion.so/Choose-a-tenant-plan-55b61d41701d475aa811fbbe78a14b7e) for details on how to choose a tenant plan and configure the resources.
+See [Choose a cluster plan](https://www.notion.so/Choose-a-cluster-plan-55b61d41701d475aa811fbbe78a14b7e) for details on how to choose a cluster plan and configure the resources.
 
 </TabItem>
 
-<TabItem value="3" label="3. Connect to your tenant">
+<TabItem value="3" label="3. Connect to your cluster">
 
-## Connect to your tenant
+## Connect to your cluster
 
-After getting a tenant up and running, you need to connect to it so that you can interact with RisingWave.
+After getting a cluster up and running, you need to connect to it so that you can interact with RisingWave.
 
-You can choose from the following two ways to connect to your tenant.
+You can choose from the following two ways to connect to your cluster.
 
 <Tabs>
 
@@ -70,13 +70,13 @@ To connect via the console:
  
 <TabItem value="terminal" label="Terminal">
 
-For terminal enthusiasts, you can still connect to a tenant through your local terminal.
+For terminal enthusiasts, you can still connect to a cluster through your local terminal.
 
 1. [Install `psql`](https://www.risingwave.dev/docs/current/install-psql-without-postgresql/) in your environment.
 
     `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
 
-2. Select the **Tenants** tab.
+2. Select the **Clusters** tab.
     
     
     
@@ -120,7 +120,7 @@ You can easily access the demos available in the console. These demos cover the 
 
 **Note:**
 
-The data sources used in the demos are available in region `us-east-2` only. You cannot access the data sources if you select another region when creating the tenant. Create a new tenant in the `us-east-2` region to access the demo data.
+The data sources used in the demos are available in region `us-east-2` only. You cannot access the data sources if you select another region when creating the cluster. Create a new cluster in the `us-east-2` region to access the demo data.
 
 ### [TBD] Use cases
 

@@ -1,8 +1,8 @@
 ---
-id: tenant-overview
-title: Tenant and database
+id: cluster-overview
+title: Cluster and database
 description: hello
-slug: /tenant-overview
+slug: /cluster-overview
 ---
 
 import DocCardList from '@theme/DocCardList';
