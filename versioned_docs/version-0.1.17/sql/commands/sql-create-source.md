@@ -5,21 +5,21 @@ description: Supported data sources and how to connect RisingWave to the sources
 slug: /sql-create-source
 ---
 
-A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. 
-If you  choose to persist the data from the source in RisingWave, use the `CREATE TABLE` command with connector settings. See [CREATE TABLE](sql-create-table.md) for more details.
+A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command.
+If you choose to persist the data from the source in RisingWave, use the `CREATE TABLE` command with connector settings. See [CREATE TABLE](sql-create-table.md) for more details.
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or sinks for data transformations.
 
 ## Syntax
 
 ```sql
-CREATE SOURCE [ IF NOT EXISTS ] source_name 
+CREATE SOURCE [ IF NOT EXISTS ] source_name
 [schema_definition]
 WITH (
    connector='connector_name',
    connector_parameter='value', ...
 )
-ROW FORMAT data_format 
+ROW FORMAT data_format
 [ MESSAGE 'message' ]
 [ ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
@@ -86,8 +86,6 @@ export const svg = rr.Diagram(
 );
 
 <drawer SVG={svg} />
-
-
 
 :::note
 
