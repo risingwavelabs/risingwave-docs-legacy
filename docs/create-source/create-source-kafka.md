@@ -126,6 +126,7 @@ For materialized sources with primary key constraints, if a new data record with
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+|private.links| Optional. Allow RisingWave to consume messages from a Kafka service located in a different VPC by using AWS PrivateLink. Use a hash table to establish this connection, with `provider` and `infos` being keys. Specify the value for `provider` as `aws` and for `infos` as an array of hash tables, where each hash table corresponds to the broker servers specified in `properties.bootstrap.server`. The hash tables should contain the keys `service_name`, `availability_zone`, and `port`.|
 
 ### Other parameters
 
@@ -175,6 +176,31 @@ WITH (
 )
 ROW FORMAT JSON;
 ```
+
+```sql
+CREATE SOURCE tcp_metrics (
+    device_id VARCHAR,
+    metric_name VARCHAR,
+    report_time TIMESTAMP,
+    metric_value DOUBLE PRECISION
+) WITH (
+    connector = 'kafka',
+    topic = 'tcp_metrics',
+    properties.bootstrap.server = 'b-1.sourcedemomsk.pakv5y.c3.kafka.us-east-1.amazonaws.com:9092, 
+      b-2.sourcedemomsk.pakv5y.c3.kafka.us-east-1.amazonaws.com:9092,
+      b-3.sourcedemomsk.pakv5y.c3.kafka.us-east-1.amazonaws.com:9092',
+    private.links='{
+      "provider": "aws", 
+      "infos": [
+         {"service_name": "com.amazonaws.vpce.us-east-1.vpce-svc-018d21e01fc2ec2aa", "availability_zone": "use1-az6", "port": 9001},
+         {"service_name": "com.amazonaws.vpce.us-east-1.vpce-svc-018d21e01fc2ec2aa", "availability_zone": "use1-az4", "port": 9002}
+         {"service_name": "com.amazonaws.vpce.us-east-1.vpce-svc-018d21e01fc2ec2aa", "availability_zones": "use1-az8", "port": 9003}
+      ]
+    }',
+    scan.startup.mode = 'earliest'
+) ROW FORMAT JSON;
+```
+
 </TabItem>
 <TabItem value="pb" label="Protobuf" default>
 
