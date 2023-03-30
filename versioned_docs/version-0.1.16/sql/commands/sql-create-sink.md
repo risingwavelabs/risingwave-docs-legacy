@@ -17,8 +17,8 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 [FROM sink_from | AS select_query]
 WITH (
    connector='kafka',
-   kafka.brokers='broker_address',
-   kafka.topic='topic_address',
+   properties.bootstrap.server='broker_address',
+   topic='topic_address',
    format='format'
 );
 ```
@@ -33,8 +33,8 @@ All `WITH` options are required.
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](../commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |connector| Sink connector type. Currently, only `‘kafka’` is supported. If there is a particular sink you are interested in, go to the [Integrations Overview](../../rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
-|kafka.brokers|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
-|kafka.topic|Address of the Kafka topic. One sink can only correspond to one topic.|
+|properties.bootstrap.server|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
+|topic|Address of the Kafka topic. One sink can only correspond to one topic.|
 |format	| Data format. Allowed formats:<ul><li> `append_only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li></ul>|
 
 ## Examples
@@ -44,8 +44,8 @@ Create a sink by selecting an entire materialized view.
 CREATE SINK sink1 FROM mv1 
 WITH (
    connector='kafka',
-   kafka.brokers='localhost:9092',
-   kafka.topic='test',
+   properties.bootstrap.server='localhost:9092',
+   topic='test',
    format='append_only'
 )
 ```
@@ -79,8 +79,8 @@ SELECT
 FROM taxi_trips
 WITH (
    connector='kafka',
-   kafka.brokers='localhost:9092',
-   kafka.topic='test',
+   properties.bootstrap.server='localhost:9092',
+   topic='test',
    format='append_only'
 )
 

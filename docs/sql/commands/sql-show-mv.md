@@ -12,6 +12,28 @@ Use the `SHOW MATERIALZED VIEWS` command to show existing materialized views.
 ```sql
 SHOW MATERIALIZED VIEWS [FROM schema_name];
 ```
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Terminal('SHOW MATERIALIZED VIEWS'),
+            rr.Optional(
+                rr.Sequence(
+                    rr.Terminal('FROM'),
+                    rr.NonTerminal('schema_name', 'skip'),
+                ),
+            ),
+        ),
+        rr.Terminal(';'),
+    ),
+);
+
+
+<drawer SVG={svg} />
+
+
 ## Parameters
 |Parameter      | Description           |
 |---------------------------|-----------------------|

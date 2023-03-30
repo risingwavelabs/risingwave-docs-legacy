@@ -166,6 +166,11 @@ const sidebars = {
         },
         {
           type: 'doc',
+          label: 'Confluent Cloud',
+          id: 'guides/confluent-kafka-source',
+        },
+        {
+          type: 'doc',
           label: 'Redpanda',
           id: 'create-source/create-source-redpanda',
         },
@@ -480,6 +485,11 @@ const sidebars = {
         id: 'dev/python-client-libraries',
         label: 'Python',
       },
+      {
+        type: 'doc',
+        id: 'dev/go-client-libraries',
+        label: 'Go',
+      },
     ]
     },
 
@@ -492,6 +502,10 @@ const sidebars = {
       [ {
         type: 'doc',
         id: 'manage/view-statement-progress',
+      },
+      {
+        type: 'doc',
+        id: 'manage/view-adjust-system-parameters',
       },
         {
           type: 'doc',

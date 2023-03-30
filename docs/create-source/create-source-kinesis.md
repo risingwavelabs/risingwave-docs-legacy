@@ -129,7 +129,7 @@ For materialized sources with primary key constraints, if a new data record with
 |Field|	Notes|
 |---|---|
 |*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
-|*message* |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
+|*message* |Message name of the main Message in schema definition. Required when *data_format* is `PROTOBUF`.|
 |*location*| Web location of the schema file in  `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 
 ## Example
@@ -152,7 +152,7 @@ WITH (
    aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
    aws.credentials.role.external_id='demo_external_id'
 ) 
-ROW FORMAT AVRO MESSAGE 'main_message'
+ROW FORMAT AVRO
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
 ```
 </TabItem>

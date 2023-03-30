@@ -19,6 +19,7 @@ A streaming system can be beneficial in this scenario. It monitors metric perfor
 In this tutorial, you will learn how to automate anomaly detection from streams of system performance metrics with RisingWave. We have set up a demo cluster for this tutorial, so you can easily try it out.
 
 ## Prerequisites
+
 * Ensure you have [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) installed in your environment. Note that Docker Compose is included in Docker Desktop for Windows and macOS. If you use Docker Desktop, ensure that it is running before launching the demo cluster.
 * Ensure that the [PostgreSQL](https://www.postgresql.org/docs/current/app-psql.html) interactive terminal, `psql`, is installed in your environment. For detailed instructions, see [Download PostgreSQL](https://www.postgresql.org/download/).
 
@@ -26,31 +27,18 @@ In this tutorial, you will learn how to automate anomaly detection from streams 
 
 In the demo cluster, we packaged RisingWave and a workload generator. The workload generator will start to generate random traffic and feed them into Kafka as soon as the cluster is started.
 
-First, clone the [risingwave-demo](https://github.com/risingwavelabs/risingwave-demo) repository to the environment.
+First, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository to the environment.
 
 ```shell
-git clone https://github.com/risingwavelabs/risingwave-demo.git
+git clone https://github.com/risingwavelabs/risingwave.git
 ```
 
-Now navigate to the `cdn-metrics` directory and start the demo cluster from the docker compose file. 
+Now navigate to the `integration_tests/cdn-metrics` directory and start the demo cluster from the docker compose file. 
 
 ```shell
-cd risingwave-demo/cdn-metrics
-docker-compose up -d
+cd risingwave/integration_tests/cdn-metrics
+docker compose up -d
 ```
-
-:::note
-
-If the following error occurs:
-```shell
-ERROR: The Compose file './docker-compose.yml' is invalid because:
-'name' does not match any of the regexes: '^x-'
-```
-Use `docker compose` instead of `docker-compose`, or enable **Use Docker Compose V2** on the Settings page of Docker Desktop.
-
-For more information, see [Docker Documentation](https://docs.docker.com/compose/#compose-v2-and-the-new-docker-compose-command).
-
-:::
 
 Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, data of materialized views will be stored in the MinIO instance.
 
