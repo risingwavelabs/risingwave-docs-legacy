@@ -22,10 +22,17 @@ div.cardContainer:hover {
 
 div.cardContent {
   padding-bottom: 1rem;
+  font-family: var(--ifm-font-family-base);
 }
 
 div.title {
   margin-bottom: 1rem;
+}
+
+div.title,
+p.content,
+p.cardLink {
+  font-family: var(--ifm-font-family-base);
 }
 
 button.cardBtn {
