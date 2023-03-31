@@ -51,7 +51,7 @@ This section includes several examples that you can use if you want to quickly e
 
 ### Create an Iceberg table (if you do not already have one)
 
-As an example, the following `spark-sql` command creates an Iceberg table named `table` under the database `dev` in AWS S3. The table is in a S3 bucket named `my-iceberg-bucket` in region `ap-southeast-1` and under the path `path/to/warehouse`. The table has the property `format-version=2` so it supports the upsert option. There should be a folder named `s3://my-iceberg-bucket/path/to/warehouse/dev/table/metadata`. 
+For example, the following `spark-sql` command creates an Iceberg table named `table` under the database `dev` in AWS S3. The table is in an S3 bucket named `my-iceberg-bucket` in region `ap-southeast-1` and under the path `path/to/warehouse`. The table has the property `format-version=2`, so it supports the upsert option. There should be a folder named `s3://my-iceberg-bucket/path/to/warehouse/dev/table/metadata`. 
 
 Note that only S3-compatible object store is supported, such as AWS S3 or MinIO.
 
