@@ -5,15 +5,51 @@ description: Sink data from RisingWave to Apache Iceberg with the JDBC connector
 slug: /sink-to-iceberg
 ---
 
-This guide will introduce how to sink data from RisingWave to Apache Iceberg. Apache Iceberg is a table format designed to support huge tables. For more information, see [Apache Iceberg](https://iceberg.apache.org).
+This guide describes how to sink data from RisingWave to Apache Iceberg. Apache Iceberg is a table format designed to support huge tables. For more information, see [Apache Iceberg](https://iceberg.apache.org).
 
 ## Prerequisites
 
-### Create an Iceberg table
+- Ensure you already have an Iceberg table that you can sink data to. 
+  For additional guidance on creating a table and setting up Iceberg, refer to this [quickstart guide](https://iceberg.apache.org/spark-quickstart/) on creating an Iceberg table. 
 
-Before we can create an Iceberg sink in RisingWave, we must create an Iceberg table to data sink to.
+- Ensure you have an upstream materialized view or source that you can sink data from
 
-For additional guidance on creating a table and setting up Iceberg, refer to this [quickstart guide](https://iceberg.apache.org/spark-quickstart/) on creating an Iceberg table.
+## Syntax
+
+```sql
+CREATE SINK [ IF NOT EXISTS ] sink_name
+[FROM sink_from | AS select_query]
+WITH (
+   connector='iceberg',
+   connector_parameter = 'value', ...
+);
+```
+
+## Parameters
+
+
+| Parameter Names | Description                                                                                                                                                                                                                 |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type            | Required. Specify if the sink should be `upsert` or `append-only`.                                                                                                                                                          |
+| primary_key     | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the Iceberg sink.                                                                                                      |
+| warehouse.path  | Required. The path of the Iceberg warehouse. Currently, only S3-compatible object store is supported, such as AWS S3, or MinIO.                                                                                             |
+| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be http://${MINIO_HOST}:${MINIO_PORT}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
+| s3.access.key   | Access key of the S3 compatible object store.                                                                                                                                                                               |
+| s3.secret.key   | Secret key of the S3 compatible object store.                                                                                                                                                                               |
+| database.name   | The database of the target Iceberg table.                                                                                                                                                                                   |
+| table.name      | The name of the target Iceberg table.                                                                                                                                                                                       |
+
+
+:::note
+Iceberg sinks with `upsert` type is slower than `append-only`.
+:::
+
+
+## Examples
+
+This section includes several examples that you can use if you want to quickly experiment with sinking data to Iceberg. 
+
+### Create an Iceberg table (if you do not already have one)
 
 As an example, the following `spark-sql` command creates an Iceberg table named `table` under the database `dev` in AWS S3. The table is in a S3 bucket named `my-iceberg-bucket` in region `ap-southeast-1` and under the path `path/to/warehouse`. The table has the property `format-version=2` so it supports the upsert option. There should be a folder named `s3://my-iceberg-bucket/path/to/warehouse/dev/table/metadata`. 
 
@@ -39,13 +75,8 @@ CREATE TABLE demo.dev.`table`
 ) TBLPROPERTIES ('format-version'='2')";
 ```
 
-### Install and launch RisingWave
-
-To install and start RisingWave locally, see the [Get started](/get-started.md) guide. We recommend running RisingWave locally for testing purposes.
-
 ### Create an upstream materialized view or source
 
-Once RisingWave has started, connect to an upstream data source. We will use the `datagen` built-in source as the upstream data. For more details on the built-in data generator, see the [Load generator](../create-source/create-source-datagen.md) topic.
 
 The following query creates an `append-only` source. For more details on creating a source, see [`CREATE SOURCE`](../sql/commands/sql-create-source.md) .
 
@@ -88,36 +119,6 @@ WITH (
      datagen.rows.per.second = '20000'
  ) ROW FORMAT JSON;
 ```
-
-## Syntax
-
-```sql
-CREATE SINK [ IF NOT EXISTS ] sink_name
-[FROM sink_from | AS select_query]
-WITH (
-   connector='iceberg',
-   connector_parameter = 'value', ...
-);
-```
-
-## Parameters
-
-| Parameter Names | Description |
-| --- | --- |
-| type | Required. Specify if the sink should be `upsert` or `append-only`. | 
-| primary_key | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the Iceberg sink.  |
-| warehouse.path | Required. The path of the Iceberg warehouse. Currently, only S3-compatible object store is supported, such as AWS S3, or MinIO. | 
-| s3.endpoint | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be http://${MINIO_HOST}:${MINIO_PORT}. </li><li>For AWS S3, refer to https://docs.aws.amazon.com/general/latest/gr/s3.html </li></ul>|
-| s3.access.key | Access key of the S3 compatible object store. | 
-| s3.secret.key | Secret key of the S3 compatible object store. |
-| database.name | The database of the target Iceberg table. |
-| table.name | The name of the target Iceberg table. |
-
-:::note
-Iceberg sinks with upsert type is slower than append-only.
-:::
-
-## Create an Iceberg sink in RisingWave
 
 ### Append-only sink from append-only source
 
@@ -174,3 +175,4 @@ WITH (
     table.name='table'
 );
 ```
+
