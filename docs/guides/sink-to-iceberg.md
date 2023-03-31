@@ -53,7 +53,7 @@ This section includes several examples that you can use if you want to quickly e
 
 As an example, the following `spark-sql` command creates an Iceberg table named `table` under the database `dev` in AWS S3. The table is in a S3 bucket named `my-iceberg-bucket` in region `ap-southeast-1` and under the path `path/to/warehouse`. The table has the property `format-version=2` so it supports the upsert option. There should be a folder named `s3://my-iceberg-bucket/path/to/warehouse/dev/table/metadata`. 
 
-Note that only S3-compatible object store is supported, such as AWS S3, or MinIO.
+Note that only S3-compatible object store is supported, such as AWS S3 or MinIO.
 
 ```terminal
 spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.1.0,org.apache.hadoop:hadoop-aws:3.3.2\
