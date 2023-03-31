@@ -77,6 +77,8 @@ Here we take the Vim text editor as an example.
 ```python title="udf.py"
 # Import components from the risingwave.udf module
 from risingwave.udf import udf, udtf, UdfServer
+import struct
+import socket
 
 # Define a scalar functio that returns a single value
 @udf(input_types=['INT', 'INT'], result_type='INT')
@@ -111,7 +113,7 @@ if __name__ == '__main__':
 <details>
 <summary>See code explanation</summary>
 
-The script first imports three components from the `risingwave.udf` module - `udf`, `udtf`, and `UdfServer`.
+The script first imports the `struct` and `socket` modules and three components from the `risingwave.udf` module - `udf`, `udtf`.
 
 `udf` and `udtf` are decorators used to define scalar and table functions respectively.
 
@@ -219,7 +221,7 @@ CREATE FUNCTION function_name ( argument_type [, ...] )
 | **RETURNS TABLE** | Use this if the function is a table-valued function (TVF). It specifies the structure of the table that the UDF returns. |
 | **LANGUAGE** | Specifies the programming language used to implement the UDF. <br/> Currently, only `python` is supported.|
 | **AS** *function_name_defined_in_server* | Specifies the function name defined in the UDF server.|
-| **USING LINK** '*udf_server_address*' | Specifies the server address where the UDF implementation resides. |
+| **USING LINK** '*udf_server_address*' | Specifies the server address where the UDF implementation resides. <br/>If you are running RisingWave in your local environment, the address is `http://localhost:<port>` <br/> If you are running RisingWave using Docker, the address is `http://host.docker.internal:<port>/`|
 
 #### Example
 
@@ -227,15 +229,14 @@ Here's the SQL statements for declaring the three UDFs defined in [step 2](#2-de
 
 ```sql
 CREATE FUNCTION gcd(int, int) RETURNS int
-LANGUAGE python AS gcd USING LINK 'http://localhost:8815';
+LANGUAGE python AS gcd USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
 
 CREATE FUNCTION extract_tcp_info(bytea)
 RETURNS struct<src_ip varchar, dst_ip varchar, src_port smallint, dst_port smallint>
-LANGUAGE python AS extract_tcp_info USING LINK 'http://localhost:8815';
-
+LANGUAGE python AS extract_tcp_info USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
 
 CREATE FUNCTION series(int) RETURNS TABLE (x int)
-LANGUAGE python AS series USING LINK 'http://localhost:8815';
+LANGUAGE python AS series USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
 ```
 
 ## 5. Use your functions in RisingWave
@@ -247,6 +248,7 @@ After you have declared your UDFs in RisingWave, you can use them in SQL queries
 ```sql
 SELECT gcd(25, 15);
 ---
+5
 
 SELECT extract_tcp_info(E'\\x45000034a8a8400040065b8ac0a8000ec0a80001035d20b6d971b900000000080020200493310000020405b4' :: bytea);
 ---
@@ -254,4 +256,14 @@ SELECT extract_tcp_info(E'\\x45000034a8a8400040065b8ac0a8000ec0a80001035d20b6d97
 
 SELECT * FROM series(10);
 ---
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
 ```
