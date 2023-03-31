@@ -12,7 +12,7 @@ This guide describes how to sink data from RisingWave to Apache Iceberg. Apache 
 - Ensure you already have an Iceberg table that you can sink data to. 
   For additional guidance on creating a table and setting up Iceberg, refer to this [quickstart guide](https://iceberg.apache.org/spark-quickstart/) on creating an Iceberg table. 
 
-- Ensure you have an upstream materialized view or source that you can sink data from
+- Ensure you have an upstream materialized view or source that you can sink data from.
 
 ## Syntax
 
