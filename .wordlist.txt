@@ -116,6 +116,6 @@ protobuf
 Protobuf
 TiCDC
 upsert
-chatGPT
+ChatGPT
 JSONB
 boolean
