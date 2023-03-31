@@ -181,7 +181,7 @@ A beginner's guide to data processing with RisingWave. Discover the most typical
 
 ### Sample queries in console
 
-You can easily access the demos available in the console. These demos cover the most common steps in stream processing, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
+You can easily access the demos provided in [Console](https://risingwave-cloud.com/console/). These demos cover the most common steps in stream processing, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
 
 <img
 src={require('./images/console-samplequeries.gif').default}
@@ -189,16 +189,8 @@ alt="Running a sample query using the console"
 />
 
 :::info
-The data sources used in the demos are available in region `us-east-1` only. You cannot access the data sources if you select another region when creating the cluster. Create a new cluster in the `us-east-1` region to access the demo data.
+The data sources used in the demos are available in region `us-east-1` only. You cannot access the data sources if you select another region when creating the cluster. You can create a new cluster in the `us-east-1` region to access the demo data.
 :::
----
-
-### [TBD] Use cases
-
-A series of guided tours in solving real-world stream processing tasks with simulated data. We are constantly adding new use cases and tutorials.
-
-
-<defaultButton text="[Link to use cases]" url="https://www.risingwave.dev/docs/current/tutorial/"/>
 
 ---
 <defaultButton text="Continue →" cloud="quickstart?step=5" block/>
@@ -209,7 +201,14 @@ A series of guided tours in solving real-world stream processing tasks with simu
 
 ## Ingest, process, and deliver data
 
-Congrats, you are now ready to unleash the full potential of RisingWave on your own. Please check out the RisingWave documentation for detailed references.
+Congrats, you are now ready to unleash the full potential of RisingWave on your own.
+
+<card
+ maxWidth="300px"
+ title="Develop with RisingWave Cloud"
+ content="Develop with RisingWave CloudDevelop with RisingWave CloudDevelop with RisingWave Cloud."
+ cloud="develop-overview"
+ />
 
 </TabItem>
 
