@@ -30,7 +30,6 @@ Starting from this version, we’ll respect semantic versioning conventions by u
     - `ALTER TABLE ADD/DROP COLUMN` for regular tables (without connector settings). https://github.com/risingwavelabs/risingwave/pull/8394
 - New functions:
     - `array_length` : Returns the length of an array. https://github.com/risingwavelabs/risingwave/pull/8636
-    - `quote_ident`: Returns the given string suitably quoted to be used as an identifier in an SQL statement string. https://github.com/risingwavelabs/risingwave/pull/8839
     - String functions implemented with the help of chatGPT.  https://github.com/risingwavelabs/risingwave/pull/8767 [https://github.com/risingwavelabs/risingwave/pull/8839](https://github.com/risingwavelabs/risingwave/pull/8839)
         - `chr(integer)` -> varchar
         - `starts_with(varchar, varchar)` -> boolean
