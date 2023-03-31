@@ -67,10 +67,10 @@ This version was released on March 31, 2023. Starting from this version, we’ll
 ### Assets
 
 * Run this version from Docker:<br/>
-    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v0.1.18 playground`
-* [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.1.18/risingwave-v0.1.17-x86_64-unknown-linux.tar.gz)
-* [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.18.zip)
-* [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.18.tar.gz)
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v0.18.0 playground`
+* [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.1.18/risingwave-v0.18.0-x86_64-unknown-linux.tar.gz)
+* [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.18.0.zip)
+* [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.18.0.tar.gz)
 
 ## v0.1.17
 
