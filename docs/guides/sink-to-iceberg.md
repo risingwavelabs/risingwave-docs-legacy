@@ -57,7 +57,6 @@ Note that only S3-compatible object store is supported, such as AWS S3, or MinIO
 
 ```terminal
 spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.1.0,org.apache.hadoop:hadoop-aws:3.3.2\
-    --conf spark.jars.ivy=/spark-script/.ivy \
     --conf spark.sql.catalog.demo=org.apache.iceberg.spark.SparkCatalog \
     --conf spark.sql.catalog.demo.type=hadoop \
     --conf spark.sql.catalog.demo.warehouse=s3a://my-iceberg-bucket/path/to/warehouse \
