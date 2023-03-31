@@ -9,9 +9,11 @@ This page summarizes changes in each version of RisingWave, including new featur
 
 ## v0.18.0
 
+This version was released on March 31, 2023. Starting from this version, we’ll respect semantic versioning conventions by using the middle number (`y` , instead of `z,` in `x.y.z`) to indicate minor versions. That is why this is `v0.18.0`, not `v0.1.18`.
+
 ### Main changes
 
-Starting from this version, we’ll respect semantic versioning conventions by using the middle number (`y` , instead of `z,` in `x.y.z`) to indicate minor versions. That is why this is v0.18.0, not v0.1.18.
+
 
 #### Administration and troubleshooting
 
