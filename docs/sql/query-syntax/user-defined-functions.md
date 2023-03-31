@@ -12,7 +12,9 @@ This article provides a step-by-step guide for installing the RisingWave UDF API
 
 ## Prerequisites
 
-Ensure that you have [Python](https://www.python.org/downloads/) (3.8 or later) installed on your computer.
+- Ensure that you have [Python](https://www.python.org/downloads/) (3.8 or later) installed on your computer.
+
+- Ensure that you have [started and connected to RisingWave](get-started.md#run-risingwave).
 
 
 ## 1. Install the RisingWave UDF API for Python
@@ -141,11 +143,7 @@ Finally, the script starts a UDF server using `UdfServer` and listens for incomi
 
 The UDF server will start running, allowing you to call the defined UDFs from RisingWave.
 
-## 4. Run and connect to RisingWave
-
-
-
-## 5. Declare your functions in RisingWave
+## 4. Declare your functions in RisingWave
 
 In RisingWave, use the `CREATE FUNCTION` command to declare the functions defined in Python in RisingWave.
 
@@ -240,7 +238,7 @@ CREATE FUNCTION series(int) RETURNS TABLE (x int)
 LANGUAGE python AS series USING LINK 'http://localhost:8815';
 ```
 
-## 6. Use your functions in RisingWave
+## 5. Use your functions in RisingWave
 
 After you have declared your UDFs in RisingWave, you can use them in SQL queries just like any built-in functions.
 
