@@ -109,18 +109,23 @@ links={[
 ### More to read
 
  <grid
- nums={3}
- cols={3}
+ nums={2}
+ cols={2}
  children={[
 
  <card
- title="More about RisingWave"
+ title="About RisingWave"
  links={[
  {text:"Key concepts", url:"https://www.risingwave.dev/docs/current/key-concepts/"},
  {text:"Architechture", url:"https://www.risingwave.dev/docs/current/architecture/"},
  {text:"RisingWave vs. Apache Flink", url:"https://www.risingwave.dev/docs/current/risingwave-flink-comparison/"},
  {text:"Release notes", url:"https://www.risingwave.dev/docs/current/release-notes/"}
  ]}
- />
+ />,
+ <card
+ title="Blog"
+ content="Product insights, engineering deep-dives, community events, industry highlights, and company news posted regularly by our CEO, engineers, product experts, community runners, communication specialists, and community contributors."
+ url="https://www.risingwave-labs.com/blog/"
+ />,
  ]}
  />
