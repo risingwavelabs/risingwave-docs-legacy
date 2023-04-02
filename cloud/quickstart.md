@@ -128,7 +128,7 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 3. Click **Connect locally** of your cluster.
     
     <img
-    src={require('./images/cluster-local-connect.png').default}
+    src={require('./images/cluster-local-connect-1.png').default}
     alt="Connect to a cluster from a local client"
     />
     
