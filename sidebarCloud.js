@@ -12,11 +12,6 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "about-key-concepts",
-          label: "Key concepts"
-        },
-        {
-          type: "doc",
           id: "about-whats-new",
         },
         {
