@@ -175,7 +175,7 @@ You can kickstart your journey with RisingWave by exploring the following resour
 
 A beginner's guide to data processing with RisingWave. Discover the most typical and distinctive SQL features of RisingWave on one page. No previous experience with PostgreSQL is required.
 
-<defaultButton text="RisingWave SQL 101" url="https://www.risingwave.dev/docs/current/risingwave-sql-101/"/>
+<defaultButton text="RisingWave SQL 101 ↗" url="https://www.risingwave.dev/docs/current/risingwave-sql-101/"/>
 
 ---
 
@@ -201,14 +201,7 @@ The data sources used in the demos are available in region `us-east-1` only. You
 
 ## Ingest, process, and deliver data
 
-Congrats, you are now ready to unleash the full potential of RisingWave on your own.
-
-<card
- maxWidth="300px"
- title="Develop with RisingWave Cloud"
- content="Develop with RisingWave CloudDevelop with RisingWave CloudDevelop with RisingWave Cloud."
- cloud="develop-overview"
- />
+Congrats, you are now ready to unleash the full potential of RisingWave on your own. Read [Develop with RisingWave Cloud](develop-overview.md) to start.
 
 </TabItem>
 
