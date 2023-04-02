@@ -84,10 +84,12 @@ Select the corresponding docs version when using the RisingWave user docs.
 title="SQL references"
 content="SQL syntax and functionality supported by RisingWave. While RisingWave is wire-compatible with PostgreSQL, it has some unique features and notable differences."
 links={[
-{text:"", url:""},
-{text:"", url:""},
-{text:"", url:""},
-{text:"", url:""}
+{text:"Overview", url:"https://www.risingwave.dev/docs/current/sql-references/"},
+{text:"Commands", url:"https://www.risingwave.dev/docs/current/sql-commands/"},
+{text:"Query syntax", url:"https://www.risingwave.dev/docs/current/query-syntax/"},
+{text:"Data types", url:"https://www.risingwave.dev/docs/current/sql-data-types/"},
+{text:"Functions and operators", url:"https://www.risingwave.dev/docs/current/sql-functions/"},
+{text:"Query patterns", url:"https://www.risingwave.dev/docs/current/sql-patterns/"}
 ]}
 />
 
