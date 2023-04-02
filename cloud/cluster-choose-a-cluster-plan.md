@@ -14,14 +14,12 @@ import TabItem from '@theme/TabItem';
 
 <Tabs>
 
-<TabItem value="free" label="Free plan">
+<TabItem value="free" label="Free tier">
 
-The free tier plan provides all the necessary resources for you to test and explore all the features of RisingWave Cloud — at no cost.
+The free-tier plan provides all the necessary resources for you to test and explore all the features of RisingWave Cloud — at no cost.
 
-[screenshot]
-
-:::note
-Clusters created under the free tier plan will expire after five days. Do not choose this plan for production.
+:::caution
+Clusters created under the free-tier plan will expire after five days. DO NOT choose this plan for production.
 :::
 
 #### Configuration
@@ -32,7 +30,7 @@ Clusters created under the free tier plan will expire after five days. Do not ch
 
 - **Region**
 
-    Regions are isolated from each other. We’ve set up a demo data source in `us-east-2`. Select `us-east-2` if you’d like to try our demo queries.
+    Regions are isolated from each other. We’ve set up a demo data source in `us-east-1`. Select `us-east-1` if you’d like to try the [sample queries in **Console**](quickstart.md/?step=4#sample-queries-in-console).
 
 </TabItem>
 
@@ -42,14 +40,6 @@ If you signed up for early access and received an invitation code, you can selec
 
 The customized plan offers the flexibility of configuring the resources to better suit your demand.
 
-:::tip
-
-Get in touch with our sales at [risingwave-labs.com/contact](https://www.risingwave-labs.com/contact/) to acquire an invitation code.
-
-:::
-
-[screenshot]
-
 
 #### Configuration
 
@@ -59,7 +49,7 @@ Get in touch with our sales at [risingwave-labs.com/contact](https://www.risingw
 
 - **Region**
 
-    Regions are isolated from each other. We’ve set up a demo data source in `us-east-2`. Select `us-east-2` if you’d like to try our demo queries.
+    Regions are isolated from each other. We’ve set up a demo data source in `us-east-1`. Select `us-east-1` if you’d like to try the [sample queries in **Console**](quickstart.md/?step=4#sample-queries-in-console).
 
 - **Configure nodes**
 
