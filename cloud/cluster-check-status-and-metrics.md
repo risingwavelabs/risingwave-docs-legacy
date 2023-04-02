@@ -9,42 +9,85 @@ You can check and monitor the overall running status and detailed metrics of you
 
 ## Check the overall condition
 
-- To check the overall condition of t clusters in your account, go to **Dashboard**.
+<grid
+nums={2}
+cols={2}
+children={[
+
+<div>
+
+To check the overall condition of the clusters in your account, go to [**Dashboard**](https://risingwave-cloud.com/dashboard/).
     
-    In **Dashboard**, you can get an overview of the clusters in your account, including the number of clusters, their plan selections, and running statuses.
+In **Dashboard**, you can get an overview of the clusters in your account, including the number of clusters, their plan selections, and running statuses. You can also click on a cluster to check its running metrics.
+
+<img
+  src={require('./images/dashboard.png').default}
+  alt="Dashboard"
+/>
+
+
+</div>,
+
+<div>
+
+To browse through the configuration and running status of each cluster in your account, go to [**Clusters**](https://risingwave-cloud.com/clusters/).
     
-    [screenshot]
-
-- To browse through the configuration and running status of each cluster in your account, go to **Clusters**.
+In **Clusters**, you can see all the clusters in your account and [control their running states](cluster-stop-and-delete-clusters.md). You can also check the current plan, RisingWave version, region, and creation time of each cluster here.
     
-    In **Clusters**, you can see all the clusters in your account and [control their running states](cluster-stop-and-delete-clusters.md). You can also check the current plan, RisingWave version, region, and creation time of each cluster here.
-    
-    [screenshot]
+<img
+  src={require('./images/clusters.png').default}
+  alt="Clusters"
+/>
+
+</div>
+]}
+ />
 
 
-## Check the detailed metrics of a cluster
+## Check cluster details
 
-To enter the cluster details page and check the information such as current activities and resource usage and monitor all metrics of a cluster, you can:
+To enter the cluster details page and check the information such as current activities and resource usage and monitor all metrics of a cluster, go to [**Clusters**](https://risingwave-cloud.com/clusters/) and click on the cluster.
 
-- Go to **Dashboard** and select a cluster.
-    
-    [screenshot GIF]
-    
-- Or go to **Clusters** and select a cluster.
-    
-    [screenshot GIF]
+The cluster details page includes:
 
-:::info
-The metrics of a cluster include CPU usage, memory usage, throughput, storage usage, and network.
-
-[To be checked]
-:::
-
-You can specify the time range of the metrics.
-
-[screenshot]
+- Current activities
+- Resource usage — CPU usage, memory usage, throughput, storage usage, and network
+- Materialized views
+- Database users
 
 
-You can click on any item to view the details.
+<img
+  src={require('./images/cluster-details-page.png').default}
+  alt="Cluster details page"
+/>
 
-[screenshot]
+<br/><br/>
+
+<grid
+nums={2}
+cols={2}
+children={[
+
+<div>
+
+You can specify the time range of the metrics:
+
+<img
+  src={require('./images/cluster-metrics-timerange.png').default}
+  alt="Specify time range"
+/>
+
+</div>,
+
+<div>
+
+You can click on any item to view the details;
+
+<img
+  src={require('./images/cluster-metrics-details.png').default}
+  alt="Metric details"
+/>
+
+</div>
+]}
+ />
