@@ -63,7 +63,6 @@ module.exports = {
       label: "Cluster & database",
       collapsible: false,
       collapsed: false,
-      link:{type: 'doc', id:'cluster-overview'},
       items: [
         {
           type: "category",
