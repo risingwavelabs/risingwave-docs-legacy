@@ -9,12 +9,15 @@ You can change the password of any database users in your cluster.
 
 1. Go to the [cluster details page](cluster-check-status-and-metrics.md#check-cluster-details).
     
-    [screenshot]
+1. Select the **Database Users** tab.
     
-2. Click the **Change password** button of a user.
+    <img
+    src={require('./images/cluster-details-dbusers.png').default}
+    alt="Database users of a cluster"
+    />
+    
+1. Click **Change password** of a user.
 
-3. Enter the new password and re-enter it below. You do not need to enter the old password to continue.
+1. Enter the new password and re-enter it to confirm. You do not need to enter the old password to continue.
     
-    [screenshot]
-    
-4. Click **Confirm** to apply the change.
+1. Click **Save** to apply the change.
