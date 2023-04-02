@@ -27,7 +27,6 @@ children={[
 You can click **Stop** to stop running a cluster when needed.
 
 A stopped cluster will keep all existing data but pause any activities.
-
 </div>,
 
 <div>
