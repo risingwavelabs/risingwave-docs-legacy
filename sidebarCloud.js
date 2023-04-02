@@ -132,7 +132,6 @@ module.exports = {
       label: "Console",
       collapsible: false,
       collapsed: false,
-      link:{type: 'doc', id:'console-overview'},
       items: [
         {
           type: "doc",
@@ -146,7 +145,6 @@ module.exports = {
       label: "Develop",
       collapsible: false,
       collapsed: false,
-      link:{type: 'doc', id:'develop-overview'},
       items: [
         {
           type: "doc",
