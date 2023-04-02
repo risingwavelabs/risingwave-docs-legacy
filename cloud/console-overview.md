@@ -1,10 +1,8 @@
 ---
 id: console-overview
 title: Console
-description: hello
+description: The console is the most intuitive and easy way to connect to and interact with RisingWave, offering graphical tools for managing data and visualizing results.
 slug: /console-overview
 ---
 
-import DocCardList from '@theme/DocCardList';
-
-<DocCardList />
+The console is the most intuitive and easy way to connect to and interact with RisingWave, offering graphical tools for managing data and visualizing results.
