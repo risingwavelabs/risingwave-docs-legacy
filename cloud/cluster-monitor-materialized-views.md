@@ -7,7 +7,7 @@ slug: /cluster-monitor-materialized-views
 
 You can view all [materialized views](https://www.risingwave.dev/docs/current/key-concepts/#materialized-views) defined in the databases of a cluster.
 
-1. Go to the [cluster details page](cluster-check-status-and-metrics.md#check-the-detailed-metrics-of-a-cluster).
+1. Go to the [cluster details page](cluster-check-status-and-metrics.md#check-cluster-details).
 
 2. Select the **Materialized Views** tab.
     

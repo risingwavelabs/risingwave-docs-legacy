@@ -12,7 +12,7 @@ Choose one of the following to create a [database user](cluster-manage-database-
 
     See [Connect to a cluster](cluster-connect-to-a-cluster.md) for detailed instructions.
 
-- You can click **Create user** in the **Database User** tab on the [cluster details page](cluster-check-status-and-metrics.md#check-the-detailed-metrics-of-a-cluster) to create a new user.
+- You can click **Create user** in the **Database User** tab on the [cluster details page](cluster-check-status-and-metrics.md#check-cluster-details) to create a new user.
     
     [screenshot]
 

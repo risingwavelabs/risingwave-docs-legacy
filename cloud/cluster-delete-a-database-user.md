@@ -7,7 +7,7 @@ slug: /cluster-delete-a-database-user
 
 If you no longer need a database user, you can delete it.
 
-1. Go to the [cluster details page](cluster-check-status-and-metrics.md#check-the-detailed-metrics-of-a-cluster).
+1. Go to the [cluster details page](cluster-check-status-and-metrics.md#check-cluster-details).
     
     [screenshot]
     
