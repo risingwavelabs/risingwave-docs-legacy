@@ -13,7 +13,7 @@ direction="row"
 spacing="20"
 justifyContent="flex-start"
 justifyItems="center"
-alignItems="top"
+alignItems="baseline"
 flexWrap="nowrap">
 
 <grid item xs={4}>
@@ -21,11 +21,7 @@ flexWrap="nowrap">
 title="Choose a tenant plan"
 content="When creating a tenant, you can choose a tenant plan
 and configure tenant resources according to your needs."
-doc="get-started"
-links={[
-{text:"docs", doc:"get-started"},
-{text:"cloud", url:"https://www.risingwave.cloud"}]}
-/>
+doc="get-started"/>
 </grid>
 
 <grid item xs={4}>
