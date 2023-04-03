@@ -113,7 +113,7 @@ const config = {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "RisingWave",
+            label: "RisingWave Database",
           },
           {
             to: "/cloud/about-whats-risingwave-cloud",
