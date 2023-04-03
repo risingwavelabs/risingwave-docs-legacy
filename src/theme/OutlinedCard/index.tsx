@@ -12,16 +12,16 @@ import styles from "./styles.module.css";
 type LinkProps = {
   text: string;
   url?: string;
-  docs: string;
+  doc: string;
 };
 
 type Props = {
   title: string;
   content: string;
   doc?: string;
+  cloud?: string;
   url?: string;
   btn?: string;
-  maxWidth?: string;
   width?: string;
   links?: LinkProps[];
 };
@@ -34,7 +34,7 @@ export default function OutlinedCard({
   links,
   btn,
   width,
-  maxWidth,
+  cloud,
   ...rest
 }: Props) {
   const history = useHistory();
@@ -61,6 +61,8 @@ export default function OutlinedCard({
           );
         } else if (url) {
           window.open(url, "_blank", "noopener,noreferrer");
+        } else if (cloud) {
+          history.push(`/cloud/${cloud}`);
         }
       }}
     >
@@ -80,12 +82,12 @@ export default function OutlinedCard({
                   onClick={() => {
                     if (link.url) {
                       window.open(link.url, "_blank", "noopener,noreferrer");
-                    } else if (link.docs) {
+                    } else if (link.doc) {
                       globalData["docusaurus-plugin-content-docs"].default[
                         "versions"
                       ].map((v) => {
                         if (location.pathname.includes(v.path)) {
-                          history.push(`${v.path}/${link.docs}`);
+                          history.push(`${v.path}/${link.doc}`);
                         }
                       });
                     }

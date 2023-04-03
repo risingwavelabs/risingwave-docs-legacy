@@ -23,7 +23,7 @@ content="When creating a tenant, you can choose a tenant plan
 and configure tenant resources according to your needs."
 doc="get-started"
 links={[
-{text:"docs", docs:"get-started"},
+{text:"docs", doc:"get-started"},
 {text:"cloud", url:"https://www.risingwave.cloud"}]}
 />
 </grid>
@@ -46,7 +46,7 @@ content="When creating a tenant, you can choose a tenant plan
 and configure tenant resources according to your needs."
 doc="get-started"
 links={[
-{text:"docs", docs:"get-started"},
+{text:" Read the docs ", doc:"intro"},
 {text:"cloud", url:"https://www.risingwave.cloud"}]}
 />
 </grid>
