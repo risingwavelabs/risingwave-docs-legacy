@@ -1,7 +1,7 @@
 ---
 id: create-source-cdc
 title: CDC via Kafka
-description: Ingest CDC data via Kafka.
+description: Ingest CDC data via a message broker.
 slug: /create-source-cdc
 ---
 
@@ -9,25 +9,33 @@ Change data capture (CDC) refers to the process of identifying and capturing dat
 
 RisingWave provides native MySQL and PostgreSQL CDC connectors. With these CDC connectors, you can ingest CDC data from these databases directly, without setting up additional services like Kafka.
 
-If Kafka is part of your technical stack, you can also use the Kafka connector in RisingWave to ingest CDC data in the form of Kafka topics from databases into RisingWave. You need to use a CDC tool such as [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Maxwell's daemon](https://maxwells-daemon.io/), or [TiCDC](https://docs.pingcap.com/tidb/dev/ticdc-overview) to convert CDC data into Kafka topics.
+If Kafka is part of your technical stack, you can connect Kafka to RisingWave to ingest CDC data in the form of Kafka topics from databases into RisingWave. You need to use a CDC tool such as [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Maxwell's daemon](https://maxwells-daemon.io/), or [TiCDC](https://docs.pingcap.com/tidb/dev/ticdc-overview) to convert CDC data into Kafka topics.
 
-This topic describes the configurations for using the Kafka connector in RisingWave to ingest CDC data. For complete step-to-step guides about using the native CDC connector to ingest MySQL and PostgreSQL data, see [Ingest data from MySQL](../guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](../guides/ingest-from-postgres-cdc.md). For completeness, instructions about using additional CDC tools and the Kafka connector to ingest CDC data are also included in these two topics.
+If Pulsar is part of your technical stack, you can connect Pulsar to RisingWave to ingest CDC data in the form of Pulsar topics from databases into RisingWave. You need to use a CDC tool such as the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), or the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to convert CDC data into Pulsar topics.
+
+If Kinesis is part of your technical stack, you can connect Kinesis to RisingWave to ingest CDC data in the form of Kinesis data streams from databases into RisingWave. You need to use a CDC tool such as [Maxwell's daemon](https://maxwells-daemon.io/), [AWS DMS](https://aws.amazon.com/blogs/big-data/stream-change-data-to-amazon-kinesis-data-streams-with-aws-dms/), or the [Debezium embedded engine](https://debezium.io/blog/2018/08/30/streaming-mysql-data-changes-into-kinesis/) to convert CDC data into Kinesis data streams.
+
+This topic describes the configurations for using RisingWave to ingest CDC data from a message broker. For complete step-to-step guides about using the native CDC connector to ingest MySQL and PostgreSQL data, see [Ingest data from MySQL](../guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](../guides/ingest-from-postgres-cdc.md). For completeness, instructions about using additional CDC tools and a message broker to ingest CDC data are also included in these two topics.
 
 For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with primary keys and connector settings. This is different from creating a standard source, as CDC data needs to be persisted in RisingWave to ensure correctness.
 
-The Kafka connector in RisingWave accepts these data formats:
+RisingWave accepts these data formats:
 
 - Debezium JSON (for both MySQL and PostgreSQL)
 
-   For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka topics.
+   For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
 
 - Maxwell JSON (for MySQL only)
 
-  For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
+  For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka or Pulsar topics. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
 
 - The TiCDC dialect of Canal JSON (for TiDB only)
 
-  For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`ROW FORMAT CANAL_JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc).
+  For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`ROW FORMAT CANAL_JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc). 
+
+- Canal JSON (for MySQL only)
+ 
+  For Canal JSON (`ROW FORMAT CANAL_JSON`), you need to use the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to convert MySQL change data to Pulsar topics. 
 
 
 ## Syntax
@@ -38,7 +46,7 @@ CREATE TABLE [ IF NOT EXISTS ] source_name (
    PRIMARY KEY ( column_name, ... )
 ) 
 WITH (
-   connector='kafka',
+   connector='connector',
    connector_parameter='value', ...
 ) 
 ROW FORMAT { DEBEZIUM_JSON | MAXWELL | CANAL_JSON };
@@ -114,17 +122,18 @@ export const svg = rr.Diagram(
 
 ### Connector Parameters
 
-|Field|Notes|
-|---|---|
-|topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
-|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
-|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+Please see the respective data ingestion pages for the connection parameters.
+
+- [Kafka](create-source-kafka.md)
+
+- [Pulsar](create-source-pulsar.md)
+
+- [Kinesis](create-source-kinesis.md)
 
 
 ## Example
 
-Here is an example of creating a table using the Kafka connector to ingest CDC data from Kafka topics.
+Here is an example of creating a table with the Kafka connector to ingest CDC data from Kafka topics.
 
 ```sql
 CREATE TABLE [IF NOT EXISTS] source_name (
@@ -139,5 +148,44 @@ WITH (
    scan.startup.mode='earliest',
    properties.group.id='demo_consumer_name'
 ) 
+ROW FORMAT DEBEZIUM_JSON;
+```
+
+Here is an example of creating a table with Pulsar to ingest CDC data from Pulsar topics.
+
+```sql
+CREATE TABLE source_name (
+   column1 varchar,
+   column2 integer,
+   PRIMARY KEY (column1)
+) 
+WITH (
+   connector='pulsar',
+   topic='demo_topic',
+   service.url='pulsar://localhost:6650/',
+   admin.url='http://localhost:8080',
+   scan.startup.mode='latest',
+   scan.startup.timestamp_millis='140000000'
+) 
+ROW FORMAT DEBEZIUM_JSON;
+```
+
+Here is an example of creating a table with Kinesis to ingest CDC data from Kinesis data streams.
+
+```sql
+CREATE TABLE source_name (
+    column1 varchar,
+    column2 integer,
+    PRIMARY KEY (column1)
+) 
+WITH (
+    connector='kinesis',
+    stream='kafka',
+    aws.region='user_test_topic',
+    endpoint='172.10.1.1:9090,172.10.1.2:9090',
+    aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
+    aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
+    aws.credentials.role.external_id='demo_external_id'
+)
 ROW FORMAT DEBEZIUM_JSON;
 ```

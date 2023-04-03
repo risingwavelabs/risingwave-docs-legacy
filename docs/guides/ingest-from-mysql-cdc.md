@@ -21,12 +21,11 @@ You can ingest CDC data from MySQL in two ways:
 
   This connector is included in RisingWave. With this connector, RisingWave can connect to MySQL directly to obtain data from the binlog without starting additional services.
 
-- Using a CDC tool and the Kafka connector
+- Using a CDC tool and a message broker
 
-  You can use either the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data change streams to Kafka topics, and then use the Kafka connector in RisingWave to consume data from the Kafka topics.
+  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to consume data from the topics in RisingWave.
 
-
-## Using the native MySQL CDC connector
+## Use the native MySQL CDC connector
 
 ### Set up MySQL
 
@@ -304,22 +303,24 @@ CREATE TABLE orders (
 );
 ```
 
-## Using a CDC tool and the Kafka connector
+## Use a CDC tool and a message broker
 
 <Tabs>
-<TabItem value="Debezium connector for MySQL" label="Debezium connector for MySQL" default>
+<TabItem value="Kafka" label="Kafka" default>
 
-### Set up MySQL
+### Option 1: Deploy the Debezium connector
 
 Before using the Debezium connector for MySQL, you need to complete several configurations on MySQL. For details, see [Setting up MySQL](#set-up-mysql).
 
-### Deploy the Debezium connector for MySQL
+Download and configure the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), then add the configuration to your Kafka Connect cluster. For details, see [Deploying the MySQL connector](https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-deploying-a-connector).
 
-You need to download and configure the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), and then add the configuration to your Kafka Connect cluster. For details, see [Deploying the MySQL connector](https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-deploying-a-connector).
+### Option 2: Configure MySQL and run Maxwell's daemon
 
-### Create a table using the Kafka connector in RisingWave
+Configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
 
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
+### Create a table with Kafka
+
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. 
 
 ```sql
 CREATE TABLE source_name (
@@ -336,17 +337,27 @@ WITH (
 )
 ROW FORMAT DEBEZIUM_JSON;
 ```
+
+::: note
+The data format must be Debezium JSON if using a Debezium connector or Maxwell JSON if using Maxwell's daemon.
+:::
+
 </TabItem>
-<TabItem value="Maxwell daemon" label="Maxwell daemon">
+<TabItem value="Pulsar" label="Pulsar">
 
-### Configure MySQL and run Maxwell's daemon
+### Option 1: Deploy the Debezium connector
 
- You need to configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
+Before using the Debezium connector for MySQL, you need to complete several configurations on MySQL. For details, see [Setting up MySQL](#set-up-mysql).
 
+Download and configure the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), then add the configuration to your Kafka Connect cluster. For details on configuration and usage, see [Debezium source connector](https://pulsar.apache.org/docs/2.11.x/io-cdc-debezium/).
 
-### Create a table using the Kafka connector in RisingWave
+### Option 2: Deploy the Canal connector
 
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Maxwell JSON.
+Download and configure the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/), then add the configuration to your Pulsar cluster.
+
+### Create a table with Pulsar
+
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command and the [Pulsar](../create-source/create-source-pulsar.md) topic for more details. 
 
 ```sql
 CREATE TABLE source_name (
@@ -355,13 +366,60 @@ CREATE TABLE source_name (
    PRIMARY KEY (column1)
 ) 
 WITH (
-   connector='kafka',
-   topic='user_test_topic',
-   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-   scan.startup.mode='earliest',
-   properties.group.id='demo_consumer_name'
+   connector='pulsar',
+   topic='demo_topic',
+   service.url='pulsar://localhost:6650/',
+   admin.url='http://localhost:8080',
+   scan.startup.mode='latest',
+   scan.startup.timestamp_millis='140000000'
 ) 
-ROW FORMAT MAXWELL;
+ROW FORMAT DEBEZIUM_JSON;
 ```
+
+::: note
+The data format must be Debezium JSON if using a Debezium connector or Canal JSON if using the Canal connector.
+:::
+
+</TabItem>
+<TabItem value="Kinesis" label="Kinesis">
+
+### Option 1: Configure MySQL and run Maxwell's daemon
+
+Configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
+
+### Option 2: Set up AWS DMS
+
+You can use AWS DMS to capture CDC data from PostgreSQL and set Kinese Data Streams as an AWS DMS target. For more details on the configurations for AWS DMS and Kinesis Data Streams, see [Stream change data to Amazon Kinesis Data Streams with AWS DMS](https://aws.amazon.com/blogs/big-data/stream-change-data-to-amazon-kinesis-data-streams-with-aws-dms/).
+
+### Option 3: Use the Debezium embedded engine
+
+You can configure the Debezium embedded engine to capture CDC data from MySQL databases and stream the changes into Kinesis. For more details, see [Streaming MySQL data changes to Amazon Kinesis](https://debezium.io/blog/2018/08/30/streaming-mysql-data-changes-into-kinesis/).
+
+### Create a table with Kinesis
+
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command and the [Kinesis](../create-source/create-source-kinesis.md) topic for more details. 
+
+```sql
+CREATE TABLE source_name (
+    column1 varchar,
+    column2 integer,
+    PRIMARY KEY (column1)
+) 
+WITH (
+    connector='kinesis',
+    stream='kafka',
+    aws.region='user_test_topic',
+    endpoint='172.10.1.1:9090,172.10.1.2:9090',
+    aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
+    aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
+    aws.credentials.role.external_id='demo_external_id'
+)
+ROW FORMAT DEBEZIUM_JSON;
+```
+
+:::note
+Depending on which CDC connector tool is used, be sure to use the corresponding data format.
+:::
+
 </TabItem>
 </Tabs>

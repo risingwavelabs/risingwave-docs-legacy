@@ -201,7 +201,7 @@ const sidebars = {
         },
           {
           type: 'doc',
-          label: 'CDC via Kafka',
+          label: 'CDC via a message broker',
           id: 'create-source/create-source-cdc',
         },
         {
