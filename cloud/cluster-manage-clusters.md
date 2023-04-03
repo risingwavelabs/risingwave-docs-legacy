@@ -8,7 +8,7 @@ slug: /cluster-manage-clusters
 
 A cluster in RisingWave Cloud provides the necessary resources for hosting independent data repositories and streaming pipelines. Within a cluster, you can create and manage database users and databases.
 
-> Currently, access to a cluster is restricted to one RisingWave Cloud account and cannot be shared among multiple accounts. Future releases will introduce organizational support, allowing for managing multiple accounts and their access to individual RisingWave clusters.
+> Currently, access to a cluster is restricted to one RisingWave Cloud account and cannot be shared among multiple accounts. Future releases will introduce organizational support, allowing for managing multiple accounts and their access to individual clusters.
 > 
 
 ## Create a cluster
@@ -58,7 +58,7 @@ children={[
 
 <card
 title="Connect to a cluster"
-content="After getting a cluster up and running, you need to connect to it to interact with RisingWave. You can use the web console or your local client to connect to your cluster."
+content="After getting a cluster up and running, you need to connect to it to interact with RisingWave Database. You can use the web console or your local client to connect to your cluster."
 cloud="cluster-connect-to-a-cluster"
 />,
 <card

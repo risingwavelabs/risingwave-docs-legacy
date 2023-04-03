@@ -5,17 +5,17 @@ description: Get started with building streaming services using RisingWave Cloud
 slug: /develop-overview
 ---
 
-RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. RisingWave provides an interface language that resembles PostgreSQL, enabling your team to build real-time data services without the high engineering cost and complexity of traditional stream processing.
+RisingWave Cloud leverages the superpower of RisingWave Database, an open-source distributed SQL database specifically designed for stream processing. RisingWave Database provides an interface language that resembles PostgreSQL, enabling your team to build real-time data services without the high engineering cost and complexity of traditional stream processing.
 
-## RisingWave user docs
+## RisingWave Database user docs
 
-Developers can refer to the user documentation for RisingWave to develop streaming applications with RisingWave Cloud. The documentation covers essential topics such as data ingestion, SQL references, data delivery, client libraries, and ecosystem, providing comprehensive information on how to utilize the capabilities of RisingWave to build and manage data workflows that consume streaming data, perform incremental computations, and update results dynamically.
+Developers can refer to the user documentation for RisingWave Database to develop streaming applications with RisingWave Cloud. The documentation covers essential topics such as data ingestion, SQL references, data delivery, client libraries, and ecosystem, providing comprehensive information on how to utilize the capabilities of RisingWave Database to build and manage data workflows that consume streaming data, perform incremental computations, and update results dynamically.
 
-<defaultButton text="Switch to RisingWave user docs →" doc="intro"/> <lightButton text="See recommended topics ↓" cloud="develop-overview#top-read-topics-for-developers"/>
+<defaultButton text="Switch to RisingWave Database user docs →" doc="intro"/> <lightButton text="See recommended topics ↓" cloud="develop-overview#top-read-topics-for-developers"/>
 
 ## How to use the docs
 
-RisingWave is a rapidly evolving system, with [new features](https://www.risingwave.dev/docs/current/release-notes/) added with each release. However, this also means that some features may not function properly in older versions. Therefore, when using the RisingWave user docs, it's important to select the corresponding version of the documentation based on the version of your RisingWave cluster.
+RisingWave Database is a rapidly evolving system, with [new features](https://www.risingwave.dev/docs/current/release-notes/) added with each release. However, this also means that some features may not function properly in older versions. Therefore, when using the RisingWave Database user docs, it's important to select the corresponding version of the documentation based on the version of your RisingWave cluster.
 
 <grid
 nums={2}
@@ -24,13 +24,13 @@ children={[
 
 <div>
 
-### Check RisingWave version
+### Check RisingWave Database version
 
 To check the version you're currently using, go to [**Clusters**](https://risingwave-cloud.com/clusters/).
 
 <img
   src={require('./images/cluster-rwversion.png').default}
-  alt="Check RisingWave verison of clusters"
+  alt="Check RisingWave Database verison of clusters"
   width="95%"
 />
 
@@ -40,7 +40,7 @@ To check the version you're currently using, go to [**Clusters**](https://rising
 
 ### Select docs version
 
-Select the corresponding docs version when using the RisingWave user docs.
+Select the corresponding docs version when using the RisingWave Database user docs.
 
 <img
   src={require('./images/select-docs-version.gif').default}
@@ -62,7 +62,7 @@ Select the corresponding docs version when using the RisingWave user docs.
 
  <card
  title="Integrations"
- content="See how RisingWave can integrate with your existing data stack. Vote your favorite data tools and streaming services to help us prioritize the integration development."
+ content="See how RisingWave Database can integrate with your existing data stack. Vote your favorite data tools and streaming services to help us prioritize the integration development."
  url="https://www.risingwave.dev/docs/current/rw-integration-summary/"
  />,
  <card
@@ -72,17 +72,17 @@ Select the corresponding docs version when using the RisingWave user docs.
  />,
  <card
  title="Data delivery"
- content="Stream processed data out of RisingWave to message brokers and databases. See supported data destinations."
+ content="Stream processed data out of RisingWave Database to message brokers and databases. See supported data destinations."
  url="https://www.risingwave.dev/docs/current/delivery-overview/"
  />
  ]}
  />
 
-### Process data with RisingWave
+### Process data with RisingWave Database
 
 <card
 title="SQL references"
-content="SQL syntax and functionality supported by RisingWave. While RisingWave is wire-compatible with PostgreSQL, it has some unique features and notable differences."
+content="SQL syntax and functionality supported by RisingWave Database. While RisingWave Database is wire-compatible with PostgreSQL, it has some unique features and notable differences."
 links={[
 {text:"Overview", url:"https://www.risingwave.dev/docs/current/sql-references/"},
 {text:"Commands", url:"https://www.risingwave.dev/docs/current/sql-commands/"},
@@ -93,11 +93,11 @@ links={[
 ]}
 />
 
-### Use RisingWave in your applications
+### Use RisingWave Database in your applications
 
 <card
 title="Client libraries"
-content="RisingWave offers support for popular PostgreSQL drivers, enabling seamless integration with your applications for interacting with it."
+content="RisingWave Database offers support for popular PostgreSQL drivers, enabling seamless integration with your applications for interacting with it."
 links={[
 {text:"Java", url:"https://www.risingwave.dev/docs/current/java-client-libraries/"},
 {text:"Node.js", url:"https://www.risingwave.dev/docs/current/nodejs-client-libraries/"},

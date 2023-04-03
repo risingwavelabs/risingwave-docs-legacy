@@ -32,7 +32,7 @@ In **Dashboard**, you can get an overview of the clusters in your account, inclu
 
 To browse through the configuration and running status of each cluster in your account, go to [**Clusters**](https://risingwave-cloud.com/clusters/).
     
-In **Clusters**, you can see all the clusters in your account and [control their running states](cluster-stop-and-delete-clusters.md). You can also check the current plan, RisingWave version, region, and creation time of each cluster here.
+In **Clusters**, you can see all the clusters in your account and [control their running states](cluster-stop-and-delete-clusters.md). You can also check the current plan, RisingWave Database version, region, and creation time of each cluster here.
     
 <img
   src={require('./images/clusters.png').default}

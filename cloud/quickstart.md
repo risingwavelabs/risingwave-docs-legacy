@@ -79,7 +79,7 @@ See [Choose a cluster plan](cluster-choose-a-cluster-plan.md) for details on how
 
 ## Connect to your cluster
 
-After getting a cluster up and running, you need to connect to it so that you can interact with RisingWave.
+After getting a cluster up and running, you need to connect to it so that you can interact with RisingWave Database.
 
 You can choose from the following two ways to connect to your cluster.
 
@@ -87,7 +87,7 @@ You can choose from the following two ways to connect to your cluster.
 
 <TabItem value="console" label="Console">
 
-The console is the most intuitive and easy way to connect to and interact with RisingWave, offering graphical tools for managing data and visualizing results.
+The console is the most intuitive and easy way to connect to and interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
 
 
 #### To connect via the console:
@@ -121,7 +121,7 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 1. [Install `psql`](https://www.risingwave.dev/docs/current/install-psql-without-postgresql/) in your environment.
 
-    `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
+    `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave Database.
 
 2. In RisingWave Cloud, go to [**Clusters**](https://risingwave-cloud.com/clusters/).
     
@@ -169,11 +169,11 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 ## Explore RisingWave with examples
 
-You can kickstart your journey with RisingWave by exploring the following resources.
+You can kickstart your journey with RisingWave Database by exploring the following resources.
 
 ### RisingWave SQL 101
 
-A beginner's guide to data processing with RisingWave. Discover the most typical and distinctive SQL features of RisingWave on one page. No previous experience with PostgreSQL is required.
+A beginner's guide to data processing with RisingWave Database. Discover the most typical and distinctive SQL features of RisingWave on one page. No previous experience with PostgreSQL is required.
 
 <defaultButton text="RisingWave SQL 101 ↗" url="https://www.risingwave.dev/docs/current/risingwave-sql-101/"/>
 
