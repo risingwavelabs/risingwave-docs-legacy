@@ -203,6 +203,12 @@ The data sources used in the demos are available in region `us-east-1` only. You
 
 Congrats, you are now ready to unleash the full potential of RisingWave on your own. Read [Develop with RisingWave Cloud](develop-overview.md) to start.
 
+<card
+title="Develop with RisingWave Cloud"
+content="RisingWave Cloud leverages the superpower of RisingWave Database, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave Database, in the cloud."
+cloud="develop-overview"
+/>
+
 </TabItem>
 
 </Tabs>
