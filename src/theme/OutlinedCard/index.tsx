@@ -95,8 +95,9 @@ export default function OutlinedCard({
                 >
                   <Typography className={styles.cardLink}>
                     {link.text}
+                    {link.url && <ExternalArrow />}
+                    {link.doc && <RightArrow />}
                   </Typography>
-                  <RightArrow />
                 </div>
               );
             })}
@@ -121,11 +122,30 @@ const RightArrow = () => (
     viewBox="0 0 24 24"
     width="16"
     height="16"
+    className={styles.rightArrowIcon}
   >
     <path fill="none" d="M0 0h24v24H0z" />
     <path
       d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
       fill="#95adee"
+    />
+  </svg>
+);
+
+const ExternalArrow = () => (
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={styles.externalArrowIcon}
+  >
+    <path d="M15 3.5H20.5M20.5 3.5V9M20.5 3.5L12.5 11.5" stroke="#2f5dd9" />
+    <path
+      d="M11.5 5.5H7.5C6.39543 5.5 5.5 6.39543 5.5 7.5V16.5C5.5 17.6046 6.39543 18.5 7.5 18.5H16.5C17.6046 18.5 18.5 17.6046 18.5 16.5V12.5"
+      stroke="#2f5dd9"
+      stroke-linecap="round"
     />
   </svg>
 );

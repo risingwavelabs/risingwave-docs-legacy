@@ -17,6 +17,7 @@ div.defaultContainer {
 }
 
 [data-theme="dark"] div.defaultContainer {
+  background: none;
   border: 1px solid #a6a6a6;
 }
 
@@ -47,6 +48,12 @@ p.cardLink {
   font-family: var(--ifm-font-family-base);
 }
 
+p.cardLink {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
 div.title,
 p.content,
 p.cardLink {
@@ -67,12 +74,12 @@ p.cardLink {
   font-size: 1rem;
   margin-bottom: 0.1rem;
   margin-right: 4px;
+  border: 1px solid transparent;
 }
 
 p.cardLink:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
   color: #95adee88;
+  border-bottom: 1px dotted #95adee88;
 }
 
 div.flexBox {
@@ -81,4 +88,20 @@ div.flexBox {
   display: flex;
   align-items: center;
   justify-content: left;
+}
+
+p.cardLink:hover .externalArrowIcon path {
+  stroke: #afc2f5;
+}
+
+[data-theme="dark"] .externalArrowIcon path {
+  stroke: #afc2f5;
+}
+
+[data-theme="dark"] p.cardLink:hover .externalArrowIcon path {
+  stroke: #8da8f1;
+}
+
+p.cardLink:hover .rightArrowIcon path:nth-child(2) {
+  fill: #95adee88;
 }
