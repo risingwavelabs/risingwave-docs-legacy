@@ -1,13 +1,10 @@
-div.boxContainer {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  min-width: 275px;
-}
-
 div.cardContainer {
   border-radius: 3px;
   transition: all 300ms ease;
   cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
 }
 
 div.defaultContainer {

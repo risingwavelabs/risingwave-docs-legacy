@@ -1,30 +1,36 @@
 import * as React from "react";
-import { experimentalStyled as styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
+import { ResponsiveStyleValue } from "@mui/system";
+import Grid, { GridDirection } from "@mui/material/Grid";
 
 type Props = {
-  nums: number;
-  cols: number;
   children: React.ReactNode;
+  spacing: number;
+  justifyContent: string;
+  alignItems: string;
+  justifyItems: string;
+  direction: ResponsiveStyleValue<GridDirection>;
 };
 
-export default function ResponsiveGrid({ nums, cols, children }: Props) {
+export default function ResponsiveGrid({
+  children,
+  spacing,
+  justifyContent,
+  alignItems,
+  direction,
+  justifyItems,
+  ...rest
+}: Props) {
   return (
-    <Box sx={{ flexGrow: 1, flexWrap: "wrap" }}>
-      <Grid
-        container
-        spacing={{ xs: 2, md: 3 }}
-        alignItems="center"
-        justifyItems="center"
-      >
-        {Array.from(Array(nums)).map((_, index) => (
-          <Grid item xs={12} sm={6} md={6} lg={12 / cols} key={index}>
-            {children[index]}
-          </Grid>
-        ))}
-      </Grid>
-    </Box>
+    <Grid
+      width="100%"
+      direction={direction}
+      spacing={spacing}
+      alignItems={alignItems}
+      justifyItems={justifyItems}
+      justifyContent={justifyContent}
+      {...rest}
+    >
+      {children}
+    </Grid>
   );
 }

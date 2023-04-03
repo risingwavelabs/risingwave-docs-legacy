@@ -5,8 +5,6 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-
 import { useHistory, useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./styles.module.css";
@@ -37,15 +35,20 @@ export default function OutlinedCard({
   btn,
   width,
   maxWidth,
+  ...rest
 }: Props) {
   const history = useHistory();
   const { globalData } = useDocusaurusContext();
   const location = useLocation();
 
   return (
-    <Box
-      className={styles.boxContainer}
-      maxWidth={maxWidth ? "300px" : "100%"}
+    <Card
+      {...rest}
+      variant="outlined"
+      sx={{
+        width: width ? width : "100%",
+      }}
+      className={`${links ? styles.defaultContainer : styles.cardContainer}`}
       onClick={() => {
         if (links) return;
         if (doc) {
@@ -61,60 +64,52 @@ export default function OutlinedCard({
         }
       }}
     >
-      <Card
-        variant="outlined"
-        sx={{
-          width: width ? width : "100%",
-        }}
-        className={`${links ? styles.defaultContainer : styles.cardContainer}`}
-      >
-        <CardContent className={styles.cardContent}>
-          <Typography variant="h5" className={styles.title} component="div">
-            {title}
+      <CardContent className={styles.cardContent}>
+        <Typography variant="h5" className={styles.title} component="div">
+          {title}
+        </Typography>
+        <Typography variant="body2" className={styles.content}>
+          {content}
+        </Typography>
+        {links && (
+          <Typography className={styles.cardLinks}>
+            {links.map((link) => {
+              return (
+                <div
+                  className={styles.flexBox}
+                  onClick={() => {
+                    if (link.url) {
+                      window.open(link.url, "_blank", "noopener,noreferrer");
+                    } else if (link.docs) {
+                      globalData["docusaurus-plugin-content-docs"].default[
+                        "versions"
+                      ].map((v) => {
+                        if (location.pathname.includes(v.path)) {
+                          history.push(`${v.path}/${link.docs}`);
+                        }
+                      });
+                    }
+                  }}
+                >
+                  <Typography className={styles.cardLink}>
+                    {link.text}
+                  </Typography>
+                  <RightArrow />
+                </div>
+              );
+            })}
           </Typography>
-          <Typography variant="body2" className={styles.content}>
-            {content}
-          </Typography>
-          {links && (
-            <Typography className={styles.cardLinks}>
-              {links.map((link) => {
-                return (
-                  <div
-                    className={styles.flexBox}
-                    onClick={() => {
-                      if (link.url) {
-                        window.open(link.url, "_blank", "noopener,noreferrer");
-                      } else if (link.docs) {
-                        globalData["docusaurus-plugin-content-docs"].default[
-                          "versions"
-                        ].map((v) => {
-                          if (location.pathname.includes(v.path)) {
-                            history.push(`${v.path}/${link.docs}`);
-                          }
-                        });
-                      }
-                    }}
-                  >
-                    <Typography className={styles.cardLink}>
-                      {link.text}
-                    </Typography>
-                    <RightArrow />
-                  </div>
-                );
-              })}
-            </Typography>
-          )}
-        </CardContent>
-
-        {btn && (
-          <CardActions>
-            <Button size="small" className={styles.cardBtn}>
-              {btn}
-            </Button>
-          </CardActions>
         )}
-      </Card>
-    </Box>
+      </CardContent>
+
+      {btn && (
+        <CardActions>
+          <Button size="small" className={styles.cardBtn}>
+            {btn}
+          </Button>
+        </CardActions>
+      )}
+    </Card>
   );
 }
 
