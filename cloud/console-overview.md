@@ -27,7 +27,6 @@ width="600px"
 usemap="#image-map"
 />
 
-
 <map name="image-map">
     <area href="#schemas" coords="2,2,150,565" shape="rect" />
     <area href="#query-editor" coords="154,2,597,303" shape="rect" />
@@ -39,7 +38,7 @@ usemap="#image-map"
 
 The Schemas section lists displays all the tables, sources, and materialized views currently available in the cluster.
 
-To check their subordinate columns，click on each item, or click **Expand all** to see all.
+To check their columns, click on each item, or click **Expand all** to see all.
 
 <img
 src={require('./images/console-schemas.png').default}
@@ -59,7 +58,7 @@ width="600px"
 
 #### Jobs
 
-You can organize your queries into several jobs. Jobs allow you to organize your SQL statements into groups, making it easier to manage and execute multiple queries.
+Jobs allow you to organize your SQL statements into groups, making it easier to manage and execute multiple queries.
 
 Click <img src={require('./images/icon-console-queryeditor-jobs-add.png').default} width="20px"/> to add a job.
 
@@ -77,7 +76,7 @@ See [Explore RisingWave with examples](/cloud/quickstart.md/?step=4) for details
 
 #### Switch clusters or users
 
-You can switch to another cluster or to another user in your current cluster when using the console.
+Click **Switch** to change to another cluster or to another user in your current cluster when using the console.
 
 <img
 src={require('./images/console-switchclusteruser.gif').default}
@@ -87,21 +86,47 @@ width="800px"
 
 ### Query results & visualization
 
+Here you can view the results of your last query.
+
+<img
+src={require('./images/console-queryresults.png').default}
+alt="Query results"
+width="600px"
+/>
+
 #### Visualize results
+
+Selete the **Chart** tab to visualize the results.
+
+<img
+src={require('./images/console-queryresults-visualize.png').default}
+alt="Visualize query results"
+width="600px"
+/>
 
 #### Refresh results
 
-You can click <img src={require('./images/icon-rerun.png').default} width="15px"/> to rerun the last executed query manully, or set a timer to refresh the results automatically.
+Click <img src={require('./images/icon-rerun.png').default} width="15px"/> to rerun the last executed query manully, or set a timer to refresh the results automatically.
 
 <img
-src={require('./images/console-queryeditor-refresh.png').default}
+src={require('./images/console-queryresults-refresh.png').default}
 alt="Refresh query results"
 width="300px"
 />
 
 #### Download results
 
+Click <img src={require('./images/icon-console-queryresults-download.png').default} width="40px"/> to download a CSV copy of the results.
+
 ### Query log
+
+The query log tracks and records all queries executed during the current session, providing information such as the execution time, network time, and error messages. The log can help monitor activity, troubleshoot issues, and optimize queries.
+
+<img
+src={require('./images/console-querylog.png').default}
+alt="Query log"
+width="800px"
+/>
 
 ## Start developing
 
