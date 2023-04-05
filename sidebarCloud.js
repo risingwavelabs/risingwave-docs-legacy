@@ -157,7 +157,6 @@ module.exports = {
       label: "Account",
       collapsible: false,
       collapsed: false,
-      link:{type: 'doc', id:'account-overview'},
       items: [
         {
           type: "category",
@@ -191,10 +190,6 @@ module.exports = {
               href: "/cloud/account-manage-your-account/?task=switch-accounts",
             },
           ],
-        },
-        {
-          type: "doc",
-          id: "account-messages-and-alerts",
         },
         {
           type: "doc",
