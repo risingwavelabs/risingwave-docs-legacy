@@ -16,9 +16,15 @@ To change the user name of your account:
 
 1. Go to **Settings**.
     
-    [screenshot gif]
+    <img
+    src={require('./images/settings.gif').default}
+    alt="Settings"
+    width="600px"
+    />
     
-2. Click **Edit**.
+2. In the **User profile** section, click **Edit**.
+
+3. Type in your new user name and click **Confirm**.
 
 </TabItem>
 
@@ -28,9 +34,13 @@ To change the login password of your account:
 
 1. Go to **Settings**.
 
-    [screenshot gif]
+    <img
+    src={require('./images/settings.gif').default}
+    alt="Settings"
+    width="600px"
+    />
 
-2. Enter your current password.
+2. In the **Change password** section, enter your current password.
 
 3. Enter your new password and re-enter it below.
 
@@ -46,13 +56,21 @@ To delete your RisingWave Cloud account and all its associated data:
 
 2. Go to **Settings**.
 
-    [screenshot gif]
+    <img
+    src={require('./images/settings.gif').default}
+    alt="Settings"
+    width="600px"
+    />
 
 3. Check **Yes, I want to delete the account**.
     
-    [screenshot]
+    <img
+    src={require('./images/settings-deleteaccount.png').default}
+    alt="Delete account"
+    width="600px"
+    />
     
-4. Click **Delete** to confirm your decision.
+4. Click **Delete** to confirm the decision.
 
 </TabItem>
 
