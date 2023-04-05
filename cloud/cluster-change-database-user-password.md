@@ -2,7 +2,7 @@
 id: cluster-change-database-user-password
 title: Change database user password
 description: You can change the password of any database users in your cluster.
-slug: /cluster-change-database-user-password
+slug: /change-database-user-password
 ---
 
 You can change the password of any database users in your cluster.

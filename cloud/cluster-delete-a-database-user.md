@@ -2,7 +2,7 @@
 id: cluster-delete-a-database-user
 title: Delete a database user
 description: If you no longer need a database user, you can delete it.
-slug: /cluster-delete-a-database-user
+slug: /delete-a-database-user
 ---
 
 If you no longer need a database user, you can delete it.

@@ -2,7 +2,7 @@
 id: account-manage-your-account
 title: Manage your account
 description: Manage your RisingWave Cloud account.
-slug: /account-manage-your-account
+slug: /manage-your-account
 ---
 
 import Tabs from '@theme/Tabs';

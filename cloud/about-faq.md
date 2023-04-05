@@ -2,7 +2,7 @@
 id: about-faq
 title: FAQ
 description: Frequently asked questions about RisingWave Cloud.
-slug: /about-faq
+slug: /faq
 ---
 
 [WIP] To dear colleagues: 

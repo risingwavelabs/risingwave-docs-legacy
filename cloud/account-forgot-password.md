@@ -2,7 +2,7 @@
 id: account-forgot-password
 title: Forgot password?
 description: Reset your account password if you forgot it.
-slug: /account-forgot-password
+slug: /forgot-password
 ---
 
 If you see this message “*Incorrect email or password.*” when you try to log in to RisingWave Cloud, you can use **Forgot password?** to reset your password.

@@ -2,7 +2,7 @@
 id: about-whats-risingwave-cloud
 title: What's RisingWave Cloud?
 description: What's RisingWave Cloud?
-slug: /about-whats-risingwave-cloud
+slug: /intro
 ---
 
 RisingWave Cloud simplifies and streamlines data processing for modern data workflows. It is a fully-managed and scalable stream processing platform powered by the open-source project, RisingWave Database. Our mission is to make data processing accessible to everyone, and with RisingWave Cloud, we can help you deliver timely, reliable, and cost-efficient processing of event data in real time.

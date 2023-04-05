@@ -116,7 +116,7 @@ const config = {
             label: "RisingWave Database",
           },
           {
-            to: "/cloud/about-whats-risingwave-cloud",
+            to: "/cloud/intro",
             label: "RisingWave Cloud",
             position: "left",
             activeBaseRegex: `/cloud/`,

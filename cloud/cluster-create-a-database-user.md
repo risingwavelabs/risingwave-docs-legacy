@@ -2,7 +2,7 @@
 id: cluster-create-a-database-user
 title: Create a database user
 description: Create a database user in a cluster.
-slug: /cluster-create-a-database-user
+slug: /create-a-database-user
 ---
 
 

@@ -2,5 +2,5 @@
 id: about-whats-new
 title: What's new?
 description: What's new in RisingWave Cloud?
-slug: /about-whats-new
+slug: /whats-new
 ---

@@ -2,7 +2,7 @@
 id: cluster-check-status-and-metrics
 title: Check status and metrics of clusters
 description: Check and monitor the overall running status and detailed metrics of your clusters.
-slug: /cluster-check-status-and-metrics
+slug: /check-status-and-metrics
 ---
 
 You can check and monitor the overall running status and detailed metrics of your clusters.

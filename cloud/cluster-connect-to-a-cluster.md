@@ -2,7 +2,7 @@
 id: cluster-connect-to-a-cluster
 title: Connect to a cluster
 description: Connect to a cluster and interact with RisingWave Database using the console or terminal.
-slug: /cluster-connect-to-a-cluster
+slug: /connect-to-a-cluster
 ---
 
 After [getting a cluster up and running](cluster-manage-clusters.md#create-a-cluster), you need to connect to it so that you can [interact with RisingWave Database](develop-overview.md#process-data-with-risingwave).

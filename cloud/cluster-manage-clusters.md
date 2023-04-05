@@ -2,7 +2,7 @@
 id: cluster-manage-clusters
 title: Manage clusters
 description: Manage clusters in your RisingWave Cloud account.
-slug: /cluster-manage-clusters
+slug: /manage-clusters
 ---
 
 

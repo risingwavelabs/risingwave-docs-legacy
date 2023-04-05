@@ -2,7 +2,7 @@
 id: cluster-choose-a-cluster-plan
 title: Choose a cluster plan
 description: Choose a plan when you create a cluster.
-slug: /cluster-choose-a-cluster-plan
+slug: /choose-a-cluster-plan
 ---
 
 When creating a cluster, you can choose a cluster plan and configure cluster resources according to your needs.

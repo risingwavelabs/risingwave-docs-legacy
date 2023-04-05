@@ -2,7 +2,7 @@
 id: cluster-stop-and-delete-clusters
 title: Stop and delete clusters
 description: Stop and delete clusters.
-slug: /cluster-stop-and-delete-clusters
+slug: /stop-and-delete-clusters
 ---
 
 You can manually control the running state of your clusters or delete them.

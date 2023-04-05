@@ -2,7 +2,7 @@
 id: cluster-monitor-materialized-views
 title: Monitor materialized views
 description: You can view all materialized views defined in the databases of a cluster.
-slug: /cluster-monitor-materialized-views
+slug: /monitor-materialized-views
 ---
 
 You can view all [materialized views](https://www.risingwave.dev/docs/current/key-concepts/#materialized-views) defined in the databases of a cluster.
