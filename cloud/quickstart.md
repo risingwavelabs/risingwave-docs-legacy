@@ -181,7 +181,7 @@ A beginner's guide to data processing with RisingWave Database. Discover the mos
 
 ### Sample queries in console
 
-You can easily access the demos provided in [Console](https://risingwave-cloud.com/console/). These demos cover the most common steps in stream processing, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
+You can easily access the demos provided in [**Console**](https://risingwave-cloud.com/console/). These demos cover the most common steps in using RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
 
 <img
 src={require('./images/console-samplequeries.gif').default}
