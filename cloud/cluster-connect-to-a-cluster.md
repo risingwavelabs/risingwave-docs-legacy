@@ -42,6 +42,9 @@ The console is the most intuitive and easy way to connect to and interact with R
     alt="Log in to the cluster"
     />
 
+:::tip
+For detailed instructions on using the console, see [Console](console-overview.md).
+:::
     
 </TabItem>
 
