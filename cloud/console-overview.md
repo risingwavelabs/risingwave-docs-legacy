@@ -18,10 +18,22 @@ alt="Console"
 
 ## Sections
 
+Click on a section below to see the details.
+
 <img
 src={require('./images/console-sections.png').default}
 alt="Console sections"
+width="600px"
+usemap="#image-map"
 />
+
+
+<map name="image-map">
+    <area href="#schemas" coords="2,2,150,565" shape="rect" />
+    <area href="#query-editor" coords="154,2,597,303" shape="rect" />
+    <area href="#query-results--visualization" coords="154,305,597,480" shape="rect" />
+    <area href="#query-log" coords="154,485,597,564" shape="rect" />
+</map>
 
 ### Schemas
 
@@ -49,7 +61,7 @@ width="600px"
 
 You can organize your queries into several jobs. Jobs allow you to organize your SQL statements into groups, making it easier to manage and execute multiple queries.
 
-Click <img src={require('./images/icon-console-queryeditor-jobs-add.png').default} width="15px"/> to add a job.
+Click <img src={require('./images/icon-console-queryeditor-jobs-add.png').default} width="20px"/> to add a job.
 
 <img
 src={require('./images/console-queryeditor-jobs.png').default}
