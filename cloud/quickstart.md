@@ -39,12 +39,12 @@ import TabItem from '@theme/TabItem';
 
 We prepared a quickstart wizard for an easy and guided setup after you log in.
 
+Or you can continue to read the quickstart guide here for detailed instructions.
+
 <img
   src={require('./images/quickstart-wizard.png').default}
   alt="RisingWave Cloud quickstart wizard"
 />
-
-Or you can continue to read the quickstart guide here for detailed instructions.
 
 --- 
 <defaultButton text="Continue →" cloud="quickstart?step=2" block/>

@@ -11,18 +11,21 @@ RisingWave Cloud leverages the superpower of RisingWave Database, an open-source
 
 Developers can refer to the user documentation for RisingWave Database to develop streaming applications with RisingWave Cloud. The documentation covers essential topics such as data ingestion, SQL references, data delivery, client libraries, and ecosystem, providing comprehensive information on how to utilize the capabilities of RisingWave Database to build and manage data workflows that consume streaming data, perform incremental computations, and update results dynamically.
 
-<defaultButton text="Switch to RisingWave Database user docs →" doc="intro"/> <lightButton text="See recommended topics ↓" cloud="develop-overview#top-read-topics-for-developers"/>
+<defaultButton text="RisingWave Database user docs ↗" url="https://www.risingwave.dev/docs/current/intro/"/> <lightButton text="See recommended topics ↓" cloud="develop-overview#top-read-topics-for-developers"/>
 
 ## How to use the docs
 
 RisingWave Database is a rapidly evolving system, with [new features](https://www.risingwave.dev/docs/current/release-notes/) added with each release. However, this also means that some features may not function properly in older versions. Therefore, when using the RisingWave Database user docs, it's important to select the corresponding version of the documentation based on the version of your RisingWave cluster.
 
 <grid
-nums={2}
-cols={2}
-children={[
+ container
+ direction="row"
+ spacing="15"
+ justifyContent="space-between"
+ justifyItems="stretch"
+ alignItems="baseline">
 
-<div>
+<grid item xs={6} md={6}>
 
 ### Check RisingWave Database version
 
@@ -34,9 +37,9 @@ To check the version you're currently using, go to [**Clusters**](https://rising
   width="95%"
 />
 
-</div>,
+</grid>
 
-<div>
+<grid item xs={6} md={6}>
 
 ### Select docs version
 
@@ -46,37 +49,57 @@ Select the corresponding docs version when using the RisingWave Database user do
   src={require('./images/select-docs-version.gif').default}
   alt="Select docs version"
 />
+  
+</grid>
 
-</div>
-]}
-/>
+</grid>
 
 ## Top read topics for developers
 
 ### Ecosystem
 
- <grid
- nums={3}
- cols={3}
- children={[
+<grid
+ container
+ direction="row"
+ spacing="15"
+ justifyContent="space-between"
+ justifyItems="stretch"
+ alignItems="stretch">
+
+<grid item xs={12} sm={6} md={4}>
 
  <card
+ style={{height: "87%"}}
  title="Integrations"
  content="See how RisingWave Database can integrate with your existing data stack. Vote your favorite data tools and streaming services to help us prioritize the integration development."
  url="https://www.risingwave.dev/docs/current/rw-integration-summary/"
- />,
+ />
+
+</grid>
+
+<grid item xs={12} sm={6} md={4}>
+
  <card
+ style={{height: "87%"}}
  title="Data ingestion"
  content="Connect to and ingest data from external sources such as databases and message brokers. See supported data sources."
  url="https://www.risingwave.dev/docs/current/data-ingestion/"
- />,
- <card
+ />
+  
+</grid>
+
+<grid item xs={12} sm={6} md={4}>
+
+<card
+ style={{height: "87%"}}
  title="Data delivery"
  content="Stream processed data out of RisingWave Database to message brokers and databases. See supported data destinations."
  url="https://www.risingwave.dev/docs/current/delivery-overview/"
  />
- ]}
- />
+  
+</grid>
+
+</grid>
 
 ### Process data with RisingWave Database
 
@@ -109,23 +132,41 @@ links={[
 ### More to read
 
  <grid
- nums={2}
- cols={2}
- children={[
+ container
+ direction="row"
+ spacing="15"
+ justifyContent="space-between"
+ justifyItems="stretch"
+ alignItems="stretch">
+
+<grid item xs={12} sm={6} md={6}>
 
  <card
+ style={{height: "100%"}}
  title="About RisingWave"
+ content="Continue to learn about RisingWave Database."
  links={[
  {text:"Key concepts", url:"https://www.risingwave.dev/docs/current/key-concepts/"},
  {text:"Architechture", url:"https://www.risingwave.dev/docs/current/architecture/"},
  {text:"RisingWave vs. Apache Flink", url:"https://www.risingwave.dev/docs/current/risingwave-flink-comparison/"},
  {text:"Release notes", url:"https://www.risingwave.dev/docs/current/release-notes/"}
  ]}
- />,
- <card
+ />
+
+</grid>
+
+<grid item xs={12} sm={6} md={6}>
+
+<card
+ style={{height: "100%"}}
  title="Blog"
  content="Product insights, engineering deep-dives, community events, industry highlights, and company news posted regularly by our CEO, engineers, product experts, community runners, communication specialists, and community contributors."
  url="https://www.risingwave-labs.com/blog/"
- />,
+ links={[
+ {text:"Blog", url:"https://www.risingwave-labs.com/blog/"}
  ]}
  />
+  
+</grid>
+
+</grid>

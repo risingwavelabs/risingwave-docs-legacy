@@ -12,24 +12,27 @@ Go to [**Clusters**](https://risingwave-cloud.com/clusters/) to control your clu
 
 ## Stop a cluster
 
-<grid
-nums={2}
-cols={2}
-children={[
 
-<div>
+<grid
+ container
+ direction="row"
+ spacing="20"
+ justifyContent="space-between"
+ justifyItems="stretch"
+ alignItems="baseline">
+
+<grid item xs={6} md={6}>
 
 <img
   src={require('./images/cluster-stop.gif').default}
   alt="Stop a cluster"
 />
 
-You can click **Stop** to stop running a cluster when needed.
+You can click **Stop** to stop running a cluster when needed. A stopped cluster will keep all existing data but pause any activities.
 
-A stopped cluster will keep all existing data but pause any activities.
-</div>,
+</grid>
 
-<div>
+<grid item xs={6} md={6}>
 
 <img
   src={require('./images/cluster-restart.gif').default}
@@ -37,17 +40,17 @@ A stopped cluster will keep all existing data but pause any activities.
 />
 
 To restart a stopped cluster, click **Start**.
+  
+</grid>
 
-</div>
-]}
-/>
+</grid>
 
 ## Delete a cluster
 
 If you no longer need a cluster or its associated data, you can delete the cluster to free up resources.
 
 :::info
-You must delete all clusters before [deleting your account](/cloud/account-manage-your-account/?task=delete-account).
+You must delete all clusters before [deleting your account](account-manage-your-account.md/?task=delete-account).
 :::
 
 <img

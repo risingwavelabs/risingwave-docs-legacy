@@ -10,11 +10,14 @@ You can check and monitor the overall running status and detailed metrics of you
 ## Check the overall condition
 
 <grid
-nums={2}
-cols={2}
-children={[
+ container
+ direction="row"
+ spacing="20"
+ justifyContent="space-between"
+ justifyItems="stretch"
+ alignItems="baseline">
 
-<div>
+<grid item xs={6} md={6}>
 
 To check the overall condition of the clusters in your account, go to [**Dashboard**](https://risingwave-cloud.com/dashboard/).
     
@@ -25,10 +28,9 @@ In **Dashboard**, you can get an overview of the clusters in your account, inclu
   alt="Dashboard"
 />
 
+</grid>
 
-</div>,
-
-<div>
+<grid item xs={6} md={6}>
 
 To browse through the configuration and running status of each cluster in your account, go to [**Clusters**](https://risingwave-cloud.com/clusters/).
     
@@ -38,10 +40,9 @@ In **Clusters**, you can see all the clusters in your account and [control their
   src={require('./images/clusters.png').default}
   alt="Clusters"
 />
-
-</div>
-]}
- />
+  
+</grid>
+</grid>
 
 
 ## Check cluster details
@@ -63,12 +64,16 @@ The cluster details page includes:
 
 <br/><br/>
 
-<grid
-nums={2}
-cols={2}
-children={[
 
-<div>
+<grid
+ container
+ direction="row"
+ spacing="20"
+ justifyContent="space-between"
+ justifyItems="stretch"
+ alignItems="baseline">
+
+<grid item xs={6} md={6}>
 
 You can specify the time range of the metrics:
 
@@ -77,9 +82,9 @@ You can specify the time range of the metrics:
   alt="Specify time range"
 />
 
-</div>,
+</grid>
 
-<div>
+<grid item xs={6} md={6}>
 
 You can click on any item to view the details;
 
@@ -87,7 +92,7 @@ You can click on any item to view the details;
   src={require('./images/cluster-metrics-details.png').default}
   alt="Metric details"
 />
+  
+</grid>
 
-</div>
-]}
- />
+</grid>
