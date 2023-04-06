@@ -115,3 +115,7 @@ Redash
 protobuf
 Protobuf
 TiCDC
+upsert
+ChatGPT
+JSONB
+boolean
