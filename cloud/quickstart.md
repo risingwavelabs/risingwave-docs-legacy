@@ -145,16 +145,33 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
     
 6. Log in with the password of the database user.
 
+  <grid
+  container
+  direction="row"
+  spacing="20"
+  justifyContent="space-between"
+  justifyItems="stretch"
+  alignItems="baseline">
+
+  <grid item xs={12} md={6}>
+
     <img
     src={require('./images/psql-login.png').default}
     alt="Connect via psql"
-    width="47%"
     />
+
+  </grid>
+
+  <grid item xs={12} md={6}>
+
     <img
     src={require('./images/psql-connected.png').default}
     alt="Connect via psql"
-    width="47%"
     />
+    
+  </grid>
+  </grid>
+
 
 </TabItem>
 
