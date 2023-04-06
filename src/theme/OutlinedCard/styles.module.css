@@ -1,6 +1,6 @@
 div.cardContainer {
   background: none;
-  border-radius: 3px;
+  border-radius: var(--ifm-pagination-nav-border-radius);
   transition: all 300ms ease;
   cursor: pointer;
   margin-top: 1rem;
@@ -13,7 +13,7 @@ div.cardContainer {
 }
 
 div.defaultContainer {
-  border-radius: 3px;
+  border-radius: var(--ifm-pagination-nav-border-radius);
 }
 
 [data-theme="dark"] div.defaultContainer {

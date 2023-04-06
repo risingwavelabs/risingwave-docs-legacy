@@ -13,10 +13,9 @@ direction="row"
 spacing="20"
 justifyContent="flex-start"
 justifyItems="center"
-alignItems="baseline"
-flexWrap="nowrap">
+alignItems="baseline">
 
-<grid item xs={4}>
+<grid item xs={12} md={4}>
 <card
 title="Choose a tenant plan"
 content="When creating a tenant, you can choose a tenant plan
@@ -24,7 +23,7 @@ and configure tenant resources according to your needs."
 doc="get-started"/>
 </grid>
 
-<grid item xs={4}>
+<grid item xs={12} md={4}>
 <card
 title="Choose a tenant plan"
 content="When creating a tenant, you can choose a tenant plan
@@ -35,7 +34,7 @@ links={[
 />
 </grid>
 
-<grid item xs={4}>
+<grid item xs={12} md={4}>
 <card
 title="Choose a tenant plan"
 content="When creating a tenant, you can choose a tenant plan
