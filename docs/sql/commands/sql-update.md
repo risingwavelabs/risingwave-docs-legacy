@@ -7,11 +7,15 @@ slug: /sql-update
 
 Use the `UPDATE` command to modify values of existing rows in a table.
 
+:::info
+UPDATE cannot modify data in the primary key column of a table.
+:::
+
 ## Syntax
 
 ```sql
 UPDATE table_name
-    SET col_name = value [ , col_name = value , ... ]
+    SET { col_name = value, ... | ( col_name, ... ) = ( value, ... ) }
     [ WHERE condition ]
     [ RETURNING col_name ];
 ```
@@ -23,32 +27,53 @@ export const svg = rr.Diagram(
   rr.Stack(
     rr.Sequence(
       rr.Terminal("UPDATE"),
-      rr.NonTerminal("table_name"),
+      rr.NonTerminal("table_name")
     ),
     rr.Sequence(
       rr.Terminal("SET"),
-      rr.OneOrMore(
-        rr.Sequence(
-          rr.NonTerminal("col_name"),
-          rr.Terminal("="),
-          rr.NonTerminal("value"),
+      rr.Choice(
+        1,
+        rr.OneOrMore(
+          rr.Sequence(
+            rr.NonTerminal("col_name"),
+            rr.Terminal("="),
+            rr.NonTerminal("value")
+          ),
+          ","
         ),
-        rr.Terminal(",")
-      ),
+        rr.Sequence(
+          rr.Terminal("("),
+          rr.OneOrMore(
+            rr.NonTerminal("col_name"),
+            ","
+          ),
+          rr.Terminal(")"),
+          rr.Terminal("="),
+          rr.Terminal("("),
+          rr.OneOrMore(
+            rr.NonTerminal("value"),
+            ","
+          ),
+          rr.Terminal(")")
+        )
+      )
     ),
     rr.Optional(
       rr.Sequence(
         rr.Terminal("WHERE"),
-        rr.NonTerminal("condition"),
+        rr.NonTerminal("condition")
       ),
     ),
-    rr.Optional(
+    rr.Sequence(
+      rr.Optional(
       rr.Sequence(
         rr.Terminal("RETURNING"),
-        rr.NonTerminal("col_name"),
-      ),
+        rr.NonTerminal("col_name")
+      )
     ),
-  ),
+    rr.Terminal(";")
+    )
+  )
 );
 
 <drawer SVG={svg} />
@@ -60,7 +85,7 @@ export const svg = rr.Diagram(
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
 |*table_name*               |The table whose rows you want to update.|
-|**SET** *col_name* = *value*  |Assign a value or result of an expression to a specific column.|
+|**SET** *col_name* = *value*  |Assign a value or result of an expression to a specific column.<br/>*col_name* cannot be a primary key.|
 |**WHERE** *condition*      |Specify which rows you want to update using an expression that returns a boolean value. Rows for which this expression returns true will be updated. <br/> If you omit the WHERE clause, all rows in the table will be updated.|
 |**RETURNING**               |Returns the values of any column based on each updated row.|
 

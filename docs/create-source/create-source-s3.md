@@ -92,6 +92,9 @@ export const svg = rr.Diagram(
 |match_pattern| Conditional. This field is used to find object keys in `s3.bucket_name` that match the given pattern. Standard Unix-style glob syntax is supported. |
 |s3.endpoint_url| Conditional. The host URL for an S3-compatible object storage server. This allows users to use a different server instead of the standard S3 server. | 
 
+:::note
+Empty cells in CSV files will be parsed to `NULL`.
+:::
 
 ## Example
 Here is an example of connecting RisingWave to an S3 source to read data from individual streams.
