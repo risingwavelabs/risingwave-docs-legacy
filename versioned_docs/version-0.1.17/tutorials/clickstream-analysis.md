@@ -32,7 +32,7 @@ git clone https://github.com/risingwavelabs/risingwave.git
 Now navigate to the `integration_tests/clickstream` directory and start the demo cluster from the docker compose file. 
 
 ```shell
-cd integration_tests/clickstream
+cd risingwave/integration_tests/clickstream
 docker compose up -d
 ```
 
@@ -83,7 +83,7 @@ CREATE MATERIALIZED VIEW thread_view_count AS WITH t AS (
     SELECT
         target_id,
         COUNT() AS view_count,
-        window_start as window_time
+        window_start AS window_time
     FROM
         TUMBLE(
             user_behaviors,
@@ -143,9 +143,9 @@ We can also query results by specifying a time interval. To learn more about dat
 
 ```sql
 SELECT * FROM thread_view_count
-WHERE window_start > ('2022-9-23 06:50' :: TIMESTAMP - INTERVAL '1 day')
+WHERE window_start > ('2022-09-23 06:50' :: TIMESTAMP - INTERVAL '1 day')
 AND window_start < 
-('2022-9-23 07:40' :: TIMESTAMP - INTERVAL '1 day' + INTERVAL '10 minutes')
+('2022-09-23 07:40' :: TIMESTAMP - INTERVAL '1 day' + INTERVAL '10 minutes')
 AND target_id = 'thread58'
 ORDER BY window_start;
 ```

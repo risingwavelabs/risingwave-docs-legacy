@@ -13,6 +13,19 @@ Use the `SHOW CREATE VIEW` command to see what query was used to create the spec
 SHOW CREATE VIEW view_name;
 ```
 
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('SHOW CREATE VIEW'),
+        rr.NonTerminal('view_name', 'skip'),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
 ## Parameters
  |Parameter    | Description|
 |---------------|------------|

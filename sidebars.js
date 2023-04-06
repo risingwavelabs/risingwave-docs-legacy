@@ -235,6 +235,11 @@ const sidebars = {
         label: 'MySQL',
         id: 'guides/sink-to-mysql-with-jdbc'
       },
+      {
+        type: 'doc',
+        label: 'Apache Iceberg',
+        id: 'guides/sink-to-iceberg'
+      },
     ]
     },
 
@@ -321,7 +326,12 @@ const sidebars = {
               type: 'doc',
               id: 'sql/sql-data-types',
               label: 'Overview',
-              },
+            },
+            {
+              type: 'doc',
+              id: 'sql/data-types/data-type-array',
+              label: 'Array',
+            },
             {
               type: 'doc',
               id: 'sql/data-types/data-type-casting',
@@ -329,9 +339,9 @@ const sidebars = {
             },
             {
               type: 'doc',
-              id: 'sql/data-types/data-type-array',
-              label: 'Array',
-              },
+              id: 'sql/data-types/data-type-jsonb',
+              label: 'JSONB',
+            },
             {
               type: 'doc',
               id: 'sql/data-types/data-type-struct',
@@ -485,6 +495,11 @@ const sidebars = {
         id: 'dev/python-client-libraries',
         label: 'Python',
       },
+      {
+        type: 'doc',
+        id: 'dev/go-client-libraries',
+        label: 'Go',
+      },
     ]
     },
 
@@ -497,6 +512,10 @@ const sidebars = {
       [ {
         type: 'doc',
         id: 'manage/view-statement-progress',
+      },
+      {
+        type: 'doc',
+        id: 'manage/view-adjust-system-parameters',
       },
         {
           type: 'doc',

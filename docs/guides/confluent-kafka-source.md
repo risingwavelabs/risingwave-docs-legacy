@@ -108,7 +108,7 @@ CREATE TABLE s (
 ) WITH ( 
     connector = 'kafka',
     topic = 'topic_0',
-	kafka.brokers = 'xyz-x00xx.us-east-1.aws.confluent.cloud:9092',
+	properties.bootstrap.server = 'xyz-x00xx.us-east-1.aws.confluent.cloud:9092',
     scan.startup.mode = 'earliest', 
     properties.security.protocol = 'SASL_SSL', 
     properties.sasl.mechanism = 'PLAIN', 

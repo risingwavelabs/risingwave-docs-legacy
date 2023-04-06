@@ -126,6 +126,7 @@ For materialized sources with primary key constraints, if a new data record with
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+|upsert| Optional. If true, RisingWave will read messages from Kafka topics in the upsert fashion.|
 
 ### Other parameters
 
@@ -155,7 +156,21 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 )
-ROW FORMAT AVRO
+ROW FORMAT AVRO 
+ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
+```
+</TabItem>
+<TabItem value="upsert avro" label="Upsert Avro" default>
+
+```sql
+CREATE SOURCE IF NOT EXISTS source_abc 
+WITH (
+   connector='kafka',
+   upsert='true',
+   properties.bootstrap.server='localhost:9092',
+   topic='test_topic'
+)
+ROW FORMAT UPSERT_AVRO
 ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
 </TabItem>
@@ -174,6 +189,21 @@ WITH (
    scan.startup.timestamp_millis='140000000'
 )
 ROW FORMAT JSON;
+```
+</TabItem>
+<TabItem value="upsert json" label="Upsert JSON" default>
+
+```sql
+CREATE TABLE IF NOT EXISTS source_abc (
+   column1 varchar,
+   column2 integer,
+)
+WITH (
+   connector='kafka',
+   upsert='true',
+   properties.bootstrap.server='localhost:9092',
+   topic='t1'
+) ROW FORMAT UPSERT_JSON;
 ```
 </TabItem>
 <TabItem value="pb" label="Protobuf" default>
@@ -212,7 +242,6 @@ If directly querying from the source, you can use `_rw_kafka_timestamp` to filte
 SELECT * FROM source_name
 WHERE _rw_kafka_timestamp > now() - interval '10 minute';
 ```
-
 
 ## Read schemas from locations
 
@@ -297,9 +326,9 @@ CREATE TABLE IF NOT EXISTS source_1 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.security.protocol='SSL',
    properties.ssl.ca.location='/home/ubuntu/kafka/secrets/ca-cert',
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
@@ -340,9 +369,9 @@ CREATE SOURCE IF NOT EXISTS source_2 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -359,9 +388,9 @@ CREATE SOURCE IF NOT EXISTS source_3 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_SSL',
    properties.sasl.username='admin',
@@ -405,9 +434,9 @@ CREATE TABLE IF NOT EXISTS source_4 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='SCRAM-SHA-256',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -443,9 +472,9 @@ CREATE SOURCE IF NOT EXISTS source_5 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='GSSAPI',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.kerberos.service.name='kafka',
@@ -493,9 +522,9 @@ CREATE TABLE IF NOT EXISTS source_6 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='OAUTHBEARER',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.oauthbearer.config='principal=bob'

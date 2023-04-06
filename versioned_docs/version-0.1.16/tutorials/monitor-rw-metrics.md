@@ -31,7 +31,7 @@ git clone https://github.com/risingwavelabs/risingwave.git
 Now navigate to the `integration_tests/prometheus` directory and start the demo cluster from the docker compose file. 
 
 ```shell
-cd integration_tests/prometheus
+cd risingwave/integration_tests/prometheus
 docker compose up -d
 ```
 

@@ -12,6 +12,27 @@ Use the `SHOW TABLES` command to view tables in a particular schema.
 ```sql
 SHOW TABLES [FROM schema_name];
 ```
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('SHOW TABLES'),
+        rr.Optional(
+            rr.Sequence(
+                rr.Terminal('FROM'),
+                rr.NonTerminal('schema_name', 'skip'),
+            ),
+        ),
+        rr.Terminal(';'),
+    ),
+);
+
+<drawer SVG={svg} />
+
+
+
 ## Parameters
 |Parameter   | Description           |
 |---------------------------|-----------------------|

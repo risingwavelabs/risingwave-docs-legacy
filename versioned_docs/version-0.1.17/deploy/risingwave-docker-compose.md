@@ -7,11 +7,11 @@ slug: /risingwave-docker-compose
 
 This article will help you use the pre-defined Docker Compose configuration file to set up a full-featured multi-node RisingWave cluster.
 
-::note
+:::note
 
 If you intend to deploy RisingWave in production environments, please use the Kubernetes Operator for RisingWave. This is because it has better support for resource management, and we do comprehensive tests for it. To learn about how to deploy RisingWave using the Kubernetes Operator, see [Kubernetes](risingwave-kubernetes.md).
 
-::
+:::
 
 The cluster is composed of multiple RisingWave components, including:
 
