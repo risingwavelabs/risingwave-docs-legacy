@@ -16,7 +16,7 @@ CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name (
 ) 
 WITH (
    connector='kinesis',
-   field_name='value', ...
+   connector_parameter='value', ...
 ) 
 ROW FORMAT data_format
 [ MESSAGE 'message' ]
@@ -29,7 +29,7 @@ RisingWave performs primary key constraint checks on materialized sources but no
 For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
 :::
 
-### `WITH` parameters
+### Connector parameters
 
 |Field|	Default|	Type|	Description|	Required?|
 |---|---|---|---|---|
@@ -44,7 +44,7 @@ For materialized sources with primary key constraints, if a new data record with
 |scan.startup.mode |earliest  |String| The startup mode for Kinesis consumer. Supported modes: 'earliest' (starts from the earliest offset), 'latest' (starts from the latest offset), and 'sequence_number' (starts from specific sequence number, specified by 'scan.startup.sequence_number').|False|
 |scan.startup.sequence_number |None | String| Specify the sequence number to start consuming from. | True if `scan.startup.mode` = 'sequence_number', otherwise False| 
 
-### Row format parameters
+### Other parameters
 
 Specify the format of the stream in the `ROW FORMAT` section of your statement.
 

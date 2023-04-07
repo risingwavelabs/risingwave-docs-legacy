@@ -13,6 +13,20 @@ Use the `SHOW DATABASES` command to show all databases.
 SHOW DATABASES;
 ```
 
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('SHOW DATABASES'),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
 ## Example
 
 ```sql

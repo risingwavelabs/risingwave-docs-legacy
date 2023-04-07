@@ -10,9 +10,35 @@ Use the `CREATE USER` command to create a new user account in RisingWave.
 ## Syntax
 
 ```sql
-CREATE USER user_name 
-    [ [ WITH ] option [ ... ] ];
+CREATE USER user_name [ [ WITH ] option [ ... ] ];
 ```
+
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Terminal('CREATE USER'),
+            rr.NonTerminal('user_name'),
+            rr.Optional(
+               rr.Sequence(
+                  rr.Optional(rr.Terminal('WITH')),
+                  rr.OneOrMore(
+                     rr.NonTerminal('option'), rr.Comment('space as delimiter')
+                    ),
+               )
+            )
+        ),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
 
 ## Parameters
 | Parameter or clause | Description           |

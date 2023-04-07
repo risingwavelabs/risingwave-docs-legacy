@@ -24,7 +24,6 @@ For tools or integrations that you would like to use but are not listed in the t
 |DataStax Astra Streaming| Available | Researching <voteNotify note="astra_streaming_sink" />|
 |StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
 |Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Researching <voteNotify note="kinesis_sink" />|
-|Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
 
 ## ETL/ELT and data integration
 
@@ -50,14 +49,16 @@ For tools or integrations that you would like to use but are not listed in the t
 
 |System | Source | Sink |
 |---|---|----|
-|Postgres| In progress <voteNotify note="pg_source" />| Researching <voteNotify note="pg_sink" />|
+|Postgres| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details.| In progress <voteNotify note="pg_sink" />|
+|AWS RDS (Postgres)| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. |In progress <voteNotify note="aurora_pg_sink" />|
 |AWS Aurora (Postgres)| In progress <voteNotify note="aurora_pg_source" />|Researching <voteNotify note="aurora_pg_sink" />|
 
 ### MySQL
 
 |System | Source | Sink |
 |---|---|----|
-|MySQL | In progress <voteNotify note="mysql_source" />| Researching <voteNotify note="mysql_sink" />|
+|MySQL | Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md).|
+|AWS RDS (MySQL)|Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md).|
 |AWS Aurora (MySQL)|In progress <voteNotify note="aurora_mysql_source" />| Researching <voteNotify note="aurora_mysql_sink" /> |
 
 ### Other databases
@@ -89,15 +90,16 @@ For tools or integrations that you would like to use but are not listed in the t
 
 ## BI and data analytic platforms
 
-|System | |Availability |
-|---|---|---|
-|Apache Superset|| Available |
-|Cube.js| |Researching <voteNotify note="cubejs" />|
+|System ||Availability |
+|---|-|--|
+|Apache Superset| |Available. See [Visualize RisingWave data in Superset](/guides/grafana-integration.md) for details. |
+|Cube.js| | Researching <voteNotify note="cubejs" />|
 |DBeaver| |In progress <voteNotify note="dbeaver" />|
-|Grafana| |Available. See [Visualize RisingWave data in Grafana](./guides/grafana-integration.md) for details.|
-|Jupyter Notebook| |Researching <voteNotify note="jupyter" />|
-|Looker| |Researching <voteNotify note="looker" /> |
-|Metabase | |In progress <voteNotify note="metabase" />|
+|Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
+|Jupyter Notebook||Researching <voteNotify note="jupyter" />|
+|Looker||Researching <voteNotify note="looker" /> |
+|Metabase ||In progress <voteNotify note="metabase" />|
+|Redash || Available |
 
 
 ## Other systems

@@ -24,12 +24,12 @@ CREATE MATERIALIZED SOURCE [ IF NOT EXISTS ] source_name (
 ) 
 WITH (
    connector='kafka',
-   field_name='value', ...
+   connector_parameter='value', ...
 ) 
 ROW FORMAT { DEBEZIUM_JSON | MAXWELL };
 ```
 
-### `WITH` parameters
+### Connector parameters
 
 
 |Field|	Default|	Type|	Description|	Required?|

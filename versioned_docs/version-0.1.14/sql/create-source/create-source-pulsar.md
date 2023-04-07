@@ -17,7 +17,7 @@ CREATE [ MATERIALIZED ] SOURCE [ IF NOT EXISTS ] source_name (
 )
 WITH (
    connector='pulsar',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT data_format 
 [MESSAGE 'message']
@@ -30,7 +30,7 @@ RisingWave performs primary key constraint checks on materialized sources but no
 For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
 :::
 
-### `WITH` parameters
+### Connector parameters
 
 |Field|	Default|	Type|	Description|	Required?|
 |---|---|---|---|---|
@@ -40,7 +40,7 @@ For materialized sources with primary key constraints, if a new data record with
 |scan.startup.mode	|earliest	|String	|The Pulsar consumer starts consuming data from the commit offset. This includes two values: `'earliest'` and `'latest'`.	|False|
 |scan.startup.timestamp_millis	|None	|Int64	|Specify the offset in milliseconds from a certain point of time.	|False|
 
-### Row format parameters
+### Other parameters
 
 Specify the format of the stream in the `ROW FORMAT` section of your statement.
 

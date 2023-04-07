@@ -7,6 +7,109 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes. 
 
+## v0.18.0
+
+This version was released on March 31, 2023. 
+
+Starting from this version, we’ll respect semantic versioning conventions by using the middle number (`y` , instead of `z,` in `x.y.z`) to indicate minor versions. That is why this is `v0.18.0`, not `v0.1.18`.
+
+### Main changes
+
+#### Administration and troubleshooting
+
+- Improves error messages by including the location of the statement in question. [#8646](https://github.com/risingwavelabs/risingwave/pull/8646)
+- Initial values of immutable system parameters can be specified via the meta-node command line. The initial values provided in the configuration file will be ignored. [#8366](https://github.com/risingwavelabs/risingwave/pull/8366)
+
+#### SQL features
+
+- Adds initial support for user-defined functions. [#8597](https://github.com/risingwavelabs/risingwave/pull/8597) [#8644](https://github.com/risingwavelabs/risingwave/pull/8644) [#8255](https://github.com/risingwavelabs/risingwave/pull/8255) [#7943](https://github.com/risingwavelabs/risingwave/pull/7943)
+- Adds support for JSONB data type. [#8256](https://github.com/risingwavelabs/risingwave/pull/8256) [#8181](https://github.com/risingwavelabs/risingwave/pull/8181)
+- Adds support for `NULLS { FIRST | LAST }` in `ORDER BY` clauses. [#8485](https://github.com/risingwavelabs/risingwave/pull/8485)
+- New commands:
+    - `ALTER SOURCE RENAME TO` [#8778](https://github.com/risingwavelabs/risingwave/pull/8778)
+    - `SET TIME ZONE` [#8572](https://github.com/risingwavelabs/risingwave/pull/8572)
+    - `ALTER RELATION RENAME` [#7745](https://github.com/risingwavelabs/risingwave/pull/7745)
+    - `ALTER TABLE ADD/DROP COLUMN` for regular tables (without connector settings). [#8394](https://github.com/risingwavelabs/risingwave/pull/8394)
+- New functions:
+    - `array_length` : Returns the length of an array. [#8636](https://github.com/risingwavelabs/risingwave/pull/8636)
+    - String functions implemented with the help of ChatGPT.  [#8767](https://github.com/risingwavelabs/risingwave/pull/8767) [#8839](https://github.com/risingwavelabs/risingwave/pull/8839)
+        - `chr(integer)` -> `varchar`
+        - `starts_with(varchar, varchar)` -> `boolean`
+        - `initcap(varchar)` -> `varchar`
+        - `lpad(varchar, integer)` -> `varchar`
+        - `lpad(varchar, integer, varchar)` -> `varchar`
+        - `rpad(varchar, integer)` -> varchar
+        - `rpad(varchar, integer, varchar)` -> `varchar`
+        - `reverse(varchar)` -> `varchar`
+        - `strpos(varchar, varchar)` -> `integer`
+        - `to_ascii(varchar)` -> `varchar`
+        - `to_hex(integer)` -> `varchar`
+        - `to_hex(bigint)` -> `varchar`)
+    - Improves the data type values of columns returned by `DESCRIBE` . [#8819](https://github.com/risingwavelabs/risingwave/pull/8819)
+    - `UPDATE` commands cannot update primary key columns. [#8569](https://github.com/risingwavelabs/risingwave/pull/8569)
+    - Adds support for microsecond precision for intervals. [#8501](https://github.com/risingwavelabs/risingwave/pull/8501)
+    - Adds an optional parameter `offset` to `tumble()` and `hop()` functions. [#8490](https://github.com/risingwavelabs/risingwave/pull/8490)
+    - Data records that has null time values will be ignored by time window functions. [#8146](https://github.com/risingwavelabs/risingwave/pull/8146)
+    - Improves the behaviors of the  `exp` operator when the operand is too large or small. [#8309](https://github.com/risingwavelabs/risingwave/pull/8309)
+    - Supports process time temporal join, which enables the joining of an append-only stream (such as Kafka) with a temporal table (e.g. a materialized view backed by MySQL CDC). This feature ensures that any updates made to the temporal table will not affect previous results obtained from the temporal join. Supports `FOR SYSTEM_TIME AS OF NOW()` syntax to express process time temporal join. [#8480](https://github.com/risingwavelabs/risingwave/pull/8480)
+
+#### Connectors
+
+- Adds a new field `basetime` to the load generator connector for generating timestamp data. The load generator will take this field as `now` and generates data accordingly. [#8619](https://github.com/risingwavelabs/risingwave/pull/8619)
+- Empty cells in CSV are now parsed as null. [#8709](https://github.com/risingwavelabs/risingwave/pull/8709)
+- Adds the Iceberg connector. [#8508](https://github.com/risingwavelabs/risingwave/pull/8508)
+- Adds support for the upsert type to the Kafka sink connector. [#8168](https://github.com/risingwavelabs/risingwave/pull/8168)
+- Removes the message name parameter for Avro data. [#8124](https://github.com/risingwavelabs/risingwave/pull/8124)
+- Adds support for AWS PrivateLink for Kafka source connector. [#8247](https://github.com/risingwavelabs/risingwave/pull/8247)
+
+**Full Changelog**: https://github.com/risingwavelabs/risingwave/compare/v0.1.17...v0.18.0
+
+### Assets
+
+* Run this version from Docker:<br/>
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v0.18.0 playground`
+* [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.18.0/risingwave-v0.18.0-x86_64-unknown-linux.tar.gz)
+* [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.18.0.zip)
+* [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.18.0.tar.gz)
+
+## v0.1.17
+
+This version was released on February 28, 2023
+
+### Main changes
+
+#### Administration
+
+- Adds a system catalog view `rw_catalog.rw_ddl_progress`, with which users can view the progress of a `CREATE INDEX`, `CREATE SINK`, or `CREATE MATERIALIZED VIEW` statement. [#7914](https://github.com/risingwavelabs/risingwave/pull/7914)
+- Adds the `pg_conversion` and `pg_enum` system catalogs. [#7964](https://github.com/risingwavelabs/risingwave/pull/7964), [#7706](https://github.com/risingwavelabs/risingwave/pull/7706)
+
+#### SQL features
+
+- Adds the `exp()` function. [#7971](https://github.com/risingwavelabs/risingwave/pull/7971)
+- Adds the `pow()` function. [#7789](https://github.com/risingwavelabs/risingwave/pull/7789)
+- Adds support for displaying primary keys in `EXPLAIN` statements. [#7590](https://github.com/risingwavelabs/risingwave/pull/7590)
+- Adds support for descending order in `CREATE INDEX` statements. [#7822](https://github.com/risingwavelabs/risingwave/pull/7822)
+- Adds `SHOW PARAMETERS` and `ALTER SYSTEM` commands to display and update system parameters. [#7882](https://github.com/risingwavelabs/risingwave/pull/7882), [#7913](https://github.com/risingwavelabs/risingwave/pull/7913)
+
+#### Connectors
+
+- Adds a new parameter `match_pattern` to the S3 connector. With the new parameter, users can specify the pattern to filter files that they want to ingest from S3 buckets. For documentation updates, see [Ingest data from S3 buckets](./create-source/create-source-s3.md). [#7565](https://github.com/risingwavelabs/risingwave/pull/7565)
+- Adds the PostgreSQL CDC connector. Users can use this connector to ingest data and CDC events from PostgreSQL directly. For documentation updates, see [Ingest data from PostgreSQL CDC](./guides/ingest-from-postgres-cdc.md). [#6869](https://github.com/risingwavelabs/risingwave/pull/6869, [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
+- Adds the MySQL CDC connector. Users can use this connector to ingest data and CDC events from MySQL directly. For documentation updates, see [Ingest data from MySQL CDC](./guides/ingest-from-mysql-cdc.md). [#6689](https://github.com/risingwavelabs/risingwave/pull/6689), [#6345](https://github.com/risingwavelabs/risingwave/pull/6345), [#6481](https://github.com/risingwavelabs/risingwave/pull/6481), [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
+- Adds the JDBC sink connector, with which users can sink data to MySQL, PostgreSQL, or other databases that are compliant with JDBC. [#6493](https://github.com/risingwavelabs/risingwave/pull/6493)
+- Add new parameters to the Kafka sink connector.
+    - `force_append_only` : Specifies whether to force a sink to be append-only. [#7922](https://github.com/risingwavelabs/risingwave/pull/7922)
+    - `use_transaction` : Specifies whether to enable Kafka transactions or not. [#7500](https://github.com/risingwavelabs/risingwave/pull/7500)
+    - SSL/SASL parameters: Specifies SSL encryption and SASL authentication settings. [#7540](https://github.com/risingwavelabs/risingwave/pull/7540)
+
+### Assets
+
+* Run this version from Docker:<br/>
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v0.1.17 playground`
+* [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.1.17/risingwave-v0.1.17-x86_64-unknown-linux.tar.gz)
+* [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.17.zip)
+* [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.1.17.tar.gz)
+
 ## v0.1.16
 
 This version was released on February 1, 2023.

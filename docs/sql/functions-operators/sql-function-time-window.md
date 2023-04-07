@@ -33,16 +33,16 @@ FROM TUMBLE(table_or_source, start_time, window_size);
 *window_size* is in the format of `INTERVAL 'interval'`. Example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported.
 
 
-Suppose that we have a table, "taxi_trips", that consists of these columns: `id`, `taxi_id`, `completed_at`, and `distance`.
+Suppose that we have a table, `taxi_trips`, that consists of these columns: `trip_id`, `taxi_id`, `completed_at`, `distance`, and `duration`.
 
-|trip_id|  taxi_id	|completed_at	    |distance|
-|-------|-----------|-------------------|--------|
-|1      |   1001    |2022-07-01 22:00:00|4|
-|2      |	1002    |2022-07-01 22:01:00|6|
-|3      |	1003    |2022-07-01 22:02:00|3|
-|4      |	1004    |2022-07-01 22:03:00|7|
-|5      |	1005    |2022-07-01 22:05:00|2|
-|6      |	1006    |2022-07-01 22:05:30|8|
+trip_id|  taxi_id	|completed_at	    |distance| duration
+-------|-----------|-------------------|--------|---------
+1      |   1001    |2022-07-01 22:00:00|4|6
+2      |	1002    |2022-07-01 22:01:00|6|9
+3      |	1003    |2022-07-01 22:02:00|3|5
+4      |	1004    |2022-07-01 22:03:00|7|15
+5      |	1005    |2022-07-01 22:05:00|2|4
+6      |	1006    |2022-07-01 22:05:30|8|17
 
 
 
@@ -172,13 +172,28 @@ You can join a time window with a table, or another time window that is of the s
 
 ### Joins with tables
 
-In the example below, we join a tumble time window with a table “taxi” to get the taxi company name.
+Let's see how you can join a time window with a table.
+
+Suppose that you have a simple table `taxi_simple` that has the following data:
+
+```
+taxi_id        |company    
+---------------+-------------------
+1001 |'SAFE TAXI'
+1002 |'SUPER TAXI'
+1003 |'FAST TAXI'
+1004 |'BEST TAXI'
+1005 |'WEST TAXI'
+1006 |'EAST TAXI'
+```
+
+You can join it with a time window:
 
 ```sql
-SELECT trip.window_start, trip.window_end, trip.distance, taxi.company
+SELECT trip.window_start, trip.window_end, trip.distance, taxi_simple.company
 FROM TUMBLE (taxi_trips, completed_at, INTERVAL '2 MINUTES') as trip
-JOIN taxi
-ON trip.taxi_id = taxi.taxi_id
+JOIN taxi_simple
+ON trip.taxi_id = taxi_simple.taxi_id
 ORDER BY trip.window_start ASC;
 ```
 
@@ -197,7 +212,22 @@ The result looks like this:
 
 ### Window joins
 
-In the example below, we join two tumble time windows to get both trip and fare information.
+You can join two tumble time windows to get both trip and fare information. The corresponding tables are `taxi_trips` and `taxi_fare`.
+
+The `taxi_fare` table has the following data:
+
+```
+trip_id| completed_at | total_fare | payment_status
+------+--------------+--------------+--------------
+ 1 | 2022-07-01 22:00:00 | 8  | COMPLETED
+ 2 | 2022-07-01 22:01:00 | 12 | PROCESSING
+ 3 | 2022-07-01 22:02:10 | 5  | COMPLETED 
+ 4 | 2022-07-01 22:03:00 | 15 | COMPLETED 
+ 5 | 2022-07-01 22:06:00 | 5  | REJECTED
+ 6 | 2022-07-01 22:06:00 | 20 | COMPLETED
+```
+
+You can join two time windows:
 
 ```sql
 SELECT trip.window_start, trip.window_end, trip.distance, fare.total_fare, fare.payment_status

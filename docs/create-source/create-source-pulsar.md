@@ -15,15 +15,83 @@ When creating a source, you can choose to persist the data from the source in Ri
 
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
-[schema_definition]
+[ schema_definition ]
 WITH (
    connector='pulsar',
-   field_name='value', ...
+   connector_parameter='value', ...
 )
 ROW FORMAT data_format 
-[MESSAGE 'message']
-[ROW SCHEMA LOCATION 'location'];
+[ MESSAGE 'message' ]
+[ ROW SCHEMA LOCATION 'location' ];
 ```
+
+
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Choice(1,
+                rr.Terminal('CREATE TABLE'),
+                rr.Terminal('CREATE SOURCE')
+            ),
+            rr.Optional(rr.Terminal('IF NOT EXISTS')),
+            rr.NonTerminal('source_name', 'wrap')
+        ),
+        rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
+        rr.Sequence(
+            rr.Terminal('WITH'),
+            rr.Terminal('('),
+            rr.Stack(
+                rr.Stack(
+                    rr.Sequence(
+                        rr.Terminal('connector'),
+                        rr.Terminal('='),
+                        rr.NonTerminal('pulsar', 'skip'),
+                        rr.Terminal(','),
+                    ),
+                    rr.OneOrMore(
+                        rr.Sequence(
+                            rr.NonTerminal('connector_parameter', 'skip'),
+                            rr.Terminal('='),
+                            rr.NonTerminal('value', 'skip'),
+                            rr.Terminal(','),
+                        ),
+                    ),
+                ),
+                rr.Terminal(')'),
+            ),
+        ),
+        rr.Stack(
+            rr.Sequence(
+                rr.Terminal('ROW FORMAT'),
+                rr.NonTerminal('data_format', 'skip'),
+            ),
+            rr.Optional(
+                rr.Sequence(
+                    rr.Terminal('MESSAGE'),
+                    rr.NonTerminal('message', 'skip'),
+                ),
+            ),
+            rr.Optional(
+                rr.Sequence(
+                    rr.Terminal('ROW SCHEMA LOCATION'),
+                    rr.NonTerminal('location', 'skip'),
+                ),
+            ),
+            rr.Terminal(';'),
+        ),
+    )
+);
+
+
+<drawer SVG={svg} />
+
+
+
+
 
 **schema_definition**:
 ```sql
@@ -56,7 +124,7 @@ For materialized sources with primary key constraints, if a new data record with
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis.| Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
 |*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
-|*message* |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
+|*message* |Message name of the main Message in schema definition. Required when *data_format* is `PROTOBUF`.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 
 ## Example
@@ -78,7 +146,7 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 )
-ROW FORMAT AVRO MESSAGE 'FooMessage'
+ROW FORMAT AVRO
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
 ```
 </TabItem>

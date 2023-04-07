@@ -98,7 +98,7 @@ All the code examples in this guide include a section for connecting to RisingWa
 
 ## Create a materialized view
 
-The code in this section creates a materialized view `counter` to capture the latest total distance and duration..
+The code in this section creates a materialized view `counter` to capture the latest total distance and duration.
 
 ```js
 const { Pool } = require('pg')

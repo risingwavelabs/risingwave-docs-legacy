@@ -42,12 +42,18 @@ const sidebars = {
           id: 'key-concepts',
           label: 'Key concepts and terms',
         },
-
+        
         {
           type: 'doc',
           label: 'Integrations',
           id: 'rw-integration-summary',
           },
+
+          {
+            type: 'doc',
+            label: 'RisingWave vs. Flink',
+            id: 'risingwave-flink-comparison',
+            },
       ]
     },
 
@@ -160,6 +166,11 @@ const sidebars = {
         },
         {
           type: 'doc',
+          label: 'Confluent Cloud',
+          id: 'guides/confluent-kafka-source',
+        },
+        {
+          type: 'doc',
           label: 'Redpanda',
           id: 'create-source/create-source-redpanda',
         },
@@ -216,11 +227,21 @@ const sidebars = {
       },
       {
         type: 'doc',
-        id: 'sql/commands/sql-create-sink',
-        label: 'Create a sink',
+        label: 'Kafka',
+        id: 'guides/create-sink-kafka'
+        },
+      {
+        type: 'doc',
+        label: 'MySQL',
+        id: 'guides/sink-to-mysql-with-jdbc'
+      },
+      {
+        type: 'doc',
+        label: 'Apache Iceberg',
+        id: 'guides/sink-to-iceberg'
       },
     ]
-  },
+    },
 
     {
       type: 'category',
@@ -296,7 +317,6 @@ const sidebars = {
           },
         ]
         },
-
        {
           type: 'category',
           label: 'Data types',
@@ -306,7 +326,12 @@ const sidebars = {
               type: 'doc',
               id: 'sql/sql-data-types',
               label: 'Overview',
-              },
+            },
+            {
+              type: 'doc',
+              id: 'sql/data-types/data-type-array',
+              label: 'Array',
+            },
             {
               type: 'doc',
               id: 'sql/data-types/data-type-casting',
@@ -314,9 +339,9 @@ const sidebars = {
             },
             {
               type: 'doc',
-              id: 'sql/data-types/data-type-array',
-              label: 'Array',
-              },
+              id: 'sql/data-types/data-type-jsonb',
+              label: 'JSONB',
+            },
             {
               type: 'doc',
               id: 'sql/data-types/data-type-struct',
@@ -401,7 +426,16 @@ const sidebars = {
           type: 'category',
           label: 'Patterns',
           items:
-            [
+            [  {
+                type: 'doc',
+                id: 'sql/syntax/sql-pattern-dynamic-filters',
+                label: 'Dynamic filters'
+              },
+              {
+                type: 'doc',
+                id: 'sql/syntax/sql-pattern-temporal-filters',
+                label: 'Temporal filters'
+              },
               {
                 type: 'doc',
                 id: 'sql/syntax/sql-pattern-topn',
@@ -461,6 +495,11 @@ const sidebars = {
         id: 'dev/python-client-libraries',
         label: 'Python',
       },
+      {
+        type: 'doc',
+        id: 'dev/go-client-libraries',
+        label: 'Go',
+      },
     ]
     },
 
@@ -470,7 +509,14 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: 
-      [ 
+      [ {
+        type: 'doc',
+        id: 'manage/view-statement-progress',
+      },
+      {
+        type: 'doc',
+        id: 'manage/view-adjust-system-parameters',
+      },
         {
           type: 'doc',
           id: 'manage/meta-backup',
