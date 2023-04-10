@@ -1,0 +1,20 @@
+.internalExpand {
+  display: none;
+}
+
+.internalExpandedLink::after {
+  background: none !important;
+}
+
+.internalExpandCollapseButton::before {
+  background: no-repeat center url(/static/img/minus.svg) !important;
+  content: "";
+  margin-left: auto;
+  min-width: 1.25rem;
+  filter: none;
+  height: 1.25rem;
+  width: 1.25rem;
+  transform: rotate(0turn);
+  transform-origin: center;
+  transition: background 200ms ease-out;
+}
