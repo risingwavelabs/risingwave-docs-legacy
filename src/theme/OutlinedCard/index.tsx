@@ -21,6 +21,7 @@ type Props = {
   doc?: string;
   cloud?: string;
   url?: string;
+  height?: string;
   btn?: string;
   width?: string;
   links?: LinkProps[];
@@ -34,6 +35,7 @@ export default function OutlinedCard({
   links,
   btn,
   width,
+  height,
   cloud,
   ...rest
 }: Props) {
@@ -47,18 +49,17 @@ export default function OutlinedCard({
       variant="outlined"
       sx={{
         width: width ? width : "100%",
+        height: height ? height : "auto",
       }}
       className={`${links ? styles.defaultContainer : styles.cardContainer}`}
       onClick={() => {
         if (links) return;
         if (doc) {
-          globalData["docusaurus-plugin-content-docs"].default["versions"].map(
-            (v) => {
-              if (location.pathname.includes(v.path)) {
-                history.push(`${v.path}/${doc}`);
-              }
+          globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
+            if (location.pathname.includes(v.path)) {
+              history.push(`${v.path}/${doc}`);
             }
-          );
+          });
         } else if (url) {
           window.open(url, "_blank", "noopener,noreferrer");
         } else if (cloud) {
@@ -83,9 +84,7 @@ export default function OutlinedCard({
                     if (link.url) {
                       window.open(link.url, "_blank", "noopener,noreferrer");
                     } else if (link.doc) {
-                      globalData["docusaurus-plugin-content-docs"].default[
-                        "versions"
-                      ].map((v) => {
+                      globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
                         if (location.pathname.includes(v.path)) {
                           history.push(`${v.path}/${link.doc}`);
                         }
