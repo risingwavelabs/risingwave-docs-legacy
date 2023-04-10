@@ -14,7 +14,6 @@ ALTER SOURCE current_source_name
    RENAME TO new_source_name;
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
@@ -33,16 +32,13 @@ export const svg = rr.Diagram(
 
 <drawer SVG={svg} />
 
-
-
 ## Parameters
 
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
 |*current_source_name*               |The current name of the source you want to modify.|
 |**RENAME TO**  |Indicates the intention to rename the specified source.|
-|*new_source_name*      |The new name you want to assign to the "source" object.|
-
+|*new_source_name*      |The new name you want to assign to the source object.|
 
 ## Example
 
