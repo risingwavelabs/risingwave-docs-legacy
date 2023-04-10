@@ -121,3 +121,6 @@ JSONB
 boolean
 Lamport
 Chandy
+OpenDAL
+HDFS
+WebHDFS
