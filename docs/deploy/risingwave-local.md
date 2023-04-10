@@ -122,10 +122,12 @@ You can now [connect a streaming source to RisingWave](/sql/commands/sql-create-
 
 The RisingWave connector node is a separate Java component that allows RisingWave to be integrated with external systems. It can be used to consume CDC events and sink data to downstream databases. 
 
-To start the connector node, download the most recent .tar package from <https://github.com/risingwavelabs/risingwave-connector-release>.
+To enable the connector node:
 
-Next, unzip the package and run the following code to enable the connector node.
+1. Navigate to the `risingwave` directory and run `./risedev configure`.
 
-```terminal
-./start-service.sh
-```
+2. Enable the **[Build] Build RisingWave Connector (Java)** option.
+
+3. Uncomment `use connector-node` in the risedev.yml file.
+
+Now when you run RisingWave, the connector node will be enabled. 
