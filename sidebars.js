@@ -201,7 +201,7 @@ const sidebars = {
         },
           {
           type: 'doc',
-          label: 'CDC via a message broker',
+          label: 'CDC via message queues',
           id: 'create-source/create-source-cdc',
         },
         {
