@@ -10,10 +10,10 @@ module.exports = {
           type: "doc",
           id: "about-whats-risingwave-cloud",
         },
-        {
-          type: "doc",
-          id: "about-whats-new",
-        },
+        // {
+        //   type: "doc",
+        //   id: "about-whats-new",
+        // },
         {
           type: "doc",
           id: "about-faq",
@@ -68,6 +68,7 @@ module.exports = {
           type: "category",
           label: "Manage clusters",
           collapsible: true,
+          link: {type: 'doc', id: 'cluster-manage-clusters'},
           items: [
             {
               type: "doc",
@@ -98,6 +99,7 @@ module.exports = {
           label: "Manage database users",
           collapsible: true,
           collapsed: true,
+          link: {type: 'doc', id: 'cluster-manage-database-users'},
           items: [
             {
               type: "doc",
