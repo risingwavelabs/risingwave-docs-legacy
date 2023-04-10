@@ -266,11 +266,24 @@ const sidebars = {
     label: 'SQL',
     collapsible: true,
     collapsed: true,
+    link: {
+      type: 'generated-index',
+      title: 'SQL references',
+      slug: '/sql-references',
+      keywords: ['SQL']
+    },
     items: 
     [
       {
         type: 'category',
         label: 'Commands',
+        link: {
+          type: 'generated-index',
+          title: 'SQL commands',
+          description: 'Overview of the SQL commands supported by RisingWave.',
+          slug: '/sql-commands',
+          keywords: ['SQL, commands']
+        },
         items: 
           [
             {
@@ -283,6 +296,13 @@ const sidebars = {
       {
         type: 'category',
         label: 'Query syntax',
+        link: {
+          type: 'generated-index',
+          title: 'Query syntax',
+          description: 'Syntax and usage of common query clauses.',
+          slug: '/query-syntax',
+          keywords: ['query, syntax']
+        },
         items: 
         [
           {
@@ -320,6 +340,7 @@ const sidebars = {
        {
           type: 'category',
           label: 'Data types',
+          link: {type: 'doc', id: 'sql/sql-data-types'},
           items:
           [
             {
@@ -352,6 +373,13 @@ const sidebars = {
       {
       type: 'category',
       label: 'Functions and operators',
+      link: {
+        type: 'generated-index',
+        title: 'SQL functions and operators',
+        description: 'Functions and operators that can be used in SQL queries.',
+        slug: '/sql-functions',
+        keywords: ['function, operator']
+      },
       items: 
         [
           {
@@ -425,6 +453,13 @@ const sidebars = {
         {
           type: 'category',
           label: 'Patterns',
+          link: {
+            type: 'generated-index',
+            title: 'Query patterns',
+            description: 'Commonly used patterns and techniques that can help build a more efficient data processing workflow.',
+            slug: '/sql-patterns',
+            keywords: ['pattern']
+          },
           items:
             [  {
                 type: 'doc',
