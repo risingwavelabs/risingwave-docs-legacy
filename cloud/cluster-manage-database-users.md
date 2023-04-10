@@ -5,7 +5,7 @@ description: A database user allows a person or application to access a specific
 slug: /manage-database-users
 ---
 
-In RisingWave Database, a database user is similar to a database user/role in Postgres, allowing a person or application to access a specific database or set of databases within a cluster. Also, you [connect and log in to a cluster](cluster-connect-to-a-cluster.md) as one of the database users in it. Database users can be assigned specific permissions to control their database privileges.
+In RisingWave Database, a database user is similar to a database user or role in Postgres, allowing a person or application to access a specific database or set of databases within a cluster. Also, you [connect and log in to a cluster](cluster-connect-to-a-cluster.md) as one of the database users in it. Database users can be assigned specific permissions to control their database privileges.
 
 :::info
 In the Beta version, all users are superusers. More permission controls for creating new databases and users and login permissions will be available in future releases.

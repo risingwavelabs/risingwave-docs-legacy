@@ -11,7 +11,7 @@ A cluster in RisingWave Cloud provides the necessary resources for hosting indep
 
 ## What is a database user?
 
-In RisingWave Database, a database user is similar to a database user/role in Postgres, allowing a person or application to access a specific database or set of databases within a cluster. Database users can be assigned specific permissions to control their database privileges.
+In RisingWave Database, a database user is similar to a database user or role in Postgres, allowing a person or application to access a specific database or set of databases within a cluster. Database users can be assigned specific permissions to control their database privileges.
 
 ## What are the differences between the free-tier plan and customized plans for invited users?
 

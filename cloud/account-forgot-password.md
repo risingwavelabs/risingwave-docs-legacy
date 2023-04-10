@@ -17,7 +17,7 @@ If you see this message “*Incorrect email or password.*” when you try to log
 
 1. Click **Forgot password?**
 
-2. Enter the email address you create your account with and click **Get code**.
+2. Enter the email address you created your account with and click **Get code**.
     
     <img
     src={require('./images/login-forgotpassword.png').default}

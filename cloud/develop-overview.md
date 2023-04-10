@@ -71,7 +71,7 @@ Select the corresponding docs version when using the RisingWave Database user do
  <card
  style={{height: "87%"}}
  title="Integrations"
- content="See how RisingWave Database can integrate with your existing data stack. Vote your favorite data tools and streaming services to help us prioritize the integration development."
+ content="See how RisingWave Database can integrate with your existing data stack. Vote for your favorite data tools and streaming services to help us prioritize the integration development."
  url="https://www.risingwave.dev/docs/current/rw-integration-summary/"
  />
 
