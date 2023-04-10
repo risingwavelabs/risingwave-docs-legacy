@@ -149,7 +149,8 @@ Specify the following fields for every column in the source you are creating.
 |---|---|---|---|
 |`kind`|Generator type|Set to `random`.|False<br/>Default: `random`|
 |`max_past`|Specify the maximum deviation from the baseline timestamp to determine the earliest possible timestamp can be generated. |An [interval](/sql/sql-data-types.md)<br/>Example: `2h 37min`|False<br/>Default: `1 day`|
-|`max_past_mode`|Specify the baseline timestamp. <br/> The range for generated timestamps is [baseline - `max_past` , baseline]|`absolute` — Baseline is set to the creation time of the source.<br />`relative` —  Baseline is the current system time.|False<br/>Default: `absolute`|
+|`max_past_mode`|Specify the baseline timestamp. <br/> The range for generated timestamps is [basetime - `max_past` , basetime]|`absolute` — Baseline is set to the execution time of the generator.<br />`relative` —  Baseline is the current system time.|False<br/>Default: `absolute`|
+|`basetime`|If set, the generator will use the specified time as the basetime. If omitted, the generator execution time is set as the basetime.|A [date and time string](https://docs.rs/chrono/latest/chrono/struct.DateTime.html#method.parse_from_rfc3339)<br/>Example: `2023-04-01T16:39:57-08:00`|False<br/>Default: generator execution time|
 |`seed`|A seed number that initializes the random load generator. The sequence of the generated timestamps is determined by the seed value. If given the same seed number, the generator will produce the same sequence of timestamps.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of timestamps will be generated (if the system time is constant).|
 
 
@@ -244,7 +245,7 @@ The following statement creates a source `s1` with four columns:
 
 * `i1` — An array of three integers starting from 1 and incrementing by 1
 * `v1` — Structs that contain random integers `v2` ranging from -10 to 10 and random floating-point numbers `v3` ranging from 15 to 55
-* `t1` — Random timestamps from as early as 10 days prior to the source creation time
+* `t1` — Random timestamps from as early as 10 days prior to the generator execution time
 * `c1` — Random strings with each consists of 16 characters
 
 
