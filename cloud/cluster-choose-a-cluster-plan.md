@@ -30,7 +30,7 @@ Clusters created under the free-tier plan will expire after five days. DO NOT ch
 
 - **Region**
 
-    Regions are isolated from each other. We’ve set up a demo data source in `us-east-1`. Select `us-east-1` if you’d like to try the [sample queries in **Console**](quickstart.md/?step=4#sample-queries-in-console).
+    Regions are isolated from each other.
 
 </TabItem>
 
@@ -49,7 +49,7 @@ The customized plan offers the flexibility of configuring the resources to bette
 
 - **Region**
 
-    Regions are isolated from each other. We’ve set up a demo data source in `us-east-1`. Select `us-east-1` if you’d like to try the [sample queries in **Console**](quickstart.md/?step=4#sample-queries-in-console).
+    Regions are isolated from each other.
 
 - **Configure nodes**
 

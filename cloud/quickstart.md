@@ -205,10 +205,6 @@ src={require('./images/console-samplequeries.gif').default}
 alt="Running a sample query using the console"
 />
 
-:::info
-The data sources used in the demos are available in region `us-east-1` only. You cannot access the data sources if you select another region when creating the cluster. You can create a new cluster in the `us-east-1` region to access the demo data.
-:::
-
 ---
 <defaultButton text="Continue →" cloud="quickstart?step=5" block/>
 
