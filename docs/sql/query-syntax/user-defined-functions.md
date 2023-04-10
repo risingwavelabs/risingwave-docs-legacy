@@ -5,7 +5,7 @@ title: User-defined functions
 description: Define your own functions with the help of the RisingWave UDF API for Python.
 ---
 
-You can define your own functions (including table functions) and call these functions in RisingWave. With the user-defined function (UDF), you can tailor RisingWave to your needs and take advantage of the power and flexibility of Python to create complex and customized functionality for your data processing and analysis tasks.
+You can define your own functions (including table functions) and call these functions in RisingWave. With the user-defined function (UDF), you can tailor RisingWave to your needs and take advantage of the power and flexibility of Python to perform complex and customized data processing and analysis tasks.
 Currently, RisingWave supports UDFs implemented as external functions in Python.
 
 This article provides a step-by-step guide for installing the RisingWave UDF API, defining functions in a Python file, starting the UDF server, and declaring and using UDFs in RisingWave.
@@ -33,7 +33,7 @@ If "command not found: pip" is returned, <a href="https://packaging.python.org/e
 
 ## 2. Define your functions in a Python file
 
-To better demonstrate this step, we have prepared a sample script for you to try out. Please create a Python file with the name "udf.py" and insert the script below.
+To better demonstrate this step, we have prepared a sample script for you to try out. Please create a Python file with the name `udf.py` and insert the script below.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -225,7 +225,7 @@ CREATE FUNCTION function_name ( argument_type [, ...] )
 
 #### Example
 
-Here's the SQL statements for declaring the three UDFs defined in [step 2](#2-define-your-functions-in-a-python-file).
+Here are the SQL statements for declaring the three UDFs defined in [step 2](#2-define-your-functions-in-a-python-file).
 
 ```sql
 CREATE FUNCTION gcd(int, int) RETURNS int
