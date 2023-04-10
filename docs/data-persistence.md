@@ -2,7 +2,11 @@
 id: data-persistence
 title: Data persistence
 slug: /data-persistence
+description: Describes how data is persisted in RisingWave.
 ---
+
+RisingWave adopts the [Chandy–Lamport algorithm](https://en.wikipedia.org/wiki/Chandy%E2%80%93Lamport_algorithm) to create checkpoints. A checkpoint is a global snapshot that represents a consistent state of the entire system at a particular point in time.
+
 When a checkpoint is created, the incremental states of streaming operators and output results are persisted in a durable and highly available remote storage. The default checkpoint interval is 10 seconds.
 
 In RisingWave, compute nodes perform write batching by buffering dirty states in memory before creating a checkpoint. Dirty states refer to unsaved states since the last checkpoint.
