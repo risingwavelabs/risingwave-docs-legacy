@@ -18,3 +18,29 @@
   transform-origin: center;
   transition: background 200ms ease-out;
 }
+
+.collapsedLists::after {
+  background: no-repeat center url(/static/img/plus.svg);
+  filter: var(--ifm-menu-link-sublist-icon-filter);
+  content: "";
+  margin-left: auto;
+  min-width: 1.25rem;
+  filter: none;
+  height: 1.25rem;
+  width: 1.25rem;
+  transform: rotate(0turn);
+  transform-origin: center;
+}
+
+.nonCollapsedLists::after {
+  content: "";
+  margin-left: auto;
+  min-width: 1.25rem;
+  filter: none;
+  height: 1.25rem;
+  width: 1.25rem;
+  transform: rotate(0turn);
+  transform-origin: center;
+  background: no-repeat center url(/static/img/minus.svg);
+  transition: background 200ms ease-out;
+}

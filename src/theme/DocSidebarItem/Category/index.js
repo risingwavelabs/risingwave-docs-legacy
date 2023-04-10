@@ -139,7 +139,9 @@ export default function DocSidebarItemCategory({
             'menu__link--sublist-caret': !href && collapsible,
             'menu__link--active': isActive,
           },
-            href && collapsible && styles.internalExpandedLink
+            href && collapsible && styles.internalExpandedLink,
+            collapsible && collapsed && styles.collapsedLists,
+            collapsible && !collapsed && styles.nonCollapsedLists
           )}
           onClick={
             collapsible
