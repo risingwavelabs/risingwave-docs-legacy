@@ -10,18 +10,17 @@ This page explains key concepts and terms that are used throughout the documenta
 
 ### Sources
 
-A source is a resource that RisingWave can read data from. Common sources include message brokers such as Apache Kafka and Apache Pulsar and databases such as MySQL and PostgreSQL. You can create a source in RisingWave using the `CREATE SOURCE` command. 
+A source is a resource that RisingWave can read data from. Common sources include message brokers such as Apache Kafka and Apache Pulsar and databases such as MySQL and PostgreSQL. You can create a source in RisingWave using the `CREATE SOURCE` command.
 
 If you want to persist the data from the source, you should use the `CREATE TABLE` command with connector settings.
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform data transformations.
 
-
 ### Sinks
 
 A sink is an external target to which you can send data. RisingWave now supports exporting data to Kafka topics. Before you stream data out of RisingWave to a sink, you need to create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md) statement to establish the connection.
 
-### Views 
+### Views
 
 A view is a virtual relation that acts as an actual relation. It is not a part of the logical relational model of the database system. The query expression of the view is stored in the database system. The results of a non-materialized view are not stored in the database system and are calculated every time the view is accessed.
 
@@ -50,7 +49,8 @@ A group of interconnected nodes and services that acts as a single system runnin
 
 ### Nodes
 
-A node is a logical collection of IT resources that handles specific workloads based on their types. There are three types of nodes in RisingWave: 
+A node is a logical collection of IT resources that handles specific workloads based on their types. There are three types of nodes in RisingWave:
+
 - Frontend node
 - Compute node
 - Compactor node
@@ -71,13 +71,11 @@ A stateless worker node that compacts data for the storage engine.
 
 The central metadata management service. It also acts as a failure detector that periodically sends heartbeats to frontend nodes and compute nodes in the cluster.
 
-
 ## Data processing concepts and terms
 
 ### Avro
 
 Avro is an open-source data serialization system that facilitates data exchange between systems, programming languages, and processing frameworks. Avro has a JSON-like data model, but it can be represented as either JSON or in a compact binary form. RisingWave can decode Avro data. You need to specify the schema by providing either a schema location or a schema registry URL (only for Kafka topics).
-
 
 ### Change data capture (CDC)
 
@@ -85,17 +83,15 @@ Change data capture refers to the process of identifying and capturing changes a
 
 ### Data persistence
 
-Data persistence means that data survives after the process that generated the data has ended. For a database to be considered persistent, it must write to non-volatile storage. This type of storage is able to retain data in the absence of a power supply.
+Data persistence means that data survives after the process that generated the data has ended. For a database to be considered persistent, it must write to non-volatile storage. This type of storage is able to retain data in the absence of a power supply. To learn about how data is persisted in RisingWave, see [Data persistence](/data-persistence.md).
 
 ### Debezium
 
 Debezium is an open-source distributed platform for [change data capture (CDC)](#change-data-capture-cdc). It converts change records from existing databases into event streams in the form of Kafka topics. Debezium provides a unified format schema for changelog and supports serializing messages in JSON and Apache Avro.
 
-
 ### Object storage
 
 Object storage, or object-based storage, is a technology that stores data in a hierarchy-free manner. Data in object storage exists as discrete units (objects) at the same level in a storage pool. Each object has a unique, identifying name that an application uses to retrieve it. The benefits of using object storage include massive scalability and cost efficiency.
-
 
 ### Protobuf
 
@@ -109,8 +105,6 @@ Protocol buffers (commonly known as Protobuf) are Google's language-neutral, pla
 
 In stream processing, serialization is the process of converting business objects into bytes so that they can be easily saved or transmitted. The reverse process, recreating the data structure or object from a stream of bytes, is called deserialization. Common data serialization formats include JSON, [Avro](#avro), Protobuf (protocol buffers), and CSV.
 
-
 ### Wire protocol
 
 A wire protocol is a format for interactions between a database server and its clients. It consists of authentication, sending queries, and receiving responses. The wire protocol for PostgreSQL is called pgwire. If a tool or database is compatible with pgwire, it can work with most PostgreSQL database tools.
-
