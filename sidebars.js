@@ -318,6 +318,11 @@ const sidebars = {
               [
                 {
                   type: 'doc',
+                  id: 'sql/query-syntax/query-syntax-value-exp',
+                  label: 'Value expressions',
+                },
+                {
+                  type: 'doc',
                   id: 'sql/query-syntax/query-syntax-from-clause',
                   label: 'FROM',
                 },
