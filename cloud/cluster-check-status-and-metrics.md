@@ -86,7 +86,7 @@ You can specify the time range of the metrics:
 
 <grid item xs={6} md={6}>
 
-You can click on any item to view the details;
+You can click on any item to view the details:
 
 <img
   src={require('./images/cluster-metrics-details.png').default}
