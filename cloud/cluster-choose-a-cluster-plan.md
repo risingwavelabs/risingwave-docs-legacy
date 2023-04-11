@@ -19,7 +19,9 @@ import TabItem from '@theme/TabItem';
 The free-tier plan provides all the necessary resources for you to test and explore all the features of RisingWave Cloud — at no cost.
 
 :::caution
-Clusters created under the free-tier plan will expire after five days. DO NOT choose this plan for production.
+Clusters created under the free-tier plan will expire after seven days, and your data will be kept for an additional seven days. If you want to get a backup of your data, please contact us at cloud-support@risingwave-labs.com.
+
+DO NOT choose this plan for production.
 :::
 
 #### Configuration

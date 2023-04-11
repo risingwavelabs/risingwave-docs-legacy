@@ -15,7 +15,7 @@ In RisingWave Database, a database user is similar to a database user or role in
 
 ## What are the differences between the free-tier plan and customized plans for invited users?
 
-The free-tier plan offers all the essential resources to operate a RisingWave Database, but there is a five-day limit on its lifespan. After this period, your data will be deleted. In contrast, the customized plan provides more flexibility in configuring the resources to meet your specific requirements and has no lifespan limit.
+The free-tier plan offers all the essential resources to operate a RisingWave Database, but there is a seven-day limit on its lifespan. In contrast, the customized plan provides more flexibility in configuring the resources to meet your specific requirements and has no lifespan limit.
 
 ## Can I change the cluster plan?
 
