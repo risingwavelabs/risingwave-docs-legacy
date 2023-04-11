@@ -1,11 +1,10 @@
 ---
-id: sql-syntax-value-exp
-slug: /sql-syntax-value-exp
+id: query-syntax-value-exp
+slug: /query-syntax-value-exp
 title: Value expressions
 ---
 
 Value expressions are used in a variety of contexts, such as in the target list of the SELECT command, as new column values in INSERT or UPDATE, or in search conditions in a number of commands. The result of a value expression is sometimes called a scalar, to distinguish it from the result of a table expression (which is a table).
-
 
 ## Aggregate expressions
 
@@ -23,15 +22,13 @@ where *aggregate_name* is one of the aggregation functions listed on [Aggregate 
 
 `DISTINCT` cannot be used with an `ORDER BY` clause in RisingWave.
 
-
 ## Row constructors
 
-A row constructor is an expression that builds a row value using values from its member fields. 
+A row constructor is an expression that builds a row value using values from its member fields.
 
 ```sql
 ROW([expression][,...])
 ```
-
 
 #### Example
 
@@ -59,8 +56,7 @@ SELECT row (v1, v2*2) AS demo FROM t;
 
 ## Array constructors
 
-
-An array constructor is an expression that creates an array from a group of values. 
+An array constructor is an expression that creates an array from a group of values.
 
 An array can be construcuted with the following syntax.
 
@@ -69,6 +65,7 @@ ARRAY [expression1, expression2, ...]
 ```
 
 For example:
+
 ```sql
 SELECT ARRAY[1, 2, 3*4];
 ----------
@@ -87,11 +84,13 @@ SELECT ARRAY[ARRAY[1, 2], ARRAY[3, 4]];
 ```
 
 For a nested array constructor, `ARRAY` cannot be omitted. The following statement cannot be parsed.
+
 ```sql
 SELECT ARRAY[[1,2], [3,4]];
 ```
 
 When you create a table, define an array with square brackets. For example:
+
 ```sql
 CREATE TABLE (f1 INT[], f2 INT[]);
 
