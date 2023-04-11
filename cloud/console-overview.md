@@ -70,7 +70,7 @@ width="270px"
 
 #### Sample queries
 
-The sample queries cover the most common steps in using RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
+The sample queries cover the most common steps in RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views and querying the results.
 
 See [Explore RisingWave with examples](/cloud/quickstart.md/?step=4) for details.
 
