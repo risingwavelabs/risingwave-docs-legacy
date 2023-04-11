@@ -43,52 +43,18 @@ Now the source connector is created.
 
 ## Connect RisingWave to Confluent Cloud
 
-### Create a new client on Confluent Cloud
+### Create an API key
 
-1. Click on **Clients** from the sidebar. 
-2. Click **+ New client**.
-3. Select **Rust** as the language then click **Create Kafka cluster API key**.
-
-    <img
-    src={require('../images/new-client.png').default}
-    alt="Create new client"
-    />
+1. Select the Confluent Cloud Kafka cluster you just create from the dashboard
+2. Click the **API Keys** tab.
+3. Add a new API key for the cluster you just created. 
 
 ### Run RisingWave
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs>
-<TabItem value="Amazon EC2" label="Amazon EC2">
-
-Run the RisingWave cluster:
-
-```terminal
-git clone https://github.com/risingwavelabs/risingwave-demo.git
-cd risingwave-demo
-docker compose -f docker/docker-compose.yml up -d
-```
-
-Install the postgresql-client.
-
-```terminal
-sudo apt-get -y install postgresql-client
-```
-
-Start RisingWave.
-
-```terminal
-psql -h localhost -p 4566 -d dev -U root
-```
-
-</TabItem>
-<TabItem value="Docker compose" label="Locally via Docker">
-
-To learn about how to start RisingWave with Docker Compose, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
-
-</TabItem>
-</Tabs>
+To start RisingWave locally, see the [Get started](../get-started.md) guide. We recommend running RisingWave locally for testing purposes.
 
 ### Connect to the data stream
 
