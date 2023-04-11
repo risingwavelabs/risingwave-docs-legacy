@@ -1,7 +1,7 @@
 ---
 id: create-source-cdc
-title: CDC via Kafka
-description: Ingest CDC data via message queues.
+title: CDC via event streaming systems
+description: Ingest CDC data via event streaming systems.
 slug: /create-source-cdc
 ---
 

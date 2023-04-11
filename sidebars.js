@@ -201,7 +201,7 @@ const sidebars = {
         },
           {
           type: 'doc',
-          label: 'CDC via message queues',
+          label: 'CDC via event streaming systems',
           id: 'create-source/create-source-cdc',
         },
         {
