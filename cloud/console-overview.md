@@ -106,7 +106,7 @@ width="600px"
 
 #### Refresh results
 
-Click <img src={require('./images/icon-rerun.png').default} width="15px"/> to rerun the last executed query manully, or set a timer to refresh the results automatically.
+Click <img src={require('./images/icon-rerun.png').default} width="15px"/> to rerun the last executed query manually or set a timer to refresh the results automatically.
 
 <img
 src={require('./images/console-queryresults-refresh.png').default}
