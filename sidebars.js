@@ -197,57 +197,6 @@ const sidebars = {
           },
           {
             type: 'doc',
-            id: 'sql/query-syntax/user-defined-functions',
-          },
-        ]
-        },
-       {
-          type: 'category',
-          label: 'Data types',
-          link: {type: 'doc', id: 'sql/sql-data-types'},
-          items:
-          [
-            {
-              type: 'doc',
-              id: 'sql/sql-data-types',
-              label: 'Overview',
-            },
-            {
-              type: 'doc',
-              id: 'sql/data-types/data-type-array',
-              label: 'Array',
-            },
-            {
-              type: 'doc',
-              id: 'sql/data-types/data-type-casting',
-              label: 'Casting',
-            },
-            {
-              type: 'doc',
-              id: 'sql/data-types/data-type-jsonb',
-              label: 'JSONB',
-            },
-            {
-              type: 'doc',
-              id: 'sql/data-types/data-type-struct',
-              label: 'Struct',
-            },
-            ]
-      },  
-      {
-      type: 'category',
-      label: 'Functions and operators',
-      link: {
-        type: 'generated-index',
-        title: 'SQL functions and operators',
-        description: 'Functions and operators that can be used in SQL queries.',
-        slug: '/sql-functions',
-        keywords: ['function, operator']
-      },
-      items: 
-        [
-          {
-            type: 'doc',
             label: 'Astra Streaming',
             id: 'guides/connector-astra-streaming',
           },
@@ -444,6 +393,10 @@ const sidebars = {
             },
             items:
               [
+                {
+                  type: 'doc',
+                  id: 'sql/query-syntax/user-defined-functions',
+                },
                 {
                   type: 'doc',
                   id: 'sql/functions-operators/sql-function-logical',
