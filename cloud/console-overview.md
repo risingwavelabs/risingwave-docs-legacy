@@ -48,7 +48,7 @@ width="200px"
 
 ### Query editor
 
-The query editor serve as a terminal window where you can write and execute SQL queries.
+The query editor serves as a terminal window where you can write and execute SQL queries.
 
 <img
 src={require('./images/console-queryeditor.png').default}
