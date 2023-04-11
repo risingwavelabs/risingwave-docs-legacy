@@ -20,3 +20,7 @@ The free-tier plan offers all the essential resources to operate a RisingWave Da
 ## Can I change the cluster plan?
 
 You cannot change the plan of a cluster after creating it. You can create a new cluster with the desired plan.
+
+## What to do if my free-tier cluster expired?
+
+Your data will be kept for an additional seven days. If you want to get a backup of your data, please contact us at cloud-support@risingwave-labs.com.
