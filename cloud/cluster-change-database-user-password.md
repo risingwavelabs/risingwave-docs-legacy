@@ -5,7 +5,7 @@ description: You can change the password of any database users in your cluster.
 slug: /change-database-user-password
 ---
 
-You can change the password of any database users in your cluster.
+You can change the password of any database user in your cluster.
 
 1. Go to the [cluster details page](cluster-check-status-and-metrics.md#check-cluster-details).
     
