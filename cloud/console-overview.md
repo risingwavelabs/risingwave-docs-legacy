@@ -58,7 +58,7 @@ width="600px"
 
 #### Jobs
 
-Jobs allow you to organize your SQL statements into groups, making it easier to manage and execute multiple queries.
+Jobs allow you to organize your SQL statements into groups, making managing and executing multiple queries easier.
 
 Click <img src={require('./images/icon-console-queryeditor-jobs-add.png').default} width="20px"/> to add a job.
 
