@@ -5,7 +5,7 @@ description: Check and monitor the overall running status and detailed metrics o
 slug: /check-status-and-metrics
 ---
 
-You can check and monitor the overall running status and detailed metrics of your clusters.
+You can check and monitor your clusters' overall running status and detailed metrics.
 
 ## Check the overall condition
 
