@@ -5,7 +5,7 @@ description: Choose a plan when you create a cluster.
 slug: /choose-a-cluster-plan
 ---
 
-When creating a cluster, you can choose a cluster plan and configure cluster resources according to your needs.
+You can choose a cluster plan and configure cluster resources according to your needs when creating a cluster.
 
 Select the plan below to see the details.
 
