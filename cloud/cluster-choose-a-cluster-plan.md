@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="free" label="Free tier">
 
-The free-tier plan provides all the necessary resources for you to test and explore all the features of RisingWave Cloud — at no cost.
+The free-tier plan provides all the necessary resources to test and explore all RisingWave Cloud's features — at no cost.
 
 :::caution
 Clusters created under the free-tier plan will expire after seven days, and your data will be kept for an additional seven days. If you want to get a backup of your data, please contact us at cloud-support@risingwave-labs.com.
