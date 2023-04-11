@@ -44,7 +44,7 @@ To check the version you're currently using, go to [**Clusters**](https://rising
 
 ### Select docs version
 
-Select the corresponding docs version when using the RisingWave Database user docs.
+Select the version of the corresponding docs when using the RisingWave Database user docs.
 
 <img
   src={require('./images/select-docs-version.gif').default}
