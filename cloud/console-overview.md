@@ -36,7 +36,7 @@ usemap="#image-map"
 
 ### Schemas
 
-The Schemas section lists displays all the tables, sources, and materialized views currently available in the cluster.
+The Schemas section displays all the tables, sources, and materialized views currently available in the cluster.
 
 To check their columns, click on each item, or click **Expand all** to see all.
 
