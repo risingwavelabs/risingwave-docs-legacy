@@ -23,7 +23,7 @@ You can ingest CDC data from MySQL in two ways:
 
 - Using a CDC tool and a message broker
 
-  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to consume data from the topics in RisingWave.
+  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave.
 
 ## Use the native MySQL CDC connector
 
@@ -316,7 +316,7 @@ Download and configure the [Debezium connector for MySQL](https://debezium.io/do
 
 ### Option 2: Configure MySQL and run Maxwell's daemon
 
-Configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
+Configure MySQL and run Maxwell's daemon to send data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
 
 ### Create a table with Kafka
 
@@ -385,11 +385,11 @@ The data format must be Debezium JSON if using a Debezium connector or Canal JSO
 
 ### Option 1: Configure MySQL and run Maxwell's daemon
 
-Configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
+Configure MySQL and run Maxwell's daemon to send data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
 
 ### Option 2: Set up AWS DMS
 
-You can use AWS DMS to capture CDC data from PostgreSQL and set Kinese Data Streams as an AWS DMS target. For more details on the configurations for AWS DMS and Kinesis Data Streams, see [Stream change data to Amazon Kinesis Data Streams with AWS DMS](https://aws.amazon.com/blogs/big-data/stream-change-data-to-amazon-kinesis-data-streams-with-aws-dms/).
+You can use AWS DMS to capture CDC data from MySQL and set Kinese Data Streams as an AWS DMS target. For more details on the configurations for AWS DMS and Kinesis Data Streams, see [Stream change data to Amazon Kinesis Data Streams with AWS DMS](https://aws.amazon.com/blogs/big-data/stream-change-data-to-amazon-kinesis-data-streams-with-aws-dms/).
 
 ### Option 3: Use the Debezium embedded engine
 
