@@ -115,3 +115,12 @@ Redash
 protobuf
 Protobuf
 TiCDC
+upsert
+ChatGPT
+JSONB
+boolean
+Lamport
+Chandy
+OpenDAL
+HDFS
+WebHDFS
