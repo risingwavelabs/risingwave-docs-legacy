@@ -13,6 +13,20 @@ Use the `SHOW CREATE MATERIALIZED VIEW` command to see what query was used to cr
 SHOW CREATE MATERIALIZED VIEW mv_name;
 ```
 
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('SHOW CREATE MATERIALIZED VIEW'),
+        rr.NonTerminal('mv_name', 'skip'),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
 ## Parameters
  |Parameter    | Description|
 |---------------|------------|
