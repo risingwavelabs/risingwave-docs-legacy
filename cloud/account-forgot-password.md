@@ -27,7 +27,7 @@ If you see this message “*Incorrect email or password.*” when you try to log
     
 3. Check the inbox of your email for the verification code.
 
-    Please also check your junk or spam folder just in case the verification email got delivered there instead of your inbox.
+    Please also check your junk or spam folder in case the verification email got delivered there instead of in your inbox.
 
 4. Enter the verification code and click **Reset password**.
 

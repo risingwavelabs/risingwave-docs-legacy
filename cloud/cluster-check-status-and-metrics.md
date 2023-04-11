@@ -5,7 +5,7 @@ description: Check and monitor the overall running status and detailed metrics o
 slug: /check-status-and-metrics
 ---
 
-You can check and monitor the overall running status and detailed metrics of your clusters.
+You can check and monitor your clusters' overall running status and detailed metrics.
 
 ## Check the overall condition
 
@@ -32,7 +32,7 @@ In **Dashboard**, you can get an overview of the clusters in your account, inclu
 
 <grid item xs={6} md={6}>
 
-To browse through the configuration and running status of each cluster in your account, go to [**Clusters**](https://risingwave.cloud/clusters/).
+To browse each cluster's configuration and running status in your account, go to [**Clusters**](https://risingwave-cloud.com/clusters/).
     
 In **Clusters**, you can see all the clusters in your account and [control their running states](cluster-stop-and-delete-clusters.md). You can also check the current plan, RisingWave Database version, region, and creation time of each cluster here.
     
@@ -86,7 +86,7 @@ You can specify the time range of the metrics:
 
 <grid item xs={6} md={6}>
 
-You can click on any item to view the details;
+You can click on any item to view the details:
 
 <img
   src={require('./images/cluster-metrics-details.png').default}

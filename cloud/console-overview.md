@@ -36,7 +36,7 @@ usemap="#image-map"
 
 ### Schemas
 
-The Schemas section lists displays all the tables, sources, and materialized views currently available in the cluster.
+The Schemas section displays all the tables, sources, and materialized views currently available in the cluster.
 
 To check their columns, click on each item, or click **Expand all** to see all.
 
@@ -48,7 +48,7 @@ width="200px"
 
 ### Query editor
 
-The query editor serve as a terminal window where you can write and execute SQL queries.
+The query editor serves as a terminal window where you can write and execute SQL queries.
 
 <img
 src={require('./images/console-queryeditor.png').default}
@@ -58,7 +58,7 @@ width="600px"
 
 #### Jobs
 
-Jobs allow you to organize your SQL statements into groups, making it easier to manage and execute multiple queries.
+Jobs allow you to organize your SQL statements into groups, making managing and executing multiple queries easier.
 
 Click <img src={require('./images/icon-console-queryeditor-jobs-add.png').default} width="20px"/> to add a job.
 
@@ -70,13 +70,13 @@ width="270px"
 
 #### Sample queries
 
-The sample queries cover the most common steps in using RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
+The sample queries cover the most common steps in RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views and querying the results.
 
 See [Explore RisingWave with examples](/cloud/quickstart.md/?step=4) for details.
 
 #### Switch clusters or users
 
-Click **Switch** to change to another cluster or to another user in your current cluster when using the console.
+Click **Switch** to change to another cluster or another user in your current cluster when using the console.
 
 <img
 src={require('./images/console-switchclusteruser.gif').default}
@@ -106,7 +106,7 @@ width="600px"
 
 #### Refresh results
 
-Click <img src={require('./images/icon-rerun.png').default} width="15px"/> to rerun the last executed query manully, or set a timer to refresh the results automatically.
+Click <img src={require('./images/icon-rerun.png').default} width="15px"/> to rerun the last executed query manually or set a timer to refresh the results automatically.
 
 <img
 src={require('./images/console-queryresults-refresh.png').default}
