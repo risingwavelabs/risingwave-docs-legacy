@@ -1,21 +1,29 @@
-div.boxContainer {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  min-width: 275px;
-}
-
 div.cardContainer {
-  border-radius: 3px;
+  background: none;
+  border-radius: var(--ifm-pagination-nav-border-radius);
   transition: all 300ms ease;
   cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+[data-theme="dark"] div.cardContainer {
+  border: 1px solid #a6a6a6;
 }
 
 div.defaultContainer {
-  border-radius: 3px;
+  border-radius: var(--ifm-pagination-nav-border-radius);
+  margin: 1rem 0;
+  width: 100%;
+}
+
+[data-theme="dark"] div.defaultContainer {
+  background: none;
+  border: 1px solid #a6a6a6;
 }
 
 div.cardContainer:hover {
-  background: #f2f6ff;
   border: 1px solid #cddbff;
   box-shadow: 0 0 0 1px #cddbff;
 }
@@ -26,7 +34,26 @@ div.cardContent {
 }
 
 div.title {
-  margin-bottom: 1rem;
+  margin-bottom: 1.4rem;
+}
+
+p.content {
+  font-size: 1rem;
+}
+
+[data-theme="dark"] div.title,
+[data-theme="dark"] p.content,
+div.title,
+p.content,
+p.cardLink {
+  color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-base);
+}
+
+p.cardLink {
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
 div.title,
@@ -46,15 +73,15 @@ p.cardLinks {
 p.cardLink {
   cursor: pointer;
   color: #95adee;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 0.1rem;
   margin-right: 4px;
+  border: 1px solid transparent;
 }
 
 p.cardLink:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
   color: #95adee88;
+  border-bottom: 1px dotted #95adee88;
 }
 
 div.flexBox {
@@ -63,4 +90,20 @@ div.flexBox {
   display: flex;
   align-items: center;
   justify-content: left;
+}
+
+p.cardLink:hover .externalArrowIcon path {
+  stroke: #afc2f5;
+}
+
+[data-theme="dark"] .externalArrowIcon path {
+  stroke: #afc2f5;
+}
+
+[data-theme="dark"] p.cardLink:hover .externalArrowIcon path {
+  stroke: #8da8f1;
+}
+
+p.cardLink:hover .rightArrowIcon path:nth-child(2) {
+  fill: #95adee88;
 }
