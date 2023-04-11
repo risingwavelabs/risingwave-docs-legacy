@@ -7,7 +7,7 @@ slug: /console-overview
 
 The console is the most intuitive and easy way to interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
 
-<defaultButton text="Go to Console" url="https://risingwave-cloud.com/console/" block/>
+<defaultButton text="Go to Console" url="https://risingwave.cloud/console/" block/>
 
 <br/>
 

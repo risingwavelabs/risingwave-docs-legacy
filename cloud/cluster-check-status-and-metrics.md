@@ -19,7 +19,7 @@ You can check and monitor the overall running status and detailed metrics of you
 
 <grid item xs={6} md={6}>
 
-To check the overall condition of the clusters in your account, go to [**Dashboard**](https://risingwave-cloud.com/dashboard/).
+To check the overall condition of the clusters in your account, go to [**Dashboard**](https://risingwave.cloud/dashboard/).
     
 In **Dashboard**, you can get an overview of the clusters in your account, including the number of clusters, their plan selections, and running statuses. You can also click on a cluster to check its running metrics.
 
@@ -32,7 +32,7 @@ In **Dashboard**, you can get an overview of the clusters in your account, inclu
 
 <grid item xs={6} md={6}>
 
-To browse through the configuration and running status of each cluster in your account, go to [**Clusters**](https://risingwave-cloud.com/clusters/).
+To browse through the configuration and running status of each cluster in your account, go to [**Clusters**](https://risingwave.cloud/clusters/).
     
 In **Clusters**, you can see all the clusters in your account and [control their running states](cluster-stop-and-delete-clusters.md). You can also check the current plan, RisingWave Database version, region, and creation time of each cluster here.
     
@@ -47,7 +47,7 @@ In **Clusters**, you can see all the clusters in your account and [control their
 
 ## Check cluster details
 
-To enter the cluster details page and check the information such as current activities and resource usage and monitor all metrics of a cluster, go to [**Clusters**](https://risingwave-cloud.com/clusters/) and click on the cluster.
+To enter the cluster details page and check the information, such as current activities and resource usage, and monitor all metrics of a cluster, go to [**Clusters**](https://risingwave.cloud/clusters/) and click on the cluster.
 
 The cluster details page includes:
 

@@ -58,7 +58,7 @@ Or you can continue to read the quickstart guide here for detailed instructions.
 
 A cluster in RisingWave Cloud provides the necessary resources for hosting independent data repositories and streaming pipelines. Within a cluster, you can create and manage database users and databases.
 
-You can find the **Create cluster** button in [**Dashboard**](https://risingwave-cloud.com/dashboard/) or [**Clusters**](https://risingwave-cloud.com/clusters/) after your first login.
+You can find the **Create cluster** button in [**Dashboard**](https://risingwave.cloud/dashboard/) or [**Clusters**](https://risingwave.cloud/clusters/) after your first login.
 <p></p>
 
 <img
@@ -93,7 +93,7 @@ The console is the most intuitive and easy way to connect to and interact with R
 #### To connect via the console:
 
 
-1. Go to [**Console**](https://risingwave-cloud.com/console/).  
+1. Go to [**Console**](https://risingwave.cloud/console/).  
 
 2. Create a new database user.
 
@@ -123,7 +123,7 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
     `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave Database.
 
-2. In RisingWave Cloud, go to [**Clusters**](https://risingwave-cloud.com/clusters/).
+2. In RisingWave Cloud, go to [**Clusters**](https://risingwave.cloud/clusters/).
     
 3. Click **Connect locally** of your cluster.
     
@@ -198,7 +198,7 @@ A beginner's guide to data processing with RisingWave Database. Discover the mos
 
 ### Sample queries in console
 
-You can easily access the demos provided in [**Console**](https://risingwave-cloud.com/console/). These demos cover the most common steps in using RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
+You can easily access the demos provided in [**Console**](https://risingwave.cloud/console/). These demos cover the most common steps in using RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
 
 <img
 src={require('./images/console-samplequeries.gif').default}

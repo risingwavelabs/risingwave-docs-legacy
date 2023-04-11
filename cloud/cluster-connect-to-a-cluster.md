@@ -21,7 +21,7 @@ The console is the most intuitive and easy way to connect to and interact with R
 #### To connect via the console:
 
  
-1. Go to [**Console**](https://risingwave-cloud.com/console/).  
+1. Go to [**Console**](https://risingwave.cloud/console/).  
 
 2. Select the cluster you want to connect to and then select an existing database user or create a new one.
     
@@ -58,7 +58,7 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
     > `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave Database.
 
-2. In RisingWave Cloud, go to [**Clusters**](https://risingwave-cloud.com/clusters/).
+2. In RisingWave Cloud, go to [**Clusters**](https://risingwave.cloud/clusters/).
     
 3. Click **Connect locally** of the cluster you want to connect.
     
