@@ -30,7 +30,7 @@ RisingWave Database is a rapidly evolving system, with [new features](https://ww
 
 ### Check RisingWave Database version
 
-To check your current version, go to [**Clusters**](https://risingwave-cloud.com/clusters/).
+To check your current version, go to [**Clusters**](https://risingwave.cloud/clusters/).
 
 <img
   src={require('./images/cluster-rwversion.png').default}
