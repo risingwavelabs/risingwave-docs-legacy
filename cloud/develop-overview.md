@@ -15,7 +15,8 @@ Developers can refer to the user documentation for RisingWave Database to develo
 
 ## How to use the docs
 
-RisingWave Database is a rapidly evolving system, with [new features](https://www.risingwave.dev/docs/current/release-notes/) added with each release. However, this also means that some features may not function properly in older versions. Therefore, when using the RisingWave Database user docs, it's important to select the corresponding version of the documentation based on the version of your RisingWave cluster.
+RisingWave Database is a rapidly evolving system, with [new features](https://www.risingwave.dev/docs/current/release-notes/) added with each release. However, this also means some features may not function properly in older versions. Therefore, when using the RisingWave Database user docs, it's important to select the corresponding documentation version based on your RisingWave cluster's version.
+
 
 <grid
  container
