@@ -76,7 +76,7 @@ See [Explore RisingWave with examples](/cloud/quickstart.md/?step=4) for details
 
 #### Switch clusters or users
 
-Click **Switch** to change to another cluster or to another user in your current cluster when using the console.
+Click **Switch** to change to another cluster or another user in your current cluster when using the console.
 
 <img
 src={require('./images/console-switchclusteruser.gif').default}
