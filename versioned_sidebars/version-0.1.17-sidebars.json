@@ -41,7 +41,7 @@
       "items": [
         {
           "type": "category",
-          "label": "Test locally",
+          "label": "Run locally",
           "collapsible": true,
           "collapsed": true,
           "link": {"type": "doc", "id": "get-started"},
