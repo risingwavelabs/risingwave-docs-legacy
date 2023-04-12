@@ -82,7 +82,7 @@ Select the version of the corresponding docs when using the RisingWave Database 
 
  <card
  style={{height: "87%"}}
- title="Data ingestion"
+ title="Sources"
  content="Connect to and ingest data from external sources such as databases and message brokers. See supported data sources."
  url="https://www.risingwave.dev/docs/current/data-ingestion/"
  />
@@ -93,7 +93,7 @@ Select the version of the corresponding docs when using the RisingWave Database 
 
 <card
  style={{height: "87%"}}
- title="Data delivery"
+ title="Sinks"
  content="Stream processed data out of RisingWave Database to message brokers and databases. See supported data destinations."
  url="https://www.risingwave.dev/docs/current/delivery-overview/"
  />
