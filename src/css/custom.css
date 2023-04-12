@@ -15,6 +15,8 @@
   --ifm-color-primary-light: #69d7fc;
   --ifm-color-primary-lighter: #98e1ff;
   --ifm-color-primary-lightest: #c4ecfc;
+  --ifm-color-navy-blue-300: #98c6d9;
+  --ifm-color-neutral-400: #b3b3b3;
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
@@ -340,6 +342,10 @@ table thead th {
   border-bottom: 0.9px solid var(--ifm-color-primary-light);
 }
 
+/* [data-theme="dark"] table thead th {
+  border-bottom: 0.9px solid var(--ifm-color-navy-blue-300);
+} */
+
 [data-theme="dark"] table th {
   background-color: #001f2b;
 }
@@ -403,9 +409,6 @@ table tr:first-child {
   height: 50%;
   background: url(../../static/img/swipe-left.png) 50% / contain no-repeat;
   content: "";
-}
-
-[data-theme="dark"] .scrollHint::before {
 }
 
 .row {

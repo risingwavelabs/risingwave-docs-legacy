@@ -67,7 +67,7 @@ function CollapseButton({ categoryLabel, onClick, collapsed }) {
       className={
         clsx(
           "clean-btn menu__caret",
-          collapsed ? "collapsed" : styles.internalExpandCollapseButton
+          collapsed ? styles.internalExpandButton : styles.internalExpandCollapseButton
         )
       }
       onClick={onClick}
@@ -132,7 +132,8 @@ export default function DocSidebarItemCategory({
       <div
         className={clsx('menu__list-item-collapsible', {
           'menu__list-item-collapsible--active': isCurrentPage,
-        })}>
+        },
+          level === 1 && styles.docSidebarItemCategoryUnderline)}>
         <Link
           className={clsx('menu__link', {
             'menu__link--sublist': collapsible,
