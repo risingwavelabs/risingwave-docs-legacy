@@ -35,40 +35,39 @@
       "collapsed": false,
       "items": [
         {
-          "type": "doc",
-          "id": "get-started",
-          "label": "Overview"
-        },
-        {
-          "type": "link",
-          "href": "www.baidu.com",
-          "label": "Run in Cloud"
-        },
-        {
           "type": "category",
           "label": "Test locally",
           "collapsible": true,
           "collapsed": true,
+          "link": {"type": "doc", "id": "get-started"},
           "items": [
             {
               "type": "doc",
               "id": "deploy/risingwave-local",
-              "label": "Run locally"
+              "label": "Run on host"
             },
             {
-              "type": "doc",
-              "id": "deploy/risingwave-docker-image",
-              "label": "Docker"
-            },
-            {
-              "type": "doc",
-              "id": "deploy/risingwave-docker-compose",
-              "label": "Docker Compose"
-            },
-            {
-              "type": "doc",
-              "id": "deploy/risingwave-kubernetes",
-              "label": "Kubernetes"
+              "type": "category",
+              "label": "Run in container",
+              "collapsible": true,
+              "collapsed": true,
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "deploy/risingwave-docker-image",
+                  "label": "Docker"
+                },
+                {
+                  "type": "doc",
+                  "id": "deploy/risingwave-docker-compose",
+                  "label": "Docker Compose"
+                },
+                {
+                  "type": "doc",
+                  "id": "deploy/risingwave-kubernetes",
+                  "label": "Kubernetes"
+                }
+              ]
             },
             {
               "type": "doc",
@@ -78,7 +77,7 @@
         },
         {
           "type": "link",
-          "href": "www.baidu.com",
+          "href": "https://playground.risingwave.dev",
           "label": "Try from browser"
         }
       ]
