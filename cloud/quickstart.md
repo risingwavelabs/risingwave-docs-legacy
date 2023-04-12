@@ -1,0 +1,227 @@
+---
+id: quickstart
+title: Quickstart
+description: Get started with RisingWave Cloud in 5 steps.
+slug: /quickstart
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs queryString="step">
+
+<TabItem value="1" label="1. Sign up and log in">
+
+## Sign up and log in
+
+#### You can use your company email to create an account.
+
+1. [Sign up](https://www.risingwave.cloud/auth/signup/) for RisingWave Cloud.
+
+2. [Log in](https://www.risingwave.cloud/auth/signin/) to your account.
+
+<img
+  src={require('./images/login.png').default}
+  alt="RisingWave Cloud login page"
+/>
+
+---
+
+#### Or create an account and log in with a third-party service.
+
+<img
+  src={require('./images/login-thirdparty.png').default}
+  alt="RisingWave Cloud third-party login"
+  width="30%"
+/>
+
+---
+
+We prepared a quickstart wizard for an easy and guided setup after you log in.
+
+Or you can continue to read the quickstart guide here for detailed instructions.
+
+<img
+  src={require('./images/quickstart-wizard.png').default}
+  alt="RisingWave Cloud quickstart wizard"
+/>
+
+--- 
+<defaultButton text="Continue →" cloud="quickstart?step=2" block/>
+
+
+</TabItem>
+
+<TabItem value="2" label="2. Create a cluster">
+
+## Create a cluster
+
+A cluster in RisingWave Cloud provides the necessary resources for hosting independent data repositories and streaming pipelines. Within a cluster, you can create and manage database users and databases.
+
+You can find the **Create cluster** button in [**Dashboard**](https://risingwave.cloud/dashboard/) or [**Clusters**](https://risingwave.cloud/clusters/) after your first login.
+<p></p>
+
+<img
+  src={require('./images/cluster-create.png').default}
+  alt="Create a cluster"
+/>
+
+You can choose to create a free cluster or a customizable cluster if you have an invitation code.
+
+See [Choose a cluster plan](cluster-choose-a-cluster-plan.md) for details on how to choose a cluster plan and configure the resources.
+
+--- 
+<defaultButton text="Continue →" cloud="quickstart?step=3" block/>
+
+</TabItem>
+
+<TabItem value="3" label="3. Connect to your cluster">
+
+## Connect to your cluster
+
+After getting a cluster up and running, you need to connect to it so that you can interact with RisingWave Database.
+
+You can choose from the following two ways to connect to your cluster.
+
+<Tabs>
+
+<TabItem value="console" label="Console">
+
+The console is the most intuitive and easy way to connect to and interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
+
+
+#### To connect via the console:
+
+
+1. Go to [**Console**](https://risingwave.cloud/console/).  
+
+2. Create a new database user.
+
+    > You must log in to the cluster as a database user. Since this is a new cluster, you need to create a user in it.
+
+    <img
+    src={require('./images/cluster-console-createuser.gif').default}
+    alt="Create a database user"
+    />
+
+3. Enter the password of the user you created to log in to the cluster.
+
+    <img
+    src={require('./images/cluster-console-login.gif').default}
+    alt="First login to the console"
+    />
+
+</TabItem>
+ 
+<TabItem value="local" label="Local client">
+
+For terminal enthusiasts, you can still connect to your cluster through a local terminal with the help of `psql`.
+
+#### To connect via `psql` client:
+
+1. [Install `psql`](https://www.risingwave.dev/docs/current/install-psql-without-postgresql/) in your environment.
+
+    `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave Database.
+
+2. In RisingWave Cloud, go to [**Clusters**](https://risingwave.cloud/clusters/).
+    
+3. Click **Connect locally** of your cluster.
+    
+    <img
+    src={require('./images/cluster-local-connect-1.png').default}
+    alt="Connect to a cluster from a local client"
+    />
+    
+4. Create a new database user.
+    
+    > You must connect and log in to the cluster as a database user. Since this is a new cluster, you need to create a user in it.
+
+    <img
+    src={require('./images/cluster-local-createuser.gif').default}
+    alt="Create a database user in a cluster"
+    />
+    
+5. Copy the connection string and run it in a terminal window.
+    
+6. Log in with the password of the database user.
+
+  <grid
+  container
+  direction="row"
+  spacing="20"
+  justifyContent="space-between"
+  justifyItems="stretch"
+  alignItems="baseline">
+
+  <grid item xs={12} md={6}>
+
+    <img
+    src={require('./images/psql-login.png').default}
+    alt="Connect via psql"
+    />
+
+  </grid>
+
+  <grid item xs={12} md={6}>
+
+    <img
+    src={require('./images/psql-connected.png').default}
+    alt="Connect via psql"
+    />
+    
+  </grid>
+  </grid>
+
+
+</TabItem>
+
+</Tabs>
+
+---
+<defaultButton text="Continue →" cloud="quickstart?step=4" block/>
+
+</TabItem>
+
+<TabItem value="4" label="4. Explore RisingWave with examples">
+
+## Explore RisingWave with examples
+
+You can kickstart your journey with RisingWave Database by exploring the following resources.
+
+### RisingWave SQL 101
+
+A beginner's guide to data processing with RisingWave Database. Discover the most typical and distinctive SQL features of RisingWave on one page. No previous experience with PostgreSQL is required.
+
+<defaultButton text="RisingWave SQL 101 ↗" url="https://www.risingwave.dev/docs/current/risingwave-sql-101/"/>
+
+---
+
+### Sample queries in console
+
+You can easily access the demos provided in [**Console**](https://risingwave.cloud/console/). These demos cover the most common steps in using RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
+
+<img
+src={require('./images/console-samplequeries.gif').default}
+alt="Running a sample query using the console"
+/>
+
+---
+<defaultButton text="Continue →" cloud="quickstart?step=5" block/>
+
+</TabItem>
+
+<TabItem value="5" label="5. Ingest, process, and deliver data">
+
+## Ingest, process, and deliver data
+
+Congrats, you are now ready to unleash the full potential of RisingWave on your own. Read [Develop with RisingWave Cloud](develop-overview.md) to start.
+
+<card
+title="Develop with RisingWave Cloud"
+content="RisingWave Cloud leverages the superpower of RisingWave Database, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave Database, in the cloud."
+cloud="develop-overview"
+/>
+
+</TabItem>
+
+</Tabs>

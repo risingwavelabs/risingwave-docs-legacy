@@ -19,10 +19,12 @@ const sidebars = {
   // But you can create a sidebar manually
 
   MainSidebar: [
+
+
     {
       type: 'category',
-      label: 'About RisingWave',
-      collapsible: true,
+      label: 'About',
+      collapsible: false,
       collapsed: false,
       items: [
         {
@@ -52,270 +54,323 @@ const sidebars = {
           label: 'Data persistence',
           id: 'data-persistence',
         },
-
-        {
-          type: 'doc',
-          label: 'Integrations',
-          id: 'rw-integration-summary',
-        },
-
         {
           type: 'doc',
           label: 'RisingWave vs. Flink',
           id: 'risingwave-flink-comparison',
         },
-
+        {
+          type: 'doc',
+          label: 'Release Notes',
+          id: 'release-notes'
+        }
       ]
     },
 
+
     {
       type: 'category',
-      label: 'Get started',
-      collapsible: true,
-      collapsed: true,
+      label: 'Setup',
+      collapsible: false,
+      collapsed: false,
       items: [
         {
           type: 'doc',
-          id: 'get-started',
           label: 'Overview',
-        },
-        {
-          type: 'doc',
-          id: 'deploy/risingwave-local',
-          label: 'Run locally',
-        },
-        {
-          type: 'doc',
-          id: 'deploy/risingwave-docker-image',
-          label: 'Run in Docker',
+          id: 'get-started'
         },
         {
           type: 'category',
-          label: 'Set up a cluster with',
+          label: 'Run locally',
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               type: 'doc',
-              id: 'deploy/risingwave-docker-compose',
-              label: 'Docker Compose',
+              id: 'deploy/risingwave-local',
+              label: 'Run on host'
+            },
+            {
+              type: 'category',
+              label: 'Run in container',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: 'doc',
+                  id: 'deploy/risingwave-docker-image',
+                  label: 'Docker'
+                },
+                {
+                  type: 'doc',
+                  id: 'deploy/risingwave-docker-compose',
+                  label: 'Docker Compose'
+                },
+                {
+                  type: 'doc',
+                  id: 'deploy/risingwave-kubernetes',
+                  label: 'Kubernetes'
+                }
+              ]
             },
             {
               type: 'doc',
-              id: 'deploy/risingwave-kubernetes',
-              label: 'Kubernetes',
+              id: 'guides/install-psql-without-postgresql'
             }
           ]
         },
         {
+          type: 'link',
+          label: 'Run in cloud',
+          href: '/docs/current/get-started/?method=cloud#run-risingwave',
+        },
+        {
+          type: 'link',
+          label: 'Try from browser',
+          href: '/docs/current/get-started/?method=playground#run-risingwave',
+        }
+      ]
+    },
+
+
+
+    {
+      type: 'category',
+      label: 'Learn & explore',
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
           type: 'doc',
           id: 'risingwave-sql-101',
-          label: 'RisingWave SQL 101',
+          label: 'RisingWave SQL 101'
         },
         {
-          type: 'doc',
-          id: 'guides/install-psql-without-postgresql',
-        },
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Use cases',
-      collapsible: true,
-      collapsed: true,
-      items: [
-        {
-          type: 'doc',
-          id: 'tutorials/real-time-ad-performance-analysis',
-          label: 'Real-time ad performance analysis',
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/server-performance-anomaly-detection',
-          label: 'Server performance anomaly detection',
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/fast-twitter-events-processing',
-          label: 'Fast Twitter events processing',
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/clickstream-analysis',
-          label: 'Clickstream analysis',
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/live-stream-metrics-analysis',
-          label: 'Live stream metrics analysis',
-        },
-        {
-          type: 'doc',
-          id: 'tutorials/use-risingwave-to-monitor-risingwave-metrics',
-          label: 'Use RisingWave to monitor RisingWave metrics',
-        },
-      ]
-    },
-
-    {
-      type: 'category',
-      label: 'Data ingestion',
-      collapsible: true,
-      collapsed: true,
-      items:
-        [
-          {
-            type: 'doc',
-            label: 'Overview',
-            id: 'data-ingestion',
-          },
-
-          {
-            type: 'doc',
-            label: 'Kafka',
-            id: 'create-source/create-source-kafka',
-          },
-          {
-            type: 'doc',
-            label: 'Confluent Cloud',
-            id: 'guides/confluent-kafka-source',
-          },
-          {
-            type: 'doc',
-            label: 'Redpanda',
-            id: 'create-source/create-source-redpanda',
-          },
-          {
-            type: 'doc',
-            label: 'Kinesis',
-            id: 'create-source/create-source-kinesis',
-          },
-          {
-            type: 'doc',
-            label: 'Pulsar',
-            id: 'create-source/create-source-pulsar',
-          },
-          {
-            type: 'doc',
-            label: 'Astra Streaming',
-            id: 'guides/connector-astra-streaming',
-          },
-          {
-            type: 'doc',
-            label: 'MySQL CDC',
-            id: 'guides/ingest-from-mysql-cdc'
-          },
-          {
-            type: 'doc',
-            label: 'PostgreSQL CDC',
-            id: 'guides/ingest-from-postgres-cdc'
-          },
-          {
-            type: 'doc',
-            label: 'CDC via Kafka',
-            id: 'create-source/create-source-cdc',
-          },
-          {
-            type: 'doc',
-            label: 'Amazon S3',
-            id: 'create-source/create-source-s3',
-          },
-          {
-            type: 'doc',
-            label: 'Load generator',
-            id: 'create-source/create-source-datagen',
-          },
-        ]
-    },
-    {
-      type: 'category',
-      label: 'Data delivery',
-      items: [
-        {
-          type: 'doc',
-          id: 'delivery-overview',
-          label: 'Overview',
-        },
-        {
-          type: 'doc',
-          label: 'Kafka',
-          id: 'guides/create-sink-kafka'
-        },
-        {
-          type: 'doc',
-          label: 'MySQL',
-          id: 'guides/sink-to-mysql-with-jdbc'
-        },
-        {
-          type: 'doc',
-          label: 'Apache Iceberg',
-          id: 'guides/sink-to-iceberg'
-        },
-      ]
-    },
-
-    {
-      type: 'category',
-      label: 'Data visualization',
-      items:
-        [
-          {
-            type: 'doc',
-            label: 'Grafana',
-            id: 'guides/grafana-integration'
-          },
-          {
-            type: 'doc',
-            label: 'Superset',
-            id: 'guides/superset-integration'
-          }
-        ]
-    },
-
-    {
-      type: 'category',
-      label: 'SQL',
-      collapsible: true,
-      collapsed: true,
-      link: {
-        type: 'generated-index',
-        title: 'SQL references',
-        slug: '/sql-references',
-        keywords: ['SQL']
-      },
-      items:
-        [
-          {
-            type: 'category',
-            label: 'Commands',
-            link: {
-              type: 'generated-index',
-              title: 'SQL commands',
-              description: 'Overview of the SQL commands supported by RisingWave.',
-              slug: '/sql-commands',
-              keywords: ['SQL, commands']
+          type: 'category',
+          label: 'Use cases',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'tutorials/real-time-ad-performance-analysis',
+              label: 'Real-time ad performance analysis'
             },
-            items:
-              [
+            {
+              type: 'doc',
+              id: 'tutorials/server-performance-anomaly-detection',
+              label: 'Server performance anomaly detection'
+            },
+            {
+              type: 'doc',
+              id: 'tutorials/fast-twitter-events-processing',
+              label: 'Fast Twitter events processing'
+            },
+            {
+              type: 'doc',
+              id: 'tutorials/clickstream-analysis',
+              label: 'Clickstream analysis'
+            },
+            {
+              type: 'doc',
+              id: 'tutorials/live-stream-metrics-analysis',
+              label: 'Live stream metrics analysis'
+            },
+            {
+              type: 'doc',
+              id: 'tutorials/use-risingwave-to-monitor-risingwave-metrics',
+              label: 'Use RisingWave to monitor RisingWave metrics'
+            }
+          ]
+        }
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Ecosystem',
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: 'doc',
+          label: 'Integrations',
+          id: 'rw-integration-summary'
+        },
+        {
+          type: 'category',
+          label: 'Sources',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              label: 'Overview',
+              id: 'data-ingestion',
+            },
+  
+            {
+              type: 'doc',
+              label: 'Kafka',
+              id: 'create-source/create-source-kafka',
+            },
+            {
+              type: 'doc',
+              label: 'Confluent Cloud',
+              id: 'guides/confluent-kafka-source',
+            },
+            {
+              type: 'doc',
+              label: 'Redpanda',
+              id: 'create-source/create-source-redpanda',
+            },
+            {
+              type: 'doc',
+              label: 'Kinesis',
+              id: 'create-source/create-source-kinesis',
+            },
+            {
+              type: 'doc',
+              label: 'Pulsar',
+              id: 'create-source/create-source-pulsar',
+            },
+            {
+              type: 'doc',
+              label: 'Astra Streaming',
+              id: 'guides/connector-astra-streaming',
+            },
+            {
+              type: 'doc',
+              label: 'MySQL CDC',
+              id: 'guides/ingest-from-mysql-cdc'
+            },
+            {
+              type: 'doc',
+              label: 'PostgreSQL CDC',
+              id: 'guides/ingest-from-postgres-cdc'
+            },
+            {
+              type: 'doc',
+              label: 'CDC via Kafka',
+              id: 'create-source/create-source-cdc',
+            },
+            {
+              type: 'doc',
+              label: 'Amazon S3',
+              id: 'create-source/create-source-s3',
+            },
+            {
+              type: 'doc',
+              label: 'Load generator',
+              id: 'create-source/create-source-datagen',
+            }
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Sinks',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'delivery-overview',
+              label: 'Overview',
+            },
+            {
+              type: 'doc',
+              label: 'Kafka',
+              id: 'guides/create-sink-kafka'
+            },
+            {
+              type: 'doc',
+              label: 'MySQL',
+              id: 'guides/sink-to-mysql-with-jdbc'
+            },
+            {
+              type: 'doc',
+              label: 'Apache Iceberg',
+              id: 'guides/sink-to-iceberg'
+            }
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Visualization',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              label: 'Grafana',
+              id: 'guides/grafana-integration'
+            },
+            {
+              type: 'doc',
+              label: 'Superset',
+              id: 'guides/superset-integration'
+            }
+          ]
+        }
+      ]
+    },
+
+
+    {
+      type: 'category',
+      label: 'Develop',
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: 'category',
+          label: 'SQL references',
+          collapsible: true,
+          collapsed: true,
+          link: {
+            type: 'generated-index',
+            'title': 'SQL references',
+            'slug': '/sql-references',
+            'keywords': [
+              'SQL'
+            ]
+          },
+          items: [
+            {
+              type: 'category',
+              label: 'Commands',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'generated-index',
+                'title': 'SQL commands',
+                'description': 'Overview of the SQL commands supported by RisingWave.',
+                'slug': '/sql-commands',
+                'keywords': [
+                  'SQL, commands'
+                ]
+              },
+              items: [
                 {
                   type: 'autogenerated',
-                  dirName: 'sql/commands',
-                },
-
+                  'dirName': 'sql/commands'
+                }
               ]
-          },
-          {
-            type: 'category',
-            label: 'Query syntax',
-            link: {
-              type: 'generated-index',
-              title: 'Query syntax',
-              description: 'Syntax and usage of common query clauses.',
-              slug: '/query-syntax',
-              keywords: ['query, syntax']
             },
-            items:
-              [
+            {
+              type: 'category',
+              label: 'Query syntax',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'generated-index',
+                'title': 'Query syntax',
+                'description': 'Syntax and usage of common query clauses.',
+                'slug': '/query-syntax',
+                'keywords': [
+                  'query, syntax'
+                ]
+              },
+              items: [
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-value-exp',
@@ -350,15 +405,15 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-with-clause',
                   label: 'WITH',
-                },
+                }
               ]
-          },
-          {
-            type: 'category',
-            label: 'Data types',
-            link: { type: 'doc', id: 'sql/sql-data-types' },
-            items:
-              [
+            },
+            {
+              type: 'category',
+              label: 'Data types',
+              collapsible: true,
+              collapsed: true,
+              items: [
                 {
                   type: 'doc',
                   id: 'sql/sql-data-types',
@@ -383,21 +438,24 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/data-types/data-type-struct',
                   label: 'Struct',
-                },
+                }
               ]
-          },
-          {
-            type: 'category',
-            label: 'Functions and operators',
-            link: {
-              type: 'generated-index',
-              title: 'SQL functions and operators',
-              description: 'Functions and operators that can be used in SQL queries.',
-              slug: '/sql-functions',
-              keywords: ['function, operator']
             },
-            items:
-              [
+            {
+              type: 'category',
+              label: 'Functions and operators',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'generated-index',
+                'title': 'SQL functions and operators',
+                'description': 'Functions and operators that can be used in SQL queries.',
+                'slug': '/sql-functions',
+                'keywords': [
+                  'function, operator'
+                ]
+              },
+              items: [
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/user-defined-functions',
@@ -468,103 +526,105 @@ const sidebars = {
                   label: 'Set',
                 }
               ]
-          },
-
-          {
-            type: 'category',
-            label: 'Patterns',
-            link: {
-              type: 'generated-index',
-              title: 'Query patterns',
-              description: 'Commonly used patterns and techniques that can help build a more efficient data processing workflow.',
-              slug: '/sql-patterns',
-              keywords: ['pattern']
             },
-            items:
-              [{
-                type: 'doc',
-                id: 'sql/syntax/sql-pattern-dynamic-filters',
-                label: 'Dynamic filters'
+            {
+              type: 'category',
+              label: 'Patterns',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'generated-index',
+                'title': 'Query patterns',
+                'description': 'Commonly used patterns and techniques that can help build a more efficient data processing workflow.',
+                'slug': '/sql-patterns',
+                'keywords': [
+                  'pattern'
+                ]
               },
-              {
-                type: 'doc',
-                id: 'sql/syntax/sql-pattern-temporal-filters',
-                label: 'Temporal filters'
-              },
-              {
-                type: 'doc',
-                id: 'sql/syntax/sql-pattern-topn',
-                label: 'Top-N by group'
-              }
+              items: [
+                {
+                  type: 'doc',
+                  id: 'sql/syntax/sql-pattern-dynamic-filters',
+                  label: 'Dynamic filters'
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/syntax/sql-pattern-temporal-filters',
+                  label: 'Temporal filters'
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/syntax/sql-pattern-topn',
+                  label: 'Top-N by group'
+                }
               ]
-          },
-          {
-            type: 'doc',
-            id: 'sql/sql-identifiers',
-            label: 'Identifiers',
-          },
-
-          {
-            type: 'category',
-            label: 'System catalogs',
-            items: [
-              {
-                type: 'doc',
-                id: 'sql/system-catalogs/information-schema',
-                label: 'information_schema',
-              },
-              {
-                type: 'doc',
-                id: 'sql/system-catalogs/pg-catalog-function',
-                label: 'PostgreSQL catalogs and functions',
-              },
-
-            ]
-          },
-          {
-            type: 'doc',
-            id: 'sql/psql-commands'
-          }
-        ]
+            },
+            {
+              type: 'doc',
+              id: 'sql/sql-identifiers',
+              label: 'Identifiers'
+            },
+            {
+              type: 'category',
+              label: 'System catalogs',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: 'doc',
+                  id: 'sql/system-catalogs/information-schema',
+                  label: 'information_schema',
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/system-catalogs/pg-catalog-function',
+                  label: 'PostgreSQL catalogs and functions',
+                }
+              ]
+            },
+            {
+              type: 'doc',
+              id: 'sql/psql-commands'
+            }
+      ]
     },
-
     {
       type: 'category',
-      label: `Client libraries`,
+      label: 'Client libraries',
       collapsible: true,
       collapsed: true,
-      items:
-        [
-          {
-            type: 'doc',
-            id: 'dev/java-client-libraries',
-            label: 'Java',
-          },
-          {
-            type: 'doc',
-            id: 'dev/nodejs-client-libraries',
-            label: 'Node.js',
-          },
-          {
-            type: 'doc',
-            id: 'dev/python-client-libraries',
-            label: 'Python',
-          },
-          {
-            type: 'doc',
-            id: 'dev/go-client-libraries',
-            label: 'Go',
-          },
+      items: [
+        {
+          type: 'doc',
+          id: 'dev/java-client-libraries',
+          label: 'Java',
+        },
+        {
+          type: 'doc',
+          id: 'dev/nodejs-client-libraries',
+          label: 'Node.js',
+        },
+        {
+          type: 'doc',
+          id: 'dev/python-client-libraries',
+          label: 'Python',
+        },
+        {
+          type: 'doc',
+          id: 'dev/go-client-libraries',
+          label: 'Go',
+        }
         ]
+      }
+    ]
     },
-
     {
       type: 'category',
-      label: 'Manage RisingWave',
-      collapsible: true,
-      collapsed: true,
-      items:
-        [{
+      label: 'Manage',
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
           type: 'doc',
           id: 'manage/view-statement-progress',
         },
@@ -576,15 +636,8 @@ const sidebars = {
           type: 'doc',
           id: 'manage/meta-backup',
         },
-
-        ]
-    },
-
-    {
-      type: 'doc',
-      id: 'release-notes',
-      label: 'Release notes'
-    },
+      ]
+    }
   ]
 
 };

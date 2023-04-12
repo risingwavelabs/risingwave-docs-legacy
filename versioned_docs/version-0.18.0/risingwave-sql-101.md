@@ -7,7 +7,7 @@ slug: /risingwave-sql-101
 
 In this guide, we will walk you through some of the most used SQL commands in RisingWave. This is a simple yet typical data processing workflow that shows how to manipulate data with RisingWave.
 
-> RisingWave uses Postgres-compatible SQL as the interface to manage and query data. For a complete list of supported SQL commands, please navigate to SQL reference → Commands. 
+> RisingWave uses Postgres-compatible SQL as the interface to manage and query data. For a complete list of supported SQL commands, please navigate to SQL references → Commands. 
 
 ## Before we start
 

@@ -1,7 +1,7 @@
 ---
 id: risingwave-local
-title: Run RisingWave locally
-description: Install and run RisingWave locally in your environment.
+title: Run RisingWave directly on your host machine
+description: Install and run RisingWave directly on your host machine.
 slug: /risingwave-local
 ---
 

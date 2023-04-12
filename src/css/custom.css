@@ -6,100 +6,38 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --test: #5577d6;
-  --ifm-color-primary: #95adee;
-  --ifm-color-primary-dark: #7493e9;
-  --ifm-color-primary-darker: #6386e6;
-  --ifm-color-primary-darkest: #3160de;
-  --ifm-color-primary-light: #b6c7f3;
-  --ifm-color-primary-lighter: #c7d4f6;
-  --ifm-color-primary-lightest: #f9fafe;
+  --ifm-pre-background: red;
+  --test: #98e1ff;
+  --ifm-color-primary: #18c6ff;
+  --ifm-color-primary-dark: #0098ef;
+  --ifm-color-primary-darker: #0069a8;
+  --ifm-color-primary-darkest: #002c42;
+  --ifm-color-primary-light: #69d7fc;
+  --ifm-color-primary-lighter: #98e1ff;
+  --ifm-color-primary-lightest: #c4ecfc;
+  --ifm-color-navy-blue-300: #98c6d9;
+  --ifm-color-neutral-400: #b3b3b3;
+  --ifm-color-neutral-900: #16171a;
+  --ifm-navbar-link-color: #e3e3e3;
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
-  --ifm-font-family-base: NotoSansSC, NotoSans;
+  --ifm-font-family-base: Mulish, sans-serif;
   --ifm-paragraph-margin-bottom: 0.5rem;
   --ifm-list-paragraph-margin: 0.2rem;
   letter-spacing: 0px;
-}
 
-/* hide home icon in breadcrumbs */
-.breadcrumbs li:first-child {
-  display: none !important;
-}
-
-h1 {
-  font-family: NotoSans-ExtraLight !important;
-}
-
-h2 {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #dbdbdb;
-  font-family: NotoSans !important;
-}
-
-h3 {
-  font-family: NotoSans-Medium !important;
-}
-
-h4 {
-  font-family: NotoSans-SemiBold !important;
-}
-
-@font-face {
-  font-family: NotoSansSC;
-  src: local("NotoSansSC"), url(/static/font/NotoSansSC-Regular.otf) format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  unicode-range: U+2192;
-}
-
-@font-face {
-  font-family: NotoSans;
-  src: local("NotoSans"), url(/static/font/NotoSans-Regular.ttf) format("ttf"),
-    url(/static/font/NotoSans-Regular.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: NotoSans-Medium;
-  src: local("NotoSans-Medium"), url(/static/font/NotoSans-Medium.ttf) format("ttf"),
-    url(/static/font/NotoSans-Medium.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: NotoSans-Thin;
-  src: local("NotoSans-Thin"), url(/static/font/NotoSans-Thin.ttf) format("ttf"),
-    url(/static/font/NotoSans-Thin.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: NotoSans-SemiBold;
-  src: local("NotoSans-SemiBold"), url(/static/font/NotoSans-SemiBold.ttf) format("ttf"),
-    url(/static/font/NotoSans-SemiBold.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: NotoSans-ExtraLight;
-  src: local("NotoSans-ExtraLight"), url(/static/font/NotoSans-ExtraLight.ttf) format("ttf"),
-    url(/static/font/NotoSans-ExtraLight.woff) format("woff");
-  font-weight: normal;
-  font-style: normal;
+  --doc-sidebar-width: 260px !important;
+  --ifm-tabs-padding-vertical: 0.5rem !important;
+  --ifm-navbar-height: 3rem;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme="dark"] {
-  --ifm-color-primary: #95adee;
-  --ifm-color-primary-dark: #7493e9;
-  --ifm-color-primary-darker: #6386e6;
-  --ifm-color-primary-darkest: #3160de;
+  --ifm-color-primary: #86f2dd;
+  --ifm-color-primary-dark: #4bb1ec;
+  --ifm-color-primary-darker: #0098ef;
+  --ifm-color-primary-darkest: #0175b8;
   --ifm-color-primary-light: #b6c7f3;
   --ifm-color-primary-lighter: #c7d4f6;
   --ifm-color-primary-lightest: #f9fafe;
@@ -111,6 +49,182 @@ h4 {
   --ifm-color-success-light: rgb(38, 178, 38);
   --ifm-color-success-lighter: rgba(77, 191, 77, 0.212);
   --ifm-color-success-lightest: rgb(128, 210, 128);
+}
+
+html[data-theme="dark"] {
+  --ifm-background-color: #001f2b;
+  --ifm-background-surface-color: #222f3d;
+  --ifm-hover-overlay: #ffffff0d;
+  --ifm-color-content: #e3e3e3;
+  --ifm-color-content-secondary: #fff;
+  --ifm-link-color: #86f2dd;
+  --ifm-tabs-color-active-border: #86f2dd;
+  --ifm-tabs-color-active: #86f2dd;
+  --ifm-code-background: #fafafa28;
+  --ifm-breadcrumb-color-active: #86f2dd;
+  --ifm-menu-color-active: #86f2dd;
+  --ifm-menu-color: #9da1a6;
+  --docusaurus-collapse-button-bg: #001f2b !important;
+  --ifm-toc-border-color: #001f2b;
+}
+
+/* custom sidebar menu */
+.theme-doc-sidebar-container {
+  border-right: none !important;
+}
+
+.theme-doc-sidebar-item-category-level-1 > div > a,
+.theme-doc-sidebar-item-category-level-1 > div > a:hover {
+  color: var(--ifm-color-emphasis-700);
+  font-family: Montserrat-Medium;
+  padding-top: 1.4rem;
+}
+
+.theme-doc-sidebar-item-category-level-1 > div:hover {
+  background: none;
+  color: var(--ifm-color-primary);
+}
+
+.menu__link {
+  font-size: 1rem;
+}
+
+.menu__list .menu__list {
+  padding-left: 0;
+}
+
+.theme-doc-sidebar-item-category-level-2 .menu__list .menu__link {
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) + 0.5rem);
+}
+
+.theme-doc-sidebar-item-category-level-3 .menu__list .menu__link {
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) + 0.5rem * 2);
+}
+
+.theme-doc-sidebar-item-category-level-4 .menu__list .menu__link {
+  padding-left: calc(var(--ifm-menu-link-padding-horizontal) + 0.5rem * 3);
+}
+
+.navbar--fixed-top {
+  justify-items: center;
+  align-items: center;
+  background-color: rgba(0, 103, 163, 0.9);
+  color: #e3e3e3;
+}
+
+[data-theme="dark"] .navbar--fixed-top {
+  background-color: #001f2bef;
+}
+
+.clean-btn {
+  --ifm-color-emphasis-200: var(--ifm-color-gray-800);
+}
+
+.clean-btn.navbar-sidebar__back {
+  color: var(--ifm-color-gray-600);
+}
+
+[data-theme="dark"] .clean-btn {
+  color: var(--ifm-color-gray-400);
+}
+
+.markdown h1:first-child {
+  --ifm-h1-font-size: 2.1rem;
+}
+
+.markdown > h2 {
+  --ifm-h2-font-size: 1.4rem;
+}
+
+.markdown > h3 {
+  --ifm-h3-font-size: 1.2rem;
+}
+
+/* hide home icon in breadcrumbs */
+.breadcrumbs li:first-child {
+  display: none !important;
+}
+
+h1 {
+  font-family: Montserrat-ExtraLight !important;
+}
+
+h2 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ifm-color-neutral-900);
+  font-family: Montserrat !important;
+}
+
+[data-theme="dark"] h2 {
+  border-bottom: 1px solid var(--ifm-color-primary);
+}
+
+h3 {
+  font-family: Montserrat-Medium !important;
+}
+
+h4 {
+  font-family: Montserrat-SemiBold !important;
+}
+
+/* Custom Ordered List  */
+.theme-doc-markdown ol:not(.tabs) {
+  counter-reset: circle-counter;
+  margin-left: 0;
+  padding-left: 0.5rem;
+}
+
+.theme-doc-markdown ol > li:not(.tabs__item) {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.theme-doc-markdown ol li:not(.tabs__item) > *:not(:first-child, code, strong) {
+  margin-left: 1.5rem;
+}
+
+.theme-doc-markdown ol li:not(.tabs__item) > :first-child:not(code, strong)::before {
+  font-size: 0.75rem;
+  font-weight: bold;
+  counter-increment: circle-counter;
+  content: counter(circle-counter);
+  background-color: #e1e1e1;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: 50%;
+  display: inline-block;
+  color: #002c42;
+  text-align: center;
+  position: relative;
+  top: -2px;
+  left: -0.5rem;
+}
+
+/* Custom Search Box */
+.DocSearch.DocSearch-Button {
+  border: 2px solid;
+}
+
+/* Custom Unordered List */
+.theme-doc-markdown ul li:not(.tabs__item)::marker {
+  color: #909090;
+  font-size: 1.1rem;
+}
+
+/* Custom sidebar expand button */
+.menu {
+  scrollbar-width: none;
+}
+
+.menu::-webkit-scrollbar {
+  display: none;
+}
+
+.theme-doc-sidebar-menu > .theme-doc-sidebar-item-link-level-1 a {
+  color: var(--ifm-color-emphasis-700);
+  font-family: "Montserrat-Medium";
+  padding-top: 1.4rem;
 }
 
 .docusaurus-highlight-code-line {
@@ -146,7 +260,7 @@ thead tr {
 }
 
 thead {
-  top: 55px;
+  top: 2.9rem;
   z-index: 20;
   display: block;
   position: sticky;
@@ -236,11 +350,15 @@ table thead th {
   padding-bottom: 12px;
   border: none;
   background-color: white;
-  border-bottom: 2px solid var(--ifm-tabs-color-active);
+  border-bottom: 0.9px solid var(--ifm-color-neutral-400);
+}
+
+[data-theme="dark"] table thead th {
+  border-bottom: 0.9px solid var(--ifm-color-navy-blue-300);
 }
 
 [data-theme="dark"] table th {
-  background-color: #1b1b1d;
+  background-color: #001f2b;
 }
 
 table tbody tr td {
@@ -250,7 +368,7 @@ table tbody tr td {
 }
 
 [data-theme="dark"] td {
-  border-top: 1px solid #393939;
+  border-top: 1px solid #a4a2a229;
 }
 
 thead tr:first-child {
@@ -304,9 +422,6 @@ table tr:first-child {
   content: "";
 }
 
-[data-theme="dark"] .scrollHint::before {
-}
-
 .row {
   width: 100%;
 }
@@ -341,130 +456,8 @@ table tr:first-child {
   }
 }
 
-@-webkit-keyframes bounce-right {
-  0% {
-    -webkit-transform: translateX(48px);
-    transform: translateX(48px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-    opacity: 1;
-  }
-  24% {
-    opacity: 1;
-  }
-  40% {
-    -webkit-transform: translateX(26px);
-    transform: translateX(26px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  65% {
-    -webkit-transform: translateX(13px);
-    transform: translateX(13px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  82% {
-    -webkit-transform: translateX(6.5px);
-    transform: translateX(6.5px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  93% {
-    -webkit-transform: translateX(4px);
-    transform: translateX(4px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  25%,
-  55%,
-  75%,
-  87%,
-  98% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-    opacity: 1;
-  }
-}
-
-@keyframes bounce-right {
-  0% {
-    -webkit-transform: translateX(48px);
-    transform: translateX(48px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-    opacity: 1;
-  }
-  24% {
-    opacity: 1;
-  }
-  40% {
-    -webkit-transform: translateX(26px);
-    transform: translateX(26px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  65% {
-    -webkit-transform: translateX(13px);
-    transform: translateX(13px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  82% {
-    -webkit-transform: translateX(6.5px);
-    transform: translateX(6.5px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  93% {
-    -webkit-transform: translateX(4px);
-    transform: translateX(4px);
-    -webkit-animation-timing-function: ease-in;
-    animation-timing-function: ease-in;
-  }
-  25%,
-  55%,
-  75%,
-  87%,
-  98% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-  }
-  100% {
-    -webkit-transform: translateX(0);
-    transform: translateX(0);
-    -webkit-animation-timing-function: ease-out;
-    animation-timing-function: ease-out;
-    opacity: 1;
-  }
-}
-
-@keyframes shake {
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    transform: translateX(-4px);
-  }
-  20%,
-  40%,
-  60%,
-  80% {
-    transform: translateX(4px);
-  }
+.plugin-id-cloud .navbar-sidebar li.menu__list-item.menu__list-item--collapsed,
+.plugin-id-cloud .dropdown,
+.hr-powered-by {
+  display: none !important;
 }

@@ -26,7 +26,7 @@
   margin: 0;
   width: 2.5rem;
   height: 2.5rem;
-  background: #282936;
+  background: var(--ifm-color-primary-darker);
   border-radius: 1.625rem;
 }
 

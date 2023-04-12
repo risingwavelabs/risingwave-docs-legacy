@@ -2,6 +2,9 @@ import lightTheme from "prism-react-renderer/themes/dracula/index.cjs.js";
 
 export default {
   ...lightTheme,
+  plain: {
+    backgroundColor: "#001017",
+  },
   styles: [
     ...lightTheme.styles,
     {

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
+import React, { useState, useEffect } from "react";
 import PullRequestIcon from "@site/static/img/github_pr.svg";
 import IssueIcon from "@site/static/img/github_issue.svg";
 import { Button, Typography, Stack } from "@mui/material";
@@ -9,6 +8,8 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./index.module.css";
+import { Widget } from "@happyreact/react";
+import "@happyreact/react/theme.css";
 
 export default function FeedbackForm(props) {
   const [formData, setFormData] = useState({
@@ -100,6 +101,21 @@ export default function FeedbackForm(props) {
       </div>
 
       <form>
+        <div className={styles.happyReact}>
+          <h3 className={styles.title}>Was this page helpful?</h3>
+          <Widget
+            className={styles.widget}
+            token="8e453b8d-5ed6-4a2a-94e5-292cecc9b05a"
+            resource={props.unversionedId}
+            classes={{
+              root: styles.root,
+              container: styles.container,
+              grid: styles.grid,
+              cell: styles.cell,
+              reaction: styles.reaction,
+            }}
+          />
+        </div>
         <Stack direction="row" spacing={2}>
           <Stack spacing={2} className={styles.rightGroup} direction="row" alignItems="baseline">
             <Typography className={styles.rightText}>Help us make this doc better!</Typography>
