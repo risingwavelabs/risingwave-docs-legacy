@@ -25,6 +25,11 @@
           "type": "doc",
           "label": "RisingWave vs. Flink",
           "id": "risingwave-flink-comparison"
+        },
+        {
+          "type": "doc",
+          "label": "Release Notes",
+          "id": "release-notes"
         }
       ]
     },
@@ -258,7 +263,7 @@
       "items": [
         {
           "type": "category",
-          "label": "SQL reference",
+          "label": "SQL references",
           "collapsible": true,
           "collapsed": true,
           "items": [
