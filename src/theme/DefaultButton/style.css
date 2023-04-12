@@ -4,7 +4,7 @@
   display: inline-block;
   appearance: none;
   font-size: var(--ifm-font-size-base);
-  background-color: var(--ifm-color-primary-dark);
+  background-color: var(--ifm-color-primary-darker);
   border: 1px solid #71bde9;
   border-radius: 6px;
   box-sizing: border-box;
@@ -26,7 +26,7 @@
 }
 
 .default:hover {
-  background-color: var(--ifm-color-primary-darker);
+  background-color: var(--ifm-color-primary-dark);
 }
 
 [data-theme="dark"] .default:hover {
