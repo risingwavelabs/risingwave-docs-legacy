@@ -107,8 +107,12 @@ html[data-theme="dark"] {
 .navbar--fixed-top {
   justify-items: center;
   align-items: center;
-  background-color: #001f2bef;
+  background-color: rgba(0, 103, 163, 0.9);
   color: #e3e3e3;
+}
+
+[data-theme="dark"] .navbar--fixed-top {
+  background-color: #001f2bef;
 }
 
 .navbar__link {
