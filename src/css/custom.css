@@ -17,6 +17,7 @@
   --ifm-color-primary-lightest: #c4ecfc;
   --ifm-color-navy-blue-300: #98c6d9;
   --ifm-color-neutral-400: #b3b3b3;
+  --ifm-color-neutral-900: #16171a;
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
@@ -141,8 +142,12 @@ h1 {
 
 h2 {
   padding-bottom: 10px;
-  border-bottom: 1px solid var(--ifm-color-primary);
+  border-bottom: 1px solid var(--ifm-color-neutral-900);
   font-family: Montserrat !important;
+}
+
+[data-theme="dark"] h2 {
+  border-bottom: 1px solid var(--ifm-color-primary);
 }
 
 h3 {
@@ -339,12 +344,12 @@ table thead th {
   padding-bottom: 12px;
   border: none;
   background-color: white;
-  border-bottom: 0.9px solid var(--ifm-color-primary-light);
+  border-bottom: 0.9px solid var(--ifm-color-neutral-400);
 }
 
-/* [data-theme="dark"] table thead th {
+[data-theme="dark"] table thead th {
   border-bottom: 0.9px solid var(--ifm-color-navy-blue-300);
-} */
+}
 
 [data-theme="dark"] table th {
   background-color: #001f2b;
