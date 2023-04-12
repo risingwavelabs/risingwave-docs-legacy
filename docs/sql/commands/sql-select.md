@@ -44,12 +44,12 @@ Where `from_item` can be:
 |*join_condition*           |Conditions for the `ON` clause that must be met before the two `from_items` can be joined.|
 |*window_type*              |The type of the time window function. Possible values are `HOP` and `TUMBLE`.|
 |*interval_expression*      |The interval expression, in the format of `INTERVAL '<interval>'`. For example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported. |
-|**FROM** clause           | Specifies the source of the data on which the query should operate. You can find more information [here](/sql/query-syntax/query-syntax-from-clause.md). |
-|**GROUP BY** clause           | Groups rows in a table with identical data, thus eliminating redundancy in the output and aggregates that apply to these groups. You can find more information [here](/sql/query-syntax/query-syntax-group-by-clause.md). |
-|**HAVING** clause           | Eliminates group rows that do not satisfy a given condition. You can find more information [here](/sql/query-syntax/query-syntax-having-clause.md). |
-|**LIMIT** clause           | When the `ORDER BY` clause is not present, the `LIMIT` clause cannot be used as part of a materialized view. You can find more information [here](/sql/query-syntax/query-syntax-limit-clause.md).|
-|**WHERE** clause           | Specifies any conditions or filters to apply to your data. You can find more information [here](/sql/query-syntax/query-syntax-where-clause.md). |
-|**WITH** clause           | Provides a way to write supplemental statements for a larger query. You can find more information [here](/sql/query-syntax/query-syntax-with-clause.md). |
+|**FROM** clause           | Specifies the source of the data on which the query should operate. For more information, see [`FROM` clause](/sql/query-syntax/query-syntax-from-clause.md). |
+|**GROUP BY** clause           | Groups rows in a table with identical data, thus eliminating redundancy in the output and aggregates that apply to these groups. For more information, see [`GROUP BY` clause](/sql/query-syntax/query-syntax-group-by-clause.md). |
+|**HAVING** clause           | Eliminates group rows that do not satisfy a given condition. For more information, see [`HAVING` clause](/sql/query-syntax/query-syntax-having-clause.md). |
+|**LIMIT** clause           | When the `ORDER BY` clause is not present, the `LIMIT` clause cannot be used as part of a materialized view. For more information, see [`LIMIT` clause](/sql/query-syntax/query-syntax-limit-clause.md).|
+|**WHERE** clause           | Specifies any conditions or filters to apply to your data. For more information, see [`WHERE` clause](/sql/query-syntax/query-syntax-where-clause.md). |
+|**WITH** clause           | Provides a way to write supplemental statements for a larger query. For more information, see [`WITH` clause](/sql/query-syntax/query-syntax-with-clause.md). |
 
 
 ## Example
