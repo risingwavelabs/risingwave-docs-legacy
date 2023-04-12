@@ -18,6 +18,7 @@
   --ifm-color-navy-blue-300: #98c6d9;
   --ifm-color-neutral-400: #b3b3b3;
   --ifm-color-neutral-900: #16171a;
+  --ifm-navbar-link-color: #e3e3e3;
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
@@ -113,10 +114,6 @@ html[data-theme="dark"] {
 
 [data-theme="dark"] .navbar--fixed-top {
   background-color: #001f2bef;
-}
-
-.navbar__link {
-  color: #e3e3e3;
 }
 
 .clean-btn {
@@ -459,6 +456,8 @@ table tr:first-child {
   }
 }
 
+.plugin-id-cloud .navbar-sidebar li.menu__list-item.menu__list-item--collapsed,
+.plugin-id-cloud .dropdown,
 .hr-powered-by {
   display: none !important;
 }
