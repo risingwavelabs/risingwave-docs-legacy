@@ -26,7 +26,7 @@
 }
 
 .default:hover {
-  background-color: #86F2DD;
+  background-color: var(--ifm-color-primary-dark);
 }
 
 [data-theme="dark"] .default:hover {

@@ -16,6 +16,28 @@ WHERE condition
 ```
 
 
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('DELETE FROM'),
+        rr.NonTerminal('table_name', 'skip'),
+        rr.Terminal('WHERE'),
+        rr.NonTerminal('condition', 'skip'),
+        rr.Optional(
+            rr.Sequence(
+                rr.Terminal('RETURNING'),
+                rr.NonTerminal('col_name', 'skip')
+            )
+        ),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
 ## Parameters
 
 |Parameter or clause        | Description           |
