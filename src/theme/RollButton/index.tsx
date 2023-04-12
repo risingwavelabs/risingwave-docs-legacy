@@ -20,11 +20,11 @@ export default function RollButton({ text, doc, url, cloud }: Props) {
       <button
         onClick={() => {
           if (doc) {
-            globalData["docusaurus-plugin-content-docs"].default[
-              "versions"
-            ].map((v) => {
+            globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
               if (location.pathname.includes(v.path)) {
                 history.push(`${v.path}/${doc}`);
+              } else if (location.pathname.includes("cloud")) {
+                history.push(`/docs/current/${doc}`);
               }
             });
           } else if (url) {
