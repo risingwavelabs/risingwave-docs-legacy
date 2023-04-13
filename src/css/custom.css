@@ -8,7 +8,7 @@
 :root {
   --ifm-pre-background: red;
   --test: #98e1ff;
-  --ifm-color-primary: #18c6ff;
+  --ifm-color-primary: #0098ef;
   --ifm-color-primary-dark: #0098ef;
   --ifm-color-primary-darker: #0069a8;
   --ifm-color-primary-darkest: #002c42;
@@ -18,7 +18,7 @@
   --ifm-color-navy-blue-300: #98c6d9;
   --ifm-color-neutral-400: #b3b3b3;
   --ifm-color-neutral-900: #16171a;
-  --ifm-navbar-link-color: #e3e3e3;
+  --ifm-navbar-link-color: #16171a;
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
@@ -42,6 +42,7 @@
   --ifm-color-primary-lighter: #c7d4f6;
   --ifm-color-primary-lightest: #f9fafe;
   --ifm-background-color: #1f2765;
+  --ifm-navbar-link-color: #e3e3e3;
 
   --ifm-color-success-dark: rgb(0, 139, 0);
   --ifm-color-success-darker: rgb(0, 139, 0);
@@ -108,8 +109,7 @@ html[data-theme="dark"] {
 .navbar--fixed-top {
   justify-items: center;
   align-items: center;
-  background-color: rgba(0, 103, 163, 0.9);
-  color: #e3e3e3;
+  background-color: #ffffffeb;
 }
 
 [data-theme="dark"] .navbar--fixed-top {
