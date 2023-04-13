@@ -70,7 +70,7 @@ export const svg = rr.Diagram(
 
 
 
-Here is the diagram for the optional WITH clause:
+This is the WITH clause and the rest of the source parameters:
 
 
 export const svgTwo = rr.Diagram(
