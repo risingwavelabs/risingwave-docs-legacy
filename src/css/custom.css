@@ -457,7 +457,6 @@ table tr:first-child {
 }
 
 .plugin-id-cloud .navbar-sidebar li.menu__list-item.menu__list-item--collapsed,
-.plugin-id-cloud .dropdown,
-.hr-powered-by {
+.plugin-id-cloud .dropdown {
   display: none !important;
 }
