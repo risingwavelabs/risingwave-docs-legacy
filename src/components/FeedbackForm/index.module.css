@@ -121,6 +121,10 @@ p.rightText {
   }
 }
 
+.happyReact {
+  margin-top: 16px;
+}
+
 .happyReact .title {
   text-align: center;
 }

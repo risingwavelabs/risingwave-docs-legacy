@@ -101,21 +101,6 @@ export default function FeedbackForm(props) {
       </div>
 
       <form>
-        <div className={styles.happyReact}>
-          <h3 className={styles.title}>Was this page helpful?</h3>
-          <Widget
-            className={styles.widget}
-            token="8e453b8d-5ed6-4a2a-94e5-292cecc9b05a"
-            resource={props.unversionedId}
-            classes={{
-              root: styles.root,
-              container: styles.container,
-              grid: styles.grid,
-              cell: styles.cell,
-              reaction: styles.reaction,
-            }}
-          />
-        </div>
         <Stack direction="row" spacing={2}>
           <Stack spacing={2} className={styles.rightGroup} direction="row" alignItems="baseline">
             <Typography className={styles.rightText}>Help us make this doc better!</Typography>
@@ -139,6 +124,21 @@ export default function FeedbackForm(props) {
             </Stack>
           </Stack>
         </Stack>
+        <div className={styles.happyReact}>
+          <h3 className={styles.title}>Was this page helpful?</h3>
+          <Widget
+            className={styles.widget}
+            token="8e453b8d-5ed6-4a2a-94e5-292cecc9b05a"
+            resource={props.unversionedId}
+            classes={{
+              root: styles.root,
+              container: styles.container,
+              grid: styles.grid,
+              cell: styles.cell,
+              reaction: styles.reaction,
+            }}
+          />
+        </div>
       </form>
     </Stack>
   );
