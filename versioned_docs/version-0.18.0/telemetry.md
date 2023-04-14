@@ -12,7 +12,7 @@ We understand that not everyone wants to share usage statistics. You can disable
 
 You can opt out by setting the `telemetry_enabled` system parameter before starting a RisingWave cluster. You can set the system parameter in one of the three ways:
 
-- Add or update the parameter setting in ./src/config/<your-config>.yaml
+- Add or update the parameter setting in `./src/config/<your-config>.yaml`
 
 ```shell
 [server]
