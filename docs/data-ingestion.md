@@ -24,21 +24,21 @@ You can also load data to RisingWave by creating tables ([`CREATE TABLE`](./sql/
 
 Click a connector name to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
 
-Data formats denoted with an M only support materialized sources. Otherwise, both materialized and non-materialized sources are supported.
+Data formats denoted with an M only support materialized sources, which require a primary key to be specified. Otherwise, both materialized and non-materialized sources are supported.
 
-| Connector | Version | Format | Limitations |
-|---------|---------|---------|---------|
-|[Kafka](/create-source/create-source-kafka.md)|3.1.0 or later versions	|[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), Debezium AVRO (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M), Upsert JSON, Upsert AVRO| |
-|[Redpanda](/create-source/create-source-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf) | |
-|[Pulsar](/create-source/create-source-pulsar.md)|	2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)| |
-|[Astra Streaming](./guides/connector-astra-streaming.md)|Latest	|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	 |
-|[Kinesis](/create-source/create-source-kinesis.md)|	Latest|	[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)|	|
-|[PostgreSQL CDC](/guides/ingest-from-pg-cdc)|	10, 11, 12, 13, 14|[Debezium JSON](#debezium-json) (M)|	Must have primary key|
-|[MySQL CDC](/guides/ingest-from-mysql-cdc)|	5.7, 8.0|[Debezium JSON](#debezium-json) (M)|	Must have primary key|
-|[CDC via Kafka](/create-source/create-source-cdc.md)||[Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)| Must have primary key|
-|[Amazon S3](/create-source/create-source-s3.md)| Latest |[JSON](#json), CSV| | |
-|[Load generator](/create-source/create-source-datagen.md)|Built-in|[JSON](#json)| |
-|Google Pub/Sub | | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M) | |
+| Connector | Version | Format | 
+|---------|---------|---------|
+|[Kafka](/create-source/create-source-kafka.md)|3.1.0 or later versions	|[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), Debezium AVRO (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M), Upsert JSON, Upsert AVRO| 
+|[Redpanda](/create-source/create-source-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf) | 
+|[Pulsar](/create-source/create-source-pulsar.md)|	2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)| 
+|[Astra Streaming](./guides/connector-astra-streaming.md)|Latest	|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|	 
+|[Kinesis](/create-source/create-source-kinesis.md)|	Latest|	[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)|	
+|[PostgreSQL CDC](/guides/ingest-from-pg-cdc)|	10, 11, 12, 13, 14|[Debezium JSON](#debezium-json) (M)|	
+|[MySQL CDC](/guides/ingest-from-mysql-cdc)|	5.7, 8.0|[Debezium JSON](#debezium-json) (M)|	
+|[CDC via Kafka](/create-source/create-source-cdc.md)||[Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)| 
+|[Amazon S3](/create-source/create-source-s3.md)| Latest |[JSON](#json), CSV| | 
+|[Load generator](/create-source/create-source-datagen.md)|Built-in|[JSON](#json)| 
+|Google Pub/Sub | | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M) | 
 
 :::note
 When a source is created, RisingWave does not ingest data immediately. RisingWave starts to process data when a materialized view is created based on the source.
