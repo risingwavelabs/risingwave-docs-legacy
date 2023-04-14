@@ -1,7 +1,5 @@
 {
   "MainSidebar": [
-
-
     {
       "type": "category",
       "label": "About",
@@ -13,13 +11,11 @@
           "id": "intro",
           "label": "What is RisingWave?"
         },
-
         {
           "type": "doc",
           "id": "architecture",
           "label": "Architecture"
         },
-
         {
           "type": "doc",
           "id": "key-concepts",
@@ -42,13 +38,16 @@
         },
         {
           "type": "doc",
+          "label": "Telemetry",
+          "id": "telemetry"
+        },
+        {
+          "type": "doc",
           "label": "Release Notes",
           "id": "release-notes"
         }
       ]
     },
-
-
     {
       "type": "category",
       "label": "Setup",
@@ -112,9 +111,6 @@
         }
       ]
     },
-
-
-
     {
       "type": "category",
       "label": "Learn & explore",
@@ -188,7 +184,6 @@
               "label": "Overview",
               "id": "data-ingestion"
             },
-  
             {
               "type": "doc",
               "label": "Kafka",
@@ -294,8 +289,6 @@
         }
       ]
     },
-
-
     {
       "type": "category",
       "label": "Develop",
@@ -567,37 +560,37 @@
               "type": "doc",
               "id": "sql/psql-commands"
             }
-      ]
-    },
-    {
-      "type": "category",
-      "label": "Client libraries",
-      "collapsible": true,
-      "collapsed": true,
-      "items": [
-        {
-          "type": "doc",
-          "id": "dev/java-client-libraries",
-          "label": "Java"
+          ]
         },
         {
-          "type": "doc",
-          "id": "dev/nodejs-client-libraries",
-          "label": "Node.js"
-        },
-        {
-          "type": "doc",
-          "id": "dev/python-client-libraries",
-          "label": "Python"
-        },
-        {
-          "type": "doc",
-          "id": "dev/go-client-libraries",
-          "label": "Go"
+          "type": "category",
+          "label": "Client libraries",
+          "collapsible": true,
+          "collapsed": true,
+          "items": [
+            {
+              "type": "doc",
+              "id": "dev/java-client-libraries",
+              "label": "Java"
+            },
+            {
+              "type": "doc",
+              "id": "dev/nodejs-client-libraries",
+              "label": "Node.js"
+            },
+            {
+              "type": "doc",
+              "id": "dev/python-client-libraries",
+              "label": "Python"
+            },
+            {
+              "type": "doc",
+              "id": "dev/go-client-libraries",
+              "label": "Go"
+            }
+          ]
         }
-        ]
-      }
-    ]
+      ]
     },
     {
       "type": "category",
