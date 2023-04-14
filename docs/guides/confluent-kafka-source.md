@@ -45,20 +45,21 @@ Now the source connector is created.
 
 ### Create an API key
 
-1. Select the Confluent Cloud Kafka cluster you just create from the dashboard
+1. Select the Confluent Cloud Kafka cluster you just create from the dashboard.
 2. Click the **API Keys** tab.
 3. Add a new API key for the cluster you just created. 
 
+Note that you will need the API key when creating a Kafka source in RisingWave.
+
 ### Run RisingWave
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-To start RisingWave locally, see the [Get started](../get-started.md) guide. We recommend running RisingWave locally for testing purposes.
+To start RisingWave, see the [Get started](../get-started.md) guide. 
 
 ### Connect to the data stream
 
-Use the following query in RisingWave to create a table that connects to the data generator created in Confluent. Remember to fill in the authentication parameters accordingly.
+Create a table in RisingWave to ingest data from the Kafka topic created in Confluent Cloud.
+
+The following query will create a table that connects to the data generator created in Confluent. Remember to fill in the authentication parameters accordingly.
 
 See the [Ingest data from Kafka](../create-source/create-source-kafka.md) topic for more details on the syntax and connection parameters.
 
