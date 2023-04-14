@@ -1,5 +1,5 @@
 ---
-id: Telemetry
+id: telemetry
 title: Telemetry
 slug: /telemetry
 ---
