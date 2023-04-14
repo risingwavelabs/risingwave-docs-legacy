@@ -33,6 +33,7 @@ Kubernetes
 frontend
 NodePort
 kubectl
+uptime
 Avro
 Protobuf
 Prebuilt
