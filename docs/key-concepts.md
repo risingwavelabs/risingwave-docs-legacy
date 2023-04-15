@@ -61,7 +61,7 @@ A frontend node acts as a stateless proxy that accepts user queries through Post
 
 ### Compute nodes
 
-A computer node executes the optimized query plans and handles data ingestion and output.
+A compute node executes the optimized query plans and handles data ingestion and output.
 
 ### Compactor nodes
 
