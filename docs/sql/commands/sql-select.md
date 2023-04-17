@@ -37,14 +37,20 @@ Where `from_item` can be:
 |*grouping_expression*      |<p>Values can be:</p><ul><li>Input column names</li><li>Input column expressions without subqueries or correlated columns</li></ul>|
 |**ORDER BY** clause        | The default sort order is **ASC**. Nulls options are not supported now. If the sort order is **ASC** or unspecified, nulls will be placed in front of non-null values. If the sort order is **DESC**, nulls will be placed after non-null values. This is different from the sort logic in PostgreSQL.|
 |*sort_expression*          |<p>Values can be:</p><ul><li>Output column names</li><li>Output column ordinal numbers</li><li>Hidden select expressions</li></ul>|
-|**LIMIT** clause           | When the ORDER BY clause is not present, the LIMIT clause cannot be used as part of a materialized view. |
 |*count_number*                    |The number of results you want to get. |
-|**OFFSET** clause          |The OFFSET clause can only be used with the LIMIT and ORDER BY clauses.|
-|*(SELECT)*                   |A SELECT command. You must enclose the subquery in parentheses, and specify an alias. When you include a subquery in the FROM clause, the output of the subquery is used as a temporary view that is only valid in the query.|
+|**OFFSET** clause          |The `OFFSET` clause can only be used with the `LIMIT` and `ORDER BY` clauses.|
+|*(SELECT)*                   |A `SELECT` command. You must enclose the subquery in parentheses, and specify an alias. When you include a subquery in the `FROM` clause, the output of the subquery is used as a temporary view that is only valid in the query.|
 |*join_type*                |<p>Supported join types:</p> <ul><li>[INNER] JOIN</li><li>LEFT [OUTER] JOIN</li><li>RIGHT [OUTER] JOIN</li><li>FULL [OUTER] JOIN</li></ul><p>Currently, only the ON clause is supported for joins.</p>|
-|*join_condition*           |Conditions for the ON clause that must be met before the two from_items can be joined.|
+|*join_condition*           |Conditions for the `ON` clause that must be met before the two `from_items` can be joined.|
 |*window_type*              |The type of the time window function. Possible values are `HOP` and `TUMBLE`.|
 |*interval_expression*      |The interval expression, in the format of `INTERVAL '<interval>'`. For example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported. |
+|**FROM** clause           | Specifies the source of the data on which the query should operate. For more information, see [`FROM` clause](/sql/query-syntax/query-syntax-from-clause.md). |
+|**GROUP BY** clause           | Groups rows in a table with identical data, thus eliminating redundancy in the output and aggregates that apply to these groups. For more information, see [`GROUP BY` clause](/sql/query-syntax/query-syntax-group-by-clause.md). |
+|**HAVING** clause           | Eliminates group rows that do not satisfy a given condition. For more information, see [`HAVING` clause](/sql/query-syntax/query-syntax-having-clause.md). |
+|**LIMIT** clause           | When the `ORDER BY` clause is not present, the `LIMIT` clause cannot be used as part of a materialized view. For more information, see [`LIMIT` clause](/sql/query-syntax/query-syntax-limit-clause.md).|
+|**WHERE** clause           | Specifies any conditions or filters to apply to your data. For more information, see [`WHERE` clause](/sql/query-syntax/query-syntax-where-clause.md). |
+|**WITH** clause           | Provides a way to write supplemental statements for a larger query. For more information, see [`WITH` clause](/sql/query-syntax/query-syntax-with-clause.md). |
+
 
 ## Example
 Below are the tables within the same schema that we will be writing queries from. 
@@ -92,14 +98,3 @@ WHERE taxi_id IN (
 GROUP BY taxi_id
 ORDER BY total_distance, total_duration;
 ```
-
-
-
-|Query syntax resources|
-|---|
-|[**FROM clause**](/sql/query-syntax/query-syntax-from-clause.md)|
-|[**GROUP BY clause**](/sql/query-syntax/query-syntax-group-by-clause.md)|
-|[**HAVING clause**](/sql/query-syntax/query-syntax-having-clause.md)|
-|[**LIMIT clause**](/sql/query-syntax/query-syntax-limit-clause.md)|
-|[**WHERE clause**](/sql/query-syntax/query-syntax-where-clause.md)|
-|[**WITH clause**](/sql/query-syntax/query-syntax-with-clause.md)|

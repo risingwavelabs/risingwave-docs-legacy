@@ -58,6 +58,8 @@ export default function OutlinedCard({
           globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
             if (location.pathname.includes(v.path)) {
               history.push(`${v.path}/${doc}`);
+            } else if (location.pathname.includes("cloud")) {
+              history.push(`/docs/current/${doc}`);
             }
           });
         } else if (url) {
@@ -87,6 +89,8 @@ export default function OutlinedCard({
                       globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
                         if (location.pathname.includes(v.path)) {
                           history.push(`${v.path}/${link.doc}`);
+                        } else if (location.pathname.includes("cloud")) {
+                          history.push(`/docs/current/${doc}`);
                         }
                       });
                     }

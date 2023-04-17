@@ -132,8 +132,8 @@ For materialized sources with primary key constraints, if a new data record with
 
 |Field|Notes|
 |---|---|
-|*data_format*| Data format. Supported formats: `JSON`, `UPSERT_JSON`, `AVRO`, `UPSERT_AVRO`, `PROTOBUF`|
-|*message* | Message name of the main message in schema definition. Required for Protobuf.|
+|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`, `DEBEZIUM_JSON`, `DEBEZIUM_AVRO`, `MAXWELL`, `CANAL_JSON`, `UPSERT_JSON`, `UPSERT_AVRO`. |
+|*message* | Message name of the main Message in schema definition. Required for Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
 |*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 
