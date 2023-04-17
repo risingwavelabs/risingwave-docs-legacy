@@ -13,6 +13,21 @@ Use the `SHOW CREATE TABLE` command to see what query was used to create the spe
 SHOW CREATE TABLE table_name;
 ```
 
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('SHOW CREATE TABLE'),
+        rr.NonTerminal('table_name', 'skip'),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
 ## Parameters
  |Parameter    | Description|
 |---------------|------------|

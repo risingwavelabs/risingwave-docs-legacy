@@ -28,6 +28,104 @@ ROW FORMAT data_format
 [ROW SCHEMA LOCATION 'location'] ];
 ```
 
+
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Terminal('CREATE TABLE'),
+            rr.Optional(rr.Terminal('IF NOT EXISTS')),
+            rr.NonTerminal('table_name', 'wrap'),
+            rr.Terminal('('),
+        ),
+        rr.Stack(
+            rr.OneOrMore(
+                rr.Sequence(
+                    rr.NonTerminal('col_name', 'skip'),
+                    rr.NonTerminal('data_type', 'skip'),
+                    rr.Optional(rr.Terminal('PRIMARY KEY')),
+                    rr.Optional(rr.Terminal(',')),
+                ),
+                rr.Comment('Alternative format: PRIMARY KEY (col_name, ... )'),
+            ),
+        ),
+        rr.Terminal(')'),
+        rr.Optional(
+            rr.Stack(
+                rr.Sequence(
+                    rr.Terminal('WITH'),
+            ),
+        ),
+        ),
+        rr.Terminal(';'),
+    )
+);
+
+
+<drawer SVG={svg} />
+
+
+
+
+This is the WITH clause and the rest of the source parameters:
+
+
+export const svgTwo = rr.Diagram(
+     rr.Stack(
+        rr.Optional(
+            rr.Stack(
+                rr.Sequence(
+                    rr.Terminal('WITH'),
+                    rr.Terminal('('),
+                        rr.Sequence(
+                            rr.Terminal('connector'),
+                            rr.Terminal('='),
+                            rr.NonTerminal('connector_name', 'skip'),
+                            rr.Terminal(','),
+                        ),
+                        rr.OneOrMore(
+                            rr.Sequence(
+                                rr.NonTerminal('connector_parameter', 'skip'),
+                                rr.Terminal('='),
+                                rr.NonTerminal('value', 'skip'),
+                                rr.Terminal(','),
+                            ),
+                        ),
+                    rr.Terminal(')'),
+                ),
+            ),
+        ),
+        rr.Stack(
+            rr.Sequence(
+                rr.Terminal('ROW FORMAT'),
+                rr.NonTerminal('data_format', 'skip'),
+            ),
+            rr.Optional(
+                rr.Sequence(
+                    rr.Terminal('MESSAGE'),
+                    rr.NonTerminal('message', 'skip'),
+                ),
+            ),
+            rr.Optional(
+                rr.Sequence(
+                    rr.Terminal('ROW SCHEMA LOCATION'),
+                    rr.NonTerminal('location', 'skip'),
+                ),
+            ),
+            rr.Optional(rr.Terminal(';')),
+        ),
+    )   
+);
+
+
+
+<drawer SVG={svgTwo} />
+
+
+
 :::note
 For tables with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record.
 :::
@@ -61,6 +159,7 @@ CREATE TABLE taxi_trips(
     city VARCHAR
 );
 ```
+
 
 The statement below creates a table that includes nested tables.
 

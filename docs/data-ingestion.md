@@ -63,6 +63,8 @@ When creating a source, specify the format in the `ROW FORMAT` section of the `C
 
 For data in Avro format, you must specify a message and a schema file location. The schema file location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Avro, instead of a schema file location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry). 
 
+Note that the timestamp displayed in RisingWave may be different from the upstream system as timezone information is lost in Avro serialization.
+
 :::info
 
 For Avro data, you cannot specify the schema in the `schema_definition` section of a `CREATE SOURCE` or `CREATE TABLE` statement.

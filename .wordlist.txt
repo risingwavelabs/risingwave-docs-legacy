@@ -33,6 +33,7 @@ Kubernetes
 frontend
 NodePort
 kubectl
+uptime
 Avro
 Protobuf
 Prebuilt
@@ -119,3 +120,8 @@ upsert
 ChatGPT
 JSONB
 boolean
+Lamport
+Chandy
+OpenDAL
+HDFS
+WebHDFS

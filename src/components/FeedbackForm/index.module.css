@@ -45,17 +45,18 @@
 }
 
 button.footerButton {
-  color: #7798ef;
-  font-family: NotoSans;
+  color: #0098ef;
   font-size: 14px;
   text-transform: none;
-  border: 1px solid #7798ef;
+  border: 1px solid #0098ef;
+  font-family: var(--ifm-font-family-base);
 }
 
 p.rightText {
   font-weight: 100;
   margin-right: 20px;
   color: #999;
+  font-family: var(--ifm-font-family-base);
 }
 
 @media screen and (max-width: 1440px) {
@@ -112,4 +113,56 @@ p.rightText {
     flex-direction: row;
     align-items: flex-start;
   }
+}
+
+@media (min-width: 997px) {
+  .happyReact {
+    max-width: 75% !important;
+  }
+}
+
+.happyReact {
+  margin-top: 16px;
+}
+
+.happyReact .title {
+  text-align: center;
+}
+
+.happyReact .grid {
+  min-height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.happyReact .cell {
+  width: 4rem;
+}
+
+.happyReact .reaction {
+  width: 100%;
+  color: #0098ef;
+  border: #0098ef 1px solid;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.happyReact .reaction:hover {
+  color: #0098ef88;
+  border-radius: 4px;
+  border: #0098ef 1px solid;
+  background-color: #1976d20a;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.happyReact .powered-by {
+  display: none;
+  color: #e3e3e3;
+  margin-top: 10px;
+  margin-left: 0;
 }

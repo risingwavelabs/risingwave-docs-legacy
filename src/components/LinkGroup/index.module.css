@@ -10,7 +10,7 @@
   flex-direction: column;
 }
 
-.button {
+.linkButton {
   margin: 10px;
 }
 
@@ -30,10 +30,9 @@
 
   .button {
     margin: 0px;
-    /* margin-right: 10px; */
   }
+
   .linkItem {
     margin-right: 10px;
   }
-  
 }
