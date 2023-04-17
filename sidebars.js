@@ -402,7 +402,13 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-with-clause',
                   label: 'WITH clause',
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/query-syntax/query-syntax-join-clause',
+                  label: 'JOIN clause',
                 }
+
               ]
             },
             {
