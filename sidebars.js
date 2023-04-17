@@ -61,6 +61,11 @@ const sidebars = {
         },
         {
           type: 'doc',
+          label: 'Telemetry',
+          id: 'telemetry'
+        },
+        {
+          type: 'doc',
           label: 'Release Notes',
           id: 'release-notes'
         }
@@ -207,7 +212,7 @@ const sidebars = {
               label: 'Overview',
               id: 'data-ingestion',
             },
-  
+
             {
               type: 'doc',
               label: 'Kafka',
@@ -586,37 +591,37 @@ const sidebars = {
               type: 'doc',
               id: 'sql/psql-commands'
             }
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Client libraries',
-      collapsible: true,
-      collapsed: true,
-      items: [
-        {
-          type: 'doc',
-          id: 'dev/java-client-libraries',
-          label: 'Java',
+          ]
         },
         {
-          type: 'doc',
-          id: 'dev/nodejs-client-libraries',
-          label: 'Node.js',
-        },
-        {
-          type: 'doc',
-          id: 'dev/python-client-libraries',
-          label: 'Python',
-        },
-        {
-          type: 'doc',
-          id: 'dev/go-client-libraries',
-          label: 'Go',
+          type: 'category',
+          label: 'Client libraries',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'dev/java-client-libraries',
+              label: 'Java',
+            },
+            {
+              type: 'doc',
+              id: 'dev/nodejs-client-libraries',
+              label: 'Node.js',
+            },
+            {
+              type: 'doc',
+              id: 'dev/python-client-libraries',
+              label: 'Python',
+            },
+            {
+              type: 'doc',
+              id: 'dev/go-client-libraries',
+              label: 'Go',
+            }
+          ]
         }
-        ]
-      }
-    ]
+      ]
     },
     {
       type: 'category',

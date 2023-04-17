@@ -22,6 +22,7 @@ Currently, these system parameters are availble in RisingWave.
 |`data_directory`           | The remote directory for storing data and metadata objects.|
 |`backup_storage_url`       | The URL of the remote storage for backups.|
 |`backup_storage_directory` | The directory of the remote storage for backups.|
+|`telemetry_enabled` | Whether to enable telemetry or not. For more information, see [Telemetry](../telemetry.md).|
 
 ## How to view system parameters?
 
@@ -42,15 +43,16 @@ SHOW PARAMETERS;
  data_directory           | hummock_001
  backup_storage_url       | memory
  backup_storage_directory | backup
+ telemetry_enabled        | true
 ```
 
 ## How to adjust system parameters?
 
-You can use the `ALTER SYSTEM SET` statement to revise the setting of a system parameter. Note that currently only `checkpoint_interval` can be set.
+You can use the `ALTER SYSTEM SET` statement to revise the setting of a system parameter. Note that currently only `checkpoint_interval` and `telemetry_enabled` can be set.
 
 :::note
 
-As RisingWave reads system parameters at different times, there is no guarantee that a parameter value change takes effect immediately. We recommend that you adjust system parameters before running a streaming query after your RisingWave cluster starts. 
+As RisingWave reads system parameters at different times, there is no guarantee that a parameter value change takes effect immediately. We recommend that you adjust system parameters before running a streaming query after your RisingWave cluster starts.
 
 :::
 

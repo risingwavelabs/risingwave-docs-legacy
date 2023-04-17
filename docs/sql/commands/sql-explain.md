@@ -15,6 +15,34 @@ Use the `EXPLAIN` command to show the execution plan of a statement.
 EXPLAIN [ ( option [ , ... ] ) ] statement;
 ```
 
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('EXPLAIN'),
+        rr.Optional(
+            rr.Sequence(
+                rr.Terminal('('),
+                rr.Sequence(
+                   rr.OneOrMore(
+                      rr.NonTerminal('option'),
+                      rr.Comment('space as delimiter'),
+                   ),
+                ),
+                rr.Terminal(')'),
+            ),
+            'skip'
+        ),
+        rr.NonTerminal('statement'),
+        rr.Terminal(';'),
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
 ## Parameters
 
 |Parameter      | Description|
