@@ -64,7 +64,7 @@ Before the deployment, ensure that the following requirements are satisfied.
 1. Install the Operator.
 
     ```shell
-    kubectl apply -f https://github.com/risingwavelabs/risingwave-operator/releases/latest/download/risingwave-operator.yaml
+    kubectl apply --server-side -f https://github.com/risingwavelabs/risingwave-operator/releases/latest/download/risingwave-operator.yaml
     ```
 
 1. ***(Optional)*** Check if the Pods are running.
