@@ -5,7 +5,7 @@
  slug: /sink-to-postgres
 ---
 
-In this guide, we will introduce how to sink data from RisingWave to JDBC-available databases using the JDBC sink connector. Using RisingWave, we will be using a load generator and consuming data from a Kafka broker then sinking to a PostgreSQL database. You can test out this process on your own device by using the `postgres-sink` demo in the [`risingwave-demo`](https://github.com/risingwavelabs/risingwave-demo ) respository.
+In this guide, we will introduce how to sink data from RisingWave to JDBC-available databases using the JDBC sink connector. Using RisingWave, we will be using a load generator and consuming data from a Kafka broker then sinking to a PostgreSQL database. You can test out this process on your own device by using the `postgres-sink` demo in the [`risingwave-demo`](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) respository.
 
 ## Set up a PostgreSQL database
 
@@ -113,7 +113,7 @@ All WITH options are required.
 |connector| Sink connector type. Currently, only `‘kafka’` is supported. If there is a particular sink you are interested in, go to the [Integrations Overview](../../rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
 |jdbc.url | The JDBC URL of the destination database necessary for the driver to recognize and connect to the database. |
 |table.name	| The table in the destination database you want to sink to. |
-
+|type| Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul> |
 
 ## Sink data from RisingWave to PostgreSQL
 
@@ -132,9 +132,9 @@ CREATE SOURCE user_behaviors (
     parent_target_id VARCHAR
 ) WITH (
     connector = 'kafka',
-    kafka.topic = 'user_behaviors',
-    kafka.brokers = 'message_queue:29092',
-    kafka.scan.startup.mode = 'earliest'
+    topic = 'user_behaviors',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
 ) ROW FORMAT JSON;
 ```
 
@@ -159,7 +159,8 @@ Use the following query to sink data from the materialized view to the target ta
 CREATE SINK target_count_postgres_sink FROM target_count WITH (
     connector = 'jdbc',
     jdbc.url = 'jdbc:postgresql://postgres:5432/mydb?user=myuser&password=123456',
-    table.name = 'target_count'
+    table.name = 'target_count',
+    type = 'upsert'
 );
 ```
 
