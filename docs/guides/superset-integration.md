@@ -8,6 +8,7 @@ slug: /superset-integration
 Apache Superset is an open-source data exploration and data visualization software application. As a database, RisingWave can act as a data source for Business Intelligence tools like Apache Superset.
 
 This guide will go over how to:
+
 * Connect RisingWave to Superset.
 * Create a dashboard.
 
@@ -27,20 +28,23 @@ To install Apache Superset, follow the instructions in [Installing locally using
 
 ### Add the sqlalchemy-risingwave driver
 
-Install the [`sqlalchemy-risingwave`](https://pypi.org/project/sqlalchemy-risingwave/) driver within the Docker containers for Superset. The [Adding new database drivers in Docker](https://superset.apache.org/docs/databases/docker-add-drivers/#2-install-mysql-driver) guide outlines the general steps. 
+Install the [`sqlalchemy-risingwave`](https://pypi.org/project/sqlalchemy-risingwave/) driver within the Docker containers for Superset. The [Adding new database drivers in Docker](https://superset.apache.org/docs/databases/docker-add-drivers/#2-install-mysql-driver) guide outlines the general steps.
 
 1. Create `requirements-local.txt`.
+
   ```shell
   #From the repo root...
   touch ./docker/requirements-local.txt
   ```
 
 2. Add the driver selected in the step above.
+
   ```shell
-  echo "sqlalchemy-risingwave" >>/docker/requirements-local.txt
+  echo "sqlalchemy-risingwave" >> ./docker/requirements-local.txt
   ```
 
 3. Rebuild your local image with the new driver.
+
   ```shell
   docker-compose build --force-rm
   ```
@@ -104,7 +108,6 @@ Export the data from materialized views or tables in RisingWave to Superset:
 
 4. Select the materialized view or table to be exported to Superset. In this guide, we'll select `t`.
 
-
 Once the materialized view has been added as a dataset, it can be used to create dashboards.
 
 ### Create a dashboard in Superset
@@ -122,7 +125,6 @@ To create a dashboard based on the table `t`:
 5. Specify `AVG(v)` as the metric.
 
 6. Click **Update chart**. The query results will be rendered into a line chart.
-    
 
 <img
 src={require('../images/superset-dashboard.png').default}
@@ -130,5 +132,3 @@ alt="Create a dashboard in Superset"
 />
 
 For more details on creating dashboards, see the [Creating your first dashboard](https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard#creating-charts-in-explore-view) guide.
-
-
