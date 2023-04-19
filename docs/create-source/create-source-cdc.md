@@ -7,15 +7,9 @@ slug: /create-source-cdc
 
 Change data capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time. 
 
-RisingWave provides native MySQL and PostgreSQL CDC connectors. With these CDC connectors, you can ingest CDC data from these databases directly, without setting up additional services like Kafka.
+You can use event streaming systems like Kafka, Pular, or Kinesis to stream changes from MySQL, PostgreSQL, and TiDB to RisingWave. In this case, you will need an additional CDC tool to stream the changes from the database and specify the corresponding formats when ingesting the streams into RisingWave.
 
-If Kafka is part of your technical stack, you can connect Kafka to RisingWave to ingest CDC data in the form of Kafka topics from databases into RisingWave. You need to use a CDC tool such as [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Maxwell's daemon](https://maxwells-daemon.io/), or [TiCDC](https://docs.pingcap.com/tidb/dev/ticdc-overview) to produce CDC messages and send them to Kafka topics.
-
-If Pulsar is part of your technical stack, you can connect Pulsar to RisingWave to ingest CDC data in the form of Pulsar topics from databases into RisingWave. You need to use a CDC tool such as the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), or the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to produce CDC messages and send them to Pulsar topics.
-
-If Kinesis is part of your technical stack, you can connect Kinesis to RisingWave to ingest CDC data in the form of Kinesis data streams from databases into RisingWave. You need to use a CDC tool such as [Maxwell's daemon](https://maxwells-daemon.io/), [AWS DMS](https://aws.amazon.com/blogs/big-data/stream-change-data-to-amazon-kinesis-data-streams-with-aws-dms/), or the [Debezium embedded engine](https://debezium.io/blog/2018/08/30/streaming-mysql-data-changes-into-kinesis/) to produce CDC messages and send them to Kinesis data streams.
-
-This topic describes the configurations for using RisingWave to ingest CDC data from a message broker. For complete step-to-step guides about using the native CDC connector to ingest MySQL and PostgreSQL data, see [Ingest data from MySQL](../guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](../guides/ingest-from-postgres-cdc.md). For completeness, instructions about using additional CDC tools and a message broker to ingest CDC data are also included in these two topics.
+RisingWave also provides native MySQL and PostgreSQL CDC connectors. With these CDC connectors, you can ingest CDC data from these databases directly, without setting up additional services like Kafka. For complete step-to-step guides about using the native CDC connector to ingest MySQL and PostgreSQL data, see [Ingest data from MySQL](../guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](../guides/ingest-from-postgres-cdc.md). This topic only describes the configurations for using RisingWave to ingest CDC data from an event streaming system. 
 
 For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with primary keys and connector settings. This is different from creating a standard source, as CDC data needs to be persisted in RisingWave to ensure correctness.
 
@@ -27,7 +21,7 @@ RisingWave accepts these data formats:
 
 - Maxwell JSON (for MySQL only)
 
-  For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka or Pulsar topics. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
+  For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
 
 - The TiCDC dialect of Canal JSON (for TiDB only)
 
