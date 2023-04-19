@@ -235,7 +235,7 @@ export const svg = rr.Diagram(
 
  ### WITH parameters
 
- All the fields listed below are required. 
+ Unless specified otherwise, the fields listed are required. 
 
  |Field|Notes|
  |---|---|
@@ -244,9 +244,9 @@ export const svg = rr.Diagram(
  |username| Username of the database.|
  |password| Password of the database. |
  |database.name| Name of the database.|
- |schema.name| Name of the schema. |
+ |schema.name| Optional. Name of the schema. By default, the value is `public`. |
  |table.name| Name of the table that you want to ingest data from. |
- |slot.name| The slot name for each Postgres source. Each source should have a unique slot name.|
+ |slot.name| Optional. The slot name for each PostgreSQL source. By default, each slot name will be randomly generated. Each source should have a unique slot name.|
 
  ### Data format
 

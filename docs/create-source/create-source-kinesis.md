@@ -128,7 +128,7 @@ For materialized sources with primary key constraints, if a new data record with
 
 |Field|	Notes|
 |---|---|
-|*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
+|*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`, `DEBEZIUM_JSON`, `MAXWELL`, `CANAL_JSON`.|
 |*message* |Message name of the main Message in schema definition. Required when *data_format* is `PROTOBUF`.|
 |*location*| Web location of the schema file in  `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 

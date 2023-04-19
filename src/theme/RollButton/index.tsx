@@ -6,10 +6,11 @@ import "./style.css";
 type Props = {
   text: string;
   doc?: string;
+  cloud?: string;
   url?: string;
 };
 
-export default function RollButton({ text, doc, url }: Props) {
+export default function RollButton({ text, doc, url, cloud }: Props) {
   const history = useHistory();
   const { globalData } = useDocusaurusContext();
   const location = useLocation();
@@ -22,10 +23,14 @@ export default function RollButton({ text, doc, url }: Props) {
             globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
               if (location.pathname.includes(v.path)) {
                 history.push(`${v.path}/${doc}`);
+              } else if (location.pathname.includes("cloud")) {
+                history.push(`/docs/current/${doc}`);
               }
             });
           } else if (url) {
             window.open(url, "_blank", "noopener,noreferrer");
+          } else if (cloud) {
+            history.push(`/cloud/${cloud}`);
           }
         }}
         className="button-3 learn-more"

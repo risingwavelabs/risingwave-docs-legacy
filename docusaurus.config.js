@@ -1,9 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "RisingWave",
@@ -29,6 +26,7 @@ const config = {
             keywords: ["note", "tip", "info", "caution", "danger"],
           },
           sidebarPath: require.resolve("./sidebars.js"),
+          sidebarCollapsible: false,
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
           versions: {
@@ -38,9 +36,15 @@ const config = {
               badge: false,
               banner: "unreleased",
             },
-            "0.1.17": {
-              label: "0.1.17 (current)",
+            "0.18.0": {
+              label: "0.18.0 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            "0.1.17": {
+              label: "0.1.17",
+              path: "/0.1.17",
               badge: false,
               banner: "none",
             },
@@ -71,18 +75,26 @@ const config = {
         },
         theme: {
           customCss: [
+            require.resolve("./src/css/fonts.css"),
             require.resolve("./src/css/custom.css"),
             require.resolve("./src/css/buttons.css"),
           ],
         },
-        // googleAnalytics: {
-        //   trackingID: 'myID',
-        //   anonymizeIP: true
-        // }
       }),
     ],
   ],
-
+  plugins: [
+    [
+      "@docusaurus/plugin-content-docs",
+      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      {
+        id: "cloud",
+        path: "cloud",
+        routeBasePath: "cloud",
+        sidebarPath: require.resolve("./sidebarCloud.js"),
+      },
+    ],
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -93,23 +105,28 @@ const config = {
       docs: {
         sidebar: {
           hideable: true,
-          autoCollapseCategories: true,
+          autoCollapseCategories: false,
         },
       },
       navbar: {
         title: "",
         logo: {
           alt: "RisingWave Logo",
-          src: "img/logo-title.svg",
+          src: "img/logo-title.png",
         },
         items: [
-          // {
-          //   type: 'doc',
-          //   docId: 'intro',
-          //   position: 'left',
-          //   label: 'Docs',
-          // },
-          // {to: '/blog', label: 'Blog', position: 'left'},
+          {
+            type: "doc",
+            docId: "intro",
+            position: "left",
+            label: "RisingWave Database",
+          },
+          {
+            to: "/cloud/intro",
+            label: "RisingWave Cloud",
+            position: "left",
+            activeBaseRegex: `/cloud/`,
+          },
           {
             type: "docsVersionDropdown",
             docsPluginId: "default",
@@ -160,7 +177,7 @@ const config = {
         //     ],
         //   },
         // ],
-        copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community.`,
+        copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community`,
       },
       prism: {
         additionalLanguages: ["sql", "java"],
