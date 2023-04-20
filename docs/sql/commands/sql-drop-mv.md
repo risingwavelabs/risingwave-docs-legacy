@@ -16,6 +16,31 @@ DROP MATERIALIZED VIEW [ IF EXISTS ] [schema_name.]mv_name;
 ```
 
 
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Terminal('DROP MATERIALIZED VIEW'),
+            rr.Optional(
+                rr.Terminal('IF EXISTS')),
+            rr.Optional(
+                rr.Sequence(
+                    rr.NonTerminal('schema_name'),
+                    rr.Terminal('.')
+                ),
+            ),
+            rr.NonTerminal('mv_name')
+        ),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
+
 ## Parameters
 
 |Parameter                  | Description           |

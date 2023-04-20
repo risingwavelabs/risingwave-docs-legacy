@@ -15,7 +15,7 @@ Regardless of whether the data is persisted in RisingWave, you can create materi
 
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
-[schema_definition]
+[ schema_definition ]
 WITH (
    connector='kafka',
    connector_parameter='value', ...
@@ -24,6 +24,77 @@ ROW FORMAT data_format
 [ MESSAGE 'message' ]
 [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+   rr.Stack(
+      rr.Sequence(
+         rr.Choice(1,
+            rr.Terminal('CREATE TABLE'),
+            rr.Terminal('CREATE SOURCE')
+         ),
+         rr.Optional(rr.Terminal('IF NOT EXISTS')),
+         rr.NonTerminal('source_name', 'skip'),
+      ),
+      rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
+      rr.Sequence(
+         rr.Terminal('WITH'),
+         rr.Terminal('('),
+         rr.Stack(
+            rr.Stack(
+               rr.Sequence(
+                  rr.Terminal('connector'),
+                  rr.Terminal('='),
+                  rr.NonTerminal('kafka', 'skip'),
+                  rr.Terminal(','),
+               ),
+               rr.OneOrMore(
+                  rr.Sequence(
+                     rr.NonTerminal('connector_parameter', 'skip'),
+                     rr.Terminal('='),
+                     rr.NonTerminal('value', 'skip'),
+                     rr.Terminal(','),
+                  ),
+               ),
+            ),
+            rr.Terminal(')'),
+         ),
+      ),
+      rr.Stack(
+         rr.Sequence(
+            rr.Terminal('ROW FORMAT'),
+            rr.NonTerminal('data_format', 'skip'),
+         ),
+         rr.Optional(
+            rr.Sequence(
+               rr.Terminal('MESSAGE'),
+               rr.NonTerminal('message', 'skip'),
+            ),
+         ),
+         rr.Optional(
+            rr.Sequence(
+               rr.Terminal('ROW SCHEMA LOCATION'),
+               rr.Choice(1,
+                  rr.Terminal('location'),
+                  rr.Sequence(
+                     rr.Terminal('CONFLUENT SCHEMA REGISTRY'),
+                     rr.NonTerminal('schema_registry_url', 'skip'),
+                  ),
+               ),
+            ),
+         ),
+         rr.Terminal(';'),
+      ),
+   )
+);
+
+
+<drawer SVG={svg} />
+
+
+
 
 **schema_definition**:
 ```sql
@@ -35,7 +106,7 @@ ROW FORMAT data_format
 
 :::info
 
-For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a Confluence Schema Registry link in the `ROW SCHEMA LOCATION` section.
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a Confluent Schema Registry link in the `ROW SCHEMA LOCATION` section.
 
 :::
 
@@ -53,16 +124,16 @@ For materialized sources with primary key constraints, if a new data record with
 |---|---|
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
-|properties.group.id	|Required. Name of the Kafka consumer group	|
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+|upsert| Optional. If true, RisingWave will read messages from Kafka topics in the upsert fashion.|
 
 ### Other parameters
 
 |Field|Notes|
 |---|---|
-|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
-|*message* | Message for the format. Required for Avro and Protobuf.|
+|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`, `DEBEZIUM_JSON`, `DEBEZIUM_AVRO`, `MAXWELL`, `CANAL_JSON`, `UPSERT_JSON`, `UPSERT_AVRO`. |
+|*message* | Message name of the main Message in schema definition. Required for Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
 |*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 
@@ -83,10 +154,23 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
+   scan.startup.timestamp_millis='140000000'
 )
-ROW FORMAT AVRO MESSAGE 'main_message'
+ROW FORMAT AVRO 
+ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
+```
+</TabItem>
+<TabItem value="upsert avro" label="Upsert Avro" default>
+
+```sql
+CREATE SOURCE IF NOT EXISTS source_abc 
+WITH (
+   connector='kafka',
+   upsert='true',
+   properties.bootstrap.server='localhost:9092',
+   topic='test_topic'
+)
+ROW FORMAT UPSERT_AVRO
 ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
 </TabItem>
@@ -102,10 +186,24 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
+   scan.startup.timestamp_millis='140000000'
 )
 ROW FORMAT JSON;
+```
+</TabItem>
+<TabItem value="upsert json" label="Upsert JSON" default>
+
+```sql
+CREATE TABLE IF NOT EXISTS source_abc (
+   column1 varchar,
+   column2 integer,
+)
+WITH (
+   connector='kafka',
+   upsert='true',
+   properties.bootstrap.server='localhost:9092',
+   topic='t1'
+) ROW FORMAT UPSERT_JSON;
 ```
 </TabItem>
 <TabItem value="pb" label="Protobuf" default>
@@ -117,8 +215,7 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
+   scan.startup.timestamp_millis='140000000'
 )
 ROW FORMAT PROTOBUF MESSAGE 'main_message'
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
@@ -145,7 +242,6 @@ If directly querying from the source, you can use `_rw_kafka_timestamp` to filte
 SELECT * FROM source_name
 WHERE _rw_kafka_timestamp > now() - interval '10 minute';
 ```
-
 
 ## Read schemas from locations
 
@@ -230,9 +326,9 @@ CREATE TABLE IF NOT EXISTS source_1 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.security.protocol='SSL',
    properties.ssl.ca.location='/home/ubuntu/kafka/secrets/ca-cert',
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
@@ -273,9 +369,9 @@ CREATE SOURCE IF NOT EXISTS source_2 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -292,9 +388,9 @@ CREATE SOURCE IF NOT EXISTS source_3 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_SSL',
    properties.sasl.username='admin',
@@ -338,9 +434,9 @@ CREATE TABLE IF NOT EXISTS source_4 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='SCRAM-SHA-256',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -376,9 +472,9 @@ CREATE SOURCE IF NOT EXISTS source_5 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='GSSAPI',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.kerberos.service.name='kafka',
@@ -426,9 +522,9 @@ CREATE TABLE IF NOT EXISTS source_6 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='OAUTHBEARER',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.oauthbearer.config='principal=bob'

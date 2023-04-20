@@ -26,22 +26,23 @@ To install Grafana locally, see the [Install Grafana](https://grafana.com/docs/g
 ### Add RisingWave as a data source
 
 1. Go to **Configuration > Data source**.
+
 2. Click the **Add data source** button.
+
 3. Select **PostgreSQL** from the list of supported databases.
+
 4. Fill in the **PostgreSQL Connection** fields like so:
 
-<img
-  src={require('../images/grafana-integration.png').default}
-  alt="Connect to RW database in Grafana"
-/>
+  <img
+    src={require('../images/grafana-integration.png').default}
+    alt="Connect to RW database in Grafana"
+  />
 
-:::note 
+  :::note 
+  If both RisingWave and Grafana are started locally, the host domain can be either **localhost:4566** or **127.0.0.1:4566**.
 
-If both RisingWave and Grafana are started locally, the host domain can be either **localhost:4566** or **127.0.0.1:4566**.
-
-If you are running Grafana Cloud, the host domain should be your computer’s public IP address.
-
-:::
+  If you are running Grafana Cloud, the host domain should be your computer’s public IP address.
+  :::
 
 5. Click **Save & test**.
 

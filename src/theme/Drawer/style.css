@@ -3,7 +3,7 @@ svg.railroad-diagram {
 }
 
 svg.railroad-diagram text {
-  font: bold 12px NotoSans;
+  font: bold 12px Mulish;
   text-anchor: middle;
   white-space: pre;
 }
@@ -21,7 +21,7 @@ svg.railroad-diagram text.label {
 }
 
 svg.railroad-diagram text.comment {
-  font: italic 10.5px NotoSans;
+  font: italic 10.5px Mulish;
   fill: gray;
 }
 
@@ -62,7 +62,7 @@ svg.railroad-diagram path.diagram-text {
 }
 
 svg.railroad-diagram text {
-  font: normal 13px NotoSans;
+  font: normal 13px Mulish;
   fill: #1c1e21;
 }
 

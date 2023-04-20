@@ -21,14 +21,12 @@ You can ingest CDC data from MySQL in two ways:
 
   This connector is included in RisingWave. With this connector, RisingWave can connect to MySQL directly to obtain data from the binlog without starting additional services.
 
-- Using a CDC tool and the Kafka connector
+- Using a CDC tool and a message broker
 
-  You can use either the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data change streams to Kafka topics, and then use the Kafka connector in RisingWave to consume data from the Kafka topics.
+  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](../create-source/create-source-cdc.md) topic.
 
 
-## Using the native MySQL CDC connector
-
-### Set up MySQL
+## Set up MySQL
 
 Before using the native MySQL CDC connector in RisingWave, you need to complete several configurations on MySQL.
 
@@ -40,7 +38,7 @@ import TabItem from '@theme/TabItem';
 
 To use the MySQL CDC features, we need to create a MySQL user account with appropriate privileges on all databases for which RisingWave will read from.
 
-#### Create a user and grant privileges
+### Create a user and grant privileges
 
 1. Create a MySQL user with the following query.
 
@@ -60,7 +58,7 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 FLUSH PRIVILEGES;
 ``` 
 
-#### Enable the binlog
+### Enable the binlog
 
 The binlog must be enabled for MySQL replication. The binary logs record transaction updates for replication tools to propagate changes.
 
@@ -144,17 +142,17 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
 </TabItem>
 </Tabs>
 
-### Enable the connector node in RisingWave
+## Enable the connector node in RisingWave
 
 The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo. The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
 
 
-### Create a table using the native CDC connector in RisingWave
+## Create a table using the native CDC connector in RisingWave
 
 To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
 
 
-#### Syntax
+### Syntax
 
 ```sql
 CREATE TABLE [ IF NOT EXISTS ] source_name (
@@ -166,9 +164,103 @@ WITH (
    <field>=<value>, ...
 );
 ```
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Terminal('CREATE TABLE'),
+            rr.Optional(rr.Terminal('IF NOT EXISTS')),
+            rr.NonTerminal('source_name', 'wrap')
+        ),
+        rr.Terminal('('),
+        rr.Stack(
+            rr.Sequence(
+                rr.NonTerminal('column_name', 'skip'),
+                rr.NonTerminal('data_type', 'skip'),
+                rr.Terminal('PRIMARY KEY'),
+                rr.Terminal(','),
+            ),
+            rr.ZeroOrMore(
+                rr.Sequence(
+                    rr.NonTerminal('column_name', 'skip'),
+                    rr.NonTerminal('data_type', 'skip'),
+                    rr.Terminal('PRIMARY KEY'),
+                    rr.Terminal(','),
+                ),
+            ),
+            rr.Optional(
+                rr.Sequence(
+                    rr.Terminal('PRIMARY KEY'),
+                    rr.Terminal('('),
+                    rr.NonTerminal('column_name', 'skip'),
+                    rr.Optional(rr.Terminal(',')),
+                    rr.ZeroOrMore(
+                        rr.Sequence(
+                            rr.Terminal(','),
+                            rr.NonTerminal('column_name', 'skip'),
+                            rr.Optional(rr.Terminal(',')),
+                        ),
+                    ),
+                    rr.Terminal(')'),
+                ),
+            ),
+        ),
+        rr.Terminal(')'),
+        rr.Sequence(
+            rr.Terminal('WITH'),
+            rr.Terminal('('),
+            rr.Stack(
+                rr.Stack(
+                    rr.Sequence(
+                        rr.Terminal('connector'),
+                        rr.Terminal('='),
+                        rr.NonTerminal('mysql-cdc', 'skip'),
+                        rr.Terminal(','),
+                    ),
+                    rr.OneOrMore(
+                        rr.Sequence(
+                            rr.NonTerminal('field', 'skip'),
+                            rr.Terminal('='),
+                            rr.NonTerminal('value', 'skip'),
+                            rr.Terminal(','),
+                        ),
+                    ),
+                ),
+                rr.Terminal(')'),
+            ),
+        ),
+        rr.Stack(
+            rr.Sequence(
+                rr.Terminal('ROW FORMAT'),
+                rr.NonTerminal('data_format', 'skip'),
+            ),
+            rr.Optional(
+                rr.Sequence(
+                    rr.Terminal('MESSAGE'),
+                    rr.NonTerminal('message', 'skip'),
+                ),
+            ),
+            rr.Optional(
+                rr.Sequence(
+                    rr.Terminal('ROW SCHEMA LOCATION'),
+                    rr.NonTerminal('location', 'skip'),
+                    rr.Terminal(';'),
+                ),
+            ),
+        ),
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
 Note that a primary key is required.
 
-#### WITH parameters
+### WITH parameters
 
 All the fields listed below are required. 
 
@@ -182,12 +274,12 @@ All the fields listed below are required.
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster.|
 
-#### Data format
+### Data format
 
 Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
 
 
-#### Example
+### Example
 
 ```sql
 CREATE TABLE orders (
@@ -209,65 +301,3 @@ CREATE TABLE orders (
  server.id = '5454'
 );
 ```
-
-## Using a CDC tool and the Kafka connector
-
-<Tabs>
-<TabItem value="Debezium connector for MySQL" label="Debezium connector for MySQL" default>
-
-### Set up MySQL
-
-Before using the Debezium connector for MySQL, you need to complete several configurations on MySQL. For details, see [Setting up MySQL](#set-up-mysql).
-
-### Deploy the Debezium connector for MySQL
-
-You need to download and configure the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), and then add the configuration to your Kafka Connect cluster. For details, see [Deploying the MySQL connector](https://debezium.io/documentation/reference/stable/connectors/mysql.html#mysql-deploying-a-connector).
-
-### Create a table using the Kafka connector in RisingWave
-
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
-
-```sql
-CREATE TABLE source_name (
-   column1 varchar,
-   column2 integer,
-   PRIMARY KEY (column1)
-) 
-WITH (
-   connector='kafka',
-   topic='user_test_topic',
-   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-   scan.startup.mode='earliest',
-   properties.group.id='demo_consumer_name'
-)
-ROW FORMAT DEBEZIUM_JSON;
-```
-</TabItem>
-<TabItem value="Maxwell daemon" label="Maxwell daemon">
-
-### Configure MySQL and run Maxwell's daemon
-
- You need to configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
-
-
-### Create a table using the Kafka connector in RisingWave
-
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Maxwell JSON.
-
-```sql
-CREATE TABLE source_name (
-   column1 varchar,
-   column2 integer,
-   PRIMARY KEY (column1)
-) 
-WITH (
-   connector='kafka',
-   topic='user_test_topic',
-   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-   scan.startup.mode='earliest',
-   properties.group.id='demo_consumer_name'
-) 
-ROW FORMAT MAXWELL;
-```
-</TabItem>
-</Tabs>

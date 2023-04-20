@@ -16,8 +16,8 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 FROM sink_from
 WITH (
    connector='kafka',
-   kafka.brokers='broker_address',
-   kafka.topic='topic_address',
+   properties.bootstrap.server='broker_address',
+   topic='topic_address',
    format='format'
 );
 ```
@@ -31,8 +31,8 @@ All WITH options are required.
 |sink_name| Name of the sink to be created|
 |sink_from| The source from which data will be output. It can be a materialized source, a materialized view, or a table.|
 |connector| Sink type. Currently, only `‘kafka’` is supported.|
-|kafka.brokers|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
-|kafka.topic|Address of the Kafka topic. One sink can only correspond to one topic.|
+|properties.bootstrap.server|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
+|topic|Address of the Kafka topic. One sink can only correspond to one topic.|
 |format	| Data format. Allowed formats: `‘append-only’`, `‘debezium’`.|
 
 
