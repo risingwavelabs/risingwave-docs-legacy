@@ -1,11 +1,13 @@
 ---
  id: sink-to-postgres
- title: Sink data from RisingWave to PostgreSQL JDBC connector
- description: Sink data from RisingWave to PostgreSQL with JDBC connector.
+ title: Sink data from RisingWave to PostgreSQL
+ description: Sink data from RisingWave to PostgreSQL with the JDBC connector.
  slug: /sink-to-postgres
 ---
 
-In this guide, we will introduce how to sink data from RisingWave to JDBC-available databases using the JDBC sink connector. Using RisingWave, we will be using a load generator and consuming data from a Kafka broker then sinking to a PostgreSQL database. You can test out this process on your own device by using the `postgres-sink` demo in the [`risingwave-demo`](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) respository.
+This guide will show you how to sink data from RisingWave to PostgreSQL using the JDBC connector. The sink parameters are similar to those for other JDBC-available databases, such as MySQL. However, we will cover the configurations specific to PostgreSQL and how to verify that data is successfully sunk.
+
+You can test out this process on your own device by using the `postgres-sink` demo in the [`integration_test directory`](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) of the RisingWave repository.
 
 ## Set up a PostgreSQL database
 
@@ -47,15 +49,16 @@ For more login options, refer to the [RDS connection guide](https://docs.aws.ama
 
 ### Launch and set up PostgreSQL
 
-To install PostgreSQL locally, see their [download options](https://www.postgresql.org/download/). 
+To install PostgreSQL locally, see their [download options](https://www.postgresql.org/download/).
 
 :::note
 
-If you are using the demo version, connect to PostgreSQL with the following command. Ensure that all other programs are disconnected from port 5432. 
+If you are using the demo version, connect to PostgreSQL with the following command. Ensure that all other programs are disconnected from port 5432.
 
 ```terminal
 psql postgresql://myuser:123456@127.0.0.1:5432/mydb
 ```
+
 :::
 
 Ensure that the Postgres user is granted the following privileges on the used table with the following SQL query.
@@ -82,7 +85,7 @@ CREATE TABLE target_count (
 
 ### Install and launch RisingWave
 
-To install and start RisingWave locally, see the [Get started](/get-started.md) guide. We recommend running RisingWave locally for testing purposes. 
+To install and start RisingWave locally, see the [Get started](/get-started.md) guide. We recommend running RisingWave locally for testing purposes.
 
 ### Enable the connector node in RisingWave
 
@@ -112,14 +115,18 @@ All WITH options are required.
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](../commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |connector| Sink connector type. Currently, only `‘kafka’` is supported. If there is a particular sink you are interested in, go to the [Integrations Overview](../../rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
 |jdbc.url | The JDBC URL of the destination database necessary for the driver to recognize and connect to the database. |
-|table.name	| The table in the destination database you want to sink to. |
+|table.name | The table in the destination database you want to sink to. |
 |type| Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul> |
 
 ## Sink data from RisingWave to PostgreSQL
 
 ### Create source and materialized view
 
-Use the following query to create a source to read data from a Kafka broker.
+You can sink data from a table, source, or materialized view in RisingWave to PostgreSQL.
+
+For demostration purposes, we'll create a source and a materialized view, and then sink data from the materialized view. If you already have a table or materialized view to sink data from, you don't need to perform this step.
+
+Run the following query to create a source to read data from a Kafka broker.
 
 ```sql
 CREATE SOURCE user_behaviors (
@@ -138,7 +145,7 @@ CREATE SOURCE user_behaviors (
 ) ROW FORMAT JSON;
 ```
 
-Next, we will create a materialized view that queries the number of targets for each `target_id`. Note that the materialized view and the target table share the same schema. 
+Next, we will create a materialized view that queries the number of targets for each `target_id`. Note that the materialized view and the target table share the same schema.
 
 ```sql
 CREATE MATERIALIZED VIEW target_count AS
