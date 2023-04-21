@@ -255,7 +255,7 @@ const sidebars = {
             },
             {
               type: 'doc',
-              label: 'CDC via Kafka',
+              label: 'CDC via event streaming systems',
               id: 'create-source/create-source-cdc',
             },
             {
@@ -291,6 +291,11 @@ const sidebars = {
               label: 'MySQL',
               id: 'guides/sink-to-mysql-with-jdbc'
             },
+             {
+              type: 'doc',
+              label: 'PostgreSQL',
+              id: 'guides/sink-to-postgres'
+            },
             {
               type: 'doc',
               label: 'Apache Iceberg',
@@ -318,8 +323,6 @@ const sidebars = {
         }
       ]
     },
-
-
     {
       type: 'category',
       label: 'Develop',

@@ -8,6 +8,7 @@ slug: /superset-integration
 Apache Superset is an open-source data exploration and data visualization software application. As a database, RisingWave can act as a data source for Business Intelligence tools like Apache Superset.
 
 This guide will go over how to:
+
 * Connect RisingWave to Superset.
 * Create a dashboard.
 
@@ -27,27 +28,30 @@ To install Apache Superset, follow the instructions in [Installing locally using
 
 ### Add the sqlalchemy-risingwave driver
 
-Install the [`sqlalchemy-risingwave`](https://pypi.org/project/sqlalchemy-risingwave/) driver within the Docker containers for Superset. The [Adding new database drivers in Docker](https://superset.apache.org/docs/databases/docker-add-drivers/#2-install-mysql-driver) guide outlines the general steps. 
+Install the [`sqlalchemy-risingwave`](https://pypi.org/project/sqlalchemy-risingwave/) driver within the Docker containers for Superset. The [Adding new database drivers in Docker](https://superset.apache.org/docs/databases/docker-add-drivers/#2-install-mysql-driver) guide outlines the general steps.
 
 1. Create `requirements-local.txt`.
+
 ```shell
 #From the repo root...
 touch ./docker/requirements-local.txt
 ```
 
 2. Add the driver selected in the step above.
+
 ```shell
-echo "sqlalchemy-risingwave" >>/docker/requirements-local.txt
+echo "sqlalchemy-risingwave" >> ./docker/requirements-local.txt
 ```
 
 3. Rebuild your local image with the new driver.
+
 ```shell
 docker-compose build --force-rm
 ```
 
 ### Start Apache Superset
 
-Launch an instance of Apache Superset by following the instructions in [Launch Superset through Docker Compose](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose#3-launch-superset-through-docker-compose). To start Superset, enter <http://localhost:8088> into your web browser. 
+Launch an instance of Apache Superset by following the instructions in [Launch Superset through Docker Compose](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose#3-launch-superset-through-docker-compose). To start Superset, enter <http://localhost:8088> into your web browser.
 
 If it is your first time starting Superset and the webpage asks for a username and password, use `admin` for both.
 
@@ -60,7 +64,7 @@ The following UI page should appear.
 
 ### Connect to RisingWave
 
-1. In Superset, select **Settings > Database connections**. 
+1. In Superset, select **Settings > Database connections**.
 2. Click **+ Database**.
 3. In the window that pops up, under **Supported databases**, select **Other** from the dropdown menu.
 4. Fill in the primary credentials with SQLALCHEMY URI as `risingwave://root:@host.docker.internal:4566/dev`.
@@ -102,6 +106,7 @@ Once the materialized view has been added as a dataset, it can be used to create
 ### Create a dashboard in Superset
 
 To create a dashboard based on the table `t`:
+
 1. Click **Create chart**.
 2. Select table `t`.
 3. Select **Time-series line chart** as the rendering method.
@@ -114,4 +119,4 @@ To create a dashboard based on the table `t`:
   alt="Create a dashboard in Superset"
 />
 
-For more details on creating dashboards, see the [Creating your first dashboard](https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard#creating-charts-in-explore-view) guide. 
+For more details on creating dashboards, see the [Creating your first dashboard](https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard#creating-charts-in-explore-view) guide.

@@ -17,13 +17,11 @@ You can ingest CDC data from PostgreSQL in two ways:
 
     This connector is included in RisingWave. With this connector, RisingWave can connect to PostgreSQL directly to obtain data from the binlog without starting additional services.
 
-- Using a CDC tool and the Kafka connector
+- Using a CDC tool and a message broker
 
-    You can use the [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) and then use the Kafka connector in RisingWave to consume data from the Kafka topics.
+    You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](../create-source/create-source-cdc.md) topic.
 
-## Using the native PostgreSQL CDC connector
-
-### Set up PostgreSQL
+## Set up PostgreSQL
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -101,7 +99,6 @@ import TabItem from '@theme/TabItem';
 
 
 </TabItem>
-
 <TabItem value="AWS_rds_pg" label="AWS RDS">
 
 Here we will use a standard class instance without Multi-AZ deployment as an example.
@@ -130,11 +127,11 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 </TabItem>
 </Tabs>
 
-### Enable the connector node in RisingWave
+## Enable the connector node in RisingWave
 
 The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo, in which the connector node is enabled by default. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
 
-### Create a table using the native CDC connector
+## Create a table using the native CDC connector
 
 To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON. 
 
@@ -236,7 +233,7 @@ export const svg = rr.Diagram(
 
  Note that a primary key is required.
 
- #### WITH parameters
+ ### WITH parameters
 
  Unless specified otherwise, the fields listed are required. 
 
@@ -251,12 +248,12 @@ export const svg = rr.Diagram(
  |table.name| Name of the table that you want to ingest data from. |
  |slot.name| Optional. The slot name for each PostgreSQL source. By default, each slot name will be randomly generated. Each source should have a unique slot name.|
 
- #### Data format
+ ### Data format
 
  Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
 
 
- #### Example
+ ### Example
 
  ```sql
  CREATE TABLE shipments (
@@ -277,37 +274,6 @@ export const svg = rr.Diagram(
  table.name = 'shipments',
  slot.name = 'shipments'
 );
- ```
-
-
-## Use the Debezium connector for PostgreSQL
-
-### Set up PostgreSQL
-
-Before using the native PostgreSQL CDC connector in RisingWave, you need to complete several configurations for PostgreSQL. For details, see [Set up PostgreSQL](#set-up-postgresql). There are instructions on how to set up the self-hosted PostgreSQL and AWS RDS.
-
-### Deploy the Debezium connector for PostgreSQL
-
-You need to download and configure the [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), and then add the configuration to your Kafka Connect cluster. For details, see the [Deployment](https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-deployment) section.
-
-### Create a table using the Kafka connector
-
- To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON. 
-
- ```sql
- CREATE TABLE source_name (
-    column1 varchar,
-    column2 integer,
-    PRIMARY KEY (column1)
- ) 
- WITH (
-    connector='kafka',
-    topic='user_test_topic',
-    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-    scan.startup.mode='earliest',
-    properties.group.id='demo_consumer_name'
- )
- ROW FORMAT DEBEZIUM_JSON;
  ```
 
 

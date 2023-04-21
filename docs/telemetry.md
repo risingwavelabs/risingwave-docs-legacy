@@ -4,7 +4,7 @@ title: Telemetry
 slug: /telemetry
 ---
 
-RisingWave collects anonymous usage statistics to better understand how the community is using RisingWave. The sole intention of this exercise is to help improving our product. These statistics are related to system resource usage, OS versions and system uptime. RisingWave doesn't have access to any user data or metadata running on RisingWave clusters including source and sink connection parameters, sources, sinks, materialized views, and tables.
+RisingWave collects anonymous usage statistics to better understand how the community is using RisingWave. The sole intention of this exercise is to help improve the product. These statistics are related to system resource usage, OS versions and system uptime. RisingWave doesn't have access to any user data or metadata running on RisingWave clusters including source and sink connection parameters, sources, sinks, materialized views, and tables.
 
 We understand that not everyone wants to share usage statistics. You can disable telemetry by following the instructions below.
 
