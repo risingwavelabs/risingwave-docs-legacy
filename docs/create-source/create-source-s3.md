@@ -15,10 +15,13 @@ WITH (
    connector='s3',
    connector_parameter='value', ...
 )
-ROW FORMAT csv [WITHOUT HEADER] DELIMITED BY ','; 
+ROW FORMAT data_format
+[WITHOUT HEADER] [DELIMITED BY 'delimiter']; 
 ```
 
-
+:::info
+For CSV data, you must specify what the delimiter is with the `DELIMITED BY` clause.
+:::
 
 import rr from '@theme/RailroadDiagram'
 
@@ -99,6 +102,12 @@ Empty cells in CSV files will be parsed to `NULL`.
 ## Example
 Here is an example of connecting RisingWave to an S3 source to read data from individual streams.
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="csv" label="CSV" default>
+
 ```sql
 CREATE TABLE s(
     id int,
@@ -111,5 +120,28 @@ CREATE TABLE s(
     s3.bucket_name = 'example-s3-source',
     s3.credentials.access = 'xxxxx',
     s3.credentials.secret = 'xxxxx'
-) ROW FORMAT csv WITHOUT HEADER DELIMITED BY ',';
+) ROW FORMAT CSV WITHOUT HEADER DELIMITED BY ',';
 ```
+
+</TabItem>
+<TabItem value="json" label="JSON" default>
+
+```sql
+CREATE TABLE s3( 
+    id int,
+    name TEXT,
+    age int,
+    mark int,
+) WITH (
+    connector = 's3',
+    match_pattern = '%Ring%*.ndjson',
+    s3.region_name = 'ap-southeast-2',
+    s3.bucket_name = 'example-s3-source',
+    s3.credentials.access = 'xxxxx',
+    s3.credentials.secret = 'xxxxx',
+     s3.endpoint_url = 'https://s3.us-east-1.amazonaws.com'
+) ROW FORMAT JSON;
+```
+
+</TabItem>
+</Tabs>
