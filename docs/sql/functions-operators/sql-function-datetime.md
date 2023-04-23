@@ -4,8 +4,6 @@ slug: /sql-function-datetime
 title: Date and time functions and operators
 ---
 
-
-
 ## Timespan operators
 
 | Operation | Description | Example |
@@ -17,8 +15,6 @@ title: Date and time functions and operators
 | time + interval → time | Adds an interval to a time. | `time '18:20:49' +  interval '1 hour'` → `19:20:49` |
 | time - interval → time | Subtracts an interval from a time. | `time '18:20:49' -  interval '2 hours'` → `16:20:49` |
 | time - time → interval | Subtracts a time from a time. | `time '18:20:49' -  time '16:07:16'` → `02:13:33` |
-
-
 
 ## Offsetting operators
 
@@ -34,8 +30,6 @@ title: Date and time functions and operators
 | date - interval → timestamp | Subtracts an interval from a date. | `date '2022-04-08' - interval '10 hour'` → `2022-04-07 14:00:00` |
 | date + time → timestamp | Adds a time to a date. | `date '2022-06-23' + time '19:24:00'` → `2022-06-23 19:24:00` <br /> `time '19:24:00' +  date '2022-06-23'` → `2022-06-23 19:24:00` |
 
-
-
 ## Timestamp with time zone operators
 
 | Operation | Description | Example |
@@ -50,8 +44,6 @@ title: Date and time functions and operators
 
 :::
 
-
-
 ## Date and time functions
 
 |Function|Description|Example|
@@ -59,6 +51,7 @@ title: Date and time functions and operators
 | date_trunc ( '*precision_string*', *date/time_value*[, *time_zone* ]) → *date/time_value* | Truncates a *date/time_value* to a specified *precision_string*. <br /> *precision_string* can be microseconds, milliseconds, second, minute, hour, day, week, month, quarter, year, decade, century, or millennium. <br /> *date/time_value* can be timestamp, timestamptz (i.e., timestamp with time zone), or interval. *time_zone* must be specified if *date/time_value* is timestamptz. <br /> *precision_string* value 'week' is not supported for interval. |`date_trunc('hour', timestamp '2202-02-16 20:38:40.123456')` → `2202-02-16 20:00:00` <br /><br /> `date_trunc('day', timestamp with time zone '2202-02-16 20:38:40.123456Z', 'Australia/Sydney')` → `2202-02-16 13:00:00+00:00` <br /><br /> `date_trunc('month', interval '2333 year 4 months 5 days 02:47:33.123')` → `2333 years 4 mons`|
 | extract ( *field* FROM *source* ) → *numeric_output* | Extracts the value of a date or timestamp. <br /> *field* can be year, month, day, hour, minute, second, doy, or dow. <br /> *source* can be the date or timestamp.|`extract(day from date '2022-04-07')` → `7` <br /> `extract(hour from timestamp '2022-04-07 22:00:30')` → `22`|
 | extract ( epoch FROM *timestamp_with_time_zone* ) → *seconds_numeric_output* | Converts the value of timestamp with time zone to Unix epoch seconds (the number of seconds since 1970-01-01 00:00:00 UTC). Negative for timestamps prior to that.|`extract(epoch from '2010-01-01 12:34:56.789012Z'::timestamp with time zone)` → `1262349296.789012`|
+| proctime() | Returns the system time when a record is processed. You can use this function to specify the processing time of a record in a table or source. | You can define a table with a generated column of type `timestamptz` and set its value to `proctime()`. For example: `CREATE TABLE t1 (v1 int, proc_time Timestamptz as PROCTIME()) ;`|
 | to_char ( *timestamp*, *format* ) → *string_output* |Converts timestamp to string according to the given format. Both uppercase and lowercase formats are supported.|`to_char(timestamp '2002-04-20 17:31:12.66', 'HH12:MI:SS')` → `05:31:12` <br /> `to_char(timestamp '2006-01-02 15:04:05', 'yyyy-mm-dd hh24:mi:ss')` → `2006-01-02 15:04:05`|
 | to_timestamp ( *seconds_double_precision* ) → *timestamp_with_time_zone_output*   |Converts Unix epoch seconds (the number of seconds since 1970-01-01 00:00:00+00) to timestamp with time zone. |`to_timestamp(1262349296.7890123)` → `2010-01-01 12:34:56.789012+00:00` |
 | to_timestamp ( *string*, *timestamp_format* ) → *timestamp* |Converts string to timestamp according to the given format. |<ul><li>`to_timestamp('2022 12 25', 'YYYY MM DD')` → `2022-12-25 00:00:00`</li><li>`to_timestamp('2022/12/25 10:24:33', 'YYYY/MM/DD HH12:MI:SS')` → `2022-12-25 10:24:33` </li><li>`to_timestamp('2022/12/25 15', 'YYYY/MM/DD HH24')` → `2022-12-25 15:00:00`</li></ul>  |
