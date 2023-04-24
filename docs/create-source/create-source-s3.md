@@ -100,7 +100,7 @@ Empty cells in CSV files will be parsed to `NULL`.
 :::
 
 ## Example
-Here is an example of connecting RisingWave to an S3 source to read data from individual streams.
+Here are examples of connecting RisingWave to an S3 source to read data from individual streams.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -139,7 +139,7 @@ CREATE TABLE s3(
     s3.bucket_name = 'example-s3-source',
     s3.credentials.access = 'xxxxx',
     s3.credentials.secret = 'xxxxx',
-     s3.endpoint_url = 'https://s3.us-east-1.amazonaws.com'
+    s3.endpoint_url = 'https://s3.us-east-1.amazonaws.com'
 ) ROW FORMAT JSON;
 ```
 
