@@ -11,6 +11,8 @@ A source is a resource that RisingWave can read data from. You can create a sour
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or data transformations.
 
+RisingWave only ingests committed data from Kafka as the Kafka consumer's `isolation.level` is set to `read_committed`. For more information on this field, see [Kafka's consumer configurations](https://kafka.apache.org/documentation/#consumerconfigs_isolation.level). This is the set behavior for RisingWave and not configurable.
+
 ## Syntax
 
 ```sql
