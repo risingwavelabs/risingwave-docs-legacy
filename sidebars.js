@@ -212,36 +212,46 @@ const sidebars = {
               label: 'Overview',
               id: 'data-ingestion',
             },
-
             {
               type: 'doc',
-              label: 'Kafka',
+              label: 'Apache Kafka',
               id: 'create-source/create-source-kafka',
+            },
+            {
+              type: 'doc',
+              label: 'Apache Pulsar',
+              id: 'create-source/create-source-pulsar',
+            },
+            {
+              type: 'doc',
+              label: 'AWS Kinesis',
+              id: 'create-source/create-source-kinesis',
+            },
+            {
+              type: 'doc',
+              label: 'AWS S3',
+              id: 'create-source/create-source-s3',
+            },
+            {
+              type: 'doc',
+              label: 'CDC via event streaming systems',
+              id: 'create-source/create-source-cdc',
             },
             {
               type: 'doc',
               label: 'Confluent Cloud',
               id: 'guides/confluent-kafka-source',
             },
+
             {
               type: 'doc',
-              label: 'Redpanda',
-              id: 'create-source/create-source-redpanda',
-            },
-            {
-              type: 'doc',
-              label: 'Kinesis',
-              id: 'create-source/create-source-kinesis',
-            },
-            {
-              type: 'doc',
-              label: 'Pulsar',
-              id: 'create-source/create-source-pulsar',
-            },
-            {
-              type: 'doc',
-              label: 'Astra Streaming',
+              label: 'DataStax Astra Streaming',
               id: 'guides/connector-astra-streaming',
+            },
+            {
+              type: 'doc',
+              label: 'Load generator',
+              id: 'create-source/create-source-datagen',
             },
             {
               type: 'doc',
@@ -255,19 +265,9 @@ const sidebars = {
             },
             {
               type: 'doc',
-              label: 'CDC via event streaming systems',
-              id: 'create-source/create-source-cdc',
+              label: 'Redpanda',
+              id: 'create-source/create-source-redpanda',
             },
-            {
-              type: 'doc',
-              label: 'Amazon S3',
-              id: 'create-source/create-source-s3',
-            },
-            {
-              type: 'doc',
-              label: 'Load generator',
-              id: 'create-source/create-source-datagen',
-            }
           ]
         },
         {
@@ -291,7 +291,7 @@ const sidebars = {
               label: 'MySQL',
               id: 'guides/sink-to-mysql-with-jdbc'
             },
-             {
+            {
               type: 'doc',
               label: 'PostgreSQL',
               id: 'guides/sink-to-postgres'

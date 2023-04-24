@@ -9,7 +9,7 @@ This topic describes how to connect RisingWave to a Kafka broker that you want t
 
 A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by using the `CREATE TABLE` command and specifying the connection settings and data format.
 
-Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or sinks for data transformations.
+Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or data transformations.
 
 ## Syntax
 
@@ -24,7 +24,6 @@ ROW FORMAT data_format
 [ MESSAGE 'message' ]
 [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -90,13 +89,10 @@ export const svg = rr.Diagram(
    )
 );
 
-
 <drawer SVG={svg} />
 
-
-
-
 **schema_definition**:
+
 ```sql
 (
    column_name data_type [ PRIMARY KEY ], ...
@@ -123,7 +119,7 @@ For materialized sources with primary key constraints, if a new data record with
 |Field|Notes|
 |---|---|
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
-|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
+|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
 |upsert| Optional. If true, RisingWave will read messages from Kafka topics in the upsert fashion.|
@@ -159,6 +155,7 @@ WITH (
 ROW FORMAT AVRO 
 ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
+
 </TabItem>
 <TabItem value="upsert avro" label="Upsert Avro" default>
 
@@ -173,6 +170,7 @@ WITH (
 ROW FORMAT UPSERT_AVRO
 ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
+
 </TabItem>
 <TabItem value="json" label="JSON" default>
 
@@ -190,6 +188,7 @@ WITH (
 )
 ROW FORMAT JSON;
 ```
+
 </TabItem>
 <TabItem value="upsert json" label="Upsert JSON" default>
 
@@ -205,6 +204,7 @@ WITH (
    topic='t1'
 ) ROW FORMAT UPSERT_JSON;
 ```
+
 </TabItem>
 <TabItem value="pb" label="Protobuf" default>
 
@@ -254,6 +254,7 @@ protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.
 ```
 
 To specify a schema location, add this clause to a `CREATE SOURCE` statement.
+
 ```SQL
 ROW SCHEMA LOCATION 'location'
 ```
@@ -264,7 +265,7 @@ Confluent Schema Registry provides a serving layer for your metadata. It provide
 
 RisingWave supports reading schemas from a Schema Registry. The latest schema will be retrieved from the specified Schema Registry using the `TopicNameStrategy` strategy when the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
 
-To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement. 
+To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement.
 
 ```sql
 ROW FORMAT LOCATION CONFLUENT SCHEMA REGISTRY 'schema_registry_url;
@@ -379,6 +380,7 @@ WITH (
 )                                                           
 ROW FORMAT JSON;
 ```
+
 This is an example of creating a source authenticated with SASL/PLAIN with SSL encryption.
 
 ```sql
