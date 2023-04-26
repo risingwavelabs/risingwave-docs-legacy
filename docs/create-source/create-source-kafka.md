@@ -279,6 +279,47 @@ Based on the compatibility type that is configured for the schema registry, some
 
 To learn about compatibility types for Schema Registry and the changes allowed, see [Compatibility Types](https://docs.confluent.io/platform/current/schema-registry/avro.html#compatibility-types).
 
+## AWS PrivateLink connection
+
+If you are using a cloud-hosted source, such as AWS MSK, there might be connectivity issues when your source service is located in a different VPC from where you have deployed RisingWave. To establish a secure, direct connection between these two different VPCs, you can use [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html).
+
+First, [create an endpoint service](https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html) to expose the source service. Next, use the [`CREATE CONNECTION`](../sql/commands/sql-create-connection.md) command in RisingWave to access it.
+
+If RisingWave is deployed on your own cloud service, the following environment variables need be configured on the machine running the meta node.
+
+```terminal
+/// The VPC ID of the clusteer
+RW_VPC_ID
+
+/// A security groupd ID to assign to a VPC endpoint
+RW_VPC_SECURITY_GROUP_ID
+```
+
+In the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters. 
+
+|Parameter| Notes|
+|---|---|
+|`connection.name`| The name of the connection, which comes from the connection created using the `CREATE CONNECTION` statement.|
+|`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format.|
+
+Here is an example of creating a Kafka source using a PrivateLink connection.
+
+```sql
+CREATE SOURCE tcp_metrics_rw (
+   device_id VARCHAR,
+   metric_name VARCHAR,
+   report_time TIMESTAMP,
+   metric_value DOUBLE PRECISION
+) WITH (
+   connector = 'kafka',
+   topic = 'tcp_metrics',
+   properties.bootstrap.server = 'ip1:9092, ip2:9092',
+   connection.name = 'my_connection',
+   privatelink.targets = '[{"port": 8001}, {"port": 8002}]',
+   scan.startup.mode = 'earliest'
+) ROW FORMAT JSON;
+```
+
 ## TLS/SSL encryption and SASL authentication
 
 RisingWave can read Kafka data that is encrypted with [Transport Layer Security (TLS)](https://en.wikipedia.org/wiki/Transport_Layer_Security) and/or authenticated with SASL.
