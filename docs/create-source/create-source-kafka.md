@@ -281,21 +281,23 @@ To learn about compatibility types for Schema Registry and the changes allowed, 
 
 ## AWS PrivateLink connection
 
-If you are using a cloud-hosted source, such as AWS MSK, there might be connectivity issues when your source service is located in a different VPC from where you have deployed RisingWave. To establish a secure, direct connection between these two different VPCs, you can use [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html).
+If you are using a cloud-hosted source, such as AWS MSK, there might be connectivity issues when your source service is located in a different VPC from where you have deployed RisingWave. To establish a secure, direct connection between these two different VPCs and allow RisingWave to read consumer messages from the broker, use [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html).
 
-First, [create an endpoint service](https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html) to expose the source service. Next, use the [`CREATE CONNECTION`](../sql/commands/sql-create-connection.md) command in RisingWave to access it.
+Follow the steps below to create an AWS PrivateLink connection.
 
-If RisingWave is deployed on your own cloud service, the following environment variables need be configured on the machine running the meta node.
+1.
 
-```terminal
-/// The VPC ID of the clusteer
-RW_VPC_ID
+2.
 
-/// A security groupd ID to assign to a VPC endpoint
-RW_VPC_SECURITY_GROUP_ID
-```
+3.
 
-In the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters. 
+4.
+
+5.
+
+6.
+
+Finally, to create a Kafka source with a PrivateLink connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters. 
 
 |Parameter| Notes|
 |---|---|

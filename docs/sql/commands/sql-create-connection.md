@@ -5,7 +5,7 @@ description: Create a connection between VPCs.
 slug: /sql-create-connection
 ---
 
-Use the `CREATE CONNECTION` command to create an AWS PrivateLink connection for a Kafka fource connector. This is necessary in order to be able to consume messages from a Kafka service located in a different VPC from the RisingWave cluster in the cloud.
+Use the `CREATE CONNECTION` command to create an AWS PrivateLink connection for a Kafka source connector. This is necessary in order to be able to consume messages from a Kafka service located in a different VPC from the RisingWave cluster in the cloud.
 
 For details on how to connect to a Kafka broker, see the [Ingest data from Kafka](../../create-source/create-source-kafka.md) topic.
 
