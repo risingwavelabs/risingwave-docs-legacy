@@ -12,10 +12,10 @@ The following query returns all rows from the `sales` table where the `sale_date
 ```sql
 SELECT * 
 FROM sales 
-WHERE sale_date > NOW() - INTERVAL '1 week';
+WHERE sale_date > PROCTIME() - INTERVAL '1 week';
 ```
 
-The temporal filter in this query is `sale_date > NOW() - INTERVAL '1 week'`. It filters the rows based on the `sale_date` column and checks if it is within one week of the current time or `NOW()`.
+The temporal filter in this query is `sale_date > PROCTIME() - INTERVAL '1 week'`. It filters the rows based on the `sale_date` column and checks if it is within one week of the current time or `PROCTIME()`.
 
 
 The following query returns all rows from the `user_sessions` table where the sum of the `last_active` timestamp and double the `session_timeout` duration is greater than the current timestamp, indicating active user sessions. This query could be used to clean up old user sessions from the database by deleting any rows that no longer satisfy the condition.
@@ -23,7 +23,7 @@ The following query returns all rows from the `user_sessions` table where the su
 ```sql
 SELECT * 
 FROM user_sessions 
-WHERE last_active + session_timeout * 2 > NOW();
+WHERE last_active + session_timeout * 2 > PROCTIME();
 ```
 
-The temporal filter in this query is in the `WHERE` clause. It checks whether the timestamp of the last activity plus twice the session timeout is greater than the current time or `NOW()`. This indicates that the session is still active.
+The temporal filter in this query is in the `WHERE` clause. It checks whether the timestamp of the last activity plus twice the session timeout is greater than the current time or `PROCTIME()`. This indicates that the session is still active.
