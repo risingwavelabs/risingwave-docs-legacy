@@ -16,6 +16,6 @@ Note that a generation expression cannot reference another generated column.
 
 A generated column in a table is slightly different from one in a source.
 
-A generated column in a table is stored in the created table, and computed when it is inserted or updated. This is equivalent to the `STORED` type of generated columns in PostgreSQL.
+- A generated column in a table is stored in the created table, and computed when it is inserted. This is equivalent to the `STORED` type of generated columns in PostgreSQL. If a table contains a generated column, the table cannot be updated or deleted in RisingWave.
 
-A generated column in a source is not stored in the created source, and is computed when the source is queried. This is equivalent to the `VIRTUAL` type of generated columns in PostgreSQL.
+- A generated column in a source is not stored in the created source, and is computed when the source is queried. This is equivalent to the `VIRTUAL` type of generated columns in PostgreSQL.
