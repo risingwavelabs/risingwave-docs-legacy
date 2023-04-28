@@ -25,7 +25,7 @@ WITH (
 |*connection_name*              |The name of the connection to be created.|
 |type                           |The type of connection.|
 |provider                       |The provider of the connection.|
-|service.name                   |The service name of the AWS PrivateLink.|
+|service.name                   |The service name of the endpoint service.|
 
 ## Example
 

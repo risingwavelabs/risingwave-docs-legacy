@@ -1,11 +1,11 @@
 ---
-id: sql-show-connection
-title: SHOW CONNECTION
+id: sql-show-connections
+title: SHOW CONNECTIONS
 description: Show existing connections.
-slug: /sql-show-connection
+slug: /sql-show-connections
 ---
 
-Use the `SHOW CONNECTION` command to see connections that have been created.
+Use the `SHOW CONNECTIONS` command to see connections that have been created.
 
 ## Syntax
 

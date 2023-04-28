@@ -287,7 +287,7 @@ Follow the steps below to create an AWS PrivateLink connection.
 
 1. Create a [target group](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-target-group.html) for each broker. Set the **target type** as **IP addresses** and the **protocol** as **TCP**. Ensure that the target group's VPC is the same as your cloud-hosted source.
 
-2. Create a [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-network-load-balancer.html). Ensure that it is enabled in the same subnets your broker sources are in. 
+2. Create a [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-network-load-balancer.html). Ensure that it is enabled in the same subnets your broker sources are in and the Cross-zone load balancing is also enabled. 
 
 3. Create a [TCP listener](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-listener.html) for each MSK broker that corresponds to the target groups created. Ensure the ports are unique.
 
@@ -302,9 +302,9 @@ To create a Kafka source with a PrivateLink connection, in the WITH section of y
 |Parameter| Notes|
 |---|---|
 |`connection.name`| The name of the connection, which comes from the connection created using the `CREATE CONNECTION` statement.|
-|`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format.|
+|`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
 
-Here is an example of creating a Kafka source using a PrivateLink connection.
+Here is an example of creating a Kafka source using a PrivateLink connection. Notice that `{"port": 8001}` corresponds to the broker `ip1:9092`, and `{"port": 8002}` corresponds to the broker `ip2:9092`. 
 
 ```sql
 CREATE SOURCE tcp_metrics_rw (
