@@ -125,3 +125,9 @@ Chandy
 OpenDAL
 HDFS
 WebHDFS
+IoT
+microservice
+microservices
+cryptocurrency
+clickstream
+dataset
