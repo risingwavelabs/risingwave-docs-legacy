@@ -32,7 +32,11 @@ const sidebars = {
           id: 'intro',
           label: 'What is RisingWave?',
         },
-
+        {
+          type: 'doc',
+          id: 'use-cases',
+          label: 'Use cases',
+        },
         {
           type: 'doc',
           id: 'architecture',
@@ -152,7 +156,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Use cases',
+          label: 'Demos',
           collapsible: true,
           collapsed: true,
           items: [
