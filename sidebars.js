@@ -229,6 +229,11 @@ const sidebars = {
             },
             {
               type: 'doc',
+              label: 'AWS PrivateLink',
+              id: 'guides/aws-privatelink-setup',
+            },
+            {
+              type: 'doc',
               label: 'AWS S3',
               id: 'create-source/create-source-s3',
             },
