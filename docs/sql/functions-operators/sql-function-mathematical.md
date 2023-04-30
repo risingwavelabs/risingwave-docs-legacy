@@ -31,5 +31,8 @@ title: Mathematical functions and operators
 | round ( *x_numeric*, *y_int* ) → *output_value* | Rounds *x_numeric* to *y_int* decimal places. *y* cannot be negative. | round(1.23559, 2) → 1.24 |
 | round ( *numeric_input* ) → *integer_output* <br /> round ( *double_precision_input* ) → *integer_output* | Rounds to the nearest integer. | round(1.23559) → 1 |
 
+## Trigonometric functions
 
-
+| Function | Description | Example |
+| ----------- | ----------- | ----------- |
+| cosd ( *degrees* ) → *cosine* |Returns the trigonometric cosine (in double precision) of an angle measured in degrees (in double precision). | cosd(15) → 0.9659258262890683 |
