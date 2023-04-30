@@ -5,7 +5,7 @@ description: Show all user-defined functions.
 slug: /sql-show-functions
 ---
 
-Run `SHOW FUNCTIONS` to get a list of existing [user-defined functions](/sql/functions-operators/user-defined-functions.md). The returned information includes the name, arguments, return type, programming language, and server address of each function.
+Run `SHOW FUNCTIONS` to get a list of existing [user-defined functions](/sql/functions-operators/user-defined-functions.md). The returned information includes the name, argument types, return type, language, and server address of each function.
 
 ## Example
 ```sql
