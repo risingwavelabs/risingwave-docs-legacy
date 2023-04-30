@@ -132,6 +132,12 @@ Finally, the script starts a UDF server using `UdfServer` and listens for incomi
 
 </details>
 
+:::info
+New sample functions are frequently added to `udf.py`, such as JSONB functions. See the [source file](https://github.com/risingwavelabs/risingwave/blob/main/e2e_test/udf/test.py).
+
+Some of the sample functions are still being tested and may not be fully functional or optimized.
+:::
+
 
 ## 3. Start the UDF server
 
