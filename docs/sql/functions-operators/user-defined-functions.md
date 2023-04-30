@@ -267,3 +267,7 @@ SELECT * FROM series(10);
 8
 9
 ```
+
+## Related content
+
+[SHOW FUNCTIONS](/sql/commands/sql-show-functions.md) — Show all user-defined functions.
