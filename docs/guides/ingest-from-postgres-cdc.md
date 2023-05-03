@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="pg_self_hosted" label="Self-hosted" default>
 
-1. Ensure that the `wal_level` of your PostgreSQL is `logical`. Check by using the following statement.
+1. Ensure that `wal_level` is `logical`. Check by using the following statement.
 
     ```sql
     SHOW wal_level;

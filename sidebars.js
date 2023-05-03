@@ -243,6 +243,11 @@ const sidebars = {
             },
             {
               type: 'doc',
+              label: 'Citus CDC',
+              id: 'guides/ingest-from-citus-cdc',
+            },
+            {
+              type: 'doc',
               label: 'Confluent Cloud',
               id: 'guides/confluent-kafka-source',
             },
