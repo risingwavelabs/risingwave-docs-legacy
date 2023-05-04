@@ -20,7 +20,7 @@ ROW FORMAT data_format
 ```
 
 :::info
-For CSV data, you must specify what the delimiter is with the `DELIMITED BY` clause.
+For CSV data, specify the delimiter in the `DELIMITED BY` clause.
 :::
 
 import rr from '@theme/RailroadDiagram'
