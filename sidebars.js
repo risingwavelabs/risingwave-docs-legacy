@@ -475,7 +475,7 @@ const sidebars = {
               items: [
                 {
                   type: 'doc',
-                  id: 'sql/query-syntax/user-defined-functions',
+                  id: 'sql/functions-operators/user-defined-functions',
                 },
                 {
                   type: 'doc',

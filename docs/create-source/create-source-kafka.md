@@ -137,6 +137,10 @@ For materialized sources with primary key constraints, if a new data record with
 
 Here is an example of connecting RisingWave to a Kafka broker to read data from individual topics.
 
+:::note
+RisingWave supports reading messages that have been compressed by [zstd](http://www.zstd.net/). Additional configurations are not required.
+:::
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
