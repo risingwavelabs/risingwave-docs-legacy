@@ -87,7 +87,6 @@ export const svg = rr.Diagram(
                         rr.Terminal(')'),
                     ),
                 ),
-
             ),
         ),
             rr.Sequence(
@@ -99,7 +98,6 @@ export const svg = rr.Diagram(
                 ),
                 rr.Terminal(';'),
             ),
-     
     )
 );
 
