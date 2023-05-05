@@ -80,3 +80,13 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 
 [`DROP SINK`](sql-drop-sink.md) — Remove a sink.
 
+
+
+
+:::note
+
+Timestamptz values are stored in UTC.
+
+When sinking downstream, timestamptz is represented in i64 with a resolution of microseconds.
+
+:::

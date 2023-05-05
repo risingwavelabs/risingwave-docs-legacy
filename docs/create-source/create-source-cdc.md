@@ -19,6 +19,10 @@ RisingWave accepts these data formats:
 
    For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
 
+- Debezium AVRO (for MySQL)
+
+   For Debezium AVRO, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) to convert CDC data to Kafka topics.
+
 - Maxwell JSON (for MySQL only)
 
   For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
@@ -125,9 +129,17 @@ Please see the respective data ingestion pages for the connection parameters.
 - [Kinesis](create-source-kinesis.md)
 
 
-## Example
+## Examples
 
-Here is an example of creating a table with the Kafka connector to ingest CDC data from Kafka topics.
+### Kafka
+
+Here are examples of creating a table with the Kafka connector to ingest CDC data from Kafka topics.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupID = "data-formats">
+<TabItem value="Debezium JSON" label="Debezium JSON">
 
 ```sql
 CREATE TABLE [IF NOT EXISTS] source_name (
@@ -144,6 +156,29 @@ WITH (
 ) 
 ROW FORMAT DEBEZIUM_JSON;
 ```
+
+</TabItem>
+<TabItem value="Debezium AVRO" label="Debezium AVRO">
+
+```sql
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY
+)
+WITH (
+    connector = 'kafka',
+    topic = 'mysql.mydb.orders',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
+) 
+ROW FORMAT DEBEZIUM_AVRO ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://message_queue:8081';
+```
+
+Although the `CREATE TABLE` command only specifies one column, the other columns in the upstream MySQL table will still be derived and included. 
+
+</TabItem>
+</Tabs>
+
+### Pulsar
 
 Here is an example of creating a table with Pulsar to ingest CDC data from Pulsar topics.
 
@@ -163,6 +198,8 @@ WITH (
 ) 
 ROW FORMAT DEBEZIUM_JSON;
 ```
+
+### Kinesis
 
 Here is an example of creating a table with Kinesis to ingest CDC data from Kinesis data streams.
 
