@@ -25,7 +25,6 @@ You can ingest CDC data from MySQL in two ways:
 
   You can use either the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data change streams to Kafka topics, and then use the Kafka connector in RisingWave to consume data from the Kafka topics.
 
-
 ## Using the native MySQL CDC connector
 
 ### Set up MySQL
@@ -58,7 +57,7 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 
 ```sql
 FLUSH PRIVILEGES;
-``` 
+```
 
 #### Enable the binlog
 
@@ -146,13 +145,11 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
 
 ### Enable the connector node in RisingWave
 
-The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo. The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
-
+The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo. The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md).
 
 ### Create a table using the native CDC connector in RisingWave
 
 To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
-
 
 #### Syntax
 
@@ -166,7 +163,6 @@ WITH (
    <field>=<value>, ...
 );
 ```
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -258,13 +254,11 @@ export const svg = rr.Diagram(
 
 <drawer SVG={svg} />
 
-
-
 Note that a primary key is required.
 
 #### WITH parameters
 
-All the fields listed below are required. 
+All the fields listed below are required.
 
 |Field|Notes|
 |---|---|
@@ -279,7 +273,6 @@ All the fields listed below are required.
 #### Data format
 
 Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
-
 
 #### Example
 
@@ -332,17 +325,16 @@ WITH (
    topic='user_test_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='earliest',
-   properties.group.id='demo_consumer_name'
 )
 ROW FORMAT DEBEZIUM_JSON;
 ```
+
 </TabItem>
 <TabItem value="Maxwell daemon" label="Maxwell daemon">
 
 ### Configure MySQL and run Maxwell's daemon
 
  You need to configure MySQL and run Maxwell's daemon to convert data changes to Kafka topics. For details, see the [Quick Start](https://maxwells-daemon.io/quickstart/) from Maxwell's daemon.
-
 
 ### Create a table using the Kafka connector in RisingWave
 
@@ -358,10 +350,10 @@ WITH (
    connector='kafka',
    topic='user_test_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-   scan.startup.mode='earliest',
-   properties.group.id='demo_consumer_name'
+   scan.startup.mode='earliest'
 ) 
 ROW FORMAT MAXWELL;
 ```
+
 </TabItem>
 </Tabs>

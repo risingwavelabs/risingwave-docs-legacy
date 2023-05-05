@@ -175,7 +175,6 @@ WITH (
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
 )
 ROW FORMAT JSON;
 ```
