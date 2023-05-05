@@ -11,6 +11,8 @@ A source is a resource that RisingWave can read data from. You can create a sour
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or data transformations.
 
+RisingWave supports exactly-once semantics by reading transactional messages only when the associated transaction has been committed. This is the set behavior for RisingWave and not configurable.
+
 ## Syntax
 
 ```sql
