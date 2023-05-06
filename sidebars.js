@@ -297,6 +297,11 @@ const sidebars = {
             },
             {
               type: 'doc',
+              label: 'TiDB',
+              id: 'guides/sink-to-tidb'
+            },
+            {
+              type: 'doc',
               label: 'PostgreSQL',
               id: 'guides/sink-to-postgres'
             },
