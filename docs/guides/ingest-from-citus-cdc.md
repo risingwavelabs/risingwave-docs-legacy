@@ -65,8 +65,8 @@ Unless specified otherwise, the fields listed are required.
 
 |Field|Notes|
 |---|---|
-|hostname| Hostname of the database. |
-|port| Port number of the database.|
+|hostname| Hostname of the coordinator node.|
+|port| Port number of the coordinator node.|
 |username| Username of the database.|
 |password| Password of the database. |
 |database.servers| The host and port of Citus worker nodes.|
