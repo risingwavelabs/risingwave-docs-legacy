@@ -11,6 +11,8 @@ A source is a resource that RisingWave can read data from. You can create a sour
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or data transformations.
 
+RisingWave supports exactly-once semantics by reading transactional messages only when the associated transaction has been committed. This is the set behavior for RisingWave and not configurable.
+
 ## Syntax
 
 ```sql
@@ -136,6 +138,10 @@ For materialized sources with primary key constraints, if a new data record with
 ## Example
 
 Here is an example of connecting RisingWave to a Kafka broker to read data from individual topics.
+
+:::note
+RisingWave supports reading messages that have been compressed by [zstd](http://www.zstd.net/). Additional configurations are not required.
+:::
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

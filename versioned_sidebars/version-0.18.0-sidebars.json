@@ -13,6 +13,11 @@
         },
         {
           "type": "doc",
+          "id": "use-cases",
+          "label": "Use cases"
+        },
+        {
+          "type": "doc",
           "id": "architecture",
           "label": "Architecture"
         },
@@ -124,7 +129,7 @@
         },
         {
           "type": "category",
-          "label": "Use cases",
+          "label": "Demos",
           "collapsible": true,
           "collapsed": true,
           "items": [
@@ -432,7 +437,7 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "sql/query-syntax/user-defined-functions"
+                  "id": "sql/functions-operators/user-defined-functions"
                 },
                 {
                   "type": "doc",

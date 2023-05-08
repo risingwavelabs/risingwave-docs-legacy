@@ -20,7 +20,7 @@ RisingWave supports the following data types:
 |date| |Calendar date (year, month, day) | Example: `date '2022-04-08'` |
 |time without time zone|time|Time of day (no time zone) | Example: `time '18:20:49'` |
 |timestamp without time zone|timestamp|Date and time (no time zone) | Example: `'2022-03-13 01:00:00'::timestamp` |
-|timestamp with time zone |timestamptz|Timestamp with time zone. <br/>The 'Z' stands for UTC (Coordinated Universal Time). | Example: `'2022-03-13 01:00:00Z'::timestamptz` |
+|timestamp with time zone |timestamptz|Timestamp with time zone. <br/>The 'Z' stands for UTC (Coordinated Universal Time). Timestamptz values are stored in UTC. When sinking downstream, timestamptz is represented in i64 with a resolution of microseconds. | Example: `'2022-03-13 01:00:00Z'::timestamptz` |
 |interval| |Time span. <br/>Input in string format. Units include: second/seconds/s, minute/minutes/min/m, hour/hours/hr/h, day/days/d, month/months/mon, and year/years/yr/y. Units smaller than second can only be specified in a numerical format. | Examples: `interval '4 hour'` → `04:00:00` <br /> `interval '3 day'` → `3 days 00:00:00` <br /> `interval '04:00:00.1234'` → `04:00:00.1234` |
 |struct| |A struct is a column that contains nested data. For syntax and examples, see [Struct](./data-types/data-type-struct.md). | |
 |array| | An array is an ordered list of zero or more elements that share the same data type including the array type. For syntax and examples, see [Array](./data-types/data-type-array.md).|

@@ -32,7 +32,11 @@ const sidebars = {
           id: 'intro',
           label: 'What is RisingWave?',
         },
-
+        {
+          type: 'doc',
+          id: 'use-cases',
+          label: 'Use cases',
+        },
         {
           type: 'doc',
           id: 'architecture',
@@ -152,7 +156,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Use cases',
+          label: 'Demos',
           collapsible: true,
           collapsed: true,
           items: [
@@ -391,33 +395,38 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
+                  id: 'sql/query-syntax/query-syntax-generated-columns',
+                  label: 'Generated columns',
+                },
+                {
+                  type: 'doc',
                   id: 'sql/query-syntax/query-syntax-from-clause',
-                  label: 'FROM',
+                  label: 'FROM clause',
                 },
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-group-by-clause',
-                  label: 'GROUP BY',
+                  label: 'GROUP BY clause',
                 },
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-having-clause',
-                  label: 'HAVING',
+                  label: 'HAVING clause',
                 },
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-limit-clause',
-                  label: 'LIMIT',
+                  label: 'LIMIT clause',
                 },
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-where-clause',
-                  label: 'WHERE',
+                  label: 'WHERE clause',
                 },
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-with-clause',
-                  label: 'WITH',
+                  label: 'WITH clause',
                 }
               ]
             },
@@ -471,7 +480,7 @@ const sidebars = {
               items: [
                 {
                   type: 'doc',
-                  id: 'sql/query-syntax/user-defined-functions',
+                  id: 'sql/functions-operators/user-defined-functions',
                 },
                 {
                   type: 'doc',

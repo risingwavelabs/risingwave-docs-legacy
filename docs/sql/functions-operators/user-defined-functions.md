@@ -88,7 +88,7 @@ def gcd(x, y):
     return x
 
 # Define a scalar function that returns multiple values (within a struct)
-@udf(input_types=['BINARY'], result_type='STRUCT<src_ip VARCHAR, dst_ip VARCHAR, src_port SMALLINT, dst_port SMALLINT>')
+@udf(input_types=['BYTEA'], result_type='STRUCT<VARCHAR, VARCHAR, SMALLINT, SMALLINT>')
 def extract_tcp_info(tcp_packet: bytes):
     src_addr, dst_addr = struct.unpack('!4s4s', tcp_packet[12:20])
     src_port, dst_port = struct.unpack('!HH', tcp_packet[20:24])
@@ -131,6 +131,12 @@ The code defines two scalar functions and one table function:
 Finally, the script starts a UDF server using `UdfServer` and listens for incoming requests on port 8815 of the local machine. It then adds the `gcd`, `extract_tcp_info` and `series` functions to the server and starts the server using the `serve()` method. The `if __name__ == '__main__':` conditional is used to ensure that the server is only started if the script is run directly, rather than being imported as a module.
 
 </details>
+
+:::info
+New sample functions are frequently added to `udf.py`, such as JSONB functions. See the [source file](https://github.com/risingwavelabs/risingwave/blob/main/e2e_test/udf/test.py).
+
+Some of the sample functions are still being tested and may not be fully functional or optimized.
+:::
 
 
 ## 3. Start the UDF server
@@ -267,3 +273,7 @@ SELECT * FROM series(10);
 8
 9
 ```
+
+## Related content
+
+[SHOW FUNCTIONS](/sql/commands/sql-show-functions.md) — Show all user-defined functions.
