@@ -7,7 +7,7 @@
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
 
-Citus database is an extension to Postgres that transforms Postgres into a distributed database. For more details, see [Citus data](https://www.citusdata.com).
+Citus database is an extension to PostgreSQL that transforms PostgreSQL into a distributed database. For more details, see [Citus data](https://www.citusdata.com).
 
 ## Set up Citus
 
@@ -36,7 +36,7 @@ Citus database is an extension to Postgres that transforms Postgres into a distr
 
 There are a few limitations when ingesting CDC data from Citus in RisingWave.
 
-- A Postgres `superuser` role is required.
+- A PostgreSQL `superuser` role is required.
 - Only [distributed tables](https://docs.citusdata.com/en/v10.2/get_started/concepts.html#table-types) are supported.
 - Newly added worker nodes are not detected.
 
