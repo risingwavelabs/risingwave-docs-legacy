@@ -180,7 +180,7 @@ FROM
             TUMBLE(
                 ad_impression,
                 impression_timestamp,
-                INTERVAL '1' MINUTE
+                INTERVAL '5' MINUTE
             )
         GROUP BY
             ad_id,
@@ -192,11 +192,11 @@ FROM
             COUNT(*) AS clicks_count,
             ai.window_end AS window_end
         FROM
-            TUMBLE(ad_click, click_timestamp, INTERVAL '1' MINUTE) AS ac
+            TUMBLE(ad_click, click_timestamp, INTERVAL '5' MINUTE) AS ac
             INNER JOIN TUMBLE(
                 ad_impression,
                 impression_timestamp,
-                INTERVAL '1' MINUTE
+                INTERVAL '5' MINUTE
             ) AS ai ON ai.bid_id = ac.bid_id
             AND ai.window_end = ac.window_end
         GROUP BY
