@@ -297,13 +297,13 @@ const sidebars = {
             },
             {
               type: 'doc',
-              label: 'TiDB',
-              id: 'guides/sink-to-tidb'
+              label: 'PostgreSQL',
+              id: 'guides/sink-to-postgres'
             },
             {
               type: 'doc',
-              label: 'PostgreSQL',
-              id: 'guides/sink-to-postgres'
+              label: 'TiDB',
+              id: 'guides/sink-to-tidb'
             },
             {
               type: 'doc',
