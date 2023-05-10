@@ -10,7 +10,9 @@ Use the `SELECT` command to retrieve rows from a table or materialized view. It 
 ## Syntax
 
 ```sql
+[ WITH clause ]
 SELECT [ ALL | DISTINCT ] [ * | expression [ AS output_name ] [ , expression [ AS output_name ] ... ] ]
+    [ VALUE clause ]
     [ FROM from_item [ , from_item ...] ]
     [ WHERE condition ]
     [ GROUP BY grouping_expression [ , grouping_expression ... ] ]
@@ -19,7 +21,9 @@ SELECT [ ALL | DISTINCT ] [ * | expression [ AS output_name ] [ , expression [ A
     [ LIMIT count_number ]
     [ OFFSET start [ ROW | ROWS ] ];
 ```
+
 Where `from_item` can be:
+
 ```sql
     table_name  [ [ AS ] alias [ ( column_alias_list ) ] ]
     window_type ( table_name, col_name, interval_expression ) [ [ AS ] alias [ ( column_alias_list ) ] ] 
@@ -31,7 +35,9 @@ Where `from_item` can be:
 
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
+|**WITH** clause           | Provides a way to write supplemental statements for a larger query. For more information, see [`WITH` clause](/sql/query-syntax/query-syntax-with-clause.md). |
 |*expression*               |A column or an expression.|
+|**VALUES** clause          | This clause generate one or more rows of data as a table expression. For details, see [VALUES clause](../query-syntax/query-syntax-values-clause.md).|
 |*alias*                    |A temporary alternative name for a table or materialized view in a query.|
 |*table_name*                    |A table or materialized view.|
 |*grouping_expression*      |<p>Values can be:</p><ul><li>Input column names</li><li>Input column expressions without subqueries or correlated columns</li></ul>|
@@ -49,13 +55,13 @@ Where `from_item` can be:
 |**HAVING** clause           | Eliminates group rows that do not satisfy a given condition. For more information, see [`HAVING` clause](/sql/query-syntax/query-syntax-having-clause.md). |
 |**LIMIT** clause           | When the `ORDER BY` clause is not present, the `LIMIT` clause cannot be used as part of a materialized view. For more information, see [`LIMIT` clause](/sql/query-syntax/query-syntax-limit-clause.md).|
 |**WHERE** clause           | Specifies any conditions or filters to apply to your data. For more information, see [`WHERE` clause](/sql/query-syntax/query-syntax-where-clause.md). |
-|**WITH** clause           | Provides a way to write supplemental statements for a larger query. For more information, see [`WITH` clause](/sql/query-syntax/query-syntax-with-clause.md). |
-
 
 ## Example
-Below are the tables within the same schema that we will be writing queries from. 
+
+Below are the tables within the same schema that we will be writing queries from.
 
 The table `taxi_trips` includes the columns `id`, `distance`, `duration`, and `fare`, where `id` identifies each unique trip.
+
 ```sql
 {
   "id": VARCHAR,
@@ -66,6 +72,7 @@ The table `taxi_trips` includes the columns `id`, `distance`, `duration`, and `f
 ```
 
 The table `taxi` includes the columns `taxi_id` and `trip_id`, where `trip_id` and `id` in `taxi_trips` are matching fields.
+
 ```sql
 {
   "taxi_id": VARCHAR,
@@ -73,7 +80,8 @@ The table `taxi` includes the columns `taxi_id` and `trip_id`, where `trip_id` a
 }
 ```
 
-The table `company` includes the columns `company_id` and `taxi_id`, where `taxi_id` and `taxi_id` in `taxi` are matching fields. 
+The table `company` includes the columns `company_id` and `taxi_id`, where `taxi_id` and `taxi_id` in `taxi` are matching fields.
+
 ```sql
 {
   "company_id": VARCHAR,
@@ -81,7 +89,8 @@ The table `company` includes the columns `company_id` and `taxi_id`, where `taxi
 }
 ```
 
-The following query returns the total distance and duration of trips that are beyond the initial charge ($2.50) of each taxi from the company "Yellow Taxi" and "FabCab". 
+The following query returns the total distance and duration of trips that are beyond the initial charge ($2.50) of each taxi from the company "Yellow Taxi" and "FabCab".
+
 ```sql
 SELECT 
     taxi.taxi_id, 
