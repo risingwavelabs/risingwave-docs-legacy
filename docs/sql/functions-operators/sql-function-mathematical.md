@@ -32,5 +32,8 @@ title: Mathematical functions and operators
 | round ( *numeric_input* ) → *integer_output* <br /> round ( *double_precision_input* ) → *integer_output* | Rounds to the nearest integer. | round(1.23559) → 1 |
 | translate( *input_string*, *from_string*, *to_string*) → output_string | Replaces each character in the *input_string* that matches a character in the *from_string* with the corresponding character in the *to_string*. | translate('M1X3', '13', 'ae') → MaXe |
 
+## Trigonometric functions
 
-
+| Function | Description | Example |
+| ----------- | ----------- | ----------- |
+| cosd ( *degrees* ) → *cosine* |Returns the trigonometric cosine (in double precision) of an angle measured in degrees (in double precision). | cosd(15) → 0.9659258262890683 |
