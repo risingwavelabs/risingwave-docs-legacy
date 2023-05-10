@@ -217,6 +217,19 @@ const sidebars = {
               id: 'data-ingestion',
             },
             {
+              type: 'category',
+              label: 'Connections',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: 'doc',
+                  label: 'AWS PrivateLink',
+                  id: 'guides/aws-privatelink-setup',
+                },
+              ]
+            },
+            {
               type: 'doc',
               label: 'Apache Kafka',
               id: 'create-source/create-source-kafka',
@@ -299,6 +312,11 @@ const sidebars = {
               type: 'doc',
               label: 'PostgreSQL',
               id: 'guides/sink-to-postgres'
+            },
+            {
+              type: 'doc',
+              label: 'TiDB',
+              id: 'guides/sink-to-tidb'
             },
             {
               type: 'doc',
@@ -390,33 +408,38 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
+                  id: 'sql/query-syntax/query-syntax-generated-columns',
+                  label: 'Generated columns',
+                },
+                {
+                  type: 'doc',
                   id: 'sql/query-syntax/query-syntax-from-clause',
-                  label: 'FROM',
+                  label: 'FROM clause',
                 },
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-group-by-clause',
-                  label: 'GROUP BY',
+                  label: 'GROUP BY clause',
                 },
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-having-clause',
-                  label: 'HAVING',
+                  label: 'HAVING clause',
                 },
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-limit-clause',
-                  label: 'LIMIT',
+                  label: 'LIMIT clause',
                 },
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-where-clause',
-                  label: 'WHERE',
+                  label: 'WHERE clause',
                 },
                 {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-with-clause',
-                  label: 'WITH',
+                  label: 'WITH clause',
                 }
               ]
             },
@@ -470,7 +493,7 @@ const sidebars = {
               items: [
                 {
                   type: 'doc',
-                  id: 'sql/query-syntax/user-defined-functions',
+                  id: 'sql/functions-operators/user-defined-functions',
                 },
                 {
                   type: 'doc',

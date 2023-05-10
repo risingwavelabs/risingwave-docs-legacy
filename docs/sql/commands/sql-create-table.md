@@ -15,7 +15,7 @@ If you choose to not persist the data from the source in RisingWave, you should 
 
 ```sql
 CREATE TABLE [ IF NOT EXISTS ] table_name (
-    col_name data_type [ PRIMARY KEY ],
+    col_name data_type [ PRIMARY KEY ] [ AS generation_expression ],
     ...
     [ PRIMARY KEY (col_name, ... ) ]
 )
@@ -27,9 +27,6 @@ ROW FORMAT data_format
 [MESSAGE 'message']
 [ROW SCHEMA LOCATION 'location'] ];
 ```
-
-
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -47,31 +44,28 @@ export const svg = rr.Diagram(
                     rr.NonTerminal('col_name', 'skip'),
                     rr.NonTerminal('data_type', 'skip'),
                     rr.Optional(rr.Terminal('PRIMARY KEY')),
+                    rr.Optional(rr.Terminal('AS generation_expression')),
                     rr.Optional(rr.Terminal(',')),
                 ),
                 rr.Comment('Alternative format: PRIMARY KEY (col_name, ... )'),
             ),
         ),
-        rr.Terminal(')'),
+        rr.Sequence(
+            rr.Terminal(')'),
         rr.Optional(
             rr.Stack(
                 rr.Sequence(
                     rr.Terminal('WITH'),
             ),
         ),
+        ), rr.Terminal(';'),
         ),
-        rr.Terminal(';'),
     )
 );
 
-
 <drawer SVG={svg} />
 
-
-
-
 This is the WITH clause and the rest of the source parameters:
-
 
 export const svgTwo = rr.Diagram(
      rr.Stack(
@@ -114,29 +108,22 @@ export const svgTwo = rr.Diagram(
                     rr.Terminal('ROW SCHEMA LOCATION'),
                     rr.NonTerminal('location', 'skip'),
                 ),
-            ),
-            rr.Optional(rr.Terminal(';')),
+            )
         ),
-    )   
+    )
 );
-
-
 
 <drawer SVG={svgTwo} />
 
+## Notes
 
-
-:::note
 For tables with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record.
-:::
 
-:::note
 Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
-:::
 
-:::note
 If creating a materialized source, remember to include the connector settings with the `WITH` clause and to specify the data format with the `ROW FORMAT` clause. See [`CREATE SOURCE`](sql-create-source.md) for a full list of supported connectors and data formats.
-:::
+
+To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
 
 ## Parameters
 
@@ -145,6 +132,7 @@ If creating a materialized source, remember to include the connector settings wi
 |*table_name*    |The name of the table. If a schema name is given (for example, `CREATE TABLE <schema>.<table> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
 |*col_name*      |The name of a column.|
 |*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
+|*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](../query-syntax/query-syntax-generated-columns.md).|
 |**WITH** clause |Specify the connector settings here if trying to create a materialized source. See the [Data ingestion](../../data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
 |**ROW FORMAT** clause |Specify the data format of the source data here if trying to create a materialized source. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
 
@@ -159,7 +147,6 @@ CREATE TABLE taxi_trips(
     city VARCHAR
 );
 ```
-
 
 The statement below creates a table that includes nested tables.
 
@@ -188,7 +175,6 @@ WITH (
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000',
-   properties.group.id='demo_consumer_name'
 )
 ROW FORMAT JSON;
 ```

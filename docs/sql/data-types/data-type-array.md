@@ -92,6 +92,43 @@ FROM taxi;
 'ABCD1234'
 ```
 
+### Retrieve slice of an array
+
+To retrieve data in an array, use the `ARRAY_COLUMN[n:m]` syntax, where `n` and `m` are integers representing indices and are both inclusive. Either `n`, `m`, or both can be omitted. Relative positions start from 1. In multidimensial arrays, arrays with unmatching dimensions are allowed.
+
+#### Examples
+
+Retrieve the entire array with `n` omitted.
+```sql
+SELECT array[1,NULL,2][:3];
+----Result
+{1,NULL,2}
+```
+
+Retrieve the first two elements from a multidimensional array.
+```sql
+SELECT array[array[1],array[2],array[3]][-21432315:134124523][1:2];
+----
+{{1},{2}}
+```
+
+#### Differences from PostgreSQL
+In RisingWave, assume `arr` is of type T[][][]:
+
+- arr[x] is of type T[][]
+- arr[x][y] is interpreted as (arr[x])[y], and of type T[]
+- arr[x0:x1] is of type T[][][]
+- arr[x0:x1][y0:y1] is interpreted as (arr[x0:x1])[y0:y1], and of type T[][][]
+- arr[x0:x1][y] is interpreted as (arr[x0:x1])[y], and of type T[][]
+
+In PostgreSQL, a 3-dimensional array `arr` is still of type T[]:
+
+- arr[x] or arr[x][y] is of type T but due to insufficient number of indices is of `NULL` value
+- arr[x][y][z] is of type T
+- arr[x0:x1][y0:y1][z0:z1] is of type T[] and 3-dimensional
+- arr[x0:x1] is interpreted as arr[x0:x1][:][:], and of type T[] and 3-dimensional
+- arr[x0:x1][y] is interpreted as arr[x0:x1][1:y][:], and of type T[] and 3-dimensional
+
 ### Unnest data from an array
 
 You can use the `unnest()` function to spread values in an array into seperate rows.
