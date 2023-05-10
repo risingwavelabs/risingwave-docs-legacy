@@ -12,7 +12,7 @@ For details on how to connect to a Kafka broker, see the [Ingest data from Kafka
 ## Syntax
 
 ```sql
-CREATE CONNECTION [IF NOT EXIST ] connection_name
+CREATE CONNECTION [ IF NOT EXIST ] connection_name
 WITH (
     connection_parameter = 'value'
 );
