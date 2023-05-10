@@ -25,3 +25,16 @@ SHOW FUNCTIONS;
  jsonb_access     | jsonb, integer            | jsonb                                                                     | python   | http://localhost:8815
 (10 rows)
 ```
+
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('SHOW FUNCTIONS'),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
