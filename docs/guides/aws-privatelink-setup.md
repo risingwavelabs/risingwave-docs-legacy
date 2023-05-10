@@ -7,7 +7,7 @@ slug: /aws-privatelink-setup
 
 If you are using a cloud-hosted source, such as AWS MSK, there might be connectivity issues when your source service is located in a different VPC from where you have deployed RisingWave. To establish a secure, direct connection between these two different VPCs and allow RisingWave to read consumer messages from the broker, use the [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html) service.
 
-:::note
+:::caution Experimental feature
 The support for AWS PrivateLink connection is a beta feature and is subject to change in future versions. There is no guarantee that this feature will be maintained.
 :::
 
