@@ -25,7 +25,7 @@ Follow the steps below to create an AWS PrivateLink connection.
 
 6. Use the [`CREATE CONNECTION`](../sql/commands/sql-create-connection.md) command in RisingWave to create an AWS PrivateLink connection referencing the endpoint service created. Here is an example of creating an AWS PrivateLink connection.
     ```sql
-    CREATE CONNECTION connection_name with (
+    CREATE CONNECTION connection_name WITH (
         type = 'privatelink',
         provider = 'aws',
         service.name = 'com.amazonaws.xyz.us-east-1.abc-xyz-0000'
