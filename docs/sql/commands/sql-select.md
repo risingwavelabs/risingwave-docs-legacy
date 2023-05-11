@@ -37,7 +37,7 @@ Where `from_item` can be:
 |---------------------------|-----------------------|
 |**WITH** clause           | Provides a way to write supplemental statements for a larger query. For more information, see [`WITH` clause](/sql/query-syntax/query-syntax-with-clause.md). |
 |*expression*               |A column or an expression.|
-|**VALUES** clause          | This clause generate one or more rows of data as a table expression. For details, see [VALUES clause](../query-syntax/query-syntax-values-clause.md).|
+|**VALUES** clause          | This clause generates one or more rows of data as a table expression. For details, see [VALUES clause](../query-syntax/query-syntax-values-clause.md).|
 |*alias*                    |A temporary alternative name for a table or materialized view in a query.|
 |*table_name*                    |A table or materialized view.|
 |*grouping_expression*      |<p>Values can be:</p><ul><li>Input column names</li><li>Input column expressions without subqueries or correlated columns</li></ul>|
