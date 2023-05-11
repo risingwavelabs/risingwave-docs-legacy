@@ -4,7 +4,7 @@ slug: /query-syntax-values-clause
 title: VALUES clause
 ---
 
-In RisingWave, the `VALUES` clause is used to generate one or more rows of data as a table expression. It is commonly used in SQL queries to create temporary tables or to insert data into a table or materialized view.
+In RisingWave, the `VALUES` clause is used to generate one or more rows of data as a table expression. It is commonly used in SQL queries to create temporary tables or to insert data into a table.
 
 The syntax of the `VALUES` clause in RisingWave is as follows:
 
@@ -16,20 +16,29 @@ VALUES (expression1, expression2, ...),
 
 Here, each set of expressions enclosed in parentheses represents a row of data. The number of expressions must match the number of columns in the table or view being created.
 
-To use the `VALUES` clause in creating a materialized view, you can specify it in the `SELECT` statement used to define the view. For example:
+When creating a view or materialized view, you can use the `VALUES` clause to construct a temporary table and assign that table to the view or materialized view. For example:
 
 ```sql
-CREATE MATERIALIZED VIEW my_view AS
-  SELECT column1, column2
-  FROM (VALUES (1, 'John'), (2, 'Jane'), (3, 'Bob')) AS my_table(column1, column2);
+CREATE MATERIALIZED VIEW mv (id, name) AS VALUES (1, 'John'), (2, 'Jane'), (3, 'Bob');
 ```
-
-In this example, the `VALUES` clause is used to generate a temporary table with three rows and two columns. The resulting table is then used in the `SELECT` statement to create a materialized view called `my_view` with columns `column1` and `column2`.
 
 The `VALUES` clause can also be used in more complex queries, such as subqueries or joins, to generate temporary tables or insert data into existing tables. For example:
 
 ```sql
-CREATE MATERIALIZED VIEW mv AS
-WITH dict(abbr, full) AS (VALUES ('cn', 'China'), ('us', 'United States')) 
-SELECT * FROM t JOIN dict ON t.c = dict.real;
+CREATE MATERIALIZED VIEW join_mv AS
+WITH info(number, job) AS (VALUES (1, 'Writer'), (2, 'Software Engineer'), (3, 'Accountant')) 
+SELECT * FROM mv JOIN info ON mv.id = info.number;
+```
+
+To see the values in `join_mv`:
+
+```sql
+SELECT * FROM join_mv;
+-- Results
+ id | name | number |        job        
+----+------+--------+-------------------
+  2 | Jane |      2 | Software Engineer
+  3 | Bob  |      3 | Accountant
+  1 | John |      1 | Writer
+
 ```
