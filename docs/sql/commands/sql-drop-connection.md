@@ -28,3 +28,7 @@ This statement removes the connection `c1`.
 ```sql
 DROP CONNECTION c1;
 ```
+
+## See also
+
+[`CREATE CONNECTION`](sql-create-connection.md) - Create a connection.
