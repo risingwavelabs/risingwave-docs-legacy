@@ -80,7 +80,7 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 
 [`DROP SINK`](sql-drop-sink.md) — Remove a sink.
 
-
+[`SHOW CREATE SINK`](sql-show-create-sink.md) — Show the SQL statement used to create a sink.
 
 
 :::note

@@ -43,6 +43,7 @@ title: String functions and operators
 
 
 
+
 ## Pattern matching expressions
 
 ```sql
