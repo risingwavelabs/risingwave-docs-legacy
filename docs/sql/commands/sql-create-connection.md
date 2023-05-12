@@ -18,6 +18,33 @@ WITH (
 );
 ```
 
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Terminal('CREATE CONNECTION'),
+            rr.Optional(rr.Terminal('IF NOT EXIST')),
+            rr.NonTerminal('connection_name'),
+        ),
+        rr.Sequence(
+            rr.Terminal('WITH'),
+            rr.Terminal('('),
+            rr.Sequence(
+                rr.NonTerminal('connection_parameter'),
+                rr.Terminal('='),
+                rr.NonTerminal('value'),                
+            ),
+            rr.Terminal(')'),
+        ),
+        rr.Terminal(';'),
+    )
+);
+
+<drawer SVG={svg} />
+
+
 ## Parameters
 
 |Parameter or clause            | Description           |
