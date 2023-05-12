@@ -124,10 +124,15 @@ The RisingWave connector node is a separate Java component that allows RisingWav
 
 To enable the connector node:
 
-1. Navigate to the `risingwave` directory and run `./risedev configure`.
+1. Navigate to where your `risingwave` directory is located and run `./risedev configure`.
 
 2. Enable the **[Build] Build RisingWave Connector (Java)** option.
 
-3. Uncomment `use connector-node` in the risedev.yml file.
+3. Uncomment `use connector-node` in the risedev.yml file like below.
 
-Now when you run RisingWave, the connector node will be enabled. 
+    <img
+    src={require('../images/uncomment-connector-node.png.png').default}
+    alt="Relations between cdn servers and devops"
+    />
+
+The connector node will now be enabled when you run RisingWave. 
