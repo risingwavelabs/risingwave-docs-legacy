@@ -131,7 +131,7 @@ To enable the connector node:
 3. Uncomment `use connector-node` in the risedev.yml file like below.
 
     <img
-    src={require('../images/uncomment-connector-node.png.png').default}
+    src={require('../images/uncomment-connector-node.png').default}
     alt="Relations between cdn servers and devops"
     />
 
