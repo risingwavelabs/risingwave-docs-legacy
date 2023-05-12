@@ -9,7 +9,9 @@ This topic describes how to connect RisingWave to a Kafka broker that you want t
 
 A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by using the `CREATE TABLE` command and specifying the connection settings and data format.
 
-Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or sinks for data transformations.
+Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or data transformations.
+
+RisingWave supports exactly-once semantics by reading transactional messages only when the associated transaction has been committed. This is the set behavior for RisingWave and not configurable.
 
 ## Syntax
 
@@ -24,7 +26,6 @@ ROW FORMAT data_format
 [ MESSAGE 'message' ]
 [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -90,13 +91,10 @@ export const svg = rr.Diagram(
    )
 );
 
-
 <drawer SVG={svg} />
 
-
-
-
 **schema_definition**:
+
 ```sql
 (
    column_name data_type [ PRIMARY KEY ], ...
@@ -106,7 +104,7 @@ export const svg = rr.Diagram(
 
 :::info
 
-For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a Confluence Schema Registry link in the `ROW SCHEMA LOCATION` section.
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a Confluent Schema Registry link in the `ROW SCHEMA LOCATION` section.
 
 :::
 
@@ -123,22 +121,27 @@ For materialized sources with primary key constraints, if a new data record with
 |Field|Notes|
 |---|---|
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
-|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
+|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+|upsert| Optional. If true, RisingWave will read messages from Kafka topics in the upsert fashion.|
 
 ### Other parameters
 
 |Field|Notes|
 |---|---|
-|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
-|*message* | Message for the format. Required for Avro and Protobuf.|
+|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`, `DEBEZIUM_JSON`, `DEBEZIUM_AVRO`, `MAXWELL`, `CANAL_JSON`, `UPSERT_JSON`, `UPSERT_AVRO`. |
+|*message* | Message name of the main Message in schema definition. Required for Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
 |*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 
 ## Example
 
 Here is an example of connecting RisingWave to a Kafka broker to read data from individual topics.
+
+:::note
+RisingWave supports reading messages that have been compressed by [zstd](http://www.zstd.net/). Additional configurations are not required.
+:::
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -155,9 +158,25 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 )
-ROW FORMAT AVRO MESSAGE 'main_message'
+ROW FORMAT AVRO 
 ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
+
+</TabItem>
+<TabItem value="upsert avro" label="Upsert Avro" default>
+
+```sql
+CREATE SOURCE IF NOT EXISTS source_abc 
+WITH (
+   connector='kafka',
+   upsert='true',
+   properties.bootstrap.server='localhost:9092',
+   topic='test_topic'
+)
+ROW FORMAT UPSERT_AVRO
+ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
+```
+
 </TabItem>
 <TabItem value="json" label="JSON" default>
 
@@ -175,6 +194,23 @@ WITH (
 )
 ROW FORMAT JSON;
 ```
+
+</TabItem>
+<TabItem value="upsert json" label="Upsert JSON" default>
+
+```sql
+CREATE TABLE IF NOT EXISTS source_abc (
+   column1 varchar,
+   column2 integer,
+)
+WITH (
+   connector='kafka',
+   upsert='true',
+   properties.bootstrap.server='localhost:9092',
+   topic='t1'
+) ROW FORMAT UPSERT_JSON;
+```
+
 </TabItem>
 <TabItem value="pb" label="Protobuf" default>
 
@@ -213,7 +249,6 @@ SELECT * FROM source_name
 WHERE _rw_kafka_timestamp > now() - interval '10 minute';
 ```
 
-
 ## Read schemas from locations
 
 RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Avro or Protobuf format.
@@ -225,6 +260,7 @@ protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.
 ```
 
 To specify a schema location, add this clause to a `CREATE SOURCE` statement.
+
 ```SQL
 ROW SCHEMA LOCATION 'location'
 ```
@@ -235,7 +271,7 @@ Confluent Schema Registry provides a serving layer for your metadata. It provide
 
 RisingWave supports reading schemas from a Schema Registry. The latest schema will be retrieved from the specified Schema Registry using the `TopicNameStrategy` strategy when the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
 
-To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement. 
+To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement.
 
 ```sql
 ROW FORMAT LOCATION CONFLUENT SCHEMA REGISTRY 'schema_registry_url;
@@ -248,6 +284,35 @@ To learn more about Confluent Schema Registry and how to set up a Schema Registr
 Based on the compatibility type that is configured for the schema registry, some changes are allowed without changing the schema to a different version. In this case, RisingWave will continue using the original schema definition. To use a newer version of the writer schema in RisingWave, you need to drop and recreate the source.
 
 To learn about compatibility types for Schema Registry and the changes allowed, see [Compatibility Types](https://docs.confluent.io/platform/current/schema-registry/avro.html#compatibility-types).
+
+## Create source with AWS PrivateLink connection
+
+If your Kafka source service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](../guides/aws-privatelink-setup.md).
+
+To create a Kafka source with a PrivateLink connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters. 
+
+|Parameter| Notes|
+|---|---|
+|`connection.name`| The name of the connection, which comes from the connection created using the `CREATE CONNECTION` statement.|
+|`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
+
+Here is an example of creating a Kafka source using a PrivateLink connection. Notice that `{"port": 8001}` corresponds to the broker `ip1:9092`, and `{"port": 8002}` corresponds to the broker `ip2:9092`. 
+
+```sql
+CREATE SOURCE tcp_metrics_rw (
+   device_id VARCHAR,
+   metric_name VARCHAR,
+   report_time TIMESTAMP,
+   metric_value DOUBLE PRECISION
+) WITH (
+   connector = 'kafka',
+   topic = 'tcp_metrics',
+   properties.bootstrap.server = 'ip1:9092, ip2:9092',
+   connection.name = 'my_connection',
+   privatelink.targets = '[{"port": 8001}, {"port": 8002}]',
+   scan.startup.mode = 'earliest'
+) ROW FORMAT JSON;
+```
 
 ## TLS/SSL encryption and SASL authentication
 
@@ -297,9 +362,9 @@ CREATE TABLE IF NOT EXISTS source_1 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.security.protocol='SSL',
    properties.ssl.ca.location='/home/ubuntu/kafka/secrets/ca-cert',
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
@@ -340,9 +405,9 @@ CREATE SOURCE IF NOT EXISTS source_2 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -350,6 +415,7 @@ WITH (
 )                                                           
 ROW FORMAT JSON;
 ```
+
 This is an example of creating a source authenticated with SASL/PLAIN with SSL encryption.
 
 ```sql
@@ -359,9 +425,9 @@ CREATE SOURCE IF NOT EXISTS source_3 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_SSL',
    properties.sasl.username='admin',
@@ -405,9 +471,9 @@ CREATE TABLE IF NOT EXISTS source_4 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='SCRAM-SHA-256',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
@@ -443,9 +509,9 @@ CREATE SOURCE IF NOT EXISTS source_5 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='GSSAPI',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.kerberos.service.name='kafka',
@@ -493,9 +559,9 @@ CREATE TABLE IF NOT EXISTS source_6 (
 )                  
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   kafka.scan.startup.mode='earliest',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
    properties.sasl.mechanism='OAUTHBEARER',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.oauthbearer.config='principal=bob'

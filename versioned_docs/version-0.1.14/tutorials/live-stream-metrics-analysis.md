@@ -22,31 +22,18 @@ In this tutorial, you will learn how to monitor live stream metrics, such as vid
 
 In the demo cluster, we packaged RisingWave and a workload generator. The workload generator will start to generate random traffic and feed them into Kafka as soon as the cluster is started.
 
-First, clone the [risingwave-demo](https://github.com/singularity-data/risingwave-demo) repository to the environment.
+First, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository to the environment.
 
-```
-git clone https://github.com/risingwavelabs/risingwave-demo.git
-```
-
-Now navigate to the `livestream` directory and start the demo cluster from the docker compose file.
-
-```
-cd risingwave-demo/livestream
-docker-compose up -d
-```
-
-:::note
-
-If the following error occurs:
 ```shell
-ERROR: The Compose file './docker-compose.yml' is invalid because:
-'name' does not match any of the regexes: '^x-'
+git clone https://github.com/risingwavelabs/risingwave.git
 ```
-Use `docker compose` instead of `docker-compose`, or enable **Use Docker Compose V2** on the Settings page of Docker Desktop.
 
-For more information, see [Docker Documentation](https://docs.docker.com/compose/#compose-v2-and-the-new-docker-compose-command).
+Now navigate to the `integration_tests/livestream` directory and start the demo cluster from the docker compose file. 
 
-:::
+```shell
+cd risingwave/integration_tests/livestream
+docker compose up -d
+```
 
 Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, data of materialized views will be stored in the MinIO instance.
 

@@ -1,7 +1,7 @@
 ---
 id: risingwave-local
-title: Run RisingWave locally
-description: Install and run RisingWave locally in your environment.
+title: Run RisingWave directly on your host machine
+description: Install and run RisingWave directly on your host machine.
 slug: /risingwave-local
 ---
 
@@ -74,7 +74,7 @@ import TabItem from '@theme/TabItem';
     ```
 
     :::note
-    If you are using a Mac with Apple silicon (such as the M1 / M2 chip), you need to install `LLVM` by running `brew llvm`.
+    If you are using a Mac with Apple silicon (such as the M1 / M2 chip), you need to install `LLVM` by running `brew install llvm`.
     :::
 
     </TabItem>

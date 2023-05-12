@@ -33,6 +33,7 @@ Kubernetes
 frontend
 NodePort
 kubectl
+uptime
 Avro
 Protobuf
 Prebuilt
@@ -82,6 +83,7 @@ mv
 mysql
 Redash
 JDBC
+Redash
 analytics
 Flink
 JVM
@@ -111,3 +113,21 @@ flink
 Flink's
 RisingWave's
 Redash
+protobuf
+Protobuf
+TiCDC
+upsert
+ChatGPT
+JSONB
+boolean
+Lamport
+Chandy
+OpenDAL
+HDFS
+WebHDFS
+IoT
+microservice
+microservices
+cryptocurrency
+clickstream
+dataset

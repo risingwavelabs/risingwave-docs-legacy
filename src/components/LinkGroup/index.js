@@ -7,7 +7,7 @@ import styled from "@emotion/styled";
 const buttonSize = 36;
 
 const LinkButton = styled("div")({
-  backgroundColor: "#EBEDF0",
+  backgroundColor: "#8080803b",
   // padding: "10px",
   display: "flex",
   justifyContent: "center",
@@ -66,7 +66,7 @@ const LinkItem = (props) => {
           </FoldedTextSpan>
         </FoldedTab>
       </FoldedTabContainer>
-      <LinkButton className={styles.button}>
+      <LinkButton className={styles.linkButton}>
         <LinkImg src={props.imgUrl} />
       </LinkButton>
     </div>

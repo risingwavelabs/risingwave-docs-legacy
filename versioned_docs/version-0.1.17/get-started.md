@@ -11,13 +11,16 @@ This guide will help you get started with RisingWave.
 |---|
 |[**Run RisingWave**](#run-risingwave) — Install, start, and connect to RisingWave.|
 |[**Ingest data**](/sql/commands/sql-create-source.md) — Connect a streaming data source to RisingWave.|
-|**Process data** <ul><li>[RisingWave SQL 101](risingwave-sql-101.md) — A simple yet typical data processing quickstart guide for RisingWave first-timers.</li><li>[Tutorials](/tutorials/real-time-ad-performance-analysis.md) — A series of guided tours in solving real-world stream processing tasks with simulated data.</li><li>**SQL reference** — Navigate to **SQL reference** on the sidebar if you are familiar with PostgreSQL and materialized views.</li></ul>|
+|**Process data** <ul><li>[RisingWave SQL 101](risingwave-sql-101.md) — A simple yet typical data processing quickstart guide for RisingWave first-timers.</li><li>[Tutorials](/tutorials/real-time-ad-performance-analysis.md) — A series of guided tours in solving real-world stream processing tasks with simulated data.</li><li>**SQL references** — Navigate to **SQL references** on the sidebar if you are familiar with PostgreSQL and materialized views.</li></ul>|
 |[**Deliver data**](/sql/commands/sql-create-sink.md) — Send processed data to other destinations.|
 
 
 ## Run RisingWave
 
-RisingWave offers two modes for different testing purposes:
+RisingWave offers two running modes and several running options. See the table below for comparisons.
+
+If you intend to deploy RisingWave in production environments, please use Kubernetes for better resource management and stability.
+
 
 |Comparison \ Mode|Playground mode|Full-featured mode|
 |---|---|---|

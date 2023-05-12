@@ -120,11 +120,17 @@ For materialized sources with primary key constraints, if a new data record with
 |---|---|
 |topic	|Required. Address of the Pulsar topic. One source can only correspond to one topic.|
 |service.url| Required. Address of the Pulsar service.	|
-|admin.url	|Required. Address of the Pulsar admin.|
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis.| Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
-|*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`.|
-|*message* |Message for the format. Required when *data_format* is `AVRO` or `PROTOBUF`.|
+|auth.token | Optional. A token for auth. If both `auth.token` and `oauth` are set, only `oauth` authorization is effective.|
+|oauth.issuer.url | Conditional. The issuer url for OAuth2. This field must be filled if other `oauth` fields are specified. |
+|oauth.credentials.url | Conditional. The path for credential files, starts with `file://`. This field must be filled if other `oauth` fields are specified.|
+|oauth.audience | Conditional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.|
+|oauth.scope | Optional. The scope for OAuth2. |
+|access_key | Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
+|secret_access | Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path. |
+|*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`, `DEBEZIUM_JSON`, `MAXWELL`, `CANAL_JSON`.|
+|*message* |Message name of the main Message in schema definition. Required when *data_format* is `PROTOBUF`.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 
 ## Example
@@ -142,11 +148,15 @@ WITH (
    connector='pulsar',
    topic='demo_topic',
    service.url='pulsar://localhost:6650/',
-   admin.url='http://localhost:8080',
+   oauth.issuer.url='https://auth.streamnative.cloud/',
+   oauth.credentials.url='s3://bucket_name/your_key_file.file',
+   oauth.audience='urn:sn:pulsar:o-d6fgh:instance-0',
+   access_key='access_key',
+   secret_access='secret_access',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 )
-ROW FORMAT AVRO MESSAGE 'FooMessage'
+ROW FORMAT AVRO
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
 ```
 </TabItem>
@@ -161,7 +171,11 @@ WITH (
    connector='pulsar',
    topic='demo_topic',
    service.url='pulsar://localhost:6650/',
-   admin.url='http://localhost:8080',
+   oauth.issuer.url='https://auth.streamnative.cloud/',
+   oauth.credentials.url='s3://bucket_name/your_key_file.file',
+   oauth.audience='urn:sn:pulsar:o-d6fgh:instance-0',
+   access_key='access_key',
+   secret_access='secret_access',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 )
@@ -179,7 +193,11 @@ WITH (
    connector='pulsar',
    topic='demo_topic',
    service.url='pulsar://localhost:6650/',
-   admin.url='http://localhost:8080',
+   oauth.issuer.url='https://auth.streamnative.cloud/',
+   oauth.credentials.url='s3://bucket_name/your_key_file.file',
+   oauth.audience='urn:sn:pulsar:o-d6fgh:instance-0',
+   access_key='access_key',
+   secret_access='secret_access',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 )

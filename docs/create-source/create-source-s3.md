@@ -15,10 +15,13 @@ WITH (
    connector='s3',
    connector_parameter='value', ...
 )
-ROW FORMAT csv [WITHOUT HEADER] DELIMITED BY ','; 
+ROW FORMAT data_format
+[WITHOUT HEADER] [DELIMITED BY 'delimiter']; 
 ```
 
-
+:::info
+For CSV data, specify the delimiter in the `DELIMITED BY` clause.
+:::
 
 import rr from '@theme/RailroadDiagram'
 
@@ -90,10 +93,20 @@ export const svg = rr.Diagram(
 |s3.credentials.access| Conditional. This field indicates the access key ID of AWS. It must be used with `s3.credentials.secret`. If not specified, RisingWave will automatically try to use `~/.aws/credentials`.|
 |s3.credentials.secret| Conditional. This field indicates the secret access key of AWS. It must be used wtih `s3.credentials.access`. If not specified, RisingWave will automatically try to use `~/.aws/credentials`.|
 |match_pattern| Conditional. This field is used to find object keys in `s3.bucket_name` that match the given pattern. Standard Unix-style glob syntax is supported. |
+|s3.endpoint_url| Conditional. The host URL for an S3-compatible object storage server. This allows users to use a different server instead of the standard S3 server. | 
 
+:::note
+Empty cells in CSV files will be parsed to `NULL`.
+:::
 
 ## Example
-Here is an example of connecting RisingWave to an S3 source to read data from individual streams.
+Here are examples of connecting RisingWave to an S3 source to read data from individual streams.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+<TabItem value="csv" label="CSV" default>
 
 ```sql
 CREATE TABLE s(
@@ -107,5 +120,28 @@ CREATE TABLE s(
     s3.bucket_name = 'example-s3-source',
     s3.credentials.access = 'xxxxx',
     s3.credentials.secret = 'xxxxx'
-) ROW FORMAT csv WITHOUT HEADER DELIMITED BY ',';
+) ROW FORMAT CSV WITHOUT HEADER DELIMITED BY ',';
 ```
+
+</TabItem>
+<TabItem value="json" label="JSON" default>
+
+```sql
+CREATE TABLE s3( 
+    id int,
+    name TEXT,
+    age int,
+    mark int,
+) WITH (
+    connector = 's3',
+    match_pattern = '%Ring%*.ndjson',
+    s3.region_name = 'ap-southeast-2',
+    s3.bucket_name = 'example-s3-source',
+    s3.credentials.access = 'xxxxx',
+    s3.credentials.secret = 'xxxxx',
+    s3.endpoint_url = 'https://s3.us-east-1.amazonaws.com'
+) ROW FORMAT JSON;
+```
+
+</TabItem>
+</Tabs>

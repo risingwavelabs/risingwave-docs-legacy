@@ -16,6 +16,29 @@ DROP SOURCE [ IF EXISTS ] [schema_name.]source_name;
 ```
 
 
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('DROP SOURCE'),
+        rr.Optional(
+            rr.Terminal('IF EXISTS')
+        ),
+        rr.Optional(
+            rr.Sequence(
+                rr.NonTerminal('schema_name'),
+                rr.Terminal('.')
+            ),
+        ),
+        rr.NonTerminal('source_name'),
+        rr.Terminal(';'),
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
 ## Parameters
 
 |Parameter                  | Description           |
@@ -39,3 +62,7 @@ This statement removes the "rw_source" source in the "rw_schema" schema from the
 ```sql
 DROP SOURCE IF EXISTS rw_schema.rw_source;
 ```
+
+## See also
+
+[`CREATE SOURCE`](sql-create-source.md) — Create a source.

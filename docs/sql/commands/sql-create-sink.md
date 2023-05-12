@@ -46,25 +46,14 @@ rr.Stack(
             rr.Sequence(
                rr.Terminal('connector'),
                rr.Terminal('='),
-               rr.Terminal('\'kafka\''),
+               rr.Terminal('\'connector_name\''),
                rr.Terminal(','),
             ),
             rr.Sequence(
-               rr.Terminal('kafka.brokers'),
+               rr.Terminal('connector_parameter'),
                rr.Terminal('='),
-               rr.Terminal('\'broker_address\''),
+               rr.Terminal('\'value\''),
                rr.Terminal(','),
-            ),
-            rr.Sequence(
-               rr.Terminal('kafka.topic'),
-               rr.Terminal('='),
-               rr.Terminal('\'topic_address\''),
-               rr.Terminal(','),
-            ),
-            rr.Sequence(
-               rr.Terminal('format'),
-               rr.Terminal('='),
-               rr.Terminal('\'format\''),
             ),
          ),
       ),
@@ -81,9 +70,9 @@ rr.Stack(
 
 Click a sink name to see the SQL syntax, options, and sample statement of sinking data from RisingWave to the sink.
 
- * [Kafka](../../guides/create-sink-kafka.md) (3.1.0 or later versions)
+ * [Kafka](../../guides/create-sink-kafka.md) (Supports versions 3.1.0 or later)
  * JDBC-available databases
-   * MySQL
+   * [MySQL](../../guides/sink-to-mysql.md) (Supports versions 5.7 and 8.0.x)
    * PostgreSQL
 
 
@@ -91,3 +80,13 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 
 [`DROP SINK`](sql-drop-sink.md) — Remove a sink.
 
+[`SHOW CREATE SINK`](sql-show-create-sink.md) — Show the SQL statement used to create a sink.
+
+
+:::note
+
+Timestamptz values are stored in UTC.
+
+When sinking downstream, timestamptz is represented in i64 with a resolution of microseconds.
+
+:::

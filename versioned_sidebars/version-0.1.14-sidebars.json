@@ -146,7 +146,7 @@
     },
     {
       "type": "category",
-      "label": "SQL reference",
+      "label": "SQL references",
       "collapsible": true,
       "collapsed": true,
       "items": [

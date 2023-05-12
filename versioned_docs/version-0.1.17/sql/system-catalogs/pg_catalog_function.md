@@ -15,7 +15,7 @@ Currently, RisingWave does not fully support all columns in the system catalogs 
 - [`pg_attrdef`](https://www.postgresql.org/docs/current/catalog-pg-attrdef.html)
 - [`pg_attribute`](https://www.postgresql.org/docs/current/catalog-pg-attribute.html)
 - [`pg_cast`](https://www.postgresql.org/docs/current/catalog-pg-cast.html)
-- ['pg_conversion'](https://www.postgresql.org/docs/current/catalog-pg-conversion.html)
+- [`pg_conversion`](https://www.postgresql.org/docs/current/catalog-pg-conversion.html)
 - [`pg_class`](https://www.postgresql.org/docs/current/catalog-pg-class.html)
 - [`pg_collation`](https://www.postgresql.org/docs/current/catalog-pg-collation.html)
 - [`pg_database`](https://www.postgresql.org/docs/current/catalog-pg-database.html)
@@ -35,7 +35,6 @@ Currently, RisingWave does not fully support all columns in the system catalogs 
 - [`pg_user`](https://www.postgresql.org/docs/current/view-pg-user.html)
 - [`pg_views`](https://www.postgresql.org/docs/current/view-pg-views.html)
 
-
 ## Functions
 
 |Function|Description|
@@ -44,5 +43,3 @@ Currently, RisingWave does not fully support all columns in the system catalogs 
 |`pg_terminate_backend()`| Terminate a backend. You can execute this against another backend that has exactly the same role as the user calling the function. In all other cases, you must be a superuser. For more details, see [System Administration Functions](https://www.postgresql.org/docs/current/functions-admin.html).|
 |`pg_backend_pid()`| Process ID of the server process attached to the current session. For more details, see [System Information Functions and Operators](https://www.postgresql.org/docs/current/functions-info.html).|
 |`version()` | Display the PostgreSQL version and the RisingWave version implemented in the current instance of RisingWave. Output example: `PostgreSQL 13.9-RW-0.2.0-alpha`.|
-
-
