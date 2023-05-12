@@ -460,3 +460,14 @@ table tr:first-child {
 .plugin-id-cloud .dropdown {
   display: none !important;
 }
+
+/* Codeblock with comment */
+.container .language-sql + div.theme-code-block {
+  border-top: 0;
+  margin-top: -28px;
+  padding-top: 0;
+}
+
+.container .language-sql + div.theme-code-block:hover div button {
+  display: none;
+}
