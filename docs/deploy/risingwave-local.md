@@ -132,7 +132,7 @@ To enable the connector node:
 
     <img
     src={require('../images/uncomment-connector-node.png').default}
-    alt="Relations between cdn servers and devops"
+    alt="Edit risedev.yml file for connector node"
     />
 
 The connector node will now be enabled when you run RisingWave. 
