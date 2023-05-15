@@ -114,7 +114,11 @@ To install and start RisingWave locally, see the [Get started](/get-started.md) 
 
 ### Enable the connector node in RisingWave
 
-The connector node implements the native JDBC sink connector in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo, and the connector node is enabled by default in this docker-compose configuration. To start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md).
+The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo.
+
+The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
+
+If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](../deploy/risingwave-local.md#optional-enable-the-connector-node).
 
 ## Create a sink
 
