@@ -433,6 +433,11 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
+                  id: 'sql/query-syntax/query-syntax-values-clause',
+                  label: 'VALUES clause',
+                },
+                {
+                  type: 'doc',
                   id: 'sql/query-syntax/query-syntax-where-clause',
                   label: 'WHERE clause',
                 },
