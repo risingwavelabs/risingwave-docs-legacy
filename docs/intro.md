@@ -8,7 +8,7 @@ keywords: [streaming database, risingwave, introduction]
 
 RisingWave is a distributed SQL database for stream processing. It is designed to reduce the complexity and cost of building real-time applications. RisingWave consumes streaming data, performs incremental computations when new data comes in, and updates results dynamically. As a database system, RisingWave maintains results in its own storage so that users can access data efficiently.
 
-RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Kinesis, Redpanda, and materialized CDC sources. 
+RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Kinesis, Redpanda, and materialized CDC sources.
 
 Data in RisingWave can be output to external targets such as message brokers, data warehouses, and data lakes for storage or additional processing.
 
@@ -20,19 +20,23 @@ Data in RisingWave can be output to external targets such as message brokers, da
   alt="RisingWave Architecture"
 />
 
+## Is RisingWave a modern alternative to Flink?
 
-## What can you do with RisingWave?
+Both Apache Flink and RisingWave are stream processing systems. However, RisingWave is more than just a modern alternative to Flink.
 
-Everything you do in RisingWave is via Postgres-compatible SQL. You can:
+If you are looking for a simple, cost-efficient, SQL-based solution for real-time data processing, RisingWave is an excellent choice. RisingWave is designed to be easy to use and can be deployed quickly. This makes it an ideal option for fast-growing businesses that require real-time data processing capabilities.
 
-* Collect and transform data from streams.
-* Create materialized views for the data that needs to be incrementally aggregated.
-* Query data in RisingWave, including persisted data and data you add or import to RisingWave.
-* Output data to external streams for storage or additional processing.
+For a detailed comparison between RisingWave and Flink, see [RisingWave vs. Flink](./risingwave-flink-comparison.md).
 
-<defaultButton text="Try it out" doc="get-started"/>
-<lightButton text="Supported sources" doc="sql-create-source#supported-sources"/>
-<lightButton text="Supported sinks" doc="sql-create-sink"/>
+## Use cases
+
+RisingWave can be an excellent fit for these categories of use cases.
+
+- [Streaming ETL](./use-cases.md#streaming-etl)
+- [Real-time analytics](./use-cases.md#real-time-analytics)
+- [Event-driven applications](./use-cases.md#event-driven-applications)
+
+They are related categories of use cases. Streaming ETL forms the basis for both real-time analytics and event-driven applications. Real-time analytics expands on streaming ETL by incorporating dashboards, while event-driven applications build on real-time analytics by adding logic to evaluate conditions and trigger follow-up actions.
 
 ## How does RisingWave work?
 
@@ -56,7 +60,7 @@ RisingWave is cost-effective. You pay for what you use as you scale. As compute 
 
 When data is processed in batches, if a job goes wrong, you can do some troubleshooting and rerun the job. However, it's not practical to rerun a stream processing job, because the stream never ends. In stream processing, it is crucial that data is calculated correctly and events are not missed or calculated twice. Otherwise, the data will not match the data in upstream or downstream systems.
 
-In RisingWave, data correctness is ensured by a checkpoint-based mechanism. Every time a checkpoint is triggered, the internal states of each operator will be flushed to the cloud storage. When a failover occurs, the operator recovers from the latest checkpoint on the cloud storage. 
+In RisingWave, data correctness is ensured by a checkpoint-based mechanism. Every time a checkpoint is triggered, the internal states of each operator will be flushed to the cloud storage. When a failover occurs, the operator recovers from the latest checkpoint on the cloud storage.
 
 <lightButton text="See the architecture" doc="architecture"/>
 <lightButton text="Access the source code ⧉" url="https://github.com/risingwavelabs/risingwave"/>
