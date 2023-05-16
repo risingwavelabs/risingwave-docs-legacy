@@ -126,6 +126,7 @@ p.rightText {
 }
 
 .happyReact .title {
+  font-family: var(--ifm-font-family-base) !important;
   text-align: center;
 }
 
