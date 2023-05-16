@@ -124,7 +124,6 @@ For materialized sources with primary key constraints, if a new data record with
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
-|upsert| Optional. If true, RisingWave will read messages from Kafka topics in the upsert fashion.|
 
 ### Other parameters
 
@@ -169,7 +168,6 @@ ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 CREATE SOURCE IF NOT EXISTS source_abc 
 WITH (
    connector='kafka',
-   upsert='true',
    properties.bootstrap.server='localhost:9092',
    topic='test_topic'
 )
@@ -205,7 +203,6 @@ CREATE TABLE IF NOT EXISTS source_abc (
 )
 WITH (
    connector='kafka',
-   upsert='true',
    properties.bootstrap.server='localhost:9092',
    topic='t1'
 ) ROW FORMAT UPSERT_JSON;
@@ -289,14 +286,14 @@ To learn about compatibility types for Schema Registry and the changes allowed, 
 
 If your Kafka source service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](../guides/aws-privatelink-setup.md).
 
-To create a Kafka source with a PrivateLink connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters. 
+To create a Kafka source with a PrivateLink connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters.
 
 |Parameter| Notes|
 |---|---|
 |`connection.name`| The name of the connection, which comes from the connection created using the `CREATE CONNECTION` statement.|
 |`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
 
-Here is an example of creating a Kafka source using a PrivateLink connection. Notice that `{"port": 8001}` corresponds to the broker `ip1:9092`, and `{"port": 8002}` corresponds to the broker `ip2:9092`. 
+Here is an example of creating a Kafka source using a PrivateLink connection. Notice that `{"port": 8001}` corresponds to the broker `ip1:9092`, and `{"port": 8002}` corresponds to the broker `ip2:9092`.
 
 ```sql
 CREATE SOURCE tcp_metrics_rw (
