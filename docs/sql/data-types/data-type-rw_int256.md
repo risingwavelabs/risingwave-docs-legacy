@@ -141,7 +141,7 @@ SELECT hex_to_int256('-0x11');
 -17
 ```
 ---
-### `Deviation and variance`
+### `Standard deviation and variance`
 
 Returns population standard deviation, sample standard deviation, population variance, and sample variance.
 
