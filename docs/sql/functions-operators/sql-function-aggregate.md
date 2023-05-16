@@ -16,5 +16,9 @@ The DISTINCT option, ORDER BY clauses, and FILTER clauses can be used in aggrega
 |count( *expression* ) → bigint|Returns the number of non-null rows. Input types include bool, smallint, int, bigint, numeric, real, double precision, and string.|
 |max( *expression* ) → same as input type|Returns the maximum value in a set of values. Input types include smallint, int, bigint, numeric, real, double precision, and string.|
 |min( *expression* ) → same as input type|Returns the minimum value in a set of values. Input types include smallint, int, bigint, numeric, real, double precision, and string.|
+| stddev_pop( *expression* ) → *output_value* | Calculates the population standard deviation of the input values. Returns `NULL` if the input contains no non-null values. |
+| stddev_samp( *expression* ) → *output_value* | Calculates the sample standard deviation of the input values. Returns `NULL` if the input contains fewer than two non-null values. |
 |string_agg( *expression*, *delimiter_string* ) → *output_string*|Combines non-null values into a string, separated by *delimiter_string*.|
 |sum ( *expression* )|Returns the sum of all input values. Input types include smallint, int, bigint, numeric, real, and double precision. Return type is bigint for smallint or int inputs, numeric for bigint inputs, otherwise the same as the input data type.|
+| var_pop( *expression* ) → *output_value* | Calculates the population variance of the input values. Returns `NULL` if the input contains no non-null values. |
+| var_samp( *expression* ) → *output_value* | Calculates the sample variance of the input values. Returns `NULL` if the input contains fewer than two non-null values.|
