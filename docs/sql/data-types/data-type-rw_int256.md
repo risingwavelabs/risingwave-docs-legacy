@@ -40,30 +40,6 @@ Or convert `rw_int256` to `double`.
 
 ## Supported functions
 
-### `hex_to_int256`
-
-Converts a hexadecimal string to a 256-bit integer.
-
-Note that the input string must start with "0x" or "-0x". This function is not case-sensitive.
-
-```sql title=Signature
-hex_to_int256 ( string ) -> rw_int256
-```
-
-```sql title=Example-1
-SELECT hex_to_int256('0xdeadbeef');
-```
-```
-3735928559
-```
-```sql title=Example-2
-SELECT hex_to_int256('-0x11');
-```
-```
--17
-```
-
----
 ### `count`
 
 Returns the number of non-null rows.
@@ -138,6 +114,29 @@ SELECT avg(v) FROM t;
 ```
 ```
 0
+```
+---
+### `hex_to_int256`
+
+Converts a hexadecimal string to a 256-bit integer.
+
+Note that the input string must start with "0x" or "-0x". This function is not case-sensitive.
+
+```sql title=Signature
+hex_to_int256 ( string ) -> rw_int256
+```
+
+```sql title=Example-1
+SELECT hex_to_int256('0xdeadbeef');
+```
+```
+3735928559
+```
+```sql title=Example-2
+SELECT hex_to_int256('-0x11');
+```
+```
+-17
 ```
 ---
 ### `Deviation and variance`
