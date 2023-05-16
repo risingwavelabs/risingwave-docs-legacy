@@ -23,31 +23,18 @@ In this tutorial, you will learn how to track the number of clicks a webpage get
 
 In the demo cluster, we packaged RisingWave and a workload generator. The workload generator will start to generate random traffic and feed them into Kafka as soon as the cluster is started.
 
-First, clone the [risingwave-demo](https://github.com/singularity-data/risingwave-demo) repository to the environment.
+First, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository to the environment.
 
 ```shell
-git clone https://github.com/risingwavelabs/risingwave-demo.git
+git clone https://github.com/risingwavelabs/risingwave.git
 ```
 
-Now navigate to the `clickstream` directory and start the demo cluster from the docker compose file. 
+Now navigate to the `integration_tests/clickstream` directory and start the demo cluster from the docker compose file. 
 
 ```shell
-cd risingwave-demo/clickstream
-docker-compose up -d
+cd risingwave/integration_tests/clickstream
+docker compose up -d
 ```
-
-:::note
-
-If the following error occurs:
-```shell
-ERROR: The Compose file './docker-compose.yml' is invalid because:
-'name' does not match any of the regexes: '^x-'
-```
-Use `docker compose` instead of `docker-compose`, or enable **Use Docker Compose V2** on the Settings page of Docker Desktop.
-
-For more information, see [Docker Documentation](https://docs.docker.com/compose/#compose-v2-and-the-new-docker-compose-command).
-
-:::
 
 Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, data of materialized views will be stored in the MinIO instance.
 
@@ -88,7 +75,7 @@ First, the `tumble()` function will map each event into a 10-minute window to cr
 
 Next, the `hop()` function will create 24-hour time windows every 10 minutes. Each event will be mapped to corresponding windows. Finally, they will be grouped by `target_id` and `window_time` to calculate the total number of clicks of each thread within 24 hours. 
 
-Please refer to [User time windows](../sql/functions-operators/sql-function-time-window.md) for an explanation of the tumble and hop functions and aggregations.
+Please refer to [User time windows](/sql/functions-operators/sql-function-time-window.md) for an explanation of the tumble and hop functions and aggregations.
 
 
 ```sql
@@ -96,7 +83,7 @@ CREATE MATERIALIZED VIEW thread_view_count AS WITH t AS (
     SELECT
         target_id,
         COUNT() AS view_count,
-        window_start as window_time
+        window_start AS window_time
     FROM
         TUMBLE(
             user_behaviors,
@@ -156,9 +143,9 @@ We can also query results by specifying a time interval. To learn more about dat
 
 ```sql
 SELECT * FROM thread_view_count
-WHERE window_start > ('2022-9-23 06:50' :: TIMESTAMP - INTERVAL '1 day')
+WHERE window_start > ('2022-09-23 06:50' :: TIMESTAMP - INTERVAL '1 day')
 AND window_start < 
-('2022-9-23 07:40' :: TIMESTAMP - INTERVAL '1 day' + INTERVAL '10 minutes')
+('2022-09-23 07:40' :: TIMESTAMP - INTERVAL '1 day' + INTERVAL '10 minutes')
 AND target_id = 'thread58'
 ORDER BY window_start;
 ```

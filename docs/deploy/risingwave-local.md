@@ -1,7 +1,7 @@
 ---
 id: risingwave-local
-title: Run RisingWave locally
-description: Install and run RisingWave locally in your environment.
+title: Run RisingWave directly on your host machine
+description: Install and run RisingWave directly on your host machine.
 slug: /risingwave-local
 ---
 
@@ -24,7 +24,7 @@ import TabItem from '@theme/TabItem';
 1. Download the pre-built binary.
 
     ```shell
-    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.16/risingwave-v0.1.16-x86_64-unknown-linux.tar.gz
+    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.17/risingwave-v0.1.17-x86_64-unknown-linux.tar.gz
     ```
 
     > You can find previous binary releases in [Release notes](/release-notes.md).
@@ -32,7 +32,7 @@ import TabItem from '@theme/TabItem';
 2. Unzip the binary.
 
     ```shell
-    tar xvf risingwave-v0.1.16-x86_64-unknown-linux.tar.gz
+    tar xvf risingwave-v0.1.17-x86_64-unknown-linux.tar.gz
     ```
 
 3. Start RisingWave in playground mode.
@@ -74,7 +74,7 @@ import TabItem from '@theme/TabItem';
     ```
 
     :::note
-    If you are using a Mac with Apple silicon (such as the M1 / M2 chip), you need to install `LLVM` by running `brew llvm`.
+    If you are using a Mac with Apple silicon (such as the M1 / M2 chip), you need to install `LLVM` by running `brew install llvm`.
     :::
 
     </TabItem>
@@ -117,3 +117,22 @@ psql -h localhost -p 4566 -d dev -U root
 ```
     
 You can now [connect a streaming source to RisingWave](/sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](risingwave-sql-101.md).
+
+## Optional: Enable the connector node
+
+The RisingWave connector node is a separate Java component that allows RisingWave to be integrated with external systems. It can be used to consume CDC events and sink data to downstream databases. 
+
+To enable the connector node:
+
+1. Navigate to where your `risingwave` directory is located and run `./risedev configure`.
+
+2. Enable the **[Build] Build RisingWave Connector (Java)** option.
+
+3. Uncomment `use connector-node` in the risedev.yml file like below.
+
+    <img
+    src={require('../images/uncomment-connector-node.png').default}
+    alt="Edit risedev.yml file for connector node"
+    />
+
+The connector node will now be enabled when you run RisingWave. 

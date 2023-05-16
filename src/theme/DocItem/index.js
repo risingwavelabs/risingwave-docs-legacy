@@ -29,7 +29,11 @@ export default function DocItem(props) {
       </HtmlClassNameProvider>
       {metadata.editUrl && (
         <div className="row">
-          <FeedbackForm editUrl={metadata.editUrl} requestIssueUrl={requestIssueUrl} />
+          <FeedbackForm
+            unversionedId={metadata.unversionedId}
+            editUrl={metadata.editUrl}
+            requestIssueUrl={requestIssueUrl}
+          />
         </div>
       )}
     </DocProvider>

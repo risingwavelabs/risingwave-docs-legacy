@@ -5,26 +5,24 @@ description: Summary of integrations
 slug: /rw-integration-summary
 ---
 
-We aim to minimize the hassle of integrating RisingWave with your existing data stack. With that purpose in mind, we will try to support the mainstream data formats, tools, and as many systems as possible. 
+We aim to minimize the hassle of integrating RisingWave with your existing data stack. With that purpose in mind, we will try to support the mainstream data formats, tools, and as many systems as possible.
 
-However, with limited resources, we cannot achieve this goal in a short period of time. If a connector or integration is crucial to you but has not been supported, please let us know in the [RisingWave Slack workspace](https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw), or by clicking the thumb-up icon in the corresponding cell on this page. We will prioritize the development based on the number of requests for each system. 
+However, with limited resources, we cannot achieve this goal in a short period of time. If a connector or integration is crucial to you but has not been supported, please let us know in the [RisingWave Slack workspace](https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw), or by clicking the thumb-up icon in the corresponding cell on this page. We will prioritize the development based on the number of requests for each system.
 
 If you wish to receive notifications when a connector or integration is available, you can click the small bell icon to enter your email address.
 
 For tools or integrations that you would like to use but are not listed in the tables below, you can [submit a feature request](https://github.com/risingwavelabs/risingwave/issues/new?assignees=&labels=type%2Ffeature&template=feature_request.yml), or let us know in the Slack workspace.
 
-
 ## Message brokers or streaming services
 
 |Broker or streaming service| Source | Sink |
 |---|---|---|
-|Kafka | Available. See [Ingest data from Kafka](/create-source/create-source-kafka.md) for details. | Available. See [CREATE SINK](/sql/commands/sql-create-sink.md) for details.| |
-|Redpanda | Available. See [Ingest data from Redpanda](/create-source/create-source-redpanda.md) for details. |Available. See [CREATE SINK](/sql/commands/sql-create-sink.md) for details.|
+|Kafka | Available. See [Ingest data from Kafka](/create-source/create-source-kafka.md) for details. | Available. See [Sink to Kafka](./guides/create-sink-kafka.md) for details.| |
+|Redpanda | Available. See [Ingest data from Redpanda](/create-source/create-source-redpanda.md) for details. |Available. See [Sink to Kafka](./guides/create-sink-kafka.md) for details.|
 |Apache Pulsar|Available. See [Ingest data from Pulsar](/create-source/create-source-pulsar.md) for details. | Researching <voteNotify note="pulsar_sink" />|
-|DataStax Astra Streaming| Available | Researching <voteNotify note="astra_streaming_sink" />|
+|DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](./guides/connector-astra-streaming.md) for details. | Researching <voteNotify note="astra_streaming_sink" />|
 |StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
 |Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Researching <voteNotify note="kinesis_sink" />|
-|Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
 
 ## ETL/ELT and data integration
 
@@ -50,16 +48,16 @@ For tools or integrations that you would like to use but are not listed in the t
 
 |System | Source | Sink |
 |---|---|----|
-|Postgres| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details.| Researching <voteNotify note="pg_sink" />|
-|AWS RDS (Postgres)| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. |Researching <voteNotify note="aurora_pg_sink" />|
+|Postgres| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details.| Available. See [Sink data from RisingWave to PostgreSQL](./guides/sink-to-postgres.md) for details.|
+|AWS RDS (Postgres)| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. |Available. See [Sink data from RisingWave to PostgreSQL](./guides/sink-to-postgres.md) for details.|
 |AWS Aurora (Postgres)| In progress <voteNotify note="aurora_pg_source" />|Researching <voteNotify note="aurora_pg_sink" />|
 
 ### MySQL
 
 |System | Source | Sink |
 |---|---|----|
-|MySQL | Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Researching <voteNotify note="mysql_sink" />|
-|AWS RDS (MySQL)|Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Researching <voteNotify note="aurora_mysql_sink" /> |
+|MySQL | Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md).|
+|AWS RDS (MySQL)|Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md).|
 |AWS Aurora (MySQL)|In progress <voteNotify note="aurora_mysql_source" />| Researching <voteNotify note="aurora_mysql_sink" /> |
 
 ### Other databases
@@ -93,14 +91,14 @@ For tools or integrations that you would like to use but are not listed in the t
 
 |System ||Availability |
 |---|-|--|
-|Apache Superset| |Available. See [Visualize RisingWave data in Superset](/guides/grafana-integration.md) for details. |
+|Apache Superset| |Available. See [Visualize RisingWave data in Superset](/guides/superset-integration.md) for details. |
 |Cube.js| | Researching <voteNotify note="cubejs" />|
 |DBeaver| |In progress <voteNotify note="dbeaver" />|
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
 |Jupyter Notebook||Researching <voteNotify note="jupyter" />|
 |Looker||Researching <voteNotify note="looker" /> |
 |Metabase ||In progress <voteNotify note="metabase" />|
-
+|Redash || Available |
 
 ## Other systems
 

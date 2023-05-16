@@ -62,7 +62,7 @@ export default function DocItemLayout({ children }) {
               reactionsEnabled="0"
               emitMetadata="0"
               inputPosition="top"
-              theme={colorMode}
+              theme={colorMode === "dark" ? "transparent_dark" : colorMode}
               lang="en"
               loading="lazy"
               crossorigin="anonymous"
