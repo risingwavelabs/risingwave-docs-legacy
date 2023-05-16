@@ -52,10 +52,12 @@ If you are running RisingWave locally with the pre-built library or with the sou
 
 ### Syntax
 
+Note that a primary key must be specified.
+
 ```sql
 CREATE TABLE [ IF NOT EXISTS ] source_name (
     column_name data_type PRIMARY KEY , ...
-    PRIMARY KEY ( column_name, ... )
+    [PRIMARY KEY ( column_name, ... )]
 ) 
 WITH (
     connector='citus-cdc',
