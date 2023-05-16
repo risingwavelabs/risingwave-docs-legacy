@@ -147,26 +147,24 @@ html[data-theme="dark"] {
 }
 
 h1 {
-  font-family: Roboto-ExtraLight !important;
+  font-family: Roboto-Light !important;
   letter-spacing: -0.01em;
+  font-weight: 300;
 }
 
 h2 {
+  font-weight: 300;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--ifm-color-neutral-900);
-  font-family: var(--ifm-font-family-base) !important;
 }
 
 [data-theme="dark"] h2 {
   border-bottom: 1px solid var(--ifm-color-primary);
 }
 
-h3 {
-  font-family: Roboto-Medium !important;
-}
-
+h3,
 h4 {
-  font-family: Roboto-SemiBold !important;
+  font-weight: 300;
 }
 
 /* Custom Ordered List  */
