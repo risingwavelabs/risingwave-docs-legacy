@@ -15,7 +15,7 @@ title: String functions and operators
 
 |Function|Description|Example|
 |---|---|---|
-| ascii( *input_string* ) → *int* | Returns the Unicode code point of the first character of the *input_string*. If the string is empty, it returns `NULL`. | `ascii('RisingWave')` → `82` <br /> `ascii('🌊')` → `127754` |
+| `ascii`( *input_string* ) → *int* | Returns the Unicode code point of the first character of the *input_string*. If the string is empty, it returns `NULL`. | `ascii('RisingWave')` → `82` <br /> `ascii('🌊')` → `127754` |
 |`trim` ( [ LEADING \| TRAILING \| BOTH ] \[ *characters* ] FROM *input_string* ) → *output_string* |Trims the longest contiguous substring of characters from the beginning, end, or both ends (BOTH by default) of `input_string` that contains only the characters specified in `characters` (which defaults to whitespace if not specified).|`trim(' cake ')` → 'cake'<br/>`trim(both 'cba' from 'abcxyzabc')` → `xyz`<br/>|
 |`trim` ( [ LEADING \| TRAILING \| BOTH ] [ FROM ] *input_string* [, *characters* ] ) → *output_string* |An alternative syntax of `trim()`.|`trim(both from 'abcxyzabc', 'cba')` → `xyz`<br/>`trim('abcxyzabc', 'cba')` → `xyz`|
 |`btrim` ( *input_string* [, *characters* ]) → *output_string*|Equals to `trim (BOTH)`.|`btrim(' cake ')` → 'cake'<br/>`btrim('abcxyzabc', 'cba')` → `xyz`|<!--Author: I didn't use the code tag `` for what's returned because `` truncates the empty spaces at the beginning and the end, and in this case, spaces should be kept. So I used '' which keeps the spaces. Same for the next two functions.-->
