@@ -23,7 +23,7 @@
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
   --ifm-font-family-base: Roboto, sans-serif;
-  --ifm-font-family-button: RobotoMono, Roboto, sans-serif;
+  --ifm-font-family-button: Roboto, sans-serif;
   --ifm-paragraph-margin-bottom: 0.5rem;
   --ifm-list-paragraph-margin: 0.2rem;
   letter-spacing: 0px;
@@ -62,7 +62,7 @@
 }
 
 html[data-theme="dark"] {
-  --ifm-background-color: #001f2b;
+  --ifm-background-color: #091720;
   --ifm-background-surface-color: #222f3d;
   --ifm-hover-overlay: #ffffff0d;
   --ifm-color-content: #e3e3e3;
@@ -74,7 +74,7 @@ html[data-theme="dark"] {
   --ifm-breadcrumb-color-active: #86f2dd;
   --ifm-menu-color-active: #86f2dd;
   --ifm-menu-color: #9da1a6;
-  --docusaurus-collapse-button-bg: #001f2b !important;
+  --docusaurus-collapse-button-bg: #091720 !important;
   --ifm-toc-border-color: #001f2b;
 }
 
@@ -122,7 +122,7 @@ html[data-theme="dark"] {
 }
 
 [data-theme="dark"] .navbar--fixed-top {
-  background-color: #001f2bef;
+  background-color: #091720f5;
 }
 
 .clean-btn {
