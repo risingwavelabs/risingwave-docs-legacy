@@ -1,39 +1,76 @@
+/* Roboto */
 @font-face {
-  font-family: Montserrat;
-  src: url(/static/font/Montserrat-Regular.ttf);
+  font-family: Roboto;
+  src: url(/static/font/Roboto/Roboto-Regular.ttf);
 }
 
 @font-face {
-  font-family: Montserrat-Black;
-  src: url(/static/font/Montserrat-Black.ttf);
+  font-family: Roboto-Black;
+  src: url(/static/font/Roboto/Roboto-Black.ttf);
 }
 
 @font-face {
-  font-family: Montserrat-Light;
-  src: url(/static/font/Montserrat-Light.ttf);
+  font-family: Roboto-Light;
+  src: url(/static/font/Roboto/Roboto-Light.ttf);
 }
 
 @font-face {
-  font-family: Montserrat-Medium;
-  src: url(/static/font/Montserrat-Medium.ttf);
+  font-family: Roboto-Medium;
+  src: url(/static/font/Roboto/Roboto-Medium.ttf);
 }
 
 @font-face {
-  font-family: Montserrat-Thin;
-  src: url(/static/font/Montserrat-Thin.ttf);
+  font-family: Roboto-Thin;
+  src: url(/static/font/Roboto/Roboto-Thin.ttf);
 }
 
 @font-face {
-  font-family: Montserrat-ExtraLight;
-  src: url(/static/font/Montserrat-ExtraLight.ttf);
+  font-family: Roboto-Bold;
+  src: url(/static/font/Roboto/Roboto-Bold.ttf);
 }
 
 @font-face {
-  font-family: Montserrat-SemiBold;
-  src: url(/static/font/Montserrat-SemiBold.ttf);
+  font-family: Roboto-Italic;
+  src: url(/static/font/Roboto/Roboto-Italic.ttf);
+}
+
+/* Roboto Mono */
+@font-face {
+  font-family: RobotoMono;
+  src: url(/static/font/RobotoMono/RobotoMono-Regular.ttf);
 }
 
 @font-face {
-  font-family: Mulish;
-  src: url(/static/font/Mulish-Regular.ttf);
+  font-family: RobotoMono-ExtraLight;
+  src: url(/static/font/RobotoMono/RobotoMono-ExtraLight.ttf);
+}
+
+@font-face {
+  font-family: RobotoMono-Light;
+  src: url(/static/font/RobotoMono/RobotoMono-Light.ttf);
+}
+
+@font-face {
+  font-family: RobotoMono-Medium;
+  src: url(/static/font/RobotoMono/RobotoMono-Medium.ttf);
+}
+
+@font-face {
+  font-family: RobotoMono-Thin;
+  src: url(/static/font/RobotoMono/RobotoMono-Thin.ttf);
+}
+
+@font-face {
+  font-family: RobotoMono-Bold;
+  src: url(/static/font/RobotoMono/RobotoMono-Bold.ttf);
+}
+
+@font-face {
+  font-family: RobotoMono-SemiBold;
+  src: url(/static/font/RobotoMono/RobotoMono-SemiBold.ttf);
+}
+
+@font-face {
+  font-family: RobotoMono-Italic;
+  src: url(/static/font/RobotoMono/RobotoMono-Italic.ttf);
 }
