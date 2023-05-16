@@ -2,6 +2,7 @@
 id: data-type-rw_int256
 slug: /data-type-rw_int256
 title: rw_int256
+description: rw_int256 is a custom data type that represents a signed 256-bit integer with a storage size of 32 bytes.
 ---
 
 :::caution Experimental feature
@@ -21,6 +22,7 @@ You can define a column with the `rw_int256` type:
 ```sql title=Syntax
 CREATE TABLE table_name (column_name rw_int256);
 ```
+
 ```sql title=Example
 CREATE TABLE t (v rw_int256);
 INSERT INTO t VALUES (1), (100), (10000), (100000000), (10000000000000000), ('100000000000000000000000000000000'), (0), (-1), (-100), (-10000), (-100000000), (-10000000000000000), ('-100000000000000000000000000000000');
