@@ -11,6 +11,8 @@ A source is a resource that RisingWave can read data from. You can create a sour
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or data transformations.
 
+RisingWave supports exactly-once semantics by reading transactional messages only when the associated transaction has been committed. This is the set behavior for RisingWave and not configurable.
+
 ## Syntax
 
 ```sql
@@ -136,6 +138,10 @@ For materialized sources with primary key constraints, if a new data record with
 ## Example
 
 Here is an example of connecting RisingWave to a Kafka broker to read data from individual topics.
+
+:::note
+RisingWave supports reading messages that have been compressed by [zstd](http://www.zstd.net/). Additional configurations are not required.
+:::
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -278,6 +284,35 @@ To learn more about Confluent Schema Registry and how to set up a Schema Registr
 Based on the compatibility type that is configured for the schema registry, some changes are allowed without changing the schema to a different version. In this case, RisingWave will continue using the original schema definition. To use a newer version of the writer schema in RisingWave, you need to drop and recreate the source.
 
 To learn about compatibility types for Schema Registry and the changes allowed, see [Compatibility Types](https://docs.confluent.io/platform/current/schema-registry/avro.html#compatibility-types).
+
+## Create source with AWS PrivateLink connection
+
+If your Kafka source service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](../guides/aws-privatelink-setup.md).
+
+To create a Kafka source with a PrivateLink connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters. 
+
+|Parameter| Notes|
+|---|---|
+|`connection.name`| The name of the connection, which comes from the connection created using the `CREATE CONNECTION` statement.|
+|`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
+
+Here is an example of creating a Kafka source using a PrivateLink connection. Notice that `{"port": 8001}` corresponds to the broker `ip1:9092`, and `{"port": 8002}` corresponds to the broker `ip2:9092`. 
+
+```sql
+CREATE SOURCE tcp_metrics_rw (
+   device_id VARCHAR,
+   metric_name VARCHAR,
+   report_time TIMESTAMP,
+   metric_value DOUBLE PRECISION
+) WITH (
+   connector = 'kafka',
+   topic = 'tcp_metrics',
+   properties.bootstrap.server = 'ip1:9092, ip2:9092',
+   connection.name = 'my_connection',
+   privatelink.targets = '[{"port": 8001}, {"port": 8002}]',
+   scan.startup.mode = 'earliest'
+) ROW FORMAT JSON;
+```
 
 ## TLS/SSL encryption and SASL authentication
 

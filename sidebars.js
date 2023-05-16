@@ -217,6 +217,19 @@ const sidebars = {
               id: 'data-ingestion',
             },
             {
+              type: 'category',
+              label: 'Connections',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: 'doc',
+                  label: 'AWS PrivateLink',
+                  id: 'guides/aws-privatelink-setup',
+                },
+              ]
+            },
+            {
               type: 'doc',
               label: 'Apache Kafka',
               id: 'create-source/create-source-kafka',
@@ -304,6 +317,11 @@ const sidebars = {
               type: 'doc',
               label: 'PostgreSQL',
               id: 'guides/sink-to-postgres'
+            },
+            {
+              type: 'doc',
+              label: 'TiDB',
+              id: 'guides/sink-to-tidb'
             },
             {
               type: 'doc',
@@ -420,6 +438,11 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
+                  id: 'sql/query-syntax/query-syntax-values-clause',
+                  label: 'VALUES clause',
+                },
+                {
+                  type: 'doc',
                   id: 'sql/query-syntax/query-syntax-where-clause',
                   label: 'WHERE clause',
                 },
@@ -480,7 +503,7 @@ const sidebars = {
               items: [
                 {
                   type: 'doc',
-                  id: 'sql/query-syntax/user-defined-functions',
+                  id: 'sql/functions-operators/user-defined-functions',
                 },
                 {
                   type: 'doc',

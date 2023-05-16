@@ -24,7 +24,7 @@ import TabItem from '@theme/TabItem';
 1. Download the pre-built binary.
 
     ```shell
-    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.17/risingwave-v0.1.17-x86_64-unknown-linux.tar.gz
+    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.18.0/risingwave-v0.18.0-x86_64-unknown-linux.tar.gz
     ```
 
     > You can find previous binary releases in [Release notes](/release-notes.md).
@@ -32,7 +32,7 @@ import TabItem from '@theme/TabItem';
 2. Unzip the binary.
 
     ```shell
-    tar xvf risingwave-v0.1.17-x86_64-unknown-linux.tar.gz
+    tar xvf risingwave-v0.18.0-x86_64-unknown-linux.tar.gz
     ```
 
 3. Start RisingWave in playground mode.
@@ -98,7 +98,6 @@ import TabItem from '@theme/TabItem';
     ./risedev playground    #Or ./risedev p
     ```
 
-
 </TabItem>
 </Tabs>
 
@@ -115,5 +114,5 @@ Open a new terminal window and run:
 ```shell
 psql -h localhost -p 4566 -d dev -U root
 ```
-    
+
 You can now [connect a streaming source to RisingWave](/sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](risingwave-sql-101.md).
