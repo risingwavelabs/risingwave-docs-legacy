@@ -43,12 +43,15 @@
   --ifm-color-primary-darkest: #0175b8;
   --ifm-color-primary-light: #b6c7f3;
   --ifm-color-primary-lighter: #c7d4f6;
-  --ifm-color-primary-lightest: #f9fafe;
+  --ifm-color-primary-lightest: #233064;
   --ifm-background-color: #1f2765;
   --ifm-navbar-link-color: #e3e3e3;
-  --ifm-font-color-base: #b7b7c3;
   --ifm-heading-color: #e3e3e3;
-  /* --ifm-toc-link-color: #b7b7c3; */
+
+  --ifm-blockquote-color: #b8c4c9;
+  --ifm-font-color-base: #b8c4c9;
+  --ifm-menu-color: #b8c4c9;
+  --ifm-toc-link-color: #b8c4c9;
 
   --ifm-color-success-dark: rgb(0, 139, 0);
   --ifm-color-success-darker: rgb(0, 139, 0);
