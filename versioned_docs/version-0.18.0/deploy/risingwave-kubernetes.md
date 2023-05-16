@@ -164,7 +164,7 @@ By default, the Operator creates a service for the frontend component, through w
 1. Attach to the Pod so that you can execute commands inside the container.
 
     ```shell
-    kubectl exec -it psql-console bash
+    kubectl exec -it psql-console -- bash
     ```
 
 1. Connect to RisingWave via `psql`.

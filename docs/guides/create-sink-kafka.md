@@ -7,7 +7,7 @@ slug: /create-sink-kafka
 
 This topic describes how to sink data from RisingWave to a Kafka broker and how to specify security (encryption and authentication) settings.
 
-A sink is an external target that you can send data to. To stream data out of RisingWave, you need to create a sink. Use the `CREATE SINK` statement to create a sink. You can create a sink with data from a materialized source, a materialized view, or a table.
+A sink is an external target that you can send data to. To stream data out of RisingWave, you need to create a sink. Use the `CREATE SINK` statement to create a sink. You can create a sink with data from a materialized source, a materialized view, or a table. RisingWave only supports writing messages in non-transactional mode.
 
 ## Syntax
 
@@ -35,7 +35,6 @@ All WITH options are required except `force_append_only` and `primary_key`.
 |type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul>|
 |force_append_only| If `true`, forces the sink to be `append-only`, even if it cannot be.| 
 |primary_key| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.| 
-|use_transaction| If set to `false`, the connector will use at-least-once processing, allowing for non-atomic writes. This might cause duplicated results. By default, `use_transaction` is `true`.|
 
 
 ## Examples

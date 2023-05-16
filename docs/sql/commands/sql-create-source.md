@@ -213,3 +213,9 @@ ROW FORMAT UPSERT_AVRO
 ```
 
 For supported sources and formats, see [Overview](data-ingestion.md).
+
+## See also
+
+[`DROP SOURCE`](sql-drop-source.md) — Remove a source.
+
+[`SHOW CREATE SOURCE`](sql-show-create-source.md) — Show the SQL statement used to create a source.

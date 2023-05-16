@@ -62,3 +62,7 @@ This statement removes the "rw_source" source in the "rw_schema" schema from the
 ```sql
 DROP SOURCE IF EXISTS rw_schema.rw_source;
 ```
+
+## See also
+
+[`CREATE SOURCE`](sql-create-source.md) — Create a source.
