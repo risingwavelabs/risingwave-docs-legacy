@@ -42,9 +42,11 @@ There are a few limitations when ingesting CDC data from Citus in RisingWave.
 
 ## Enable the connector node in RisingWave
 
-The connector node is enabled by default if you run RisingWave with Docker. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md) or [Docker](../deploy/risingwave-docker-image.md). 
+The native CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
 
-If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn how to start the connector node, see [Enable the connector node](../deploy/risingwave-local.md#optional-enable-the-connector-node).
+The connector node is enabled by default in the docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
+
+If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](../deploy/risingwave-local.md#optional-enable-the-connector-node).
 
 ## Create a table in RisingWave using the native CDC connector
 
