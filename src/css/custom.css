@@ -183,7 +183,10 @@ h4 {
   margin-left: 1.5rem;
 }
 
-.theme-doc-markdown ol li:not(.tabs__item) > :first-child:not(code, strong)::before {
+.theme-doc-markdown
+  ol
+  li:not(.tabs__item)
+  > :first-child:not(code, strong)::before {
   font-size: 0.75rem;
   font-weight: bold;
   counter-increment: circle-counter;
@@ -462,7 +465,7 @@ table tr:first-child {
 }
 
 /* Codeblock with comment */
-.container .language-sql + div.theme-code-block {
+.container .language-sql + div.theme-code-block:not(.language-sql) {
   border-top: 0;
   margin-top: -28px;
   padding-top: 0;
