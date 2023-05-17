@@ -61,8 +61,9 @@ export const svg = rr.Diagram(
                 rr.OneOrMore(
                     rr.Sequence(
                         rr.NonTerminal('include_column'),
-                        rr.Optional(rr.Terminal(',')),
+                        
                     ),
+                    rr.Terminal(','),
                 ),
                 rr.Terminal(')'),
             ),
@@ -74,8 +75,8 @@ export const svg = rr.Diagram(
                 rr.OneOrMore(
                     rr.Sequence(
                         rr.NonTerminal('distributed_column'),
-                        rr.Optional(rr.Terminal(',')),
                     ),
+                    rr.Terminal(','),
                 ),
                 rr.Terminal(')'),
             ),
