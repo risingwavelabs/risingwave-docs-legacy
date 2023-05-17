@@ -452,10 +452,10 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 
 For SASL/SCRAM with SSL, you also need to include these SSL parameters:
 
-- properties.ssl.ca.location
-- properties.ssl.certificate.location
-- properties.ssl.key.location
-- properties.ssl.key.password
+- `properties.ssl.ca.location`
+- `properties.ssl.certificate.location`
+- `properties.ssl.key.location`
+- `properties.ssl.key.password`
 
 Here is an example of creating a materialized source authenticated with SASL/SCRAM without SSL encryption.
 
