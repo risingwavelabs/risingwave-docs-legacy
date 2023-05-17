@@ -45,7 +45,7 @@ The table `taxi_trips` has three columns:
 }
 ```
 
-The following statement inserts four new rows into "taxi_trips".
+The following statement inserts four new rows into `taxi_trips`.
 
 ```sql
 INSERT INTO taxi_trips 
@@ -68,7 +68,7 @@ SELECT * FROM taxi_trips ORDER BY id;
   4 |        9 | 
 ```
 
-The following statement inserts all rows in another table name "taxi_trips_new" into "taxi_trips". The two tables have the same column setup. Also, it returns the value of *id* for the inserted rows.
+The following statement inserts all rows in another table name `taxi_trips_new` into `taxi_trips`. The two tables have the same column setup. Also, it returns the value of *id* for the inserted rows.
 
 ```sql
 INSERT INTO taxi_trips 

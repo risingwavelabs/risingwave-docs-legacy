@@ -45,7 +45,7 @@ export const svgtwo = rr.Diagram(
 
 ## Examples
 
-This statement removes the "rw_db" database which contains two schemas, "rw_schema" and "public" (default schema):
+This statement removes the `rw_db` database which contains two schemas, "rw_schema" and "public" (default schema):
 
 ```sql
 DROP SCHEMA rw_db.rw_schema;

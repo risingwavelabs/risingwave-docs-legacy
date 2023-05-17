@@ -51,13 +51,13 @@ export const svg = rr.Diagram(
 
 ## Examples
 
-This statement removes the "taxi_trips" table in the default schema ("public") from the database:
+This statement removes the `taxi_trips` table in the default schema ("public") from the database:
 
 ```sql
 DROP TABLE taxi_trips;
 ```
 
-This statement removes the "taxi_trips" table in the "rw_schema" schema from the database:
+This statement removes the `taxi_trips` table in the "rw_schema" schema from the database:
 
 ```sql
 DROP TABLE IF EXISTS rw_schema.taxi_trips;

@@ -49,7 +49,7 @@ export const svg = rr.Diagram(
 
 ## Examples
 
-This statement removes the "id_index" index from the "taxi_trips" table in the default schema ("public"):
+This statement removes the "id_index" index from the `taxi_trips` table in the default schema ("public"):
 
 ```sql
 DROP INDEX id_index;

@@ -53,14 +53,14 @@ export const svg = rr.Diagram(
 
 ## Examples
 
-This statement removes the "rw_schema" schema from the "rw_db" database:
+This statement removes the "rw_schema" schema from the `rw_db` database:
 
 ```sql
 DROP SCHEMA rw_db.rw_schema;
 ```
 
 
-This statement removes the "rw_schema" schema from the "dev" database (default database):
+This statement removes the "rw_schema" schema from the `dev` database (default database):
 
 ```sql
 DROP SCHEMA rw_schema;
