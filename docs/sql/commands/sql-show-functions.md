@@ -10,7 +10,8 @@ Run `SHOW FUNCTIONS` to get a list of existing [user-defined functions](/sql/fun
 ## Example
 ```sql
 SHOW FUNCTIONS;
----
+```
+```
        Name       |         Arguments         |                                Return Type                                | Language |         Link
 ------------------+---------------------------+---------------------------------------------------------------------------+----------+-----------------------
  jsonb_concat     | jsonb[]                   | jsonb                                                                     | python   | http://localhost:8815
