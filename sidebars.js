@@ -483,6 +483,11 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/data-types/data-type-struct',
                   label: 'Struct',
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/data-types/data-type-rw_int256',
+                  label: 'rw_int256',
                 }
               ]
             },

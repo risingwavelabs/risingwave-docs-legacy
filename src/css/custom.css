@@ -473,7 +473,7 @@ table tr:first-child {
 }
 
 /* Codeblock with comment */
-.container .language-sql + div.theme-code-block {
+.container .language-sql + div.theme-code-block:not(.language-sql) {
   border-top: 0;
   margin-top: -28px;
   padding-top: 0;
