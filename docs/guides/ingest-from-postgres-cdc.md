@@ -29,7 +29,7 @@ import TabItem from '@theme/TabItem';
 <Tabs>
 <TabItem value="pg_self_hosted" label="Self-hosted" default>
 
-1. Ensure that the `wal_level` of your PostgreSQL is `logical`. Check by using the following statement.
+1. Ensure that `wal_level` is `logical`. Check by using the following statement.
 
     ```sql
     SHOW wal_level;
@@ -129,7 +129,7 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 
 ## Enable the connector node in RisingWave
 
-The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo.
+The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. 
 
 The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
 
