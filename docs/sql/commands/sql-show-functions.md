@@ -7,10 +7,30 @@ slug: /sql-show-functions
 
 Run `SHOW FUNCTIONS` to get a list of existing [user-defined functions](/sql/functions-operators/user-defined-functions.md). The returned information includes the name, argument types, return type, language, and server address of each function.
 
-## Example
+
+## Syntax
+
 ```sql
 SHOW FUNCTIONS;
 ```
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('SHOW FUNCTIONS'),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
+
+## Example
+
 ```
        Name       |         Arguments         |                                Return Type                                | Language |         Link
 ------------------+---------------------------+---------------------------------------------------------------------------+----------+-----------------------
@@ -26,16 +46,3 @@ SHOW FUNCTIONS;
  jsonb_access     | jsonb, integer            | jsonb                                                                     | python   | http://localhost:8815
 (10 rows)
 ```
-
-
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW FUNCTIONS'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
