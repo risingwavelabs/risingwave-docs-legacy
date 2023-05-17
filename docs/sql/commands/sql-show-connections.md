@@ -28,11 +28,11 @@ export const svg = rr.Diagram(
 
 ## Example
 
+Here is an example of what you might see. Any sources or sinks that reference the connection will also be listed.
+
 ```sql
 SHOW CONNECTIONS;
 ```
-
-Here is an example of what you might see. Any sources or sinks that reference the connection will also be listed.
 
 ```
 Name             | Type        |   Properties
