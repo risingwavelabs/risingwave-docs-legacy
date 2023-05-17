@@ -1,15 +1,17 @@
-import React, {useState, useCallback} from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import clsx from 'clsx';
-import {ThemeClassNames} from '@docusaurus/theme-common';
-import {useDocsSidebar} from '@docusaurus/theme-common/internal';
-import {useLocation} from '@docusaurus/router';
+import { ThemeClassNames } from '@docusaurus/theme-common';
+import { useDocsSidebar } from '@docusaurus/theme-common/internal';
+import { useLocation } from '@docusaurus/router';
 import DocSidebar from '@theme/DocSidebar';
 import ExpandButton from '@theme/DocPage/Layout/Sidebar/ExpandButton';
 import styles from './styles.module.css';
+import useWindowSize from "./../../../../hooks/useWindowSize"
+
 // Reset sidebar state when sidebar changes
 // Use React key to unmount/remount the children
 // See https://github.com/facebook/docusaurus/issues/3414
-function ResetOnSidebarChange({children}) {
+function ResetOnSidebarChange({ children }) {
   const sidebar = useDocsSidebar();
   return (
     <React.Fragment key={sidebar?.name ?? 'noSidebar'}>
@@ -22,7 +24,9 @@ export default function DocPageLayoutSidebar({
   hiddenSidebarContainer,
   setHiddenSidebarContainer,
 }) {
-  const {pathname} = useLocation();
+
+  const size = useWindowSize();
+  const { pathname } = useLocation();
   const [hiddenSidebar, setHiddenSidebar] = useState(false);
   const toggleSidebar = useCallback(() => {
     if (hiddenSidebar) {
@@ -30,6 +34,14 @@ export default function DocPageLayoutSidebar({
     }
     setHiddenSidebarContainer((value) => !value);
   }, [setHiddenSidebarContainer, hiddenSidebar]);
+
+  useEffect(() => {
+    if (size.width <= 1200) {
+      setHiddenSidebar(true);
+      setHiddenSidebarContainer(true);
+    }
+  }, [size])
+
   return (
     <aside
       className={clsx(
