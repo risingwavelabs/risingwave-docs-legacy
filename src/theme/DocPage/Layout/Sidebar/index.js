@@ -39,6 +39,9 @@ export default function DocPageLayoutSidebar({
     if (size.width <= 1200) {
       setHiddenSidebar(true);
       setHiddenSidebarContainer(true);
+    } else if (size.width >= 1536) {
+      setHiddenSidebar(false);
+      setHiddenSidebarContainer(false);
     }
   }, [size])
 
