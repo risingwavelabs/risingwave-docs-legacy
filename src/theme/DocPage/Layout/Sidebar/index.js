@@ -1,12 +1,12 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import clsx from 'clsx';
-import { ThemeClassNames } from '@docusaurus/theme-common';
-import { useDocsSidebar } from '@docusaurus/theme-common/internal';
-import { useLocation } from '@docusaurus/router';
-import DocSidebar from '@theme/DocSidebar';
-import ExpandButton from '@theme/DocPage/Layout/Sidebar/ExpandButton';
-import styles from './styles.module.css';
-import useWindowSize from "./../../../../hooks/useWindowSize"
+import React, { useState, useCallback, useEffect } from "react";
+import clsx from "clsx";
+import { ThemeClassNames } from "@docusaurus/theme-common";
+import { useDocsSidebar } from "@docusaurus/theme-common/internal";
+import { useLocation } from "@docusaurus/router";
+import DocSidebar from "@theme/DocSidebar";
+import ExpandButton from "@theme/DocPage/Layout/Sidebar/ExpandButton";
+import styles from "./styles.module.css";
+import useWindowSize from "./../../../../hooks/useWindowSize";
 
 // Reset sidebar state when sidebar changes
 // Use React key to unmount/remount the children
@@ -14,7 +14,7 @@ import useWindowSize from "./../../../../hooks/useWindowSize"
 function ResetOnSidebarChange({ children }) {
   const sidebar = useDocsSidebar();
   return (
-    <React.Fragment key={sidebar?.name ?? 'noSidebar'}>
+    <React.Fragment key={sidebar?.name ?? "noSidebar"}>
       {children}
     </React.Fragment>
   );
@@ -24,33 +24,35 @@ export default function DocPageLayoutSidebar({
   hiddenSidebarContainer,
   setHiddenSidebarContainer,
 }) {
-
   const size = useWindowSize();
   const { pathname } = useLocation();
   const [hiddenSidebar, setHiddenSidebar] = useState(false);
+  const [userClick, setUserClick] = useState(false);
+
   const toggleSidebar = useCallback(() => {
     if (hiddenSidebar) {
       setHiddenSidebar(false);
     }
     setHiddenSidebarContainer((value) => !value);
+    setUserClick(true);
   }, [setHiddenSidebarContainer, hiddenSidebar]);
 
   useEffect(() => {
-    if (size.width <= 1200) {
+    if (size.width <= 1200 && !userClick) {
       setHiddenSidebar(true);
       setHiddenSidebarContainer(true);
-    } else if (size.width >= 1536) {
+    } else if (size.width >= 1200 && !userClick) {
       setHiddenSidebar(false);
       setHiddenSidebarContainer(false);
     }
-  }, [size])
+  }, [size, userClick]);
 
   return (
     <aside
       className={clsx(
         ThemeClassNames.docs.docSidebarContainer,
         styles.docSidebarContainer,
-        hiddenSidebarContainer && styles.docSidebarContainerHidden,
+        hiddenSidebarContainer && styles.docSidebarContainerHidden
       )}
       onTransitionEnd={(e) => {
         if (!e.currentTarget.classList.contains(styles.docSidebarContainer)) {
@@ -59,20 +61,27 @@ export default function DocPageLayoutSidebar({
         if (hiddenSidebarContainer) {
           setHiddenSidebar(true);
         }
-      }}>
+      }}
+    >
       <ResetOnSidebarChange>
         <div
           className={clsx(
             styles.sidebarViewport,
-            hiddenSidebar && styles.sidebarViewportHidden,
-          )}>
+            hiddenSidebar && styles.sidebarViewportHidden
+          )}
+        >
           <DocSidebar
             sidebar={sidebar}
             path={pathname}
             onCollapse={toggleSidebar}
             isHidden={hiddenSidebar}
           />
-          {hiddenSidebar && <ExpandButton toggleSidebar={toggleSidebar} />}
+          {hiddenSidebar && (
+            <ExpandButton
+              setUserClick={setUserClick}
+              toggleSidebar={toggleSidebar}
+            />
+          )}
         </div>
       </ResetOnSidebarChange>
     </aside>

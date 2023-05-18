@@ -3,7 +3,7 @@ import { translate } from '@docusaurus/Translate';
 import IconArrow from '@theme/Icon/Arrow';
 import styles from './styles.module.css';
 
-export default function DocPageLayoutSidebarExpandButton({ toggleSidebar }) {
+export default function DocPageLayoutSidebarExpandButton({ toggleSidebar, setUserClick }) {
 
   return (
     <div
@@ -22,8 +22,15 @@ export default function DocPageLayoutSidebarExpandButton({ toggleSidebar }) {
       })}
       tabIndex={0}
       role="button"
-      onKeyDown={toggleSidebar}
-      onClick={toggleSidebar}>
+      onKeyDown={() => {
+        toggleSidebar()
+        setUserClick(true)
+      }}
+      onClick={() => {
+        console.log('expand button clicked')
+        toggleSidebar()
+        setUserClick(true)
+      }}>
       <IconArrow className={styles.expandButtonIcon} />
     </div>
   );
