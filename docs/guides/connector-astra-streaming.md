@@ -13,9 +13,9 @@ This guide will go over how to ingest streaming data from Astra Streaming in Ris
 
 ## Set up Astra Streaming 
 
-To learn about how to set up an Astra Streaming account and create a topic, see the [Astra Streaming QuickStart](https://docs.datastax.com/en/streaming/astra-streaming/getting-started/index.html). You can connect to your tenant with Pulsar or Kafka.
+To learn about how to set up an Astra Streaming account and create a topic, see the [Astra Streaming QuickStart](https://docs.datastax.com/en/streaming/astra-streaming/getting-started/index.html). You can connect to your tenant with Pulsar or Kafka. For this demo, we will assume the tenant is connected to Pulsar.
 
-Once you have created a topic, note down the following information regarding the tenant and topic you want to connect to.
+Once you have created a topic, note down the following information regarding the tenant and topic you want to connect to. 
 
 1. Get the full name of the topic by going to `Namespace and Topics` and clicking the copy button next to the topic you just created.
 
@@ -31,9 +31,9 @@ See the [Get started](../get-started.md) guide for options on how you can run Ri
 
 ### Create a table in RisingWave
 
-To learn about the specific syntax used to consume data from a Pulsar topic, see [Ingest data from Pulsar](../create-source/create-source-pulsar.md).
+To learn about the specific syntax used to consume data from a Pulsar topic, see [Ingest data from Pulsar](../create-source/create-source-pulsar.md). To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](../create-source/create-source-kafka.md).
 
-As an example, the following query creates a table that consumes data from an Astra Streaming topic.
+As an example, the following query creates a table that consumes data from an Astra Streaming topic connected to Pulsar.
 
 ```sql
 CREATE TABLE t (v1 int, v2 varchar)
@@ -54,7 +54,7 @@ Navigate to the tenant RisingWave is connected to in Astra Streaming and click o
 
 Set the `Connection type` as `Read` and the `Read position` as `Earliest`. Click `Connect`.
 
-Try sending the following messages line by line in the `Test message` text box. Set the `Message type` as `JSON`. Note that the schema of the messages match the schema of the table we created in RisingWave.
+Try sending the following messages line by line in the `Test message` text box. Set the `Message type` as `JSON`. Note that the schema of the messages matches the schema of the table we created in RisingWave.
 
 <img
   src={require('../images/astra-send-msg.png').default}
@@ -75,7 +75,9 @@ Now we can query the table in RisingWave to see that RisingWave has consumed the
 
 ```sql
 SELECT * FROM t;
+```
 
+```
   v1 |  v2  
  ----+-------
    1 | name0
