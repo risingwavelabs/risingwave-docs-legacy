@@ -50,7 +50,7 @@ ROW FORMAT JSON;
 
 We can now send messages from Astra Streaming to RisingWave.
 
-Navigate to the tenant RisingWave is connected to in Astra Streaming and click on the `Try me` tab. Ensure the `Namespace`, `Producer topic`, and the `Consumer topic` match the Astra Streaming topic that RisingWave is consuming data from. 
+Navigate to the tenant RisingWave is connected to in Astra Streaming and click on the `Try Me` tab. Ensure the `Namespace`, `Producer topic`, and the `Consumer topic` match the Astra Streaming topic that RisingWave is consuming data from. 
 
 Set the `Connection type` as `Read` and the `Read position` as `Earliest`. Click `Connect`.
 
