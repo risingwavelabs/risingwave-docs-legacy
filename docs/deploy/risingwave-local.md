@@ -117,3 +117,22 @@ psql -h localhost -p 4566 -d dev -U root
 ```
     
 You can now [connect a streaming source to RisingWave](/sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](risingwave-sql-101.md).
+
+## Optional: Enable the connector node
+
+The RisingWave connector node is a separate Java component that allows RisingWave to be integrated with external systems. It can be used to consume CDC events and sink data to downstream databases. 
+
+To enable the connector node:
+
+1. Navigate to where your `risingwave` directory is located and run `./risedev configure`.
+
+2. Enable the **[Build] Build RisingWave Connector (Java)** option.
+
+3. Uncomment `use connector-node` in the risedev.yml file like below.
+
+    <img
+    src={require('../images/uncomment-connector-node.png').default}
+    alt="Edit risedev.yml file for connector node"
+    />
+
+The connector node will now be enabled when you run RisingWave. 
