@@ -1,7 +1,7 @@
 ---
 id: sql-create-source
 title: CREATE SOURCE
-description: Supported data sources and how to ingest data from the sources to RisingWave.
+description: Supported data sources and how to connect RisingWave to the sources.
 slug: /sql-create-source
 ---
 
@@ -101,35 +101,22 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 ## Supported sources and formats
 
-Data formats denoted with an M only support materialized sources, which require a primary key to be specified. Otherwise, both materialized and non-materialized sources are supported.
+Click a connector name to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
 
-| Connector | Version | Format |
-|---------|---------|---------|
-|[Kafka](create-source/create-source-kafka.md)|3.1.0 or later versions |[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), Debezium AVRO (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M), Upsert JSON, Upsert AVRO|
-|[Redpanda](create-source/create-source-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf) |
-|[Pulsar](create-source/create-source-pulsar.md)| 2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)|
-|[Astra Streaming](guides/connector-astra-streaming.md)|Latest |[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|  
-|[Kinesis](create-source/create-source-kinesis.md)| Latest| [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)|
-|[PostgreSQL CDC](guides/ingest-from-pg-cdc)| 10, 11, 12, 13, 14|[Debezium JSON](#debezium-json) (M)|
-|[MySQL CDC](guides/ingest-from-mysql-cdc)| 5.7, 8.0|[Debezium JSON](#debezium-json) (M)|
-|[CDC via Kafka](create-source/create-source-cdc.md)||[Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)|
-|[Amazon S3](create-source/create-source-s3.md)| Latest |[JSON](#json), CSV| |
-|[Load generator](create-source/create-source-datagen.md)|Built-in|[JSON](#json)|
-|Google Pub/Sub | | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M) |
+| Connector | Version | Format | Materialized? | Limitations |
+|---------|---------|---------|---------|---------|
+|[Kafka](/create-source/create-source-kafka.md)|3.1.0 or later versions |[Avro](#avro), [JSON](#json), [protobuf](#protobuf)| Materialized & non-materialized| |
+|[Redpanda](/create-source/create-source-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|Materialized & non-materialized| |
+|[Pulsar](/create-source/create-source-pulsar.md)| 2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf)| Materialized & non-materialized| |
+|[Astra Streaming](/guides/connector-astra-streaming.md)| |[Avro](#avro), [JSON](#json), [protobuf](#protobuf)| Materialized & non-materialized| |
+|[Kinesis](/create-source/create-source-kinesis.md)| Latest| [Avro](#avro), [JSON](#json), [protobuf](#protobuf)| Materialized & non-materialized| |
+|[PostgreSQL CDC](/create-source/create-source-cdc.md)| 10, 11, 12, 13, 14|[Debezium JSON](#debezium-json), [Maxwell JSON](#maxwell-json)| Materialized only| Must have primary key|
+|[MySQL CDC](/create-source/create-source-cdc.md)| 5.7, 8.0|[Debezium JSON](#debezium-json)| Materialized only| Must have primary key|
+|[Load generator](/create-source/create-source-datagen.md)|Built-in|[JSON](#json)|Materialized only||
 
 :::note
 When a source is created, RisingWave does not ingest data immediately. RisingWave starts to process data when a materialized view is created based on the source.
 :::
-
-## Change Data Capture (CDC)
-
-Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
-
-RisingWave provides native MySQL and PostgreSQL CDC connectors. With these CDC connectors, you can ingest CDC data from these databases directly, without setting up additional services like Kafka.
-
-If Kafka is part of your technical stack, you can also use the Kafka connector in RisingWave to ingest CDC data in the form of Kafka topics from databases into RisingWave. You need to use a CDC tool such as [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Maxwell's daemon](https://maxwells-daemon.io/), or [TiCDC](https://docs.pingcap.com/tidb/dev/ticdc-overview) to convert CDC data into Kafka topics.
-
-For complete step-to-step guides about ingesting MySQL and PostgreSQL data using both approaches, see [Ingest data from MySQL](guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](/guides/ingest-from-postgres-cdc.md).
 
 ## Supported formats
 
@@ -137,9 +124,7 @@ When creating a source, specify the format in the `ROW FORMAT` section of the `C
 
 ### Avro
 
-For data in Avro format, you must specify a message and a schema file location. The schema file location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Avro, instead of a schema file location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](create-source/create-source-kafka.md#read-schemas-from-schema-registry).
-
-Note that the timestamp displayed in RisingWave may be different from the upstream system as timezone information is lost in Avro serialization.
+For data in Avro format, you must specify a message and a schema file location. The schema file location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Avro, instead of a schema file location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
 
 :::info
 
@@ -165,7 +150,7 @@ Syntax:
 ROW FORMAT JSON
 ```
 
-For data in Protobuf format, you must specify a message and a schema location. The schema location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Regsitry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](create-source/create-source-kafka.md#read-schemas-from-schema-registry).
+For data in Protobuf format, you must specify a message and a schema location. The schema location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Regsitry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
 
 :::info
 
@@ -207,16 +192,6 @@ Syntax:
 ROW FORMAT MAXWELL
 ```
 
-### Canal JSON
-
-RisingWave supports the TiCDC dialect of the Canal CDC format. When creating a source from streams in TiCDC, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
-
-Syntax:
-
-```sql
-ROW FORMAT CANAL_JSON
-```
-
 ### Upsert JSON
 
 When consuming data in JSON from Kafka topics, the data format needs to be specified as `UPSERT_JSON`. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted.
@@ -236,6 +211,8 @@ Syntax:
 ```sql
 ROW FORMAT UPSERT_AVRO
 ```
+
+For supported sources and formats, see [Overview](data-ingestion.md).
 
 ## See also
 
