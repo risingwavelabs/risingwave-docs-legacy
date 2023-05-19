@@ -112,7 +112,7 @@ Data formats denoted with an M only support materialized sources, which require 
 |[Kinesis](create-source/create-source-kinesis.md)| Latest| [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)|
 |[PostgreSQL CDC](guides/ingest-from-pg-cdc)| 10, 11, 12, 13, 14|[Debezium JSON](#debezium-json) (M)|
 |[MySQL CDC](guides/ingest-from-mysql-cdc)| 5.7, 8.0|[Debezium JSON](#debezium-json) (M)|
-|[CDC via event streaming systems](create-source/create-source-cdc.md)||[Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)|
+|[CDC via Kafka](create-source/create-source-cdc.md)||[Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)|
 |[Amazon S3](create-source/create-source-s3.md)| Latest |[JSON](#json), CSV| |
 |[Load generator](create-source/create-source-datagen.md)|Built-in|[JSON](#json)|
 |Google Pub/Sub | | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M) |
@@ -164,8 +164,6 @@ Syntax:
 ```sql
 ROW FORMAT JSON
 ```
-
-### Protobuf
 
 For data in Protobuf format, you must specify a message and a schema location. The schema location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Regsitry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](create-source/create-source-kafka.md#read-schemas-from-schema-registry).
 
