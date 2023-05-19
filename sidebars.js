@@ -256,6 +256,11 @@ const sidebars = {
             },
             {
               type: 'doc',
+              label: 'Citus CDC',
+              id: 'guides/ingest-from-citus-cdc',
+            },
+            {
+              type: 'doc',
               label: 'Confluent Cloud',
               id: 'guides/confluent-kafka-source',
             },
@@ -433,6 +438,11 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
+                  id: 'sql/query-syntax/query-syntax-values-clause',
+                  label: 'VALUES clause',
+                },
+                {
+                  type: 'doc',
                   id: 'sql/query-syntax/query-syntax-where-clause',
                   label: 'WHERE clause',
                 },
@@ -473,6 +483,11 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/data-types/data-type-struct',
                   label: 'Struct',
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/data-types/data-type-rw_int256',
+                  label: 'rw_int256',
                 }
               ]
             },

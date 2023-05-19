@@ -25,7 +25,6 @@ ROW FORMAT data_format
 [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
@@ -90,13 +89,10 @@ export const svg = rr.Diagram(
    )
 );
 
-
 <drawer SVG={svg} />
 
-
-
-
 **schema_definition**:
+
 ```sql
 (
    column_name data_type [ PRIMARY KEY ], ...
@@ -123,10 +119,9 @@ For materialized sources with primary key constraints, if a new data record with
 |Field|Notes|
 |---|---|
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
-|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.	|
+|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
-|upsert| Optional. If true, RisingWave will read messages from Kafka topics in the upsert fashion.|
 
 ### Other parameters
 
@@ -159,6 +154,7 @@ WITH (
 ROW FORMAT AVRO 
 ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
+
 </TabItem>
 <TabItem value="upsert avro" label="Upsert Avro" default>
 
@@ -166,13 +162,13 @@ ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 CREATE SOURCE IF NOT EXISTS source_abc 
 WITH (
    connector='kafka',
-   upsert='true',
    properties.bootstrap.server='localhost:9092',
    topic='test_topic'
 )
 ROW FORMAT UPSERT_AVRO
 ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
+
 </TabItem>
 <TabItem value="json" label="JSON" default>
 
@@ -190,6 +186,7 @@ WITH (
 )
 ROW FORMAT JSON;
 ```
+
 </TabItem>
 <TabItem value="upsert json" label="Upsert JSON" default>
 
@@ -200,11 +197,11 @@ CREATE TABLE IF NOT EXISTS source_abc (
 )
 WITH (
    connector='kafka',
-   upsert='true',
    properties.bootstrap.server='localhost:9092',
    topic='t1'
 ) ROW FORMAT UPSERT_JSON;
 ```
+
 </TabItem>
 <TabItem value="pb" label="Protobuf" default>
 
@@ -254,6 +251,7 @@ protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.
 ```
 
 To specify a schema location, add this clause to a `CREATE SOURCE` statement.
+
 ```SQL
 ROW SCHEMA LOCATION 'location'
 ```
@@ -264,7 +262,7 @@ Confluent Schema Registry provides a serving layer for your metadata. It provide
 
 RisingWave supports reading schemas from a Schema Registry. The latest schema will be retrieved from the specified Schema Registry using the `TopicNameStrategy` strategy when the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
 
-To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement. 
+To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement.
 
 ```sql
 ROW FORMAT LOCATION CONFLUENT SCHEMA REGISTRY 'schema_registry_url;
@@ -286,12 +284,10 @@ Secure Sockets Layer (SSL) was the predecessor of Transport Layer Security (TLS)
 
 Simple Authentication and Security Layer (SASL) is a framework for authentication and data security in Internet protocols.
 
-RisingWave supports four SASL authentication mechanisms:
+RisingWave supports these SASL authentication mechanisms:
 
 - `SASL/PLAIN`
 - `SASL/SCRAM`
-- `SASL/GSSAPI`
-- `SASL/OAUTHBEARER`
 
 SSL encryption can be used concurrently with SASL authentication mechanisms.
 
@@ -378,7 +374,9 @@ WITH (
    properties.sasl.password='admin-secret'
 )                                                           
 ROW FORMAT JSON;
+
 ```
+
 This is an example of creating a source authenticated with SASL/PLAIN with SSL encryption.
 
 ```sql
@@ -420,10 +418,10 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 
 For SASL/SCRAM with SSL, you also need to include these SSL parameters:
 
-- properties.ssl.ca.location
-- properties.ssl.certificate.location
-- properties.ssl.key.location
-- properties.ssl.key.password
+- `properties.ssl.ca.location`
+- `properties.ssl.certificate.location`
+- `properties.ssl.key.location`
+- `properties.ssl.key.password`
 
 Here is an example of creating a materialized source authenticated with SASL/SCRAM without SSL encryption.
 
@@ -441,93 +439,6 @@ WITH (
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
    properties.sasl.password='admin-secret'
-)                                                       
-ROW FORMAT JSON;
-```
-
-### `SASL/GSSAPI`
-
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSPI with SSL.|
-|`properties.sasl.mechanism`| Set to `GSSAPI`.|
-|`properties.sasl.kerberos.service.name`| |
-|`properties.sasl.kerberos.keytab`| |
-|`properties.sasl.kerberos.principal`| |
-|`properties.sasl.kerberos.kinit.cmd`| |
-|`properties.sasl.kerberos.min.time.before.relogin`| |
-
-:::note
-
-For the definitions of the parameters, see the [librdkafka properties list](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md). Note that the parameters in the list assumes all parameters start with `properties.` and therefore do not include this prefix.
-
-:::
-
-Here is an example of creating a source authenticated with SASL/GSSAPI without SSL encryption.
-
-```sql
-CREATE SOURCE IF NOT EXISTS source_5 (
-   column1 varchar,
-   column2 integer,
-)                  
-WITH (
-   connector='kafka',
-   topic='quickstart-events',
-   properties.bootstrap.server='localhost:9093',
-   scan.startup.mode='earliest',
-   properties.sasl.mechanism='GSSAPI',
-   properties.security.protocol='SASL_PLAINTEXT',
-   properties.sasl.kerberos.service.name='kafka',
-   properties.sasl.kerberos.keytab='/etc/krb5kdc/kafka.client.keytab',
-   properties.sasl.kerberos.principal='kafkaclient4@AP-SOUTHEAST-1.COMPUTE.INTERNAL',
-   properties.sasl.kerberos.kinit.cmd='sudo kinit -R -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal} || sudo kinit -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal}',
-   properties.sasl.kerberos.min.time.before.relogin='10000'
-)                                                       
-ROW FORMAT JSON;
-```
-
-### `SASL/OAUTHBEARER`
-
-:::caution
-
- The implementation of SASL/OAUTHBEARER in RisingWave validates only [unsecured client side tokens](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_oauth.html#unsecured-client-side-token-creation-options-for-sasl-oauthbearer), and does not support OpenID Connect (OIDC) authentication. Therefore, it should not be used in production environments.
-
-:::
-
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| For SASL/OAUTHBEARER without SSL, set to `SASL_PLAINTEXT`. For SASL/OAUTHBEARER with SSL, set to `SASL_SSL`.|
-|`properties.sasl.mechanism`|Set to `OAUTHBEARER`.|
-|`properties.sasl.oauthbearer.config`| |
-
-:::note
-
-For the definitions of the parameters, see the [librdkafka properties list](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md). Note that the parameters in the list assumes all parameters start with `properties.` and therefore do not include this prefix. Also, due to the limitation of the SASL/OAUTHBEARER implementation, you only need to specify one OAUTHBEARER parameter: `properties.sasl.oauthbearer.config`. Other OAUTHBEARER parameters are not applicable.
-
-:::
-
-For SASL/OAUTHBEARER with SSL, you also need to include these SSL parameters:
-
-- `properties.ssl.ca.location`
-- `properties.ssl.certificate.location`
-- `properties.ssl.key.location`
-- `properties.ssl.key.password`
-
-This is an example of creating a materialized source authenticated with SASL/OAUTHBEARER without SSL encryption.
-
-```sql
-CREATE TABLE IF NOT EXISTS source_6 (
-   column1 varchar,
-   column2 integer,
-)                  
-WITH (
-   connector='kafka',
-   topic='quickstart-events',
-   properties.bootstrap.server='localhost:9093',
-   scan.startup.mode='earliest',
-   properties.sasl.mechanism='OAUTHBEARER',
-   properties.security.protocol='SASL_PLAINTEXT',
-   properties.sasl.oauthbearer.config='principal=bob'
 )                                                       
 ROW FORMAT JSON;
 ```

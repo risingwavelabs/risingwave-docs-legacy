@@ -21,8 +21,11 @@ import LightNotify from "@theme/LightNotify";
 import Admonition from "@theme/Admonition";
 import Drawer from "@theme/Drawer";
 import Capsule from "@theme/Capsule";
+import Stepper from "@theme/Stepper";
+import VerticalStepper from "@theme/VerticalStepper";
 import OutlinedCard from "@theme/OutlinedCard";
 import ResponsiveGrid from "@theme/ResponsiveGrid";
+
 
 function unwrapMDXElement(element) {
   if (element?.props?.mdxType && element?.props?.originalType) {
@@ -84,6 +87,8 @@ const MDXComponents = {
   admonition: Admonition,
   drawer: Drawer,
   voteNotify: Capsule,
+  stepper: Stepper,
+  vstepper: VerticalStepper,
   card: OutlinedCard,
   grid: ResponsiveGrid,
 };
