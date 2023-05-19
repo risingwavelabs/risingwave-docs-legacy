@@ -262,6 +262,35 @@ To specify a schema location, add this clause to a `CREATE SOURCE` statement.
 ROW SCHEMA LOCATION 'location'
 ```
 
+If you are loading files from an S3 bucket, additional authorization may be required. Use the following additional parameters in your `CREATE SOURCE` or `CREATE TABLE` statement for S3 authorization.
+
+|Field|Notes|
+|---|---|
+|region| Optional. The AWS service region.|
+|arn| Optional. The Amazon Resource Name of the role to assume.|
+|profile| Optional. Used to configure multiple access keys in the same credential file. |
+|access_key| Conditional. This indicates the access key ID of AWS. This must be used with `secrete_access`. |
+|secret_access| Conditional. This indicates the secret access key of AWS. |
+|session_token| Optional. The session token associated with the temporary security credentials. |
+|endpoint_url| Optional. The URL of the entry point for the AWS S3 service. |
+
+Here is an example of creating a Kafka source that loads the schema from AWS S3.
+
+```sql
+CREATE SOURCE IF NOT EXISTS source_abc 
+WITH (
+   connector='kafka',
+   topic='demo_topic',
+   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
+   scan.startup.mode='latest',
+   scan.startup.timestamp_millis='140000000'
+   access_key='replace me with your aws access key',
+   secret_access='replace me with your aws secret access'
+)
+ROW FORMAT AVRO 
+ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
+```
+
 ## Read schemas from Schema Registry
 
 Confluent Schema Registry provides a serving layer for your metadata. It provides a RESTful interface for storing and retrieving your schemas.
