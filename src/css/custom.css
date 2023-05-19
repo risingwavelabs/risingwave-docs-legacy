@@ -33,6 +33,8 @@
   --doc-sidebar-width: 260px !important;
   --ifm-tabs-padding-vertical: 0.5rem !important;
   --ifm-navbar-height: 3rem;
+
+  --ifm-docs-page-width-xl: 1280px;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -113,6 +115,16 @@ html[data-theme="dark"] {
 
 .theme-doc-sidebar-item-category-level-4 .menu__list .menu__link {
   padding-left: calc(var(--ifm-menu-link-padding-horizontal) + 0.5rem * 3);
+}
+
+/* custom nav bar */
+.navbar .navbar__inner {
+  max-width: var(--ifm-docs-page-width-xl);
+  display: flex;
+  justify-content: space-between;
+  flex: 0 0 100%;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .navbar--fixed-top {
