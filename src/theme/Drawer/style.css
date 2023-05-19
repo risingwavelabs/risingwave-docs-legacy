@@ -3,7 +3,7 @@ svg.railroad-diagram {
 }
 
 svg.railroad-diagram text {
-  font: bold 12px var(--ifm-font-family-monospace);
+  font: normal 12px var(--ifm-font-family-monospace);
   text-anchor: middle;
   white-space: pre;
 }
