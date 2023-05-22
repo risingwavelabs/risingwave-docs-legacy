@@ -75,6 +75,7 @@ Before the deployment, ensure that the following requirements are satisfied.
 > Note: In the second step, errors might occur if cert-manager is not fully initialized. Don't panic! Simply wait for another minute and rerun the command above.
 >
 > > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": dial tcp 10.105.102.32:443: connect: connection refused
+> >
 > > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": dial tcp 10.105.102.32:443: connect: connection refused
 
 
@@ -103,13 +104,13 @@ RisingWave supports using Amazon S3 as the object storage.
 
 **Steps:**
 
-1. Create a Secret with the name ‘s3-credentials’.
+1. Create a Secret with the name `s3-credentials`.
 
     ```shell
     kubectl create secret generic s3-credentials --from-literal AccessKeyID=${ACCESS_KEY} --from-literal SecretAccessKey=${SECRET_ACCESS_KEY}
     ```
 
-1. On the S3 console, [create a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) with the name 'risingwave' in the US East (N. Virginia) (`us-east-1`) region.
+1. On the S3 console, [create a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) with the name `risingwave` in the US East (N. Virginia) (`us-east-1`) region.
 
 1. Deploy a RisingWave instance with S3 as the object storage.
 
@@ -155,16 +156,16 @@ If the instance is running properly, the output should look like this:
 <TabItem value="minio" label="etcd+MinIO">
 
 ```
-NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
-risingwave-etcd-minio   True      etcd            MinIO             30s
+NAME        RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
+risingwave  True      etcd            MinIO             30s
 ```
 
 </TabItem>
 <TabItem value="s3" label="etcd+S3">
 
 ```
-NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
-risingwave-etcd-s3      True      etcd            S3                30s
+NAME        RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
+risingwave  True      etcd            S3                30s
 ```
 
 </TabItem>
@@ -204,14 +205,14 @@ By default, the Operator creates a service for the frontend component, through w
     <TabItem value="minio" label="etcd+MinIO">
 
     ```shell
-    psql -h risingwave-etcd-minio-frontend -p 4567 -d dev -U root
+    psql -h risingwave-frontend -p 4567 -d dev -U root
     ```
 
     </TabItem>
     <TabItem value="s3" label="etcd+S3">
 
     ```shell
-    psql -h risingwave-etcd-s3-frontend -p 4567 -d dev -U root
+    psql -h risingwave-frontend -p 4567 -d dev -U root
     ```
 
     </TabItem>
@@ -246,7 +247,7 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
     <TabItem value="minio" label="etcd+MinIO">
 
     ```shell
-    export RISINGWAVE_NAME=risingwave-etcd-minio
+    export RISINGWAVE_NAME=risingwave
     export RISINGWAVE_NAMESPACE=default
     export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get node -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'`
     export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].nodePort}'`
@@ -258,7 +259,7 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
     <TabItem value="s3" label="etcd+S3">
 
     ```shell
-    export RISINGWAVE_NAME=risingwave-etcd-s3
+    export RISINGWAVE_NAME=risingwave
     export RISINGWAVE_NAMESPACE=default
     export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get node -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'`
     export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].nodePort}'`
@@ -303,7 +304,7 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
     <TabItem value="minio" label="etcd+MinIO">
 
     ```shell
-    export RISINGWAVE_NAME=risingwave-etcd-minio
+    export RISINGWAVE_NAME=risingwave
     export RISINGWAVE_NAMESPACE=default
     export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'`
     export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].port}'`
@@ -315,7 +316,7 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
     <TabItem value="s3" label="etcd+S3">
 
     ```shell
-    export RISINGWAVE_NAME=risingwave-etcd-s3
+    export RISINGWAVE_NAME=risingwave
     export RISINGWAVE_NAMESPACE=default
     export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'`
     export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].port}'`
