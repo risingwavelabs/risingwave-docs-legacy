@@ -57,7 +57,7 @@ Before the deployment, ensure that the following requirements are satisfied.
 
 **Steps:**
 
-1. [Install `cert-manager`](https://cert-manager.io/docs/installation/).
+1. [Install `cert-manager`](https://cert-manager.io/docs/installation/) and wait a minute.
 
 1. Install the Operator.
 
@@ -71,6 +71,12 @@ Before the deployment, ensure that the following requirements are satisfied.
     kubectl -n cert-manager get pods
     kubectl -n risingwave-operator-system get pods
     ```
+
+> Note: In the second step, errors might occur if cert-manager is not fully initialized. Don't panic! Simply wait for another minute and rerun the command above.
+>
+> > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": dial tcp 10.105.102.32:443: connect: connection refused
+> > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": dial tcp 10.105.102.32:443: connect: connection refused
+
 
 ## Deploy a RisingWave instance
 
@@ -87,7 +93,7 @@ RisingWave supports using MinIO as the object storage.
 Run the following command to deploy a RisingWave instance with MinIO as the object storage.
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/risingwave/risingwave-etcd-minio.yaml
+kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/stable/persistent/minio/risingwave.yaml
 ```
 
 </TabItem>
@@ -100,16 +106,24 @@ RisingWave supports using Amazon S3 as the object storage.
 1. Create a Secret with the name ‘s3-credentials’.
 
     ```shell
-    kubectl create secret generic s3-credentials --from-literal AccessKeyID=${ACCESS_KEY} --from-literal SecretAccessKey=${SECRET_ACCESS_KEY} --from-literal Region=${AWS_REGION}
+    kubectl create secret generic s3-credentials --from-literal AccessKeyID=${ACCESS_KEY} --from-literal SecretAccessKey=${SECRET_ACCESS_KEY}
     ```
 
-1. On the S3 console, [create a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) with the name ‘hummock001’.
+1. On the S3 console, [create a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) with the name 'risingwave' in the US East (N. Virginia) (`us-east-1`) region.
 
 1. Deploy a RisingWave instance with S3 as the object storage.
 
     ```shell
-    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/risingwave/risingwave-etcd-s3.yaml
+    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/stable/persistent/s3/risingwave.yaml
     ```
+
+> NOTE: If you wish to customize the name and region of the S3 bucket, please follow these steps:
+>
+> 1. Download the manifest file from this link.
+> 2. Open the downloaded file and modify the necessary fields, such as the bucket name and region, according to your preferences.
+> 3. Save the modified file to your local file system.
+> 4. In Step 3, use the file path of the modified manifest file instead of the original command.
+> 5. This will allow you to customize the S3 bucket to your desired specifications before proceeding with Step 3.
 
 </TabItem>
 
