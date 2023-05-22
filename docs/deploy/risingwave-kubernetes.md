@@ -112,6 +112,19 @@ RisingWave supports using Amazon S3 as the object storage.
     ```
 
 </TabItem>
+
+<TabItem value="hdfs" label="etcd+HDFS">
+
+RisingWave supports using HDFS as the object storage.
+
+Deploy a RisingWave instance with HDFS as the object storage.
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/risingwave/risingwave-etcd-hdfs.yaml
+```
+
+</TabItem>
+
 </Tabs>
 
 <br />
@@ -138,6 +151,14 @@ risingwave-etcd-minio   True      etcd            MinIO             30s
 ```
 NAME                    RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
 risingwave-etcd-s3      True      etcd            S3                30s
+```
+
+</TabItem>
+<TabItem value="hdfs" label="etcd+HDFS">
+
+```
+NAME                   RUNNING    STORAGE(META)   STORAGE(OBJECT)   AGE
+risingwave-etcd-hdfs   True       Etcd            HDFS              30s
 ```
 
 </TabItem>
@@ -177,6 +198,13 @@ By default, the Operator creates a service for the frontend component, through w
 
     ```shell
     psql -h risingwave-etcd-s3-frontend -p 4567 -d dev -U root
+    ```
+
+    </TabItem>
+    <TabItem value="hdfs" label="etcd+HDFS">
+
+    ```shell
+    psql -h risingwave-etcd-hdfs-frontend -p 4567 -d dev -U root
     ```
 
     </TabItem>
@@ -225,6 +253,18 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
     ```
 
     </TabItem>
+    <TabItem value="hdfs" label="etcd+HDFS">
+
+    ```shell
+    export RISINGWAVE_NAME=risingwave-etcd-hdfs
+    export RISINGWAVE_NAMESPACE=default
+    export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get node -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'`
+    export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].nodePort}'`
+
+    psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
+    ```
+
+    </TabItem>
     </Tabs>
 
 </TabItem>
@@ -262,6 +302,18 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
 
     ```shell
     export RISINGWAVE_NAME=risingwave-etcd-s3
+    export RISINGWAVE_NAMESPACE=default
+    export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'`
+    export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].port}'`
+
+    psql -h ${RISINGWAVE_HOST} -p ${RISINGWAVE_PORT} -d dev -U root
+    ```
+
+    </TabItem>
+    <TabItem value="hdfs" label="etcd+HDFS">
+
+    ```shell
+    export RISINGWAVE_NAME=risingwave-etcd-hdfs
     export RISINGWAVE_NAMESPACE=default
     export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'`
     export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].port}'`
