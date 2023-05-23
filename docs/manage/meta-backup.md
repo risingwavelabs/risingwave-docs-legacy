@@ -11,15 +11,15 @@ This guide introduces how to back up meta service data and restore from a backup
 
 A meta snapshot is a backup of meta service's data at a specific point in time. Meta snapshots are persisted in S3-compatible storage.
 
-Here's an example of how to specify target storage and set `storage_url` and `storage_directory`:
+Here's an example of how to specify target storage and set `backup_storage_url` and `backup_storage_directory`:
 
 ```
-[backup]
-storage_url = "s3://[bucket]"
-storage_directory = "backup"
+[system]
+backup_storage_url = "s3://[bucket]"
+backup_storage_directory = "backup"
 ```
 
-Typically, `storage_url` and `storage_directory` should not be changed after initializing the cluster. Otherwise, if they are changed, all meta snapshots taken previously become invalidated and shouldn't be used anymore.
+Typically, `backup_storage_url` and `backup_storage_directory` should not be changed after initializing the cluster. Otherwise, if they are changed, all meta snapshots taken previously become invalidated and shouldn't be used anymore.
 This is because the meta backup and recovery process does not replicate SST files. To ensure consistency between meta snapshots and SST files, the meta service additionally maintains the retention time for SSTs required by meta snapshots via monitoring the snapshot storage in use. That is to say, SST files required by meta snapshots from a snapshot storage that is not in use may be garbage collected at any time.
 
 
@@ -76,9 +76,11 @@ Use the following steps to restore from a meta snapshot.
     --meta-store-type etcd \
     --meta-snapshot-id [snapshot_id] \
     --etcd-endpoints [etcd_endpoints] \
-    --storage-url [storage_url]
+    --backup-storage-url [backup_storage_url]
+    --hummock_storage_url [hummock_storage_url]
+    --hummock_storage_dir [hummock_storage_dir]
     ```
-    `backup-restore` reads snapshot data from snapshot storage and writes them to `etcd`. 
+    `backup-restore` reads snapshot data from backup storage and writes them to etcd and hummock storage. 
     `backup-restore` is not included in the pre-built risingwave binary. Please build it from source by compiling the `risingwave_backup_cmd` package.
 4. Configure meta service to use the new meta store.
 
