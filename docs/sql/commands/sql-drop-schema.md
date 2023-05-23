@@ -47,20 +47,20 @@ export const svg = rr.Diagram(
 |---------------------------|-----------------------|
 |**IF EXISTS** clause       |Do not return an error if the specified schema does not exist.|
 |*database*                 |Specify the name of a database to remove the schema in that database. You can use [`SHOW  DATABASES`](sql-show-databases.md) to get a list of all available databases. If you don't specify a database, the specified schema in the default database will be removed.|
-|*schema*                   |The name of the schema you want to remove. The default schema is "public". You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas.|
+|*schema*                   |The name of the schema you want to remove. The default schema is `public`. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas.|
 
 
 
 ## Examples
 
-This statement removes the "rw_schema" schema from the `rw_db` database:
+This statement removes the `rw_schema` schema from the `rw_db` database:
 
 ```sql
 DROP SCHEMA rw_db.rw_schema;
 ```
 
 
-This statement removes the "rw_schema" schema from the `dev` database (default database):
+This statement removes the `rw_schema` schema from the `dev` database (default database):
 
 ```sql
 DROP SCHEMA rw_schema;
