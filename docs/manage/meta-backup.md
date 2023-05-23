@@ -77,8 +77,8 @@ Use the following steps to restore from a meta snapshot.
     --meta-snapshot-id [snapshot_id] \
     --etcd-endpoints [etcd_endpoints] \
     --backup-storage-url [backup_storage_url]
-    --hummock_storage_url [hummock_storage_url]
-    --hummock_storage_dir [hummock_storage_dir]
+    --hummock-storage-url [hummock_storage_url]
+    --hummock-storage-dir [hummock_storage_dir]
     ```
     `backup-restore` reads snapshot data from backup storage and writes them to etcd and hummock storage. 
     `backup-restore` is not included in the pre-built risingwave binary. Please build it from source by compiling the `risingwave_backup_cmd` package.
