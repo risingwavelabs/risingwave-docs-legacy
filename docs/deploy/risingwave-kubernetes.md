@@ -57,13 +57,20 @@ Before the deployment, ensure that the following requirements are satisfied.
 
 **Steps:**
 
-1. [Install `cert-manager`](https://cert-manager.io/docs/installation/) and wait a minute.
+1. [Install `cert-manager`](https://cert-manager.io/docs/installation/) and wait a minute to allow for initialization.
 
 1. Install the Operator.
 
     ```shell
     kubectl apply --server-side -f https://github.com/risingwavelabs/risingwave-operator/releases/latest/download/risingwave-operator.yaml
     ```
+    :::note
+    The following errors might occur if `cert-manager` is not fully initialized. Simply wait for another minute and rerun the command above.
+
+    > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": dial tcp 10.105.102.32:443: connect: connection refused
+
+    > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": dial tcp 10.105.102.32:443: connect: connection refused
+    :::
 
 1. ***(Optional)*** Check if the Pods are running.
 
@@ -71,12 +78,6 @@ Before the deployment, ensure that the following requirements are satisfied.
     kubectl -n cert-manager get pods
     kubectl -n risingwave-operator-system get pods
     ```
-
-> Note: In the second step, errors might occur if cert-manager is not fully initialized. Don't panic! Simply wait for another minute and rerun the command above.
->
-> > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": dial tcp 10.105.102.32:443: connect: connection refused
-> >
-> > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": dial tcp 10.105.102.32:443: connect: connection refused
 
 
 ## Deploy a RisingWave instance
@@ -117,14 +118,26 @@ RisingWave supports using Amazon S3 as the object storage.
     ```shell
     kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/stable/persistent/s3/risingwave.yaml
     ```
+    <details>
+    <summary>Click here if you wish to customize the name and region of the S3 bucket</summary>
 
-> NOTE: If you wish to customize the name and region of the S3 bucket, please follow these steps:
->
-> 1. Download the manifest file from this link.
-> 2. Open the downloaded file and modify the necessary fields, such as the bucket name and region, according to your preferences.
-> 3. Save the modified file to your local file system.
-> 4. In Step 3, use the file path of the modified manifest file instead of the original command.
-> 5. This will allow you to customize the S3 bucket to your desired specifications before proceeding with Step 3.
+    Before executing the above command, customize the S3 bucket according to your specific requirements by following these steps.
+
+    1. Download the manifest file from the link above.
+
+    1. Open the downloaded file and modify the necessary fields, such as the bucket name and region according to your preferences.
+
+    1. Save the modified file to your local file system.
+
+    1. Replace the URL in the command with the local file path of the modified manifest file and then run the command. For example:
+
+        ```shell
+        kubectl apply -f a.yaml      # relative path
+        kubectl apply -f /tmp/a.yaml # absolute path
+        ```
+
+    </details>
+
 
 </TabItem>
 
