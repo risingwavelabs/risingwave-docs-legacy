@@ -36,7 +36,7 @@ CREATE VIEW v3 AS SELECT sum(v2) AS sum_v2 FROM t3;
 Then we can use `SHOW VIEWS` to show the existing views.
 
 ```sql
-SHOW VIEWS FROM schema_1;
+SHOW VIEWS FROM public;
 ```
 
 ```
