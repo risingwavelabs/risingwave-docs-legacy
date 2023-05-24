@@ -20,7 +20,9 @@ To learn about how to set up an Amazon MSK account and create a cluster, see [Ge
 Once you have created a cluster, note down the following information regarding the cluster you want to connect to.
 
 1. Get the **VPC** value from the **All cluster settings** before clicking **Create cluster**.
+
 2. Get the **Security groups associated with VPC** from the **All cluster settings** before clicking **Create cluster**.
+
 3. Get the **ARN** value from the **Cluster summary** after clicking on **Create cluster**.
 
 
@@ -43,7 +45,9 @@ To learn how to create an EC2 client machine and add the security group of the c
 ### Enable SASL
 
 1. Access the [Amazon MSK console](https://console.aws.amazon.com/msk/) and select the MSK cluster.
+
 2. Click on the **Properties** tab, and click **Edit** in the **Security settings** section.
+
 3. Click the **SASL/SCRAM authentication** checkbox and click **Save changes**.
 
 For more information regarding SASL settings, see Sign-in credentials authentication with AWS Secrets Manager.
@@ -53,10 +57,15 @@ For more information regarding SASL settings, see Sign-in credentials authentica
 ### Create a symmetric key
 
 1. Access the [AWS Key Management Service (AWS KMS) console](https://console.aws.amazon.com/kms).
+
 2. Click **Create Key**, select **Symmetric**, and click **Next**.
+
 3. Give the key an **Alias** and click **Next**.
+
 4. Under **Administrative permissions**, select the **AWSServiceRoleForKafka** checkbox and click **Next**.
+
 5. Under **Key usage permissions**, again select the **AWSServiceRoleForKafka** checkbox and click **Next**.
+
 6. Lastly, review the details and click **Finish**.
 
 For more information, see [Creating symmetric encryption KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk).
@@ -67,17 +76,24 @@ For more information, see [Creating symmetric encryption KMS keys](https://docs.
 ### Store a new Secret
 
 1. Access the [AWS Secrets Manager console](https://console.aws.amazon.com/secretsmanager/).
+
 2. Click **Store a new secret**.
+
 3. Under **Secret type**, select **Other type of secret**.
+
 4. Under **Key/value pairs**, click on **Plaintext**, paste the following in the space below, and replace `<your-username>` and `<your-password>` with the username and password you want to set for the cluster.
+
 ```
  {
     "username": "<your-username>",
     "password": "<your-password>"
   }
 ```
+
 5. Under **Encryption key**, select the symmetric key alias you previously created.
+
 6. On the next page, enter a **Secret name** that starts with `AmazonMSK_`.
+
 7. After creating the secret, record the **Secret ARN (Amazon Resource Name)** value.
 
 For more information, see [Sign-in credentials authentication with AWS Secrets Manager](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html).
@@ -88,9 +104,13 @@ For more information, see [Sign-in credentials authentication with AWS Secrets M
 ### Link the Secret with the MSK cluster
 
 1. Access the [Amazon MSK console](https://console.aws.amazon.com/msk/) and select the MSK cluster.
+
 2. Click the **Actions** tab and select **Edit security settings**.
+
 3. Click to select the **SASL/SCRAM authentication** checkbox and click **Save changes**.
+
 4. Back on the main page, click the **Properties** tab, and in the **Security settings** section, under **SASL/SCRAM authentication**, click **Associate secrets**.
+
 5. Paste the **Secret ARN** value you recorded in the previous step and click **Associate secrets**.
 
 
@@ -105,6 +125,7 @@ ssh -i “xxx.pem" ubuntu@ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com
 To find your specific command values: 
 
 1. Access the [EC2 console](https://console.aws.amazon.com/ec2/) and select the instance you created.
+
 2. Click **Connect**, select the **SSH client** tab, and copy the command example provided.
 
 
@@ -179,7 +200,9 @@ ssl.truststore.location=/home/ubuntu/kafka.client.truststore.jks
 
 
 1. Access the [Amazon MSK console](https://console.aws.amazon.com/msk/) and select the cluster.
+
 2. Click **View client information** and copy the URL under **Private endpoint** for **SASL/SCRAM**. This will be your `<broker-url>` from now on.
+
 3. Run the following command using the `<broker-url>`.
 
 ```terminal
