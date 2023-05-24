@@ -17,15 +17,15 @@ DROP VIEW [IF EXISTS] view_name [CASCADE | RESTRICT];
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-
     rr.Sequence(
         rr.Terminal('DROP VIEW'),
         rr.Optional(rr.Terminal('IF EXISTS')),
         rr.NonTerminal('view_name'),
-        rr.Optional(rr.Choice(0, rr.Terminal('CASCADE'), rr.Terminal('RESTRICT'))),
-        rr.Terminal(';'),
-    ),
-
+        rr.Optional(
+            rr.Choice(0, rr.Terminal('CASCADE'), rr.Terminal('RESTRICT'))
+        ),
+        rr.Terminal(';')
+    )
 );
 
 
@@ -59,5 +59,4 @@ DROP VIEW IF EXISTS sales_report;
 
 - [`CREATE VIEW`](sql-create-view.md) — Create a non-materialized view.
 - [`SHOW CREATE VIEW`](sql-show-create-view.md) — Show query used to create specified view.
-- [`SHOW VIEWS`](sql-show-views.md) — List existing views in a particular schema.
 
