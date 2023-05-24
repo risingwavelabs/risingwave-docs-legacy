@@ -38,10 +38,10 @@ export const svg = rr.Diagram(
 
 |Parameter                  | Description           |
 |---------------------------|-----------------------|
-|*IF EXISTS*                |Do not return an error if the specified view does not exist.|
+|**IF EXISTS** clause       |Do not return an error if the specified view does not exist.|
 |*view_name*                |Name of the view to be dropped.|
-|*CASCADE*                  |Automatically drop objects that depend on the view.|
-|*RESTRICT*                 |Refuse to drop the view if any objects depend on it. This is the default.|
+|**CASCADE** clause         |Automatically drop objects that depend on the view.|
+|**RESTRICT** clause        |Refuse to drop the view if any objects depend on it. This is the default.|
 
 
 
@@ -59,4 +59,4 @@ DROP VIEW IF EXISTS sales_report;
 
 - [`CREATE VIEW`](sql-create-view.md) — Create a non-materialized view.
 - [`SHOW CREATE VIEW`](sql-show-create-view.md) — Show query used to create specified view.
-
+- [`SHOW VIEWS`](sql-show-views.md) — List existing views in a particular schema.
