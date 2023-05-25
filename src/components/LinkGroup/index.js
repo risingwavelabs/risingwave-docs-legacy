@@ -19,7 +19,7 @@ const LinkButton = styled("div")({
 
 const FoldedTextSpan = styled("span")({
   paddingLeft: "4px",
-  color: "#8294CC",
+  color: "var(--ifm-font-color-base)",
   fontSize: "12px",
   fontWeight: "bold",
 });
