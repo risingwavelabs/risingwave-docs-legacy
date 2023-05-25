@@ -177,14 +177,11 @@ tar -xzf kafka_2.12-2.6.2.tgz
     export KAFKA_OPTS=-Djava.security.auth.login.config=/home/ubuntu/users_jaas.conf
     ```
 
-
-
 4. Use the following command to copy the JDK key store file from your JVM `cacerts` folder into the `kafka.client.truststore.jks` copy.
 
     ```terminal
     cp /usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/security/cacerts ~/kafka.client.truststore.jks
     ```
-
 
 5. Create `client_sasl.properties` at `/home/ubuntu` with the following contents.
 
