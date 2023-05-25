@@ -21,6 +21,7 @@
   --ifm-navbar-link-color: #16171a;
   --ifm-button-background-color: var(--ifm-color-primary-dark);
   --ifm-button-hover-background-color: #0179be;
+  --ifm-button-color: #0179be;
 
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;

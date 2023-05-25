@@ -28,6 +28,11 @@ div.cardContainer:hover {
   box-shadow: 0 0 0 1px #cddbff;
 }
 
+[data-theme="dark"] div.cardContainer:hover {
+  border: 1px solid #48dcbc;
+  box-shadow: 0 0 0 1px #48dcbc;
+}
+
 div.cardContent {
   padding-bottom: 1rem;
   font-family: var(--ifm-font-family-base);
@@ -72,7 +77,7 @@ p.cardLinks {
 
 p.cardLink {
   cursor: pointer;
-  color: #95adee;
+  color: var(--ifm-button-color);
   font-size: 1rem;
   margin-bottom: 0.1rem;
   margin-right: 4px;
@@ -80,12 +85,12 @@ p.cardLink {
 }
 
 p.cardLink:hover {
-  color: #95adee88;
+  color: var(--ifm-menu-color-active);
   border-bottom: 1px dotted #95adee88;
 }
 
 div.flexBox {
-  color: #95adee;
+  color: var(--ifm-button-color);
   font-size: 1.1rem;
   display: flex;
   align-items: center;
@@ -93,15 +98,15 @@ div.flexBox {
 }
 
 p.cardLink:hover .externalArrowIcon path {
-  stroke: #afc2f5;
+  stroke: var(--ifm-menu-color-active);
 }
 
 [data-theme="dark"] .externalArrowIcon path {
-  stroke: #afc2f5;
+  stroke: #48dcbc;
 }
 
 [data-theme="dark"] p.cardLink:hover .externalArrowIcon path {
-  stroke: #8da8f1;
+  stroke: var(--ifm-menu-color-active);
 }
 
 p.cardLink:hover .rightArrowIcon path:nth-child(2) {
