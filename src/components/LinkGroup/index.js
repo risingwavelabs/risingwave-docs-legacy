@@ -8,23 +8,24 @@ const buttonSize = 36;
 
 const LinkButton = styled("div")({
   backgroundColor: "#8080803b",
-  // padding: "10px",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   width: `${buttonSize}px`,
   height: `${buttonSize}px`,
   borderRadius: "10px",
+  transition: "border-radius 1s ease-out",
 });
 
 const FoldedTextSpan = styled("span")({
+  paddingLeft: "4px",
   color: "#8294CC",
   fontSize: "12px",
   fontWeight: "bold",
 });
 
 const FoldedTab = styled("div")({
-  backgroundColor: "#EBEDF0",
+  backgroundColor: "#8080803b",
   height: `${buttonSize}px`,
   borderTopLeftRadius: "10px",
   borderBottomLeftRadius: "10px",
@@ -39,7 +40,7 @@ const FoldedTab = styled("div")({
 const FoldedTabContainer = styled(Collapse)({
   position: "absolute",
   top: `${buttonSize / 3.6}px`,
-  right: `${buttonSize + 2}px`,
+  right: `${buttonSize + 10}px`,
 });
 
 const LinkImg = styled("img")({
@@ -60,16 +61,16 @@ const LinkItem = (props) => {
       onClick={() => { openWindow(props.link) }}
     >
       <FoldedTabContainer className={styles.foldedTab} orientation="horizontal" in={props.focusing}>
-        <FoldedTab>
+        <FoldedTab className={styles.foldedTabSpan}>
           <FoldedTextSpan>
             {props.label}
           </FoldedTextSpan>
         </FoldedTab>
       </FoldedTabContainer>
-      <LinkButton className={styles.linkButton}>
+      <LinkButton className={`${styles.linkButton} ${props.focusing ? `${styles.linkButtonNoLeftBorder}` : ""}`}>
         <LinkImg src={props.imgUrl} />
       </LinkButton>
-    </div>
+    </div >
   );
 };
 
