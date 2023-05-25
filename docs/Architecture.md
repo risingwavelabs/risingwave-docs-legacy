@@ -14,4 +14,7 @@ RisingWave includes these key components:
 * A metadata management layer that coordinates the operations across all other layers.
 * A storage layer that stores data to and retrieves data from object storage like S3.
 
-![RisingWave Architecture](./images/architechture.svg)
+<img
+  src={require('./images/architecture.png').default}
+  alt="RisingWave Architecture"
+/>
