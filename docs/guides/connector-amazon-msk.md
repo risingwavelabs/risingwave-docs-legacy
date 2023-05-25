@@ -83,12 +83,12 @@ For more information, see [Creating symmetric encryption KMS keys](https://docs.
 
 4. Under **Key/value pairs**, click on **Plaintext**, paste the following in the space below, and replace `<your-username>` and `<your-password>` with the username and password you want to set for the cluster.
 
-```
- {
-    "username": "<your-username>",
-    "password": "<your-password>"
-  }
-```
+    ```
+    {
+      "username": "<your-username>",
+      "password": "<your-password>"
+    }
+    ```
 
 5. Under **Encryption key**, select the symmetric key alias you previously created.
 
