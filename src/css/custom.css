@@ -61,6 +61,8 @@
   --ifm-color-success-light: rgb(38, 178, 38);
   --ifm-color-success-lighter: rgba(77, 191, 77, 0.212);
   --ifm-color-success-lightest: rgb(128, 210, 128);
+
+  --docsearch-primary-color: var(--ifm-color-primary-darkest) !important;
 }
 
 html[data-theme="dark"] {
