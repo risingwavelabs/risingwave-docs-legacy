@@ -50,7 +50,7 @@ To learn how to create an EC2 client machine and add the security group of the c
 
 3. Click the **SASL/SCRAM authentication** checkbox and click **Save changes**.
 
-For more information regarding SASL settings, see Sign-in credentials authentication with AWS Secrets Manager.
+For more information regarding SASL settings, see [Sign-in credentials authentication with AWS Secrets Manager](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html).
 
 
 
