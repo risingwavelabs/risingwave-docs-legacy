@@ -46,7 +46,7 @@ WITH (
    connector='connector',
    connector_parameter='value', ...
 ) 
-ROW FORMAT { DEBEZIUM_JSON | MAXWELL | CANAL_JSON };
+ROW FORMAT { DEBEZIUM_JSON | MAXWELL | CANAL_JSON | DEBEZIUM_AVRO };
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -101,6 +101,7 @@ export const svg = rr.Diagram(
                     rr.Terminal('DEBEZIUM_JSON'),
                     rr.Terminal('MAXWELL'),
                     rr.Terminal('CANAL_JSON'),
+                    rr.Terminal('DEBEZIUM_AVRO'),
                 ),
                 rr.Terminal(';'),
             ),
