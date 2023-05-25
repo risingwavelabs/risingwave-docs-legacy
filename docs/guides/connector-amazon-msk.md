@@ -118,9 +118,9 @@ For more information, see [Sign-in credentials authentication with AWS Secrets M
 
 ### Use SSH to log into the EC2 machine
 
-```
-ssh -i “xxx.pem" ubuntu@ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com
-```
+    ```
+    ssh -i “xxx.pem" ubuntu@ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com
+    ```
 
 To find your specific command values: 
 
@@ -157,42 +157,42 @@ tar -xzf kafka_2.12-2.6.2.tgz
 
 1. Run the following command.
 
-```terminal
-aws configure
-```
+    ```terminal
+    aws configure
+    ```
 
 2. Place the `users_jaas.conf` with the following contents in `/home/ubuntu`.
 
-```
-KafkaClient {
-org.apache.kafka.common.security.scram.ScramLoginModule required
-  username="<your-username>"
-  password="<your-password>";
-};
-```
+    ```
+    KafkaClient {
+    org.apache.kafka.common.security.scram.ScramLoginModule required
+      username="<your-username>"
+      password="<your-password>";
+    };
+    ```
 
 3. Run the following command.
 
-```terminal
-export KAFKA_OPTS=-Djava.security.auth.login.config=/home/ubuntu/users_jaas.conf
-```
+    ```terminal
+    export KAFKA_OPTS=-Djava.security.auth.login.config=/home/ubuntu/users_jaas.conf
+    ```
 
 
 
 4. Use the following command to copy the JDK key store file from your JVM `cacerts` folder into the `kafka.client.truststore.jks` copy.
 
-```terminal
-cp /usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/security/cacerts ~/kafka.client.truststore.jks
-```
+    ```terminal
+    cp /usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/security/cacerts ~/kafka.client.truststore.jks
+    ```
 
 
 5. Create `client_sasl.properties` at `/home/ubuntu` with the following contents.
 
-```
-security.protocol=SASL_SSL
-sasl.mechanism=SCRAM-SHA-512
-ssl.truststore.location=/home/ubuntu/kafka.client.truststore.jks
-```
+    ```
+    security.protocol=SASL_SSL
+    sasl.mechanism=SCRAM-SHA-512
+    ssl.truststore.location=/home/ubuntu/kafka.client.truststore.jks
+    ```
 
 
 
@@ -205,27 +205,27 @@ ssl.truststore.location=/home/ubuntu/kafka.client.truststore.jks
 
 3. Run the following command using the `<broker-url>`.
 
-```terminal
-bin/kafka-topics.sh --bootstrap-server <broker-url> --command-config ~/client_sasl.properties --create --topic <topic-name>
-```
+    ```terminal
+    bin/kafka-topics.sh --bootstrap-server <broker-url> --command-config ~/client_sasl.properties --create --topic <topic-name>
+    ```
 
 4. List the topics.
 
-```terminal
-bin/kafka-topics.sh --bootstrap-server <broker-url> --list --command-config ~/client_sasl.properties
-```
+    ```terminal
+    bin/kafka-topics.sh --bootstrap-server <broker-url> --list --command-config ~/client_sasl.properties
+    ```
 
 5. Insert test data.
 
-```terminal
-bin/kafka-console-producer.sh --bootstrap-server <broker-url> --topic <topic-name> --producer.config ~/client_sasl.properties
-```
+    ```terminal
+    bin/kafka-console-producer.sh --bootstrap-server <broker-url> --topic <topic-name> --producer.config ~/client_sasl.properties
+    ```
 
 6. Open another console and consume the message.
 
-```terminal
-bin/kafka-console-consumer.sh --bootstrap-server <broker-url> --topic <topic-name> --consumer.config ~/client_sasl.properties --from-beginning
-```
+    ```terminal
+    bin/kafka-console-consumer.sh --bootstrap-server <broker-url> --topic <topic-name> --consumer.config ~/client_sasl.properties --from-beginning
+    ```
 
 
 
