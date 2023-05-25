@@ -6,8 +6,8 @@
   appearance: none;
   font-size: var(--ifm-font-size-base);
   border-radius: 4px;
-  color: var(--ifm-button-color);
-  background: var(--ifm-button-background-color);
+  color: #0098ef;
+  background: #0098ef2e;
   font-weight: 500;
   line-height: 24px;
   list-style: none;
@@ -20,12 +20,13 @@
 }
 
 .light:hover {
-  background-color: var(--ifm-button-hover-background-color);
+  background-color: #00a2ff62;
   text-decoration: none;
   transition-duration: 0.1s;
 }
 
 [data-theme="dark"] .light {
+  color: var(--ifm-button-color);
   background: var(--ifm-button-background-color);
 }
 
@@ -37,7 +38,6 @@
 
 [data-theme="dark"] .default:active {
   background-color: var(--ifm-button-hover-background-color);
-  /* transition-duration: 0.1s; */
 }
 
 .light:disabled {

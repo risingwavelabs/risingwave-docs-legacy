@@ -1,17 +1,17 @@
 .default {
+  cursor: pointer;
   margin: 4px 0;
   margin-right: 8px;
   display: inline-block;
   appearance: none;
   font-size: var(--ifm-font-size-base);
-  background-color: var(--ifm-color-primary-darker);
-  border: 1px solid #71bde9;
-  border-radius: 6px;
+  background: var(--ifm-button-background-color);
+  border-radius: 4px;
   box-sizing: border-box;
   color: #fff;
   font-weight: 500;
-  line-height: 20px;
-  padding: 6px 16px;
+  line-height: 24px;
+  padding: 8px 18px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -20,18 +20,24 @@
   transition: all 0.2s cubic-bezier(0.3, 0, 0.5, 1);
 }
 
+[data-theme="dark"] .default {
+  background: #48dcbc;
+  color: #091720;
+}
+
 .default:focus:not(:focus-visible):not(.focus-visible) {
   box-shadow: none;
   outline: none;
 }
 
 .default:hover {
-  background-color: var(--ifm-color-primary-dark);
+  background-color: var(--ifm-color-primary-darker);
 }
 
 [data-theme="dark"] .default:hover {
-  background-color: #6cc3f2;
-  border: 1px solid #71bde9;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    #86f2dd;
+  color: #102432;
 }
 
 .default:focus {
