@@ -11,7 +11,7 @@ RisingWave Cloud leverages the superpower of RisingWave Database, an open-source
 
 Developers can refer to the user documentation for RisingWave Database to develop streaming applications with RisingWave Cloud. The documentation covers essential topics such as data ingestion, SQL references, data delivery, client libraries, and ecosystem, providing comprehensive information on how to utilize the capabilities of RisingWave Database to build and manage data workflows that consume streaming data, perform incremental computations, and update results dynamically.
 
-<defaultButton text="RisingWave Database user docs ↗" url="https://www.risingwave.dev/docs/current/intro/"/> <lightButton text="See recommended topics ↓" cloud="develop-overview#top-read-topics-for-developers"/>
+<defaultButton text="RisingWave Database user docs" url="https://www.risingwave.dev/docs/current/intro/"/> <lightButton text="See recommended topics" cloud="develop-overview#top-read-topics-for-developers"/>
 
 ## How to use the docs
 
