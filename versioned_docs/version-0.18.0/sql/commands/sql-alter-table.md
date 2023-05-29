@@ -7,7 +7,9 @@ slug: /sql-alter-table
 
 Use the `ALTER TABLE` command to modify the structure of an existing regular table by adding or deleteing its columns.
 
-`ALTER TABLE` does not support tables with connector settings (i.e. materialized sources created with [`CREATE TABLE`](sql-create-table.md)).
+:::note
+Currently, `ALTER TABLE` does not support tables with connector settings (i.e. materialized sources created with [`CREATE TABLE`](sql-create-table.md)). This functionality will be available in future releases.
+:::
 
 ## Syntax
 
@@ -22,6 +24,10 @@ ALTER TABLE table_name alter_option;
 ```sql title=alter_option
 ADD [ COLUMN ] column_name data_type [ PRIMARY KEY ]
 ```
+
+:::note
+Columns added by this command cannot be used by any existing materialized views or indexes. You must create new materialized views or indexes to reference it.
+:::
 
 | Parameter or clause | Description                                     |
 | ------------------- | ----------------------------------------------- |
@@ -41,7 +47,7 @@ DROP [ COLUMN ] [ IF EXISTS ] column_name
 ```
 
 :::note
-Any indexes or constraints that involve the column will also be dropped.
+You cannot drop columns referenced by materialized views or indexes.
 :::
 
 | Parameter or clause | Description                                                                                |
