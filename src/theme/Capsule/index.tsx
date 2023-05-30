@@ -12,11 +12,11 @@ type Props = {
 function Capsule({ note }: Props) {
   const [clicked, setClicked] = useState(false);
   const [count, setCount] = useState(0);
-  const { isDarkTheme } = useColorMode();
+  const { colorMode } = useColorMode();
   const [dark, setDark] = useState(false);
   useEffect(() => {
-    setDark(isDarkTheme);
-  }, [isDarkTheme]);
+    setDark(colorMode === "dark");
+  }, [colorMode]);
 
   useEffect(() => {
     if (!note) return;
