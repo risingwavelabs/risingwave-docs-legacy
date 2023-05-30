@@ -260,7 +260,8 @@ For example, the following query creates a materialized source that consumes dat
 
 
 ```sql
-create materialized source s (v1 int, v2 varchar) with (
+CREATE MATERIALIZED SOURCE s (v1 int, v2 varchar) 
+WITH (
   connector = 'kafka', topic = '<topic-name>', 
   properties.bootstrap.server = '<broker-url>', 
   scan.startup.mode = 'earliest', 
