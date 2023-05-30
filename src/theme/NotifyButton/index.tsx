@@ -16,11 +16,12 @@ function NotifyButton({ note, size }: Props) {
   const [valid, setValid] = useState(false);
   const [email, setEmail] = useState("");
 
-  const { isDarkTheme } = useColorMode();
+  const { colorMode } = useColorMode();
   const [dark, setDark] = useState(false);
   useEffect(() => {
-    setDark(isDarkTheme);
-  }, [isDarkTheme]);
+    setDark(colorMode === "dark");
+  }, [colorMode]);
+
 
   const getNotify = () => {
     const emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
