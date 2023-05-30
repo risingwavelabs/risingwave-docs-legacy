@@ -46,4 +46,4 @@ SHOW CREATE INDEX idx1;
 
 ## Related topics
 
-[CREATE INDEX](/sql-create-index.md)
+[CREATE INDEX](sql-create-index.md)
