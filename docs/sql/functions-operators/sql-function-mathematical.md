@@ -47,6 +47,7 @@ title: Mathematical functions and operators
 | sinh ( *input_value* ) → *hyperbolic_sine* | Returns the hyperbolic sine (in double precision) of a given value (in double precision). | sinh(1.0) → 1.1752011936438014 |
 | cosh ( *input_value* ) → *hyperbolic_cosine* | Returns the hyperbolic cosine (in double precision) of a given value (in double precision). | cosh(1.0) → 1.5430806348152437 |
 | tanh ( *input_value* ) → *hyperbolic_tangent* | Returns the hyperbolic tangent (in double precision) of a given value (in double precision). | tanh(1.0) → 0.7615941559557649 |
+| coth ( *input_value* ) → *hyperbolic_cotangent* | Returns the hyperbolic cotangent (in double precision) of a given value (in double precision). | coth(2) → 1.0373147207275481 |
 | asinh ( *input_value* ) → *inverse_hyperbolic_sine* | Returns the inverse hyperbolic sine (in double precision) of a given value (in double precision). | asinh(1.0) → 0.881373587019543 |
 | acosh ( *input_value* ) → *inverse_hyperbolic_cosine* | Returns the inverse hyperbolic cosine (in double precision) of a given value (in double precision). | acosh(2.0) → 1.3169578969248166 |
 | atanh ( *input_value* ) → *inverse_hyperbolic_tangent* | Returns the inverse hyperbolic tangent (in double precision) of a given value (in double precision). | atanh(0.5) → 0.5493061443340548 |
