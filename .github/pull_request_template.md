@@ -5,10 +5,10 @@
 [ What's changed? ]
 
 - **Preview**: 
-[ Paste the preview link to the edited page here. ]
+[ Paste the preview link to the edited page here. Edit this item after you submit the PR and the preview is ready. ]
 
 - **Related code PR**: 
-[ Provide the link to the code PR here. For example, https://github.com/risingwavelabs/risingwave/pull/4085. Delete this part if there's no code PR related. ]
+[ Provide the link to the code PR here. Delete this part if there's no code PR related. ]
 
 - **Related doc issue**: 
 Resolves [ Provide the link to the doc issue here. ]

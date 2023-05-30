@@ -39,7 +39,7 @@ CREATE TABLE t (v1 int, v2 int);
 INSERT INTO t VALUES (1,12), (2,13), (3,30);
 ```
 
-The row constructor in the statement below returns all rows in table "t" in the form of row values `(,)`.
+The row constructor in the statement below returns all rows in table `t` in the form of row values `(,)`.
 
 ```sql
 SELECT row (v1, v2*2) AS demo FROM t;

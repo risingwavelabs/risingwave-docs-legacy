@@ -46,7 +46,7 @@ export const svg = rr.Diagram(
 
 ## Example
 
-This statement shows the columns and indexes of the "t1" table:
+This statement shows the columns and indexes of the `t1` table:
 ```sql
 DESCRIBE t1;
 ```

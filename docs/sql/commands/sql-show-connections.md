@@ -13,13 +13,26 @@ Use the `SHOW CONNECTIONS` command to see connections that have been created.
 SHOW CONNECTIONS;
 ```
 
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('SHOW CONNECTIONS'),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+
 ## Example
+
+Here is an example of what you might see. Any sources or sinks that reference the connection will also be listed.
 
 ```sql
 SHOW CONNECTIONS;
 ```
-
-Here is an example of what you might see. Any sources or sinks that reference the connection will also be listed.
 
 ```
 Name             | Type        |   Properties
@@ -33,4 +46,5 @@ connection_name  | privatelink | provider: aws
 ```
 
 ## Related topics
+
 [CREATE CONNECTION](sql-create-connection.md)

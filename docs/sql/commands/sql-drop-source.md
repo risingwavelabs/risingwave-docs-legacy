@@ -43,21 +43,21 @@ export const svg = rr.Diagram(
 
 |Parameter                  | Description           |
 |---------------------------|-----------------------|
-|*schema_name*                   |The schema of the source that you want to remove. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified source in the default schema "public" will be removed.|
+|*schema_name*                   |The schema of the source that you want to remove. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified source in the default schema `public` will be removed.|
 |*source_name*                   |The name of the source to remove.|
 
 
 
 ## Examples
 
-This statement removes the "rw_source" source in the default schema ("public") from the database:
+This statement removes the `rw_source` source in the default schema (`public`) from the database:
 
 ```sql
 DROP SOURCE rw_source;
 ```
 
 
-This statement removes the "rw_source" source in the "rw_schema" schema from the database:
+This statement removes the `rw_source` source in the `rw_schema` schema from the database:
 
 ```sql
 DROP SOURCE IF EXISTS rw_schema.rw_source;

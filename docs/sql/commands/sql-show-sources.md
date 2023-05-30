@@ -35,7 +35,7 @@ export const svg = rr.Diagram(
 ## Parameters
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
-|*schema_name*                   |The schema of the sources to be listed. The default schema is "public".|
+|*schema_name*                   |The schema of the sources to be listed. The default schema is `public`.|
 
 
 ## Example

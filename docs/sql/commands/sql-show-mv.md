@@ -37,7 +37,7 @@ export const svg = rr.Diagram(
 ## Parameters
 |Parameter      | Description           |
 |---------------------------|-----------------------|
-|*schema_name*                   |The schema in which the materialized views will be listed. If not given, materialized views from the default schema, "public", will be listed|
+|*schema_name*                   |The schema in which the materialized views will be listed. If not given, materialized views from the default schema, `public`, will be listed|
 
 
 ## Example

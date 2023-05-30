@@ -49,11 +49,12 @@ A group of interconnected nodes and services that acts as a single system runnin
 
 ### Nodes
 
-A node is a logical collection of IT resources that handles specific workloads based on their types. There are three types of nodes in RisingWave:
+A node is a logical collection of IT resources that handles specific workloads based on their types. There are four types of nodes in RisingWave:
 
 - Frontend node
 - Compute node
 - Compactor node
+- Connector node
 
 ### Frontend nodes
 
@@ -66,6 +67,10 @@ A compute node executes the optimized query plans and handles data ingestion and
 ### Compactor nodes
 
 A stateless worker node that compacts data for the storage engine.
+
+### Connector node
+
+The connector node is a Java component that handles consuming CDC events from upstream systems and sinking data from RisingWave to downstream systems. When running RisingWave with Docker, this node is enabled by default. If running RisingWave locally, see [Enable the connector node](deploy/risingwave-local.md#optional-enable-the-connector-node) to learn how to enable this node. 
 
 ### Meta service
 

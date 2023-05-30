@@ -52,6 +52,11 @@ button.footerButton {
   font-family: var(--ifm-font-family-base);
 }
 
+[data-theme="dark"] button.footerButton {
+  border: 1px solid var(--ifm-button-color);
+  color: var(--ifm-button-color);
+}
+
 p.rightText {
   font-weight: 100;
   margin-right: 20px;
@@ -126,6 +131,7 @@ p.rightText {
 }
 
 .happyReact .title {
+  font-family: var(--ifm-font-family-base) !important;
   text-align: center;
 }
 
@@ -147,6 +153,11 @@ p.rightText {
   border: #0098ef 1px solid;
   border-radius: 4px;
   margin-bottom: 1rem;
+}
+
+[data-theme="dark"] .happyReact .reaction {
+  border: 1px solid var(--ifm-button-color);
+  color: var(--ifm-button-color);
 }
 
 .happyReact .reaction:hover {
