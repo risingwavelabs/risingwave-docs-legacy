@@ -37,7 +37,7 @@ export const svg = rr.Diagram(
 ## Parameters
 |Parameter   | Description           |
 |---------------------------|-----------------------|
-|*schema_name*                   |The schema in which tables will be listed. If not given, tables from the default schema, "public", will be listed.|
+|*schema_name*                   |The schema in which tables will be listed. If not given, tables from the default schema, `public`, will be listed.|
 
 
 ## Example

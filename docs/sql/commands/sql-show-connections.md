@@ -46,4 +46,5 @@ connection_name  | privatelink | provider: aws
 ```
 
 ## Related topics
+
 [CREATE CONNECTION](sql-create-connection.md)

@@ -5,7 +5,7 @@ description: Show existing schemas.
 slug: /sql-show-schemas
 ---
 
-Use the `SHOW SCHEMAS` command to show schemas in the "dev" database.
+Use the `SHOW SCHEMAS` command to show schemas in the `dev` database.
 
 ## Syntax
 

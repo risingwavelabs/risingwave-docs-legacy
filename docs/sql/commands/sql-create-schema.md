@@ -38,7 +38,7 @@ rr.Stack(
 |---------------------------|-----------------------|
 |*schema_name*                   |The name of the schema to be created.|
 |<b>IF NOT EXISTS</b> clause      |Creates a schema if the schema name has not already been used. Otherwise throws an error.|
-|*database_name*                 |The name of the database for the schema to be created in. If not specified, the schema will be created in the default database "dev".|
+|*database_name*                 |The name of the database for the schema to be created in. If not specified, the schema will be created in the default database `dev`.|
 
 ## Example
 ```sql
