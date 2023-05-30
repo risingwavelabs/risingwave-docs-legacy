@@ -75,6 +75,7 @@ This version was released on May 30, 2023.
 - Deprecates the `upsert` property in the Kafka connector as it can be inferred from the row format. [#9457](https://github.com/risingwavelabs/risingwave/pull/9457)
 - Adds a new field `properties.sync.call.timeout` in the WITH clause of the Kafka source connector to control the timeout. [#9005](https://github.com/risingwavelabs/risingwave/pull/9005)
 - Adds support for a new row format `DEBEZIUM_MONGO_JSON` in the Kafka source connector. [#9250](https://github.com/risingwavelabs/risingwave/pull/9250)
+- Adds CSV format support for the Kafka source connector. [#9875](https://github.com/risingwavelabs/risingwave/pull/9875)
 
 #### Cluster configuration changes
 
