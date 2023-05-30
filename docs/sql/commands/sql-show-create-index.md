@@ -23,7 +23,7 @@ SHOW CREATE INDEX index_name;
 We can create a table `t3` and an index `idx1` on `t3`.
 
 ```sql
-CREATE TABLE IS NOT EXISTS t3 (
+CREATE TABLE IF NOT EXISTS t3 (
     v1 int, 
     v2 int, 
     v3 int) append only;
