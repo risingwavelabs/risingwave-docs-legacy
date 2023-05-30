@@ -5,7 +5,89 @@ description: New features and important bug fixes in each release of RisingWave.
 slug: /release-notes
 ---
 
-This page summarizes changes in each version of RisingWave, including new features and important bug fixes. 
+This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
+
+## v0.19.0
+
+This version was released on May 30, 2023.
+
+### Main changes
+
+#### Installation
+
+- Now, you can easily install RisingWave on your local machine with Homebrew by running  `brew install risingwave`.
+
+#### Administration
+
+- Adds the `pg_indexes` and `dattablespace` system catalogs. [#9844](https://github.com/risingwavelabs/risingwave/pull/9844), [#9822](https://github.com/risingwavelabs/risingwave/pull/9822)
+- Now, the `SHOW PARAMETERS` command will display the mutability of each system parameter. [#9526](https://github.com/risingwavelabs/risingwave/pull/9526)
+
+#### SQL features
+
+- Experimental features: Adds support for 256-bit integer. [#9146](https://github.com/risingwavelabs/risingwave/pull/9146), [#9184](https://github.com/risingwavelabs/risingwave/pull/9184), [#9186](https://github.com/risingwavelabs/risingwave/pull/9186), [#9191](https://github.com/risingwavelabs/risingwave/pull/9191), [#9217](https://github.com/risingwavelabs/risingwave/pull/9217)
+- Indexes can be created on expressions. [#9142](https://github.com/risingwavelabs/risingwave/pull/9142)
+- Adds support for expressions in aggregate function arguments. [#9955](https://github.com/risingwavelabs/risingwave/pull/9955)
+- Adds support for `VALUES` clause. [#8751](https://github.com/risingwavelabs/risingwave/pull/8751)
+- Adds support for generated columns, which are special columns computed from other columns in a table or source. [#8700](https://github.com/risingwavelabs/risingwave/pull/8700), [#9580](https://github.com/risingwavelabs/risingwave/pull/9580)
+- Adds support for using expressions in the `ORDER BY` and `PARTITION BY` clauses. [#9827](https://github.com/risingwavelabs/risingwave/pull/9827)
+- New SQL commands
+  - `CREATE CONNECTION` and `SHOW CONNECTIONS`: Creates an AWS PrivateLink connection and show all available connections. [#8907](https://github.com/risingwavelabs/risingwave/pull/8907)
+  - `DROP CONNECTION`: Drops a connection. [#9128](https://github.com/risingwavelabs/risingwave/pull/9128)
+  - `SHOW FUNCTIONS`: Shows existing user-defined functions. [#9398](https://github.com/risingwavelabs/risingwave/pull/9398)
+  - `DROP FUNCTIONS`: Drops a user-defined function. [#9561](https://github.com/risingwavelabs/risingwave/pull/9561)
+  - `SHOW CREATE SOURCE` and `SHOW CREATE SINK`: Shows the SQL statement used to create a source or sink. [#9083](https://github.com/risingwavelabs/risingwave/pull/9083)
+  - `SHOW INDEXES`: Shows all indexes on a particular table. [#9835](https://github.com/risingwavelabs/risingwave/pull/9835)
+- SQL functions
+  - Adds support for trigonometric functions. [#8838](https://github.com/risingwavelabs/risingwave/pull/8838), [#8918](https://github.com/risingwavelabs/risingwave/pull/8918), [#9064](https://github.com/risingwavelabs/risingwave/pull/9064), [#9203](https://github.com/risingwavelabs/risingwave/pull/9203), [#9259](https://github.com/risingwavelabs/risingwave/pull/9259)
+  - Adds support for degrees and radians functions. [#9108](https://github.com/risingwavelabs/risingwave/pull/9108)
+  - Adds support for the `lag()` and `lead()` window functions and the `OVER()` and  `EMIT ON WINDOW CLOSE` clause. [#9597](https://github.com/risingwavelabs/risingwave/pull/9597), [#9622](https://github.com/risingwavelabs/risingwave/pull/9622), [#9701](https://github.com/risingwavelabs/risingwave/pull/9701)
+  - Adds support for new aggregate functions, including `bool_and`, `bool_or`, `jsonb_agg`, and `jsonb_object_agg`. [#9452](https://github.com/risingwavelabs/risingwave/pull/9452)
+  - Adds support for `max()`, `min()`, and `count()` for timestamptz data. [#9165](https://github.com/risingwavelabs/risingwave/pull/9165)
+  - Adds support for microseconds and milliseconds for `to_char()` and `to_timestamp()`. [#9257](https://github.com/risingwavelabs/risingwave/pull/9257)
+  - Adds support for multibyte Unicode in `overlay()` and `ascii()` functions. [#9321](https://github.com/risingwavelabs/risingwave/pull/9321)
+  - Adds support for the `string_to_array()`  function. [#9289](https://github.com/risingwavelabs/risingwave/pull/9289)
+  - Adds support for `array_positions()`. [#9152](https://github.com/risingwavelabs/risingwave/pull/9152)
+  - Adds support for `cardinality()`. [#8867](https://github.com/risingwavelabs/risingwave/pull/8867)
+  - Adds support for `array_remove()`. [#9116](https://github.com/risingwavelabs/risingwave/pull/9116)
+  - Adds support for `trim_array()`. [#9265](https://github.com/risingwavelabs/risingwave/pull/9265)
+  - Adds support for array range access. [#9362](https://github.com/risingwavelabs/risingwave/pull/9362)
+  - Adds support for JSONB in UDF. [#9103](https://github.com/risingwavelabs/risingwave/pull/9103)
+  - Adds support for `btrim()` and updates `trim()` to PostgreSQL standard syntax. [#8985](https://github.com/risingwavelabs/risingwave/pull/8985)
+  - Adds support for `date_part()`. [#8830](https://github.com/risingwavelabs/risingwave/pull/8830)
+  - Expands `extract()` with more fields. [#8830](https://github.com/risingwavelabs/risingwave/pull/8830)
+  - Adds support for `proctime()`, which returns the system time with time zone when a record is processed. [#9088](https://github.com/risingwavelabs/risingwave/pull/9088)
+  - Adds support for  `translate()`, `@()`, and `ceiling()`. [#8998](https://github.com/risingwavelabs/risingwave/pull/8998)
+  - Adds support for `encode()` and `decode()`. [#9351](https://github.com/risingwavelabs/risingwave/pull/9351)
+  - Adds support for the `intersect` operator. [#9573](https://github.com/risingwavelabs/risingwave/pull/9573)
+  - Adds support for the default escape `\` in a `like` expression. [#9624](https://github.com/risingwavelabs/risingwave/pull/9624)
+  - Adds support for the `IS [NOT] UNKNOWN` comparison predicate. [#9965](https://github.com/risingwavelabs/risingwave/pull/9965)
+  - Adds support for the `starts_with()` string function and `^@`. [#9967](https://github.com/risingwavelabs/risingwave/pull/9967)
+  - Adds support for unary `trunc`, `ln`, `log10` (`log`), `exp`, `cbrt` (`||/`) mathematical functions. [#9991](https://github.com/risingwavelabs/risingwave/pull/9991)
+
+#### Connectors
+
+- Adds support for ingesting CDC data from TiDB and sinking data to TiDB with the JDBC connector. [#8708](https://github.com/risingwavelabs/risingwave/pull/8708)
+- Adds support for ingesting CDC data from Citus. [#8988](https://github.com/risingwavelabs/risingwave/pull/8988)
+- Adds support for loading Pulsar secret key file from AWS S3. [#8428](https://github.com/risingwavelabs/risingwave/pull/8428), [#8222](https://github.com/risingwavelabs/risingwave/pull/8222)
+- Adds support for using an established AWS PrivateLink connection in a `CREATE SOURCE`,  `CREATE TABLE`, or `CREATE SINK` statement for a Kafka source/sink. [#9119](https://github.com/risingwavelabs/risingwave/pull/9119), [#9128](https://github.com/risingwavelabs/risingwave/pull/9128), [#9728](https://github.com/risingwavelabs/risingwave/pull/9728), [#9263](https://github.com/risingwavelabs/risingwave/pull/9263)
+- Deprecates the `use_transaction` field in the Kafka sink connector. [#9207](https://github.com/risingwavelabs/risingwave/pull/9207)
+- Adds support for zstd compression type for Kafka connector. [#9297](https://github.com/risingwavelabs/risingwave/pull/9297)
+- Deprecates the `upsert` property in the Kafka connector as it can be inferred from the row format. [#9457](https://github.com/risingwavelabs/risingwave/pull/9457)
+- Adds a new field `properties.sync.call.timeout` in the WITH clause of the Kafka source connector to control the timeout. [#9005](https://github.com/risingwavelabs/risingwave/pull/9005)
+- Adds support for a new row format `DEBEZIUM_MONGO_JSON` in the Kafka source connector. [#9250](https://github.com/risingwavelabs/risingwave/pull/9250)
+
+#### Cluster configuration changes
+
+- `--data_directory`and `--state_store`must be specified on CLI of the meta node, or the cluster will fail to start. [#9170](https://github.com/risingwavelabs/risingwave/pull/9170)
+- Clusters will refuse to start if the specified object store URL identified by `state_store` and `data_directory` is occupied by another instance. Do not share the object store URL between multiple clusters. [#9642](https://github.com/risingwavelabs/risingwave/pull/9642)
+
+### Assets
+
+- Run this version from Docker:<br/>
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v0.19.0 playground`
+- [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.19.0/risingwave-v0.19.0-x86_64-unknown-linux.tar.gz)
+- [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.19.0.zip)
+- [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.19.0.tar.gz)
 
 ## v0.18.0
 
