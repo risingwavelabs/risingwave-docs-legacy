@@ -43,11 +43,11 @@ export default function OutlinedCard({
   const history = useHistory();
   const { globalData } = useDocusaurusContext();
   const location = useLocation();
-  const { isDarkTheme } = useColorMode();
+  const { colorMode } = useColorMode();
   const [dark, setDark] = React.useState(false);
   React.useEffect(() => {
-    setDark(isDarkTheme);
-  }, [isDarkTheme]);
+    setDark(colorMode === "dark");
+  }, [colorMode]);
 
   return (
     <Card

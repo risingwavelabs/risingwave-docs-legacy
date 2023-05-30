@@ -63,7 +63,8 @@ import TabItem from '@theme/TabItem';
 
     Select your operating system and run the following commands to install the dependencies.
 
-    <Tabs>
+    <platformDetector queryString="current-os" />
+    <Tabs groupId="current-os" queryString>
     <TabItem value="macos" label="macOS" default>
 
     ```shell
@@ -90,7 +91,7 @@ import TabItem from '@theme/TabItem';
     </TabItem>
     </Tabs>
 
-3. Start RisingWave.
+1. Start RisingWave.
 
     To compile and start RisingWave, you can use [RiseDev](https://github.com/risingwavelabs/risingwave/blob/main/docs/developer-guide.md#set-up-the-development-environment), the developer's tool for RisingWave.
   
