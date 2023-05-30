@@ -36,4 +36,21 @@ title: Mathematical functions and operators
 
 | Function | Description | Example |
 | ----------- | ----------- | ----------- |
-| cosd ( *degrees* ) → *cosine* |Returns the trigonometric cosine (in double precision) of an angle measured in degrees (in double precision). | cosd(15) → 0.9659258262890683 |
+| sin ( *radians* ) → *sine* | Returns the trigonometric sine (in double precision) of an angle measured in radians (in double precision). | sin(1) → 0.8414709848078965 |
+| cos ( *radians* ) → *cosine* | Returns the trigonometric cosine (in double precision) of an angle measured in radians (in double precision). | cos(1) → 0.5403023058681398 |
+| tan ( *radians* ) → *tangent* | Returns the trigonometric tangent (in double precision) of an angle measured in radians (in double precision). | tan(1) → 1.5574077246549021 |
+| cot ( *radians* ) → *cotangent* | Returns the trigonometric cotangent (in double precision) of an angle measured in radians (in double precision). | cot(1) → 0.6420926159343308 |
+| asin ( *input_value* ) → *radians* | Returns the inverse sine (in radians and double precision) of a given value (in double precision). | asin(0.5) → 0.5235987755982989 |
+| acos ( *input_value* ) → *radians* | Returns the inverse cosine (in radians and double precision) of a given value (in double precision). | acos(0.5) → 1.0471975511965979 |
+| atan ( *input_value* ) → *radians* | Returns the inverse tangent (in radians and double precision) of a given value (in double precision). | atan(1.0) → 0.7853981633974483 |
+| atan2 ( *y_value*, *x_value* ) → *radians* | Returns the inverse tangent (in radians and double precision) of the quotient of two given values (*y_value* divided by *x_value*). | atan2(1.0, 1.0) → 0.7853981633974483 |
+| sinh ( *input_value* ) → *hyperbolic_sine* | Returns the hyperbolic sine (in double precision) of a given value (in double precision). | sinh(1.0) → 1.1752011936438014 |
+| cosh ( *input_value* ) → *hyperbolic_cosine* | Returns the hyperbolic cosine (in double precision) of a given value (in double precision). | cosh(1.0) → 1.5430806348152437 |
+| tanh ( *input_value* ) → *hyperbolic_tangent* | Returns the hyperbolic tangent (in double precision) of a given value (in double precision). | tanh(1.0) → 0.7615941559557649 |
+| asinh ( *input_value* ) → *inverse_hyperbolic_sine* | Returns the inverse hyperbolic sine (in double precision) of a given value (in double precision). | asinh(1.0) → 0.881373587019543 |
+| acosh ( *input_value* ) → *inverse_hyperbolic_cosine* | Returns the inverse hyperbolic cosine (in double precision) of a given value (in double precision). | acosh(2.0) → 1.3169578969248166 |
+| atanh ( *input_value* ) → *inverse_hyperbolic_tangent* | Returns the inverse hyperbolic tangent (in double precision) of a given value (in double precision). | atanh(0.5) → 0.5493061443340548 |
+| sind ( *degrees* ) → *sine* | Returns the trigonometric sine (in double precision) of an angle measured in degrees (in double precision). | sind(15) → 0.2588190451025207 |
+| cosd ( *degrees* ) → *cosine* | Returns the trigonometric cosine (in double precision) of an angle measured in degrees (in double precision). | cosd(15) → 0.9659258262890683 |
+| tand ( *degrees* ) → *tangent* | Returns the trigonometric tangent (in double precision) of an angle measured in degrees (in double precision). | tand(15) → 0.2679491924311227|
+| cotd ( *degrees* ) → *cotangent* | Returns the trigonometric cotangent (in double precision) of an angle measured in degrees (in double precision) | cotd(45) → 1 |​
