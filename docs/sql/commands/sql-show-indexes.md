@@ -26,7 +26,7 @@ We can create a table `t3` and an index `idx1` on `t3`.
 CREATE TABLE IF NOT EXISTS t3 (
     v1 int, 
     v2 int, 
-    v3 int) APPEND ONLY;
+    v3 int);
 
 CREATE INDEX idx1 ON t3 (v1,v2);
 ```
