@@ -134,9 +134,9 @@ For materialized sources with primary key constraints, if a new data record with
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
 |*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 
-## Example
+## Examples
 
-Here is an example of connecting RisingWave to a Kafka broker to read data from individual topics.
+Here are examples of connecting RisingWave to a Kafka broker to read data from individual topics.
 
 :::note
 RisingWave supports reading messages that have been compressed by [zstd](http://www.zstd.net/). Additional configurations are not required.
@@ -165,7 +165,7 @@ ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 <TabItem value="upsert avro" label="Upsert Avro" default>
 
 ```sql
-CREATE SOURCE IF NOT EXISTS source_abc 
+CREATE TABLE IF NOT EXISTS source_abc 
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
@@ -179,7 +179,7 @@ ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 <TabItem value="json" label="JSON" default>
 
 ```sql
-CREATE TABLE IF NOT EXISTS source_abc (
+CREATE SOURCE IF NOT EXISTS source_abc (
    column1 varchar,
    column2 integer,
 )
