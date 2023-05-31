@@ -25,7 +25,7 @@ RisingWave also incorporates these third-party components:
 
 * Grafana
 * Etcd
-* MinIO
+* MinIO or other s3 compatible object storage
 * Prometheus
 
 ## Download the source file and start a cluster
@@ -40,11 +40,21 @@ git clone https://github.com/risingwavelabs/risingwave.git
 
 Now run the following commands to navigate to the `docker` directory and start the cluster from the pre-defined docker-compose file.
 
+### Start a cluster on minio
+The default storage backend is minio, to start the cluster, 
+
 ```shell
 cd docker
 docker compose up -d
 ```
+### Start a cluster on other s3 compatible object storage
 
+If you want to deploy RisingWave on other s3 compatible storage, you can replace the bucket-name with your bucket name, and config the `region`, `endpoint`, `access key` and `secret key` in risingwave/docker/s3-compatible.env.  Then
+
+```shell
+cd docker
+docker compose -f docker-compose-s3-compatible.yml up -d
+```
 
 ## Connect to RisingWave
 
