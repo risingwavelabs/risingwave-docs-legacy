@@ -37,3 +37,14 @@ title: Mathematical functions and operators
 | Function | Description | Example |
 | ----------- | ----------- | ----------- |
 | cosd ( *degrees* ) → *cosine* |Returns the trigonometric cosine (in double precision) of an angle measured in degrees (in double precision). | cosd(15) → 0.9659258262890683 |
+
+
+
+
+
+## Degrees and radians functions
+
+| Function | Description | Example |
+| ----------- | ----------- | ----------- |
+| degrees ( *radians* ) → *degrees* | Returns the conversion (in double precision) of an angle measured in radians (in double precision) to degrees. | degrees(pi()/2) → 90 |
+| radians ( *degrees* ) → *radians* | Returns the conversion (in double precision) of an angle measured in degrees (in double precision) to radians. | radians(180) → 3.141592653589793 |
