@@ -14,6 +14,7 @@ import "./styles.css"; // MDX elements are wrapped through the MDX pragma. In so
 // with Head/Helmet) we need to unwrap those elements.
 import RollButton from "@theme/RollButton";
 import DefaultButton from "@theme/DefaultButton";
+import PlatformDetector from "@theme/PlatformDetector";
 import LightButton from "@theme/LightButton";
 import NotifyButton from "@theme/NotifyButton";
 import DefaultNotify from "@theme/DefaultNotify";
@@ -91,5 +92,6 @@ const MDXComponents = {
   vstepper: VerticalStepper,
   card: OutlinedCard,
   grid: ResponsiveGrid,
+  platformDetector: PlatformDetector,
 };
 export default MDXComponents;

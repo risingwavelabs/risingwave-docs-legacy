@@ -63,5 +63,5 @@ When data is processed in batches, if a job goes wrong, you can do some troubles
 In RisingWave, data correctness is ensured by a checkpoint-based mechanism. Every time a checkpoint is triggered, the internal states of each operator will be flushed to the cloud storage. When a failover occurs, the operator recovers from the latest checkpoint on the cloud storage.
 
 <lightButton text="See the architecture" doc="architecture"/>
-<lightButton text="Access the source code ⧉" url="https://github.com/risingwavelabs/risingwave"/>
+<lightButton text="Access the source code" url="https://github.com/risingwavelabs/risingwave"/>
 <br/>

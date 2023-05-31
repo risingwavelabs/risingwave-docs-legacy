@@ -1,6 +1,6 @@
 ---
 id: sql-drop-connection
-title: DROP A CONNECTION
+title: DROP CONNECTION
 description: Remove a connection.
 slug: /sql-drop-connection
 ---
