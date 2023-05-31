@@ -116,8 +116,8 @@ All WITH options are required.
 |---|---|
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
-|AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](../commands/sql-select.md) for the syntax and examples of the SELECT command.|
-|connector| Sink connector type. Currently, only `‘kafka’` is supported. If there is a particular sink you are interested in, go to the [Integrations Overview](../../rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
+|AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
+|connector| Sink connector type. Currently, only `‘kafka’` is supported. If there is a particular sink you are interested in, go to the [Integrations Overview](rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
 |jdbc.url | The JDBC URL of the destination database necessary for the driver to recognize and connect to the database. |
 |table.name | The table in the destination database you want to sink to. |
 |type| Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul> |
