@@ -262,7 +262,7 @@ To specify a schema location, add this clause to a `CREATE SOURCE` statement.
 ROW SCHEMA LOCATION 'location'
 ```
 
-If you are loading files from an S3 bucket, additional authorization may be required. Use the following additional parameters in your `CREATE SOURCE` or `CREATE TABLE` statement for S3 authorization.
+If you are loading schema files in S3 buckets, additional authorization may be required. Use the following additional parameters in your `CREATE SOURCE` or `CREATE TABLE` statement for S3 authorization.
 
 |Field|Notes|
 |---|---|
