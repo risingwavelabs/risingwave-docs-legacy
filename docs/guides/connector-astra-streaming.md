@@ -27,11 +27,11 @@ Once you have created a topic, note down the following information regarding the
 
 ### Install and launch RisingWave
 
-See the [Get started](../get-started.md) guide for options on how you can run RisingWave.
+See the [Get started](/get-started.md) guide for options on how you can run RisingWave.
 
 ### Create a table in RisingWave
 
-To learn about the specific syntax used to consume data from a Pulsar topic, see [Ingest data from Pulsar](../create-source/create-source-pulsar.md). To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](../create-source/create-source-kafka.md).
+To learn about the specific syntax used to consume data from a Pulsar topic, see [Ingest data from Pulsar](/create-source/create-source-pulsar.md). To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](/create-source/create-source-kafka.md).
 
 As an example, the following query creates a table that consumes data from an Astra Streaming topic connected to Pulsar.
 

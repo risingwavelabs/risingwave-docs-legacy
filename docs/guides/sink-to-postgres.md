@@ -91,9 +91,9 @@ To install and start RisingWave locally, see the [Get started](/get-started.md) 
 
 The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
 
-The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
+The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-docker-compose.md). 
 
-If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](../deploy/risingwave-local.md#optional-enable-the-connector-node).
+If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-local.md#optional-enable-the-connector-node).
 
 ## Create a sink​
 
@@ -164,7 +164,7 @@ GROUP BY
 
 ### Sink from RisingWave
 
-Use the following query to sink data from the materialized view to the target table in PostgreSQL. Ensure that the `jdbc_url` is accurate and reflects the PostgreSQL database that you are connecting to. See [`CREATE SINK`](../sql/commands/sql-create-sink.md) for more details.
+Use the following query to sink data from the materialized view to the target table in PostgreSQL. Ensure that the `jdbc_url` is accurate and reflects the PostgreSQL database that you are connecting to. See [`CREATE SINK`](/sql/commands/sql-create-sink.md) for more details.
 
 ```sql
 CREATE SINK target_count_postgres_sink FROM target_count WITH (
