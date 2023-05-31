@@ -49,7 +49,7 @@ docker compose up -d
 ```
 ### Start a cluster on other s3 compatible object storage
 
-If you want to deploy RisingWave on other s3 compatible storage, you can replace the bucket-name with your bucket name, and config the `region`, `endpoint`, `access key` and `secret key` in risingwave/docker/s3-compatible.env.  Then
+If you want to deploy RisingWave on other s3 compatible storage, fill in your `bucket name` in `risingwave/docker/docker-compose-s3-compatible.yml`, and config the `region`, `endpoint`, `access key` and `secret key` in risingwave/docker/s3-compatible.env (note that the `endpoint` cannot contain bucket-name). Then
 
 ```shell
 cd docker
