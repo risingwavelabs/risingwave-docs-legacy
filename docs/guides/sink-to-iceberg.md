@@ -77,7 +77,7 @@ CREATE TABLE demo.dev.`table`
 ### Create an upstream materialized view or source
 
 
-The following query creates an append-only source. For more details on creating a source, see [`CREATE SOURCE`](../sql/commands/sql-create-source.md) .
+The following query creates an append-only source. For more details on creating a source, see [`CREATE SOURCE`](/sql/commands/sql-create-source.md) .
 
 ```sql
 CREATE SOURCE s1_source (
@@ -98,7 +98,7 @@ WITH (
  ) ROW FORMAT JSON;
 ```
 
-Another option is to create an upsert table, which supports in-place updates. For more details on creating a table, see [`CREATE TABLE`](../sql/commands/sql-create-table.md) .
+Another option is to create an upsert table, which supports in-place updates. For more details on creating a table, see [`CREATE TABLE`](/sql/commands/sql-create-table.md) .
 
 ```sql
 CREATE TABLE s1_table (

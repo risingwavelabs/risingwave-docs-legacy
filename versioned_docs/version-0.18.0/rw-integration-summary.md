@@ -56,8 +56,8 @@ For tools or integrations that you would like to use but are not listed in the t
 
 |System | Source | Sink |
 |---|---|----|
-|MySQL | Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md).|
-|AWS RDS (MySQL)|Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md).|
+|MySQL | Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](/guides/sink-to-mysql.md).|
+|AWS RDS (MySQL)|Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](/guides/sink-to-mysql.md).|
 |AWS Aurora (MySQL)|In progress <voteNotify note="aurora_mysql_source" />| Researching <voteNotify note="aurora_mysql_sink" /> |
 
 ### Other databases

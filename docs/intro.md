@@ -26,15 +26,15 @@ Both Apache Flink and RisingWave are stream processing systems. However, RisingW
 
 If you are looking for a simple, cost-efficient, SQL-based solution for real-time data processing, RisingWave is an excellent choice. RisingWave is designed to be easy to use and can be deployed quickly. This makes it an ideal option for fast-growing businesses that require real-time data processing capabilities.
 
-For a detailed comparison between RisingWave and Flink, see [RisingWave vs. Flink](./risingwave-flink-comparison.md).
+For a detailed comparison between RisingWave and Flink, see [RisingWave vs. Flink](/risingwave-flink-comparison.md).
 
 ## Use cases
 
 RisingWave can be an excellent fit for these categories of use cases.
 
-- [Streaming ETL](./use-cases.md#streaming-etl)
-- [Real-time analytics](./use-cases.md#real-time-analytics)
-- [Event-driven applications](./use-cases.md#event-driven-applications)
+- [Streaming ETL](/use-cases.md#streaming-etl)
+- [Real-time analytics](/use-cases.md#real-time-analytics)
+- [Event-driven applications](/use-cases.md#event-driven-applications)
 
 They are related categories of use cases. Streaming ETL forms the basis for both real-time analytics and event-driven applications. Real-time analytics expands on streaming ETL by incorporating dashboards, while event-driven applications build on real-time analytics by adding logic to evaluate conditions and trigger follow-up actions.
 
