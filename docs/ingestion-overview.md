@@ -19,18 +19,18 @@ Regardless whether the data is persisted in RisingWave or not, you can create ma
 
 RisingWave supports ingesting data from these external sources:
 
-- [PostgreSQL CDC](./create-source/create-source-cdc.md)
-- [MySQL CDC](./create-source/create-source-cdc.md)
-- [Kafka](./create-source/create-source-kafka.md)
-- [Redpanda](./create-source/create-source-redpanda.md)
-- [Kinesis](./create-source/create-source-kinesis.md)
-- [Pulsar](./create-source/create-source-pulsar.md)
+- [PostgreSQL CDC](/create-source/create-source-cdc.md)
+- [MySQL CDC](/create-source/create-source-cdc.md)
+- [Kafka](/create-source/create-source-kafka.md)
+- [Redpanda](/create-source/create-source-redpanda.md)
+- [Kinesis](/create-source/create-source-kinesis.md)
+- [Pulsar](/create-source/create-source-pulsar.md)
 
 
 ### Supported data formats
 
-To learn about the supported data formats, see [Data formats](./sql/commands/sql-create-source.md#supported-formats).
+To learn about the supported data formats, see [Data formats](/sql/commands/sql-create-source.md#supported-formats).
 
 ## Insert data into tables
 
-As a database, RisingWave supports creating tables ([`CREATE TABLE`](./sql/commands/sql-create-table.md)) and inserting data to tables ([`INSERT`](./sql/commands/sql-insert.md)).
+As a database, RisingWave supports creating tables ([`CREATE TABLE`](/sql/commands/sql-create-table.md)) and inserting data to tables ([`INSERT`](/sql/commands/sql-insert.md)).

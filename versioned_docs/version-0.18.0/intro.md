@@ -32,9 +32,9 @@ For a detailed comparison between RisingWave and Flink, see [RisingWave vs. Flin
 
 RisingWave can be an excellent fit for these categories of use cases.
 
-- [Streaming ETL](./use-cases.md#streaming-etl)
-- [Real-time analytics](./use-cases.md#real-time-analytics)
-- [Event-driven applications](./use-cases.md#event-driven-applications)
+- [Streaming ETL](/use-cases.md#streaming-etl)
+- [Real-time analytics](/use-cases.md#real-time-analytics)
+- [Event-driven applications](/use-cases.md#event-driven-applications)
 
 They are related categories of use cases. Streaming ETL forms the basis for both real-time analytics and event-driven applications. Real-time analytics expands on streaming ETL by incorporating dashboards, while event-driven applications build on real-time analytics by adding logic to evaluate conditions and trigger follow-up actions.
 

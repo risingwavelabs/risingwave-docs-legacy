@@ -81,7 +81,7 @@ rr.Stack(
 
 Click a sink name to see the SQL syntax, options, and sample statement of sinking data from RisingWave to the sink.
 
- * [Kafka](../../guides/create-sink-kafka.md) (3.1.0 or later versions)
+ * [Kafka](/guides/create-sink-kafka.md) (3.1.0 or later versions)
  * JDBC-available databases
    * MySQL
    * PostgreSQL

@@ -11,7 +11,7 @@ RisingWave provides native MySQL and PostgreSQL CDC connectors. With these CDC c
 
 If Kafka is part of your technical stack, you can also use the Kafka connector in RisingWave to ingest CDC data in the form of Kafka topics from databases into RisingWave. You need to use a CDC tool such as [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Maxwell's daemon](https://maxwells-daemon.io/) to convert CDC data into Kafka topics.
 
-This topic describes the configurations for using the Kafka connector in RisingWave to ingest CDC data. For complete step-to-step guides about using the native CDC connector to ingest MySQL and PostgreSQL data, see [Ingest data from MySQL](../guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](../guides/ingest-from-postgres-cdc.md). For completeness, instructions about using additional CDC tools and the Kafka connector to ingest CDC data are also included in these two topics.
+This topic describes the configurations for using the Kafka connector in RisingWave to ingest CDC data. For complete step-to-step guides about using the native CDC connector to ingest MySQL and PostgreSQL data, see [Ingest data from MySQL](/guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](/guides/ingest-from-postgres-cdc.md). For completeness, instructions about using additional CDC tools and the Kafka connector to ingest CDC data are also included in these two topics.
 
 For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with primary keys and connector settings. This is different from creating a standard source, as CDC data needs to be persisted in RisingWave to ensure correctness.
 

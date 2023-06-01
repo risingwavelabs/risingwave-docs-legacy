@@ -53,7 +53,7 @@ Note that you will need the API key when creating a Kafka source in RisingWave.
 
 ### Run RisingWave
 
-To start RisingWave, see the [Get started](../get-started.md) guide. 
+To start RisingWave, see the [Get started](/get-started.md) guide. 
 
 ### Connect to the data stream
 
@@ -61,7 +61,7 @@ Create a table in RisingWave to ingest data from the Kafka topic created in Conf
 
 The following query will create a table that connects to the data generator created in Confluent. Remember to fill in the authentication parameters accordingly.
 
-See the [Ingest data from Kafka](../create-source/create-source-kafka.md) topic for more details on the syntax and connection parameters.
+See the [Ingest data from Kafka](/create-source/create-source-kafka.md) topic for more details on the syntax and connection parameters.
 
 ```sql
 CREATE TABLE s (
