@@ -12,4 +12,4 @@ To ingest data from Astra Streaming into RisingWave, you need to set up an Astra
 
 To learn about how to set up an Astra Streaming account and create a topic, see the [Astra Streaming QuickStart](https://docs.datastax.com/en/streaming/astra-streaming/getting-started/index.html).
 
-To learn about how to consume data from a Pulsar topic, see [Ingest data from Pulsar](../create-source/create-source-pulsar.md).
+To learn about how to consume data from a Pulsar topic, see [Ingest data from Pulsar](/create-source/create-source-pulsar.md).
