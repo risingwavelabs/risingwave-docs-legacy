@@ -9,7 +9,7 @@ Amazon Managed Streaming for Apache Kafka (MSK) is a fully managed service that 
 
 To ingest data from Amazon MSK into RisingWave, you need an operational Amazon MSK cluster and a Kafka topic established. Once set, you'll leverage the Kafka connector in RisingWave to consume data from your MSK topic.
 
-This guide will detail the ingesting streaming data from Amazon MSK into RisingWave, enabling powerful and real-time data analytics in your workflows.
+This guide will detail the ingesting streaming data from Amazon MSK into RisingWave.
 
 
 
@@ -17,13 +17,13 @@ This guide will detail the ingesting streaming data from Amazon MSK into RisingW
 
 To learn about how to set up an Amazon MSK account and create a cluster, see [Getting started using Amazon MSK](https://docs.aws.amazon.com/msk/latest/developerguide/getting-started.html). For this demo, we will assume the selection of **Quick create** for the **Cluster creation method** and **Provisioned** for the **Cluster type**. The cluster creation can take about 15 minutes.
 
-Once you have created a cluster, note down the following information regarding the cluster you want to connect to.
+While creating your cluster, note down the following information regarding the cluster you want to connect to.
 
-1. Get the **VPC** value from the **All cluster settings** before clicking **Create cluster**.
+1. Get the **VPC** value from the **All cluster settings**.
 
-2. Get the **Security groups associated with VPC** from the **All cluster settings** before clicking **Create cluster**.
+2. Get the **Security groups associated with VPC** from the **All cluster settings**.
 
-3. Get the **ARN** value from the **Cluster summary** after clicking on **Create cluster**.
+3. Get the **ARN** value from the **Cluster summary**.
 
 
 To customize the IAM policy, see [IAM access control](https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html).
@@ -48,7 +48,7 @@ To learn how to create an EC2 client machine and add the security group of the c
 
 2. Click on the **Properties** tab, and click **Edit** in the **Security settings** section.
 
-3. Click the **SASL/SCRAM authentication** checkbox and click **Save changes**.
+3. Select the **SASL/SCRAM authentication** checkbox and click **Save changes**.
 
 For more information regarding SASL settings, see [Sign-in credentials authentication with AWS Secrets Manager](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html).
 
@@ -200,7 +200,7 @@ tar -xzf kafka_2.12-2.6.2.tgz
 
 2. Click **View client information** and copy the URL under **Private endpoint** for **SASL/SCRAM**. This will be your `<broker-url>` from now on.
 
-3. Run the following command using the `<broker-url>`.
+3. Run the following command.
 
     ```terminal
     bin/kafka-topics.sh --bootstrap-server <broker-url> --command-config ~/client_sasl.properties --create --topic <topic-name>
@@ -218,12 +218,6 @@ tar -xzf kafka_2.12-2.6.2.tgz
     bin/kafka-console-producer.sh --bootstrap-server <broker-url> --topic <topic-name> --producer.config ~/client_sasl.properties
     ```
 
-6. Open another console and consume the message.
-
-    ```terminal
-    bin/kafka-console-consumer.sh --bootstrap-server <broker-url> --topic <topic-name> --consumer.config ~/client_sasl.properties --from-beginning
-    ```
-
 
 
 
@@ -235,13 +229,6 @@ tar -xzf kafka_2.12-2.6.2.tgz
 
 See the [Get started](https://pr-878.d2fbku9n2b6wde.amplifyapp.com/docs/upcoming/get-started/) guide for options on how you can run RisingWave.
 
-
-### Download Kafka workload from GitHub and write to Kafka
-
-```terminal
-wget https://raw.githubusercontent.com/risingwavelabs/risingwave/main/scripts/source/test_data/kafka_4_partition_topic_with_100_message.4
-	bin/kafka-console-producer.sh --bootstrap-server <broker-url> --topic <topic-name> --producer.config ~/client_sasl.properties < kafka_4_partition_topic_with_100_message.4
-```
 
 
 ### Connect the cluster
