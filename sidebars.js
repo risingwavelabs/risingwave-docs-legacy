@@ -90,59 +90,57 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Run locally',
+          label: 'Try out',
           collapsible: true,
           collapsed: true,
           items: [
             {
               type: 'doc',
-              id: 'deploy/risingwave-local',
-              label: 'Run on host'
-            },
-            {
-              type: 'category',
-              label: 'Run in container',
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: 'doc',
-                  id: 'deploy/risingwave-docker-image',
-                  label: 'Docker'
-                },
-                {
-                  type: 'doc',
-                  id: 'deploy/risingwave-docker-compose',
-                  label: 'Docker Compose'
-                },
-                {
-                  type: 'doc',
-                  id: 'deploy/risingwave-kubernetes',
-                  label: 'Kubernetes'
-                }
-              ]
+              id: 'deploy/risingwave-binaries',
+              label: 'Binaries'
             },
             {
               type: 'doc',
-              id: 'guides/install-psql-without-postgresql'
+              id: 'deploy/risingwave-homebrew',
+              label: 'Homebrew'
+            },
+            {
+              type: 'doc',
+              id: 'deploy/risingwave-docker-image',
+              label: 'Docker'
+            },
+            {
+              type: 'doc',
+              id: 'deploy/risingwave-docker-compose',
+              label: 'Docker Compose'
+            },
+            {
+              type: 'link',
+              label: 'Web-based Playground',
+              href: '/docs/current/get-started/?method=playground#run-risingwave',
             }
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Deploy to production',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'deploy/risingwave-kubernetes',
+              label: 'Kubernetes'
+            },
+            {
+              type: 'link',
+              label: 'Run in cloud',
+              href: '/docs/current/get-started/?method=cloud#run-risingwave',
+            },
           ]
         },
-        {
-          type: 'link',
-          label: 'Run in cloud',
-          href: '/docs/current/get-started/?method=cloud#run-risingwave',
-        },
-        {
-          type: 'link',
-          label: 'Try from browser',
-          href: '/docs/current/get-started/?method=playground#run-risingwave',
-        }
       ]
     },
-
-
-
     {
       type: 'category',
       label: 'Learn & explore',
