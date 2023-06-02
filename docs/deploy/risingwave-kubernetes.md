@@ -41,7 +41,7 @@ The steps in this section are intended for creating a Kubernetes cluster in your
     kind create cluster
     ```
 
-1. ***(Optional)*** Check if the cluster is created properly.
+1. ***Optional:*** Check if the cluster is created properly.
 
     ```shell
     kubectl cluster-info
@@ -94,7 +94,7 @@ Before the deployment, ensure that the following requirements are satisfied.
     > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": dial tcp 10.105.102.32:443: connect: connection refused
     :::
 
-1. ***(Optional)*** Check if the Pods are running.
+1. ***Optional:*** Check if the Pods are running.
 
     ```shell
     kubectl -n cert-manager get pods
