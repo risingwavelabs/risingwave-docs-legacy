@@ -59,11 +59,33 @@ Before the deployment, ensure that the following requirements are satisfied.
 
 1. [Install `cert-manager`](https://cert-manager.io/docs/installation/) and wait a minute to allow for initialization.
 
-1. Install the Operator.
+1. Install the latest version of the Operator.
 
     ```shell
     kubectl apply --server-side -f https://github.com/risingwavelabs/risingwave-operator/releases/latest/download/risingwave-operator.yaml
     ```
+
+    <details>
+    <summary>If you'd like to install a certain version of the Operator</summary>
+
+    Run the following command to install a specific version instead of the latest version.
+
+    ```shell
+    # Replace ${VERSION} with the version you want to install, e.g., v0.4.0
+    kubectl apply --server-side -f https://github.com/risingwavelabs/risingwave-operator/releases/download/${VERSION}/risingwave-operator.yaml
+    ```
+
+    **Compatibility table**
+
+    | Operator | RisingWave | Kubernetes |
+    |----------|------------|------------|
+    | v0.4.0   | v0.18.0+   | v1.21+     |
+    | v0.3.6   | v0.18.0+   | v1.21+     |
+
+    You can find the release notes of each version [here](https://github.com/risingwavelabs/risingwave-operator/releases).
+
+    </details>
+
     :::note
     The following errors might occur if `cert-manager` is not fully initialized. Simply wait for another minute and rerun the command above.
 

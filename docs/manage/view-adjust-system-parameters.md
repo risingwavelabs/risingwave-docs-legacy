@@ -22,7 +22,7 @@ Currently, these system parameters are availble in RisingWave.
 |`data_directory`           | The remote directory for storing data and metadata objects.|
 |`backup_storage_url`       | The URL of the remote storage for backups.|
 |`backup_storage_directory` | The directory of the remote storage for backups.|
-|`telemetry_enabled` | Whether to enable telemetry or not. For more information, see [Telemetry](../telemetry.md).|
+|`telemetry_enabled` | Whether to enable telemetry or not. For more information, see [Telemetry](/telemetry.md).|
 
 ## How to view system parameters?
 

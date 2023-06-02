@@ -69,7 +69,7 @@ RisingWave is a SQL streaming database that offers PostgreSQL-style SQL to its u
 
 Apache Flink is a programming framework that does not support any language clients. To use Apache Flink, users must either write Java/Scala/Python programs or use Flink’s own SQL client.
 
-RisingWave is compatible with the PostgreSQL wire protocol and can work with the majority of PostgreSQL's client libraries. This means that RisingWave can communicate in any programming language that is supported by the [PostgreSQL driver](https://wiki.postgresql.org/wiki/Client_Libraries), such as [Java](./dev/java-client-libraries.md), [Python](./dev/python-client-libraries.md), and [Node.js](./dev/nodejs-client-libraries.md). Additionally, users can interact with RisingWave using `psql`, the official PostgreSQL terminal.
+RisingWave is compatible with the PostgreSQL wire protocol and can work with the majority of PostgreSQL's client libraries. This means that RisingWave can communicate in any programming language that is supported by the [PostgreSQL driver](https://wiki.postgresql.org/wiki/Client_Libraries), such as [Java](/dev/java-client-libraries.md), [Python](/dev/python-client-libraries.md), and [Node.js](/dev/nodejs-client-libraries.md). Additionally, users can interact with RisingWave using `psql`, the official PostgreSQL terminal.
 
 ## State management
 

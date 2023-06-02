@@ -23,7 +23,7 @@ export const svg = rr.Diagram(
         rr.Sequence(
            rr.OneOrMore(
                 rr.NonTerminal('user_name'),
-                rr.Comment('space as delimiter'),
+                rr.Terminal(','),
            )
         ),
         rr.Terminal(';')

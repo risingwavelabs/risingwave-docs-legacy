@@ -53,10 +53,10 @@ RisingWave supports real-time analytics by ingesting and transforming data in re
 
 ### Real-time analytics examples
 
-- [Real-time ad performance analysis](./tutorials/real-time-ad-performance-analysis.md)
-- [Twitter events processing](./tutorials/fast-twitter-events-processing.md)
-- [Clickstream analysis](./tutorials/clickstream-analysis.md)
-- [Live stream metrics analysis](./tutorials/live-stream-metrics-analysis.md)
+- [Real-time ad performance analysis](/tutorials/real-time-ad-performance-analysis.md)
+- [Twitter events processing](/tutorials/fast-twitter-events-processing.md)
+- [Clickstream analysis](/tutorials/clickstream-analysis.md)
+- [Live stream metrics analysis](/tutorials/live-stream-metrics-analysis.md)
 - Cryptocurrency intelligence
 
 ## Event-driven applications
@@ -87,6 +87,6 @@ RisingWave supports event-driven applications in several ways.
 
 ### Event-driven application examples
 
-- [Server performance anomaly detection](./tutorials/server-performance-anomaly-detection.md)
+- [Server performance anomaly detection](/tutorials/server-performance-anomaly-detection.md)
 - Online recommendation system
 - Inventory management

@@ -85,7 +85,7 @@ psql -h localhost -p 4566 -d dev -U root
 </TabItem>
 <TabItem value="Docker compose" label="Locally via Docker">
 
-To learn about how to start RisingWave with Docker Compose, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
+To learn about how to start RisingWave with Docker Compose, see [Docker Compose](/deploy/risingwave-docker-compose.md). 
 
 </TabItem>
 </Tabs>
@@ -94,7 +94,7 @@ To learn about how to start RisingWave with Docker Compose, see [Docker Compose]
 
 Use the following query in RisingWave to create a table that connects to the data generator created in Confluent. Remember to fill in the authentication parameters accordingly.
 
-See the [Ingest data from Kafka](../create-source/create-source-kafka.md) topic for more details on the syntax and connection parameters.
+See the [Ingest data from Kafka](/create-source/create-source-kafka.md) topic for more details on the syntax and connection parameters.
 
 ```sql
 CREATE TABLE s (
