@@ -71,7 +71,7 @@ Input types include bool, smallint, int, bigint, numeric, real, double precision
 Aggregates values, including nulls, as a JSON array.
 
 ```sql title=Syntax  
-jsonb_agg ( expression ) -> json    
+jsonb_agg ( expression ) -> jsonb    
 ```
 
 Input types include boolean, int2/4/8, float4/8, varchar.
