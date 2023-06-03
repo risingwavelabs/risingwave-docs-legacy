@@ -284,7 +284,7 @@ To learn about compatibility types for Schema Registry and the changes allowed, 
 
 ## Create source with AWS PrivateLink connection
 
-If your Kafka source service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](/guides/aws-privatelink-setup.md).
+If your Kafka source service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](../sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
 
 To create a Kafka source with a PrivateLink connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters.
 

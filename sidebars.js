@@ -217,19 +217,6 @@ const sidebars = {
               id: 'data-ingestion',
             },
             {
-              type: 'category',
-              label: 'Connections',
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: 'doc',
-                  label: 'AWS PrivateLink',
-                  id: 'guides/aws-privatelink-setup',
-                },
-              ]
-            },
-            {
               type: 'doc',
               label: 'Apache Kafka',
               id: 'create-source/create-source-kafka',

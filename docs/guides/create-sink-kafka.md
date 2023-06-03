@@ -95,6 +95,32 @@ WITH (
 
 ```
 
+## Create source with AWS PrivateLink connection
+
+If your Kafka sink service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see see [Create an AWS PrivateLink connection](../sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
+
+To create a Kafka sink with a PrivateLink connection, in the WITH section of your `CREATE SINK` statement, specify the following parameters.
+
+|Parameter| Notes|
+|---|---|
+|`connection.name`| The name of the connection, which comes from the connection created using the `CREATE CONNECTION` statement.|
+|`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
+
+Here is an example of creating a Kafka sink using a PrivateLink connection. Notice that `{"port": 8001}` corresponds to the broker `ip1:9092`, and `{"port": 8002}` corresponds to the broker `ip2:9092`.
+
+```sql
+CREATE SINK sink2 FROM mv2
+WITH (
+   connector='kafka',
+   type='append-only',
+   properties.bootstrap.server='b-1.xxx.amazonaws.com:9092,b-2.test.xxx.amazonaws.com:9092',
+   topic='msk_topic',
+   force_append_only='true',
+   connection.name = 'connection1',
+   privatelink.targets = '[{"port": 8001}, {"port": 8002}]'
+);
+```
+
 ## TLS/SSL encryption and SASL authentication
 
 RisingWave can sink data to Kafka that is encrypted with [Transport Layer Security (TLS)](https://en.wikipedia.org/wiki/Transport_Layer_Security) and/or authenticated with SASL.
