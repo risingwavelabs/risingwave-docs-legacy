@@ -48,7 +48,7 @@ To learn how to create an EC2 client machine and add the security group of the c
 
 2. Click on the **Properties** tab, and click **Edit** in the **Security settings** section.
 
-3. Select the **SASL/SCRAM authentication** checkbox and click **Save changes**.
+3. Select **SASL/SCRAM authentication** and click **Save changes**.
 
 For more information regarding SASL settings, see [Sign-in credentials authentication with AWS Secrets Manager](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html).
 
@@ -62,9 +62,9 @@ For more information regarding SASL settings, see [Sign-in credentials authentic
 
 3. Give the key an **Alias** and click **Next**.
 
-4. Under **Administrative permissions**, select the **AWSServiceRoleForKafka** checkbox and click **Next**.
+4. Under **Administrative permissions**, select **AWSServiceRoleForKafka** and click **Next**.
 
-5. Under **Key usage permissions**, again select the **AWSServiceRoleForKafka** checkbox and click **Next**.
+5. Under **Key usage permissions**, again select **AWSServiceRoleForKafka** and click **Next**.
 
 6. Lastly, review the details and click **Finish**.
 
@@ -107,7 +107,7 @@ For more information, see [Sign-in credentials authentication with AWS Secrets M
 
 2. Click the **Actions** tab and select **Edit security settings**.
 
-3. Click to select the **SASL/SCRAM authentication** checkbox and click **Save changes**.
+3. Select **SASL/SCRAM authentication** and click **Save changes**.
 
 4. Back on the main page, click the **Properties** tab, and in the **Security settings** section, under **SASL/SCRAM authentication**, click **Associate secrets**.
 
@@ -126,7 +126,7 @@ To find your specific command values:
 
 1. Access the [EC2 console](https://console.aws.amazon.com/ec2/) and select the instance you created.
 
-2. Click **Connect**, select the **SSH client** tab, and copy the command example provided.
+2. Click **Connect**, select **SSH client**, and copy the command example provided.
 
 
 
@@ -227,7 +227,7 @@ tar -xzf kafka_2.12-2.6.2.tgz
 
 ### Install and launch RisingWave
 
-See the [Get started](https://pr-878.d2fbku9n2b6wde.amplifyapp.com/docs/upcoming/get-started/) guide for options on how you can run RisingWave.
+See the [Get started](https://www.risingwave.dev/docs/upcoming/get-started/) guide for options on how you can run RisingWave.
 
 
 
