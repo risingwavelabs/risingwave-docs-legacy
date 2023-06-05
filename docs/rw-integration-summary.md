@@ -76,7 +76,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |MongoDB| Researching <voteNotify note="mongodb_source" />|Researching <voteNotify note="mongodb_sink" /> |
 |Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
 |SQL Server| Researching <voteNotify note="sql_server_source" />|Researching <voteNotify note="sql_server_sink" /> |
-|TiDB| Researching <voteNotify note="tidb_source" />|Researching <voteNotify note="tidb_sink" /> |
+|TiDB| Available. For details, see [CDC via event streaming systems](./rw-integration-summary.md).|Available. For details, see [Sink data from RisingWave to TiDB](./guides/sink-to-tidb.md). |
 |Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
 
 ## Data lakes
