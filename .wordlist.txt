@@ -131,3 +131,11 @@ microservices
 cryptocurrency
 clickstream
 dataset
+Citus
+CLI
+multibyte
+Homebrew
+IoT
+timestamptz
+unary
+zstd

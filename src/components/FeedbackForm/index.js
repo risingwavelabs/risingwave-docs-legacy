@@ -13,17 +13,18 @@ import IssueIcon from "./IssueIcon";
 import PullRequestIcon from "./PullRequestIcon";
 
 export default function FeedbackForm(props) {
-  const { isDarkTheme } = useColorMode();
-  const [dark, setDark] = useState(false);
   const [formData, setFormData] = useState({
     description: "",
     like: false,
     unlike: false,
   });
 
+  const { colorMode } = useColorMode();
+  const [dark, setDark] = useState(false);
   useEffect(() => {
-    setDark(isDarkTheme);
-  }, [isDarkTheme]);
+    setDark(colorMode === "dark");
+  }, [colorMode]);
+
 
   const handleChange = (e) => {
     setFormData({
