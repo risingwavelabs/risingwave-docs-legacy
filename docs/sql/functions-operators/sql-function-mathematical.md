@@ -51,7 +51,7 @@ title: Mathematical functions and operators
 | asinh ( *input_value* ) → *inverse_hyperbolic_sine* | Returns the inverse hyperbolic sine (in double precision) of a given value (in double precision). | asinh(1.0) → 0.881373587019543 |
 | acosh ( *input_value* ) → *inverse_hyperbolic_cosine* | Returns the inverse hyperbolic cosine (in double precision) of a given value (in double precision). | acosh(2.0) → 1.3169578969248166 |
 | atanh ( *input_value* ) → *inverse_hyperbolic_tangent* | Returns the inverse hyperbolic tangent (in double precision) of a given value (in double precision). | atanh(0.5) → 0.5493061443340549 |
-| sind ( *degrees* ) → *sine* | Returns the trigonometric sine (in double precision) of an angle measured in degrees (in double precision). | sind(15) → 0.2588190451025207 |
+| sind ( *degrees* ) → *sine* | Returns the trigonometric sine (in double precision) of an angle measured in degrees (in double precision). | sind(15) → 0.2588190451025208 |
 | cosd ( *degrees* ) → *cosine* | Returns the trigonometric cosine (in double precision) of an angle measured in degrees (in double precision). | cosd(15) → 0.9659258262890683 |
 | tand ( *degrees* ) → *tangent* | Returns the trigonometric tangent (in double precision) of an angle measured in degrees (in double precision). | tand(15) → 0.2679491924311227|
 | cotd ( *degrees* ) → *cotangent* | Returns the trigonometric cotangent (in double precision) of an angle measured in degrees (in double precision) | cotd(45) → 1 |​
