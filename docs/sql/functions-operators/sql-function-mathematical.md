@@ -41,7 +41,7 @@ title: Mathematical functions and operators
 | tan ( *radians* ) → *tangent* | Returns the trigonometric tangent (in double precision) of an angle measured in radians (in double precision). | tan(1) → 1.5574077246549021 |
 | cot ( *radians* ) → *cotangent* | Returns the trigonometric cotangent (in double precision) of an angle measured in radians (in double precision). | cot(1) → 0.6420926159343308 |
 | asin ( *input_value* ) → *radians* | Returns the inverse sine (in radians and double precision) of a given value (in double precision). | asin(0.5) → 0.5235987755982989 |
-| acos ( *input_value* ) → *radians* | Returns the inverse cosine (in radians and double precision) of a given value (in double precision). | acos(0.5) → 1.0471975511965979 |
+| acos ( *input_value* ) → *radians* | Returns the inverse cosine (in radians and double precision) of a given value (in double precision). | acos(0.5) → 1.0471975511965976 |
 | atan ( *input_value* ) → *radians* | Returns the inverse tangent (in radians and double precision) of a given value (in double precision). | atan(1.0) → 0.7853981633974483 |
 | atan2 ( *y_value*, *x_value* ) → *radians* | Returns the inverse tangent (in radians and double precision) of the quotient of two given values (*y_value* divided by *x_value*). | atan2(1.0, 1.0) → 0.7853981633974483 |
 | sinh ( *input_value* ) → *hyperbolic_sine* | Returns the hyperbolic sine (in double precision) of a given value (in double precision). | sinh(1.0) → 1.1752011936438014 |
