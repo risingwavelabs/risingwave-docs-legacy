@@ -11,11 +11,38 @@ Use the `CREATE CONNECTION` command to create an AWS PrivateLink connection for 
 ## Syntax
 
 ```sql
-CREATE CONNECTION [ IF NOT EXIST ] connection_name
+CREATE CONNECTION [ IF NOT EXISTS ] connection_name
 WITH (
     connection_parameter = 'value'
 );
 ```
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Terminal('CREATE CONNECTION'),
+            rr.Optional(rr.Terminal('IF NOT EXISTS')),
+            rr.NonTerminal('connection_name'),
+        ),
+        rr.Sequence(
+            rr.Terminal('WITH'),
+            rr.Terminal('('),
+            rr.Sequence(
+                rr.NonTerminal('connection_parameter'),
+                rr.Terminal('='),
+                rr.NonTerminal('value'),                
+            ),
+            rr.Terminal(')'),
+        ),
+        rr.Terminal(';'),
+    )
+);
+
+<drawer SVG={svg} />
+
 
 ## Parameters
 
