@@ -17,8 +17,8 @@ title: Mathematical functions and operators
 | / | `operand1 / operand2` <br /> Division (results are truncated for integers). <br /> | 3 / 2 → 1 <br /> 3.0 / 2 → 1.5 <br />  3 / 1.8 → 1.666... |
 | % | `operand1 * operand2` <br /> Remainder (valid for smallint/int/bigint/numeric). <br /> | 3 % 2 → 1 |
 | ^ | `operand1 ^ operand2` <br /> Exponent. <br /> | 2.0 ^ -2 → 0.25 |
-| \|\|/ | `\|\|/operand` <br /> Cube root. <br /> | \|\|/27 → 3 |
-
+| \|\|/ | `\|\|/operand` <br /> Cube root. <br /> | \|\|/ 27 → 3 |
+| @ | `@operand` <br /> Absolute value. <br /> | @ -10 → 10|
 
 ## Mathematical functions
 
