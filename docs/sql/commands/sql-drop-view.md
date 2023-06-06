@@ -10,7 +10,7 @@ Use the `DROP VIEW` command to remove an existing view from a particular schema.
 ## Syntax
 
 ```sql
-DROP VIEW [IF EXISTS] view_name [CASCADE | RESTRICT];
+DROP VIEW [IF EXISTS] view_name;
 ```
 
 
@@ -21,9 +21,6 @@ export const svg = rr.Diagram(
         rr.Terminal('DROP VIEW'),
         rr.Optional(rr.Terminal('IF EXISTS')),
         rr.NonTerminal('view_name'),
-        rr.Optional(
-            rr.Choice(0, rr.Terminal('CASCADE'), rr.Terminal('RESTRICT'))
-        ),
         rr.Terminal(';')
     )
 );
@@ -40,8 +37,6 @@ export const svg = rr.Diagram(
 |---------------------------|-----------------------|
 |**IF EXISTS** clause       |Do not return an error if the specified view does not exist.|
 |*view_name*                |Name of the view to be dropped.|
-|**CASCADE** clause         |Automatically drop objects that depend on the view.|
-|**RESTRICT** clause        |Refuse to drop the view if any objects depend on it. This is the default.|
 
 
 
