@@ -95,7 +95,7 @@ WITH (
 
 ```
 
-## Create source with AWS PrivateLink connection
+## Create sink with AWS PrivateLink connection
 
 If your Kafka sink service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see see [Create an AWS PrivateLink connection](../sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
 

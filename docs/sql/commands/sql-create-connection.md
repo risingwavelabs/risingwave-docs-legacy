@@ -70,7 +70,7 @@ CREATE CONNECTION connection_name with (
 If you are using a cloud-hosted source or sink, such as AWS MSK, there might be connectivity issues when your service is located in a different VPC from where you have deployed RisingWave. To establish a secure, direct connection between these two different VPCs and allow RisingWave to read consumer messages from the broker or send messages to the broker, use the [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html) service.
 
 :::caution Experimental feature
-The support for AWS PrivateLink connection is a beta feature and is subject to change in future versions. There is no guarantee that this feature will be maintained.
+The support for AWS PrivateLink connection is a beta feature and the syntax for `CREATE CONNECTION` is subject to change in future versions.
 :::
 
 Follow the steps below to create an AWS PrivateLink connection.
