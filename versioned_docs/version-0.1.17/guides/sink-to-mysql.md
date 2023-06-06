@@ -109,7 +109,7 @@ To install and start RisingWave locally, see the [Get started](/get-started.md) 
 
 ### Enable the connector node in RisingWave
 
-The connector node implements the native JDBC sink connector in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo, and the connector node is enabled by default in this docker-compose configuration. To start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md).
+The connector node implements the native JDBC sink connector in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo, and the connector node is enabled by default in this docker-compose configuration. To start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-docker-compose.md).
 
 ## Create a sink
 
@@ -132,8 +132,8 @@ All WITH options are required.
 |---|---|
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
-|AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](../sql//commands/sql-select.md) for the syntax and examples of the SELECT command.|
-|connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, go to the [Integrations Overview](../rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
+|AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](/sql//commands/sql-select.md) for the syntax and examples of the SELECT command.|
+|connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, go to the [Integrations Overview](/rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
 |jdbc.url| The JDBC URL of the destination database necessary for the driver to recognize and connect to the database.|
 |table.name| The table in the destination database you want to sink to.|
 

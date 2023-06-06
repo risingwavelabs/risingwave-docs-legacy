@@ -7,16 +7,43 @@ slug: /sql-create-connection
 
 Use the `CREATE CONNECTION` command to create an AWS PrivateLink connection for a Kafka source connector. This is necessary in order to be able to consume messages from a Kafka service located in a different VPC from the RisingWave cluster in the cloud.
 
-For details on how to connect to a Kafka broker, see the [Ingest data from Kafka](../../create-source/create-source-kafka.md) topic.
+For details on how to connect to a Kafka broker, see the [Ingest data from Kafka](/create-source/create-source-kafka.md) topic.
 
 ## Syntax
 
 ```sql
-CREATE CONNECTION [ IF NOT EXIST ] connection_name
+CREATE CONNECTION [ IF NOT EXISTS ] connection_name
 WITH (
     connection_parameter = 'value'
 );
 ```
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Terminal('CREATE CONNECTION'),
+            rr.Optional(rr.Terminal('IF NOT EXISTS')),
+            rr.NonTerminal('connection_name'),
+        ),
+        rr.Sequence(
+            rr.Terminal('WITH'),
+            rr.Terminal('('),
+            rr.Sequence(
+                rr.NonTerminal('connection_parameter'),
+                rr.Terminal('='),
+                rr.NonTerminal('value'),                
+            ),
+            rr.Terminal(')'),
+        ),
+        rr.Terminal(';'),
+    )
+);
+
+<drawer SVG={svg} />
+
 
 ## Parameters
 

@@ -17,7 +17,7 @@ Regardless of whether the data is persisted in RisingWave, you can create materi
 
 ## Insert data into tables
 
-You can also load data to RisingWave by creating tables ([`CREATE TABLE`](./sql/commands/sql-create-table.md)) and inserting data to tables ([`INSERT`](./sql/commands/sql-insert.md)).
+You can also load data to RisingWave by creating tables ([`CREATE TABLE`](/sql/commands/sql-create-table.md)) and inserting data to tables ([`INSERT`](/sql/commands/sql-insert.md)).
 
 ## Supported sources and formats
 

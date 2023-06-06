@@ -17,16 +17,18 @@ export default function DefaultButton({ text, doc, url, block, cloud }: Props) {
   const location = useLocation();
 
   return (
-    <button
+    <div
       onClick={() => {
         if (doc) {
-          globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
-            if (location.pathname.includes(v.path)) {
-              history.push(`${v.path}/${doc}`);
-            } else if (location.pathname.includes("cloud")) {
-              history.push(`/docs/current/${doc}`);
+          globalData["docusaurus-plugin-content-docs"].default["versions"].map(
+            (v) => {
+              if (location.pathname.includes(v.path)) {
+                history.push(`${v.path}/${doc}`);
+              } else if (location.pathname.includes("cloud")) {
+                history.push(`/docs/current/${doc}`);
+              }
             }
-          });
+          );
         } else if (url) {
           window.open(url, "_blank", "noopener,noreferrer");
         } else if (cloud) {
@@ -36,6 +38,6 @@ export default function DefaultButton({ text, doc, url, block, cloud }: Props) {
       className={block ? "default block" : "default"}
     >
       {text}
-    </button>
+    </div>
   );
 }
