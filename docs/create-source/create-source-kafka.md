@@ -124,6 +124,7 @@ For materialized sources with primary key constraints, if a new data record with
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+|properties.sync.call.timeout | Optional. Specify the timeout. By default, the timeout is 5 seconds.  |
 
 ### Other parameters
 
