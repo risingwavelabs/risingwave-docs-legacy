@@ -26,24 +26,24 @@ Currently, these system parameters are availble in RisingWave.
 
 ## How to view system parameters?
 
-You can use the `SHOW PARAMETERS` statement to view the system parameters and their settings.
+You can use the `SHOW PARAMETERS` command to view the system parameters, along with their current values and whether they can be modified.
 
 ```sql
 SHOW PARAMETERS;
-
---------------------------
-           Name           |    Value    
---------------------------+-------------
- barrier_interval_ms      | 1000
- checkpoint_interval      | 10
- sstable_size_mb          | 256
- block_size_kb            | 64
- bloom_false_positive     | 0.001
- state_store              | 
- data_directory           | hummock_001
- backup_storage_url       | memory
- backup_storage_directory | backup
- telemetry_enabled        | true
+```
+```
+           Name           |     Value      | Mutable 
+--------------------------+----------------+---------
+ barrier_interval_ms      | 1000           | f
+ checkpoint_frequency     | 10             | t
+ sstable_size_mb          | 256            | f
+ block_size_kb            | 64             | f
+ bloom_false_positive     | 0.001          | f
+ state_store              | hummock+memory | f
+ data_directory           | hummock_001    | f
+ backup_storage_url       | memory         | f
+ backup_storage_directory | backup         | f
+ telemetry_enabled        | true           | t
 ```
 
 ## How to adjust system parameters?
