@@ -138,3 +138,9 @@ Protobuf
 timestamptz
 unary
 zstd
+http
+pre
+toc
+latencies
+thoroughputs
+
