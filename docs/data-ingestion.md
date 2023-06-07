@@ -11,7 +11,7 @@ You can ingest data into RisingWave in two ways:
 
 ## Ingest data from sources
 
-A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command. If you want to persist the data from the source, you need to create a table with connector settings using the [`CREATE TABLE`](/sql/commands/sql-create-source.md) command.
+A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command. If you want to persist the data from the source, you need to create a table with connector settings using the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command.
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or sinks for data transformations.
 
