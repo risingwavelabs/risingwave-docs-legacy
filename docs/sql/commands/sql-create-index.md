@@ -29,6 +29,67 @@ CREATE INDEX index_name ON object_name ( index_column [ ASC | DESC ], [, ...] )
 [ DISTRIBUTED BY ( distributed_column [, ...] ) ];
 ```
 
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Stack(
+        rr.Sequence(
+            rr.Terminal('CREATE INDEX'),
+            rr.NonTerminal('index_name'),
+            rr.Terminal('ON'),
+            rr.NonTerminal('object_name'),
+            rr.Terminal('('),
+            rr.OneOrMore(
+                rr.Sequence(
+                    rr.NonTerminal('index_column'),
+                    rr.Optional(
+                        rr.Choice(0,
+                            rr.Terminal('ASC'),
+                            rr.Terminal('DESC'),
+                        )
+                    ),
+                    rr.Optional(rr.Terminal(',')),
+                ),
+            ),
+            rr.Terminal(')'),
+        ),
+        rr.Optional(
+            rr.Sequence(
+                rr.Terminal('INCLUDE'),
+                rr.Terminal('('),
+                rr.OneOrMore(
+                    rr.Sequence(
+                        rr.NonTerminal('include_column'),
+                        
+                    ),
+                    rr.Terminal(','),
+                ),
+                rr.Terminal(')'),
+            ),
+        ),
+        rr.Optional(
+            rr.Sequence(
+                rr.Terminal('DISTRIBUTED BY'),
+                rr.Terminal('('),
+                rr.OneOrMore(
+                    rr.Sequence(
+                        rr.NonTerminal('distributed_column'),
+                    ),
+                    rr.Terminal(','),
+                ),
+                rr.Terminal(')'),
+            ),
+        ),
+        rr.Terminal(';'),
+    )
+);
+
+<drawer SVG={svg} />
+
+
+
+
 ### Parameters
 
 | Parameter or clause| Descriptiion|
