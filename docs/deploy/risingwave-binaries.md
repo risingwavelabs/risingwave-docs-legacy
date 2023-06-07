@@ -9,23 +9,23 @@ This topic describes how to install RisingWave from the binaries.
 
 ## Download the binaries
 
-    ```shell
-    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.19/risingwave-v0.1.19-x86_64-unknown-linux.tar.gz
-    ```
+```shell
+wget https://github.com/risingwavelabs/risingwave/releases/download/v0.1.19/risingwave-v0.1.19-x86_64-unknown-linux.tar.gz
+```
 
-    > You can find previous binary releases in [Release notes](/release-notes.md).
+> You can find previous binary releases in [Release notes](/release-notes.md).
 
 ## Extract the tarball
 
-    ```shell
-    tar xvf risingwave-v0.1.19-x86_64-unknown-linux.tar.gz
-    ```
+```shell
+tar xvf risingwave-v0.1.19-x86_64-unknown-linux.tar.gz
+```
 
 ## Start RisingWave
 
-    ```shell
-    ./risingwave playground
-    ```
+```shell
+./risingwave playground
+```
 
 :::caution
 This method starts RisingWave in playground mode. In this mode, RisingWave stores data in memory, and automatically terminates after 30 minutes of inactivity. When it terminates, all data will be lost.
