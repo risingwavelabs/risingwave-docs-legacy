@@ -88,7 +88,7 @@ jsonb_object_agg ( key , value ) -> jsonb
 
 `key`: varchar only.
 
-`value`: boolean, int2/4/8, float4/8, varchar, null.
+`value`: null, boolean, smallint, int, bigint, real, double precision, varchar and jsonb.
 
 ---  
 
