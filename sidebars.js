@@ -85,57 +85,57 @@ const sidebars = {
       items: [
         {
           type: 'doc',
-          label: 'Overview',
+          label: 'Quickstart',
           id: 'get-started'
         },
         {
           type: 'category',
-          label: 'Try out',
+          label: 'Trial',
           collapsible: true,
           collapsed: true,
           items: [
             {
-              type: 'doc',
-              id: 'deploy/risingwave-binaries',
-              label: 'Binaries'
-            },
-            {
-              type: 'doc',
-              id: 'deploy/risingwave-homebrew',
-              label: 'Homebrew'
-            },
-            {
-              type: 'doc',
-              id: 'deploy/risingwave-docker-image',
-              label: 'Docker'
-            },
-            {
-              type: 'doc',
-              id: 'deploy/risingwave-docker-compose',
-              label: 'Docker Compose'
+              type: 'link',
+              label: 'Playground',
+              href: '/docs/current/get-started/?method=playground#run-risingwave',
             },
             {
               type: 'link',
-              label: 'Web-based Playground',
-              href: '/docs/current/get-started/?method=playground#run-risingwave',
+              href: '/docs/current/get-started/?method=homebrew#run-risingwave',
+              label: 'Homebrew'
+            },
+            {
+              type: 'link',
+              href: '/docs/current/get-started/?method=binaries#run-risingwave',
+              label: 'Binaries'
+            },
+            {
+              type: 'link',
+              href: '/docs/current/get-started/?method=docker#run-risingwave',
+              label: 'Docker'
+            },
+            {
+              type: 'link',
+              href: '/docs/current/get-started/?method=docker-compose#run-risingwave',
+              label: 'Docker Compose'
             }
           ],
         },
         {
           type: 'category',
-          label: 'Deploy to production',
+          label: 'Production',
           collapsible: true,
           collapsed: true,
           items: [
             {
+              type: 'link',
+              label: 'RisingWave Cloud',
+              href: '/docs/upcoming/get-started/?method=production#run-risingwave',
+            },
+            {
               type: 'doc',
               id: 'deploy/risingwave-kubernetes',
               label: 'Kubernetes'
-            },
-            {
-              type: 'link',
-              label: 'Run in cloud',
-              href: '/docs/current/get-started/?method=cloud#run-risingwave',
             },
           ]
         },
@@ -157,6 +157,15 @@ const sidebars = {
           label: 'Demos',
           collapsible: true,
           collapsed: true,
+          link: {
+            type: 'generated-index',
+            'title': 'Demos',
+            'description': 'A series of guided tours in solving real-world stream processing tasks with simulated data.',
+            'slug': '/demos',
+            'keywords': [
+              'demo, use, case, tutorial'
+            ]
+          },
           items: [
             {
               type: 'doc',
@@ -298,7 +307,7 @@ const sidebars = {
           items: [
             {
               type: 'doc',
-              id: 'delivery-overview',
+              id: 'data-delivery',
               label: 'Overview',
             },
             {
