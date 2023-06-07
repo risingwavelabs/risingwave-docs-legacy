@@ -82,14 +82,9 @@ To persist your data, start RisingWave with [Docker Compose](get-started.md?meth
   Install [Homebrew](https://brew.sh/) and run the following commands.
 
   ```shell
-  # Tap the repository
-  brew tap risingwavelabs/risingwave
-
-  # Install the latest release of RisingWave
-  brew install risingwave # Replace with `brew install risingwave --HEAD` if you want to install the latest development version of RisingWave.
-
-  # Start RisingWave in playground mode
-  risingwave playground
+  brew tap risingwavelabs/risingwave # Tap the repository
+  brew install risingwave # Install the latest release of RisingWave. Replace with `brew install risingwave --HEAD` if you want to install the latest development version of RisingWave.
+  risingwave playground # Start RisingWave in playground mode
   ```
 
 1. ### Connect to RisingWave
@@ -353,7 +348,6 @@ For example, here is an example `CREATE SOURCE` SQL statement to connect RisingW
 
 ```sql
 -- Create a source that reads JSON data from the user_behaviors topic of a Kafka broker, starting from the earliest available offset.
-
 CREATE SOURCE user_behaviors (  
     -- Define source columns     
     user_id VARCHAR,          
