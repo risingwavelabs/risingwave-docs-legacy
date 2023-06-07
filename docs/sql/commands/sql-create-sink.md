@@ -73,7 +73,9 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
  * [Kafka](/guides/create-sink-kafka.md) (Supports versions 3.1.0 or later)
  * JDBC-available databases
    * [MySQL](/guides/sink-to-mysql.md) (Supports versions 5.7 and 8.0.x)
-   * PostgreSQL
+   * [PostgreSQL](/guides/sink-to-postgres.md)
+   * [TiDB](/guides/sink-to-tidb.md)
+ * [Apache Iceberg](/guides/sink-to-iceberg.md)
 
 
 ## See also
