@@ -97,26 +97,26 @@ const sidebars = {
             {
               type: 'link',
               label: 'Playground',
-              href: '/docs/current/get-started/?method=playground#run-risingwave',
+              href: '/docs/upcoming/get-started/?method=playground#run-risingwave',
             },
             {
               type: 'link',
-              href: '/docs/current/get-started/?method=homebrew#run-risingwave',
+              href: '/docs/upcoming/get-started/?method=homebrew#run-risingwave',
               label: 'Homebrew'
             },
             {
               type: 'link',
-              href: '/docs/current/get-started/?method=binaries#run-risingwave',
+              href: '/docs/upcoming/get-started/?method=binaries#run-risingwave',
               label: 'Binaries'
             },
             {
               type: 'link',
-              href: '/docs/current/get-started/?method=docker#run-risingwave',
+              href: '/docs/upcoming/get-started/?method=docker#run-risingwave',
               label: 'Docker'
             },
             {
               type: 'link',
-              href: '/docs/current/get-started/?method=docker-compose#run-risingwave',
+              href: '/docs/upcoming/get-started/?method=docker-compose#run-risingwave',
               label: 'Docker Compose'
             }
           ],
