@@ -155,7 +155,7 @@ tar -xzf kafka_2.12-2.6.2.tgz
 ### Configure AWS IAM credentials on EC2
 
 
-1. Run the following command.
+1. Run the following command to configure AWS credentials and default settings.
 
     ```terminal
     aws configure
@@ -171,7 +171,7 @@ tar -xzf kafka_2.12-2.6.2.tgz
     };
     ```
 
-3. Run the following command.
+3. Run the following command to define the specific security settings Kafka should use.
 
     ```terminal
     export KAFKA_OPTS=-Djava.security.auth.login.config=/home/ubuntu/users_jaas.conf
@@ -200,26 +200,27 @@ tar -xzf kafka_2.12-2.6.2.tgz
 
 2. Click **View client information** and copy the URL under **Private endpoint** for **SASL/SCRAM**. This will be your `<broker-url>` from now on.
 
-3. Run the following command.
+3. Run the following command to create a topic.
 
     ```terminal
     bin/kafka-topics.sh --bootstrap-server <broker-url> --command-config ~/client_sasl.properties --create --topic <topic-name>
     ```
 
-4. List the topics.
+   Optional: The following command will list the topics.
 
     ```terminal
     bin/kafka-topics.sh --bootstrap-server <broker-url> --list --command-config ~/client_sasl.properties
     ```
 
-5. Insert test data.
+4. Insert test data.
 
     ```terminal
     bin/kafka-console-producer.sh --bootstrap-server <broker-url> --topic <topic-name> --producer.config ~/client_sasl.properties
     ```
 
+Once you run the `kafka-console-producer` command, you will be prompted to enter messages into the console. Each message should be entered on a new line; you can enter as many messages as you like.
 
-
+After entering messages, you can close the console window or press Ctrl + C to exit the producer.
 
 
 ## Consume data from Amazon MSK in RisingWave
