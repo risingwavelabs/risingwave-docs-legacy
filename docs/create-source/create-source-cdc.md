@@ -15,13 +15,13 @@ For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with
 
 RisingWave accepts these data formats:
 
-- Debezium JSON (for both MySQL and PostgreSQL)
+- Debezium JSON (for MySQL and PostgreSQL)
 
    For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
 
-- Debezium AVRO (for MySQL)
+- Debezium AVRO (for MySQL and PostgreSQL)
 
-   For Debezium AVRO, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) to convert CDC data to Kafka topics.
+   For Debezium AVRO, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka topics.
 
 - Maxwell JSON (for MySQL only)
 
@@ -46,7 +46,7 @@ WITH (
    connector='connector',
    connector_parameter='value', ...
 ) 
-ROW FORMAT { DEBEZIUM_JSON | MAXWELL | CANAL_JSON };
+ROW FORMAT { DEBEZIUM_JSON | MAXWELL | CANAL_JSON | DEBEZIUM_AVRO };
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -101,6 +101,7 @@ export const svg = rr.Diagram(
                     rr.Terminal('DEBEZIUM_JSON'),
                     rr.Terminal('MAXWELL'),
                     rr.Terminal('CANAL_JSON'),
+                    rr.Terminal('DEBEZIUM_AVRO'),
                 ),
                 rr.Terminal(';'),
             ),
