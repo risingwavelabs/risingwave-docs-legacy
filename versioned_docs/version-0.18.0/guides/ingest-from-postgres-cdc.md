@@ -230,35 +230,31 @@ export const svg = rr.Diagram(
 <drawer SVG={svg} />
 
 
+Note that a primary key is required.
+
+#### WITH parameters
+
+Unless specified otherwise, the fields listed are required. 
+
+|Field|Notes|
+|---|---|
+|hostname| Hostname of the database. |
+|port| Port number of the database.|
+|username| Username of the database.|
+|password| Password of the database. |
+|database.name| Name of the database.|
+|schema.name| Optional. Name of the schema. By default, the value is `public`. |
+|table.name| Name of the table that you want to ingest data from. |
+|slot.name| Optional. The [replication slot](https://www.postgresql.org/docs/14/logicaldecoding-explanation.html#LOGICALDECODING-REPLICATION-SLOTS) for this PostgreSQL source. By default, a unique slot name will be randomly generated. Each source should have a unique slot name.|
+
+#### Data format
+
+Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
 
 
+#### Example
 
-
- Note that a primary key is required.
-
- #### WITH parameters
-
- Unless specified otherwise, the fields listed are required. 
-
- |Field|Notes|
- |---|---|
- |hostname| Hostname of the database. |
- |port| Port number of the database.|
- |username| Username of the database.|
- |password| Password of the database. |
- |database.name| Name of the database.|
- |schema.name| Optional. Name of the schema. By default, the value is `public`. |
- |table.name| Name of the table that you want to ingest data from. |
- |slot.name| Optional. The slot name for each PostgreSQL source. By default, each slot name will be randomly generated. Each source should have a unique slot name.|
-
- #### Data format
-
- Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
-
-
- #### Example
-
- ```sql
+```sql
  CREATE TABLE shipments (
     shipment_id integer,
     order_id integer,
@@ -274,10 +270,9 @@ export const svg = rr.Diagram(
  password = 'postgres',
  database.name = 'dev',
  schema.name = 'public',
- table.name = 'shipments',
- slot.name = 'shipments'
+ table.name = 'shipments'
 );
- ```
+```
 
 
 ## Use the Debezium connector for PostgreSQL
