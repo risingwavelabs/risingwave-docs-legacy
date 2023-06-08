@@ -7,6 +7,9 @@
   border: 1px solid var(--ifm-color-emphasis-200);
   transition: all var(--ifm-transition-fast) ease;
   transition-property: border, box-shadow;
+}
+
+[data-theme="dark"] .cardContainer {
   background-color: var(--ifm-card-background-color);
 }
 
