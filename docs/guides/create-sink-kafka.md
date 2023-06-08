@@ -38,7 +38,7 @@ All WITH options are required except `force_append_only` and `primary_key`.
 |connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, see [Integrations](/rw-integration-summary.md) for a full list of connectors and integrations we are working on. |
 |properties.bootstrap.server|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |topic|Address of the Kafka topic. One sink can only correspond to one topic.|
-|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul>|
+|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](../delivery-overview.md).|
 |force_append_only| If `true`, forces the sink to be `append-only`, even if it cannot be.|
 |primary_key| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
 
