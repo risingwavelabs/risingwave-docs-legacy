@@ -24,7 +24,7 @@ div.defaultContainer {
 }
 
 div.cardContainer:hover {
-  border: 1px solid #cddbff;
+  border: 1px solid var(--ifm-button-background-color);
   box-shadow: 0 0 0 1px #cddbff;
 }
 
