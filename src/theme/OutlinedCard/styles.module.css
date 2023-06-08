@@ -40,10 +40,11 @@ div.cardContent {
 
 div.title {
   margin-bottom: 1.4rem;
+  font-size: 1.3rem;
 }
 
 p.content {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 [data-theme="dark"] div.title,
