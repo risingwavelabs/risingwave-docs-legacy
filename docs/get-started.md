@@ -409,7 +409,7 @@ The following content covers what you can do with RisingWave to process your dat
 <grid item xs={12} sm={6} md={4}>
 
  <card
- style={{height: "87%"}}
+ style={{height: "84%"}}
  title="RisingWave SQL 101"
  content="A simple yet typical data processing guide for RisingWave first-timers."
  doc="risingwave-sql-101"
@@ -420,7 +420,7 @@ The following content covers what you can do with RisingWave to process your dat
 <grid item xs={12} sm={6} md={4}>
 
  <card
- style={{height: "87%"}}
+ style={{height: "84%"}}
  title="Demos"
  content="A series of guided tours in solving real-world stream processing tasks with simulated data."
  doc="demos"
@@ -431,7 +431,7 @@ The following content covers what you can do with RisingWave to process your dat
 <grid item xs={12} sm={6} md={4}>
 
 <card
- style={{height: "87%"}}
+ style={{height: "84%"}}
  title="SQL references"
  content="RisingWave SQL functionality and syntax. Commands, functions, operators, patterns, and more."
  doc="sql-references"
