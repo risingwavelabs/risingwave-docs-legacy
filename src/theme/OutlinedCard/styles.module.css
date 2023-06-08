@@ -73,14 +73,14 @@ button.cardBtn {
   text-transform: none;
 }
 
-p.cardLinks {
+div.cardLinks {
   margin-top: 1rem;
 }
 
 p.cardLink {
   cursor: pointer;
   color: var(--ifm-button-color);
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-bottom: 0.1rem;
   margin-right: 4px;
   border: 1px solid transparent;
