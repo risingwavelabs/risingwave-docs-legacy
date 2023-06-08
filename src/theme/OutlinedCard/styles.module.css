@@ -10,6 +10,7 @@ div.cardContainer {
 
 [data-theme="dark"] div.cardContainer {
   border: 1px solid #a6a6a6;
+  background-color: var(--ifm-card-background-color);
 }
 
 div.defaultContainer {
@@ -19,7 +20,7 @@ div.defaultContainer {
 }
 
 [data-theme="dark"] div.defaultContainer {
-  background: none;
+  background-color: var(--ifm-card-background-color);
   border: 1px solid #a6a6a6;
 }
 
