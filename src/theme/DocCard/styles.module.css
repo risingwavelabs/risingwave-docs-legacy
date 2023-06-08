@@ -7,6 +7,12 @@
   border: 1px solid var(--ifm-color-emphasis-200);
   transition: all var(--ifm-transition-fast) ease;
   transition-property: border;
+
+  background-color: var(--ifm-card-background-color);
+  border-radius: var(--ifm-card-border-radius);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 [data-theme="dark"] .cardContainer {
