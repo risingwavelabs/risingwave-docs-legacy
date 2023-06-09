@@ -93,6 +93,7 @@ runtime
 disaggregated
 PrivateLink
 VPCs
+VPC
 DataSet
 FlinkSQL
 LSM
