@@ -251,7 +251,11 @@ const sidebars = {
               label: 'Confluent Cloud',
               id: 'guides/confluent-kafka-source',
             },
-
+            {
+              type: 'doc',
+              label: 'Amazon MSK',
+              id: 'guides/connector-amazon-msk',
+            },
             {
               type: 'doc',
               label: 'DataStax Astra Streaming',
