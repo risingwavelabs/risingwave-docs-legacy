@@ -13,6 +13,28 @@ Use the `DROP FUNCTION` command to remove an existing [user-defined function (UD
 DROP FUNCTION function_name [ ( argument_type [, ...] ) ] ;
 ```
 
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('DROP FUNCTION'),
+        rr.NonTerminal('function_name'),
+        rr.Optional(
+            rr.Sequence(
+                rr.Terminal('('),
+                rr.OneOrMore(
+                    rr.NonTerminal('argument_type', 'skip'),
+                    ','
+                ),
+                rr.Terminal(')'),
+            ),
+        ),
+        rr.Terminal(';'),
+    )
+);
+
+<drawer SVG={svg} />
+
 | Parameter or clause           | Description                                           |
 |-------------------------------|-------------------------------------------------------|
 | *function_name*               | Name of the UDF you want to drop.           |
