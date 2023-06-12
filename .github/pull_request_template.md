@@ -1,36 +1,39 @@
-<!--Edit the Info section when creating this pull request.-->
+<!--Edit the Info section when creating this PR.-->
 
 ## Info
 
-- **Description**:
+- **Description**
 
   [ What's changed? Which parts of the docs are affected? ]
 
-- **Preview**:
-
-  [ Paste the preview link to the edited page here. Edit this item after you submit the PR and the preview is ready. ]
-
-- **Notes**:
+- **Notes**
 
   [ Include any supplementary context or references here. ]
 
-- **Related code PR**:
+- **Related code PR**
 
   [ Provide a link to the relevant code PR here, if applicable.]
 
-- **Related doc issue**:
+- **Related doc issue**
   
   Resolves [ Provide a link to the relevant doc issue here, if applicable. ]
 
-<!--You DON'T need to edit the following sections when creating this pull request.-->
+<!--❗️ Before you submit, please ensure you have selected the applicable software version from "Milestone" if this PR is version-specific and applied relevant labels to categorize the PR. Submit the PR as a draft if it's not ready for review.-->
+
+<!--Edit the following sections when this PR is ready for review.-->
+
+## For reviewers
+
+- **Preview**
+
+  [ Paste the preview link to the updated page(s) here. Edit this item after the preview site is ready. To find the updated pages, scroll down to locate and open the Amplify preview link and select the **upcoming** version of the documentation. ]
+
+- **Key points**
+
+  [ Parts that may need revision or extra consideration. ]
 
 ## Before merging
 
-- [ ] (For version-specific PR) I have selected the corresponding software version in **Milestone** and linked the related doc issue to this PR in **Development**.
+- [ ] I have checked the doc site preview, and the updated parts look good.
 
 - [ ] I have acquired the approval from the owner (and optionally the reviewers) of the code PR and at least one tech writer (`bernscode`, `CharlieSYH`, `emile-00`, & `hengm3467`).
-
-- [ ] I have checked the doc site preview, and the updated parts look good.
-  
-  <details><summary>How?</summary>Scroll down and open this link: <img width="916" alt="image" src="https://user-images.githubusercontent.com/100549427/199641563-82967cd0-2c5c-4f40-bcdb-5ac80f03ffd8.png">
-  </details>
