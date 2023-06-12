@@ -56,7 +56,7 @@ A function can be dropped using one of the following methods:
     DROP FUNCTION function_name;
     ```
 
-    You can run [`SHOW FUNCTIONS;`](/sql/commands/sql-show-functions.md) to check if the function name is unique.
+    You can run [`SHOW FUNCTIONS;`](/sql/commands/sql-show-functions.md) to list all existing UDFs to see if a function name is unique.
 
 :::tip
 `DROP FUNCTION function_name();` drops a function with zero arguments.
