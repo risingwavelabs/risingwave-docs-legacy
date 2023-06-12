@@ -236,19 +236,6 @@ const sidebars = {
               id: 'data-ingestion',
             },
             {
-              type: 'category',
-              label: 'Connections',
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: 'doc',
-                  label: 'AWS PrivateLink',
-                  id: 'guides/aws-privatelink-setup',
-                },
-              ]
-            },
-            {
               type: 'doc',
               label: 'Apache Kafka',
               id: 'create-source/create-source-kafka',
@@ -283,7 +270,11 @@ const sidebars = {
               label: 'Confluent Cloud',
               id: 'guides/confluent-kafka-source',
             },
-
+            {
+              type: 'doc',
+              label: 'Amazon MSK',
+              id: 'guides/connector-amazon-msk',
+            },
             {
               type: 'doc',
               label: 'DataStax Astra Streaming',
