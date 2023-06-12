@@ -42,19 +42,21 @@ export const svg = rr.Diagram(
 
 ## Usage
 
-A function can be dropped either by:
+A function can be dropped using one of the following methods:
 
-- Full function signature
+- Full function signature:
 
     ```sql
     DROP FUNCTION function_name ( argument_type [, ...] ); 
     ```
 
-- Function name only, if it's unique in its schema
+- Function name only, if it's unique in its schema:
 
     ```sql
     DROP FUNCTION function_name;
     ```
+
+    You can run [`SHOW FUNCTIONS;`](/sql/commands/sql-show-functions.md) to check if the function name is unique.
 
 :::tip
 `DROP FUNCTION function_name();` drops a function with zero arguments.
