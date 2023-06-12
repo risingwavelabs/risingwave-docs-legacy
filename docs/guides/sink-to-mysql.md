@@ -118,7 +118,7 @@ The native MySQL CDC connector is implemented by the connector node in RisingWav
 
 The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-docker-compose.md). 
 
-If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-local.md#optional-enable-the-connector-node).
+If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/docs/upcoming/risingwave-trial/?method=binaries#optional-enable-the-connector-node).
 
 ## Create a sink
 
@@ -145,7 +145,7 @@ All WITH options are required.
 |connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, go to the [Integrations](/rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
 |jdbc.url| The JDBC URL of the destination database necessary for the driver to recognize and connect to the database.|
 |table.name| The table in the destination database you want to sink to.|
-|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul> If creating an `upsert` sink, see the [Overview](../delivery-overview.md) on when to define the primary key.|
+|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul> If creating an `upsert` sink, see the [Overview](/data-delivery.md) on when to define the primary key.|
 
 ## Sink data from RisingWave to MySQL
 
