@@ -93,30 +93,36 @@ const sidebars = {
           label: 'Trial',
           collapsible: true,
           collapsed: true,
+          link: {type: 'doc', id: 'deploy/risingwave-trial'},
           items: [
             {
-              type: 'link',
-              label: 'Playground',
-              href: '/docs/upcoming/get-started/?method=playground#run-risingwave',
+              type: 'doc',
+              label: 'Overview',
+              id: 'deploy/risingwave-trial',
             },
             {
               type: 'link',
-              href: '/docs/upcoming/get-started/?method=homebrew#run-risingwave',
+              label: 'Playground',
+              href: '/docs/upcoming/risingwave-trial/?method=playground',
+            },
+            {
+              type: 'link',
+              href: '/docs/upcoming/risingwave-trial/?method=homebrew',
               label: 'Homebrew'
             },
             {
               type: 'link',
-              href: '/docs/upcoming/get-started/?method=binaries#run-risingwave',
+              href: '/docs/upcoming/risingwave-trial/?method=binaries',
               label: 'Binaries'
             },
             {
               type: 'link',
-              href: '/docs/upcoming/get-started/?method=docker#run-risingwave',
+              href: '/docs/upcoming/risingwave-trial/?method=docker',
               label: 'Docker'
             },
             {
               type: 'link',
-              href: '/docs/upcoming/get-started/?method=docker-compose#run-risingwave',
+              href: '/docs/upcoming/risingwave-trial/?method=docker-compose',
               label: 'Docker Compose'
             }
           ],
@@ -126,11 +132,17 @@ const sidebars = {
           label: 'Production',
           collapsible: true,
           collapsed: true,
+          link: {type: 'doc', id: 'deploy/risingwave-production'},
           items: [
+            {
+              type: 'doc',
+              label: 'Overview',
+              id: 'deploy/risingwave-production',
+            },
             {
               type: 'link',
               label: 'RisingWave Cloud',
-              href: '/docs/upcoming/get-started/?method=production#run-risingwave',
+              href: '/docs/upcoming/risingwave-production/?method=production',
             },
             {
               type: 'doc',
