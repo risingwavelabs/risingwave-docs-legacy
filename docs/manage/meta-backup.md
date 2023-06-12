@@ -33,7 +33,7 @@ Here's an example of how to create a new meta snapshot with `risectl`:
 risectl meta backup-meta
 ```
 
-`risectl` is included in the pre-built RisingWave binary. It can also be built from source. For details, see [Run RisingWave locally](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+`risectl` is included in the pre-built RisingWave binary. It can also be built from source. For details, see [Install RisingWave from the binaries](/deploy/risingwave-trial.md/?method=binaries).
 
 ## View existing meta snapshots
 
