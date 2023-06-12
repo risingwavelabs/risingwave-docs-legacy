@@ -23,6 +23,8 @@
   --ifm-button-hover-background-color: #0179be;
   --ifm-button-color: #0179be;
 
+  --ifm-card-border-radius: var(--ifm-pagination-nav-border-radius);
+
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
@@ -53,6 +55,7 @@
   --ifm-background-color: #1f2765;
   --ifm-navbar-link-color: #e3e3e3;
   --ifm-heading-color: #e3e3e3;
+  --ifm-card-background-color: #152431;
 
   --ifm-button-background-color: linear-gradient(
       0deg,
