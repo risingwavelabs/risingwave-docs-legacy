@@ -44,20 +44,30 @@ title: String functions and operators
 | `to_ascii`( *input_string* ) → *string* | Returns the *input_string* with non-ASCII characters replaced by their closest ASCII equivalents. | `to_ascii('Café')` → `Cafe` |
 | `to_hex`( *input_int* ) → *string* <br /><br /> to_hex( *input_bigint* ) → *string* | Converts *input_int* or *input_bigint* to its hexadec
 
-
-
 ## Pattern matching expressions
 
 ```sql
-string NOT LIKE pattern
-string LIKE pattern
+string NOT LIKE pattern [ ESCAPE '' ]
+string LIKE pattern [ ESCAPE '' ]
 ```
 
 The `LIKE` expression returns true if the string matches the supplied pattern. The `NOT LIKE` expression returns false if `LIKE` returns true.
 
-If the pattern does not contain percent signs or underscores, then the pattern only represents the string itself; in that case `LIKE` acts like the equals operator. An underscore (_) in a pattern stands for (matches) any single character; a percent sign (%) matches any sequence of zero or more characters.
+#### Wildcards
 
-Examples:
+- An underscore `_` in a pattern matches any single character
+  
+- A percent sign `%` matches any sequence of zero or more characters.
+
+If the pattern does not contain `_` or `%`, then the pattern only represents the string itself. In that case, `LIKE` acts like the equals operator `=`.
+
+#### Escape
+
+To match a literal underscore or percent sign without matching other characters, the respective character in pattern must be preceded by the escape character `\`. To match the escape character itself, write two escape characters: `\\`.
+
+`ESCAPE ''` completely disables the escape mechanism. RisingWave does not support specifying a custom escape character using the `ESCAPE` clause.
+
+#### Examples
 
 ```sql
 'abc' LIKE 'abc'           true
@@ -65,7 +75,3 @@ Examples:
 'abc' LIKE '_b_'           true
 'abc' LIKE 'c'             false
 ```
-
-
-ESCAPE is not supported yet. We are unable to match a literal underscore or percent sign without matching other characters.
-
