@@ -23,6 +23,10 @@ RisingWave offers two running modes and several installation or running options.
 |**Data persistence**|Data is stored solely in memory and will not be persisted after the service is terminated.|Data is persisted in storage.|
 |**Choose a method to run RisingWave**|Try out from browser <br /><lightButton text="Playground" doc="risingwave-trial?method=playground" block />Install directly <lightButton text="Homebrew" doc="risingwave-trial?method=homebrew" block /><lightButton text="Binaries" doc="risingwave-trial?method=binaries" block />Run in container <lightButton text="Docker" doc="risingwave-trial?method=docker" block />|Set up a local cluster <lightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" block />|
 
+---
+
+<lightButton text="I'm using RisingWave for production" doc="risingwave-production" block/>
+
 </TabItem>
 
 <TabItem value="playground" label="Playground">
@@ -277,7 +281,3 @@ RisingWave also incorporates these third-party components:
 </TabItem>
 
 </Tabs>
-
----
-
-<lightButton text="I'm using RisingWave for production" doc="risingwave-production" block/>
