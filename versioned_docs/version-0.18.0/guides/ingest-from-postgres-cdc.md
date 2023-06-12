@@ -57,7 +57,7 @@ import TabItem from '@theme/TabItem';
 
     You can check your role attributes by using the `\du` psql command:
 
-    ```
+    ```shell
     dev-# \du
                                        List of roles
     Role name |                         Attributes                         | Member of
@@ -77,6 +77,7 @@ import TabItem from '@theme/TabItem';
     ```
 
     You can use the following statement to check the priviledges of the user to the tables:
+
     ```sql
     postgres=# SELECT table_name, grantee, privilege_type
     FROM information_schema.role_table_grants
@@ -99,7 +100,6 @@ import TabItem from '@theme/TabItem';
      (8 rows)
     ```
 
-
 </TabItem>
 
 <TabItem value="AWS_rds_pg" label="AWS RDS">
@@ -108,37 +108,37 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 
 1. Check whether the `wal_level` parameter is set to `logical`. If it is `logical` then we are done. Otherwise, create a parameter group for your Postgres instance. We created a parameter group named **pg-cdc** for the instance that is running Postgres 12. Next, click the **pg-cdc** parameter group to edit the value of `rds.logical_replication` to 1.
 
-<img
-  src={require('../images/wal-level.png').default}
-  alt="Change the wal-level for pg instance"
-/>
+    <img
+    src={require('../images/wal-level.png').default}
+    alt="Change the wal-level for pg instance"
+    />
 
 2. Go to the **Databases** page and modify your instance to use the **pg-cdc** parameter group.
 
-<img
-  src={require('../images/pg-cdc-parameter.png').default}
-  alt="Apply modified parameter group to pg instance"
-/>
+    <img
+    src={require('../images/pg-cdc-parameter.png').default}
+    alt="Apply modified parameter group to pg instance"
+    />
 
 3. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save changes. Remember to reboot the Postgres instance to put the changes into effect.
 
-<img
-  src={require('../images/modify-instances.png').default}
-  alt="Apply changes"
-/>
+    <img
+    src={require('../images/modify-instances.png').default}
+    alt="Apply changes"
+    />
 
 </TabItem>
 </Tabs>
 
 ### Enable the connector node in RisingWave
 
-The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo, in which the connector node is enabled by default. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-docker-compose.md). 
+The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo, in which the connector node is enabled by default. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-docker-compose.md).
 
 ### Create a table using the native CDC connector
 
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON. 
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
 
- #### Syntax
+#### Syntax
 
  ```sql
  CREATE TABLE [ IF NOT EXISTS ] source_name (
@@ -150,8 +150,6 @@ To ensure all data changes are captured, you must create a table and specify pri
     <field>=<value>, ...
  );
  ```
-
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -226,15 +224,13 @@ export const svg = rr.Diagram(
     )
 );
 
-
 <drawer SVG={svg} />
-
 
 Note that a primary key is required.
 
 #### WITH parameters
 
-Unless specified otherwise, the fields listed are required. 
+Unless specified otherwise, the fields listed are required.
 
 |Field|Notes|
 |---|---|
@@ -254,7 +250,6 @@ RisingWave implements CDC via PostgresQL replication. Inspect the current progre
 #### Data format
 
 Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
-
 
 #### Example
 
@@ -278,7 +273,6 @@ Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based 
 );
 ```
 
-
 ## Use the Debezium connector for PostgreSQL
 
 ### Set up PostgreSQL
@@ -291,7 +285,7 @@ You need to download and configure the [Debezium connector for PostgreSQL](https
 
 ### Create a table using the Kafka connector
 
- To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON. 
+ To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
 
  ```sql
  CREATE TABLE source_name (
@@ -308,5 +302,3 @@ You need to download and configure the [Debezium connector for PostgreSQL](https
  )
  ROW FORMAT DEBEZIUM_JSON;
  ```
-
-
