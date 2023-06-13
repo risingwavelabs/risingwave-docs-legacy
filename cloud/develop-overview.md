@@ -164,7 +164,7 @@ links={[
  content="Product insights, engineering deep-dives, community events, industry highlights, and company news posted regularly by our CEO, engineers, product experts, community runners, communication specialists, and community contributors."
  url="https://www.risingwave-labs.com/blog/"
  links={[
- {text:"Blog", url:"https://www.risingwave-labs.com/blog/"}
+ {text:"Blog", url:"https://www.risingwave.com/resources/?filter=blogs"}
  ]}
  />
   

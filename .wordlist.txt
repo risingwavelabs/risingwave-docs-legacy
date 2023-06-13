@@ -93,6 +93,7 @@ runtime
 disaggregated
 PrivateLink
 VPCs
+VPC
 DataSet
 FlinkSQL
 LSM
@@ -139,3 +140,4 @@ IoT
 timestamptz
 unary
 zstd
+VPC

@@ -10,6 +10,7 @@ title: String functions and operators
 | Operator | Expression & Description | Example |
 | ----------- | ----------- | ----------- |
 | \|\| | <code>expression1 &#124;&#124; expression2 [ &#124;&#124; expression ] ...</code> <br /> Concatenates two or more expressions. <br /> | <code>'Abcde' &#124;&#124; 1 &#124;&#124; 23 </code> → `Abcde123` |
+| `^@` | `string ^@ substring` <br /> Returns true (`t`) if *string* starts with *substring*. This operator is equivalent to the `starts_with`() function.| `'abcdef' ^@ 'abc'` → `t` |
 
 ## String functions
 
@@ -42,8 +43,8 @@ title: String functions and operators
 | `reverse`( *input_string* ) → *string* | Returns the *input_string* with its characters in the reverse order. | `reverse('RisingWave')` → `evaWgnisiR` |
 | `strpos`( *input_string*, *substring* ) → *int* | Returns the position of the first occurrence of the *substring* in the *input_string*. If the substring is not found, it returns 0. | `strpos('RisingWave is powerful', 'powerful')` → `15` |
 | `to_ascii`( *input_string* ) → *string* | Returns the *input_string* with non-ASCII characters replaced by their closest ASCII equivalents. | `to_ascii('Café')` → `Cafe` |
-| `to_hex`( *input_int* ) → *string* <br /><br /> to_hex( *input_bigint* ) → *string* | Converts *input_int* or *input_bigint* to its hexadec
-
+| `to_hex`( *input_int* ) → *string* <br /><br /> `to_hex`( *input_bigint* ) → *string* | Converts *input_int* or *input_bigint* to its hexadecimal representation as a string. | `to_hex(255)` → `ff` <br /><br /> `to_hex(123456789012345678)` → `1b69b4ba630f34e` |
+| `starts_with`( *input_string*, *substring* ) → *boolean* | Returns true (`t`) if *input_string* starts with *substring*. This function is equivalent to the `^@` operator. | `starts_with('abcdef', 'abc')` → `t` |
 
 
 ## Pattern matching expressions
