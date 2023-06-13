@@ -9,31 +9,35 @@ Change data capture (CDC) refers to the process of identifying and capturing dat
 
 You can use event streaming systems like Kafka, Pulsar, or Kinesis to stream changes from MySQL, PostgreSQL, and TiDB to RisingWave. In this case, you will need an additional CDC tool to stream the changes from the database and specify the corresponding formats when ingesting the streams into RisingWave.
 
-RisingWave also provides native MySQL and PostgreSQL CDC connectors. With these CDC connectors, you can ingest CDC data from these databases directly, without setting up additional services like Kafka. For complete step-to-step guides about using the native CDC connector to ingest MySQL and PostgreSQL data, see [Ingest data from MySQL](../guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](../guides/ingest-from-postgres-cdc.md). This topic only describes the configurations for using RisingWave to ingest CDC data from an event streaming system.
+RisingWave also provides native MySQL and PostgreSQL CDC connectors. With these CDC connectors, you can ingest CDC data from these databases directly, without setting up additional services like Kafka. For complete step-to-step guides about using the native CDC connector to ingest MySQL and PostgreSQL data, see [Ingest data from MySQL](/guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](/guides/ingest-from-postgres-cdc.md). This topic only describes the configurations for using RisingWave to ingest CDC data from an event streaming system.
 
 For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with primary keys and connector settings. This is different from creating a standard source, as CDC data needs to be persisted in RisingWave to ensure correctness.
 
 RisingWave accepts these data formats:
 
-- Debezium JSON (for both MySQL and PostgreSQL)
+- Debezium JSON (for MySQL and PostgreSQL)
 
-   For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
+    For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
 
-- Debezium AVRO (for MySQL)
+- Debezium Mongo JSON (for MongoDB)
 
-   For Debezium AVRO, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) to convert CDC data to Kafka topics.
+    For Debezium Mongo JSON, you can use the [Debezium connector for MongoDB](https://debezium.io/documentation/reference/stable/connectors/mongodb.html) to convert CDC data to Kafka topics.
+
+- Debezium AVRO (for MySQL and PostgreSQL)
+
+   For Debezium AVRO, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka topics.
 
 - Maxwell JSON (for MySQL only)
 
-  For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
+    For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
 
 - The TiCDC dialect of Canal JSON (for TiDB only)
 
-  For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`ROW FORMAT CANAL_JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. You might need to define the topic name in a TiCDC configuration file. Note that only new changes will be captured from TiDB. Data that already exists within the target table will not be captured by TiCDC. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc). 
+    For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`ROW FORMAT CANAL_JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. You might need to define the topic name in a TiCDC configuration file. Note that only new changes will be captured from TiDB. Data that already exists within the target table will not be captured by TiCDC. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc). 
 
 - Canal JSON (for MySQL only)
 
-  For Canal JSON (`ROW FORMAT CANAL_JSON`), you need to use the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to convert MySQL change data to Pulsar topics.
+    For Canal JSON (`ROW FORMAT CANAL_JSON`), you need to use the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to convert MySQL change data to Pulsar topics.
 
 ## Syntax
 
@@ -46,7 +50,7 @@ WITH (
    connector='connector',
    connector_parameter='value', ...
 ) 
-ROW FORMAT { DEBEZIUM_JSON | MAXWELL | CANAL_JSON };
+ROW FORMAT { DEBEZIUM_JSON | DEBEZIUM_MONGO_JSON | MAXWELL | CANAL_JSON  | DEBEZIUM_AVRO };
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -101,6 +105,7 @@ export const svg = rr.Diagram(
                     rr.Terminal('DEBEZIUM_JSON'),
                     rr.Terminal('MAXWELL'),
                     rr.Terminal('CANAL_JSON'),
+                    rr.Terminal('DEBEZIUM_AVRO'),
                 ),
                 rr.Terminal(';'),
             ),
@@ -144,6 +149,24 @@ WITH (
    scan.startup.mode='earliest'
 ) 
 ROW FORMAT DEBEZIUM_JSON;
+```
+
+</TabItem>
+<TabItem value="Debezium Mongo JSON" label="Debezium Mongo JSON">
+
+For more details on this row format, see [Debezium Mongo JSON](../sql/commands/sql-create-source.md#debezium-mongo-json)
+
+```sql
+CREATE TABLE [IF NOT EXISTS] source_name (
+   _id BIGINT PRIMARY KEY
+   payload jsonb
+) 
+WITH (
+   connector='kafka',
+   topic='debezium_mongo_json_customers',
+   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
+) 
+ROW FORMAT DEBEZIUM_MONGO_JSON;
 ```
 
 </TabItem>

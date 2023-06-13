@@ -93,6 +93,7 @@ runtime
 disaggregated
 PrivateLink
 VPCs
+VPC
 DataSet
 FlinkSQL
 LSM
@@ -131,3 +132,12 @@ microservices
 cryptocurrency
 clickstream
 dataset
+Citus
+CLI
+multibyte
+Homebrew
+IoT
+timestamptz
+unary
+zstd
+VPC

@@ -82,6 +82,10 @@ The central metadata management service. It also acts as a failure detector that
 
 Avro is an open-source data serialization system that facilitates data exchange between systems, programming languages, and processing frameworks. Avro has a JSON-like data model, but it can be represented as either JSON or in a compact binary form. RisingWave can decode Avro data. You need to specify the schema by providing either a schema location or a schema registry URL (only for Kafka topics).
 
+### Connection
+
+A connection allows access to services located outside of your VPC. AWS PrivateLink provides a network connection used to create a private connection between VPCs, private networks, and other services. In RisingWave, the [`CREATE CONNECTION`](sql/commands/sql-create-connection.md) command establishes a connection between RisingWave and an external service. Then, a source or sink can be created to receive or send messages.
+
 ### Change data capture (CDC)
 
 Change data capture refers to the process of identifying and capturing changes as they are made in a database or source application, then delivering those changes in real time to a downstream process, system, or data lake. RisingWave supports ingesting CDC events in Debezium JSON or [Maxwell](https://maxwells-daemon.io/) JSON from Kafka topics.
