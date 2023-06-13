@@ -68,13 +68,13 @@ Input types include bool, smallint, int, bigint, numeric, real, double precision
 
 ### `jsonb_agg`
 
-Aggregates values, including nulls, as a JSON array.
+Aggregates values, including nulls, as a JSON array. The `ORDER BY` clause is optional and specifies the order of rows processed in the aggregation, which determines the order of the elements in the result array.
 
 ```sql title=Syntax  
 jsonb_agg ( expression ) -> jsonb    
 ```
 
-Input types include boolean, smallint, int, bigint, real, double precision, varchar and jsonb.
+Currently, input types include boolean, smallint, int, bigint, real, double precision, varchar and jsonb.
 
 ---  
 
@@ -88,7 +88,7 @@ jsonb_object_agg ( key , value ) -> jsonb
 
 `key`: varchar only.
 
-`value`: null, boolean, smallint, int, bigint, real, double precision, varchar and jsonb.
+`value`: Currently supports null, boolean, smallint, int, bigint, real, double precision, varchar and jsonb.
 
 ---  
 
@@ -116,13 +116,33 @@ Input types include smallint, int, bigint, numeric, real, double precision, and 
 
 ---  
 
+### `stddev_pop`
+
+Calculates the population standard deviation of the input values. Returns `NULL` if the input contains no non-null values.  
+
+```sql title=Syntax
+stddev_pop ( expression ) -> output_value
+```
+
+---  
+
+### `stddev_samp`
+
+Calculates the sample standard deviation of the input values. Returns `NULL` if the input contains fewer than two non-null values.  
+
+```sql title=Syntax
+stddev_samp ( expression ) -> output_value
+```
+
+---  
+
 ### `string_agg`
 
-Combines non-null values into a string, separated by `delimiter_string`.  
+Combines non-null values into a string, separated by `delimiter_string`. The `ORDER BY` clause is optional and specifies the order of rows processed in the aggregation, which determines the order of the elements in the result array.
 
 ```sql title=Syntax
 string_agg ( expression, delimiter_string ) -> output_string  
-```  
+```
 
 ---  
 
@@ -132,8 +152,28 @@ Returns the sum of all input values.
 
 ```sql title=Syntax
 sum ( expression )  
-```  
+```
 
 Input types include smallint, int, bigint, numeric, real, and double precision.
 
 Return type is bigint for smallint or int inputs, numeric for bigint inputs, otherwise the same as the input data type.
+
+---  
+
+### `var_pop`
+
+Calculates the population variance of the input values. Returns `NULL` if the input contains no non-null values.
+
+```sql title=Syntax
+var_pop ( expression ) -> output_value
+```
+
+---  
+
+### `var_samp`
+
+Calculates the sample variance of the input values. Returns `NULL` if the input contains fewer than two non-null values.
+
+```sql title=Syntax
+var_samp ( expression ) -> output_value
+```
