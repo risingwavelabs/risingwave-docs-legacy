@@ -4,7 +4,6 @@ slug: /sql-function-set
 title: Set operators
 ---
 
-
 ## UNION and UNION ALL
 
 The UNION operator combines the result sets of 2 or more SELECT statements and removes duplicate rows between the various SELECT statements.
@@ -31,22 +30,17 @@ FROM tables
 
 *WHERE conditions* are optional. These conditions must be met for the records to be selected.
 
-
-
 Suppose that we have a table,`points_scored_current_week`, that consists of these columns: `id`, `first_half`, and `second_half`.
 
 |  id   |first_half|second_half|
 |-------|----------|-----------|
-|   1   |   10     |    20     |
-
+|   1   |    10    |    20     |
 
 Next, suppose that we have a second table, `points_scored_last_week`, that consists of these columns: `id`, `first_half`, and `second_half`.
 
 |  id   |first_half|second_half|
 |-------|----------|-----------|
-|   1   |   10     |    20     |
-
-
+|   1   |    10    |    20     |
 
 Here is an example that uses the UNION operator:
 
@@ -58,13 +52,12 @@ SELECT *
 FROM points_scored_last_week;
 ```
 
-
 The result looks like this: 
 
 ```
-first_half|second_half
-----------+-----------+
-10        | 20
+|  id   |first_half|second_half|
+|-------|----------+-----------+
+|   1   |    10    |    20     |
 ```
 
 Here is an example that uses the UNION ALL operator:
@@ -77,26 +70,20 @@ SELECT *
 FROM points_scored_last_week;
 ```
 
-
 The result looks like this: 
 
 ```
-first_half|second_half
-----------+-----------+
-10        | 20
-10        | 20
+|  id   |first_half|second_half|
+|-------|----------+-----------+
+|   1   |    10    |    20     |
+|   2   |    10    |    20     |
 ```
-
 
 :::note
 
 UNION and UNION ALL operators are both supported for streaming queries.
 
 :::
-
-
-
-
 
 ## INTERSECT
 
@@ -122,21 +109,17 @@ FROM tables
 
 *WHERE conditions* are optional. These conditions must be met for the records to be selected.
 
-
 Suppose that we have a table,`points_scored_current_week`, that consists of these columns: `id`, `first_half`, and `second_half`.
 
 |  id   |first_half|second_half|
 |-------|----------|-----------|
 |   1   |   10     |    20     |
 
-
 Next, suppose that we have a second table, `points_scored_last_week`, that consists of these columns: `id`, `first_half`, and `second_half`.
 
 |  id   |first_half|second_half|
 |-------|----------|-----------|
 |   1   |   10     |    20     |
-
-
 
 Here is an example that uses the `INTERSECT` operator:
 
@@ -148,17 +131,15 @@ SELECT *
 FROM points_scored_last_week;
 ```
 
-
 The result looks like this:
 
 ```
-first_half|second_half
-----------+-----------+
-10        | 20
+|  id   |first_half|second_half|
+|-------|----------+-----------+
+|   1   |    10    |    20     |
 ```
 
 In this case, the `INTERSECT` operator returned the rows that are common to both the `points_scored_current_week` and `points_scored_last_week` tables. If there were no common rows, the `INTERSECT` operator would return an empty set.
-
 
 :::note
 
