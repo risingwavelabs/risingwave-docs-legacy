@@ -61,7 +61,7 @@ The `LIKE` expression returns true if the string matches the supplied pattern. T
   
 - A percent sign `%` matches any sequence of zero or more characters.
 
-If the pattern does not contain `_` or `%`, then the pattern only represents the string itself. In that case, `LIKE` acts like the equals operator `=`.
+If the pattern does not contain `_` or `%`, then the pattern only represents the string itself. For example, the pattern 'apple' matches only the string 'apple'. In that case, `LIKE` acts like the equals operator `=`.
 
 #### Escape
 
