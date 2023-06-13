@@ -53,14 +53,14 @@ docker compose up -d
 
 If you want to deploy RisingWave on other s3 compatible storage, you need to customize these configurations.
 
-* Fill in your `bucket_name` [here](https://github.com/risingwavelabs/risingwave/blob/c75ad9f5991e6ecaaccde007ad0e68aef8700ef9/docker/docker-compose-s3-compatible.yml#L201).
-* Config the `region`, `endpoint`, `access key` and `secret key` in [risingwave/docker/s3-compatible.env](https://github.com/risingwavelabs/risingwave/blob/main/docker/s3-compatible.env). Note that the `endpoint` cannot contain bucket names.
+* Fill in your `bucket-name` [here](https://github.com/risingwavelabs/risingwave/blob/09cfe81dc8e230969b7b2e6f4883feb59f59a186/docker/docker-compose-s3.yml#L194).
+* Config the `region`, `endpoint`, `access key` and `secret key` in [risingwave/docker/aws.env](https://github.com/risingwavelabs/risingwave/blob/main/docker/aws.env). Note that the `endpoint` cannot contain bucket names.
 
 Then run:
 
 ```shell
 cd docker
-docker compose -f docker-compose-s3-compatible.yml up -d
+docker compose -f docker-compose-s3.yml up -d
 ```
 
 ## Connect to RisingWave
@@ -89,8 +89,8 @@ Access Grafana at [http://127.0.0.1:3001/](http://127.0.0.1:3001/), and search f
 
 Access the MinIO instance at [http://127.0.0.1:9400/](http://127.0.0.1:9400/). Use the following credentials to log in.
 
-* User name: `hummockadmin`
-* Password: `hummockadmin`
+- User name: `hummockadmin`
+- Password: `hummockadmin`
 
 ### Prometheus
 
