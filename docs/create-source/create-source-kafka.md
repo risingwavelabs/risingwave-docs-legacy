@@ -130,7 +130,7 @@ For materialized sources with primary key constraints, if a new data record with
 
 |Field|Notes|
 |---|---|
-|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`, `DEBEZIUM_JSON`, `DEBEZIUM_AVRO`, `MAXWELL`, `CANAL_JSON`, `UPSERT_JSON`, `UPSERT_AVRO`. |
+|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`, `DEBEZIUM_JSON`, `DEBEZIUM_AVRO`, `MAXWELL`, `CANAL_JSON`, `UPSERT_JSON`, `UPSERT_AVRO`, `CSV`. |
 |*message* | Message name of the main Message in schema definition. Required for Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
 |*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
@@ -147,7 +147,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-<TabItem value="avro" label="Avro" default>
+<TabItem value="avro" label="Avro">
 
 ```sql
 CREATE SOURCE IF NOT EXISTS source_abc 
@@ -163,7 +163,7 @@ ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
 
 </TabItem>
-<TabItem value="upsert avro" label="Upsert Avro" default>
+<TabItem value="upsert avro" label="Upsert Avro">
 
 ```sql
 CREATE TABLE IF NOT EXISTS source_abc 
@@ -177,7 +177,7 @@ ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
 
 </TabItem>
-<TabItem value="json" label="JSON" default>
+<TabItem value="json" label="JSON">
 
 ```sql
 CREATE SOURCE IF NOT EXISTS source_abc (
@@ -195,7 +195,7 @@ ROW FORMAT JSON;
 ```
 
 </TabItem>
-<TabItem value="upsert json" label="Upsert JSON" default>
+<TabItem value="upsert json" label="Upsert JSON">
 
 ```sql
 CREATE TABLE IF NOT EXISTS source_abc (
@@ -210,7 +210,7 @@ WITH (
 ```
 
 </TabItem>
-<TabItem value="pb" label="Protobuf" default>
+<TabItem value="pb" label="Protobuf">
 
 ```sql
 CREATE SOURCE IF NOT EXISTS source_abc 
@@ -224,6 +224,24 @@ WITH (
 ROW FORMAT PROTOBUF MESSAGE 'main_message'
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
 ```
+
+</TabItem>
+<TabItem value="csv" label="CSV">
+
+```sql
+CREATE TABLE s0 (v1 int, v2 varchar)
+WITH (
+   connector = 'kafka',
+   topic = 'kafka_csv_topic',
+   properties.bootstrap.server = '127.0.0.1:29092',
+   scan.startup.mode = 'earliest'
+) 
+ROW FORMAT csv WITHOUT HEADER DELIMITED BY ',';
+```
+
+- CSV header is not supported when creating a table with Kafka connector. Add the `WITHOUT HEADER` option to the `ROW FORMAT` clause.
+
+- The `DELIMITED BY` option specifies the delimiter character used in the CSV data.
 
 </TabItem>
 </Tabs>
