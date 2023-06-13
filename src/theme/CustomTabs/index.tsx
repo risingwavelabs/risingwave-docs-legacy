@@ -1,4 +1,4 @@
-import React, { cloneElement } from "react";
+import React, { cloneElement, useState } from "react";
 import clsx from "clsx";
 import {
   useScrollPositionBlocker,
@@ -6,6 +6,55 @@ import {
 } from "@docusaurus/theme-common/internal";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 import styles from "./styles.module.css";
+import DocSidebarItemCategory from "../DocSidebarItem/Category";
+import DocSidebarItemLink from "../DocSidebarItem/Link";
+import DocSidebarItemHtml from "../DocSidebarItem/Html";
+
+type Props = {};
+
+const myLinksSidebar = [
+  {
+    type: "doc",
+    id: "intro",
+    label: "RisingWave",
+    href: "",
+  },
+  {
+    type: "doc",
+    id: "use-cases",
+    label: "Use cases",
+    href: "",
+  },
+  {
+    type: "doc",
+    id: "architecture",
+    label: "Architecture",
+    href: "",
+  },
+  {
+    type: "doc",
+    id: "key-concepts",
+    label: "Key concepts",
+    href: "",
+  },
+  {
+    type: "doc",
+    label: "Fault tolerance",
+    id: "fault-tolerance",
+    href: "",
+  },
+];
+
+function TabMenu({ item, idx, step, setStep, ...props }) {
+  return (
+    <DocSidebarItemLink
+      className={step === idx ? "menu__link--active" : ""}
+      item={item}
+      {...props}
+    />
+  );
+}
+
 function TabList({ className, block, selectedValue, selectValue, tabValues }) {
   const tabRefs = [];
   const { blockElementScrollPositionUntilNextRender } =
@@ -74,6 +123,7 @@ function TabList({ className, block, selectedValue, selectValue, tabValues }) {
     </ul>
   );
 }
+
 function TabContent({ lazy, children, selectedValue }) {
   const childTabs = (Array.isArray(children) ? children : [children]).filter(
     Boolean
@@ -99,23 +149,36 @@ function TabContent({ lazy, children, selectedValue }) {
     </div>
   );
 }
+
 function TabsComponent(props) {
   const tabs = useTabs(props);
+  const [step, setStep] = useState(0);
+
+  console.log({ ...props });
   return (
-    <div className={clsx("tabs-container", styles.tabList)}>
-      <TabList {...props} {...tabs} />
-      <TabContent {...props} {...tabs} />
+    <div className={styles.flex}>
+      <div className={styles.flexCol}>
+        {myLinksSidebar.map((i, idx) => (
+          <TabMenu
+            key={i.label}
+            item={i}
+            idx={idx}
+            step={step}
+            setStep={setStep}
+          />
+        ))}
+      </div>
+      <div className={clsx("tabs-container", styles.tabList)}>
+        <TabList {...props} {...tabs} />
+        <TabContent {...props} {...tabs} />
+      </div>
     </div>
   );
 }
-export default function Tabs(props) {
+
+function CustomTabs(props) {
   const isBrowser = useIsBrowser();
-  return (
-    <TabsComponent
-      // Remount tabs after hydration
-      // Temporary fix for https://github.com/facebook/docusaurus/issues/5653
-      key={String(isBrowser)}
-      {...props}
-    />
-  );
+  return <TabsComponent key={String(isBrowser)} {...props} />;
 }
+
+export default CustomTabs;

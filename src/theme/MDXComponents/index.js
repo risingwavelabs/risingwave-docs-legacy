@@ -26,7 +26,7 @@ import Stepper from "@theme/Stepper";
 import VerticalStepper from "@theme/VerticalStepper";
 import OutlinedCard from "@theme/OutlinedCard";
 import ResponsiveGrid from "@theme/ResponsiveGrid";
-
+import CustomTabs from "@theme/CustomTabs";
 
 function unwrapMDXElement(element) {
   if (element?.props?.mdxType && element?.props?.originalType) {
@@ -45,7 +45,18 @@ const MDXComponents = {
     return <Head {...props}>{unwrappedChildren}</Head>;
   },
   code: (props) => {
-    const inlineElements = ["a", "b", "big", "i", "span", "em", "strong", "sup", "sub", "small"];
+    const inlineElements = [
+      "a",
+      "b",
+      "big",
+      "i",
+      "span",
+      "em",
+      "strong",
+      "sup",
+      "sub",
+      "small",
+    ];
     const shouldBeInline = React.Children.toArray(props.children).every(
       (el) =>
         (typeof el === "string" && !el.includes("\n")) ||
@@ -56,7 +67,8 @@ const MDXComponents = {
   a: (props) => <Link {...props} />,
   pre: (props) => (
     <CodeBlock // If this pre is created by a ``` fenced codeblock, unwrap the children
-      {...(isValidElement(props.children) && props.children.props.originalType === "code"
+      {...(isValidElement(props.children) &&
+      props.children.props.originalType === "code"
         ? props.children?.props
         : { ...props })}
     />
@@ -93,5 +105,6 @@ const MDXComponents = {
   card: OutlinedCard,
   grid: ResponsiveGrid,
   platformDetector: PlatformDetector,
+  customTabs: CustomTabs,
 };
 export default MDXComponents;
