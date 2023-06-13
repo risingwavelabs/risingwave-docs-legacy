@@ -7,6 +7,22 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
 
+## v0.19.1
+
+This version was released on June 8, 2023.
+
+### Main changes
+
+Bug fixes and improvements. See [all changes](https://github.com/risingwavelabs/risingwave/compare/v0.19.0...v0.19.1).
+
+### Assets
+
+- Run this version from Docker:<br/>
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v0.19.1 playground`
+- [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.19.1/risingwave-v0.19.1-x86_64-unknown-linux.tar.gz)
+- [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.19.1.zip)
+- [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.19.1.tar.gz)
+
 ## v0.19.0
 
 This version was released on June 1, 2023.
