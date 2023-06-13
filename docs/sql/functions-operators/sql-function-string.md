@@ -67,7 +67,7 @@ If the pattern does not contain `_` or `%`, then the pattern only represents the
 
 To match a literal underscore or percent sign without matching other characters, the respective character in pattern must be preceded by the escape character `\`. To match the escape character itself, write two escape characters: `\\`.
 
-`ESCAPE ''` completely disables the escape mechanism. RisingWave does not support specifying a custom escape character using the `ESCAPE` clause.
+You can use `ESCAPE ''` to disable the escape mechanism, but specifying a custom escape character using the `ESCAPE` clause is not supported.
 
 #### Examples
 
