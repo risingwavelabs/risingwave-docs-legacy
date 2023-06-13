@@ -12,7 +12,7 @@
 
 - **Related code PR**
 
-  [ Provide a link to the relevant code PR here, if applicable.]
+  [ Provide a link to the relevant code PR here, if applicable. ]
 
 - **Related doc issue**
   
