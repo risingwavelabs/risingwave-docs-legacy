@@ -35,3 +35,5 @@ title: Comparison functions and operators
 | IS NOT FALSE | `boolean IS NOT FALSE` <br /> Whether a boolean expression is true or unknown. <br /> | true IS NOT FALSE → t <br /> null::boolean IS NOT FALSE → t |
 | IS NULL | `value IS NULL` <br /> Whether a value is null. <br /> | 1 IS NULL → f |
 | IS NOT NULL | `value IS NOT NULL` <br /> Whether a value is not null. <br /> | 1 IS NOT NULL → t |
+|IS UNKNOWN|`boolean IS UNKNOWN`<br />Whether a boolean expression returns an unknown value (typically represented by a null).|null IS UNKNOWN → t<br />false IS UNKNOWN → f|
+|IS NOT UNKNOWN|`boolean IS NOT UNKNOWN`<br />Whether a boolean expression returns true or false.|true IS NOT UNKNOWN → t<br />null IS NOT UNKNOWN → f|

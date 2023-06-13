@@ -274,6 +274,8 @@ SELECT * FROM series(10);
 9
 ```
 
-## Related content
+## See also
 
 [SHOW FUNCTIONS](/sql/commands/sql-show-functions.md) — Show all user-defined functions.
+
+[DROP FUNCTION](/sql/commands/sql-drop-function.md) — Drop a user-defined function.
