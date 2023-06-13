@@ -38,7 +38,7 @@ All WITH options are required except `force_append_only` and `primary_key`.
 |connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, see [Integrations](/rw-integration-summary.md) for a full list of connectors and integrations we are working on. |
 |properties.bootstrap.server|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |topic|Address of the Kafka topic. One sink can only correspond to one topic.|
-|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul>|
+|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](../delivery-overview.md).|
 |force_append_only| If `true`, forces the sink to be `append-only`, even if it cannot be.|
 |primary_key| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
 
@@ -93,6 +93,32 @@ WITH (
    topic='test'
 );
 
+```
+
+## Create sink with AWS PrivateLink connection
+
+If your Kafka sink service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see see [Create an AWS PrivateLink connection](../sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
+
+To create a Kafka sink with a PrivateLink connection, in the WITH section of your `CREATE SINK` statement, specify the following parameters.
+
+|Parameter| Notes|
+|---|---|
+|`connection.name`| The name of the connection, which comes from the connection created using the `CREATE CONNECTION` statement.|
+|`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
+
+Here is an example of creating a Kafka sink using a PrivateLink connection. Notice that `{"port": 8001}` corresponds to the broker `ip1:9092`, and `{"port": 8002}` corresponds to the broker `ip2:9092`.
+
+```sql
+CREATE SINK sink2 FROM mv2
+WITH (
+   connector='kafka',
+   type='append-only',
+   properties.bootstrap.server='b-1.xxx.amazonaws.com:9092,b-2.test.xxx.amazonaws.com:9092',
+   topic='msk_topic',
+   force_append_only='true',
+   connection.name = 'connection1',
+   privatelink.targets = '[{"port": 8001}, {"port": 8002}]'
+);
 ```
 
 ## TLS/SSL encryption and SASL authentication
