@@ -1,6 +1,6 @@
 ---
-id: sql-function-set
-slug: /sql-function-set
+id: sql-function-set-operators
+slug: /sql-function-set-operators
 title: Set operators
 ---
 
