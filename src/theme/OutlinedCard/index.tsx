@@ -85,10 +85,11 @@ export default function OutlinedCard({
           {content}
         </Typography>
         {links && (
-          <Typography className={styles.cardLinks}>
+          <Box className={styles.cardLinks}>
             {links.map((link) => {
               return (
                 <div
+                  key={link.url}
                   className={styles.flexBox}
                   onClick={() => {
                     if (link.url) {
@@ -116,7 +117,7 @@ export default function OutlinedCard({
                 </div>
               );
             })}
-          </Typography>
+          </Box>
         )}
       </CardContent>
 
@@ -163,7 +164,7 @@ const ExternalArrow = () => (
     <path
       d="M11.5 5.5H7.5C6.39543 5.5 5.5 6.39543 5.5 7.5V16.5C5.5 17.6046 6.39543 18.5 7.5 18.5H16.5C17.6046 18.5 18.5 17.6046 18.5 16.5V12.5"
       stroke="#2f5dd9"
-      stroke-linecap="round"
+      strokeLinecap="round"
     />
   </svg>
 );

@@ -9,13 +9,13 @@ This page summarizes changes in each version of RisingWave, including new featur
 
 ## v0.19.0
 
-This version was released on May 30, 2023.
+This version was released on June 1, 2023.
 
 ### Main changes
 
 #### Installation
 
-- Now, you can easily install RisingWave on your local machine with Homebrew by running  `brew install risingwave`.
+- Now, you can easily install RisingWave on your local machine with Homebrew by running  `brew install risingwave`. See [Run RisingWave](/get-started.md#run-risingwave).
 
 #### Administration
 
