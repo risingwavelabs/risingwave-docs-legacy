@@ -26,7 +26,9 @@ Currently, these system parameters are availble in RisingWave.
 
 ## How to view system parameters?
 
-You can use the `SHOW PARAMETERS` command to view the system parameters, along with their current values and whether they can be modified.
+You can use the `SHOW PARAMETERS` command to view the system parameters, along with their current values.
+
+The `Mutable` column indicates whether the parameter can be altered using the [ALTER SYSTEM SET](#how-to-adjust-system-parameters) command after the system is running. Parameters with `Mutable` set to `t` can be altered.
 
 ```sql
 SHOW PARAMETERS;
