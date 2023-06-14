@@ -565,7 +565,7 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/functions-operators/sql-function-set-operators',
                   label: 'Set operators',
-                }
+                },
                 {
                   type: 'doc',
                   id: 'sql/functions-operators/sql-function-set-functions',
