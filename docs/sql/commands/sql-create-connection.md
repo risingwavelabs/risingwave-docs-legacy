@@ -113,7 +113,7 @@ Follow the steps below to create an AWS PrivateLink connection.
     ) ROW FORMAT JSON;
     ```
 
-     - Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details on the syntax, see the [Sink to Kafka](create-sink-kafka.md) topic. Here is an example of sinking to Kafka with an AWS PrivateLink.
+     - Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details on the syntax, see the [Sink to Kafka](/guides/create-sink-kafka.md) topic. Here is an example of sinking to Kafka with an AWS PrivateLink.
 
     ```sql
     CREATE SINK sink2 FROM mv2
