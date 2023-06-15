@@ -49,7 +49,7 @@ cd docker
 docker compose up -d
 ```
 
-### Start a cluster on other s3 compatible object storage
+### Start a cluster on other S3-compatible object storage systems
 
 If you want to deploy RisingWave on other s3 compatible storage, you need to customize these configurations.
 
