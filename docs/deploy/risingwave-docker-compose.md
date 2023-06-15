@@ -54,7 +54,7 @@ docker compose up -d
 If you want to deploy RisingWave using other S3-compatible storage systems, you need to customize these configurations.
 
 * Fill in your `bucket-name` [here](https://github.com/risingwavelabs/risingwave/blob/09cfe81dc8e230969b7b2e6f4883feb59f59a186/docker/docker-compose-s3.yml#L194).
-* Config the `region`, `endpoint`, `access key` and `secret key` in [risingwave/docker/aws.env](https://github.com/risingwavelabs/risingwave/blob/main/docker/aws.env). Note that the `endpoint` cannot contain bucket names.
+* Configure `region`, `endpoint`, `access key`, and `secret key` in [risingwave/docker/aws.env](https://github.com/risingwavelabs/risingwave/blob/main/docker/aws.env). Note that `endpoint` cannot contain bucket names.
 
 Then run:
 
