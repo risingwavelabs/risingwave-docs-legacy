@@ -40,7 +40,7 @@ git clone https://github.com/risingwavelabs/risingwave.git
 
 Now run the following commands to navigate to the `docker` directory and start the cluster from the pre-defined docker-compose file.
 
-### Start a cluster on MinIO
+### Start a RisingWave cluster using MinIO
 
 To use MinIO as the storage backend, run:
 
