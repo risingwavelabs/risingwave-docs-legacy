@@ -17,7 +17,11 @@ RisingWave accepts these data formats:
 
 - Debezium JSON (for MySQL and PostgreSQL)
 
-   For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
+    For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
+
+- Debezium Mongo JSON (for MongoDB)
+
+    For Debezium Mongo JSON, you can use the [Debezium connector for MongoDB](https://debezium.io/documentation/reference/stable/connectors/mongodb.html) to convert CDC data to Kafka topics.
 
 - Debezium AVRO (for MySQL and PostgreSQL)
 
@@ -25,15 +29,15 @@ RisingWave accepts these data formats:
 
 - Maxwell JSON (for MySQL only)
 
-  For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
+    For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
 
 - The TiCDC dialect of Canal JSON (for TiDB only)
 
-  For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`ROW FORMAT CANAL_JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. You might need to define the topic name in a TiCDC configuration file. Note that only new changes will be captured from TiDB. Data that already exists within the target table will not be captured by TiCDC. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc). 
+    For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`ROW FORMAT CANAL_JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. You might need to define the topic name in a TiCDC configuration file. Note that only new changes will be captured from TiDB. Data that already exists within the target table will not be captured by TiCDC. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc). 
 
 - Canal JSON (for MySQL only)
 
-  For Canal JSON (`ROW FORMAT CANAL_JSON`), you need to use the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to convert MySQL change data to Pulsar topics.
+    For Canal JSON (`ROW FORMAT CANAL_JSON`), you need to use the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to convert MySQL change data to Pulsar topics.
 
 ## Syntax
 
@@ -46,7 +50,7 @@ WITH (
    connector='connector',
    connector_parameter='value', ...
 ) 
-ROW FORMAT { DEBEZIUM_JSON | MAXWELL | CANAL_JSON | DEBEZIUM_AVRO };
+ROW FORMAT { DEBEZIUM_JSON | DEBEZIUM_MONGO_JSON | MAXWELL | CANAL_JSON  | DEBEZIUM_AVRO };
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -145,6 +149,24 @@ WITH (
    scan.startup.mode='earliest'
 ) 
 ROW FORMAT DEBEZIUM_JSON;
+```
+
+</TabItem>
+<TabItem value="Debezium Mongo JSON" label="Debezium Mongo JSON">
+
+For more details on this row format, see [Debezium Mongo JSON](../sql/commands/sql-create-source.md#debezium-mongo-json)
+
+```sql
+CREATE TABLE [IF NOT EXISTS] source_name (
+   _id BIGINT PRIMARY KEY
+   payload jsonb
+) 
+WITH (
+   connector='kafka',
+   topic='debezium_mongo_json_customers',
+   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
+) 
+ROW FORMAT DEBEZIUM_MONGO_JSON;
 ```
 
 </TabItem>

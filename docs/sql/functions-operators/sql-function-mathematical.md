@@ -60,3 +60,10 @@ title: Mathematical functions and operators
 | cosd ( *degrees* ) → *cosine* | Returns the trigonometric cosine (in double precision) of an angle measured in degrees (in double precision). | cosd(15) → 0.9659258262890683 |
 | tand ( *degrees* ) → *tangent* | Returns the trigonometric tangent (in double precision) of an angle measured in degrees (in double precision). | tand(15) → 0.26794919243112275 |
 | cotd ( *degrees* ) → *cotangent* | Returns the trigonometric cotangent (in double precision) of an angle measured in degrees (in double precision) | cotd(45) → 1 |​
+
+## Degrees and radians functions
+
+| Function | Description | Example |
+| ----------- | ----------- | ----------- |
+| degrees ( *radians* ) → *degrees* | Returns the conversion (in double precision) of an angle measured in radians (in double precision) to degrees. | degrees(pi()/2) → 90 |
+| radians ( *degrees* ) → *radians* | Returns the conversion (in double precision) of an angle measured in degrees (in double precision) to radians. | radians(180) → 3.141592653589793 |
