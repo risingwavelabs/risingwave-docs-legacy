@@ -39,177 +39,159 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'architecture',
-          label: 'Architecture',
-        },
-
-        {
-          type: 'doc',
-          id: 'key-concepts',
-          label: 'Key concepts and terms',
-        },
-        {
-          type: 'doc',
-          label: 'Fault tolerance',
-          id: 'fault-tolerance',
-        },
-        {
-          type: 'doc',
-          label: 'Data persistence',
-          id: 'data-persistence',
-        },
-        {
-          type: 'doc',
           label: 'RisingWave vs. Flink',
           id: 'risingwave-flink-comparison',
         },
         {
-          type: 'doc',
-          label: 'Telemetry',
-          id: 'telemetry'
+          type: 'category',
+          label: 'Deep-dive',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'architecture',
+              label: 'Architecture',
+            },
+            {
+              type: 'doc',
+              id: 'key-concepts',
+              label: 'Key concepts and terms',
+            },
+            {
+              type: 'doc',
+              label: 'Fault tolerance',
+              id: 'fault-tolerance',
+            },
+            {
+              type: 'doc',
+              label: 'Data persistence',
+              id: 'data-persistence',
+            },
+          ]
         },
-        {
-          type: 'doc',
-          label: 'Release Notes',
-          id: 'release-notes'
-        }
       ]
     },
-
-
     {
       type: 'category',
-      label: 'Setup',
+      label: 'Get started',
       collapsible: false,
       collapsed: false,
       items: [
         {
           type: 'doc',
-          label: 'Quickstart',
+          label: 'Quick start',
           id: 'get-started'
         },
         {
           type: 'category',
-          label: 'Trial',
+          label: 'Install',
           collapsible: true,
           collapsed: true,
-          link: {type: 'doc', id: 'deploy/risingwave-trial'},
           items: [
             {
-              type: 'doc',
-              label: 'Overview',
-              id: 'deploy/risingwave-trial',
+              type: 'category',
+              label: 'Trial',
+              collapsible: true,
+              collapsed: true,
+              link: { type: 'doc', id: 'deploy/risingwave-trial' },
+              items: [
+                {
+                  type: 'doc',
+                  label: 'Overview',
+                  id: 'deploy/risingwave-trial',
+                },
+                {
+                  type: 'link',
+                  label: 'Playground',
+                  href: '/docs/upcoming/risingwave-trial/?method=playground',
+                },
+                {
+                  type: 'link',
+                  href: '/docs/upcoming/risingwave-trial/?method=homebrew',
+                  label: 'Homebrew'
+                },
+                {
+                  type: 'link',
+                  href: '/docs/upcoming/risingwave-trial/?method=binaries',
+                  label: 'Binaries'
+                },
+                {
+                  type: 'link',
+                  href: '/docs/upcoming/risingwave-trial/?method=docker',
+                  label: 'Docker'
+                },
+                {
+                  type: 'link',
+                  href: '/docs/upcoming/risingwave-trial/?method=docker-compose',
+                  label: 'Docker Compose'
+                }
+              ],
             },
             {
-              type: 'link',
-              label: 'Playground',
-              href: '/docs/upcoming/risingwave-trial/?method=playground',
-            },
-            {
-              type: 'link',
-              href: '/docs/upcoming/risingwave-trial/?method=homebrew',
-              label: 'Homebrew'
-            },
-            {
-              type: 'link',
-              href: '/docs/upcoming/risingwave-trial/?method=binaries',
-              label: 'Binaries'
-            },
-            {
-              type: 'link',
-              href: '/docs/upcoming/risingwave-trial/?method=docker',
-              label: 'Docker'
-            },
-            {
-              type: 'link',
-              href: '/docs/upcoming/risingwave-trial/?method=docker-compose',
-              label: 'Docker Compose'
-            }
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Production',
-          collapsible: true,
-          collapsed: true,
-          link: {type: 'doc', id: 'deploy/risingwave-production'},
-          items: [
-            {
-              type: 'doc',
-              label: 'Overview',
-              id: 'deploy/risingwave-production',
-            },
-            {
-              type: 'link',
-              label: 'RisingWave Cloud',
-              href: '/docs/upcoming/risingwave-production/?method=production',
-            },
-            {
-              type: 'doc',
-              id: 'deploy/risingwave-kubernetes',
-              label: 'Kubernetes'
+              type: 'category',
+              label: 'Production',
+              collapsible: true,
+              collapsed: true,
+              link: { type: 'doc', id: 'deploy/risingwave-production' },
+              items: [
+                {
+                  type: 'doc',
+                  label: 'Overview',
+                  id: 'deploy/risingwave-production',
+                },
+                {
+                  type: 'link',
+                  label: 'RisingWave Cloud',
+                  href: '/docs/upcoming/risingwave-production/?method=production',
+                },
+                {
+                  type: 'doc',
+                  id: 'deploy/risingwave-kubernetes',
+                  label: 'Kubernetes'
+                },
+              ]
             },
           ]
         },
+
       ]
     },
     {
       type: 'category',
-      label: 'Learn & explore',
-      collapsible: false,
-      collapsed: false,
+      label: 'Demos',
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: 'doc',
-          id: 'risingwave-sql-101',
-          label: 'RisingWave SQL 101'
+          id: 'tutorials/real-time-ad-performance-analysis',
+          label: 'Real-time ad performance analysis'
         },
         {
-          type: 'category',
-          label: 'Demos',
-          collapsible: true,
-          collapsed: true,
-          link: {
-            type: 'generated-index',
-            'title': 'Demos',
-            'description': 'A series of guided tours in solving real-world stream processing tasks with simulated data.',
-            'slug': '/demos',
-            'keywords': [
-              'demo, use, case, tutorial'
-            ]
-          },
-          items: [
-            {
-              type: 'doc',
-              id: 'tutorials/real-time-ad-performance-analysis',
-              label: 'Real-time ad performance analysis'
-            },
-            {
-              type: 'doc',
-              id: 'tutorials/server-performance-anomaly-detection',
-              label: 'Server performance anomaly detection'
-            },
-            {
-              type: 'doc',
-              id: 'tutorials/fast-twitter-events-processing',
-              label: 'Fast Twitter events processing'
-            },
-            {
-              type: 'doc',
-              id: 'tutorials/clickstream-analysis',
-              label: 'Clickstream analysis'
-            },
-            {
-              type: 'doc',
-              id: 'tutorials/live-stream-metrics-analysis',
-              label: 'Live stream metrics analysis'
-            },
-            {
-              type: 'doc',
-              id: 'tutorials/use-risingwave-to-monitor-risingwave-metrics',
-              label: 'Use RisingWave to monitor RisingWave metrics'
-            }
-          ]
+          type: 'doc',
+          id: 'tutorials/server-performance-anomaly-detection',
+          label: 'Server performance anomaly detection'
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/fast-twitter-events-processing',
+          label: 'Fast Twitter events processing'
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/clickstream-analysis',
+          label: 'Clickstream analysis'
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/live-stream-metrics-analysis',
+          label: 'Live stream metrics analysis'
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/use-risingwave-to-monitor-risingwave-metrics',
+          label: 'Use RisingWave to monitor RisingWave metrics'
         }
       ]
     },
@@ -681,8 +663,8 @@ const sidebars = {
     {
       type: 'category',
       label: 'Manage',
-      collapsible: false,
-      collapsed: false,
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: 'doc',
@@ -696,6 +678,24 @@ const sidebars = {
           type: 'doc',
           id: 'manage/meta-backup',
         },
+        {
+          type: 'doc',
+          label: 'Telemetry',
+          id: 'telemetry'
+        },
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Releases',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: 'doc',
+          label: 'Release notes',
+          id: 'release-notes'
+        }
       ]
     }
   ]
