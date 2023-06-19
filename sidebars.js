@@ -162,14 +162,6 @@ const sidebars = {
       label: 'Demos',
       collapsible: true,
       collapsed: true,
-      link: {
-        type: 'generated-index',
-        'title': 'Demos',
-        'slug': '/demos',
-        'keywords': [
-          'demo','tutorial','use case'
-        ]
-      },
       items: [
         {
           type: 'doc',
