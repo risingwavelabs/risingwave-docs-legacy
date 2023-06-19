@@ -5,6 +5,8 @@ description: Install RisingWave from the binaries
 slug: /risingwave-binaries
 ---
 
+<!-- This file is no longer maintained. Please update the content in risingwave-trial.md. -->
+
 This topic describes how to install RisingWave from the binaries.
 
 ## Download the binaries

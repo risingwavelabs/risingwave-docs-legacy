@@ -5,6 +5,8 @@ description: Describes how to start a multi-node cluster with Docker Compose, an
 slug: /risingwave-docker-compose
 ---
 
+<!-- This file is no longer maintained. Please update the content in risingwave-trial.md. -->
+
 This article will help you use the pre-defined Docker Compose configuration file to set up a full-featured multi-node RisingWave cluster.
 
 :::note

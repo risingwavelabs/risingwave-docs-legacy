@@ -5,6 +5,8 @@ description: Install and run RisingWave directly on your host machine with Homeb
 slug: /risingwave-homebrew
 ---
 
+<!-- This file is no longer maintained. Please update the content in risingwave-trial.md. -->
+
 This article will help you start a RisingWave standalone instance in your environment with Homebrew.
 
 :::caution

@@ -5,6 +5,8 @@ description: Pull a RisingWave image from Docker Hub and run it as a Docker cont
 slug: /risingwave-docker-image
 ---
 
+<!-- This file is no longer maintained. Please update the content in risingwave-trial.md. -->
+
 This article will help you pull a RisingWave image and run it as a Docker container.
 
 :::caution
