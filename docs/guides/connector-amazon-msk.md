@@ -222,30 +222,23 @@ Once you run the `kafka-console-producer` command, you will be prompted to enter
 
 After entering messages, you can close the console window or press Ctrl + C to exit the producer.
 
-
 ## Consume data from Amazon MSK in RisingWave
-
 
 ### Install and launch RisingWave
 
-See the [Get started](https://www.risingwave.dev/docs/current/get-started/) guide for options on how you can run RisingWave.
-
-
+See [Quick start](get-started.md) for options on how you can run RisingWave.
 
 ### Connect the cluster
-
 
 ```terminal
 psql -h localhost -p 4566 -d dev -U root
 ```
 
-
 ### Create a source in RisingWave
 
-To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](https://pr-878.d2fbku9n2b6wde.amplifyapp.com/docs/upcoming/create-source-kafka/).
+To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](/create-source/create-source-kafka.md).
 
 For example, the following query creates a materialized source that consumes data from an MSK topic connected to Kafka.
-
 
 ```sql
 CREATE MATERIALIZED SOURCE s (v1 int, v2 varchar) 

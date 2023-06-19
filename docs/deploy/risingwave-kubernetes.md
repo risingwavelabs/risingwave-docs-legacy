@@ -379,4 +379,4 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
 
 <br />
 
-You can now [connect a streaming source to RisingWave](sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](risingwave-sql-101.md).
+Now you can ingest and transform streaming data. See [Quick start](/get-started.md) for details.
