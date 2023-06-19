@@ -97,11 +97,6 @@ const sidebars = {
               link: { type: 'doc', id: 'deploy/risingwave-trial' },
               items: [
                 {
-                  type: 'doc',
-                  label: 'Overview',
-                  id: 'deploy/risingwave-trial',
-                },
-                {
                   type: 'link',
                   label: 'Playground',
                   href: '/docs/current/risingwave-trial/?method=playground',
@@ -136,11 +131,6 @@ const sidebars = {
               link: { type: 'doc', id: 'deploy/risingwave-production' },
               items: [
                 {
-                  type: 'doc',
-                  label: 'Overview',
-                  id: 'deploy/risingwave-production',
-                },
-                {
                   type: 'link',
                   label: 'RisingWave Cloud',
                   href: '/docs/current/risingwave-production/?method=production',
@@ -162,14 +152,6 @@ const sidebars = {
       label: 'Demos',
       collapsible: true,
       collapsed: true,
-      link: {
-        type: 'generated-index',
-        'title': 'Demos',
-        'slug': '/demos',
-        'keywords': [
-          'demo','tutorial','use case'
-        ]
-      },
       items: [
         {
           type: 'doc',
