@@ -9,7 +9,10 @@ div.cardContainer {
 }
 
 [data-theme="dark"] div.cardContainer {
-  border: 1px solid #a6a6a6;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: all var(--ifm-transition-fast) ease;
+  transition-property: border;
+  background-color: var(--ifm-card-background-color);
 }
 
 div.defaultContainer {
@@ -19,13 +22,20 @@ div.defaultContainer {
 }
 
 [data-theme="dark"] div.defaultContainer {
-  background: none;
-  border: 1px solid #a6a6a6;
+  background-color: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: all var(--ifm-transition-fast) ease;
+  transition-property: border;
 }
 
 div.cardContainer:hover {
-  border: 1px solid #cddbff;
+  border: 1px solid var(--ifm-button-background-color);
   box-shadow: 0 0 0 1px #cddbff;
+}
+
+[data-theme="dark"] div.cardContainer:hover {
+  border: 1px solid #48dcbc;
+  box-shadow: 0 0 0 1px #48dcbc;
 }
 
 div.cardContent {
@@ -35,10 +45,11 @@ div.cardContent {
 
 div.title {
   margin-bottom: 1.4rem;
+  font-size: 1.3rem;
 }
 
 p.content {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 [data-theme="dark"] div.title,
@@ -66,26 +77,26 @@ button.cardBtn {
   text-transform: none;
 }
 
-p.cardLinks {
+div.cardLinks {
   margin-top: 1rem;
 }
 
 p.cardLink {
   cursor: pointer;
-  color: #95adee;
-  font-size: 1rem;
+  color: var(--ifm-button-color);
+  font-size: 0.9rem;
   margin-bottom: 0.1rem;
   margin-right: 4px;
   border: 1px solid transparent;
 }
 
 p.cardLink:hover {
-  color: #95adee88;
+  color: var(--ifm-menu-color-active);
   border-bottom: 1px dotted #95adee88;
 }
 
 div.flexBox {
-  color: #95adee;
+  color: var(--ifm-button-color);
   font-size: 1.1rem;
   display: flex;
   align-items: center;
@@ -93,15 +104,15 @@ div.flexBox {
 }
 
 p.cardLink:hover .externalArrowIcon path {
-  stroke: #afc2f5;
+  stroke: var(--ifm-menu-color-active);
 }
 
 [data-theme="dark"] .externalArrowIcon path {
-  stroke: #afc2f5;
+  stroke: #48dcbc;
 }
 
 [data-theme="dark"] p.cardLink:hover .externalArrowIcon path {
-  stroke: #8da8f1;
+  stroke: var(--ifm-menu-color-active);
 }
 
 p.cardLink:hover .rightArrowIcon path:nth-child(2) {

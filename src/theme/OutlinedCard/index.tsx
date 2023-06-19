@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import { useHistory, useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./styles.module.css";
+import { useColorMode } from "@docusaurus/theme-common";
 
 type LinkProps = {
   text: string;
@@ -42,6 +43,11 @@ export default function OutlinedCard({
   const history = useHistory();
   const { globalData } = useDocusaurusContext();
   const location = useLocation();
+  const { colorMode } = useColorMode();
+  const [dark, setDark] = React.useState(false);
+  React.useEffect(() => {
+    setDark(colorMode === "dark");
+  }, [colorMode]);
 
   return (
     <Card
@@ -55,13 +61,15 @@ export default function OutlinedCard({
       onClick={() => {
         if (links) return;
         if (doc) {
-          globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
-            if (location.pathname.includes(v.path)) {
-              history.push(`${v.path}/${doc}`);
-            } else if (location.pathname.includes("cloud")) {
-              history.push(`/docs/current/${doc}`);
+          globalData["docusaurus-plugin-content-docs"].default["versions"].map(
+            (v) => {
+              if (location.pathname.includes(v.path)) {
+                history.push(`${v.path}/${doc}`);
+              } else if (location.pathname.includes("cloud")) {
+                history.push(`/docs/current/${doc}`);
+              }
             }
-          });
+          );
         } else if (url) {
           window.open(url, "_blank", "noopener,noreferrer");
         } else if (cloud) {
@@ -77,16 +85,19 @@ export default function OutlinedCard({
           {content}
         </Typography>
         {links && (
-          <Typography className={styles.cardLinks}>
+          <Box className={styles.cardLinks}>
             {links.map((link) => {
               return (
                 <div
+                  key={link.url}
                   className={styles.flexBox}
                   onClick={() => {
                     if (link.url) {
                       window.open(link.url, "_blank", "noopener,noreferrer");
                     } else if (link.doc) {
-                      globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
+                      globalData["docusaurus-plugin-content-docs"].default[
+                        "versions"
+                      ].map((v) => {
                         if (location.pathname.includes(v.path)) {
                           history.push(`${v.path}/${link.doc}`);
                         } else if (location.pathname.includes("cloud")) {
@@ -99,12 +110,14 @@ export default function OutlinedCard({
                   <Typography className={styles.cardLink}>
                     {link.text}
                     {link.url && <ExternalArrow />}
-                    {link.doc && <RightArrow />}
+                    {link.doc && (
+                      <RightArrow fill={dark ? "#48dcbc" : "#0098ef"} />
+                    )}
                   </Typography>
                 </div>
               );
             })}
-          </Typography>
+          </Box>
         )}
       </CardContent>
 
@@ -119,7 +132,10 @@ export default function OutlinedCard({
   );
 }
 
-const RightArrow = () => (
+type IconProps = {
+  fill: string;
+};
+const RightArrow = ({ fill }: IconProps) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -130,7 +146,7 @@ const RightArrow = () => (
     <path fill="none" d="M0 0h24v24H0z" />
     <path
       d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-      fill="#95adee"
+      fill={fill}
     />
   </svg>
 );
@@ -148,7 +164,7 @@ const ExternalArrow = () => (
     <path
       d="M11.5 5.5H7.5C6.39543 5.5 5.5 6.39543 5.5 7.5V16.5C5.5 17.6046 6.39543 18.5 7.5 18.5H16.5C17.6046 18.5 18.5 17.6046 18.5 16.5V12.5"
       stroke="#2f5dd9"
-      stroke-linecap="round"
+      strokeLinecap="round"
     />
   </svg>
 );

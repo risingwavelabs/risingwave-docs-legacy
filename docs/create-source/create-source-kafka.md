@@ -124,19 +124,20 @@ For materialized sources with primary key constraints, if a new data record with
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+|properties.sync.call.timeout | Optional. Specify the timeout. By default, the timeout is 5 seconds.  |
 
 ### Other parameters
 
 |Field|Notes|
 |---|---|
-|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`, `DEBEZIUM_JSON`, `DEBEZIUM_AVRO`, `MAXWELL`, `CANAL_JSON`, `UPSERT_JSON`, `UPSERT_AVRO`. |
+|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`, `DEBEZIUM_JSON`, `DEBEZIUM_AVRO`, `MAXWELL`, `CANAL_JSON`, `UPSERT_JSON`, `UPSERT_AVRO`, `CSV`. |
 |*message* | Message name of the main Message in schema definition. Required for Protobuf.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
 |*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 
-## Example
+## Examples
 
-Here is an example of connecting RisingWave to a Kafka broker to read data from individual topics.
+Here are examples of connecting RisingWave to a Kafka broker to read data from individual topics.
 
 :::note
 RisingWave supports reading messages that have been compressed by [zstd](http://www.zstd.net/). Additional configurations are not required.
@@ -146,7 +147,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
-<TabItem value="avro" label="Avro" default>
+<TabItem value="avro" label="Avro">
 
 ```sql
 CREATE SOURCE IF NOT EXISTS source_abc 
@@ -162,10 +163,10 @@ ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
 
 </TabItem>
-<TabItem value="upsert avro" label="Upsert Avro" default>
+<TabItem value="upsert avro" label="Upsert Avro">
 
 ```sql
-CREATE SOURCE IF NOT EXISTS source_abc 
+CREATE TABLE IF NOT EXISTS source_abc 
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
@@ -176,10 +177,10 @@ ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://127.0.0.1:8081';
 ```
 
 </TabItem>
-<TabItem value="json" label="JSON" default>
+<TabItem value="json" label="JSON">
 
 ```sql
-CREATE TABLE IF NOT EXISTS source_abc (
+CREATE SOURCE IF NOT EXISTS source_abc (
    column1 varchar,
    column2 integer,
 )
@@ -194,7 +195,7 @@ ROW FORMAT JSON;
 ```
 
 </TabItem>
-<TabItem value="upsert json" label="Upsert JSON" default>
+<TabItem value="upsert json" label="Upsert JSON">
 
 ```sql
 CREATE TABLE IF NOT EXISTS source_abc (
@@ -209,7 +210,7 @@ WITH (
 ```
 
 </TabItem>
-<TabItem value="pb" label="Protobuf" default>
+<TabItem value="pb" label="Protobuf">
 
 ```sql
 CREATE SOURCE IF NOT EXISTS source_abc 
@@ -223,6 +224,24 @@ WITH (
 ROW FORMAT PROTOBUF MESSAGE 'main_message'
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
 ```
+
+</TabItem>
+<TabItem value="csv" label="CSV">
+
+```sql
+CREATE TABLE s0 (v1 int, v2 varchar)
+WITH (
+   connector = 'kafka',
+   topic = 'kafka_csv_topic',
+   properties.bootstrap.server = '127.0.0.1:29092',
+   scan.startup.mode = 'earliest'
+) 
+ROW FORMAT csv WITHOUT HEADER DELIMITED BY ',';
+```
+
+- CSV header is not supported when creating a table with Kafka connector. Add the `WITHOUT HEADER` option to the `ROW FORMAT` clause.
+
+- The `DELIMITED BY` option specifies the delimiter character used in the CSV data.
 
 </TabItem>
 </Tabs>
@@ -284,7 +303,7 @@ To learn about compatibility types for Schema Registry and the changes allowed, 
 
 ## Create source with AWS PrivateLink connection
 
-If your Kafka source service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](../guides/aws-privatelink-setup.md).
+If your Kafka source service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](../sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
 
 To create a Kafka source with a PrivateLink connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters.
 

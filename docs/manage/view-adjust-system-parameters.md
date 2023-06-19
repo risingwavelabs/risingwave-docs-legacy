@@ -22,42 +22,59 @@ Currently, these system parameters are availble in RisingWave.
 |`data_directory`           | The remote directory for storing data and metadata objects.|
 |`backup_storage_url`       | The URL of the remote storage for backups.|
 |`backup_storage_directory` | The directory of the remote storage for backups.|
-|`telemetry_enabled` | Whether to enable telemetry or not. For more information, see [Telemetry](../telemetry.md).|
+|`telemetry_enabled` | Whether to enable telemetry or not. For more information, see [Telemetry](/telemetry.md).|
 
 ## How to view system parameters?
 
-You can use the `SHOW PARAMETERS` statement to view the system parameters and their settings.
+You can use the `SHOW PARAMETERS` command to view the system parameters, along with their current values.
+
+The `Mutable` column indicates whether the parameter can be altered using the [ALTER SYSTEM SET](#how-to-adjust-system-parameters) command after the system is running. `t` means it can be altered using the `ALTER SYSTEM SET` command while `f` means it cannot be altered using the command.
 
 ```sql
 SHOW PARAMETERS;
+```
 
---------------------------
-           Name           |    Value    
---------------------------+-------------
- barrier_interval_ms      | 1000
- checkpoint_interval      | 10
- sstable_size_mb          | 256
- block_size_kb            | 64
- bloom_false_positive     | 0.001
- state_store              | 
- data_directory           | hummock_001
- backup_storage_url       | memory
- backup_storage_directory | backup
- telemetry_enabled        | true
+```
+           Name           |     Value      | Mutable 
+--------------------------+----------------+---------
+ barrier_interval_ms      | 1000           | f
+ checkpoint_frequency     | 10             | t
+ sstable_size_mb          | 256            | f
+ block_size_kb            | 64             | f
+ bloom_false_positive     | 0.001          | f
+ state_store              | hummock+memory | f
+ data_directory           | hummock_001    | f
+ backup_storage_url       | memory         | f
+ backup_storage_directory | backup         | f
+ telemetry_enabled        | true           | t
 ```
 
 ## How to adjust system parameters?
 
-You can use the `ALTER SYSTEM SET` statement to revise the setting of a system parameter. Note that currently only `checkpoint_interval` and `telemetry_enabled` can be set.
+Mutable and immutable parameters are configured differently.
 
-:::note
-
-As RisingWave reads system parameters at different times, there is no guarantee that a parameter value change takes effect immediately. We recommend that you adjust system parameters before running a streaming query after your RisingWave cluster starts.
-
-:::
+You can configure mutable parameters using the `ALTER SYSTEM SET` command in `psql`.
 
 The full syntax of the `ALTER SYSTEM SET` statement is:
 
 ```sql
 ALTER SYSTEM SET parameter_name { TO | = } { value | 'value' | DEFAULT };
 ```
+
+Immutable parameters need to be initialized in the CLI of the meta node. `state_store` and `data_directory` need to be initialized before starting a cluster.
+
+To configure parameter settings in the CLI of the meta node, navigate to the directory where RisingWave is installed and run the following command:
+
+```shell
+meta-node --<parameter_name> <value>
+```
+
+For example, to initialize the setting of `data_directory`:
+
+`meta-node --data_directory "hummock_001"`
+
+:::note
+
+As RisingWave reads system parameters at different times, there is no guarantee that a parameter value change takes effect immediately. We recommend that you adjust system parameters before running a streaming query after your RisingWave cluster starts.
+
+:::

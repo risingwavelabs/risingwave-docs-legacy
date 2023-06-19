@@ -19,6 +19,12 @@
   --ifm-color-neutral-400: #b3b3b3;
   --ifm-color-neutral-900: #16171a;
   --ifm-navbar-link-color: #16171a;
+  --ifm-button-background-color: var(--ifm-color-primary-dark);
+  --ifm-button-hover-background-color: #0179be;
+  --ifm-button-color: #0179be;
+
+  --ifm-card-border-radius: var(--ifm-pagination-nav-border-radius);
+
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
@@ -49,6 +55,16 @@
   --ifm-background-color: #1f2765;
   --ifm-navbar-link-color: #e3e3e3;
   --ifm-heading-color: #e3e3e3;
+  --ifm-card-background-color: #152431;
+
+  --ifm-button-background-color: linear-gradient(
+      0deg,
+      rgba(72, 220, 188, 0.1),
+      rgba(72, 220, 188, 0.1)
+    ),
+    #0a3246;
+  --ifm-button-hover-background-color: #102432;
+  --ifm-button-color: #48dcbc;
 
   --ifm-blockquote-color: #b8c4c9;
   --ifm-font-color-base: #b8c4c9;
@@ -61,6 +77,8 @@
   --ifm-color-success-light: rgb(38, 178, 38);
   --ifm-color-success-lighter: rgba(77, 191, 77, 0.212);
   --ifm-color-success-lightest: rgb(128, 210, 128);
+
+  --docsearch-primary-color: var(--ifm-color-primary-darkest) !important;
 }
 
 html[data-theme="dark"] {
@@ -69,7 +87,7 @@ html[data-theme="dark"] {
   --ifm-hover-overlay: #ffffff0d;
   --ifm-color-content: #e3e3e3;
   --ifm-color-content-secondary: #fff;
-  --ifm-link-color: #86f2dd;
+  --ifm-link-color: #48dcbc;
   --ifm-tabs-color-active-border: #86f2dd;
   --ifm-tabs-color-active: #86f2dd;
   --ifm-code-background: #fafafa28;
