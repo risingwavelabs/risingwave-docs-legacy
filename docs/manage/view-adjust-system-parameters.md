@@ -28,11 +28,12 @@ Currently, these system parameters are availble in RisingWave.
 
 You can use the `SHOW PARAMETERS` command to view the system parameters, along with their current values.
 
-The `Mutable` column indicates whether the parameter can be altered using the [ALTER SYSTEM SET](#how-to-adjust-system-parameters) command after the system is running. `t` means it can be altered while `f` means it cannot be altered.
+The `Mutable` column indicates whether the parameter can be altered using the [ALTER SYSTEM SET](#how-to-adjust-system-parameters) command after the system is running. `t` means it can be altered using the `ALTER SYSTEM SET` command while `f` means it cannot be altered using the command.
 
 ```sql
 SHOW PARAMETERS;
 ```
+
 ```
            Name           |     Value      | Mutable 
 --------------------------+----------------+---------
@@ -50,16 +51,30 @@ SHOW PARAMETERS;
 
 ## How to adjust system parameters?
 
-You can use the `ALTER SYSTEM SET` statement to revise the setting of a system parameter. Note that currently only `checkpoint_interval` and `telemetry_enabled` can be set.
+Mutable and immutable parameters are configured differently.
 
-:::note
-
-As RisingWave reads system parameters at different times, there is no guarantee that a parameter value change takes effect immediately. We recommend that you adjust system parameters before running a streaming query after your RisingWave cluster starts.
-
-:::
+You can configure mutable parameters using the `ALTER SYSTEM SET` command in `psql`.
 
 The full syntax of the `ALTER SYSTEM SET` statement is:
 
 ```sql
 ALTER SYSTEM SET parameter_name { TO | = } { value | 'value' | DEFAULT };
 ```
+
+Immutable parameters need to be initialized in the CLI of the meta node. `state_store` and `data_directory` need to be initialized before starting a cluster.
+
+To configure parameter settings in the CLI of the meta node, navigate to the directory where RisingWave is installed and run the following command:
+
+```shell
+meta-node --<parameter_name> <value>
+```
+
+For example, to initialize the setting of `data_directory`:
+
+`meta-node --data_directory "hummock_001"`
+
+:::note
+
+As RisingWave reads system parameters at different times, there is no guarantee that a parameter value change takes effect immediately. We recommend that you adjust system parameters before running a streaming query after your RisingWave cluster starts.
+
+:::
