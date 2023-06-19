@@ -162,6 +162,14 @@ const sidebars = {
       label: 'Demos',
       collapsible: true,
       collapsed: true,
+      link: {
+        type: 'generated-index',
+        'title': 'Demos',
+        'slug': '/demos',
+        'keywords': [
+          'demo','tutorial','use case'
+        ]
+      },
       items: [
         {
           type: 'doc',
@@ -686,17 +694,9 @@ const sidebars = {
       ]
     },
     {
-      type: 'category',
+      type: 'doc',
       label: 'Releases',
-      collapsible: true,
-      collapsed: true,
-      items: [
-        {
-          type: 'doc',
-          label: 'Release notes',
-          id: 'release-notes'
-        }
-      ]
+      id: 'release-notes'
     }
   ]
 
