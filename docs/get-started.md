@@ -66,7 +66,7 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
 
 ## Connect to a source
 
-The most common way for getting streaming data into RisingWave is through upstream sources such as message queues or Change Data Capture streams. For streaming data ingestion, you need use the [`CREATE SOURCE`](./sql/commands/sql-alter-source.md) command to connect to a source first.
+The most common way for getting streaming data into RisingWave is through upstream sources such as message queues or Change Data Capture streams. For streaming data ingestion, you need use the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command to connect to a source first.
 
 Let's assume that you have entered five rows of data in the same schema as table `website_visits` into the `test` topic in Kafka:
 
@@ -81,11 +81,11 @@ Let's assume that you have entered five rows of data in the same schema as table
 You can now connect to the topic from RisingWave by running the following command:
 
 ```sql
-CREATE source IF NOT EXISTS website_visits_stream (
- timestamp TIMESTAMP,
- user_id VARCHAR,
- page_id VARCHAR,
- action VARCHAR
+CREATE SOURCE IF NOT EXISTS website_visits_stream (
+ timestamp timestamp,
+ user_id varchar,
+ page_id varchar,
+ action varchar
  )
 WITH (
  connector='kafka',
@@ -98,7 +98,7 @@ ROW FORMAT JSON;
 
 Note that after the source is created, data is not automatically ingested into RisingWave. You need to create a materialized view to start the data movement.
 
-RisingWave supports ingesting data from sources including mainstream message queues and databases. For supported sources and formats, see [Supported sources](./sql/commands/sql-create-source.md#supported-sources) and [Supported formats](./sql/commands/sql-create-source.md#supported-formats).
+RisingWave supports ingesting data from sources including mainstream message queues and databases. For supported sources and formats, see [Supported sources](/sql/commands/sql-create-source.md#supported-sources) and [Supported formats](/sql/commands/sql-create-source.md#supported-formats).
 
 ## Transform data with materialized views
 
@@ -111,23 +111,23 @@ Let's create a materialized view to get the total page visits, unique visitors, 
 ```sql
 CREATE MATERIALIZED VIEW visits_stream_mv AS 
 SELECT page_id, 
-COUNT(*) AS total_visits, 
-COUNT(DISTINCT user_id) AS unique_visitors, 
-MAX(timestamp) AS last_visit_time 
+count(*) AS total_visits, 
+count(DISTINCT user_id) AS unique_visitors, 
+max(timestamp) AS last_visit_time 
 FROM website_visits_stream 
 GROUP BY page_id;
 ```
 
 ## Query data
 
-Use the [`SELECT`](./sql/commands/sql-select.md) command to query data in a table or materialized view.
+Use the [`SELECT`](/sql/commands/sql-select.md) command to query data in a table or materialized view.
 
 For example, let's see the latest results of the `visits_stream_mv` materialized view:
 
 ```sql
 SELECT * FROM visits_stream_mv;
-
------RESULTS
+```
+```
  page_id | total_visits | unique_visitors |   last_visit_time
 ---------+--------------+-----------------+---------------------
  page2   |            2 |               2 | 2023-06-13 10:08:00
@@ -152,8 +152,8 @@ The results will be automatically updated:
 
 ```sql
 SELECT * FROM visits_stream_mv;
-
------RESULTS
+```
+```
  page_id | total_visits | unique_visitors |   last_visit_time   
 ---------+--------------+-----------------+---------------------
  page2   |            3 |               3 | 2023-06-13 10:12:00
