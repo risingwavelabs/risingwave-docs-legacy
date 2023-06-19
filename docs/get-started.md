@@ -1,6 +1,6 @@
 ---
 id: get-started
-title: Quickstart
+title: Quick start
 description: Get started with RisingWave.
 slug: /get-started
 toc_max_heading_level: 2
@@ -10,7 +10,7 @@ This guide is designed to help you get up and running with RisingWave quickly an
 
 ## Install and start RisingWave
 
-Ensure you have [Homebrew](https://brew.sh/) installed and run the following commands:
+Ensure you have [Homebrew](https://brew.sh/) installed and then run the following commands:
 
 ```shell
 brew tap risingwavelabs/risingwave # Tap the repository
@@ -24,7 +24,7 @@ This method launches RisingWave in playground mode, where data is temporarily st
 
 :::
 
-Other installation options are available. If you intend to deploy RisingWave to production environments, use K8s or RisingWave Cloud, our fully managed service. For details, see [].
+Other installation options are available. If you intend to deploy RisingWave to production environments, use Kubernetes or RisingWave Cloud, our fully managed service. For details, see [Run RisingWave for production](/deploy/risingwave-production.md).
 
 ## Connect to RisingWave
 
@@ -166,7 +166,7 @@ SELECT * FROM visits_stream_mv;
 
 Data in tables and materialized views are stored in RisingWave. You can sink data out of RisingWave and into Kafka topics or databases.
 
-To sink data out of RisingWave, you need to create a sink using the [`CREATE SINK`](./sql/commands/sql-create-sink.md). A sink can be created from an existing table, source, or materialized view, or an ad-hoc `SELECT` query.
+To sink data out of RisingWave, you need to create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md). A sink can be created from an existing table, source, or materiaialized view, or an ad-hoc `SELECT` query.
 
 Let's sink all data from `visits_stream_mv` to a Kafka topic:
 

@@ -1,7 +1,7 @@
 ---
 id: risingwave-production
 title: Run RisingWave for production
-description: Install, run, and connect to RisingWave for production purposes.
+description: Run RisingWave for production purposes.
 slug: /risingwave-production
 ---
 

@@ -85,13 +85,13 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Install',
+          label: 'Run RisingWave',
           collapsible: true,
           collapsed: true,
           items: [
             {
               type: 'category',
-              label: 'Trial',
+              label: 'Try out',
               collapsible: true,
               collapsed: true,
               link: { type: 'doc', id: 'deploy/risingwave-trial' },
@@ -130,7 +130,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Production',
+              label: 'Deploy to production',
               collapsible: true,
               collapsed: true,
               link: { type: 'doc', id: 'deploy/risingwave-production' },
