@@ -128,7 +128,8 @@ export default function DocSidebarItemCategory({
           {
             "menu__list-item-collapsible--active": isCurrentPage,
           },
-          level === 1 && !collapsed && styles.docSidebarItemCategoryUnderline
+          level === 1 && !collapsed && styles.docSidebarItemCategoryUnderline,
+          level === 1 && styles.docSidebarHeadingColor
         )}
       >
         <Link
@@ -141,7 +142,8 @@ export default function DocSidebarItemCategory({
             },
             href && collapsible && styles.internalExpandedLink,
             collapsible && collapsed && styles.collapsedLists,
-            collapsible && !collapsed && styles.nonCollapsedLists
+            collapsible && !collapsed && styles.nonCollapsedLists,
+            level === 1 && styles.docSidebarHeadingColor
           )}
           onClick={
             collapsible
