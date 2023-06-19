@@ -166,7 +166,7 @@ SELECT * FROM visits_stream_mv;
 
 Data in tables and materialized views are stored in RisingWave. You can sink data out of RisingWave and into Kafka topics or databases.
 
-To sink data out of RisingWave, you need to creat a sink using the [`CREATE SINK`](./sql/commands/sql-create-sink.md). A sink can be created from an existing table, source, or materlized view, or an ad-hoc `SELECT` query.
+To sink data out of RisingWave, you need to create a sink using the [`CREATE SINK`](./sql/commands/sql-create-sink.md). A sink can be created from an existing table, source, or materialized view, or an ad-hoc `SELECT` query.
 
 Let's sink all data from `visits_stream_mv` to a Kafka topic:
 
