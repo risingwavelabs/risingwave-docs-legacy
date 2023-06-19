@@ -90,50 +90,20 @@ const sidebars = {
           collapsed: true,
           items: [
             {
-              type: 'category',
-              label: 'Try out',
-              collapsible: true,
-              collapsed: true,
-              link: { type: 'doc', id: 'deploy/risingwave-trial' },
-              items: [
-                {
-                  type: 'link',
-                  label: 'Playground',
-                  href: '/docs/current/risingwave-trial/?method=playground',
-                },
-                {
-                  type: 'link',
-                  href: '/docs/current/risingwave-trial/?method=homebrew',
-                  label: 'Homebrew'
-                },
-                {
-                  type: 'link',
-                  href: '/docs/current/risingwave-trial/?method=binaries',
-                  label: 'Binaries'
-                },
-                {
-                  type: 'link',
-                  href: '/docs/current/risingwave-trial/?method=docker',
-                  label: 'Docker'
-                },
-                {
-                  type: 'link',
-                  href: '/docs/current/risingwave-trial/?method=docker-compose',
-                  label: 'Docker Compose'
-                }
-              ],
+              type: 'doc',
+              id: 'deploy/risingwave-trial',
+              label: 'Try out'
             },
             {
               type: 'category',
               label: 'Deploy to production',
               collapsible: true,
               collapsed: true,
-              link: { type: 'doc', id: 'deploy/risingwave-production' },
               items: [
                 {
-                  type: 'link',
-                  label: 'RisingWave Cloud',
-                  href: '/docs/current/risingwave-production/?method=production',
+                  type: 'doc',
+                  id: 'deploy/risingwave-cloud',
+                  label: 'RisingWave Cloud'
                 },
                 {
                   type: 'doc',
