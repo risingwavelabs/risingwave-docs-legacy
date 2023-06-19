@@ -104,26 +104,26 @@ const sidebars = {
                 {
                   type: 'link',
                   label: 'Playground',
-                  href: '/docs/upcoming/risingwave-trial/?method=playground',
+                  href: '/docs/current/risingwave-trial/?method=playground',
                 },
                 {
                   type: 'link',
-                  href: '/docs/upcoming/risingwave-trial/?method=homebrew',
+                  href: '/docs/current/risingwave-trial/?method=homebrew',
                   label: 'Homebrew'
                 },
                 {
                   type: 'link',
-                  href: '/docs/upcoming/risingwave-trial/?method=binaries',
+                  href: '/docs/current/risingwave-trial/?method=binaries',
                   label: 'Binaries'
                 },
                 {
                   type: 'link',
-                  href: '/docs/upcoming/risingwave-trial/?method=docker',
+                  href: '/docs/current/risingwave-trial/?method=docker',
                   label: 'Docker'
                 },
                 {
                   type: 'link',
-                  href: '/docs/upcoming/risingwave-trial/?method=docker-compose',
+                  href: '/docs/current/risingwave-trial/?method=docker-compose',
                   label: 'Docker Compose'
                 }
               ],
@@ -143,7 +143,7 @@ const sidebars = {
                 {
                   type: 'link',
                   label: 'RisingWave Cloud',
-                  href: '/docs/upcoming/risingwave-production/?method=production',
+                  href: '/docs/current/risingwave-production/?method=production',
                 },
                 {
                   type: 'doc',

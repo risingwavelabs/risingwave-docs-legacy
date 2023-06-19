@@ -228,7 +228,7 @@ After entering messages, you can close the console window or press Ctrl + C to e
 
 ### Install and launch RisingWave
 
-See the [Get started](https://www.risingwave.dev/docs/upcoming/get-started/) guide for options on how you can run RisingWave.
+See the [Get started](https://www.risingwave.dev/docs/current/get-started/) guide for options on how you can run RisingWave.
 
 
 
