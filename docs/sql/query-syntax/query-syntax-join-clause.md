@@ -19,9 +19,55 @@ RisingWave supports these regular join types:
 - Right (outer) joins
 - Full (outer) joins
 
-## Windows joins (need a bit more time to handle)
+### Inner joins
 
-Window Join involves the processing of Watermarks. In Regular Equi-Join, the Join state may expand without restriction, while Window Join can use the input Watermark information to clean up the Join state, maintaining it at a reasonable size. The condition ts1 = ts2 is necessary for constructing Window Join, where ts1 is the Watermark column of table t1, and ts2 is the Watermark column of table t2.
+An inner Join returns the rows from both the left and the right table expressions where the specified join condition is met. Rows that do not meet the condition will be excluded from the result set.
+
+The syntax of INNER JOIN is as follows:
+
+```sql
+<table_expression> INNER JOIN <table_expression> ON <join_conditions>;
+<table_expression> INNER JOIN <table_expression> USING (<col_name>, <col_name>, ...);
+<table_expression> NATURAL [ INNER ] JOIN <table_expression>;
+```
+
+### Left outer joins
+
+A left outer join (or simply left join) returns all rows from the left table expression and the matched rows from the right table expression. If no match is found, NULL values will be filled in for columns from the right table.
+
+The syntax of LEFT (OUTER) JOIN is as follows:
+
+```sql
+<table_expression> LEFT [ OUTER ] JOIN <table_expression> ON <join_conditions>;
+<table_expression> LEFT [ OUTER ] JOIN <table_expression> USING (<col_name>, <col_name>, ...);
+<table_expression> NATURAL LEFT [ OUTER ] JOIN <table_expression>;
+```
+
+### Right outer joins
+
+A right outer join (or simply right join) returns all rows from the right table expression and the matched rows from the left table expression. If no match is found, NULL values will be returned for columns from the left table expression.
+
+The syntax of RIGHT (OUTER) JOIN is as follows:
+
+```sql
+<table_expression> RIGHT [ OUTER ] JOIN <table_expression> ON <join_conditions>;
+<table_expression> RIGHT [ OUTER ] JOIN <table_expression> USING (<col_name>, <col_name>, ...);
+<table_expression> NATURAL RIGHT [ OUTER ] JOIN <table_expression>;
+```
+
+### Full outer joins
+
+A full outer join (or simply, full join) returns all rows when there is a match in either the left or right table expression. If no match is found, NULL values will be returned for columns from the table expression where no match is found.
+
+```sql
+<table_expression> FULL [ OUTER ] JOIN <table_expression> ON <join_conditions>;
+<table_expression> FULL [ OUTER ] JOIN <table_expression> USING (<col_name>, <col_name>, ...);
+<table_expression> NATURAL FULL [ OUTER ] JOIN <table_expression>;
+```
+
+## Windows joins
+
+Window Join involves the processing of Watermarks. In Regular Equi-Join, the Join state may expand without restriction, while window Join can use the input watermark information to clean up the join state, maintaining it at a reasonable size. The condition ts1 = ts2 is necessary for constructing a window Join, where ts1 is the watermark column of table t1, and ts2 is the watermark column of table t2.
 
 ```sql
 create source t1 (ts1 timestamp with time zone, a1 int, b1 int, watermark for ts1 as ts1 - INTERVAL '1' SECOND) with (
@@ -42,8 +88,8 @@ Base on the watermark and specify a range based on it.
 
 ```sql
 create source t1 (ts1 timestamp with time zone, a1 int, b1 int, watermark for ts1 as ts1 - INTERVAL '1' SECOND) with (
-    connector = 'datagen',
-    datagen.rows.per.second = '10',
+    connector = '<connector>',
+    ...<other_connector_settings>...
 );
 create source t2 (ts2 timestamp with time zone, a2 int, b2 int, watermark for ts2 as ts2 - INTERVAL '1' SECOND) with (
     connector = 'datagen',
