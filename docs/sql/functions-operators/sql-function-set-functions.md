@@ -78,5 +78,3 @@ The result looks like this:
 2008-03-04 00:00:00
 2008-03-04 12:00:00
 ```
-
-The `generate_series`() function is a versatile tool for generating a series of values, useful for a wide range of purposes from generating test data to performing date and time arithmetic.
