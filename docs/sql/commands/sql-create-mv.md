@@ -10,7 +10,7 @@ Use the `CREATE MATERIALIZED VIEW` command to create a materialized view. A mate
 ## Syntax
 
 ```sql
-CREATE MATERIALIZED VIEW mv_name AS select_query;
+CREATE MATERIALIZED VIEW [IF NOT EXISTS] mv_name AS select_query;
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -19,6 +19,7 @@ export const svg = rr.Diagram(
 rr.Stack(
    rr.Sequence(
       rr.Terminal("CREATE MATERIALIZED VIEW"),
+      rr.Optional(rr.Terminal('IF NOT EXISTS')),
       rr.NonTerminal("mv_name", "skip"),
       rr.Terminal("AS"),
       rr.NonTerminal("select_query", "skip"),
