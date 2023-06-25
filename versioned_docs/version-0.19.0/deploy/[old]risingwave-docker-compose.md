@@ -5,6 +5,8 @@ description: Describes how to start a multi-node cluster with Docker Compose, an
 slug: /risingwave-docker-compose
 ---
 
+<!-- This file is no longer maintained. Please update the content in risingwave-trial.md. -->
+
 This article will help you use the pre-defined Docker Compose configuration file to set up a full-featured multi-node RisingWave cluster.
 
 :::note
@@ -25,7 +27,7 @@ RisingWave also incorporates these third-party components:
 
 * Grafana
 * Etcd
-* MinIO or other s3 compatible object storage
+* MinIO
 * Prometheus
 
 ## Download the source file and start a cluster
@@ -40,27 +42,9 @@ git clone https://github.com/risingwavelabs/risingwave.git
 
 Now run the following commands to navigate to the `docker` directory and start the cluster from the pre-defined docker-compose file.
 
-### Start a RisingWave cluster using MinIO
-
-To use MinIO as the storage backend, run:
-
 ```shell
 cd docker
 docker compose up -d
-```
-
-### Start a cluster on other S3-compatible object storage systems
-
-If you want to deploy RisingWave using other S3-compatible storage systems, you need to customize these configurations.
-
-* Fill in your `bucket-name` [here](https://github.com/risingwavelabs/risingwave/blob/09cfe81dc8e230969b7b2e6f4883feb59f59a186/docker/docker-compose-s3.yml#L194).
-* Configure `region`, `endpoint`, `access key`, and `secret key` in [risingwave/docker/aws.env](https://github.com/risingwavelabs/risingwave/blob/main/docker/aws.env). Note that `endpoint` cannot contain bucket names.
-
-Then run:
-
-```shell
-cd docker
-docker compose -f docker-compose-s3.yml up -d
 ```
 
 ## Connect to RisingWave

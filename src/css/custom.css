@@ -33,8 +33,8 @@
   --ifm-paragraph-margin-bottom: 0.5rem;
   --ifm-list-paragraph-margin: 0.2rem;
   letter-spacing: 0px;
-  --ifm-font-family-monospace: RobotoMono, SFMono-Regular, Menlo, Monaco,
-    Consolas, "Liberation Mono", "Courier New", monospace;
+  --ifm-font-family-monospace: RobotoMono, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
 
   --doc-sidebar-width: 260px !important;
   --ifm-tabs-padding-vertical: 0.5rem !important;
@@ -221,10 +221,7 @@ h4 {
   margin-left: 1.5rem;
 }
 
-.theme-doc-markdown
-  ol
-  li:not(.tabs__item)
-  > :first-child:not(code, strong)::before {
+.theme-doc-markdown ol li:not(.tabs__item) > :first-child:not(code, strong)::before {
   font-size: 0.75rem;
   font-weight: bold;
   counter-increment: circle-counter;

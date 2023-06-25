@@ -41,7 +41,7 @@ The steps in this section are intended for creating a Kubernetes cluster in your
     kind create cluster
     ```
 
-1. ***(Optional)*** Check if the cluster is created properly.
+1. ***Optional:*** Check if the cluster is created properly.
 
     ```shell
     kubectl cluster-info
@@ -89,18 +89,17 @@ Before the deployment, ensure that the following requirements are satisfied.
     :::note
     The following errors might occur if `cert-manager` is not fully initialized. Simply wait for another minute and rerun the command above.
 
-    > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": dial tcp 10.105.102.32:443: connect: connection refused
+    > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "<https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s>": dial tcp 10.105.102.32:443: connect: connection refused
 
-    > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s": dial tcp 10.105.102.32:443: connect: connection refused
+    > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "<https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s>": dial tcp 10.105.102.32:443: connect: connection refused
     :::
 
-1. ***(Optional)*** Check if the Pods are running.
+1. ***Optional:*** Check if the Pods are running.
 
     ```shell
     kubectl -n cert-manager get pods
     kubectl -n risingwave-operator-system get pods
     ```
-
 
 ## Deploy a RisingWave instance
 
@@ -140,6 +139,7 @@ RisingWave supports using Amazon S3 as the object storage.
     ```shell
     kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/stable/persistent/s3/risingwave.yaml
     ```
+
     <details>
     <summary>Click here if you wish to customize the name and region of the S3 bucket</summary>
 
@@ -159,7 +159,6 @@ RisingWave supports using Amazon S3 as the object storage.
         ```
 
     </details>
-
 
 </TabItem>
 
@@ -379,4 +378,4 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
 
 <br />
 
-You can now [connect a streaming source to RisingWave](sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](risingwave-sql-101.md).
+Now you can ingest and transform streaming data. See [Quick start](/get-started.md) for details.
