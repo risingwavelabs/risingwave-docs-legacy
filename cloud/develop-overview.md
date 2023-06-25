@@ -95,7 +95,7 @@ Select the version of the corresponding docs when using the RisingWave Database 
  style={{height: "87%"}}
  title="Sinks"
  content="Stream processed data out of RisingWave Database to message brokers and databases. See supported data destinations."
- url="https://www.risingwave.dev/docs/current/delivery-overview/"
+ url="https://www.risingwave.dev/docs/current/data-delivery/"
  />
   
 </grid>

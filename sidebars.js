@@ -39,158 +39,119 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'architecture',
-          label: 'Architecture',
-        },
-
-        {
-          type: 'doc',
-          id: 'key-concepts',
-          label: 'Key concepts and terms',
-        },
-        {
-          type: 'doc',
-          label: 'Fault tolerance',
-          id: 'fault-tolerance',
-        },
-        {
-          type: 'doc',
-          label: 'Data persistence',
-          id: 'data-persistence',
-        },
-        {
-          type: 'doc',
           label: 'RisingWave vs. Flink',
           id: 'risingwave-flink-comparison',
         },
         {
-          type: 'doc',
-          label: 'Telemetry',
-          id: 'telemetry'
-        },
-        {
-          type: 'doc',
-          label: 'Release Notes',
-          id: 'release-notes'
-        }
-      ]
-    },
-
-
-    {
-      type: 'category',
-      label: 'Setup',
-      collapsible: false,
-      collapsed: false,
-      items: [
-        {
-          type: 'doc',
-          label: 'Overview',
-          id: 'get-started'
-        },
-        {
           type: 'category',
-          label: 'Run locally',
+          label: 'Deep-dive',
           collapsible: true,
           collapsed: true,
           items: [
             {
               type: 'doc',
-              id: 'deploy/risingwave-local',
-              label: 'Run on host'
+              id: 'architecture',
+              label: 'Architecture',
+            },
+            {
+              type: 'doc',
+              id: 'key-concepts',
+              label: 'Key concepts and terms',
+            },
+            {
+              type: 'doc',
+              label: 'Fault tolerance',
+              id: 'fault-tolerance',
+            },
+            {
+              type: 'doc',
+              label: 'Data persistence',
+              id: 'data-persistence',
+            },
+          ]
+        },
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Get started',
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: 'doc',
+          label: 'Quick start',
+          id: 'get-started'
+        },
+        {
+          type: 'category',
+          label: 'Run RisingWave',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'deploy/risingwave-trial',
+              label: 'Try out'
             },
             {
               type: 'category',
-              label: 'Run in container',
+              label: 'Deploy to production',
               collapsible: true,
               collapsed: true,
               items: [
                 {
                   type: 'doc',
-                  id: 'deploy/risingwave-docker-image',
-                  label: 'Docker'
-                },
-                {
-                  type: 'doc',
-                  id: 'deploy/risingwave-docker-compose',
-                  label: 'Docker Compose'
+                  id: 'deploy/risingwave-cloud',
+                  label: 'RisingWave Cloud'
                 },
                 {
                   type: 'doc',
                   id: 'deploy/risingwave-kubernetes',
                   label: 'Kubernetes'
-                }
+                },
               ]
             },
-            {
-              type: 'doc',
-              id: 'guides/install-psql-without-postgresql'
-            }
           ]
         },
-        {
-          type: 'link',
-          label: 'Run in cloud',
-          href: '/docs/current/get-started/?method=cloud#run-risingwave',
-        },
-        {
-          type: 'link',
-          label: 'Try from browser',
-          href: '/docs/current/get-started/?method=playground#run-risingwave',
-        }
+
       ]
     },
-
-
-
     {
       type: 'category',
-      label: 'Learn & explore',
-      collapsible: false,
-      collapsed: false,
+      label: 'Demos',
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: 'doc',
-          id: 'risingwave-sql-101',
-          label: 'RisingWave SQL 101'
+          id: 'tutorials/real-time-ad-performance-analysis',
+          label: 'Real-time ad performance analysis'
         },
         {
-          type: 'category',
-          label: 'Demos',
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: 'doc',
-              id: 'tutorials/real-time-ad-performance-analysis',
-              label: 'Real-time ad performance analysis'
-            },
-            {
-              type: 'doc',
-              id: 'tutorials/server-performance-anomaly-detection',
-              label: 'Server performance anomaly detection'
-            },
-            {
-              type: 'doc',
-              id: 'tutorials/fast-twitter-events-processing',
-              label: 'Fast Twitter events processing'
-            },
-            {
-              type: 'doc',
-              id: 'tutorials/clickstream-analysis',
-              label: 'Clickstream analysis'
-            },
-            {
-              type: 'doc',
-              id: 'tutorials/live-stream-metrics-analysis',
-              label: 'Live stream metrics analysis'
-            },
-            {
-              type: 'doc',
-              id: 'tutorials/use-risingwave-to-monitor-risingwave-metrics',
-              label: 'Use RisingWave to monitor RisingWave metrics'
-            }
-          ]
+          type: 'doc',
+          id: 'tutorials/server-performance-anomaly-detection',
+          label: 'Server performance anomaly detection'
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/fast-twitter-events-processing',
+          label: 'Fast Twitter events processing'
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/clickstream-analysis',
+          label: 'Clickstream analysis'
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/live-stream-metrics-analysis',
+          label: 'Live stream metrics analysis'
+        },
+        {
+          type: 'doc',
+          id: 'tutorials/use-risingwave-to-monitor-risingwave-metrics',
+          label: 'Use RisingWave to monitor RisingWave metrics'
         }
       ]
     },
@@ -291,7 +252,7 @@ const sidebars = {
           items: [
             {
               type: 'doc',
-              id: 'delivery-overview',
+              id: 'data-delivery',
               label: 'Overview',
             },
             {
@@ -662,8 +623,8 @@ const sidebars = {
     {
       type: 'category',
       label: 'Manage',
-      collapsible: false,
-      collapsed: false,
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: 'doc',
@@ -677,7 +638,17 @@ const sidebars = {
           type: 'doc',
           id: 'manage/meta-backup',
         },
+        {
+          type: 'doc',
+          label: 'Telemetry',
+          id: 'telemetry'
+        },
       ]
+    },
+    {
+      type: 'doc',
+      label: 'Releases',
+      id: 'release-notes'
     }
   ]
 
