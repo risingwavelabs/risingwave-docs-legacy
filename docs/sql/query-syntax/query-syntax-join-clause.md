@@ -67,36 +67,57 @@ A full outer join (or simply, full join) returns all rows when there is a match 
 
 ## Windows joins
 
-Window Join involves the processing of Watermarks. In Regular Equi-Join, the Join state may expand without restriction, while window Join can use the input watermark information to clean up the join state, maintaining it at a reasonable size. The condition ts1 = ts2 is necessary for constructing a window Join, where ts1 is the watermark column of table t1, and ts2 is the watermark column of table t2.
+You can join two sources that have the same watermarks. This is called a window join. In a regular join (that is, a join without time attributes), the join state may grow without restriction. With window joins, the join state size can be kept at a resonable size.
+
+The syntax of a window join is:
 
 ```sql
-create source t1 (ts1 timestamp with time zone, a1 int, b1 int, watermark for ts1 as ts1 - INTERVAL '1' SECOND) with (
-    connector = 'datagen',
-    datagen.rows.per.second = '10',
-);
-create source t2 (ts2 timestamp with time zone, a2 int, b2 int, watermark for ts2 as ts2 - INTERVAL '1' SECOND) with (
-    connector = 'datagen',
-    datagen.rows.per.second = '10',
-);
--- window join
-select * from t1, t2 where ts1 = ts2 and a1 = a2;
+<table_expression> JOIN <table_expression> ON <equality_join_conditions>
 ```
 
-## Interval joins (also needs knowledge about watermark)
+In which, one of the `equality_join_conditions` must be an equality condition based on the watermarks of the two table expressions.
 
-Base on the watermark and specify a range based on it.
+For example, suppose you have these two sources:
 
 ```sql
-create source t1 (ts1 timestamp with time zone, a1 int, b1 int, watermark for ts1 as ts1 - INTERVAL '1' SECOND) with (
-    connector = '<connector>',
-    ...<other_connector_settings>...
-);
-create source t2 (ts2 timestamp with time zone, a2 int, b2 int, watermark for ts2 as ts2 - INTERVAL '1' SECOND) with (
+CREATE SOURCE t1 (ts1 timestamp with time zone, a1 int, b1 int, WATERMARK for ts1 AS ts1 - INTERVAL '1' SECOND) WITH (
     connector = 'datagen',
     datagen.rows.per.second = '10',
 );
--- interval join
-select * from t1, t2 where a1 = a2 and ts1 between ts2 - INTERVAL '10' SECOND and ts2 + INTERVAL '15' SECOND;
+CREATE SOURCE t2 (ts2 timestamp with time zone, a2 int, b2 int, WATERMARK for ts2 as ts2 - INTERVAL '1' SECOND) WITH (
+    connector = 'datagen',
+    datagen.rows.per.second = '10',
+);
+```
+
+You can join them with the following statement:
+
+```sql
+SELECT * FROM t1
+JOIN t2
+ON ts1 = ts2 
+AND a1 = a2;
+```
+
+## Interval joins
+
+Window joins require that the two sources have the exactly same watermarks. This requirement can be too strict in some scenarios. If you want to join two sources that have some time offset, you can create an interval join by specifying an accepted internval range based on watermarks.
+
+The syntax of an interval join is:
+
+```sql
+<table_expression> JOIN <table_expression> ON <equality_join_condition> AND <interval_condition>
+```
+
+In an interval join, the `interval_condtion` must be a watermark-based range.
+
+For example, for sources `t1` and `t2` used in the above section, you can create an interval join:
+
+```sql
+SELECT * FROM t1
+JOIN t2 
+WHERE a1 = a2 
+AND ts1 BETWEEN ts2 - INTERVAL '10' SECOND AND ts2 + INTERVAL '15' SECOND;
 ```
 
 ## Process-time temporal joins
