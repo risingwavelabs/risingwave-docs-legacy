@@ -5,6 +5,8 @@ description: Pull a RisingWave image from Docker Hub and run it as a Docker cont
 slug: /risingwave-docker-image
 ---
 
+<!-- This file is no longer maintained. Please update the content in risingwave-trial.md. -->
+
 This article will help you pull a RisingWave image and run it as a Docker container.
 
 :::caution
@@ -38,5 +40,5 @@ Open a new terminal window and run:
 ```shell
 psql -h localhost -p 4566 -d dev -U root
 ```
-    
-You can now [connect a streaming source to RisingWave](sql/commands/sql-create-source.md) and [issue SQL queries to manage your data](risingwave-sql-101.md).
+
+Now you can ingest and transform streaming data. See [Quick start](/get-started.md) for details.

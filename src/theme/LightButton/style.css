@@ -15,6 +15,7 @@
   position: relative;
   vertical-align: middle;
   white-space: nowrap;
+  text-align: center;
   word-wrap: break-word;
   transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
 }

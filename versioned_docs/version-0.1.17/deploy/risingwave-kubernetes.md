@@ -43,7 +43,7 @@ The steps in this section are intended for creating a Kubernetes cluster in your
     kind create cluster
     ```
 
-1. ***(Optional)*** Check if the cluster is created properly.
+1. ***Optional:*** Check if the cluster is created properly.
 
     ```shell
     kubectl cluster-info
@@ -67,7 +67,7 @@ Before the deployment, ensure that the following requirements are satisfied.
     kubectl apply -f https://github.com/risingwavelabs/risingwave-operator/releases/latest/download/risingwave-operator.yaml
     ```
 
-1. ***(Optional)*** Check if the Pods are running.
+1. ***Optional:*** Check if the Pods are running.
 
     ```shell
     kubectl -n cert-manager get pods

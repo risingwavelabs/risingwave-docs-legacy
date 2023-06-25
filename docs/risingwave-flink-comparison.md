@@ -7,13 +7,13 @@ keywords: [streaming database, risingwave, flink, comparison]
 
 In the rapidly evolving landscape of big data, stream processing has become increasingly important. A number of frameworks have emerged to aid in this process, including RisingWave and Apache Flink, two popular distributed stream processing systems in the open-source world. While both of these systems offer low-latency query processing over continuously ingested streaming data, they each have distinct features and benefits. This article compares RisingWave and Apache Flink to help you decide which one is right for your needs.
 
-We periodically update this article to keep up with the rapidly evolving landscape. As of our most recent update in February 2023, we are comparing Apache Flink 1.16.1 and RisingWave 0.1.16.
+We periodically update this article to keep up with the rapidly evolving landscape.
 
 ## Summary
 
 | |Apache Flink|	RisingWave|
 |---|---|---|
-|Version	|1.16.1|	0.1.16|
+|Version	|1.16.1|	Latest version|
 |License	|Apache License 2.0	|Apache License 2.0|
 |System category	|Stream processing framework	|Streaming database|
 |Architecture	|MapReduce-style	|Cloud-native|
