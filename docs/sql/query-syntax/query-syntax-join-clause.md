@@ -70,10 +70,10 @@ You can join two sources that have the same watermarks. This is called a window 
 The syntax of a window join is:
 
 ```sql
-<table_expression> JOIN <table_expression> ON <equality_join_conditions>
+<table_expression> JOIN <table_expression> ON <join_conditions>;
 ```
 
-In which, one of the `equality_join_conditions` must be an equality condition based on the watermarks of the two table expressions.
+In which, one of the `join_conditions` must be an equality condition based on the watermarks of the two table expressions.
 
 For example, suppose you have these two sources:
 
@@ -104,7 +104,7 @@ Window joins require that the two sources have the exactly same watermarks. This
 The syntax of an interval join is:
 
 ```sql
-<table_expression> JOIN <table_expression> ON <equality_join_condition> AND <interval_condition>
+<table_expression> JOIN <table_expression> ON <equality_join_condition> AND <interval_condition> ...;
 ```
 
 In an interval join, the `interval_condtion` must be a watermark-based range.
@@ -125,7 +125,7 @@ A temporal join is often used to widen a fact table. Its advantage is that it do
 ### Syntax
 
 ```sql
-<left_table_expression> [ LEFT | INNER ] JOIN <right_table_expression> FOR SYSTEM_TIME AS OF PROCTIME() ON <join_conditions>;
+<table_expression> [ LEFT | INNER ] JOIN <table_expression> FOR SYSTEM_TIME AS OF PROCTIME() ON <join_conditions>;
 ```
 
 ### Notes
