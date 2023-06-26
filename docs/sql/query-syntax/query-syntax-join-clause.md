@@ -118,10 +118,13 @@ In an interval join, the `interval_condtion` must be a watermark-based range.
 For example, for sources `t1` and `t2` used in the above section, you can create an interval join:
 
 ```sql
-SELECT * FROM t1
-JOIN t2 
-WHERE a1 = a2 
-AND ts1 BETWEEN ts2 - INTERVAL '10' SECOND AND ts2 + INTERVAL '15' SECOND;
+CREATE MATERIALIZED VIEW interval_join AS
+SELECT s1.id AS id1,
+       s1.value AS value1,
+       s2.id AS id2,
+       s2.value AS value2
+FROM s1 JOIN s2
+ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1' MINUTE;
 ```
 
 ## Process-time temporal joins
