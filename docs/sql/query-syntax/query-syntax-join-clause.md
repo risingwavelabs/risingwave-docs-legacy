@@ -119,7 +119,7 @@ The syntax of an interval join is:
 
 In an interval join, the `interval_condtion` must be a watermark-based range.
 
-For example, for sources `t1` and `t2` used in the above section, you can create an interval join:
+For example, for sources `s1` and `s2` used in the above section, you can create an interval join:
 
 ```sql
 CREATE MATERIALIZED VIEW interval_join AS
