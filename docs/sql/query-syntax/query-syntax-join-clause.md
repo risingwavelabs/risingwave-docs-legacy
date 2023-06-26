@@ -78,14 +78,20 @@ In which, one of the `join_conditions` must be an equality condition based on th
 For example, suppose you have these two sources:
 
 ```sql
-CREATE SOURCE t1 (ts1 timestamp with time zone, a1 int, b1 int, WATERMARK for ts1 AS ts1 - INTERVAL '1' SECOND) WITH (
-    connector = 'datagen',
-    datagen.rows.per.second = '10',
-);
-CREATE SOURCE t2 (ts2 timestamp with time zone, a2 int, b2 int, WATERMARK for ts2 as ts2 - INTERVAL '1' SECOND) WITH (
-    connector = 'datagen',
-    datagen.rows.per.second = '10',
-);
+CREATE SOURCE s1 (
+	id int, 
+	value int, 
+	ts TIMESTAMP, 
+	WATERMARK FOR ts AS ts - INTERVAL '20' SECOND
+) WITH (connector = 'datagen');
+
+
+CREATE SOURCE s2 (
+	id int, 
+	value int, 
+	ts TIMESTAMP, 
+	WATERMARK FOR ts AS ts - INTERVAL '20' SECOND
+) WITH (connector = 'datagen');
 ```
 
 You can join them with the following statement:
