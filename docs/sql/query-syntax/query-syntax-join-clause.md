@@ -97,10 +97,14 @@ CREATE SOURCE s2 (
 You can join them with the following statement:
 
 ```sql
-SELECT * FROM t1
-JOIN t2
-ON ts1 = ts2 
-AND a1 = a2;
+CREATE MATERIALIZED VIEW window_join AS
+SELECT s1.id AS id1,
+       s1.value AS value1,
+       s2.id AS id2,
+       s2.value AS value2
+FROM TUMBLE(s1, ts, interval '1' MINUTE)
+JOIN TUMBLE(s2, ts, interval '1' MINUTE)
+ON s1.id = s2.id and s1.window_start = s2.window_start;
 ```
 
 ## Interval joins
