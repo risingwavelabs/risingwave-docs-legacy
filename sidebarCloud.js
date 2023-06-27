@@ -111,10 +111,14 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Source & sink",
+      label: "Develop",
       collapsible: false,
       collapsed: false,
       items: [
+        {
+          type: "doc",
+          id: "develop-overview",
+        },
         {
           type: "category",
           label: "Manage sources",
@@ -158,18 +162,6 @@ module.exports = {
               id: "sink-drop-a-sink",
             },
           ]
-        },
-      ]
-    },
-    {
-      type: "category",
-      label: "Develop",
-      collapsible: false,
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          id: "develop-overview",
         },
         {
           type: "doc",
