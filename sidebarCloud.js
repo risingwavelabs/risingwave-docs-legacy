@@ -70,6 +70,11 @@ module.exports = {
             },
             {
               type: "doc",
+              id: "cluster-update-database-version",
+              label: "Update database version",
+            },
+            {
+              type: "doc",
               id: "cluster-stop-and-delete-clusters",
             },
           ],
