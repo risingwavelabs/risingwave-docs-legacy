@@ -65,32 +65,32 @@ A full outer join (or simply, full join) returns all rows when there is a match 
 
 ## Windows joins
 
-You can join two sources that have the same watermarks. This is called a window join. In a regular join (that is, a join without time attributes), the join state may grow without restriction. With window joins, the join state size can be kept at a resonable size.
+In a regular join (that is, a join without time attributes), the join state may grow without restriction. If you only need to get windowed results of two sources, you can segment data in the sources into time windows, and join matching windows from the two sources. To create a window join, the same time window functions must be used, and the window size must be the same.
 
 The syntax of a window join is:
 
 ```sql
-<table_expression> JOIN <table_expression> ON <join_conditions>;
+<time_window_expression> JOIN <time_window_expression> ON <join_conditions>;
 ```
 
-In which, one of the `join_conditions` must be an equality condition based on the watermarks of the two table expressions.
+One of the `join_conditions` must be an equality condition based on the watermarks of the two table expressions. For the syntax of `<time_window_expression>`, see [Time window functions](../functions-operators/sql-function-time-window.md).
 
 For example, suppose you have these two sources:
 
 ```sql
 CREATE SOURCE s1 (
-	id int, 
-	value int, 
-	ts TIMESTAMP, 
-	WATERMARK FOR ts AS ts - INTERVAL '20' SECOND
+ id int, 
+ value int, 
+ ts TIMESTAMP, 
+ WATERMARK FOR ts AS ts - INTERVAL '20' SECOND
 ) WITH (connector = 'datagen');
 
 
 CREATE SOURCE s2 (
-	id int, 
-	value int, 
-	ts TIMESTAMP, 
-	WATERMARK FOR ts AS ts - INTERVAL '20' SECOND
+ id int, 
+ value int, 
+ ts TIMESTAMP, 
+ WATERMARK FOR ts AS ts - INTERVAL '20' SECOND
 ) WITH (connector = 'datagen');
 ```
 
