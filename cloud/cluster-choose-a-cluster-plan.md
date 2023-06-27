@@ -14,25 +14,29 @@ import TabItem from '@theme/TabItem';
 
 <Tabs>
 
-<TabItem value="free" label="Free tier">
+<TabItem value="free" label="Free plan">
 
-The free-tier plan provides all the necessary resources to test and explore all RisingWave Cloud's features — at no cost.
+The Free plan provides all the necessary resources to test and explore all RisingWave Cloud's features — at no cost.
 
 :::caution
-Clusters created under the free-tier plan will expire after seven days, and your data will be kept for an additional seven days. If you want to get a backup of your data, please contact us at cloud-support@risingwave-labs.com.
+Clusters created under the Free plan will expire after seven days, and your data will be kept for an additional seven days. If you want to get a backup of your data, please contact us at cloud-support@risingwave-labs.com.
 
 DO NOT choose this plan for production.
 :::
 
-#### Configuration
+#### **Configuration**
+
+- **Cloud platform**
+  
+    You can deploy your cluster on either AWS or Google Cloud, depending on your cloud provider preferences.
+
+- **Region**
+
+    You can choose the availability region closest to you to minimize latency.
 
 - **Cluster name**
 
     Name of the cluster. Assigning a descriptive name to each cluster can be helpful when managing multiple clusters.
-
-- **Region**
-
-    Regions are isolated from each other.
 
 </TabItem>
 
@@ -43,17 +47,21 @@ If you signed up for early access and received an invitation code, you can selec
 The customized plan offers the flexibility of configuring the resources to better suit your demand.
 
 
-#### Configuration
+#### **Configuration**
+
+- **Cloud platform**
+  
+    You can deploy your cluster on either AWS or Google Cloud, depending on your cloud provider preferences.
+
+- **Region**
+
+    You can choose the availability region closest to you to minimize latency.
 
 - **Cluster name**
 
     Name of the cluster. Assigning a descriptive name to each cluster can be helpful when managing multiple clusters.
 
-- **Region**
-
-    Regions are isolated from each other.
-
-- **Configure nodes**
+- **Node configuration**
 
     Configure each node's instance resources and numbers according to your actual needs.
     

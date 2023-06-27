@@ -1,6 +1,6 @@
 ---
 id: quickstart
-title: Quickstart
+title: Quick start
 description: Get started with RisingWave Cloud in 5 steps.
 slug: /quickstart
 ---
@@ -35,17 +35,6 @@ import TabItem from '@theme/TabItem';
   width="30%"
 />
 
----
-
-We prepared a quickstart wizard for an easy and guided setup after you log in.
-
-Or you can continue to read the quickstart guide here for detailed instructions.
-
-<img
-  src={require('./images/quickstart-wizard.png').default}
-  alt="RisingWave Cloud quickstart wizard"
-/>
-
 --- 
 <defaultButton text="Continue →" cloud="quickstart?step=2" block/>
 
@@ -58,7 +47,7 @@ Or you can continue to read the quickstart guide here for detailed instructions.
 
 A cluster in RisingWave Cloud provides the necessary resources for hosting independent data repositories and streaming pipelines. Within a cluster, you can create and manage database users and databases.
 
-You can find the **Create cluster** button in [**Dashboard**](https://risingwave.cloud/dashboard/) or [**Clusters**](https://risingwave.cloud/clusters/) after your first login.
+You can find the **Create cluster** button on the [home page](https://risingwave.cloud/dashboard/) or the [**Clusters**](https://risingwave.cloud/clusters/) tab after your first login.
 <p></p>
 
 <img
@@ -85,19 +74,19 @@ You can choose from the following two ways to connect to your cluster.
 
 <Tabs>
 
-<TabItem value="console" label="Console">
+<TabItem value="console" label="Query console">
 
-The console is the most intuitive and easy way to connect to and interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
+The query console is the most intuitive and easy way to connect to and interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
 
 
 #### To connect via the console:
 
 
-1. Go to [**Console**](https://risingwave.cloud/console/).  
+1. Go to [**Query**](https://risingwave.cloud/console/).  
 
 2. Create a new database user.
 
-    > You must log in to the cluster as a database user. Since this is a new cluster, you need to create a user in it.
+    > You must log in to the cluster as a database user. Since this is a new cluster, you need to create a user in it first.
 
     <img
     src={require('./images/cluster-console-createuser.gif').default}
@@ -125,7 +114,7 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 2. In RisingWave Cloud, go to [**Clusters**](https://risingwave.cloud/clusters/).
     
-3. Click **Connect locally** of your cluster.
+3. Click **Connect** of your cluster.
     
     <img
     src={require('./images/cluster-local-connect-1.png').default}
@@ -134,7 +123,7 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
     
 4. Create a new database user.
     
-    > You must connect and log in to the cluster as a database user. Since this is a new cluster, you need to create a user in it.
+    > You must connect and log in to the cluster as a database user. Since this is a new cluster, you need to create a user in it first.
 
     <img
     src={require('./images/cluster-local-createuser.gif').default}
@@ -186,19 +175,9 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 ## Explore RisingWave with examples
 
-You can kickstart your journey with RisingWave Database by exploring the following resources.
+You can kickstart your journey with RisingWave Database by exploring the sample queries in the [**Query**](https://risingwave.cloud/console/) console.
 
-### RisingWave SQL 101
-
-A beginner's guide to data processing with RisingWave Database. Discover the most typical and distinctive SQL features of RisingWave on one page. No previous experience with PostgreSQL is required.
-
-<defaultButton text="RisingWave SQL 101 ↗" url="https://www.risingwave.dev/docs/current/risingwave-sql-101/"/>
-
----
-
-### Sample queries in console
-
-You can easily access the demos provided in [**Console**](https://risingwave.cloud/console/). These demos cover the most common steps in using RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
+These demos cover the most common steps in using RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
 
 <img
 src={require('./images/console-samplequeries.gif').default}
@@ -214,7 +193,7 @@ alt="Running a sample query using the console"
 
 ## Ingest, process, and deliver data
 
-Congrats, you are now ready to unleash the full potential of RisingWave on your own. Read [Develop with RisingWave Cloud](develop-overview.md) to start.
+Congrats, you are now ready to unleash the full potential of RisingWave on your own. Read [Develop with RisingWave Cloud](develop-overview.md) to start your journey.
 
 <card
 title="Develop with RisingWave Cloud"

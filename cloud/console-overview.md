@@ -1,20 +1,18 @@
 ---
 id: console-overview
-title: Console
-description: The console is the most intuitive and easy way to connect to and interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
+title: Query console
+description: The query console is the most intuitive and easy way to connect to and interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
 slug: /console-overview
 ---
 
-The console is the most intuitive and easy way to interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
-
-<defaultButton text="Go to Console" url="https://risingwave.cloud/console/" block/>
-
-<br/>
+The query console is the most intuitive and easy way to interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
 
 <img
 src={require('./images/console.png').default}
 alt="Console"
 />
+
+<defaultButton text="Go to query console" url="https://risingwave.cloud/console/" block/>
 
 ## Sections
 
@@ -23,20 +21,18 @@ Click on a section below to see the details.
 <img
 src={require('./images/console-sections.png').default}
 alt="Console sections"
-width="600px"
 usemap="#image-map"
 />
 
 <map name="image-map">
-    <area href="#schemas" coords="2,2,150,565" shape="rect" />
-    <area href="#query-editor" coords="154,2,597,303" shape="rect" />
-    <area href="#query-results--visualization" coords="154,305,597,480" shape="rect" />
-    <area href="#query-log" coords="154,485,597,564" shape="rect" />
+    <area href="#schema" coords="2,2,179,573" shape="rect" />
+    <area href="#query-editor" coords="183,2,710,360" shape="rect" />
+    <area href="#query-results" coords="183,364,710,573" shape="rect" />
 </map>
 
-### Schemas
+### Schema
 
-The Schemas section displays all the tables, sources, and materialized views currently available in the cluster.
+The schema section displays all the tables, sources, materialized views, and sinks defined in the cluster.
 
 To check their columns, click on each item, or click **Expand all** to see all.
 
@@ -84,7 +80,7 @@ alt="Switch clusters or users"
 width="800px"
 />
 
-### Query results & visualization
+### Query results
 
 Here you can view the results of your last query.
 
@@ -118,7 +114,9 @@ width="300px"
 
 Click <img src={require('./images/icon-console-queryresults-download.png').default} width="40px"/> to download a CSV copy of the results.
 
-### Query log
+#### Query log
+
+Selete the **Log** tab to check the query log.
 
 The query log tracks and records all queries executed during the current session, providing information such as the execution time, network time, and error messages. The log can help monitor activity, troubleshoot issues, and optimize queries.
 

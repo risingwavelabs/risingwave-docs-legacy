@@ -5,23 +5,23 @@ description: Connect to a cluster and interact with RisingWave Database using th
 slug: /connect-to-a-cluster
 ---
 
-After [getting a cluster up and running](cluster-manage-clusters.md#create-a-cluster), you need to connect to it so that you can [interact with RisingWave Database](develop-overview.md#process-data-with-risingwave).
+After [getting a cluster up and running](cluster-manage-clusters.md#create-a-cluster), you need to connect to it so that you can interact with RisingWave Database.
 
 You can choose from the following two ways to connect to your cluster.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs>
+<Tabs queryString="method">
 
-<TabItem value="console" label="Console">
+<TabItem value="console" label="Query console">
 
-The console is the most intuitive and easy way to connect to and interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
+The query console is the most intuitive and easy way to connect to and interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
 
 #### To connect via the console:
 
  
-1. Go to [**Console**](https://risingwave.cloud/console/).  
+1. Go to [**Query**](https://risingwave.cloud/console/).  
 
 2. Select the cluster you want to connect to and then select an existing database user or create a new one.
     
@@ -43,7 +43,7 @@ The console is the most intuitive and easy way to connect to and interact with R
     />
 
 :::tip
-For detailed instructions on using the console, see [Console](console-overview.md).
+For detailed instructions on using the console, see [Query console](console-overview.md).
 :::
     
 </TabItem>
@@ -60,7 +60,7 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 2. In RisingWave Cloud, go to [**Clusters**](https://risingwave.cloud/clusters/).
     
-3. Click **Connect locally** of the cluster you want to connect.
+3. Click **Connect** of the cluster you want to connect.
     
     <img
     src={require('./images/cluster-local-connect-2.png').default}

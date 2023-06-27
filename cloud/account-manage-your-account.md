@@ -81,7 +81,7 @@ To switch to another RisingWave Cloud account:
 1. Sign out of the current account.
     
     <img
-    src={require('./images/signout.gif').default}
+    src={require('./images/signout.png').default}
     alt="Sign out"
     width="600px"
     />
