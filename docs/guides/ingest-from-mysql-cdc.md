@@ -17,14 +17,17 @@ The supported MySQL versions are 5.7 and 8.0.x.
 
 You can ingest CDC data from MySQL in two ways:
 
-- Using the direct MySQL CDC connector
+- Using the built-in MySQL CDC connector
 
-  This connector is included in RisingWave. With this connector, RisingWave can connect to MySQL directly to obtain data from the binlog without starting additional services.
+  With this connector, RisingWave can connect to MySQL directly to obtain data from the binlog without starting additional services.
+
+  :::caution Beta feature
+  The built-in MySQL CDC connector in RisingWave is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
+  :::
 
 - Using a CDC tool and a message broker
 
   You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/create-source/create-source-cdc.md) topic.
-
 
 ## Set up MySQL
 
@@ -56,7 +59,7 @@ GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *
 
 ```sql
 FLUSH PRIVILEGES;
-``` 
+```
 
 ### Enable the binlog
 
@@ -146,14 +149,13 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
 
 The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
 
-The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose). 
+The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose).
 
 If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
 
 ## Create a table using the native CDC connector in RisingWave
 
 To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
-
 
 ### Syntax
 
@@ -167,7 +169,6 @@ WITH (
    <field>=<value>, ...
 );
 ```
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -259,13 +260,11 @@ export const svg = rr.Diagram(
 
 <drawer SVG={svg} />
 
-
-
 Note that a primary key is required.
 
 ### WITH parameters
 
-All the fields listed below are required. 
+All the fields listed below are required.
 
 |Field|Notes|
 |---|---|

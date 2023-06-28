@@ -8,6 +8,10 @@ description: Define your own functions with the help of the RisingWave UDF API f
 You can define your own functions (including table functions) and call these functions in RisingWave. With the user-defined function (UDF), you can tailor RisingWave to your needs and take advantage of the power and flexibility of Python to perform complex and customized data processing and analysis tasks.
 Currently, RisingWave supports UDFs implemented as external functions in Python.
 
+:::caution Beta feature
+User-defined functions (UDF) is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
+:::
+
 This article provides a step-by-step guide for installing the RisingWave UDF API, defining functions in a Python file, starting the UDF server, and declaring and using UDFs in RisingWave.
 
 ## Prerequisites
@@ -16,7 +20,6 @@ This article provides a step-by-step guide for installing the RisingWave UDF API
 
 - Ensure that you have [started and connected to RisingWave](get-started.md#run-risingwave).
 
-
 ## 1. Install the RisingWave UDF API for Python
 
 Run the following command to download and install the RisingWave UDF API package and its dependencies.
@@ -24,12 +27,11 @@ Run the following command to download and install the RisingWave UDF API package
 ```shell
 pip install risingwave
 ```
+
 <details>
 <summary>Cannot run this command?</summary>
 If "command not found: pip" is returned, <a href="https://packaging.python.org/en/latest/tutorials/installing-packages/#ensure-you-can-run-pip-from-the-command-line">check if pip is available</a> in your environment and <a href="https://packaging.python.org/en/latest/tutorials/installing-packages/#ensure-pip-setuptools-and-wheel-are-up-to-date">ensure it is up to date</a>.
 </details>
-
-
 
 ## 2. Define your functions in a Python file
 
@@ -110,6 +112,7 @@ if __name__ == '__main__':
     server.add_function(series)
     server.serve()
 ```
+
 <details>
 <summary>See code explanation</summary>
 
@@ -137,7 +140,6 @@ New sample functions are frequently added to `udf.py`, such as JSONB functions. 
 
 Some of the sample functions are still being tested and may not be fully functional or optimized.
 :::
-
 
 ## 3. Start the UDF server
 
@@ -216,8 +218,6 @@ CREATE FUNCTION function_name ( argument_type [, ...] )
 </TabItem>
 
 </Tabs>
-
-
 
 | Parameter or clause | Description |
 | --- | --- |

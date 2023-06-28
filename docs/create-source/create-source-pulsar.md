@@ -4,10 +4,11 @@ title: Ingest data from Pulsar
 description: Connect RisingWave to a Pulsar broker.
 slug: /create-source-pulsar
 ---
+You can ingest data from Pulsar into RisingWave by using the Pulsar source connector in RisingWave.
 
-
-Use the SQL statement below to connect RisingWave to a Pulsar broker.
-
+:::caution Beta feature
+The Pulsar source connector in RisingWave is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
+:::
 
 When creating a source, you can choose to persist the data from the source in RisingWave by using `CREATE TABLE` instead of `CREATE SOURCE` and specifying the connection settings and data format.
 
@@ -24,9 +25,6 @@ ROW FORMAT data_format
 [ MESSAGE 'message' ]
 [ ROW SCHEMA LOCATION 'location' ];
 ```
-
-
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -86,14 +84,10 @@ export const svg = rr.Diagram(
     )
 );
 
-
 <drawer SVG={svg} />
 
-
-
-
-
 **schema_definition**:
+
 ```sql
 (
    column_name data_type [ PRIMARY KEY ], ...
@@ -111,15 +105,14 @@ For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SO
 
 RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
 
-For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
+For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
 
 :::
 
-
 |Field|Notes|
 |---|---|
-|topic	|Required. Address of the Pulsar topic. One source can only correspond to one topic.|
-|service.url| Required. Address of the Pulsar service.	|
+|topic |Required. Address of the Pulsar topic. One source can only correspond to one topic.|
+|service.url| Required. Address of the Pulsar service. |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis.| Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
 |auth.token | Optional. A token for auth. If both `auth.token` and `oauth` are set, only `oauth` authorization is effective.|
@@ -134,6 +127,7 @@ For materialized sources with primary key constraints, if a new data record with
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 
 ## Example
+
 Here is an example of connecting RisingWave to a Pulsar broker to read data from individual topics.
 
 import Tabs from '@theme/Tabs';
@@ -159,6 +153,7 @@ WITH (
 ROW FORMAT AVRO
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
 ```
+
 </TabItem>
 <TabItem value="json" label="JSON" default>
 
@@ -181,6 +176,7 @@ WITH (
 )
 ROW FORMAT JSON;
 ```
+
 </TabItem>
 <TabItem value="pb" label="Protobuf" default>
 
@@ -204,5 +200,6 @@ WITH (
 ROW FORMAT PROTOBUF MESSAGE 'FooMessage'
 ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
 ```
+
 </TabItem>
 </Tabs>
