@@ -110,7 +110,7 @@ const config = {
       zoom: {
         selector: ".markdown img",
         background: {
-          light: "#212530",
+          light: "#ffffff",
           dark: "#0a1721",
         },
         config: {
