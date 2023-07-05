@@ -4,7 +4,7 @@ slug: /rw_catalog
 title: RisingWave catalogs
 ---
 
-RisingWave catalogs are tables that store the matadata of system schemas, such as information about the progress of a DDL command or about the snapshots of the RisingWave Meta service.
+RisingwWave catalogs contain system tables and views that provide metadata about different relations in the system, as well as information about the cluster jobs and their status. The metadata includes details about each database, schema, and relation in the system, such as materialized views, tables, sources, sinks, indexes, and views. The status information includes the progress of DDL commands, system snapshots, and more.
 
 ## How to display RisingWave catalogs
 
