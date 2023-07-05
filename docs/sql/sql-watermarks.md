@@ -54,3 +54,28 @@ CREATE SOURCE s1 (
     scan.startup.mode = 'earliest'
 ) ROW FORMAT JSON;
 ```
+
+### Watermark generation example
+
+Let us go over an example on how watermarks are generated and utilized during window computations. Say the following events and their corresponding event-time timestamps arrive.
+
+|Event|Timestamp|
+|-----|---------|
+|Event F| 11:59:30 AM |
+|Event G| 12:00:00 PM |
+|Event H| 12:00:10 PM |
+|Event I| 11:59:50 PM |
+
+Consider a scenario where the watermark is set as the maximum event time observed so far minus 10 seconds. So the following watermarks will be generated.
+
+|Event|Timestamp|Watermark|
+|-----|---------|---------|
+|Event F| 11:59:30 AM | 11:59:20 AM |
+|Event G| 12:00:00 PM | 11:59:50 AM |
+|Event H| 12:00:11 PM | 12:00:01 PM |
+|Event I| 11:59:50 PM | 12:00:01 PM |
+
+Now let us assume there is a window counting events for the hour ending at 12 PM. Therefore, the window will wait until there is a watermark with a timestamp of at least 12:00:00 PM before producing results. As a result, Events F and G are considered on-time and will be included in the calculation. Events H and I will not be included in the calculation for the window ending at 12 PM, with Event I being considered late since its event time timestamp is earlier than the current watermark timestamp. 
+
+
+
