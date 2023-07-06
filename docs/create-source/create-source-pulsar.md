@@ -126,6 +126,22 @@ For materialized sources with primary key constraints, if a new data record with
 |*message* |Message name of the main Message in schema definition. Required when *data_format* is `PROTOBUF`.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 
+## Read schemas from locations
+
+RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format for Pulsar data in Avro or Protobuf format.
+
+For Protobuf, if a schema location is specified, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
+
+```shell
+protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.proto
+```
+
+To specify a schema location, add this clause to a `CREATE SOURCE` statement.
+
+```SQL
+ROW SCHEMA LOCATION 'location'
+```
+
 ## Example
 
 Here is an example of connecting RisingWave to a Pulsar broker to read data from individual topics.
