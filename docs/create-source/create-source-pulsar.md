@@ -138,7 +138,7 @@ protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.
 
 To specify a schema location, add this clause to a `CREATE SOURCE` statement.
 
-```SQL
+```sql
 ROW SCHEMA LOCATION 'location'
 ```
 
