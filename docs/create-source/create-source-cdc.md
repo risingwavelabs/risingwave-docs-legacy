@@ -46,11 +46,12 @@ CREATE TABLE [ IF NOT EXISTS ] source_name (
    column_name data_type [ PRIMARY KEY ], ...
    PRIMARY KEY ( column_name, ... )
 ) 
+FORMAT { DEBEZIUM | DEBEZIUM_MONGO |MAXWELL | CANAL | PLAIN }
+ENCODE { JSON | AVRO | PROTOBUF | CSV } ( encode properties ... )
 WITH (
    connector='connector',
    connector_parameter='value', ...
-) 
-ROW FORMAT { DEBEZIUM_JSON | DEBEZIUM_MONGO_JSON | MAXWELL | CANAL_JSON  | DEBEZIUM_AVRO };
+) ;
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -73,6 +74,21 @@ export const svg = rr.Diagram(
                 ','
             ),
             rr.Terminal(')'),
+        ),
+        rr.Sequence(
+            rr.Terminal('FORMAT'),
+            rr.NonTerminal('format', 'skip')
+        ),
+        rr.Sequence(
+            rr.Terminal('ENCODE'),
+            rr.NonTerminal('encode', 'skip'),
+            rr.Optional(
+                rr.Sequence(
+                rr.Terminal('('),
+                rr.NonTerminal('encode_parameter', 'skip'),
+                rr.Terminal(')'),
+                ),
+            ),
         ),
         rr.Sequence(
             rr.Terminal('WITH'),
@@ -99,16 +115,7 @@ export const svg = rr.Diagram(
                 ),
             ),
         ),
-            rr.Sequence(
-                rr.Terminal('ROW FORMAT'),
-                rr.Choice(1,
-                    rr.Terminal('DEBEZIUM_JSON'),
-                    rr.Terminal('MAXWELL'),
-                    rr.Terminal('CANAL_JSON'),
-                    rr.Terminal('DEBEZIUM_AVRO'),
-                ),
-                rr.Terminal(';'),
-            ),
+        rr.Terminal(';')
     )
 );
 
@@ -142,13 +149,14 @@ CREATE TABLE [IF NOT EXISTS] source_name (
    column2 integer,
    PRIMARY KEY (column1)
 ) 
+FORMAT DEBEZIUM
+ENCODE JSON
 WITH (
    connector='kafka',
    topic='user_test_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='earliest'
-) 
-ROW FORMAT DEBEZIUM_JSON;
+);
 ```
 
 </TabItem>
@@ -160,13 +168,14 @@ For more details on this row format, see [Debezium Mongo JSON](../sql/commands/s
 CREATE TABLE [IF NOT EXISTS] source_name (
    _id BIGINT PRIMARY KEY
    payload jsonb
-) 
+)
+FORMAT DEBEZIUM_MONGO
+ENCODE JSON
 WITH (
    connector='kafka',
    topic='debezium_mongo_json_customers',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-) 
-ROW FORMAT DEBEZIUM_MONGO_JSON;
+);
 ```
 
 </TabItem>
@@ -176,13 +185,16 @@ ROW FORMAT DEBEZIUM_MONGO_JSON;
 CREATE TABLE orders (
     order_id INT PRIMARY KEY
 )
+FORMAT DEBEZIUM
+ENCODE AVRO (
+    confluent_schema_registry = 'http://localhost:8081'
+)
 WITH (
     connector = 'kafka',
     topic = 'mysql.mydb.orders',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
-) 
-ROW FORMAT DEBEZIUM_AVRO ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://message_queue:8081';
+);
 ```
 
 Although the `CREATE TABLE` command only specifies one column, the other columns in the upstream MySQL table will still be derived and included.
@@ -199,7 +211,9 @@ CREATE TABLE source_name (
    column1 varchar,
    column2 integer,
    PRIMARY KEY (column1)
-) 
+)
+FORMAT DEBEZIUM
+ENCODE JSON
 WITH (
    connector='pulsar',
    topic='demo_topic',
@@ -207,8 +221,7 @@ WITH (
    admin.url='http://localhost:8080',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
-) 
-ROW FORMAT DEBEZIUM_JSON;
+);
 ```
 
 ### Kinesis
@@ -221,6 +234,8 @@ CREATE TABLE source_name (
     column2 integer,
     PRIMARY KEY (column1)
 ) 
+FORMAT DEBEZIUM
+ENCODE JSON
 WITH (
     connector='kinesis',
     stream='kafka',
@@ -229,6 +244,5 @@ WITH (
     aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
     aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
     aws.credentials.role.external_id='demo_external_id'
-)
-ROW FORMAT DEBEZIUM_JSON;
+);
 ```

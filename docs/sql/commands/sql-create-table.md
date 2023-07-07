@@ -19,13 +19,15 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
     ...
     [ PRIMARY KEY (col_name, ... ) ]
 )
+FORMAT data_format
+ENCODE data_encode  [ (
+   message='message',
+   row_schema_location='location', ...
+) ]
 [ WITH (
    connector='connector_name',
    connector_parameter='value', ...
-)
-ROW FORMAT data_format 
-[MESSAGE 'message']
-[ROW SCHEMA LOCATION 'location'] ];
+);
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -52,6 +54,24 @@ export const svg = rr.Diagram(
         ),
         rr.Sequence(
             rr.Terminal(')'),
+        rr.Optional(
+            rr.Stack(
+                rr.Sequence(
+                    rr.Terminal('FORMAT'),
+                    rr.NonTerminal('data_format', 'skip')
+            ),
+            rr.Sequence(
+                rr.Terminal('ENCODE'),
+                rr.NonTerminal('encode', 'skip'),
+                rr.Optional(
+                    rr.Sequence(
+                    rr.Terminal('('),
+                    rr.NonTerminal('encode_parameter', 'skip'),
+                    rr.Terminal(')'),
+                    ),
+                ),
+            ),
+        ),
         rr.Optional(
             rr.Stack(
                 rr.Sequence(
@@ -91,25 +111,7 @@ export const svgTwo = rr.Diagram(
                     rr.Terminal(')'),
                 ),
             ),
-        ),
-        rr.Stack(
-            rr.Sequence(
-                rr.Terminal('ROW FORMAT'),
-                rr.NonTerminal('data_format', 'skip'),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('MESSAGE'),
-                    rr.NonTerminal('message', 'skip'),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('ROW SCHEMA LOCATION'),
-                    rr.NonTerminal('location', 'skip'),
-                ),
-            )
-        ),
+        )
     )
 );
 
@@ -176,5 +178,5 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000',
 )
-ROW FORMAT JSON;
+FORMAT PLAIN ENCODE JSON;
 ```

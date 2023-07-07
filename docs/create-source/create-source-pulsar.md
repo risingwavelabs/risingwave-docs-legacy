@@ -17,13 +17,14 @@ When creating a source, you can choose to persist the data from the source in Ri
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
 [ schema_definition ]
+FORMAT data_format ENCODE data_encode (
+   message = 'message',
+   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+)
 WITH (
    connector='pulsar',
    connector_parameter='value', ...
-)
-ROW FORMAT data_format 
-[ MESSAGE 'message' ]
-[ ROW SCHEMA LOCATION 'location' ];
+);
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -39,6 +40,21 @@ export const svg = rr.Diagram(
             rr.NonTerminal('source_name', 'wrap')
         ),
         rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
+        rr.Sequence(
+            rr.Terminal('FORMAT'),
+            rr.NonTerminal('format', 'skip')
+        ),
+        rr.Sequence(
+            rr.Terminal('ENCODE'),
+            rr.NonTerminal('encode', 'skip'),
+            rr.Optional(
+                rr.Sequence(
+                rr.Terminal('('),
+                rr.NonTerminal('encode_parameter', 'skip'),
+                rr.Terminal(')'),
+                ),
+            ),
+        ),
         rr.Sequence(
             rr.Terminal('WITH'),
             rr.Terminal('('),
@@ -63,22 +79,6 @@ export const svg = rr.Diagram(
             ),
         ),
         rr.Stack(
-            rr.Sequence(
-                rr.Terminal('ROW FORMAT'),
-                rr.NonTerminal('data_format', 'skip'),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('MESSAGE'),
-                    rr.NonTerminal('message', 'skip'),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('ROW SCHEMA LOCATION'),
-                    rr.NonTerminal('location', 'skip'),
-                ),
-            ),
             rr.Terminal(';'),
         ),
     )
@@ -97,8 +97,7 @@ export const svg = rr.Diagram(
 
 :::info
 
-For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` or `CREATE TABLE` statement. The schema should be provided in a Web location in the `ROW SCHEMA LOCATION` section.
-
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` or `CREATE TABLE` statement. The schema should be provided in a Web location in the option `schema_location` in `ENCODE properties` section.
 :::
 
 :::note
@@ -122,7 +121,11 @@ For materialized sources with primary key constraints, if a new data record with
 |oauth.scope | Optional. The scope for OAuth2. |
 |access_key | Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
 |secret_access | Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path. |
-|*data_format*| Supported formats: `JSON`, `AVRO`, `PROTOBUF`, `DEBEZIUM_JSON`, `MAXWELL`, `CANAL_JSON`.|
+
+|Field|Notes|
+|---|---|
+|*data_format*| Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`.|
+|*data_encode*| Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
 |*message* |Message name of the main Message in schema definition. Required when *data_format* is `PROTOBUF`.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 
@@ -138,6 +141,11 @@ import TabItem from '@theme/TabItem';
 
 ```sql
 CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc 
+FORMAT PLAIN
+ENCODE AVRO (
+   message = 'message',
+   schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc'
+)
 WITH (
    connector='pulsar',
    topic='demo_topic',
@@ -149,9 +157,7 @@ WITH (
    secret_access='secret_access',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
-)
-ROW FORMAT AVRO
-ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc';
+);
 ```
 
 </TabItem>
@@ -162,6 +168,8 @@ CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
    column1 string,
    column2 integer,
 )
+FORMAT PLAIN
+ENCODE JSON
 WITH (
    connector='pulsar',
    topic='demo_topic',
@@ -173,8 +181,7 @@ WITH (
    secret_access='secret_access',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
-)
-ROW FORMAT JSON;
+);
 ```
 
 </TabItem>
@@ -185,6 +192,11 @@ CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
    column1 string,
    column2 integer,
 )
+FORMAT PLAIN
+ENCODE PROTOBUF (
+   message = 'FooMessage',
+   schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
+)
 WITH (
    connector='pulsar',
    topic='demo_topic',
@@ -196,9 +208,7 @@ WITH (
    secret_access='secret_access',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
-)
-ROW FORMAT PROTOBUF MESSAGE 'FooMessage'
-ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto';
+);
 ```
 
 </TabItem>
