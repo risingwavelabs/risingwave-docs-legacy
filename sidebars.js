@@ -272,6 +272,11 @@ const sidebars = {
             },
             {
               type: 'doc',
+              label: 'AWS Kinesis',
+              id: 'guides/sink-to-aws-kinesis'
+            },
+            {
+              type: 'doc',
               label: 'TiDB',
               id: 'guides/sink-to-tidb'
             },
