@@ -92,8 +92,7 @@ WITH (
  topic='test',
  properties.bootstrap.server='localhost:9092',
  scan.startup.mode='earliest'
- )
-ROW FORMAT JSON;
+ ) FORMAT PLAIN ENCODE JSON;
 ```
 
 Note that after the source is created, data is not automatically ingested into RisingWave. You need to create a materialized view to start the data movement.

@@ -82,13 +82,11 @@ rr.Stack(
 
 ```sql
 CREATE TABLE source_name ( column_name data_type, ... ) 
-FORMAT PLAIN
-ENCODE JSON
 WITH (
    connector = ' datagen ',
    fields.column_name.column_parameter = ' value ', ...  -- Configure the generator for each column. See detailed information below.
    datagen.rows.per.second = ' rows_integer '  -- Specify how many rows of records to generate every second. For example, '20'.
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 </TabItem>
@@ -181,8 +179,6 @@ The following statement creates a load generator source which contains one colum
 
 ```sql
 CREATE TABLE s1 (v1 struct<v2 int, v3 double>)
-FORMAT PLAIN
-ENCODE JSON
 WITH (
      connector = 'datagen',
      fields.v1.v2.kind = 'sequence',
@@ -190,7 +186,7 @@ WITH (
      fields.v1.v3.kind = 'sequence',
      fields.v1.v3.start = '1.5',
      datagen.rows.per.second = '5'
- );
+ ) FORMAT PLAIN ENCODE JSON;
 ```
 
 :::info
@@ -209,8 +205,6 @@ The following statement creates a load generator source which contains one colum
 
 ```sql
 CREATE TABLE s1 (c1 varchar [])
-FORMAT PLAIN
-ENCODE JSON
 WITH (
      connector = 'datagen',
      fields.c1.length = '3',
@@ -218,7 +212,7 @@ WITH (
      fields.c1._.length = '1',
      fields.c1._.seed = '3',
      datagen.rows.per.second = '10'
- );
+ ) FORMAT PLAIN ENCODE JSON;
 ```
 
 :::info
@@ -230,8 +224,6 @@ If you want to generate an array of struct, your statement should look like the 
 
 ```sql
 CREATE TABLE s1 (v1 struct<v2 int> []) 
-FORMAT PLAIN
-ENCODE JSON
 WITH (
     connector = 'datagen',
     fields.v1.length = '2',
@@ -240,7 +232,7 @@ WITH (
     fields.v1._.v2.max = '2',
     fields.v1._.v2.seed = '1',
     datagen.rows.per.second = '10'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 </TabItem>
@@ -261,8 +253,6 @@ The following statement creates a source `s1` with four columns:
 
 ```sql
 CREATE TABLE s1 (i1 int [], v1 struct<v2 int, v3 double>, t1 timestamp, c1 varchar) 
-FORMAT PLAIN
-ENCODE JSON
 WITH (
      connector = 'datagen',
   
@@ -289,7 +279,7 @@ WITH (
      fields.c1.seed = '3',
   
      datagen.rows.per.second = '10'
- );
+ ) FORMAT PLAIN ENCODE JSON;
 ```
 
 Let's query `s1` after a few seconds.

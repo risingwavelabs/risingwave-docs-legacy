@@ -33,7 +33,7 @@ First, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repo
 git clone https://github.com/risingwavelabs/risingwave.git
 ```
 
-Now navigate to the `integration_tests/cdn-metrics` directory and start the demo cluster from the docker compose file. 
+Now navigate to the `integration_tests/cdn-metrics` directory and start the demo cluster from the docker compose file.
 
 ```shell
 cd risingwave/integration_tests/cdn-metrics
@@ -65,7 +65,7 @@ CREATE SOURCE nics_metrics (
     topic = 'nics_metrics',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
-) ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 ```sql
@@ -79,7 +79,7 @@ CREATE SOURCE tcp_metrics (
     topic = 'tcp_metrics',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
-) ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 ## Step 3: Define materialized views and query the results
@@ -182,7 +182,7 @@ WHERE
     AND metric_value > 0.15;
 ```
 
-The second materialized view queries slow round trip times. 
+The second materialized view queries slow round trip times.
 
 ```sql
 CREATE MATERIALIZED VIEW srtt_incidents AS
@@ -197,7 +197,7 @@ WHERE
     AND metric_value > 500.0;
 ```
 
-The last materialized view queries download incidents. 
+The last materialized view queries download incidents.
 
 ```sql
 CREATE MATERIALIZED VIEW download_incidents AS

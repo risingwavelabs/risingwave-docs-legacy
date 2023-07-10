@@ -122,7 +122,7 @@ For more information, see [Sign-in credentials authentication with AWS Secrets M
     ssh -i “xxx.pem" ubuntu@ec2-xx-xxx-xxx-xxx.compute-1.amazonaws.com
     ```
 
-To find your specific command values: 
+To find your specific command values:
 
 1. Access the [EC2 console](https://console.aws.amazon.com/ec2/) and select the instance you created.
 
@@ -250,7 +250,7 @@ WITH (
   properties.security.protocol = 'sasl_ssl', 
   properties.sasl.username = '<your-username>', 
   properties.sasl.password = ‘<your-password>’'
-) row format json;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 Then, you can count the records for accuracy.

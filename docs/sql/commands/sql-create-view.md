@@ -72,7 +72,7 @@ WITH (
      fields.c1.length = '16',
      fields.c1.seed = '3',
      datagen.rows.per.second = '10'
- ) ROW FORMAT JSON;
+ ) FORMAT PLAIN ENCODE JSON;
 
 -- Create views based on the table, source, and existing views.
 

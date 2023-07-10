@@ -54,7 +54,7 @@ WITH (
     fields.duration.end = '30',
     datagen.rows.per.second='15',
     datagen.split.num = '1'
-) ROW FORMAT JSON""") # Execute the query.
+) FORMAT PLAIN ENCODE JSON""") # Execute the query.
 
 conn.close() # Close the connection.
 ```

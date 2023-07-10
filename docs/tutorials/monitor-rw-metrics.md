@@ -28,7 +28,7 @@ First, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repo
 git clone https://github.com/risingwavelabs/risingwave.git
 ```
 
-Now navigate to the `integration_tests/prometheus` directory and start the demo cluster from the docker compose file. 
+Now navigate to the `integration_tests/prometheus` directory and start the demo cluster from the docker compose file.
 
 ```shell
 cd risingwave/integration_tests/prometheus
@@ -79,7 +79,7 @@ CREATE SOURCE prometheus (
     topic = 'prometheus',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
-) ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 We have connected RisingWave to the streams, but RisingWave has not started to consume data yet. For data to be processed, we need to define materialized views. After a materialized view is created, RisingWave will begin to consume data from the specified offset.
@@ -127,12 +127,12 @@ SELECT * FROM metric_avg_30s LIMIT 5;
 
 Trying to track how a specific metric changes over time without a dashboard is difficult so we will use Grafana to visualize the metrics to make this easier.
 
-Grafana is packaged in the demo cluster and running. To visit Grafana, enter `127.0.0.1:3001` in your web browser. Since RisingWave is Postgres-compatible, RisingWave directly connects to Grafana with the built-in [Postgres connector](https://grafana.com/docs/grafana/latest/datasources/postgres/). 
+Grafana is packaged in the demo cluster and running. To visit Grafana, enter `127.0.0.1:3001` in your web browser. Since RisingWave is Postgres-compatible, RisingWave directly connects to Grafana with the built-in [Postgres connector](https://grafana.com/docs/grafana/latest/datasources/postgres/).
 
 To add RisingWave as a Postgres data source:
 
-1. Go to **Configuration > Data Sources**. 
-2. Click **Add data source** and select PostgreSQL. 
+1. Go to **Configuration > Data Sources**.
+2. Click **Add data source** and select PostgreSQL.
 3. Specify the database connection parameters.
 4. Click **Save & test**.
 
@@ -154,8 +154,8 @@ Finally, we can visualize the metrics the materialized view tracks by creating a
 
 To create a panel:
 
-1. In Grafana, go to **Dashboards > New dashboard**. 
-2. Click on **Add a new panel**. 
+1. In Grafana, go to **Dashboards > New dashboard**.
+2. Click on **Add a new panel**.
 3. Specify the time range, data source, and query to visualize RisingWave metrics.
 
 <img

@@ -33,7 +33,7 @@ RisingWave accepts these data formats:
 
 - The TiCDC dialect of Canal JSON (for TiDB only)
 
-    For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`ROW FORMAT CANAL_JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. You might need to define the topic name in a TiCDC configuration file. Note that only new changes will be captured from TiDB. Data that already exists within the target table will not be captured by TiCDC. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc). 
+    For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`ROW FORMAT CANAL_JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. You might need to define the topic name in a TiCDC configuration file. Note that only new changes will be captured from TiDB. Data that already exists within the target table will not be captured by TiCDC. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc).
 
 - Canal JSON (for MySQL only)
 
@@ -46,12 +46,12 @@ CREATE TABLE [ IF NOT EXISTS ] source_name (
    column_name data_type [ PRIMARY KEY ], ...
    PRIMARY KEY ( column_name, ... )
 ) 
-FORMAT { DEBEZIUM | DEBEZIUM_MONGO |MAXWELL | CANAL | PLAIN }
-ENCODE { JSON | AVRO | PROTOBUF | CSV } ( encode properties ... )
 WITH (
    connector='connector',
    connector_parameter='value', ...
-) ;
+) 
+FORMAT { DEBEZIUM | DEBEZIUM_MONGO |MAXWELL | CANAL | PLAIN }
+ENCODE { JSON | AVRO | PROTOBUF | CSV } [( encode properties ... )];
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -149,14 +149,12 @@ CREATE TABLE [IF NOT EXISTS] source_name (
    column2 integer,
    PRIMARY KEY (column1)
 ) 
-FORMAT DEBEZIUM
-ENCODE JSON
 WITH (
    connector='kafka',
    topic='user_test_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='earliest'
-);
+) FORMAT DEBEZIUM ENCODE JSON;
 ```
 
 </TabItem>
@@ -169,13 +167,11 @@ CREATE TABLE [IF NOT EXISTS] source_name (
    _id BIGINT PRIMARY KEY
    payload jsonb
 )
-FORMAT DEBEZIUM_MONGO
-ENCODE JSON
 WITH (
    connector='kafka',
    topic='debezium_mongo_json_customers',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-);
+) FORMAT DEBEZIUM_MONGO ENCODE JSON;
 ```
 
 </TabItem>
@@ -185,15 +181,14 @@ WITH (
 CREATE TABLE orders (
     order_id INT PRIMARY KEY
 )
-FORMAT DEBEZIUM
-ENCODE AVRO (
-    confluent_schema_registry = 'http://localhost:8081'
-)
 WITH (
     connector = 'kafka',
     topic = 'mysql.mydb.orders',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
+) 
+FORMAT DEBEZIUM ENCODE AVRO (
+    confluent_schema_registry = 'http://localhost:8081'
 );
 ```
 
@@ -212,8 +207,6 @@ CREATE TABLE source_name (
    column2 integer,
    PRIMARY KEY (column1)
 )
-FORMAT DEBEZIUM
-ENCODE JSON
 WITH (
    connector='pulsar',
    topic='demo_topic',
@@ -221,7 +214,7 @@ WITH (
    admin.url='http://localhost:8080',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
-);
+)FORMAT DEBEZIUM ENCODE JSON;
 ```
 
 ### Kinesis
@@ -234,8 +227,6 @@ CREATE TABLE source_name (
     column2 integer,
     PRIMARY KEY (column1)
 ) 
-FORMAT DEBEZIUM
-ENCODE JSON
 WITH (
     connector='kinesis',
     stream='kafka',
@@ -244,5 +235,5 @@ WITH (
     aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
     aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
     aws.credentials.role.external_id='demo_external_id'
-);
+) FORMAT DEBEZIUM ENCODE JSON;
 ```

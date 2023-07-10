@@ -35,7 +35,7 @@ First, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repo
 git clone https://github.com/risingwavelabs/risingwave.git
 ```
 
-Now navigate to the `integration_tests/ad-ctr` directory and start the demo cluster from the docker compose file. 
+Now navigate to the `integration_tests/ad-ctr` directory and start the demo cluster from the docker compose file.
 
 ```shell
 cd risingwave/integration_tests/ad-ctr
@@ -88,7 +88,7 @@ CREATE SOURCE ad_impression (
     topic = 'ad_impression',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
-) ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 ```sql
@@ -100,7 +100,7 @@ CREATE SOURCE ad_click (
     topic = 'ad_click',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
-) ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 :::tip

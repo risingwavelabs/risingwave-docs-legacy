@@ -27,7 +27,7 @@ First, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repo
 git clone https://github.com/risingwavelabs/risingwave.git
 ```
 
-Now navigate to the `integration_tests/twitter` directory and start the demo cluster from the docker compose file. 
+Now navigate to the `integration_tests/twitter` directory and start the demo cluster from the docker compose file.
 
 ```shell
 cd risingwave/integration_tests/twitter
@@ -46,7 +46,7 @@ psql -h localhost -p 4566 -d dev -U root
 
 This tutorial will use RisingWave to consume data streams and perform data analysis. Tweets will be used as sample data so we can query the most popular hashtags on a given day to keep track of trending topics.
 
-Below are the schemas for tweets and Twitter users. In the `tweet` schema, `text` contains the content of a tweet, and `created_at` contains the date and time when a tweet was posted. Hashtags will be extracted from `text`. 
+Below are the schemas for tweets and Twitter users. In the `tweet` schema, `text` contains the content of a tweet, and `created_at` contains the date and time when a tweet was posted. Hashtags will be extracted from `text`.
 
 ```json
 {
@@ -65,7 +65,7 @@ Below are the schemas for tweets and Twitter users. In the `tweet` schema, `text
 }
 ```
 
-Connect to the data stream with the following SQL statement. 
+Connect to the data stream with the following SQL statement.
 
 ```sql
 CREATE SOURCE twitter (
@@ -83,13 +83,13 @@ CREATE SOURCE twitter (
     topic = 'twitter',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
-) ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 Note that the SQL statement uses the STRUCT data type. For details about the STRUCT data type, please see [Data types.](https://www.risingwave.dev/docs/latest/sql-data-types/)
 
 ## Step 3: Define a materialized view and analyze data
-This tutorial will create a materialized view that tracks how often each hashtag is used daily. 
+This tutorial will create a materialized view that tracks how often each hashtag is used daily.
 
 To do so, start by extracting all the hashtags used within a tweet by using the `regexp_matches` function. For instance, if given the following tweet:
 
@@ -132,7 +132,7 @@ GROUP BY
     window_start;
 ```
 
-## Step 4: Query the results 
+## Step 4: Query the results
 
 We can query the ten most often used hashtags.  
 

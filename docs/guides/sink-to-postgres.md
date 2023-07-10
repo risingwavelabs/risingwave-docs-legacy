@@ -91,7 +91,7 @@ To install and start RisingWave locally, see the [Get started](/get-started.md) 
 
 The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
 
-The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose). 
+The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose).
 
 If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
 
@@ -146,7 +146,7 @@ CREATE SOURCE user_behaviors (
     topic = 'user_behaviors',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
-) ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 Next, we will create a materialized view that queries the number of targets for each `target_id`. Note that the materialized view and the target table share the same schema.

@@ -78,7 +78,7 @@ WITH ( connector = 'datagen',
     fields.duration.end = '30',
     datagen.rows.per.second='15',
     datagen.split.num = '1'
-) ROW FORMAT JSON`;
+) FORMAT PLAIN ENCODE JSON`;
 
 const start = async () => {
     const pool = new Pool(credentials);

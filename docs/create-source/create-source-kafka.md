@@ -24,13 +24,13 @@ RisingWave Cloud provides an intuitive guided setup for creating a Kafka source.
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
 [ schema_definition ]
-FORMAT data_format ENCODE data_encode (
-   message = 'message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
-)
 WITH (
    connector='kafka',
    connector_parameter='value', ...
+)
+FORMAT data_format ENCODE data_encode (
+   message = 'message',
+   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
 );
 ```
 
@@ -152,15 +152,14 @@ import TabItem from '@theme/TabItem';
 
 ```sql
 CREATE SOURCE IF NOT EXISTS source_abc 
-FORMAT PLAIN ENCODE AVRO (
-   confluent_schema_registry = 'http://127.0.0.1:8081'
-)
 WITH (
    connector='kafka',
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
+) FORMAT PLAIN ENCODE AVRO (
+   confluent_schema_registry = 'http://127.0.0.1:8081'
 );
 ```
 
@@ -169,13 +168,13 @@ WITH (
 
 ```sql
 CREATE TABLE IF NOT EXISTS source_abc 
-FORMAT UPSERT ENCODE AVRO (
-   confluent_schema_registry = 'http://127.0.0.1:8081'
-)
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
    topic='test_topic'
+)
+FORMAT UPSERT ENCODE AVRO (
+   confluent_schema_registry = 'http://127.0.0.1:8081'
 );
 ```
 
@@ -187,14 +186,13 @@ CREATE SOURCE IF NOT EXISTS source_abc (
    column1 varchar,
    column2 integer,
 )
-FORMAT PLAIN ENCODE JSON
 WITH (
    connector='kafka',
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 </TabItem>
@@ -205,12 +203,11 @@ CREATE TABLE IF NOT EXISTS source_abc (
    column1 varchar,
    column2 integer,
 )
-FORMAT UPSERT ENCODE JSON
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
    topic='t1'
-);
+) FORMAT UPSERT ENCODE JSON;
 ```
 
 </TabItem>
@@ -218,16 +215,15 @@ WITH (
 
 ```sql
 CREATE SOURCE IF NOT EXISTS source_abc 
-FORMAT PLAIN ENCODE PROTOBUF (
-   message = 'main_message',
-   location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
-)
 WITH (
    connector='kafka',
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
+) FORMAT PLAIN ENCODE PROTOBUF (
+   message = 'main_message',
+   location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
 );
 ```
 
@@ -236,15 +232,14 @@ WITH (
 
 ```sql
 CREATE TABLE s0 (v1 int, v2 varchar)
-FORMAT PLAIN ENCODE CSV (
-   without_header = 'true',
-   delimiter = ','
-)
 WITH (
    connector = 'kafka',
    topic = 'kafka_csv_topic',
    properties.bootstrap.server = '127.0.0.1:29092',
    scan.startup.mode = 'earliest'
+) FORMAT PLAIN ENCODE CSV (
+   without_header = 'true',
+   delimiter = ','
 );
 ```
 
@@ -334,8 +329,6 @@ CREATE SOURCE tcp_metrics_rw (
    report_time TIMESTAMP,
    metric_value DOUBLE PRECISION
 )
-FORMAT PLAIN 
-ENCODE JSON
 WITH (
    connector = 'kafka',
    topic = 'tcp_metrics',
@@ -343,7 +336,7 @@ WITH (
    connection.name = 'my_connection',
    privatelink.targets = '[{"port": 8001}, {"port": 8002}]',
    scan.startup.mode = 'earliest'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 ## TLS/SSL encryption and SASL authentication
@@ -390,8 +383,6 @@ CREATE TABLE IF NOT EXISTS source_1 (
    column1 varchar,
    column2 integer,
 )
-FORMAT PLAIN
-ENCODE JSON
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -402,7 +393,7 @@ WITH (
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
    properties.ssl.key.location='/home/ubuntu/kafka/secrets/client_risingwave_client.key',
    properties.ssl.key.password='abcdefgh'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 ### `SASL/PLAIN`
@@ -434,8 +425,6 @@ CREATE SOURCE IF NOT EXISTS source_2 (
    column1 varchar,
    column2 integer,
 )
-FORMAT PLAIN
-ENCODE JSON
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -445,7 +434,7 @@ WITH (
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
    properties.sasl.password='admin-secret'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 This is an example of creating a source authenticated with SASL/PLAIN with SSL encryption.
@@ -455,8 +444,6 @@ CREATE SOURCE IF NOT EXISTS source_3 (
    column1 varchar,
    column2 integer,
 )
-FORMAT PLAIN
-ENCODE JSON
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -470,7 +457,7 @@ WITH (
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
    properties.ssl.key.location='/home/ubuntu/kafka/secrets/client_risingwave_client.key',
    properties.ssl.key.password='abcdefgh'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 ### `SASL/SCRAM`
@@ -502,8 +489,6 @@ CREATE TABLE IF NOT EXISTS source_4 (
    column1 varchar,
    column2 integer,
 )
-FORMAT PLAIN
-ENCODE JSON
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -513,5 +498,5 @@ WITH (
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
    properties.sasl.password='admin-secret'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```

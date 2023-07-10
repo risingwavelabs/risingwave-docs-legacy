@@ -14,13 +14,13 @@ When creating a source, you can choose to persist the data from the source in Ri
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
 [ schema_definition ]
-FORMAT data_format ENCODE data_encode (
-   message = 'message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
-)
 WITH (
    connector='kinesis',
    connector_parameter='value', ...
+)
+FORMAT data_format ENCODE data_encode (
+   message = 'message',
+   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
 );
 ```
 
@@ -100,7 +100,7 @@ For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SO
 
 RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
 
-For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record. 
+For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
 :::
 
 ### Connector parameters
@@ -116,7 +116,7 @@ For materialized sources with primary key constraints, if a new data record with
 |aws.credentials.role.arn	|Optional. The Amazon Resource Name (ARN) of the role to assume.|
 |aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources.	|
 |scan.startup.mode |Optional. The startup mode for Kinesis consumer. Supported modes: `earliest` (starts from the earliest offset), `latest` (starts from the latest offset), and `sequence_number` (starts from specific sequence number, specified by `scan.startup.sequence_number`). The default mode is `earliest`.|
-|scan.startup.sequence_number |Optional. This field specifies the sequence number to start consuming from. True if `scan.startup.mode` = `sequence_number`, otherwise False.| 
+|scan.startup.sequence_number |Optional. This field specifies the sequence number to start consuming from. True if `scan.startup.mode` = `sequence_number`, otherwise False.|
 
 ### Other parameters
 
@@ -138,9 +138,6 @@ import TabItem from '@theme/TabItem';
 
 ```sql
 CREATE {TABLE | SOURCE} [IF NOT EXISTS] source_name
-FORMAT PLAIN ENCODE AVRO (
-    schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc'
-)
 WITH (
    connector='kinesis',
    stream='kafka',
@@ -149,6 +146,8 @@ WITH (
    aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
    aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
    aws.credentials.role.external_id='demo_external_id'
+) FORMAT PLAIN ENCODE AVRO (
+    schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc'
 );
 ```
 </TabItem>
@@ -159,7 +158,6 @@ CREATE {TABLE | SOURCE} [IF NOT EXISTS] source_name (
    column1 varchar,
    column2 integer,
 )
-FORMAT PLAIN ENCODE JSON
 WITH (
    connector='kinesis',
    stream='kafka',
@@ -168,17 +166,13 @@ WITH (
    aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
    aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
    aws.credentials.role.external_id='demo_external_id'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 </TabItem>
 <TabItem value="pb" label="Protobuf" default>
 
 ```sql
 CREATE {TABLE | SOURCE} [IF NOT EXISTS] source_name
-FORMAT PLAIN ENCODE PROTOBUF (
-    message = 'demo_message',
-    schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
-)
 WITH (
    connector='kinesis',
    stream='kafka',
@@ -187,6 +181,9 @@ WITH (
    aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
    aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
    aws.credentials.role.external_id='demo_external_id'
+) FORMAT PLAIN ENCODE PROTOBUF (
+    message = 'demo_message',
+    schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
 );
 ```
 </TabItem>

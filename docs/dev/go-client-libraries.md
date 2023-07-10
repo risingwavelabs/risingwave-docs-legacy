@@ -29,23 +29,23 @@ To connect to RisingWave via `pgx`:
 package main
 
 import (
-	"context"
-	"fmt"
-	"log"
+ "context"
+ "fmt"
+ "log"
 
-	"github.com/jackc/pgx/v4"
+ "github.com/jackc/pgx/v4"
 )
 
 func main() {
          // Please replace the placeholders with the actual credentials.
-	connStr := "postgres://USER:PASSWORD@localhost:4566/DATABASE"
-	conn, err := pgx.Connect(context.Background(), connStr)
-	if err != nil {
-		log.Fatalf("Unable to connect to RisingWave: %v\n", err)
-	}
-	defer conn.Close(context.Background())
+ connStr := "postgres://USER:PASSWORD@localhost:4566/DATABASE"
+ conn, err := pgx.Connect(context.Background(), connStr)
+ if err != nil {
+  log.Fatalf("Unable to connect to RisingWave: %v\n", err)
+ }
+ defer conn.Close(context.Background())
 
-	fmt.Println("Connected to RisingWave")
+ fmt.Println("Connected to RisingWave")
 }
 ```
 
@@ -67,7 +67,7 @@ sql := `CREATE TABLE walk(distance INT, duration INT)
             fields.duration.end = '30',
             datagen.rows.per.second='15',
             datagen.split.num = '1'
-        ) ROW FORMAT JSON`
+        ) FORMAT PLAIN ENCODE JSON`
 
 _, err := conn.Exec(context.Background(), sql)
 return err
@@ -95,17 +95,17 @@ The code in this section queries the materialized view `counter` to get the real
 sql := `SELECT * FROM counter`
 rows, err := conn.Query(context.Background(), sql)
 if err != nil {
-	return err
+ return err
 }
 defer rows.Close()
 
 for rows.Next() {
-	var total_distance, total_duration float64
-	err = rows.Scan(&total_distance, &total_duration)
-	if err != nil {
-		return err
-	}
-	fmt.Printf("Total Distance: %.2f, Total Duration: %.2f\n", total_distance, total_duration)
+ var total_distance, total_duration float64
+ err = rows.Scan(&total_distance, &total_duration)
+ if err != nil {
+  return err
+ }
+ fmt.Printf("Total Distance: %.2f, Total Duration: %.2f\n", total_distance, total_duration)
 }
 return rows.Err()
 ```

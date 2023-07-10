@@ -19,15 +19,13 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
     ...
     [ PRIMARY KEY (col_name, ... ) ]
 )
-FORMAT data_format
-ENCODE data_encode  [ (
-   message='message',
-   row_schema_location='location', ...
-) ]
 [ WITH (
-   connector='connector_name',
-   connector_parameter='value', ...
-);
+    connector='connector_name',
+    connector_parameter='value', ...)]
+[FORMAT data_format ENCODE data_encode [ (
+    message='message',
+    row_schema_location='location', ...) ]
+];
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -177,6 +175,5 @@ WITH (
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000',
-)
-FORMAT PLAIN ENCODE JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```

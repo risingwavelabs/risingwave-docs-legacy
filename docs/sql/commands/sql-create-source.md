@@ -15,15 +15,13 @@ Regardless of whether the data is persisted in RisingWave, you can create materi
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name 
 [schema_definition]
-FORMAT data_format
-ENCODE data_encode [ (
-   message='message',
-   row_schema_location='location', ...
-) ]
-WITH (
-   connector='connector_name',
-   connector_parameter='value', ...
-);
+[ WITH (
+    connector='connector_name',
+    connector_parameter='value', ...)]
+[FORMAT data_format ENCODE data_encode [ (
+    message='message',
+    row_schema_location='location', ...) ]
+];
 ```
 
 For the syntax of `schema_definition`, see [Parameters](sql-create-table.md#parameters) in `CREATE TABLE`.

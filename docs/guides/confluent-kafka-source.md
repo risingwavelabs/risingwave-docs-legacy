@@ -9,7 +9,7 @@ This guide will go over how to set up a Kafka cluster on Confluent Cloud so you 
 
 ## Set up Kafka on Confluent Cloud
 
-### Create a Kafka cluster 
+### Create a Kafka cluster
 
 1. Create a new cluster. Click on **Begin configuration** under the appropriate cluster type.
 
@@ -47,13 +47,13 @@ Now the source connector is created.
 
 1. Select the Confluent Cloud Kafka cluster you just create from the dashboard.
 2. Click the **API Keys** tab.
-3. Add a new API key for the cluster you just created. 
+3. Add a new API key for the cluster you just created.
 
 Note that you will need the API key when creating a Kafka source in RisingWave.
 
 ### Run RisingWave
 
-To start RisingWave, see the [Get started](/get-started.md) guide. 
+To start RisingWave, see the [Get started](/get-started.md) guide.
 
 ### Connect to the data stream
 
@@ -66,22 +66,22 @@ See the [Ingest data from Kafka](/create-source/create-source-kafka.md) topic fo
 ```sql
 CREATE TABLE s (
     ordertime timestamp,
-	orderid int, 
-	itemid varchar, 
+ orderid int, 
+ itemid varchar, 
     orderunits double,
-	address STRUCT < city varchar, 
+ address STRUCT < city varchar, 
     state varchar,
-	zipcode int >
+ zipcode int >
 ) WITH ( 
     connector = 'kafka',
     topic = 'topic_0',
-	properties.bootstrap.server = 'xyz-x00xx.us-east-1.aws.confluent.cloud:9092',
+ properties.bootstrap.server = 'xyz-x00xx.us-east-1.aws.confluent.cloud:9092',
     scan.startup.mode = 'earliest', 
     properties.security.protocol = 'SASL_SSL', 
     properties.sasl.mechanism = 'PLAIN', 
     properties.sasl.username = 'username', 
     properties.sasl.password = 'password'
-) ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 We can query from the table to see the data.

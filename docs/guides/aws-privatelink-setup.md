@@ -15,7 +15,7 @@ Follow the steps below to create an AWS PrivateLink connection.
 
 1. Create a [target group](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-target-group.html) for each broker. Set the **target type** as **IP addresses** and the **protocol** as **TCP**. Ensure that the VPC of the target group is the same as your cloud-hosted source.
 
-2. Create a [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-network-load-balancer.html). Ensure that it is enabled in the same subnets your broker sources are in and the Cross-zone load balancing is also enabled. 
+2. Create a [Network Load Balancer](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-network-load-balancer.html). Ensure that it is enabled in the same subnets your broker sources are in and the Cross-zone load balancing is also enabled.
 
 3. Create a [TCP listener](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-listener.html) for each MSK broker that corresponds to the target groups created. Ensure the ports are unique.
 
@@ -48,7 +48,7 @@ Follow the steps below to create an AWS PrivateLink connection.
     connection.name = 'my_connection',
     privatelink.targets = '[{"port": 8001}, {"port": 8002}]',
     scan.startup.mode = 'earliest'
-    ) ROW FORMAT JSON;
+    ) FORMAT PLAIN ENCODE JSON;
     ```
 
      - Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details on the syntax, see the [Sink to Kafka](create-sink-kafka.md) topic. Here is an example of sinking to Kafka with an AWS PrivateLink.

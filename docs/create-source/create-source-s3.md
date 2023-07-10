@@ -11,14 +11,13 @@ Use the SQL statement below to connect RisingWave to an Amazon S3 source.
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name 
 schema_definition
-FORMAT data_format
-ENCODE data_encode (
-   without_header = 'true' | 'false',
-   delimiter = 'delimiter'
-)
 WITH (
    connector='s3',
    connector_parameter='value', ...
+)
+FORMAT data_format ENCODE data_encode (
+   without_header = 'true' | 'false',
+   delimiter = 'delimiter'
 ); 
 ```
 
@@ -100,7 +99,7 @@ export const svg = rr.Diagram(
 |s3.credentials.access| Conditional. This field indicates the access key ID of AWS. It must be used with `s3.credentials.secret`. If not specified, RisingWave will automatically try to use `~/.aws/credentials`.|
 |s3.credentials.secret| Conditional. This field indicates the secret access key of AWS. It must be used wtih `s3.credentials.access`. If not specified, RisingWave will automatically try to use `~/.aws/credentials`.|
 |match_pattern| Conditional. This field is used to find object keys in `s3.bucket_name` that match the given pattern. Standard Unix-style glob syntax is supported. |
-|s3.endpoint_url| Conditional. The host URL for an S3-compatible object storage server. This allows users to use a different server instead of the standard S3 server. | 
+|s3.endpoint_url| Conditional. The host URL for an S3-compatible object storage server. This allows users to use a different server instead of the standard S3 server. |
 
 :::note
 Empty cells in CSV files will be parsed to `NULL`.
@@ -129,17 +128,15 @@ CREATE TABLE s(
     age int,
     primary key(id)
 ) 
-FORMAT PLAIN
-ENCODE CSV (
-    without_header = 'true',
-    delimiter = ','
-)
 WITH (
     connector = 's3',
     s3.region_name = 'ap-southeast-2',
     s3.bucket_name = 'example-s3-source',
     s3.credentials.access = 'xxxxx',
     s3.credentials.secret = 'xxxxx'
+) FORMAT PLAIN ENCODE CSV (
+    without_header = 'true',
+    delimiter = ','
 );
 ```
 
@@ -153,8 +150,6 @@ CREATE TABLE s3(
     age int,
     mark int,
 )
-FORMAT PLAIN
-ENCODE JSON
 WITH (
     connector = 's3',
     match_pattern = '%Ring%*.ndjson',
@@ -163,7 +158,7 @@ WITH (
     s3.credentials.access = 'xxxxx',
     s3.credentials.secret = 'xxxxx',
     s3.endpoint_url = 'https://s3.us-east-1.amazonaws.com'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 </TabItem>

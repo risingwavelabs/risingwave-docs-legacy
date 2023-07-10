@@ -17,13 +17,13 @@ When creating a source, you can choose to persist the data from the source in Ri
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
 [ schema_definition ]
-FORMAT data_format ENCODE data_encode (
-   message = 'message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
-)
 WITH (
    connector='pulsar',
    connector_parameter='value', ...
+)
+FORMAT data_format ENCODE data_encode (
+   message = 'message',
+   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
 );
 ```
 
@@ -141,11 +141,6 @@ import TabItem from '@theme/TabItem';
 
 ```sql
 CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc 
-FORMAT PLAIN
-ENCODE AVRO (
-   message = 'message',
-   schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc'
-)
 WITH (
    connector='pulsar',
    topic='demo_topic',
@@ -157,6 +152,9 @@ WITH (
    secret_access='secret_access',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
+) FORMAT PLAIN ENCODE AVRO (
+   message = 'message',
+   schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc'
 );
 ```
 
@@ -168,8 +166,6 @@ CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
    column1 string,
    column2 integer,
 )
-FORMAT PLAIN
-ENCODE JSON
 WITH (
    connector='pulsar',
    topic='demo_topic',
@@ -181,7 +177,7 @@ WITH (
    secret_access='secret_access',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 </TabItem>
@@ -192,11 +188,6 @@ CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
    column1 string,
    column2 integer,
 )
-FORMAT PLAIN
-ENCODE PROTOBUF (
-   message = 'FooMessage',
-   schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
-)
 WITH (
    connector='pulsar',
    topic='demo_topic',
@@ -208,6 +199,9 @@ WITH (
    secret_access='secret_access',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
+) FORMAT PLAIN ENCODE PROTOBUF (
+   message = 'FooMessage',
+   schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
 );
 ```
 

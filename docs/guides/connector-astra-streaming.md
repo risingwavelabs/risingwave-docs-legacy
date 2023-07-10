@@ -11,11 +11,11 @@ To ingest data from Astra Streaming into RisingWave, you need to set up an Astra
 
 This guide will go over how to ingest streaming data from Astra Streaming in RisingWave.
 
-## Set up Astra Streaming 
+## Set up Astra Streaming
 
 To learn about how to set up an Astra Streaming account and create a topic, see the [Astra Streaming QuickStart](https://docs.datastax.com/en/streaming/astra-streaming/getting-started/index.html). You can connect to your tenant with Pulsar or Kafka. For this demo, we will assume the tenant is connected to Pulsar.
 
-Once you have created a topic, note down the following information regarding the tenant and topic you want to connect to. 
+Once you have created a topic, note down the following information regarding the tenant and topic you want to connect to.
 
 1. Get the full name of the topic by going to `Namespace and Topics` and clicking the copy button next to the topic you just created.
 
@@ -42,15 +42,14 @@ WITH (
    topic='persistent://tenant0/default/topic0',
    service.url='pulsar+ssl://pulsar-gcp-useast1.streaming.datastax.com:6651',
    auth.token='replace me with your token'
-)
-ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 ### Produce messages in Astra Streaming
 
 We can now send messages from Astra Streaming to RisingWave.
 
-Navigate to the tenant RisingWave is connected to in Astra Streaming and click on the `Try Me` tab. Ensure the `Namespace`, `Producer topic`, and the `Consumer topic` match the Astra Streaming topic that RisingWave is consuming data from. 
+Navigate to the tenant RisingWave is connected to in Astra Streaming and click on the `Try Me` tab. Ensure the `Namespace`, `Producer topic`, and the `Consumer topic` match the Astra Streaming topic that RisingWave is consuming data from.
 
 Set the `Connection type` as `Read` and the `Read position` as `Earliest`. Click `Connect`.
 
