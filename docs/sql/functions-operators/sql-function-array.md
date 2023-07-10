@@ -51,7 +51,7 @@ array_length(array[1,2,3,4,1]) → 5
 Returns the length of the requested array dimension in *array*. *int* must be 1.
 
 ```sql title=Syntax
-array_length ( array, int ) → bigint
+array_length ( array, int ) → int
 ```
 
 ```sql title=Example
@@ -155,9 +155,9 @@ array_join(array, delimiter_string, null_string) → string
 ```
 
 ```sql title=Example
-array_to_string(array[1, 2, 3, NULL, 5], ',', '*') → 1, 2, 3, *, 5 
+array_to_string(array[1, 2, 3, NULL, 5], ',', '*') → 1,2,3,*,5 
 
-array_join(array[1, 2, 3, NULL, 5], ',', '*') → 1, 2, 3, *, 5
+array_join(array[1, 2, 3, NULL, 5], ',', '*') → 1,2,3,*,5
 ```
 
 ---
@@ -167,7 +167,7 @@ array_join(array[1, 2, 3, NULL, 5], ',', '*') → 1, 2, 3, *, 5
 Returns the upper bound of the requested array dimension in *array*. *int* must be `1`. (This will return the same value as `array_length`.)
 
 ```sql title=Syntax
-array_upper ( array, int ) → bigint
+array_upper ( array, int ) → int
 ```
 
 ```sql title=Example
