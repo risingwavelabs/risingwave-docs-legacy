@@ -597,7 +597,12 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/system-catalogs/pg-catalog-function',
                   label: 'PostgreSQL catalogs and functions',
-                }
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/system-catalogs/rw_catalog',
+                  label: 'RisingWave catalogs',
+                },
               ]
             },
             {
