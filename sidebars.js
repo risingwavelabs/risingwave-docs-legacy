@@ -22,6 +22,11 @@ const sidebars = {
 
 
     {
+      type: 'doc',
+      label: 'Home',
+      id: 'home'
+    },
+    {
       type: 'category',
       label: 'About',
       collapsible: false,
