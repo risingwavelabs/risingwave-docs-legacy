@@ -65,7 +65,7 @@ Innovate your business by leveraging continuous insights on live data.
 <grid
  container
  direction="row"
- spacing="15"
+ spacing="30"
  justifyContent="space-between"
  justifyItems="stretch"
  alignItems="stretch">
@@ -121,7 +121,7 @@ Everything you need to get started on stream processing with RisingWave, in minu
  <card
  style={{height: "90%"}}
  title="RisingWave Cloud"
- content="RisingWave Cloud is a hosted service that provides out-of-the-box RisingWave service, without the hassles of configuration and ongoing maintenance. It comes with an easy-to-use UI for running queries and managing data, connectors, and clusters."
+ content="RisingWave Cloud is a hosted service that provides out-of-the-box RisingWave service, without the hassles of configuration and ongoing maintenance. It comes with an easy-to-use UI for running queries and managing sources, sinks, and clusters."
  links={[
  {text:"Start a free cloud cluster in 5 minutes", cloud:"quickstart"},
  {text:"Learn more", cloud:"intro"},
@@ -136,7 +136,7 @@ Everything you need to get started on stream processing with RisingWave, in minu
 <card
  style={{height: "90%"}}
  title="RisingWave Database"
- content="RisingWave Database is a distributed SQL streaming database designed for the cloud. It’s an open-source project under Apache License 2.0."
+ content="RisingWave Database, an open-source distributed SQL streaming database under Apache License 2.0, is optimized for high-throughput and low-latency stream processing in the cloud."
  links={[
  {text:"Install on your laptop with 4 lines of code", doc:"get-started"},
  {text:"Learn more", doc:"intro"},
