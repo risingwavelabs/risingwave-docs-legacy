@@ -73,11 +73,13 @@ const config = {
               banner: "none",
             },
           },
-          editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
+          editUrl:
+            "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
         blog: {
           showReadingTime: true,
-          editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
+          editUrl:
+            "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
         theme: {
           customCss: [
@@ -100,10 +102,21 @@ const config = {
         sidebarPath: require.resolve("./sidebarCloud.js"),
       },
     ],
+    require.resolve("docusaurus-plugin-image-zoom"),
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      zoom: {
+        selector: ".markdown img",
+        background: {
+          light: "#ffffff",
+          dark: "#0a1721",
+        },
+        config: {
+          // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+        },
+      },
       colorMode: {
         disableSwitch: false,
         respectPrefersColorScheme: true,
@@ -208,7 +221,8 @@ const config = {
     }),
   customFields: {
     docsUrl: "https://www.risingwave.dev",
-    requestUrl: "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
+    requestUrl:
+      "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
     bugReportUrl:
       "https://github.com/risingwavelabs/risingwave-docs/issues/new?assignees=CharlieSYH%2C+hengm3467&labels=bug&template=bug_report.yml&title=Bug%3A+&link=",
   },

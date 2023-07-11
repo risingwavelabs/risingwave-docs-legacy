@@ -143,7 +143,7 @@ links={[
 <grid item xs={12} sm={6} md={6}>
 
  <card
- style={{height: "100%"}}
+ style={{height: "90%"}}
  title="About RisingWave"
  content="Continue to learn about RisingWave Database."
  links={[
@@ -159,7 +159,7 @@ links={[
 <grid item xs={12} sm={6} md={6}>
 
 <card
- style={{height: "100%"}}
+ style={{height: "90%"}}
  title="Blog"
  content="Product insights, engineering deep-dives, community events, industry highlights, and company news posted regularly by our CEO, engineers, product experts, community runners, communication specialists, and community contributors."
  url="https://www.risingwave-labs.com/blog/"
