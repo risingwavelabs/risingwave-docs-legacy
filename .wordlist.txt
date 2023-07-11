@@ -145,3 +145,16 @@ toc
 latencies
 thoroughputs
 VPC
+CloudOutlined
+CloudOutlinedIcon
+InfoOutlined
+InfoOutlinedIcon
+JoinInnerOutlined
+JoinInnerOutlinedIcon
+ManageAccountsOutlined
+ManageAccountsOutlinedIcon
+NextWeekOutlined
+NextWeekOutlinedIcon
+RocketLaunchOutlined
+RocketLaunchOutlinedIcon
+mui
