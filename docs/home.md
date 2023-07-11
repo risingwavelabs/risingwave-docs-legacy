@@ -136,7 +136,7 @@ Everything you need to get started on stream processing with RisingWave, in minu
 <card
  style={{height: "90%"}}
  title="RisingWave Database"
- content="RisingWave Database, an open-source distributed SQL streaming database under Apache License 2.0, is optimized for high-throughput and low-latency stream processing in the cloud."
+ content="RisingWave Database is an open-source distributed SQL streaming database under Apache License 2.0. It's well-optimized for high-throughput and low-latency stream processing in the cloud."
  links={[
  {text:"Install on your laptop with 4 lines of code", doc:"get-started"},
  {text:"Learn more", doc:"intro"},
