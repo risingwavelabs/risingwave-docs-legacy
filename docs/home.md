@@ -174,7 +174,7 @@ Connect to and ingest data from external sources.
 
 <grid item xs={12} sm={8} md={8}>
 
-iconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnames
+---
   
 </grid>
 
@@ -200,7 +200,7 @@ Stream processed data out of RisingWave to external targets.
 
 <grid item xs={12} sm={8} md={8}>
 
-iconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnames
+---
   
 </grid>
 
@@ -224,7 +224,7 @@ Unlock actionable insights and create stunning visualizations for your data.
 
 <grid item xs={12} sm={8} md={8}>
 
-iconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnames
+---
   
 </grid>
 
@@ -248,7 +248,7 @@ Integrate RisingWave into your applications using PostgreSQL drivers.
 
 <grid item xs={12} sm={8} md={8}>
 
-iconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnamesiconsandnames
+---
   
 </grid>
 
