@@ -13,6 +13,10 @@
   border-radius: 0;
 }
 
+[data-theme="dark"] .docSidebarItemCategoryUnderline {
+  border-bottom: 1px solid var(--ifm-card-border-color);
+}
+
 .internalExpandedLink::after {
   background: none !important;
 }
