@@ -88,26 +88,25 @@ export default function OutlinedCard({
           <Box className={styles.cardLinks}>
             {links.map((link) => {
               return (
-                <div
-                  key={link.url}
-                  className={styles.flexBox}
-                  onClick={() => {
-                    if (link.url) {
-                      window.open(link.url, "_blank", "noopener,noreferrer");
-                    } else if (link.doc) {
-                      globalData["docusaurus-plugin-content-docs"].default[
-                        "versions"
-                      ].map((v) => {
-                        if (location.pathname.includes(v.path)) {
-                          history.push(`${v.path}/${link.doc}`);
-                        } else if (location.pathname.includes("cloud")) {
-                          history.push(`/docs/current/${doc}`);
-                        }
-                      });
-                    }
-                  }}
-                >
-                  <Typography className={styles.cardLink}>
+                <div key={link.url} className={styles.flexBox}>
+                  <Typography
+                    className={styles.cardLink}
+                    onClick={() => {
+                      if (link.url) {
+                        window.open(link.url, "_blank", "noopener,noreferrer");
+                      } else if (link.doc) {
+                        globalData["docusaurus-plugin-content-docs"].default[
+                          "versions"
+                        ].map((v) => {
+                          if (location.pathname.includes(v.path)) {
+                            history.push(`${v.path}/${link.doc}`);
+                          } else if (location.pathname.includes("cloud")) {
+                            history.push(`/docs/current/${doc}`);
+                          }
+                        });
+                      }
+                    }}
+                  >
                     {link.text}
                     {link.url && <ExternalArrow />}
                     {link.doc && (
