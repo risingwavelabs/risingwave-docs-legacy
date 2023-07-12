@@ -13,7 +13,8 @@ import { useColorMode } from "@docusaurus/theme-common";
 type LinkProps = {
   text: string;
   url?: string;
-  doc: string;
+  doc?: string;
+  cloud?: string;
 };
 
 type Props = {
@@ -104,6 +105,8 @@ export default function OutlinedCard({
                             history.push(`/docs/current/${doc}`);
                           }
                         });
+                      } else if (link.cloud) {
+                        history.push(`/cloud/${link.cloud}`);
                       }
                     }}
                   >
