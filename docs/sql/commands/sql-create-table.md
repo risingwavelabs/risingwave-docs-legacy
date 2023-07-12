@@ -55,25 +55,7 @@ export const svg = rr.Diagram(
         rr.Optional(
             rr.Stack(
                 rr.Sequence(
-                    rr.Terminal('FORMAT'),
-                    rr.NonTerminal('data_format', 'skip')
-            ),
-            rr.Sequence(
-                rr.Terminal('ENCODE'),
-                rr.NonTerminal('encode', 'skip'),
-                rr.Optional(
-                    rr.Sequence(
-                    rr.Terminal('('),
-                    rr.NonTerminal('encode_parameter', 'skip'),
-                    rr.Terminal(')'),
-                    ),
-                ),
-            ),
-        ),
-        rr.Optional(
-            rr.Stack(
-                rr.Sequence(
-                    rr.Terminal('WITH'),
+                    rr.Terminal('WITH clause'),
             ),
         ),
         ), rr.Terminal(';'),
@@ -81,10 +63,12 @@ export const svg = rr.Diagram(
     )
 );
 
+
 <drawer SVG={svg} />
 
 This is the WITH clause and the rest of the source parameters:
 
+This is the WITH clause and the rest of the source parameters:
 export const svgTwo = rr.Diagram(
      rr.Stack(
         rr.Optional(
@@ -109,7 +93,24 @@ export const svgTwo = rr.Diagram(
                     rr.Terminal(')'),
                 ),
             ),
-        )
+        ),
+        rr.Stack(
+            rr.Sequence(
+                rr.Terminal('FORMAT'),
+                rr.NonTerminal('format', 'skip')
+            ),
+            rr.Sequence(
+                rr.Terminal('ENCODE'),
+                rr.NonTerminal('encode', 'skip'),
+                rr.Optional(
+                    rr.Sequence(
+                    rr.Terminal('('),
+                    rr.NonTerminal('encode_parameter', 'skip'),
+                    rr.Terminal(')'),
+                    ),
+                ),
+            ),
+        ),
     )
 );
 
