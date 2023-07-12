@@ -83,7 +83,7 @@ div.cardLinks {
 
 p.cardLink {
   cursor: pointer;
-  color: var(--ifm-button-color);
+  color: var(--ifm-color-primary);
   font-size: 0.9rem;
   margin-bottom: 0.1rem;
   margin-right: 4px;
@@ -91,7 +91,7 @@ p.cardLink {
 }
 
 p.cardLink:hover {
-  color: var(--ifm-menu-color-active);
+  color: var(--ifm-button-color);
   border-bottom: 1px dotted #95adee88;
 }
 
