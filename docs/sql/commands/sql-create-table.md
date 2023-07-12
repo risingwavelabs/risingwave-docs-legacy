@@ -68,7 +68,6 @@ export const svg = rr.Diagram(
 
 This is the WITH clause and the rest of the source parameters:
 
-This is the WITH clause and the rest of the source parameters:
 export const svgTwo = rr.Diagram(
      rr.Stack(
         rr.Optional(
