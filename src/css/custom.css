@@ -414,7 +414,7 @@ table tbody tr td {
 }
 
 [data-theme="dark"] td {
-  border-top: 1px solid #152c3c;
+  border-top: 1px solid var(--ifm-card-border-color);
 }
 
 thead tr:first-child {
