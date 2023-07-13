@@ -138,8 +138,6 @@ Specify the following fields for every column in the source you are creating.
 
 </Tabs>
 
-
-
 </TabItem>
 <TabItem value="timestamp" label="Timestamp">
 
@@ -154,7 +152,6 @@ Specify the following fields for every column in the source you are creating.
 |`max_past_mode`|Specify the baseline timestamp. <br/> The range for generated timestamps is [base time - `max_past` , base time]|`absolute` — The base time is set to the execution time of the generator. The base time is fixed for each generation.<br />`relative` —  The base time is the system time obtained each time a new record is generated.|False<br/>Default: `absolute`|
 |`basetime`|If set, the generator will ignore `max_past_mode` and use the specified time as the base time.|A [date and time string](https://docs.rs/chrono/latest/chrono/struct.DateTime.html#method.parse_from_rfc3339)<br/>Example: `2023-04-01T16:39:57-08:00`|False<br/>Default: generator execution time|
 |`seed`|A seed number that initializes the random load generator. The sequence of the generated timestamps is determined by the seed value. If given the same seed number, the generator will produce the same sequence of timestamps.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of timestamps will be generated (if the system time is constant).|
-
 
 </TabItem>
 <TabItem value="varchar" label="Varchar">
@@ -190,10 +187,10 @@ WITH (
 ```
 
 :::info
+
 - You need to configure each nested column in the struct. Select other tabs according to the data type of the nested columns for information on column parameters.
 - When you configure a nested column, use `column.nested_column` to specify it. For example, `v1.v2` and `v1.v3` in the `WITH` clause above.
 :::
-
 
 </TabItem>
 
@@ -216,6 +213,7 @@ WITH (
 ```
 
 :::info
+
 - You need to specify the number of elements in the array in the `WITH` clause. `fields.c1.length = '3'` in the example above means that `c1` is an array of three elements.
 - When you configure the elements in an array, use `column._` to specify them. For example, `c1._` in the `WITH` clause above. <br/>Select other tabs according to the data type of the array for information on column parameters.
 :::
@@ -239,17 +237,16 @@ WITH (
 
 </Tabs>
 
-
 ## Example
+
 Here is an example of connecting RisingWave to the built-in load generator.
 
 The following statement creates a source `s1` with four columns:
 
-* `i1` — An array of three integers starting from 1 and incrementing by 1
-* `v1` — Structs that contain random integers `v2` ranging from -10 to 10 and random floating-point numbers `v3` ranging from 15 to 55
-* `t1` — Random timestamps from as early as 10 days prior to the generator execution time
-* `c1` — Random strings with each consists of 16 characters
-
+- `i1` — An array of three integers starting from 1 and incrementing by 1
+- `v1` — Structs that contain random integers `v2` ranging from -10 to 10 and random floating-point numbers `v3` ranging from 15 to 55
+- `t1` — Random timestamps from as early as 10 days prior to the generator execution time
+- `c1` — Random strings with each consists of 16 characters
 
 ```sql
 CREATE TABLE s1 (i1 int [], v1 struct<v2 int, v3 double>, t1 timestamp, c1 varchar) 
@@ -287,6 +284,7 @@ Let's query `s1` after a few seconds.
 ```sql
 SELECT * FROM s1 ORDER BY i1 LIMIT 20;
 ```
+
 ```
      i1     |            v1            |             t1             |        c1        
 ------------+--------------------------+----------------------------+------------------

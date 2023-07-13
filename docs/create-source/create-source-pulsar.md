@@ -126,8 +126,8 @@ For materialized sources with primary key constraints, if a new data record with
 |---|---|
 |*data_format*| Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`.|
 |*data_encode*| Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
-|*message* |Message name of the main Message in schema definition. Required when *data_format* is `PROTOBUF`.|
-|*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when *data_format* is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
+|*message* |Message name of the main Message in schema definition. Required when `data_encode` is `PROTOBUF`.|
+|*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when `data_encode` is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 
 ## Example
 

@@ -9,17 +9,14 @@ As RisingWave is wire-compatible with PostgreSQL, you can use third-party Postgr
 
 In this guide, we use the [PostgreSQL JDBC](https://jdbc.postgresql.org/) driver to connect to RisingWave.
 
-
 ## Run RisingWave
 
 To learn about how to run RisingWave, see [Run RisingWave](/get-started.md#run-risingwave).
 > You do not need to connect to RisingWave at this stage.
 
-
 ## Download the PostgreSQL JDBC driver
 
 Download the correct version of the PostgreSQL JDBC driver from the [PostgreSQL JDBC website](https://jdbc.postgresql.org/download/) based on the Java version in your environment. Ensure the JDBC driver is added to your Java project.
-
 
 ## Connect to RisingWave
 
@@ -69,7 +66,7 @@ public class source {
         "fields.duration.end = '30'," +
         "datagen.rows.per.second='15'," +
         "datagen.split.num = '1') " +
-        "ROW FORMAT JSON";
+        "FORMAT PLAIN ENCODE JSON";
         PreparedStatement st = conn.prepareStatement(sqlQuery); //Define a query and pass it to a PreparedStatement object.
         st.executeQuery(); //Execute the query.
         conn.close();  //Close the connection.
