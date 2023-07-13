@@ -46,4 +46,4 @@ SHOW INDEXES FROM t3;
 
 ## Related topics
 
-[CREATE INDEX](../commands/sql-create-index.md)
+[CREATE INDEX](/sql/commands/sql-create-index.md)
