@@ -69,7 +69,7 @@ This version was released on July 12, 2023.
 
 #### Connectors
 
-- **Breaking change**: When creating a source or table with a connector whose schema is auto-resolved from an external format file, the syntax for defining primary keys within column definitions is replaced with the table constraint syntax. [#10195](https://github.com/risingwavelabs/risingwave/pull/10195)
+- ***Breaking change***: When creating a source or table with a connector whose schema is auto-resolved from an external format file, the syntax for defining primary keys within column definitions is replaced with the table constraint syntax. [#10195](https://github.com/risingwavelabs/risingwave/pull/10195)
 
     ```sql title="Old"
     CREATE TABLE debezium_non_compact (order_id int PRIMARY KEY) WITH (
@@ -84,7 +84,7 @@ This version was released on July 12, 2023.
     CREATE TABLE debezium_non_compact (PRIMARY KEY(order_id)) WITH ( ...
     ```
 
-- **Breaking change**: Modifies the syntax for specifying data and encoding formats for a source in `CREATE SOURCE` and `CREATE TABLE` commands. For v1.0, the old syntax is still valid but will be deprecated in the version 1.1. [#10768](https://github.com/risingwavelabs/risingwave/pull/10768)
+- ***Breaking change***: Modifies the syntax for specifying data and encoding formats for a source in `CREATE SOURCE` and `CREATE TABLE` commands. For v1.0.0, the old syntax is still accepted but will be deprecated in the next release. [#10768](https://github.com/risingwavelabs/risingwave/pull/10768)
 
     Old syntax - part 1:
 
@@ -112,7 +112,7 @@ This version was released on July 12, 2023.
     New syntax - part 2:
 
     ```sql
-        FORMAT PLAIN ENCODE CSV (
+    FORMAT PLAIN ENCODE CSV (
         without_header = 'true',
         delimiter = ','
     );
