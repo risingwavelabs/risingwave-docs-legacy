@@ -11,7 +11,7 @@ You can check and monitor your clusters' overall running status and detailed met
 
 To browse each cluster's configuration and running status in your account, go to [**Clusters**](https://risingwave.cloud/clusters/).
 
-In **Clusters**, you can see all the clusters in your account and [control their running states](cluster-stop-and-delete-clusters.md). You can also check the current plan, RisingWave Database version, region, and creation time of each cluster here.
+In **Clusters**, you can see all the clusters in your account and [control their running states](cluster-stop-and-delete-clusters.md). You can also check the current plan, RisingWave version, region, and creation time of each cluster here.
 
 <img
   src={require('./images/clusters.png').default}

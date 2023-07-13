@@ -7,7 +7,7 @@ slug: /create-a-sink
 
 You need to create a sink in the database to deliver processed data to an external target. After a source is connected, you can create materialized views to perform analysis or sinks for data transformations.
 
-For the complete list of supported sink connectors and data formats, see [Data delivery](https://www.risingwave.dev/docs/current/data-delivery/) in the RisingWave Database documentation.
+For the complete list of supported sink connectors and data formats, see [Data delivery](https://www.risingwave.dev/docs/current/data-delivery/) in the RisingWave documentation.
 
 You can create a sink with one of the following methods:
 

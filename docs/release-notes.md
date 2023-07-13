@@ -7,21 +7,134 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
 
-## v0.19.1
+## v1.0.0
 
-This version was released on June 8, 2023.
+This version was released on July 12, 2023.
 
 ### Main changes
 
-Bug fixes and improvements. See [all changes](https://github.com/risingwavelabs/risingwave/compare/v0.19.0...v0.19.1).
+#### SQL features
+
+- SQL command:
+
+  - Supports the `SHOW CLUSTERS` command. [#10656](https://github.com/risingwavelabs/risingwave/pull/10656)
+
+  - Supports the `GROUPING SETS` clause. [#10807](https://github.com/risingwavelabs/risingwave/pull/10807)
+
+  - Supports the `EXCEPT` clause. [#10438](https://github.com/risingwavelabs/risingwave/pull/10438)
+
+- SQL function:
+
+  - Adds the `current_setting()` function to get the current value of a configuration parameter. [#10051](https://github.com/risingwavelabs/risingwave/issues/10051)
+
+  - Adds new array functions: `array_position()`, `array_replace()`, `array_ndims()`, `array_lower()`, `array_upper()`, `array_length()`, and `array_dims()`. [#10166](https://github.com/risingwavelabs/risingwave/pull/10166), [#10197](https://github.com/risingwavelabs/risingwave/pull/10197)
+
+  - Adds new aggregate functions: `percentile_cont()`, `percentile_disc()`, and `mode()`. [#10252](https://github.com/risingwavelabs/risingwave/pull/10252)
+
+  - Adds new system functions: `user()`, `current_user()`, and `current_role()`. [#10366](https://github.com/risingwavelabs/risingwave/pull/10366)
+
+  - Adds new string functions: `left()` and `right()`. [#10765](https://github.com/risingwavelabs/risingwave/pull/10765)
+
+  - Adds new bytea functions: `octet_length()` and `bit_length()`. [#10462](https://github.com/risingwavelabs/risingwave/pull/10462)
+
+  - `array_length()` and `cardinality()` return integer instead of bigint. [#10267](https://github.com/risingwavelabs/risingwave/pull/10267)
+
+  - Supports the `row_number` window function that doesn't match the TopN pattern. [#10869](https://github.com/risingwavelabs/risingwave/pull/10869)
+
+- User-defined function:
+
+  - Adds support for defining UDFs in Java. [#10095](https://github.com/risingwavelabs/risingwave/pull/10095)
+
+  - Adds support for more Java UDF and Python UDF data types. [#10399](https://github.com/risingwavelabs/risingwave/pull/10399)
+
+  - The language parameter is no longer required in `CREATE FUNCTION`. [#10608](https://github.com/risingwavelabs/risingwave/pull/10608)
+
+- System catalog:
+
+  - Adds more columns to `information_schema.columns`: `column_default`, `character_maximum_length`, and `udt_name`. [#10269](https://github.com/risingwavelabs/risingwave/pull/10269)
+
+  - Adds a new system catalog `pg_proc`. [#10216](https://github.com/risingwavelabs/risingwave/pull/10216)
+
+  - Adds new RisingWave catalogs:
+  
+    - `rw_table_fragments`, `rw_fragments`, `rw_actors` [#10712](https://github.com/risingwavelabs/risingwave/pull/10712)
+    - `rw_worker_nodes`, `rw_parallel_units` [#10656](https://github.com/risingwavelabs/risingwave/pull/10656)
+    - `rw_connections`, `rw_databases`, `rw_functions`, `rw_indexes`, `rw_materialized_views`, `rw_schemas`, `rw_sinks`, `rw_sources`, `rw_tables`, `rw_users`, `rw_views` [#10593](https://github.com/risingwavelabs/risingwave/pull/10593)
+	
+- Supports `GROUP BY` output alias or index. [#10305](https://github.com/risingwavelabs/risingwave/pull/10305)
+
+- Supports using scalar functions in the `FROM` clause. [#10317](https://github.com/risingwavelabs/risingwave/pull/10317)
+
+- Supports tagging the created VPC endpoints when creating a PrivateLink connection. [#10582](https://github.com/risingwavelabs/risingwave/pull/10582)
+
+#### Connectors
+
+- **Breaking change**: When creating a source or table with a connector whose schema is auto-resolved from an external format file, the syntax for defining primary keys within column definitions is replaced with the table constraint syntax. [#10195](https://github.com/risingwavelabs/risingwave/pull/10195)
+
+    ```sql title="Old"
+    CREATE TABLE debezium_non_compact (order_id int PRIMARY KEY) WITH (
+    connector = 'kafka',
+    kafka.topic = 'debezium_non_compact_avro_json',
+    kafka.brokers = 'message_queue:29092',
+    kafka.scan.startup.mode = 'earliest'
+    ) ROW FORMAT DEBEZIUM_AVRO ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://message_queue:8081';
+    ```
+
+    ```sql title="New"
+    CREATE TABLE debezium_non_compact (PRIMARY KEY(order_id)) WITH ( ...
+    ```
+
+- **Breaking change**: Modifies the syntax for specifying data and encoding formats for a source in `CREATE SOURCE` and `CREATE TABLE` commands. For v1.0, the old syntax is still valid but will be deprecated in the version 1.1. [#10768](https://github.com/risingwavelabs/risingwave/pull/10768)
+
+    Old syntax - part 1:
+
+    ```sql
+    ROW FORMAT data_format 
+    [ MESSAGE 'message' ]
+    [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
+    ```
+
+    New syntax - part 1:
+
+    ```sql
+    FORMAT data_format ENCODE data_encode (
+        message = 'message',
+        schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+    );
+    ```
+
+    Old syntax - part 2:
+
+    ```sql
+    ROW FORMAT csv WITHOUT HEADER DELIMITED BY ',';
+    ```
+    
+    New syntax - part 2:
+
+    ```sql
+        FORMAT PLAIN ENCODE CSV (
+        without_header = 'true',
+        delimiter = ','
+    );
+    ```
+
+- Supports sinking data to Delta Lake. [#10374](https://github.com/risingwavelabs/risingwave/pull/10374), [#10580](https://github.com/risingwavelabs/risingwave/pull/10580)
+
+- Supports sinking data to AWS Kinesis. [#10437](https://github.com/risingwavelabs/risingwave/pull/10437)
+
+- Supports `BYTES` as a row format. [#10592](https://github.com/risingwavelabs/risingwave/pull/10592)
+
+- Supports specifying schema for the PostgreSQL sink. [#10576](https://github.com/risingwavelabs/risingwave/pull/10576)
+
+- Supports using the user-provided publication to create a PostgreSQL CDC table. [#10804](https://github.com/risingwavelabs/risingwave/pull/10804)
 
 ### Assets
 
 - Run this version from Docker:<br/>
-    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v0.19.1 playground`
-- [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v0.19.1/risingwave-v0.19.1-x86_64-unknown-linux.tar.gz)
-- [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.19.1.zip)
-- [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v0.19.1.tar.gz)
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v1.0.0 playground`
+- [Prebuilt library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v1.0.0/risingwave-v1.0.0-x86_64-unknown-linux.tar.gz)
+- [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.0.0.zip)
+- [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.0.0.tar.gz)
 
 ## v0.19.0
 

@@ -1,11 +1,11 @@
 ---
 id: console-overview
 title: Query console
-description: The query console is the most intuitive and easy way to connect to and interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
+description: The query console is the most intuitive and easy way to connect to and interact with RisingWave, offering graphical tools for managing data and visualizing results.
 slug: /console-overview
 ---
 
-The query console is the most intuitive and easy way to interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
+The query console is the most intuitive and easy way to interact with RisingWave, offering graphical tools for managing data and visualizing results.
 
 <img
 src={require('./images/console.png').default}
@@ -66,7 +66,7 @@ width="270px"
 
 #### Sample queries
 
-The sample queries cover the most common steps in RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views and querying the results.
+The sample queries cover the most common steps in RisingWave, such as establishing a connection with a data source, processing data by defining materialized views and querying the results.
 
 See [Explore RisingWave with examples](/cloud/quickstart.md/?step=4) for details.
 
@@ -130,6 +130,6 @@ width="800px"
 
 <card
 title="Develop with RisingWave Cloud"
-content="RisingWave Cloud leverages the superpower of RisingWave Database, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave Database using the console."
+content="RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave using the console."
 cloud="develop-overview"
 />

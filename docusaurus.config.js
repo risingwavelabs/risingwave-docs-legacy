@@ -138,7 +138,7 @@ const config = {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "RisingWave Database",
+            label: "RisingWave",
           },
           {
             to: "/cloud/intro",
