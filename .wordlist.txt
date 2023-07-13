@@ -145,3 +145,9 @@ toc
 latencies
 thoroughputs
 VPC
+bigint
+bytea
+TopN
+UDFs
+avro
+kafka
