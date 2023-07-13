@@ -20,6 +20,12 @@ WITH (
 );
 ```
 
+:::note
+
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+
+:::
+
 ## Basic Parameters
 
 All WITH options are required except `force_append_only`.
@@ -28,23 +34,24 @@ All WITH options are required except `force_append_only`.
 |---|---|
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
-|AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](../sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
-|connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, see [Integrations](../rw-integration-summary.md) for a full list of connectors and integrations we are working on. |
+|AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
+|connector| Sink connector type. Currently, only `‘kafka’` and `‘jdbc’` are supported. If there is a particular sink you are interested in, see [Integrations](/rw-integration-summary.md) for a full list of connectors and integrations we are working on. |
 |properties.bootstrap.server|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |topic|Address of the Kafka topic. One sink can only correspond to one topic.|
 |format|Data format. Allowed formats:<ul><li> `append_only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li></ul>|
-|force_append_only| If `true`, forces the sink to be `append_only`, even if it cannot be.| 
+|force_append_only| If `true`, forces the sink to be `append_only`, even if it cannot be.|
 |use_transaction| If set to `false`, the connector will use at-least-once processing, allowing for non-atomic writes. This might cause duplicated results. By default, `use_transaction` is `true`.|
 
 ## Examples
 
 Create a sink by selecting an entire materialized view.
+
 ```sql
 CREATE SINK sink1 FROM mv1 
 WITH (
    connector='kafka',
-   kafka.brokers='localhost:9092',
-   kafka.topic='test',
+   properties.bootstrap.server='localhost:9092',
+   topic='test',
    format='append_only'
 );
 ```
@@ -52,6 +59,7 @@ WITH (
 Create a sink by selecting the average `distance` and `duration` from `taxi_trips`.
 
 The schema of `taxi_trips` is like this:
+
 ```sql
 {
   "id": VARCHAR,
@@ -62,6 +70,7 @@ The schema of `taxi_trips` is like this:
 ```
 
 The table may look like this:
+
 ```
  id | distance | duration |   city   
 ----+----------+----------+----------
@@ -79,8 +88,8 @@ SELECT
 FROM taxi_trips
 WITH (
    connector='kafka',
-   kafka.brokers='localhost:9092',
-   kafka.topic='test',
+   properties.bootstrap.server='localhost:9092',
+   topic='test',
    format='append_only'
 );
 
@@ -94,12 +103,10 @@ Secure Sockets Layer (SSL) was the predecessor of Transport Layer Security (TLS)
 
 Simple Authentication and Security Layer (SASL) is a framework for authentication and data security in Internet protocols.
 
-RisingWave supports four SASL authentication mechanisms:
+RisingWave supports these SASL authentication mechanisms:
 
 - `SASL/PLAIN`
 - `SASL/SCRAM`
-- `SASL/GSSAPI`
-- `SASL/OAUTHBEARER`
 
 SSL encryption can be used concurrently with SASL authentication mechanisms.
 
@@ -131,8 +138,8 @@ Here is an example of creating a sink encrypted with SSL without using SASL auth
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
    format = 'append_only',
    properties.security.protocol='SSL',
    properties.ssl.ca.location='/home/ubuntu/kafka/secrets/ca-cert',
@@ -170,8 +177,8 @@ Here is an example of creating a sink authenticated with SASL/PLAIN without SSL 
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
    format = 'append_only',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_PLAINTEXT',
@@ -179,14 +186,15 @@ WITH (
    properties.sasl.password='admin-secret'
 );
 ```
+
 This is an example of creating a sink authenticated with SASL/PLAIN with SSL encryption.
 
 ```sql
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
    format = 'append_only',
    properties.sasl.mechanism='PLAIN',
    properties.security.protocol='SASL_SSL',
@@ -227,8 +235,8 @@ Here is an example of creating a sink authenticated with SASL/SCRAM without SSL 
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
    format = 'append_only',
    properties.sasl.mechanism='SCRAM-SHA-256',
    properties.security.protocol='SASL_PLAINTEXT',
@@ -236,88 +244,3 @@ WITH (
    properties.sasl.password='admin-secret'
 );
 ```
-
-### `SASL/GSSAPI`
-
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSPI with SSL.|
-|`properties.sasl.mechanism`| Set to `GSSAPI`.|
-|`properties.sasl.kerberos.service.name`| |
-|`properties.sasl.kerberos.keytab`| |
-|`properties.sasl.kerberos.principal`| |
-|`properties.sasl.kerberos.kinit.cmd`| |
-|`properties.sasl.kerberos.min.time.before.relogin`| |
-
-:::note
-
-For the definitions of the parameters, see the [librdkafka properties list](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md). Note that the parameters in the list assumes all parameters start with `properties.` and therefore do not include this prefix.
-
-:::
-
-Here is an example of creating a sink authenticated with SASL/GSSAPI without SSL encryption.
-
-```sql
-CREATE SINK sink1 FROM mv1                 
-WITH (
-   connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   format = 'append_only',
-   properties.sasl.mechanism='GSSAPI',
-   properties.security.protocol='SASL_PLAINTEXT',
-   properties.sasl.kerberos.service.name='kafka',
-   properties.sasl.kerberos.keytab='/etc/krb5kdc/kafka.client.keytab',
-   properties.sasl.kerberos.principal='kafkaclient4@AP-SOUTHEAST-1.COMPUTE.INTERNAL',
-   properties.sasl.kerberos.kinit.cmd='sudo kinit -R -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal} || sudo kinit -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal}',
-   properties.sasl.kerberos.min.time.before.relogin='10000'
-);
-```
-
-### `SASL/OAUTHBEARER`
-
-:::caution
-
- The implementation of SASL/OAUTHBEARER in RisingWave validates only [unsecured client side tokens](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_oauth.html#unsecured-client-side-token-creation-options-for-sasl-oauthbearer), and does not support OpenID Connect (OIDC) authentication. Therefore, it should not be used in production environments.
-
-:::
-
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| For SASL/OAUTHBEARER without SSL, set to `SASL_PLAINTEXT`. For SASL/OAUTHBEARER with SSL, set to `SASL_SSL`.|
-|`properties.sasl.mechanism`|Set to `OAUTHBEARER`.|
-|`properties.sasl.oauthbearer.config`| |
-
-:::note
-
-For the definitions of the parameters, see the [librdkafka properties list](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md). Note that the parameters in the list assumes all parameters start with `properties.` and therefore do not include this prefix. Also, due to the limitation of the SASL/OAUTHBEARER implementation, you only need to specify one OAUTHBEARER parameter: `properties.sasl.oauthbearer.config`. Other OAUTHBEARER parameters are not applicable.
-
-:::
-
-For SASL/OAUTHBEARER with SSL, you also need to include these SSL parameters:
-
-- `properties.ssl.ca.location`
-- `properties.ssl.certificate.location`
-- `properties.ssl.key.location`
-- `properties.ssl.key.password`
-
-This is an example of creating a sink authenticated with SASL/OAUTHBEARER without SSL encryption.
-
-```sql
-CREATE SINK sink1 FROM mv1                 
-WITH (
-   connector='kafka',
-   kafka.topic='quickstart-events',
-   kafka.brokers='localhost:9093',
-   format = 'append_only',
-   properties.sasl.mechanism='OAUTHBEARER',
-   properties.security.protocol='SASL_PLAINTEXT',
-   properties.sasl.oauthbearer.config='principal=bob'
-);
-```
-
-:::note
-
-Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
-
-:::

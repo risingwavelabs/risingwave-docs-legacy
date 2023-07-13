@@ -38,7 +38,7 @@ git clone https://github.com/risingwavelabs/risingwave.git
 Now navigate to the `integration_tests/ad-ctr` directory and start the demo cluster from the docker compose file. 
 
 ```shell
-cd integration_tests/ad-ctr
+cd risingwave/integration_tests/ad-ctr
 docker compose up -d
 ```
 

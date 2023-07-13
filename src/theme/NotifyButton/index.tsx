@@ -4,6 +4,7 @@ import "./style.css";
 import { toast } from "react-toastify";
 import { postNotification } from "../../api/feedback";
 import Tooltip from "@mui/material/Tooltip";
+import { useColorMode } from "@docusaurus/theme-common";
 
 type Props = {
   note: string;
@@ -14,6 +15,13 @@ function NotifyButton({ note, size }: Props) {
   const [shown, setShown] = useState(false);
   const [valid, setValid] = useState(false);
   const [email, setEmail] = useState("");
+
+  const { colorMode } = useColorMode();
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    setDark(colorMode === "dark");
+  }, [colorMode]);
+
 
   const getNotify = () => {
     const emailValid = email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
@@ -28,7 +36,8 @@ function NotifyButton({ note, size }: Props) {
         setShown(false);
       })
       .catch((err) => {
-        if (err.response) toast.info(err.response.data.msg ?? "Something went wrong :(");
+        if (err.response)
+          toast.info(err.response.data.msg ?? "Something went wrong :(");
         else if (err.request) toast.error("Something went wrong :(");
       })
       .finally(() => setEmail(""));
@@ -51,7 +60,9 @@ function NotifyButton({ note, size }: Props) {
             required
             onChange={(e) => {
               setEmail(e.target.value);
-              setValid(!!e.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i));
+              setValid(
+                !!e.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)
+              );
             }}
           />
           <button type="submit" disabled={!valid} onClick={getNotify}>
@@ -61,8 +72,12 @@ function NotifyButton({ note, size }: Props) {
       }
     >
       <Tooltip title="Notify me when it's available" arrow>
-        <div className="notify-button" id="app-title" onClick={() => setShown(!shown)}>
-          <NotifyIconDefault size={size} />
+        <div
+          className="notify-button"
+          id="app-title"
+          onClick={() => setShown(!shown)}
+        >
+          <NotifyIconDefault fill={dark ? "#48dcbc" : "#0098EF"} size={size} />
         </div>
       </Tooltip>
     </Popover>
@@ -72,10 +87,11 @@ function NotifyButton({ note, size }: Props) {
 export default NotifyButton;
 
 type ButtonSize = {
+  fill: string;
   size?: string;
 };
 
-const NotifyIconDefault = ({ size }: ButtonSize) => {
+const NotifyIconDefault = ({ fill, size }: ButtonSize) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +101,7 @@ const NotifyIconDefault = ({ size }: ButtonSize) => {
     >
       <path fill="none" d="M0 0h24v24H0z" />
       <path
-        fill="#95adee"
+        fill={fill}
         d="M18 10a6 6 0 1 0-12 0v8h12v-8zm2 8.667l.4.533a.5.5 0 0 1-.4.8H4a.5.5 0 0 1-.4-.8l.4-.533V10a8 8 0 1 1 16 0v8.667zM9.5 21h5a2.5 2.5 0 1 1-5 0z"
       />
     </svg>

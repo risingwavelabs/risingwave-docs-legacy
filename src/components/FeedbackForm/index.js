@@ -1,7 +1,4 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import PullRequestIcon from "@site/static/img/github_pr.svg";
-import IssueIcon from "@site/static/img/github_issue.svg";
+import React, { useState, useEffect } from "react";
 import { Button, Typography, Stack } from "@mui/material";
 import CommunityLinkGroup from "@site/src/components/LinkGroup";
 import { sendFeedback } from "@site/src/api/feedback";
@@ -9,6 +6,11 @@ import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./index.module.css";
+import { Widget } from "@happyreact/react";
+import "@happyreact/react/theme.css";
+import { useColorMode } from "@docusaurus/theme-common";
+import IssueIcon from "./IssueIcon";
+import PullRequestIcon from "./PullRequestIcon";
 
 export default function FeedbackForm(props) {
   const [formData, setFormData] = useState({
@@ -16,6 +18,13 @@ export default function FeedbackForm(props) {
     like: false,
     unlike: false,
   });
+
+  const { colorMode } = useColorMode();
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    setDark(colorMode === "dark");
+  }, [colorMode]);
+
 
   const handleChange = (e) => {
     setFormData({
@@ -108,7 +117,7 @@ export default function FeedbackForm(props) {
                 className={styles.footerButton}
                 variant="outlined"
                 onClick={() => window.open(props.requestIssueUrl)}
-                startIcon={<IssueIcon />}
+                startIcon={<IssueIcon fill={dark ? "#48dcbc" : "#0098ef"} />}
               >
                 File an issue
               </Button>
@@ -116,13 +125,28 @@ export default function FeedbackForm(props) {
                 className={styles.footerButton}
                 variant="outlined"
                 onClick={() => window.open(props.editUrl)}
-                startIcon={<PullRequestIcon style={{ color: "red" }} />}
+                startIcon={<PullRequestIcon fill={dark ? "#48dcbc" : "#0098ef"} />}
               >
                 Edit this page
               </Button>
             </Stack>
           </Stack>
         </Stack>
+        <div className={styles.happyReact}>
+          <h3 className={styles.title}>Was this page helpful?</h3>
+          <Widget
+            className={styles.widget}
+            token="8e453b8d-5ed6-4a2a-94e5-292cecc9b05a"
+            resource={props.unversionedId}
+            classes={{
+              root: styles.root,
+              container: styles.container,
+              grid: styles.grid,
+              cell: styles.cell,
+              reaction: styles.reaction,
+            }}
+          />
+        </div>
       </form>
     </Stack>
   );

@@ -10,8 +10,14 @@
   flex-direction: column;
 }
 
-.button {
+.linkButton {
   margin: 10px;
+}
+
+.linkButtonNoLeftBorder {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  transition: all 0.1s !important;
 }
 
 @media (max-width: 996px) {
@@ -30,10 +36,9 @@
 
   .button {
     margin: 0px;
-    /* margin-right: 10px; */
   }
+
   .linkItem {
     margin-right: 10px;
   }
-  
 }

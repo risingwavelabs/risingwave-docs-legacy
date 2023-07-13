@@ -1,0 +1,12 @@
+.menuExternalLink {
+  align-items: center;
+}
+
+.internalDocLink {
+  background: none;
+}
+
+.docSidebarHeadingColor,
+.docSidebarHeadingColor:hover {
+  color: var(--ifm-heading-color) !important;
+}

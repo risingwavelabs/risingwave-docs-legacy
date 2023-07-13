@@ -146,12 +146,12 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
 
 ### Enable the connector node in RisingWave
 
-The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo. The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-docker-compose.md). 
+The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems. You can use the docker-compose configuration of the latest RisingWave demo. The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-docker-compose.md).
 
 
 ### Create a table using the native CDC connector in RisingWave
 
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
 
 
 #### Syntax
@@ -225,7 +225,7 @@ You need to download and configure the [Debezium connector for MySQL](https://de
 
 ### Create a table using the Kafka connector in RisingWave
 
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
 
 ```sql
 CREATE TABLE source_name (
@@ -252,7 +252,7 @@ ROW FORMAT DEBEZIUM_JSON;
 
 ### Create a table using the Kafka connector in RisingWave
 
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](../sql/commands/sql-create-table.md) command for more details. The data format must be Maxwell JSON.
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Maxwell JSON.
 
 ```sql
 CREATE TABLE source_name (

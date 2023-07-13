@@ -1,0 +1,120 @@
+div.cardContainer {
+  background: none;
+  border-radius: var(--ifm-pagination-nav-border-radius);
+  transition: all 300ms ease;
+  cursor: pointer;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+[data-theme="dark"] div.cardContainer {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: all var(--ifm-transition-fast) ease;
+  transition-property: border;
+  background-color: var(--ifm-card-background-color);
+}
+
+div.defaultContainer {
+  border-radius: var(--ifm-pagination-nav-border-radius);
+  margin: 1rem 0;
+  width: 100%;
+}
+
+[data-theme="dark"] div.defaultContainer {
+  background-color: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  transition: all var(--ifm-transition-fast) ease;
+  transition-property: border;
+}
+
+div.cardContainer:hover {
+  border: 1px solid var(--ifm-button-background-color);
+  box-shadow: 0 0 0 1px #cddbff;
+}
+
+[data-theme="dark"] div.cardContainer:hover {
+  border: 1px solid #48dcbc;
+  box-shadow: 0 0 0 1px #48dcbc;
+}
+
+div.cardContent {
+  padding-bottom: 1rem;
+  font-family: var(--ifm-font-family-base);
+}
+
+div.title {
+  margin-bottom: 1.4rem;
+  font-size: 1.3rem;
+}
+
+p.content {
+  font-size: 0.9rem;
+}
+
+[data-theme="dark"] div.title,
+[data-theme="dark"] p.content,
+div.title,
+p.content,
+p.cardLink {
+  color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-base);
+}
+
+p.cardLink {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+div.title,
+p.content,
+p.cardLink {
+  font-family: var(--ifm-font-family-base);
+}
+
+button.cardBtn {
+  text-transform: none;
+}
+
+div.cardLinks {
+  margin-top: 1rem;
+}
+
+p.cardLink {
+  cursor: pointer;
+  color: var(--ifm-button-color);
+  font-size: 0.9rem;
+  margin-bottom: 0.1rem;
+  margin-right: 4px;
+  border: 1px solid transparent;
+}
+
+p.cardLink:hover {
+  color: var(--ifm-menu-color-active);
+  border-bottom: 1px dotted #95adee88;
+}
+
+div.flexBox {
+  color: var(--ifm-button-color);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+p.cardLink:hover .externalArrowIcon path {
+  stroke: var(--ifm-menu-color-active);
+}
+
+[data-theme="dark"] .externalArrowIcon path {
+  stroke: #48dcbc;
+}
+
+[data-theme="dark"] p.cardLink:hover .externalArrowIcon path {
+  stroke: var(--ifm-menu-color-active);
+}
+
+p.cardLink:hover .rightArrowIcon path:nth-child(2) {
+  fill: #95adee88;
+}

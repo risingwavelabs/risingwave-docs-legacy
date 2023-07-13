@@ -31,7 +31,7 @@ git clone https://github.com/risingwavelabs/risingwave.git
 Now navigate to the `integration_tests/livestream` directory and start the demo cluster from the docker compose file. 
 
 ```shell
-cd integration_tests/livestream
+cd risingwave/integration_tests/livestream
 docker compose up -d
 ```
 

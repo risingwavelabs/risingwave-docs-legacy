@@ -10,8 +10,36 @@ Use the `CREATE VIEW` command to create a non-materialized view, which runs ever
 ## Syntax
 
 ```sql
-CREATE VIEW view_name [ ( column_name [, ...] ) ] AS select_query;
+CREATE VIEW [IF NOT EXISTS] view_name [ ( column_name [, ...] ) ] AS select_query;
 ```
+
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('CREATE VIEW'),
+        rr.Optional(rr.Terminal('IF NOT EXISTS')),
+        rr.NonTerminal('view_name', 'wrap'),
+        rr.Optional(
+            rr.Sequence(
+                rr.Terminal('('),
+                rr.OneOrMore(
+                     rr.NonTerminal('column_name'), rr.Terminal(',')),
+                rr.Terminal(')'),
+            ),
+        ),
+        rr.Terminal('AS'),
+        rr.NonTerminal('select_query', 'skip'),
+        rr.Terminal(';'),
+    )
+);
+
+
+<drawer SVG={svg} />
+
+
+
 
 ## Parameters
 
@@ -48,7 +76,7 @@ WITH (
 
 -- Create views based on the table, source, and existing views.
 
-CREATE VIEW v1 (a1, b1) AS SELECT a, b FROM t1;
+CREATE VIEW IF NOT EXISTS v1 (a1, b1) AS SELECT a, b FROM t1;
 
 CREATE VIEW v2 AS SELECT * FROM s1 ORDER BY i1;
 

@@ -50,13 +50,13 @@ rr.Stack(
                rr.Terminal(','),
             ),
             rr.Sequence(
-               rr.Terminal('kafka.brokers'),
+               rr.Terminal('properties.bootstrap.server'),
                rr.Terminal('='),
                rr.Terminal('\'broker_address\''),
                rr.Terminal(','),
             ),
             rr.Sequence(
-               rr.Terminal('kafka.topic'),
+               rr.Terminal('topic'),
                rr.Terminal('='),
                rr.Terminal('\'topic_address\''),
                rr.Terminal(','),
@@ -81,7 +81,7 @@ rr.Stack(
 
 Click a sink name to see the SQL syntax, options, and sample statement of sinking data from RisingWave to the sink.
 
- * [Kafka](../../guides/create-sink-kafka.md) (3.1.0 or later versions)
+ * [Kafka](/guides/create-sink-kafka.md) (3.1.0 or later versions)
  * JDBC-available databases
    * MySQL
    * PostgreSQL

@@ -41,12 +41,11 @@ const HeroBanner = styled("div")(() => ({
 function HomepageHeader() {
   const windowSize = useWindowSize();
   const { siteMetadata } = useDocusaurusContext();
-  const { isDarkTheme } = useColorMode();
+  const { colorMode } = useColorMode();
   const [dark, setDark] = useState(false);
-
   useEffect(() => {
-    setDark(isDarkTheme);
-  }, [isDarkTheme]);
+    setDark(colorMode === "dark");
+  }, [colorMode]);
 
   return (
     <HeroBanner>
