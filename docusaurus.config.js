@@ -36,9 +36,15 @@ const config = {
               badge: false,
               banner: "unreleased",
             },
-            "0.19.0": {
-              label: "0.19.0 (current)",
+            "1.0.0": {
+              label: "1.0.0 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            "0.19.0": {
+              label: "0.19.0",
+              path: "/0.19.0",
               badge: false,
               banner: "none",
             },
@@ -138,7 +144,7 @@ const config = {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "RisingWave Database",
+            label: "RisingWave",
           },
           {
             to: "/cloud/intro",

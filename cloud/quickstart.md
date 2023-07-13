@@ -68,7 +68,7 @@ See [Choose a cluster plan](cluster-choose-a-cluster-plan.md) for details on how
 
 ## Connect to your cluster
 
-After getting a cluster up and running, you need to connect to it so that you can interact with RisingWave Database.
+After getting a cluster up and running, you need to connect to it so that you can interact with RisingWave.
 
 You can choose from the following two ways to connect to your cluster.
 
@@ -76,7 +76,7 @@ You can choose from the following two ways to connect to your cluster.
 
 <TabItem value="console" label="Query console">
 
-The query console is the most intuitive and easy way to connect to and interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
+The query console is the most intuitive and easy way to connect to and interact with RisingWave, offering graphical tools for managing data and visualizing results.
 
 
 #### To connect via the console:
@@ -110,7 +110,7 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 1. [Install `psql`](https://www.risingwave.dev/docs/current/install-psql-without-postgresql/) in your environment.
 
-    `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave Database.
+    `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
 
 2. In RisingWave Cloud, go to [**Clusters**](https://risingwave.cloud/clusters/).
     
@@ -175,9 +175,9 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 ## Explore RisingWave with examples
 
-You can kickstart your journey with RisingWave Database by exploring the sample queries in the [**Query**](https://risingwave.cloud/console/) console.
+You can kickstart your journey with RisingWave by exploring the sample queries in the [**Query**](https://risingwave.cloud/console/) console.
 
-These demos cover the most common steps in using RisingWave Database, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
+These demos cover the most common steps in using RisingWave, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
 
 <img
 src={require('./images/console-samplequeries.gif').default}
@@ -197,7 +197,7 @@ Congrats, you are now ready to unleash the full potential of RisingWave on your 
 
 <card
 title="Develop with RisingWave Cloud"
-content="RisingWave Cloud leverages the superpower of RisingWave Database, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave Database, in the cloud."
+content="RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave, in the cloud."
 cloud="develop-overview"
 />
 
