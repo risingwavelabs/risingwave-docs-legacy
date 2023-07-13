@@ -74,6 +74,7 @@ import TabItem from '@theme/TabItem';
     GRANT CONNECT ON DATABASE <database_name> TO <username>;   
     GRANT USAGE ON SCHEMA <schema_name> TO <username>;  
     GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>; 
+    GRANT CREATE ON DATABASE <database_name> TO <username>;
     ```
 
     You can use the following statement to check the privileges of the user to the tables:

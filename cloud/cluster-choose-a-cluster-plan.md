@@ -18,6 +18,8 @@ import TabItem from '@theme/TabItem';
 
 The Free plan provides all the necessary resources to test and explore all RisingWave Cloud's features — at no cost.
 
+You can create up to three clusters with the free plan in your account.
+
 :::caution
 Clusters created under the Free plan will expire after seven days, and your data will be kept for an additional seven days. If you want to get a backup of your data, please contact us at cloud-support@risingwave-labs.com.
 

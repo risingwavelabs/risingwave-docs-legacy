@@ -13,7 +13,6 @@ Clickstream data provide a detailed log of how users travel through a particular
 
 In this tutorial, you will learn how to track the number of clicks a webpage gets over time with RisingWave. We have set up a demo cluster for this tutorial so you can easily try it out.
 
-
 ## Prerequisites
 
 * Ensure you have [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) installed in your environment. Note that Docker Compose is included in Docker Desktop for Windows and macOS. If you use Docker Desktop, ensure that it is running before launching the demo cluster.
@@ -77,7 +76,6 @@ Next, the `hop()` function will create 24-hour time windows every 10 minutes. Ea
 
 Please refer to [User time windows](/sql/functions-operators/sql-function-time-window.md) for an explanation of the tumble and hop functions and aggregations.
 
-
 ```sql
 CREATE MATERIALIZED VIEW thread_view_count AS WITH t AS (
     SELECT
@@ -115,7 +113,6 @@ GROUP BY
     window_end;
 ```
 
-
 ## Step 4: Query the results
 
 We can query the most often viewed threads with the following statement.
@@ -139,7 +136,7 @@ The result may look like this:
 (5 rows)
 ```
 
-We can also query results by specifying a time interval. To learn more about data and time functions and operators, see [Date and time](https://www.risingwave.dev/docs/latest/sql-function-datetime/).
+We can also query results by specifying a time interval. To learn more about data and time functions and operators, see [Date and time](/sql/functions-operators/sql-function-datetime.md/sql-function-datetime/).
 
 ```sql
 SELECT * FROM thread_view_count
@@ -182,5 +179,3 @@ In this tutorial, we learn:
 
 * How to get time-windowed aggregate results by using the tumble and hop time window functions.
 * How to compare time intervals.
-
-

@@ -93,20 +93,16 @@ To persist your data, start RisingWave with [Docker Compose](/deploy/risingwave-
 
 1. ### Download the binaries
 
-  Replace `<version>` with actual version name. For example, `v0.19.0`.
-
   ```shell
-  wget https://github.com/risingwavelabs/risingwave/releases/download/<version>/risingwave-<version>-x86_64-unknown-linux.tar.gz
+  wget https://github.com/risingwavelabs/risingwave/releases/download/v1.0.0/risingwave-v1.0.0-x86_64-unknown-linux.tar.gz
   ```
 
   > You can find previous binary releases in [Release notes](/release-notes.md).
 
 1. ### Extract the tarball
 
-  Replace `<version>` with actual version name.
-
   ```shell
-  tar xvf risingwave-<version>-x86_64-unknown-linux.tar.gz
+  tar xvf risingwave-v1.0.0-x86_64-unknown-linux.tar.gz
   ```
 
 1. ### Start RisingWave

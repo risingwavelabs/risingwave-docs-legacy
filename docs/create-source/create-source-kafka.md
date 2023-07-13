@@ -125,6 +125,8 @@ For materialized sources with primary key constraints, if a new data record with
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
 |properties.sync.call.timeout | Optional. Specify the timeout. By default, the timeout is 5 seconds.  |
+|schema.registry.username|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
+|schema.registry.password|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
 
 ### Other parameters
 
@@ -171,7 +173,9 @@ CREATE TABLE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
-   topic='test_topic'
+   topic='test_topic',
+   schema.registry.username='your_schema_registry_username',
+   schema.registry.password='your_schema_registry_password'
 )
 FORMAT UPSERT ENCODE AVRO (
    confluent_schema_registry = 'http://127.0.0.1:8081'

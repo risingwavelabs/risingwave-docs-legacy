@@ -18,6 +18,10 @@
   margin-bottom: 20px;
 }
 
+[data-theme="dark"] .breakLine {
+  background-color: #152c3c;
+}
+
 .leftGroupContainer {
   display: flex;
   flex-direction: column;
