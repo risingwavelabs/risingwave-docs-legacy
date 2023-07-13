@@ -5,10 +5,10 @@ description: Sink data from RisingWave to AWS Kinesis.
 slug: /sink-to-aws-kinesis
 ---
 
-This topic described how to sink data from RisingWave to AWS Kinesis Data Streams. 
+This topic described how to sink data from RisingWave to AWS Kinesis Data Streams.
 
 :::caution Experimental feature
-The Iceberg sink connector in RisingWave is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+The AWS Kinesis sink connector in RisingWave is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
 :::
 
 ## Syntax
@@ -26,14 +26,14 @@ WITH (
 
 |Field|Notes|
 |-----|-----|
-|stream	|Required. Name of the stream.|
-|aws.region	|Required. AWS service region. For example, US East (N. Virginia).|
-|endpoint	|Optional. URL of the entry point for the AWS Kinesis service.|
-|aws.credentials.access_key_id	|Conditional. This field indicates the access key ID of AWS. It must appear in pairs with `aws.credentials.secret_access_key`.	|
-|aws.credentials.secret_access_key	|Conditional. This field indicates the secret access key of AWS. It must appear in pairs with `aws.credentials.access_key_id`.	|
-|aws.credentials.session_token	|Optional. The session token associated with the temporary security credentials.	|
-|aws.credentials.role.arn	|Optional. The Amazon Resource Name (ARN) of the role to assume.|
-|aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources.	|
+|stream |Required. Name of the stream.|
+|aws.region |Required. AWS service region. For example, US East (N. Virginia).|
+|endpoint |Optional. URL of the entry point for the AWS Kinesis service.|
+|aws.credentials.access_key_id |Conditional. This field indicates the access key ID of AWS. It must appear in pairs with `aws.credentials.secret_access_key`. |
+|aws.credentials.secret_access_key |Conditional. This field indicates the secret access key of AWS. It must appear in pairs with `aws.credentials.access_key_id`. |
+|aws.credentials.session_token |Optional. The session token associated with the temporary security credentials. |
+|aws.credentials.role.arn |Optional. The Amazon Resource Name (ARN) of the role to assume.|
+|aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources. |
 
 ## Sink parameters
 
@@ -47,10 +47,10 @@ WITH (
 
 ```sql
 CREATE SINK s1 FROM t WITH (
-	connector = 'kinesis',
-	stream = 'kinesis-sink-demo',
-	aws.region = 'us-east-1',
-	aws.credentials.access_key_id = 'your_access_key',
-	aws.credentials.secret_access_key = 'your_secret_key',
-	type = 'debezium');
+ connector = 'kinesis',
+ stream = 'kinesis-sink-demo',
+ aws.region = 'us-east-1',
+ aws.credentials.access_key_id = 'your_access_key',
+ aws.credentials.secret_access_key = 'your_secret_key',
+ type = 'debezium');
 ```
