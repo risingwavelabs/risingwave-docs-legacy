@@ -661,9 +661,13 @@ const sidebars = {
         },
         {
           type: 'doc',
+          id: 'manage/dedicated-compute-node'
+        },
+        {
+          type: 'doc',
           label: 'Telemetry',
           id: 'telemetry'
-        },
+        }
       ]
     },
     {
