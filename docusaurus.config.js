@@ -36,9 +36,15 @@ const config = {
               badge: false,
               banner: "unreleased",
             },
-            "0.19.0": {
-              label: "0.19.0 (current)",
+            "1.0.0": {
+              label: "1.0.0 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            "0.19.0": {
+              label: "0.19.0",
+              path: "/0.19.0",
               badge: false,
               banner: "none",
             },
@@ -73,11 +79,13 @@ const config = {
               banner: "none",
             },
           },
-          editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
+          editUrl:
+            "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
         blog: {
           showReadingTime: true,
-          editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
+          editUrl:
+            "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
         theme: {
           customCss: [
@@ -100,10 +108,21 @@ const config = {
         sidebarPath: require.resolve("./sidebarCloud.js"),
       },
     ],
+    require.resolve("docusaurus-plugin-image-zoom"),
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      zoom: {
+        selector: ".markdown img",
+        background: {
+          light: "#ffffff",
+          dark: "#0a1721",
+        },
+        config: {
+          // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+        },
+      },
       colorMode: {
         disableSwitch: false,
         respectPrefersColorScheme: true,
@@ -125,7 +144,7 @@ const config = {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "RisingWave Database",
+            label: "RisingWave",
           },
           {
             to: "/cloud/intro",
@@ -208,7 +227,8 @@ const config = {
     }),
   customFields: {
     docsUrl: "https://www.risingwave.dev",
-    requestUrl: "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
+    requestUrl:
+      "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
     bugReportUrl:
       "https://github.com/risingwavelabs/risingwave-docs/issues/new?assignees=CharlieSYH%2C+hengm3467&labels=bug&template=bug_report.yml&title=Bug%3A+&link=",
   },

@@ -9,7 +9,7 @@ div.cardContainer {
 }
 
 [data-theme="dark"] div.cardContainer {
-  border: 1px solid var(--ifm-color-emphasis-200);
+  border: 1px solid var(--ifm-card-border-color);
   transition: all var(--ifm-transition-fast) ease;
   transition-property: border;
   background-color: var(--ifm-card-background-color);
@@ -23,7 +23,7 @@ div.defaultContainer {
 
 [data-theme="dark"] div.defaultContainer {
   background-color: var(--ifm-card-background-color);
-  border: 1px solid var(--ifm-color-emphasis-200);
+  border: 1px solid var(--ifm-card-border-color);
   transition: all var(--ifm-transition-fast) ease;
   transition-property: border;
 }
@@ -83,7 +83,7 @@ div.cardLinks {
 
 p.cardLink {
   cursor: pointer;
-  color: var(--ifm-button-color);
+  color: var(--ifm-color-primary);
   font-size: 0.9rem;
   margin-bottom: 0.1rem;
   margin-right: 4px;
@@ -91,7 +91,6 @@ p.cardLink {
 }
 
 p.cardLink:hover {
-  color: var(--ifm-menu-color-active);
   border-bottom: 1px dotted #95adee88;
 }
 
@@ -103,16 +102,8 @@ div.flexBox {
   justify-content: left;
 }
 
-p.cardLink:hover .externalArrowIcon path {
-  stroke: var(--ifm-menu-color-active);
-}
-
-[data-theme="dark"] .externalArrowIcon path {
-  stroke: #48dcbc;
-}
-
-[data-theme="dark"] p.cardLink:hover .externalArrowIcon path {
-  stroke: var(--ifm-menu-color-active);
+p.cardLink .externalArrowIcon path {
+  stroke: var(--ifm-color-primary);
 }
 
 p.cardLink:hover .rightArrowIcon path:nth-child(2) {

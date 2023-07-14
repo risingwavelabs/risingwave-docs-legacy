@@ -272,6 +272,11 @@ const sidebars = {
             },
             {
               type: 'doc',
+              label: 'AWS Kinesis',
+              id: 'guides/sink-to-aws-kinesis'
+            },
+            {
+              type: 'doc',
               label: 'TiDB',
               id: 'guides/sink-to-tidb'
             },
@@ -402,7 +407,13 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/query-syntax/query-syntax-with-clause',
                   label: 'WITH clause',
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/query-syntax/query-syntax-join-clause',
+                  label: 'JOIN clause',
                 }
+
               ]
             },
             {
@@ -524,8 +535,13 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
-                  id: 'sql/functions-operators/sql-function-set',
-                  label: 'Set',
+                  id: 'sql/functions-operators/sql-function-set-operators',
+                  label: 'Set operators',
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/functions-operators/sql-function-set-functions',
+                  label: 'Set functions',
                 }
               ]
             },
@@ -581,7 +597,12 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/system-catalogs/pg-catalog-function',
                   label: 'PostgreSQL catalogs and functions',
-                }
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/system-catalogs/rw_catalog',
+                  label: 'RisingWave catalogs',
+                },
               ]
             },
             {

@@ -14,7 +14,7 @@ Currently, these system parameters are availble in RisingWave.
 | Parameter           |    Description    |
 |---|---|
 |`barrier_interval_ms`     | The time interval of the periodic barriers.|
-|`checkpoint_interval`      | Specify the number of barriers for which a checkpoint will be created. The value must be a positive integer.|
+|`checkpoint_frequency`      | Specify the number of barriers for which a checkpoint will be created. The value must be a positive integer.|
 |`sstable_size_mb`          | The target size of SSTable.|
 |`block_size_kb`          | The size of each block in bytes in SSTable.|
 |`bloom_false_positive`     | False positive rate of bloom filter in SSTable.|
@@ -35,7 +35,7 @@ SHOW PARAMETERS;
            Name           |    Value    
 --------------------------+-------------
  barrier_interval_ms      | 1000
- checkpoint_interval      | 10
+ checkpoint_frequency      | 10
  sstable_size_mb          | 256
  block_size_kb            | 64
  bloom_false_positive     | 0.001
@@ -48,7 +48,7 @@ SHOW PARAMETERS;
 
 ## How to adjust system parameters?
 
-You can use the `ALTER SYSTEM SET` statement to revise the setting of a system parameter. Note that currently only `checkpoint_interval` and `telemetry_enabled` can be set.
+You can use the `ALTER SYSTEM SET` statement to revise the setting of a system parameter. Note that currently only `checkpoint_frequency` and `telemetry_enabled` can be set.
 
 :::note
 

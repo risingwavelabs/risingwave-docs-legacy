@@ -5,12 +5,16 @@ description: Sink data from RisingWave to Apache Iceberg with the JDBC connector
 slug: /sink-to-iceberg
 ---
 
-This guide describes how to sink data from RisingWave to Apache Iceberg. Apache Iceberg is a table format designed to support huge tables. For more information, see [Apache Iceberg](https://iceberg.apache.org).
+This guide describes how to sink data from RisingWave to Apache Iceberg using the Iceberg sink connector in RisingWave. Apache Iceberg is a table format designed to support huge tables. For more information, see [Apache Iceberg](https://iceberg.apache.org).
+
+:::caution Experimental feature
+The Iceberg sink connector in RisingWave is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::
 
 ## Prerequisites
 
-- Ensure you already have an Iceberg table that you can sink data to. 
-  For additional guidance on creating a table and setting up Iceberg, refer to this [quickstart guide](https://iceberg.apache.org/spark-quickstart/) on creating an Iceberg table. 
+- Ensure you already have an Iceberg table that you can sink data to.
+  For additional guidance on creating a table and setting up Iceberg, refer to this [quickstart guide](https://iceberg.apache.org/spark-quickstart/) on creating an Iceberg table.
 
 - Ensure you have an upstream materialized view or source that you can sink data from.
 
@@ -27,7 +31,6 @@ WITH (
 
 ## Parameters
 
-
 | Parameter Names | Description |
 | --------------- | ---------------------------------------------------------------------- |
 | type            | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key.|
@@ -39,19 +42,17 @@ WITH (
 | database.name   | The database of the target Iceberg table.|
 | table.name      | The name of the target Iceberg table.|
 
-
 :::note
 Iceberg sinks with `upsert` type is slower than `append-only`.
 :::
 
-
 ## Examples
 
-This section includes several examples that you can use if you want to quickly experiment with sinking data to Iceberg. 
+This section includes several examples that you can use if you want to quickly experiment with sinking data to Iceberg.
 
 ### Create an Iceberg table (if you do not already have one)
 
-For example, the following `spark-sql` command creates an Iceberg table named `table` under the database `dev` in AWS S3. The table is in an S3 bucket named `my-iceberg-bucket` in region `ap-southeast-1` and under the path `path/to/warehouse`. The table has the property `format-version=2`, so it supports the upsert option. There should be a folder named `s3://my-iceberg-bucket/path/to/warehouse/dev/table/metadata`. 
+For example, the following `spark-sql` command creates an Iceberg table named `table` under the database `dev` in AWS S3. The table is in an S3 bucket named `my-iceberg-bucket` in region `ap-southeast-1` and under the path `path/to/warehouse`. The table has the property `format-version=2`, so it supports the upsert option. There should be a folder named `s3://my-iceberg-bucket/path/to/warehouse/dev/table/metadata`.
 
 Note that only S3-compatible object store is supported, such as AWS S3 or MinIO.
 
@@ -75,7 +76,6 @@ CREATE TABLE demo.dev.`table`
 ```
 
 ### Create an upstream materialized view or source
-
 
 The following query creates an append-only source. For more details on creating a source, see [`CREATE SOURCE`](/sql/commands/sql-create-source.md) .
 
@@ -174,4 +174,3 @@ WITH (
     table.name='table'
 );
 ```
-

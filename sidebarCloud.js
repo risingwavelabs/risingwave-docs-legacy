@@ -22,41 +22,21 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Quickstart",
-      collapsible: true,
-      collapsed: true,
+      label: "Get started",
+      collapsible: false,
+      collapsed: false,
       items: [
         {
           type: "doc",
           id: "quickstart",
-          label: "Get started in 5 steps",
+          label: "Quick start",
         },
         {
           type: "link",
-          label: "1. Sign up and log in",
-          href: "/cloud/quickstart/?step=1",
+          href: "https://www.risingwave.cloud/auth/signup/",
+          label: "Sign up and log in",
         },
-        {
-          type: "link",
-          label: "2. Create a cluster",
-          href: "/cloud/quickstart/?step=2",
-        },
-        {
-          type: "link",
-          label: "3. Connect to a cluster",
-          href: "/cloud/quickstart/?step=3",
-        },
-        {
-          type: "link",
-          label: "4. Explore RisingWave with examples",
-          href: "/cloud/quickstart/?step=4",
-        },
-        {
-          type: "link",
-          label: "5. Ingest, process, and deliver data",
-          href: "/cloud/quickstart/?step=5",
-        },
-      ],
+      ]
     },
     {
       type: "category",
@@ -87,6 +67,11 @@ module.exports = {
               type: "doc",
               id: "cluster-check-status-and-metrics",
               label: "Check status and metrics",
+            },
+            {
+              type: "doc",
+              id: "cluster-update-database-version",
+              label: "Update database version",
             },
             {
               type: "doc",
@@ -131,19 +116,6 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Console",
-      collapsible: false,
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          id: "console-overview",
-          label: "Overview",
-        },
-      ],
-    },
-    {
-      type: "category",
       label: "Develop",
       collapsible: false,
       collapsed: false,
@@ -151,6 +123,54 @@ module.exports = {
         {
           type: "doc",
           id: "develop-overview",
+        },
+        {
+          type: "category",
+          label: "Manage sources",
+          collapsible: true,
+          collapsed: true,
+          link: {type: 'doc', id: 'source-manage-sources'},
+          items: [
+            {
+              type: "doc",
+              id: "source-manage-sources",
+              label: "Overview",
+            },
+            {
+              type: "doc",
+              id: "source-create-a-source",
+            },
+            {
+              type: "doc",
+              id: "source-drop-a-source",
+            },
+          ]
+        },
+        {
+          type: "category",
+          label: "Manage sinks",
+          collapsible: true,
+          collapsed: true,
+          link: {type: 'doc', id: 'sink-manage-sinks'},
+          items: [
+            {
+              type: "doc",
+              id: "sink-manage-sinks",
+              label: "Overview",
+            },
+            {
+              type: "doc",
+              id: "sink-create-a-sink",
+            },
+            {
+              type: "doc",
+              id: "sink-drop-a-sink",
+            },
+          ]
+        },
+        {
+          type: "doc",
+          id: "console-overview",
         },
       ],
     },

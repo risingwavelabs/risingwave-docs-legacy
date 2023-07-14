@@ -56,18 +56,18 @@ A cluster in RisingWave Cloud provides the necessary resources for hosting indep
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={4}>
+<grid item xs={12} sm={6} md={6}>
 
 <card
 title="Connect to a cluster"
-content="After getting a cluster up and running, you need to connect to it to interact with RisingWave Database. You can use the web console or your local client to connect to your cluster."
+content="After getting a cluster up and running, you need to connect to it to interact with RisingWave. You can use the web console or your local client to connect to your cluster."
 cloud="connect-to-a-cluster"
 style={{height: "87%"}}
 />
 
 </grid>
 
-<grid item xs={12} sm={6} md={4}>
+<grid item xs={12} sm={6} md={6}>
 
 <card
 title="Check status and metrics of clusters"
@@ -78,7 +78,28 @@ style={{height: "87%"}}
   
 </grid>
 
-<grid item xs={12} sm={6} md={4}>
+</grid>
+
+<grid
+ container
+ direction="row"
+ spacing="15"
+ justifyContent="space-between"
+ justifyItems="stretch"
+ alignItems="stretch">
+
+<grid item xs={12} sm={6} md={6}>
+
+<card
+title="Update database version"
+content="When a newer version of RisingWave is available, you can update the database version of your cluster to the latest."
+cloud="update-database-version"
+style={{height: "87%"}}
+/>
+  
+</grid>
+
+<grid item xs={12} sm={6} md={6}>
 
 <card
 title="Stop and delete clusters"
