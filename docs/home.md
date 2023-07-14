@@ -277,7 +277,7 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 
 <grid item xs={6} sm={6} md={3}>
 
-### <RocketLaunchOutlinedIcon sx={{ color: "var(--ifm-font-color-base)" }} /> Get started
+### <RocketLaunchOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Get started
 
 Run RisingWave for testing
 
@@ -289,7 +289,7 @@ Deploy with Kubernetes operator
 
 <grid item xs={6} sm={6} md={3}>
 
-### <InfoOutlinedIcon sx={{ color: "var(--ifm-font-color-base)" }} /> About
+### <InfoOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> About
 
 Release notes
 
@@ -305,7 +305,7 @@ Data persistence
 
 <grid item xs={6} sm={6} md={3}>
 
-### <JoinInnerOutlinedIcon sx={{ color: "var(--ifm-font-color-base)" }} /> SQL references
+### <JoinInnerOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> SQL references
 
 Commands
 
@@ -327,7 +327,7 @@ Psql commands
 
 <grid item xs={6} sm={6} md={3}>
 
-### <NextWeekOutlinedIcon sx={{ color: "var(--ifm-font-color-base)" }} /> Demos
+### <NextWeekOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Demos
 
 Real-time ad performance analysis
 
@@ -357,7 +357,7 @@ Use RisingWave to monitor RisingWave metrics
 
 <grid item xs={6} sm={6} md={3}>
 
-### <ManageAccountsOutlinedIcon sx={{ color: "var(--ifm-font-color-base)" }} /> Manage
+### <ManageAccountsOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Manage
 
 View statement progress
 
@@ -371,7 +371,7 @@ Telemetry
 
 <grid item xs={6} sm={6} md={3}>
 
-### <CloudOutlinedIcon sx={{ color: "var(--ifm-font-color-base)" }} /> RisingWave Cloud
+### <CloudOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> RisingWave Cloud
 
 Manage clusters
 
