@@ -62,15 +62,13 @@ export default function OutlinedCard({
       onClick={() => {
         if (links) return;
         if (doc) {
-          globalData["docusaurus-plugin-content-docs"].default["versions"].map(
-            (v) => {
-              if (location.pathname.includes(v.path)) {
-                history.push(`${v.path}/${doc}`);
-              } else if (location.pathname.includes("cloud")) {
-                history.push(`/docs/current/${doc}`);
-              }
+          globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
+            if (location.pathname.includes(v.path)) {
+              history.push(`${v.path}/${doc}`);
+            } else if (location.pathname.includes("cloud")) {
+              history.push(`/docs/current/${doc}`);
             }
-          );
+          });
         } else if (url) {
           window.open(url, "_blank", "noopener,noreferrer");
         } else if (cloud) {
@@ -96,15 +94,15 @@ export default function OutlinedCard({
                       if (link.url) {
                         window.open(link.url, "_blank", "noopener,noreferrer");
                       } else if (link.doc) {
-                        globalData["docusaurus-plugin-content-docs"].default[
-                          "versions"
-                        ].map((v) => {
-                          if (location.pathname.includes(v.path)) {
-                            history.push(`${v.path}/${link.doc}`);
-                          } else if (location.pathname.includes("cloud")) {
-                            history.push(`/docs/current/${doc}`);
+                        globalData["docusaurus-plugin-content-docs"].default["versions"].map(
+                          (v) => {
+                            if (location.pathname.includes(v.path)) {
+                              history.push(`${v.path}/${link.doc}`);
+                            } else if (location.pathname.includes("cloud")) {
+                              history.push(`/docs/current/${doc}`);
+                            }
                           }
-                        });
+                        );
                       } else if (link.cloud) {
                         history.push(`/cloud/${link.cloud}`);
                       }
@@ -112,9 +110,7 @@ export default function OutlinedCard({
                   >
                     {link.text}
                     {link.url && <ExternalArrow />}
-                    {link.doc && (
-                      <RightArrow fill={dark ? "#0098ef" : "#48dcbc"} />
-                    )}
+                    {link.doc && <RightArrow />}
                   </Typography>
                 </div>
               );
@@ -137,7 +133,7 @@ export default function OutlinedCard({
 type IconProps = {
   fill: string;
 };
-const RightArrow = ({ fill }: IconProps) => (
+const RightArrow = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -148,7 +144,6 @@ const RightArrow = ({ fill }: IconProps) => (
     <path fill="none" d="M0 0h24v24H0z" />
     <path
       d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-      fill={fill}
     />
   </svg>
 );

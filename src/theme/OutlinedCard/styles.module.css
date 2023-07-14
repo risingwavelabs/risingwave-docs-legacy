@@ -106,6 +106,6 @@ p.cardLink .externalArrowIcon path {
   stroke: var(--ifm-color-primary);
 }
 
-p.cardLink:hover .rightArrowIcon path:nth-child(2) {
-  fill: #95adee88;
+p.cardLink .rightArrowIcon path:nth-child(2) {
+  fill:  var(--ifm-color-primary);
 }
