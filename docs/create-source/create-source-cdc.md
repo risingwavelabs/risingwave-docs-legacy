@@ -23,7 +23,7 @@ RisingWave accepts these data formats:
 
     For Debezium Mongo JSON (`FORMAT DEBEZIUM_MONGO ENCODE JSON`), you can use the [Debezium connector for MongoDB](https://debezium.io/documentation/reference/stable/connectors/mongodb.html) to convert CDC data to Kafka topics.
 
-- Debezium AVRO (for MySQL and PostgreSQL and SQL Server)
+- Debezium AVRO (for MySQL, PostgreSQL, and SQL Server)
 
    For Debezium AVRO (`FORMAT DEBEZIUM ENCODE AVRO`), you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), or [Debezium connector for SQL Server](https://debezium.io/documentation/reference/stable/connectors/sqlserver.html) to convert CDC data to Kafka topics.
 
