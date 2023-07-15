@@ -15,7 +15,7 @@ For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with
 
 RisingWave accepts these data formats:
 
-- Debezium JSON (for MySQL and PostgreSQL and SQL Server)
+- Debezium JSON (for MySQL, PostgreSQL, and SQL Server)
 
     For Debezium JSON (`FORMAT DEBEZIUM ENCODE JSON`), you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), or [Debezium connector for SQL Server](https://debezium.io/documentation/reference/stable/connectors/sqlserver.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
 
