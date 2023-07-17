@@ -17,8 +17,8 @@ This version was released on July 12, 2023.
 
 - SQL command:
 
-  - Supports the `SHOW CLUSTERS` command. [#10656](https://github.com/risingwavelabs/risingwave/pull/10656)
-
+  - Supports the `SHOW CLUSTER` command. [#10656](https://github.com/risingwavelabs/risingwave/pull/10656), [#10932](https://github.com/risingwavelabs/risingwave/pull/10932)
+  
   - Supports the `GROUPING SETS` clause. [#10807](https://github.com/risingwavelabs/risingwave/pull/10807)
 
   - Supports the `EXCEPT` clause. [#10438](https://github.com/risingwavelabs/risingwave/pull/10438)
