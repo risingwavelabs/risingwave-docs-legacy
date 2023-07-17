@@ -485,6 +485,11 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
+                  id: 'sql/functions-operators/sql-function-aggregate',
+                  label: 'Aggregate',
+                },
+                {
+                  type: 'doc',
                   id: 'sql/functions-operators/sql-function-time-window',
                   label: 'Time window',
                 },
@@ -512,11 +517,6 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/functions-operators/sql-function-datetime',
                   label: 'Date/time',
-                },
-                {
-                  type: 'doc',
-                  id: 'sql/functions-operators/sql-function-aggregate',
-                  label: 'Aggregate',
                 },
                 {
                   type: 'doc',
