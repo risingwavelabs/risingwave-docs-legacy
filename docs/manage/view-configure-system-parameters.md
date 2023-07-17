@@ -1,8 +1,8 @@
 ---
-id: view-adjust-system-parameters
-title: View and adjust system parameters
-description: View the system parameters and adjust their values if needed.
-slug: /view-adjust-system-parameters
+id: view-configure-system-parameters
+title: View and configure system parameters
+description: View the system parameters and configure their values if needed.
+slug: /view-configure-system-parameters
 ---
 
 ## What are system parameters?
@@ -49,7 +49,7 @@ SHOW PARAMETERS;
  telemetry_enabled        | true           | t
 ```
 
-## How to adjust system parameters?
+## How to configure system parameters?
 
 Mutable and immutable parameters are configured differently.
 
