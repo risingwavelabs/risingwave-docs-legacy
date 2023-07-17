@@ -14,3 +14,5 @@ title: Bit string operators
 | &lt;&lt; | `operand1 << operand2` <br /> Bitwise left shift. | 1 &lt;&lt; 2 → 4 |
 | &gt;&gt; | `operand1 >> operand2` <br /> Bitwise right shift. | 4 &gt;&gt; 2 → 1 |
 
+
+The following string functions also support bit strings: `length`, `bit_length`, and `octet_length`. See [String functions](/docs/sql/functions-operators/sql-function-string.md#string-functions) for details.

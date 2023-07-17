@@ -16,9 +16,10 @@ title: String functions and operators
 
 |Function|Description|Example|
 |---|---|---|
-| `ascii`( *input_string* ) → *int* | Returns the Unicode code point of the first character of the *input_string*. If the string is empty, it returns `NULL`. | `ascii('RisingWave')` → `82` <br /> `ascii('🌊')` → `127754` |
+| `ascii` ( *input_string* ) → *int* | Returns the Unicode code point of the first character of the *input_string*. If the string is empty, it returns `NULL`. | `ascii('RisingWave')` → `82` <br /> `ascii('🌊')` → `127754` |
+|`bit_length` ( *input_string* ) → *integer* | Returns number of bits in the input string, which is 8 times the `octet_length`. | `bit_length('wave')` → `32` |
 |`btrim` ( *input_string* [, *characters* ]) → *output_string*|Equals to `trim (BOTH)`.|`btrim(' cake ')` → 'cake'<br/>`btrim('abcxyzabc', 'cba')` → `xyz`|<!--Author: I didn't use the code tag `` for what's returned because `` truncates the empty spaces at the beginning and the end, and in this case, spaces should be kept. So I used '' which keeps the spaces. Same for the next two functions.-->
-| `chr`( *input_int* ) → *string* | Returns the character with the Unicode code point equivalent to the *input_int* value provided. | `chr(65)` → `A` |
+| `chr` ( *input_int* ) → *string* | Returns the character with the Unicode code point equivalent to the *input_int* value provided. | `chr(65)` → `A` |
 |`concat` ( *any_input-value_1* [, *any_input-value_2* [, ...] ]) → *output_string* | Concatenates the arguments. NULL arguments are ignored. | `concat('Abcde', 2, NULL, 22)` → `Abcde222` |
 |`concat_ws` ( *separator_string*, *any_input-value_1* [, *any_input-value_2* [, ...] ]) → *output_string* | Concatenates the arguments with a separator. The first argument is used as the separator, and should not be NULL. Other NULL arguments are ignored. | `concat_ws(',', 'Abcde', 2, NULL, 22)` → `Abcde,2,22` |
 |`decode`(*input_string*, *format_type*) → *bytea* | Decodes the text data in *input_string* into binary data. Supported formats for the encoded *input_string* include `base64`, `hex`, and `escape`. | `decode('MTIz', 'base64')` → `123` |
@@ -28,6 +29,7 @@ title: String functions and operators
 |`lower` ( *input_string* ) → *output_string*|Converts the string to all lowercase.|`lower('TOM')` → `tom`|
 |`lpad`( *input_string*, *input_int* ) → *string* <br /><br /> lpad( *input_string*, *input_int*, *padding_string* ) → *string* | Pads the *input_string* on the left with spaces until it reaches the specified *input_int* length. If the *input_string* is longer than the *input_int* length, it is truncated to the specified length. Providing the optional *padding_string* replaces the spaces with the *padding_string*. | `lpad('42', 5)` → '&nbsp;&nbsp;&nbsp;42' <br /><br /> `lpad('42', 5, 'R')` → `RRR42` |
 |`ltrim` ( *input_string* [, *characters* ]) → *output_string*|Equals to `trim (LEADING)`.|`ltrim(' cake ')` → 'cake '<br/>`ltrim('abcxyzabc', 'cba')` → `xyzabc`|
+|`octet_length ( *input_string* )`|Returns number of bytes in the string, which is 8 times smaller than the `bit_length`. | `octet_length('wave')` → `4` |
 |`overlay` ( *input_string* PLACING *substring* FROM *start_int* [ FOR *length_int* ]) → *output_string* | Replaces a substring in *input_string* with *substring*, starting at *start_int* and with *length_int*. If *length_int* is omitted, its value is the length of *substring*. | `overlay('yabadoo' PLACING 'daba' FROM 5 FOR 0)` → `yabadabadoo` <br /> `overlay('abcdef' PLACING '45' FROM 4)` → `abc45f` <br /> `overlay('RisingWave' PLACING '🌊' FROM 7)` → `Rising🌊ave` |
 |`position` ( *input_string*, *substring* ) → *integer_output*|Returns the starting index of the specified *substring* within *input_strin*, or zero if it is not present.|`position('high', 'ig')` → `2`|
 |`rtrim` ( *input_string* [, *characters* ]) → *output_string*|Equals to `trim (TRAILING)`.|`rtrim(' cake ')` → ' cake'<br/>`rtrim('abcxyzabc', 'cba')` → `abcxyz`|
