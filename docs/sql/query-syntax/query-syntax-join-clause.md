@@ -175,7 +175,7 @@ You can use a temporal join to fetch the latest product name and price from the 
 ```sql
 SELECT transaction_id, product_id, quantity, sale_date, product_name, price 
 FROM sales
-JOIN products FOR SYSTEMSYSTEM_TIME AS OF PROCTIME()
+JOIN products FOR SYSTEM_TIME AS OF PROCTIME()
 ON product_id = id
 ```
 

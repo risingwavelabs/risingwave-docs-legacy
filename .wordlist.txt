@@ -151,3 +151,5 @@ TopN
 UDFs
 avro
 kafka
+Paimon
+TPC
