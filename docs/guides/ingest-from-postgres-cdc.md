@@ -255,7 +255,7 @@ RisingWave implements CDC via PostgresQL replication. Inspect the current progre
 
 ### Multiple CDC source tables
 
-If you are creating multiple PostgreSQL CDC source tables, it is recommended to create a publication in the PostgreSQL database in advance. Specify the publication name with the `publication.name` parameter. Otherwise, some tables may not function as expected.
+If you are creating multiple PostgreSQL CDC source tables, we recommend you to create a publication in the PostgreSQL database in advance. Specify the publication name with the `publication.name` parameter. Otherwise, some tables may not function as expected.
 
 ### Data format
 
