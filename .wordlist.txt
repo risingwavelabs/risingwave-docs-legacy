@@ -153,3 +153,4 @@ avro
 kafka
 Paimon
 TPC
+Greenplum
