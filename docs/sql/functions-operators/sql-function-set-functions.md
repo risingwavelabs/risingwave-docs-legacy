@@ -134,8 +134,8 @@ The result looks like this:
 Here is an example of how you can use the `range`() function to generate a series of timestamps:
 
 ```sql
-SELECT generate_series 
-FROM generate_series(
+SELECT range 
+FROM range(
     '2008-03-01 00:00:00'::TIMESTAMP,
     '2008-03-04 12:00:00'::TIMESTAMP, 
     interval '12' hour
