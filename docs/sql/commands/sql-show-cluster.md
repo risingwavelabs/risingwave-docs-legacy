@@ -10,7 +10,7 @@ Use the `SHOW CLUSTER` command to show the details of your RisingWave cluster, i
 ## Syntax
 
 ```sql
-SHOW CLUSTERS;
+SHOW CLUSTER;
 ```
 
 import rr from '@theme/RailroadDiagram'
