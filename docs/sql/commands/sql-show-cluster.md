@@ -1,11 +1,11 @@
 ---
 id: sql-show-cluster
-title: SHOW CLUSTERS
+title: SHOW CLUSTER
 description: Show the details of your RisingWave cluster.
 slug: /sql-show-cluster
 ---
 
-Use the `SHOW CLUSTERS` command to show the details of your RisingWave cluster, including the address of the cluster, its state, the parallel units it is using, and whether it's streaming data, serving data or unschedulable.
+Use the `SHOW CLUSTER` command to show the details of your RisingWave cluster, including the address of the cluster, its state, the parallel units it is using, and whether it's streaming data, serving data or unschedulable.
 
 ## Syntax
 
@@ -17,7 +17,7 @@ import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
     rr.Sequence(
-        rr.Terminal('SHOW CLUSTERS'),
+        rr.Terminal('SHOW CLUSTER'),
         rr.Terminal(';')
     )
 );
@@ -27,7 +27,7 @@ export const svg = rr.Diagram(
 ## Example
 
 ```sql
-SHOW CLUSTERS;
+SHOW CLUSTER;
 ------RESULT
 Addr            |  State  |     Parallel Units     | Is Streaming | Is Serving | Is Unschedulable
 ----------------+---------+------------------------+--------------+------------+------------------
