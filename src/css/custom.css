@@ -502,11 +502,6 @@ table tr:first-child {
   }
 }
 
-.plugin-id-cloud .navbar-sidebar li.menu__list-item.menu__list-item--collapsed,
-.plugin-id-cloud .dropdown {
-  display: none !important;
-}
-
 /* Codeblock with comment */
 .container .language-sql + div.theme-code-block:not(.language-sql) {
   border-top: 0;
