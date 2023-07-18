@@ -46,12 +46,19 @@ export const svg = rr.Diagram(
 
 ## Parameters
 
+All WITH options are required unless stated otherwise. 
+
 |Parameter or clause            | Description           |
 |-------------------------------|-----------------------|
 |*connection_name*              |The name of the connection to be created.|
 |type                           |The type of connection.|
 |provider                       |The provider of the connection.|
 |service.name                   |The service name of the endpoint service.|
+|tags                           |Optional. The AWS tags used to check for resource leakage. This parameter should have the format: `key1=value1, key2=value2, ...`.|
+
+:::note
+You can either tag the VPC endpoints by specifying the `tags` parameter when using the `CREATE CONNECTION` command or by specifying the environment variable `RW_PRIVATELINK_ENDPOINT_DEFAULT_TAGS`. When specifying the tags, follow the format of `key1=value1, key2=value2, ...`. If both are specified, the tags specified in the environment variable will be appended to the ones specified by the `tags` parameter. 
+:::
 
 ## Example
 

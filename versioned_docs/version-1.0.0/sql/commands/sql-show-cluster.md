@@ -1,0 +1,36 @@
+---
+id: sql-show-cluster
+title: SHOW CLUSTERS
+description: Show the details of your RisingWave cluster.
+slug: /sql-show-cluster
+---
+
+Use the `SHOW CLUSTERS` command to show the details of your RisingWave cluster, including the address of the cluster, its state, the parallel units it is using, and whether it's streaming data, serving data or unschedulable.
+
+## Syntax
+
+```sql
+SHOW CLUSTERS;
+```
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('SHOW CLUSTERS'),
+        rr.Terminal(';')
+    )
+);
+
+<drawer SVG={svg} />
+
+## Example
+
+```sql
+SHOW CLUSTERS;
+------RESULT
+Addr            |  State  |     Parallel Units     | Is Streaming | Is Serving | Is Unschedulable
+----------------+---------+------------------------+--------------+------------+------------------
+ 127.0.0.1:5688 | RUNNING | 3000, 3001, 3002, 3003 | true         | true       | false
+(1 row)
+```
