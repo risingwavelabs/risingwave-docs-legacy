@@ -282,6 +282,11 @@ const sidebars = {
             },
             {
               type: 'doc',
+              label: 'Delta Lake',
+              id: 'guides/sink-to-delta-lake'
+            },
+            {
+              type: 'doc',
               label: 'Apache Iceberg',
               id: 'guides/sink-to-iceberg'
             }
