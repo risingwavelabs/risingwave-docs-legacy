@@ -110,7 +110,7 @@ WITH (
 
 ### Parameters​
 
-All WITH options are required.
+All WITH options are required unless noted.
 
 |Parameter or clause|Description|
 |---|---|
@@ -120,6 +120,7 @@ All WITH options are required.
 |connector| Sink connector type. Currently, only `‘kafka’` is supported. If there is a particular sink you are interested in, go to the [Integrations Overview](rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
 |jdbc.url | The JDBC URL of the destination database necessary for the driver to recognize and connect to the database. |
 |table.name | The table in the destination database you want to sink to. |
+|schema.name | Optional. The schema in the destination database you want to sink to. The default value is `public`. |
 |type| Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul> If creating an `upsert` sink, see the [Overview](/data-delivery.md) on when to define the primary key.|
 
 ## Sink data from RisingWave to PostgreSQL
@@ -128,7 +129,7 @@ All WITH options are required.
 
 You can sink data from a table, source, or materialized view in RisingWave to PostgreSQL.
 
-For demostration purposes, we'll create a source and a materialized view, and then sink data from the materialized view. If you already have a table or materialized view to sink data from, you don't need to perform this step.
+For demonstration purposes, we'll create a source and a materialized view, and then sink data from the materialized view. If you already have a table or materialized view to sink data from, you don't need to perform this step.
 
 Run the following query to create a source to read data from a Kafka broker.
 
