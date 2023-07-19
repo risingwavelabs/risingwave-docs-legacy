@@ -273,9 +273,12 @@ ENCODE AVRO
 
 ### Bytes
 
-Currently, we require users to decode the stream data through a certain format. But the user may want no decoding phase. This is a missing capability, which is fundamental, although uncommon to appear in real-world use cases. We only accept table with exactly one field of BYTEA type in ROW FORMAT BYTES. Only append-only type is considered here because BYTEA cannot be the primary key for the table #10577.
+RisingWave allows you to read data streams without decoding the data by using the `BYTES` row format. However, the table or source can have exactly one field of `BYTEA` data and it cannot be the primary key.
 
-If 
+```sql
+FORMAT PLAIN
+ENCODE BYTES
+```
 
 ## See also
 
