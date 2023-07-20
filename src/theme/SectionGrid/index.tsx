@@ -22,7 +22,7 @@ function SectionGrid({ children, icons }: Props) {
           <div className={styles.rightContainer}>
             {icons?.map((icon) => (
               <a key={icon.name} className={styles.iconContainer} href={icon.href}>
-                <img alt={icon.name} src={icon.src} className={styles.icon} />
+                <img alt={icon.name} src={icon.src} className={`${styles.icon} disabled-zoom`} />
                 <p className={styles.iconHeader}>{icon.name}</p>
               </a>
             ))}
