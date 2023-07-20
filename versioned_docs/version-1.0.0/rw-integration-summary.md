@@ -78,6 +78,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |SQL Server| Researching <voteNotify note="sql_server_source" />|Researching <voteNotify note="sql_server_sink" /> |
 |TiDB| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Available. For details, see [Sink data from RisingWave to TiDB](/guides/sink-to-tidb.md). |
 |Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
+|Greenplum| No plan| Researching <voteNotify note="greenplum_sink" /> |
 
 ## Data lakes
 

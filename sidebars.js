@@ -653,7 +653,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/view-adjust-system-parameters',
+          id: 'manage/view-configure-system-parameters',
         },
         {
           type: 'doc',
