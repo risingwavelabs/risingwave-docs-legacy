@@ -60,7 +60,7 @@ A cluster in RisingWave Cloud provides the necessary resources for hosting indep
 
 <card
 title="Connect to a cluster"
-content="After getting a cluster up and running, you need to connect to it to interact with RisingWave Database. You can use the web console or your local client to connect to your cluster."
+content="After getting a cluster up and running, you need to connect to it to interact with RisingWave. You can use the web console or your local client to connect to your cluster."
 cloud="connect-to-a-cluster"
 style={{height: "87%"}}
 />
@@ -92,7 +92,7 @@ style={{height: "87%"}}
 
 <card
 title="Update database version"
-content="When a newer version of RisingWave Database is available, you can update the database version of your cluster to the latest."
+content="When a newer version of RisingWave is available, you can update the database version of your cluster to the latest."
 cloud="update-database-version"
 style={{height: "87%"}}
 />

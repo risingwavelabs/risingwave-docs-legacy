@@ -1,11 +1,11 @@
 ---
 id: cluster-connect-to-a-cluster
 title: Connect to a cluster
-description: Connect to a cluster and interact with RisingWave Database using the console or terminal.
+description: Connect to a cluster and interact with RisingWave using the console or terminal.
 slug: /connect-to-a-cluster
 ---
 
-After [getting a cluster up and running](cluster-manage-clusters.md#create-a-cluster), you need to connect to it so that you can interact with RisingWave Database.
+After [getting a cluster up and running](cluster-manage-clusters.md#create-a-cluster), you need to connect to it so that you can interact with RisingWave.
 
 You can choose from the following two ways to connect to your cluster.
 
@@ -16,7 +16,7 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="console" label="Query console">
 
-The query console is the most intuitive and easy way to connect to and interact with RisingWave Database, offering graphical tools for managing data and visualizing results.
+The query console is the most intuitive and easy way to connect to and interact with RisingWave, offering graphical tools for managing data and visualizing results.
 
 #### To connect via the console:
 
@@ -56,7 +56,7 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 1. [Install `psql`](https://www.risingwave.dev/docs/current/install-psql-without-postgresql/) in your environment.
 
-    > `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave Database.
+    > `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
 
 2. In RisingWave Cloud, go to [**Clusters**](https://risingwave.cloud/clusters/).
     
@@ -102,6 +102,6 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 <card
 title="Develop with RisingWave Cloud"
-content="RisingWave Cloud leverages the superpower of RisingWave Database, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave Database, in the cloud."
+content="RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave, in the cloud."
 cloud="develop-overview"
 />

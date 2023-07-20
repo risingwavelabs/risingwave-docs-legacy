@@ -272,6 +272,11 @@ const sidebars = {
             },
             {
               type: 'doc',
+              label: 'AWS Kinesis',
+              id: 'guides/sink-to-aws-kinesis'
+            },
+            {
+              type: 'doc',
               label: 'TiDB',
               id: 'guides/sink-to-tidb'
             },
@@ -648,7 +653,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/view-adjust-system-parameters',
+          id: 'manage/view-configure-system-parameters',
         },
         {
           type: 'doc',
@@ -656,9 +661,13 @@ const sidebars = {
         },
         {
           type: 'doc',
+          id: 'manage/dedicated-compute-node'
+        },
+        {
+          type: 'doc',
           label: 'Telemetry',
           id: 'telemetry'
-        },
+        }
       ]
     },
     {

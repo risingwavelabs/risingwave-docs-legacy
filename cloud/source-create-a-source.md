@@ -44,4 +44,4 @@ You can create a source with one of the following methods:
 
 ## Using SQL command
 
-Refer to [`CREARE SOURCE`](https://www.risingwave.dev/docs/current/sql-create-source/#supported-sources) in the RisngWave Database documentation. Select a connector to see the SQL syntax, options, and sample statement of connecting RisingWave Database to the connector.
+Refer to [`CREARE SOURCE`](https://www.risingwave.dev/docs/current/sql-create-source/#supported-sources) in the RisngWave documentation. Select a connector to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.

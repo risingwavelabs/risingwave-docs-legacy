@@ -5,7 +5,7 @@ description: Manage data sources your database connected to.
 slug: /manage-sources
 ---
 
-To ingest data into RisingWave Database, you must first create a source. A source refers to an external data feed that RisingWave Database can read from. You can connect RisingWave Database to a variety of external sources like databases and message brokers.
+To ingest data into RisingWave, you must first create a source. A source refers to an external data feed that RisingWave can read from. You can connect RisingWave to a variety of external sources like databases and message brokers.
 
 You can manage your data sources in [**Source**](https://risingwave.cloud/source/).
 

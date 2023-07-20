@@ -15,29 +15,31 @@ For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with
 
 RisingWave accepts these data formats:
 
-- Debezium JSON (for MySQL and PostgreSQL)
+- Debezium JSON (for MySQL, PostgreSQL, and SQL Server)
 
-    For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
+    For Debezium JSON (`FORMAT DEBEZIUM ENCODE JSON`), you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), or [Debezium connector for SQL Server](https://debezium.io/documentation/reference/stable/connectors/sqlserver.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
+
+    Note that if you are ingesting data of type `timestamp` or `timestampz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning. 
 
 - Debezium Mongo JSON (for MongoDB)
 
-    For Debezium Mongo JSON, you can use the [Debezium connector for MongoDB](https://debezium.io/documentation/reference/stable/connectors/mongodb.html) to convert CDC data to Kafka topics.
+    For Debezium Mongo JSON (`FORMAT DEBEZIUM_MONGO ENCODE JSON`), you can use the [Debezium connector for MongoDB](https://debezium.io/documentation/reference/stable/connectors/mongodb.html) to convert CDC data to Kafka topics.
 
-- Debezium AVRO (for MySQL and PostgreSQL)
+- Debezium AVRO (for MySQL, PostgreSQL, and SQL Server)
 
-   For Debezium AVRO, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka topics.
+   For Debezium AVRO (`FORMAT DEBEZIUM ENCODE AVRO`), you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), or [Debezium connector for SQL Server](https://debezium.io/documentation/reference/stable/connectors/sqlserver.html) to convert CDC data to Kafka topics.
 
 - Maxwell JSON (for MySQL only)
 
-    For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
+    For Maxwell JSON (`FORMAT MAXWELL ENCODE JSON`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
 
 - The TiCDC dialect of Canal JSON (for TiDB only)
 
-    For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`ROW FORMAT CANAL_JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. You might need to define the topic name in a TiCDC configuration file. Note that only new changes will be captured from TiDB. Data that already exists within the target table will not be captured by TiCDC. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc). 
+    For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`FORMAT CANAL ENCODE JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. You might need to define the topic name in a TiCDC configuration file. Note that only new changes will be captured from TiDB. Data that already exists within the target table will not be captured by TiCDC. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc).
 
 - Canal JSON (for MySQL only)
 
-    For Canal JSON (`ROW FORMAT CANAL_JSON`), you need to use the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to convert MySQL change data to Pulsar topics.
+    For Canal JSON (`FORMAT CANAL ENCODE JSON`), you need to use the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to convert MySQL change data to Pulsar topics.
 
 ## Syntax
 
@@ -50,7 +52,8 @@ WITH (
    connector='connector',
    connector_parameter='value', ...
 ) 
-ROW FORMAT { DEBEZIUM_JSON | DEBEZIUM_MONGO_JSON | MAXWELL | CANAL_JSON  | DEBEZIUM_AVRO };
+FORMAT { DEBEZIUM | DEBEZIUM_MONGO | MAXWELL | CANAL | PLAIN }
+ENCODE { JSON | AVRO | PROTOBUF | CSV } [( encode properties ... )];
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -73,6 +76,21 @@ export const svg = rr.Diagram(
                 ','
             ),
             rr.Terminal(')'),
+        ),
+        rr.Sequence(
+            rr.Terminal('FORMAT'),
+            rr.NonTerminal('format', 'skip')
+        ),
+        rr.Sequence(
+            rr.Terminal('ENCODE'),
+            rr.NonTerminal('encode', 'skip'),
+            rr.Optional(
+                rr.Sequence(
+                rr.Terminal('('),
+                rr.NonTerminal('encode_parameter', 'skip'),
+                rr.Terminal(')'),
+                ),
+            ),
         ),
         rr.Sequence(
             rr.Terminal('WITH'),
@@ -99,16 +117,7 @@ export const svg = rr.Diagram(
                 ),
             ),
         ),
-            rr.Sequence(
-                rr.Terminal('ROW FORMAT'),
-                rr.Choice(1,
-                    rr.Terminal('DEBEZIUM_JSON'),
-                    rr.Terminal('MAXWELL'),
-                    rr.Terminal('CANAL_JSON'),
-                    rr.Terminal('DEBEZIUM_AVRO'),
-                ),
-                rr.Terminal(';'),
-            ),
+        rr.Terminal(';')
     )
 );
 
@@ -147,8 +156,7 @@ WITH (
    topic='user_test_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='earliest'
-) 
-ROW FORMAT DEBEZIUM_JSON;
+) FORMAT DEBEZIUM ENCODE JSON;
 ```
 
 </TabItem>
@@ -160,13 +168,12 @@ For more details on this row format, see [Debezium Mongo JSON](../sql/commands/s
 CREATE TABLE [IF NOT EXISTS] source_name (
    _id BIGINT PRIMARY KEY
    payload jsonb
-) 
+)
 WITH (
    connector='kafka',
    topic='debezium_mongo_json_customers',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-) 
-ROW FORMAT DEBEZIUM_MONGO_JSON;
+) FORMAT DEBEZIUM_MONGO ENCODE JSON;
 ```
 
 </TabItem>
@@ -182,7 +189,9 @@ WITH (
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
 ) 
-ROW FORMAT DEBEZIUM_AVRO ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://message_queue:8081';
+FORMAT DEBEZIUM ENCODE AVRO (
+    confluent_schema_registry = 'http://localhost:8081'
+);
 ```
 
 Although the `CREATE TABLE` command only specifies one column, the other columns in the upstream MySQL table will still be derived and included.
@@ -199,7 +208,7 @@ CREATE TABLE source_name (
    column1 varchar,
    column2 integer,
    PRIMARY KEY (column1)
-) 
+)
 WITH (
    connector='pulsar',
    topic='demo_topic',
@@ -207,8 +216,7 @@ WITH (
    admin.url='http://localhost:8080',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
-) 
-ROW FORMAT DEBEZIUM_JSON;
+)FORMAT DEBEZIUM ENCODE JSON;
 ```
 
 ### Kinesis
@@ -229,6 +237,5 @@ WITH (
     aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
     aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
     aws.credentials.role.external_id='demo_external_id'
-)
-ROW FORMAT DEBEZIUM_JSON;
+) FORMAT DEBEZIUM ENCODE JSON;
 ```

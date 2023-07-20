@@ -36,7 +36,7 @@ module.exports = {
           href: "https://www.risingwave.cloud/auth/signup/",
           label: "Sign up and log in",
         },
-      ]
+      ],
     },
     {
       type: "category",
@@ -84,7 +84,7 @@ module.exports = {
           label: "Manage database users",
           collapsible: true,
           collapsed: true,
-          link: {type: 'doc', id: 'cluster-manage-database-users'},
+          link: { type: "doc", id: "cluster-manage-database-users" },
           items: [
             {
               type: "doc",
@@ -129,7 +129,7 @@ module.exports = {
           label: "Manage sources",
           collapsible: true,
           collapsed: true,
-          link: {type: 'doc', id: 'source-manage-sources'},
+          link: { type: "doc", id: "source-manage-sources" },
           items: [
             {
               type: "doc",
@@ -144,14 +144,14 @@ module.exports = {
               type: "doc",
               id: "source-drop-a-source",
             },
-          ]
+          ],
         },
         {
           type: "category",
           label: "Manage sinks",
           collapsible: true,
           collapsed: true,
-          link: {type: 'doc', id: 'sink-manage-sinks'},
+          link: { type: "doc", id: "sink-manage-sinks" },
           items: [
             {
               type: "doc",
@@ -166,7 +166,7 @@ module.exports = {
               type: "doc",
               id: "sink-drop-a-sink",
             },
-          ]
+          ],
         },
         {
           type: "doc",

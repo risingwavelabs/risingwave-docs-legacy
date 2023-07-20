@@ -15,13 +15,13 @@ Regardless of whether the data is persisted in RisingWave, you can create materi
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name 
 [schema_definition]
-WITH (
-   connector='connector_name',
-   connector_parameter='value', ...
-)
-ROW FORMAT data_format 
-[ MESSAGE 'message' ]
-[ ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
+[ WITH (
+    connector='connector_name',
+    connector_parameter='value', ...)]
+[FORMAT data_format ENCODE data_encode [ (
+    message='message',
+    row_schema_location='location', ...) ]
+];
 ```
 
 For the syntax of `schema_definition`, see [Parameters](sql-create-table.md#parameters) in `CREATE TABLE`.
@@ -63,29 +63,22 @@ export const svg = rr.Diagram(
             rr.Terminal(')'),
          ),
       ),
+      rr.Sequence(
+         rr.Terminal('FORMAT'),
+         rr.NonTerminal('format', 'skip')
+      ),
+      rr.Sequence(
+         rr.Terminal('ENCODE'),
+         rr.NonTerminal('encode', 'skip'),
+         rr.Optional(
+            rr.Sequence(
+               rr.Terminal('('),
+               rr.NonTerminal('encode_parameter', 'skip'),
+               rr.Terminal(')'),
+            ),
+         ),
+      ),
       rr.Stack(
-         rr.Sequence(
-            rr.Terminal('ROW FORMAT'),
-            rr.NonTerminal('data_format', 'skip'),
-         ),
-         rr.Optional(
-            rr.Sequence(
-               rr.Terminal('MESSAGE'),
-               rr.NonTerminal('message', 'skip'),
-            ),
-         ),
-         rr.Optional(
-            rr.Sequence(
-               rr.Terminal('ROW SCHEMA LOCATION'),
-               rr.Choice(1,
-                  rr.Terminal('location'),
-                  rr.Sequence(
-                     rr.Terminal('CONFLUENT SCHEMA REGISTRY'),
-                     rr.NonTerminal('schema_registry_url', 'skip'),
-                  ),
-               ),
-            ),
-         ),
          rr.Terminal(';'),
       ),
    )
@@ -135,7 +128,7 @@ For complete step-to-step guides about ingesting MySQL and PostgreSQL data using
 
 ## Supported formats
 
-When creating a source, specify the format in the `ROW FORMAT` section of the `CREATE SOURCE` or `CREATE TABLE` statement.
+When creating a source, specify the data and encoding formats in the `FORMAT` and `ENCODE` section of the `CREATE SOURCE` or `CREATE TABLE` statement.
 
 ### Avro
 
@@ -152,19 +145,22 @@ For Avro data, you cannot specify the schema in the `schema_definition` section 
 Syntax:
 
 ```sql
-ROW FORMAT AVRO 
-MESSAGE 'main_message' 
-ROW SCHEMA LOCATION { 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' }
+FORMAT PLAIN
+ENCODE AVRO (
+   message = 'main_message',
+   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+)
 ```
 
 ### JSON
 
-RisingWave decodes JSON directly from external sources. When creating a source from streams in JSON, you need to define the schema of the source within the parentheses after the source name, and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
+RisingWave decodes JSON directly from external sources. When creating a source from streams in JSON, you need to define the schema of the source within the parentheses after the source name, and specify the data and encoding formats in the `FORMAT` and `ENCODE` sections. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
 
 ```sql
-ROW FORMAT JSON
+FORMAT PLAIN
+ENCODE JSON
 ```
 
 ### Protobuf
@@ -186,19 +182,24 @@ protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.
 Syntax:
 
 ```sql
-ROW FORMAT PROTOBUF 
-MESSAGE 'main_message' 
-ROW SCHEMA LOCATION [ 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ]
+FORMAT PLAIN
+ENCODE PROTOBUF (
+   message = 'main_message',
+   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+)
 ```
 
 ### Debezium JSON
 
-When creating a source from streams in Debezium JSON, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
+When creating a source from streams in Debezium JSON, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the data and encoding formats in the `FORMAT` and `ENCODE` sections. You can directly reference data fields in the JSON payload by their names as column names in the schema.
+
+Note that if you are ingesting data of type `timestamp` or `timestampz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning. 
 
 Syntax:
 
 ```sql
-ROW FORMAT DEBEZIUM_JSON
+FORMAT DEBEZIUM
+ENCODE JSON
 ```
 
 ### Debezium Mongo JSON
@@ -208,8 +209,10 @@ When loading data from MongoDB via Kafka topics in Debezium Mongo JSON format, t
 Syntax:
 
 ```sql
-ROW FORMAT DEBEZIUM_MONGO_JSON
+FORMAT DEBEZIUM_MONGO
+ENCODE JSON
 ```
+
 ### Debezium AVRO
 
 When creating a source from streams in with Debezium AVRO, the schema of the source does not need to be defined in the `CREATE TABLE` statement as it can be inferred from the `SCHEMA REGISTRY`. This means that the schema file location must be specified. The schema file location can be an actual Web location, which is in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
@@ -217,48 +220,55 @@ When creating a source from streams in with Debezium AVRO, the schema of the sou
 Syntax:
 
 ```sql
-ROW FORMAT DEBEZIUM_AVRO
-ROW SCHEMA LOCATION { 'location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' }
+FORMAT DEBEZIUM
+ENCODE AVRO (
+   message = 'main_message',
+   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+)
 ```
 
 ### Maxwell JSON
 
-When creating a source from streams in Maxwell JSON, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
+When creating a source from streams in Maxwell JSON, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the data and encoding formats in the `FORMAT` and `ENCODE` sections. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
 
 ```sql
-ROW FORMAT MAXWELL
+FORMAT MAXWELL
+ENCODE JSON
 ```
 
 ### Canal JSON
 
-RisingWave supports the TiCDC dialect of the Canal CDC format. When creating a source from streams in TiCDC, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the format in the `ROW FORMAT` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
+RisingWave supports the TiCDC dialect of the Canal CDC format. When creating a source from streams in TiCDC, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the data and encoding formats in the `FORMAT` and `ENCODE` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
 
 ```sql
-ROW FORMAT CANAL_JSON
+FORMAT CANAL
+ENCODE JSON
 ```
 
 ### Upsert JSON
 
-When consuming data in JSON from Kafka topics, the data format needs to be specified as `UPSERT_JSON`. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted.
+When consuming data in JSON from Kafka topics, the `FORMAT` and `ENCODE` sections need to be specified as `UPSERT` and `JSON` respectively. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted.
 
 Syntax:
 
 ```sql
-ROW FORMAT UPSERT_JSON
+FORMAT UPSERT
+ENCODE JSON
 ```
 
 ### Upsert AVRO
 
-When consuming data in Avro from Kafka topics, the data format needs to be specified as `UPSERT_AVRO`. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted.
+When consuming data in AVRO from Kafka topics, the `FORMAT` and `ENCODE` sections need to be specified as `UPSERT` and `AVRO` respectively. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted.
 
 Syntax:
 
 ```sql
-ROW FORMAT UPSERT_AVRO
+FORMAT UPSERT
+ENCODE AVRO
 ```
 
 ## See also
