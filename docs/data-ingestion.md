@@ -28,7 +28,7 @@ WITH (
 When connector settings are specified for a table in RisingWave, it is able to store streaming data. However, a table with connector settings is different from a source in RisingWave.
 
 - A source does not persist all data that flows in. It persists only results from materialized views. It accepts only append-only data, such as application events or log messages.
-- A table with connector settings persists all data that flows in. It accepts both append-only data and updateable data. To accept updateable data, you need to specify a primary key when creating the table. CDC sources and Kafka data in upsert formats are the examples of updateabe data.
+- A table with connector settings persists all data that flows in. It accepts both append-only data and updateable data. To accept updateable data, you need to specify a primary key when creating the table. CDC sources and Kafka data in upsert formats are the examples of updateable data.
 
 Regardless of whether data is persisted in RisingWave, you can create materialized views to transform or analyze them.
 
