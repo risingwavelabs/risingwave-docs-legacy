@@ -273,7 +273,7 @@ ENCODE AVRO
 
 ### Bytes
 
-RisingWave allows you to read data streams without decoding the data by using the `BYTES` row format. However, the table or source can have exactly one field of `BYTEA` data and it cannot be the primary key.
+RisingWave allows you to read data streams without decoding the data by using the `BYTES` row format. However, the table or source can have exactly one field of `BYTEA` data.
 
 ```sql
 FORMAT PLAIN
