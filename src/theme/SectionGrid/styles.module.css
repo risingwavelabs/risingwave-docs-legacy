@@ -108,6 +108,10 @@
   margin-left: 0.5rem;
 }
 
+.iconHeader:hover {
+  color: var(--ifm-color-primary);
+}
+
 @media (min-width: 640px) {
   .sectionContainer {
     padding-top: 3rem;
