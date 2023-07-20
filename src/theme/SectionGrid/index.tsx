@@ -16,6 +16,7 @@ type Props = {
 
 function SectionGrid({ children, icons, cols }: Props) {
   const matches = useMediaQuery("(min-width:640px)");
+
   return (
     <section>
       <div className={styles.sectionContainer}>
