@@ -57,28 +57,31 @@
   gap: 1rem;
 }
 
-[data-theme="dark"] .iconContainer {
-  --tw-box-shadow: 1px 1px 2px 0 rgb(184, 196, 201, 0.05);
-}
-[data-theme="dark"] .iconContainer:hover {
-  --tw-box-shadow: 1px 1px 2px 0 rgb(184, 196, 201, 0.1);
-}
-
 .iconContainer {
   display: flex;
   align-items: center;
   color: var(--ifm-font-color-base);
-  --tw-box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --icon-border-color: #e0e0e0;
+}
+
+[data-theme="dark"] .iconContainer {
+  --icon-border-color: #152c3c;
+}
+
+[data-theme="dark"] .iconContainer:hover {
+  --icon-border-color: #76d9bd;
 }
 
 .iconContainer:hover {
+  text-decoration: none;
+
+  --icon-border-color: #0098ef;
   --tw-box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
 
   --tw-ring-inset: ;
   --tw-ring-offset-width: 0px;
   --tw-ring-opacity: 1;
   --tw-ring-offset-color: #fff;
-  text-decoration: none;
   --tw-ring-color: rgb(229 231 235 / var(--tw-ring-opacity));
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -89,9 +92,13 @@
   width: 2.3rem;
   height: 2.3rem;
   padding: 0.2rem;
-  border-width: 1px;
-  border-color: #f3f4f6;
-  box-shadow: var(--tw-box-shadow);
+
+  border-radius: 2px;
+  border: 2px solid var(--icon-border-color);
+}
+
+.icon:hover {
+  border: 2px solid var(--icon-border-color);
 }
 
 .iconHeader {
@@ -108,8 +115,6 @@
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
-
-
 }
 
 @media (min-width: 1024px) {
