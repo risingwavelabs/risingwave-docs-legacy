@@ -7,15 +7,32 @@ slug: /data-ingestion
 You can ingest data into RisingWave in two ways:
 
 - Connect to and ingest data from external sources such as databases and message brokers.
-- Insert data to tables directly.
+- Use SQL statements to insert, update or delete data in tables directly.
 
-## Ingest data from sources
+## Ingest data from external sources
 
-A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command. If you want to persist the data from the source, you need to create a table with connector settings using the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command.
+To ingest data from external sources into RisingWave, you need to create a source ([`CREATE SOURCE`](/sql/commands/sql-create-source.md)) or a table with connector settings ([`CREATE TABLE`](/sql/commands/sql-create-table.md)) in RisingWave.
 
-Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or sinks for data transformations.
+The syntax for creating a source is similar to creating a table with connector settings:
 
-## Insert data into tables
+```sql
+CREATE {TABLE | SOURCE} source_or_table_name 
+[optional_schema_definition]
+WITH (
+   connector='kafka',
+   connector_parameter='value', ...
+)
+...
+```
+
+When connector settings are specified for a table in RisingWave, it is able to store streaming data. However, a table with connector settings is different from a source in RisingWave.
+
+- A source does not persist all data that flows in. It persists only results from materialized views. It accepts only append-only data, such as application events or log messages.
+- A table with connector settings persists all data that flows in. It accepts both append-only data and updateable data. To accept updateable data, you need to specify a primary key when creating the table. CDC sources and Kafka data in upsert formats are the examples of updateabe data.
+
+Regardless of whether data is persisted in RisingWave, you can create materialized views to transform or analyze them.
+
+## Insert data into tables (without connectors)
 
 You can also load data to RisingWave by creating tables ([`CREATE TABLE`](/sql/commands/sql-create-table.md)) and inserting data to tables ([`INSERT`](/sql/commands/sql-insert.md)).
 
