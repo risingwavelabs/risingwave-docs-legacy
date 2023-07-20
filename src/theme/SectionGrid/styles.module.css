@@ -1,7 +1,7 @@
 .sectionContainer {
   padding-top: 2rem;
   padding-bottom: 2rem;
-  max-width: 1280px;
+  max-width: 100%;
 }
 
 .gridContainer {
@@ -12,8 +12,8 @@
 
 .leftContainer {
   max-width: 32rem;
-  margin: 0 auto;
-  text-align: center;
+  margin: 0;
+  text-align: left;
 }
 
 .header {
@@ -60,6 +60,7 @@
 .iconContainer {
   display: flex;
   align-items: center;
+  padding-left: 0.8rem;
   border-radius: 0.75rem;
   border-width: 1px;
   border-color: #f3f4f6;
@@ -97,14 +98,8 @@
 }
 
 .iconHeader {
-  margin-right: 1.5rem;
-  margin-left: 1rem;
+  margin: 0.5rem 1rem;
   font-weight: 700;
-}
-
-.iconContent {
-  color: var(--ifm-font-color-base);
-  display: none;
 }
 
 @media (min-width: 640px) {
@@ -121,14 +116,6 @@
   .rightContainer {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-
-  .iconContent {
-    display: block;
-    margin-top: 0.25rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    color: #4b5563;
-  }
 }
 
 @media (min-width: 1024px) {
@@ -138,7 +125,7 @@
   }
 
   .gridContainer {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 3fr 7fr;
     column-gap: 4rem;
     align-items: center;
   }
