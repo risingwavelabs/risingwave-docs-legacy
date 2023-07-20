@@ -20,8 +20,8 @@ window_function (expression) OVER ([PARTITION BY partition_expression ] [ORDER B
 
 `window_function` can be one of the following:
 
-- Ranking function – `row_number()`
-- Aggregate-type function – `sum()`, `min()`, `max()`, `avg()` and `count()`
+- Ranking functions – `row_number()`
+- Aggregate-type functions – `sum()`, `min()`, `max()`, `avg()` and `count()`
 - Value functions – `lead()`, `lag()`, `first_value()`, and `last_value()`
 
 The syntax of `frame_expression` is:
@@ -40,9 +40,9 @@ AND
 
 The `row_number()` function assigns a unique sequential integer to each row within a partition of a result set. The numbering starts at 1 for the first row in each partition and increments by 1 for each subsequent row.
 
-`row_number()` can be used to turn non-unique rows into unique rows. This could be used to eliminate duplicate rows, for example.
+`row_number()` can be used to turn non-unique rows into unique rows. This could be used to eliminate duplicate rows.
 
-The syntax for `row_number()` is:
+The syntax of `row_number()` is:
 
 ```sql
 row_number() OVER (PARTITION BY partition_expression ORDER BY sort_expression)
@@ -52,7 +52,7 @@ row_number() OVER (PARTITION BY partition_expression ORDER BY sort_expression)
 
 `lag()` allows you to access the value of a previous row in the result set. You can specify the number of rows to look back and also provide a default value in case the previous row does not exist.
 
-The syntax for `lag()` is:
+The syntax of `lag()` is:
 
 ```sql
 lag(expression [, offset [, default ]]) OVER (PARTITION BY partition_expression ORDER BY sort_expression)
@@ -60,7 +60,7 @@ lag(expression [, offset [, default ]]) OVER (PARTITION BY partition_expression 
 
 `lead()` is similar to `lag()`, but it allows you to access the value of a subsequent row in the result set.
 
-The syntax for `lead()` is:
+The syntax of `lead()` is:
 
 ```sql
 lead(expression [, offset [, default ]]) OVER (PARTITION BY partition_expression ORDER BY sort_expression)
@@ -70,7 +70,7 @@ lead(expression [, offset [, default ]]) OVER (PARTITION BY partition_expression
 
 The `first_value()` function returns the value of the first row in the current window frame.
 
-The syntax for `first_value()` is:
+The syntax of `first_value()` is:
 
 ```sql
 first_value(expression) OVER (PARTITION BY partition_expression ORDER BY sort_expression)
@@ -78,7 +78,7 @@ first_value(expression) OVER (PARTITION BY partition_expression ORDER BY sort_ex
 
 `last_value()` returns the value of the last row in the current window frame.
 
-The syntax for `last_value()` is:
+The syntax of `last_value()` is:
 
 ```sql
 last_value(expression) OVER (PARTITION BY partition_expression ORDER BY sort_expression)
