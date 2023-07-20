@@ -1,11 +1,17 @@
 import React from "react";
 import styles from "./styles.module.css";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useHistory, useLocation } from "@docusaurus/router";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 type Icons = {
-  name: string;
+  text: string;
   src: string;
-  href: string;
+
+  doc?: string;
+  url?: string;
+  cloud?: string;
+  block?: boolean;
 };
 
 type Props = {
@@ -16,6 +22,9 @@ type Props = {
 
 function SectionGrid({ children, icons, cols }: Props) {
   const matches = useMediaQuery("(min-width:640px)");
+  const history = useHistory();
+  const location = useLocation();
+  const { globalData } = useDocusaurusContext();
 
   return (
     <section>
@@ -30,10 +39,28 @@ function SectionGrid({ children, icons, cols }: Props) {
             }}
           >
             {icons?.map((icon) => (
-              <a key={icon.name} className={styles.iconContainer} href={icon.href}>
-                <img alt={icon.name} src={icon.src} className={`${styles.icon} disabled-zoom`} />
-                <p className={styles.iconHeader}>{icon.name}</p>
-              </a>
+              <div
+                key={icon.text}
+                className={styles.iconContainer}
+                onClick={() => {
+                  if (icon.doc) {
+                    globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
+                      if (location.pathname.includes(v.path)) {
+                        history.push(`${v.path}/${icon.doc}`);
+                      } else if (location.pathname.includes("cloud")) {
+                        history.push(`/docs/current/${icon.doc}`);
+                      }
+                    });
+                  } else if (icon.url) {
+                    window.open(icon.url, "_blank", "noopener,noreferrer");
+                  } else if (icon.cloud) {
+                    history.push(`/cloud/${icon.cloud}`);
+                  }
+                }}
+              >
+                <img alt={icon.text} src={icon.src} className={`${styles.icon} disabled-zoom`} />
+                <p className={styles.iconHeader}>{icon.text}</p>
+              </div>
             ))}
           </div>
         </div>

@@ -7,7 +7,7 @@
 .gridContainer {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
-  row-gap: 2rem;
+  row-gap: 1rem;
 }
 
 .leftContainer {
@@ -58,6 +58,7 @@
 }
 
 .iconContainer {
+  cursor: pointer;
   display: flex;
   width: 100%;
   align-items: center;
@@ -93,6 +94,7 @@
   height: 2.3rem;
   padding: 0.2rem;
 
+  vertical-align: middle;
   border-radius: 6px;
   border: 1px solid var(--icon-border-color);
 }
@@ -102,7 +104,8 @@
 }
 
 .iconHeader {
-  margin: 0.5rem 0.5rem;
+  padding-top: 0.4rem;
+  margin-left: 0.5rem;
 }
 
 @media (min-width: 640px) {
