@@ -88,30 +88,29 @@ export default function OutlinedCard({
           <Box className={styles.cardLinks}>
             {links.map((link) => {
               return (
-                <div
-                  key={link.url}
-                  className={styles.flexBox}
-                  onClick={() => {
-                    if (link.url) {
-                      window.open(link.url, "_blank", "noopener,noreferrer");
-                    } else if (link.doc) {
-                      globalData["docusaurus-plugin-content-docs"].default[
-                        "versions"
-                      ].map((v) => {
-                        if (location.pathname.includes(v.path)) {
-                          history.push(`${v.path}/${link.doc}`);
-                        } else if (location.pathname.includes("cloud")) {
-                          history.push(`/docs/current/${doc}`);
-                        }
-                      });
-                    }
-                  }}
-                >
-                  <Typography className={styles.cardLink}>
+                <div key={link.url} className={styles.flexBox}>
+                  <Typography
+                    className={styles.cardLink}
+                    onClick={() => {
+                      if (link.url) {
+                        window.open(link.url, "_blank", "noopener,noreferrer");
+                      } else if (link.doc) {
+                        globalData["docusaurus-plugin-content-docs"].default[
+                          "versions"
+                        ].map((v) => {
+                          if (location.pathname.includes(v.path)) {
+                            history.push(`${v.path}/${link.doc}`);
+                          } else if (location.pathname.includes("cloud")) {
+                            history.push(`/docs/current/${doc}`);
+                          }
+                        });
+                      }
+                    }}
+                  >
                     {link.text}
                     {link.url && <ExternalArrow />}
                     {link.doc && (
-                      <RightArrow fill={dark ? "#48dcbc" : "#0098ef"} />
+                      <RightArrow fill={dark ? "#0098ef" : "#48dcbc"} />
                     )}
                   </Typography>
                 </div>
@@ -160,10 +159,9 @@ const ExternalArrow = () => (
     xmlns="http://www.w3.org/2000/svg"
     className={styles.externalArrowIcon}
   >
-    <path d="M15 3.5H20.5M20.5 3.5V9M20.5 3.5L12.5 11.5" stroke="#2f5dd9" />
+    <path d="M15 3.5H20.5M20.5 3.5V9M20.5 3.5L12.5 11.5" />
     <path
       d="M11.5 5.5H7.5C6.39543 5.5 5.5 6.39543 5.5 7.5V16.5C5.5 17.6046 6.39543 18.5 7.5 18.5H16.5C17.6046 18.5 18.5 17.6046 18.5 16.5V12.5"
-      stroke="#2f5dd9"
       strokeLinecap="round"
     />
   </svg>

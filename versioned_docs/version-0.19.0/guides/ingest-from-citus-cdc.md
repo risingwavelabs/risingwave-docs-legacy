@@ -5,9 +5,13 @@
  slug: /ingest-from-citus-cdc
 ---
 
-Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
+RisingWave supports ingesting change data capture (CDC) data from Citus database.
 
 Citus database is an extension to PostgreSQL that transforms PostgreSQL into a distributed database. For more details, see [Citus data](https://www.citusdata.com).
+
+:::caution Experimental feature
+Ingesting CDC data from Citus database is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::
 
 ## Set up Citus
 
@@ -67,7 +71,7 @@ WITH (
 
 ### WITH parameters
 
-Unless specified otherwise, the fields listed are required. 
+Unless specified otherwise, the fields listed are required.
 
 |Field|Notes|
 |---|---|

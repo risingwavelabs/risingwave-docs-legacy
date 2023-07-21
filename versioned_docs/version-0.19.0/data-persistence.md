@@ -15,7 +15,6 @@ When the memory buffer exceeds a certain memory threshold (configurable), or whe
 
 RisingWave does not require all of the data to be kept in-memory in order to function. The data can be persisted to these destinations:
 
-- Local drives
 - S3, or S3-compatible object storage
 - Google Cloud Storage, or HDFS/WebHDFS (support implemented via [Apache OpenDAL](https://github.com/apache/incubator-opendal))
 

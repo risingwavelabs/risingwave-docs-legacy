@@ -6,17 +6,21 @@ description: rw_int256 is a custom data type that represents a signed 256-bit in
 ---
 
 :::caution Experimental feature
-`rw_int256` is an experimental feature and is subject to change. There is no guarantee that this feature will be maintained in future versions.
+`rw_int256` data type is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::
 
+:::note
 `rw_int256` values can be very large, and therefore require more memory and processing power compared to smaller data types.
 :::
 
 ## Overview
+
 `rw_int256` is a custom data type that represents a signed 256-bit integer with a storage size of 32 bytes.
 
 It is designed to handle large integer values, and can be useful in financial calculations, cryptography, and data analysis.
 
 ## Usage
+
 You can define a column with the `rw_int256` type:
 
 ```sql title=Syntax
@@ -53,10 +57,13 @@ count ( [ DISTINCT ] rw_int256 ) -> bigint
 ```sql title=Example
 SELECT count(v) FROM t;
 ```
+
 ```
 13
 ```
+
 ---
+
 ### `min`
 
 Returns the minimum value in a set of values.
@@ -68,10 +75,13 @@ min ( rw_int256 ) -> rw_int256
 ```sql title=Example
 SELECT min(v) FROM t;
 ```
+
 ```
 -100000000000000000000000000000000
 ```
+
 ---
+
 ### `max`
 
 Returns the maximum value in a set of values.
@@ -83,11 +93,13 @@ max ( rw_int256 ) -> rw_int256
 ```sql title=Example
 SELECT max(v) FROM t;
 ```
+
 ```
 100000000000000000000000000000000
 ```
 
 ---
+
 ### `sum`
 
 Returns the sum of all input values.
@@ -99,10 +111,13 @@ sum ( [ DISTINCT ] rw_int256 ) -> rw_int256
 ```sql title=Example
 SELECT sum(v) FROM t;
 ```
+
 ```
 0
 ```
+
 ---
+
 ### `avg`
 
 Returns the average (arithmetic mean) of the selected values.
@@ -114,10 +129,13 @@ avg ( [ DISTINCT ] rw_int256 ) -> double
 ```sql title=Example
 SELECT avg(v) FROM t;
 ```
+
 ```
 0
 ```
+
 ---
+
 ### `hex_to_int256`
 
 Converts a hexadecimal string to a 256-bit integer.
@@ -129,16 +147,21 @@ hex_to_int256 ( string ) -> rw_int256
 ```sql title=Example-1
 SELECT hex_to_int256('0xdeadbeef');
 ```
+
 ```
 3735928559
 ```
+
 ```sql title=Example-2
 SELECT hex_to_int256('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff01');
 ```
+
 ```
 -255
 ```
+
 ---
+
 ### Standard deviation and variance
 
 Returns population standard deviation, sample standard deviation, population variance, and sample variance.
@@ -153,6 +176,7 @@ var_samp ( rw_int256 ) -> double -- sample variance
 ```sql title=Example
 SELECT stddev_pop(v), stddev_samp(v), var_pop(v), var_samp(v) FROM t;
 ```
+
 ```
        stddev_pop       |     stddev_samp      |        var_pop         |        var_samp        
 ------------------------+----------------------+------------------------+------------------------

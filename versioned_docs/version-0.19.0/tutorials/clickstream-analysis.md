@@ -13,7 +13,6 @@ Clickstream data provide a detailed log of how users travel through a particular
 
 In this tutorial, you will learn how to track the number of clicks a webpage gets over time with RisingWave. We have set up a demo cluster for this tutorial so you can easily try it out.
 
-
 ## Prerequisites
 
 * Ensure you have [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/) installed in your environment. Note that Docker Compose is included in Docker Desktop for Windows and macOS. If you use Docker Desktop, ensure that it is running before launching the demo cluster.
@@ -29,7 +28,7 @@ First, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repo
 git clone https://github.com/risingwavelabs/risingwave.git
 ```
 
-Now navigate to the `integration_tests/clickstream` directory and start the demo cluster from the docker compose file. 
+Now navigate to the `integration_tests/clickstream` directory and start the demo cluster from the docker compose file.
 
 ```shell
 cd risingwave/integration_tests/clickstream
@@ -73,10 +72,9 @@ In this tutorial, we will create a materialized view that counts how many times 
 
 First, the `tumble()` function will map each event into a 10-minute window to create an intermediary table `t`, where the events will be aggregated on `target_id` and `window_time` to get the number of clicks for each thread. The events will also be filtered by `target_type` and `behavior_type`.
 
-Next, the `hop()` function will create 24-hour time windows every 10 minutes. Each event will be mapped to corresponding windows. Finally, they will be grouped by `target_id` and `window_time` to calculate the total number of clicks of each thread within 24 hours. 
+Next, the `hop()` function will create 24-hour time windows every 10 minutes. Each event will be mapped to corresponding windows. Finally, they will be grouped by `target_id` and `window_time` to calculate the total number of clicks of each thread within 24 hours.
 
 Please refer to [User time windows](/sql/functions-operators/sql-function-time-window.md) for an explanation of the tumble and hop functions and aggregations.
-
 
 ```sql
 CREATE MATERIALIZED VIEW thread_view_count AS WITH t AS (
@@ -115,10 +113,9 @@ GROUP BY
     window_end;
 ```
 
+## Step 4: Query the results
 
-## Step 4: Query the results 
-
-We can query the most often viewed threads with the following statement. 
+We can query the most often viewed threads with the following statement.
 
 ```sql
 SELECT * FROM thread_view_count
@@ -139,7 +136,7 @@ The result may look like this:
 (5 rows)
 ```
 
-We can also query results by specifying a time interval. To learn more about data and time functions and operators, see [Date and time](https://www.risingwave.dev/docs/latest/sql-function-datetime/). 
+We can also query results by specifying a time interval. To learn more about data and time functions and operators, see [Date and time](/sql/functions-operators/sql-function-datetime.md/sql-function-datetime/).
 
 ```sql
 SELECT * FROM thread_view_count
@@ -181,6 +178,4 @@ docker-compose down -v
 In this tutorial, we learn:
 
 * How to get time-windowed aggregate results by using the tumble and hop time window functions.
-* How to compare time intervals. 
-
-
+* How to compare time intervals.

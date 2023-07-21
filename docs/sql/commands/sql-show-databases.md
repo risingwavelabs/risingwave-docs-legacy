@@ -13,7 +13,6 @@ Use the `SHOW DATABASES` command to show all databases.
 SHOW DATABASES;
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
@@ -24,8 +23,6 @@ export const svg = rr.Diagram(
 );
 
 <drawer SVG={svg} />
-
-
 
 ## Example
 

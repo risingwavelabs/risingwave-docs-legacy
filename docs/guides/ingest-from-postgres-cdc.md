@@ -7,19 +7,21 @@
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
 
-:::note
-The supported PostgreSQL versions are 10, 11, 12, 13, and 14.
-:::
+RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, and 14 of PostgreSQL are supported.
 
-You can ingest CDC data from PostgreSQL in two ways:
+You can ingest CDC data from PostgreSQL into RisingWave in two ways:
 
-- Using the PostgreSQL CDC connector
+- Using the built-in PostgreSQL CDC connector
 
-    This connector is included in RisingWave. With this connector, RisingWave can connect to PostgreSQL directly to obtain data from the binlog without starting additional services.
+  With this connector, RisingWave can connect to PostgreSQL databases directly to obtain data from the binlog without starting additional services.
+
+  :::caution Beta feature
+  The built-in PostgreSQL CDC connector in RisingWave is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
+  :::
 
 - Using a CDC tool and a message broker
-
-    You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/create-source/create-source-cdc.md) topic.
+  
+  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/create-source/create-source-cdc.md) topic.
 
 ## Set up PostgreSQL
 
@@ -72,6 +74,7 @@ import TabItem from '@theme/TabItem';
     GRANT CONNECT ON DATABASE <database_name> TO <username>;   
     GRANT USAGE ON SCHEMA <schema_name> TO <username>;  
     GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>; 
+    GRANT CREATE ON DATABASE <database_name> TO <username>;
     ```
 
     You can use the following statement to check the privileges of the user to the tables:
@@ -243,10 +246,16 @@ Unless specified otherwise, the fields listed are required.
 |schema.name| Optional. Name of the schema. By default, the value is `public`. |
 |table.name| Name of the table that you want to ingest data from. |
 |slot.name| Optional. The [replication slot](https://www.postgresql.org/docs/14/logicaldecoding-explanation.html#LOGICALDECODING-REPLICATION-SLOTS) for this PostgreSQL source. By default, a unique slot name will be randomly generated. Each source should have a unique slot name.|
+|publication.name| Optional. Name of the publication. By default, the value is `rw_publication`. For more information, see [Multiple CDC source tables](#multiple-cdc-source-tables). |
+|publication.create.enable| Optional. By default, the value is `true`. If `publication.name` does not exist and this value is `true`, a `publication.name` will be created. If `publication.name` does not exist and this value is `false`, an error will be returned. |
 
 :::note
 RisingWave implements CDC via PostgresQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot).
 :::
+
+### Multiple CDC source tables
+
+If you are creating multiple PostgreSQL CDC source tables, we recommend you to create a publication in the PostgreSQL database in advance. Specify the publication name with the `publication.name` parameter. Otherwise, some tables may not function as expected.
 
 ### Data format
 

@@ -26,7 +26,7 @@ import Stepper from "@theme/Stepper";
 import VerticalStepper from "@theme/VerticalStepper";
 import OutlinedCard from "@theme/OutlinedCard";
 import ResponsiveGrid from "@theme/ResponsiveGrid";
-
+import SectionGrid from "@theme/SectionGrid";
 
 function unwrapMDXElement(element) {
   if (element?.props?.mdxType && element?.props?.originalType) {
@@ -39,9 +39,7 @@ function unwrapMDXElement(element) {
 
 const MDXComponents = {
   head: (props) => {
-    const unwrappedChildren = React.Children.map(props.children, (child) =>
-      unwrapMDXElement(child)
-    );
+    const unwrappedChildren = React.Children.map(props.children, (child) => unwrapMDXElement(child));
     return <Head {...props}>{unwrappedChildren}</Head>;
   },
   code: (props) => {
@@ -93,5 +91,6 @@ const MDXComponents = {
   card: OutlinedCard,
   grid: ResponsiveGrid,
   platformDetector: PlatformDetector,
+  sectionGrid: SectionGrid,
 };
 export default MDXComponents;

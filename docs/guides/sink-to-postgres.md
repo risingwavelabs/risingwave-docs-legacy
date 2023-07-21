@@ -91,7 +91,7 @@ To install and start RisingWave locally, see the [Get started](/get-started.md) 
 
 The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
 
-The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose). 
+The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose).
 
 If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
 
@@ -110,7 +110,7 @@ WITH (
 
 ### Parameters​
 
-All WITH options are required.
+All WITH options are required unless noted.
 
 |Parameter or clause|Description|
 |---|---|
@@ -120,6 +120,7 @@ All WITH options are required.
 |connector| Sink connector type. Currently, only `‘kafka’` is supported. If there is a particular sink you are interested in, go to the [Integrations Overview](rw-integration-summary.md) page to see the full list of connectors and integrations we are working on. |
 |jdbc.url | The JDBC URL of the destination database necessary for the driver to recognize and connect to the database. |
 |table.name | The table in the destination database you want to sink to. |
+|schema.name | Optional. The schema in the destination database you want to sink to. The default value is `public`. |
 |type| Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul> If creating an `upsert` sink, see the [Overview](/data-delivery.md) on when to define the primary key.|
 
 ## Sink data from RisingWave to PostgreSQL
@@ -128,7 +129,7 @@ All WITH options are required.
 
 You can sink data from a table, source, or materialized view in RisingWave to PostgreSQL.
 
-For demostration purposes, we'll create a source and a materialized view, and then sink data from the materialized view. If you already have a table or materialized view to sink data from, you don't need to perform this step.
+For demonstration purposes, we'll create a source and a materialized view, and then sink data from the materialized view. If you already have a table or materialized view to sink data from, you don't need to perform this step.
 
 Run the following query to create a source to read data from a Kafka broker.
 
@@ -146,7 +147,7 @@ CREATE SOURCE user_behaviors (
     topic = 'user_behaviors',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
-) ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 Next, we will create a materialized view that queries the number of targets for each `target_id`. Note that the materialized view and the target table share the same schema.

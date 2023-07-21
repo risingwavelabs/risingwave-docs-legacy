@@ -14,7 +14,7 @@ Currently, these system parameters are availble in RisingWave.
 | Parameter           |    Description    |
 |---|---|
 |`barrier_interval_ms`     | The time interval of the periodic barriers.|
-|`checkpoint_interval`      | Specify the number of barriers for which a checkpoint will be created. The value must be a positive integer.|
+|`checkpoint_frequency`      | Specify the number of barriers for which a checkpoint will be created. The value must be a positive integer.|
 |`sstable_size_mb`          | The target size of SSTable.|
 |`block_size_kb`          | The size of each block in bytes in SSTable.|
 |`bloom_false_positive`     | False positive rate of bloom filter in SSTable.|

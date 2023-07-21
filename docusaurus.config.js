@@ -36,9 +36,15 @@ const config = {
               badge: false,
               banner: "unreleased",
             },
-            "0.19.0": {
-              label: "0.19.0 (current)",
+            "1.0.0": {
+              label: "1.0.0 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            "0.19.0": {
+              label: "0.19.0",
+              path: "/0.19.0",
               badge: false,
               banner: "none",
             },
@@ -100,10 +106,21 @@ const config = {
         sidebarPath: require.resolve("./sidebarCloud.js"),
       },
     ],
+    require.resolve("docusaurus-plugin-image-zoom"),
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      zoom: {
+        selector: ".markdown img:not(.disabled-zoom)",
+        background: {
+          light: "#ffffff",
+          dark: "#0a1721",
+        },
+        config: {
+          // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+        },
+      },
       colorMode: {
         disableSwitch: false,
         respectPrefersColorScheme: true,
@@ -125,7 +142,7 @@ const config = {
             type: "doc",
             docId: "intro",
             position: "left",
-            label: "RisingWave Database",
+            label: "RisingWave",
           },
           {
             to: "/cloud/intro",
