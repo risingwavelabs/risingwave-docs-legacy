@@ -124,12 +124,12 @@ Everything you need to get started on stream processing with RisingWave, in minu
 ![RisingWave Cloud](/img/home/RisingWave-Cloud.svg)
 
  <card
- style={{height: "90%"}}
+ style={{height: "80%"}}
  title="RisingWave Cloud"
  content="RisingWave Cloud is a hosted service that provides out-of-the-box RisingWave service, without the hassles of configuration and ongoing maintenance. It comes with an easy-to-use UI for running queries and managing sources, sinks, and clusters."
  links={[
  {text:"Start a free cloud cluster in 5 minutes", cloud:"quickstart"},
- {text:"Learn more", cloud:"intro"},
+ {text:"Browse documentation", cloud:"intro"},
  {text:"See pricing ", url:"https://www.risingwave.com/pricing/"}
  ]}
  />
@@ -141,12 +141,12 @@ Everything you need to get started on stream processing with RisingWave, in minu
 ![RisingWave](/img/home/RisingWave.svg)
 
 <card
- style={{height: "90%"}}
+ style={{height: "80%"}}
  title="RisingWave"
  content="RisingWave is an open-source distributed SQL streaming database under Apache License 2.0. It's well-optimized for high-throughput and low-latency stream processing in the cloud."
  links={[
  {text:"Install on your laptop with 4 lines of code", doc:"get-started"},
- {text:"Learn more", doc:"intro"},
+ {text:"Browse documentation", doc:"intro"},
  {text:"Access GitHub repo", url:"https://github.com/risingwavelabs/risingwave"}
  ]}
  />
@@ -159,7 +159,7 @@ Everything you need to get started on stream processing with RisingWave, in minu
 
 # Ecosystem
 
-See how RisingWave can integrate with your existing data stack. [Request an integration](/ingestion-overview.md)
+See how RisingWave can integrate with your existing data stack. [Request an integration](/rw-integration-summary.md)
 
 <sectionGrid cols={4} icons={[
   {src:"/img/ecosystem/kafka.svg", doc:"create-source-kafka", text: "Kafka"},
@@ -254,11 +254,11 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 ### <RocketLaunchOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Get started
 ---
 
-Run RisingWave for testing
+[Run RisingWave for testing](/deploy/risingwave-trial.md)
 
-Deploy with RisingWave Cloud
+[Deploy with RisingWave Cloud](/deploy/risingwave-cloud.md)
 
-Deploy with Kubernetes operator
+[Deploy with Kubernetes operator](/deploy/risingwave-kubernetes.md)
   
 </grid>
 
@@ -267,15 +267,15 @@ Deploy with Kubernetes operator
 ### <InfoOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> About
 ---
 
-Release notes
+[Release notes](/release-notes.md)
 
-Architecture
+[Architecture](/Architecture.md)
 
-Key concepts and terms
+[Key concepts and terms](/key-concepts.md)
 
-Fault tolerance
+[Fault tolerance](/fault-tolerance.md)
 
-Data persistence
+[Data persistence](/data-persistence.md)
 
 </grid>
 
@@ -284,21 +284,17 @@ Data persistence
 ### <JoinInnerOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> SQL references
 ---
 
-Commands
+[Commands](/docs/current/sql-commands)
 
-Query syntax
+[Query syntax](/docs/current/query-syntax)
 
-Data types
+[Data types](/docs/sql/sql-data-types.md)
 
-Functions and operators
+[Functions and operators](/docs/current/sql-functions)
 
-Patterns
+[Patterns](/docs/current/sql-patterns)
 
-Identifiers
-
-System catalogs
-
-Psql commands
+[See all →](/docs/current/sql-references)
   
 </grid>
 
@@ -307,17 +303,17 @@ Psql commands
 ### <NextWeekOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Demos
 ---
 
-Real-time ad performance analysis
+[Real-time ad performance analysis](/tutorials/real-time-ad-performance-analysis.md)
 
-Server performance anomaly detection
+[Server performance anomaly detection](/tutorials/server-performance-anomaly-detection.md)
 
-Fast Twitter events processing
+[Fast Twitter events processing](/tutorials/fast-twitter-events-processing.md)
 
-Clickstream analysis
+[Clickstream analysis](/tutorials/clickstream-analysis.md)
 
-Live stream metrics analysis
+[Live stream metrics analysis](/tutorials/live-stream-metrics-analysis.md)
 
-Use RisingWave to monitor RisingWave metrics
+[Use RisingWave to monitor RisingWave metrics](/tutorials/monitor-rw-metrics.md)
 
 </grid>
 
@@ -338,13 +334,15 @@ Use RisingWave to monitor RisingWave metrics
 ### <ManageAccountsOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Manage
 ---
 
-View statement progress
+[View statement progress](/manage/view-statement-progress.md)
 
-View and adjust system parameters
+[View and adjust system parameters](/manage/view-configure-system-parameters.md)
 
-Back up and restore meta service
+[Back up and restore meta service](/manage/meta-backup.md)
 
-Telemetry
+[Dedicated compute node](/manage/dedicated-compute-node.md)
+
+[Telemetry](/telemetry.md)
   
 </grid>
 
@@ -353,17 +351,17 @@ Telemetry
 ### <CloudOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> RisingWave Cloud
 ---
 
-Manage clusters
+[Manage clusters](/cloud/cluster-manage-clusters.md)
 
-Manage database users
+[Manage database users](/cloud/cluster-manage-database-users.md)
 
-Manage materialized views
+[Monitor materialized views](/cloud/cluster-monitor-materialized-views.md)
 
-Manage sources
+[Manage sources](/cloud/source-manage-sources.md)
 
-Manage sinks
+[Manage sinks](/cloud/sink-manage-sinks.md)
 
-Query console
+[Query console](/cloud/console-overview.md)
   
 </grid>
 
