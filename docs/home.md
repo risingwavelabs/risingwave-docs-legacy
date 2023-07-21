@@ -351,17 +351,17 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 ### <CloudOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> RisingWave Cloud
 ---
 
-[Manage clusters](/cloud/cluster-manage-clusters.md)
+[Manage clusters](/cloud/manage-clusters)
 
-[Manage database users](/cloud/cluster-manage-database-users.md)
+[Manage database users](/cloud/manage-database-users)
 
-[Monitor materialized views](/cloud/cluster-monitor-materialized-views.md)
+[Monitor materialized views](/cloud/monitor-materialized-views)
 
-[Manage sources](/cloud/source-manage-sources.md)
+[Manage sources](/cloud/manage-sources)
 
-[Manage sinks](/cloud/sink-manage-sinks.md)
+[Manage sinks](/cloud/manage-sinks)
 
-[Query console](/cloud/console-overview.md)
+[Query console](/cloud/console-overview)
   
 </grid>
 
