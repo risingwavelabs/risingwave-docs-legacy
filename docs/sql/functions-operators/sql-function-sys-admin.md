@@ -25,11 +25,9 @@ SELECT current_setting ('server_version');
 
 We are adding more settings to the list. Currently, the following settings are supported:
 
-|Settings| Description|
-|--|--|
-|`server_version`|PostgreSQL server version. |
-|`server_version_num`| PostgreSQL server version, in the numeric format. Version `8.3.0` will be displayed as `80300` in the numeric format.|
-|`timezone`|Timezone for the current instance. |
-|`query_mode`| Query mode of RisingWave. Enum values: `auto`, `batch`, `streaming`. The default value is `auto`.|
-|`streaming_parallelism`| The number of actors assigned to each streaming job. If it is set to non-zero, all streaming jobs in the current session will use it as the parallelism setting. |
-|`batch_parallelism`| The number of actors assigned to each streaming job. If it is set to non-zero, all streaming jobs in the current session will use it as the parallelism setting.|
+- `server_version`
+- `server_version_num`
+- `timezone`
+- `query_mode`
+- `streaming_parallelism`
+- `batch_parallelism`
