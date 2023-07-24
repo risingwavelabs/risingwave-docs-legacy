@@ -20,7 +20,7 @@ WITH (
 )
 FORMAT data_format ENCODE data_encode (
    message = 'message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema_location = 'location' | schema_registry_url = 'schema_registry_url'
 );
 ```
 

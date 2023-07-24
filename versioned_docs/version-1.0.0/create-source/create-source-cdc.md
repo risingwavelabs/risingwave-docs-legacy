@@ -188,7 +188,7 @@ WITH (
     scan.startup.mode = 'earliest'
 ) 
 FORMAT DEBEZIUM ENCODE AVRO (
-    confluent_schema_registry = 'http://localhost:8081'
+    schema_registry_url = 'http://localhost:8081'
 );
 ```
 

@@ -30,7 +30,7 @@ WITH (
 )
 FORMAT data_format ENCODE data_encode (
    message = 'message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema_location = 'location' | schema_registry_url = 'schema_registry_url'
 );
 ```
 
@@ -161,7 +161,7 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 ) FORMAT PLAIN ENCODE AVRO (
-   confluent_schema_registry = 'http://127.0.0.1:8081'
+   schema_registry_url = 'http://127.0.0.1:8081'
 );
 ```
 
@@ -178,7 +178,7 @@ WITH (
    schema.registry.password='your_schema_registry_password'
 )
 FORMAT UPSERT ENCODE AVRO (
-   confluent_schema_registry = 'http://127.0.0.1:8081'
+   schema_registry_url = 'http://127.0.0.1:8081'
 );
 ```
 
@@ -301,7 +301,7 @@ To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement.
 
 ```sql
 ENCODE data_encode (
-   confluent_schema_registry = 'schema_registry_url'
+   schema_registry_url = 'schema_registry_url'
 )
 ```
 
