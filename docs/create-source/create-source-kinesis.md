@@ -20,7 +20,7 @@ WITH (
 )
 FORMAT data_format ENCODE data_encode (
    message = 'message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url'
 );
 ```
 
@@ -92,15 +92,15 @@ export const svg = rr.Diagram(
 
 :::info
 
-For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` or `CREATE TABLE` statement. The schema should be provided in a Web location in the option `schema_location` in `ENCODE properties` section.
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` or `CREATE TABLE` statement. The schema should be provided in a Web location in the option `schema.location` in the `ENCODE` section.
 
 :::
 
 :::note
 
-RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
+RisingWave performs primary key constraint checks on tables with connector settings but not on regular sources. If you need the checks to be performed, please create a table with connector settings.
 
-For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
+For a table with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
 :::
 
 ### Connector parameters
@@ -148,7 +148,7 @@ WITH (
    aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
    aws.credentials.role.external_id='demo_external_id'
 ) FORMAT PLAIN ENCODE AVRO (
-    schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc'
+    schema.location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc'
 );
 ```
 
@@ -186,7 +186,7 @@ WITH (
    aws.credentials.role.external_id='demo_external_id'
 ) FORMAT PLAIN ENCODE PROTOBUF (
     message = 'demo_message',
-    schema_location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
+    schema.location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
 );
 ```
 
