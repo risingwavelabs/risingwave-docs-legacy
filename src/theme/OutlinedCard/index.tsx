@@ -17,6 +17,11 @@ type LinkProps = {
   cloud?: string;
 };
 
+type Imgs = {
+  light?: string;
+  dark?: string;
+};
+
 type Props = {
   title: string;
   content: string;
@@ -27,9 +32,22 @@ type Props = {
   btn?: string;
   width?: string;
   links?: LinkProps[];
+  img: Imgs;
 };
 
-export default function OutlinedCard({ title, content, doc, url, links, btn, width, height, cloud, ...rest }: Props) {
+export default function OutlinedCard({
+  title,
+  content,
+  doc,
+  url,
+  links,
+  btn,
+  width,
+  height,
+  cloud,
+  img,
+  ...rest
+}: Props) {
   const history = useHistory();
   const { globalData } = useDocusaurusContext();
   const location = useLocation();
@@ -66,9 +84,14 @@ export default function OutlinedCard({ title, content, doc, url, links, btn, wid
       }}
     >
       <CardContent className={styles.cardContent}>
-        <Typography variant="h5" className={styles.title} component="div">
-          {title}
-        </Typography>
+        <div className={styles.img}>
+          {img && <img alt={img.light || img.dark} src={img.light || img.dark} className="disabled-zoom" />}
+        </div>
+        {title && (
+          <Typography variant="h5" className={styles.title} component="div">
+            {title}
+          </Typography>
+        )}
         <Typography variant="body2" className={styles.content}>
           {content}
         </Typography>
@@ -118,9 +141,6 @@ export default function OutlinedCard({ title, content, doc, url, links, btn, wid
   );
 }
 
-type IconProps = {
-  fill: string;
-};
 const RightArrow = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" className={styles.rightArrowIcon}>
     <path fill="none" d="M0 0h24v24H0z" />

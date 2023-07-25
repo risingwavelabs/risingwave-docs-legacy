@@ -107,5 +107,9 @@ p.cardLink .externalArrowIcon path {
 }
 
 p.cardLink .rightArrowIcon path:nth-child(2) {
-  fill:  var(--ifm-color-primary);
+  fill: var(--ifm-color-primary);
+}
+
+.img {
+  height: 4rem;
 }
