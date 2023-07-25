@@ -157,6 +157,14 @@ NextWeekOutlined
 NextWeekOutlinedIcon
 RocketLaunchOutlined
 RocketLaunchOutlinedIcon
+DataSaverOffOutlined
+DataSaverOffOutlinedIcon
+GpsFixedOutlined
+GpsFixedOutlinedIcon
+IntegrationInstructionsOutlined
+IntegrationInstructionsOutlinedIcon
+StreamOutlined
+StreamOutlinedIcon
 mui
 bigint
 bytea
