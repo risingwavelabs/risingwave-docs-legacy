@@ -26,6 +26,7 @@ Innovate your business by leveraging continuous insights on live data.
 
  <card
  style={{height: "87%"}}
+ img={ {light: "/img/home/1-light.svg", dark : "/img/home/1-dark.svg"} }
  title="What’s RisingWave?"
  content="RisingWave is a distributed SQL streaming database designed to reduce the complexity and cost of extracting real-time insights from your data."
  doc="intro"
@@ -37,6 +38,7 @@ Innovate your business by leveraging continuous insights on live data.
 
  <card
  style={{height: "87%"}}
+ img={ {light: "/img/home/2-light.svg", dark : "/img/home/2-dark.svg"} }
  title="RisingWave vs Flink"
  content="At 10 times the speed and efficiency of Apache Flink, RisingWave effortlessly communicates with you in the language you know best."
  doc="risingwave-flink-comparison"
@@ -48,6 +50,7 @@ Innovate your business by leveraging continuous insights on live data.
 
 <card
  style={{height: "87%"}}
+ img={ {light: "/img/home/3-light.svg", dark : "/img/home/3-dark.svg"} }
  title="Use cases"
  content="Discover why RisingWave may be the ideal solution for streaming ETL, real-time analytics, and event-driven applications."
  doc="use-cases"
@@ -69,7 +72,7 @@ Innovate your business by leveraging continuous insights on live data.
 
 <grid item xs={12} sm={6} md={4}>
 
-![What's RisingWave](/img/home/1.svg)
+![What's RisingWave](/img/home/1-dark.svg)
 
 ### What’s RisingWave?
 
@@ -81,7 +84,7 @@ RisingWave is a distributed SQL streaming database designed to reduce the comple
 
 <grid item xs={12} sm={6} md={4}>
 
-![RisingWave vs Flink](/img/home/2.svg)
+![RisingWave vs Flink](/img/home/2-dark.svg)
 
 ### RisingWave vs Flink
 
@@ -93,7 +96,7 @@ At 10 times the speed and efficiency of Apache Flink, RisingWave effortlessly co
 
 <grid item xs={12} sm={6} md={4}>
 
-![Use cases](/img/home/3.svg)
+![Use cases](/img/home/3-dark.svg)
 
 ### Use cases
 
@@ -121,11 +124,9 @@ Everything you need to get started on stream processing with RisingWave, in minu
 
 <grid item xs={12} sm={6} md={6}>
 
-![RisingWave Cloud](/img/home/RisingWave-Cloud.svg)
-
  <card
- style={{height: "80%"}}
- title="RisingWave Cloud"
+ style={{height: "90%"}}
+ img={ {light: "/img/home/RisingWave-Cloud-light.svg", dark : "/img/home/RisingWave-Cloud-dark.svg"} }
  content="RisingWave Cloud is a hosted service that provides out-of-the-box RisingWave service, without the hassles of configuration and ongoing maintenance. It comes with an easy-to-use UI for running queries and managing sources, sinks, and clusters."
  links={[
  {text:"Start a free cloud cluster in 5 minutes", cloud:"quickstart"},
@@ -138,11 +139,9 @@ Everything you need to get started on stream processing with RisingWave, in minu
 
 <grid item xs={12} sm={6} md={6}>
 
-![RisingWave](/img/home/RisingWave.svg)
-
 <card
- style={{height: "80%"}}
- title="RisingWave"
+ style={{height: "90%"}}
+ img={ {light: "/img/home/RisingWave-light.svg", dark : "/img/home/RisingWave-dark.svg"} }
  content="RisingWave is an open-source distributed SQL streaming database under Apache License 2.0. It's well-optimized for high-throughput and low-latency stream processing in the cloud."
  links={[
  {text:"Install on your laptop with 4 lines of code", doc:"get-started"},
