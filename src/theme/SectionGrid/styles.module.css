@@ -63,11 +63,11 @@
   width: 100%;
   align-items: center;
   color: var(--ifm-font-color-base);
-  --icon-border-color: #e0e0e0;
+  --icon-border-color: #16545e;
 }
 
 [data-theme="dark"] .iconContainer {
-  --icon-border-color: #152c3c;
+  --icon-border-color: #bec3c9;
 }
 
 [data-theme="dark"] .iconContainer:hover {
@@ -92,7 +92,7 @@
 .icon {
   width: 2.3rem;
   height: 2.3rem;
-  padding: 0.2rem;
+  padding: 0.3rem;
 
   vertical-align: middle;
   border-radius: 6px;
@@ -108,6 +108,7 @@
   margin-left: 0.5rem;
 }
 
+.iconContainer:hover .iconHeader,
 .iconHeader:hover {
   color: var(--ifm-color-primary);
 }
