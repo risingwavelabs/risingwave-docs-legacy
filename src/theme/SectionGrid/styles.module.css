@@ -62,6 +62,7 @@
   display: flex;
   width: 100%;
   align-items: center;
+  height: 2.5rem;
   color: var(--ifm-font-color-base);
   --icon-border-color: #bec3c9;
 }
