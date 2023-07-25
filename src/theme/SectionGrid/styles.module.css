@@ -63,11 +63,11 @@
   width: 100%;
   align-items: center;
   color: var(--ifm-font-color-base);
-  --icon-border-color: #16545e;
+  --icon-border-color: #bec3c9;
 }
 
 [data-theme="dark"] .iconContainer {
-  --icon-border-color: #bec3c9;
+  --icon-border-color: #16545e;
 }
 
 [data-theme="dark"] .iconContainer:hover {
@@ -124,7 +124,7 @@
   .gridContainer {
     grid-template-columns: 3fr 7fr;
     column-gap: 4rem;
-    align-items: center;
+    align-items: flex-start;
   }
 
   .leftContainer {
