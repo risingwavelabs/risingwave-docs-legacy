@@ -5,7 +5,7 @@ description: Create a table.
 slug: /sql-create-table
 ---
 
-Use the `CREATE TABLE` command to create a new table or a materialized source. Tables consist of fixed columns and insertable rows. Rows can be added using the [`INSERT`](sql-insert.md) command. If creating a materialized source, be sure to include the connector settings and data format.
+Use the `CREATE TABLE` command to create a new table. Tables consist of fixed columns and insertable rows. Rows can be added using the [`INSERT`](sql-insert.md) command. When creating a table, you can specify connector settings and data format.
 
 :::info
 If you choose to not persist the data from the source in RisingWave, you should use [`CREATE SOURCE`](sql-create-source.md).
@@ -24,7 +24,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
     connector_parameter='value', ...)]
 [FORMAT data_format ENCODE data_encode [ (
     message='message',
-    row_schema_location='location', ...) ]
+    schema.location='location', ...) ]
 ];
 ```
 
@@ -62,7 +62,6 @@ export const svg = rr.Diagram(
         ),
     )
 );
-
 
 <drawer SVG={svg} />
 
@@ -121,7 +120,7 @@ For tables with primary key constraints, if you insert a new data record with an
 
 Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
 
-If creating a materialized source, remember to include the connector settings with the `WITH` clause and to specify the data format with the `ROW FORMAT` clause. See [`CREATE SOURCE`](sql-create-source.md) for a full list of supported connectors and data formats.
+The syntax for creating a table with connector settings and the supported connectors are the same as for creating a source. See [`CREATE SOURCE`](sql-create-source.md) for a full list of supported connectors and data formats.
 
 To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
 
@@ -134,7 +133,7 @@ To know when a data record is loaded to RisingWave, you can define a column that
 |*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
 |*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |**WITH** clause |Specify the connector settings here if trying to create a materialized source. See the [Data ingestion](/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
-|**ROW FORMAT** clause |Specify the data format of the source data here if trying to create a materialized source. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
+|Format and encode options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
 
 ## Examples
 

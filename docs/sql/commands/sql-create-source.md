@@ -20,7 +20,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
     connector_parameter='value', ...)]
 [FORMAT data_format ENCODE data_encode [ (
     message='message',
-    row_schema_location='location', ...) ]
+    schema.location='location', ...) ]
 ];
 ```
 
@@ -152,7 +152,7 @@ Syntax:
 FORMAT PLAIN
 ENCODE AVRO (
    message = 'main_message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url'
 )
 ```
 
@@ -189,7 +189,7 @@ Syntax:
 FORMAT PLAIN
 ENCODE PROTOBUF (
    message = 'main_message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url'
 )
 ```
 
@@ -197,7 +197,7 @@ ENCODE PROTOBUF (
 
 When creating a source from streams in Debezium JSON, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the data and encoding formats in the `FORMAT` and `ENCODE` sections. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
-Note that if you are ingesting data of type `timestamp` or `timestampz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning. 
+Note that if you are ingesting data of type `timestamp` or `timestampz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning.
 
 Syntax:
 
@@ -227,7 +227,7 @@ Syntax:
 FORMAT DEBEZIUM
 ENCODE AVRO (
    message = 'main_message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url'
 )
 ```
 
