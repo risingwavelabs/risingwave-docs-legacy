@@ -159,6 +159,11 @@ Everything you need to get started on stream processing with RisingWave, in minu
 
 # Ecosystem
 
+import StreamOutlinedIcon from '@mui/icons-material/StreamOutlined';
+import GpsFixedOutlinedIcon from '@mui/icons-material/GpsFixedOutlined';
+import DataSaverOffOutlinedIcon from '@mui/icons-material/DataSaverOffOutlined';
+import IntegrationInstructionsOutlinedIcon from '@mui/icons-material/IntegrationInstructionsOutlined';
+
 See how RisingWave can integrate with your existing data stack. [Request an integration](/rw-integration-summary.md)
 
 <sectionGrid cols={4} icons={[
@@ -177,13 +182,15 @@ See how RisingWave can integrate with your existing data stack. [Request an inte
   {src:"/img/ecosystem/citus.svg", doc:"ingest-from-citus-cdc", text: "Citus"},
 ]}>
 
-### Sources
+### <StreamOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} />  Sources
 
 Connect to and ingest data from external sources.
 
 [Learn more](/data-ingestion.md)
 
 </sectionGrid >
+
+---
 
 <sectionGrid cols={4} icons={[
   {src:"/img/ecosystem/kafka.svg", doc:"create-sink-kafka", text: "Kafka"},
@@ -194,13 +201,15 @@ Connect to and ingest data from external sources.
   {src:"/img/ecosystem/iceberg.svg", doc:"sink-to-iceberg", text: "Iceberg"},
 ]}>
 
-### Sinks
+### <GpsFixedOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} />  Sinks
 
 Stream processed data out of RisingWave to external targets.
 
 [Learn more](/data-delivery.md)
 
 </sectionGrid >
+
+---
 
 <sectionGrid cols={4} icons={[
   {src:"/img/ecosystem/grafana.svg", doc:"grafana-integration", text: "Grafana"},
@@ -209,11 +218,13 @@ Stream processed data out of RisingWave to external targets.
   {src:"/img/ecosystem/redash.svg", text: "Redash"},
 ]}>
 
-### BI tools
+### <DataSaverOffOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} />  BI tools
 
 Unlock actionable insights and create stunning visualizations for your data.
 
 </sectionGrid >
+
+---
 
 <sectionGrid cols={4} icons={[
   {src:"/img/ecosystem/java.svg", doc:"java-client-libraries", text: "Java"},
@@ -222,7 +233,7 @@ Unlock actionable insights and create stunning visualizations for your data.
   {src:"/img/ecosystem/go.svg", doc:"go-client-libraries", text: "Go"},
 ]}>
 
-### Client libraries
+### <IntegrationInstructionsOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} />  Client libraries
 
 Integrate RisingWave into your applications using PostgreSQL drivers.
 
