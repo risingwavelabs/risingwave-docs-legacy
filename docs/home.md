@@ -17,7 +17,7 @@ Innovate your business by leveraging continuous insights on live data.
 <grid
  container
  direction="row"
- spacing="15"
+ spacing="25"
  justifyContent="space-between"
  justifyItems="stretch"
  alignItems="stretch">
@@ -25,7 +25,7 @@ Innovate your business by leveraging continuous insights on live data.
 <grid item xs={12} sm={6} md={4}>
 
  <card
- style={{height: "87%"}}
+ style={{height: "90%"}}
  img={ {light: "/img/home/1-light.svg", dark : "/img/home/1-dark.svg"} }
  title="What’s RisingWave?"
  content="RisingWave is a distributed SQL streaming database designed to reduce the complexity and cost of extracting real-time insights from your data."
@@ -37,7 +37,7 @@ Innovate your business by leveraging continuous insights on live data.
 <grid item xs={12} sm={6} md={4}>
 
  <card
- style={{height: "87%"}}
+ style={{height: "90%"}}
  img={ {light: "/img/home/2-light.svg", dark : "/img/home/2-dark.svg"} }
  title="RisingWave vs Flink"
  content="At 10 times the speed and efficiency of Apache Flink, RisingWave effortlessly communicates with you in the language you know best."
@@ -49,60 +49,12 @@ Innovate your business by leveraging continuous insights on live data.
 <grid item xs={12} sm={6} md={4}>
 
 <card
- style={{height: "87%"}}
+ style={{height: "90%"}}
  img={ {light: "/img/home/3-light.svg", dark : "/img/home/3-dark.svg"} }
  title="Use cases"
  content="Discover why RisingWave may be the ideal solution for streaming ETL, real-time analytics, and event-driven applications."
  doc="use-cases"
  />
-  
-</grid>
-
-</grid>
-
----
-
-<grid
- container
- direction="row"
- spacing="30"
- justifyContent="space-between"
- justifyItems="stretch"
- alignItems="stretch">
-
-<grid item xs={12} sm={6} md={4}>
-
-![What's RisingWave](/img/home/1-dark.svg)
-
-### What’s RisingWave?
-
-RisingWave is a distributed SQL streaming database designed to reduce the complexity and cost of extracting real-time insights from your data.
-
-[Learn more](/intro.md)
-
-</grid>
-
-<grid item xs={12} sm={6} md={4}>
-
-![RisingWave vs Flink](/img/home/2-dark.svg)
-
-### RisingWave vs Flink
-
-At 10 times the speed and efficiency of Apache Flink, RisingWave effortlessly communicates with you in the language you know best.
-
-[Learn more](/risingwave-flink-comparison.md)
-  
-</grid>
-
-<grid item xs={12} sm={6} md={4}>
-
-![Use cases](/img/home/3-dark.svg)
-
-### Use cases
-
-Discover why RisingWave may be the ideal solution for streaming ETL, real-time analytics, and event-driven applications.
-
-[Learn more](/use-cases.md)
   
 </grid>
 
@@ -117,7 +69,7 @@ Everything you need to get started on stream processing with RisingWave, in minu
  <grid
  container
  direction="row"
- spacing="15"
+ spacing="25"
  justifyContent="space-between"
  justifyItems="stretch"
  alignItems="stretch">
@@ -291,7 +243,7 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 
 <grid item xs={6} sm={6} md={3}>
 
-### <JoinInnerOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> SQL references
+### <JoinInnerOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} />  References
 ---
 
 [Commands](/docs/current/sql-commands)
