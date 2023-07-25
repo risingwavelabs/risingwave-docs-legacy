@@ -64,7 +64,6 @@ function SectionGrid({ children, icons, cols }: Props) {
             ))}
           </div>
         </div>
-        <hr />
       </div>
     </section>
   );

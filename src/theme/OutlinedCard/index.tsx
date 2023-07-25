@@ -29,18 +29,7 @@ type Props = {
   links?: LinkProps[];
 };
 
-export default function OutlinedCard({
-  title,
-  content,
-  doc,
-  url,
-  links,
-  btn,
-  width,
-  height,
-  cloud,
-  ...rest
-}: Props) {
+export default function OutlinedCard({ title, content, doc, url, links, btn, width, height, cloud, ...rest }: Props) {
   const history = useHistory();
   const { globalData } = useDocusaurusContext();
   const location = useLocation();
@@ -94,15 +83,13 @@ export default function OutlinedCard({
                       if (link.url) {
                         window.open(link.url, "_blank", "noopener,noreferrer");
                       } else if (link.doc) {
-                        globalData["docusaurus-plugin-content-docs"].default["versions"].map(
-                          (v) => {
-                            if (location.pathname.includes(v.path)) {
-                              history.push(`${v.path}/${link.doc}`);
-                            } else if (location.pathname.includes("cloud")) {
-                              history.push(`/docs/current/${doc}`);
-                            }
+                        globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
+                          if (location.pathname.includes(v.path)) {
+                            history.push(`${v.path}/${link.doc}`);
+                          } else if (location.pathname.includes("cloud")) {
+                            history.push(`/docs/current/${doc}`);
                           }
-                        );
+                        });
                       } else if (link.cloud) {
                         history.push(`/cloud/${link.cloud}`);
                       }
@@ -111,6 +98,7 @@ export default function OutlinedCard({
                     {link.text}
                     {link.url && <ExternalArrow />}
                     {link.doc && <RightArrow />}
+                    {link.cloud && <RightArrow />}
                   </Typography>
                 </div>
               );
@@ -134,17 +122,9 @@ type IconProps = {
   fill: string;
 };
 const RightArrow = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    width="16"
-    height="16"
-    className={styles.rightArrowIcon}
-  >
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" className={styles.rightArrowIcon}>
     <path fill="none" d="M0 0h24v24H0z" />
-    <path
-      d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-    />
+    <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
   </svg>
 );
 
