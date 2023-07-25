@@ -22,38 +22,44 @@ Innovate your business by leveraging continuous insights on live data.
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={4}>
+<grid item xs={12} sm={4} md={4}>
 
  <card
  style={{height: "90%"}}
  img={ {light: "/img/home/1-light.svg", dark : "/img/home/1-dark.svg"} }
  title="What’s RisingWave?"
  content="RisingWave is a distributed SQL streaming database designed to reduce the complexity and cost of extracting real-time insights from your data."
- doc="intro"
+ links={[
+ {text:"Learn more", cloud:"intro"}
+ ]}
  />
 
 </grid>
 
-<grid item xs={12} sm={6} md={4}>
+<grid item xs={12} sm={4} md={4}>
 
  <card
  style={{height: "90%"}}
  img={ {light: "/img/home/2-light.svg", dark : "/img/home/2-dark.svg"} }
  title="RisingWave vs Flink"
  content="At 10 times the speed and efficiency of Apache Flink, RisingWave effortlessly communicates with you in the language you know best."
- doc="risingwave-flink-comparison"
+ links={[
+ {text:"Learn more", cloud:"risingwave-flink-comparison"}
+ ]}
  />
   
 </grid>
 
-<grid item xs={12} sm={6} md={4}>
+<grid item xs={12} sm={4} md={4}>
 
 <card
  style={{height: "90%"}}
  img={ {light: "/img/home/3-light.svg", dark : "/img/home/3-dark.svg"} }
  title="Use cases"
  content="Discover why RisingWave may be the ideal solution for streaming ETL, real-time analytics, and event-driven applications."
- doc="use-cases"
+ links={[
+ {text:"Learn more", cloud:"use-cases"}
+ ]}
  />
   
 </grid>
