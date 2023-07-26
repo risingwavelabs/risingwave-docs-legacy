@@ -8,7 +8,7 @@ hide_table_of_contents: true
 
 Browse the latest user documentation, including concepts, instructions, demos, and SQL references.
 
-<br/><br/><br/>
+<br/><br/>
 
 # New to RisingWave
 
@@ -30,7 +30,7 @@ Innovate your business by leveraging continuous insights on live data.
  title="What’s RisingWave?"
  content="RisingWave is a distributed SQL streaming database designed to reduce the complexity and cost of extracting real-time insights from your data."
  links={[
- {text:"Learn more", cloud:"intro"}
+ {text:"Learn more", doc:"intro"}
  ]}
  />
 
@@ -44,7 +44,7 @@ Innovate your business by leveraging continuous insights on live data.
  title="RisingWave vs Flink"
  content="At 10 times the speed and efficiency of Apache Flink, RisingWave effortlessly communicates with you in the language you know best."
  links={[
- {text:"Learn more", cloud:"risingwave-flink-comparison"}
+ {text:"Learn more", doc:"risingwave-flink-comparison"}
  ]}
  />
   
@@ -58,7 +58,7 @@ Innovate your business by leveraging continuous insights on live data.
  title="Use cases"
  content="Discover why RisingWave may be the ideal solution for streaming ETL, real-time analytics, and event-driven applications."
  links={[
- {text:"Learn more", cloud:"use-cases"}
+ {text:"Learn more", doc:"use-cases"}
  ]}
  />
   
