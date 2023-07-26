@@ -139,8 +139,8 @@ const config = {
         },
         items: [
           {
-            to: "/docs/upcoming/home",
-            activeBaseRegex: `/docs/upcoming/home`,
+            to: "/home",
+            activeBaseRegex: `/home`,
             position: "left",
             label: "Home",
           },
