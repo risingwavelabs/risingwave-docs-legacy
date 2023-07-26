@@ -500,8 +500,8 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
-                  id: 'sql/functions-operators/sql-function-bitstring',
-                  label: 'Bit string',
+                  id: 'sql/functions-operators/sql-function-binarystring',
+                  label: 'Binary string',
                 },
                 {
                   type: 'doc',
