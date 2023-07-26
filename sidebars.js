@@ -654,6 +654,10 @@ const sidebars = {
       items: [
         {
           type: 'doc',
+          id: 'manage/monitor-risingwave-cluster',
+        },
+        {
+          type: 'doc',
           id: 'manage/view-statement-progress',
         },
         {
