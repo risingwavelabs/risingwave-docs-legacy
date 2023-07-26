@@ -24,44 +24,44 @@ Innovate your business by leveraging continuous insights on live data.
 
 <grid item xs={12} sm={4} md={4}>
 
- <card
- style={{height: "90%"}}
- img={ {light: "/img/home/1-light.svg", dark : "/img/home/1-dark.svg"} }
- title="What’s RisingWave?"
- content="RisingWave is a distributed SQL streaming database designed to reduce the complexity and cost of extracting real-time insights from your data."
- links={[
- {text:"Learn more", doc:"intro"}
- ]}
- />
+<card
+style={{height: "90%"}}
+img={ {light: "/img/home/1-light.svg", dark : "/img/home/1-dark.svg"} }
+title="What’s RisingWave?"
+content="RisingWave is a distributed SQL streaming database designed to reduce the complexity and cost of extracting real-time insights from your data."
+links={[
+{text:"Learn more", doc:"intro"}
+]}
+/>
 
-</grid>
-
-<grid item xs={12} sm={4} md={4}>
-
- <card
- style={{height: "90%"}}
- img={ {light: "/img/home/2-light.svg", dark : "/img/home/2-dark.svg"} }
- title="RisingWave vs Flink"
- content="At 10 times the speed and efficiency of Apache Flink, RisingWave effortlessly communicates with you in the language you know best."
- links={[
- {text:"Learn more", doc:"risingwave-flink-comparison"}
- ]}
- />
-  
 </grid>
 
 <grid item xs={12} sm={4} md={4}>
 
 <card
- style={{height: "90%"}}
- img={ {light: "/img/home/3-light.svg", dark : "/img/home/3-dark.svg"} }
- title="Use cases"
- content="Discover why RisingWave may be the ideal solution for streaming ETL, real-time analytics, and event-driven applications."
- links={[
- {text:"Learn more", doc:"use-cases"}
- ]}
- />
-  
+style={{height: "90%"}}
+img={ {light: "/img/home/2-light.svg", dark : "/img/home/2-dark.svg"} }
+title="RisingWave vs Flink"
+content="At 10 times the speed and efficiency of Apache Flink, RisingWave effortlessly communicates with you in the language you know best."
+links={[
+{text:"Learn more", doc:"risingwave-flink-comparison"}
+]}
+/>
+
+</grid>
+
+<grid item xs={12} sm={4} md={4}>
+
+<card
+style={{height: "90%"}}
+img={ {light: "/img/home/3-light.svg", dark : "/img/home/3-dark.svg"} }
+title="Use cases"
+content="Discover why RisingWave may be the ideal solution for streaming ETL, real-time analytics, and event-driven applications."
+links={[
+{text:"Learn more", doc:"use-cases"}
+]}
+/>
+
 </grid>
 
 </grid>
@@ -72,7 +72,7 @@ Innovate your business by leveraging continuous insights on live data.
 
 Everything you need to get started on stream processing with RisingWave, in minutes.
 
- <grid
+<grid
  container
  direction="row"
  spacing="25"
@@ -82,32 +82,32 @@ Everything you need to get started on stream processing with RisingWave, in minu
 
 <grid item xs={12} sm={6} md={6}>
 
- <card
- style={{height: "90%"}}
- img={ {light: "/img/home/RisingWave-Cloud-light.svg", dark : "/img/home/RisingWave-Cloud-dark.svg"} }
- content="RisingWave Cloud is a hosted service that provides out-of-the-box RisingWave service, without the hassles of configuration and ongoing maintenance. It comes with an easy-to-use UI for running queries and managing sources, sinks, and clusters."
- links={[
- {text:"Start a free cloud cluster in 5 minutes", cloud:"quickstart"},
- {text:"Browse documentation", cloud:"intro"},
- {text:"See pricing ", url:"https://www.risingwave.com/pricing/"}
- ]}
- />
+<card
+style={{height: "90%"}}
+img={ {light: "/img/home/RisingWave-Cloud-light.svg", dark : "/img/home/RisingWave-Cloud-dark.svg"} }
+content="RisingWave Cloud is a hosted service that provides out-of-the-box RisingWave service, without the hassles of configuration and ongoing maintenance. It comes with an easy-to-use UI for running queries and managing sources, sinks, and clusters."
+links={[
+{text:"Start a free cloud cluster in 5 minutes", cloud:"quickstart"},
+{text:"Browse documentation", cloud:"intro"},
+{text:"See pricing ", url:"https://www.risingwave.com/pricing/"}
+]}
+/>
 
 </grid>
 
 <grid item xs={12} sm={6} md={6}>
 
 <card
- style={{height: "90%"}}
- img={ {light: "/img/home/RisingWave-light.svg", dark : "/img/home/RisingWave-dark.svg"} }
- content="RisingWave is an open-source distributed SQL streaming database under Apache License 2.0. It's well-optimized for high-throughput and low-latency stream processing in the cloud."
- links={[
- {text:"Install on your laptop with 4 lines of code", doc:"get-started"},
- {text:"Browse documentation", doc:"intro"},
- {text:"Access GitHub repo", url:"https://github.com/risingwavelabs/risingwave"}
- ]}
- />
-  
+style={{height: "90%"}}
+img={ {light: "/img/home/RisingWave-light.svg", dark : "/img/home/RisingWave-dark.svg"} }
+content="RisingWave is an open-source distributed SQL streaming database under Apache License 2.0. It's well-optimized for high-throughput and low-latency stream processing in the cloud."
+links={[
+{text:"Install on your laptop with 4 lines of code", doc:"get-started"},
+{text:"Browse documentation", doc:"intro"},
+{text:"Access GitHub repo", url:"https://github.com/risingwavelabs/risingwave"}
+]}
+/>
+
 </grid>
 
 </grid>
@@ -124,22 +124,22 @@ import IntegrationInstructionsOutlinedIcon from '@mui/icons-material/Integration
 See how RisingWave can integrate with your existing data stack. [Request an integration](/rw-integration-summary.md)
 
 <sectionGrid cols={4} icons={[
-  {src:"/img/ecosystem/kafka.svg", doc:"create-source-kafka", text: "Kafka"},
-  {src:"/img/ecosystem/redpanda.svg", doc:"create-source-redpanda", text: "Redpanda"},
-  {src:"/img/ecosystem/confluent.svg", doc:"confluent-kafka-source", text: "Confluent Cloud"},
-  {src:"/img/ecosystem/msk.svg", doc:"connector-amazon-msk", text: "MSK"},
-  {src:"/img/ecosystem/pulsar.svg", doc:"create-source-pulsar", text: "Pulsar"},
-  {src:"/img/ecosystem/astra.svg", doc:"connector-astra-streaming", text: "Astra Streaming"},
-  {src:"/img/ecosystem/streamnative.svg", text: "StreamNative Cloud"},
-  {src:"/img/ecosystem/s3.svg", doc:"create-source-s3", text: "S3"},
-  {src:"/img/ecosystem/kinesis.svg", doc:"create-source-kinesis", text: "Kinesis"},
-  {src:"/img/ecosystem/postgresql.svg", doc:"ingest-from-postgres-cdc", text: "PostgreSQL"},
-  {src:"/img/ecosystem/mysql.svg", doc:"ingest-from-mysql-cdc", text: "MySQL"},
-  {src:"/img/ecosystem/tidb.svg", doc:"create-source-cdc", text: "TiDB"},
-  {src:"/img/ecosystem/citus.svg", doc:"ingest-from-citus-cdc", text: "Citus"},
+{src:"/img/ecosystem/kafka.svg", doc:"create-source-kafka", text: "Kafka"},
+{src:"/img/ecosystem/redpanda.svg", doc:"create-source-redpanda", text: "Redpanda"},
+{src:"/img/ecosystem/confluent.svg", doc:"confluent-kafka-source", text: "Confluent Cloud"},
+{src:"/img/ecosystem/msk.svg", doc:"connector-amazon-msk", text: "MSK"},
+{src:"/img/ecosystem/pulsar.svg", doc:"create-source-pulsar", text: "Pulsar"},
+{src:"/img/ecosystem/astra.svg", doc:"connector-astra-streaming", text: "Astra Streaming"},
+{src:"/img/ecosystem/streamnative.svg", text: "StreamNative Cloud"},
+{src:"/img/ecosystem/s3.svg", doc:"create-source-s3", text: "S3"},
+{src:"/img/ecosystem/kinesis.svg", doc:"create-source-kinesis", text: "Kinesis"},
+{src:"/img/ecosystem/postgresql.svg", doc:"ingest-from-postgres-cdc", text: "PostgreSQL"},
+{src:"/img/ecosystem/mysql.svg", doc:"ingest-from-mysql-cdc", text: "MySQL"},
+{src:"/img/ecosystem/tidb.svg", doc:"create-source-cdc", text: "TiDB"},
+{src:"/img/ecosystem/citus.svg", doc:"ingest-from-citus-cdc", text: "Citus"},
 ]}>
 
-### <StreamOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} />  Sources
+### <StreamOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Sources
 
 Connect to and ingest data from external sources.
 
@@ -150,15 +150,15 @@ Connect to and ingest data from external sources.
 ---
 
 <sectionGrid cols={4} icons={[
-  {src:"/img/ecosystem/kafka.svg", doc:"create-sink-kafka", text: "Kafka"},
-  {src:"/img/ecosystem/kinesis.svg", doc:"sink-to-aws-kinesis", text: "Kinesis"},
-  {src:"/img/ecosystem/postgresql.svg", doc:"sink-to-postgres", text: "PostgreSQL"},
-  {src:"/img/ecosystem/mysql.svg", doc:"sink-to-mysql-with-jdbc", text: "MySQL"},
-  {src:"/img/ecosystem/tidb.svg", doc:"sink-to-tidb", text: "TiDB"},
-  {src:"/img/ecosystem/iceberg.svg", doc:"sink-to-iceberg", text: "Iceberg"},
+{src:"/img/ecosystem/kafka.svg", doc:"create-sink-kafka", text: "Kafka"},
+{src:"/img/ecosystem/kinesis.svg", doc:"sink-to-aws-kinesis", text: "Kinesis"},
+{src:"/img/ecosystem/postgresql.svg", doc:"sink-to-postgres", text: "PostgreSQL"},
+{src:"/img/ecosystem/mysql.svg", doc:"sink-to-mysql-with-jdbc", text: "MySQL"},
+{src:"/img/ecosystem/tidb.svg", doc:"sink-to-tidb", text: "TiDB"},
+{src:"/img/ecosystem/iceberg.svg", doc:"sink-to-iceberg", text: "Iceberg"},
 ]}>
 
-### <GpsFixedOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} />  Sinks
+### <GpsFixedOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Sinks
 
 Stream processed data out of RisingWave to external targets.
 
@@ -169,13 +169,13 @@ Stream processed data out of RisingWave to external targets.
 ---
 
 <sectionGrid cols={4} icons={[
-  {src:"/img/ecosystem/grafana.svg", doc:"grafana-integration", text: "Grafana"},
-  {src:"/img/ecosystem/superset.svg", doc:"superset-integration", text: "Superset"},
-  {src:"/img/ecosystem/dbeaver.svg", text: "DBeaver"},
-  {src:"/img/ecosystem/redash.svg", text: "Redash"},
+{src:"/img/ecosystem/grafana.svg", doc:"grafana-integration", text: "Grafana"},
+{src:"/img/ecosystem/superset.svg", doc:"superset-integration", text: "Superset"},
+{src:"/img/ecosystem/dbeaver.svg", text: "DBeaver"},
+{src:"/img/ecosystem/redash.svg", text: "Redash"},
 ]}>
 
-### <DataSaverOffOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} />  BI tools
+### <DataSaverOffOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> BI tools
 
 Unlock actionable insights and create stunning visualizations for your data.
 
@@ -184,13 +184,13 @@ Unlock actionable insights and create stunning visualizations for your data.
 ---
 
 <sectionGrid cols={4} icons={[
-  {src:"/img/ecosystem/java.svg", doc:"java-client-libraries", text: "Java"},
-  {src:"/img/ecosystem/nodejs.svg", doc:"nodejs-client-libraries", text: "Node.js"},
-  {src:"/img/ecosystem/python.svg", doc:"python-client-libraries", text: "Python"},
-  {src:"/img/ecosystem/go.svg", doc:"go-client-libraries", text: "Go"},
+{src:"/img/ecosystem/java.svg", doc:"java-client-libraries", text: "Java"},
+{src:"/img/ecosystem/nodejs.svg", doc:"nodejs-client-libraries", text: "Node.js"},
+{src:"/img/ecosystem/python.svg", doc:"python-client-libraries", text: "Python"},
+{src:"/img/ecosystem/go.svg", doc:"go-client-libraries", text: "Go"},
 ]}>
 
-### <IntegrationInstructionsOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} />  Client libraries
+### <IntegrationInstructionsOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Client libraries
 
 Integrate RisingWave into your applications using PostgreSQL drivers.
 
@@ -220,19 +220,21 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 <grid item xs={6} sm={6} md={3}>
 
 ### <RocketLaunchOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Get started
+
 ---
 
-[Run RisingWave for testing](/deploy/risingwave-trial.md)
+[Run RisingWave for testing](/docs/current/risingwave-trial/)
 
-[Deploy with RisingWave Cloud](/deploy/risingwave-cloud.md)
+[Deploy with RisingWave Cloud](/docs/current/risingwave-cloud)
 
-[Deploy with Kubernetes operator](/deploy/risingwave-kubernetes.md)
-  
+[Deploy with Kubernetes operator](/docs/current/risingwave-kubernetes)
+
 </grid>
 
 <grid item xs={6} sm={6} md={3}>
 
 ### <InfoOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> About
+
 ---
 
 [Release notes](/docs/current/release-notes)
@@ -249,26 +251,28 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 
 <grid item xs={6} sm={6} md={3}>
 
-### <JoinInnerOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} />  References
+### <JoinInnerOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> References
+
 ---
 
 [Commands](/docs/current/sql-commands)
 
 [Query syntax](/docs/current/query-syntax)
 
-[Data types](/docs/sql/sql-data-types.md)
+[Data types](/docs/current/sql-data-types)
 
 [Functions and operators](/docs/current/sql-functions)
 
 [Patterns](/docs/current/sql-patterns)
 
 [See all →](/docs/current/sql-references)
-  
+
 </grid>
 
 <grid item xs={6} sm={6} md={3}>
 
 ### <NextWeekOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Demos
+
 ---
 
 [Real-time ad performance analysis](/docs/current/real-time-ad-performance-analysis)
@@ -300,6 +304,7 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 <grid item xs={6} sm={6} md={3}>
 
 ### <ManageAccountsOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Manage
+
 ---
 
 [View statement progress](/docs/current/view-statement-progress)
@@ -311,12 +316,13 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 [Dedicated compute node](/docs/current/dedicated-compute-node)
 
 [Telemetry](/docs/current/telemetry)
-  
+
 </grid>
 
 <grid item xs={6} sm={6} md={3}>
 
 ### <CloudOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> RisingWave Cloud
+
 ---
 
 [Manage clusters](/cloud/manage-clusters)
@@ -330,7 +336,7 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 [Manage sinks](/cloud/manage-sinks)
 
 [Query console](/cloud/console-overview)
-  
+
 </grid>
 
 </grid>
