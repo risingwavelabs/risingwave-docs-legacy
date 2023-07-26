@@ -86,7 +86,7 @@ export default function OutlinedCard({
       <CardContent className={styles.cardContent}>
         {img && (
           <div className={styles.img}>
-            <img alt={dark ? img.dark : img.light} src={dark ? img.dark : img.light} className="disabled-zoom" />
+            <img alt={!dark ? img.light : img.dark} src={!dark ? img.light : img.dark} className="disabled-zoom" />
           </div>
         )}
         {title && (
