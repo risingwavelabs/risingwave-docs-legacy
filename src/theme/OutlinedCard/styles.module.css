@@ -1,7 +1,6 @@
 div.cardContainer {
   background: none;
   border-radius: var(--ifm-pagination-nav-border-radius);
-  transition: all 300ms ease;
   cursor: pointer;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -10,8 +9,6 @@ div.cardContainer {
 
 [data-theme="dark"] div.cardContainer {
   border: 1px solid var(--ifm-card-border-color);
-  transition: all var(--ifm-transition-fast) ease;
-  transition-property: border;
   background-color: var(--ifm-card-background-color);
 }
 
@@ -24,8 +21,6 @@ div.defaultContainer {
 [data-theme="dark"] div.defaultContainer {
   background-color: var(--ifm-card-background-color);
   border: 1px solid var(--ifm-card-border-color);
-  transition: all var(--ifm-transition-fast) ease;
-  transition-property: border;
 }
 
 div.cardContainer:hover {
