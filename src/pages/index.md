@@ -6,6 +6,8 @@ description: Browse the latest user documentation, including concepts, instructi
 hide_table_of_contents: true
 ---
 
+# RisingWave User Documentation
+
 Browse the latest user documentation, including concepts, instructions, demos, and SQL references.
 
 <br/><br/>
@@ -121,7 +123,7 @@ import GpsFixedOutlinedIcon from '@mui/icons-material/GpsFixedOutlined';
 import DataSaverOffOutlinedIcon from '@mui/icons-material/DataSaverOffOutlined';
 import IntegrationInstructionsOutlinedIcon from '@mui/icons-material/IntegrationInstructionsOutlined';
 
-See how RisingWave can integrate with your existing data stack. [Request an integration](/rw-integration-summary.md)
+See how RisingWave can integrate with your existing data stack. [Request an integration](/docs/current/rw-integration-summary)
 
 <sectionGrid cols={4} icons={[
 {src:"/img/ecosystem/kafka.svg", doc:"create-source-kafka", text: "Kafka"},
