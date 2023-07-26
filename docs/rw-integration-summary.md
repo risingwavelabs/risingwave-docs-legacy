@@ -22,7 +22,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |Apache Pulsar|Available. See [Ingest data from Pulsar](/create-source/create-source-pulsar.md) for details. | Researching <voteNotify note="pulsar_sink" />|
 |DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <voteNotify note="astra_streaming_sink" />|
 |StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
-|Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Researching <voteNotify note="kinesis_sink" />|
+|Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Available. See [Sink data to Kinesis](/guides/sink-to-aws-kinesis.md) for details.|
 
 ## ETL/ELT and data integration
 
@@ -75,9 +75,10 @@ For tools or integrations that you would like to use but are not listed in the t
 |Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
 |MongoDB| Researching <voteNotify note="mongodb_source" />|Researching <voteNotify note="mongodb_sink" /> |
 |Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
-|SQL Server| Researching <voteNotify note="sql_server_source" />|Researching <voteNotify note="sql_server_sink" /> |
+|SQL Server| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Researching <voteNotify note="sql_server_sink" /> |
 |TiDB| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Available. For details, see [Sink data from RisingWave to TiDB](/guides/sink-to-tidb.md). |
 |Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
+|Greenplum| No plan| Researching <voteNotify note="greenplum_sink" /> |
 
 ## Data lakes
 
@@ -85,7 +86,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |---|---|---|
 |Delta Lake| |Researching <voteNotify note="deltalake" />|
 |Apache Hudi| |Researching <voteNotify note="hudi" />|
-|Apache Iceberg| |Researching <voteNotify note="iceberg" />|
+|Apache Iceberg| |Available. For details, see [Sink data from RisingWave to Apache Iceberg](/guides/sink-to-iceberg.md).|
 
 ## BI and data analytic platforms
 

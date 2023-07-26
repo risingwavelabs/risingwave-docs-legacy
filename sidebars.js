@@ -525,6 +525,11 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
+                  id: 'sql/functions-operators/sql-function-sys-admin',
+                  label: 'System administration',
+                },
+                {
+                  type: 'doc',
                   id: 'sql/functions-operators/sql-function-sys-info',
                   label: 'System information',
                 },
@@ -647,6 +652,10 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
+        {
+          type: 'doc',
+          id: 'manage/monitor-risingwave-cluster',
+        },
         {
           type: 'doc',
           id: 'manage/view-statement-progress',
