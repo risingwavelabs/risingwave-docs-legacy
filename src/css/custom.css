@@ -71,8 +71,6 @@
   --ifm-color-success-light: rgb(38, 178, 38);
   --ifm-color-success-lighter: rgba(77, 191, 77, 0.212);
   --ifm-color-success-lightest: rgb(128, 210, 128);
-
-  --docsearch-primary-color: var(--ifm-color-primary-darkest) !important;
 }
 
 [data-theme="dark"] hr {
@@ -241,7 +239,16 @@ h3 {
 
 /* Custom Search Box */
 .DocSearch.DocSearch-Button {
-  border: 2px solid;
+  --docsearch-primary-color: var(--ifm-color-primary-darkest) !important;
+
+  border: 1px solid #bec3c9;
+  border-radius: 0;
+  padding: 0 1rem;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] .DocSearch.DocSearch-Button {
+  border: 1px solid #104352;
 }
 
 /* Custom Unordered List */
