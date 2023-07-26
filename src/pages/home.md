@@ -281,7 +281,7 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 
 [Live stream metrics analysis](/docs/current/live-stream-metrics-analysis)
 
-[Use RisingWave to monitor RisingWave metrics](/docs/current/monitor-rw-metrics)
+[Use RisingWave to monitor RisingWave metrics](/docs/current/use-risingwave-to-monitor-risingwave-metrics)
 
 </grid>
 
