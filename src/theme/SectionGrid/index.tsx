@@ -44,13 +44,13 @@ function SectionGrid({ children, icons, cols }: Props) {
                 className={styles.iconContainer}
                 onClick={() => {
                   if (icon.doc) {
-                    globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
+                    for (let v of globalData["docusaurus-plugin-content-docs"].default["versions"]) {
                       if (location.pathname.includes(v.path)) {
-                        history.push(`${v.path}/${icon.doc}`);
-                      } else if (location.pathname.includes("cloud")) {
-                        history.push(`/docs/current/${icon.doc}`);
+                        return history.push(`${v.path}/${icon.doc}`);
+                      } else {
+                        return history.push(`/docs/current/${icon.doc}`);
                       }
-                    });
+                    }
                   } else if (icon.url) {
                     window.open(icon.url, "_blank", "noopener,noreferrer");
                   } else if (icon.cloud) {

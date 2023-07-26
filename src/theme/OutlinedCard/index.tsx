@@ -69,13 +69,13 @@ export default function OutlinedCard({
       onClick={() => {
         if (links) return;
         if (doc) {
-          globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
+          for (let v of globalData["docusaurus-plugin-content-docs"].default["versions"]) {
             if (location.pathname.includes(v.path)) {
-              history.push(`${v.path}/${doc}`);
-            } else if (location.pathname.includes("cloud")) {
-              history.push(`/docs/current/${doc}`);
+              return history.push(`${v.path}/${doc}`);
+            } else {
+              return history.push(`/docs/current/${doc}`);
             }
-          });
+          }
         } else if (url) {
           window.open(url, "_blank", "noopener,noreferrer");
         } else if (cloud) {
@@ -108,13 +108,13 @@ export default function OutlinedCard({
                       if (link.url) {
                         window.open(link.url, "_blank", "noopener,noreferrer");
                       } else if (link.doc) {
-                        globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) => {
+                        for (let v of globalData["docusaurus-plugin-content-docs"].default["versions"]) {
                           if (location.pathname.includes(v.path)) {
-                            history.push(`${v.path}/${link.doc}`);
-                          } else if (location.pathname.includes("cloud")) {
-                            history.push(`/docs/current/${doc}`);
+                            return history.push(`${v.path}/${link.doc}`);
+                          } else {
+                            return history.push(`/docs/current/${link.doc}`);
                           }
-                        });
+                        }
                       } else if (link.cloud) {
                         history.push(`/cloud/${link.cloud}`);
                       }

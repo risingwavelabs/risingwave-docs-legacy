@@ -20,15 +20,13 @@ export default function DefaultButton({ text, doc, url, block, cloud }: Props) {
     <div
       onClick={() => {
         if (doc) {
-          globalData["docusaurus-plugin-content-docs"].default["versions"].map(
-            (v) => {
-              if (location.pathname.includes(v.path)) {
-                history.push(`${v.path}/${doc}`);
-              } else if (location.pathname.includes("cloud")) {
-                history.push(`/docs/current/${doc}`);
-              }
+          for (let v of globalData["docusaurus-plugin-content-docs"].default["versions"]) {
+            if (location.pathname.includes(v.path)) {
+              return history.push(`${v.path}/${doc}`);
+            } else {
+              return history.push(`/docs/current/${doc}`);
             }
-          );
+          }
         } else if (url) {
           window.open(url, "_blank", "noopener,noreferrer");
         } else if (cloud) {
