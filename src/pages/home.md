@@ -235,15 +235,15 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 ### <InfoOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> About
 ---
 
-[Release notes](/release-notes.md)
+[Release notes](/docs/current/release-notes)
 
-[Architecture](/Architecture.md)
+[Architecture](/docs/current/architecture)
 
-[Key concepts and terms](/key-concepts.md)
+[Key concepts and terms](/docs/current/key-concepts)
 
-[Fault tolerance](/fault-tolerance.md)
+[Fault tolerance](/docs/current/fault-tolerance)
 
-[Data persistence](/data-persistence.md)
+[Data persistence](/docs/current/data-persistence)
 
 </grid>
 
@@ -271,17 +271,17 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 ### <NextWeekOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Demos
 ---
 
-[Real-time ad performance analysis](/tutorials/real-time-ad-performance-analysis.md)
+[Real-time ad performance analysis](/docs/current/real-time-ad-performance-analysis)
 
-[Server performance anomaly detection](/tutorials/server-performance-anomaly-detection.md)
+[Server performance anomaly detection](/docs/current/server-performance-anomaly-detection)
 
-[Fast Twitter events processing](/tutorials/fast-twitter-events-processing.md)
+[Fast Twitter events processing](/docs/current/fast-twitter-events-processing)
 
-[Clickstream analysis](/tutorials/clickstream-analysis.md)
+[Clickstream analysis](/docs/current/clickstream-analysis)
 
-[Live stream metrics analysis](/tutorials/live-stream-metrics-analysis.md)
+[Live stream metrics analysis](/docs/current/live-stream-metrics-analysis)
 
-[Use RisingWave to monitor RisingWave metrics](/tutorials/monitor-rw-metrics.md)
+[Use RisingWave to monitor RisingWave metrics](/docs/current/use-risingwave-to-monitor-risingwave-metrics)
 
 </grid>
 
@@ -302,15 +302,15 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 ### <ManageAccountsOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Manage
 ---
 
-[View statement progress](/manage/view-statement-progress.md)
+[View statement progress](/docs/current/view-statement-progress)
 
-[View and adjust system parameters](/manage/view-configure-system-parameters.md)
+[View and adjust system parameters](/docs/current/view-configure-system-parameters)
 
-[Back up and restore meta service](/manage/meta-backup.md)
+[Back up and restore meta service](/docs/current/meta-backup)
 
-[Dedicated compute node](/manage/dedicated-compute-node.md)
+[Dedicated compute node](/docs/current/dedicated-compute-node)
 
-[Telemetry](/telemetry.md)
+[Telemetry](/docs/current/telemetry)
   
 </grid>
 
