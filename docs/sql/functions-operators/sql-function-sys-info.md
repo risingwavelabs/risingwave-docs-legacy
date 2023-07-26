@@ -97,3 +97,4 @@ user() → *user_name*
 ```sql title=Example
 SELECT user(); → `root`
 ```
+

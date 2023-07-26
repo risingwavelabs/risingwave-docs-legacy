@@ -525,6 +525,11 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
+                  id: 'sql/functions-operators/sql-function-sys-admin',
+                  label: 'System administration',
+                },
+                {
+                  type: 'doc',
                   id: 'sql/functions-operators/sql-function-sys-info',
                   label: 'System information',
                 },
@@ -649,11 +654,15 @@ const sidebars = {
       items: [
         {
           type: 'doc',
+          id: 'manage/monitor-risingwave-cluster',
+        },
+        {
+          type: 'doc',
           id: 'manage/view-statement-progress',
         },
         {
           type: 'doc',
-          id: 'manage/view-adjust-system-parameters',
+          id: 'manage/view-configure-system-parameters',
         },
         {
           type: 'doc',
