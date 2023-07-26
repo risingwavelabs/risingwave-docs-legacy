@@ -6,7 +6,7 @@ title: Binary string functions and operators
 
 ### `bit_length`
 
-Returns number of bits in the binary string, which is 8 times the [`octet_length`](#octet_length)). 
+Returns number of bits in the binary string, which is 8 times the [`octet_length`](#octet_length-length). 
 
 ```sql title=Syntax 
 bit_length ( bytea ) -> integer
