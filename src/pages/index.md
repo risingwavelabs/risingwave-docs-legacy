@@ -6,6 +6,8 @@ description: Browse the latest user documentation, including concepts, instructi
 hide_table_of_contents: true
 ---
 
+# RisingWave User Documentation
+
 Browse the latest user documentation, including concepts, instructions, demos, and SQL references.
 
 <br/><br/>
