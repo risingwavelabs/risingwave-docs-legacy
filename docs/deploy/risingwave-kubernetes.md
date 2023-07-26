@@ -109,17 +109,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="storage_selection">
-<TabItem value="minio" label="etcd+MinIO">
-
-RisingWave supports using MinIO as the object storage.
-
-Run the following command to deploy a RisingWave instance with MinIO as the object storage.
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/stable/persistent/minio/risingwave.yaml
-```
-
-</TabItem>
 <TabItem value="s3" label="etcd+S3">
 
 RisingWave supports using Amazon S3 as the object storage.
@@ -161,7 +150,17 @@ RisingWave supports using Amazon S3 as the object storage.
     </details>
 
 </TabItem>
+<TabItem value="minio" label="etcd+MinIO">
 
+RisingWave supports using MinIO as the object storage.
+
+Run the following command to deploy a RisingWave instance with MinIO as the object storage.
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/stable/persistent/minio/risingwave.yaml
+```
+
+</TabItem>
 <TabItem value="hdfs" label="etcd+HDFS">
 
 RisingWave supports using HDFS as the object storage.
@@ -187,19 +186,19 @@ kubectl get risingwave
 If the instance is running properly, the output should look like this:
 
 <Tabs groupId="storage_selection">
-<TabItem value="minio" label="etcd+MinIO">
-
-```
-NAME        RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
-risingwave  True      etcd            MinIO             30s
-```
-
-</TabItem>
 <TabItem value="s3" label="etcd+S3">
 
 ```
 NAME        RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
 risingwave  True      etcd            S3                30s
+```
+
+</TabItem>
+<TabItem value="minio" label="etcd+MinIO">
+
+```
+NAME        RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
+risingwave  True      etcd            MinIO             30s
 ```
 
 </TabItem>
