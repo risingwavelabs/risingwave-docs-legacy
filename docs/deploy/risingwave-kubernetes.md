@@ -154,6 +154,10 @@ RisingWave supports using Amazon S3 as the object storage.
 
 RisingWave supports using MinIO as the object storage.
 
+:::note
+The performance of MinIO depends on the disk performance of the node on which it resides. In our tests, AWS EBS did not perform well. We recommend you use S3 or a compatible cloud service for the best experience. 
+:::
+
 Run the following command to deploy a RisingWave instance with MinIO as the object storage.
 
 ```shell
