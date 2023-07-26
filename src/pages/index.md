@@ -121,7 +121,7 @@ import GpsFixedOutlinedIcon from '@mui/icons-material/GpsFixedOutlined';
 import DataSaverOffOutlinedIcon from '@mui/icons-material/DataSaverOffOutlined';
 import IntegrationInstructionsOutlinedIcon from '@mui/icons-material/IntegrationInstructionsOutlined';
 
-See how RisingWave can integrate with your existing data stack. [Request an integration](/rw-integration-summary.md)
+See how RisingWave can integrate with your existing data stack. [Request an integration](/docs/current/rw-integration-summary)
 
 <sectionGrid cols={4} icons={[
 {src:"/img/ecosystem/kafka.svg", doc:"create-source-kafka", text: "Kafka"},
@@ -143,7 +143,7 @@ See how RisingWave can integrate with your existing data stack. [Request an inte
 
 Connect to and ingest data from external sources.
 
-[Learn more](/data-ingestion.md)
+[Learn more](/docs/current/data-ingestion)
 
 </sectionGrid >
 
@@ -162,7 +162,7 @@ Connect to and ingest data from external sources.
 
 Stream processed data out of RisingWave to external targets.
 
-[Learn more](/data-delivery.md)
+[Learn more](/docs/current/data-delivery)
 
 </sectionGrid >
 
