@@ -525,6 +525,11 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
+                  id: 'sql/functions-operators/sql-function-sys-admin',
+                  label: 'System administration',
+                },
+                {
+                  type: 'doc',
                   id: 'sql/functions-operators/sql-function-sys-info',
                   label: 'System information',
                 },

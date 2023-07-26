@@ -29,7 +29,7 @@ RisingWave does not fully support all PostgreSQL system catalog columns.
 | [`pg_namespace`](https://www.postgresql.org/docs/current/catalog-pg-namespace.html) | Contains information about namespaces.|
 | [`pg_opclass`](https://www.postgresql.org/docs/current/catalog-pg-opclass.html) | Contains information about index access method operator classes. |
 | [`pg_operator`](https://www.postgresql.org/docs/current/catalog-pg-operator.html) | Contains information about operators. |
-| [`pg_proc](https://www.postgresql.org/docs/current/catalog-pg-proc.html)|Contains information about functions, aggregate functions, and window functions. |
+| [`pg_proc`](https://www.postgresql.org/docs/current/catalog-pg-proc.html)|Contains information about functions, aggregate functions, and window functions. |
 | [`pg_roles`](https://www.postgresql.org/docs/current/view-pg-roles.html) | Contains information about database roles. |
 | [`pg_settings`](https://www.postgresql.org/docs/current/view-pg-settings.html) | Contains information about run-time parameters of the server.|
 | [`pg_shdescription`](https://www.postgresql.org/docs/current/catalog-pg-shdescription.html) | Contains descriptive information about shared database objects. |

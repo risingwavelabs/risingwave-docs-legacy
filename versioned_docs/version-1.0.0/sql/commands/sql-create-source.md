@@ -20,7 +20,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
     connector_parameter='value', ...)]
 [FORMAT data_format ENCODE data_encode [ (
     message='message',
-    row_schema_location='location', ...) ]
+    schema.location='location', ...) ]
 ];
 ```
 
@@ -148,7 +148,7 @@ Syntax:
 FORMAT PLAIN
 ENCODE AVRO (
    message = 'main_message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url'
 )
 ```
 
@@ -185,7 +185,7 @@ Syntax:
 FORMAT PLAIN
 ENCODE PROTOBUF (
    message = 'main_message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url'
 )
 ```
 
@@ -221,7 +221,7 @@ Syntax:
 FORMAT DEBEZIUM
 ENCODE AVRO (
    message = 'main_message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url'
 )
 ```
 

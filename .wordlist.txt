@@ -175,3 +175,4 @@ kafka
 Paimon
 TPC
 Greenplum
+updateable
