@@ -139,6 +139,12 @@ const config = {
         },
         items: [
           {
+            to: "/docs/upcoming/home",
+            activeBaseRegex: `/docs/upcoming/home`,
+            position: "left",
+            label: "Home",
+          },
+          {
             type: "doc",
             docId: "intro",
             position: "left",
@@ -157,49 +163,13 @@ const config = {
           },
           {
             href: "https://github.com/risingwavelabs/risingwave",
-            label: "GitHub",
+            className: "header-github-link",
             position: "right",
+            "aria-label": "RisingWave GitHub repository",
           },
         ],
       },
       footer: {
-        // links: [
-        //   {
-        //     title: 'Docs',
-        //     items: [
-        //       {
-        //         label: 'Docs',
-        //         to: '/docs/intro',
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     title: 'Community',
-        //     items: [
-        //       {
-        //         label: 'Slack',
-        //         href: 'https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw',
-        //       },
-        //       {
-        //         label: 'Twitter',
-        //         href: 'https://twitter.com/SingularityData',
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     title: 'More',
-        //     items: [
-        //       {
-        //         label: 'Blog',
-        //         to: '/blog',
-        //       },
-        //       {
-        //         label: 'GitHub',
-        //         href: 'https://github.com/risingwavelabs/risingwave',
-        //       },
-        //     ],
-        //   },
-        // ],
         copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community`,
       },
       prism: {

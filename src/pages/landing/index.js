@@ -80,16 +80,9 @@ function HomepageHeader() {
 }
 
 export default function Home() {
-  // useEffect(() => {
-  //   window.location.href = window.location.href + "docs/latest/intro";
-  // }, []);
-
   return (
     <Layout title={`Home`} description="RisingWave Community and Docs">
       <main>
-        {/* <HomepageBanner content={
-          <span>🥇 Join our first code camp! <Link to="https://www.risingwave.com/events/code-camp/">Learn More</Link></span>
-        } /> */}
         <div
           style={{
             height: "100vh",
@@ -106,11 +99,6 @@ export default function Home() {
             <HomePageWave />
           </div>
         </div>
-
-        {/* <div style={{ marginLeft: "5vw", marginRight: "5vw" }}>
-          <HomepageIntro />
-          <HomepageFeature />
-        </div> */}
       </main>
     </Layout>
   );
