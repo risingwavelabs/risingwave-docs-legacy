@@ -40,13 +40,19 @@ NAMESPACE    NAME                         AGE
 monitoring   risingwave-service-monitor   119m
 ```
 
-1. Forward the web port of Grafana to localhost.
+1. Forward the web port of Grafana to localhost .
 
 ```bash
 kubectl port-forward -n monitoring svc/prometheus-grafana 3000:http-web
 ```
 
-1. Go to [http://localhost:3000](http://localhost:3000). When prompted, enter the default credentials (username: `admin`; password: `prom-operator`).
+The command above allows you to access Grafana from the local machine only. If you need to access Grafana from a different host, append `--address 0.0.0.0` to the command to allow Grafana to accept requests from external hosts. The complete command is:
+
+```bash
+kubectl port-forward -n monitoring svc/prometheus-grafana 3000:http-web --address 0.0.0.0
+```
+
+1. Go to [http://localhost:3000](http://localhost:3000) if you access Grafana from a local machine, or [http://<client_address>:3000] if you access Grafana from a different host, where `<client_address>` is the IP address of the machine running the Grafana service. When prompted, enter the default credentials (username: `admin`; password: `prom-operator`).
 
 1. From **Dashboards**, select **RisingWave** -> **RisingWave Dashboard**. You can edit metrics in the dashboard and add new metrics.
 
