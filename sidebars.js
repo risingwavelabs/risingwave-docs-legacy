@@ -605,7 +605,7 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
-                  id: 'sql/system-catalogs/pg-catalog',
+                  id: 'sql/system-catalogs/pg-catalogs',
                   label: 'PostgreSQL catalogs',
                 },
                 {
