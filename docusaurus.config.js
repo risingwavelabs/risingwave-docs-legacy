@@ -159,6 +159,7 @@ const config = {
           {
             type: "docsVersionDropdown",
             docsPluginId: "default",
+            className: "header-drop-down",
             position: "right",
           },
           {

@@ -531,3 +531,9 @@ table tr:first-child {
   height: 24px;
   width: 24px;
 }
+
+/* hide the version dropdown */
+html.plugin-id-cloud .header-drop-down,
+html.mdx-page .header-drop-down {
+  display: none;
+}
