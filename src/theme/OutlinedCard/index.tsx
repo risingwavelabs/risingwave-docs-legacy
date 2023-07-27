@@ -52,7 +52,7 @@ export default function OutlinedCard({
   const { globalData } = useDocusaurusContext();
   const location = useLocation();
   const { colorMode } = useColorMode();
-  const [dark, setDark] = React.useState(false);
+  const [dark, setDark] = React.useState<boolean | undefined>();
   React.useEffect(() => {
     setDark(colorMode === "dark");
   }, [colorMode]);
@@ -86,7 +86,9 @@ export default function OutlinedCard({
       <CardContent className={styles.cardContent}>
         {img && (
           <div className={styles.img}>
-            <img alt={!dark ? img.light : img.dark} src={!dark ? img.light : img.dark} className="disabled-zoom" />
+            {dark !== undefined && (
+              <img alt={dark ? img.dark : img.light} src={dark ? img.dark : img.light} className="disabled-zoom" />
+            )}
           </div>
         )}
         {title && (
