@@ -30,6 +30,7 @@ We are adding more settings to the list. Currently, the following settings are s
 - `streaming_parallelism`
 - `batch_parallelism`
 
+<!--
 ## `pg_terminate_backend()`
 
 Terminates a backend. You can execute this against another backend that has exactly the same role as the user calling the function. In all other cases, you must be a superuser. For more details, see [System Administration Functions](https://www.postgresql.org/docs/current/functions-admin.html).
@@ -40,7 +41,7 @@ Returns the ID of the server process attached to the current session. For more d
 
 ## `pg_cancel_backend()`
 
-Cancels a backend's current query. You can execute this against another backend that has exactly the same role as the user calling the function. In all other cases, you must be a superuser. For more details, see [System Administration Functions](https://www.postgresql.org/docs/current/functions-admin.html).
+Cancels a backend's current query. You can execute this against another backend that has exactly the same role as the user calling the function. In all other cases, you must be a superuser. For more details, see [System Administration Functions](https://www.postgresql.org/docs/current/functions-admin.html). -->
 
 ## `pg_indexes_size('table_name')`
 

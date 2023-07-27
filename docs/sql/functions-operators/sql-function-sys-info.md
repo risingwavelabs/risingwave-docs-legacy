@@ -57,9 +57,10 @@ current_user() → *user_name*
 SELECT current_user(); → `root`
 ```
 
-## `pg_tablespace_location()`
+<!--## `pg_tablespace_location()`
 
 Returns the file system location of a tablespace. To use this function, you need to provide the OID of the tablespace you want to get the location for as an argument.
+-->
 
 ## `pg_typeof()`
 
