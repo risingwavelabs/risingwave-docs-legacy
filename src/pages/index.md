@@ -68,7 +68,7 @@ links={[
 
 </grid>
 
-<br/><br/><br/>
+<br/><br/>
 
 # Get started
 
@@ -114,7 +114,7 @@ links={[
 
 </grid>
 
-<br/><br/><br/>
+<br/><br/>
 
 # Ecosystem
 
@@ -198,7 +198,7 @@ Integrate RisingWave into your applications using PostgreSQL drivers.
 
 </sectionGrid >
 
-<br/><br/><br/>
+<br/><br/>
 
 # Essential topics
 
