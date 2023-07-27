@@ -103,7 +103,11 @@ Before the deployment, ensure that the following requirements are satisfied.
 
 ## Deploy a RisingWave instance
 
-Select an object storage service for data persistence.
+When deploying a RisingWave instance, you can choose from multiple object storage options to persist your data. Depending on the option you choose, the deployment instructions are different.
+
+### Optional: Customize the state store directory
+
+You can customize the directory for storing state data via the `spec: stateStore: dataDirectory` parameter in the `risingwave.yaml` file that you want to use to deploy a RisingWave instance. If you have multiple RisingWave instances, ensure the value of `dataDirectory` for the new isntance is unique (the default value is `hummock`). Otherwise, the new RisingWave instance may crash. Save the changes to the `risingwave.yaml` file before running the `kubectl apply -f <...risingwave.yaml>` command.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
