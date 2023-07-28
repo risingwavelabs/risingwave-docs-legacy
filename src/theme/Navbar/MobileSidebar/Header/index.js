@@ -31,7 +31,6 @@ function CloseButton() {
 export default function NavbarMobileSidebarHeader() {
   const items = useNavbarItems().filter((item) => item?.className?.includes("github-link"));
   const mobileSidebar = useNavbarMobileSidebar();
-  console.log(items[0]);
   return (
     <div className="navbar-sidebar__brand">
       <NavbarLogo />
