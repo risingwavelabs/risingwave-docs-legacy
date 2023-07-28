@@ -194,6 +194,12 @@ FORMAT DEBEZIUM ENCODE AVRO (
 
 Although the `CREATE TABLE` command only specifies one column, the other columns in the upstream MySQL table will still be derived and included.
 
+:::note
+
+If the upstream is PostgreSQL, it is possible to mismatch type from `interval` in PostgreSQL to `bigint` or `varchar` in RisingWave, depending on [interval.handling.mode](https://debezium.io/documentation/reference/2.3/connectors/postgresql.html#postgresql-property-interval-handling-mode) in debezium connect settings. 
+
+:::
+
 </TabItem>
 </Tabs>
 
