@@ -282,6 +282,11 @@ const sidebars = {
             },
             {
               type: 'doc',
+              label: 'Delta Lake',
+              id: 'guides/sink-to-delta-lake'
+            },
+            {
+              type: 'doc',
               label: 'Apache Iceberg',
               id: 'guides/sink-to-iceberg'
             }
@@ -500,8 +505,8 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
-                  id: 'sql/functions-operators/sql-function-bitstring',
-                  label: 'Bit string',
+                  id: 'sql/functions-operators/sql-function-binarystring',
+                  label: 'Binary string',
                 },
                 {
                   type: 'doc',
@@ -522,6 +527,11 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/functions-operators/sql-function-conditional',
                   label: 'Conditional',
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/functions-operators/sql-function-sys-admin',
+                  label: 'System administration',
                 },
                 {
                   type: 'doc',
@@ -595,8 +605,8 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
-                  id: 'sql/system-catalogs/pg-catalog-function',
-                  label: 'PostgreSQL catalogs and functions',
+                  id: 'sql/system-catalogs/pg-catalogs',
+                  label: 'PostgreSQL catalogs',
                 },
                 {
                   type: 'doc',
@@ -649,11 +659,15 @@ const sidebars = {
       items: [
         {
           type: 'doc',
+          id: 'manage/monitor-risingwave-cluster',
+        },
+        {
+          type: 'doc',
           id: 'manage/view-statement-progress',
         },
         {
           type: 'doc',
-          id: 'manage/view-adjust-system-parameters',
+          id: 'manage/view-configure-system-parameters',
         },
         {
           type: 'doc',

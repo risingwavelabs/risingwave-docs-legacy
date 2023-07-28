@@ -20,7 +20,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
     connector_parameter='value', ...)]
 [FORMAT data_format ENCODE data_encode [ (
     message='message',
-    row_schema_location='location', ...) ]
+    schema.location='location', ...) ]
 ];
 ```
 
@@ -100,7 +100,7 @@ Data formats denoted with an M only support materialized sources, which require 
 
 | Connector | Version | Format |
 |---------|---------|---------|
-|[Kafka](/create-source/create-source-kafka.md)|3.1.0 or later versions |[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Debezium AVRO](#debezium-avro) (M), [DEBEZIUM_MONGO_JSON](#debezium-mongo-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M), [Upsert JSON](#upsert-json), [Upsert AVRO](#upsert-avro)|
+|[Kafka](/create-source/create-source-kafka.md)|3.1.0 or later versions |[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Debezium AVRO](#debezium-avro) (M), [DEBEZIUM_MONGO_JSON](#debezium-mongo-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M), [Upsert JSON](#upsert-json), [Upsert AVRO](#upsert-avro), [Bytes](#bytes)|
 |[Redpanda](/create-source/create-source-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf) |
 |[Pulsar](/create-source/create-source-pulsar.md)| 2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M)|
 |[Astra Streaming](/guides/connector-astra-streaming.md)|Latest |[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|  
@@ -148,7 +148,7 @@ Syntax:
 FORMAT PLAIN
 ENCODE AVRO (
    message = 'main_message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url'
 )
 ```
 
@@ -185,7 +185,7 @@ Syntax:
 FORMAT PLAIN
 ENCODE PROTOBUF (
    message = 'main_message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url'
 )
 ```
 
@@ -193,7 +193,7 @@ ENCODE PROTOBUF (
 
 When creating a source from streams in Debezium JSON, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the data and encoding formats in the `FORMAT` and `ENCODE` sections. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
-Note that if you are ingesting data of type `timestamp` or `timestampz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning. 
+Note that if you are ingesting data of type `timestamp` or `timestampz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning.
 
 Syntax:
 
@@ -223,7 +223,7 @@ Syntax:
 FORMAT DEBEZIUM
 ENCODE AVRO (
    message = 'main_message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url'
 )
 ```
 
@@ -269,6 +269,15 @@ Syntax:
 ```sql
 FORMAT UPSERT
 ENCODE AVRO
+```
+
+### Bytes
+
+RisingWave allows you to read data streams without decoding the data by using the `BYTES` row format. However, the table or source can have exactly one field of `BYTEA` data.
+
+```sql
+FORMAT PLAIN
+ENCODE BYTES
 ```
 
 ## See also

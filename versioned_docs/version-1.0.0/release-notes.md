@@ -21,8 +21,6 @@ This version was released on July 12, 2023.
 
   - Supports the `GROUPING SETS` clause. [#10807](https://github.com/risingwavelabs/risingwave/pull/10807)
 
-  - Supports the `EXCEPT` clause. [#10438](https://github.com/risingwavelabs/risingwave/pull/10438)
-
 - SQL function:
 
   - Adds the `current_setting()` function to get the current value of a configuration parameter. [#10051](https://github.com/risingwavelabs/risingwave/issues/10051)

@@ -477,8 +477,8 @@
                 },
                 {
                   "type": "doc",
-                  "id": "sql/functions-operators/sql-function-bitstring",
-                  "label": "Bit string"
+                  "id": "sql/functions-operators/sql-function-binarystring",
+                  "label": "Binary string"
                 },
                 {
                   "type": "doc",
@@ -499,6 +499,11 @@
                   "type": "doc",
                   "id": "sql/functions-operators/sql-function-conditional",
                   "label": "Conditional"
+                },
+                {
+                  "type": "doc",
+                  "id": "sql/functions-operators/sql-function-sys-admin",
+                  "label": "System administration"
                 },
                 {
                   "type": "doc",
@@ -626,11 +631,15 @@
       "items": [
         {
           "type": "doc",
+          "id": "manage/monitor-risingwave-cluster"
+        },
+        {
+          "type": "doc",
           "id": "manage/view-statement-progress"
         },
         {
           "type": "doc",
-          "id": "manage/view-adjust-system-parameters"
+          "id": "manage/view-configure-system-parameters"
         },
         {
           "type": "doc",
