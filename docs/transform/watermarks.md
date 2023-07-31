@@ -1,10 +1,10 @@
 ---
-id: sql-watermarks
-slug: /sql-watermarks
+id: watermarks
+slug: /watermarks
 title: Watermarks
 ---
 
-In stream processing, watermarks are integral when using event time processing logic with event time based operations. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. A watermark is an estimate of the maximum event time observed so far, or a threshold indicating that events received so far have a timestamp later than or equal to the current watermark. Events that arrive with a timestamp earlier than the current watermark are considered late and are not processed within its time window. 
+In stream processing, watermarks are integral when using event time processing logic with event time based operations. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. A watermark is an estimate of the maximum event time observed so far, or a threshold indicating that events received so far have a timestamp later than or equal to the current watermark. Events that arrive with a timestamp earlier than the current watermark are considered late and are not processed within its time window.
 
 Let us go over an example on how watermarks are generated and utilized during window computations. Say the following events and their corresponding event-time timestamps arrive.
 
@@ -24,7 +24,7 @@ Consider a scenario where the watermark is set as the maximum event time observe
 |Event H| 12:00:11 PM | 12:00:01 PM |
 |Event I| 11:59:50 PM | 12:00:01 PM |
 
-Now let us assume there is a window counting events for the hour ending at 12 PM. Therefore, the window will wait until there is a watermark with a timestamp of at least 12:00:00 PM before producing results. As a result, Events F and G are considered on-time and will be included in the calculation. Events H and I will not be included in the calculation for the window ending at 12 PM, with Event I being considered late since its event time timestamp is earlier than the current watermark timestamp. 
+Now let us assume there is a window counting events for the hour ending at 12 PM. Therefore, the window will wait until there is a watermark with a timestamp of at least 12:00:00 PM before producing results. As a result, Events F and G are considered on-time and will be included in the calculation. Events H and I will not be included in the calculation for the window ending at 12 PM, with Event I being considered late since its event time timestamp is earlier than the current watermark timestamp.
 
 ## Syntax
 
@@ -38,7 +38,7 @@ WATERMARK FOR column_name as expr
 
 `column_name` is a column that is created when generating the source, usually the event time column.
 
-`expr` specifies the watermark generation strategy. The return type of the watermark must be of type `timestamp`. A watermark will be updated if the return value is greater than the current watermark. 
+`expr` specifies the watermark generation strategy. The return type of the watermark must be of type `timestamp`. A watermark will be updated if the return value is greater than the current watermark.
 
 For example, the watermark generation strategy can be specified as:
 
@@ -74,8 +74,3 @@ CREATE SOURCE s1 (
     scan.startup.mode = 'earliest'
 ) ROW FORMAT JSON;
 ```
-
-
-
-
-

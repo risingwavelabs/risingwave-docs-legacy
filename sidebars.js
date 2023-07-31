@@ -157,6 +157,49 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Transform data',
+      collapsible: true,
+      collapsed: false,
+      items: [
+        {
+          type: 'doc',
+          id: 'sql/syntax/sql-pattern-dynamic-filters',
+          label: 'Dynamic filters'
+        },
+        {
+          type: 'doc',
+          id: 'sql/syntax/sql-pattern-temporal-filters',
+          label: 'Temporal filters'
+        },
+        {
+          type: 'doc',
+          id: 'sql/query-syntax/query-syntax-join-clause',
+          label: 'Joins',
+        },
+        {
+          type: 'doc',
+          id: 'sql/syntax/sql-pattern-topn',
+          label: 'Top-N by group'
+        },
+        {
+          type: 'doc',
+          id: 'sql/functions-operators/sql-function-time-window',
+          label: 'Time window functions',
+        },
+        {
+          type: 'doc',
+          id: 'sql/functions-operators/user-defined-functions',
+          label: 'User-defined functions'
+        },
+        {
+          type: 'doc',
+          id: 'transform/watermarks',
+          label: 'Watermarks'
+        },
+      ]
+    },
+    {
+      type: 'category',
       label: 'Ecosystem',
       collapsible: false,
       collapsed: false,
@@ -408,11 +451,6 @@ const sidebars = {
                   id: 'sql/query-syntax/query-syntax-with-clause',
                   label: 'WITH clause',
                 },
-                {
-                  type: 'doc',
-                  id: 'sql/query-syntax/query-syntax-join-clause',
-                  label: 'JOIN clause',
-                }
 
               ]
             },
@@ -471,10 +509,6 @@ const sidebars = {
               items: [
                 {
                   type: 'doc',
-                  id: 'sql/functions-operators/user-defined-functions',
-                },
-                {
-                  type: 'doc',
                   id: 'sql/functions-operators/sql-function-logical',
                   label: 'Logical',
                 },
@@ -483,11 +517,7 @@ const sidebars = {
                   id: 'sql/functions-operators/sql-function-comparison',
                   label: 'Comparison',
                 },
-                {
-                  type: 'doc',
-                  id: 'sql/functions-operators/sql-function-time-window',
-                  label: 'Time window',
-                },
+
                 {
                   type: 'doc',
                   id: 'sql/functions-operators/sql-function-cast',
@@ -547,38 +577,6 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/functions-operators/sql-function-set-functions',
                   label: 'Set functions',
-                }
-              ]
-            },
-            {
-              type: 'category',
-              label: 'Patterns',
-              collapsible: true,
-              collapsed: true,
-              link: {
-                type: 'generated-index',
-                'title': 'Query patterns',
-                'description': 'Commonly used patterns and techniques that can help build a more efficient data processing workflow.',
-                'slug': '/sql-patterns',
-                'keywords': [
-                  'pattern'
-                ]
-              },
-              items: [
-                {
-                  type: 'doc',
-                  id: 'sql/syntax/sql-pattern-dynamic-filters',
-                  label: 'Dynamic filters'
-                },
-                {
-                  type: 'doc',
-                  id: 'sql/syntax/sql-pattern-temporal-filters',
-                  label: 'Temporal filters'
-                },
-                {
-                  type: 'doc',
-                  id: 'sql/syntax/sql-pattern-topn',
-                  label: 'Top-N by group'
                 }
               ]
             },
