@@ -669,6 +669,10 @@ const sidebars = {
         },
         {
           type: 'doc',
+          id: 'manage/view-configure-runtime-parameters',
+        },
+        {
+          type: 'doc',
           id: 'manage/meta-backup',
         },
         {
