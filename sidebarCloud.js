@@ -48,7 +48,7 @@ module.exports = {
           type: "category",
           label: "Manage clusters",
           collapsible: true,
-          link: {type: 'doc', id: 'cluster-manage-clusters'},
+          link: { type: "doc", id: "cluster-manage-clusters" },
           items: [
             {
               type: "doc",
