@@ -116,6 +116,10 @@ Data formats denoted with an M only support materialized sources, which require 
 When a source is created, RisingWave does not ingest data immediately. RisingWave starts to process data when a materialized view is created based on the source.
 :::
 
+## Watermarks
+
+RisingWave supports generating watermarks when creating a source. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. The [`WATERMARK`](/transform/watermarks.md) clause should be used within the `schema_definition`. For more information on the syntax on how to create a watermark, see [Watermarks](/transform/watermarks.md).
+
 ## Change Data Capture (CDC)
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
