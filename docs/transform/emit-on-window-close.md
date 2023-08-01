@@ -59,7 +59,7 @@ After such modification, the results in `window_count` will not include any part
 
 Currently, RisingWave supports `emit on window close` for any query through a generic implementation. However, for the following queries, RisingWave can use specialized operators to achieve better performance.
 
-- Windowed Group-by
+- Windowed aggregation
 
 ```sql
 create materialized view mv as
@@ -67,20 +67,6 @@ select
     window_start, max(foo)
 from tumble(t, tm, interval '1 hour')
 group by window_start
-emit on window close
-```
-
-- Windowed Top-N
-
-```sql
-create materialized view mv as
-select window_start, foo
-from (
-    select
-        *, row_number() over (partition by window_start order by foo) as rownum
-    from tumble(t, tm, interval '1 hour')
-)
-where rownum <= 1
 emit on window close
 ```
 
