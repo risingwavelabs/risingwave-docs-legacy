@@ -78,6 +78,14 @@ To persist your data, start RisingWave with [Docker Compose](/deploy/risingwave-
   psql -h localhost -p 4566 -d dev -U root
   ```
 
+  Notes about the `psql` options:
+
+- The `-h` option is used to specify the host name or IP address of the PostgreSQL server to connect to.
+- The `-p` option is used to specify the port number that the server is listening on.
+- The `-d` option is used to specify the name of the database to connect to.
+- The `-U` option is used to specify the name of the database user to connect as.
+- By default, the PostgreSQL server uses the `root user` account to authenticate connections to the `dev` database. Note that this user account does not require a password to connect.
+
 </TabItem>
 
 <TabItem value="binaries" label="Binaries">
@@ -128,6 +136,14 @@ To persist your data, start RisingWave with [Docker Compose](/deploy/risingwave-
   ```shell
   psql -h localhost -p 4566 -d dev -U root
   ```
+
+Notes about the `psql` options:
+
+- The `-h` option is used to specify the host name or IP address of the PostgreSQL server to connect to.
+- The `-p` option is used to specify the port number that the server is listening on.
+- The `-d` option is used to specify the name of the database to connect to.
+- The `-U` option is used to specify the name of the database user to connect as.
+- By default, the PostgreSQL server uses the `root user` account to authenticate connections to the `dev` database. Note that this user account does not require a password to connect.
 
 1. ### Optional: Enable the connector node
 
@@ -193,6 +209,14 @@ To persist your data, start RisingWave with [Docker Compose](/deploy/risingwave-
   psql -h localhost -p 4566 -d dev -U root
   ```
 
+Notes about the `psql` options:
+
+- The `-h` option is used to specify the host name or IP address of the PostgreSQL server to connect to.
+- The `-p` option is used to specify the port number that the server is listening on.
+- The `-d` option is used to specify the name of the database to connect to.
+- The `-U` option is used to specify the name of the database user to connect as.
+- By default, the PostgreSQL server uses the `root user` account to authenticate connections to the `dev` database. Note that this user account does not require a password to connect.
+
 </TabItem>
 
 <TabItem value="docker-compose" label="Docker Compose">
@@ -208,18 +232,18 @@ If you intend to deploy RisingWave in production environments, please use [Risin
 
 The cluster is composed of multiple RisingWave components, including:
 
-* A frontend node
-* A compute node
-* A meta node
-* A compactor node
-* A connector node
+- A frontend node
+- A compute node
+- A meta node
+- A compactor node
+- A connector node
 
 RisingWave also incorporates these third-party components:
 
-* Grafana
-* Etcd
-* MinIO
-* Prometheus
+- Grafana
+- Etcd
+- MinIO
+- Prometheus
 
 1. ### Download the source file and start a cluster
 
@@ -246,27 +270,35 @@ RisingWave also incorporates these third-party components:
   psql -h localhost -p 4566 -d dev -U root
   ```
 
+  Notes about the `psql` options:
+
+- The `-h` option is used to specify the host name or IP address of the PostgreSQL server to connect to.
+- The `-p` option is used to specify the port number that the server is listening on.
+- The `-d` option is used to specify the name of the database to connect to.
+- The `-U` option is used to specify the name of the database user to connect as.
+- By default, the PostgreSQL server uses the `root user` account to authenticate connections to the `dev` database. Note that this user account does not require a password to connect.
+
 1. ### Manage your RisingWave cluster
 
   When the cluster is running, you can monitor the status of RisingWave and the additional components and make adjustments when necessary.
 
-* **RisingWave Dashboard**
+- **RisingWave Dashboard**
 
  Access the RisingWave Dashboard at [http://127.0.0.1:5691/](http://127.0.0.1:5691/). RisingWave Dashboard displays an overview of the cluster, as well as sources, sinks, tables, materialized views, and indexes available on the cluster.
 
-* **Grafana**
+- **Grafana**
 
  Access Grafana at [http://127.0.0.1:3001/](http://127.0.0.1:3001/), and search for `risingwave_dashboard`. In this dashboard, you can view the internal metrics such as node count, memory consumption, thoroughputs, and latencies. You can use these metrics to troubleshoot and optimize the cluster performance.
 
-* **MinIO**
+- **MinIO**
 
  Access the MinIO instance at [http://127.0.0.1:9400/](http://127.0.0.1:9400/). Use the following credentials to log in.
 
-   * User name: `hummockadmin`
+- User name: `hummockadmin`
 
-   * Password: `hummockadmin`
+- Password: `hummockadmin`
 
-* **Prometheus**
+- **Prometheus**
 
  Access Prometheus at [http://127.0.0.1:9500/](http://127.0.0.1:9500/). No credentials are needed. You can use Prometheus for real-time alerting.
 

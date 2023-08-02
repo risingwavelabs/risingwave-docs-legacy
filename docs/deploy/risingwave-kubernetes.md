@@ -103,7 +103,11 @@ Before the deployment, ensure that the following requirements are satisfied.
 
 ## Deploy a RisingWave instance
 
-Select an object storage service for data persistence.
+When deploying a RisingWave instance, you can choose from multiple object storage options to persist your data. Depending on the option you choose, the deployment instructions are different.
+
+### Optional: Customize the state store directory
+
+You can customize the directory for storing state data via the `spec: stateStore: dataDirectory` parameter in the `risingwave.yaml` file that you want to use to deploy a RisingWave instance. If you have multiple RisingWave instances, ensure the value of `dataDirectory` for the new isntance is unique (the default value is `hummock`). Otherwise, the new RisingWave instance may crash. Save the changes to the `risingwave.yaml` file before running the `kubectl apply -f <...risingwave.yaml>` command. The directory path cannot be an absolute address, such as `/a/b`, and must be no longer than 180 characters
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -111,7 +115,7 @@ import TabItem from '@theme/TabItem';
 <Tabs groupId="storage_selection">
 <TabItem value="s3" label="etcd+S3">
 
-RisingWave supports using Amazon S3 as the object storage.
+RisingWave supports using Amazon S3 as object storage for persistent data.
 
 **Steps:**
 
@@ -152,7 +156,7 @@ RisingWave supports using Amazon S3 as the object storage.
 </TabItem>
 <TabItem value="minio" label="etcd+MinIO">
 
-RisingWave supports using MinIO as the object storage.
+RisingWave supports using MinIO as object storage for persistent data.
 
 :::note
 The performance of MinIO is closely tied to the disk performance of the node where it is hosted. We have observed that AWS EBS does not perform well in our tests. For optimal performance, we recommend using S3 or a compatible cloud service.
@@ -167,7 +171,7 @@ kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-ope
 </TabItem>
 <TabItem value="hdfs" label="etcd+HDFS">
 
-RisingWave supports using HDFS as the object storage.
+RisingWave supports using HDFS as object storage for persistent data.
 
 Deploy a RisingWave instance with HDFS as the object storage.
 

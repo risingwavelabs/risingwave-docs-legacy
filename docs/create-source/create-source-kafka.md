@@ -252,6 +252,18 @@ WITH (
 - The `delimiter` option specifies the delimiter character used in the CSV data.
 
 </TabItem>
+<TabItem value="bytes" label="Bytes">
+
+```sql
+CREATE SOURCE t1 (id bytea)
+WITH (
+   connector='kafka',
+   topic='topic1',
+   properties.bootstrap.server='localhost:9093',
+) FORMAT PLAIN ENCODE BYTES;
+```
+
+</TabItem>
 </Tabs>
 
 ## Query Kafka timestamp
