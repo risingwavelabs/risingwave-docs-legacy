@@ -38,6 +38,7 @@ title: Mathematical functions and operators
 | pow ( *x_double_precision*, *y_double_precision* ) → *double_precision* <br /> pow ( *x_numeric*, *y_numeric* ) → *numeric* | Returns *x_double_precision* or *x_numeric* raised to the power of *y_double_precision* or *y_numeric*. power() can also be used as an alias for pow(). | pow(2.0, 3.0) → 8 <br /> power(2.0, 3.0) → 8|
 | round ( *x_numeric*, *y_int* ) → *output_value* | Rounds *x_numeric* to *y_int* decimal places. *y* cannot be negative. | round(1.23559, 2) → 1.24 |
 | round ( *numeric_input* ) → *integer_output* <br /> round ( *double_precision_input* ) → *integer_output* | Rounds to the nearest integer. | round(1.23559) → 1 |
+| sqrt ( *numeric_input* ) → *numeric_output* <br /> sqrt ( *double_precision_input* ) → *double_precision_output*| Returns the square root of the input. | sqrt(16) → 4|
 | trunc ( *double_precision_input* ) → *double_precision_output* <br /> trunc ( *numeric_input* ) → *numeric_output*| Truncate the input value to zero decimal places. | trunc(-20.0932) → -20 |
 
 ## Trigonometric functions
