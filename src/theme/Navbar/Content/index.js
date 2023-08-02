@@ -1,21 +1,19 @@
-import React from 'react';
-import {useThemeConfig, ErrorCauseBoundary} from '@docusaurus/theme-common';
-import {
-  splitNavbarItems,
-  useNavbarMobileSidebar,
-} from '@docusaurus/theme-common/internal';
-import NavbarItem from '@theme/NavbarItem';
-import NavbarColorModeToggle from '@theme/Navbar/ColorModeToggle';
-import SearchBar from '@theme/SearchBar';
-import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
-import NavbarLogo from '@theme/Navbar/Logo';
-import NavbarSearch from '@theme/Navbar/Search';
-import styles from './styles.module.css';
+import React from "react";
+import { useThemeConfig, ErrorCauseBoundary } from "@docusaurus/theme-common";
+import { splitNavbarItems, useNavbarMobileSidebar } from "@docusaurus/theme-common/internal";
+import NavbarItem from "@theme/NavbarItem";
+import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
+import SearchBar from "@theme/SearchBar";
+import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle";
+import NavbarLogo from "@theme/Navbar/Logo";
+import NavbarSearch from "@theme/Navbar/Search";
+import styles from "./styles.module.css";
+
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
   return useThemeConfig().navbar.items;
 }
-function NavbarItems({items}) {
+function NavbarItems({ items }) {
   return (
     <>
       {items.map((item, i) => (
@@ -26,16 +24,17 @@ function NavbarItems({items}) {
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
 ${JSON.stringify(item, null, 2)}`,
-              {cause: error},
+              { cause: error }
             )
-          }>
+          }
+        >
           <NavbarItem {...item} />
         </ErrorCauseBoundary>
       ))}
     </>
   );
 }
-function NavbarContentLayout({left, right}) {
+function NavbarContentLayout({ left, right }) {
   return (
     <div className="navbar__inner">
       <div className="navbar__items">{left}</div>
@@ -47,7 +46,8 @@ export default function NavbarContent() {
   const mobileSidebar = useNavbarMobileSidebar();
   const items = useNavbarItems();
   const [leftItems, rightItems] = splitNavbarItems(items);
-  const searchBarItem = items.find((item) => item.type === 'search');
+  const searchBarItem = items.find((item) => item.type === "search");
+  console.log(mobileSidebar);
   return (
     <NavbarContentLayout
       left={
@@ -69,6 +69,13 @@ export default function NavbarContent() {
               <SearchBar />
             </NavbarSearch>
           )}
+
+          <div
+            onClick={() => window.open("https://www.risingwave.com", "_blank", "noopener,noreferrer")}
+            className={`light ${styles.p41}`}
+          >
+            RisingWave.com &gt;{" "}
+          </div>
         </>
       }
     />

@@ -11,7 +11,7 @@ type Props = {
   block?: boolean;
 };
 
-export default function LightButton({ text, doc, url, block, cloud }: Props) {
+export default function LightButton({ text, doc, url, block, cloud, ...rest }: Props) {
   const history = useHistory();
   const { globalData } = useDocusaurusContext();
   const location = useLocation();
