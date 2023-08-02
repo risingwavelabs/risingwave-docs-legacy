@@ -54,7 +54,7 @@ For example, the watermark generation strategy can be specified as:
     WATERMARK FOR time_col as time_col - INTERVAL 'string' time_unit
     ```
 
-    Supported `time_unit` values include: second, minute, hour, day, month, and year. For more details, see the `interval` data type under [Overview of data types](/sql/sql-data-types.md).
+    Supported `time_unit` values include: second, minute, hour, day, month, and year. For more details, see the `interval` data type under [Overview of data types](../sql/sql-data-types.md).
 
 ### Example
 
