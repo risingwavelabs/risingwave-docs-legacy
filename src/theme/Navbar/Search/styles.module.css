@@ -1,13 +1,11 @@
 @media (max-width: 996px) {
   .searchBox {
-    position: absolute;
-    right: var(--ifm-navbar-padding-horizontal);
+    margin-right: 0.5rem;
   }
 }
 
 @media (min-width: 997px) {
   .searchBox {
-    padding: var(--ifm-navbar-item-padding-vertical)
-      var(--ifm-navbar-item-padding-horizontal);
+    padding: var(--ifm-navbar-item-padding-vertical) var(--ifm-navbar-item-padding-horizontal);
   }
 }

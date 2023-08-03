@@ -101,9 +101,9 @@ export default function OutlinedCard({
         </Typography>
         {links && (
           <Box className={styles.cardLinks}>
-            {links.map((link) => {
+            {links.map((link, idx) => {
               return (
-                <div key={link.url} className={styles.flexBox}>
+                <div key={idx} className={styles.flexBox}>
                   <Typography
                     className={styles.cardLink}
                     onClick={() => {
