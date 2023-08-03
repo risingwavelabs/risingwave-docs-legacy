@@ -73,7 +73,7 @@ export default function NavbarContent() {
             onClick={() => window.open("https://www.risingwave.com", "_blank", "noopener,noreferrer")}
             className={`light ${styles.p41}`}
           >
-            RisingWave.com &gt;{" "}
+            risingwave.com &gt;{" "}
           </div>
         </>
       }
