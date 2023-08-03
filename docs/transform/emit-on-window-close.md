@@ -18,7 +18,7 @@ Taking the following query as an example,
 ```sql
 SELECT window_start, COUNT(*)
 FROM TUMBLE(events, event_time, INTERVAL '1' MINUTE)
-GROUP BY window_start
+GROUP BY window_start;
 ```
 
 - **Emit on update:** when each barrier (every 1s by default) passes, the aggregation operator will emit a new `count(*)` result downstream, which is then reflected in the materialized view or outputted to external systems.
@@ -40,7 +40,7 @@ CREATE MATERIALIZED VIEW window_count AS
 SELECT window_start, COUNT(*)
 FROM TUMBLE(events, event_time, INTERVAL '1' MINUTE)
 GROUP BY window_start
-EMIT ON WINDOW CLOSE
+EMIT ON WINDOW CLOSE;
 ```
 
 Accordingly, a watermark needs to be defined for the data source events.
@@ -50,7 +50,7 @@ CREATE SOURCE t (
     event_time TIMESTAMP,
     <... other fields ...>
     WATERMARK FOR event_time AS event_time - INTERVAL '5 minutes'
-) WITH ( ... )
+) WITH ( ... );
 ```
 
 After such modification, the results in `window_count` will not include any partial aggregation results of the latest window. Instead, a final result only appears when the `event_time` watermark exceeds the end time of the window.
@@ -67,7 +67,7 @@ SELECT
     window_start, MAX(foo)
 FROM TUMBLE(t, tm, INTERVAL '1 hour')
 GROUP BY window_start
-EMIT ON WINDOW CLOSE
+EMIT ON WINDOW CLOSE;
 ```
 
 - SQL window function
@@ -79,5 +79,5 @@ SELECT
     LEAD(foo, 1) OVER (PARTITION BY bar ORDER BY tm) AS l1,
     LEAD(foo, 3) OVER (PARTITION BY bar ORDER BY tm) AS l2
 FROM t
-EMIT ON WINDOW CLOSE
+EMIT ON WINDOW CLOSE;
 ```
