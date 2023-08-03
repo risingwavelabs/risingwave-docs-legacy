@@ -31,7 +31,7 @@ However, in some situations, we might want to choose emit-on-window-close as the
 - The target downstream system of sink is append-only (such as Kafka or S3). We want to write into downstream only after the result is finally determined, instead of writing and updating for multiple times.
 - Some calculations in the query cannot efficiently perform incremental updates (such as percentile, etc.). For better performance, we want only to trigger a calculation when the window closes.
 
-To meet these requirements, RisingWave supports turning queries into emit-on-window-close semantics via the `EMIT ON WINDOW CLOSE` clause. At the same time, a watermark must be defined on the data source, because this determines when the window can close. For more explanation on watermark, please refer to [Watermark](https://www.risingwave.dev/docs/upcoming/watermarks/).
+To meet these requirements, RisingWave supports turning queries into emit-on-window-close semantics via the `EMIT ON WINDOW CLOSE` clause. At the same time, a watermark must be defined on the data source, because this determines when the window can close. For more explanation on watermark, please refer to [Watermark](/transform/watermarks.md).
 
 Taking the above query as an example,
 
