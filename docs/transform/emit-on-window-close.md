@@ -31,7 +31,7 @@ However, in some situations, we might want to choose emit-on-window-close as the
 - The target downstream system of sink is append-only (such as Kafka or S3). We want to write into downstream only after the result is finally determined, instead of writing and updating for multiple times.
 - Some calculations in the query cannot efficiently perform incremental updates (such as percentile, etc.). For better performance, we want only to trigger a calculation when the window closes.
 
-To meet these requirements, RisingWave supports turning queries into emit-on-window-close semantics via the `EMIT ON WINDOW CLOSE` clause. At the same time, a watermark must be defined on the data source, because this determines when the window can close. For more explanation on watermark, please refer to [Watermark](https://www.risingwave.dev/docs/upcoming/watermarks/)
+To meet these requirements, RisingWave supports turning queries into emit-on-window-close semantics via the `EMIT ON WINDOW CLOSE` clause. At the same time, a watermark must be defined on the data source, because this determines when the window can close. For more explanation on watermark, please refer to [Watermark](https://www.risingwave.dev/docs/upcoming/watermarks/).
 
 Taking the above query as an example,
 
@@ -62,22 +62,22 @@ Currently, RisingWave supports `emit on window close` for any query through a ge
 - Windowed aggregation
 
 ```sql
-create materialized view mv as
-select
-    window_start, max(foo)
-from tumble(t, tm, interval '1 hour')
-group by window_start
-emit on window close
+CREATE MATERIALIZED VIEW mv AS
+SELECT
+    window_start, MAX(foo)
+FROM TUMBLE(t, tm, INTERVAL '1 hour')
+GROUP BY window_start
+EMIT ON WINDOW CLOSE
 ```
 
 - SQL window function
 
 ```sql
-create materialized view mv2 as
-select
+CREATE MATERIALIZED VIEW mv2 AS
+SELECT
     tm, foo, bar,
-    lead(foo, 1) over (partition by bar order by tm) as l1,
-    lead(foo, 3) over (partition by bar order by tm) as l2
-from t
-emit on window close
+    LEAD(foo, 1) OVER (PARTITION BY bar ORDER BY tm) AS l1,
+    LEAD(foo, 3) OVER (PARTITION BY bar ORDER BY tm) AS l2
+FROM t
+EMIT ON WINDOW CLOSE
 ```
