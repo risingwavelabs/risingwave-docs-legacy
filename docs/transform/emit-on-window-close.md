@@ -10,7 +10,7 @@ title: Emit on Window Close
 
 In streaming systems, there are usually two kinds of triggering policy for window calculations:
 
-- **Emit on update**: calculates and emits partial window results even when the window has not closed yet.
+- **Emit immediately**: calculates and emits partial window results even when the window has not closed yet.
 - **Emit on window close**: generates a final result when the window closes and will no longer change.
 
 Taking the following query as an example,
@@ -21,7 +21,7 @@ FROM TUMBLE(events, event_time, INTERVAL '1' MINUTE)
 GROUP BY window_start;
 ```
 
-- **Emit on update:** when each barrier (every 1s by default) passes, the aggregation operator will emit a new `count(*)` result downstream, which is then reflected in the materialized view or outputted to external systems.
+- **Emit immediately:** when each barrier (every 1s by default) passes, the aggregation operator will emit a new `count(*)` result downstream, which is then reflected in the materialized view or outputted to external systems.
 - **Emit on window close:** when the watermark defined on `event_time` exceeds the end time of a time window, the aggregation operator emits the final immutable aggregation result downstream.
 
 RisingWave chooses emit-on-update as the default behavior in order to guarentee consistency between materialized views and base tables. This behavior is also consistent with the definition of *view* in SQL.
