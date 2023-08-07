@@ -656,8 +656,12 @@ const sidebars = {
           id: "manage/view-configure-system-parameters",
         },
         {
-          type: "doc",
-          id: "manage/meta-backup",
+          type: 'doc',
+          id: 'manage/view-configure-runtime-parameters',
+        },
+        {
+          type: 'doc',
+          id: 'manage/meta-backup',
         },
         {
           type: "doc",

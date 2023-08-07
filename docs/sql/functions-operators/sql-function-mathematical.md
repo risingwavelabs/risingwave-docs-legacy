@@ -39,6 +39,7 @@ title: Mathematical functions and operators
 | round ( *x_numeric*, *y_int* ) → *output_value* | Rounds *x_numeric* to *y_int* decimal places. *y* cannot be negative. | round(1.23559, 2) → 1.24 |
 | round ( *numeric_input* ) → *integer_output* <br /> round ( *double_precision_input* ) → *integer_output* | Rounds to the nearest integer. | round(1.23559) → 1 |
 | sign(*double_precision_input* or *decimal_input*) -> *same_as_input* | Returns the sign of the input value as -1 if the input is negative, 1 if the input is positive, or 0 if the input is 0. | sign(8.64) → 1 <br /> sign(-8.64) → -1 |
+| sqrt ( *numeric_input* ) → *numeric_output* <br /> sqrt ( *double_precision_input* ) → *double_precision_output*| Returns the square root of the input. | sqrt(16) → 4|
 | trunc ( *double_precision_input* ) → *double_precision_output* <br /> trunc ( *numeric_input* ) → *numeric_output*| Truncate the input value to zero decimal places. | trunc(-20.0932) → -20 |
 
 ## Trigonometric functions
