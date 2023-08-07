@@ -163,43 +163,6 @@ const config = {
         ],
       },
       footer: {
-        // links: [
-        //   {
-        //     title: 'Docs',
-        //     items: [
-        //       {
-        //         label: 'Docs',
-        //         to: '/docs/intro',
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     title: 'Community',
-        //     items: [
-        //       {
-        //         label: 'Slack',
-        //         href: 'https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw',
-        //       },
-        //       {
-        //         label: 'Twitter',
-        //         href: 'https://twitter.com/SingularityData',
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     title: 'More',
-        //     items: [
-        //       {
-        //         label: 'Blog',
-        //         to: '/blog',
-        //       },
-        //       {
-        //         label: 'GitHub',
-        //         href: 'https://github.com/risingwavelabs/risingwave',
-        //       },
-        //     ],
-        //   },
-        // ],
         copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community`,
       },
       prism: {
@@ -235,6 +198,23 @@ const config = {
       async: true,
     },
   ],
+  webpack: {
+    jsLoader: (isServer) => ({
+      loader: require.resolve("swc-loader"),
+      options: {
+        jsc: {
+          parser: {
+            syntax: "typescript",
+            tsx: true,
+          },
+          target: "es2017",
+        },
+        module: {
+          type: isServer ? "commonjs" : "es6",
+        },
+      },
+    }),
+  },
 };
 
 async function createConfig() {

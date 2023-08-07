@@ -34,7 +34,6 @@ title: Mathematical functions and operators
 | pow ( *x_double_precision*, *y_double_precision* ) → *double_precision_output* <br /> power ( *x_double_precision*, *y_double_precision* ) → *double_precision_output* | Returns *x_double_precision* raised to the power of *y_double_precision*. | pow(2.0, 3.0) → 8 <br /> power(2.0, 3.0) → 8|
 | round ( *x_numeric*, *y_int* ) → *output_value* | Rounds *x_numeric* to *y_int* decimal places. *y* cannot be negative. | round(1.23559, 2) → 1.24 |
 | round ( *numeric_input* ) → *integer_output* <br /> round ( *double_precision_input* ) → *integer_output* | Rounds to the nearest integer. | round(1.23559) → 1 |
-| translate( *input_string*, *from_string*, *to_string*) → output_string | Replaces each character in the *input_string* that matches a character in the *from_string* with the corresponding character in the *to_string*. | translate('M1X3', '13', 'ae') → MaXe |
 | trunc ( *double_precision_input* ) → *double_precision_output* <br /> trunc ( *numeric_input* ) → *numeric_output*| Truncate the input value to zero decimal places. | trunc(-20.0932) → -20 |
 
 ## Trigonometric functions

@@ -13,7 +13,7 @@ A meta snapshot is a backup of meta service's data at a specific point in time. 
 
 Before you can create a meta snapshot, you need to set the `backup_storage_url` and `backup_storage_directory` system parameters prior to starting your cluster.
 
-:::warning
+:::caution
 Do not set `backup_storage_url` and `backup_storage_directory` after the cluster is started. Otherwise, all meta snapshots taken previously become invalidated and cannot be used anymore.
 :::
 
@@ -25,7 +25,7 @@ Meta snapshot is created by meta service.
 
 Here's an example of how to create a new meta snapshot with `risectl`:
 
-```
+```bash
 risectl meta backup-meta
 ```
 
@@ -41,7 +41,7 @@ SELECT meta_snapshot_id FROM rw_catalog.rw_meta_snapshot;
 
 Example output:
 
-```
+```bash
  meta_snapshot_id 
 ------------------
                 3
@@ -52,7 +52,7 @@ Example output:
 
 Here's an example of how to delete a meta snapshot with `risectl`:
 
-```
+```bash
 risectl meta delete-meta-snapshots [snapshot_ids]
 ```
 
@@ -67,7 +67,7 @@ Use the following steps to restore from a meta snapshot.
 2. Create an empty meta store.
 3. Restore the meta snapshot to the new meta store.
 
-    ```
+    ```bash
     backup-restore \
     --meta-store-type etcd \
     --meta-snapshot-id [snapshot_id] \
@@ -95,7 +95,7 @@ Use the following steps to perform a time travel query.
 
    Example output:
 
-    ```
+    ```bash
         safe_epoch    |      safe_epoch_ts      | max_committed_epoch | max_committed_epoch_ts  
     ------------------+-------------------------+---------------------+-------------------------
      3603859827458048 | 2022-12-28 11:08:56.918 |    3603862776381440 | 2022-12-28 11:09:41.915
