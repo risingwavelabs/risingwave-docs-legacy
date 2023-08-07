@@ -20,9 +20,7 @@ export interface SimpleDialogProps {
   onClose: (value: string) => void;
 }
 
-export default function SimpleDialog(props: SimpleDialogProps) {
-  const { onClose, open } = props;
-
+export default function SimpleDialog({ onClose, open }: SimpleDialogProps) {
   const handleClose = () => {
     onClose("messages");
   };
@@ -49,6 +47,10 @@ export default function SimpleDialog(props: SimpleDialogProps) {
         ))}
         <ChatMsg
           side={"right"}
+          messages={["Great! What's about you?", "Of course I did. Speaking of which check this out"]}
+        />
+        <ChatMsg
+          side={"left"}
           messages={["Great! What's about you?", "Of course I did. Speaking of which check this out"]}
         />
       </DialogContent>
