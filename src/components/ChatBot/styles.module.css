@@ -1,0 +1,32 @@
+.chatBoxContainer {
+  margin-left: 0.8rem;
+  position: sticky;
+  top: calc(var(--ifm-navbar-height) + 0rem);
+}
+
+button.chatButton {
+  color: var(--ifm-button-color);
+  text-transform: none;
+}
+
+p.chatBoxHeader {
+  font-size: 1.3rem;
+  margin: 1rem 1rem 0 1rem;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--ifm-button-color);
+}
+
+div.chatBoxInput {
+  padding: 0 1rem;
+}
+
+button.chatBoxSend {
+  margin-right: 0.5rem;
+  color: var(--ifm-button-color);
+}
+
+div.chatBoxContent {
+  width: 600px;
+  height: 800px;
+  border-bottom: 1px solid var(--ifm-button-color);
+}
