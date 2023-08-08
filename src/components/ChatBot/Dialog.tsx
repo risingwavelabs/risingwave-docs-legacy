@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
-import Dialog from "@mui/material/Dialog";
-import { blue } from "@mui/material/colors";
 import Stack from "@mui/material/Stack";
 import SendIcon from "@mui/icons-material/Send";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import Typography from "@mui/material/Typography";
 
 import styles from "./styles.module.css";
@@ -27,7 +23,7 @@ type Messages = {
 export default function SimpleDialog({ onClose, open }: SimpleDialogProps) {
   const [messages, setMessages] = useState<Messages[]>([]);
   const [inputValue, setInputValue] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [isSending, setIsSending] = useState(false);
 
   const handleClose = () => {
     onClose("close dialog");
@@ -45,7 +41,7 @@ export default function SimpleDialog({ onClose, open }: SimpleDialogProps) {
       body: JSON.stringify(postBody),
     });
     if (!response.ok) {
-      throw new Error(response.statusText);
+      console.error(response.statusText);
     }
 
     const data = response.body;
@@ -62,19 +58,20 @@ export default function SimpleDialog({ onClose, open }: SimpleDialogProps) {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value);
-      setAnswer((prev) => prev + chunkValue);
       cur += chunkValue;
-      console.log(cur);
+      setMessages((prev) => {
+        const list = prev.map((item, index) => {
+          if (index === prev.length - 1) {
+            return { ...item, message: cur };
+          } else {
+            return item;
+          }
+        });
+        return list;
+      });
     }
-
     if (done) {
-      setMessages([
-        ...messages,
-        {
-          sender: "left",
-          message: cur,
-        },
-      ]);
+      setIsSending(false);
     }
   };
 
@@ -87,11 +84,14 @@ export default function SimpleDialog({ onClose, open }: SimpleDialogProps) {
           message: inputValue,
         },
       ]);
+      setIsSending(true);
+      setInputValue("");
     }
   };
 
   useEffect(() => {
     if (messages.length > 0 && messages[messages.length - 1]?.sender === "right") {
+      setMessages([...messages, { sender: "left", message: "" }]);
       sendAsk();
     }
   }, [messages]);
@@ -114,7 +114,7 @@ export default function SimpleDialog({ onClose, open }: SimpleDialogProps) {
           fullWidth
           placeholder="Ask AI any questions about RisingWave ... e.g. What is Risingwave?"
         />
-        <Button className={styles.chatBoxSend} onClick={sendMessage} endIcon={<SendIcon />}>
+        <Button disabled={isSending} className={styles.chatBoxSend} onClick={sendMessage} endIcon={<SendIcon />}>
           Send
         </Button>
       </Stack>

@@ -1,11 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import cx from "clsx";
 import { Typography, Avatar, Grid } from "@mui/material";
 
 import { Styles, withStyles } from "@mui/styles";
 import defaultChatMsgStyles from "./defaultChatMsg.styles";
-
 interface ChatMessageProps {
   classes: any;
   avatar: string;
@@ -38,8 +36,8 @@ export const ChatMsg = withStyles(defaultChatMsgStyles as Styles<any, any>, { na
     };
 
     return (
-      <Grid container justifyContent={side === "right" ? "flex-end" : "flex-start"} {...GridContainerProps}>
-        {side === "left" && (
+      <Grid my={1} container justifyContent={side === "right" ? "flex-end" : "flex-start"} {...GridContainerProps}>
+        {side === "left" && messages.length && (
           <Grid item xs={1} {...GridItemProps}>
             <Avatar src={avatar} {...AvatarProps} className={cx(classes?.avatar, AvatarProps?.className)} />
           </Grid>
@@ -47,19 +45,21 @@ export const ChatMsg = withStyles(defaultChatMsgStyles as Styles<any, any>, { na
         <Grid item xs={11}>
           {messages.map((msg, i) => {
             return (
-              <div key={i} className={classes[`${side}Row`]}>
-                <Typography
-                  align={side}
-                  {...typographyProps}
-                  className={cx(classes?.msg, classes[side], attachClass(i), typographyProps?.className)}
-                >
-                  {msg}
-                </Typography>
-              </div>
+              msg && (
+                <div key={i} className={classes[`${side}Row`]}>
+                  <Typography
+                    align={side}
+                    {...typographyProps}
+                    className={cx(classes?.msg, classes[side], attachClass(i), typographyProps?.className)}
+                  >
+                    {msg}
+                  </Typography>
+                </div>
+              )
             );
           })}
         </Grid>
-        {side === "right" && (
+        {side === "right" && messages.length && (
           <Grid item xs={1} {...GridItemProps}>
             <Avatar src={avatar} {...AvatarProps} className={cx(classes?.avatar, AvatarProps?.className)} />
           </Grid>
