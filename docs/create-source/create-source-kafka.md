@@ -138,6 +138,19 @@ For materialized sources with primary key constraints, if a new data record with
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
 |*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 
+## Additional Kafka parameters
+
+RisingWave allows for the following Kafka parameters to be specified when creating a source. To set the parameter, add the RisingWave equivalent of the Kafka parameter under the `WITH options`. For an example of the usage of these parameters, see the JSON example. For additional details on these parameters, see the [Configuration properties](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md).
+
+| Kafka parameter name | RisingWave parameter name | Type |
+|----------------------|---------------------------|------|
+|fetch.max.bytes | properties.fetch.max.bytes | int | 
+|fetch.wait.max.ms | properties.fetch.wait.max.ms	| int | 
+|message.max.bytes | properties.message.max.bytes	|	int | 
+|queued.max.messages.kbytes| properties.queued.max.messages.kbytes | int |
+|queued.min.messages | properties.queued.min.messages | int |
+|receive.message.max.bytes | properties.receive.message.max.bytes	| int |
+
 ## Examples
 
 Here are examples of connecting RisingWave to a Kafka broker to read data from individual topics.
@@ -196,6 +209,19 @@ WITH (
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
+) FORMAT PLAIN ENCODE JSON;
+```
+
+The additional Kafka parameters `queued.min.messages` and `queued.max.messages.kbytes` are specified with `properties.queued.min.messages` and `properties.queued.max.messages.kbytes`, respectively, when creating the source. 
+
+```sql
+CREATE SOURCE s1 (v1 int, v2 varchar) with (
+  connector = 'kafka',
+  topic = 'kafka_1_partition_topic',
+  properties.bootstrap.server = 'message_queue:29092',
+  scan.startup.mode = 'earliest',
+  properties.queued.min.messages = 10000,
+  properties.queued.max.messages.kbytes = 65536
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
