@@ -110,8 +110,8 @@ For a table with primary key constraints, if a new data record with an existing 
 |stream |Required. Name of the stream.|
 |aws.region |Required. AWS service region. For example, US East (N. Virginia).|
 |endpoint |Optional. URL of the entry point for the AWS Kinesis service.|
-|aws.credentials.access_key_id |Conditional. This field indicates the access key ID of AWS. It must appear in pairs with aws.credentials.secret_access_key. |
-|aws.credentials.secret_access_key |Conditional. This field indicates the secret access key of AWS. It must appear in pairs with aws.credentials.access_key_id. |
+|aws.credentials.access_key_id |Required. This field indicates the access key ID of AWS. |
+|aws.credentials.secret_access_key |Required. This field indicates the secret access key of AWS. |
 |aws.credentials.session_token |Optional. The session token associated with the temporary security credentials. |
 |aws.credentials.role.arn |Optional. The Amazon Resource Name (ARN) of the role to assume.|
 |aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources. |
@@ -146,7 +146,9 @@ WITH (
    endpoint='172.10.1.1:9090,172.10.1.2:9090',
    aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
    aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
-   aws.credentials.role.external_id='demo_external_id'
+   aws.credentials.role.external_id='demo_external_id',
+   aws.credentials.access_key_id = 'your_access_key',
+   aws.credentials.secret_access_key = 'your_secret_key'
 ) FORMAT PLAIN ENCODE AVRO (
     schema.location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc'
 );
@@ -167,7 +169,9 @@ WITH (
    endpoint='172.10.1.1:9090,172.10.1.2:9090',
    aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
    aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
-   aws.credentials.role.external_id='demo_external_id'
+   aws.credentials.role.external_id='demo_external_id',
+   aws.credentials.access_key_id = 'your_access_key',
+   aws.credentials.secret_access_key = 'your_secret_key'
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
@@ -183,7 +187,9 @@ WITH (
    endpoint='172.10.1.1:9090,172.10.1.2:9090',
    aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
    aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
-   aws.credentials.role.external_id='demo_external_id'
+   aws.credentials.role.external_id='demo_external_id',
+   aws.credentials.access_key_id = 'your_access_key',
+   aws.credentials.secret_access_key = 'your_secret_key'
 ) FORMAT PLAIN ENCODE PROTOBUF (
     message = 'demo_message',
     schema.location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
