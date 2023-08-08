@@ -28,8 +28,6 @@ export const ChatMsg = withStyles(defaultChatMsgStyles as Styles<any, any>, { na
     AvatarProps,
     typographyProps,
   }: ChatMessageProps) => {
-    console.log(classes);
-
     const attachClass = (index) => {
       if (index === 0) {
         return classes[`${side}First`];
