@@ -676,6 +676,16 @@ const sidebars = {
     },
     {
       type: "doc",
+      label: "Optimize performance",
+      id: "performance/optimize-performance"
+    },
+    {
+      type: "doc",
+      label: "Troubleshooting",
+      id: "troubleshoot/troubleshooting"
+    },
+    {
+      type: "doc",
       label: "Releases",
       id: "release-notes",
     },
