@@ -72,6 +72,7 @@ export default function SimpleDialog({ onClose, open }: SimpleDialogProps) {
     }
     if (done) {
       setIsSending(false);
+      setInputValue("");
     }
   };
 
@@ -85,7 +86,6 @@ export default function SimpleDialog({ onClose, open }: SimpleDialogProps) {
         },
       ]);
       setIsSending(true);
-      setInputValue("");
     }
   };
 
@@ -107,6 +107,7 @@ export default function SimpleDialog({ onClose, open }: SimpleDialogProps) {
 
       <Stack my={1} alignItems="center" direction="row" justifyContent="space-between" width="100">
         <CssTextField
+          disabled={isSending}
           className={styles.chatBoxInput}
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
