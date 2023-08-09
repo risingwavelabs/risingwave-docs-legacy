@@ -146,6 +146,7 @@ All WITH options are required.
 |jdbc.url| The JDBC URL of the destination database necessary for the driver to recognize and connect to the database.|
 |table.name| The table in the destination database you want to sink to.|
 |type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul> If creating an `upsert` sink, see the [Overview](/data-delivery.md) on when to define the primary key.|
+|primary_key| Conditional if `type` is `upsert`. See [Overview of data delivery](/data-delivery.md#upsert-sinks-and-primary-keys) for specifics. The primary key of the sink. |
 
 ## Sink data from RisingWave to MySQL
 
@@ -164,7 +165,9 @@ CREATE TABLE personnel (
 CREATE SINK s_mysql FROM personnel WITH (
 	connector='jdbc',
 	jdbc.url='jdbc:mysql://<aws_rds_endpoint>:<port>/test_db?user=<username>&password=<password>',
-	table.name='personnel'
+	table.name='personnel',
+	type = 'upsert'
+	primary_key = 'v1',
 );
 ```
 

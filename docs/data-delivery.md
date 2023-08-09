@@ -22,6 +22,8 @@ Currently, RisingWave supports the following sink connectors:
   
   With this connector, you can sink data from RisingWave to Apache Iceberg. For details about the syntax and parameters, see [Sink data to Apache Iceberg](/guides/sink-to-iceberg.md).
 
+## Upsert sinks and primary keys
+
 For each sink, you can specify the data format. All sinks supports the `upsert` and `append-only` formats while Kafka also supports the `debezium` format. When creating an `upsert` sink, note whether or not you need to specify the primary key in the following situations.
 
 - If the downstream system supports primary keys and the table in the downstream system has a primary key, then RisingWave does not allow users to define a primary key when creating an upsert sink.

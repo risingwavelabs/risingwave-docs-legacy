@@ -122,6 +122,7 @@ All WITH options are required unless noted.
 |table.name | The table in the destination database you want to sink to. |
 |schema.name | Optional. The schema in the destination database you want to sink to. The default value is `public`. |
 |type| Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul> If creating an `upsert` sink, see the [Overview](/data-delivery.md) on when to define the primary key.|
+|primary_key| Conditional if `type` is `upsert`. See [Overview of data delivery](/data-delivery.md#upsert-sinks-and-primary-keys) for specifics. The primary key of the sink. |
 
 ## Sink data from RisingWave to PostgreSQL
 
@@ -172,7 +173,8 @@ CREATE SINK target_count_postgres_sink FROM target_count WITH (
     connector = 'jdbc',
     jdbc.url = 'jdbc:postgresql://postgres:5432/mydb?user=myuser&password=123456',
     table.name = 'target_count',
-    type = 'upsert'
+    type = 'upsert',
+    primary_key = 'v1',
 );
 ```
 
