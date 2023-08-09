@@ -5,8 +5,9 @@ description: Create a sink.
 slug: /sql-create-sink
 ---
 
-Use the `CREATE SINK` command to create a sink. A sink is an external target where you can send data processed in RisingWave. You can create a sink from a materialized source, a materialized view, or a table.
+Use the `CREATE SINK` command to create a sink. A sink is an external target where you can send data processed in RisingWave. You can create a sink from a table or source, or a materialized view.
 
+If your goal is to create an append-only sink, you can use the emit-on-window-close policy when creating the materialized view that you want to sink data from. For details about the policy, see [Emit on window close](/transform/emit-on-window-close.md).
 
 ## Syntax
 
@@ -65,25 +66,22 @@ rr.Stack(
 
 <drawer SVG={svg} />
 
-
 ## Supported sinks
 
 Click a sink name to see the SQL syntax, options, and sample statement of sinking data from RisingWave to the sink.
 
- * [Kafka](/guides/create-sink-kafka.md) (Supports versions 3.1.0 or later)
- * JDBC-available databases
-   * [MySQL](/guides/sink-to-mysql.md) (Supports versions 5.7 and 8.0.x)
-   * [PostgreSQL](/guides/sink-to-postgres.md)
-   * [TiDB](/guides/sink-to-tidb.md)
- * [Apache Iceberg](/guides/sink-to-iceberg.md)
-
+* [Kafka](/guides/create-sink-kafka.md) (Supports versions 3.1.0 or later)
+* JDBC-available databases
+* [MySQL](/guides/sink-to-mysql.md) (Supports versions 5.7 and 8.0.x)
+* [PostgreSQL](/guides/sink-to-postgres.md)
+* [TiDB](/guides/sink-to-tidb.md)
+* [Apache Iceberg](/guides/sink-to-iceberg.md)
 
 ## See also
 
 [`DROP SINK`](sql-drop-sink.md) — Remove a sink.
 
 [`SHOW CREATE SINK`](sql-show-create-sink.md) — Show the SQL statement used to create a sink.
-
 
 :::note
 
