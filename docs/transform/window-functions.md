@@ -54,7 +54,14 @@ offset FOLLOWING
 UNBOUNDED FOLLOWING
 ```
 
-Where `offset` in a positive integer.
+Where `offset` in a positive integer. If only `frame_start` is specified, `CURRENT ROW` will be used as the end of the window.
+
+`frame_exclusion` can be either of these:
+
+```
+EXCLUDE CURRENT ROW
+EXCLUDE NO OTHERS
+```
 
 :::note
 
