@@ -9,12 +9,15 @@ The "window" is defined by the `OVER` clause, which generally consists of thre
 
 - Window partitioning (the `PARTITION` clause): Specifies how to partition rows into smaller sets. If not provided, RisingWave will not partition the rows into smaller sets.
 - Window ordering (the `ORDER BY` clause): Specifies how the rows are ordered. This part is required for ranking functions.
-- Window frame (the `ROWS` expression): Specifies a particular row or the range of the rows over which calculations are performed.
+- Window frame (the `ROWS` clause): Specifies a particular row or the range of the rows over which calculations are performed.
+
+If your goal is to generate calculation results strictly as append-only output when a window closes, you can utilize the emit-on-window-close policy. This approach helps avoid unnecessary computations. For more information on the emit-on-window-close policy, please refer to [Emit on window close](/transform/emit-on-window-close.md).
 
 ## Syntax
 
 ```sql
-window_function ( [expression [, expression ... ]] ) OVER ( PARTITION BY partition_expression 
+window_function ( [expression [, expression ... ]] ) OVER 
+( PARTITION BY partition_expression 
 [ ORDER BY sort_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
 [frame_clause])
 
@@ -22,13 +25,17 @@ window_function ( [expression [, expression ... ]] ) OVER ( PARTITION BY partiti
 
 `window_function` can be one of the following:
 
-- Ranking functions – `row_number()`
+- Ranking functions – `row_number()`, `rank()`
 - Aggregate-type functions – `sum()`, `min()`, `max()`, `avg()` and `count()`
 - Value functions – `lead()`, `lag()`, `first_value()`, and `last_value()`
 
 :::note
+
 The `PARTITION` clause is required. If you do not want to partition the rows into smaller sets, you can work around by specifying `PARTITION BY 1::int`.
+
 :::
+
+When operating in the emit-on-window-close mode for a streaming query, it is necessary to include an ORDER BY clause for each window function. Please ensure that you specify only one column to order by. This column must be a timestamp column that includes watermarks. It's important to note that when using the timestamp column from this streaming query in another streaming query, the watermark information associated with the column is not retained.
 
 The syntax of `frame_clause` is:
 

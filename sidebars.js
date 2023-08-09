@@ -190,6 +190,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "transform/window-functions",
+          label: "Window functions",
+        },
+        {
+          type: "doc",
           id: "transform/emit-on-window-close",
           label: "Emit on window close",
         },
