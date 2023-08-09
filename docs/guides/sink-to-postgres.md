@@ -167,6 +167,8 @@ GROUP BY
 
 Use the following query to sink data from the materialized view to the target table in PostgreSQL. Ensure that the `jdbc_url` is accurate and reflects the PostgreSQL database that you are connecting to. See [`CREATE SINK`](/sql/commands/sql-create-sink.md) for more details.
 
+Note that only one-dimensional arrays can be sinked to PostgreSQL.
+
 ```sql
 CREATE SINK target_count_postgres_sink FROM target_count WITH (
     connector = 'jdbc',
