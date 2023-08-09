@@ -190,6 +190,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "transform/emit-on-window-close",
+          label: "Emit on window close",
+        },
+        {
+          type: "doc",
           id: "transform/watermarks",
           label: "Watermarks",
         },
@@ -656,8 +661,12 @@ const sidebars = {
           id: "manage/view-configure-system-parameters",
         },
         {
-          type: "doc",
-          id: "manage/meta-backup",
+          type: 'doc',
+          id: 'manage/view-configure-runtime-parameters',
+        },
+        {
+          type: 'doc',
+          id: 'manage/meta-backup',
         },
         {
           type: "doc",

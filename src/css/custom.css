@@ -28,12 +28,12 @@
   --ifm-code-font-size: 90%;
   --ifm-font-size-base: 92%;
   --ifm-z-index-fixed: 200;
-  --ifm-font-family-base: Roboto, sans-serif;
-  --ifm-font-family-button: Roboto, sans-serif;
+  --ifm-font-family-base: "Roboto", sans-serif;
+  --ifm-font-family-button: "Roboto", sans-serif;
   --ifm-paragraph-margin-bottom: 0.5rem;
   --ifm-list-paragraph-margin: 0.2rem;
   letter-spacing: 0px;
-  --ifm-font-family-monospace: RobotoMono, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+  --ifm-font-family-monospace: "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
     monospace;
 
   --doc-sidebar-width: 260px !important;
@@ -105,7 +105,6 @@ html[data-theme="dark"] {
 .theme-doc-sidebar-item-category-level-1 > div > a,
 .theme-doc-sidebar-item-category-level-1 > div > a:hover {
   color: var(--ifm-color-emphasis-700);
-  font-family: Roboto-Medium;
   padding-top: 1.4rem;
 }
 
@@ -142,6 +141,10 @@ html[data-theme="dark"] {
   flex: 0 0 100%;
   align-items: center;
   margin: 0 auto;
+}
+
+.navbar__link {
+  font-weight: 400;
 }
 
 .navbar--fixed-top {
@@ -184,13 +187,13 @@ html[data-theme="dark"] {
 }
 
 h1 {
-  font-family: Roboto-Light !important;
+  font-family: Roboto;
   letter-spacing: -0.01em;
   font-weight: 300;
 }
 
 h2 {
-  font-weight: 300;
+  font-weight: 400;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--ifm-color-neutral-900);
 }
@@ -200,7 +203,7 @@ h2 {
 }
 
 h3 {
-  font-weight: 200;
+  font-weight: 400;
 }
 
 /* Custom Ordered List  */
@@ -252,6 +255,10 @@ h3 {
   border: 1px solid #104352;
 }
 
+.DocSearch-Hit-content-wrapper {
+  font-weight: 400 !important;
+}
+
 /* Custom Unordered List */
 .theme-doc-markdown ul li:not(.tabs__item)::marker {
   color: #909090;
@@ -269,8 +276,11 @@ h3 {
 
 .theme-doc-sidebar-menu > .theme-doc-sidebar-item-link-level-1 a {
   color: var(--ifm-color-emphasis-700);
-  font-family: Roboto-Medium;
   padding-top: 1.4rem;
+}
+
+.menu__list > .theme-doc-sidebar-item-category ul a {
+  font-weight: 400;
 }
 
 .docusaurus-highlight-code-line {
