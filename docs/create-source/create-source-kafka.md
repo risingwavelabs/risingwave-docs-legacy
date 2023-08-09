@@ -30,7 +30,7 @@ WITH (
 )
 FORMAT data_format ENCODE data_encode (
    message = 'message',
-   schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url'
 );
 ```
 
@@ -161,7 +161,7 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 ) FORMAT PLAIN ENCODE AVRO (
-   confluent_schema_registry = 'http://127.0.0.1:8081'
+   schema.registry = 'http://127.0.0.1:8081'
 );
 ```
 
@@ -178,7 +178,7 @@ WITH (
    schema.registry.password='your_schema_registry_password'
 )
 FORMAT UPSERT ENCODE AVRO (
-   confluent_schema_registry = 'http://127.0.0.1:8081'
+   schema.registry = 'http://127.0.0.1:8081'
 );
 ```
 
@@ -252,6 +252,18 @@ WITH (
 - The `delimiter` option specifies the delimiter character used in the CSV data.
 
 </TabItem>
+<TabItem value="bytes" label="Bytes">
+
+```sql
+CREATE SOURCE t1 (id bytea)
+WITH (
+   connector='kafka',
+   topic='topic1',
+   properties.bootstrap.server='localhost:9093',
+) FORMAT PLAIN ENCODE BYTES;
+```
+
+</TabItem>
 </Tabs>
 
 ## Query Kafka timestamp
@@ -285,10 +297,16 @@ protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.
 
 To specify a schema location, add this clause to a `CREATE SOURCE` statement.
 
-```SQL
+```sql
 ENCODE data_encode (
-   location = 'schema_location'
+   schema.location = 'location'
 )
+```
+
+If a primary key also needs to be defined, use the table constraint syntax.
+
+```sql
+CREATE TABLE table1 (PRIMARY KEY(id)) 
 ```
 
 ## Read schemas from Schema Registry
@@ -301,11 +319,17 @@ To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement.
 
 ```sql
 ENCODE data_encode (
-   confluent_schema_registry = 'schema_registry_url'
+   schema.registry = 'schema_registry_url'
 )
 ```
 
 To learn more about Confluent Schema Registry and how to set up a Schema Registry, refer to the [Confluent Schema Registry documentation](https://docs.confluent.io/platform/current/schema-registry/index.html).
+
+If a primary key also needs to be defined, use the table constraint syntax.
+
+```sql
+CREATE TABLE table1 (PRIMARY KEY(id)) 
+```
 
 ### Schema evolution
 

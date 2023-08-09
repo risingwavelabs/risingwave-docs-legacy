@@ -30,7 +30,7 @@ title: Comparison functions and operators
 | IN() | `operand IN (value,...)` <br /> Whether a value is equal to any of the values you specify. <br /> TRUE if the operand is equal to one of the specified expressions/values. NULL if the operand is null or if the operand is not in the specified expressions/values that contain a null. | 1 IN (0,1,2,3) → t <br /> 'a' IN ('ab','b','c','d') → f <br /> null IN (null, 3, 0.5*2, min(v1)) → NULL <br /> 99 IN (null, 3, 2) → NULL |
 | NOT IN() | `operand NOT IN (value,...)` <br /> Whether a value is not equal to any of the values you specify. <br /> TRUE if the operand is not equal to any specified expressions/values. | 1 NOT IN (0,1,2,3) → f |
 | IS TRUE | `boolean IS TRUE` <br /> Whether a boolean expression is true. <br /> | true IS TRUE → t <br /> null::boolean IS TRUE → f |
-| IS NOT TRUE | `boolean IS TRUE` <br /> Whether a boolean expression is false or unknown. <br /> | true IS NOT TRUE → f <br /> null::boolean IS NOT TRUE → t |
+| IS NOT TRUE | `boolean IS NOT TRUE` <br /> Whether a boolean expression is false or unknown. <br /> | true IS NOT TRUE → f <br /> null::boolean IS NOT TRUE → t |
 | IS FALSE | `boolean IS FALSE` <br /> Whether a boolean expression is false. <br /> | true IS FALSE → f <br /> null::boolean IS FALSE → f |
 | IS NOT FALSE | `boolean IS NOT FALSE` <br /> Whether a boolean expression is true or unknown. <br /> | true IS NOT FALSE → t <br /> null::boolean IS NOT FALSE → t |
 | IS NULL | `value IS NULL` <br /> Whether a value is null. <br /> | 1 IS NULL → f |

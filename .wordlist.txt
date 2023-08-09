@@ -153,3 +153,6 @@ avro
 kafka
 Paimon
 TPC
+Greenplum
+updateable
+ClickHouse

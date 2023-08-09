@@ -22,7 +22,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |Apache Pulsar|Available. See [Ingest data from Pulsar](/create-source/create-source-pulsar.md) for details. | Researching <voteNotify note="pulsar_sink" />|
 |DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <voteNotify note="astra_streaming_sink" />|
 |StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
-|Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Researching <voteNotify note="kinesis_sink" />|
+|Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Available. See [Sink data to Kinesis](/guides/sink-to-aws-kinesis.md) for details.|
 
 ## ETL/ELT and data integration
 
@@ -51,6 +51,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |Postgres| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details.| Available. See [Sink data from RisingWave to PostgreSQL](/guides/sink-to-postgres.md) for details.|
 |AWS RDS (Postgres)| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. |Available. See [Sink data from RisingWave to PostgreSQL](/guides/sink-to-postgres.md) for details.|
 |AWS Aurora (Postgres)| In progress <voteNotify note="aurora_pg_source" />|Researching <voteNotify note="aurora_pg_sink" />|
+|Citus Data| Available. See [Ingest data from Citus CDC](/guides/ingest-from-citus-cdc.md). | Researching <voteNotify note="citus_sink" />|
 
 ### MySQL
 
@@ -67,7 +68,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |Apache Druid| No plan| Researching <voteNotify note="druid_sink" /> |
 |Apache Pinot| No plan|Researching <voteNotify note="pinot_sink" />|
 |AWS Redshift| No plan|Researching <voteNotify note="redshift_sink" />|
-|Clickhouse|No plan |Planning <voteNotify note="clickhouse_sink" />|
+|ClickHouse|No plan |Planning <voteNotify note="clickhouse_sink" />|
 |Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
 |Google BigQuery| No plan |Researching <voteNotify note="bigquery_sink" />|
 |DataStax Astra DB & Apache Cassandra| Researching <voteNotify note="cassandra_source" /> |In progress <voteNotify note="cassandra_sink" />|
@@ -75,17 +76,18 @@ For tools or integrations that you would like to use but are not listed in the t
 |Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
 |MongoDB| Researching <voteNotify note="mongodb_source" />|Researching <voteNotify note="mongodb_sink" /> |
 |Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
-|SQL Server| Researching <voteNotify note="sql_server_source" />|Researching <voteNotify note="sql_server_sink" /> |
+|SQL Server| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Researching <voteNotify note="sql_server_sink" /> |
 |TiDB| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Available. For details, see [Sink data from RisingWave to TiDB](/guides/sink-to-tidb.md). |
 |Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
+|Greenplum| No plan| Researching <voteNotify note="greenplum_sink" /> |
 
 ## Data lakes
 
 |System | |Availability |
 |---|---|---|
-|Delta Lake| |Researching <voteNotify note="deltalake" />|
+|Delta Lake| |Available. See [Sink data from RisingWave to Delta Lake](/guides/sink-to-delta-lake.md)|
 |Apache Hudi| |Researching <voteNotify note="hudi" />|
-|Apache Iceberg| |Researching <voteNotify note="iceberg" />|
+|Apache Iceberg| |Available. For details, see [Sink data from RisingWave to Apache Iceberg](/guides/sink-to-iceberg.md).|
 
 ## BI and data analytic platforms
 
