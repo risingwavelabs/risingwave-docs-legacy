@@ -14,4 +14,7 @@ export const CssTextField = styled(TextField)({
   "& .MuiInputBase-root": {
     color: "var(--ifm-font-color-base)",
   },
+  "& .MuiInputBase-input.Mui-disabled": {
+    WebkitTextFillColor: "var(--ifm-menu-color)",
+  },
 });

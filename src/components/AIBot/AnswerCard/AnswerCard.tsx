@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import styles from "./styles.module.css";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Skeleton from "@mui/material/Skeleton";
 
 type AnswerProps = {
   question: string;
@@ -32,8 +32,11 @@ export default function AnswerCard({ showAnswer, setShowAnswer, question, answer
         <Typography sx={{ fontSize: "0.8rem", color: "var(--ifm-menu-color)" }} gutterBottom>
           {question}
         </Typography>
-
-        <Typography>{answer}</Typography>
+        {answer.length > 0 ? (
+          <Typography>{answer}</Typography>
+        ) : (
+          <Skeleton variant="text" width={300} height={32} sx={{ fontSize: "1rem" }} />
+        )}
       </CardContent>
       <CardActions>
         <Button size="small">Learn More</Button>

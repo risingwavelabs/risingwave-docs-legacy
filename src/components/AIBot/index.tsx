@@ -107,6 +107,7 @@ function AIBot({}: Props) {
               className={styles.chatBoxInput}
               value={prompt}
               autoComplete="off"
+              disabled={isSending}
               onChange={(e) => setPrompt(e.target.value)}
               InputProps={{
                 startAdornment: (
