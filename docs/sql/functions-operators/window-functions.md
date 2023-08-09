@@ -1,7 +1,7 @@
 ---
 id: window-functions
 slug: /window-functions
-title: Window functions
+title: Window functions (OVER clause)
 ---
 Window or windowing functions perform a calculation over a set of rows that are related to the current row (the "window").
 
@@ -14,7 +14,9 @@ The "window" is defined by the `OVER` clause, which generally consists of thre
 ## Syntax
 
 ```sql
-window_function (expression) OVER ([PARTITION BY partition_expression ] [ORDER BY sort_expression,] [frame_expression])
+window_function ( [expression [, expression ... ]] ) OVER ( PARTITION BY partition_expression 
+[ ORDER BY sort_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
+[frame_clause])
 
 ```
 
@@ -24,38 +26,55 @@ window_function (expression) OVER ([PARTITION BY partition_expression ] [ORDER B
 - Aggregate-type functions – `sum()`, `min()`, `max()`, `avg()` and `count()`
 - Value functions – `lead()`, `lag()`, `first_value()`, and `last_value()`
 
-The syntax of `frame_expression` is:
+:::note
+The `PARTITION` clause is required. If you do not want to partition the rows into smaller sets, you can work around by specifying `PARTITION BY 1::int`.
+:::
+
+The syntax of `frame_clause` is:
 
 ```sql
-ROWS
-{ UNBOUNDED PRECEDING | n PRECEDING | CURRENT ROW } |
-
-{ BETWEEN
-{ UNBOUNDED PRECEDING | n { PRECEDING | FOLLOWING } | CURRENT ROW}
-AND
-{ UNBOUNDED FOLLOWING | n { PRECEDING | FOLLOWING } | CURRENT ROW }}
+{ ROWS } frame_start [ frame_exclusion ]
+{ ROWS } BETWEEN frame_start AND frame_end [ frame_exclusion ]
 ```
 
-## `row_number()`
+`frame_start` and `frame_end` can be:
+
+```
+UNBOUNDED PRECEDING
+offset PRECEDING
+CURRENT ROW
+offset FOLLOWING
+UNBOUNDED FOLLOWING
+```
+
+Where `offset` in a positive integer.
+
+:::note
+
+In RisingWave, `frame_clause` is optional. Depending on whether the `ORDER BY` clause is present, the default value is different. When the `ORDER BY` clause is present, the default value is `ROWS UNBOUNDED PRECEDING AND CURRENT ROW`. When the `ORDER BY` clause is not present, the default value is `ROWS UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING`. This is different from the behavior in PostgreSQL. The difference is temporary. Once the `RANGE` frame clause is supported in RisingWave, the default values will be aligned with PostgreSQL.
+
+:::
+
+## General-purpose window functions
+
+### `row_number()`
 
 The `row_number()` function assigns a unique sequential integer to each row within a partition of a result set. The numbering starts at 1 for the first row in each partition and increments by 1 for each subsequent row.
 
 `row_number()` can be used to turn non-unique rows into unique rows. This could be used to eliminate duplicate rows.
 
-The syntax of `row_number()` is:
+### `rank()`
 
-```sql
-row_number() OVER (PARTITION BY partition_expression ORDER BY sort_expression)
-```
+Returns the rank of the current row, with gaps; that is, the `row_number` of the first row in its peer group. Only top-N pattern is supported. For details about this pattern, see [Top-N by group](../syntax/sql-pattern-topn.md).
 
-## `lag()` and `lead()`
+### `lag()` and `lead()`
 
-`lag()` allows you to access the value of a previous row in the result set. You can specify the number of rows to look back and also provide a default value in case the previous row does not exist.
+`lag()` allows you to access the value of a previous row in the result set. You can specify the number of rows to look back.
 
 The syntax of `lag()` is:
 
 ```sql
-lag(expression [, offset [, default ]]) OVER (PARTITION BY partition_expression ORDER BY sort_expression)
+lag ( value anycompatible [, offset const integer] ) → anycompatible
 ```
 
 `lead()` is similar to `lag()`, but it allows you to access the value of a subsequent row in the result set.
@@ -63,17 +82,17 @@ lag(expression [, offset [, default ]]) OVER (PARTITION BY partition_expression 
 The syntax of `lead()` is:
 
 ```sql
-lead(expression [, offset [, default ]]) OVER (PARTITION BY partition_expression ORDER BY sort_expression)
+lead ( value anycompatible [, offset const integer] ) → anycompatible
 ```
 
-## `first_value()` and `last_value()`
+### `first_value()` and `last_value()`
 
 The `first_value()` function returns the value of the first row in the current window frame.
 
 The syntax of `first_value()` is:
 
 ```sql
-first_value(expression) OVER (PARTITION BY partition_expression ORDER BY sort_expression)
+first_value ( value anyelement ) → anyelement
 ```
 
 `last_value()` returns the value of the last row in the current window frame.
@@ -81,7 +100,7 @@ first_value(expression) OVER (PARTITION BY partition_expression ORDER BY sort_ex
 The syntax of `last_value()` is:
 
 ```sql
-last_value(expression) OVER (PARTITION BY partition_expression ORDER BY sort_expression)
+last_value ( value anyelement ) → anyelement
 ```
 
 ## Aggregate-type window functions
