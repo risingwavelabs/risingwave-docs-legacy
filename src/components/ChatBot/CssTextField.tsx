@@ -11,4 +11,7 @@ export const CssTextField = styled(TextField)({
   "& .MuiInput-underline:after": {
     borderBottomColor: "var(--ifm-button-color)",
   },
+  "& .MuiInputBase-root": {
+    color: "var(--ifm-font-color-base)",
+  },
 });

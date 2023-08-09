@@ -1,0 +1,9 @@
+div.cardWrapper {
+  z-index: 9999;
+  visibility: visible;
+  position: absolute;
+  right: 10%;
+  top: calc(var(--ifm-navbar-height) + 4rem);
+  background-color: var(--ifm-card-background-color);
+  color: var(--ifm-heading-color);
+}

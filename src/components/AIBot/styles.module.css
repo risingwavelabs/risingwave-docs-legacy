@@ -1,0 +1,16 @@
+button.buttonWrapper {
+  color: var(--ifm-button-color);
+  transition: background-color 0.3s ease;
+}
+
+button.chatButton {
+  text-transform: none;
+}
+
+div.autocompleteContainer {
+  color: var(--ifm-font-color-base);
+}
+
+.iconWrapper {
+  color: var(--ifm-button-color);
+}
