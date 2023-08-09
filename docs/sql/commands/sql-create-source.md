@@ -24,7 +24,11 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
 ];
 ```
 
-For the syntax of `schema_definition`, see [Parameters](sql-create-table.md#parameters) in `CREATE TABLE`.
+### schema_definition:
+```sql
+[col_name data_type [ AS generation_expression ]
+[WATERMARK FOR col_name as generation_expression]]
+```
 
 :::note
 To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
@@ -92,6 +96,17 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 :::
 
+## Parameters
+
+| Parameter| Description|
+|-----------|-------------|
+|*table_name*    |The name of the table. If a schema name is given (for example, `CREATE TABLE <schema>.<table> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
+|*col_name*      |The name of a column.|
+|*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
+|*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
+|**WITH** clause |Specify the connector settings here if trying to create a materialized source. See the [Data ingestion](/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
+|Format and encode options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
+
 ## Supported sources
 
 Click a connector name to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
@@ -118,7 +133,23 @@ When a source is created, RisingWave does not ingest data immediately. RisingWav
 
 ## Watermarks
 
-RisingWave supports generating watermarks when creating a source. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. The [`WATERMARK`](/transform/watermarks.md) clause should be used within the `schema_definition`. For more information on the syntax on how to create a watermark, see [Watermarks](/transform/watermarks.md).
+RisingWave supports generating watermarks when creating a source. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. The [`WATERMARK`](/transform/watermarks.md) clause should be used within the `schema_definition`. For more information on how to create a watermark, see [Watermarks](/transform/watermarks.md).
+
+We can generate the watermark as the latest timestamp observed in `order_time` minus 5 seconds. 
+
+```sql
+CREATE SOURCE s1 (
+    product VARCHAR,
+    price DOUBLE PRECISION
+    order_time TIMESTAMP,
+    WATERMARK FOR order_time AS order_time - INTERVAL '5' SECOND
+) WITH ( 
+    connector = 'kafka',
+    topic = 'test_topic',
+    properties.bootstrap.server = 'message_queue:29092', 
+    scan.startup.mode = 'earliest'
+) FORMAT PLAIN ENCODE JSON;
+```
 
 ## Change Data Capture (CDC)
 
