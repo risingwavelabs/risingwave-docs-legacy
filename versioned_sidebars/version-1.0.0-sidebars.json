@@ -667,9 +667,9 @@
       "id": "troubleshoot/troubleshooting"
     },
     {
-      "type": "doc",
-      "label": "Releases",
-      "id": "release-notes"
+      "type": "link",
+      "href": "/release-notes",
+      "label": "Releases"
     }
   ]
 }
