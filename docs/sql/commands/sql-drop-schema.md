@@ -9,13 +9,11 @@ Use the `DROP SCHEMA` command to remove a schema from a database.
 
 Before you can remove a schema, you must remove all its dependent objects (tables, materialized views, etc.).
 
-
 ## Syntax
 
 ```sql
-DROP SCHEMA [ IF EXISTS ] [database_name.]schema_name;
+DROP SCHEMA [ IF EXISTS ] [database_name.]schema_name [ CASCADE ];
 ```
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -32,14 +30,14 @@ export const svg = rr.Diagram(
             ),
         ),
         rr.NonTerminal('schema_name'),
+        rr.Optional(
+            rr.Terminal('CASCADE'), 'skip'
+        ),
         rr.Terminal(';'),
     )
 );
 
 <drawer SVG={svg} />
-
-
-
 
 ## Parameters
 
@@ -48,8 +46,7 @@ export const svg = rr.Diagram(
 |**IF EXISTS** clause       |Do not return an error if the specified schema does not exist.|
 |*database*                 |Specify the name of a database to remove the schema in that database. You can use [`SHOW  DATABASES`](sql-show-databases.md) to get a list of all available databases. If you don't specify a database, the specified schema in the default database will be removed.|
 |*schema*                   |The name of the schema you want to remove. The default schema is `public`. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas.|
-
-
+|`CASCADE` option| If this option is specified, all objects (such as tables, sources, or functions) that are contained in the schema, and in turn all objects that depend on those objects will be dropped.|
 
 ## Examples
 
@@ -59,13 +56,11 @@ This statement removes the `rw_schema` schema from the `rw_db` database:
 DROP SCHEMA rw_db.rw_schema;
 ```
 
-
 This statement removes the `rw_schema` schema from the `dev` database (default database):
 
 ```sql
 DROP SCHEMA rw_schema;
 ```
-
 
 Use this statement if you don't want RisingWave to return an error if the schema you want to remove does not exist:
 

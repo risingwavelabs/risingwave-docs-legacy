@@ -10,9 +10,8 @@ Use the `DROP INDEX` command to remove an index from a table or a materialized v
 ## Syntax
 
 ```sql
-DROP INDEX [ IF EXISTS ] [ schema_name.]index_name;
+DROP INDEX [ IF EXISTS ] [ schema_name.]index_name [ CASCADE ];
 ```
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -29,13 +28,14 @@ export const svg = rr.Diagram(
             ),
         ),
         rr.NonTerminal('index_name'),
+        rr.Optional(
+            rr.Terminal('CASCADE'), 'skip'
+        ),
         rr.Terminal(';'),
     )
 );
 
 <drawer SVG={svg} />
-
-
 
 ## Parameters
 
@@ -44,8 +44,7 @@ export const svg = rr.Diagram(
 |**IF EXISTS** clause       |Do not return an error if the specified index does not exist.|
 |*schema_name*                   |The schema of the index that you want to remove. <br /> You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified index in the default schema `public` will be removed.|
 |*index_name*                    |The name of the index to remove. <br/> You can use [`DESCRIBE`](sql-describe.md) to show the indexes of a table.|
-
-
+|`CASCADE` option| If this option is specified, all objects that depend on the index, and in turn all objects that depend on those objects will be dropped.|
 
 ## Examples
 

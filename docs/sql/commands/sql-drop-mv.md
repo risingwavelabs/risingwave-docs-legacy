@@ -12,9 +12,8 @@ Before you can remove a materialzied view, you must remove all its dependent mat
 ## Syntax
 
 ```sql
-DROP MATERIALIZED VIEW [ IF EXISTS ] [schema_name.]mv_name;
+DROP MATERIALIZED VIEW [ IF EXISTS ] [schema_name.]mv_name [ CASCADE ];
 ```
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -32,14 +31,14 @@ export const svg = rr.Diagram(
             ),
             rr.NonTerminal('mv_name')
         ),
-        rr.Terminal(';')
+        rr.Sequence(
+            rr.Optional(rr.Terminal('CASCADE'), 'skip'),
+            rr.Terminal(';')
+        )
     )
 );
 
 <drawer SVG={svg} />
-
-
-
 
 ## Parameters
 
@@ -47,8 +46,7 @@ export const svg = rr.Diagram(
 |---------------------------|-----------------------|
 |*schema_name*                   |Specify the name of a schema to remove the materialized view in that schema. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified materialized view in the default schema `public` will be removed.|
 |*mv_name*                       |The name of the materialized view to remove. You can use [`SHOW MATERIALIZED VIEWS`](sql-show-mv.md) to get a list of all available materialized views.|
-
-
+|`CASCADE` option| If this option is specified, all objects (such as other materialized views or regular views) that depend on the materialized view, and in turn all objects that depend on those objects will be dropped.|
 
 ## Examples
 
