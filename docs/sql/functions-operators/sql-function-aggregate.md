@@ -6,7 +6,7 @@ title: Aggregate functions
 
 Aggregate functions compute a single result from a set of input values.
 
-The DISTINCT option, ORDER BY clauses, and FILTER clauses can be used in aggregate expressions. The DISTINCT option cannot be used with an ORDER BY clause, with the exception of `string_agg()`. For details about the supported syntax, see [Aggregate expressions](/sql/query-syntax/query-syntax-value-exp.md/#aggregate-expressions).
+The DISTINCT option, ORDER BY clauses, and FILTER clauses can be used in aggregate expressions. If the DISTINCT option is used with an ORDER BY clause, the columns specified for ORDER BY must appear as an argument in the function call. For details about the supported syntax, see [Aggregate expressions](/sql/query-syntax/query-syntax-value-exp.md/#aggregate-expressions).
 
 ---  
 
@@ -141,7 +141,7 @@ stddev_samp ( expression ) -> output_value
 Combines non-null values into a string, separated by `delimiter_string`. The `DISTINCT` clause removes duplicate expressions from the result. The `ORDER BY` clause is optional and specifies the order of rows processed in the aggregation, which determines the order of the elements in the result array. 
 
 ```sql title=Syntax
-string_agg ( [DISTINCT] expression, delimiter_string, [ORDER BY sort_expression {ASC | DESC}] ) -> output_string  
+string_agg ( expression, delimiter_string ) -> output_string  
 ```
 
 ---  

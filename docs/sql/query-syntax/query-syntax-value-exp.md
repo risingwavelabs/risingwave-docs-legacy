@@ -13,14 +13,13 @@ An aggregate expression represents the application of an aggregate function acro
 The supported syntax of an aggregate expression is one of the following:
 
 ```sql
-aggregate_name (expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
-aggregate_name (DISTINCT expression [ , ... ]) [ FILTER ( WHERE filter_clause ) ]
+aggregate_name (DISTINCT expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
 aggregate_name ( * ) [ FILTER ( WHERE filter_clause ) ]
 ```
 
 where *aggregate_name* is one of the aggregation functions listed on [Aggregate functions](https://www.risingwave.dev/docs/latest/sql-function-aggregate/), and *expression* is a value expression that does not contain an aggregate expression or a window function call.
 
-`DISTINCT` cannot be used with an `ORDER BY` clause in RisingWave.
+If `DISTINCT` is used with an `ORDER BY` clause in RisingWave, the columns specified in the `order_by_clause` must appear as an argument in the function call.
 
 ## Row constructors
 
