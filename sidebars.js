@@ -690,9 +690,9 @@ const sidebars = {
       id: "troubleshoot/troubleshooting"
     },
     {
-      type: "doc",
+      type: "link",
+      href: "/release-notes",
       label: "Releases",
-      id: "release-notes",
     },
   ],
 };
