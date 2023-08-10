@@ -141,7 +141,7 @@ See how RisingWave can integrate with your existing data stack. [Request an inte
 {src:"/img/ecosystem/citus.svg", doc:"ingest-from-citus-cdc", text: "Citus"},
 ]}>
 
-### <StreamOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Sources
+### Sources
 
 Connect to and ingest data from external sources.
 
@@ -160,7 +160,7 @@ Connect to and ingest data from external sources.
 {src:"/img/ecosystem/iceberg.svg", doc:"sink-to-iceberg", text: "Iceberg"},
 ]}>
 
-### <GpsFixedOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Sinks
+### Sinks
 
 Stream processed data out of RisingWave to external targets.
 
@@ -177,7 +177,7 @@ Stream processed data out of RisingWave to external targets.
 {src:"/img/ecosystem/redash.svg", text: "Redash"},
 ]}>
 
-### <DataSaverOffOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> BI tools
+### BI tools
 
 Unlock actionable insights and create stunning visualizations for your data.
 
@@ -192,7 +192,7 @@ Unlock actionable insights and create stunning visualizations for your data.
 {src:"/img/ecosystem/go.svg", doc:"go-client-libraries", text: "Go"},
 ]}>
 
-### <IntegrationInstructionsOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Client libraries
+### Client libraries
 
 Integrate RisingWave into your applications using PostgreSQL drivers.
 
