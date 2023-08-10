@@ -23,7 +23,7 @@ This version was released on August 8, 2023.
     
     - `CREATE TABLE` now supports the `APPEND ONLY` clause, allowing the definition of watermark columns on the table. [#11233](https://github.com/risingwavelabs/risingwave/pull/11233)
     
-    - Supports new commands `START TRANSACTION`, `BEGIN`, and `COMMIT` commands support read-only transactions. [#10735](https://github.com/risingwavelabs/risingwave/pull/10735)
+    - Supports new commands `START TRANSACTION`, `BEGIN`, and `COMMIT` for read-only transactions. [#10735](https://github.com/risingwavelabs/risingwave/pull/10735)
     
     - Supports `SHOW CLUSTER` to show the details of your RisingWave cluster, including the address of the cluster, its state, the parallel units it is using, and whether it's streaming data, serving data or unschedulable. [#10656](https://github.com/risingwavelabs/risingwave/pull/10656), [#10932](https://github.com/risingwavelabs/risingwave/pull/10932)
 
@@ -118,8 +118,6 @@ This version was released on July 12, 2023.
 #### SQL features
 
 - SQL command:
-
-  - Supports the `SHOW CLUSTERS` command. [#10656](https://github.com/risingwavelabs/risingwave/pull/10656)
 
   - Supports the `GROUPING SETS` clause. [#10807](https://github.com/risingwavelabs/risingwave/pull/10807)
 
