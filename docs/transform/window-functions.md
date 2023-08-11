@@ -25,17 +25,16 @@ window_function ( [expression [, expression ... ]] ) OVER
 
 `window_function` can be one of the following:
 
-- Ranking functions – `row_number()`, `rank()`
-- Aggregate-type functions – `sum()`, `min()`, `max()`, `avg()` and `count()`
-- Value functions – `lead()`, `lag()`, `first_value()`, and `last_value()`
+- [General-purpose window functions](#general-purpose-window-functions)
+- [Aggregate functions](#aggregate-window-functions)
 
 :::note
 
-The `PARTITION` clause is required. If you do not want to partition the rows into smaller sets, you can work around by specifying `PARTITION BY 1::int`.
+Currently, the `PARTITION` clause is required. If you do not want to partition the rows into smaller sets, you can work around by specifying `PARTITION BY 1::int`.
 
 :::
 
-When operating in the emit-on-window-close mode for a streaming query, it is necessary to include an ORDER BY clause for each window function. Please ensure that you specify only one column to order by. This column must be a timestamp column that includes watermarks. It's important to note that when using the timestamp column from this streaming query in another streaming query, the watermark information associated with the column is not retained.
+When operating in the emit-on-window-close mode for a streaming query, it is necessary to include an ORDER BY clause for each window function. Please ensure that you specify only one column to order by. This column, generally a timestamp column, must have a watermark defined for it. It's important to note that when using the timestamp column from this streaming query in another streaming query, the watermark information associated with the column is not retained.
 
 The syntax of `frame_clause` is:
 
@@ -54,7 +53,7 @@ offset FOLLOWING
 UNBOUNDED FOLLOWING
 ```
 
-Where `offset` in a positive integer. If only `frame_start` is specified, `CURRENT ROW` will be used as the end of the window.
+Where `offset` is a positive integer. If only `frame_start` is specified, `CURRENT ROW` will be used as the end of the window.
 
 `frame_exclusion` can be either of these:
 
@@ -77,9 +76,33 @@ The `row_number()` function assigns a unique sequential integer to each row with
 
 `row_number()` can be used to turn non-unique rows into unique rows. This could be used to eliminate duplicate rows.
 
+The syntax of `row_number()` is:
+
+```sql
+row_number() → integer
+```
+
+:::note
+
+We recommend using `row_number()` only for top-N pattern queries. For details about this pattern, see [Top-N by group](/sql/syntax/sql-pattern-topn.md).
+
+:::
+
 ### `rank()`
 
-Returns the rank of the current row, with gaps; that is, the `row_number` of the first row in its peer group. Only top-N pattern is supported. For details about this pattern, see [Top-N by group](../syntax/sql-pattern-topn.md).
+Returns the rank of the current row, with gaps; that is, the `row_number` of the first row in its peer group.
+
+The syntax of `rank()` is:
+
+```sql
+rank() → integer
+```
+
+:::note
+
+We recommend using `rank()` only for top-N pattern queries. For details about this pattern, see [Top-N by group](/sql/syntax/sql-pattern-topn.md).
+
+:::
 
 ### `lag()` and `lead()`
 
@@ -117,10 +140,6 @@ The syntax of `last_value()` is:
 last_value ( value anyelement ) → anyelement
 ```
 
-## Aggregate-type window functions
+## Aggregate window functions
 
-The aggregate-type window functions include `sum()`, `min()`, `max()`, `avg()` and `count()`.
-
-Although the calculations that are performed in aggregate-type window functions are similar to those performed by regular aggregate functions, they are different in nature.
-
-Unlike regular aggregate functions, aggregate-type window functions does not group multiple rows into a single output row — the rows retain their separate identities. Behind the scenes, aggregate-type window functions can access more than just the current row of the query result.
+The aggregate window functions include `sum()`, `min()`, `max()`, `avg()` and `count()` etc. For the complete list of aggregate functions and their usage, see [Aggregate functions](../sql/functions-operators/sql-function-aggregate.md).
