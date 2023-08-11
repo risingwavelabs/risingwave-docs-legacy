@@ -33,7 +33,7 @@ export const svg = rr.Diagram(
 |---------------------------|-----------------------|
 |**IF EXISTS** clause       |Do not return an error if the specified view does not exist.|
 |*view_name*                |Name of the view to be dropped.|
-|`CASCADE` option| If this option is specified, all objects (such as materialized views or other regular views) that depend on the view, and in turn all objects that depend on those objects will be dropped.|
+|**CASCADE** option| If this option is specified, all objects (such as materialized views or other regular views) that depend on the view, and in turn all objects that depend on those objects will be dropped.|
 
 ## Example
 
