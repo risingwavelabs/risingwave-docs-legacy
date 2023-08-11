@@ -45,7 +45,7 @@ export const svg = rr.Diagram(
 |---------------------------|-----------------------|
 |*schema_name*                   |The schema of the source that you want to remove. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified source in the default schema `public` will be removed.|
 |*source_name*                   |The name of the source to remove.|
-|`CASCADE` option| If this option is specified, all objects (such as materialized views) that depend on the source, and in turn all objects that depend on those objects will be dropped.|
+|**CASCADE** option| If this option is specified, all objects (such as materialized views) that depend on the source, and in turn all objects that depend on those objects will be dropped.|
 
 ## Examples
 
