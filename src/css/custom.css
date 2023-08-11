@@ -529,7 +529,6 @@ table tr:first-child {
 }
 
 /* custom github icon */
-
 .header-github-link {
   list-style-type: none;
   width: 2rem;
@@ -571,4 +570,8 @@ html.mdx-page .menu__list-item--collapsed:has(.header-drop-down) {
 .header-github-link:hover {
   --ifm-color-emphasis-200: var(--ifm-color-gray-800);
   background: var(--ifm-color-emphasis-200);
+}
+
+html.mdx-page h2 {
+  --ifm-heading-margin-top: 2rem;
 }
