@@ -285,7 +285,7 @@ Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based 
 
 ### Data type mapping
 
-The following table shows the corresponding data type in RisingWave that should be specified when creating a source. For details on native RisingWave data types, see [Overview of data types](../sql/sql-data-types.md).
+The following table shows the corresponding data type in RisingWave that should be specified when creating a source. The literal type describes how the values would be expressed in the source code. For details on native RisingWave data types, see [Overview of data types](/sql/sql-data-types.md). 
 
 RisingWave data types marked with an asterisk indicates that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
 
