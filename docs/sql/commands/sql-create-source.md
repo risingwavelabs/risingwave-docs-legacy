@@ -27,10 +27,9 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
 ### schema_definition:
 
 ```sql
-col_name data_type [ PRIMARY KEY ] [ AS generation_expression ],
+col_name data_type [ AS generation_expression ],
 ...
 [WATERMARK FOR col_name as generation_expression]
-[ PRIMARY KEY (col_name, ... ) ]
 ```
 
 :::note
