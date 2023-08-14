@@ -12,9 +12,8 @@ Before you can remove a table, you must remove all its dependent objects (indexe
 ## Syntax
 
 ```sql
-DROP TABLE [ IF EXISTS ] [schema_name.]table_name;
+DROP TABLE [ IF EXISTS ] [schema_name.]table_name [ CASCADE ];
 ```
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -31,14 +30,14 @@ export const svg = rr.Diagram(
             ),
         ),
         rr.NonTerminal('table_name'),
+        rr.Optional(
+            rr.Terminal('CASCADE'), 'skip'
+        ),
         rr.Terminal(';'),
     )
 );
 
 <drawer SVG={svg} />
-
-
-
 
 ## Parameters
 
@@ -46,8 +45,7 @@ export const svg = rr.Diagram(
 |---------------------------|-----------------------|
 |*schema*                   |Specify the name of a schema to remove the table in that schema. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified source in the default schema `public` will be removed.|
 |*table*                    |The name of the table to remove. You can use [`SHOW TABLES`](sql-show-tables.md) to get a list of all available tables.|
-
-
+|**CASCADE** option| If this option is specified, all objects (such as materialized views) that depend on the table, and in turn all objects that depend on those objects will be dropped.|
 
 ## Examples
 
