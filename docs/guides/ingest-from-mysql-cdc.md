@@ -305,45 +305,45 @@ CREATE TABLE orders (
 
 ### Data type mapping
 
-The following table shows the corresponding data type in RisingWave that should be specified when creating a source. The literal type describes how the values would be expressed in the source code. For details on native RisingWave data types, see [Overview of data types](../sql/sql-data-types.md).
+The following table shows the corresponding data type in RisingWave that should be specified when creating a source. For details on native RisingWave data types, see [Overview of data types](../sql/sql-data-types.md).
 
 RisingWave data types marked with an asterisk indicates that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
 
-| MySQL type | RisingWave type | Literal type |
-|------------|-----------------|--------------|
-| BOOLEAN, BOOL | BOOLEAN | BOOLEAN |
-| BIT(1) | BOOLEAN* | BOOLEAN |
-| BIT(>1) | No support | BYTES |
-| TINYINT | SMALLINT | INT16 |
-| SMALLINT[(M)]	| SMALLINT | INT16 |
-| MEDIUMINT[(M)] |INTEGER	| INT32 |
-| INT, INTEGER[(M)]	| INTEGER | INT32 |
-| BIGINT[(M)] | BIGINT	| INT64 |
-| REAL[(M,D)]| REAL	| FLOAT32 |
-| FLOAT[(P)] | REAL	| FLOAT32 or FLOAT64 |
-| FLOAT(M,D) | DOUBLE PRECISION | FLOAT64 |
-| DOUBLE[(M,D)]	| DOUBLE PRECISION |	FLOAT64 |
-| CHAR[(M)]	| CHARACTER VARYING	| STRING |
-| VARCHAR[(M)] | CHARACTER VARYING |STRING |
-| BINARY[(M)] | BYTEA |	BYTES or STRING |
-| VARBINARY[(M)] | BYTEA | BYTES |
-| TINYBLOB | BYTEA | BYTES |
-| TINYTEXT | CHARACTER VARYING | STRING |
-| BLOB | BYTEA | BYTES |
-| TEXT | CHARACTER VARYING | STRING |
-| MEDIUMBLOB | BYTEA | BYTES |
-| MEDIUMTEXT| CHARACTER VARYING	| STRING |
-|LONGBLOB| BYTEA | BYTES |
-| LONGTEXT | BYTEA or CHARACTER VARYING	| STRING |
-| JSON | JSONB | STRING |
-| ENUM | CHARACTER VARYING*	| STRING |
-| SET | No support | STRING |
-| YEAR[(2\|4)] | INTEGER	| INT32 |
-| TIMESTAMP[(M)] | TIMESTAMP WITH TIME ZONE	| STRING |
-| DATE | DATE | INT32 |
-| TIME[(M)]	| TIME WITHOUT TIME ZONE | INT64 |
-| DATETIME, DATETIME(0), DATETIME(1), DATETIME(2), DATETIME(3) | TIMESTAMP WITHOUT TIME ZONE | INT64 |
-| DATETIME(4), DATETIME(5), DATETIME(6)	| TIMESTAMP WITHOUT TIME ZONE | INT64 |
-| NUMERIC[(M[,D])] | NUMERIC | BYTES |
-| DECIMAL[(M[,D])] | NUMERIC | BYTES |
-| GEOMETRY, LINESTRING, POLYGON, <br />MULTIPOINT, MULTILINESTRING, <br />MULTIPOLYGON, GEOMETRYCOLLECTION | STRUCT | STRUCT |
+| MySQL type | RisingWave type |
+|------------|-----------------|
+| BOOLEAN, BOOL | BOOLEAN |
+| BIT(1) | BOOLEAN* |
+| BIT(>1) | No support |
+| TINYINT | SMALLINT |
+| SMALLINT[(M)] | SMALLINT |
+| MEDIUMINT[(M)] |INTEGER |
+| INT, INTEGER[(M)] | INTEGER |
+| BIGINT[(M)] | BIGINT |
+| REAL[(M,D)]| REAL |
+| FLOAT[(P)] | REAL |
+| FLOAT(M,D) | DOUBLE PRECISION |
+| DOUBLE[(M,D)] | DOUBLE PRECISION |
+| CHAR[(M)] | CHARACTER VARYING |
+| VARCHAR[(M)] | CHARACTER VARYING |
+| BINARY[(M)] | BYTEA |
+| VARBINARY[(M)] | BYTEA |
+| TINYBLOB | BYTEA |
+| TINYTEXT | CHARACTER VARYING |
+| BLOB | BYTEA |
+| TEXT | CHARACTER VARYING |
+| MEDIUMBLOB | BYTEA |
+| MEDIUMTEXT| CHARACTER VARYING |
+|LONGBLOB| BYTEA |
+| LONGTEXT | BYTEA or CHARACTER VARYING |
+| JSON | JSONB |
+| ENUM | CHARACTER VARYING* |
+| SET | No support |
+| YEAR[(2\|4)] | INTEGER |
+| TIMESTAMP[(M)] | TIMESTAMP WITH TIME ZONE |
+| DATE | DATE |
+| TIME[(M)] | TIME WITHOUT TIME ZONE |
+| DATETIME, DATETIME(0), DATETIME(1), DATETIME(2), DATETIME(3) | TIMESTAMP WITHOUT TIME ZONE |
+| DATETIME(4), DATETIME(5), DATETIME(6) | TIMESTAMP WITHOUT TIME ZONE |
+| NUMERIC[(M[,D])] | NUMERIC |
+| DECIMAL[(M[,D])] | NUMERIC |
+| GEOMETRY, LINESTRING, POLYGON, <br />MULTIPOINT, MULTILINESTRING, <br />MULTIPOLYGON, GEOMETRYCOLLECTION | STRUCT |
