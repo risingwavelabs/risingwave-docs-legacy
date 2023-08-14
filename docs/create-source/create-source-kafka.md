@@ -297,10 +297,16 @@ protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.
 
 To specify a schema location, add this clause to a `CREATE SOURCE` statement.
 
-```SQL
+```sql
 ENCODE data_encode (
    schema.location = 'location'
 )
+```
+
+If a primary key also needs to be defined, use the table constraint syntax.
+
+```sql
+CREATE TABLE table1 (PRIMARY KEY(id)) 
 ```
 
 ## Read schemas from Schema Registry
@@ -318,6 +324,12 @@ ENCODE data_encode (
 ```
 
 To learn more about Confluent Schema Registry and how to set up a Schema Registry, refer to the [Confluent Schema Registry documentation](https://docs.confluent.io/platform/current/schema-registry/index.html).
+
+If a primary key also needs to be defined, use the table constraint syntax.
+
+```sql
+CREATE TABLE table1 (PRIMARY KEY(id)) 
+```
 
 ### Schema evolution
 
