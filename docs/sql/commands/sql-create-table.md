@@ -20,6 +20,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
     [ PRIMARY KEY (col_name, ... ) ]
     [ watermark_clause ]
 )
+[ APPEND ONLY ]
 [ WITH (
     connector='connector_name',
     connector_parameter='value', ...)]
@@ -50,6 +51,7 @@ export const svg = rr.Diagram(
                 ),
                 rr.Comment('Alternative format: PRIMARY KEY (col_name, ... )'),
             ),
+            rr.Optional(rr.Terminal('watermark_clause'), 'skip'),
         ),
         rr.Sequence(
             rr.Terminal(')'),
@@ -133,9 +135,14 @@ To know when a data record is loaded to RisingWave, you can define a column that
 |`col_name`      |The name of a column.|
 |`data_type`|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
 |`generation_expression`| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
-|`watermark_clause`| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
+|`watermark_clause`| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For the watermark clause to be valid, the table must be an append-only table. That is, the `APPEND ONLY` option must be specified. This restriction only applies to a table. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
+|`APPEND ONLY` | When this option is specified, the table will be created as an append-only table.|
 |**WITH** clause |Specify the connector settings here if trying to store all the source data. See the [Data ingestion](/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
-|Format and encode options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
+|**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
+
+## Watermarks
+
+RisingWave supports generating watermarks when creating an append-only streaming table. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. For more information on the syntax on how to create a watermark, see [Watermarks](/transform/watermarks.md).
 
 ## Examples
 
