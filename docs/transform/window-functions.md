@@ -100,7 +100,7 @@ rank() → integer
 
 :::note
 
-We recommend using `rank()` only for top-N pattern queries. For details about this pattern, see [Top-N by group](/sql/syntax/sql-pattern-topn.md).
+The rank() function is only supported in top-N pattern queries. For details about this pattern, see [Top-N by group](/sql/syntax/sql-pattern-topn.md).
 
 :::
 
