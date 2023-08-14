@@ -7,21 +7,17 @@ slug: /meta-backup
 
 This guide introduces how to back up meta service data and restore from a backup.
 
-## Configure system variables
-
 A meta snapshot is a backup of meta service's data at a specific point in time. Meta snapshots are persisted in S3-compatible storage.
 
-Here's an example of how to specify target storage and set `backup_storage_url` and `backup_storage_directory`:
+## Set backup parameters
 
-```
-[system]
-backup_storage_url = "s3://[bucket]"
-backup_storage_directory = "backup"
-```
+Before you can create a meta snapshot, you need to set the `backup_storage_url` and `backup_storage_directory` system parameters prior to starting your cluster.
 
-Typically, `backup_storage_url` and `backup_storage_directory` should not be changed after initializing the cluster. Otherwise, if they are changed, all meta snapshots taken previously become invalidated and shouldn't be used anymore.
-This is because the meta backup and recovery process does not replicate SST files. To ensure consistency between meta snapshots and SST files, the meta service additionally maintains the retention time for SSTs required by meta snapshots via monitoring the snapshot storage in use. That is to say, SST files required by meta snapshots from a snapshot storage that is not in use may be garbage collected at any time.
+:::caution
+Do not set `backup_storage_url` and `backup_storage_directory` after the cluster is started. Otherwise, all meta snapshots taken previously become invalidated and cannot be used anymore.
+:::
 
+To learn about how to configure system parameters, see [How to configure system parameters](../manage/view-configure-system-parameters.md#how-to-configure-system-parameters).
 
 ## Create a meta snapshot
 
@@ -29,7 +25,7 @@ Meta snapshot is created by meta service.
 
 Here's an example of how to create a new meta snapshot with `risectl`:
 
-```
+```bash
 risectl meta backup-meta
 ```
 
@@ -45,7 +41,7 @@ SELECT meta_snapshot_id FROM rw_catalog.rw_meta_snapshot;
 
 Example output:
 
-```
+```bash
  meta_snapshot_id 
 ------------------
                 3
@@ -56,7 +52,7 @@ Example output:
 
 Here's an example of how to delete a meta snapshot with `risectl`:
 
-```
+```bash
 risectl meta delete-meta-snapshots [snapshot_ids]
 ```
 
@@ -71,7 +67,7 @@ Use the following steps to restore from a meta snapshot.
 2. Create an empty meta store.
 3. Restore the meta snapshot to the new meta store.
 
-    ```
+    ```bash
     backup-restore \
     --meta-store-type etcd \
     --meta-snapshot-id [snapshot_id] \
@@ -80,7 +76,8 @@ Use the following steps to restore from a meta snapshot.
     --hummock-storage-url [hummock_storage_url]
     --hummock-storage-dir [hummock_storage_dir]
     ```
-    `backup-restore` reads snapshot data from backup storage and writes them to etcd and hummock storage. 
+
+    `backup-restore` reads snapshot data from backup storage and writes them to etcd and hummock storage.
     `backup-restore` is not included in the pre-built risingwave binary. Please build it from source by compiling the `risingwave_backup_cmd` package.
 4. Configure meta service to use the new meta store.
 
@@ -98,7 +95,7 @@ Use the following steps to perform a time travel query.
 
    Example output:
 
-    ```
+    ```bash
         safe_epoch    |      safe_epoch_ts      | max_committed_epoch | max_committed_epoch_ts  
     ------------------+-------------------------+---------------------+-------------------------
      3603859827458048 | 2022-12-28 11:08:56.918 |    3603862776381440 | 2022-12-28 11:09:41.915
@@ -112,6 +109,7 @@ Use the following steps to perform a time travel query.
     ```sql
     SET QUERY_EPOCH=[chosen epoch];
     ```
+
    Then, batch queries in this session return data as of this epoch instead of the latest one.
 3. Disable historical query.
 

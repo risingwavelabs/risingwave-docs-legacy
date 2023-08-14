@@ -11,23 +11,22 @@ We periodically update this article to keep up with the rapidly evolving landsca
 
 ## Summary
 
-| |Apache Flink|	RisingWave|
+| |Apache Flink| RisingWave|
 |---|---|---|
-|Version	|1.16.1|	Latest version|
-|License	|Apache License 2.0	|Apache License 2.0|
-|System category	|Stream processing framework	|Streaming database|
-|Architecture	|MapReduce-style	|Cloud-native|
-|Native API	|Java, Scala, Python, SQL	|SQL|
-|Client libraries	|None	|Java, Python, Node.js, and more|
-|State management	|RocksDB in local machine; periodically checkpointed to S3 | Native storage persisted in S3 or equivalent storage|
+|Version |1.17| Latest version|
+|License |Apache License 2.0 |Apache License 2.0|
+|System category |Stream processing framework |Streaming database|
+|Architecture |MapReduce-style |Cloud-native|
+|Native API |Java, Scala, Python, SQL |SQL|
+|Client libraries |None |Java, Python, Node.js, and more|
+|State management |RocksDB in local machine; periodically checkpointed to S3 | Native storage persisted in S3 or equivalent storage|
 |Query serving | DataSet and Table API, Apache Flink Table Store, batch mode execution| Support concurrent ad-hoc SQL query serving |
-|Correctness	|Support exactly-once semantics and out-of-order processing	| Support exactly-once semantics, out-of-order processing, and snapshot read|
-|Integrations and tooling	|Big-data ecosystem	| Big-data ecosystem, cloud ecosystem, and PostgreSQL ecosystem |
-|Learning curve	| Steep |	Extremely shallow |
-|Maintenance cost |	High	| Low |
+|Correctness |Support exactly-once semantics and out-of-order processing | Support exactly-once semantics, out-of-order processing, and snapshot read|
+|Integrations and tooling |Big-data ecosystem | Big-data ecosystem, cloud ecosystem, and PostgreSQL ecosystem |
+|Learning curve | Steep | Extremely shallow |
+|Maintenance cost | High | Low |
 | Performance cost| High | Low |
 |Typical use cases| Streaming ETL, streaming analytics | Streaming ETL, streaming analytics, online serving|
-
 
 ## Introduction
 
@@ -36,7 +35,6 @@ We periodically update this article to keep up with the rapidly evolving landsca
 ### Apache Flink
 
 Apache Flink is a popular open-source distributed stream processing framework that was introduced in 2011. Flink features a distributed Java-based dataflow engine that supports parallel, pipelined, and iterative execution of both batch and stream processing programs. Additionally, Flink offers fault-tolerant processing with exactly-once semantics. Users can write programs in Java, Scala, Python, and SQL on a large data cluster. Flink also provides dozens of connectors to popular systems, making it easy for users to connect to existing data storage systems.
-
 
 ### RisingWave
 
@@ -61,11 +59,9 @@ RisingWave was created during the cloud era. By adopting a modern compute-storag
 
 Apache Flink implements a flexible and powerful programming model based on the concept of streams and transformations. In Flink, users define data processing pipelines as directed acyclic graphs (DAGs) of transformations, which can be chained together to form complex data processing workflows. The native API supports this programming model in Java, Scala, and Python, enabling developers to create their streaming pipelines in these languages. Flink’s programming model allows for fine-grained control over data processing, which can lead to better performance and more efficient use of resources. However, the downside is that the programming model of Flink can be difficult to learn and use. Additionally, Flink provides a SQL layer on top of its kernel, which users can utilize to process streaming data.
 
-RisingWave is a SQL streaming database that offers PostgreSQL-style SQL to its users. This means that users can perform stream processing in the same way as they would using PostgreSQL. Although RisingWave does not provide low-level APIs, it will soon support Python UDF, which will allow users to express more complex logic.
+RisingWave is a SQL streaming database that offers PostgreSQL-style SQL to its users. This means that users can perform stream processing in the same way as they would using PostgreSQL. Although RisingWave does not provide low-level APIs, it supports user-defined functions (UDFs) in both Python and Java, with which users can express complex logic.
 
 ## Client libraries
-
-*Apache Flink does not offer any official client libraries; RisingWave in contrast supports multiple client libraries.*
 
 Apache Flink is a programming framework that does not support any language clients. To use Apache Flink, users must either write Java/Scala/Python programs or use Flink’s own SQL client.
 
@@ -77,17 +73,17 @@ RisingWave is compatible with the PostgreSQL wire protocol and can work with the
 
 State management is an important aspect of stream processing systems. It refers to the ability of the system to track and manage the internal computation state so as to support elastic scaling and failure recovery.
 
-As a stream processing framework, Apache Flink was not designed for persisting data. It uses RocksDB to manage internal states in each machine, and periodically sends the internal states to remote persistent storage for checkpointing purposes. This strategy works for scenarios where the state size is small. However, when supporting large-state scenarios (such as maintaining a 7-day windows or joining multiple data streams), Flink can crash directly or confront performance degradation due to excessive page swapping.
+As a stream processing framework, Apache Flink was not optimized for persisting data. It uses RocksDB to manage internal states in each machine, and periodically sends the internal states to remote persistent storage for checkpointing purposes. This strategy works for scenarios where the state size is small. However, when supporting large-state scenarios (such as maintaining a 7-day windows or joining multiple data streams), Flink can crash directly or confront performance degradation due to excessive page swapping.
 
-RisingWave is a SQL database that natively stores data. It uses its own cloud-native storage system, called Hummock, to persist materialized views and internal states in stateful stream executors to cloud storage services (specifically, all S3-compatible services). Similar to an LSM-tree, Hummock persists data in tiered storage and is optimized for bulk writes. In RisingWave, data persistence is triggered by a checkpoint-style coordination process. Each executor receives barrier messages from its upstream executors and increments the delta of state updates into Hummock. This mechanism enables RisingWave to support stream processing that requires extra-large state management.
+RisingWave uses its own cloud-native storage system, called Hummock, to persist materialized views and internal states in stateful stream executors to cloud storage services (specifically, all S3-compatible services). Similar to an LSM-tree, Hummock persists data in tiered storage and is optimized for bulk writes. In RisingWave, data persistence is triggered by a checkpoint-style coordination process. Each executor receives barrier messages from its upstream executors and increments the delta of state updates into Hummock. This mechanism enables RisingWave to support stream processing that requires extra-large state management.
 
 ## Query serving
 
 *Apache Flink was not designed for serving ad-hoc queries; RisingWave by design is a database and can serve concurrent ad-hoc queries.*
 
-Apache Flink was originally designed for stream processing, but has recently introduced a batch processing mode. The batch processing engine in Flink shares similar design principles with its stream processing engine, allowing it to leverage many of the same optimizations and features. When running batch queries in Flink, users can use either the DataSet API or the Table API, both of which provide a high-level interface for writing batch processing jobs. The DataSet API allows users to write batch processing jobs using Java or Scala, while the Table API provides a SQL-like language called FlinkSQL for querying and manipulating batch data.
+The batch processing engine in Flink shares similar design principles with its stream processing engine, allowing it to leverage many of the same optimizations and features. When running batch queries in Flink, users can use either the DataSet API or the Table API, both of which provide a high-level interface for writing batch processing jobs. The DataSet API allows users to write batch processing jobs using Java or Scala, while the Table API provides a SQL-like language called FlinkSQL for querying and manipulating batch data.
 
-Flink’s query serving capability is still in the early stages, and is not yet well optimized for supporting concurrent query serving, particularly when dealing with large volumes of data. As a result, users typically still dump data into downstream systems for query serving.
+In 2022, Flink launched the Table Store project (now renamed [Apache Paimon](https://paimon.apache.org/)) to enhance its ability to query streaming computation results or intermediate states. Table Store mainly adopts a columnar storage format and is designed to address the lack of support for streaming systems in data lake products such as Iceberg. The design of Table Store reflects its main use in offline analysis scenarios and is not suitable for high-concurrency online service queries.
 
 RisingWave enables users to query both materialized views and the internal states of stateful stream operators using PostgreSQL-style SQL. The platform has a built-in batch query engine that utilizes modern database technologies to optimize performance. The batch engine offers two modes: local and distributed. The local mode is designed for processing point queries with high concurrency, while the distributed mode is for processing large volumes of data in parallel. This allows users to rely on RisingWave for serving concurrent SQL queries, minimizing the need for additional external systems and reducing costs.
 
@@ -118,7 +114,7 @@ For a complete list of RisingWave integrations, see [Integrations](rw-integratio
 
 ## Learning curve
 
-*Apache Flink has a steep learning curve as it offers more details in low-level control; In contrast, RisingWave has a minimal learning curve and is simple and easy to use.* 
+*Apache Flink has a steep learning curve as it offers more details in low-level control; In contrast, RisingWave has a minimal learning curve and is simple and easy to use.*
 
 Apache Flink has a steep learning curve. The programming model of Flink is based on more complex concepts, such as data streams, data sets, and transformations, which may take some time to master. Flink also has a more complex architecture, with a number of different components that must be manually configured and managed.
 
@@ -126,7 +122,7 @@ RisingWave simplifies stream processing by allowing users to interact with it us
 
 ## Maintenance cost
 
-*Apache Flink has a high maintenance cost due to its complex configuration; RisingWave has a much lower maintenance cost as it extensively leverages hosted cloud services.* 
+*Apache Flink has a high maintenance cost due to its complex configuration; RisingWave has a much lower maintenance cost as it extensively leverages hosted cloud services.*
 
 Apache Flink has a high maintenance cost. Setting up and configuring a Flink cluster require a significant amount of time and effort due to its inherent architectural complexity. Additionally, since Apache Flink employs a compute-storage-coupled architecture, a cluster must be reconfigured whenever a single component runs out of resources. This means that developers must repeatedly invest effort in response to online fluctuating workloads.
 
@@ -148,7 +144,7 @@ In contrast, RisingWave focuses on low-cost stream processing on the cloud and, 
 
 ## Typical use cases
 
-*Apache Flink is suitable for comprehensive streaming ETL and streaming analytics applications; RisingWave not only supports streaming ETL and analytics applications, but can also do online serving with its built-in capability.* 
+*Apache Flink is suitable for comprehensive streaming ETL and streaming analytics applications; RisingWave not only supports streaming ETL and analytics applications, but can also do online serving with its built-in capability.*
 
 Apache Flink is well-suited for comprehensive streaming ETL tasks and streaming analytics. It offers a powerful set of APIs and libraries for connecting to data sources, performing transformations, windowing, complex event processing, stateful stream processing, and sinking data to external systems.
 
@@ -156,13 +152,12 @@ However, to build such a pipeline and make use of transformed data, you need to 
 
 RisingWave offers not only streaming ETL and streaming analytics, but also online serving capabilities through its built-in batch query engine. By defining materialized views, analytical results of input streams can be gathered and served directly in RisingWave. Its distributed frontend cluster supports high-concurrency queries with horizontal scalability.
 
+Compared to Flink SQL, RisingWave has more comprehensive support for SQL features. For example, RisingWave supports the streaming execution of the complete TPC-H query and can ensure the correctness of the results. For time window queries, Flink SQL restricts the time column to be the watermark column of the data source, while RisingWave has no such limitations.
+
 ## How to choose?
 
-So, which one should you choose? The answer to this question depends on your specific use case and requirements. 
+So, which one should you choose? The answer to this question depends on your specific use case and requirements.
 
-In general, if you are looking for a simple, cost-efficient, SQL-based solution for real-time processing, then RisingWave is a great choice. RisingWave is designed to be easy to use and can be deployed quickly, making it a great choice for fast-growing businesses that need real-time processing capabilities. 
+In general, if you are looking for a simple, cost-efficient, SQL-based solution for real-time processing, then RisingWave is a great choice. RisingWave is designed to be easy to use and can be deployed quickly, making it a great choice for fast-growing businesses that need real-time processing capabilities.
 
 If, on the other hand, you are looking for a more powerful programming framework that can fit into your JVM-based technical stack, then Apache Flink is the better choice. Flink allows users to compose complex programs to run large-scale stream processing on a cluster of machines, making it ideal for use cases where you need to process large amounts of data using high-level programming languages.
-
-
-

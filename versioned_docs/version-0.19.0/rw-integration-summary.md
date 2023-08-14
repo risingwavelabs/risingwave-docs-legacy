@@ -67,7 +67,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |Apache Druid| No plan| Researching <voteNotify note="druid_sink" /> |
 |Apache Pinot| No plan|Researching <voteNotify note="pinot_sink" />|
 |AWS Redshift| No plan|Researching <voteNotify note="redshift_sink" />|
-|Clickhouse|No plan |Planning <voteNotify note="clickhouse_sink" />|
+|ClickHouse|No plan |Planning <voteNotify note="clickhouse_sink" />|
 |Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
 |Google BigQuery| No plan |Researching <voteNotify note="bigquery_sink" />|
 |DataStax Astra DB & Apache Cassandra| Researching <voteNotify note="cassandra_source" /> |In progress <voteNotify note="cassandra_sink" />|

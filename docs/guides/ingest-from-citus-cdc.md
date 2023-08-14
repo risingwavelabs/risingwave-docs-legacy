@@ -5,7 +5,7 @@
  slug: /ingest-from-citus-cdc
 ---
 
-RisingWave supports ingesting change data capture (CDC) data from Citus database.
+RisingWave supports ingesting change data capture (CDC) data from Citus database. Version 10.2 of Citus is supported. 
 
 Citus database is an extension to PostgreSQL that transforms PostgreSQL into a distributed database. For more details, see [Citus data](https://www.citusdata.com).
 

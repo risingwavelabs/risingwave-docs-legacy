@@ -4,8 +4,6 @@ slug: /sql-function-mathematical
 title: Mathematical functions and operators
 ---
 
-
-
 ## Mathematical operators
 
 | Operator | Expression & Description | Example |
@@ -17,8 +15,14 @@ title: Mathematical functions and operators
 | / | `operand1 / operand2` <br /> Division (results are truncated for integers). <br /> | 3 / 2 → 1 <br /> 3.0 / 2 → 1.5 <br />  3 / 1.8 → 1.666... |
 | % | `operand1 * operand2` <br /> Remainder (valid for smallint/int/bigint/numeric). <br /> | 3 % 2 → 1 |
 | ^ | `operand1 ^ operand2` <br /> Exponent. <br /> | 2.0 ^ -2 → 0.25 |
-| \|\|/ | `\|\|/operand` <br /> Cube root. <br /> | \|\|/ 27 → 3 |
-| @ | `@operand` <br /> Absolute value. <br /> | @ -10 → 10|
+| \|\|/ | <code>\|\|/ operand</code> <br /> Cube root. <br /> | \|\|/ 27 → 3 |
+| @ | `@ operand` <br /> Absolute value. <br /> | @ -10 → 10|
+| & | `operand1 & operand2` <br /> Bitwise AND | 91 & 15 → 11 |
+| \| | <code>operand1 \| operand2</code> <br /> Bitwise OR | 32 \| 3 → 35|
+| # | `operand1 # operand2` <br /> Bitwise exclusive OR | 17 # 5 → 20 |
+| ~ | `~ operand` <br /> Bitwise NOT| ~1 → -2 |
+| << | `operand1 << operand2` <br /> Bitwise shift left | 1 << 4 → 16 |
+| >> | `operand1 >> operand2` <br /> Bitwise shift right | 8 >> 2 → 2 |
 
 ## Mathematical functions
 
@@ -34,7 +38,6 @@ title: Mathematical functions and operators
 | pow ( *x_double_precision*, *y_double_precision* ) → *double_precision* <br /> pow ( *x_numeric*, *y_numeric* ) → *numeric* | Returns *x_double_precision* or *x_numeric* raised to the power of *y_double_precision* or *y_numeric*. power() can also be used as an alias for pow(). | pow(2.0, 3.0) → 8 <br /> power(2.0, 3.0) → 8|
 | round ( *x_numeric*, *y_int* ) → *output_value* | Rounds *x_numeric* to *y_int* decimal places. *y* cannot be negative. | round(1.23559, 2) → 1.24 |
 | round ( *numeric_input* ) → *integer_output* <br /> round ( *double_precision_input* ) → *integer_output* | Rounds to the nearest integer. | round(1.23559) → 1 |
-| translate( *input_string*, *from_string*, *to_string*) → output_string | Replaces each character in the *input_string* that matches a character in the *from_string* with the corresponding character in the *to_string*. | translate('M1X3', '13', 'ae') → MaXe |
 | trunc ( *double_precision_input* ) → *double_precision_output* <br /> trunc ( *numeric_input* ) → *numeric_output*| Truncate the input value to zero decimal places. | trunc(-20.0932) → -20 |
 
 ## Trigonometric functions
