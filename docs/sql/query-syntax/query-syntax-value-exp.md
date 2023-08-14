@@ -13,6 +13,7 @@ An aggregate expression represents the application of an aggregate function acro
 The supported syntax of an aggregate expression is one of the following:
 
 ```sql
+aggregate_name (expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
 aggregate_name (DISTINCT expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
 aggregate_name ( * ) [ FILTER ( WHERE filter_clause ) ]
 ```
