@@ -285,10 +285,20 @@ protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.
 
 To specify a schema location, add this clause to a `CREATE SOURCE` statement.
 
-```SQL
+```sql
 ENCODE data_encode (
    location = 'schema_location'
 )
+```
+
+If a primary key also needs to be defined, use the table constraint syntax.
+
+:::note Breaking change
+If you have sources created using the old syntax and intend to migrate to v1.0.0, update your queries to use the new syntax.
+:::
+
+```sql
+CREATE TABLE table1 (PRIMARY KEY(id)) 
 ```
 
 ## Read schemas from Schema Registry
@@ -312,6 +322,16 @@ To learn more about Confluent Schema Registry and how to set up a Schema Registr
 Based on the compatibility type that is configured for the schema registry, some changes are allowed without changing the schema to a different version. In this case, RisingWave will continue using the original schema definition. To use a newer version of the writer schema in RisingWave, you need to drop and recreate the source.
 
 To learn about compatibility types for Schema Registry and the changes allowed, see [Compatibility Types](https://docs.confluent.io/platform/current/schema-registry/avro.html#compatibility-types).
+
+If a primary key also needs to be defined, use the table constraint syntax.
+
+:::note Breaking change
+If you have sources created using the old syntax and intend to migrate to v1.0.0, update your queries to use the new syntax.
+:::
+
+```sql
+CREATE TABLE table1 (PRIMARY KEY(id)) 
+```
 
 ## Create source with AWS PrivateLink connection
 
