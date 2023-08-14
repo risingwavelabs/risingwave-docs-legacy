@@ -140,16 +140,16 @@ For materialized sources with primary key constraints, if a new data record with
 
 ## Additional Kafka parameters
 
-RisingWave allows for the following Kafka parameters to be specified when creating a source. To set the parameter, add the RisingWave equivalent of the Kafka parameter under the `WITH options`. For an example of the usage of these parameters, see the JSON example. For additional details on these parameters, see the [Configuration properties](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md).
+When creating a source in RisingWave, you can specify the following Kafka parameters. To set the parameter, add the RisingWave equivalent of the Kafka parameter under the `WITH options`. For an example of the usage of these parameters, see the JSON example. For additional details on these parameters, see the [Configuration properties](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md).
 
 | Kafka parameter name | RisingWave parameter name | Type |
 |----------------------|---------------------------|------|
-|fetch.max.bytes | properties.fetch.max.bytes | int | 
-|fetch.wait.max.ms | properties.fetch.wait.max.ms	| int | 
-|message.max.bytes | properties.message.max.bytes	|	int | 
+|fetch.max.bytes | properties.fetch.max.bytes | int |
+|fetch.wait.max.ms | properties.fetch.wait.max.ms | int |
+|message.max.bytes | properties.message.max.bytes | int |
 |queued.max.messages.kbytes| properties.queued.max.messages.kbytes | int |
 |queued.min.messages | properties.queued.min.messages | int |
-|receive.message.max.bytes | properties.receive.message.max.bytes	| int |
+|receive.message.max.bytes | properties.receive.message.max.bytes | int |
 
 ## Examples
 
@@ -212,7 +212,7 @@ WITH (
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
-The additional Kafka parameters `queued.min.messages` and `queued.max.messages.kbytes` are specified with `properties.queued.min.messages` and `properties.queued.max.messages.kbytes`, respectively, when creating the source. 
+The additional Kafka parameters `queued.min.messages` and `queued.max.messages.kbytes` are specified with `properties.queued.min.messages` and `properties.queued.max.messages.kbytes`, respectively, when creating the source.
 
 ```sql
 CREATE SOURCE s1 (v1 int, v2 varchar) with (

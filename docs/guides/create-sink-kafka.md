@@ -50,20 +50,20 @@ All `WITH` options are required except `force_append_only` and `primary_key`.
 
 ## Additional Kafka parameters
 
-RisingWave allows for the following Kafka parameters to be specified when creating a sink. To set the parameter, add the RisingWave equivalent of the Kafka parameter as a `WITH` option. For additional details on these parameters, see the [Configuration properties](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md).
+When creating a Kafka sink in RisingWave, you can specify the following Kafka-specific parameters. To set the parameter, add the RisingWave equivalent of the Kafka parameter as a `WITH` option. For additional details on these parameters, see the [Configuration properties](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md).
 
 | Kafka parameter name | RisingWave parameter name | Type |
 |----------------------|---------------------------|------|
-|batch.num.messages	|properties.batch.num.messages|int|
-|batch.size	|properties.batch.size|	int|
-|enable.idempotence	|properties.enable.idempotence	|bool |
-|message.max.bytes | properties.message.max.bytes	|	int |
-|message.send.max.retries	|properties.message.send.max.retries|	int|
-|queue.buffering.max.kbytes	|properties.queue.buffering.max.kbytes|	int|
-|queue.buffering.max.messages	|properties.queue.buffering.max.messages	|int|
-|queue.buffering.max.ms	|properties.queue.buffering.max.ms	|float|
-|retry.backoff.ms	|properties.retry.backoff.ms|	int|
-|receive.message.max.bytes | properties.receive.message.max.bytes	| int |
+|batch.num.messages |properties.batch.num.messages|int|
+|batch.size |properties.batch.size| int|
+|enable.idempotence |properties.enable.idempotence |bool |
+|message.max.bytes | properties.message.max.bytes | int |
+|message.send.max.retries |properties.message.send.max.retries| int|
+|queue.buffering.max.kbytes |properties.queue.buffering.max.kbytes| int|
+|queue.buffering.max.messages |properties.queue.buffering.max.messages |int|
+|queue.buffering.max.ms |properties.queue.buffering.max.ms |float|
+|retry.backoff.ms |properties.retry.backoff.ms| int|
+|receive.message.max.bytes | properties.receive.message.max.bytes | int |
 
 ## Examples
 
