@@ -20,8 +20,9 @@ GROUP BY column1, column2....columnN
 ORDER BY column1, column2....columnN
 ```
 
-You can use more than one column in the `GROUP BY` clause.
+If your goal is to generate windowed calculation results strictly as append-only output, you can utilize the emit-on-window-close policy. This approach helps avoid unnecessary computations. For more information on the emit-on-window-close policy, please refer to [Emit on window close](/transform/emit-on-window-close.md).
 
+You can use more than one column in the `GROUP BY` clause.
 
 Basic `GROUP BY` example:
 

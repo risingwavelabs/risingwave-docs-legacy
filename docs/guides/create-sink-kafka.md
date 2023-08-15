@@ -48,6 +48,23 @@ All `WITH` options are required except `force_append_only` and `primary_key`.
 |force_append_only| If `true`, forces the sink to be `append-only`, even if it cannot be.|
 |primary_key| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
 
+## Additional Kafka parameters
+
+When creating a Kafka sink in RisingWave, you can specify the following Kafka-specific parameters. To set the parameter, add the RisingWave equivalent of the Kafka parameter as a `WITH` option. For additional details on these parameters, see the [Configuration properties](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md).
+
+| Kafka parameter name | RisingWave parameter name | Type |
+|----------------------|---------------------------|------|
+|batch.num.messages |properties.batch.num.messages|int|
+|batch.size |properties.batch.size| int|
+|enable.idempotence |properties.enable.idempotence |bool |
+|message.max.bytes | properties.message.max.bytes | int |
+|message.send.max.retries |properties.message.send.max.retries| int|
+|queue.buffering.max.kbytes |properties.queue.buffering.max.kbytes| int|
+|queue.buffering.max.messages |properties.queue.buffering.max.messages |int|
+|queue.buffering.max.ms |properties.queue.buffering.max.ms |float|
+|retry.backoff.ms |properties.retry.backoff.ms| int|
+|receive.message.max.bytes | properties.receive.message.max.bytes | int |
+
 ## Examples
 
 Create a sink by selecting an entire materialized view.
@@ -59,6 +76,19 @@ WITH (
    type='append-only'
    properties.bootstrap.server='localhost:9092',
    topic='test'
+);
+```
+
+Create a sink with the Kafka configuration `message.max.bytes` set at 2000 by setting `properties.message.max.bytes` to 2000.
+
+```sql
+CREATE SINK sink1 FROM mv1 
+WITH (
+   connector='kafka',
+   type='append-only'
+   properties.bootstrap.server='localhost:9092',
+   topic='test',
+   properties.message.max.bytes = 2000
 );
 ```
 
