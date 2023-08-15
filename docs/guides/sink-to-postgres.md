@@ -121,7 +121,7 @@ All `WITH` options are required unless noted.
 |jdbc.url | The JDBC URL of the destination database necessary for the driver to recognize and connect to the database. |
 |table.name | The table in the destination database you want to sink to. |
 |schema.name | Optional. The schema in the destination database you want to sink to. The default value is `public`. |
-|type| Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream.|
+|type| Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream.</li> |
 |primary_key| Required if `type` is `upsert`. The primary key of the sink, which should match the primary key of the downstream table. |
 
 ## Sink data from RisingWave to PostgreSQL
