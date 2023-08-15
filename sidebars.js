@@ -160,12 +160,12 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          id: "transform/sql-pattern-dynamic-filters",
+          id: "sql/syntax/sql-pattern-dynamic-filters",
           label: "Dynamic filters",
         },
         {
           type: "doc",
-          id: "transform/sql-pattern-temporal-filters",
+          id: "sql/syntax/sql-pattern-temporal-filters",
           label: "Temporal filters",
         },
         {
@@ -175,7 +175,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "transform/sql-pattern-topn",
+          id: "sql/syntax/sql-pattern-topn",
           label: "Top-N by group",
         },
         {
