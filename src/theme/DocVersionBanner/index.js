@@ -15,16 +15,10 @@ export default function DocVersionBannerWrapper(props) {
   return (
     <>
       {shown && (
-        <div
-          className="theme-doc-version-banner alert alert--warning margin-bottom--md"
-          role="alert"
-        >
+        <div className="theme-doc-version-banner alert alert--warning margin-bottom--md" role="alert">
           <div>You are viewing the documentation of an unreleased version of RisingWave.</div>
           <b>
-            <a href={`/docs/current/${location.pathname.split("/").at(-2)}`}>
-              {" "}
-              Switch to the current public release →
-            </a>
+            <a href={`/docs/current/${location.pathname.split("/").at(-2)}`}> Switch to the current public release →</a>
           </b>
         </div>
       )}
