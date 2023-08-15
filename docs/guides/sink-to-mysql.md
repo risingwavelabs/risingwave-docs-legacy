@@ -155,8 +155,6 @@ To sink to MySQL, make sure that RisingWave and the connector node share the sam
 
 The `jdbc.url` must be accurate. The format varies slightly depending on if you are using AWS RDS MySQL or a self-hosted version of MySQL. If your MySQL is self-hosted, the `jdbc.url` would have the following format: `jdbc:mysql://127.0.0.1:3306/testdb?user=<username>&password=<password>`. 
 
-Note that array data types in RisingWave when sinked to MySQL will be converted to a string. Only one-dimensional arrays can be sinked to MySQL.
-
 ```sql
 CREATE TABLE personnel (
 	id integer,
@@ -195,3 +193,9 @@ SELECT * FROM personnel;
 |    2 | Bob   |
 +------+-------+
 ```
+
+## Data type mapping
+
+For the MySQL data type mapping table, see the [Data type mapping table](/guides/ingest-from-mysql-cdc.md#data-type-mapping) under the Ingest data from MySQL CDC topic.
+
+Note that array data types in RisingWave when sinked to MySQL will be converted to a string. Only one-dimensional arrays can be sinked to MySQL. For instance, `ARRAY['Value 1', 'Value 2']` when sinked to MySQL will be converted to the string `Value 1, Value 2`.
