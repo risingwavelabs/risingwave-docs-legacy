@@ -167,7 +167,6 @@ CREATE SINK s_mysql FROM personnel WITH (
 	jdbc.url='jdbc:mysql://<aws_rds_endpoint>:<port>/test_db?user=<username>&password=<password>',
 	table.name='personnel',
 	type = 'upsert'
-	primary_key = 'v1',
 );
 ```
 

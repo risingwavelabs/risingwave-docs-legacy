@@ -22,6 +22,14 @@ Currently, RisingWave supports the following sink connectors:
   
   With this connector, you can sink data from RisingWave to Apache Iceberg. For details about the syntax and parameters, see [Sink data to Apache Iceberg](/guides/sink-to-iceberg.md).
 
+- AWS Kinesis sink connector (`connector = 'kinesis'`)
+
+  With this connector, you can sink data from RisingWave to AWS Kinesis. For details about the syntax and parameters, see [Sink data to AWS Kinesis](/guides/sink-to-aws-kinesis.md).
+
+- Delta Lake sink connector (`connector = 'deltalake'`)
+
+  With this connector, you can sink data from RisingWave to Delta Lake. For details about the syntax and parameters, see [Sink data to Delta Lake](/guides/sink-to-delta-lake.md).
+
 ## Upsert sinks and primary keys
 
 For each sink, you can specify the data format. All sinks supports the `upsert` and `append-only` formats while Kafka also supports the `debezium` format. When creating an `upsert` sink, note whether or not you need to specify the primary key in the following situations.
