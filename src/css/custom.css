@@ -519,3 +519,7 @@ table tr:first-child {
 .pagination-nav__label {
   font-weight: normal;
 }
+
+html.mdx-page h2 {
+  --ifm-heading-margin-top: 2rem;
+}

@@ -302,3 +302,48 @@ CREATE TABLE orders (
  server.id = '5454'
 );
 ```
+
+### Data type mapping
+
+The following table shows the corresponding data type in RisingWave that should be specified when creating a source. For details on native RisingWave data types, see [Overview of data types](../sql/sql-data-types.md).
+
+RisingWave data types marked with an asterisk indicates that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
+
+| MySQL type | RisingWave type |
+|------------|-----------------|
+| BOOLEAN, BOOL | BOOLEAN |
+| BIT(1) | BOOLEAN* |
+| BIT(>1) | No support |
+| TINYINT | SMALLINT |
+| SMALLINT[(M)] | SMALLINT |
+| MEDIUMINT[(M)] |INTEGER |
+| INT, INTEGER[(M)] | INTEGER |
+| BIGINT[(M)] | BIGINT |
+| REAL[(M,D)]| REAL |
+| FLOAT[(P)] | REAL |
+| FLOAT(M,D) | DOUBLE PRECISION |
+| DOUBLE[(M,D)] | DOUBLE PRECISION |
+| CHAR[(M)] | CHARACTER VARYING |
+| VARCHAR[(M)] | CHARACTER VARYING |
+| BINARY[(M)] | BYTEA |
+| VARBINARY[(M)] | BYTEA |
+| TINYBLOB | BYTEA |
+| TINYTEXT | CHARACTER VARYING |
+| BLOB | BYTEA |
+| TEXT | CHARACTER VARYING |
+| MEDIUMBLOB | BYTEA |
+| MEDIUMTEXT| CHARACTER VARYING |
+|LONGBLOB| BYTEA |
+| LONGTEXT | BYTEA or CHARACTER VARYING |
+| JSON | JSONB |
+| ENUM | CHARACTER VARYING* |
+| SET | No support |
+| YEAR[(2\|4)] | INTEGER |
+| TIMESTAMP[(M)] | TIMESTAMP WITH TIME ZONE |
+| DATE | DATE |
+| TIME[(M)] | TIME WITHOUT TIME ZONE |
+| DATETIME, DATETIME(0), DATETIME(1), DATETIME(2), DATETIME(3) | TIMESTAMP WITHOUT TIME ZONE |
+| DATETIME(4), DATETIME(5), DATETIME(6) | TIMESTAMP WITHOUT TIME ZONE |
+| NUMERIC[(M[,D])] | NUMERIC |
+| DECIMAL[(M[,D])] | NUMERIC |
+| GEOMETRY, LINESTRING, POLYGON, <br />MULTIPOINT, MULTILINESTRING, <br />MULTIPOLYGON, GEOMETRYCOLLECTION | STRUCT |
