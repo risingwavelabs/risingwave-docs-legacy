@@ -160,12 +160,12 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          id: "sql/syntax/sql-pattern-dynamic-filters",
+          id: "transform/sql-pattern-dynamic-filters",
           label: "Dynamic filters",
         },
         {
           type: "doc",
-          id: "sql/syntax/sql-pattern-temporal-filters",
+          id: "transform/sql-pattern-temporal-filters",
           label: "Temporal filters",
         },
         {
@@ -175,7 +175,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "sql/syntax/sql-pattern-topn",
+          id: "transform/sql-pattern-topn",
           label: "Top-N by group",
         },
         {
@@ -520,27 +520,27 @@ const sidebars = {
                   id: "sql/functions-operators/sql-function-array",
                   label: "Array",
                 },
-                  {
+                {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-binarystring",
                   label: "Binary string",
                 },
-                  {
+                {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-cast",
                   label: "Cast",
                 },
-                  {
+                {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-conditional",
                   label: "Conditional",
                 },
-                  {
+                {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-comparison",
                   label: "Comparison",
                 },
-                 {
+                {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-datetime",
                   label: "Date/time",
@@ -570,7 +570,7 @@ const sidebars = {
                   id: "sql/functions-operators/sql-function-string",
                   label: "String",
                 },
-              
+
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-sys-admin",
