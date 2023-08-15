@@ -282,3 +282,56 @@ Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based 
  table.name = 'shipments'
 );
 ```
+
+### Data type mapping
+
+The following table shows the corresponding data type in RisingWave that should be specified when creating a source. For details on native RisingWave data types, see [Overview of data types](/sql/sql-data-types.md).
+
+RisingWave data types marked with an asterisk indicates that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
+
+| PostgreSQL type | RisingWave type |
+|------------|-----------------|
+|BOOLEAN |BOOLEAN |
+|BIT(1) |BOOLEAN |
+|BIT( > 1) |No support |
+|BIT VARYING[(M)] |No support |
+|SMALLINT, SMALLSERIAL |SMALLINT |
+|INTEGER, SERIAL| INTEGER |
+|BIGINT, BIGSERIAL, OID |BIGINT |
+|REAL |REAL |
+|DOUBLE PRECISION| DOUBLE PRECISION |
+|CHAR[(M)] |CHARACTER VARYING |
+|VARCHAR[(M)] |CHARACTER VARYING|
+|CHARACTER[(M)] |CHARACTER VARYING |
+|CHARACTER VARYING[(M)] |CHARACTER VARYING|
+|TIMESTAMPTZ, TIMESTAMP WITH TIME ZONE |TIMESTAMP WITH TIME ZONE|
+|TIMETZ, TIME WITH TIME ZONE| TIME WITHOUT TIME ZONE (assume UTC time zone) |
+|INTERVAL [P] |INTERVAL |
+|BYTEA |BYTEA |
+|JSON, JSONB |JSONB |
+|XML |CHARACTER VARYING |
+|UUID |CHARACTER VARYING |
+|POINT |STRUCT (with form `<x REAL, y REAL>`)|
+|LTREE |No support |
+|CITEXT |CHARACTER VARYING* |
+|INET |CHARACTER VARYING* |
+|INT4RANGE |CHARACTER VARYING* |
+|INT8RANGE |CHARACTER VARYING* |
+|NUMRANGE |CHARACTER VARYING* |
+|TSRANGE |CHARACTER VARYING* |
+|TSTZRANGE |CHARACTER VARYING* |
+|DATERANGE |CHARACTER VARYING* |
+|ENUM |CHARACTER VARYING* |
+|DATE |DATE |
+|TIME(1), TIME(2), TIME(3), TIME(4), TIME(5), TIME(6) |TIME WITHOUT TIME ZONE (limited to `[1973-03-03 09:46:40, 5138-11-16 09:46:40)`)|
+|TIMESTAMP(1), TIMESTAMP(2), TIMESTAMP(3) |TIMESTAMP WITHOUT TIME ZONE (limited to `[1973-03-03 09:46:40, 5138-11-16 09:46:40)`) |
+|TIMESTAMP(4), TIMESTAMP(5), TIMESTAMP(6), TIMESTAMP| TIMESTAMP WITHOUT TIME ZONE|
+|NUMERIC[(M[,D])] |NUMERIC |
+|DECIMAL[(M[,D])] |NUMERIC |
+|MONEY[(M[,D])] |NUMERIC |
+|HSTORE |No support |
+|HSTORE |No support |
+|INET |CHARACTER VARYING* |
+|CIDR |CHARACTER VARYING* |
+|MACADDR |CHARACTER VARYING* |
+|MACADDR8 |CHARACTER VARYING* |
