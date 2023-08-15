@@ -170,7 +170,7 @@ And a versioned table `products`:
 
 For the same product ID, the product name or the price is updated from time to time.
 
-You can use a temporal join to fetch the latest product name and price from the `products` table and form a wider table. To further improve  performance, you can create an index for table `products`, and join `sales` with the index instead.
+You can use a temporal join to fetch the latest product name and price from the `products` table and form a wider table. To further improve performance, you can create an index for table `products`, and join `sales` with the index instead.
 
 ```sql
 SELECT transaction_id, product_id, quantity, sale_date, product_name, price 
