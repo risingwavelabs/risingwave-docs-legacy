@@ -147,7 +147,7 @@ All `WITH` options are required.
 |connector| Sink connector type must be `'jdbc'` for MySQL sink. |
 |jdbc.url| The JDBC URL of the destination database necessary for the driver to recognize and connect to the database.|
 |table.name| The table in the destination database you want to sink to.|
-|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream.</li> |
+|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li></ul> `upsert`: Output data as a changelog stream. |
 |primary_key| Required if `type` is `upsert`. The primary key of the sink, which should match the primary key of the downstream table. |
 
 ## Sink data from RisingWave to MySQL
