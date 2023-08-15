@@ -133,7 +133,7 @@ ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1' MINUTE;
 
 ## Process-time temporal joins
 
-A temporal join is often used to widen a fact table. Its advantage is that it does not require RisingWave to maintain the join state, making it suitable for scenarios where the dimension table is not updated, or where updates to the dimension table do not affect the previously joined results.
+A temporal join is often used to widen a fact table. Its advantage is that it does not require RisingWave to maintain the join state, making it suitable for scenarios where the dimension table is not updated, or where updates to the dimension table do not affect the previously joined results. To further improve performance, you can use the index of a dimension table to form a join with the fact table.
 
 ### Syntax
 
@@ -144,7 +144,7 @@ A temporal join is often used to widen a fact table. Its advantage is that it do
 ### Notes
 
 - The left table expression is an append-only table or source.
-- The right table expression is a table or materialized view.
+- The right table expression is a table, index or materialized view.
 - The process-time syntax `FOR SYSTEM_TIME AS OF PROCTIME()` is included in the right table expression.
 - The join type is INNER JOIN or LEFT JOIN.
 - The Join condition includes the primary key of the right table expression.
@@ -170,7 +170,7 @@ And a versioned table `products`:
 
 For the same product ID, the product name or the price is updated from time to time.
 
-You can use a temporal join to fetch the latest product name and price from the `products` table and form a wider table.
+You can use a temporal join to fetch the latest product name and price from the `products` table and form a wider table. To further improve  performance, you can create an index for table `products`, and join `sales` with the index instead.
 
 ```sql
 SELECT transaction_id, product_id, quantity, sale_date, product_name, price 
