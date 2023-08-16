@@ -2,8 +2,6 @@ name: Algolia Crawler
 on:   
   push:
     branches: [ main ]
-  pull_request:
-    types: ['opened', 'edited', 'reopened', 'synchronize']
 jobs:
   algolia_recrawl:
     name: Algolia Recrawl
