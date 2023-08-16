@@ -19,7 +19,13 @@ inputs:
   CRAWLER_API_BASE_URL: 
     description: 'Who to greet'
     required: true
-# outputs:
+  who-to-greet:  # id of input
+    description: 'Who to greet'
+    required: true
+    default: 'World'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
 runs:
   using: 'node16'
   main: 'index.js'
