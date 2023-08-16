@@ -8,23 +8,20 @@ const CRAWLER_API_BASE_URL = core.getInput("CRAWLER_API_BASE_URL");
 
 const BASE64_BASIC_AUTH = `Basic ${Buffer.from(`${CRAWLER_USER_ID}:${CRAWLER_API_KEY}`).toString("base64")}`;
 
-async function reindex(crawlerId) {
-  console.log(`
-    ${new Date().toTimeString()}:
-    Triggering reindex on ${crawlerId}
-    `);
+const nameToGreet = core.getInput("who-to-greet");
+console.log(`Hello ${nameToGreet}!`);
+const time = new Date().toTimeString();
+core.setOutput("time", time);
 
-  const res = await fetch(`${CRAWLER_API_BASE_URL}/crawlers/${crawlerId}/reindex`, {
-    method: "POST",
-    headers: {
-      Authorization: BASE64_BASIC_AUTH,
-      "Content-Type": "application/json",
-    },
-  });
-  const jsonResponse = await res.json();
-  return jsonResponse;
-}
-
-reindex(CRAWLER_ID)
-  .then((res) => console.log(res))
+fetch(`${CRAWLER_API_BASE_URL}/crawlers/${CRAWLER_ID}/reindex`, {
+  method: "POST",
+  headers: {
+    Authorization: BASE64_BASIC_AUTH,
+    "Content-Type": "application/json",
+  },
+})
+  .then((res) => res.json())
+  .then((res) => {
+    console.log(res);
+  })
   .catch((err) => core.setFailed(err));
