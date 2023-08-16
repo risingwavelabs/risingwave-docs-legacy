@@ -21,6 +21,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: algolia reindex script
+      id: reindex
       uses: ./algolia/
       with:
           who-to-greet: 'Mona the Octocat'
@@ -31,4 +32,4 @@ jobs:
           ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
           CRAWLER_API_BASE_URL: 'https://crawler-dev.algolia.com/api/1'
     - name: Get the output time
-      run: echo "The time was ${{ steps.hello.outputs.time }}"
+      run: echo "The time was ${{ steps.reindex.outputs.time }}"
