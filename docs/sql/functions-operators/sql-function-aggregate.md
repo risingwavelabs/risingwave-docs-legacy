@@ -279,3 +279,37 @@ This example calculates the 75th percentile of the values in `column1` from `tab
 ```sql
 SELECT percentile_disc(0.75) WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
+
+## Grouping operation functions
+
+Grouping operation functions are used in conjunction with grouping sets to distinguish result rows. The arguments to the `grouping()` function are not actually evaluated, but they must exactly match expressions given in the `GROUP BY` clause of the associated query level.
+
+### `grouping`
+
+Returns a bit mask indicating which `GROUP BY` expressions are not included in the current grouping set. Bits are assigned with the rightmost argument corresponding to the least-significant bit; each bit is 0 if the corresponding expression is included in the grouping criteria of the grouping set generating the current result row, and 1 if it is not included.
+
+```sql title="Syntax"
+grouping ( group_by_expression(s) ) → integer
+```
+
+#### Example
+
+```sql title="Create a table"
+CREATE TABLE items_sold (brand varchar, size varchar, sales int);
+```
+
+```sql title="Insert some data"
+INSERT INTO items_sold VALUES ('Foo', 'L', 10),('Foo', 'M', 20),('Bar', 'M', 15),('Bar', 'L', '5');
+```
+
+```sql title="Get grouping results"
+SELECT brand, size, sum(sales), grouping(brand), grouping(size), grouping(brand,size), count(DISTINCT sales) 
+FROM items_sold 
+GROUP BY GROUPING SETS ((brand), (size), ());
+------RESULTS
+Bar NULL 20 0 1 1 2
+Foo NULL 30 0 1 1 2
+NULL L 15 1 0 2 2
+NULL M 35 1 0 2 2
+NULL NULL 50 1 1 3 4
+```
