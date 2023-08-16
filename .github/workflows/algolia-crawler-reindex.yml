@@ -22,4 +22,5 @@ jobs:
           algolia-api-key: ${{ secrets.ALGOLIA_API_KEY }}
           crawler-api-base-url: 'https://crawler.algolia.com/api/1/'
           site-url: 'https://risingwave.dev'
+          crawler-name: risingwave
           override-config: true
