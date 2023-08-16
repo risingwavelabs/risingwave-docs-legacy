@@ -7,7 +7,7 @@ slug: /sql-commit
 
 RisingWave supports read-only transactions. You can use the `COMMIT` command to commit the current transaction. For more information about transactions in RisingWave, see [Transactions](/concepts/tranactions.md).
 
-You can start a transaction by using the `BEGIN` or `START TRANSACTION` command.
+You can start a read-only transaction by using the `BEGIN READ ONLY` or `START TRANSACTION READ ONLY` command.
 
 :::caution Experimental feature
 
@@ -31,6 +31,14 @@ export const svg = rr.Diagram(
 );
 
 <drawer SVG={svg} />
+
+## Example
+
+```sql
+COMMIT;
+-------RESULT
+COMMIT
+```
 
 ## Related topics
 

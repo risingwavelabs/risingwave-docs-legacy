@@ -5,9 +5,9 @@ description: Start a transaction.
 slug: /sql-start-transaction
 ---
 
-Use the `START TRANSACTION` command to start a transaction. Currently, only read-only transactions are supported. For more information about transactions in RisingWave, see [Transactions](/concepts/tranactions.md).
+RisingWave supports read-only transactions. You can use the `START TRANSACTION READ ONLY` command to start a read-only transaction. For more information about transactions in RisingWave, see [Transactions](/concepts/tranactions.md).
 
-The `START TRANSACTION` command is the same as the `BEGIN` command.
+The `STRAT TRANSACTION` command starts the read-write transaction mode, which is not supported yet in RisingWave. For compatibility reasons, this command will still succeed but no transaction is actually started. That is why you need to specify the `READ ONLY` option to start a transaction in read-only mode.
 
 You can end a transaction by using the `COMMIT` command.
 
@@ -27,12 +27,20 @@ import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
     rr.Sequence(
-        rr.Terminal('START TRANSACTION'),
+        rr.Terminal('START TRANSACTION READ ONLY'),
         rr.Terminal(';')
     )
 );
 
 <drawer SVG={svg} />
+
+## Example
+
+```sql
+START TRANSACTION READ ONLY;
+-------RESULT
+START_TRANSACTION
+```
 
 ## Related topics
 
