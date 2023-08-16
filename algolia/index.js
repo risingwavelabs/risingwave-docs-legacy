@@ -1,4 +1,5 @@
 const core = require("@actions/core");
+const fetch = require("node-fetch");
 
 try {
   const CRAWLER_ID = core.getInput("CRAWLER_ID");
