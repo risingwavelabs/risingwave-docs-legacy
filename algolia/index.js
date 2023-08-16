@@ -26,7 +26,7 @@ try {
     return jsonResponse;
   }
 
-  const res = reindex(CRAWLER_ID);
+  const res = await reindex(CRAWLER_ID);
   console.log(res);
 } catch (error) {
   core.setFailed(error.message);
