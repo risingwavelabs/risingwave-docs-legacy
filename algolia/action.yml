@@ -1,0 +1,25 @@
+name: Algolia Reindex
+description: Algolia Reindex
+inputs:
+  CRAWLER_ID: 
+    description: 'Who to greet'
+    required: true
+  CRAWLER_USER_ID: 
+    description: 'Who to greet'
+    required: true
+  CRAWLER_API_KEY:
+    description: 'Who to greet'
+    required: true
+  ALGOLIA_APP_ID: 
+    description: 'Who to greet'
+    required: true
+  ALGOLIA_API_KEY: 
+    description: 'Who to greet'
+    required: true
+  CRAWLER_API_BASE_URL: 
+    description: 'Who to greet'
+    required: true
+# outputs:
+runs:
+  using: 'node16'
+  main: 'index.js'

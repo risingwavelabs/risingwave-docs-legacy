@@ -1,0 +1,6 @@
+{
+  "description": "",
+  "dependencies": {
+    "@actions/core": "^1.10.0"
+  }
+}

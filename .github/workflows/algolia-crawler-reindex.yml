@@ -20,7 +20,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm run reindex
+    - name: algolia reindex script
+      uses: ./algolia/
       with:
           CRAWLER_ID: ${{ secrets.CRAWLER_ID }}
           CRAWLER_USER_ID: ${{ secrets.CRAWLER_USER_ID }}
