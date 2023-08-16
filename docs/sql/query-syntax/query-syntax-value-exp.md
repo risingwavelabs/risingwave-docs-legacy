@@ -14,7 +14,7 @@ The supported syntax of an aggregate expression is in one of the following forms
 
 ```sql
 aggregate_name (expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
-aggregate_name (DISTINCT expression [ , ... ]) [ FILTER ( WHERE filter_clause ) ]
+aggregate_name (DISTINCT expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
 aggregate_name ( * ) [ FILTER ( WHERE filter_clause ) ]
 aggregate_name ( [ expression [ , ... ] ] ) WITHIN GROUP ( order_by_clause ) [ FILTER ( WHERE filter_clause ) ]
 ```
@@ -22,6 +22,7 @@ aggregate_name ( [ expression [ , ... ] ] ) WITHIN GROUP ( order_by_clause ) [ F
 where `aggregate_name` is one of the aggregation functions listed on [Aggregate functions](https://www.risingwave.dev/docs/latest/sql-function-aggregate/), and `expression` is a value expression that does not contain an aggregate expression or a window function call.
 
 In RisingWave, the `DISTINCT` keyword, which is only available in the second form, cannot be used in conjunction with an `ORDER BY` or `WITHIN GROUP` clause. Additionally, it's important to note that the `order_by_clause` is positioned differently in the first and fourth forms.
+
 
 ## Row constructors
 
