@@ -21,4 +21,4 @@ Please note that data modifications are not allowed while a transaction is initi
 - All DDL statements (`CREATE`, `ALTER`, and `DROP`)
 - Most of DML statements (`INSERT`, `UPDATE`, and `DELETE`)
 - Statements related to `USER`. This category may overlap with DDL statements.
-- `GRANT`
+- All privilege-related statements, including `GRANT` and `REVOKE`.

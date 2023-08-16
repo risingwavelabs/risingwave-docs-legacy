@@ -9,6 +9,8 @@ RisingWave supports read-only transactions. You can use the `BEGIN READ ONLY` co
 
 The `BEGIN` command starts the read-write transaction mode, which is not supported yet in RisingWave. For compatibility reasons, this command will still succeed but no transaction is actually started. That is why you need to specify the `READ ONLY` option to start a transaction in read-only mode.
 
+The `BEGIN` command is the same as the `START TRANSACTION` command.
+
 You can end a transaction by using the `COMMIT` command.
 
 :::caution Experimental feature
