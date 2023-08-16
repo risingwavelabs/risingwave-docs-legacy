@@ -144,6 +144,12 @@ To specify a schema location, add this clause to a `CREATE SOURCE` statement.
 ROW SCHEMA LOCATION 'location'
 ```
 
+If a primary key also needs to be defined, use the table constraint syntax.
+
+```sql
+CREATE TABLE table1 (PRIMARY KEY(id)) 
+```
+
 ## Example
 
 Here is an example of connecting RisingWave to a Pulsar broker to read data from individual topics.

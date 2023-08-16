@@ -27,7 +27,7 @@ title: Mathematical functions and operators
 ## Mathematical functions
 
 | Function | Description | Example |
-| ----------- | ----------- | ----------- | 
+| ----------- | ----------- | ----------- |
 | abs ( *input_value* ) → *absolute_value* <br /> @ ( *input_value* ) → *absolute_value* | Returns the absolute value of *input_value*. The *input_value* can be type int or decimal. The return type is the same as the *input_value* type. | abs(-3) → 3 <br /> @(-3) → 3 |
 | cbrt ( *double_precision_input* ) → *double_precision_output* | Returns the cube root of the input. | cbrt(27) → 3 |
 | ceil ( *numeric_input* ) → *integer_output* <br /> ceil ( *double_precision_input* ) → *integer_output* | Returns the nearest integer greater than or equal to the argument. ceiling() can also be used as an alias for ceil(). | ceil(1.23559) → 2 <br /> ceiling(-1.23559) → -1 |
@@ -36,8 +36,9 @@ title: Mathematical functions and operators
 | ln ( *double_precision_input* ) → *double_precision_output* <br /> ln ( *numeric_input* ) → *numeric_output*| Returns the natural logarithmic value of the input. | ln(10) → 2.302585092994046 |
 | log10 ( *double_precision_input* ) → *double_precision_output* <br /> log10 ( *numeric_input* ) → *numeric_output*| Returns the log base 10 value of the input value. log() can also be used and accepts the same input types. | log10(25) → 1.3979400086720377 |
 | pow ( *x_double_precision*, *y_double_precision* ) → *double_precision* <br /> pow ( *x_numeric*, *y_numeric* ) → *numeric* | Returns *x_double_precision* or *x_numeric* raised to the power of *y_double_precision* or *y_numeric*. power() can also be used as an alias for pow(). | pow(2.0, 3.0) → 8 <br /> power(2.0, 3.0) → 8|
-| round ( *x_numeric*, *y_int* ) → *output_value* | Rounds *x_numeric* to *y_int* decimal places. *y* cannot be negative. | round(1.23559, 2) → 1.24 |
+| round ( *x_numeric*, *y_int* ) → *output_value* | Rounds *x_numeric* to *y_int* decimal places. *y_int* can be negative.| round(1.23559, 2) → 1.24 |
 | round ( *numeric_input* ) → *integer_output* <br /> round ( *double_precision_input* ) → *integer_output* | Rounds to the nearest integer. | round(1.23559) → 1 |
+| sign(*double_precision_input* or *decimal_input*) -> *same_as_input* | Returns the sign of the input value as -1 if the input is negative, 1 if the input is positive, or 0 if the input is 0. | sign(8.64) → 1 <br /> sign(-8.64) → -1 |
 | sqrt ( *numeric_input* ) → *numeric_output* <br /> sqrt ( *double_precision_input* ) → *double_precision_output*| Returns the square root of the input. | sqrt(16) → 4|
 | trunc ( *double_precision_input* ) → *double_precision_output* <br /> trunc ( *numeric_input* ) → *numeric_output*| Truncate the input value to zero decimal places. | trunc(-20.0932) → -20 |
 

@@ -4,23 +4,25 @@ slug: /query-syntax-value-exp
 title: Value expressions
 ---
 
-Value expressions are used in a variety of contexts, such as in the target list of the SELECT command, as new column values in INSERT or UPDATE, or in search conditions in a number of commands. The result of a value expression is sometimes called a scalar, to distinguish it from the result of a table expression (which is a table).
+Value expressions are used in a variety of contexts, such as in the target list of the `SELECT` command, as new column values in `INSERT` or `UPDATE`, or in search conditions in a number of commands. The result of a value expression is sometimes called a scalar, to distinguish it from the result of a table expression (which is a table).
 
 ## Aggregate expressions
 
 An aggregate expression represents the application of an aggregate function across the rows selected by a query.
 
-The supported syntax of an aggregate expression is one of the following:
+The supported syntax of an aggregate expression is in one of the following forms:
 
 ```sql
 aggregate_name (expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
 aggregate_name (DISTINCT expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
 aggregate_name ( * ) [ FILTER ( WHERE filter_clause ) ]
+aggregate_name ( [ expression [ , ... ] ] ) WITHIN GROUP ( order_by_clause ) [ FILTER ( WHERE filter_clause ) ]
 ```
 
-where *aggregate_name* is one of the aggregation functions listed on [Aggregate functions](https://www.risingwave.dev/docs/latest/sql-function-aggregate/), and *expression* is a value expression that does not contain an aggregate expression or a window function call.
+where `aggregate_name` is one of the aggregation functions listed on [Aggregate functions](https://www.risingwave.dev/docs/latest/sql-function-aggregate/), and `expression` is a value expression that does not contain an aggregate expression or a window function call.
 
-If `DISTINCT` is used with an `ORDER BY` clause in RisingWave, the columns specified in the `order_by_clause` must appear as an argument in the function call.
+In RisingWave, the `DISTINCT` keyword, which is only available in the second form, cannot be used in conjunction with an `ORDER BY` or `WITHIN GROUP` clause. Additionally, it's important to note that the `order_by_clause` is positioned differently in the first and fourth forms.
+
 
 ## Row constructors
 
