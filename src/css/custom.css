@@ -524,7 +524,8 @@ html.mdx-page h2 {
   --ifm-heading-margin-top: 2rem;
 }
 
-.medium-zoom-image {
+/* images border */
+.markdown img:not(.disabled-zoom) {
   border: 1px solid #ccc;
   border-radius: 18px;
   padding: 4px;
