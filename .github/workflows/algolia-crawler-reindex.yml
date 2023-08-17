@@ -1,0 +1,29 @@
+name: Algolia Crawler
+on:   
+  push:
+    branches: [ main ]
+jobs:
+  algolia_recrawl:
+    name: Algolia Recrawl
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: algolia reindex script
+      id: reindex
+      uses: ./algolia/
+      with:
+          CRAWLER_ID: ${{ secrets.CRAWLER_ID }}
+          CRAWLER_USER_ID: ${{ secrets.CRAWLER_USER_ID }}
+          CRAWLER_API_KEY: ${{ secrets.CRAWLER_API_KEY }}
+          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+          CRAWLER_API_BASE_URL: 'https://crawler.algolia.com/api/1/'
