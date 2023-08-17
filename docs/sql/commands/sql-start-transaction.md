@@ -7,7 +7,7 @@ slug: /sql-start-transaction
 
 RisingWave supports read-only transactions. You can use the `START TRANSACTION READ ONLY` command to start a read-only transaction. For more information about transactions in RisingWave, see [Transactions](/concepts/tranactions.md).
 
-The `STRAT TRANSACTION` command starts the read-write transaction mode, which is not supported yet in RisingWave. For compatibility reasons, this command will still succeed but no transaction is actually started. That is why you need to specify the `READ ONLY` option to start a transaction in read-only mode.
+The `START TRANSACTION` command starts the read-write transaction mode, which is not supported yet in RisingWave. For compatibility reasons, this command will still succeed but no transaction is actually started. That is why you need to specify the `READ ONLY` option to start a transaction in read-only mode.
 
 The `START TRANSACTION` command is the same as the `BEGIN` command.
 
