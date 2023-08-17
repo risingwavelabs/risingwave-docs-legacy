@@ -526,7 +526,7 @@ html.mdx-page h2 {
 
 /* images border */
 .markdown img:not(.disabled-zoom, .icon) {
-  border: 2px solid #ccc;
+  border: 2px solid #ededed;
   border-radius: 15px;
   padding: 3px;
 }
