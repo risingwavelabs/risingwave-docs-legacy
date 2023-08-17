@@ -22,7 +22,7 @@ export default function NotFoundWrapper(props) {
       globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) =>
         v.name === version ? history.push(`${v.path}/${slug}`) : false
       );
-      history.push(`/docs/current/intro`);
+      history.push(`/docs/current/${slug}`);
     }
   }, []);
 
