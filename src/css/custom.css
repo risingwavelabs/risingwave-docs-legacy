@@ -528,7 +528,7 @@ html.mdx-page h2 {
 .markdown img:not(.disabled-zoom, .icon) {
   border: 2px solid #ccc;
   border-radius: 15px;
-  padding: 3;
+  padding: 3px;
 }
 
 [data-theme="dark"].markdown img:not(.disabled-zoom, .icon) {
