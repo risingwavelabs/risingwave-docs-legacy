@@ -6,7 +6,7 @@ slug: /sql-create-source
 ---
 
 A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command.
-If you  choose to persist the data from the source in RisingWave, use the `CREATE TABLE` command with connector settings. For more details, see [CREATE TABLE](sql-create-table.md).
+If you choose to persist the data from the source in RisingWave, use the `CREATE TABLE` command with connector settings. For more details, see [CREATE TABLE](sql-create-table.md).
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or data transformations.
 
@@ -26,7 +26,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name (
 ];
 ```
 
-### schema_definition:
+### schema_definition
 
 ```sql
 col_name data_type [ AS generation_expression ],
