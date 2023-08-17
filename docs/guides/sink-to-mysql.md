@@ -27,35 +27,35 @@ Before using the native MySQL CDC connector in RisingWave, you need to complete 
 
 1. Log in to the AWS console. Search “RDS” in services and select the **RDS** panel.
 
-	<img
-	src={require('../images/search-rds.png').default}
-	alt="Search for RDS"
-	/>
+ <img
+ src={require('../images/search-rds.png').default}
+ alt="Search for RDS"
+ />
 
 2. Create a database with **MySQL** as the **Engine type**. We recommend setting up a username and password or using other security options.
 
-	<img
-	src={require('../images/mysql-config.png').default}
-	alt="Configurations for setting up a MySQL RDS"
-	/>
+ <img
+ src={require('../images/mysql-config.png').default}
+ alt="Configurations for setting up a MySQL RDS"
+ />
 
-3. When the new instance becomes available, click on its panel. 
+3. When the new instance becomes available, click on its panel.
 
-	<img
-	src={require('../images/new-panel.png').default}
-	alt="MySQL instance panel"
-	/>
+ <img
+ src={require('../images/new-panel.png').default}
+ alt="MySQL instance panel"
+ />
 
 4. From the **Connectivity** panel, we can find the endpoint and connection port information.
 
-	<img
-	src={require('../images/connectivity.png').default}
-	alt="Endpoint and port information"
-	/>
+ <img
+ src={require('../images/connectivity.png').default}
+ alt="Endpoint and port information"
+ />
 
 ### Connect to the RDS instance from MySQL
 
-Now we can connect to the RDS instance. Make sure you have installed MySQL on your local machine, and start a MySQL prompt. Fill in the endpoint, the port, and login credentials in the connection parameters. 
+Now we can connect to the RDS instance. Make sure you have installed MySQL on your local machine, and start a MySQL prompt. Fill in the endpoint, the port, and login credentials in the connection parameters.
 
 ```terminal
 mysql -h rw-to-mysql.xxxxxx.us-east-1.rds.amazonaws.com -P 3306 -u <username> -p <password>
@@ -69,8 +69,9 @@ Use the following query to set up a database and a table in the RDS instance.
 
 ```sql
 CREATE TABLE test_db.personnel (
-	id integer,
-	name varchar(200)
+ id integer,
+ name varchar(200),
+ PRIMARY KEY (id)
 );
 ```
 
@@ -97,8 +98,9 @@ CREATE DATABASE test_db;
 USE test_db;
 
 CREATE TABLE personnel (
-	id integer,
-	name varchar(200)
+ id integer,
+ name varchar(200),
+ PRIMARY KEY (id)
 );
 ```
 
@@ -109,14 +111,13 @@ CREATE TABLE personnel (
 
 ### Install and launch RisingWave
 
-To install and start RisingWave locally, see the [Get started](/get-started.md) guide. We recommend running RisingWave locally for testing purposes. 
-
+To install and start RisingWave locally, see the [Get started](/get-started.md) guide. We recommend running RisingWave locally for testing purposes.
 
 ### Enable the connector node in RisingWave
 
 The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
 
-The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose). 
+The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose).
 
 If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
 
@@ -145,7 +146,8 @@ All `WITH` options are required.
 |connector| Sink connector type must be `'jdbc'` for MySQL sink. |
 |jdbc.url| The JDBC URL of the destination database necessary for the driver to recognize and connect to the database.|
 |table.name| The table in the destination database you want to sink to.|
-|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul> If creating an `upsert` sink, see the [Overview](/data-delivery.md) on when to define the primary key.|
+|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li></ul> `upsert`: Output data as a changelog stream. |
+|primary_key| Required if `type` is `upsert`. The primary key of the downstream table. |
 
 ## Sink data from RisingWave to MySQL
 
@@ -153,18 +155,20 @@ All `WITH` options are required.
 
 To sink to MySQL, make sure that RisingWave and the connector node share the same table schema. Use the following queries in RisingWave to create a table and sink.
 
-The `jdbc.url` must be accurate. The format varies slightly depending on if you are using AWS RDS MySQL or a self-hosted version of MySQL. If your MySQL is self-hosted, the `jdbc.url` would have the following format: `jdbc:mysql://127.0.0.1:3306/testdb?user=<username>&password=<password>`. 
+The `jdbc.url` must be accurate. The format varies slightly depending on if you are using AWS RDS MySQL or a self-hosted version of MySQL. If your MySQL is self-hosted, the `jdbc.url` would have the following format: `jdbc:mysql://127.0.0.1:3306/testdb?user=<username>&password=<password>`.
 
 ```sql
 CREATE TABLE personnel (
-	id integer,
-	name varchar,
+ id integer,
+ name varchar,
 );
 
 CREATE SINK s_mysql FROM personnel WITH (
-	connector='jdbc',
-	jdbc.url='jdbc:mysql://<aws_rds_endpoint>:<port>/test_db?user=<username>&password=<password>',
-	table.name='personnel'
+ connector='jdbc',
+ jdbc.url='jdbc:mysql://<aws_rds_endpoint>:<port>/test_db?user=<username>&password=<password>',
+ table.name='personnel',
+ type = 'upsert',
+ primary_key = 'id'
 );
 ```
 

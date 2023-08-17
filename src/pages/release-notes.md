@@ -94,7 +94,7 @@ This version was released on August 8, 2023.
 
 #### Connectors
 
-- Supports specifying Kafka parameters when creating a source or sink. [#11203](https://github.com/risingwavelabs/risingwave/pull/11203)
+- Supports specifying more Kafka parameters when creating a source or sink. [#11203](https://github.com/risingwavelabs/risingwave/pull/11203)
 
 - JDBC sinks used for upserts must specify the downstream primary key via the `primary_key` option. [#11042](https://github.com/risingwavelabs/risingwave/pull/11042)
   
