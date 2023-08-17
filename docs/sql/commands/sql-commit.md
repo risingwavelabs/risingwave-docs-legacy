@@ -18,7 +18,7 @@ Read-only transactions is currently an experimental feature in RisingWave, and i
 ## Syntax
 
 ```sql
-BEGIN;
+COMMIT;
 ```
 
 import rr from '@theme/RailroadDiagram'
