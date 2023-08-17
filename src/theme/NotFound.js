@@ -12,7 +12,7 @@ export default function NotFoundWrapper(props) {
     const paths = location.pathname.split("/");
     const version = paths[2];
     const slug = paths[3];
-
+    const queries = `${slug}${location.search ?? "/" + location.search}${location.hash ?? "/" + location.hash}`;
     if (version === "latest") {
       const res = window.location.href.replace(version, "current");
       window.location.replace(res);
@@ -20,9 +20,9 @@ export default function NotFoundWrapper(props) {
       history.push(`/docs/current/intro`);
     } else {
       globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) =>
-        v.name === version ? history.push(`${v.path}/${slug}`) : false
+        v.name === version ? history.push(`${v.path}/${queries}`) : false
       );
-      history.push(`/docs/current/${slug}`);
+      history.push(`/docs/current/${queries}`);
     }
   }, []);
 
