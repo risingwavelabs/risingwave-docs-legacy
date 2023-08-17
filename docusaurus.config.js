@@ -36,7 +36,7 @@ const config = {
               badge: false,
               banner: "unreleased",
             },
-            "1.1": {
+            1.1: {
               label: "1.1 (current)",
               path: "/current",
               badge: false,
@@ -118,7 +118,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       zoom: {
-        selector: ".markdown img:not(.disabled-zoom)",
+        selector: ".markdown img:not(.disabled-zoom, .icon)",
         background: {
           light: "#ffffff",
           dark: "#0a1721",

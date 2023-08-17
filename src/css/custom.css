@@ -525,8 +525,12 @@ html.mdx-page h2 {
 }
 
 /* images border */
-.markdown img:not(.disabled-zoom) {
-  border: 1px solid #ccc;
-  border-radius: 18px;
-  padding: 4px;
+.markdown img:not(.disabled-zoom, .icon) {
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  padding: 3;
+}
+
+[data-theme="dark"].markdown img:not(.disabled-zoom, .icon) {
+  border: 2px solid #0a3246;
 }
