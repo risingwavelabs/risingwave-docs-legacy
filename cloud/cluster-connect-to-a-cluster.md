@@ -87,11 +87,13 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
     src={require('./images/psql-login.png').default}
     alt="Connect via psql"
     width="47%"
+    class="icon"
     />
     <img
     src={require('./images/psql-connected.png').default}
     alt="Connect via psql"
     width="47%"
+    class="icon"
     />
 
 </TabItem>
