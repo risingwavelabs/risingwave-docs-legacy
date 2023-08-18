@@ -2,14 +2,12 @@ name: Algolia Crawler
 on:
   push:
     branches: [main]
-
-  pull_request:
-    branches: [main]
     paths:
       - cloud/**
       - docs/**
       - versioned_docs/**
       - versioned_sidebars/**
+
 jobs:
   algolia_recrawl:
     name: Algolia Recrawl
