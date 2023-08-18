@@ -6,10 +6,10 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - /cloud/**
-      - /docs/**
-      - /versioned_docs/**
-      - /versioned_sidebars/**
+      - cloud/**
+      - docs/**
+      - versioned_docs/**
+      - versioned_sidebars/**
 jobs:
   algolia_recrawl:
     name: Algolia Recrawl
