@@ -36,6 +36,14 @@ Open a new terminal window and run:
 psql -h localhost -p 4566 -d dev -U root
 ```
 
+Notes about the `psql` options:
+
+- The `-h` option is used to specify the host name or IP address of the PostgreSQL server to connect to.
+- The `-p` option is used to specify the port number that the server is listening on.
+- The `-d` option is used to specify the name of the database to connect to.
+- The `-U` option is used to specify the name of the database user to connect as.
+- By default, the PostgreSQL server uses the `root user` account to authenticate connections to the `dev` database. Note that this user account does not require a password to connect.
+
 ## Create a table
 
 As RisingWave is a database, you can directly create a table and insert data into it. For example, let's create a table to store data about web page visits.

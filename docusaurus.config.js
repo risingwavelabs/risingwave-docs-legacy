@@ -31,14 +31,20 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "upcoming",
+              label: "1.2 (dev)",
               path: "/upcoming",
               badge: false,
               banner: "unreleased",
             },
-            "1.0.0": {
-              label: "1.0.0 (current)",
+            "1.1": {
+              label: "1.1 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            "1.0.0": {
+              label: "1.0",
+              path: "/1.0",
               badge: false,
               banner: "none",
             },
@@ -79,13 +85,11 @@ const config = {
               banner: "none",
             },
           },
-          editUrl:
-            "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
+          editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
         blog: {
           showReadingTime: true,
-          editUrl:
-            "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
+          editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
         theme: {
           customCss: [
@@ -114,7 +118,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       zoom: {
-        selector: ".markdown img",
+        selector: ".markdown img:not(.disabled-zoom)",
         background: {
           light: "#ffffff",
           dark: "#0a1721",
@@ -165,43 +169,6 @@ const config = {
         ],
       },
       footer: {
-        // links: [
-        //   {
-        //     title: 'Docs',
-        //     items: [
-        //       {
-        //         label: 'Docs',
-        //         to: '/docs/intro',
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     title: 'Community',
-        //     items: [
-        //       {
-        //         label: 'Slack',
-        //         href: 'https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw',
-        //       },
-        //       {
-        //         label: 'Twitter',
-        //         href: 'https://twitter.com/SingularityData',
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     title: 'More',
-        //     items: [
-        //       {
-        //         label: 'Blog',
-        //         to: '/blog',
-        //       },
-        //       {
-        //         label: 'GitHub',
-        //         href: 'https://github.com/risingwavelabs/risingwave',
-        //       },
-        //     ],
-        //   },
-        // ],
         copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community`,
       },
       prism: {
@@ -227,8 +194,7 @@ const config = {
     }),
   customFields: {
     docsUrl: "https://www.risingwave.dev",
-    requestUrl:
-      "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
+    requestUrl: "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
     bugReportUrl:
       "https://github.com/risingwavelabs/risingwave-docs/issues/new?assignees=CharlieSYH%2C+hengm3467&labels=bug&template=bug_report.yml&title=Bug%3A+&link=",
   },
@@ -238,6 +204,23 @@ const config = {
       async: true,
     },
   ],
+  webpack: {
+    jsLoader: (isServer) => ({
+      loader: require.resolve("swc-loader"),
+      options: {
+        jsc: {
+          parser: {
+            syntax: "typescript",
+            tsx: true,
+          },
+          target: "es2017",
+        },
+        module: {
+          type: isServer ? "commonjs" : "es6",
+        },
+      },
+    }),
+  },
 };
 
 async function createConfig() {

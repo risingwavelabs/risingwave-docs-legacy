@@ -103,23 +103,16 @@ Before the deployment, ensure that the following requirements are satisfied.
 
 ## Deploy a RisingWave instance
 
-Select an object storage service for data persistence.
+When deploying a RisingWave instance, you can choose from multiple object storage options to persist your data. Depending on the option you choose, the deployment instructions are different.
+
+### Optional: Customize the state store directory
+
+You can customize the directory for storing state data via the `spec: stateStore: dataDirectory` parameter in the `risingwave.yaml` file that you want to use to deploy a RisingWave instance. If you have multiple RisingWave instances, ensure the value of `dataDirectory` for the new isntance is unique (the default value is `hummock`). Otherwise, the new RisingWave instance may crash. Save the changes to the `risingwave.yaml` file before running the `kubectl apply -f <...risingwave.yaml>` command. The directory path cannot be an absolute address, such as `/a/b`, and must be no longer than 180 characters
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="storage_selection">
-<TabItem value="minio" label="etcd+MinIO">
-
-RisingWave supports using MinIO as the object storage.
-
-Run the following command to deploy a RisingWave instance with MinIO as the object storage.
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/stable/persistent/minio/risingwave.yaml
-```
-
-</TabItem>
 <TabItem value="s3" label="etcd+S3">
 
 RisingWave supports using Amazon S3 as the object storage.
@@ -161,7 +154,21 @@ RisingWave supports using Amazon S3 as the object storage.
     </details>
 
 </TabItem>
+<TabItem value="minio" label="etcd+MinIO">
 
+RisingWave supports using MinIO as the object storage.
+
+:::note
+The performance of MinIO is closely tied to the disk performance of the node where it is hosted. We have observed that AWS EBS does not perform well in our tests. For optimal performance, we recommend using S3 or a compatible cloud service.
+:::
+
+Run the following command to deploy a RisingWave instance with MinIO as the object storage.
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/stable/persistent/minio/risingwave.yaml
+```
+
+</TabItem>
 <TabItem value="hdfs" label="etcd+HDFS">
 
 RisingWave supports using HDFS as the object storage.
@@ -187,19 +194,19 @@ kubectl get risingwave
 If the instance is running properly, the output should look like this:
 
 <Tabs groupId="storage_selection">
-<TabItem value="minio" label="etcd+MinIO">
-
-```
-NAME        RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
-risingwave  True      etcd            MinIO             30s
-```
-
-</TabItem>
 <TabItem value="s3" label="etcd+S3">
 
 ```
 NAME        RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
 risingwave  True      etcd            S3                30s
+```
+
+</TabItem>
+<TabItem value="minio" label="etcd+MinIO">
+
+```
+NAME        RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
+risingwave  True      etcd            MinIO             30s
 ```
 
 </TabItem>

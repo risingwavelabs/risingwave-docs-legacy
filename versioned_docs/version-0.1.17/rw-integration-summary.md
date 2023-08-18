@@ -5,14 +5,13 @@ description: Summary of integrations
 slug: /rw-integration-summary
 ---
 
-We aim to minimize the hassle of integrating RisingWave with your existing data stack. With that purpose in mind, we will try to support the mainstream data formats, tools, and as many systems as possible. 
+We aim to minimize the hassle of integrating RisingWave with your existing data stack. With that purpose in mind, we will try to support the mainstream data formats, tools, and as many systems as possible.
 
-However, with limited resources, we cannot achieve this goal in a short period of time. If a connector or integration is crucial to you but has not been supported, please let us know in the [RisingWave Slack workspace](https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw), or by clicking the thumb-up icon in the corresponding cell on this page. We will prioritize the development based on the number of requests for each system. 
+However, with limited resources, we cannot achieve this goal in a short period of time. If a connector or integration is crucial to you but has not been supported, please let us know in the [RisingWave Slack workspace](https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw), or by clicking the thumb-up icon in the corresponding cell on this page. We will prioritize the development based on the number of requests for each system.
 
 If you wish to receive notifications when a connector or integration is available, you can click the small bell icon to enter your email address.
 
 For tools or integrations that you would like to use but are not listed in the tables below, you can [submit a feature request](https://github.com/risingwavelabs/risingwave/issues/new?assignees=&labels=type%2Ffeature&template=feature_request.yml), or let us know in the Slack workspace.
-
 
 ## Message brokers or streaming services
 
@@ -68,7 +67,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |Apache Druid| No plan| Researching <voteNotify note="druid_sink" /> |
 |Apache Pinot| No plan|Researching <voteNotify note="pinot_sink" />|
 |AWS Redshift| No plan|Researching <voteNotify note="redshift_sink" />|
-|Clickhouse|No plan |Researching <voteNotify note="clickhouse_sink" />|
+|ClickHouse|No plan |Researching <voteNotify note="clickhouse_sink" />|
 |Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
 |Google BigQuery| No plan |Researching <voteNotify note="bigquery_sink" />|
 |DataStax Astra DB & Apache Cassandra| Researching <voteNotify note="cassandra_source" /> |In progress <voteNotify note="cassandra_sink" />|
@@ -100,7 +99,6 @@ For tools or integrations that you would like to use but are not listed in the t
 |Looker||Researching <voteNotify note="looker" /> |
 |Metabase ||In progress <voteNotify note="metabase" />|
 |Redash || Available |
-
 
 ## Other systems
 
