@@ -54,12 +54,6 @@ The default database configurations are:
 
 If you use different RisingWave configurations, please ensure that the configurations here match those in RisingWave.
 
-:::info
-
-If you are familiar with dbt, you can directly clone [this repository](https://github.com/risingwavelabs/dbt_rw_nexmark) to get started. This repository provide a dbt project to manage nexmark queries in a materialized view way.
-
-:::
-
 ## Define dbt models
 
 The dbt models for managing data transformations in RisingWave is similar to typical dbt sql models. The main differences are the materializations. We customized the materializations to fit the data processing model of RisingWave.
@@ -68,8 +62,8 @@ RisingWave accepts these four [materializations](https://docs.getdbt.com/docs/bu
 
 - `table`. Create a table. To use this materialization, add `{{ config(materialized='table') }}` to your model SQL files.
 - `view`. Create a view. To use this materialization, add `{{ config(materialized='view') }}` to your model SQL files.
-- `ephemeral`. Use Common Table Expression instead. To use this materialization, add `{{ config(materialized='ephemeral') }}` to your model SQL files.
-- `materializedview`. Create a materialized view. This materialization is corresponding to the `incremental` one in dbt. Since RisingWave is designed to use materialized view to manage data transformation in an incremental way, you don’t need to use `incremental` models and can just use `materializedview`. To use this materialization, add `{{ config(materialized='materializedview') }}` to your model SQL files.
+- `ephemeral`. This materialization uses [common table expressions](/sql/query-syntax/query-syntax-with-clause.md) in RisingWave under the hood. To use this materialization, add `{{ config(materialized='ephemeral') }}` to your model SQL files.
+- `materializedview`. Create a [materialized view](/sql/commands/sql-create-mv.md). This materialization is corresponding to the `incremental` one in dbt. Since RisingWave is designed to use materialized view to manage data transformation in an incremental way, you don’t need to use the `incremental` materialization and can just use `materializedview`. To use this materialization, add `{{ config(materialized='materializedview') }}` to your model SQL files.
 
 To learn about how to define SQL models in general, see [SQL models](https://docs.getdbt.com/docs/build/sql-models).
 
@@ -96,8 +90,6 @@ Run the following command to run your models.
 ```sql
 dbt run
 ```
-
-The `dbt run` command is one of the core commands in the dbt framework. It is used to execute a set of SQL queries that are defined in the `.sql` files in the project directory. These queries transform raw data from one or more sources into more useful and structured data tables that can be used for analysis. You can find your models in the `models` directory of your project. This command will create tables, views, or materialized views based on the models in your project!
 
 ## Example model file
 
