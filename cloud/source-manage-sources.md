@@ -10,8 +10,8 @@ To ingest data into RisingWave, you must first create a source. A source refers 
 You can manage your data sources in [**Source**](https://risingwave.cloud/source/).
 
 <img
-  src={require('./images/sources.png').default}
-  alt="Sources page"
+src={require('./images/sources.png').default}
+alt="Sources page"
 />
 
 <grid
@@ -41,7 +41,7 @@ content="If you no longer require data from a source, drop the source connection
 cloud="drop-a-source"
 style={{height: "80%"}}
 />
-  
+
 </grid>
 
 </grid>
@@ -51,6 +51,6 @@ style={{height: "80%"}}
 Click on a source to view its details, inclduing the connector settings, schema, and running status.
 
 <img
-  src={require('./images/source-details-page.png').default}
-  alt="Source details page"
+src={require('./images/source-details-page.png').default}
+alt="Source details page"
 />

@@ -16,7 +16,7 @@ If you no longer need a database user, you can delete it.
     alt="Database users of a cluster"
     />
     
-1. Click <img src={require('./images/icon-delete.png').default} width="13px"/> of the user you want to delete.
+1. Click <img class="icon" src={require('./images/icon-delete.png').default} width="13px"/> of the user you want to delete.
 
 1. Enter the user name for confirmation. You don't need to enter the password to continue.
     
