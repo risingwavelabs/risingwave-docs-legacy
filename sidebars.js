@@ -208,6 +208,11 @@ const sidebars = {
           id: "transform/watermarks",
           label: "Watermarks",
         },
+        {
+          type: "doc",
+          id: "transform/use-dbt",
+          label: "Use dbt for data transformations",
+        },
       ],
     },
     {

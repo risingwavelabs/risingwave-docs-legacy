@@ -30,7 +30,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |---|---|---|
 |Fivetran| |Researching <voteNotify note="fivetran" /> |
 |Airbyte | |Researching  <voteNotify note="airbyte" /> |
-|dbt| |Researching <voteNotify note="dbt" />|
+|dbt| |Available. For details, see [Use dbt for data transformations](/transform/use-dbt.md).|
 |Hightouch| |Researching <voteNotify note="hightouch" />|
 
 ## Query engines
