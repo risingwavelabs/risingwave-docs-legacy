@@ -4,7 +4,7 @@ slug: /use-dbt
 title: Use dbt for data transformations
 ---
 
-This document guides you to use dbt to manage your data transformations in RisingWave in real-time.
+This guide provides instructions for using dbt to manage real-time data transformations in RisingWave.
 
 ## Install the plugin
 
