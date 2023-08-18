@@ -11,7 +11,7 @@ Use the `SELECT` command to retrieve rows from a table or materialized view. It 
 
 ```sql
 [ WITH clause ]
-SELECT [ ALL | DISTINCT ] [ * [ EXCEPT ( except_column, ... ] ) ] | expression [ AS output_name ] [ , expression [ AS output_name ] ... ] ]
+SELECT [ ALL | DISTINCT ] [ [table_name.]* [ EXCEPT ( [table_name.]except_column, ... ] ) ] | expression [ AS output_name ] [ , expression [ AS output_name ] ... ] ]
     [ VALUES clause ]
     [ FROM from_item [ , from_item ...] ]
     [ WHERE condition ]
