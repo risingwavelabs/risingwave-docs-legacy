@@ -66,6 +66,11 @@ const sidebars = {
               label: "Data persistence",
               id: "data-persistence",
             },
+            {
+              type: "doc",
+              label: "Transactions",
+              id: "concepts/transactions",
+            },
           ],
         },
       ],

@@ -72,5 +72,5 @@ CREATE SOURCE s1 (
     topic = 'test_topic',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
-) ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
