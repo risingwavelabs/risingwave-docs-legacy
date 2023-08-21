@@ -41,10 +41,12 @@ export const svg = rr.Diagram(
         )
       )
     ),
-    rr.Sequence(
+    rr.Optional(
+      rr.Sequence(
       rr.Terminal('LANGUAGE python'),
       rr.Terminal('AS'),
       rr.NonTerminal('function_name_defined_in_server', 'skip')
+      ), 'skip'
     ),
     rr.Sequence(
       rr.Terminal('USING LINK'),
@@ -81,7 +83,7 @@ CREATE FUNCTION function_name ( argument_type [, ...] )
 | *argument_type* | The data type of the input parameter(s) that the UDF expects to receive.|
 | **RETURNS** *return_type* | Use this if the function returns a single value (i.e., scalar). It specifies the data type of the return value from the UDF.<br />The struct type, which can contain multiple values, is supported. But the field names must be consistent between Python and SQL definitions, or it will be considered a type mismatch.<br/>The array and JSONB types are not supported in this version. |
 | **RETURNS TABLE** | Use this if the function is a table-valued function (TVF). It specifies the structure of the table that the UDF returns. |
-| **LANGUAGE** | Specifies the programming language used to implement the UDF. <br/> Currently, only `python` is supported.|
+| **LANGUAGE** | Optional. Specifies the programming language used to implement the UDF. <br/> Currently, `python` and `java` is supported.|
 | **AS** *function_name_defined_in_server* | Specifies the function name defined in the UDF server.|
 | **USING LINK** '*udf_server_address*' | Specifies the server address where the UDF implementation resides. <br/>If you are running RisingWave in your local environment, the address is `http://localhost:<port>` <br/> If you are running RisingWave using Docker, the address is `http://host.docker.internal:<port>/`|
 
