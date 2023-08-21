@@ -45,7 +45,7 @@ export const svg = rr.Diagram(
       rr.Sequence(
       rr.Terminal('LANGUAGE'),
       rr.NonTerminal('language_name'),
-      ),
+      ),'skip'
     ),
     rr.Sequence(
       rr.Terminal('AS'),
