@@ -66,6 +66,11 @@ const sidebars = {
               label: "Data persistence",
               id: "data-persistence",
             },
+            {
+              type: "doc",
+              label: "Transactions",
+              id: "concepts/transactions",
+            },
           ],
         },
       ],
@@ -202,6 +207,11 @@ const sidebars = {
           type: "doc",
           id: "transform/watermarks",
           label: "Watermarks",
+        },
+        {
+          type: "doc",
+          id: "transform/use-dbt",
+          label: "Use dbt for data transformations",
         },
       ],
     },
