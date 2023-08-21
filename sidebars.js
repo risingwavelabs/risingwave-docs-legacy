@@ -66,6 +66,11 @@ const sidebars = {
               label: "Data persistence",
               id: "data-persistence",
             },
+            {
+              type: "doc",
+              label: "Transactions",
+              id: "concepts/transactions",
+            },
           ],
         },
       ],
@@ -190,8 +195,23 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "transform/window-functions",
+          label: "Window functions",
+        },
+        {
+          type: "doc",
+          id: "transform/emit-on-window-close",
+          label: "Emit on window close",
+        },
+        {
+          type: "doc",
           id: "transform/watermarks",
           label: "Watermarks",
+        },
+        {
+          type: "doc",
+          id: "transform/use-dbt",
+          label: "Use dbt for data transformations",
         },
       ],
     },
@@ -501,25 +521,14 @@ const sidebars = {
               },
               items: [
                 {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-logical",
-                  label: "Logical",
+                  type: 'doc',
+                  id: 'sql/functions-operators/sql-function-aggregate',
+                  label: 'Aggregate',
                 },
                 {
                   type: "doc",
-                  id: "sql/functions-operators/sql-function-comparison",
-                  label: "Comparison",
-                },
-
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-cast",
-                  label: "Cast",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-mathematical",
-                  label: "Mathematical",
+                  id: "sql/functions-operators/sql-function-array",
+                  label: "Array",
                 },
                 {
                   type: "doc",
@@ -528,8 +537,18 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  id: "sql/functions-operators/sql-function-string",
-                  label: "String",
+                  id: "sql/functions-operators/sql-function-cast",
+                  label: "Cast",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-conditional",
+                  label: "Conditional",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-comparison",
+                  label: "Comparison",
                 },
                 {
                   type: "doc",
@@ -538,14 +557,30 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  id: "sql/functions-operators/sql-function-aggregate",
-                  label: "Aggregate",
+                  id: "sql/functions-operators/sql-function-logical",
+                  label: "Logical",
                 },
                 {
                   type: "doc",
-                  id: "sql/functions-operators/sql-function-conditional",
-                  label: "Conditional",
+                  id: "sql/functions-operators/sql-function-mathematical",
+                  label: "Mathematical",
                 },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-set-functions",
+                  label: "Set functions",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-set-operators",
+                  label: "Set operators",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-string",
+                  label: "String",
+                },
+
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-sys-admin",
@@ -555,21 +590,6 @@ const sidebars = {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-sys-info",
                   label: "System information",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-array",
-                  label: "Array",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-set-operators",
-                  label: "Set operators",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-set-functions",
-                  label: "Set functions",
                 },
               ],
             },
@@ -679,8 +699,12 @@ const sidebars = {
           id: "manage/view-configure-system-parameters",
         },
         {
-          type: "doc",
-          id: "manage/meta-backup",
+          type: 'doc',
+          id: 'manage/view-configure-runtime-parameters',
+        },
+        {
+          type: 'doc',
+          id: 'manage/meta-backup',
         },
         {
           type: "doc",
@@ -695,8 +719,18 @@ const sidebars = {
     },
     {
       type: "doc",
+      label: "Optimize performance",
+      id: "performance/optimize-performance"
+    },
+    {
+      type: "doc",
+      label: "Troubleshooting",
+      id: "troubleshoot/troubleshooting"
+    },
+    {
+      type: "link",
+      href: "/release-notes",
       label: "Releases",
-      id: "release-notes",
     },
   ],
 };

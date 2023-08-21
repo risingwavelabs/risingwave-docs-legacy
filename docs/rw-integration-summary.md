@@ -30,7 +30,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |---|---|---|
 |Fivetran| |Researching <voteNotify note="fivetran" /> |
 |Airbyte | |Researching  <voteNotify note="airbyte" /> |
-|dbt| |Researching <voteNotify note="dbt" />|
+|dbt| |Available. For details, see [Use dbt for data transformations](/transform/use-dbt.md).|
 |Hightouch| |Researching <voteNotify note="hightouch" />|
 
 ## Query engines
@@ -51,6 +51,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |Postgres| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details.| Available. See [Sink data from RisingWave to PostgreSQL](/guides/sink-to-postgres.md) for details.|
 |AWS RDS (Postgres)| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. |Available. See [Sink data from RisingWave to PostgreSQL](/guides/sink-to-postgres.md) for details.|
 |AWS Aurora (Postgres)| In progress <voteNotify note="aurora_pg_source" />|Researching <voteNotify note="aurora_pg_sink" />|
+|Citus Data| Available. See [Ingest data from Citus CDC](/guides/ingest-from-citus-cdc.md). | Researching <voteNotify note="citus_sink" />|
 
 ### MySQL
 
@@ -73,7 +74,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |DataStax Astra DB & Apache Cassandra| Researching <voteNotify note="cassandra_source" /> |In progress <voteNotify note="cassandra_sink" />|
 |CockroachDB| Researching <voteNotify note="cockroachdb_source" />|Researching <voteNotify note="cockroachdb_sink" /> |
 |Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
-|MongoDB| Researching <voteNotify note="mongodb_source" />|Researching <voteNotify note="mongodb_sink" /> |
+|MongoDB| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Researching <voteNotify note="mongodb_sink" /> |
 |Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
 |SQL Server| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Researching <voteNotify note="sql_server_sink" /> |
 |TiDB| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Available. For details, see [Sink data from RisingWave to TiDB](/guides/sink-to-tidb.md). |

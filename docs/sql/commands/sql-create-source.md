@@ -6,15 +6,17 @@ slug: /sql-create-source
 ---
 
 A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command.
-If you  choose to persist the data from the source in RisingWave, use the `CREATE TABLE` command with connector settings. See [CREATE TABLE](sql-create-table.md) for more details.
+If you choose to persist the data from the source in RisingWave, use the `CREATE TABLE` command with connector settings. For more details, see [CREATE TABLE](sql-create-table.md).
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or data transformations.
 
 ## Syntax
 
 ```sql
-CREATE SOURCE [ IF NOT EXISTS ] source_name 
-[schema_definition]
+CREATE SOURCE [ IF NOT EXISTS ] source_name (
+    col_name data_type [ AS generation_expression ],...
+    [ watermark_clause ]
+)
 [ WITH (
     connector='connector_name',
     connector_parameter='value', ...)]
@@ -24,7 +26,13 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
 ];
 ```
 
-For the syntax of `schema_definition`, see [Parameters](sql-create-table.md#parameters) in `CREATE TABLE`.
+### schema_definition
+
+```sql
+col_name data_type [ AS generation_expression ],
+...
+[WATERMARK FOR col_name as generation_expression]
+```
 
 :::note
 To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
@@ -39,7 +47,17 @@ export const svg = rr.Diagram(
          rr.Optional(rr.Terminal('IF NOT EXISTS')),
          rr.NonTerminal('source_name', 'skip'),
       ),
-      rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
+      rr.Stack(
+         rr.OneOrMore(
+            rr.Sequence(
+               rr.NonTerminal('col_name', 'skip'),
+               rr.NonTerminal('data_type', 'skip'),
+               rr.Optional(rr.Terminal('AS generation_expression')),
+               rr.Optional(rr.Terminal(',')),
+                ),
+            ),
+          rr.Optional(rr.Terminal('watermark_clause'), 'skip')
+        ),
       rr.Sequence(
          rr.Terminal('WITH'),
          rr.Terminal('('),
@@ -92,6 +110,18 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 :::
 
+## Parameters
+
+| Parameter| Description|
+|-----------|-------------|
+|*source_name*    |The name of the source. If a schema name is given (for example, `CREATE SOURCE <schema>.<source> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
+|*col_name*      |The name of a column.|
+|*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
+|*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
+|*watermark_clause*| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
+|**WITH** clause |Specify the connector settings here if trying to store all the source data. See the [Data ingestion](/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
+|**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
+
 ## Supported sources
 
 Click a connector name to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
@@ -118,7 +148,7 @@ When a source is created, RisingWave does not ingest data immediately. RisingWav
 
 ## Watermarks
 
-RisingWave supports generating watermarks when creating a source. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. The [`WATERMARK`](/transform/watermarks.md) clause should be used within the `schema_definition`. For more information on the syntax on how to create a watermark, see [Watermarks](/transform/watermarks.md).
+RisingWave supports generating watermarks when creating a source. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. The [`WATERMARK`](/transform/watermarks.md) clause should be used within the `schema_definition`. For more information on how to create a watermark, see [Watermarks](/transform/watermarks.md).
 
 ## Change Data Capture (CDC)
 
