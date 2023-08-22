@@ -5,7 +5,9 @@ description: Sink data from RisingWave to ClickHouse.
 slug: /sink-to-clickhouse 
 ---
 
-This guide describes how to sink data from RisingWave to ClickHouse using the ClickHouse sink connector in RisingWave.ClickHouse is a free analytics DBMS for big data. For more information, see [ClickHouse](https://clickhouse.com).
+This guide describes how to sink data from RisingWave to ClickHouse using the ClickHouse sink connector in RisingWave.
+
+ClickHouse® is a high-performance, column-oriented SQL database management system (DBMS) for online analytical processing (OLAP). For more information about ClickHouse, see [ClickHouse official website](https://clickhouse.com).
 
 :::caution Experimental feature
 The ClickHouse sink connector in RisingWave is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
@@ -13,13 +15,13 @@ The ClickHouse sink connector in RisingWave is currently an experimental feature
 
 ## Prerequisites
 
-- Ensure you already have an ClickHouse table that you can sink data to. 
-  For additional guidance on creating a table and setting up ClickHouse, refer to this [quickstart guide](https://clickhouse.com/docs/en/getting-started/quick-start) on creating an ClickHouse table.
+- Ensure you already have an ClickHouse table that you can sink data to.
+  For additional guidance on creating a table and setting up ClickHouse, refer to this [quick start guide](https://clickhouse.com/docs/en/getting-started/quick-start).
 
 - Ensure you have an upstream materialized view or source that you can sink data from.
 
 :::note
-We recommend utilizing the ReplacingMergeTree engine in ClickHouse. This is due to the potential issue of duplicate writes into ClickHouse during RisingWave recovery when primary keys in    ClickHouse are allowed to be duplicated.
+We highly recommend using the ReplacingMergeTree engine in ClickHouse. This is because it addresses the potential problem of duplicate writes in ClickHouse during RisingWave recovery when primary keys can be duplicated.
 :::
 
 ## Syntax
@@ -37,16 +39,18 @@ WITH (
 
 | Parameter Names       | Description |
 | --------------------- | ---------------------------------------------------------------------- |
-| type                  | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key.|
-| primary_key           | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the ClickHouse sink.|
-| clickhouse.url        | Required. Address of the ClickHouse. Format: `ip:port`.|
-| clickhouse.user       | Required. User name of the ClickHouse. |
-| clickhouse.password   | Required. Password of the ClickHouse.|
-| clickhouse.database   | Required. DataBase name of the ClickHouse.|
-| clickhouse.table      | Required. Table name of the ClickHouse.|
+| `type`                | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key.|
+| `primary_key`          | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the ClickHouse sink.|
+| `clickhouse.url`        | Required. Address of the ClickHouse server that you want to sink data to. Format: `ip:port`.|
+| `clickhouse.user`       | Required. User name for accessing the ClickHouse server. |
+| `clickhouse.password`   | Required. Password for accessing the ClickHouse server.|
+| `clickhouse.database`  | Required. Name of the ClickHouse database that you want to sink data to.|
+| `clickhouse.table`      | Required. Name of the ClickHouse table that you want to sink dat to.|
 
 :::note
-ClickHouse does not recommend using the `upsert`(`update` and `delete`) feature as it may result in significant performance degradation.[ClickHouse Alter](https://clickhouse.com/docs/en/sql-reference/statements/alter)
+
+ClickHouse does not recommend using the `upsert`(`update` and `delete`) feature as it may result in significant performance degradation.
+
 :::
 
 ## Examples
@@ -55,7 +59,7 @@ This section includes several examples that you can use if you want to quickly e
 
 ### Create an ClickHouse table (if you do not already have one)
 
-For example, We're setting up a basic ClickHouse table with the primary key as `seq_id` and the ENGINE set to `ReplacingMergeTree`. It's important to emphasize that, without using `ReplacingMergeTree` or other deduplication techniques, there's a risk of duplicate writes to ClickHouse.
+For example, let's consider creating a basic ClickHouse table with the primary key as `seq_id` and the ENGINE set to `ReplacingMergeTree`. It's important to emphasize that, without using `ReplacingMergeTree` or other deduplication techniques, there is a significant risk of duplicate writes to ClickHouse.
 
 Note that only S3-compatible object store is supported, such as AWS S3 or MinIO.
 
@@ -119,7 +123,7 @@ If you have an append-only source and want to create an append-only sink, set `t
 ```sql
 CREATE SINK s1_sink FROM s1_source
 WITH (
-	connector = 'clickhouse',
+ connector = 'clickhouse',
     type = 'append-only',
     clickhouse.url = '${CLICKHOUSE_URL}',
     clickhouse.user = '${CLICKHOUSE_USER}',
@@ -136,7 +140,7 @@ If you have an upsert source and want to create an append-only sink, set `type =
 ```sql
 CREATE SINKs1_sink FROM s1_source
 WITH (
-	connector = 'clickhouse',
+ connector = 'clickhouse',
     type = 'append-only',
     clickhouse.url = '${CLICKHOUSE_URL}',
     clickhouse.user = '${CLICKHOUSE_USER}',
