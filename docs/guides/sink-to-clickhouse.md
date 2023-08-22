@@ -15,7 +15,7 @@ The ClickHouse sink connector in RisingWave is currently an experimental feature
 
 ## Prerequisites
 
-- Ensure you already have an ClickHouse table that you can sink data to.
+- Ensure you already have a ClickHouse table that you can sink data to.
   For additional guidance on creating a table and setting up ClickHouse, refer to this [quick start guide](https://clickhouse.com/docs/en/getting-started/quick-start).
 
 - Ensure you have an upstream materialized view or source that you can sink data from.
@@ -59,7 +59,7 @@ This section includes several examples that you can use if you want to quickly e
 
 ### Create an ClickHouse table (if you do not already have one)
 
-For example, let's consider creating a basic ClickHouse table with the primary key as `seq_id` and the ENGINE set to `ReplacingMergeTree`. It's important to emphasize that, without using `ReplacingMergeTree` or other deduplication techniques, there is a significant risk of duplicate writes to ClickHouse.
+For example, let's consider creating a basic ClickHouse table with the primary key as `seq_id` and the ENGINE set to `ReplacingMergeTree`. It's important to emphasize that without using `ReplacingMergeTree` or other deduplication techniques, there is a significant risk of duplicate writes to ClickHouse.
 
 Note that only S3-compatible object store is supported, such as AWS S3 or MinIO.
 
@@ -123,7 +123,7 @@ If you have an append-only source and want to create an append-only sink, set `t
 ```sql
 CREATE SINK s1_sink FROM s1_source
 WITH (
- connector = 'clickhouse',
+    connector = 'clickhouse',
     type = 'append-only',
     clickhouse.url = '${CLICKHOUSE_URL}',
     clickhouse.user = '${CLICKHOUSE_USER}',
@@ -140,7 +140,7 @@ If you have an upsert source and want to create an append-only sink, set `type =
 ```sql
 CREATE SINKs1_sink FROM s1_source
 WITH (
- connector = 'clickhouse',
+    connector = 'clickhouse',
     type = 'append-only',
     clickhouse.url = '${CLICKHOUSE_URL}',
     clickhouse.user = '${CLICKHOUSE_USER}',
