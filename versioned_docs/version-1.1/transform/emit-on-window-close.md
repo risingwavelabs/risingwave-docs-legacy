@@ -36,11 +36,11 @@ To fulfill these requirements, RisingWave offers support for transforming querie
 We can modify the query above to use emit-on-window-close semantics:
 
 ```sql
-CREATE MATERIALIZED VIEW window_count AS
+CREATE MATERIALIZED VIEW window_count
+EMIT ON WINDOW CLOSE AS
 SELECT window_start, COUNT(*)
 FROM TUMBLE(events, event_time, INTERVAL '1' MINUTE)
-GROUP BY window_start
-EMIT ON WINDOW CLOSE;
+GROUP BY window_start;
 ```
 
 Note that a watermark needs to be defined for the data source events.
@@ -62,22 +62,22 @@ RisingWave supports the emit-on-window-close" triggering policy for any query. H
 1. Windowed aggregation
 
 ```sql
-CREATE MATERIALIZED VIEW mv AS
+CREATE MATERIALIZED VIEW mv
+EMIT ON WINDOW CLOSE AS
 SELECT
     window_start, MAX(foo)
 FROM TUMBLE(t, tm, INTERVAL '1 hour')
-GROUP BY window_start
-EMIT ON WINDOW CLOSE;
+GROUP BY window_start;
 ```
 
 1. SQL window functions
 
 ```sql
-CREATE MATERIALIZED VIEW mv2 AS
+CREATE MATERIALIZED VIEW mv2
+EMIT ON WINDOW CLOSE AS
 SELECT
     tm, foo, bar,
     LEAD(foo, 1) OVER (PARTITION BY bar ORDER BY tm) AS l1,
     LEAD(foo, 3) OVER (PARTITION BY bar ORDER BY tm) AS l2
-FROM t
-EMIT ON WINDOW CLOSE;
+FROM t;
 ```
