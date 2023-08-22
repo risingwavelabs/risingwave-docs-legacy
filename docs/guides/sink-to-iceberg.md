@@ -1,7 +1,7 @@
 ---
 id: sink-to-iceberg
 title: Sink data from RisingWave to Apache Iceberg
-description: Sink data from RisingWave to Apache Iceberg with the JDBC connector.
+description: Sink data from RisingWave to Apache Iceberg.
 slug: /sink-to-iceberg
 ---
 
@@ -24,7 +24,7 @@ The Iceberg sink connector in RisingWave is currently an experimental feature. I
 CREATE SINK [ IF NOT EXISTS ] sink_name
 [FROM sink_from | AS select_query]
 WITH (
-   connector='iceberg',
+   connector='iceberg_v2',
    connector_parameter = 'value', ...
 );
 ```
@@ -33,18 +33,34 @@ WITH (
 
 | Parameter Names | Description |
 | --------------- | ---------------------------------------------------------------------- |
-| type            | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key.|
-| primary_key     | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the Iceberg sink.|
+| type            | Required. Currently only `appendonly` is supported. |
 | warehouse.path  | Required. The path of the Iceberg warehouse. Currently, only S3-compatible object store is supported, such as AWS S3, or MinIO.|
-| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be <http://${MINIO_HOST}:${MINIO_PORT>}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
+| s3.endpoint     | Optional. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be <http://${MINIO_HOST}:${MINIO_PORT>}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
+| s3.region       | Optional. Aws s3's region. At least one of `s3.endpoint` or `s3.region` should be provided.|
 | s3.access.key   | Required. Access key of the S3 compatible object store.|
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
 | database.name   | Required. The database of the target Iceberg table.|
 | table.name      | Required. The name of the target Iceberg table.|
 
-:::note
-Iceberg sinks with `upsert` type is slower than `append-only`.
-:::
+## Data Type Mapping
+
+Risingwave converts risingwave data types from/to iceberg according to following data type matching:
+
+|Risingwave Type| Iceberg Type|
+|---------------|-------------|
+| boolean       | boolean     |
+| int           | integer     |
+| bigint        | long        |
+| real          | float       |
+| double        | double      |
+| varchar       | string      |
+| date          | date        |
+| timestamptz   | timestamptz |
+| timestamp     | timestamp   |
+
+## Catalog
+
+Currenlty we only support filesystem catalog. More catalog support will come later.
 
 ## Examples
 
@@ -57,7 +73,7 @@ For example, the following `spark-sql` command creates an Iceberg table named `t
 Note that only S3-compatible object store is supported, such as AWS S3 or MinIO.
 
 ```terminal
-spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.1.0,org.apache.hadoop:hadoop-aws:3.3.2\
+spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.4_2.12:1.3.1,org.apache.hadoop:hadoop-aws:3.3.2\
     --conf spark.sql.catalog.demo=org.apache.iceberg.spark.SparkCatalog \
     --conf spark.sql.catalog.demo.type=hadoop \
     --conf spark.sql.catalog.demo.warehouse=s3a://my-iceberg-bucket/path/to/warehouse \
@@ -147,25 +163,6 @@ WITH (
     connector = 'iceberg',
     type = 'append-only',
     force_append_only = 'true',
-    warehouse.path = 's3a://my-iceberg-bucket/path/to/warehouse,
-    s3.endpoint = 'https://s3.ap-southeast-1.amazonaws.com',
-    s3.access.key = '${ACCESS_KEY}',
-    s3.secret.key = '${SECRET_KEY},
-    database.name='dev',
-    table.name='table'
-);
-```
-
-### Upsert sink from upsert source
-
-If you have an upsert source and want to create an upsert sink, set `type = upsert`. When the sink type is upsert, be sure to set the `primary_key` field to specify the primary key of the downstream Iceberg table.
-
-```sql
-CREATE SINK s1_sink FROM s1_table
-WITH (
-    connector = 'iceberg',
-    type = 'upsert',
-    primary_key = 'seq_id',
     warehouse.path = 's3a://my-iceberg-bucket/path/to/warehouse,
     s3.endpoint = 'https://s3.ap-southeast-1.amazonaws.com',
     s3.access.key = '${ACCESS_KEY}',
