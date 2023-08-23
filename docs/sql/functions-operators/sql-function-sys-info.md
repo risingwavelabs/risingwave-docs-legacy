@@ -96,7 +96,6 @@ With one argument, this returns the size of the main data fork of the relation. 
 SELECT pg_relation_size('t') != 0; → t
 SELECT pg_relation_size('t', 'main') != 0; → t
 SELECT pg_relation_size('t', 'fsm') = 0; → t
-
 ```
 
 ## `session_user`
