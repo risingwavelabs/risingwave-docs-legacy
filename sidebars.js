@@ -66,6 +66,11 @@ const sidebars = {
               label: "Data persistence",
               id: "data-persistence",
             },
+            {
+              type: "doc",
+              label: "Transactions",
+              id: "concepts/transactions",
+            },
           ],
         },
       ],
@@ -203,6 +208,11 @@ const sidebars = {
           id: "transform/watermarks",
           label: "Watermarks",
         },
+        {
+          type: "doc",
+          id: "transform/use-dbt",
+          label: "Use dbt for data transformations",
+        },
       ],
     },
     {
@@ -339,6 +349,11 @@ const sidebars = {
               type: "doc",
               label: "Apache Iceberg",
               id: "guides/sink-to-iceberg",
+            },
+            {
+              type: "doc",
+              label: "ClickHouse",
+              id: "guides/sink-to-clickhouse",
             },
           ],
         },
