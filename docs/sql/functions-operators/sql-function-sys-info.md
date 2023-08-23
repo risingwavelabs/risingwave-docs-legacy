@@ -77,6 +77,28 @@ SELECT pg_typeof(row(true, 1, 'hello')); → `record`
 SELECT pg_typeof(array[1, 2]); → `integer[]`
 ```
 
+## `pg_relation_size`
+
+Computes the disk space used by one “fork” of the specified relation.
+
+```sql title=Syntax
+pg_relation_size ( relation regclass [, fork text ] ) → bigint
+```
+
+With one argument, this returns the size of the main data fork of the relation. The second argument can be provided to specify which fork to examine:
+
+- `main` returns the size of the main data fork of the relation.
+- `fsm` returns the size of the [Free Space Map](https://www.postgresql.org/docs/current/storage-fsm.html) associated with the relation.
+- `vm` returns the size of the [Visibility Map](https://www.postgresql.org/docs/current/storage-vm.html) associated with the relation.
+- `init` returns the size of the initialization fork, if any, associated with the relation.
+
+```sql title=Examples
+SELECT pg_relation_size('t') != 0; → t
+SELECT pg_relation_size('t', 'main') != 0; → t
+SELECT pg_relation_size('t', 'fsm') = 0; → t
+
+```
+
 ## `session_user`
 
 Returns the name of the current session user.
