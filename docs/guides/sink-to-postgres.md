@@ -187,6 +187,6 @@ LIMIT 10;
 
 ## Data type mapping
 
-For the MySQL data type mapping table, see the [Data type mapping table](/guides/ingest-from-postgres-cdc.md#data-type-mapping) under the Ingest data from MySQL CDC topic.
+For the PostgreSQL data type mapping table, see the [Data type mapping table](/guides/ingest-from-postgres-cdc.md#data-type-mapping) under the Ingest data from PostgreSQL CDC topic.
 
 Note that only one-dimensional arrays can be sinked to PostgreSQL.
