@@ -186,3 +186,9 @@ To ensure that the target table has been updated, query from `target_count` in P
 SELECT * FROM target_count
 LIMIT 10;
 ```
+
+## Data type mapping
+
+For the PostgreSQL data type mapping table, see the [Data type mapping table](/guides/ingest-from-postgres-cdc.md#data-type-mapping) under the Ingest data from PostgreSQL CDC topic.
+
+Note that only one-dimensional arrays can be sinked to PostgreSQL.

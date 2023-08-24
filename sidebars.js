@@ -350,6 +350,11 @@ const sidebars = {
               label: "Apache Iceberg",
               id: "guides/sink-to-iceberg",
             },
+            {
+              type: "doc",
+              label: "ClickHouse",
+              id: "guides/sink-to-clickhouse",
+            },
           ],
         },
         {
