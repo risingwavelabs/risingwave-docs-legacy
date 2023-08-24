@@ -14,7 +14,6 @@ ALTER USER user_name
     RENAME TO new_user_name
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
@@ -31,8 +30,6 @@ rr.Stack(
 );
 
 <drawer SVG={svg} />
-
-
 
 ```sql title="Alter user properties."
 ALTER USER user_name 
@@ -55,15 +52,13 @@ rr.Stack(
 
 <drawer SVG={svgtwo} />
 
-
 ## Parameters
+
 | Parameter or clause | Description           |
 | ------------------- | --------------------- |
 | *user_name* | The name of the user to be modified. |
 | *new_user_name* | The new name of the user. |
-| **WITH** *option* | See [WITH options](sql-create-user.md#with-options) in `CREATE USER`. |
-
-
+| **WITH** *option* | See [WITH options](/sql/commands/sql-create-user.md#with-options). |
 
 ## Example
 
@@ -72,7 +67,6 @@ The following statement rename the user `user1` to `user001`.
 ```sql
 ALTER USER user1 RENAME TO user001;
 ```
-
 
 The following statement modify the password and privileges of `user001`.
 
