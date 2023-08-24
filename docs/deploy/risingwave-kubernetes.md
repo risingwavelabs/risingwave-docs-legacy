@@ -273,13 +273,15 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
 
 **Steps:**
 
-1. Set the Service type to `NodePort`.
+1. Set the value of the `type` parameter of the frontend service to `NodePort`.
 
-    ```
+    ```yaml
     # ...
+    kind: Service
+    ...
     spec:
-      global:
-        serviceType: NodePort
+      type: NodePort
+      ports:
     # ...
     ```
 
