@@ -277,7 +277,7 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
 
     ```yaml
     # ...
-    kind: Service
+    kind: RisingWave
     ...
     spec:
       frontendServiceType: NodePort
