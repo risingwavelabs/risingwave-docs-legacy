@@ -82,15 +82,10 @@ SELECT pg_typeof(array[1, 2]); → `integer[]`
 Computes the disk space used by one “fork” of the specified relation.
 
 ```sql title=Syntax
-pg_relation_size ( relation regclass [, fork text ] ) → bigint
+pg_relation_size ( relation regclass [, 'main' ] ) → bigint
 ```
 
-With one argument, this returns the size of the main data fork of the relation. The second argument can be provided to specify which fork to examine:
-
-- `main` returns the size of the main data fork of the relation.
-- `fsm` returns the size of the [Free Space Map](https://www.postgresql.org/docs/current/storage-fsm.html) associated with the relation.
-- `vm` returns the size of the [Visibility Map](https://www.postgresql.org/docs/current/storage-vm.html) associated with the relation.
-- `init` returns the size of the initialization fork, if any, associated with the relation.
+Returns the size of the main data fork of the relation. This function can be used to determine if the main data fork of a relation exists. If its size is not 0, it means that the main data fork of the relation exists.
 
 ```sql title=Examples
 SELECT pg_relation_size('t') != 0; → t
