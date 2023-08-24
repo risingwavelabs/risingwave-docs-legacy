@@ -280,8 +280,7 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
     kind: Service
     ...
     spec:
-      type: NodePort
-      ports:
+      frontendServiceType: NodePort
     # ...
     ```
 
