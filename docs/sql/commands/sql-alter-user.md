@@ -68,7 +68,7 @@ The following statement rename the user `user1` to `user001`.
 ALTER USER user1 RENAME TO user001;
 ```
 
-The following statement modify the password and privileges of `user001`.
+The following statement modifies the password and privileges of `user001`.
 
 ```sql
 ALTER USER user001 NOSUPERUSER CREATEDB PASSWORD '4d2Df1ee5';
