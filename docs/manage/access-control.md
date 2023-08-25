@@ -49,7 +49,7 @@ You can alter the initial permissions and the password of a user by using the `A
 The following statement modifies the password and initial permissions of `user001`.
 
 ```sql
-ALTER USER user001 NOSUPERUSER CREATEDB PASSWORD '4d2Df1ee5';
+ALTER USER user001 WITH NOSUPERUSER CREATEDB PASSWORD '4d2Df1ee5';
 ```
 
 ## Privileges
