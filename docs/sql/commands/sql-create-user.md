@@ -10,39 +10,12 @@ Use the `CREATE USER` command to create a new user account in RisingWave.
 ## Syntax
 
 ```sql
-CREATE USER user_name [ [ WITH ] option [ ... ] ];
+CREATE USER user_name [ [ WITH ] system_permission [ ... ]['PASSWORD' { password | NULL }] ];
 ```
 
-import rr from '@theme/RailroadDiagram'
+If you do not want password authentication for the user, omit the PASSWORD option.
 
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE USER'),
-            rr.NonTerminal('user_name'),
-            rr.Optional(
-               rr.Sequence(
-                  rr.Optional(rr.Terminal('WITH')),
-                  rr.OneOrMore(
-                     rr.NonTerminal('option'), rr.Comment('space as delimiter')
-                    ),
-               )
-            )
-        ),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
-## Parameters
-
-| Parameter or clause | Description           |
-| ------------------- | --------------------- |
-| *user_name* | The name of the user account to be created. |
-| **WITH** *option* | See the table below. |
-
-### `WITH` options
+## System permissions
 
 | Option | Description           |
 | --------- | --------------------- |
@@ -54,8 +27,6 @@ export const svg = rr.Diagram(
 | `NOCREATEUSER` | Denies the user the ability to create new users and/or alter and drop existing users. `NOCREATEUSER` is the default value. |
 | `LOGIN` | Grants the user the ability to log in when establishing connection with RisingWave. `LOGIN` is the default value. |
 | `NOLOGIN` | Denies the user the ability to log in when establishing connection with RisingWave. `LOGIN` is the default value. |
-| `[ ENCRYPTED ] PASSWORD ' password '` | Sets the password for the user account. You need to provide the password for authentication when during login. If you do not want password authentication for the user, omit the PASSWORD option. |
-| `PASSWORD NULL`| If you do not want password authentication for the user, omit the PASSWORD option. Currently, a null password or empty string password means password authentication is not needed. |
 
 ## Examples
 

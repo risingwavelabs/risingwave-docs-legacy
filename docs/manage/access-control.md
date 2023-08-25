@@ -4,19 +4,19 @@ title: Access control
 description: Manage users and privileges
 slug: /access-control
 ---
-RisingWave uses a user-based access control to handle authentication and authorization. Users are individual database users or user groups. Privileges can be granted to or revoked from roles to control what actions can be performed on different object levels.
+RisingWave uses a user-based access control to handle authentication and authorization. Privileges can be granted to or revoked from users to control what actions can be performed on different object levels.
 
-When creating a user, the administrator of an organization can determine the initial permissions and set a password. Additional permissions can be configured later by using `GRANT` and `REVOKE` commands.
+When creating a user, the administrator of an organization can determine the system-level permissions and set a password. The system permissions and the user names can be revised with the `ALTER USER` command. For details about the system permissions, see [System permissions](/sql/commands/sql-create-user.md#system-permissions).
 
-In RisingWave, priviledges can be managed at these object levels:
+Database privileges can be configured later by using `GRANT` and `REVOKE` commands. The privileges are managed at these object levels:
 
 - Database
 - Schema
 - Table
 - Source
-- Materialized View
-- Sink
-- Index
+- Materialized view
+
+For database privileges that can be applied to each of the object levels, see [Privileges](#privileges).
 
 ## Users
 
@@ -25,10 +25,10 @@ In RisingWave, priviledges can be managed at these object levels:
 Syntax:
 
 ```sql
-CREATE USER user_name [ [ WITH ] option [ ... ] ];
+CREATE USER user_name [ [ WITH ] system_permission [ ... ]['PASSWORD' { password | NULL }] ];
 ```
 
-For details about WITH options, see [WITH options](/sql/commands/sql-create-user.md#with-options).
+For details about system permissions, see [System permissions](/sql/commands/sql-create-user.md#system-permissions).
 
 Create a user with default permissions:
 
@@ -44,12 +44,18 @@ CREATE USER user001 WITH CREATEDB PASSWORD '1234abcd';
 
 ### Alter user
 
-You can alter the initial permissions and the password of a user by using the `ALTER USER` command.
+You can alter the system permissions, password, or name of a user by using the `ALTER USER` command.
 
 The following statement modifies the password and initial permissions of `user001`.
 
 ```sql
 ALTER USER user001 WITH NOSUPERUSER CREATEDB PASSWORD '4d2Df1ee5';
+```
+
+The following statement renames `user1` to `user001`.
+
+```sql
+ALTER USER user1 RENAME TO user001;
 ```
 
 ## Privileges

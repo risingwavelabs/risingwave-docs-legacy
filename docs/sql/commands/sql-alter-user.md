@@ -5,52 +5,18 @@ description: Modify properties of a user.
 slug: /sql-alter-user
 ---
 
-Use the `ALTER USER` command to modify the name, password, privileges, and other properties of an existing user.
+Use the `ALTER USER` command to modify the name, password, system permissions, and other properties of an existing user.
 
 ## Syntax
 
-```sql title="Alter user name."
+```sql title="Alter user name"
 ALTER USER user_name 
     RENAME TO new_user_name
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal("ALTER USER"),
-      rr.NonTerminal("user_name", "skip"),
-   ),
-   rr.Sequence(
-      rr.Terminal("RENAME TO"),
-      rr.NonTerminal("new_user_name", "skip"),
-   ),
-)
-);
-
-<drawer SVG={svg} />
-
-```sql title="Alter user properties."
-ALTER USER user_name 
-    [ [ WITH ] option [ ... ] ]
+```sql title="Alter user properties"
+CREATE USER user_name [ [ WITH ] system_permission [ ... ]['PASSWORD' { password | NULL }] ];
 ```
-
-export const svgtwo = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal('ALTER USER'),
-      rr.NonTerminal('user_name', 'skip'),
-   ),
-   rr.Sequence(
-      rr.Optional(rr.Terminal('WITH')),
-      rr.OneOrMore(rr.Sequence(
-      rr.NonTerminal('option', 'skip')))
-   ),
-)
-);
-
-<drawer SVG={svgtwo} />
 
 ## Parameters
 
@@ -58,7 +24,7 @@ rr.Stack(
 | ------------------- | --------------------- |
 | *user_name* | The name of the user to be modified. |
 | *new_user_name* | The new name of the user. |
-| **WITH** *option* | See [WITH options](/sql/commands/sql-create-user.md#with-options). |
+| **system_permission* | See [System permissions](/sql/commands/sql-create-user.md#system-permissions).|
 
 ## Example
 
