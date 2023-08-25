@@ -24,7 +24,7 @@ The Iceberg sink connector in RisingWave is currently an experimental feature. I
 CREATE SINK [ IF NOT EXISTS ] sink_name
 [FROM sink_from | AS select_query]
 WITH (
-   connector='iceberg_v2',
+   connector='iceberg',
    connector_parameter = 'value', ...
 );
 ```
