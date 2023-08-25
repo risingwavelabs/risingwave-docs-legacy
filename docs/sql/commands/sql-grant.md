@@ -17,15 +17,6 @@ ON DATABASE database_name [, ...]
 TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 ```
 
-Grant materialized view privileges to a user.
-
-```sql
-GRANT {SELECT | ALL [PRIVILEGES]} 
-ON {MATERIALIZED VIEW mv_name [, ...] 
-    | ALL MATERIALIZED VIEWS IN SCHEMA schema_name [, ...] }
-TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
-```
-
 Grant schema privileges to a user.
 
 ```sql
@@ -34,12 +25,30 @@ ON SCHEMA schema_name [, ...]
 TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 ```
 
-Grant source or table privileges to a user.
+Grant table privileges to a user.
 
 ```sql
-GRANT {{SELECT | UPDATE | INSERT | DELETE} [, ...]| ALL [PRIVILEGES]} 
-ON { {SOURCE | TABLE} source_or_table_name [, ...]
+GRANT {{CREATE | SELECT | UPDATE | INSERT | DELETE} [, ...]| ALL [PRIVILEGES]} 
+ON { TABLE table_name [, ...]
+    | ALL TABLES IN SCHEMA schema_name [, ...] }
+TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
+```
+
+Grant source privileges to a user.
+
+```sql
+GRANT { SELECT | ALL [PRIVILEGES]} 
+ON { SOURCE source_or_table_name [, ...]
     | ALL SOURCES IN SCHEMA schema_name [, ...] }
+TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
+```
+
+Grant materialized view privileges to a user.
+
+```sql
+GRANT {{SELECT | CREATE} | ALL [PRIVILEGES]} 
+ON {MATERIALIZED VIEW mv_name [, ...] 
+    | ALL MATERIALIZED VIEWS IN SCHEMA schema_name [, ...] }
 TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 ```
 
@@ -68,10 +77,10 @@ ON MATERIALIZED VIEW mv1 IN SCHEMA db1.schema1
 TO user1 WITH GRANT OPTION GRANTED BY user;
 ```
 
-Grant the SELECT and UPDATE privileges for source `s1` to user `user1`.
+Grant the SELECT privileges for source `s1` to user `user1`.
 
 ```sql
-GRANT SELECT, UPDATE
+GRANT SELECT
 ON SOURCE s1
 TO user1;
 ```
