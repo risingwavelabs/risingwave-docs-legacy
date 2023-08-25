@@ -62,7 +62,8 @@ See the table below for the privileges available in RisingWave and the correspon
 |`INSERT` |Permission to add new rows to a table. |Table|
 |`UPDATE` |Permission to modify existing data in a table. |Table|
 |`DELETE` |Permission to remove rows from a table. |Table|
-|`CREATE` |Permission to create new objects within the database. |Database, Table, Source, Materialized View, Sink, Index|
+|`CREATE` |Permission to create new objects within the database. |Schema, Database, Table|
+|`CONNECT`|Permission to connect to a database.| Database|
 
 You use the `GRANT` command to grant priviledges to a user, and the `REVOKE` command to revoke priviledges from a user. For the syntaxes of these two commands, see [`GRANT`](/sql/commands/sql-grant.md) and [`REVOKE`](/sql/commands/sql-revoke).
 
