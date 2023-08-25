@@ -34,11 +34,13 @@ ON { TABLE table_name [, ...]
 TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 ```
 
+For sources and materialized views, only the `SELECT` privilege can be assigned and revoked.
+
 Grant source privileges to a user.
 
 ```sql
 GRANT { SELECT | ALL [PRIVILEGES]} 
-ON { SOURCE source_or_table_name [, ...]
+ON {  source_or_table_name [, ...]
     | ALL SOURCES IN SCHEMA schema_name [, ...] }
 TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 ```
@@ -46,7 +48,7 @@ TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 Grant materialized view privileges to a user.
 
 ```sql
-GRANT {{SELECT | CREATE} | ALL [PRIVILEGES]} 
+GRANT {SELECT | ALL [PRIVILEGES]} 
 ON {MATERIALIZED VIEW mv_name [, ...] 
     | ALL MATERIALIZED VIEWS IN SCHEMA schema_name [, ...] }
 TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
