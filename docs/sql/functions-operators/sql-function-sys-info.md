@@ -77,6 +77,21 @@ SELECT pg_typeof(row(true, 1, 'hello')); → `record`
 SELECT pg_typeof(array[1, 2]); → `integer[]`
 ```
 
+## `pg_relation_size`
+
+Computes the disk space used by one “fork” of the specified relation.
+
+```sql title=Syntax
+pg_relation_size ( relation regclass [, 'main' ] ) → bigint
+```
+
+Returns the size of the main data fork of the relation. This function can be used to determine if the main data fork of a relation exists. If its size is not 0, it means that the main data fork of the relation exists.
+
+```sql title=Examples
+SELECT pg_relation_size('t') != 0; → t
+SELECT pg_relation_size('t', 'main') != 0; → t
+```
+
 ## `session_user`
 
 Returns the name of the current session user.
