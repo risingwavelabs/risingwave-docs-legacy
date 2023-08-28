@@ -365,6 +365,11 @@ const sidebars = {
           items: [
             {
               type: "doc",
+              label: "DBeaver",
+              id: "guides/dbeaver-integration",
+            },
+            {
+              type: "doc",
               label: "Grafana",
               id: "guides/grafana-integration",
             },
