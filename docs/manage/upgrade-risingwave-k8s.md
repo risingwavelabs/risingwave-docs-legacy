@@ -40,7 +40,7 @@ We strongly recommend that you regularly upgrade your RisingWave version to pick
 4. Upgrade the release: Use the helm upgrade command to initiate the upgrade process. Specify the release name and the chart repository or chart path. For example:
 
 ```bash
-helm upgrade RELEASE_NAME CHART [flags]
+helm upgrade -f values.yaml --reuse-values RELEASE_NAME risingwavelabs/risingwave
 
 ```
 
