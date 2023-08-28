@@ -4,16 +4,44 @@ slug: /sql-function-array
 title: Array functions
 ---
 
-### `array_dims`
+### `array_append`
 
-Returns the dimensions of *array* as a string. *array* must be one dimensional.
+
 
 ```sql title=Syntax
-array_dims ( array ) → string
+array_append ( array, any_compatible ) → array
+```
+
+```sql title=Example 
+array_append ( array[66], array[123] ) → {{66},{233}}
+```
+
+---
+
+### `array_cat`
+
+
+
+```sql title=Syntax
+array_cat ( array,  array) → array
 ```
 
 ```sql title=Example
-array_dims ( array[2,3,4] ) → [1:3]
+array_cat ( array[66], array[123] ) → {66, 123}
+```
+
+---
+
+### `array_prepend`
+
+
+
+```sql title=Syntax
+array_prepend (  ) → 
+```
+
+```sql title=Example
+array_prepend (  ) → 
 ```
 
 ---
@@ -112,6 +140,20 @@ array_positions(array, any_compatible) → array
 
 ```sql title=Example
 array_positions(array[1,2,3,4,5,6,1,2,3,4,5,6], 4) → {4, 10}
+```
+
+---
+
+### `array_prepend`
+
+
+
+```sql title=Syntax
+array_prepend ( any_compatible, array ) → array
+```
+
+```sql title=Example 
+array_prepend ( 123, array[66] ) → {123, 66}
 ```
 
 ---
