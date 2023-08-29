@@ -562,6 +562,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/functions-operators/sql-function-json",
+                  label: "JSON",
+                },
+                {
+                  type: "doc",
                   id: "sql/functions-operators/sql-function-logical",
                   label: "Logical",
                 },
