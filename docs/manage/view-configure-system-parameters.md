@@ -48,7 +48,7 @@ SHOW PARAMETERS;
  backup_storage_url                     | memory         | f
  backup_storage_directory               | backup         | f
  telemetry_enabled                      | true           | t
-max_concurrent_creating_streaming_jobs  | 1              | t
+ max_concurrent_creating_streaming_jobs | 1              | t
 
 ```
 
