@@ -1,16 +1,9 @@
 ---
-id: user-defined-functions
-slug: /user-defined-functions
-title: User-defined functions
+id: udf-python
+slug: /udf-python
+title: Use UDFs in Python
 description: Define your own functions with the help of the RisingWave UDF API for Python.
 ---
-
-You can define your own functions (including table functions) and call these functions in RisingWave. With the user-defined function (UDF), you can tailor RisingWave to your needs and take advantage of the power and flexibility of Python to perform complex and customized data processing and analysis tasks.
-Currently, RisingWave supports UDFs implemented as external functions in Python.
-
-:::caution Beta feature
-User-defined functions (UDF) is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
-:::
 
 This article provides a step-by-step guide for installing the RisingWave UDF API, defining functions in a Python file, starting the UDF server, and declaring and using UDFs in RisingWave.
 
@@ -155,81 +148,7 @@ The UDF server will start running, allowing you to call the defined UDFs from Ri
 
 ## 4. Declare your functions in RisingWave
 
-In RisingWave, use the `CREATE FUNCTION` command to declare the functions defined in Python in RisingWave.
-
-#### Syntax
-
-<Tabs>
-<TabItem value="diagram" label="Diagram">
-
-import rr from '@theme/RailroadDiagram';
-
-export const svg = rr.Diagram(
-  rr.Stack(
-    rr.Sequence(
-      rr.Terminal('CREATE FUNCTION'),
-      rr.NonTerminal('function_name', 'skip'),
-      rr.Terminal('('),
-      rr.OneOrMore(rr.NonTerminal('argument_type', 'skip'), ','),
-      rr.Terminal(')')
-    ),
-    rr.Optional(
-      rr.Choice(1,
-        rr.Sequence(
-          rr.Terminal('RETURNS'),
-          rr.NonTerminal('return_type', 'skip')
-        ),
-        rr.Sequence(
-          rr.Terminal('RETURNS TABLE'),
-          rr.Terminal('('),
-          rr.OneOrMore(rr.Sequence(rr.NonTerminal('column_name', 'skip'), rr.NonTerminal('column_type', 'skip')), ','),
-          rr.Terminal(')')
-        )
-      )
-    ),
-    rr.Sequence(
-      rr.Terminal('LANGUAGE python'),
-      rr.Terminal('AS'),
-      rr.NonTerminal('function_name_defined_in_server', 'skip')
-    ),
-    rr.Sequence(
-      rr.Terminal('USING LINK'),
-      rr.Terminal('\''),
-      rr.NonTerminal('udf_server_address', 'skip'),
-      rr.Terminal('\''),
-      rr.Terminal(';')
-    )
-  )
-);
-
-<drawer SVG={svg} />
-
-</TabItem>
-
-<TabItem value="code" label="Code">
-
-```sql
-CREATE FUNCTION function_name ( argument_type [, ...] )
-    [ RETURNS return_type | RETURNS TABLE ( column_name column_type [, ...] ) ]
-    LANGUAGE python AS function_name_defined_in_server
-    USING LINK 'udf_server_address';
-```
-
-</TabItem>
-
-</Tabs>
-
-| Parameter or clause | Description |
-| --- | --- |
-| *function_name* | The name of the UDF that you want to declare in RisingWave. |
-| *argument_type* | The data type of the input parameter(s) that the UDF expects to receive.|
-| **RETURNS** *return_type* | Use this if the function returns a single value (i.e., scalar). It specifies the data type of the return value from the UDF.<br />The struct type, which can contain multiple values, is supported. But the field names must be consistent between Python and SQL definitions, or it will be considered a type mismatch.<br/>The array and JSONB types are not supported in this version. |
-| **RETURNS TABLE** | Use this if the function is a table-valued function (TVF). It specifies the structure of the table that the UDF returns. |
-| **LANGUAGE** | Specifies the programming language used to implement the UDF. <br/> Currently, only `python` is supported.|
-| **AS** *function_name_defined_in_server* | Specifies the function name defined in the UDF server.|
-| **USING LINK** '*udf_server_address*' | Specifies the server address where the UDF implementation resides. <br/>If you are running RisingWave in your local environment, the address is `http://localhost:<port>` <br/> If you are running RisingWave using Docker, the address is `http://host.docker.internal:<port>/`|
-
-#### Example
+In RisingWave, use the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md) command to declare the functions you defined.
 
 Here are the SQL statements for declaring the three UDFs defined in [step 2](#2-define-your-functions-in-a-python-file).
 
@@ -247,7 +166,7 @@ LANGUAGE python AS series USING LINK 'http://localhost:8815'; -- If you are runn
 
 ## 5. Use your functions in RisingWave
 
-After you have declared your UDFs in RisingWave, you can use them in SQL queries just like any built-in functions.
+Once the UDFs are created in RisingWave, you can use them in SQL queries just like any built-in functions.
 
 #### Example
 
@@ -273,9 +192,3 @@ SELECT * FROM series(10);
 8
 9
 ```
-
-## See also
-
-[SHOW FUNCTIONS](/sql/commands/sql-show-functions.md) — Show all user-defined functions.
-
-[DROP FUNCTION](/sql/commands/sql-drop-function.md) — Drop a user-defined function.

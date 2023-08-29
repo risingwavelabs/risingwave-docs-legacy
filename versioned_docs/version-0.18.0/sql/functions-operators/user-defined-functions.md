@@ -221,7 +221,7 @@ CREATE FUNCTION function_name ( argument_type [, ...] )
 | **RETURNS TABLE** | Use this if the function is a table-valued function (TVF). It specifies the structure of the table that the UDF returns. |
 | **LANGUAGE** | Specifies the programming language used to implement the UDF. <br/> Currently, only `python` is supported.|
 | **AS** *function_name_defined_in_server* | Specifies the function name defined in the UDF server.|
-| **USING LINK** '*udf_server_address*' | Specifies the server address where the UDF implementation resides. <br/>If you are running RisingWave in your local environment, the address is `http://localhost:<port>` <br/> If you are running RisingWave using Docker, the address is `http://host.docker.internal:<port>/`|
+| **USING LINK** '*udf_server_address*' | Specifies the UDF server address. <br/>If you are running RisingWave in your local environment, the address is `http://localhost:<port>` <br/> If you are running RisingWave using Docker, the address is `http://host.docker.internal:<port>/`|
 
 #### Example
 

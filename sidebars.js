@@ -190,7 +190,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "sql/functions-operators/user-defined-functions",
+          id: "sql/udf/user-defined-functions",
           label: "User-defined functions",
         },
         {
@@ -604,6 +604,29 @@ const sidebars = {
               ],
             },
             {
+              type: "category",
+              label: "User-defined functions",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "sql/udf/user-defined-functions",
+                  label: "Overview",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-python",
+                  label: "Python",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-java",
+                  label: "Java",
+                },
+              ],
+            },
+            {
               type: "doc",
               id: "sql/sql-identifiers",
               label: "Identifiers",
@@ -673,6 +696,10 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
+        {
+          type: "doc",
+          id: "manage/access-control",
+        },
         {
           type: "doc",
           id: "manage/monitor-risingwave-cluster",
