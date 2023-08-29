@@ -350,6 +350,11 @@ const sidebars = {
               label: "Apache Iceberg",
               id: "guides/sink-to-iceberg",
             },
+            {
+              type: "doc",
+              label: "ClickHouse",
+              id: "guides/sink-to-clickhouse",
+            },
           ],
         },
         {
@@ -686,6 +691,10 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
+        {
+          type: "doc",
+          id: "manage/access-control",
+        },
         {
           type: "doc",
           id: "manage/monitor-risingwave-cluster",

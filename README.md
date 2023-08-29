@@ -24,4 +24,4 @@ If you would like to view your changes on the docs locally before submitting a p
 
 # Visit our official doc site
 
-Check out the published user docs at [RisingWave Docs](https://www.risingwave.dev/).
+Check out the published user docs at [RisingWave Docs](https://docs.risingwave.com).

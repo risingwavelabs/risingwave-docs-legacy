@@ -4,13 +4,14 @@ slug: /data-type-array
 title: Array type
 ---
 
-An array is an ordered list of zero or more elements that share the same data type including the array type. 
+An array is an ordered list of zero or more elements that share the same data type including the array type.
 
 ### Define an array
 
 To define an array in a schema, append `[]` to the data type of the column when you define the schema. For example, you can use `trip_id VARCHAR[]` to create an array that stores trip IDs.
 
 You can also define a temporary array in a SQL statement in this syntax:
+
 ```sql
 Array[value1, value2, ...]
 ```
@@ -44,7 +45,6 @@ CREATE TABLE taxi (
     );
 ```
 
-
 ### Add values to an array
 
 To add values to an array, in the SQL statement, use ARRAY to indicate that this is an array, and then enclose the data in the array with `[]`. For example, `ARRAY ['ABCD1234', 'ABCD1235', 'ABCD1236', 'ABCD1237']`.
@@ -58,6 +58,7 @@ INSERT INTO x VALUES (Array[Array[1], Array[2,3]]);
 ```
 
 Add values to table `taxi`:
+
 ```sql
 INSERT INTO taxi VALUES
         (
@@ -77,6 +78,7 @@ To retrieve data in an array, use the `ARRAY_COLUMN[RELATIVE_POSITION]` syntax. 
 #### Examples
 
 Retrieve the second element in array `a` from the `x` table.
+
 ```sql
 SELECT a[2] FROM x;
 -----Result
@@ -99,6 +101,7 @@ To retrieve data in an array, use the `ARRAY_COLUMN[n:m]` syntax, where `n` and 
 #### Examples
 
 Retrieve the entire array with `n` omitted.
+
 ```sql
 SELECT array[1,NULL,2][:3];
 ----Result
@@ -106,28 +109,30 @@ SELECT array[1,NULL,2][:3];
 ```
 
 Retrieve the first two elements from a multidimensional array.
+
 ```sql
 SELECT array[array[1],array[2],array[3]][-21432315:134124523][1:2];
 ----
 {{1},{2}}
 ```
 
-#### Differences from PostgreSQL
-In RisingWave, assume `arr` is of type T[][][]:
+### Differences from PostgreSQL
 
-- arr[x] is of type T[][]
-- arr[x][y] is interpreted as (arr[x])[y], and of type T[]
-- arr[x0:x1] is of type T[][][]
-- arr[x0:x1][y0:y1] is interpreted as (arr[x0:x1])[y0:y1], and of type T[][][]
-- arr[x0:x1][y] is interpreted as (arr[x0:x1])[y], and of type T[][]
+In RisingWave, assume `arr` is of type T[ ][ ][ ]:
 
-In PostgreSQL, a 3-dimensional array `arr` is still of type T[]:
+- arr[x] is of type T[ ][ ]
+- arr[x][y] is interpreted as [arr[x]](y), and of type T[ ]
+- arr[x0:x1] is of type T[ ][ ][ ]
+- arr[x0:x1][y0:y1] is interpreted as [arr[x0:x1]](y0:y1), and of type T[ ][ ][ ]
+- arr[x0:x1][y] is interpreted as [arr[x0:x1]](y), and of type T[ ][ ]
+
+In PostgreSQL, a 3-dimensional array `arr` is still of type T[ ]:
 
 - arr[x] or arr[x][y] is of type T but due to insufficient number of indices is of `NULL` value
 - arr[x][y][z] is of type T
-- arr[x0:x1][y0:y1][z0:z1] is of type T[] and 3-dimensional
-- arr[x0:x1] is interpreted as arr[x0:x1][:][:], and of type T[] and 3-dimensional
-- arr[x0:x1][y] is interpreted as arr[x0:x1][1:y][:], and of type T[] and 3-dimensional
+- arr[x0:x1][y0:y1][z0:z1] is of type T[ ] and 3-dimensional
+- arr[x0:x1] is interpreted as arr[x0:x1][:][:], and of type T[ ] and 3-dimensional
+- arr[x0:x1][y] is interpreted as arr[x0:x1][1:y][:], and of type T[ ] and 3-dimensional
 
 ### Unnest data from an array
 

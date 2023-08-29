@@ -52,7 +52,7 @@ CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
 2. Grant the appropriate privileges to the user.
 
 ```sql
-GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user'@'localhost';
+GRANT SELECT, RELOAD, SHOW DATABASES, LOCK TABLES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user'@'localhost';
 ```
 
 3. Finalize the privileges.
@@ -303,9 +303,9 @@ CREATE TABLE orders (
 );
 ```
 
-### Data type mapping
+## Data type mapping
 
-The following table shows the corresponding data type in RisingWave that should be specified when creating a source. For details on native RisingWave data types, see [Overview of data types](../sql/sql-data-types.md).
+The following table shows the corresponding data type in RisingWave that should be specified when creating a source. For details on native RisingWave data types, see [Overview of data types](/sql/sql-data-types.md).
 
 RisingWave data types marked with an asterisk indicates that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
 

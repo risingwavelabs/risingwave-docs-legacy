@@ -12,7 +12,7 @@ RisingWave supports the following data types:
 |smallint| |Two-byte integer | Range: -32768 to 32767 |
 |integer|int|Four-byte integer | Range: -2147483648 to 2147483647 |
 |bigint| |Eight-byte integer | Range: -9223372036854775808 to 9223372036854775807 |
-|numeric|decimal|Exact numeric. <br/>We do not support specifying precision and scale as of now. | Range: Up to 131072 digits before the decimal point; up to 16383 digits after the decimal point |
+|numeric|decimal|Exact numeric. <br/>We do not support specifying precision and scale as of now. | Range: 28 decimal-digit precision. Note that the range is significantly smaller than that in PostgreSQL. |
 |real| |Single precision floating-point number (4 bytes) | Range: 6 decimal digits precision |
 |double precision|double|Double precision floating-point number (8 bytes) | Range: 15 decimal digits precision |
 |character varying|varchar, string|Variable-length character string. <br/>We do not support specifying the maximum length as of now. | Example: `'Hello World!'` |
