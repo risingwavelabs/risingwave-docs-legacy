@@ -12,30 +12,30 @@ Appends *any_compatible* to the end of the input array.
 array_append ( array, any_compatible ) → array
 ```
 
-```sql title=Example 
-array_append ( array[66], array[123] ) → {66,233}
+```sql title=Example
+array_append (array[66], array[123]) → {66, 233}
 ```
 
 ---
 
-### `array_cat` 
+### `array_cat`
 
 Concatenates two arrays with the same data type. The `||` operator can also be used.
 
 If the one of the input arrays is a 2-dimensional array, the other array will be appended within the first array as the last element if it is the second argument. The other array will be prepended within the first array as the first element if it is the first argument.
 
 ```sql title=Syntax
-array_cat ( array,  array ) → array
+array_cat ( array, array ) → array
 ```
 
 ```sql title=Example
-array_cat ( array[66], array[123] ) → {66, 123}
+array_cat (array[66], array[123]) → {66, 123}
 
 array[66] || array[123] → {66, 123}
 
-array_cat(array[array[66]], array[233]) → {{66},{233}}
+array_cat(array[array[66]], array[233]) → {{66}, {233}}
 
-array_cat(array[233], array[array[66]]) → {{233},{66}}
+array_cat(array[233], array[array[66]]) → {{233}, {66}}
 ```
 
 ---
@@ -105,7 +105,7 @@ array_ndims ( array ) → int
 ```
 
 ```sql title=Example
-array_ndims ( array[array[2,3], array[4,5]] ) → 2
+array_ndims ( array[array[2, 3], array[4, 5]] ) → 2
 ```
 
 ---
@@ -147,7 +147,7 @@ array_prepend ( any_compatible, array ) → array
 ```
 
 ```sql title=Example 
-array_prepend ( 123, array[66] ) → {123, 66}
+array_prepend (123, array[66]) → {123, 66}
 ```
 
 ---
