@@ -9,17 +9,17 @@ DBeaver is a versatile database tool that provides a user-friendly interface for
 
 This guide will go over how to connect DBeaver to RisingWave so you can seamlessly manage and query RisingWave data with DBeaver's intuitive interface.
 
-## Prerequisites 
+## Prerequisites
 
-- Ensure that DBeaver is installed. To download DBeaver, see the [DBeaver download](https://dbeaver.io/download/) page.
+- Ensure that DBeaver is installed. To download DBeaver, see the [DBeaver download page](https://dbeaver.io/download/).
 
-- Install and start RisingWave. For instructions on how to get started, see the [Quick start](/get-started.md) guide.
+- Install and start RisingWave. For instructions on how to get started, see the [Quick start guide](/get-started.md).
 
-## Establish the connection 
+## Establish the connection
 
 1. In DBeaver, from the menu bar, select **Database > New database connection**.
 
-2. In the **Connect to a database** window, select **PostgreSQL**. Click **Next**. 
+2. In the **Connect to a database** window, select **PostgreSQL**. Click **Next**.
 
 3. Under **Connection settings**, provide the following information:
 
@@ -40,4 +40,4 @@ This guide will go over how to connect DBeaver to RisingWave so you can seamless
 
 4. Click **Test connection**. If there are no errors, click **Finish**.
 
-Now that the connection is established, the RisingWave database should be listed in the DBeaver sidebar under **Database navigator**. By default, anything created in RisingWave, such as tables, sources, or materialized views, will be listed under the `dev` database and the `public` schema. 
+Now that the connection is established, the RisingWave database should be listed in the DBeaver sidebar under **Database navigator**. By default, anything created in RisingWave, such as tables, sources, or materialized views, will be listed under the `dev` database and the `public` schema.

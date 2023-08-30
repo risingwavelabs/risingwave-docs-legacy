@@ -217,6 +217,29 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Query & visualize data",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          label: "DBeaver",
+          id: "guides/dbeaver-integration",
+        },
+        {
+          type: "doc",
+          label: "Grafana",
+          id: "guides/grafana-integration",
+        },
+        {
+          type: "doc",
+          label: "Superset",
+          id: "guides/superset-integration",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Ecosystem",
       collapsible: false,
       collapsed: false,
@@ -356,30 +379,7 @@ const sidebars = {
               id: "guides/sink-to-clickhouse",
             },
           ],
-        },
-        {
-          type: "category",
-          label: "Visualization",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              label: "DBeaver",
-              id: "guides/dbeaver-integration",
-            },
-            {
-              type: "doc",
-              label: "Grafana",
-              id: "guides/grafana-integration",
-            },
-            {
-              type: "doc",
-              label: "Superset",
-              id: "guides/superset-integration",
-            },
-          ],
-        },
+        }
       ],
     },
     {
