@@ -32,7 +32,7 @@ const config = {
           versions: {
             current: {
               label: "1.2 (dev)",
-              path: "/upcoming",
+              path: "/dev",
               badge: false,
               banner: "unreleased",
             },
