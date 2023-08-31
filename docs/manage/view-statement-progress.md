@@ -30,7 +30,7 @@ CREATE MATERIALIZED VIEW mv2 AS SELECT * FROM mv1;
 ERROR:  QueryError: Scheduler error: Cancelled: create
 ```
 
-Alternatively, you can use the [`SHOW JOBS`](/sql/commands/sql-show-jobs.md) command to get all streaming jobs (that is, the creation of a materialized view) that are in progress. The IDs, specific statements, and their progresses will be returned in the result. You can then cancel specific jobs by their IDs using the [`CANCEL JOBS`](/sql/commands/sql-cancel-jobs.md) command.
+Alternatively, you can use the [`SHOW JOBS`](/sql/commands/sql-show-jobs.md) command to get all streaming jobs (that is, the creation of a materialized view) that are in progress. The IDs, specific statements, and their progresses will be returned in the result. You can then cancel specific jobs by their IDs using the [`CANCEL JOBS`](/sql/commands/sql-cancel-jobs.md) command. The `CANCEL JOBS` command will return IDs of the jobs that are canceled successfully.
 
 ```sql title="Show all jobs"
 SHOW JOBS;
