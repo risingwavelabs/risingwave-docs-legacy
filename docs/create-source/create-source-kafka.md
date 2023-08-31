@@ -127,7 +127,7 @@ For materialized sources with primary key constraints, if a new data record with
 |properties.sync.call.timeout | Optional. Specify the timeout. By default, the timeout is 5 seconds.  |
 |schema.registry.username|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
 |schema.registry.password|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
-|properties.client.id|Optional. Client ID associated with the Kafka broker. |
+|properties.client.id|Optional. Client ID associated with the Kafka client. |
 
 ### Other parameters
 
