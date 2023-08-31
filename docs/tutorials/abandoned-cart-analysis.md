@@ -2,18 +2,24 @@
 id: abandoned-carts
 slug: /abandoned-carts
 title: Abandoned Carts Analysis
-description: Use RisingWave to process and prepare real-time events from multiple sources to analyze abandon cart data.
+description: Use RisingWave to process and prepare real-time abandon cart data from multiple sources.
 ---
 
 ## Overview
 
+Abandoned cart data refers to the data collected when customers begin making purchases on an e-commerce platform by adding items to their shopping carts, but do not complete the transaction. This is a valuable resource that businesses can leverage to improve their e-commerce strategies and customer retention rates. By knowing when a customer abandons their purchase, a business can set up real-time notifications to remind the customer to return to their cart and finish the purchase.
 
+To implement real-time capabilities or to perform real-time data transformations, a strong technological infrastructure is necessary. This can be difficult to maintain as there are numerous moving parts and many real-time data transformation tools are tricky to manage and use. However, RisingWave can easily build streaming data pipelines. Data can be ingested from a variety of sources, transformed and aggregated in real-time with SQL queries, and sinked to data warehouses and lakes. To see how easily you can run RisingWave, see [Quick start](/get-started.md).
+
+This topic will introduce the idea of using RisingWave to process and transform abandoned cart data from multiple sources
 
 ## Step 1: Ingest data in RisingWave
 
-In order to analyze abandoned cart data, we will need to process both real-time data from Kafka topics, and static data MySQL. 
+In order to analyze abandoned cart data, we will process both real-time data from Kafka topics, and CDC data from MySQL. With RisingWave, we can easily ingest data from numerous sources with SQL queries. 
 
 ### MySQL data
+
+Let us start by ingesting data from two MySQL tables. The first table stores all user data and the second stores all product data for the business. Their schemas are shown below. 
 
 ```sql
 -- User schema in MySQL
@@ -34,20 +40,27 @@ CREATE TABLE products (
 );
 ```
 
+To read data from these two tables into RisingWave, we can use the following queries. For details on the syntax and how to set up MySQL, see [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md). As the source tables in MySQL are updated with new data entries, the sources in RisingWave will also instantaneously update. 
+
 ```sql
--- Create the user and product tables in RisingWave using MySQL as the source
+-- Create the user table in RisingWave with MySQL as the source
 CREATE TABLE users (
   id INT PRIMARY KEY,
   first_name VARCHAR(50),
   last_name VARCHAR(50),
   email VARCHAR(100)
 ) WITH (
-  MYSQL_CONNECTION_URL = 'jdbc:mysql://mysql:3306/your_database',
-  MYSQL_USERNAME = 'your_username',
-  MYSQL_PASSWORD = 'your_password',
-  MYSQL_TABLE_NAME = 'users'
+  connector = 'mysql-cdc',
+  hostname = '127.0.0.1',
+  port = '3306',
+  uesrname = 'your_username',
+  password = 'your_password',
+  database.name = 'mydb',
+  table.name = 'users',
+  server.id = '5454'
 );
 
+-- Create the products table in RisingWave with MySQL as the source
 CREATE TABLE products (
   id INT PRIMARY KEY,
   name VARCHAR(100),
@@ -55,14 +68,20 @@ CREATE TABLE products (
   price DECIMAL(10,2),
   category VARCHAR(50)
 ) WITH (
-  MYSQL_CONNECTION_URL = 'jdbc:mysql://mysql:3306/your_database',
-  MYSQL_USERNAME = 'your_username',
-  MYSQL_PASSWORD = 'your_password',
-  MYSQL_TABLE_NAME = 'products'
+  connector = 'mysql-cdc',
+  hostname = '127.0.0.1',
+  port = '3306',
+  uesrname = 'your_username',
+  password = 'your_password',
+  database.name = 'mydb',
+  table.name = 'products',
+  server.id = '5454'
 );
 ```
 
 ### Kafka topics
+
+As shoppers are updating their carts, being able to instantly receive and process that data allows us to extract valuable insights in a timely manner and immediately take action, if necessary. By connecting RisingWave to a Kafka broker, we can stream these events into RisingWave in real-time. The schema of an abandoned cart event is shown below. 
 
 ```sql
 -- Topic: abandoned_carts
@@ -73,6 +92,8 @@ CREATE TABLE products (
   "timestamp": TIMESTAMP
 } 
 ```
+
+With the following query, RisingWave allows us to easily connect to a Kafka broker to read data. For specifics on the query syntax and how to specify security settings, see [Ingest data from Kafka](/create-source/create-source-kafka.md). If you want to set up Kafka clusters on Confluent cloud, see [Ingest data from Confluent Cloud](/guides/confluent-kafka-source.md). 
 
 ```sql
 -- Define the abandoned cart stream in RisingWave
@@ -87,12 +108,11 @@ CREATE TABLE abandoned_carts (
 );
 ```
 
-
 ## Step 2: Join tables by creating a materialized view
 
-In order to join the tables created, we can create a materialized view. The benefit of creating a materialized view is that the results will instantly update as new data is ingested. For more details about the syntax on how to create a materialized view, see [CREATE MATERIALIZED VIEW](/sql/commands/sql-create-mv.md). 
+To consolidate the data we just ingested, we will join the tables above by creating a materialized view. This materialized view will provide a clear overall picture of what events are occurring on the e-commerce platform. The benefit of creating a materialized view is that the results will immediately update as new data is ingested. For more on the syntax of creating a materialized view, see [CREATE MATERIALIZED VIEW](/sql/commands/sql-create-mv.md). 
 
-The following query joins relevant fields from the three tables created in Step 1 by using multiple joins. For more details on what type of joins RisingWave supports, see [Joins](/sql/query-syntax/query-syntax-join-clause.md).
+The following query joins relevant fields from the three tables created in Step 1 by using multiple joins. For more on what type of joins RisingWave supports, see [Joins](/sql/query-syntax/query-syntax-join-clause.md).
 
 ```sql
 CREATE MATERIALIZED VIEW abandoned_cart_analysis AS
@@ -120,3 +140,6 @@ ON
   a.product_id = p.id;
 ```
 
+## Summary
+
+In this topic, we covered the process of ingesting data from a Kafka topic and two MySQL tables and creating a materialized view that joins the three data sources. With the materialized view, we can further transform and filter the data to extract valuable insights. For instance, from all the abandoned carts, we can find the most common products. From there, we can see if certain products are not selling as well as others and respond accordingly. Or, the transformed data can be sinked to an external system to create complex visualizations or for additional analysis. RisingWave provides the necessary features to allow users to easily process and transform streaming data. 
