@@ -5,7 +5,7 @@ description: Modify existing source name.
 slug: /sql-alter-source
 ---
 
-Use the `ALTER SOURCE` command to add columns to the source or modify the name of the source. 
+Use the `ALTER SOURCE` command to add columns to the source or modify the name of the source. If your source was created with a schema registry, columns cannot be altered.
 
 ## Syntax
 
@@ -23,13 +23,11 @@ export const svg = rr.Diagram(
             rr.NonTerminal('current_source_name'),
             rr.Terminal('ADD COLUMN'),
             rr.NonTerminal('col_name'),
-            rr.Nonterminal('data_type'),
+            rr.NonTerminal('data_type')
         ),
-        rr.ZeroOrMore(
-            rr.Sequence(
-                rr.Terminal('RENAME TO'),
-                rr.NonTerminal('new_source_name'),
-            ),
+        rr.Sequence(
+            rr.Terminal('RENAME TO'),
+            rr.NonTerminal('new_source_name'),
         ),
         rr.Terminal(';'),
     )
