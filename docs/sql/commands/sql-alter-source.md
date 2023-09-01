@@ -30,7 +30,7 @@ export const svg = rr.Diagram(
                 rr.Terminal('RENAME TO'),
                 rr.NonTerminal('new_source_name'),
             ),
-        )
+        ),
         rr.Terminal(';'),
     )
 );
