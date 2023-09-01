@@ -1,8 +1,10 @@
 ---
 id: sql-function-json
 slug: /sql-function-json
-title: JSON functions
+title: JSON functions and operators
 ---
+
+## JSON functions
 
 ### `jsonb_array_elements`
 
@@ -35,9 +37,23 @@ foo
 bar
 ```
 
+### `jsonb_array_length`
+
+Returns the number of elements in the top-level JSON array.
+
+```bash title=Syntax
+jsonb_array_length ( jsonb ) → integer
+```
+
+```sql title=Example
+SELECT jsonb_array_length('[1,2,3,{"f1":1,"f2":[5,6]},4]');
+------RESULT
+5
+```
+
 ### `jsonb_each`
 
-Expands the top-level JSON object into a set of key/value pairs.
+Expands the top-level JSON object into a set of key-value pairs.
 
 ```bash title=Syntax
 jsonb_each ( jsonb ) → setof record ( key varchar, value jsonb )
@@ -52,17 +68,19 @@ b "bar"
 
 ### `jsonb_each_text`
 
-Expands the top-level JSON object into a set of key/value pairs. The returned values will be of type varchar.
+Expands the top-level JSON object into a set of key-value pairs. The returned values will be of type varchar.
 
 ```bash title=Syntax
 jsonb_each_text ( jsonb ) → setof record ( key varchar, value varchar )
 ```
 
 ```sql title=Example
-SELECT jsonb_each_text('{"a":"foo", "b":"bar"}'::jsonb);
+SELECT * FROM jsonb_each_text('{"a":"foo", "b":"bar"}'::jsonb);
 ------RESULT
-(a,foo)
-(b,bar)
+ key | value 
+-----+-------
+ a   | foo
+ b   | bar
 
 ```
 
@@ -79,4 +97,77 @@ SELECT * FROM jsonb_object_keys('{"f1":"abc","f2":{"f3":"a", "f4":"b"}}'::jsonb)
 ------RESULT
 f1
 f2
+```
+
+### `jsonb_typeof`
+
+Returns the type of the top-level JSON value as a text string.
+
+```bash title=Syntax
+jsonb_typeof ( jsonb ) → varchar
+```
+
+```sql title=Example
+SELECT jsonb_typeof ('-123.4');
+------RESULT
+number
+
+```
+
+## JSON operators
+
+### `jsonb -> integer`
+
+Extracts the n'th element of a JSON array (array elements are indexed from zero, but negative integers count from the end).
+
+```bash title=Syntax
+jsonb -> integer → jsonb
+```
+
+```sql title=Example
+SELECT'[{"a":"foo"},{"b":"bar"},{"c":"baz"}]'::jsonb -> 2;
+------RESULT
+ {"c":"baz"}
+```
+
+### `jsonb -> varchar`
+
+Extracts JSON object field with the given key.
+
+```bash title=Syntax
+jsonb -> varchar → jsonb
+```
+
+```sql title=Example
+SELECT '{"a": {"b":"foo"}}'::jsonb -> 'a';
+------RESULT
+ {"b": "foo"}
+```
+
+### `jsonb ->> integer`
+
+Extracts the n'th element of a JSON array, as text.
+
+```bash title=Syntax
+jsonb ->> integer → varchar
+```
+
+```sql title=Example
+SELECT '[1,2,3]'::jsonb ->> 2;
+------RESULT
+3
+```
+
+### `jsonb ->> varchar`
+
+Extracts JSON object field with the given key, as text.
+
+```bash title=Syntax
+jsonb ->> varchar → varchar
+```
+
+```sql title=Example
+SELECT '{"a":1,"b":2}'::jsonb ->> 'b';
+------RESULT
+2
 ```
