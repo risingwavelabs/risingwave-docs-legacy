@@ -22,6 +22,12 @@ export default function NotFoundWrapper(props) {
       globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) =>
         v.name === version ? history.push(`${v.path}/${queries}`) : false
       );
+      const currentVersion = globalData["docusaurus-plugin-content-docs"].default["versions"].find((item) => {
+        return item.version === "current";
+      });
+      if (currentVersion?.docs?.includes(paths[paths.length - 1])) {
+        history.push(`/docs/current/${paths[paths.length - 1]}`);
+      }
       history.push(`/docs/current/${queries}`);
     }
   }, []);
