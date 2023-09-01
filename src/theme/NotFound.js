@@ -22,7 +22,18 @@ export default function NotFoundWrapper(props) {
       globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) =>
         v.name === version ? history.push(`${v.path}/${queries}`) : false
       );
-      history.push(`/docs/current/${queries}`);
+      const currentVersion = globalData["docusaurus-plugin-content-docs"].default["versions"].find((item) => {
+        return item.path === "/docs/current";
+      });
+      const docsExists = currentVersion?.docs?.some((doc) => {
+        const docPaths = doc.path.split("/");
+        return docPaths[docPaths.length - 1] === paths[paths.length - 2];
+      });
+      if (docsExists) {
+        history.push(`/docs/current/${paths[paths.length - 2]}`);
+      } else {
+        history.push(`/docs/current/${queries}`);
+      }
     }
   }, []);
 
