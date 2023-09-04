@@ -162,6 +162,48 @@ array_join(array[1, 2, 3, NULL, 5], ',', '*') → 1,2,3,*,5
 
 ---
 
+### `array_transform`
+
+This function takes an array, transforms the elements, and returns the results in a new array. The output array always has the same length as the input array.
+
+```bash title="Syntax"
+array_transform (array_expression, lambda_expression)
+
+lambda_expression:
+| element_alias | transform_expression
+```
+
+Each element in `array_expression` is evaluated against the `transform_expression`. `element_alias` is an alias that represents an array element.
+
+```sql title="Example A"
+SELECT array_transform('{1,2,3}'::int[], |x| (x::double precision+0.5));
+------RESULT
+{1.5,2.5,3.5}
+```
+
+```sql title="Example B"
+SELECT array_transform(
+    ARRAY['Apple', 'Airbnb', 'Amazon', 'Facebook', 'Google', 'Microsoft', 'Netflix', 'Uber'],
+    |x| case when x ilike 'A%' then 'A' else 'Other' end
+);
+------RESULT
+{A,A,A,Other,Other,Other,Other,Other}
+```
+
+Note that the `transform_expression` does not support referencing columns. For example, if you have a table:
+
+```sql
+CREATE TABLE t(v int, arr int[]);
+```
+
+The following query will fail.
+
+```sql
+select array_transform(arr, |x| x + v) from t;
+```
+
+---
+
 ### `array_upper`
 
 Returns the upper bound of the requested array dimension in *array*. *int* must be `1`. (This will return the same value as `array_length`.)
@@ -235,6 +277,3 @@ unnest(Array[Array[1,3,4,5],Array[2,3]]) →
 2
 3
 ```
-
-
-
