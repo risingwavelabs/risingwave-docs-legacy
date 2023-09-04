@@ -115,6 +115,8 @@ To ensure optimal performance and cluster stability, please consider the followi
 * If you have a single meta node, please increase the value of `meta_leader_lease_secs` to optimize performance.
 * If MinIO is being used, avoid deploying etcd and MinIO on the same disks to prevent any potential conflicts or performance degradation.
 
+For detailed disk performance requirements and recommendations, see the [Disks](https://etcd.io/docs/v3.3/op-guide/hardware/#disks) section in the etcd documentation.
+
 ### Optional: Customize the state store directory
 
 You can customize the directory for storing state data via the `spec: stateStore: dataDirectory` parameter in the `risingwave.yaml` file that you want to use to deploy a RisingWave instance. If you have multiple RisingWave instances, ensure the value of `dataDirectory` for the new instance is unique (the default value is `hummock`). Otherwise, the new RisingWave instance may crash. Save the changes to the `risingwave.yaml` file before running the `kubectl apply -f <...risingwave.yaml>` command. The directory path cannot be an absolute address, such as `/a/b`, and must be no longer than 180 characters.
