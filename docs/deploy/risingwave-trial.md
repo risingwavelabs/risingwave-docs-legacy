@@ -55,7 +55,7 @@ Start a RisingWave standalone instance in your local environment with Homebrew.
 
 :::caution
 This method starts RisingWave in playground mode, where data is temporarily stored in memory. The service automatically terminates after 30 minutes of inactivity, causing all data to be lost.
-To persist your data, start RisingWave with [Docker Compose](/deploy/risingwave-trial.md?method=docker-compose) or use [Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md) for production.
+To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md).
 :::
 
 1. ### Install and start RisingWave
@@ -96,7 +96,7 @@ Start a RisingWave standalone instance in your local environment with the pre-bu
 
 :::caution
 This method starts RisingWave in playground mode, where data is temporarily stored in memory. The service automatically terminates after 30 minutes of inactivity, causing all data to be lost.
-To persist your data, start RisingWave with [Docker Compose](/deploy/risingwave-trial.md?method=docker-compose) or use [Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md) for production.
+To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md).
 :::
 
 1. ### Download the binaries
@@ -174,7 +174,7 @@ Pull a RisingWave image and run it as a Docker container.
 
 :::caution
 This method starts RisingWave in playground mode, where data is temporarily stored in memory. The service automatically terminates after 30 minutes of inactivity, causing all data to be lost.
-To persist your data, start RisingWave with [Docker Compose](/deploy/risingwave-trial.md?method=docker-compose) or use [Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md) for production.
+To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md).
 :::
 
 1. ### Pull and run RisingWave
