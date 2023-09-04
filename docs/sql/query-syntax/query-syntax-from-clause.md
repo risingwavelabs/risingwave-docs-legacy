@@ -46,7 +46,7 @@ Table functions produce a set of rows made up of either base data types (scalar 
 
 ## `LATERAL` subqueries
 
-Subqueries appearing in `FROM` can be preceded by the key word `LATERAL`. This allows them to reference columns provided by preceding `FROM` items. Without `LATERAL`, each subquery is evaluated independently and so cannot cross-reference any other `FROM` item.
+Subqueries appearing in `FROM` can be preceded by the keyword `LATERAL`. This allows them to reference columns provided by preceding `FROM` items. Without `LATERAL`, each subquery is evaluated independently and so cannot cross-reference any other `FROM` item.
 
 To create a `LATERAL` subquery, use the `LATERAL` keyword directly before the inner subquery's `SELECT` statement.
 
