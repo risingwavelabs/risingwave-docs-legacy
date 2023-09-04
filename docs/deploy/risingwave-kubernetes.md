@@ -105,9 +105,19 @@ Before the deployment, ensure that the following requirements are satisfied.
 
 When deploying a RisingWave instance, you can choose from multiple object storage options to persist your data. Depending on the option you choose, the deployment instructions are different.
 
+### Notes about disks for etcd
+
+RisingWave uses etcd for persisting data for meta nodes. It's important to note that etcd is highly sensitive to disk write latency. Slow disk performance can lead to increased etcd request latency and potentially impact the stability of the cluster.
+
+To ensure optimal performance and cluster stability, please consider the following recommendations:
+
+* For optimum disk performance, we recommend using a typical local SSD or a high-performance virtualized block device. If you choose to deploy etcd on Amazon EBS, we recommend gp3 or faster SSD volumes.
+* If you have a single meta node, please increase the value of `meta_leader_lease_secs` to optimize performance.
+* If MinIO is being used, avoid deploying etcd and MinIO on the same disks to prevent any potential conflicts or performance degradation.
+
 ### Optional: Customize the state store directory
 
-You can customize the directory for storing state data via the `spec: stateStore: dataDirectory` parameter in the `risingwave.yaml` file that you want to use to deploy a RisingWave instance. If you have multiple RisingWave instances, ensure the value of `dataDirectory` for the new isntance is unique (the default value is `hummock`). Otherwise, the new RisingWave instance may crash. Save the changes to the `risingwave.yaml` file before running the `kubectl apply -f <...risingwave.yaml>` command. The directory path cannot be an absolute address, such as `/a/b`, and must be no longer than 180 characters
+You can customize the directory for storing state data via the `spec: stateStore: dataDirectory` parameter in the `risingwave.yaml` file that you want to use to deploy a RisingWave instance. If you have multiple RisingWave instances, ensure the value of `dataDirectory` for the new instance is unique (the default value is `hummock`). Otherwise, the new RisingWave instance may crash. Save the changes to the `risingwave.yaml` file before running the `kubectl apply -f <...risingwave.yaml>` command. The directory path cannot be an absolute address, such as `/a/b`, and must be no longer than 180 characters.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
