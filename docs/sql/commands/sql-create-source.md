@@ -194,7 +194,7 @@ Syntax:
 
 ```sql
 FORMAT { PLAIN | UPSERT }
-ENCODE JSON [ (schema.registry = 'url') ]
+ENCODE JSON [ (schema.registry = 'schema_registry_url') ]
 ```
 
 ### Protobuf
