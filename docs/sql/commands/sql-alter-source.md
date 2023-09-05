@@ -25,7 +25,7 @@ export const svg = rr.Diagram(
             rr.NonTerminal('col_name'),
             rr.NonTerminal('data_type')
         ),
-        rr.Sequence(
+        rr.ZeroOrMore(
             rr.Sequence(
                 rr.Terminal('RENAME TO'),
                 rr.NonTerminal('new_source_name'),
