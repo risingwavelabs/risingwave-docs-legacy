@@ -10,32 +10,9 @@ Use the `ALTER SOURCE` command to add columns to the source or modify the name o
 ## Syntax
 
 ```sql
-ALTER SOURCE current_source_name ADD COLUMN col_name data_type
-    [ RENAME TO new_source_name ];
+ALTER SOURCE current_source_name 
+    {ADD COLUMN col_name data_type | RENAME TO new_source_name} ;
 ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('ALTER SOURCE'),
-            rr.NonTerminal('current_source_name'),
-            rr.Terminal('ADD COLUMN'),
-            rr.NonTerminal('col_name'),
-            rr.NonTerminal('data_type')
-        ),
-        rr.ZeroOrMore(
-            rr.Sequence(
-                rr.Terminal('RENAME TO'),
-                rr.NonTerminal('new_source_name'),
-            ),
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
 
 ## Parameters
 
@@ -56,5 +33,6 @@ ALTER SOURCE src
 ```
 
 ```sql
-ALTER SOURCE src1 ADD COLUMN v3 int;
+ALTER SOURCE src1 
+    ADD COLUMN v3 int;
 ```
