@@ -9,10 +9,10 @@ Temporal filters allow you to filter data based on time intervals, which are use
 An valid temporal filter comprises the following components:
 
 - A comparision operator including `<`, `>`, `<=`, `>=` and `BETWEEN`
-- A time column as left side 
-- A time expression with `NOW() +/- interval` as right side
+- A time column as the left side 
+- A time expression with `NOW() +/- interval` as the right side
 
-Besides, the temporal filter condition must not be inside an `OR` expression. For example, `t > NOW() - INTERVAL '1 hour' OR a > 0` is invalid.
+Besides, the temporal filter condition must not be part of an `OR` expression. For example, `t > NOW() - INTERVAL '1 hour' OR a > 0` is invalid.
 
 The following query returns all rows from the `sales` table where the `sale_date` column plus one week is greater than the current date and time. In other words, it will return all sales records within the past week.
 
