@@ -254,7 +254,7 @@ to_char(timestamp '2006-01-02 15:04:05.003', 'YYYY-MM-DD HH24:MI:SS.MS') → '20
 Converts a string to a date according to the given format.
 
 ```bash title=Syntax
-to_date(text, text) → date
+to_date(date_string, format) → date
 ```
 
 ```bash title=Example
