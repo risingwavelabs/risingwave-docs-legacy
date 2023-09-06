@@ -9,10 +9,10 @@ Dynamic filters function as filter operators, but the filter condition contains 
 An valid dynamic filter comprises the following components:
 
 - A comparision operator including `<`, `>`, `<=`, `>=` and `BETWEEN`
-- A column as left side 
-- A scalar subquery as right side
+- A column as the left side 
+- A scalar subquery as the right side
 
-Besides, the dynamic filter condition must not be inside an `OR` expression. For example, `v > (select max(v) from t2) OR a > 0` is invalid.
+Additionally, the dynamic filter condition must not be part of an `OR` expression. For example, `v > (select max(v) from t2) OR a > 0` is invalid.
 
 The following query returns the name of all products whose profit margin is greater than the maximum profit margin recorded in the `sales` table.
 
