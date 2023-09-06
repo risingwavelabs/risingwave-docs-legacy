@@ -585,7 +585,7 @@ const sidebars = {
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-datetime",
-                  label: "Date/time",
+                  label: "Date & time",
                 },
                 {
                   type: "doc",
