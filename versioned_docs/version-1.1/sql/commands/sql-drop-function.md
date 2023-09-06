@@ -5,7 +5,7 @@ description: Drop a user-defined function.
 slug: /sql-drop-function
 ---
 
-Use the `DROP FUNCTION` command to remove an existing [user-defined function (UDF)](/sql/functions-operators/user-defined-functions.md).
+Use the `DROP FUNCTION` command to remove an existing [user-defined function (UDF)](/sql/udf/user-defined-functions.md).
 
 ## Syntax
 
@@ -66,7 +66,7 @@ A function can be dropped using one of the following methods:
 
 ## Examples
 
-First, let's [create some functions](/sql/functions-operators/user-defined-functions.md#4-declare-your-functions-in-risingwave).
+First, let's [create some functions](/sql/commands/sql-create-function.md).
 
 ```sql
 CREATE FUNCTION f1() RETURNS real LANGUAGE python AS func1 USING LINK 'http://localhost:8815';
@@ -107,6 +107,6 @@ DROP FUNCTION f1;
 
 ## See also
 
-[User-defined functions](/sql/functions-operators/user-defined-functions.md) — A step-by-step guide for using UDFs in RisingWave: installing the RisingWave UDF API, defining functions in a Python file, starting the UDF server, and declaring UDFs in RisingWave.
+[User-defined functions](/sql/udf/user-defined-functions.md) — A step-by-step guide for using UDFs in RisingWave: installing the RisingWave UDF API, defining functions in a Python file, starting the UDF server, and declaring UDFs in RisingWave.
 
 [SHOW FUNCTIONS](/sql/commands/sql-show-functions.md) — Show all existing UDFs.

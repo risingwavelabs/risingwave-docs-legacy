@@ -11,11 +11,13 @@ Use the `GRANT` command to grant specific privileges to a user.
 
 Grant database privileges to a user.
 
+
 ```sql
 GRANT {{CONNECT | CREATE}[, ...]| ALL [PRIVILEGES]} 
 ON DATABASE database_name [, ...]
 TO user_name [WITH GRANT OPTION] [GRANTED BY user_name];
 ```
+
 
 Grant schema privileges to a user.
 
