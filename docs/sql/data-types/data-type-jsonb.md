@@ -11,6 +11,7 @@ Notes:
 - Numbers not representable by IEEE 754 double precision floating point may have poor interoperability, notably numbers in the `bigint` type larger than `(2**53)-1`.
 - Avoid using a `JSONB` column for `GROUP BY` and `ORDER BY` clauses or `PRIMARY` and `INDEX` keys. The exact behavior may change in the future.
   - The suggested usage is to extract the target field and cast to a simple type.
+- If you have JSON data contained in a string, use the [Struct](/sql/data-types/data-type-struct.md) type instead of JSONB. 
 
 ## Define a JSONB type
 

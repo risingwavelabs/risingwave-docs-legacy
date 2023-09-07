@@ -44,9 +44,9 @@ CREATE TABLE trip (
         );
 ```
 
-You can also use the struct type to parse a string that contains data in JSON format.
+You can also use the struct type to parse a string that contains data in JSON format into its proper format.
 
-For instance, if your JSON data is structured like so:
+For instance, if your data is structured like so:
 
 ```terminal
 {
@@ -54,7 +54,18 @@ For instance, if your JSON data is structured like so:
 }
 ```
 
-You can use the struct type to parse it.
+And you want it to be structured like so:
+
+```terminal
+{
+  "nested": {
+    "v1": 10,
+    "v2": "hello"
+  }
+}
+```
+
+You can parse it using the struct type.
 
 ```sql
 CREATE SOURCE z (nested STRUCT <v1 INTEGER, v2 VARCHAR> ) FORMAT JSON;

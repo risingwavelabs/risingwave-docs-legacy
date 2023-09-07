@@ -190,8 +190,6 @@ ENCODE AVRO (
 
 RisingWave decodes JSON directly from external sources. When creating a source from streams in JSON, you need to define the schema of the source within the parentheses after the source name, and specify the data and encoding formats in the `FORMAT` and `ENCODE` sections. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
-If your data includes a string containing JSON formatted data, you can use the [Struct](/sql/data-types/data-type-struct.md) type to parse it. 
-
 Syntax:
 
 ```sql
