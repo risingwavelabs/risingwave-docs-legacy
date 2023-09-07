@@ -71,7 +71,7 @@ date_part('precision_string', date/time_value[, time_zone ]) → double_precisio
 
 `precision_string` can be year, month, day, hour, minute, second, doy, dow, millisecond, microsecond, epoch, millennium, century, decade, isoyear, quarter, week, isodow, or julian.
 
-`date/time_value` can be a date, timestamp, time, timestampz, or interval.
+`date/time_value` can be a date, timestamp, time, timestamptz, or interval.
 
 If `date/time_value` is timestamptz, it is recommended that `time_zone` is also specified, otherwise `time_zone` will default to the session time zone.
 
@@ -131,9 +131,9 @@ extract(field from source [AT TIME ZONE time_zone]) → numeric
 
 `field` can be year, month, day, hour, minute, second, doy, dow, millisecond, microsecond, epoch, millennium, century, decade, isoyear, quarter, week, isodow, or julian.
 
-`source` can be the date, timestamp, timestampz, time, or interval.
+`source` can be the date, timestamp, timestamptz, time, or interval.
 
-If `time_zone` is specified, `source` should be of type timestampz.
+If `time_zone` is specified, `source` should be of type timestamptz.
 
 ```bash title=Examples
 extract(day from date '2022-04-07') → 7
@@ -182,7 +182,7 @@ now() → '2023-08-04 21:29:59.662+00:00'
 Returns the system time with time zone when a record is processed. You can use this function to specify the processing time of a record in a table or source.
 
 ```bash title=Syntax
-proctime() → timestampz
+proctime() → timestamptz
 ```
 
 ```sql title=Example
@@ -193,7 +193,7 @@ CREATE TABLE t1 (v1 int, proc_time timestamptz as proctime());
 
 ### `to_char`
 
-Converts timestamp to a string according to the given format. Both uppercase and lowercase formats are supported.
+Converts timestamp or timestamptz to a string according to the given format. Both uppercase and lowercase formats are supported.
 
 ```bash title=Syntax
 to_char(timestamp, format) → string
@@ -202,7 +202,7 @@ to_char(timestamp, format) → string
 ```bash title=Example
 to_char(timestamp '2002-04-20 17:31:12.66', 'HH12:MI:SS') → '05:31:12'
 
-to_char(timestamp '2006-01-02 15:04:05.003', 'YYYY-MM-DD HH24:MI:SS.MS') → '2006-01-02 15:04:05.003'
+to_char('2023-07-11 20:01:00-07:00'::timestamptz, 'HH12:MI:SS TZH:TZM') → 03:01:00 +00:00
 ```
 
 ---
