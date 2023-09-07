@@ -7,17 +7,11 @@ slug: /ingest-from-mysql-cdc
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
 
-RisingWave supports ingesting row-level data (`INSERT`, `UPDATE`, and `DELETE` operations) from the changes of a MySQL database.
-
-:::note
-
-The supported MySQL versions are 5.7 and 8.0.x.
-
-:::
+RisingWave supports ingesting row-level data (`INSERT`, `UPDATE`, and `DELETE` operations) from the changes of a MySQL database. The supported MySQL versions are 5.7 and 8.0.x.
 
 You can ingest CDC data from MySQL in two ways:
 
-- Using the built-in MySQL CDC connector
+- Using the native MySQL CDC connector in RisingWave
 
   With this connector, RisingWave can connect to MySQL databases directly to obtain data from the binlog without starting additional services.
 
@@ -27,7 +21,9 @@ You can ingest CDC data from MySQL in two ways:
 
 - Using a CDC tool and a message broker
 
-  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/create-source/create-source-cdc.md) topic.
+  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave.
+
+This topic describes how to ingest MySQL CDC data into RisingWave using the native MySQL CDC connector. Using an external CDC tool and a message broker is introduced in [Create source via event streaming systems](/create-source/create-source-cdc.md).
 
 ## Set up MySQL
 
@@ -156,6 +152,16 @@ If you are running RisingWave locally with the pre-built library or with the sou
 ## Create a table using the native CDC connector in RisingWave
 
 To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
+
+:::note EXPERIMENTAL ENHANCEMENT AVAILABLE
+
+We have optimized the data backfilling logic for CDC tables to improve data ingestion performance. This is currently an experimental feature, and is not enabled by default. To enable it, run this command:
+
+```sql
+SET cdc_backfill="true";
+```
+
+:::
 
 ### Syntax
 
