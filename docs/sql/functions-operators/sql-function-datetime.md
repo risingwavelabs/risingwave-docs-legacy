@@ -47,19 +47,7 @@ An interval can contain hour/minute/second (i.e., fixed length) but not year/mon
 
 ## Date and time functions
 
-### `count()`
-
-Returns the count of non-`NULL` *timestamptz* values in a given set or column.
-
-```bash title=Syntax
-count( *timestamptz* ) → *numeric*
-```
-
-```bash title=Example
-count('2022-10-01 12:00:00-08:00'::timestamp with time zone) → 1
-```
-
-### `current_timestamp()`
+### `current_timestamp`
 
 Returns the current date and time.
 
@@ -71,11 +59,9 @@ current_timestamp() → *timestamptz*
 current_timestamp() → `2023-09-06 07:06:46.724+00:00`
 ```
 
-Certainly! Here's the converted text with the same formatting for each row:
-
 ---
 
-### `date_part()`
+### `date_part`
 
 Extracts the value of a date or timestamp.
 
@@ -105,7 +91,7 @@ date_part('day', '2023-06-01 00:00:00Z'::timestamptz, 'Australia/Sydney') → 1
 
 ---
 
-### `date_trunc()`
+### `date_trunc`
 
 Truncates a `date/time_value` to a specified `precision_string`.
 
@@ -131,11 +117,11 @@ date_trunc('month', interval '2333 year 4 months 5 days 02:47:33.123') → 2333 
 
 ---
 
-### `extract()`
+### `extract`
 
 This function has two variants.
 
-#### `extract (field from source)`
+#### `extract( field from source )`
 
 Extracts the value of a date or timestamp.
 
@@ -163,7 +149,7 @@ extract(day from '2023-06-01 00:00:00Z'::timestamptz at time zone 'us/pacific') 
 
 ---
 
-#### `extract(epoch)`
+#### `extract( epoch )`
 
 Converts the value of timestamp with time zone to Unix epoch seconds (the number of seconds since 1970-01-01 00:00:00 UTC). Negative for timestamps prior to that.
 
@@ -177,35 +163,7 @@ extract(epoch from '2010-01-01 12:34:56.789012Z'::timestamp with time zone) → 
 
 ---
 
-### `max()`
-
-Returns the maximum (latest) value among all timestamptz values in a given set or column.
-
-```bash title=Syntax
-max(timestamptz) → timestamptz
-```
-
-```bash title=Example
-max('2022-10-01 12:00:00-08:00'::timestamp with time zone) → '2022-10-01 20:00:00+00:00'
-```
-
----
-
-### `min()`
-
-Returns the minimum (earliest) value among all timestamptz values in a given set or column.
-
-```bash title=Syntax
-min(timestamptz) → timestamptz
-```
-
-```bash title=Example
-min('2022-10-01 12:00:00-08:00'::timestamp with time zone) → '2022-10-01 20:00:00+00:00'
-```
-
----
-
-### `now()`
+### `now`
 
 Returns the current date and time. For streaming queries, `now()` can only be used with WHERE, HAVING, and ON clauses. For more information, see [Temporal filters](/sql/syntax/sql-pattern-temporal-filters.md). This constraint does not apply to batch queries.
 
@@ -219,7 +177,7 @@ now() → '2023-08-04 21:29:59.662+00:00'
 
 ---
 
-### `proctime()`
+### `proctime`
 
 Returns the system time with time zone when a record is processed. You can use this function to specify the processing time of a record in a table or source.
 
@@ -233,7 +191,7 @@ CREATE TABLE t1 (v1 int, proc_time timestamptz as proctime());
 
 ---
 
-### `to_char()`
+### `to_char`
 
 Converts timestamp to a string according to the given format. Both uppercase and lowercase formats are supported.
 
@@ -249,7 +207,7 @@ to_char(timestamp '2006-01-02 15:04:05.003', 'YYYY-MM-DD HH24:MI:SS.MS') → '20
 
 ---
 
-### `to_date()`
+### `to_date`
 
 Converts a string to a date according to the given format.
 
@@ -263,7 +221,7 @@ to_date('05 Dec 2000', 'DD Mon YYYY') → '2000-12-05'
 
 ---
 
-### `to_timestamp()`
+### `to_timestamp`
 
 This function has two variants.
 
