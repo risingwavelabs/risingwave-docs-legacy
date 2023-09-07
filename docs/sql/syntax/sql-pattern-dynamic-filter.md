@@ -6,6 +6,14 @@ title: Dynamic filters
 
 Dynamic filters function as filter operators, but the filter condition contains a dynamic variable. They enable filtering data streams in real-time and allow a condition to be defined that incoming data must meet in order to be processed.
 
+An valid dynamic filter comprises the following components:
+
+- A comparision operator including `<`, `>`, `<=`, `>=` and `BETWEEN`
+- A column as the left side 
+- A scalar subquery as the right side
+
+Additionally, the dynamic filter condition must not be part of an `OR` expression. For example, `v > (select max(v) from t2) OR a > 0` is invalid.
+
 The following query returns the name of all products whose profit margin is greater than the maximum profit margin recorded in the `sales` table.
 
 ```sql

@@ -218,7 +218,7 @@ SELECT * FROM series(10);
 ```
 
 
-## Supported data Types
+## Supported data types
 
 The RisingWave Java UDF SDK supports the following data types:
 

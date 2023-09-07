@@ -53,7 +53,7 @@ CREATE TABLE t (x int, y int, z int);
 ```
 
 ```sql title="Insert data"
-INSERT INTO sales (x, y, z) VALUES
+INSERT INTO t (x, y, z) VALUES
   (1, 10, 50),
   (1, 10, 60),
   (1, 10, 70),

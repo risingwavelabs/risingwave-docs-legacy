@@ -13,9 +13,9 @@ This guide is designed to help you get up and running with RisingWave quickly an
 Ensure you have [Homebrew](https://brew.sh/) installed and then run the following commands:
 
 ```shell
-brew tap risingwavelabs/risingwave # Tap the repository
-brew install risingwave # Install the latest release of RisingWave.
-risingwave playground # Start RisingWave in playground mode
+brew tap risingwavelabs/risingwave
+brew install risingwave
+risingwave playground
 ```
 
 :::info

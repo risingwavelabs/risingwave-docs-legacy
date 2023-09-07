@@ -19,7 +19,7 @@ aggregate_name ( * ) [ FILTER ( WHERE filter_clause ) ]
 aggregate_name ( [ expression [ , ... ] ] ) WITHIN GROUP ( order_by_clause ) [ FILTER ( WHERE filter_clause ) ]
 ```
 
-where `aggregate_name` is one of the aggregation functions listed on [Aggregate functions](https://www.risingwave.dev/docs/latest/sql-function-aggregate/), and `expression` is a value expression that does not contain an aggregate expression or a window function call.
+where `aggregate_name` is one of the aggregation functions listed on [Aggregate functions](https://docs.risingwave.com/docs/current/sql-function-aggregate/), and `expression` is a value expression that does not contain an aggregate expression or a window function call.
 
 In RisingWave, the `DISTINCT` keyword, which is only available in the second form, cannot be used in conjunction with an `ORDER BY` or `WITHIN GROUP` clause. Additionally, it's important to note that the `order_by_clause` is positioned differently in the first and fourth forms.
 

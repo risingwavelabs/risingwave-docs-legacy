@@ -4,16 +4,38 @@ slug: /sql-function-array
 title: Array functions
 ---
 
-### `array_dims`
+### `array_append`
 
-Returns the dimensions of *array* as a string. *array* must be one dimensional.
+Appends *any_compatible* to the end of the input array.
 
 ```sql title=Syntax
-array_dims ( array ) → string
+array_append ( array, any_compatible ) → array
 ```
 
 ```sql title=Example
-array_dims ( array[2,3,4] ) → [1:3]
+array_append (array[66], array[123]) → {66, 233}
+```
+
+---
+
+### `array_cat`
+
+Concatenates two arrays with the same data type. The `||` operator can also be used.
+
+If the one of the input arrays is a 2-dimensional array, the other array will be appended within the first array as the last element if it is the second argument. The other array will be prepended within the first array as the first element if it is the first argument.
+
+```sql title=Syntax
+array_cat ( array, array ) → array
+```
+
+```sql title=Example
+array_cat (array[66], array[123]) → {66, 123}
+
+array[66] || array[123] → {66, 123}
+
+array_cat(array[array[66]], array[233]) → {{66}, {233}}
+
+array_cat(array[233], array[array[66]]) → {{233}, {66}}
 ```
 
 ---
@@ -83,7 +105,7 @@ array_ndims ( array ) → int
 ```
 
 ```sql title=Example
-array_ndims ( array[array[2,3], array[4,5]] ) → 2
+array_ndims ( array[array[2, 3], array[4, 5]] ) → 2
 ```
 
 ---
@@ -112,6 +134,20 @@ array_positions(array, any_compatible) → array
 
 ```sql title=Example
 array_positions(array[1,2,3,4,5,6,1,2,3,4,5,6], 4) → {4, 10}
+```
+
+---
+
+### `array_prepend`
+
+Prepends *any_compatible* to the beginning of the input array.
+
+```sql title=Syntax
+array_prepend ( any_compatible, array ) → array
+```
+
+```sql title=Example 
+array_prepend (123, array[66]) → {123, 66}
 ```
 
 ---
@@ -158,6 +194,48 @@ array_join(array, delimiter_string, null_string) → string
 array_to_string(array[1, 2, 3, NULL, 5], ',', '*') → 1,2,3,*,5 
 
 array_join(array[1, 2, 3, NULL, 5], ',', '*') → 1,2,3,*,5
+```
+
+---
+
+### `array_transform`
+
+This function takes an array, transforms the elements, and returns the results in a new array. The output array always has the same length as the input array.
+
+```bash title="Syntax"
+array_transform (array_expression, lambda_expression)
+
+lambda_expression:
+| element_alias | transform_expression
+```
+
+Each element in `array_expression` is evaluated against the `transform_expression`. `element_alias` is an alias that represents an array element.
+
+```sql title="Example A"
+SELECT array_transform('{1,2,3}'::int[], |x| (x::double precision+0.5));
+------RESULT
+{1.5,2.5,3.5}
+```
+
+```sql title="Example B"
+SELECT array_transform(
+    ARRAY['Apple', 'Airbnb', 'Amazon', 'Facebook', 'Google', 'Microsoft', 'Netflix', 'Uber'],
+    |x| case when x ilike 'A%' then 'A' else 'Other' end
+);
+------RESULT
+{A,A,A,Other,Other,Other,Other,Other}
+```
+
+Note that the `transform_expression` does not support referencing columns. For example, if you have a table:
+
+```sql
+CREATE TABLE t(v int, arr int[]);
+```
+
+The following query will fail.
+
+```sql
+select array_transform(arr, |x| x + v) from t;
 ```
 
 ---
@@ -235,6 +313,3 @@ unnest(Array[Array[1,3,4,5],Array[2,3]]) →
 2
 3
 ```
-
-
-

@@ -47,6 +47,7 @@ All `WITH` options are required except `force_append_only` and `primary_key`.
 |type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](/data-delivery.md).|
 |force_append_only| If `true`, forces the sink to be `append-only`, even if it cannot be.|
 |primary_key| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
+|properties.client.id|Optional. Client ID associated with the Kafka client. |
 
 ## Additional Kafka parameters
 
