@@ -19,10 +19,30 @@ export default function NotFoundWrapper(props) {
     } else if (version === "current") {
       history.push(`/docs/current/intro`);
     } else {
-      globalData["docusaurus-plugin-content-docs"].default["versions"].map((v) =>
-        v.name === version ? history.push(`${v.path}/${queries}`) : false
-      );
-      history.push(`/docs/current/${queries}`);
+      const res = globalData["docusaurus-plugin-content-docs"].default["versions"].find((v, index) => {
+        if (index === 0) {
+          return v.label.split(" ")[0] === version;
+        } else {
+          return v.name === version;
+        }
+      });
+      if (res) {
+        history.push(`${res.path}/${queries}`);
+      } else {
+        const currentVersion = globalData["docusaurus-plugin-content-docs"].default["versions"].find((item) => {
+          return item.path === "/docs/current";
+        });
+        const slugValue = paths[paths.length - 1] ? paths[paths.length - 1] : paths[paths.length - 2];
+        const docsExists = currentVersion?.docs?.some((doc) => {
+          const docPaths = doc.path.split("/");
+          return docPaths[docPaths.length - 1] === slugValue;
+        });
+        if (docsExists) {
+          history.push(`/docs/current/${slugValue}`);
+        } else {
+          history.push(`/docs/current/${queries}`);
+        }
+      }
     }
   }, []);
 
