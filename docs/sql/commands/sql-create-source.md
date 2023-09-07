@@ -168,6 +168,12 @@ When creating a source, specify the data and encoding formats in the `FORMAT` an
 
 For data in Avro format, you must specify a message and a schema file location. The schema file location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Avro, instead of a schema file location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
 
+Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` are used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
+
+:::caution Experimental feature
+`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::
+
 Note that the timestamp displayed in RisingWave may be different from the upstream system as timezone information is lost in Avro serialization.
 
 :::info
@@ -182,7 +188,53 @@ Syntax:
 FORMAT PLAIN
 ENCODE AVRO (
    message = 'main_message',
-   schema.location = 'location' | schema.registry = 'schema_registry_url'
+   schema.location = 'location' | schema.registry = 'schema_registry_url',
+   [schema.registry.name.strategy = 'topic_name_strategy'],
+   [key.message = 'test_key']
+)
+```
+
+### Debezium AVRO
+
+When creating a source from streams in with Debezium AVRO, the schema of the source does not need to be defined in the `CREATE TABLE` statement as it can be inferred from the `SCHEMA REGISTRY`. This means that the schema file location must be specified. The schema file location can be an actual Web location, which is in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
+
+Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` are used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
+
+:::caution Experimental feature
+`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::
+
+Syntax:
+
+```sql
+FORMAT DEBEZIUM
+ENCODE AVRO (
+   message = 'main_message',
+   schema.location = 'location' | schema.registry = 'schema_registry_url',
+   [schema.registry.name.strategy = 'topic_name_strategy'],
+   [key.message = 'test_key']
+)
+```
+
+### Upsert AVRO
+
+When consuming data in AVRO from Kafka topics, the `FORMAT` and `ENCODE` sections need to be specified as `UPSERT` and `AVRO` respectively. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted.
+
+Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` are used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
+
+:::caution Experimental feature
+`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::
+
+Syntax:
+
+```sql
+FORMAT UPSERT
+ENCODE AVRO (
+   message = 'main_message',
+   schema.location = 'location' | schema.registry = 'schema_registry_url',
+   [schema.registry.name.strategy = 'topic_name_strategy'],
+   [key.message = 'test_key']
 )
 ```
 
@@ -197,30 +249,15 @@ FORMAT PLAIN
 ENCODE JSON
 ```
 
-### Protobuf
+### Canal JSON
 
-For data in Protobuf format, you must specify a message and a schema location. The schema location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
-
-:::info
-
-For protobuf data, you cannot specify the schema in the `schema_definition` section of a `CREATE SOURCE` or `CREATE TABLE` statement.
-
-:::
-
-If you provide a file location, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
-
-```shell
-protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.proto
-```
+RisingWave supports the TiCDC dialect of the Canal CDC format. When creating a source from streams in TiCDC, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the data and encoding formats in the `FORMAT` and `ENCODE` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
 
 ```sql
-FORMAT PLAIN
-ENCODE PROTOBUF (
-   message = 'main_message',
-   schema.location = 'location' | schema.registry = 'schema_registry_url'
-)
+FORMAT CANAL
+ENCODE JSON
 ```
 
 ### Debezium JSON
@@ -247,20 +284,6 @@ FORMAT DEBEZIUM_MONGO
 ENCODE JSON
 ```
 
-### Debezium AVRO
-
-When creating a source from streams in with Debezium AVRO, the schema of the source does not need to be defined in the `CREATE TABLE` statement as it can be inferred from the `SCHEMA REGISTRY`. This means that the schema file location must be specified. The schema file location can be an actual Web location, which is in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
-
-Syntax:
-
-```sql
-FORMAT DEBEZIUM
-ENCODE AVRO (
-   message = 'main_message',
-   schema.location = 'location' | schema.registry = 'schema_registry_url'
-)
-```
-
 ### Maxwell JSON
 
 When creating a source from streams in Maxwell JSON, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the data and encoding formats in the `FORMAT` and `ENCODE` sections. You can directly reference data fields in the JSON payload by their names as column names in the schema.
@@ -269,17 +292,6 @@ Syntax:
 
 ```sql
 FORMAT MAXWELL
-ENCODE JSON
-```
-
-### Canal JSON
-
-RisingWave supports the TiCDC dialect of the Canal CDC format. When creating a source from streams in TiCDC, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the data and encoding formats in the `FORMAT` and `ENCODE` section. You can directly reference data fields in the JSON payload by their names as column names in the schema.
-
-Syntax:
-
-```sql
-FORMAT CANAL
 ENCODE JSON
 ```
 
@@ -294,15 +306,38 @@ FORMAT UPSERT
 ENCODE JSON
 ```
 
-### Upsert AVRO
+### Protobuf
 
-When consuming data in AVRO from Kafka topics, the `FORMAT` and `ENCODE` sections need to be specified as `UPSERT` and `AVRO` respectively. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted.
+For data in Protobuf format, you must specify a message and a schema location. The schema location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
+
+Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` are used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
+
+:::caution Experimental feature
+`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::
+
+:::info
+
+For protobuf data, you cannot specify the schema in the `schema_definition` section of a `CREATE SOURCE` or `CREATE TABLE` statement.
+
+:::
+
+If you provide a file location, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
+
+```shell
+protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.proto
+```
 
 Syntax:
 
 ```sql
-FORMAT UPSERT
-ENCODE AVRO
+FORMAT PLAIN
+ENCODE PROTOBUF (
+   message = 'main_message',
+   schema.location = 'location' | schema.registry = 'schema_registry_url',
+   [schema.registry.name.strategy = 'topic_name_strategy'],
+   [key.message = 'test_key']
+)
 ```
 
 ### Bytes
