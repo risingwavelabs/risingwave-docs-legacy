@@ -7,9 +7,10 @@ title: JSONB
 Use the `JSONB` data type to create a column that can store JSON data.
 
 Notes:
-  - Numbers not representable by IEEE 754 double precision floating point may have poor interoperability, notably numbers in the `bigint` type larger than `(2**53)-1`.
-  - Avoid using a `JSONB` column for `GROUP BY` and `ORDER BY` clauses or `PRIMARY` and `INDEX` keys. The exact behavior may change in the future.
-    - The suggested usage is to extract the target field and cast to a simple type.
+
+- Numbers not representable by IEEE 754 double precision floating point may have poor interoperability, notably numbers in the `bigint` type larger than `(2**53)-1`.
+- Avoid using a `JSONB` column for `GROUP BY` and `ORDER BY` clauses or `PRIMARY` and `INDEX` keys. The exact behavior may change in the future.
+  - The suggested usage is to extract the target field and cast to a simple type.
 
 ## Define a JSONB type
 
@@ -40,7 +41,6 @@ CREATE TABLE product (
         );
 ```
 
-
 ## Add values to a JSONB column
 
 To add values to a `JSONB` column, simply write the JSON as a string. For example, `'{"key": "value"}'`.
@@ -54,6 +54,7 @@ INSERT INTO x VALUES ('{"a": 3, "b": 4}', 5);
 ```
 
 The statement below adds values to table `y`.
+
 ```sql
 INSERT INTO y VALUES ('ABCD1234', '{"color": "blue", "size": "M"}');
 ```
@@ -70,15 +71,11 @@ VALUES
         );
 ```
 
-
 ## Retrieve data from a JSONB column and casting
 
-To retrieve data from a `JSONB` column, use the `->` or `->>` operators to access the JSON object's properties. The `->` operator returns a `JSONB` value, while the `->>` operator returns a text value.
+To retrieve data from a `JSONB` column, use the `->` or `->>` operators to access the JSON object's properties. The `->` operator returns a `jsonb` value, while the `->>` operator returns a varchar value.
 
-`JSONB -> int` → `JSONB` <br />
-`JSONB -> varchar` → `JSONB` <br />
-`JSONB ->> int` → `varchar` <br />
-`JSONB ->> varchar` → `varchar`
+For details about the JSON operators, see [JSON operators](/sql/functions-operators/sql-function-json.md#json-operators).
 
 `JSONB` data types can be cast to other data types such as bool, smallint, int, bigint, decimal, real, and double precision. Casting is performed using the `::data-type` cast notation, such as `::int` for casting to an integer data type.
 
@@ -108,9 +105,6 @@ FROM product;
 
 The output shows that the `brand_bad` column contains additional double quotes. So when the target column is a varchar, stick to the dedicated operator `->>` directly rather than using the cast. Only cast a boolean or a number.
 
+## JSONB functions and operators
 
-
-## Functions
-
-`jsonb_typeof(jsonb)` → `varchar` <br />
-`jsonb_array_length(jsonb)` → `int`
+For the full list of JSON and JSONB functions and operators, see [JSON functions and operators](/sql/functions-operators/sql-function-json.md).

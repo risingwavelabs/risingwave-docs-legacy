@@ -95,7 +95,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |---|-|--|
 |Apache Superset| |Available. See [Visualize RisingWave data in Superset](/guides/superset-integration.md) for details. |
 |Cube.js| | Researching <voteNotify note="cubejs" />|
-|DBeaver| | Available |
+|DBeaver| | Available. See [Connect DBeaver to RisingWave](/guides/dbeaver-integration.md) for details. |
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
 |Jupyter Notebook||Researching <voteNotify note="jupyter" />|
 |Looker||Researching <voteNotify note="looker" /> |

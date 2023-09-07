@@ -23,6 +23,7 @@ Currently, these system parameters are availble in RisingWave.
 |`backup_storage_url`       | The URL of the remote storage for backups.|
 |`backup_storage_directory` | The directory of the remote storage for backups.|
 |`telemetry_enabled` | Whether to enable telemetry or not. For more information, see [Telemetry](/telemetry.md).|
+|`max_concurrent_creating_streaming_jobs`|The maximum number of streaming jobs that can be created concurrently. That is, the maximum of materialized views that can be created concurrently. |
 
 ## How to view system parameters?
 
@@ -35,18 +36,20 @@ SHOW PARAMETERS;
 ```
 
 ```
-           Name           |     Value      | Mutable 
---------------------------+----------------+---------
- barrier_interval_ms      | 1000           | f
- checkpoint_frequency     | 10             | t
- sstable_size_mb          | 256            | f
- block_size_kb            | 64             | f
- bloom_false_positive     | 0.001          | f
- state_store              | hummock+memory | f
- data_directory           | hummock_001    | f
- backup_storage_url       | memory         | f
- backup_storage_directory | backup         | f
- telemetry_enabled        | true           | t
+           Name                         |     Value      | Mutable 
+----------------------------------------+----------------+---------
+ barrier_interval_ms                    | 1000           | f
+ checkpoint_frequency                   | 10             | t
+ sstable_size_mb                        | 256            | f
+ block_size_kb                          | 64             | f
+ bloom_false_positive                   | 0.001          | f
+ state_store                            | hummock+memory | f
+ data_directory                         | hummock_001    | f
+ backup_storage_url                     | memory         | f
+ backup_storage_directory               | backup         | f
+ telemetry_enabled                      | true           | t
+ max_concurrent_creating_streaming_jobs | 1              | t
+
 ```
 
 ## How to configure system parameters?
