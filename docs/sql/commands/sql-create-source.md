@@ -194,7 +194,11 @@ Syntax:
 
 ```sql
 FORMAT PLAIN 
-ENCODE JSON [ (schema.registry = 'schema_registry_url') ]
+ENCODE JSON [ (
+   schema.registry = 'schema_registry_url',
+   [schema.registry.username = 'username'],
+   [schema.registry.password = 'password']
+   ) ]
 ```
 
 ### Protobuf
@@ -293,7 +297,11 @@ Syntax:
 
 ```sql
 FORMAT UPSERT
-ENCODE JSON [ (schema.registry = 'schema_registry_url') ]
+ENCODE JSON [ (
+   schema.registry = 'schema_registry_url',
+   [schema.registry.username = 'username'],
+   [schema.registry.password = 'password']
+   ) ]
 ```
 
 ### Upsert AVRO
