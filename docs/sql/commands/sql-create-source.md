@@ -193,7 +193,7 @@ RisingWave decodes JSON directly from external sources. When creating a source f
 Syntax:
 
 ```sql
-FORMAT { PLAIN | UPSERT }
+FORMAT PLAIN 
 ENCODE JSON [ (schema.registry = 'schema_registry_url') ]
 ```
 
@@ -285,13 +285,15 @@ ENCODE JSON
 
 ### Upsert JSON
 
-When consuming data in JSON from Kafka topics, the `FORMAT` and `ENCODE` sections need to be specified as `UPSERT` and `JSON` respectively. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted.
+When consuming data in JSON from Kafka topics, the `FORMAT` and `ENCODE` sections need to be specified as `UPSERT` and `JSON` respectively. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted. 
+
+You can define the schema of the source within the parentheses after the source name or specify a `schema.registry`.
 
 Syntax:
 
 ```sql
 FORMAT UPSERT
-ENCODE JSON
+ENCODE JSON [ (schema.registry = 'schema_registry_url') ]
 ```
 
 ### Upsert AVRO
