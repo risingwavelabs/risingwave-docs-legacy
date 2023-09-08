@@ -158,4 +158,5 @@ updateable
 ClickHouse
 JetStream
 MSK
+msk
 NATS
