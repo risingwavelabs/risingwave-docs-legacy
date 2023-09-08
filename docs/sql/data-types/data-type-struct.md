@@ -44,6 +44,33 @@ CREATE TABLE trip (
         );
 ```
 
+You can also use the struct type to parse a string that contains data in JSON format into its proper format.
+
+For instance, if your data is structured like so:
+
+```terminal
+{
+  "nested": "{\"v1\": 10, \"v2\": \"hello\"}"
+}
+```
+
+And you want it to be structured like so:
+
+```json
+{
+  "nested": {
+    "v1": 10,
+    "v2": "hello"
+  }
+}
+```
+
+You can parse it using the struct type.
+
+```sql
+CREATE SOURCE z (nested STRUCT <v1 INTEGER, v2 VARCHAR>) FORMAT JSON;
+```
+
 ## Add values to a struct
 
 To add values to structs, enclose the nested data with `()` in the SQL statement. For example, `(1, true)`. Alternatively, you can also use `ROW(1, true)`.
@@ -57,6 +84,7 @@ INSERT INTO x VALUES (ROW(3, 4), 5);
 ```
 
 The statement below adds values to table `y`.
+
 ```sql
 INSERT INTO y VALUES (ROW(ROW(6), 7), 8);
 ```

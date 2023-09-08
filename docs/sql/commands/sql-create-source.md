@@ -38,72 +38,6 @@ col_name data_type [ AS generation_expression ],
 To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
 :::
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-   rr.Stack(
-      rr.Sequence(
-         rr.Terminal('CREATE SOURCE'),
-         rr.Optional(rr.Terminal('IF NOT EXISTS')),
-         rr.NonTerminal('source_name', 'skip'),
-      ),
-      rr.Stack(
-         rr.OneOrMore(
-            rr.Sequence(
-               rr.NonTerminal('col_name', 'skip'),
-               rr.NonTerminal('data_type', 'skip'),
-               rr.Optional(rr.Terminal('AS generation_expression')),
-               rr.Optional(rr.Terminal(',')),
-                ),
-            ),
-          rr.Optional(rr.Terminal('watermark_clause'), 'skip')
-        ),
-      rr.Sequence(
-         rr.Terminal('WITH'),
-         rr.Terminal('('),
-         rr.Stack(
-            rr.Stack(
-               rr.Sequence(
-                  rr.Terminal('connector'),
-                  rr.Terminal('='),
-                  rr.NonTerminal('connector_name', 'skip'),
-                  rr.Terminal(','),
-               ),
-               rr.OneOrMore(
-                  rr.Sequence(
-                     rr.NonTerminal('connector_parameter', 'skip'),
-                     rr.Terminal('='),
-                     rr.NonTerminal('value', 'skip'),
-                     rr.Terminal(','),
-                  ),
-               ),
-            ),
-            rr.Terminal(')'),
-         ),
-      ),
-      rr.Sequence(
-         rr.Terminal('FORMAT'),
-         rr.NonTerminal('format', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('ENCODE'),
-         rr.NonTerminal('encode', 'skip'),
-         rr.Optional(
-            rr.Sequence(
-               rr.Terminal('('),
-               rr.NonTerminal('encode_parameter', 'skip'),
-               rr.Terminal(')'),
-            ),
-         ),
-      ),
-      rr.Stack(
-         rr.Terminal(';'),
-      ),
-   )
-);
-
-<drawer SVG={svg} />
-
 :::note
 
 Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
@@ -119,8 +53,8 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 |*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
 |*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |*watermark_clause*| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
-|**WITH** clause |Specify the connector settings here if trying to store all the source data. See the [Data ingestion](/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
-|**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
+|**WITH** clause |Specify the connector settings here if trying to store all the source data. See [Supported sources](#supported-sources) for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
+|**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Supported formats](#supported-formats). |
 
 ## Supported sources
 
@@ -240,13 +174,17 @@ ENCODE AVRO (
 
 ### JSON
 
-RisingWave decodes JSON directly from external sources. When creating a source from streams in JSON, you need to define the schema of the source within the parentheses after the source name, and specify the data and encoding formats in the `FORMAT` and `ENCODE` sections. You can directly reference data fields in the JSON payload by their names as column names in the schema.
+RisingWave decodes JSON directly from external sources. When creating a source from streams in JSON, you can define the schema of the source within the parentheses after the source name or specify a `schema.registry`. Specify the data and encoding formats in the `FORMAT` and `ENCODE` sections. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
 Syntax:
 
 ```sql
-FORMAT PLAIN
-ENCODE JSON
+FORMAT PLAIN 
+ENCODE JSON [ (
+   schema.registry = 'schema_registry_url',
+   [schema.registry.username = 'username'],
+   [schema.registry.password = 'password']
+   ) ]
 ```
 
 ### Canal JSON
@@ -299,11 +237,17 @@ ENCODE JSON
 
 When consuming data in JSON from Kafka topics, the `FORMAT` and `ENCODE` sections need to be specified as `UPSERT` and `JSON` respectively. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted.
 
+You can define the schema of the source within the parentheses after the source name or specify a `schema.registry`.
+
 Syntax:
 
 ```sql
 FORMAT UPSERT
-ENCODE JSON
+ENCODE JSON [ (
+   schema.registry = 'schema_registry_url',
+   [schema.registry.username = 'username'],
+   [schema.registry.password = 'password']
+   ) ]
 ```
 
 ### Protobuf
