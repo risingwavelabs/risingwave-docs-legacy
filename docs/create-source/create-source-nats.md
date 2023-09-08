@@ -16,12 +16,12 @@ The NATS source connector in RisingWave is currently an experimental feature, an
 
 ## Prerequisites
 
-Before ingesting data from NATS JetStream into RisingWave, ensure that:
+Before ingesting data from NATS JetStream into RisingWave, please ensure the following:
 
-- Your NATS JetStream server is running and accessible from your RisingWave cluster.
-- If the NATS JetStream server requires authentication, you have the client username and password. The client user must have the `subscribe` permission to the subject.
-- The NATS subject that you want to ingest data from has been created.
-- Your RisingWave cluster is running.
+- The NATS JetStream server is running and accessible from your RisingWave cluster.
+- If authentication is required for the NATS JetStream server, make sure you have the client username and password. The client user must have the `subscribe` permission for the subject.
+- Create the NATS subject from which you want to ingest data.
+- Ensure that your RisingWave cluster is running.
 
 ## Ingest data into RisingWave
 
