@@ -11,8 +11,13 @@ Use `SHOW JOBS` to get all streaming jobs that are in progress, including their 
 ## Syntax
 
 ```sql
-SHOW JOBS;
+SHOW JOBS [ LIKE_expression ];
 ```
+
+## Parameters
+|Parameter   | Description           |
+|---------------------------|-----------------------|
+|LIKE_expression| Filters the output based on names by applying pattern matching. See details in [LIKE pattern matching expressions](/sql/functions-operators/sql-function-string.md#like-pattern-matching-expressions).|
 
 ## Example
 

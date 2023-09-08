@@ -10,7 +10,7 @@ Use the `SHOW COLUMNS` command to view columns in the specified table, source, o
 ## Syntax
 
 ```sql
-SHOW COLUMNS FROM table_name;
+SHOW COLUMNS FROM table_name [ LIKE_expression ];
 ```
 
 
@@ -21,18 +21,20 @@ export const svg = rr.Diagram(
         rr.Terminal('SHOW COLUMNS'),
         rr.Terminal('FROM'),
         rr.NonTerminal('table_name'),
+        rr.Optional(
+            rr.NonTerminal('LIKE_expression'),
+        ),
         rr.Terminal(';')
     )
 );
 
 <drawer SVG={svg} />
 
-
-
 ## Parameters
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
 |*table_name*                    |The name of the table, source, or materialized view from which the columns will be listed.|
+|LIKE_expression| Filters the output based on names by applying pattern matching. See details in [LIKE pattern matching expressions](/sql/functions-operators/sql-function-string.md#like-pattern-matching-expressions).|
 
 
 ## Example

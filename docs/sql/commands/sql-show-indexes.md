@@ -10,13 +10,14 @@ Use the `SHOW INDEXES` command to view indexes from a particular table.
 ## Syntax
 
 ```sql
-SHOW INDEXES FROM table_name;
+SHOW INDEXES FROM table_name [ LIKE_expression ];
 ```
 
 ## Parameters
 |Parameter   | Description           |
 |---------------------------|-----------------------|
 |*table_name* |The table from which indexes will be displayed. |
+|LIKE_expression| Filters the output based on names by applying pattern matching. See details in [LIKE pattern matching expressions](/sql/functions-operators/sql-function-string.md#like-pattern-matching-expressions).|
 
 ## Example
 

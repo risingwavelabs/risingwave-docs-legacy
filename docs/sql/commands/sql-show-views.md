@@ -10,13 +10,14 @@ Use the `SHOW VIEW` command to list existing views in a particular schema.
 ## Syntax
 
 ```sql
-SHOW VIEWS [FROM schema_name];
+SHOW VIEWS [ FROM schema_name ] [ LIKE_expression ];
 ```
 
 ## Parameters
-|Parameter   | Description           |
+|Parameter or clause  | Description           |
 |---------------------------|-----------------------|
 |*schema_name*              |The schema from which existing views will be listed. If not given, views from the default schema, "public", will be listed.|
+|LIKE_expression| Filters the output based on names by applying pattern matching. See details in [LIKE pattern matching expressions](/sql/functions-operators/sql-function-string.md#like-pattern-matching-expressions).|
 
 
 ## Example

@@ -10,7 +10,7 @@ Use the `SHOW MATERIALZED VIEWS` command to show existing materialized views.
 ## Syntax
 
 ```sql
-SHOW MATERIALIZED VIEWS [FROM schema_name];
+SHOW MATERIALIZED VIEWS [ FROM schema_name ] [ LIKE_expression ];
 ```
 
 import rr from '@theme/RailroadDiagram'
@@ -25,8 +25,11 @@ export const svg = rr.Diagram(
                     rr.NonTerminal('schema_name', 'skip'),
                 ),
             ),
+            rr.Optional(
+            rr.NonTerminal('LIKE_expression'),
+            ),
+            rr.Terminal(';'),
         ),
-        rr.Terminal(';'),
     ),
 );
 
@@ -38,6 +41,7 @@ export const svg = rr.Diagram(
 |Parameter      | Description           |
 |---------------------------|-----------------------|
 |*schema_name*                   |The schema in which the materialized views will be listed. If not given, materialized views from the default schema, `public`, will be listed|
+|LIKE_expression| Filters the output based on names by applying pattern matching. See details in [LIKE pattern matching expressions](/sql/functions-operators/sql-function-string.md#like-pattern-matching-expressions).|
 
 
 ## Example

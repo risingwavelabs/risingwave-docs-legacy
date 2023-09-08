@@ -10,7 +10,7 @@ Use the `SHOW SOURCES` command to show existing sources.
 ## Syntax
 
 ```sql
-SHOW SOURCES [ FROM schema_name ];
+SHOW SOURCES [ FROM schema_name ] [ LIKE_expression ];
 ```
 
 
@@ -25,6 +25,9 @@ export const svg = rr.Diagram(
                 rr.NonTerminal('schema_name', 'skip'),
             ),
         ),
+        rr.Optional(
+            rr.NonTerminal('LIKE_expression'),
+        ),
         rr.Terminal(';'),
     ),
 );
@@ -36,7 +39,7 @@ export const svg = rr.Diagram(
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
 |*schema_name*                   |The schema of the sources to be listed. The default schema is `public`.|
-
+|LIKE_expression| Filters the output based on names by applying pattern matching. See details in [LIKE pattern matching expressions](/sql/functions-operators/sql-function-string.md#like-pattern-matching-expressions).|
 
 ## Example
 
