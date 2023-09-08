@@ -156,3 +156,6 @@ TPC
 Greenplum
 updateable
 ClickHouse
+JetStream
+MSK
+NATS
