@@ -34,7 +34,7 @@ CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [ schema_definition ]
 WITH (
    connector='nats',
-   nats.server_url='<your nats server>:4222',
+   nats.server_url='<your nats server>:<port>', [ <another_server_url_if_available>, ...]
    nats.subject='<your subject>',
 
    -- Optional parameters
@@ -64,7 +64,7 @@ For a table with primary key constraints, if a new data record with an existing 
 
 |Field|Notes|
 |---|---|
-|nats.server_url| Required. URL of the NATS JetStream server. If multiple addresses are specified, use commas to separate them.|
+|nats.server_url| Required. URLs of the NATS JetStream server, in the format of *address*:*port*. If multiple addresses are specified, use commas to separate them.|
 |nats.subject| Required. NATS subject that you want to ingest from.|
 |nats.user| Optional. If authentication is required, specify the client user name.|
 |nats.password| Optinal. If authentication is required, specify the client password.|
