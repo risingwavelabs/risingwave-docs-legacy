@@ -5,7 +5,7 @@
 const config = {
   title: "RisingWave",
   tagline: "Get started with RisingWave",
-  url: "https://www.risingwave-labs.com",
+  url: "https://docs.risingwave.com",
   baseUrl: "/",
   trailingSlash: true,
   onBrokenLinks: "warn",
