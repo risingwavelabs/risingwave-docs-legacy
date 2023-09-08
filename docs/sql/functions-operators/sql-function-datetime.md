@@ -193,13 +193,15 @@ CREATE TABLE t1 (v1 int, proc_time timestamptz as proctime());
 
 ### `to_char`
 
-Converts timestamp or timestamptz to a string according to the given format. Both uppercase and lowercase formats are supported.
+Converts the input to string according to the given format. Both uppercase and lowercase formats are supported.
 
 ```bash title=Syntax
-to_char(timestamp, format) → string
+to_char ( *timestamptz*, *format* ) → *string*
+to_char ( *timestamp*, *format* ) → *string*
 ```
 
 ```bash title=Example
+
 to_char(timestamp '2002-04-20 17:31:12.66', 'HH12:MI:SS') → '05:31:12'
 
 to_char('2023-07-11 20:01:00-07:00'::timestamptz, 'HH12:MI:SS TZH:TZM') → 03:01:00 +00:00
