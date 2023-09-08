@@ -68,7 +68,7 @@ And you want it to be structured like so:
 You can parse it using the struct type.
 
 ```sql
-CREATE SOURCE z (nested STRUCT <v1 INTEGER, v2 VARCHAR> ) FORMAT JSON;
+CREATE SOURCE z (nested STRUCT <v1 INTEGER, v2 VARCHAR>) FORMAT JSON;
 ```
 
 ## Add values to a struct
