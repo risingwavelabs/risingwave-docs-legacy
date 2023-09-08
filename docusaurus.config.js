@@ -5,7 +5,7 @@
 const config = {
   title: "RisingWave",
   tagline: "Get started with RisingWave",
-  url: "https://www.risingwave-labs.com",
+  url: "https://docs.risingwave.com",
   baseUrl: "/",
   trailingSlash: true,
   onBrokenLinks: "warn",
@@ -32,7 +32,7 @@ const config = {
           versions: {
             current: {
               label: "1.2 (dev)",
-              path: "/upcoming",
+              path: "/dev",
               badge: false,
               banner: "unreleased",
             },
@@ -193,7 +193,7 @@ const config = {
       items: [{ label: "Latest", to: "docs/latest/intro" }],
     }),
   customFields: {
-    docsUrl: "https://www.risingwave.dev",
+    docsUrl: "https://docs.risingwave.com",
     requestUrl: "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
     bugReportUrl:
       "https://github.com/risingwavelabs/risingwave-docs/issues/new?assignees=CharlieSYH%2C+hengm3467&labels=bug&template=bug_report.yml&title=Bug%3A+&link=",

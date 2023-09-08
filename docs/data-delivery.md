@@ -12,7 +12,7 @@ Currently, RisingWave supports the following sink connectors:
 
 - Kafka sink connector (`connector = 'kafka'`)
   
-  With this connector, you can sink data from RisingWave to Kafka topics. For details about the syntax and parameters, see [Sink data to Kafka](guides/create-sink-kafka.md).
+  With this connector, you can sink data from RisingWave to Kafka topics. For details about the syntax and parameters, see [Sink data to Kafka](/guides/create-sink-kafka.md).
 
 - JDBC sink connector (`connector = 'jdbc'`)
 
@@ -34,7 +34,7 @@ Currently, RisingWave supports the following sink connectors:
 
 For each sink, you can specify the data format. All sinks supports the `upsert` and `append-only` formats while Kafka also supports the `debezium` format. When creating an `upsert` sink, note whether or not you need to specify the primary key in the following situations.
 
-- If the downstream system supports primary keys and the table in the downstream system has a primary key, users must specify the primary key with the `primary_key` field when creating a upsert JDBC sink.
+- If the downstream system supports primary keys and the table in the downstream system has a primary key, you must specify the primary key with the `primary_key` field when creating an upsert JDBC sink.
 
 - If the downstream system supports primary keys but the table in the downstream system has no primary key, then RisingWave does not allow users to create an upsert sink. A primary key must be defined in the table in the downstream system.
 

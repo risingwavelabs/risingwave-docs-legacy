@@ -19,7 +19,7 @@ RisingWave accepts these data formats:
 
     For Debezium JSON (`FORMAT DEBEZIUM ENCODE JSON`), you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), or [Debezium connector for SQL Server](https://debezium.io/documentation/reference/stable/connectors/sqlserver.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
 
-    Note that if you are ingesting data of type `timestamp` or `timestampz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning. 
+    Note that if you are ingesting data of type `timestamp` or `timestampz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning.
 
 - Debezium Mongo JSON (for MongoDB)
 
@@ -55,73 +55,6 @@ WITH (
 FORMAT { DEBEZIUM | DEBEZIUM_MONGO | MAXWELL | CANAL | PLAIN }
 ENCODE { JSON | AVRO | PROTOBUF | CSV } [( encode properties ... )];
 ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE TABLE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('table_name', 'wrap')
-        ),
-        rr.Sequence(
-            rr.Terminal('('),
-            rr.ZeroOrMore(
-                rr.Sequence(
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.NonTerminal('data_type', 'skip'),
-                    rr.Optional(rr.Terminal('column_constraint')),
-                ),
-                ','
-            ),
-            rr.Terminal(')'),
-        ),
-        rr.Sequence(
-            rr.Terminal('FORMAT'),
-            rr.NonTerminal('format', 'skip')
-        ),
-        rr.Sequence(
-            rr.Terminal('ENCODE'),
-            rr.NonTerminal('encode', 'skip'),
-            rr.Optional(
-                rr.Sequence(
-                rr.Terminal('('),
-                rr.NonTerminal('encode_parameter', 'skip'),
-                rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.NonTerminal('kafka', 'skip'),
-                        rr.Terminal(','),
-                    ),
-                    rr.Sequence(
-                       rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('connector_parameter', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                        ),
-                        ',',
-                    ),
-                        rr.Terminal(')'),
-                    ),
-                ),
-            ),
-        ),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
 
 ### Connector Parameters
 
@@ -162,7 +95,7 @@ WITH (
 </TabItem>
 <TabItem value="Debezium Mongo JSON" label="Debezium Mongo JSON">
 
-For more details on this row format, see [Debezium Mongo JSON](../sql/commands/sql-create-source.md#debezium-mongo-json)
+For more details on this row format, see [Debezium Mongo JSON](/sql/commands/sql-create-source.md#debezium-mongo-json)
 
 ```sql
 CREATE TABLE [IF NOT EXISTS] source_name (
@@ -198,7 +131,7 @@ Although the `CREATE TABLE` command only specifies one column, the other columns
 
 :::note
 
-If the upstream is PostgreSQL, the `interval` type in PostgreSQL may be mismatched to `bigint` or `varchar` in RisingWave, depending on [interval.handling.mode](https://debezium.io/documentation/reference/2.3/connectors/postgresql.html#postgresql-property-interval-handling-mode) in the Debezium connector settings. 
+If the upstream is PostgreSQL, the `interval` type in PostgreSQL may be mismatched to `bigint` or `varchar` in RisingWave, depending on [interval.handling.mode](https://debezium.io/documentation/reference/2.3/connectors/postgresql.html#postgresql-property-interval-handling-mode) in the Debezium connector settings.
 
 :::
 

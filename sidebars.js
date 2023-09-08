@@ -217,6 +217,29 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Query & visualize data",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          label: "DBeaver",
+          id: "guides/dbeaver-integration",
+        },
+        {
+          type: "doc",
+          label: "Grafana",
+          id: "guides/grafana-integration",
+        },
+        {
+          type: "doc",
+          label: "Superset",
+          id: "guides/superset-integration",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Ecosystem",
       collapsible: false,
       collapsed: false,
@@ -238,14 +261,50 @@ const sidebars = {
               id: "data-ingestion",
             },
             {
-              type: "doc",
-              label: "Apache Kafka",
-              id: "create-source/create-source-kafka",
+              type: "category",
+              label: "Kafka",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  label: "Apache Kafka",
+                  id: "create-source/create-source-kafka",
+                },
+                {
+                  type: "doc",
+                  label: "Confluent Cloud",
+                  id: "guides/confluent-kafka-source",
+                },
+                {
+                  type: "doc",
+                  label: "Amazon MSK",
+                  id: "guides/connector-amazon-msk",
+                },
+                {
+                  type: "doc",
+                  label: "Redpanda",
+                  id: "create-source/create-source-redpanda",
+                },
+              ]
             },
             {
-              type: "doc",
-              label: "Apache Pulsar",
-              id: "create-source/create-source-pulsar",
+              type: "category",
+              label: "Pulsar",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  label: "Apache Pulsar",
+                  id: "create-source/create-source-pulsar",
+                },
+                {
+                  type: "doc",
+                  label: "DataStax Astra Streaming",
+                  id: "guides/connector-astra-streaming",
+                },
+              ]
             },
             {
               type: "doc",
@@ -269,23 +328,13 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "Confluent Cloud",
-              id: "guides/confluent-kafka-source",
-            },
-            {
-              type: "doc",
-              label: "Amazon MSK",
-              id: "guides/connector-amazon-msk",
-            },
-            {
-              type: "doc",
-              label: "DataStax Astra Streaming",
-              id: "guides/connector-astra-streaming",
-            },
-            {
-              type: "doc",
               label: "Load generator",
               id: "create-source/create-source-datagen",
+            },
+            {
+              type: "doc",
+              label: "MongoDB CDC",
+              id: "guides/ingest-from-mongodb-cdc",
             },
             {
               type: "doc",
@@ -297,11 +346,7 @@ const sidebars = {
               label: "PostgreSQL CDC",
               id: "guides/ingest-from-postgres-cdc",
             },
-            {
-              type: "doc",
-              label: "Redpanda",
-              id: "create-source/create-source-redpanda",
-            },
+
           ],
         },
         {
@@ -356,25 +401,7 @@ const sidebars = {
               id: "guides/sink-to-clickhouse",
             },
           ],
-        },
-        {
-          type: "category",
-          label: "Visualization",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              label: "Grafana",
-              id: "guides/grafana-integration",
-            },
-            {
-              type: "doc",
-              label: "Superset",
-              id: "guides/superset-integration",
-            },
-          ],
-        },
+        }
       ],
     },
     {
@@ -558,7 +585,12 @@ const sidebars = {
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-datetime",
-                  label: "Date/time",
+                  label: "Date & time",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-json",
+                  label: "JSON",
                 },
                 {
                   type: "doc",

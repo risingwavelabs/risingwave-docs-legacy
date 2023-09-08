@@ -8,15 +8,15 @@ title: Mathematical functions and operators
 
 | Operator | Expression & Description | Example |
 | ----------- | ----------- | ----------- |
-| + | `operand1 + operand2` <br /> Addition. <br /> | 1 + 2 → 3 |
-| - | `operand1 - operand2` <br /> Subtraction. <br /> | 1 - 2 → -1 |
+| + | `operand1 + operand2` <br /> Addition. | 1 + 2 → 3 |
+| - | `operand1 - operand2` <br /> Subtraction. | 1 - 2 → -1 |
 | - | `- operand` <br /> Negation. <br /> | - (-1) → 1 |
-| * | `operand1 * operand2` <br /> Multiplication. <br /> | 2 * 3 → 6 |
-| / | `operand1 / operand2` <br /> Division (results are truncated for integers). <br /> | 3 / 2 → 1 <br /> 3.0 / 2 → 1.5 <br />  3 / 1.8 → 1.666... |
-| % | `operand1 % operand2` <br /> Remainder (valid for smallint/int/bigint/numeric). <br /> | 3 % 2 → 1 |
-| ^ | `operand1 ^ operand2` <br /> Exponent. <br /> | 2.0 ^ -2 → 0.25 |
-| \|\|/ | <code>\|\|/ operand</code> <br /> Cube root. <br /> | \|\|/ 27 → 3 |
-| @ | `@ operand` <br /> Absolute value. <br /> | @ -10 → 10|
+| * | `operand1 * operand2` <br /> Multiplication. | 2 * 3 → 6 |
+| / | `operand1 / operand2` <br /> Division (results are truncated for integers). | 3 / 2 → 1 <br /> 3.0 / 2 → 1.5 <br />  3 / 1.8 → 1.666... |
+| % | `operand1 % operand2` <br /> Remainder (valid for smallint/int/bigint/numeric). | 3 % 2 → 1 |
+| ^ | `operand1 ^ operand2` <br /> Exponent. | 2.0 ^ -2 → 0.25 |
+| \|\|/ | <code>\|\|/ operand</code> <br /> Cube root.| \|\|/ 27 → 3 |
+| @ | `@ operand` <br /> Absolute value.  | @ -10 → 10|
 | & | `operand1 & operand2` <br /> Bitwise AND | 91 & 15 → 11 |
 | \| | <code>operand1 \| operand2</code> <br /> Bitwise OR | 32 \| 3 → 35|
 | # | `operand1 # operand2` <br /> Bitwise exclusive OR | 17 # 5 → 20 |
@@ -35,11 +35,14 @@ title: Mathematical functions and operators
 | floor ( *numeric_input* ) → *integer_output* <br /> floor ( *double_precision_input* ) → *integer_output* | Returns the nearest integer less than or equal to the argument. | floor(1.23559) → 1 <br /> floor(-1.23559) → -2 |
 | ln ( *double_precision_input* ) → *double_precision_output* <br /> ln ( *numeric_input* ) → *numeric_output*| Returns the natural logarithmic value of the input. | ln(10) → 2.302585092994046 |
 | log10 ( *double_precision_input* ) → *double_precision_output* <br /> log10 ( *numeric_input* ) → *numeric_output*| Returns the log base 10 value of the input value. log() can also be used and accepts the same input types. | log10(25) → 1.3979400086720377 |
+| min_scale ( *numeric_input* ) → *integer_output* | Minimum scale (number of fractional decimal digits) needed to represent the supplied value precisely| min_scale(8.4100) → 2 |
 | pow ( *x_double_precision*, *y_double_precision* ) → *double_precision* <br /> pow ( *x_numeric*, *y_numeric* ) → *numeric* | Returns *x_double_precision* or *x_numeric* raised to the power of *y_double_precision* or *y_numeric*. power() can also be used as an alias for pow(). | pow(2.0, 3.0) → 8 <br /> power(2.0, 3.0) → 8|
 | round ( *x_numeric*, *y_int* ) → *output_value* | Rounds *x_numeric* to *y_int* decimal places. *y_int* can be negative.| round(1.23559, 2) → 1.24 |
 | round ( *numeric_input* ) → *integer_output* <br /> round ( *double_precision_input* ) → *integer_output* | Rounds to the nearest integer. | round(1.23559) → 1 |
+| scale ( *numeric_input* ) → *integer_output* | Scale of the argument (the number of decimal digits in the fractional part) | scale(8.4100) → 4 |
 | sign(*double_precision_input* or *decimal_input*) -> *same_as_input* | Returns the sign of the input value as -1 if the input is negative, 1 if the input is positive, or 0 if the input is 0. | sign(8.64) → 1 <br /> sign(-8.64) → -1 |
 | sqrt ( *numeric_input* ) → *numeric_output* <br /> sqrt ( *double_precision_input* ) → *double_precision_output*| Returns the square root of the input. | sqrt(16) → 4|
+| trim_scale ( *numeric_input* ) → *numeric_output* | Reduces the value's scale (number of fractional decimal digits) by removing trailing zeroes| trim_scale(8.4100) → 8.41 |
 | trunc ( *double_precision_input* ) → *double_precision_output* <br /> trunc ( *numeric_input* ) → *numeric_output*| Truncate the input value to zero decimal places. | trunc(-20.0932) → -20 |
 
 ## Trigonometric functions
