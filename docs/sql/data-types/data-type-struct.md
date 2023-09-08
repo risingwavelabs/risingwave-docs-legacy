@@ -56,7 +56,7 @@ For instance, if your data is structured like so:
 
 And you want it to be structured like so:
 
-```terminal
+```json
 {
   "nested": {
     "v1": 10,
@@ -84,6 +84,7 @@ INSERT INTO x VALUES (ROW(3, 4), 5);
 ```
 
 The statement below adds values to table `y`.
+
 ```sql
 INSERT INTO y VALUES (ROW(ROW(6), 7), 8);
 ```
