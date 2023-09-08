@@ -13,6 +13,12 @@ RisingWave also provides native MySQL and PostgreSQL CDC connectors. With these 
 
 For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with primary keys and connector settings. This is different from creating a standard source, as CDC data needs to be persisted in RisingWave to ensure correctness.
 
+:::note
+
+Transactions within a CDC table is now available as an experimental feature. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).
+
+:::
+
 RisingWave accepts these data formats:
 
 - Debezium JSON (for MySQL, PostgreSQL, and SQL Server)
