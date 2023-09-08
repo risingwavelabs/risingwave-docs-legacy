@@ -53,14 +53,17 @@ title: String functions and operators
 |`trim` ( [ LEADING \| TRAILING \| BOTH ] [ FROM ] *input_string* [, *characters* ] ) → *output_string* |An alternative syntax of `trim()`.|`trim(both from 'abcxyzabc', 'cba')` → `xyz`<br/>`trim('abcxyzabc', 'cba')` → `xyz`|
 |`upper` ( *input_string* ) → *output_string*|Converts the string to all uppercase.|`upper('tom')` → `TOM`|
 
-## Pattern matching expressions
+## `LIKE` pattern matching expressions
 
 ```sql
-string NOT LIKE pattern [ ESCAPE '' ]
-string LIKE pattern [ ESCAPE '' ]
+string [ NOT ] { LIKE | ILIKE } pattern [ ESCAPE '' ]
+
+string [!]~~[*] pattern [ ESCAPE '' ]
 ```
 
-The `LIKE` expression returns true if the string matches the supplied pattern. The `NOT LIKE` expression returns false if `LIKE` returns true.
+The `LIKE` expression returns true if the string matches the supplied pattern. The `NOT LIKE` expression returns false if `LIKE` returns true. By using `ILIKE` instead of `LIKE`, the matching becomes case-insensitive.
+
+Alternatively, you can use the operators `~~` and `~~*` as equivalents to `LIKE` and `ILIKE`, respectively. Similarly, the operators `!~~` and `!~~*` equal to `NOT LIKE` and `NOT ILIKE`.
 
 ### Wildcards
 
