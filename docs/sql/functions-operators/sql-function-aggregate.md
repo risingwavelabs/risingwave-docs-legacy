@@ -62,7 +62,7 @@ Returns the number of non-null rows.
 count ( expression ) -> bigint    
 ```  
 
-Input types include bool, smallint, int, bigint, numeric, real, double precision, timestamptz, and varchar.
+The input can be of any supported data type.
 
 ---  
 
@@ -100,7 +100,7 @@ Returns the maximum value in a set of values.
 max ( expression ) -> same as input type    
 ```  
 
-Input types include smallint, int, bigint, numeric, real, double precision, timestamptz, and varchar.  
+Input can be of any numeric, string, date/time, or interval type, or an array of these types.
 
 ---  
 
@@ -112,7 +112,7 @@ Returns the minimum value in a set of values.
 min ( expression ) -> same as input type  
 ```  
 
-Input types include smallint, int, bigint, numeric, real, double precision, timestamptz, and varchar.  
+Input can be of any numeric, string, date/time, or interval type, or an array of these types.  
 
 ---  
 
