@@ -343,6 +343,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "NATS JetStream",
+              id: "create-source/create-source-nats",
+            },
+            {
+              type: "doc",
               label: "PostgreSQL CDC",
               id: "guides/ingest-from-postgres-cdc",
             },

@@ -176,96 +176,6 @@ WITH (
 );
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE TABLE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('source_name', 'wrap')
-        ),
-        rr.Terminal('('),
-        rr.Stack(
-            rr.Sequence(
-                rr.NonTerminal('column_name', 'skip'),
-                rr.NonTerminal('data_type', 'skip'),
-                rr.Terminal('PRIMARY KEY'),
-                rr.Terminal(','),
-            ),
-            rr.ZeroOrMore(
-                rr.Sequence(
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.NonTerminal('data_type', 'skip'),
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Terminal(','),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Terminal('('),
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.Optional(rr.Terminal(',')),
-                    rr.ZeroOrMore(
-                        rr.Sequence(
-                            rr.Terminal(','),
-                            rr.NonTerminal('column_name', 'skip'),
-                            rr.Optional(rr.Terminal(',')),
-                        ),
-                    ),
-                    rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Terminal(')'),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.NonTerminal('mysql-cdc', 'skip'),
-                        rr.Terminal(','),
-                    ),
-                    rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('field', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                    ),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Stack(
-            rr.Sequence(
-                rr.Terminal('ROW FORMAT'),
-                rr.NonTerminal('data_format', 'skip'),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('MESSAGE'),
-                    rr.NonTerminal('message', 'skip'),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('ROW SCHEMA LOCATION'),
-                    rr.NonTerminal('location', 'skip'),
-                    rr.Terminal(';'),
-                ),
-            ),
-        ),
-    )
-);
-
-<drawer SVG={svg} />
-
 Note that a primary key is required.
 
 ### WITH parameters
@@ -281,6 +191,7 @@ All the fields listed below are required.
 |database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster.|
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table is an experimental feature. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 ### Data format
 

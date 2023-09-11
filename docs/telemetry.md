@@ -24,9 +24,3 @@ telemetry_enabled = false
 ```shell
 export ENABLE_TELEMETRY=false
 ```
-
-- Use the `ALTER SYSTEM` command via `psql`:
-
-```sql
-ALTER SYSTEM SET telemetry_enabled = false
-```
