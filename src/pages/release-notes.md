@@ -5,9 +5,9 @@ description: New features and important bug fixes in each release of RisingWave.
 slug: /release-notes
 ---
 
-This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
-
 # Release notes
+
+This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
 
 ## v1.2.0
 
