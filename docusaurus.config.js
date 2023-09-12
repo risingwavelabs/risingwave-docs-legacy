@@ -148,6 +148,7 @@ const config = {
         logo: {
           alt: "RisingWave Logo",
           src: "img/logo-title.png",
+          href: "https://www.risingwave.com/", 
         },
         items: [
           {
