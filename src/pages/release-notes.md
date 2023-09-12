@@ -45,7 +45,7 @@ This version was released on September 11, 2023.
   - Supports lambda functions via `array_transform`. [#11888](https://github.com/risingwavelabs/risingwave/pull/11888) [#11937](https://github.com/risingwavelabs/risingwave/pull/11937)
   - `to_date()` [#11241](https://github.com/risingwavelabs/risingwave/pull/11241)
   - The `to_char()` function now supports `timestamptz` input. [#11778](https://github.com/risingwavelabs/risingwave/pull/11778)
-  - `scale`, `min_scale` , and `trim_scale`  [#11663](https://github.com/risingwavelabs/risingwave/pull/11663)
+  - Supports `scale`, `min_scale`, and `trim_scale`.  [#11663](https://github.com/risingwavelabs/risingwave/pull/11663)
   - Supports `regexp_replace` . [#11819](https://github.com/risingwavelabs/risingwave/pull/11819)
   - Supports `regexp_count`. [#11975](https://github.com/risingwavelabs/risingwave/pull/11975)
   - Supports `[NOT] ILIKE` expressions.  [#11743](https://github.com/risingwavelabs/risingwave/pull/11743)
