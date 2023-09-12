@@ -286,7 +286,13 @@ To use S3 as the storage backend, configure your AWS credential information in `
 
 To use S3-compatible storage options like Tencent Cloud COS, you need to configure the endpoint via the `RW_S3_ENDPOINT` parameter in `/docker/aws.env`.
 
-Then, run this command to start the RisingWave cluster:
+In `docker-compose-with-s3.yml`, specify the bucket name via the `hummock+s3` parameter.
+
+```bash
+- "hummock+s3://<bucket-name>"
+```
+
+Run this command to start the RisingWave cluster:
 
 ```shell
 docker-compose -f docker-compose-with-s3.yml up
@@ -296,11 +302,13 @@ docker-compose -f docker-compose-with-s3.yml up
 
 Configure the credentias for the cloud service you want to use in `/docker/multiple_object_storage.env`.
 
-In the corresponding `docker-compose-with-xxx.yml` file (for example, `docker-compose-with-gcs.yml` for Google Cloud Storage), fill in your the bucket name.
+In the corresponding `docker-compose-with-xxx.yml` file (for example, `docker-compose-with-gcs.yml` for Google Cloud Storage), specify the bucket name via the `hummock+<xxx>` parameter.
 
-<!--This above paragraph will be updated once the changes are done.-->
+```bash
+ - "hummock+<xxx>://<bucket-name>"
+```
 
-Run the following command to start the RisingWave cluster with one of the three cloud storage services.
+Run the following command to start the RisingWave cluster with one of the cloud storage service that you choose.
 
 ```shell
 docker-compose -f docker-compose-with-xxx.yml up
@@ -312,9 +320,13 @@ Remember to replace the `docker-compose-with-xxx.yml` with the full file name of
 
 Mount your `HADOOP_HOME` in the volumns of the compactor node, the computer node, and the meta node.
 
-Specify the cluster name and data path via the `hummock+hdfs` parameter in `/docker-compose-with-hdfs.yml`.
+In `/docker-compose-with-hdfs.yml`, specify the cluster name via the `hummock+hdfs` parameter.
 
-Run the following command:
+```bash
+- "hummock+hdfs://<cluster_name>"
+```
+
+Run the following command to start a RisingWave cluster:
 
 ```shell
 `docker-compose -f docker-compose-with-hdfs.yml up
