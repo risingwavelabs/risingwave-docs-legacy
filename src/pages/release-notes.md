@@ -53,7 +53,7 @@ This version was released on September 11, 2023.
   - Supports `IS JSON` predicate. [#11831](https://github.com/risingwavelabs/risingwave/pull/11831)
 
 - Query syntax:
-  - Adds support for LIMIT clauses in streaming queries. [#11566](https://github.com/risingwavelabs/risingwave/pull/11566)
+  - Adds support for `LIMIT` clauses in streaming queries. [#11566](https://github.com/risingwavelabs/risingwave/pull/11566)
   - Supports `LATERAL` subqueries. [#11780](https://github.com/risingwavelabs/risingwave/pull/11780)
 
 - System catalog
