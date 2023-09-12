@@ -43,7 +43,7 @@ This version was released on September 11, 2023.
   - Supports [I]LIKE in SHOW commands. [#11791](https://github.com/risingwavelabs/risingwave/pull/11791)
 - SQL functions & operators
   - Supports lambda functions via `array_transform`. [#11888](https://github.com/risingwavelabs/risingwave/pull/11888), [#11937](https://github.com/risingwavelabs/risingwave/pull/11937)
-  - `to_date()` [#11241](https://github.com/risingwavelabs/risingwave/pull/11241)
+  - Supports `to_date()`. [#11241](https://github.com/risingwavelabs/risingwave/pull/11241)
   - The `to_char()` function now supports `timestamptz` input. [#11778](https://github.com/risingwavelabs/risingwave/pull/11778)
   - Supports `scale`, `min_scale`, and `trim_scale`.  [#11663](https://github.com/risingwavelabs/risingwave/pull/11663)
   - Supports `regexp_replace`. [#11819](https://github.com/risingwavelabs/risingwave/pull/11819)
