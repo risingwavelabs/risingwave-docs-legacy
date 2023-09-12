@@ -7,7 +7,9 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
 
-## v1.2
+# Release notes
+
+## v1.2.0
 
 This version was released on September 11, 2023.
 
@@ -37,10 +39,10 @@ This version was released on September 11, 2023.
        ```
 
   - Privileges for tables can now be granted or revoked. [#11725](https://github.com/risingwavelabs/risingwave/pull/11725)
-  - The default DISTRIBUTED BY columns have been changed from the whole index columns into the first index column. [#11865](https://github.com/risingwavelabs/risingwave/pull/11865)
+  - The default `DISTRIBUTED BY` columns have been changed from the whole index columns into the first index column. [#11865](https://github.com/risingwavelabs/risingwave/pull/11865)
   - Supports `ALTER SOURCE ADD COLUMN`. [#11350](https://github.com/risingwavelabs/risingwave/pull/11350)
   - Supports `SHOW JOBS` and `CANCEL JOBS` , with which you can show the in-progress streaming jobs and cancel jobs by their IDs. [#11854](https://github.com/risingwavelabs/risingwave/pull/11854)
-  - Supports [I]LIKE in SHOW commands. [#11791](https://github.com/risingwavelabs/risingwave/pull/11791)
+  - Supports `[I]LIKE` in `SHOW` commands. [#11791](https://github.com/risingwavelabs/risingwave/pull/11791)
 - SQL functions & operators
   - Supports lambda functions via `array_transform`. [#11888](https://github.com/risingwavelabs/risingwave/pull/11888), [#11937](https://github.com/risingwavelabs/risingwave/pull/11937)
   - Supports `to_date()`. [#11241](https://github.com/risingwavelabs/risingwave/pull/11241)
@@ -82,8 +84,6 @@ This version was released on September 11, 2023.
   - *Materialized View Read Size*, *Materialized View Write Size* [#11054](https://github.com/risingwavelabs/risingwave/pull/11054)
   - *Active Sessions* [#11688](https://github.com/risingwavelabs/risingwave/pull/11688)
 
-See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/v1.1.0...v1.2.0).
-
 ### Assets
 
 - Run this version from Docker:<br/>
@@ -93,6 +93,8 @@ See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/c
 - [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.2.0.tar.gz)
 - [risectl-v1.2.0-x86_64-unknown-linux.tar.gz](https://github.com/risingwavelabs/risingwave/releases/download/v1.2.0/risectl-v1.2.0-x86_64-unknown-linux.tar.gz)
 - [risingwave-connector-v1.2.0.tar.gz](https://github.com/risingwavelabs/risingwave/releases/download/v1.2.0/risingwave-connector-v1.2.0.tar.gz)
+
+See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/v1.1.0...v1.2.0).
 
 ## v1.1.0
 
