@@ -42,7 +42,7 @@ This version was released on September 11, 2023.
   - Supports `SHOW JOBS` and `CANCEL JOBS` , with which you can show the in-progress streaming jobs and cancel jobs by their IDs. [#11854](https://github.com/risingwavelabs/risingwave/pull/11854)
   - Supports [I]LIKE in SHOW commands. [#11791](https://github.com/risingwavelabs/risingwave/pull/11791)
 - SQL functions & operators
-  - Supports lambda functions via `array_transform`. [#11888](https://github.com/risingwavelabs/risingwave/pull/11888) [#11937](https://github.com/risingwavelabs/risingwave/pull/11937)
+  - Supports lambda functions via `array_transform`. [#11888](https://github.com/risingwavelabs/risingwave/pull/11888), [#11937](https://github.com/risingwavelabs/risingwave/pull/11937)
   - `to_date()` [#11241](https://github.com/risingwavelabs/risingwave/pull/11241)
   - The `to_char()` function now supports `timestamptz` input. [#11778](https://github.com/risingwavelabs/risingwave/pull/11778)
   - Supports `scale`, `min_scale`, and `trim_scale`.  [#11663](https://github.com/risingwavelabs/risingwave/pull/11663)
