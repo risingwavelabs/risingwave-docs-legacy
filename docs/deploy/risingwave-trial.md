@@ -284,7 +284,7 @@ docker compose up -d
 
 To use S3 as the storage backend, configure your AWS credential information in `/docker/aws.env`.
 
-To use S3-compatible storage options like Tencent Cloud COS, you need to configure the endpoint via the `RW_S3_ENDPOINT` parameter in `/docker/aws.env`.
+To use S3-compatible storage options like Tencent Cloud COS, you need to configure the endpoint via the `RW_S3_ENDPOINT` parameter in `/docker/aws.env`. Don't include the bucket name in the endpoint.
 
 In `docker-compose-with-s3.yml`, specify the bucket name via the `hummock+s3` parameter.
 
@@ -329,7 +329,7 @@ In `/docker-compose-with-hdfs.yml`, specify the cluster name via the `hummock+hd
 Run the following command to start a RisingWave cluster:
 
 ```shell
-`docker-compose -f docker-compose-with-hdfs.yml up
+docker-compose -f docker-compose-with-hdfs.yml up
 ```
 
 1. ### Connect to RisingWave
