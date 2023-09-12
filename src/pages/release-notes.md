@@ -49,7 +49,7 @@ This version was released on September 11, 2023.
   - Supports `regexp_replace` . [#11819](https://github.com/risingwavelabs/risingwave/pull/11819)
   - Supports `regexp_count` . [#11975](https://github.com/risingwavelabs/risingwave/pull/11975)
   - Supports `[NOT] ILIKE` expressions.  [#11743](https://github.com/risingwavelabs/risingwave/pull/11743)
-  - Adds support for `[!]~~[*]` operators. They’ll be parsed to `[NOT] [I]LIKE` expressions. [#11748](https://github.com/risingwavelabs/risingwave/pull/11748)
+  - Supports `[!]~~[*]` operators, which are equivalent to `[NOT] [I]LIKE`. [#11748](https://github.com/risingwavelabs/risingwave/pull/11748)
   - Supports `IS JSON` predicate. [#11831](https://github.com/risingwavelabs/risingwave/pull/11831)
 
 - Query syntax:
