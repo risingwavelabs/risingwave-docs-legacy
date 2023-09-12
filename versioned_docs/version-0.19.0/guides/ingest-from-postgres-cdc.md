@@ -126,6 +126,12 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
     alt="Apply changes"
     />
 
+4. Grant the RDS replication privileges to the user.
+
+    ```sql
+    GRANT rds_replication TO <username>;
+    ```
+
 </TabItem>
 </Tabs>
 
