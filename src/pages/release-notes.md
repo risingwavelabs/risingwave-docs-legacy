@@ -16,7 +16,8 @@ This version was released on September 11, 2023.
 #### SQL features
 
 - SQL commands:
-  - Breaking change: Syntax of emit-on-window-close has changed. If your application contains integration code, please update your code accordingly. <https://github.com/risingwavelabs/risingwave/pull/11363>
+  - Breaking change: Syntax of emit-on-window-close has changed. If your application contains integration code, please update your code accordingly. [#11363](https://github.com/risingwavelabs/risingwave/pull/11363)
+
        In v1.1:
 
        ```sql
@@ -35,53 +36,53 @@ This version was released on September 11, 2023.
        EMIT ON WINDOW CLOSE;
        ```
 
-  - Privileges for tables can now be granted or revoked. <https://github.com/risingwavelabs/risingwave/pull/11725>
-  - The default DISTRIBUTED BY columns have been changed from the whole index columns into the first index column. <https://github.com/risingwavelabs/risingwave/pull/11865>
-  - Supports `ALTER SOURCE ADD COLUMN`. <https://github.com/risingwavelabs/risingwave/pull/11350>
-  - Supports `SHOW JOBS` and `CANCEL JOBS` , with which you can show the in-progress streaming jobs and cancel jobs by their IDs. <https://github.com/risingwavelabs/risingwave/pull/11854>
-  - Supports [I]LIKE in SHOW commands. <https://github.com/risingwavelabs/risingwave/pull/11791>
+  - Privileges for tables can now be granted or revoked. [#11725](https://github.com/risingwavelabs/risingwave/pull/11725)
+  - The default DISTRIBUTED BY columns have been changed from the whole index columns into the first index column. [#11865](https://github.com/risingwavelabs/risingwave/pull/11865)
+  - Supports `ALTER SOURCE ADD COLUMN`. [#11350](https://github.com/risingwavelabs/risingwave/pull/11350)
+  - Supports `SHOW JOBS` and `CANCEL JOBS` , with which you can show the in-progress streaming jobs and cancel jobs by their IDs. [#11854](https://github.com/risingwavelabs/risingwave/pull/11854)
+  - Supports [I]LIKE in SHOW commands. [#11791](https://github.com/risingwavelabs/risingwave/pull/11791)
 - SQL functions & operators
-  - Supports lambda functions via `array_transform`. <https://github.com/risingwavelabs/risingwave/pull/11888> <https://github.com/risingwavelabs/risingwave/pull/11937>
-  - `to_date()` <https://github.com/risingwavelabs/risingwave/pull/11241>
-  - The `to_char()` function now supports `timestamptz` input. <https://github.com/risingwavelabs/risingwave/pull/11778>
-  - `scale`, `min_scale` , and `trim_scale`  <https://github.com/risingwavelabs/risingwave/pull/11663>
-  - Supports `regexp_replace` . <https://github.com/risingwavelabs/risingwave/pull/11819>
-  - Supports `regexp_count` . <https://github.com/risingwavelabs/risingwave/pull/11975>
-  - Supports `[NOT] ILIKE` expressions.  <https://github.com/risingwavelabs/risingwave/pull/11743>
-  - Adds support for `[!]~~[*]` operators. They’ll be parsed to `[NOT] [I]LIKE` expressions. <https://github.com/risingwavelabs/risingwave/pull/11748>
-  - Supports `IS JSON` predicate. <https://github.com/risingwavelabs/risingwave/pull/11831>
+  - Supports lambda functions via `array_transform`. [#11888](https://github.com/risingwavelabs/risingwave/pull/11888) [#11937](https://github.com/risingwavelabs/risingwave/pull/11937)
+  - `to_date()` [#11241](https://github.com/risingwavelabs/risingwave/pull/11241)
+  - The `to_char()` function now supports `timestamptz` input. [#11778](https://github.com/risingwavelabs/risingwave/pull/11778)
+  - `scale`, `min_scale` , and `trim_scale`  [#11663](https://github.com/risingwavelabs/risingwave/pull/11663)
+  - Supports `regexp_replace` . [#11819](https://github.com/risingwavelabs/risingwave/pull/11819)
+  - Supports `regexp_count` . [#11975](https://github.com/risingwavelabs/risingwave/pull/11975)
+  - Supports `[NOT] ILIKE` expressions.  [#11743](https://github.com/risingwavelabs/risingwave/pull/11743)
+  - Adds support for `[!]~~[*]` operators. They’ll be parsed to `[NOT] [I]LIKE` expressions. [#11748](https://github.com/risingwavelabs/risingwave/pull/11748)
+  - Supports `IS JSON` predicate. [#11831](https://github.com/risingwavelabs/risingwave/pull/11831)
 
 - Query syntax:
-  - Adds support for LIMIT clauses in streaming queries. <https://github.com/risingwavelabs/risingwave/pull/11566>
-  - Supports `LATERAL` subqueries. <https://github.com/risingwavelabs/risingwave/pull/11780>
+  - Adds support for LIMIT clauses in streaming queries. [#11566](https://github.com/risingwavelabs/risingwave/pull/11566)
+  - Supports `LATERAL` subqueries. [#11780](https://github.com/risingwavelabs/risingwave/pull/11780)
 
 - System catalog
-  - A new group of system catalogs (`rw_relations`, `rw_system_tables`, `rw_types`, `rw_user_secrets`, and `rw_columns`) are available for you to retrieve system data and metadata. <https://github.com/risingwavelabs/risingwave/pull/11334>
-  - Adds new system function `pg_relation_size()` . <https://github.com/risingwavelabs/risingwave/pull/11687>
-- Adds support for transactions for single-table CDC data. <https://github.com/risingwavelabs/risingwave/pull/11453>
+  - A new group of system catalogs (`rw_relations`, `rw_system_tables`, `rw_types`, `rw_user_secrets`, and `rw_columns`) are available for you to retrieve system data and metadata. [#11334](https://github.com/risingwavelabs/risingwave/pull/11334)
+  - Adds new system function `pg_relation_size()` . [#11687](https://github.com/risingwavelabs/risingwave/pull/11687)
+- Adds support for transactions for single-table CDC data. [#11453](https://github.com/risingwavelabs/risingwave/pull/11453)
 
 #### Sources & sinks
 
-- Adds a new parameter `schema.registry.name.strategy` to the Kafka connector, with with you can specify naming strategies for schema registries. <https://github.com/risingwavelabs/risingwave/pull/11384>
-- Breaking Change: Implements a Rust-native Iceberg sink connector to improve stability and performance. The connector introduces new parameters. Applications that rely on the previous version of the feature (specifically, the version included in RisingWave v1.0.0 and v1.1) may no longer function correctly. To restore functionality to your applications, please carefully review the syntax and parameters outlined on this page and make any necessary revisions to your code. Please refer to [Sink data to Iceberg](https://docs.risingwave.com/docs/current/sink-to-iceberg/) for details.   <https://github.com/risingwavelabs/risingwave/pull/11326>
-- Adds support for sinking data to ClickHouse. <https://github.com/risingwavelabs/risingwave/pull/11240>
-- Experimental: An enhancement has been made to the mysql-cdc connector to improve data ingestion performance. It achieves so by optimizing the data backfilling logic for CDC tables. This feature is not enabled by default. To enable it, run this command: `SET cdc_backfill="true";` <https://github.com/risingwavelabs/risingwave/pull/11707>
-- Adds a parameter `client.id` for Kafka sources. <https://github.com/risingwavelabs/risingwave/pull/11911>
+- Adds a new parameter `schema.registry.name.strategy` to the Kafka connector, with with you can specify naming strategies for schema registries. [#11384](https://github.com/risingwavelabs/risingwave/pull/11384)
+- Breaking Change: Implements a Rust-native Iceberg sink connector to improve stability and performance. The connector introduces new parameters. Applications that rely on the previous version of the feature (specifically, the version included in RisingWave v1.0.0 and v1.1) may no longer function correctly. To restore functionality to your applications, please carefully review the syntax and parameters outlined on this page and make any necessary revisions to your code. Please refer to [Sink data to Iceberg](https://docs.risingwave.com/docs/current/sink-to-iceberg/) for details.   [#11326](https://github.com/risingwavelabs/risingwave/pull/11326)
+- Adds support for sinking data to ClickHouse. [#11240](https://github.com/risingwavelabs/risingwave/pull/11240)
+- Experimental: An enhancement has been made to the mysql-cdc connector to improve data ingestion performance. It achieves so by optimizing the data backfilling logic for CDC tables. This feature is not enabled by default. To enable it, run this command: `SET cdc_backfill="true";` [#11707](https://github.com/risingwavelabs/risingwave/pull/11707)
+- Adds a parameter `client.id` for Kafka sources. [#11911](https://github.com/risingwavelabs/risingwave/pull/11911)
 
 #### Deployment
 
-- Supports HDFS as the storage backend for deployments via Docker Compose. <https://github.com/risingwavelabs/risingwave/pull/11632>
+- Supports HDFS as the storage backend for deployments via Docker Compose. [#11632](https://github.com/risingwavelabs/risingwave/pull/11632)
 
 #### Administration & observability
 
-- Adds a new system parameter `max_concurrent_creating_streaming_jobs`, with which users can specify the maximum number of streaming jobs that can be created concurrently.  <https://github.com/risingwavelabs/risingwave/pull/11601>
-- Improves the calculation logic of the *Mem Table Size (Max)* metric in RisingWave Dashboard. <https://github.com/risingwavelabs/risingwave/pull/11442>
+- Adds a new system parameter `max_concurrent_creating_streaming_jobs`, with which users can specify the maximum number of streaming jobs that can be created concurrently.  [#11601](https://github.com/risingwavelabs/risingwave/pull/11601)
+- Improves the calculation logic of the *Mem Table Size (Max)* metric in RisingWave Dashboard. [#11442](https://github.com/risingwavelabs/risingwave/pull/11442)
 - Adds new metrics to RisingWave Dashboard:
-  - *Materialized View Memory Usage* <https://github.com/risingwavelabs/risingwave/pull/10958>
-  - *Materialized View Read Size*, *Materialized View Write Size* <https://github.com/risingwavelabs/risingwave/pull/11054>
-  - *Active Sessions* <https://github.com/risingwavelabs/risingwave/pull/11688>
+  - *Materialized View Memory Usage* [#10958](https://github.com/risingwavelabs/risingwave/pull/10958)
+  - *Materialized View Read Size*, *Materialized View Write Size* [#11054](https://github.com/risingwavelabs/risingwave/pull/11054)
+  - *Active Sessions* [#11688](https://github.com/risingwavelabs/risingwave/pull/11688)
 
-**Full Changelog**: <https://github.com/risingwavelabs/risingwave/compare/v1.1.0...v1.2.0>
+See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/v1.1.0...v1.2.0).
 
 ### Assets
 
