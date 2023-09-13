@@ -98,6 +98,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |System ||Availability |
 |---|-|--|
 |Apache Superset| |Available. See [Visualize RisingWave data in Superset](/guides/superset-integration.md) for details. |
+|Beekeeper Studio| Available. See [Connect Beekeeper Studio to RisingWave](/guides/beekeeper-integration.md) for details. |
 |Cube.js| | Researching <voteNotify note="cubejs" />|
 |DBeaver| | Available. See [Connect DBeaver to RisingWave](/guides/dbeaver-integration.md) for details. |
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
