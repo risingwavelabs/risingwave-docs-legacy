@@ -57,9 +57,9 @@ After making this modification, the `window_count` results will no longer includ
 
 ## What queries can achieve better performance with the emit-on-window-close triggering policy?
 
-RisingWave supports the emit-on-window-close" triggering policy for any query. However, for the following specific types of queries, RisingWave can utilize specialized operators to enhance performance further.
+RisingWave supports the emit-on-window-close triggering policy for any query. However, for the following specific types of queries, RisingWave can utilize specialized operators to enhance performance further.
 
-**Emit rows order by watermark column**
+**Emit the order of rows by the watermark column**
 
 ```sql
 CREATE SINK s AS
