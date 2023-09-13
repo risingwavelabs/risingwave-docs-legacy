@@ -59,7 +59,14 @@ After making this modification, the `window_count` results will no longer includ
 
 RisingWave supports the emit-on-window-close" triggering policy for any query. However, for the following specific types of queries, RisingWave can utilize specialized operators to enhance performance further.
 
-1. Windowed aggregation
+**Emit rows order by watermark column**
+
+```sql
+CREATE SINK s AS
+select time, foo from t emit on window close;
+```
+
+**Windowed aggregation**
 
 ```sql
 CREATE MATERIALIZED VIEW mv AS
@@ -70,7 +77,7 @@ GROUP BY window_start
 EMIT ON WINDOW CLOSE;
 ```
 
-1. SQL window functions
+**SQL window functions**
 
 ```sql
 CREATE MATERIALIZED VIEW mv2 AS
