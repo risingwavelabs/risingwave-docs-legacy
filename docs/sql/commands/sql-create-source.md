@@ -102,7 +102,7 @@ When creating a source, specify the data and encoding formats in the `FORMAT` an
 
 For data in Avro format, you must specify a message and a schema file location. The schema file location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Avro, instead of a schema file location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
 
-`schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful URL. 
+`schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful result. 
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
@@ -134,7 +134,7 @@ ENCODE AVRO (
 
 When creating a source from streams in with Debezium AVRO, the schema of the source does not need to be defined in the `CREATE TABLE` statement as it can be inferred from the `SCHEMA REGISTRY`. This means that the schema file location must be specified. The schema file location can be an actual Web location, which is in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
 
-`schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful URL.
+`schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful result.
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
@@ -158,7 +158,7 @@ ENCODE AVRO (
 
 When consuming data in AVRO from Kafka topics, the `FORMAT` and `ENCODE` sections need to be specified as `UPSERT` and `AVRO` respectively. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted.
 
-`schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful URL.
+`schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful result.
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
@@ -182,7 +182,7 @@ ENCODE AVRO (
 
 RisingWave decodes JSON directly from external sources. When creating a source from streams in JSON, you can define the schema of the source within the parentheses after the source name or specify a `schema.registry`. Specify the data and encoding formats in the `FORMAT` and `ENCODE` sections. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
-`schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful URL.
+`schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful result.
 
 Syntax:
 
@@ -245,7 +245,7 @@ ENCODE JSON
 
 When consuming data in JSON from Kafka topics, the `FORMAT` and `ENCODE` sections need to be specified as `UPSERT` and `JSON` respectively. RisingWave will be aware that the source message contains key fields as primary columns, as well as the Kafka message value field. If the value field of the message is not null, the row will be updated if the message key is not empty and already exists in the database table, or inserted if the message key is not empty but does not exist yet in the database table. If the value field is null, the row will be deleted.
 
-You can define the schema of the source within the parentheses after the source name or specify a `schema.registry`. `schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful URL.
+You can define the schema of the source within the parentheses after the source name or specify a `schema.registry`. `schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful result.
 
 Syntax:
 
@@ -262,7 +262,7 @@ ENCODE JSON [ (
 
 For data in Protobuf format, you must specify a message and a schema location. The schema location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/create-source/create-source-kafka.md#read-schemas-from-schema-registry).
 
-`schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful URL.
+`schema.registry` can accept multiple addresses. RisingWave will request all URLs and return the first successful result.
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
