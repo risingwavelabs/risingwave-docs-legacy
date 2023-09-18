@@ -14,8 +14,10 @@ Regardless of whether the data is persisted in RisingWave, you can create materi
 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name (
-    col_name data_type [ AS generation_expression ],...
-    [ watermark_clause ]
+    col_name data_type [ AS generation_expression ],
+    ...
+   [ PRIMARY KEY (col_name, ... ) ]
+   [ watermark_clause ]
 )
 [ WITH (
     connector='connector_name',
@@ -26,23 +28,13 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name (
 ];
 ```
 
-### schema_definition
+## Notes
 
-```sql
-col_name data_type [ AS generation_expression ],
-...
-[WATERMARK FOR col_name as generation_expression]
-```
-
-:::note
-To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
-:::
-
-:::note
+For sources with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record. A generated column cannot be defined as a primary key.
 
 Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
 
-:::
+To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
 
 ## Parameters
 
