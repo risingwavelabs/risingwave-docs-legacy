@@ -35,6 +35,7 @@ CREATE SINK sink_name
 [ FROM sink_from | AS select_query ]
 WITH (
   connector = 'elasticsearch',
+  type = '<type>',
   index = '<your Elasticsearch index>',
   url = 'http://<ES hostname>:<ES port>',
   username = '<your ES username>', 
@@ -46,6 +47,7 @@ WITH (
 
 | Parameter       | Description |
 | --------------- | ----------- |
+|  `type`         |Sink type. Use `append-only` for insert only workloads. Use `upsert` for update or delete workloads. |
 | `index`         |Name of the Elasticsearch index that you want to write data to. |
 | `url`          | URL of the Elasticsearch endpoint.|
 | `username`        | `elastic` user name for accessing the Elasticsearch endpoint.|
