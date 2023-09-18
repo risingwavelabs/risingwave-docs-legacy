@@ -1,0 +1,76 @@
+---
+id: sink-to-elasticsearch
+title: Sink data from RisingWave to Elasticsearch
+description: Sink data from RisingWave to Elasticsearch.
+slug: /sink-to-elasticsearch 
+---
+You can deliver the data that has been ingested and transformed in RisingWave to Elasticsearch to serve searches or analytics.
+
+This guide describes how to sink data from RisingWave to Elasticsearch using the Elasticsearch sink connector in RisingWave.
+
+[Elasticsearch](https://www.elastic.co/elasticsearch/) is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases. It centrally stores your data for lightning fast search, fine‑tuned relevancy, and powerful analytics that scale with ease.
+
+:::caution Experimental feature
+The Elasticsearch sink connector in RisingWave is currently an experimental feature that supports only versions 7.x and 8.x of Elasticsearch. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::
+
+:::note
+
+The Elasticsearch sink connector in RisingWave provides at-least-once delivery semantics. Events may be redelivered in case of failures.
+
+:::
+
+## Prerequisites
+
+- Ensure the Elasticsearch cluster (version 7.x or 8.x) is accessible from RisingWave.
+
+- The Elastic sink connector in RisingWave relies on the connector node to work. Please ensure the connector node is enabled in RisingWave. For details, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+
+## Create a Elasticsearch sink
+
+Use the following syntax to create a Elasticsearch sink. Once a sink is created, any insert or update to the sink will be streamed to the specified Elasticsearch endpoint.
+
+```sql
+CREATE SINK sink_name
+[ FROM sink_from | AS select_query ]
+WITH (
+  connector = 'elasticsearch',
+  index = '<your Elasticsearch index>',
+  url = 'http://<ES hostname>:<ES port>',
+  username = '<your ES username>', 
+  password = '<your password>'
+);
+```
+
+## Parameters
+
+| Parameter       | Description |
+| --------------- | ----------- |
+| `index`         |Name of the Elasticsearch index that you want to write data to. |
+| `url`          | URL of the Elasticsearch endpoint.|
+| `username`        | `elastic` user name for accessing the Elasticsearch endpoint.|
+| `password`       | Password for accessing the Elasticseaerch endpoint. |
+
+## Data type mapping
+
+ElasticSearch uses a mechanism called [dynamic field mapping](https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-field-mapping.html) to dynamically create fields and determine their types automatically. It treats all integer types as long and all floating-point types as float. To ensure data types in RisingWave are mapped to the data types in Elasticsearch correctly, we recommend that you specify the mapping via [index templates](https://www.elastic.co/guide/en/elasticsearch/reference/current/index-templates.html) or [dynamic templates](https://www.elastic.co/guide/en/elasticsearch/reference/current/dynamic-templates.html) before creating the sink.
+
+|RisingWave Data Type| ElasticSearch Field Type|
+|--------|--------|
+|boolean |boolean|
+|smallint |long|
+|integer |long|
+|bigint |long|
+|numeric |float|
+|real |float|
+|double precision |float|
+|character varying |text|
+|bytea |text|
+|date |date|
+|time without time zone |text|
+|timestamp without time zone | text|
+|timestamp with time zone |text|
+|interval |text|
+|struct |Not supported|
+|array |array|
+|JSONB |text|

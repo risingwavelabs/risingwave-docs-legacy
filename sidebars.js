@@ -366,6 +366,31 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Apache Iceberg",
+              id: "guides/sink-to-iceberg",
+            },
+            {
+              type: "doc",
+              label: "AWS Kinesis",
+              id: "guides/sink-to-aws-kinesis",
+            },
+            {
+              type: "doc",
+              label: "ClickHouse",
+              id: "guides/sink-to-clickhouse",
+            },
+            {
+              type: "doc",
+              label: "Delta Lake",
+              id: "guides/sink-to-delta-lake",
+            },
+            {
+              type: "doc",
+              label: "Elasticsearch",
+              id: "guides/sink-to-elasticsearch",
+            },
+            {
+              type: "doc",
               label: "Kafka",
               id: "guides/create-sink-kafka",
             },
@@ -379,30 +404,11 @@ const sidebars = {
               label: "PostgreSQL",
               id: "guides/sink-to-postgres",
             },
-            {
-              type: "doc",
-              label: "AWS Kinesis",
-              id: "guides/sink-to-aws-kinesis",
-            },
+
             {
               type: "doc",
               label: "TiDB",
               id: "guides/sink-to-tidb",
-            },
-            {
-              type: "doc",
-              label: "Delta Lake",
-              id: "guides/sink-to-delta-lake",
-            },
-            {
-              type: "doc",
-              label: "Apache Iceberg",
-              id: "guides/sink-to-iceberg",
-            },
-            {
-              type: "doc",
-              label: "ClickHouse",
-              id: "guides/sink-to-clickhouse",
             },
           ],
         }
