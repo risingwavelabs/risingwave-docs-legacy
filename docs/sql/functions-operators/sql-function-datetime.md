@@ -258,3 +258,31 @@ to_timestamp('2022-12-25 00:00:00.906', 'YYYY-MM-DD HH24:MI:SS.MS') → '2022-12
 ```
 
 ---
+
+## Delaying execution functions
+
+The following functions are available to delay execution of the current session's process.
+
+### `pg_sleep`
+
+The `pg_sleep()` function makes the current session's process sleep until the given number of seconds have elapsed. Fractional-second delays can be specified.
+
+```bash title=Syntax
+pg_sleep ( double precision )
+```
+
+```sql title=Example
+SELECT pg_sleep(1.5);
+```
+
+### `pg_sleep_for`
+
+`pg_sleep_for` is a convenience function to allow the sleep time to be specified as an interval.
+
+```bash title=Syntax
+pg_sleep_for ( interval )
+```
+
+```sql title=Example
+SELECT pg_sleep_for('5 minutes');
+```
