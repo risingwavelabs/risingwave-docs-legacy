@@ -75,7 +75,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |ClickHouse|No plan |Available. For details, see [Sink data to ClickHouse](/guides/sink-to-clickhouse.md).|
 |Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
 |Google BigQuery| No plan |Researching <voteNotify note="bigquery_sink" />|
-|DataStax Astra DB & Apache Cassandra| Researching <voteNotify note="cassandra_source" /> |In progress <voteNotify note="cassandra_sink" />|
+|DataStax Astra DB & Apache Cassandra & ScyllaDB| Researching <voteNotify note="cassandra_source" /> |Available. For details, see [Sink data to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).|
 |CockroachDB| Researching <voteNotify note="cockroachdb_source" />|Researching <voteNotify note="cockroachdb_sink" /> |
 |Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
 |MongoDB| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Researching <voteNotify note="mongodb_sink" /> |

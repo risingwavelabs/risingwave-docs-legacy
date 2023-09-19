@@ -30,6 +30,10 @@ Currently, RisingWave supports the following sink connectors:
 
   With this connector, you can sink data from RisingWave to Delta Lake. For details about the syntax and parameters, see [Sink data to Delta Lake](/guides/sink-to-delta-lake.md).
 
+- Cassandra sink connector (`connector = 'cassandra'`)
+
+  With this connector, you can sink data from RisingWave to Cassandra or ScyllaDB. For details about the syntax and parameters, see [Sink data to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).
+
 ## Upsert sinks and primary keys
 
 For each sink, you can specify the data format. All sinks supports the `upsert` and `append-only` formats while Kafka also supports the `debezium` format. When creating an `upsert` sink, note whether or not you need to specify the primary key in the following situations.
