@@ -50,13 +50,17 @@ WITH (
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
-|`type`|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](/data-delivery.md).|
-|`force_append_only`| If `true`, forces the sink to be `append-only`, even if it cannot be.|
-|`primary_key`| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
-| `index`         |Name of the Elasticsearch index that you want to write data to. |
-| `url`          | URL of the Elasticsearch endpoint.|
-| `username`        | `elastic` user name for accessing the Elasticsearch endpoint.|
-| `password`       | Password for accessing the Elasticseaerch endpoint. |
+|`type`| Required. Sink data type. Supported types:<ul><li> `append-only`: Sink data as INSERT operations.</li><li> `upsert`: Sink data as UPDATE and INSERT operations. </li></ul>|
+| `index`         |Required. Name of the Elasticsearch index that you want to write data to. |
+| `url`          | Required. URL of the Elasticsearch REST API endpoint.|
+| `username`        | Optional. `elastic` user name for accessing the Elasticsearch endpoint. It must be used with `password`.|
+| `password`       | Optional. Password for accessing the Elasticseaerch endpoint. It must be used with `username`.|
+|`delimiter` | Optional. Delimiter for Elasticsearch ID when the sink's primary key has multiple columns.|
+
+### Notes about Elasticsearch ID
+
+If the sink has a primary key (normally it is inherited from a materialized view), RisingWave will use the primary key as the Elasticsearch ID.
+If the sink doesn't have a primary key (in the case that the materialized view is append-only), RisingWave will use the first column in the sink definition as the Elasticsearch ID.
 
 ## Data type mapping
 
