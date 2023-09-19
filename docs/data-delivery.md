@@ -30,7 +30,7 @@ Currently, RisingWave supports the following sink connectors:
 
   With this connector, you can sink data from RisingWave to Delta Lake. For details about the syntax and parameters, see [Sink data to Delta Lake](/guides/sink-to-delta-lake.md).
 
-- Delta Lake sink connector (`connector = 'elasticsearch'`)
+- Elasticsearch sink connector (`connector = 'elasticsearch'`)
 
   With this connector, you can sink data from RisingWave to Elasticsearch. For details about the syntax and parameters, see [Sink data to Elasticsearch](/guides/sink-to-elasticsearch.md).
 
