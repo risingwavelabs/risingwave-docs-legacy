@@ -18,7 +18,7 @@ The Cassandra sink connector in RisingWave is currently an experimental feature.
 
 - The Cassandra sink connector in RisingWave relies on the connector node to work. Please ensure the connector node is enabled in RisingWave. For details, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
 
-## Create a Cassandra sink
+## Syntax
 
 To sink data to Cassandra or ScyllaDB, create a Cassandra sink in RisingWave using the syntax below:
 
@@ -47,7 +47,7 @@ Once the sink is created, data changes will be streamed to the specified table.
 | `type`                | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, you must specify a primary key.|
 | `primary_key`          | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the Cassandra sink.|
 |`force_append_only`| If `true`, forces the sink to be `append-only`, even if it cannot be.|
-| `cassandra.url`        | Required.The URL or IP address of the Cassandra or ScyllaDB cluster or node you want to connect to.|
+| `cassandra.url`        | Required. The URL or IP address of the Cassandra or ScyllaDB cluster or node you want to connect to.|
 | `cassandra.keyspace`       | Required. The name of the keyspace within the Cassandra database or ScyllaDB where you want to store the data. A keyspace is a logical container for organizing data in Cassandra.|
 | `cassandra.table`   | Required. The name of the table in the specified keyspace where you want to insert or update the data.|
 | `cassandra.datacenter`  | Optional. If you are working with a multi-data center Cassandra setup, you may need to specify the name of the target data center where the data should be written.|
