@@ -369,15 +369,15 @@ const sidebars = {
               label: "Apache Kafka",
               id: "guides/create-sink-kafka",
             },
+               {
+              type: "doc",
+              label: "Apache Iceberg",
+              id: "guides/sink-to-iceberg",
+            },
             {
               type: "doc",
               label: "AWS Kinesis",
               id: "guides/sink-to-aws-kinesis",
-            },
-            {
-              type: "doc",
-              label: "Apache Iceberg",
-              id: "guides/sink-to-iceberg",
             },
             {
               type: "doc",
@@ -393,6 +393,11 @@ const sidebars = {
               type: "doc",
               label: "Delta Lake",
               id: "guides/sink-to-delta-lake",
+            },
+            {
+              type: "doc",
+              label: "Elasticsearch",
+              id: "guides/sink-to-elasticsearch",
             },
             {
               type: "doc",
