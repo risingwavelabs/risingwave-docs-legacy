@@ -19,7 +19,7 @@ Before sinking data from RisingWave to NATS, please ensure the following:
 - The RisingWave cluster is running.
 - A NATS server is running and accessible from your RisingWave cluster.
 - Create a NATS subject that you want to sink data to.
-- You have the permission to publish data to the subject.
+- You have the permission to publish data to the NATS subject.
 
 ## Syntax
 
@@ -32,14 +32,22 @@ WITH (
    connector='nats',
    nats.server_url='<your nats server>:<port>', [ <another_server_url_if_available>, ...]
    nats.subject='<your subject>',
-   type='append-only',
+   type='append_only',
    force_append_only='true', 
-
+   
    -- Optional parameters
    nats.user='<your user name>',
    nats.password='<your password>'
 );
 ```
+
+After the sink is created, RisingWave will continuously sink data to the NATS subject in append-only mode.
+
+:::note
+
+The NATS sink connector in RisingWave provides at-least-once delivery semantics. Events may be redelivered in case of failures.
+
+:::
 
 ### Parameters
 
@@ -47,7 +55,7 @@ WITH (
 |---|---|
 |`nats.server_url`| Required. URLs of the NATS server, in the format of *address*:*port*. If multiple addresses are specified, use commas to separate them.|
 |`nats.subject`| Required. NATS subject that you want to sink data to.|
-|`type`| Required. Sink data type. Supported types:<ul><li> `append-only`: Sink data as INSERT operations.</li><li> `upsert`: Sink data as UPDATE and INSERT operations. </li></ul>|
-|`force_append_only`| If `true`, forces the sink to be `append-only`, even if it cannot be.|
+|`type`| Required. Sink data type. For the NATS sink connector, only `append-only` is supported.|
+|`force_append_only`| Required. It needs to be set to `true` for the NATS sink connector. This field forces the sink to be `append-only`, even if it cannot be.|
 |`nats.user`| Optional. If authentication is required, specify the client user name.|
 |`nats.password`| Optinal. If authentication is required, specify the client password.|
