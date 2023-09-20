@@ -41,13 +41,13 @@ All `WITH` options are required except `force_append_only` and `primary_key`.
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
-|connector| Sink connector type must be `'kafka'` for Kafka sink. |
-|properties.bootstrap.server|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
-|topic|Address of the Kafka topic. One sink can only correspond to one topic.|
-|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](/data-delivery.md).|
-|force_append_only| If `true`, forces the sink to be `append-only`, even if it cannot be.|
-|primary_key| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
-|properties.client.id|Optional. Client ID associated with the Kafka client. |
+|`connector`| Sink connector type must be `'kafka'` for Kafka sink. |
+|`properties.bootstrap.server`|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
+|`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
+|`type`|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](/data-delivery.md).|
+|`force_append_only`| If `true`, forces the sink to be `append-only`, even if it cannot be.|
+|`primary_key`| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
+|`properties.client.id`|Optional. Client ID associated with the Kafka client. |
 
 ## Additional Kafka parameters
 

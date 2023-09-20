@@ -75,7 +75,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |ClickHouse|No plan |Available. For details, see [Sink data to ClickHouse](/guides/sink-to-clickhouse.md).|
 |Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
 |Google BigQuery| No plan |Researching <voteNotify note="bigquery_sink" />|
-|DataStax Astra DB & Apache Cassandra| Researching <voteNotify note="cassandra_source" /> |In progress <voteNotify note="cassandra_sink" />|
+|DataStax Astra DB & Apache Cassandra & ScyllaDB| Researching <voteNotify note="cassandra_source" /> |Available. For details, see [Sink data to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).|
 |CockroachDB| Researching <voteNotify note="cockroachdb_source" />|Researching <voteNotify note="cockroachdb_sink" /> |
 |Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
 |MongoDB| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Researching <voteNotify note="mongodb_sink" /> |
@@ -84,6 +84,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |TiDB| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Available. For details, see [Sink data from RisingWave to TiDB](/guides/sink-to-tidb.md). |
 |Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
 |Greenplum| No plan| Researching <voteNotify note="greenplum_sink" /> |
+|Elasticsearch| No plan| Available. Only versions 7.x and 8.x are supported. For details, see [Sink data from RisingWave to Elasticsearch](/guides/sink-to-elasticsearch.md).|
 
 ## Data lakes
 
