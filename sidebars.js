@@ -774,9 +774,22 @@ const sidebars = {
       id: "performance/optimize-performance"
     },
     {
-      type: "doc",
+      type: "category",
       label: "Troubleshooting",
-      id: "troubleshoot/troubleshooting"
+      collapsible: true,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Overview",
+          id: "troubleshoot/troubleshooting"
+        },
+        {
+          type: "doc",
+          label: "Troubleshoot out-of-memory problems",
+          id: "troubleshoot/troubleshoot-oom"
+        },
+      ]
     },
     {
       type: "link",

@@ -4,7 +4,7 @@ title: Troubleshooting
 slug: /troubleshooting
 ---
 
-This guide assumes that you deploy RisingWave on K8s using the RisingWave K8s Operator. With the Operator, we packaged the RisingWave Dashboard, and third-party observability and logging tools like Promethus and Grafana.
+This guide assumes that you deploy RisingWave on K8s using the RisingWave K8s Operator. In the Operator, we packaged RisingWave, RisingWave Dashboard, and third-party observability and logging tools like Promethus and Grafana.
 
 ## Monitor your cluster
 
@@ -14,7 +14,7 @@ RisingWave Dashboard is the built-in dashboard of RisingWave. From RisingWave Da
 
 You can access RisingWave Dashboard at `http://localhost:5692` by default.
 
-### View performance metrics with the built-in Grafana dashboard
+### View performance metrics
 
 You can monitor the performance metrics of a RisingWave cluster, including the usage of resources like CPU, memory, and network, and the status of different nodes.
 
@@ -31,7 +31,7 @@ There are 2 built-in dashboards in the official release.
 
 Generally you get an error when something goes wrong. The error message should provide some basic information about what went wrong. We are summarizing the common errors and solutions. We'll publish this summary as soon as it's ready.
 
-The logs of RisingWave are outputted to stdout by default. If you are deploying RisingWave via our official Kubernetes operator, you can view them via the `kubectl logs` command.
+The logs of RisingWave are outputted to `stdout` by default. If you are deploying RisingWave via our official Kubernetes operator, you can view them via the `kubectl logs` command.
 
 We recommend that you deploy a dedicated logging system, such as Loki or Elasticsearch.
 
@@ -44,3 +44,14 @@ System catalogs provide comprehensive information about the definitions and meta
 The most direct way to get help is reporting your issues in our [Slack Community workspace](https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw).
 
 When reporting your issues in the Slack workspace, remember to include the logs. Including logs will help our engineers troubleshoot.
+
+## File an issue
+
+If you've tried to troubleshoot an issue yourself but didn't succeed, you can [file an issue in GitHub](https://github.com/risingwavelabs/risingwave/issues/new/choose).
+
+Please include the following details in your GitHub issue:
+
+- A summary of the issue.
+- The steps to reproduce the issue.
+- The result you expected.
+- The result that actually occurred.
