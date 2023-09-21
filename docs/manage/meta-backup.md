@@ -68,17 +68,18 @@ Use the following steps to restore from a meta snapshot.
 3. Restore the meta snapshot to the new meta store.
 
     ```bash
-    backup-restore \
+    risectl \
+    meta \
+    restore-meta \
     --meta-store-type etcd \
     --meta-snapshot-id [snapshot_id] \
     --etcd-endpoints [etcd_endpoints] \
     --backup-storage-url [backup_storage_url]
     --hummock-storage-url [hummock_storage_url]
-    --hummock-storage-dir [hummock_storage_dir]
+    --hummock-storage-directory [hummock_storage_directory]
     ```
 
-    `backup-restore` reads snapshot data from backup storage and writes them to etcd and hummock storage.
-    `backup-restore` is not included in the pre-built risingwave binary. Please build it from source by compiling the `risingwave_backup_cmd` package.
+    `restore-meta` reads snapshot data from backup storage and writes them to etcd and hummock storage.
 4. Configure meta service to use the new meta store.
 
 ## Access historical data backed up by meta snapshot
