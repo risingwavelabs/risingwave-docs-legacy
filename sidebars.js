@@ -366,6 +366,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Apache Kafka",
+              id: "guides/create-sink-kafka",
+            },
+               {
+              type: "doc",
               label: "Apache Iceberg",
               id: "guides/sink-to-iceberg",
             },
@@ -373,6 +378,11 @@ const sidebars = {
               type: "doc",
               label: "AWS Kinesis",
               id: "guides/sink-to-aws-kinesis",
+            },
+            {
+              type: "doc",
+              label: "Cassandra",
+              id: "guides/sink-to-cassandra",
             },
             {
               type: "doc",
@@ -391,11 +401,6 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "Kafka",
-              id: "guides/create-sink-kafka",
-            },
-            {
-              type: "doc",
               label: "MySQL",
               id: "guides/sink-to-mysql-with-jdbc",
             },
@@ -404,7 +409,6 @@ const sidebars = {
               label: "PostgreSQL",
               id: "guides/sink-to-postgres",
             },
-
             {
               type: "doc",
               label: "TiDB",
