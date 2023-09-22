@@ -66,7 +66,7 @@ current_timestamp() → `2023-09-06 07:06:46.724+00:00`
 Extracts the value of a date or timestamp.
 
 ```bash title=Syntax
-date_part('precision_string', date/time_value[, time_zone ]) → double_precision
+date_part ( precision_string, date/time_value[, time_zone ] ) → double_precision
 ```
 
 `precision_string` can be year, month, day, hour, minute, second, doy, dow, millisecond, microsecond, epoch, millennium, century, decade, isoyear, quarter, week, isodow, or julian.
@@ -96,7 +96,7 @@ date_part('day', '2023-06-01 00:00:00Z'::timestamptz, 'Australia/Sydney') → 1
 Truncates a `date/time_value` to a specified `precision_string`.
 
 ```bash title=Syntax
-date_trunc('precision_string', date/time_value[, time_zone ]) → date/time_value
+date_trunc ( precision_string, date/time_value[, time_zone ] ) → date/time_value
 ```
 
 `precision_string` can be microseconds, milliseconds, second, minute, hour, day, week, month, quarter, year, decade, century, or millennium.
@@ -121,12 +121,12 @@ date_trunc('month', interval '2333 year 4 months 5 days 02:47:33.123') → 2333 
 
 This function has two variants.
 
-#### `extract( field from source )`
+#### `extract ( field from source )`
 
 Extracts the value of a date or timestamp.
 
 ```bash title=Syntax
-extract(field from source [AT TIME ZONE time_zone]) → numeric
+extract ( field from source [AT TIME ZONE time_zone]) → numeric
 ```
 
 `field` can be year, month, day, hour, minute, second, doy, dow, millisecond, microsecond, epoch, millennium, century, decade, isoyear, quarter, week, isodow, or julian.
@@ -154,7 +154,7 @@ extract(day from '2023-06-01 00:00:00Z'::timestamptz at time zone 'us/pacific') 
 Converts the value of timestamp with time zone to Unix epoch seconds (the number of seconds since 1970-01-01 00:00:00 UTC). Negative for timestamps prior to that.
 
 ```bash title=Syntax
-extract(epoch FROM timestamp_with_time_zone) → seconds_numeric
+extract ( epoch FROM timestamp_with_time_zone ) → seconds_numeric
 ```
 
 ```bash title=Example
@@ -196,8 +196,8 @@ CREATE TABLE t1 (v1 int, proc_time timestamptz as proctime());
 Converts the input to string according to the given format. Both uppercase and lowercase formats are supported.
 
 ```bash title=Syntax
-to_char ( *timestamptz*, *format* ) → *string*
-to_char ( *timestamp*, *format* ) → *string*
+to_char ( timestamptz, format ) → *string*
+to_char ( timestamp, format ) → *string*
 ```
 
 ```bash title=Example
@@ -214,7 +214,7 @@ to_char('2023-07-11 20:01:00-07:00'::timestamptz, 'HH12:MI:SS TZH:TZM') → 03:0
 Converts a string to a date according to the given format.
 
 ```bash title=Syntax
-to_date(date_string, format) → date
+to_date ( date_string, format ) → date
 ```
 
 ```bash title=Example
@@ -227,12 +227,12 @@ to_date('05 Dec 2000', 'DD Mon YYYY') → '2000-12-05'
 
 This function has two variants.
 
-#### `to_timestamp( seconds_double_precision )`
+#### `to_timestamp ( seconds_double_precision )`
 
 Converts Unix epoch seconds (the number of seconds since 1970-01-01 00:00:00+00) to timestamptz.
 
 ```bash title=Syntax
-to_timestamp(seconds_double_precision) → timestamptz
+to_timestamp ( seconds_double_precision ) → timestamptz
 ```
 
 ```bash title=Example
@@ -241,12 +241,12 @@ to_timestamp(1262349296.7890123) → '2010-01-01 12:34:56.789012+00:00'
 
 ---
 
-#### `to_timestamp( string, timestamp_format )`
+#### `to_timestamp ( string, timestamp_format )`
 
 Converts a string to timestamptz according to the given format.
 
 ```bash title=Syntax
-to_timestamp(string, timestamp_format) → timestamptz
+to_timestamp ( string, timestamp_format ) → timestamptz
 ```
 
 ```bash title=Example
@@ -257,7 +257,7 @@ to_timestamp('2022-12-25 00:00:00.900006', 'YYYY-MM-DD HH24:MI:SS.US') → '2022
 to_timestamp('2022-12-25 00:00:00.906', 'YYYY-MM-DD HH24:MI:SS.MS') → '2022-12-25 00:00:00.906+00:00'
 ```
 
----
+## Template patterns for data / time formatting
 
 ## Delaying execution functions
 
