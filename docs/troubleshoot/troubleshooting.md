@@ -33,7 +33,7 @@ There are 2 built-in dashboards in the official release.
 - **risingwave_dev_dashboard** contains more low-level metrics for RisingWave developers.
 
 <img
-  src={require('/images/dev-dashboard.png').default}
+  src={require('../images/dev-dashboard.png').default}
   alt="Developer Dashboard"
 />
 
