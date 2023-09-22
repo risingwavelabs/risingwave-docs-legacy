@@ -18,7 +18,7 @@ This guide focuses on addressing OOM issues on the compute node. If you encounte
 2. The Grafana metrics shows memory increases unbounded, beyond the limit of `total_memory` set for the compute node. Memory setting can be found in the booting logs of the compute node. Search for keyword “Memory outline" to locate the specific section.
 
 <img
-  src={require('./images/oom-symptom.png').default}
+  src={require('/images/oom-symptom.png').default}
   alt="Out-of-memory symptom"
 />
 
