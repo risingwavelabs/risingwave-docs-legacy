@@ -33,7 +33,7 @@ Generally you get an error when something goes wrong. The error message should p
 
 The logs of RisingWave are outputted to `stdout` by default. If you are deploying RisingWave via our official Kubernetes operator, you can view them via the `kubectl logs` command.
 
-We recommend that you deploy a dedicated logging system, such as Loki or Elasticsearch.
+We recommend that you deploy a dedicated logging system, such as [Grafana Loki](https://grafana.com/oss/loki/) or [Elasticsearch](https://www.elastic.co/elasticsearch).
 
 ## Leverage system catalogs
 
