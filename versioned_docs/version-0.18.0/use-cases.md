@@ -4,6 +4,9 @@ title: RisingWave use cases
 slug: /use-cases
 keywords: [streaming database, risingwave, use cases]
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/use-cases/" />
+</head>
 RisingWave can be an excellent fit for these categories of use cases.
 
 - Streaming ETL

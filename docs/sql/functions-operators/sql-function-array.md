@@ -114,6 +114,54 @@ array_lower(array[2, 3, 4], 1) → 1
 
 ---
 
+### `array_max`
+
+Returns the maximum value in an array.
+
+Null elements are skipped, but if the array contains only null elements, NULL is returned.
+
+```sql title=Syntax
+array_max ( array ) → type of the elements
+```
+
+```sql title=Example
+array_max(array[3.14, 1.14, 1.14514]) → 3.14
+
+array_max(array[date'2002-10-30', date'2023-09-06', date'2017-06-18']) → 2023-09-06
+
+array_max(array['','']) → empty
+
+array_max(array['a', 'b', NULL, 'c']) → c
+
+array_max(array[NULL]) → NULL
+```
+
+---
+
+### `array_min`
+
+Returns the minimum value in an array.
+
+Null elements are skipped, but if the array contains only null elements, NULL is returned.
+
+```sql title=Syntax
+array_min ( array ) → type of the elements
+```
+
+```sql title=Example
+array_min(array['a', 'b', 'c']) → a
+
+array_min(array[date'2002-10-30', date'2023-09-06', date'2017-06-18']) → 2002-10-30
+
+array_min(array['','']) → empty
+
+array_min(array['a', 'b', NULL, 'c']) → a
+
+array_min(array[NULL]) → NULL
+```
+
+---
+
 ### `array_ndims`
 
 Returns the number of dimensions of *array*.
@@ -123,7 +171,7 @@ array_ndims ( array ) → int
 ```
 
 ```bash title=Example
-array_ndims (array[array[2, 3], array[4, 5]]) → 2
+array_ndims(array[array[2, 3], array[4, 5]]) → 2
 ```
 
 ---
@@ -196,6 +244,24 @@ array_replace ( array, current_element, new_element ) → array
 
 ```bash title=Example
 array_replace(array[7, null, 8, null], null, 0.5) → {7,0.5,8,0.5}
+```
+
+---
+
+### `array_sort`
+
+Sorts the elements of an array in ascending order.
+
+```sql title=Syntax
+array_sort ( array ) → array
+```
+
+```sql title=Example
+array_sort(array[-1000, 2000, 0]) → {-1000,0,2000}
+
+array_sort(array['abcdef', 'aacedf', 'aaadef']) → {aaadef,aacedf,abcdef}
+
+array_sort(array[3, 2, NULL, 1, NULL]) → {1,2,3,NULL,NULL}
 ```
 
 ---

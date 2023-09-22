@@ -160,3 +160,4 @@ JetStream
 MSK
 msk
 NATS
+ScyllaDB
