@@ -15,7 +15,7 @@ RisingWave Dashboard is the built-in dashboard of RisingWave. From RisingWave Da
 You can access RisingWave Dashboard at `http://localhost:5692` by default.
 
 <img
-  src={require('/images/risingwave-dashboard.png').default}
+  src={require('../images/risingwave-dashboard.png').default}
   alt="RisingWave Dashboard"
 />
 
