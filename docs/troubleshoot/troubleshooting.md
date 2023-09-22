@@ -14,6 +14,11 @@ RisingWave Dashboard is the built-in dashboard of RisingWave. From RisingWave Da
 
 You can access RisingWave Dashboard at `http://localhost:5692` by default.
 
+<img
+  src={require('./images/risingwave-dashboard.png').default}
+  alt="RisingWave Dashboard"
+/>
+
 ### View performance metrics
 
 You can monitor the performance metrics of a RisingWave cluster, including the usage of resources like CPU, memory, and network, and the status of different nodes.
@@ -26,6 +31,11 @@ There are 2 built-in dashboards in the official release.
 
 - **risingwave_dashboard** contains user-facing key metrics.
 - **risingwave_dev_dashboard** contains more low-level metrics for RisingWave developers.
+
+<img
+  src={require('./images/dev-dashboard.png').default}
+  alt="Developer Dashboard"
+/>
 
 ## Review error messages and logs
 

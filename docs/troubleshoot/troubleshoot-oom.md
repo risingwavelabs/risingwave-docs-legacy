@@ -14,12 +14,17 @@ This guide focuses on addressing OOM issues on the compute node. If you encounte
 
 ## OOM symptoms
 
-1. The Kubernetes shows the CN Pod suddenly restarts due to **OOM Killed (137)**. But for some unknown reason, this is not always the case.
-2. The Grafana metrics shows memory increases unbounded, beyond the limit of `total_memory` set for CN. (Memory setting can be found in CN’s booting logs. Search for keyword “Memory outline”)
+1. The Kubernetes shows the compute node pod suddenly restarts due to **OOM Killed (137)**.
+2. The Grafana metrics shows memory increases unbounded, beyond the limit of `total_memory` set for the compute node. Memory setting can be found in the booting logs of the compute node. Search for keyword “Memory outline" to locate the specific section.
+
+<img
+  src={require('./images/oom-symptom.png').default}
+  alt="Out-of-memory symptom"
+/>
 
 ## OOM when creating materialized views
 
-If the OOM happens during creating a new materialized view, it might be caused by the large amount of existing data in upstream system like Kafka. In this case, before creating or recreating a materialize view, you can reduce the traffic by reducing the rate limit:
+If OOM happens during creating a new materialized view, it might be caused by the large amount of existing data in upstream systems like Kafka. In this case, before creating or recreating a materialize view, you can reduce the traffic by specifying the rate limit:
 
 ```sql
 SET RW_STREAMING_RATE_LIMIT = <rate_limit_per_actor> 
@@ -27,21 +32,18 @@ SET RW_STREAMING_RATE_LIMIT = <rate_limit_per_actor>
 
 Note that the limit value must be larger than the value for `stream_chunk_size` (usually 256). Otherwise the flow control executor can’t throttle the chunk.
 
-If the query of the materialized view is complex, consider improving the query performance. For details, see [Troubleshoot Streaming Performance](https://www.notion.so/Troubleshoot-Streaming-Performance-e60dad4c420c4e5ea320252069ed3670?pvs=21).
+If the query of the materialized view is complex, consider improving the query performance.
 
 ## OOM caused by barrier latency
 
-Barrier is a fundamental mechanism in our system and many components rely on it to work correctly, including memory management and LRU caches.
+Barrier plays a vital role in our system, supporting the proper functioning of important components like memory management and LRU caches.
 
-Instead of looking into the memory problem, we recommend you to investigate the reason of barrier stuck. This might be caused by temporary network jitter or some internal performance issues. Please dump the Async Stack Trace of all compute nodes on RisingWave Dashboard and ask us in our Slack channel #troubleshooting.
+Instead of solely addressing the memory problem, we recommend investigating why the barrier is getting stuck. This issue could be due to temporary network issues or internal performance concerns. To troubleshoot effectively, please dump the Async Stack Trace of all compute nodes on the RisingWave Dashboard and reach out to us in our Slack channel #troubleshooting. We'll provide further assistance and guidance to help resolve this issue promptly.
 
-## OOM caused by other issues
+## OOM due to other reasons
 
-We added a built-in memory profiling utility since version 1.3 (<https://github.com/risingwavelabs/risingwave/pull/12052>). Under the hood, it automatically dumps heap profiling results and provide an UI to analyze them in one click.
+We have added a built-in memory profiling utility in version 1.3 of RisingWave. This utility automatically dumps heap profiling results when the memory usage reaches the threshold of 90%. Additionally, users can trigger a manual dump of the memory profile.
 
-- **Auto Dump** is triggered automatically when memory usage hit the threshold (90%)
-- **Manual Dump** is trigger by user manually.
+The memory profiling results in `collapsed` format and can be visualized using flamegraph tools such as [FlameGraph](https://github.com/brendangregg/FlameGraph) or online tools such as [Speedscope](https://www.speedscope.app/) and [flamegraph.com](https://flamegraph.com/).
 
-The analyzing result is in `collapsed` format and can be visualized by flamegraph tools such as <https://github.com/brendangregg/FlameGraph> or online tools such as [Speedscope](https://www.speedscope.app/), [flamegraph.com](https://flamegraph.com/).
-
-Please feel free to ask us in our Slack channel **#troubleshooting** attaching the analyzing result.
+If you have any questions or need assistance with analyzing the memory profiling results, please don't hesitate to reach out to us in our Slack channel #troubleshooting. Please remember to attach the analyzing result for further assistance.
