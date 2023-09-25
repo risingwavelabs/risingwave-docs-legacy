@@ -4,6 +4,9 @@ title: START TRANSACTION
 description: Start a transaction.
 slug: /sql-start-transaction
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-start-transaction/" />
+</head>
 
 RisingWave supports read-only transactions. You can use the `START TRANSACTION READ ONLY` command to start a read-only transaction. For more information about transactions in RisingWave, see [Transactions](/concepts/tranactions.md).
 

@@ -3,6 +3,9 @@ id: sql-function-sys-admin
 slug: /sql-function-sys-admin
 title: System administration functions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-sys-admin/" />
+</head>
 
 This page lists both RisingWave system administration functions and PostgreSQL system administration functions that are supported in RisingWave.
 

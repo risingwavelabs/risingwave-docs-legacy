@@ -4,6 +4,9 @@ title: Integrations
 description: Summary of integrations
 slug: /rw-integration-summary
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw-integration-summary/" />
+</head>
 
 We aim to minimize the hassel of integrating RisingWave with your existing data stack. With that purpose in mind, we will try to support the mainstream data formats, tools, and as many systems as possible.
 

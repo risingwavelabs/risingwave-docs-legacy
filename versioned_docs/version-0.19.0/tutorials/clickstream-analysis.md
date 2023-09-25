@@ -4,6 +4,9 @@ slug: /clickstream-analysis
 title: Clickstream analysis
 description: Use RisingWave to perform clickstream analysis.
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/clickstream-analysis/" />
+</head>
 
 ## Overview
 

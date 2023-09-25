@@ -3,6 +3,9 @@ id: troubleshooting
 title: Troubleshooting
 slug: /troubleshooting
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/troubleshooting/" />
+</head>
 
 We are currently in the process of developing a comprehensive troubleshooting guide to help address any issues you may encounter. We understand the importance of providing you with the necessary resources to resolve your concerns effectively.
 

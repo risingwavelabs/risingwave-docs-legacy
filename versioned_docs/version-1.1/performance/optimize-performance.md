@@ -3,6 +3,9 @@ id: optimize-performance
 title: Optimize performance
 slug: /optimize-performance
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/optimize-performance/" />
+</head>
 
 To assist you in fine-tuning performance and maximizing efficiency, we are currently developing a comprehensive guide on performance optimization.
 

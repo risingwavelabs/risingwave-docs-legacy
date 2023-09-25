@@ -4,6 +4,9 @@ title: Sink data from RisingWave to ClickHouse
 description: Sink data from RisingWave to ClickHouse.
 slug: /sink-to-clickhouse 
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-clickhouse/" />
+</head>
 
 This guide describes how to sink data from RisingWave to ClickHouse using the ClickHouse sink connector in RisingWave.
 

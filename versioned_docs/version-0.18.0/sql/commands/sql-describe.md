@@ -4,6 +4,9 @@ title: DESCRIBE
 description: Get information about the columns in a table, source, or materialized view.
 slug: /sql-describe
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-describe/" />
+</head>
 
 Use the `DESCRIBE` command to view columns in the specified table, source, or materialized view.
 

@@ -3,6 +3,10 @@ id: data-type-casting
 slug: /data-type-casting
 title: Casting
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-type-casting/" />
+</head>
+
 Certain data types can be cast to and from other types implicitly or explicitly.
 
 - 🟢 Implicit: Values can be automatically converted to the target type.

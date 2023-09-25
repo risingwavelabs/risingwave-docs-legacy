@@ -4,6 +4,9 @@ title: CREATE INDEX
 description: Create an index on a column of a table or a materialized view to speed up data retrieval.
 slug: /sql-create-index
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-index/" />
+</head>
 
 Use the `CREATE INDEX` command to construct an index on a table or a materialized view.
 

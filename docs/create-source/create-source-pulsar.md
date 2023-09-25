@@ -4,6 +4,10 @@ title: Ingest data from Pulsar
 description: Connect RisingWave to a Pulsar broker.
 slug: /create-source-pulsar
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-pulsar/" />
+</head>
+
 You can ingest data from Pulsar into RisingWave by using the Pulsar source connector in RisingWave.
 
 :::caution Beta feature

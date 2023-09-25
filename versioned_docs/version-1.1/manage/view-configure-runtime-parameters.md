@@ -4,6 +4,9 @@ title: View and configure runtime parameters
 description: View the runtime parameters and configure their values if needed.
 slug: /view-configure-runtime-parameters
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/view-configure-runtime-parameters/" />
+</head>
 
 ## What are runtime parameters?
 

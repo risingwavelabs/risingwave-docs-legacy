@@ -4,6 +4,9 @@ title: UPDATE
 description: Modify existing rows in a table.
 slug: /sql-update
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-update/" />
+</head>
 
 Use the `UPDATE` command to modify values of existing rows in a table.
 

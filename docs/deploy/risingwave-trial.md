@@ -4,6 +4,9 @@ title: Run RisingWave for testing purposes
 description: Install, run, and connect to RisingWave for testing purposes
 slug: /risingwave-trial
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-trial/" />
+</head>
 
 Select an installation or running method.
 

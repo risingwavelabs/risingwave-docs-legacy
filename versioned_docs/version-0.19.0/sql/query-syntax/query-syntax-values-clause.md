@@ -3,6 +3,9 @@ id: query-syntax-values-clause
 slug: /query-syntax-values-clause
 title: VALUES clause
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-values-clause/" />
+</head>
 
 In RisingWave, the `VALUES` clause is used to generate one or more rows of data as a table expression. It is commonly used in SQL queries to create temporary tables or to insert data into a table.
 

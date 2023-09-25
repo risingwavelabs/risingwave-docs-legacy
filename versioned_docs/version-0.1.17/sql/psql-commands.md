@@ -3,6 +3,9 @@ id: psql-commands
 slug: /psql-commands
 title: Psql commands
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/psql-commands/" />
+</head>
 
 RisingWave supports the following psql commands:
 

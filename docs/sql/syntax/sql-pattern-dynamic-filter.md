@@ -3,6 +3,9 @@ id: sql-pattern-dynamic-filters
 slug: /sql-pattern-dynamic-filters
 title: Dynamic filters
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-pattern-dynamic-filters/" />
+</head>
 
 Dynamic filters function as filter operators, but the filter condition contains a dynamic variable. They enable filtering data streams in real-time and allow a condition to be defined that incoming data must meet in order to be processed.
 

@@ -3,6 +3,9 @@ id: sql-function-array
 slug: /sql-function-array
 title: Array functions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-array/" />
+</head>
 
 |Function|Description|Example|
 |---|---|---|
