@@ -46,6 +46,9 @@ If "command not found: pip" is returned, <a href="https://packaging.python.org/e
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+
+Create a python file, containing our UDF
+
 <details>
 <summary>How?</summary>
 Here are a few methods for creating a Python file.
@@ -159,6 +162,8 @@ To make this more fun, let's create data that our UDF can query. For this purpos
     psql "port=5432 host=localhost user=postgres sslmode=disable" 
     ```
 
+1. Provide the password `mysecretpassword`
+
 1. Create our example data by running below commands
 
     ```sql
@@ -221,6 +226,11 @@ select * from select_people_table_pg('SELECT * FROM people WHERE age > 25;'::VAR
   7 |  30 | Dozer
   8 |  27 | Switch
 (7 rows)
+
+-- below query is equivalent to the above one
+-- but the WHERE clause is applied in RisingWave instead of filtering in postgres directly
+-- it therefore has worse performance than the one above
+select * from select_people_table_pg('SELECT * FROM people;'::VARCHAR) WHERE age > 25;
 ```
 
 Please note that RisingWave will not show errors, but instead empty results, e.g. 
@@ -230,4 +240,5 @@ select * from select_people_table_pg('an invalid query;'::VARCHAR);
 ---
  id | age |   name
 ----+-----+----------
+(0 rows)
 ```
