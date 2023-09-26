@@ -184,7 +184,7 @@ WITH (
 
 ```sql
 CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
-   column1 string,
+   column1 varchar,
    column2 integer,
 )
 WITH (
@@ -206,7 +206,7 @@ WITH (
 
 ```sql
 CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
-   column1 string,
+   column1 varchar,
    column2 integer,
 )
 WITH (
