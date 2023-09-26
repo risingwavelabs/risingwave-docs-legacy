@@ -7,49 +7,127 @@ keywords: [risingwave upgrade]
 ---
 We strongly recommend that you regularly upgrade your RisingWave version to pick up bug fixes, performance improvements, and new features.
 
-## Upgrade with the RisingWave operator
+Note: assuming that the Kubernetes namespace is `default`. If your RisingWave cluster is deployed in another namespace, please add the `-n <namespace>` argument to the `kubectl` and `helm` commands below. Remember to replace the `<namespace>` with your own namespace.
 
-1. Review the release notes: Before performing an upgrade, carefully review the release notes of the new software version. Take note of any breaking changes, new features, or improvements that may impact your cluster.
+## Upgrade with the RisingWave Operator
 
-2. Backup your data: It is crucial to back up any critical data or configuration files before initiating the upgrade process. This ensures that you can restore your cluster to its previous state if any issues arise during the upgrade.
+Remember to replace all the `<risingwave-cluster>` with the real object name.
 
-3. Upgrade strategy: Determine the appropriate upgrade strategy based on your specific requirements. Kubernetes provides different upgrade strategies like Rolling Updates, Blue-Green Deployments, or Canary Releases. Choose the strategy that best suits your application's availability and resilience needs.
+1. Check the current status of the RisingWave cluster.
 
-4. Prepare for the upgrade: Ensure that your cluster is in a stable state before initiating the upgrade. Check the health of your cluster and resolve any existing issues. Also, ensure that your nodes have sufficient resources to accommodate the upgraded software version.
+```shell
+kubectl get risingwave <risingwave-cluster>
+```
 
-5. Update Kubernetes manifests: Modify your Kubernetes manifests (deployment, statefulset, etc.) to specify the new version of the software. Update the container image tag or any other relevant configuration parameters.
+Expected output:
 
-6. Apply the changes: Use the appropriate Kubernetes command (e.g., kubectl apply) to apply the changes to your cluster. This will trigger the deployment of the updated software version across the cluster based on your chosen upgrade strategy.
+```plain
+NAME         META STORE   STATE STORE   VERSION   RUNNING   AGE
+risingwave   Etcd         S3            v1.2.0    True      2m20s
+```
 
-7. Monitor the upgrade: Monitor the upgrade process to ensure that the new software version is being rolled out successfully. Use Kubernetes monitoring tools or custom monitoring solutions to track the status of the deployment and verify that the updated pods are running as expected.
+TODO: backup
 
-8. Perform validation tests: Run validation tests on your application to ensure that it functions correctly with the new software version. This includes testing critical functionalities, integrations, and performance benchmarks.
+1. Upgrade the image version. Remember to replace `<target-version>` with the target image version.
 
-9. Rollback plan: In case the upgrade encounters issues or your application experiences unexpected behavior, have a rollback plan ready. This plan should include steps to revert to the previous version of the software and restore the backup data if necessary.
+```shell
+kubectl patch risingwave <risingwave-cluster> --type='merge' -p '{"spec": {"image": "ghcr.io/risingwavelabs/risingwave:<target-version>"}}'
+```
 
-10. Post-upgrade cleanup: Once you are confident that the upgrade was successful and your application is functioning correctly, clean up any old resources, such as deprecated Pods or ReplicaSets, to ensure a clean and efficient cluster state.
+1. Wait before the `Upgrading` condition becomes `True`.
+
+```shell
+kubectl wait --for=condition=Upgrading risingwave/<risingwave-cluster>
+```
+
+1. Wait before the `Upgrading` condition becomes `False`.
+
+```shell
+kubectl wait --for=condition=Upgrading=false risingwave/<risingwave-cluster>
+```
+
+1. If wait timeouts, please check if the pods are running properly.
+   1. If any of the pods is pending or not running, you might need to troubleshoot first and see if there are problems with pod itself, e.g., image not found or pod not scheduled.
+   2. If the meta pod isn't running and ready, please help submit an issue with the logs and rollback by following the guides below.
+   3. If the meta pod is running but others are not, please wait a minute and see if they will be running afterwards. Please submit an issue with the logs and rollback by following the guides below.
+
+```shell
+kubectl get pods -l risingwave/name=<risingwave-cluster>
+```
+
+Expected output:
+
+```plain
+NAME                                    READY   STATUS    RESTARTS      AGE
+risingwave-compactor-5cfcb469c5-gnkrp   1/1     Running   2 (1m ago)    2m35s
+risingwave-compute-0                    1/1     Running   2 (1m ago)    2m35s
+risingwave-frontend-86c948f4bb-69cld    1/1     Running   2 (1m ago)    2m35s
+risingwave-meta-0                       1/1     Running   1 (1m ago)    2m35s
+```
+
+1. Rollback if necessary, with the following command. Remember to replace the `<version-before>` with the image version used before upgrading. The other steps to verify the rollback should be the same as the upgrading.
+
+```shell
+kubectl patch risingwave <risingwave-cluster> --type='merge' -p '{"spec": {"image": "ghcr.io/risingwavelabs/risingwave:<version-before>"}}'
+```
+
+TODO: restore if rollback fails.
 
 ## Upgrade with Helm
 
-1. Review the chart: Begin by reviewing the Helm chart for the application you want to upgrade. Check the chart's documentation or release notes for any specific upgrade instructions or considerations.
+Remember to replace all the `<risingwave-cluster>` with the real object name.
 
-2. Check the current Release: Use the helm list command to check the current status of your release. This will provide information about the deployed release, such as the release name and version.
+1. Check the current status of the RisingWave helm release.
 
-3. Update the values: If necessary, update the values in your values.yaml file to reflect any changes or customizations you want to apply during the upgrade. Pay attention to any new or modified configuration options specific to the upgraded version.
-
-4. Upgrade the release: Use the helm upgrade command to initiate the upgrade process. Specify the release name and the chart repository or chart path. For example:
-
-```bash
-helm upgrade -f values.yaml --reuse-values RELEASE_NAME risingwavelabs/risingwave
-
+```shell
+helm list -f <risingwave-cluster>
 ```
 
-   Ensure that you specify the appropriate release name and chart details based on your setup.
+Expected output:
 
-1. Wait for upgrade completion: Monitor the upgrade process using helm status or kubectl commands to check the status of the updated resources. Wait for the upgrade to complete successfully across all the pods and resources.
+```plain
+NAME      	NAMESPACE 	REVISION	UPDATED                                	 STATUS  	CHART                       	APP VERSION
+risingwave	default	    21      	2023-09-20 13:20:58.389424056 +0000 UTC	 deployed	risingwave-0.1.9	v1.2.0
+```
 
-1. Validate the upgrade: Perform functional and integration tests to verify that the upgraded application is working as expected. Validate critical functionalities, integrations, and any customizations made during the upgrade.
+TODO: backup
 
-1. Rollback if necessary: If the upgrade encounters issues or your application experiences unexpected behavior, you can use the helm rollback command to revert to the previous release. This command will roll back to the previous version, allowing you to restore the previous working state.
+1. Add and update the helm repo.
 
-1. Cleanup: Once you are confident that the upgrade was successful, you can clean up any unused resources or temporary files generated during the upgrade process. This helps maintain a clean and efficient cluster state.
+```shell
+helm repo add risingwavelabs https://risingwavelabs.github.io/helm-charts/
+helm repo update
+```
+
+2. Upgrade the image version. Remember to replace `<target-version>` with the target image version.
+
+```shell
+helm upgrade --wait --set image.tag=<target-version> --reuse-values <risingwave-cluster> risingwavelabs/risingwave
+```
+
+1. If wait timeouts, please check if the pods are running properly.
+   1. If any of the pods is pending or not running, you might need to troubleshoot first and see if there are problems with pod itself, e.g., image not found or pod not scheduled.
+   2. If the meta pod isn't running and ready, please help submit an issue with the logs and rollback by following the guides below.
+   3. If the meta pod is running but others are not, please wait a minute and see if they will be running afterwards. Please submit an issue with the logs and rollback by following the guides below.
+
+```shell
+kubectl get pods -l risingwave/name=<risingwave-cluster>
+```
+
+Expected output:
+
+```plain
+NAME                                    READY   STATUS    RESTARTS      AGE
+risingwave-compactor-5cfcb469c5-gnkrp   1/1     Running   2 (1m ago)    2m35s
+risingwave-compute-0                    1/1     Running   2 (1m ago)    2m35s
+risingwave-frontend-86c948f4bb-69cld    1/1     Running   2 (1m ago)    2m35s
+risingwave-meta-0                       1/1     Running   1 (1m ago)    2m35s
+```
+
+1. Rollback if necessary, with the following command. Remember to replace the `<version-before>` with the image version used before upgrading. The other steps to verify the rollback should be the same as the upgrading.
+
+```shell
+helm rollback --wait <risingwave-cluster>
+```
+
+TODO: restore if rollback fails.
