@@ -14,7 +14,7 @@ A meta snapshot is a backup of meta service's data at a specific point in time. 
 Before you can create a meta snapshot, you need to set the `backup_storage_url` and `backup_storage_directory` system parameters prior to the first backup attempt.
 
 :::caution
-Do not set `backup_storage_url` and `backup_storage_directory` after the cluster is started. Otherwise, all meta snapshots taken previously become invalidated and cannot be used anymore.
+Be careful not to set the `backup_storage_url` and `backup_storage_directory` when there are snapshots. However, it's not strictly forbidden. If you insist to do so, please note the snapshots taken before the setting will all be invalidated and cannot be used in restoration anymore.
 :::
 
 To learn about how to configure system parameters, see [How to configure system parameters](../manage/view-configure-system-parameters.md#how-to-configure-system-parameters).
