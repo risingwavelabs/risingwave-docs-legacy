@@ -75,8 +75,16 @@ Use the following steps to restore from a meta snapshot.
     --meta-snapshot-id [snapshot_id] \
     --etcd-endpoints [etcd_endpoints] \
     --backup-storage-url [backup_storage_url]
+    --backup-storage-directory [backup_storage_directory ]
     --hummock-storage-url [hummock_storage_url]
     --hummock-storage-directory [hummock_storage_directory]
+    ```
+
+    If etcd enables authentication, also specify
+    ```bash
+    --etcd-auth \
+    --etcd-username [etcd_username] \
+    --etcd-password [etcd_password]
     ```
 
     `restore-meta` reads snapshot data from backup storage and writes them to etcd and hummock storage.
