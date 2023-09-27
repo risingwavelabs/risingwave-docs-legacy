@@ -32,7 +32,7 @@ RisingWave offers two running modes and several installation or running options.
 Try out RisingWave without the need for any installation or setup with RisingWave Playground, an interactive web application. You can access RisingWave Playground directly from your browser.
 
 :::caution
-RisingWave Playground is intended for quick testing purposes only. Your data will not persist after a session expires. Some functionality may be limited.
+RisingWave Playground is intended for quick tests only. Your data will not persist after a session expires. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may result in out-of-memory (OOM) errors. Some functionality may be limited.
 :::
 
 <defaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
@@ -54,7 +54,8 @@ RisingWave Playground is intended for quick testing purposes only. Your data wil
 Start a RisingWave standalone instance in your local environment with Homebrew.
 
 :::caution
-This method starts RisingWave in playground mode, where data is temporarily stored in memory. The service automatically terminates after 30 minutes of inactivity, causing all data to be lost.
+This method launches RisingWave in playground mode, where data is stored solely in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may result in out-of-memory (OOM) errors. Use this method for quick tests only.
+
 To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md).
 :::
 
@@ -95,7 +96,8 @@ Notes about the `psql` options:
 Start a RisingWave standalone instance in your local environment with the pre-built binary.
 
 :::caution
-This method starts RisingWave in playground mode, where data is temporarily stored in memory. The service automatically terminates after 30 minutes of inactivity, causing all data to be lost.
+This method launches RisingWave in playground mode, where data is stored solely in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may result in out-of-memory (OOM) errors. Use this method for quick tests only.
+
 To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md).
 :::
 
@@ -173,7 +175,8 @@ To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwav
 Pull a RisingWave image and run it as a Docker container.
 
 :::caution
-This method starts RisingWave in playground mode, where data is temporarily stored in memory. The service automatically terminates after 30 minutes of inactivity, causing all data to be lost.
+This method launches RisingWave in playground mode, where data is stored solely in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may result in out-of-memory (OOM) errors. Use this method for quick tests only.
+
 To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md).
 :::
 
