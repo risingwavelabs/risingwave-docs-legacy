@@ -30,15 +30,17 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 [FROM sink_from | AS select_query]
 WITH (
    connector='nats',
-   nats.server_url='<your nats server>:<port>', [ <another_server_url_if_available>, ...]
-   nats.subject='<your subject>',
-   type='append_only',
-   force_append_only='true', 
-   
-   -- Optional parameters
-   nats.user='<your user name>',
-   nats.password='<your password>'
-);
+   server_url='<your nats server>:<port>', [ <another_server_url_if_available>, ...]
+   subject='<your subject>',
+
+ -- optional parameters
+   connect_mode=<connect_mode>
+   username='<your user name>',
+   password='<your password>'
+   jwt=`<your jwt>`,
+   nkey=`<your nkey>`
+)
+FORMAT PLAIN ENCODE JSON;
 ```
 
 After the sink is created, RisingWave will continuously sink data to the NATS subject in append-only mode.
@@ -53,9 +55,8 @@ The NATS sink connector in RisingWave provides at-least-once delivery semantics.
 
 |Field|Notes|
 |---|---|
-|`nats.server_url`| Required. URLs of the NATS server, in the format of *address*:*port*. If multiple addresses are specified, use commas to separate them.|
-|`nats.subject`| Required. NATS subject that you want to sink data to.|
-|`type`| Required. Sink data type. For the NATS sink connector, only `append-only` is supported.|
-|`force_append_only`| Required. It needs to be set to `true` for the NATS sink connector. This field forces the sink to be `append-only`, even if it cannot be.|
-|`nats.user`| Optional. If authentication is required, specify the client user name.|
-|`nats.password`| Optinal. If authentication is required, specify the client password.|
+|`server_url`| Required. URLs of the NATS server, in the format of *address*:*port*. If multiple addresses are specified, use commas to separate them.|
+|`subject`| Required. NATS subject that you want to sink data to.|
+|`connect_mode`|Required. Authentication mode for the connection. Allowed values: `plain`: No authentication; `user_and_password`: Use user name and password for authentication. For this option, `username` and `password` must be specified; `credential`: Use JSON Web Token (JWT) and NKeys for authentication. For this option, `jwt` and `nkey` must be specified.  |
+|`jwt` and `nkey`|JWT and NKEY for authentication. For details, see [JWT](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/jwt) and [NKeys](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/nkey_auth).|
+|`username` and `password`| Conditional. The client user name and pasword. Required when `connect_mode` is `user_and_password`.|
