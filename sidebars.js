@@ -680,7 +680,7 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  id: "sql/udf/user-defined-functions",
+                  id: "sql/udf/udf-foreign-data",
                   label: "Foreign data",
                 },
               ],
