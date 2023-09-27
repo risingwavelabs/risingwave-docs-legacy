@@ -140,7 +140,7 @@ To create a Kafka sink with a PrivateLink connection, in the WITH section of you
 
 |Parameter| Notes|
 |---|---|
-|`connection.name`| The name of the connection, which comes from the connection created using the `CREATE CONNECTION` statement.|
+|`connection.name`| The name of the connection, which comes from the connection created using the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) statement.|
 |`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
 |`privatelink.endpoint`|The DNS name of the AWS VPC endpoint or the GCP private link endpoint.|
 
