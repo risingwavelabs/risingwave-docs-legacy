@@ -41,6 +41,11 @@ const sidebars = {
           id: "risingwave-flink-comparison",
         },
         {
+          type: "doc",
+          label: "Integrations",
+          id: "rw-integration-summary",
+        },
+        {
           type: "category",
           label: "Deep-dive",
           collapsible: true,
@@ -159,95 +164,14 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Transform data",
-      collapsible: true,
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          id: "sql/syntax/sql-pattern-dynamic-filters",
-          label: "Dynamic filters",
-        },
-        {
-          type: "doc",
-          id: "sql/syntax/sql-pattern-temporal-filters",
-          label: "Temporal filters",
-        },
-        {
-          type: "doc",
-          id: "sql/query-syntax/query-syntax-join-clause",
-          label: "Joins",
-        },
-        {
-          type: "doc",
-          id: "sql/syntax/sql-pattern-topn",
-          label: "Top-N by group",
-        },
-        {
-          type: "doc",
-          id: "sql/functions-operators/sql-function-time-window",
-          label: "Time window functions",
-        },
-        {
-          type: "doc",
-          id: "sql/udf/user-defined-functions",
-          label: "User-defined functions",
-        },
-        {
-          type: "doc",
-          id: "transform/window-functions",
-          label: "Window functions",
-        },
-        {
-          type: "doc",
-          id: "transform/emit-on-window-close",
-          label: "Emit on window close",
-        },
-        {
-          type: "doc",
-          id: "transform/watermarks",
-          label: "Watermarks",
-        },
-        {
-          type: "doc",
-          id: "transform/use-dbt",
-          label: "Use dbt for data transformations",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Query & visualize data",
+      label: "Ingest data",
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: "doc",
-          label: "DBeaver",
-          id: "guides/dbeaver-integration",
-        },
-        {
-          type: "doc",
-          label: "Grafana",
-          id: "guides/grafana-integration",
-        },
-        {
-          type: "doc",
-          label: "Superset",
-          id: "guides/superset-integration",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Ecosystem",
-      collapsible: false,
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          label: "Integrations",
-          id: "rw-integration-summary",
+          label: "Overview",
+          id: "data-ingestion",
         },
         {
           type: "category",
@@ -255,11 +179,6 @@ const sidebars = {
           collapsible: true,
           collapsed: true,
           items: [
-            {
-              type: "doc",
-              label: "Overview",
-              id: "data-ingestion",
-            },
             {
               type: "category",
               label: "Kafka",
@@ -351,7 +270,106 @@ const sidebars = {
               label: "Redpanda",
               id: "create-source/create-source-redpanda",
             },
-          ],
+          ]
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Transform data",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "sql/syntax/sql-pattern-dynamic-filters",
+          label: "Dynamic filters",
+        },
+        {
+          type: "doc",
+          id: "sql/syntax/sql-pattern-temporal-filters",
+          label: "Temporal filters",
+        },
+        {
+          type: "doc",
+          id: "sql/query-syntax/query-syntax-join-clause",
+          label: "Joins",
+        },
+        {
+          type: "doc",
+          id: "sql/syntax/sql-pattern-topn",
+          label: "Top-N by group",
+        },
+        {
+          type: "doc",
+          id: "sql/functions-operators/sql-function-time-window",
+          label: "Time window functions",
+        },
+        {
+          type: "doc",
+          id: "sql/udf/user-defined-functions",
+          label: "User-defined functions",
+        },
+        {
+          type: "doc",
+          id: "transform/window-functions",
+          label: "Window functions",
+        },
+        {
+          type: "doc",
+          id: "transform/emit-on-window-close",
+          label: "Emit on window close",
+        },
+        {
+          type: "doc",
+          id: "transform/watermarks",
+          label: "Watermarks",
+        },
+        {
+          type: "doc",
+          id: "transform/use-dbt",
+          label: "Use dbt for data transformations",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Query & visualize data",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          label: "Beekeeper Studio",
+          id: "guides/beekeeper-integration",
+        },
+        {
+          type: "doc",
+          label: "DBeaver",
+          id: "guides/dbeaver-integration",
+        },
+        {
+          type: "doc",
+          label: "Grafana",
+          id: "guides/grafana-integration",
+        },
+        {
+          type: "doc",
+          label: "Superset",
+          id: "guides/superset-integration",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Deliver data",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "data-delivery",
+          label: "Overview",
         },
         {
           type: "category",
@@ -361,15 +379,10 @@ const sidebars = {
           items: [
             {
               type: "doc",
-              id: "data-delivery",
-              label: "Overview",
-            },
-            {
-              type: "doc",
               label: "Apache Kafka",
               id: "guides/create-sink-kafka",
             },
-               {
+            {
               type: "doc",
               label: "Apache Iceberg",
               id: "guides/sink-to-iceberg",
@@ -406,6 +419,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "NATS",
+              id: "guides/sink-to-nats",
+            },
+            {
+              type: "doc",
               label: "PostgreSQL",
               id: "guides/sink-to-postgres",
             },
@@ -415,7 +433,7 @@ const sidebars = {
               id: "guides/sink-to-tidb",
             },
           ],
-        }
+        },
       ],
     },
     {
@@ -665,6 +683,11 @@ const sidebars = {
                   id: "sql/udf/udf-java",
                   label: "Java",
                 },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-foreign-data",
+                  label: "Foreign data",
+                },
               ],
             },
             {
@@ -778,9 +801,22 @@ const sidebars = {
       id: "performance/optimize-performance"
     },
     {
-      type: "doc",
+      type: "category",
       label: "Troubleshooting",
-      id: "troubleshoot/troubleshooting"
+      collapsible: true,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Overview",
+          id: "troubleshoot/troubleshooting"
+        },
+        {
+          type: "doc",
+          label: "Troubleshoot out-of-memory problems",
+          id: "troubleshoot/troubleshoot-oom"
+        },
+      ]
     },
     {
       type: "link",

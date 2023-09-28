@@ -266,6 +266,24 @@ array_sort(array[3, 2, NULL, 1, NULL]) → {1,2,3,NULL,NULL}
 
 ---
 
+### `array_sum`
+
+Returns the sum of the values in the array. Null elements are skipped.
+
+```bash title=Syntax
+array_sum ( array ) → type of the elements
+```
+
+```bash title=Example
+array_sum(array[3, 2, NULL]) → 5
+
+array_sum(array[-10, 20, -30]) → -20
+
+array_sum(array[interval'4 hour', interval'3 day']) → '3 days 04:00:00'
+```
+
+---
+
 ### `array_to_string` and `array_join`
 
 Converts an array to a string. The optional *delimiter_string* separates the array's elements in the resulting string, and the optional *null_string* represents `NULL` elements in the array. `array_join` can also be used instead of `array_to_string`.
