@@ -419,6 +419,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "NATS",
+              id: "guides/sink-to-nats",
+            },
+            {
+              type: "doc",
               label: "PostgreSQL",
               id: "guides/sink-to-postgres",
             },
@@ -682,6 +687,11 @@ const sidebars = {
                   type: "doc",
                   id: "sql/udf/udf-java",
                   label: "Java",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-foreign-data",
+                  label: "Foreign data",
                 },
               ],
             },
