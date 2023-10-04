@@ -45,7 +45,7 @@ WITH (
 | `clickhouse.user`       | Required. User name for accessing the ClickHouse server. |
 | `clickhouse.password`   | Required. Password for accessing the ClickHouse server.|
 | `clickhouse.database`  | Required. Name of the ClickHouse database that you want to sink data to.|
-| `clickhouse.table`      | Required. Name of the ClickHouse table that you want to sink dat to.|
+| `clickhouse.table`      | Required. Name of the ClickHouse table that you want to sink data to.|
 
 :::note
 
@@ -74,7 +74,7 @@ PRIMARY KEY (seq_id);
 
 ### Create an upstream materialized view or source
 
-The following query creates an append-only source. For more details on creating a source, see [`CREATE SOURCE`](/sql/commands/sql-create-source.md) .
+The following query creates an append-only source. For more details on creating a source, see [`CREATE SOURCE`](/sql/commands/sql-create-source.md).
 
 ```sql
 CREATE SOURCE s1_source (
