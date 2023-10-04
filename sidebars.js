@@ -380,7 +380,7 @@ const sidebars = {
             {
               type: "doc",
               label: "Apache Doris",
-              id: "guides/create-sink-doris",
+              id: "guides/sink-to-doris",
             },
             {
               type: "doc",

@@ -13,7 +13,7 @@ This guide describes how to sink data from RisingWave to Apache Doris. Apache Do
 
 - Ensure you have an upstream materialized view or source that you can sink data from. For more details, see [CREATE SOURCE](/sql/commands/sql-create-source.md) or [CREATE MATERIALIZED VIEW](/sql/commands/sql-create-mv.md).
 
-- Ensure that for `struct` elements, the name and type are the same in Doris and RisingWave. If they are not the same, the values will be set to `NULL` or to default values.
+- Ensure that for `struct` elements, the name and type are the same in Doris and RisingWave. If they are not the same, the values will be set to `NULL` or to default values. For more details on the `struct` data type, see [Struct](/sql/data-types/data-type-struct.md).
 
 ## Syntax 
 
