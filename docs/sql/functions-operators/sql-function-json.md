@@ -177,7 +177,7 @@ SELECT '{"a":1,"b":2}'::jsonb ->> 'b';
 Concatenates jsonb data type.
 
 ```bash title=Syntax
-(jsonb || jsonb) → varchar
+(jsonb || jsonb) → jsonb
 ```
 
 ```sql title=Example
