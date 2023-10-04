@@ -41,6 +41,11 @@ const sidebars = {
           id: "risingwave-flink-comparison",
         },
         {
+          type: "doc",
+          label: "Integrations",
+          id: "rw-integration-summary",
+        },
+        {
           type: "category",
           label: "Deep-dive",
           collapsible: true,
@@ -164,9 +169,121 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Ingest data",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          label: "Overview",
+          id: "data-ingestion",
+        },
+        {
+          type: "category",
+          label: "Sources",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: "category",
+              label: "Kafka",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  label: "Apache Kafka",
+                  id: "create-source/create-source-kafka",
+                },
+                {
+                  type: "doc",
+                  label: "Confluent Cloud",
+                  id: "guides/confluent-kafka-source",
+                },
+                {
+                  type: "doc",
+                  label: "Amazon MSK",
+                  id: "guides/connector-amazon-msk",
+                },
+              ]
+            },
+            {
+              type: "category",
+              label: "Pulsar",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  label: "Apache Pulsar",
+                  id: "create-source/create-source-pulsar",
+                },
+                {
+                  type: "doc",
+                  label: "DataStax Astra Streaming",
+                  id: "guides/connector-astra-streaming",
+                },
+              ]
+            },
+            {
+              type: "doc",
+              label: "AWS Kinesis",
+              id: "create-source/create-source-kinesis",
+            },
+            {
+              type: "doc",
+              label: "AWS S3",
+              id: "create-source/create-source-s3",
+            },
+            {
+              type: "doc",
+              label: "CDC via event streaming systems",
+              id: "create-source/create-source-cdc",
+            },
+            {
+              type: "doc",
+              label: "Citus CDC",
+              id: "guides/ingest-from-citus-cdc",
+            },
+            {
+              type: "doc",
+              label: "Load generator",
+              id: "create-source/create-source-datagen",
+            },
+            {
+              type: "doc",
+              label: "MongoDB CDC",
+              id: "guides/ingest-from-mongodb-cdc",
+            },
+            {
+              type: "doc",
+              label: "MySQL CDC",
+              id: "guides/ingest-from-mysql-cdc",
+            },
+            {
+              type: "doc",
+              label: "NATS JetStream",
+              id: "create-source/create-source-nats",
+            },
+            {
+              type: "doc",
+              label: "PostgreSQL CDC",
+              id: "guides/ingest-from-postgres-cdc",
+            },
+            {
+              type: "doc",
+              label: "Redpanda",
+              id: "create-source/create-source-redpanda",
+            },
+          ]
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Transform data",
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -195,7 +312,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "sql/functions-operators/user-defined-functions",
+          id: "sql/udf/user-defined-functions",
           label: "User-defined functions",
         },
         {
@@ -222,92 +339,42 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Ecosystem",
-      collapsible: false,
-      collapsed: false,
+      label: "Query & visualize data",
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: "doc",
-          label: "Integrations",
-          id: "rw-integration-summary",
+          label: "Beekeeper Studio",
+          id: "guides/beekeeper-integration",
         },
         {
-          type: "category",
-          label: "Sources",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              label: "Overview",
-              id: "data-ingestion",
-            },
-            {
-              type: "doc",
-              label: "Apache Kafka",
-              id: "create-source/create-source-kafka",
-            },
-            {
-              type: "doc",
-              label: "Apache Pulsar",
-              id: "create-source/create-source-pulsar",
-            },
-            {
-              type: "doc",
-              label: "AWS Kinesis",
-              id: "create-source/create-source-kinesis",
-            },
-            {
-              type: "doc",
-              label: "AWS S3",
-              id: "create-source/create-source-s3",
-            },
-            {
-              type: "doc",
-              label: "CDC via event streaming systems",
-              id: "create-source/create-source-cdc",
-            },
-            {
-              type: "doc",
-              label: "Citus CDC",
-              id: "guides/ingest-from-citus-cdc",
-            },
-            {
-              type: "doc",
-              label: "Confluent Cloud",
-              id: "guides/confluent-kafka-source",
-            },
-            {
-              type: "doc",
-              label: "Amazon MSK",
-              id: "guides/connector-amazon-msk",
-            },
-            {
-              type: "doc",
-              label: "DataStax Astra Streaming",
-              id: "guides/connector-astra-streaming",
-            },
-            {
-              type: "doc",
-              label: "Load generator",
-              id: "create-source/create-source-datagen",
-            },
-            {
-              type: "doc",
-              label: "MySQL CDC",
-              id: "guides/ingest-from-mysql-cdc",
-            },
-            {
-              type: "doc",
-              label: "PostgreSQL CDC",
-              id: "guides/ingest-from-postgres-cdc",
-            },
-            {
-              type: "doc",
-              label: "Redpanda",
-              id: "create-source/create-source-redpanda",
-            },
-          ],
+          type: "doc",
+          label: "DBeaver",
+          id: "guides/dbeaver-integration",
+        },
+        {
+          type: "doc",
+          label: "Grafana",
+          id: "guides/grafana-integration",
+        },
+        {
+          type: "doc",
+          label: "Superset",
+          id: "guides/superset-integration",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Deliver data",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "data-delivery",
+          label: "Overview",
         },
         {
           type: "category",
@@ -317,38 +384,8 @@ const sidebars = {
           items: [
             {
               type: "doc",
-              id: "data-delivery",
-              label: "Overview",
-            },
-            {
-              type: "doc",
-              label: "Kafka",
+              label: "Apache Kafka",
               id: "guides/create-sink-kafka",
-            },
-            {
-              type: "doc",
-              label: "MySQL",
-              id: "guides/sink-to-mysql-with-jdbc",
-            },
-            {
-              type: "doc",
-              label: "PostgreSQL",
-              id: "guides/sink-to-postgres",
-            },
-            {
-              type: "doc",
-              label: "AWS Kinesis",
-              id: "guides/sink-to-aws-kinesis",
-            },
-            {
-              type: "doc",
-              label: "TiDB",
-              id: "guides/sink-to-tidb",
-            },
-            {
-              type: "doc",
-              label: "Delta Lake",
-              id: "guides/sink-to-delta-lake",
             },
             {
               type: "doc",
@@ -357,26 +394,48 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "AWS Kinesis",
+              id: "guides/sink-to-aws-kinesis",
+            },
+            {
+              type: "doc",
+              label: "Cassandra",
+              id: "guides/sink-to-cassandra",
+            },
+            {
+              type: "doc",
               label: "ClickHouse",
               id: "guides/sink-to-clickhouse",
             },
-          ],
-        },
-        {
-          type: "category",
-          label: "Visualization",
-          collapsible: true,
-          collapsed: true,
-          items: [
             {
               type: "doc",
-              label: "Grafana",
-              id: "guides/grafana-integration",
+              label: "Delta Lake",
+              id: "guides/sink-to-delta-lake",
             },
             {
               type: "doc",
-              label: "Superset",
-              id: "guides/superset-integration",
+              label: "Elasticsearch",
+              id: "guides/sink-to-elasticsearch",
+            },
+            {
+              type: "doc",
+              label: "MySQL",
+              id: "guides/sink-to-mysql-with-jdbc",
+            },
+            {
+              type: "doc",
+              label: "NATS",
+              id: "guides/sink-to-nats",
+            },
+            {
+              type: "doc",
+              label: "PostgreSQL",
+              id: "guides/sink-to-postgres",
+            },
+            {
+              type: "doc",
+              label: "TiDB",
+              id: "guides/sink-to-tidb",
             },
           ],
         },
@@ -563,7 +622,12 @@ const sidebars = {
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-datetime",
-                  label: "Date/time",
+                  label: "Date & time",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-json",
+                  label: "JSON",
                 },
                 {
                   type: "doc",
@@ -600,6 +664,34 @@ const sidebars = {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-sys-info",
                   label: "System information",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "User-defined functions",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "sql/udf/user-defined-functions",
+                  label: "Overview",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-python",
+                  label: "Python",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-java",
+                  label: "Java",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-foreign-data",
+                  label: "Foreign data",
                 },
               ],
             },
@@ -675,6 +767,10 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          id: "manage/access-control",
+        },
+        {
+          type: "doc",
           id: "manage/monitor-risingwave-cluster",
         },
         {
@@ -710,9 +806,22 @@ const sidebars = {
       id: "performance/optimize-performance"
     },
     {
-      type: "doc",
+      type: "category",
       label: "Troubleshooting",
-      id: "troubleshoot/troubleshooting"
+      collapsible: true,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Overview",
+          id: "troubleshoot/troubleshooting"
+        },
+        {
+          type: "doc",
+          label: "Troubleshoot out-of-memory problems",
+          id: "troubleshoot/troubleshoot-oom"
+        },
+      ]
     },
     {
       type: "link",

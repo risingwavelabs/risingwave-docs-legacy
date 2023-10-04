@@ -77,6 +77,7 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 * [TiDB](/guides/sink-to-tidb.md)
 * [Apache Iceberg](/guides/sink-to-iceberg.md)
 * [Delta Lake](/guides/sink-to-delta-lake.md)
+* [Elasticsearch](/guides/sink-to-elasticsearch.md)
 
 ## See also
 
