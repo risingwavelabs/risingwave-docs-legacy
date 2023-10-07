@@ -19,7 +19,7 @@ RisingWave offers several installation or running options. Choose the option tha
 ## Quick tests
 
 RisingWave will be started as a single-node instance. Data is stored solely in memory and will not be persisted after the service is terminated.
-  
+
 These options are available:
 
 - <lightButton text="Playground in browser" doc="risingwave-trial?method=playground" block />
