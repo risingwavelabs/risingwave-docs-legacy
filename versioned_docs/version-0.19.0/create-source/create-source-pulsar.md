@@ -163,7 +163,7 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.av
 
 ```sql
 CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
-   column1 string,
+   column1 varchar,
    column2 integer,
 )
 WITH (
@@ -186,7 +186,7 @@ ROW FORMAT JSON;
 
 ```sql
 CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
-   column1 string,
+   column1 varchar,
    column2 integer,
 )
 WITH (

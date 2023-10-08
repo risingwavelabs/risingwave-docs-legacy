@@ -29,7 +29,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <voteNotify note="astra_streaming_sink" />|
 |StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
 |Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Available. See [Sink data to Kinesis](/guides/sink-to-aws-kinesis.md) for details.|
-|NATS JetStream | Available. See [Ingest data from NATS JetStream](/create-source/create-source-nats.md) for details. | |
+|NATS / NATS JetStream | Available. See [Ingest data from NATS JetStream](/create-source/create-source-nats.md) for details. | Available. See [Sink data to NATS](/guides/sink-to-nats.md) for details.|
 
 ## ETL/ELT and data integration
 
@@ -102,6 +102,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |System ||Availability |
 |---|-|--|
 |Apache Superset| |Available. See [Visualize RisingWave data in Superset](/guides/superset-integration.md) for details. |
+|Beekeeper Studio| |Available. See [Connect Beekeeper Studio to RisingWave](/guides/beekeeper-integration.md) for details. |
 |Cube.js| | Researching <voteNotify note="cubejs" />|
 |DBeaver| | Available. See [Connect DBeaver to RisingWave](/guides/dbeaver-integration.md) for details. |
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|

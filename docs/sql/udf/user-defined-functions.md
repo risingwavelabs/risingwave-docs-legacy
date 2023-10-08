@@ -20,3 +20,8 @@ RisingWave supports creating UDFs with the following programming languages:
 - [Python](/sql/udf/udf-python.md)
 
 - [Java](/sql/udf/udf-java.md)
+
+You may also use UDFs to query data stored in different databases 
+
+- [Query foreign data](/sql/udf/udf-foreign-data.md)
+

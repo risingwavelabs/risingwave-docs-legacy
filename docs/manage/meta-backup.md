@@ -14,10 +14,10 @@ A meta snapshot is a backup of meta service's data at a specific point in time. 
 
 ## Set backup parameters
 
-Before you can create a meta snapshot, you need to set the `backup_storage_url` and `backup_storage_directory` system parameters prior to starting your cluster.
+Before you can create a meta snapshot, you need to set the `backup_storage_url` and `backup_storage_directory` system parameters prior to the first backup attempt.
 
 :::caution
-Do not set `backup_storage_url` and `backup_storage_directory` after the cluster is started. Otherwise, all meta snapshots taken previously become invalidated and cannot be used anymore.
+Be careful not to set the `backup_storage_url` and `backup_storage_directory` when there are snapshots. However, it's not strictly forbidden. If you insist to do so, please note the snapshots taken before the setting will all be invalidated and cannot be used in restoration anymore.
 :::
 
 To learn about how to configure system parameters, see [How to configure system parameters](../manage/view-configure-system-parameters.md#how-to-configure-system-parameters).
@@ -71,17 +71,26 @@ Use the following steps to restore from a meta snapshot.
 3. Restore the meta snapshot to the new meta store.
 
     ```bash
-    backup-restore \
+    risectl \
+    meta \
+    restore-meta \
     --meta-store-type etcd \
     --meta-snapshot-id [snapshot_id] \
     --etcd-endpoints [etcd_endpoints] \
-    --backup-storage-url [backup_storage_url]
-    --hummock-storage-url [hummock_storage_url]
-    --hummock-storage-dir [hummock_storage_dir]
+    --backup-storage-url [backup_storage_url] \
+    --backup-storage-directory [backup_storage_directory ] \
+    --hummock-storage-url [hummock_storage_url] \
+    --hummock-storage-directory [hummock_storage_directory]
     ```
 
-    `backup-restore` reads snapshot data from backup storage and writes them to etcd and hummock storage.
-    `backup-restore` is not included in the pre-built risingwave binary. Please build it from source by compiling the `risingwave_backup_cmd` package.
+    If etcd enables authentication, also specify
+    ```bash
+    --etcd-auth \
+    --etcd-username [etcd_username] \
+    --etcd-password [etcd_password] \
+    ```
+
+    `restore-meta` reads snapshot data from backup storage and writes them to etcd and hummock storage.
 4. Configure meta service to use the new meta store.
 
 ## Access historical data backed up by meta snapshot

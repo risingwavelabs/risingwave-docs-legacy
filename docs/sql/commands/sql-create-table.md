@@ -35,7 +35,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
 
 ## Notes
 
-For tables with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record.
+For tables with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record. A generated column cannot be defined as a primary key.
 
 Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
 

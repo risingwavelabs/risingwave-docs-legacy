@@ -340,6 +340,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          label: "Beekeeper Studio",
+          id: "guides/beekeeper-integration",
+        },
+        {
+          type: "doc",
           label: "DBeaver",
           id: "guides/dbeaver-integration",
         },
@@ -411,6 +416,11 @@ const sidebars = {
               type: "doc",
               label: "MySQL",
               id: "guides/sink-to-mysql-with-jdbc",
+            },
+            {
+              type: "doc",
+              label: "NATS",
+              id: "guides/sink-to-nats",
             },
             {
               type: "doc",
@@ -672,6 +682,11 @@ const sidebars = {
                   type: "doc",
                   id: "sql/udf/udf-java",
                   label: "Java",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-foreign-data",
+                  label: "Foreign data",
                 },
               ],
             },
