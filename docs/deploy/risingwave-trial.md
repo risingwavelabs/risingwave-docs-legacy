@@ -22,14 +22,14 @@ RisingWave will be started as a single-node instance. Data is stored solely in m
 
 These options are available:
 
-- [Playground in a Web browser](risingwave-trial?method=playground)
-- [Homebrew](risingwave-trial?method=homebrew)
-- [Binaries](risingwave-trial?method=binaries)
-- [Docker image](risingwave-trial?method=docker)
+- <lightButton text="Playground in browser" doc="risingwave-trial?method=playground" block />
+- <lightButton text="Homebrew" doc="risingwave-trial?method=homebrew" block />
+- <lightButton text="Binaries" doc="risingwave-trial?method=binaries" block />
+- <lightButton text="Docker" doc="risingwave-trial?method=docker" block />
 
 ## Advanced tests
 
-For advanced tests, please use the [Docker Compose](risingwave-trial?method=docker-compose) option. RisingWave will be started as a multi-node cluster. Data is persisted in storage. As some critical features like failover and resource management are not implemented for this option, this option is not recommended for production deployments.
+For advanced tests, please use the <lightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" block /> option. RisingWave will be started as a multi-node cluster. Data is persisted in storage. As some critical features like failover and resource management are not implemented for this option, this option is not recommended for production deployments.
 
 </TabItem>
 
