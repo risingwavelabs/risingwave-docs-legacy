@@ -25,6 +25,8 @@ Similarly, to add a column to a table, use this command:
 ALTER TABLE <table_name> ADD COLUMN <column_name> <column_type>;
 ```
 
+For details about these two commands, see [`ALTER SOURCE`](/sql/commands/sql-alter-source.md) and [`ALTER TABLE`](/sql/commands/sql-alter-table.md).
+
 :::note
 
 Note that you cannot add a primary key column to a source or table in RisingWave. To modify the primary key of a source or table, you need to recreate the table.
