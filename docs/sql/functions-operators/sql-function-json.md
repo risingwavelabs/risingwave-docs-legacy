@@ -172,6 +172,26 @@ SELECT '{"a":1,"b":2}'::jsonb ->> 'b';
 2
 ```
 
+### `(jsonb || jsonb) -> jsonb`
+
+Concatenates jsonb data type.
+
+```bash title=Syntax
+(jsonb || jsonb) → jsonb
+```
+
+```sql title=Example
+SELECT '["a", "b"]'::jsonb || '["a", "d"]'::jsonb;  
+SELECT '{"a": "b"}'::jsonb || '{"c": "d"}'::jsonb;
+SELECT '[1, 2]'::jsonb || '3'::jsonb;
+SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
+------RESULT
+["a", "b", "a", "d"]
+{"a": "b", "c": "d"}
+[1, 2, 3]
+[{"a": "b"}, 42]
+```
+
 ## `IS JSON` predicate
 
 This predicate tests whether an expression can be parsed as JSON, optionally of a specified type. It evaluates the JSON structure and returns a boolean result indicating whether the value matches the specified JSON type.
