@@ -16,20 +16,27 @@ import TabItem from '@theme/TabItem';
 
 RisingWave offers several installation or running options. Choose the option that best fits your needs.
 
+<br/>
+
 ## Quick tests
 
 RisingWave will be started as a single-node instance. Data is stored solely in memory and will not be persisted after the service is terminated.
 
 These options are available:
 
-- [Playground in a Web browser](risingwave-trial?method=playground)
-- [Homebrew](risingwave-trial?method=homebrew)
-- [Binaries](risingwave-trial?method=binaries)
-- [Docker image](risingwave-trial?method=docker)
+<lightButton text="Playground in a Web browser" doc="risingwave-trial?method=playground" />
+<lightButton text="Homebrew" doc="risingwave-trial?method=homebrew" />
+<lightButton text="Binaries" doc="risingwave-trial?method=binaries" />
+<lightButton text="Docker image" doc="risingwave-trial?method=docker" />
+
+<br/>
+<br/>
 
 ## Advanced tests
 
-For advanced tests, please use the [Docker Compose](risingwave-trial?method=docker-compose) option. RisingWave will be started as a multi-node cluster. Data is persisted in storage. As some critical features like failover and resource management are not implemented for this option, this option is not recommended for production deployments.
+For advanced tests, we recommend using Docker Compose to start RisingWave as a multi-node cluster. With this option, data is persisted in storage. However, please be aware that certain critical features such as failover and resource management are not implemented in this mode. Therefore, this option is not recommended for production deployments.
+
+<lightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" />
 
 </TabItem>
 
