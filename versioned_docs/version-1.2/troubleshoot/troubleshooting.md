@@ -54,7 +54,7 @@ System catalogs provide comprehensive information about the definitions and meta
 
 ## Support resources
 
-The most direct way to get help is reporting your issues in our [Slack Community workspace](https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw).
+The most direct way to get help is reporting your issues in our [Slack Community workspace](risingwave.com/slack).
 
 When reporting your issues in the Slack workspace, remember to include the logs. Including logs will help our engineers troubleshoot.
 
