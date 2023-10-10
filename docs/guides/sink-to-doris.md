@@ -9,7 +9,7 @@ This guide describes how to sink data from RisingWave to Apache Doris. Apache Do
 
 ## Prerequisites 
 
-- Ensure that RisingWave can access the network where the Doris BE and FE are located. For more details, see [Synchronize Data Through External Table](https://doris.apache.org/docs/dev/data-operate/import/import-scenes/external-table-load/).
+- Ensure that RisingWave can access the network where the Doris backend and frontend are located. For more details, see [Synchronize Data Through External Table](https://doris.apache.org/docs/dev/data-operate/import/import-scenes/external-table-load/).
 
 - Ensure you have an upstream materialized view or source that you can sink data from. For more details, see [CREATE SOURCE](/sql/commands/sql-create-source.md) or [CREATE MATERIALIZED VIEW](/sql/commands/sql-create-mv.md).
 
@@ -31,7 +31,7 @@ WITH (
 | Parameter Names | Description |
 | --------------- | ---------------------------------------------------------------------- |
 | `type`          | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, the table you are sinking to needs to have a `UNIQUE KEY`. |
-| `doris.url`     | Required. The connection port for FE. This is not the MySQL connection port. |
+| `doris.url`     | Required. The connection port for the frontend of Doris. This is not the MySQL connection port. |
 | `doris.username`| Optional. The user name of the Doris user. |
 | `doris.password`| Optional. The password associated with the Doris user. |
 | `doris.database`| Optional. The Doris database you want to sink data to. |
@@ -76,3 +76,30 @@ WITH (
     primary_key = 'user_id'
 );
 ```
+
+## Data type mapping
+
+The following table shows the corresponding data types between RisingWave and Doris that should be specified when creating a sink. For details on native RisingWave data types, see [Overview of data types](/sql/sql-data-types.md).
+
+In regards to `decimal` types, RisingWave will round to the nearest decimal place to ensure that its precision matches that of Doris. Ensure that the length of decimal types being imported into Doris does not exceed Doris's decimal length. Otherwise, it will fail to import.
+
+| Doris type | RisingWave type |
+|------------|-----------------|
+|BOOLEAN | BOOLEAN |
+|SMALLINT | SMALLINT |
+|INT | INTEGER |
+|BIGINT | BIGINT |
+|FLOAT | REAL |
+|DOUBLE | DOUBLE |
+|DECIMAL | DECIMAL |
+|DATE | DATE |
+|STRING, VARCHAR | VARCHAR |
+|No support | TIME |
+|DATETIME | TIMESTAMP WITHOUT TIME ZONE |
+|No support | TIMESTAMP WITH TIME ZONE |
+|No support | INTERVAL |
+|STRUCT | STRUCT |
+|ARRAY | ARRAY |
+|No support | BYTEA |
+|JSONB | JSONB |
+|BIGINT | SERIAL |
