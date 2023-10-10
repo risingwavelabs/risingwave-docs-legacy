@@ -110,6 +110,8 @@ For tools or integrations that you would like to use but are not listed in the t
 |Looker||Researching <voteNotify note="looker" /> |
 |Metabase ||In progress <voteNotify note="metabase" />|
 |Redash || Available |
+|Datagrip||Researching <voteNotify note="datagrip" /> |
+|PgAdmin||Researching <voteNotify note="pgadmin" /> |
 
 ## Other systems
 
