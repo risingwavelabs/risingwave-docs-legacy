@@ -162,3 +162,5 @@ msk
 NATS
 ScyllaDB
 OOM
+DataGrip
+PgAdmin
