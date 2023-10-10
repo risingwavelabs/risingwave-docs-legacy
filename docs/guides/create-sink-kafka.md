@@ -51,6 +51,8 @@ All `WITH` options are required except `force_append_only` and `primary_key`.
 |`force_append_only`| If `true`, forces the sink to be `append-only`, even if it cannot be.|
 |`primary_key`| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
 |`properties.client.id`|Optional. Client ID associated with the Kafka client. |
+| `max.in.flight.requests.per.connection`|Optional. The maximum number of unacknowledged requests the Kafka client sends on a connection before blocking. By default, this value is 5. |
+|`message.timeout.ms`| Optional. The amount of time, in milliseconds, a produced message waits for delivery before timing out. By default, this value is 5000. |
 
 ## Additional Kafka parameters
 
