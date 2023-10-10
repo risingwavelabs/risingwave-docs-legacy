@@ -39,7 +39,7 @@ WITH (
 |service.url	|Required. The address of the Pulsar service.|
 |scan.startup.mode	|Optional. The offset mode that RisingWave will use to send data. The two supported modes are earliest (earliest offset) and latest (latest offset). If not specified, the default value earliest will be used.|
 |auth.token	|Optional. A token for auth. If both `auth.token` and `oauth` are set, only `oauth` authorization is considered.|
-|oauth.issuer.url	|Conditional. The issuer url for OAuth2. This field must be filled if other `oauth` fields are specified.|
+|oauth.issuer.url	|Conditional. The issuer URL for OAuth2. This field must be filled if other `oauth` fields are specified.|
 |oauth.credentials.url	|Conditional. The path for credential files, which starts with `file://`. This field must be filled if other `oauth` fields are specified.|
 |oauth.audience	|Conditional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.|
 |oauth.scope	|Optional. The scope for OAuth2.|
