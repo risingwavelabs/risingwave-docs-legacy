@@ -29,29 +29,6 @@ To install Apache Superset, follow the instructions in [Installing locally using
 
 ## Establish the connection between Superset and RisingWave
 
-### Add the sqlalchemy-risingwave driver
-
-Install the [`sqlalchemy-risingwave`](https://pypi.org/project/sqlalchemy-risingwave/) driver within the Docker containers for Superset. The [Adding new database drivers in Docker](https://superset.apache.org/docs/databases/docker-add-drivers/#2-install-mysql-driver) guide outlines the general steps.
-
-1. Create `requirements-local.txt`.
-
-  ```shell
-  #From the repo root...
-  touch ./docker/requirements-local.txt
-  ```
-
-2. Add the driver selected in the step above.
-
-  ```shell
-  echo "sqlalchemy-risingwave" >> ./docker/requirements-local.txt
-  ```
-
-3. Rebuild your local image with the new driver.
-
-  ```shell
-  docker-compose build --force-rm
-  ```
-
 ### Start Apache Superset
 
 Launch an instance of Apache Superset by following the instructions in [Launch Superset through Docker Compose](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose#3-launch-superset-through-docker-compose). To start Superset, enter <http://localhost:8088> into your web browser.
@@ -67,15 +44,26 @@ alt="Superset UI"
 
 ### Connect to RisingWave
 
+> Note that, if you're serving Superset in docker-compose,
+> the PostgresSQL connector library [`psycopg2`](https://www.psycopg.org/docs/) comes out of the box with Superset.
+>
+> If not, you need install the `psycopg2` driver for Superset.
+> The [Installing Database Drivers](https://superset.apache.org/docs/databases/installing-database-drivers) guide lists the required driver.
+
 1. In Superset, select **Settings > Database connections**.
 
 2. Click **+ Database**.
 
-3. In the window that pops up, under **Supported databases**, select **Other** from the dropdown menu.
+3. In the window that pops up, under **Select a database to connect**, select the **PostgresSQL** card.
 
-4. Fill in the primary credentials with SQLALCHEMY URI as `risingwave://root:@host.docker.internal:4566/dev`.
+4. Fill in the following fields:
+    - HOST: `host.docker.internal`
+    - PORT: `4566`
+    - DATABASE NAME: `dev`
+    - USERNAME: `root`
+    - DISPLAY NAME: `RW` (optional)
 
-5. Select **Test Connection** then **Connect**.
+5. Click **Connect**.
 
 <img
 src={require('../images/supersetdb.png').default}
