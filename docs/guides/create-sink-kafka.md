@@ -49,7 +49,7 @@ All `WITH` options are required except `force_append_only` and `primary_key`.
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |data_format| Data format. Allowed formats:<ul><li> `APPEND-ONLY`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
-|data_encode| Data encode. Supported encode: `JSON`.|
+|data_encode| Data encode. Supported encode: `JSON`, `PROTOBUF`, `AVRO`.|
 |`connector`| Sink connector type must be `'kafka'` for Kafka sink. |
 |`properties.bootstrap.server`|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
