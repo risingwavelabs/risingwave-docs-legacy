@@ -709,7 +709,7 @@ const sidebars = {
                 {
                   type: "doc",
                   id: "sql/system-catalogs/information-schema",
-                  label: "information_schema",
+                  label: "Information schema",
                 },
                 {
                   type: "doc",
