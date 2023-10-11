@@ -7,8 +7,6 @@ This topic describes how to modify the schema of a RisingWave source or table.
 
 When the schema of your upstream source changes (i.e. adding or removing columns), you need to modify the schema of the corresponding source or table in RisingWave to ensure they are aligned.
 
-Allowed schema modifications for sources and tables are different.
-
 If schema registry is used to create a source or table, you cannot modify the schema of the source or table.
 
 ## Add a column
