@@ -11,14 +11,14 @@ slug: /sql-create-table
 Use the `CREATE TABLE` command to create a new table. Tables consist of fixed columns and insertable rows. Rows can be added using the [`INSERT`](sql-insert.md) command. When creating a table, you can specify connector settings and data format.
 
 :::info
-If you choose to not persist the data from the source in RisingWave, you should use [`CREATE SOURCE`](sql-create-source.md).
+If you choose not to persist the data from the source in RisingWave, use [`CREATE SOURCE`](sql-create-source.md) instead.
 :::
 
 ## Syntax
 
 ```sql
 CREATE TABLE [ IF NOT EXISTS ] table_name (
-    col_name data_type [ PRIMARY KEY ] [ AS generation_expression ],
+    col_name data_type [ PRIMARY KEY ] [ DEFAULT default_expr ] [ AS generation_expression ],
     ...
     [ PRIMARY KEY (col_name, ... ) ]
     [ watermark_clause ]
@@ -45,11 +45,12 @@ To know when a data record is loaded to RisingWave, you can define a column that
 
 ## Parameters
 
-| Parameter| Description|
+| Parameter or clause | Description|
 |-----------|-------------|
 |`table_name`    |The name of the table. If a schema name is given (for example, `CREATE TABLE <schema>.<table> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
 |`col_name`      |The name of a column.|
 |`data_type`|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
+|`DEFAULT`|The `DEFAULT` clause allows you to assign a default value to a column. This default value is used when a new row is inserted, and no explicit value is provided for that column. `default_expr` is any constant value or variable-free expression that does not reference other columns in the current table or involve subqueries. The data type of `default_expr` must match the data type of the column.|
 |`generation_expression`| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |`watermark_clause`| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For the watermark clause to be valid, the table must be an append-only table. That is, the `APPEND ONLY` option must be specified. This restriction only applies to a table. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
 |`APPEND ONLY` | When this option is specified, the table will be created as an append-only table. An append-only table cannot have primary keys. `UPDATE` and `DELETE` statements are not valid for append-only tables. Note that append-only tables is an experimental feature. Its functionality is subject to change. You may use this feature at your own risk.|
