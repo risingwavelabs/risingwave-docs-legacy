@@ -12,7 +12,7 @@ This guide walks you through the process of deploying RisingWave in a single Kub
 
 ## Prerequisites
 
-Ensure you allocate enough resources for the deployment. For details about minimal and recommended resources, see [Resource planning](/deploy/resource-planning.md).s
+Ensure you allocate enough resources for the deployment, and use the recommended disks for etcd. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
 
 ## Step 1: Start Kubernetes
 
@@ -103,7 +103,7 @@ psql -h localhost -p 4567 -d dev -U root
 
 ## Optional: Customize your RisingWave deployment
 
-During installation or upgrade, you can customze your RisingWave deployment by providing the configuration file `values.yml`.
+During installation or upgrade, you can customze your RisingWave deployment by providing the configuration file `values.yml`. You should edit the file before specifying it during installation or upgrade.
 
 To customize your deployment during installation, run this command instead:
 
@@ -122,6 +122,7 @@ The `--reuse-values` option ensures that the previous configuration will be kept
 A typical `values.yml` looks like this:
 
 ```yaml
+...
 compactorComponent:
   resources:
     limits:
@@ -130,9 +131,10 @@ compactorComponent:
     requests:
       cpu: 100m
       memory: 64Mi
+...
 ```
 
-You can use this command to view the user-specified configurations of your RisingWave cluster:
+To view the user-specified configurations of your RisingWave cluster:
 
 ```bash
 helm get values my-risingwave
@@ -150,4 +152,50 @@ compactorComponent:
     requests:
       cpu: 100m
       memory: 64Mi
+```
+
+### Resizing a node
+
+By editing the configurations in `values.yml`, you can resize a worker node. The compactor node configurations are in the `compactorComponent` section. Configurations for the meta node and compute node are in `metaComponent` and `computeComponent` sections respectively.
+
+```bash
+# To resize other types of node, please replace the name with 
+# computeComponent, or metaComponent.
+compactorComponent:
+  resources:
+    # The maximum amount of CPU and memory the Pod can use.
+    limits:
+      cpu: 1
+      memory: 2Gi
+    # The minimum amount of CPU and memory that the Pod is guaranteed to have.
+    requests:
+      # 0.1 cores
+      cpu: 100m
+      memory: 64Mi
+```
+
+Please note that increasing the CPU resource will not automatically increase the parallelism of existing materialized views. When scaling up (adding more CPU cores) a compute node, you should perform the scaling by following the instructions in [Cluster scaling](../deploy/k8s-cluster-scaling.md).
+
+### Customize state backends
+
+By default, the RisingWave Helm chart uses MinIO as the default state backend. You can edit the `values.yml` file to use other options as the state backend.
+
+For example, if you intend to use AWS S3 as the state backend, you can revise the configuration as follows:
+
+```bash
+tags:
+  minio: false
+
+stateStore:
+  minio:
+    enabled: false
+
+  s3:
+    enabled: true
+    region: <your aws region, e.g, “ap-southeast-1”>
+    bucket: <your bucket name>
+    authentication:
+      useServiceAccount: false
+      accessKey: <your access key>
+      secretAccessKey: <your secret access key>
 ```

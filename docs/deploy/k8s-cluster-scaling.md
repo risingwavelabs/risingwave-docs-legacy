@@ -45,6 +45,8 @@ To scale out the cluster (adding nodes) to the maximum parallelism, please run:
 ./risingwave ctl scale horizon --include-workers all
 ```
 
+You may need to update the configuration file of your Kubernetes cluster (for example, `values.yml` for deployments with Helm chart) before running the above command to scale out.
+
 To remove a particular compute node, please run:
 
 ```bash
@@ -68,7 +70,7 @@ RisingWave distributes its computation across lightweight threads called "stream
 
 By spreading these streaming actors across cores, RisingWave achieves parallel computation, resulting in improved performance, scalability, and throughput.
 
-You can configure the parallelism of streaming actors for each materialized view, index, sink, or table by adjusting the session variable using the following SQL command:
+You can configure the parallelism of streaming actors for the current session of a materialized view, index, sink, or table by adjusting the session variable using the following SQL command:
 
 ```sql
 SET STREAMING_PARALLELISM={num}

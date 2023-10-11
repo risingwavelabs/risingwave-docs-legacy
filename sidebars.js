@@ -92,37 +92,54 @@ const sidebars = {
           id: "get-started",
         },
         {
-          type: "category",
-          label: "Run RisingWave",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              id: "deploy/risingwave-trial",
-              label: "Try out",
-            },
-            {
-              type: "category",
-              label: "Deploy to production",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: "doc",
-                  id: "deploy/risingwave-cloud",
-                  label: "RisingWave Cloud",
-                },
-                {
-                  type: "doc",
-                  id: "deploy/risingwave-kubernetes",
-                  label: "Kubernetes",
-                },
-              ],
-            },
-          ],
+          type: "doc",
+          id: "deploy/risingwave-trial",
+          label: "Test RisingWave",
         },
       ],
+    },
+    {
+      type: "category",
+      label: "Deploy",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "deploy/hardware-requirements",
+          label: "Hardware requirements",
+        },
+        {
+          type: "doc",
+          id: "deploy/risingwave-cloud",
+          label: "Deploy on RisingWave Cloud",
+        },
+        {
+          type: "doc",
+          id: "deploy/risingwave-kubernetes",
+          label: "Deploy on Kubernetes with Operator",
+        },
+        {
+          type: "doc",
+          id: "deploy/risingwave-k8s-helm",
+          label: "Deploy on Kubernetes with Helm",
+        },
+        {
+          type: "doc",
+          id: "deploy/upgrade-risingwave-k8s",
+          label: "Upgrade RisingWave with Helm",
+        },
+        {
+          type: "doc",
+          id: "deploy/k8s-cluster-scaling",
+          label: "Cluster scaling",
+        },
+        {
+          type: "doc",
+          id: "deploy/uninstall-risingwave-k8s",
+          label: "Uninstall RisingWave from a cluster",
+        },
+      ]
     },
     {
       type: "category",
