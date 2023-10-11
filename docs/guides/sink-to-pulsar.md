@@ -28,7 +28,11 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 WITH (
    connector='pulsar',
    connector_parameter = 'value', ...
-);
+)
+FORMAT data_format ENCODE data_encode [ (
+    message='message',
+    schema.location='location', ...) ]
+;
 ```
 
 ## Parameters
@@ -45,6 +49,8 @@ WITH (
 |oauth.scope	|Optional. The scope for OAuth2.|
 |access_key	|Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
 |secret_access	|Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
+|data_format| Data format. Allowed formats:<ul><li> `APPEND-ONLY`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
+|data_encode| Data encode. Supported encode: `JSON`, `PROTOBUF`, `AVRO`.|
 
 ## Example
 
@@ -67,5 +73,6 @@ WITH (
   -- S3 credential for oauth file 
   access_key = 'xxx',
   secret_access = 'xxx' 
-);
+)
+FORMAT DEBEZIUM ENCODE JSON;
 ```
