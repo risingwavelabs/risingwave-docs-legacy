@@ -161,7 +161,8 @@ To ensure all data changes are captured, you must create a table and specify pri
  WITH (
     connector='postgres-cdc',
     <field>=<value>, ...
- );
+ )
+ [ FORMAT DEBEZIUM ENCODE JSON ];
  ```
 
 Note that a primary key is required.

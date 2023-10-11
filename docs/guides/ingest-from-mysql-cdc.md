@@ -176,7 +176,8 @@ CREATE TABLE [ IF NOT EXISTS ] source_name (
 WITH (
    connector='mysql-cdc',
    <field>=<value>, ...
-);
+)
+[ FORMAT DEBEZIUM ENCODE JSON ];
 ```
 
 Note that a primary key is required.

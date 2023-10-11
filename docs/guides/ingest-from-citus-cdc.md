@@ -69,7 +69,8 @@ CREATE TABLE [ IF NOT EXISTS ] source_name (
 WITH (
     connector='citus-cdc',
     <field>=<value>, ...
-);
+)
+[ FORMAT DEBEZIUM ENCODE JSON ];
 ```
 
 ### WITH parameters

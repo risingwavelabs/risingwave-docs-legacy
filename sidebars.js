@@ -188,7 +188,12 @@ const sidebars = {
         {
           type: "doc",
           label: "Overview",
-          id: "data-ingestion",
+          id: "ingest/data-ingestion",
+        },
+        {
+          type: "doc",
+          label: "Modify source or table schemas",
+          id: "ingest/modify-schemas",
         },
         {
           type: "category",
