@@ -26,7 +26,11 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 WITH (
    connector='kafka',
    connector_parameter = 'value', ...
-);
+)
+FORMAT data_format ENCODE data_encode [ (
+    message='message',
+    schema.location='location', ...) ]
+;
 ```
 
 :::note
@@ -44,11 +48,12 @@ All `WITH` options are required except `force_append_only` and `primary_key`.
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
+|data_format| Data format. Allowed formats:<ul><li> `APPEND-ONLY`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
+|data_encode| Data encode. Supported encode: `JSON`.|
 |`connector`| Sink connector type must be `'kafka'` for Kafka sink. |
 |`properties.bootstrap.server`|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
-|`type`|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](/data-delivery.md).|
-|`force_append_only`| If `true`, forces the sink to be `append-only`, even if it cannot be.|
+|`force_append_only`| If `true`, forces the sink to be `APPEND-ONLY`, even if it cannot be.|
 |`primary_key`| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
 |`properties.client.id`|Optional. Client ID associated with the Kafka client. |
 
@@ -77,10 +82,10 @@ Create a sink by selecting an entire materialized view.
 CREATE SINK sink1 FROM mv1 
 WITH (
    connector='kafka',
-   type='append-only'
    properties.bootstrap.server='localhost:9092',
    topic='test'
-);
+)
+FORMAT APPEND-ONLY ENCODE JSON;
 ```
 
 Create a sink with the Kafka configuration `message.max.bytes` set at 2000 by setting `properties.message.max.bytes` to 2000.
@@ -89,11 +94,11 @@ Create a sink with the Kafka configuration `message.max.bytes` set at 2000 by se
 CREATE SINK sink1 FROM mv1 
 WITH (
    connector='kafka',
-   type='append-only'
    properties.bootstrap.server='localhost:9092',
    topic='test',
    properties.message.max.bytes = 2000
-);
+)
+FORMAT APPEND-ONLY ENCODE JSON;
 ```
 
 Create a sink by selecting the average `distance` and `duration` from `taxi_trips`.
@@ -128,10 +133,10 @@ SELECT
 FROM taxi_trips
 WITH (
    connector='kafka',
-   type = 'append-only'
    properties.bootstrap.server='localhost:9092',
    topic='test'
-);
+)
+FORMAT APPEND-ONLY ENCODE JSON;
 
 ```
 
@@ -152,13 +157,13 @@ Here is an example of creating a Kafka sink using a PrivateLink connection. Noti
 CREATE SINK sink2 FROM mv2
 WITH (
    connector='kafka',
-   type='append-only',
    properties.bootstrap.server='b-1.xxx.amazonaws.com:9092,b-2.test.xxx.amazonaws.com:9092',
    topic='msk_topic',
    force_append_only='true',
    connection.name = 'connection1',
    privatelink.targets = '[{"port": 8001}, {"port": 8002}]'
-);
+)
+FORMAT APPEND-ONLY ENCODE JSON;
 ```
 
 ## TLS/SSL encryption and SASL authentication
@@ -204,7 +209,6 @@ Here is an example of creating a sink encrypted with SSL without using SASL auth
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   type = 'append-only',
    topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    properties.security.protocol='SSL',
@@ -212,7 +216,8 @@ WITH (
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
    properties.ssl.key.location='/home/ubuntu/kafka/secrets/client_risingwave_client.key',
    properties.ssl.key.password='abcdefgh'
-);
+)
+FORMAT APPEND-ONLY ENCODE JSON;
 ```
 
 ### `SASL/PLAIN`
@@ -249,7 +254,8 @@ WITH (
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
    properties.sasl.password='admin-secret'
-);
+)
+FORMAT APPEND-ONLY ENCODE JSON;
 ```
 
 This is an example of creating a sink authenticated with SASL/PLAIN with SSL encryption.
@@ -258,7 +264,6 @@ This is an example of creating a sink authenticated with SASL/PLAIN with SSL enc
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   type = 'append-only',
    topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    properties.sasl.mechanism='PLAIN',
@@ -269,7 +274,8 @@ WITH (
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
    properties.ssl.key.location='/home/ubuntu/kafka/secrets/client_risingwave_client.key',
    properties.ssl.key.password='abcdefgh'
-);
+)
+FORMAT APPEND-ONLY ENCODE JSON;
 ```
 
 ### `SASL/SCRAM`
@@ -300,12 +306,12 @@ Here is an example of creating a sink authenticated with SASL/SCRAM without SSL 
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   type = 'append-only',
    topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    properties.sasl.mechanism='SCRAM-SHA-256',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
    properties.sasl.password='admin-secret'
-);
+)
+FORMAT APPEND-ONLY ENCODE JSON;
 ```

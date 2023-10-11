@@ -22,7 +22,11 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 WITH (
    connector='kinesis',
    connector_parameter = 'value', ...
-);
+)
+FORMAT data_format ENCODE data_encode [ (
+    message='message',
+    schema.location='location', ...) ]
+;
 ```
 
 ## Basic parameters
@@ -42,8 +46,9 @@ WITH (
 
 |Field|Notes|
 |-----|-----|
-|type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](/data-delivery.md).|
-|force_append_only| If `true`, forces the sink to be `append-only`, even if it cannot be.|
+|data_format| Data format. Allowed formats:<ul><li> `APPEND-ONLY`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
+|data_encode| Data encode. Supported encode: `JSON`.|
+|force_append_only| If `true`, forces the sink to be `APPEND-ONLY`, even if it cannot be.|
 |primary_key| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
 
 ## Examples
@@ -54,6 +59,7 @@ CREATE SINK s1 FROM t WITH (
  stream = 'kinesis-sink-demo',
  aws.region = 'us-east-1',
  aws.credentials.access_key_id = 'your_access_key',
- aws.credentials.secret_access_key = 'your_secret_key',
- type = 'debezium');
+ aws.credentials.secret_access_key = 'your_secret_key'
+)
+FORMAT DEBEZIUM ENCODE JSON;
 ```
