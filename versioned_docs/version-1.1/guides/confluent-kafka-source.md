@@ -4,6 +4,9 @@ title: Ingest data from Confluent Cloud
 description: How to connect to Kafka on Confluent Cloud
 slug: /confluent-kafka-source
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/confluent-kafka-source/" />
+</head>
 
 This guide will go over how to set up a Kafka cluster on Confluent Cloud so you can connect and read data from it with RisingWave. See [Confluent](https://www.confluent.io) for more details and how to get started.
 

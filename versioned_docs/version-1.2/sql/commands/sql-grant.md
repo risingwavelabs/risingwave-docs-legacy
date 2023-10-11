@@ -4,6 +4,9 @@ title: GRANT
 description: Grant a user privileges.
 slug: /sql-grant
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-grant/" />
+</head>
 
 Use the `GRANT` command to grant specific privileges to a user.
 

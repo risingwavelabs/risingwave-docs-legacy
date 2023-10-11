@@ -4,6 +4,9 @@ title: Use RisingWave in your Java application
 description: Use RisingWave in your Java application
 slug: /java-client-libraries
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/java-client-libraries/" />
+</head>
 
 As RisingWave is wire-compatible with PostgreSQL, you can use third-party PostgreSQL drivers to interact with RisingWave from your Java applications.
 

@@ -4,6 +4,9 @@ title: ALTER USER
 description: Modify properties of a user.
 slug: /sql-alter-user
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-user/" />
+</head>
 
 Use the `ALTER USER` command to modify the name, password, privileges, and other properties of an existing user.
 

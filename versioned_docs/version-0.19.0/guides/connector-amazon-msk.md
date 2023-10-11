@@ -4,6 +4,9 @@ title: Ingest data from Amazon MSK
 description: Ingest data from Amazon MSK.
 slug: /connector-amazon-msk
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/connector-amazon-msk/" />
+</head>
 
 Amazon Managed Streaming for Apache Kafka (MSK) is a fully managed service that simplifies the setup, scaling, and management of Apache Kafka clusters, a popular open-source distributed streaming platform. Kafka is designed to handle real-time data feeds and follows the publisher-subscriber (pub-sub) model. Kafka's ability to handle high-volume real-time data makes it crucial for data pipelines, analytics, and event-driven architectures.
 

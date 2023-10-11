@@ -4,6 +4,9 @@ title: Dedicated compute node
 description: Set up dedicated compute nodes for streaming and serving.
 slug: /dedicated-compute-node
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/dedicated-compute-node/" />
+</head>
 
 By default, a compute node can process both streaming jobs and ad-hoc queries (i.e. serving). Alternatively, you can process streaming and serving by different compute nodes respectively, in order to mitigate resource contention, or to isolate streaming or serving failure. This guides introduces how to set up such dedicated compute nodes to decouple streaming and serving.
 

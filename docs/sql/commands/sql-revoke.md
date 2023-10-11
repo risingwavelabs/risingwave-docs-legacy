@@ -4,6 +4,9 @@ title: REVOKE
 description: Revoke privileges from a user.
 slug: /sql-revoke
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-revoke/" />
+</head>
 
 Use the `REVOKE` command to revoke privileges from a user.
 

@@ -3,6 +3,9 @@ id: sql-pattern-topn
 slug: /sql-pattern-topn
 title: Top-N by group
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-pattern-topn/" />
+</head>
 
 Top-N queries return only the N top-most or the N bottom-most records from a table or view based on a condition.
 

@@ -3,6 +3,9 @@ id: emit-on-window-close
 slug: /emit-on-window-close
 title: Emit on window close
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/emit-on-window-close/" />
+</head>
 
 :::caution Experimental feature
 Emit on window close is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
