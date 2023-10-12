@@ -58,7 +58,7 @@ const sidebars = {
             },
             {
               type: "doc",
-              id: "key-concepts",
+              id: "concepts/key-concepts",
               label: "Key concepts and terms",
             },
             {

@@ -4,38 +4,60 @@ title: Cluster scaling
 description: Cluster scaling in RisingWave.
 slug: /k8s-cluster-scaling
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/k8s-cluster-scaling/" />
+</head>
 This article describes how to increase or reduce nodes and customize resources for existing nodes in a RisingWave cluster that is deployed on Kubernetes.
 
 You can adjust the computational resources of RisingWave as your workload changes. By default, RisingWave uses all the CPU cores on each node. If you add new nodes or CPUs to the cluster, you can configure RisingWave to take advantage of the additional computing power. Similarly, if the available compute resources are reduced, you can adjust the parallelism in RisingWave to optimize resource utilization.
 
 Currently, scaling needs to be done manually. However, we are developing an automatic scaling feature to simplify the process.
 
-For the instructions below, we assume that you have deployed RisingWave on Kubernetes with the [RisingWave Operator](/deploy/risingwave-kubernetes.md) or [Helm](/deploy/deploy-k8s-helm.md).
+## Configuring session parallelisms
 
-## Preparations
+RisingWave distributes its computation across lightweight threads called "streaming actors," which run simultaneously on CPU cores.
 
-The scaling commands will be issued through `risingwave ctl`, which is a command-line tool that is included in the latest version of RisingWave. To use this tool, you must set an environmental varaible and connect to the meta node in the cluster.
+By spreading these streaming actors across cores, RisingWave achieves parallel computation, resulting in improved performance, scalability, and throughput.
 
-### Set environmental variable for the meta node address
+You can configure the parallelism of streaming actors for the current session of a materialized view, index, sink, or table by adjusting the session variable using the following command:
 
-Please set the environment variable `RW_META_ADDR` to the meta node's address. You can find the hostname of the meta node via `kubectl get svc`. The hostname is the service name.
-
-```bash
-# Suppose the helm release name is my-risingwave. The hostname is typically
-# 'my-risingwave-meta-headless'
-export RW_META_ADDR=http://{hostname}:5690
+```sql
+SET STREAMING_PARALLELISM={num}
 ```
 
-### Connect to the meta node
+By default, the streaming parallelism is set to 0, which means that RisingWave utilizes all available CPU cores.
 
-To connect to the meta node, please run this command in a pod within the same cluster:
+To get the currently configured parallelism, run the following command:
 
-```bash
-kubectl apply -f risingwave-ctl.yaml
-kubectl exec -it risingwave-ctl -- bash -c 'cd /risingwave/bin && bash'
+```sql
+dev=> SHOW STREAMING_PARALLELISM;
+ streaming_parallelism
+-----------------------
+ 0
+(1 row)
 ```
 
-After you are connected to the meta node, you can perform scaling operations on the cluster.
+The value of `STREAMING_PARALLELISM` only applies to the streams created in the current session.
+
+Please note that setting `STREAMING_PARALLELISM` to a value, for example, 4, does not parallel all fragments in 4 threads. This is because not all SQL operators can be distributed across CPU cores.
+
+## Scaling
+
+For the instructions below, we assume that you have deployed RisingWave on Kubernetes with [Helm](/deploy/deploy-k8s-helm.md).
+
+The scaling commands will be issued through `risingwave ctl`, which is a command-line tool that is included in the latest version of RisingWave.
+
+Please run this command in the meta node Pod to avoid potential connectivity issue.
+
+```bash
+kubectl exec -it my-risingwave-meta-0 -- bash -c 'cd /risingwave/bin && bash'
+```
+
+Please also remember to set the environment variable `RW_META_ADDR` to the meta node's address. As you have logged into the meta node Pod, the address is `http://127.0.0.1:5690`.
+
+```bash
+export RW_META_ADDR=http://127.0.0.1:5690
+```
 
 ## Add or remove nodes
 
@@ -53,7 +75,17 @@ To remove a particular compute node, please run:
 ./risingwave ctl scale horizon --exclude-workers {hostname of the compute node}
 ```
 
-## Increase or reduce computing resources of existing nodes
+You can find worker node IDs with this command:
+
+```bash
+dev=> select * from rw_worker_nodes;
+ id |                                host                                | port |     type     |  state  | parallelism | is_streaming | is_serving | is_unschedulable
+----+--------------------------------------------------------------------+------+--------------+---------+-------------+--------------+------------+------------------
+  1 | my-risingwave-compute-0.my-risingwave-compute-headless.default.svc | 5688 | COMPUTE_NODE | RUNNING |           8 | t            | t          | f
+(1 row)
+```
+
+## Adjust the parallelism of a worker node (vertical scaling)
 
 To adjust the parallelism of a specific worker node, use the `vertical` command. Increasing the parallelism of a worker node means allocating more computing resources to it.
 
@@ -64,28 +96,30 @@ For example, to reduce the parallelism of `my-risingwave-compute-0` to 1, you ca
 --target-parallelism-per-worker 1
 ```
 
-## Concept: Streaming actors and parallelism
+## Check the parallelism of a materialized view
 
-RisingWave distributes its computation across lightweight threads called "streaming actors," which run simultaneously on CPU cores.
-
-By spreading these streaming actors across cores, RisingWave achieves parallel computation, resulting in improved performance, scalability, and throughput.
-
-You can configure the parallelism of streaming actors for the current session of a materialized view, index, sink, or table by adjusting the session variable using the following SQL command:
+To see if scaling operations work as expected, you can check the running parallelism for each materialized view fragment using this query:
 
 ```sql
-SET STREAMING_PARALLELISM={num}
+SELECT
+    m.name,
+    COUNT(
+        A.actor_id
+    ) AS parallelism,
+    A.fragment_id,
+    f.flags
+FROM
+    rw_actors A,
+    rw_fragments f,
+    rw_materialized_views m
+WHERE
+    A.fragment_id = f.fragment_id
+    AND f.table_id = m.id
+GROUP BY
+    fragment_id,
+    f.flags,
+    m.name
+ORDER BY m.name;
 ```
 
-By default, the streaming parallelism is set to 0, which means that RisingWave utilizes all available CPU cores.
-
-To check the currently configured parallelism, run the following SQL command:
-
-```sql
-dev=> SHOW STREAMING_PARALLELISM;
- streaming_parallelism
------------------------
- 0
-(1 row)
-```
-
-Please note that setting `STREAMING_PARALLELISM` to 4 does not necessarily mean that all streaming actors will be parallelized across 4 threads. Not all SQL operators can be distributed across CPU cores.
+To understand the output of the query, you may need to know about these two concepts: [streaming actors](/concepts/key-concepts.md#streaming-actors) and [fragments](/concepts/key-concepts.md#fragments)

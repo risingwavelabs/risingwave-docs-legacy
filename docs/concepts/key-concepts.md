@@ -35,6 +35,16 @@ When the results of a view expression are stored in a database system, they are 
 
 Indexes in a database are typically created on one or more columns of a table, allowing the database management system (DBMS) to  locate and retrieve the desired data from the table quickly. This can greatly improve the performance of database queries, especially for large tables or frequently accessed tables.
 
+## Streaming actors
+
+RisingWave distributes its computation across lightweight threads called "streaming actors," which run simultaneously on CPU cores.
+
+By spreading these streaming actors across cores, RisingWave achieves parallel computation, resulting in improved performance, scalability, and throughput.
+
+### Fragments
+
+In RisingWave, When a streaming query plan executes, it divides into multiple independent fragments to allow parallel execution. Each fragment is a chain of SQL operators. Under the hood, it is executed by parallel actors. The degree of parallelism between fragments can be different.
+
 ### Streaming database
 
 A streaming database is broadly defined as a data store designed to collect, process, and/or enrich streams of data in real time, typically immediately after the data is created.
@@ -52,16 +62,15 @@ A group of interconnected nodes and services that acts as a single system runnin
 
 ### Nodes
 
-A node is a logical collection of IT resources that handles specific workloads based on their types. There are four types of nodes in RisingWave:
+A node is a logical collection of IT resources that handles specific workloads based on their types. There are three types of nodes in RisingWave:
 
-- Frontend node
+- Meta node
 - Compute node
 - Compactor node
-- Connector node
 
-### Frontend nodes
+### Meta nodes
 
-A frontend node acts as a stateless proxy that accepts user queries through Postgres protocol. It is responsible for parsing and validating queries, optimizing query execution plans, and delivering query results.
+The central metadata management service. It also acts as a failure detector that periodically sends heartbeats to frontend nodes and compute nodes in the cluster.
 
 ### Compute nodes
 
@@ -70,14 +79,6 @@ A compute node executes the optimized query plans and handles data ingestion and
 ### Compactor nodes
 
 A stateless worker node that compacts data for the storage engine.
-
-### Connector node
-
-The connector node is a Java component that handles consuming CDC events from upstream systems and sinking data from RisingWave to downstream systems. When running RisingWave with Docker, this node is enabled by default. If running RisingWave locally, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
-
-### Meta service
-
-The central metadata management service. It also acts as a failure detector that periodically sends heartbeats to frontend nodes and compute nodes in the cluster.
 
 ## Data processing concepts and terms
 

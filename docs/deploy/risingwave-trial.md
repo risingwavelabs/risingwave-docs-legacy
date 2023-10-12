@@ -10,6 +10,8 @@ slug: /risingwave-trial
 
 Select an installation or running method.
 
+These options are all for testing purposes. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md) or [Kubernetes](/deploy/deploy-k8s-helm.md).
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
