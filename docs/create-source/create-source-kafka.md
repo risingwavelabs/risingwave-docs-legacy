@@ -128,7 +128,7 @@ For materialized sources with primary key constraints, if a new data record with
 |schema.registry.username|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
 |schema.registry.password|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
 |properties.client.id|Optional. Client ID associated with the Kafka client. |
-|properties.enable.auto.commit|Optional. Specify the `enable.auto.commit` property of the Kafka client. By default, this value is `true`.|
+|properties.enable.auto.commit|Optional. Specify the `enable.auto.commit` property of the Kafka client, which automatically and periodically commit offsets. By default, this value is `true`.|
 
 ### Other parameters
 
