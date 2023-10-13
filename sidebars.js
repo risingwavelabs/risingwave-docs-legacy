@@ -100,49 +100,6 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Deploy",
-      collapsible: true,
-      collapsed: true,
-      items: [
-        {
-          type: "doc",
-          id: "deploy/hardware-requirements",
-          label: "Hardware requirements",
-        },
-        {
-          type: "doc",
-          id: "deploy/risingwave-cloud",
-          label: "Deploy on RisingWave Cloud",
-        },
-        {
-          type: "doc",
-          id: "deploy/risingwave-kubernetes",
-          label: "Deploy on Kubernetes with Operator",
-        },
-        {
-          type: "doc",
-          id: "deploy/risingwave-k8s-helm",
-          label: "Deploy on Kubernetes with Helm",
-        },
-        {
-          type: "doc",
-          id: "deploy/upgrade-risingwave-k8s",
-          label: "Upgrade RisingWave with Helm",
-        },
-        {
-          type: "doc",
-          id: "deploy/k8s-cluster-scaling",
-          label: "Cluster scaling",
-        },
-        {
-          type: "doc",
-          id: "deploy/uninstall-risingwave-k8s",
-          label: "Uninstall RisingWave from a cluster",
-        },
-      ]
-    },
-    {
-      type: "category",
       label: "Demos",
       collapsible: true,
       collapsed: true,
@@ -188,12 +145,7 @@ const sidebars = {
         {
           type: "doc",
           label: "Overview",
-          id: "ingest/data-ingestion",
-        },
-        {
-          type: "doc",
-          label: "Modify source or table schemas",
-          id: "ingest/modify-schemas",
+          id: "data-ingestion",
         },
         {
           type: "category",
@@ -778,17 +730,52 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Manage",
+      label: "Deploy & Operate",
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: "doc",
-          id: "manage/access-control",
+          id: "deploy/hardware-requirements",
+          label: "Hardware requirements",
+        },
+        {
+          type: "doc",
+          id: "deploy/risingwave-cloud",
+          label: "Deploy on RisingWave Cloud",
+        },
+        {
+          type: "doc",
+          id: "deploy/risingwave-kubernetes",
+          label: "Deploy on Kubernetes with Operator",
+        },
+        {
+          type: "doc",
+          id: "deploy/risingwave-k8s-helm",
+          label: "Deploy on Kubernetes with Helm",
+        },
+        {
+          type: "doc",
+          id: "deploy/upgrade-risingwave-k8s",
+          label: "Upgrade RisingWave with Helm",
+        },
+        {
+          type: "doc",
+          id: "deploy/k8s-cluster-scaling",
+          label: "Cluster scaling",
+        },
+        {
+          type: "doc",
+          id: "deploy/uninstall-risingwave-k8s",
+          label: "Uninstall RisingWave from a cluster",
         },
         {
           type: "doc",
           id: "manage/monitor-risingwave-cluster",
+        },
+        {
+          type: "doc",
+          id: "manage/access-control",
         },
         {
           type: "doc",
@@ -809,13 +796,14 @@ const sidebars = {
         {
           type: "doc",
           id: "manage/dedicated-compute-node",
+          label: "Set up a dedicated compute node",
         },
         {
           type: "doc",
           label: "Telemetry",
           id: "telemetry",
         },
-      ],
+      ]
     },
     {
       type: "doc",

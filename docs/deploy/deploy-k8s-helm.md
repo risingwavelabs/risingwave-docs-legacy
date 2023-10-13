@@ -101,6 +101,8 @@ You can then connect to RisingWave using a PostgreSQL client on port 4567. For e
 psql -h localhost -p 4567 -d dev -U root
 ```
 
+You can monitor the RisingWave cluster using the monitoring stack. For details, see [Monitoring a RisingWave cluster](/manage/monitor-risingwave-cluster.md).
+
 ## Optional: Customize your RisingWave deployment
 
 During installation or upgrade, you can customze your RisingWave deployment by providing the configuration file `values.yml`. You should edit the file before specifying it during installation or upgrade.
@@ -154,7 +156,7 @@ compactorComponent:
       memory: 64Mi
 ```
 
-### Resizing a node
+### Resize a node
 
 By editing the configurations in `values.yml`, you can resize a worker node. The compactor node configurations are in the `compactorComponent` section. Configurations for the meta node and compute node are in `metaComponent` and `computeComponent` sections respectively.
 
@@ -174,7 +176,7 @@ compactorComponent:
       memory: 64Mi
 ```
 
-Please note that increasing the CPU resource will not automatically increase the parallelism of existing materialized views. When scaling up (adding more CPU cores) a compute node, you should perform the scaling by following the instructions in [Cluster scaling](../deploy/k8s-cluster-scaling.md).
+Please note that increasing the CPU resource will not automatically increase the parallelism of existing materialized views. When scaling up (adding more CPU cores) a compute node, you should perform the scaling by following the instructions in [Cluster scaling](/deploy/k8s-cluster-scaling.md).
 
 ### Customize state backends
 
