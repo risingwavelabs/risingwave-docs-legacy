@@ -40,7 +40,6 @@ RisingWave Playground is intended for quick testing purposes only. Your data wil
 
 <defaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
 
-<br/>
 
 <img
   src={require('../images/playground-overview.png').default}
@@ -105,7 +104,7 @@ To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwav
 1. ### Download the binaries
 
   ```shell
-  wget https://github.com/risingwavelabs/risingwave/releases/download/v1.1.3/risingwave-v1.1.3-x86_64-unknown-linux.tar.gz
+  wget https://github.com/risingwavelabs/risingwave/releases/download/v1.1.2/risingwave-v1.1.3-x86_64-unknown-linux.tar.gz
   ```
 
   > You can find previous binary releases in [Release notes](/release-notes).
@@ -113,7 +112,7 @@ To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwav
 1. ### Extract the tarball
 
   ```shell
-  tar xvf risingwave-v1.1.3-x86_64-unknown-linux.tar.gz
+  tar xvf risingwave-v1.1.2-x86_64-unknown-linux.tar.gz
   ```
 
 1. ### Start RisingWave
