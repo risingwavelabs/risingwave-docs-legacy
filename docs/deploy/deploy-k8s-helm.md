@@ -8,7 +8,7 @@ slug: /risingwave-k8s-helm
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-k8s-helm/" />
 </head>
 
-This guide walks you through the process of deploying RisingWave in a single Kubernetes cluster with Helm. Now Helm is the only recommended method for deploying a RisingWave cluster on Kubernetes.
+This guide walks you through the process of deploying RisingWave in a single Kubernetes cluster with Helm.
 
 ## Prerequisites
 

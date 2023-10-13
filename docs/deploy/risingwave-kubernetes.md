@@ -12,8 +12,6 @@ This article will help you use the [Kubernetes Operator for RisingWave](https://
 
 The Operator is a deployment and management system for RisingWave. It runs on top of Kubernetes and provides functionalities like provisioning, upgrading, scaling, and destroying the RisingWave instances inside the cluster.
 
-Please note that we recommend using Helm to deploy a RisingWave cluster on Kubernetes. The RisingWave Operator option will soon be deprecated.
-
 ## Prerequisites
 
 * **[Install `kubectl`](http://pwittrock.github.io/docs/tasks/tools/install-kubectl/)**
