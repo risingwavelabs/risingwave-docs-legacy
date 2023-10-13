@@ -338,17 +338,18 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
 
 **Steps:**
 
-1. Set the Service type to `LoadBalancer`.
+1. In the `risingwave.yaml` file that you use to deploy the RisingWave instance, add a `frontendServiceType` parameter to the configuration of the RisingWave service, and set its value to `LoadBalancer`.
 
-    ```
+    ```yaml
     # ...
+    kind: RisingWave
+    ...
     spec:
-      global:
-        serviceType: LoadBalancer
+      frontendServiceType: LoadBalancer
     # ...
     ```
 
-1. Connect to RisingWave with the following commands.
+2. Connect to RisingWave with the following commands.
     <Tabs groupId="storage_selection">
     <TabItem value="minio" label="etcd+MinIO">
 
