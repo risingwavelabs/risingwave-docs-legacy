@@ -112,8 +112,8 @@ WITH all_objects AS (
 ),
 fragment_parallelism AS (
     SELECT
-        f.fragment_id,
-        COUNT(a.actor_id) AS parallelism
+    f.fragment_id,
+    COUNT(a.actor_id) AS parallelism
     FROM rw_actors a
     INNER JOIN rw_fragments f ON a.fragment_id = f.fragment_id
     GROUP BY f.fragment_id
