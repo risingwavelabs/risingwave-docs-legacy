@@ -159,7 +159,7 @@ The result looks like this:
 
 ## _pg_expandarray()
 
-The `_pg_expandarray` function takes an array as input and expands it into a set of rows, providing values and their corresponding indices within the array. Ensure that [`information_schema](/sql/system-catalogs/information-schema.md) is in the search path to access the `_pg_expandarray` function.
+The `_pg_expandarray` function takes an array as input and expands it into a set of rows, providing values and their corresponding indices within the array. Ensure that [`information_schema`](/sql/system-catalogs/information-schema.md) is in the search path to access the `_pg_expandarray` function.
 
 Example: 
 
