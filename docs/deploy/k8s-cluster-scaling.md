@@ -64,7 +64,7 @@ export RW_META_ADDR=http://127.0.0.1:5690
 To scale out the cluster (adding nodes) to the maximum parallelism, please run:
 
 ```bash
-./risingwave ctl scale horizon --include-workers all
+/risingwave/bin/risingwave ctl scale horizon --include-workers all
 ```
 
 You may need to update the configuration file of your Kubernetes cluster (for example, `values.yml` for deployments with Helm chart) before running the above command to scale out.
@@ -72,7 +72,7 @@ You may need to update the configuration file of your Kubernetes cluster (for ex
 To remove a particular compute node, please run:
 
 ```bash
-./risingwave ctl scale horizon --exclude-workers {hostname of the compute node}
+/risingwave/bin/risingwave ctl scale horizon --exclude-workers {hostname of the compute node}
 ```
 
 You can find worker node IDs with this command:
@@ -92,7 +92,7 @@ To adjust the parallelism of a specific worker node, use the `vertical` command.
 For example, to reduce the parallelism of `my-risingwave-compute-0` to 1, you can run:
 
 ```bash
-./risingwave ctl scale vertical --workers http://my-risingwave-compute-0 \
+/risingwave/bin/risingwave ctl scale vertical --workers http://my-risingwave-compute-0 \
 --target-parallelism-per-worker 1
 ```
 
@@ -101,25 +101,30 @@ For example, to reduce the parallelism of `my-risingwave-compute-0` to 1, you ca
 To see if scaling operations work as expected, you can check the running parallelism for each materialized view fragment using this query:
 
 ```sql
+WITH all_objects AS (
+    SELECT id, name FROM rw_tables
+    UNION ALL
+    SELECT id, name FROM rw_materialized_views
+    UNION ALL
+    SELECT id, name FROM rw_sinks
+    UNION ALL
+    SELECT id, name FROM rw_indexes
+),
+fragment_parallelism AS (
+    SELECT
+        f.fragment_id,
+        COUNT(a.actor_id) AS parallelism
+    FROM rw_actors a
+    INNER JOIN rw_fragments f ON a.fragment_id = f.fragment_id
+    GROUP BY f.fragment_id
+)
 SELECT
-    m.name,
-    COUNT(
-        A.actor_id
-    ) AS parallelism,
-    A.fragment_id,
-    f.flags
-FROM
-    rw_actors A,
-    rw_fragments f,
-    rw_materialized_views m
-WHERE
-    A.fragment_id = f.fragment_id
-    AND f.table_id = m.id
-GROUP BY
-    fragment_id,
-    f.flags,
-    m.name
-ORDER BY m.name;
+    f.*,
+    fp.parallelism
+FROM all_objects ao
+INNER JOIN rw_fragments f ON ao.id = f.table_id
+INNER JOIN fragment_parallelism fp ON f.fragment_id = fp.fragment_id
+ORDER BY ao.name;
 ```
 
 To understand the output of the query, you may need to know about these two concepts: [streaming actors](/concepts/key-concepts.md#streaming-actors) and [fragments](/concepts/key-concepts.md#fragments)
