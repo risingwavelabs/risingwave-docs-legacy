@@ -11,7 +11,7 @@ slug: /sink-to-iceberg
 This guide describes how to sink data from RisingWave to Apache Iceberg using the Iceberg sink connector in RisingWave. Apache Iceberg is a table format designed to support huge tables. For more information, see [Apache Iceberg](https://iceberg.apache.org).
 
 :::caution Experimental feature
-The Iceberg sink connector in RisingWave is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+The Iceberg sink connector in RisingWave is currently in beta status.
 :::
 
 :::caution Breaking change in v1.2
@@ -41,13 +41,16 @@ WITH (
 | Parameter Names | Description |
 | --------------- | ---------------------------------------------------------------------- |
 | type            | Required. Currently only `appendonly` is supported. |
-| warehouse.path  | Required. The path of the Iceberg warehouse. Currently, only S3-compatible object store is supported, such as AWS S3, or MinIO.|
 | s3.endpoint     | Optional. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be <http://${MINIO_HOST}:${MINIO_PORT>}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
 | s3.region       | Optional. The region where the S3 bucket is hosted. Either `s3.endpoint` or `s3.region` must be specified.|
 | s3.access.key   | Required. Access key of the S3 compatible object store.|
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
 | database.name   | Required. The database of the target Iceberg table.|
 | table.name      | Required. The name of the target Iceberg table.|
+| catalog.type    | Optional. Catalog type used in this table, currently only support `storage` or `rest`. If not set, `storage` is used. |
+| warehouse.path  | Optional. The path of the Iceberg warehouse. Currently, only S3-compatible object store is supported, such as AWS S3, or MinIO. It's required in `storage` catalog.|
+| catalog.uri     | Optional. The url of rest catalog, which is required for rest catalog. |
+| primary_key     | Primary key for upsert sink. Only appliable for upsert mode. |
 
 ## Data Type Mapping
 
@@ -67,7 +70,15 @@ Risingwave converts risingwave data types from/to Iceberg according to the follo
 
 ## Catalog
 
-Currenlty we only support filesystem catalog. The support for more catalogs will be available later.
+Currently iceberg supports two kinds of catalogs:
+
+- Storage catalog. Storage catalog is similar to [Hadoop Catalog](https://iceberg.apache.org/docs/1.3.0/java-api-quickstart/#using-a-hadoop-catalog), e.g. all metadata are stored in underlying file system, such as hadoop, s3. Currently we only support s3 as underlying file system.
+
+- Rest catalog. Risingwave supports [rest catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which can be used as a proxy to other catalogs such as hive, jdbc, nessie catalog. This is also the recommended way to use risingwave with iceberg tables.
+
+## Table Format
+
+Currently risingwave only supports table format v2.
 
 ## Examples
 
@@ -90,6 +101,7 @@ spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.4_2.12:1.3.1,org
     --conf spark.sql.catalog.demo.hadoop.fs.s3a.secret.key=${SECRET_KEY} \
     --conf spark.sql.defaultCatalog=demo \
     --e "drop table if exists demo.dev.`table`;
+
 CREATE TABLE demo.dev.`table`
 (
   seq_id bigint, 
@@ -176,5 +188,23 @@ WITH (
     s3.secret.key = '${SECRET_KEY},
     database.name='dev',
     table.name='table'
+);
+```
+
+### Upsert sink from upsert source
+
+Iceberg sink now supoorts writing upserts into iceberg table, you can create a sink to sink upserts into iceberg table directly.
+
+```sql
+CREATE SINK s1_sink FROM s1_table
+WITH (
+    connector = 'iceberg',
+    warehouse.path = 's3a://my-iceberg-bucket/path/to/warehouse,
+    s3.endpoint = 'https://s3.ap-southeast-1.amazonaws.com',
+    s3.access.key = '${ACCESS_KEY}',
+    s3.secret.key = '${SECRET_KEY},
+    database.name='dev',
+    table.name='table',
+    primary_key='seq_id'
 );
 ```
