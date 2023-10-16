@@ -20,12 +20,12 @@ The AWS Kinesis sink connector in RisingWave is currently an experimental featur
 CREATE SINK [ IF NOT EXISTS ] sink_name
 [FROM sink_from | AS select_query]
 WITH (
-   connector='kinesis',
+   connector = 'kinesis',
    connector_parameter = 'value', ...
 )
 FORMAT data_format ENCODE data_encode [ (
-    message='message',
-    schema.location='location', ...) ]
+    force_append_only = 'value'
+) ]
 ;
 ```
 
@@ -41,15 +41,15 @@ FORMAT data_format ENCODE data_encode [ (
 |aws.credentials.session_token |Optional. The session token associated with the temporary security credentials. |
 |aws.credentials.role.arn |Optional. The Amazon Resource Name (ARN) of the role to assume.|
 |aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources. |
+|primary_key| Optional. The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
 
 ## Sink parameters
 
 |Field|Notes|
 |-----|-----|
-|data_format| Data format. Allowed formats:<ul><li> `APPEND-ONLY`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
-|data_encode| Data encode. Supported encode: `JSON`, `PROTOBUF`, `AVRO`.|
-|force_append_only| If `true`, forces the sink to be `APPEND-ONLY`, even if it cannot be.|
-|primary_key| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
+|data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
+|data_encode| Data encode. Supported encode: `JSON`. For more details on the JSON data format, see [Supported formats](/sql/commands/sql-create-source.md/#supported-formats).|
+|force_append_only| If `true`, forces the sink to be `PLAIN`, even if it cannot be.|
 
 ## Examples
 
