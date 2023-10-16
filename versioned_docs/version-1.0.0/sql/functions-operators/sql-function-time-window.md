@@ -22,52 +22,46 @@ In RisingWave, time window functions are invoked in the **FROM** clause. See the
 
 ## `tumble()` time window function
 
-Tumbling windows are contiguous time intervals. 
+Tumbling windows are contiguous time intervals.
 
 The syntax of the `tumble()` window function is as follows:
 
 ```sql
 SELECT [ ALL | DISTINCT ] [ * | expression [ AS output_name ] [, expression [ AS output_name ]...] ]
-FROM TUMBLE ( table_or_source, start_time, window_size [, offset ] );
+FROM TUMBLE ( table_or_source, time_col, window_size [, offset ] );
 ```
 
-- *start_time* can be in either timestamp or timestamp with time zone format.
+* *time_col* can use either timestamp or timestamp with time zone format.
 
     Example of timestamp with time zone format: 2022-01-01 10:00:00+00:00.
 
-- *window_size* is in the format of `INTERVAL 'interval'`.
+* *window_size* is in the format of `INTERVAL 'interval'`.
 
     Example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported.
 
-- *offset* is an optional parameter that allows you to adjust the starting point of the tumbling windows.
-    
-    By default, tumbling windows are inclusive in the end of the window and exclusive in the beginning. By specifying *offset*, you can shift *start_time* by the specified duration.
+* *offset* is an optional parameter that allows you to adjust the starting point of the tumbling windows.
 
-
+    By default, tumbling windows are inclusive in the end of the window and exclusive in the beginning. By specifying *offset*, you can shift *window_start* by the specified duration.
 
 Suppose that we have a table, `taxi_trips`, that consists of these columns: `trip_id`, `taxi_id`, `completed_at`, `distance`, and `duration`.
 
-trip_id|  taxi_id	|completed_at	    |distance| duration
+trip_id|  taxi_id |completed_at     |distance| duration
 -------|-----------|-------------------|--------|---------
 1      |   1001    |2022-07-01 22:00:00|4|6
-2      |	1002    |2022-07-01 22:01:00|6|9
-3      |	1003    |2022-07-01 22:02:00|3|5
-4      |	1004    |2022-07-01 22:03:00|7|15
-5      |	1005    |2022-07-01 22:05:00|2|4
-6      |	1006    |2022-07-01 22:05:30|8|17
-
-
+2      | 1002    |2022-07-01 22:01:00|6|9
+3      | 1003    |2022-07-01 22:02:00|3|5
+4      | 1004    |2022-07-01 22:03:00|7|15
+5      | 1005    |2022-07-01 22:05:00|2|4
+6      | 1006    |2022-07-01 22:05:30|8|17
 
 Here is an example that uses the tumble window function.
-
 
 ```sql
 SELECT trip_id,  taxi_id, completed_at, window_start, window_end
 FROM TUMBLE (taxi_trips, completed_at, INTERVAL '2 MINUTES');
 ```
 
-
-The result looks like this: 
+The result looks like this:
 
 ```
 trip_id | taxi_id   | completed_at          | window_start          | window_end 
@@ -80,7 +74,6 @@ trip_id | taxi_id   | completed_at          | window_start          | window_end
 6       | 1006      | 2022-07-01 22:06:00   | 2022-07-01 22:06:00   | 2022-07-01 22:08:00
 ```
 
-
 ## `hop()` time window function
 
 Hopping windows are scheduled time intervals. A hopping window consists of three time-related parameters: start time, hop size, and window size.
@@ -89,20 +82,20 @@ See below for the syntax of the `hop()` window function.
 
 ```sql
 SELECT [ ALL | DISTINCT] [ * | expression [ AS output_name ] [, expression [ AS output_name ]...] ]
-FROM HOP ( table_or_source, start_time, hop_size, window_size [, offset ]);
+FROM HOP ( table_or_source, time_col, hop_size, window_size [, offset ]);
 ```
 
-- *start_time* can be in either timestamp or timestamp with time zone format.
+* *time_col* can be in either timestamp or timestamp with time zone format.
 
     Example of timestamp with time zone format: 2022-01-01 10:00:00+00:00.
 
-- Both *hop_size* and *window_size* are in the format of `INTERVAL '<interval>'`.
+* Both *hop_size* and *window_size* are in the format of `INTERVAL '<interval>'`.
 
     For example: `INTERVAL '2 MINUTES'`. The standard SQL format, which places time units outside of quotation marks (for example, `INTERVAL '2' MINUTE`), is also supported.
 
-- *offset* is an optional parameter that allows you to adjust the starting point of the hopping windows.
-    
-    By default, hopping windows are inclusive in the end of the window and exclusive in the beginning. By specifying *offset*, you can shift *start_time* by the specified duration.
+* *offset* is an optional parameter that allows you to adjust the starting point of the hopping windows.
+
+    By default, hopping windows are inclusive in the end of the window and exclusive in the beginning. By specifying *offset*, you can shift *window_start* by the specified duration.
 
 Here is an example.
 
@@ -113,7 +106,6 @@ ORDER BY window_start;
 ```
 
 The result looks like the table below. Note that the number of rows in the result of a hop window function is N times the number of rows in the original table, where N is the window size divided by the hop size.
-
 
 ```
  trip_id | taxi_id  | completed_at          | window_start          | window_end 
@@ -133,14 +125,13 @@ The result looks like the table below. Note that the number of rows in the resul
 (12 rows)
 ```
 
-
 ## Window aggregations
 
-Let’s see how we can perform time window aggregations. 
+Let’s see how we can perform time window aggregations.
 
 ### Tumble window aggregations
 
-Below is an example of tumble window aggregation. In this example, we want to get the number of trips and the total distance for each tumbling window (2 minutes). 
+Below is an example of tumble window aggregation. In this example, we want to get the number of trips and the total distance for each tumbling window (2 minutes).
 
 ```sql
 SELECT window_start, window_end, count(trip_id) as no_of_trips, sum(distance) as total_distance 
