@@ -48,7 +48,7 @@ FORMAT data_format ENCODE data_encode [ (
 |Field|Notes|
 |-----|-----|
 |data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
-|data_encode| Data encode. Supported encode: `JSON`. For more details on the JSON data format, see [Supported formats](/sql/commands/sql-create-source.md/#supported-formats).|
+|data_encode| Data encode. Supported encode: `JSON`. |
 |force_append_only| If `true`, forces the sink to be `PLAIN`, even if it cannot be.|
 
 ## Examples
