@@ -4,6 +4,9 @@ title: Back up and restore meta service
 description: Back up and restore meta service
 slug: /meta-backup
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/meta-backup/" />
+</head>
 
 This guide introduces how to back up meta service data and restore from a backup.
 

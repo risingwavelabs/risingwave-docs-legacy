@@ -3,6 +3,9 @@ id: use-dbt
 slug: /use-dbt
 title: Use dbt for data transformations
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/use-dbt/" />
+</head>
 
 This guide provides instructions for using dbt to manage real-time data transformations in RisingWave.
 

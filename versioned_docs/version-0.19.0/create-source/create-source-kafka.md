@@ -4,6 +4,9 @@ title: Ingest data from Kafka
 description: Connect RisingWave to a Kafka broker.
 slug: /create-source-kafka
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-kafka/" />
+</head>
 
 This topic describes how to connect RisingWave to a Kafka broker that you want to receive data from, and how to specify data formats, schemas, and security (encryption and authentication) settings.
 

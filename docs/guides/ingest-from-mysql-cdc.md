@@ -4,6 +4,9 @@ title: Ingest data from MySQL CDC
 description: Ingest data from MySQL CDC.
 slug: /ingest-from-mysql-cdc
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-mysql-cdc/" />
+</head>
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
 
@@ -173,7 +176,8 @@ CREATE TABLE [ IF NOT EXISTS ] source_name (
 WITH (
    connector='mysql-cdc',
    <field>=<value>, ...
-);
+)
+[ FORMAT DEBEZIUM ENCODE JSON ];
 ```
 
 Note that a primary key is required.

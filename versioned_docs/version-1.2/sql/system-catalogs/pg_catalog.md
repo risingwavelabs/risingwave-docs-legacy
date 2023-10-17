@@ -3,6 +3,10 @@ id: pg-catalogs
 slug: /pg-catalogs
 title: PostgreSQL catalogs
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/pg-catalogs/" />
+</head>
+
 RisingWave supports these system catalogs and views of PostgreSQL.
 
 For information about RisingWave and PostgreSQL system functions, see [System administration functions](/sql/functions-operators/sql-function-sys-admin.md) and [System information functions](/sql/functions-operators/sql-function-sys-info.md).

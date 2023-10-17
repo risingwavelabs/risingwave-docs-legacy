@@ -4,6 +4,10 @@ title: Ingest data from NATS JetStream
 description: Ingest data from NATS JetStream into RisingWave.
 slug: /create-source-nats
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-nats/" />
+</head>
+
 You can ingest data from NATS JetStream into RisingWave by using the NATS source connector in RisingWave.
 
 [NATS](https://nats.io/) is an open source messaging system for cloud native applications. It provides a lightweight publish-subscribe architecture for high performance messaging.

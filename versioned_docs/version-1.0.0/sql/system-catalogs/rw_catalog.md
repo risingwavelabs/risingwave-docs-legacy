@@ -3,6 +3,9 @@ id: rw_catalog
 slug: /rw_catalog
 title: RisingWave catalogs
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw_catalog/" />
+</head>
 
 RisingwWave catalogs contain system tables and views that provide metadata about different relations in the system, as well as information about the cluster jobs and their status. The metadata includes details about each database, schema, and relation in the system, such as materialized views, tables, sources, sinks, indexes, and views. The status information includes the progress of DDL commands, system snapshots, and more.
 

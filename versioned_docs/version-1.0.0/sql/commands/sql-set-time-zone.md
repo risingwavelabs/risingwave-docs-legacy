@@ -4,6 +4,9 @@ title: SET TIME ZONE
 description: Set time zone.
 slug: /sql-set-time-zone
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-set-time-zone/" />
+</head>
 
 Use the `SET TIME ZONE` command to specify the time zone that should be used to interpret date and time values.
 
