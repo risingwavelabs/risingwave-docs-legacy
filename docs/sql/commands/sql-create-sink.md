@@ -22,7 +22,7 @@ WITH (
    connector_parameter = 'value', ...
 )
 [ FORMAT data_format ENCODE data_encode [ (
-    force_append_only = 'value'
+    format_parameter = 'value'
 ) ] ];
 ```
 :::note

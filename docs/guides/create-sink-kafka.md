@@ -28,7 +28,7 @@ WITH (
    connector_parameter = 'value', ...
 )
 FORMAT data_format ENCODE data_encode [ (
-    force_append_only = 'value'
+    format_parameter = 'value'
 ) ]
 ;
 ```
@@ -51,7 +51,7 @@ All `WITH` options are required except `primary_key`.
 |`connector`| Sink connector type must be `'kafka'` for Kafka sink. |
 |`properties.bootstrap.server`|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
-|`primary_key`| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
+|`primary_key`| The primary keys of the sink. Use ',' to delimit the primary key columns. Primary keys are optional when creating a `PLAIN` sink but required for `UPSERT` and `DEBEZIUM` sinks.|
 |`properties.client.id`|Optional. Client ID associated with the Kafka client. |
 
 ## Sink parameters
@@ -60,7 +60,7 @@ All `WITH` options are required except `primary_key`.
 |-----|-----|
 |data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
 |data_encode| Data encode. Supported encode: `JSON`. |
-|force_append_only| If `true`, forces the sink to be `PLAIN`, even if it cannot be.|
+|force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
 
 ## Additional Kafka parameters
 
