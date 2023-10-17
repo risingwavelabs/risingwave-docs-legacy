@@ -30,8 +30,7 @@ WITH (
    connector_parameter = 'value', ...
 )
 FORMAT data_format ENCODE data_encode [ (
-    message='message',
-    schema.location='location', ...) ]
+    force_append_only = 'value' ) ]
 ;
 ```
 
@@ -41,7 +40,6 @@ FORMAT data_format ENCODE data_encode [ (
 | --------------- | ---------------------------------------------------------------------- |
 |topic	|Required. The address of the Pulsar topic. One source can only correspond to one topic.|
 |service.url	|Required. The address of the Pulsar service.|
-|scan.startup.mode	|Optional. The offset mode that RisingWave will use to send data. The two supported modes are earliest (earliest offset) and latest (latest offset). If not specified, the default value earliest will be used.|
 |auth.token	|Optional. A token for auth. If both `auth.token` and `oauth` are set, only `oauth` authorization is considered.|
 |oauth.issuer.url	|Conditional. The issuer URL for OAuth2. This field must be filled if other `oauth` fields are specified.|
 |oauth.credentials.url	|Conditional. The path for credential files, which starts with `file://`. This field must be filled if other `oauth` fields are specified.|
@@ -49,8 +47,16 @@ FORMAT data_format ENCODE data_encode [ (
 |oauth.scope	|Optional. The scope for OAuth2.|
 |access_key	|Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
 |secret_access	|Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
-|data_format| Data format. Allowed formats:<ul><li> `APPEND-ONLY`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
-|data_encode| Data encode. Supported encode: `JSON`, `PROTOBUF`, `AVRO`.|
+|max_retry_num	|Optional. The maximum number of times to retry sending a batch to Pulsar. This allows retrying in case of transient errors. The default value is 3. |
+|retry_interval	|Optional. The time in milliseconds to wait after a failure before retrying to send a batch. The default value is 100ms.|
+
+## Sink parameters 
+
+| Field | Notes |
+| --------------- | ---------------------------------------------------------------------- |
+|data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
+|data_encode| Data encode. Supported encode: `JSON`. |
+|force_append_only| If `true`, forces the sink to be `PLAIN`, even if it cannot be.|
 
 ## Example
 
