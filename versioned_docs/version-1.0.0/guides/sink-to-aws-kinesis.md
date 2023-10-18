@@ -4,6 +4,9 @@ title: Sink to AWS Kinesis
 description: Sink data from RisingWave to AWS Kinesis.
 slug: /sink-to-aws-kinesis
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-aws-kinesis/" />
+</head>
 
 This topic described how to sink data from RisingWave to AWS Kinesis Data Streams.
 

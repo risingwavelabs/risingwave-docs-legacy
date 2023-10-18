@@ -3,6 +3,9 @@ id: sql-function-conditional
 slug: /sql-function-conditional
 title: Conditional expressions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-conditional/" />
+</head>
 
 ## `CASE`
 Goes through conditions in sequence and returns the value of the result associated with the matching condition.

@@ -3,6 +3,9 @@ id: troubleshooting
 title: Troubleshooting
 slug: /troubleshooting
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/troubleshooting/" />
+</head>
 
 This guide assumes that you deploy RisingWave on K8s using the RisingWave K8s Operator. In the Operator, we packaged RisingWave, RisingWave Dashboard, and third-party observability and logging tools like Promethus and Grafana.
 
@@ -51,7 +54,7 @@ System catalogs provide comprehensive information about the definitions and meta
 
 ## Support resources
 
-The most direct way to get help is reporting your issues in our [Slack Community workspace](https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw).
+The most direct way to get help is reporting your issues in our [Slack Community workspace](https://www.risingwave.com/slack).
 
 When reporting your issues in the Slack workspace, remember to include the logs. Including logs will help our engineers troubleshoot.
 

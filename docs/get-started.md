@@ -5,6 +5,9 @@ description: Get started with RisingWave.
 slug: /get-started
 toc_max_heading_level: 2
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/get-started/" />
+</head>
 
 This guide is designed to help you get up and running with RisingWave quickly and easily. In this guide, we will walk you through the common tasks of using RisingWave.
 
@@ -19,9 +22,7 @@ risingwave playground
 ```
 
 :::info
-
-This method launches RisingWave in playground mode, where data is temporarily stored in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. We recommend using this method for quick tests only.
-
+This method launches RisingWave in playground mode, where data is stored solely in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may result in out-of-memory (OOM) errors. Use this method for quick tests only.
 :::
 
 Other installation options are available. If you intend to deploy RisingWave to production environments, use [Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service.

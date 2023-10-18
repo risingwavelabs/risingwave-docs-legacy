@@ -4,6 +4,9 @@ title: BEGIN
 description: Start a transaction.
 slug: /sql-begin
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-begin/" />
+</head>
 
 RisingWave supports read-only transactions. You can use the `BEGIN READ ONLY` command to start a read-only transaction. For more information about transactions in RisingWave, see [Transactions](/concepts/tranactions.md).
 

@@ -4,6 +4,9 @@ title: Connect DBeaver to RisingWave
 description: Connect DBeaver to RisingWave.
 slug: /dbeaver-integration
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/dbeaver-integration/" />
+</head>
 
 DBeaver is a versatile database tool that provides a user-friendly interface for managing and interacting with a variety of database systems. DBeaver allows users to connect to databases, execute SQL scripts, export data to various formats, and perform other database-related tasks. Features such as a SQL editor, database explorer, and data visualization tools, are included.
 

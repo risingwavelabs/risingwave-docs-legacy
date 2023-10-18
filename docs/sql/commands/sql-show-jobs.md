@@ -5,6 +5,9 @@ description: Show all streaming jobs
 slug: /sql-show-jobs
 keywords: [monitor query progress, query status]
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-jobs/" />
+</head>
 
 Use `SHOW JOBS` to get all streaming jobs that are in progress, including their IDs, the specific statements, and their progresses. In RisingWave, a streaming job refers to the creation of a materialized view. If a streaming job takes too long, you can use the [`CANCEL JOBS`](/sql/commands/sql-cancel-jobs.md) to cancel it.
 

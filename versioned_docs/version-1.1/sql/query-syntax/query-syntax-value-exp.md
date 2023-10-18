@@ -3,6 +3,9 @@ id: query-syntax-value-exp
 slug: /query-syntax-value-exp
 title: Value expressions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-value-exp/" />
+</head>
 
 Value expressions are used in a variety of contexts, such as in the target list of the `SELECT` command, as new column values in `INSERT` or `UPDATE`, or in search conditions in a number of commands. The result of a value expression is sometimes called a scalar, to distinguish it from the result of a table expression (which is a table).
 

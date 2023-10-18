@@ -3,6 +3,9 @@ id: sql-function-json
 slug: /sql-function-json
 title: JSON functions and operators
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-json/" />
+</head>
 
 ## JSON functions
 
@@ -170,6 +173,26 @@ jsonb ->> varchar → varchar
 SELECT '{"a":1,"b":2}'::jsonb ->> 'b';
 ------RESULT
 2
+```
+
+### `(jsonb || jsonb) -> jsonb`
+
+Concatenates jsonb data type.
+
+```bash title=Syntax
+(jsonb || jsonb) → jsonb
+```
+
+```sql title=Example
+SELECT '["a", "b"]'::jsonb || '["a", "d"]'::jsonb;  
+SELECT '{"a": "b"}'::jsonb || '{"c": "d"}'::jsonb;
+SELECT '[1, 2]'::jsonb || '3'::jsonb;
+SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
+------RESULT
+["a", "b", "a", "d"]
+{"a": "b", "c": "d"}
+[1, 2, 3]
+[{"a": "b"}, 42]
 ```
 
 ## `IS JSON` predicate

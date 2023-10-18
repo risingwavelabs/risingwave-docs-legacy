@@ -3,6 +3,9 @@ id: query-syntax-limit-clause
 slug: /query-syntax-limit-clause
 title: LIMIT clause
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-limit-clause/" />
+</head>
 
 `LIMIT` is an output modifier. Logically it is applied at the end of the query, and the `LIMIT` clause restricts the number of rows fetched.
 

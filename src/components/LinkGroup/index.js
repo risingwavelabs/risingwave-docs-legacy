@@ -106,7 +106,7 @@ export default function LinkGroup(props) {
           imgUrl={useBaseUrl("/img/home/twitter.png")}
         />
         <LinkItem
-          link="https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw"
+          link="https://www.risingwave.com/slack"
           focusing={slackFocus}
           setFocus={setSlackFocus}
           label="Let's chat on Slack"

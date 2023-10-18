@@ -5,6 +5,9 @@ description: Cancel specific streaming jobs
 slug: /sql-cancel-jobs
 keywords: [query progress, query status, cancel SQL query]
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-cancel-jobs/" />
+</head>
 
 Use `CANCEL JOBS` to cancel jobs that are in progress. You need to specify the IDs of the jobs that you want to cancel. You can use [`SHOW JOBS`](/sql/commands/sql-show-jobs.md) to get the IDs of the jobs that are in progress.
 

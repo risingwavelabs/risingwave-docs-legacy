@@ -3,6 +3,9 @@ id: sql-function-set-functions
 slug: /sql-function-set-functions
 title: Set functions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-set-functions/" />
+</head>
 
 ## generate_series()
 
@@ -153,3 +156,27 @@ The result looks like this:
 2008-03-03 12:00:00
 2008-03-04 00:00:00
 ```
+
+## _pg_expandarray()
+
+The `_pg_expandarray` function takes an array as input and expands it into a set of rows, providing values and their corresponding indices within the array. Ensure that [`information_schema`](/sql/system-catalogs/information-schema.md) is in the search path to access the `_pg_expandarray` function.
+
+Example: 
+
+```sql
+SELECT * FROM information_schema._pg_expandarray(Array['a','b','c']);
+```
+```
+ x | n 
+---+---
+ a | 1
+ b | 2
+ c | 3
+(3 rows)
+```
+
+Columns in the returned set of rows:
+
+- x: The value within the array.
+
+- n: The index of the value within the array.
