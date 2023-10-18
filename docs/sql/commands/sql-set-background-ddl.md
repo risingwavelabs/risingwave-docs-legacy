@@ -10,16 +10,42 @@ slug: /sql-set-background-ddl
 
 :::caution Experimental feature
 The `SET BACKGROUND_DDL` command is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+
+Currently, if the cluster crashes while a background DDL operation is still running, recovery is not supported.
 :::
 
 Use the `SET BACKGROUND_DDL` command to run Data Definition Language (DDL) operations, such as creating materialized views in the background.
 
-When `BACKGROUND_DDL` is set to true, RisingWave will immediately return a response when you execute a DDL operation, allowing you to proceed with other tasks. 
+When `BACKGROUND_DDL` is set to true, any subsequent DDL operations will be executed in the background, allowing you to proceed with other tasks. 
+
+When `BACKGROUND_DDL` is set to false (or not set at all), the DDL operations will execute as per normal.
 
 ## Syntax
 
 ```sql
 SET BACKGROUND_DDL = { true | false };
+```
+
+## Supported DDL operations
+
+- [CREATE MATERIALIZED VIEW](/sql/commands/sql-create-mv.md)
+
+## Monitor progress
+
+You can monitor the progress of background DDL operations using the [`SHOW JOBS`](/sql/commands/sql-show-jobs.md) command.
+
+## Cancel jobs
+
+Running jobs in the background can be cancelled using the [`CANCEL JOBS`](/sql/commands/sql-cancel-jobs.md) command followed by the job ID.
+
+## Concurrent jobs
+
+The maximum number of concurrent creating streaming jobs can be adjusted using the `ALTER SYSTEM SET max_concurrent_creating_streaming_jobs` command.
+
+For example, you can set the maximum concurrent creating streaming jobs to 4:
+
+```sql
+ALTER SYSTEM SET max_concurrent_creating_streaming_jobs TO 4;
 ```
 
 ## Examples
