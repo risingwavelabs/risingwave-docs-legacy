@@ -42,6 +42,21 @@ Currently, RisingWave supports the following sink connectors:
 
   With this connector, you can sink data from RisingWave to Elasticsearch. For details about the syntax and parameters, see [Sink data to Elasticsearch](/guides/sink-to-elasticsearch.md).
 
+## Sink decoupling
+
+The `sink_decouple` session variable can be specified to enable or disable sink decoupling. The default value for the session variable is `default`. 
+
+To enable sink decoupling for all sinks created in the sessions, set `sink_decouple` as `true` or `enable`.
+
+```sql
+SET sink_decouple = true;
+```
+
+To disable sink decoupling, set `sink_decouple` as `false` or `disable`, regardless of the default setting. 
+
+```sql
+SET sink_decouple = false;
+```
 
 ## Upsert sinks and primary keys
 
