@@ -114,6 +114,19 @@ RisingWave uses etcd for persisting data for meta nodes. It's important to note 
 
 You can customize the directory for storing state data via the `spec: stateStore: dataDirectory` parameter in the `risingwave.yaml` file that you want to use to deploy a RisingWave instance. If you have multiple RisingWave instances, ensure the value of `dataDirectory` for the new instance is unique (the default value is `hummock`). Otherwise, the new RisingWave instance may crash. Save the changes to the `risingwave.yaml` file before running the `kubectl apply -f <...risingwave.yaml>` command. The directory path cannot be an absolute address, such as `/a/b`, and must be no longer than 180 characters.
 
+### Choose the state backend
+
+RisingWave supports customizing the state backend in a cluster. The state backend is a storage service or system for persisting the states in RisingWave.
+
+You can use these systems or services as the state backend:
+
+* MinIO
+* AWS S3
+* S3-compatible object storages
+* Google Cloud Storage
+* Azure Blob Storage
+* Apache HDFS / WebHDFS
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
