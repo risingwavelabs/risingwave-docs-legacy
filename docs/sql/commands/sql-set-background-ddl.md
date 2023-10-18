@@ -16,29 +16,31 @@ Currently, if the cluster crashes while a background DDL operation is still runn
 
 Use the `SET BACKGROUND_DDL` command to run Data Definition Language (DDL) operations, such as creating materialized views in the background.
 
-When `BACKGROUND_DDL` is set to true, any subsequent DDL operations will be executed in the background, allowing you to proceed with other tasks. 
-
-When `BACKGROUND_DDL` is set to false (or not set at all), the DDL operations will execute as per normal.
-
 ## Syntax
 
 ```sql
 SET BACKGROUND_DDL = { true | false };
 ```
 
+- When `BACKGROUND_DDL` is set to true, any subsequent DDL operations will be executed in the background, allowing you to proceed with other tasks. 
+
+- When `BACKGROUND_DDL` is set to false (or not set at all), the DDL operations will execute as per normal.
+
 ## Supported DDL operations
 
 - [CREATE MATERIALIZED VIEW](/sql/commands/sql-create-mv.md)
 
-## Monitor progress
+## Background management
+
+### Monitor progress
 
 You can monitor the progress of background DDL operations using the [`SHOW JOBS`](/sql/commands/sql-show-jobs.md) command.
 
-## Cancel jobs
+### Cancel jobs
 
 Running jobs in the background can be cancelled using the [`CANCEL JOBS`](/sql/commands/sql-cancel-jobs.md) command followed by the job ID.
 
-## Concurrent jobs
+### Set concurrent jobs
 
 The maximum number of concurrent creating streaming jobs can be adjusted using the `ALTER SYSTEM SET max_concurrent_creating_streaming_jobs` command.
 
