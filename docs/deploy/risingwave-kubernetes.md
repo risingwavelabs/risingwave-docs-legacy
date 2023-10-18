@@ -125,17 +125,34 @@ You can use these systems or services as the state backend:
 * S3-compatible object storages
 * Google Cloud Storage
 * Azure Blob Storage
-* Apache HDFS / WebHDFS
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+We maintain a few RisingWave manifest files for different state backends that you can use directly or customize.
 
-<Tabs groupId="storage_selection">
-<TabItem value="s3" label="etcd+S3">
+Most of the manifest files are placed in this directory:
 
-RisingWave supports using Amazon S3 as object storage for persistent data.
+```url
+https://github.com/risingwavelabs/risingwave-operator/tree/main/docs/manifests/risingwave/
+```
 
-**Steps:**
+The manifest files are named using the convention of "risingwave-<meta_store>-<state_backend>.yaml". For example, `risingwave-etcd-s3.yaml` means that this manifest file uses etcd as the meta storage and AWS S3 as the state backend. The manifest files whose names do not contain `etcd` means that they use memory as the meta store, which does not persist meta node data and therefore has a risk of losing data.
+
+The directory below contains manifest files that we have tested compatibility with the latest released version of the RisingWave Operator:
+
+```url
+https://github.com/risingwavelabs/risingwave-operator/tree/main/docs/manifests/stable/
+```
+
+Note that for production deployments, you should use etcd as the meta data store. Therefore, please use or customize a manifest file that contains `etcd` in its name or choose a file that is in the `/stable/` directory.
+
+You can run this command to apply a manifest file from the operator repository. Remember to replace `<sub-directory>` with the actual directory and file name.
+
+```shell
+kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/<sub-directory>
+```
+
+### Additional configurations for AWS S3
+
+If you want to apply the standard S3 manifest file in the Operator's manifest directory, please complete these configurations first:
 
 1. Create a Secret with the name `s3-credentials`.
 
@@ -143,58 +160,156 @@ RisingWave supports using Amazon S3 as object storage for persistent data.
     kubectl create secret generic s3-credentials --from-literal AccessKeyID=${ACCESS_KEY} --from-literal SecretAccessKey=${SECRET_ACCESS_KEY}
     ```
 
-1. On the S3 console, [create a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) with the name `risingwave` in the US East (N. Virginia) (`us-east-1`) region.
+2. On the S3 console, [create a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) with the name `risingwave` in the US East (N. Virginia) (`us-east-1`) region.
 
-1. Deploy a RisingWave instance with S3 as the object storage.
+### Optional: Customize the state backend
 
-    ```shell
-    kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/stable/persistent/s3/risingwave.yaml
-    ```
+If you intend to customize a manifest file, download the file to a local path and edit it:
 
-    <details>
-    <summary>Click here if you wish to customize the name and region of the S3 bucket</summary>
+```curl
+curl https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/<sub-directory> -o risingwave.yaml
+```
 
-    Before executing the above command, customize the S3 bucket according to your specific requirements by following these steps.
+And then, apply the manifest file by using the following command:
 
-    1. Download the manifest file from the link above.
-
-    1. Open the downloaded file and modify the necessary fields, such as the bucket name and region according to your preferences.
-
-    1. Save the modified file to your local file system.
-
-    1. Replace the URL in the command with the local file path of the modified manifest file and then run the command. For example:
-
-        ```shell
+ ```shell
         kubectl apply -f a.yaml      # relative path
         kubectl apply -f /tmp/a.yaml # absolute path
-        ```
+```
 
-    </details>
+To customize the state backend of your RisingWave cluster, edit the `spec:stateStore` section under the RisingWave resource (`kind: RisingWave`).
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="storage_selection">
+<TabItem value="s3" label="etcd+S3">
 
 </TabItem>
 <TabItem value="minio" label="etcd+MinIO">
-
-RisingWave supports using MinIO as object storage for persistent data.
 
 :::note
 The performance of MinIO is closely tied to the disk performance of the node where it is hosted. We have observed that AWS EBS does not perform well in our tests. For optimal performance, we recommend using S3 or a compatible cloud service.
 :::
 
-Run the following command to deploy a RisingWave instance with MinIO as the object storage.
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/stable/persistent/minio/risingwave.yaml
+```yaml
+spec:
+  stateStore:
+    # Prefix to objects in the object stores or directory in file system. Default to "hummock".
+    dataDirectory: hummock
+    
+    # Declaration of the MinIO state store backend.
+    minio:
+      # Endpoint of the MinIO service.
+      endpoint: risingwave-minio:9301
+      
+      # Name of the MinIO bucket.
+      bucket: hummock001
+      
+      # Credentials to access the MinIO bucket.
+      credentials:
+        # Name of the Kubernetes secret that stores the credentials.
+        secretName: minio-credentials
+        
+        # Key of the username ID in the secret.
+        usernameKeyRef: username
+        
+        # Key of the password key in the secret.
+        passwordKeyRef: password 
 ```
 
 </TabItem>
-<TabItem value="hdfs" label="etcd+HDFS">
+<TabItem value="s3-compatible" label="S3-compatible">
 
-RisingWave supports using HDFS as object storage for persistent data.
+```yaml
+spec:
+  stateStore:
+    # Prefix to objects in the object stores or directory in file system. Default to "hummock".
+    dataDirectory: hummock
+    
+    # Declaration of the S3 compatible state store backend.
+    s3:
+      # Endpoint of the S3 compatible object storage. Two variables are supported:
+      # - ${BUCKET}: name of the S3 bucket.
+      # - ${REGION}: name of the region.
+      endpoint: ${BUCKET}.cos.${REGION}.myqcloud.com
+      
+      # Region of the S3 compatible bucket.
+      region: ap-guangzhou
+      
+      # Name of the S3 compatible bucket.
+      bucket: risingwave
+      
+      # Credentials to access the S3 compatible bucket.
+      credentials:
+        # Name of the Kubernetes secret that stores the credentials.
+        secretName: cos-credentials
+        
+        # Key of the access key ID in the secret.
+        accessKeyRef: ACCESS_KEY_ID
+        
+        # Key of the secret access key in the secret.
+        secretAccessKeyRef: SECRET_ACCESS_KEY
+```
 
-Deploy a RisingWave instance with HDFS as the object storage.
+</TabItem>
 
-```shell
-kubectl apply -f https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/risingwave/risingwave-etcd-hdfs.yaml
+<TabItem value="azure-blob" label="Azure Blob Storage">
+
+```yaml
+spec:
+  stateStore:
+    # Prefix to objects in the object stores or directory in file system. Default to "hummock".
+    dataDirectory: hummock
+    
+    # Declaration of the Google Cloud Storage state store backend.
+    gcs:
+      # Name of the Google Cloud Storage bucket.
+      bucket: risingwave
+      
+      # Root directory of the Google Cloud Storage bucket.
+      root: risingwave
+    
+      # Credentials to access the Google Cloud Storage bucket.
+      credentials:
+        # Name of the Kubernetes secret that stores the credentials.
+        secretName: gcs-credentials
+        
+        # Key of the service account credentials in the secret.
+        serviceAccountCredentialsKeyRef: ServiceAccountCredentials
+        
+        # Optional, set it to true when the credentials can be retrieved.
+        # useWorkloadIdentity: true
+```
+
+</TabItem>
+
+<TabItem value="google-cloud-storage" label="Google Cloud Storage">
+
+```yaml
+spec:
+  stateStore:
+    # Prefix to objects in the object stores or directory in file system. Default to "hummock".
+    dataDirectory: hummock
+    
+    # Declaration of the Google Cloud Storage state store backend.
+    gcs:
+      # Name of the Google Cloud Storage bucket.
+      bucket: risingwave
+      
+      # Root directory of the Google Cloud Storage bucket.
+      root: risingwave
+    
+      # Credentials to access the Google Cloud Storage bucket.
+      credentials:
+        # Name of the Kubernetes secret that stores the credentials.
+        secretName: gcs-credentials
+        
+        # Key of the service account credentials in the secret.
+        serviceAccountCredentialsKeyRef: ServiceAccountCredentials
+        
+        # Optional, set it to true when the credentials can be retrieved.
+        # useWorkloadIdentity: true
 ```
 
 </TabItem>
