@@ -116,14 +116,14 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_fragments          | Contains low-level information about fragments in the database, including fragment IDs, table IDs, and more. |
  rw_functions          | Contains information about functions in the database, including their IDs, names, schema identifiers, types, argument and return data types, programming language, and more. |
  rw_hummock_branched_objects         | Contains information about branched objects of Hummock (the storage engine in RisingWave), including object IDs, corresponding SST IDs, and compaction group IDs. |
- rw_hummock_checkpoint_version       | Contains information about the checkpoint version of data in Hummock, including version ID, maximum committed epoch, safe epoch, and compaction group details.|
+ rw_hummock_checkpoint_version       | Contains information about the checkpoint version of data in Hummock (the storage engine in RisingWave), including version ID, maximum committed epoch, safe epoch, and compaction group details.|
  rw_hummock_compaction_group_configs | Contains information about the configuration settings for the Hummock compaction groups in the database, including compaction group IDs, parent compaction group IDs, member tables, compaction settings, and active write limits. |
- rw_hummock_current_version          | Contains information about the current version of data in Hummock, including version ID, maximum committed epoch, safe epoch, and compaction group details. |
- rw_hummock_meta_configs             | Contains metadata configurations and their values for Hummock in RisingWave. |
- rw_hummock_pinned_snapshots         | Contains information about the pinned snapshots in Hummock, including the worker node ID and the minimum pinned snapshot ID. |
- rw_hummock_pinned_versions          | Contains information about the pinned versions in Hummock, including the worker node ID and the minimum pinned snapshot ID.  |
- rw_hummock_sstables                 | Contains information about the SSTables (Sorted String Tables) used in the Hummock compaction process. |
- rw_hummock_version_deltas           | Contains information about version deltas in the Hummock. A version delta represents the modifications or differences in data between consecutive epochs.|
+ rw_hummock_current_version          | Contains information about the current version of data in Hummock (the storage engine in RisingWave), including version ID, maximum committed epoch, safe epoch, and compaction group details. |
+ rw_hummock_meta_configs             | Contains metadata configurations and their values for Hummock (the storage engine in RisingWave). |
+ rw_hummock_pinned_snapshots         | Contains information about the pinned snapshots in Hummock (the storage engine in RisingWave), including the worker node ID and the minimum pinned snapshot ID. |
+ rw_hummock_pinned_versions          | Contains information about the pinned versions in Hummock (the storage engine in RisingWave), including the worker node ID and the minimum pinned snapshot ID.  |
+ rw_hummock_sstables                 | Contains information about the SSTables (Sorted String Tables) used in Hummock (the storage engine in RisingWave). |
+ rw_hummock_version_deltas           | Contains information about version deltas in Hummock (the storage engine in RisingWave). A version delta represents the modifications or differences in data between consecutive epochs.|
  rw_indexes            | Contains information about indexes in the database, including their IDs, names, schema identifiers, definitions, and more.|
  rw_materialized_views | Contains information about materialized views in the database, including their names, definitions, schema and owner IDs, and access control lists.
  rw_meta_snapshot      | Contains information about existing snapshots of the RisingWave meta service. You can use this relation to get IDs of meta snapshots and then restore the meta service from a snapshot. For details, see [Back up and restore meta service](/manage/meta-backup.md).|
