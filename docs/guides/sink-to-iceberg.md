@@ -10,12 +10,8 @@ slug: /sink-to-iceberg
 
 This guide describes how to sink data from RisingWave to Apache Iceberg using the Iceberg sink connector in RisingWave. Apache Iceberg is a table format designed to support huge tables. For more information, see [Apache Iceberg](https://iceberg.apache.org).
 
-:::caution Experimental feature
-The Iceberg sink connector in RisingWave is currently in beta status.
-:::
-
-:::caution Breaking change in v1.2
-In version 1.2, we have made significant improvements to the implementation of the feature, which has resulted in changes to the parameters. As a result, applications that rely on the previous version of the feature (specifically, the version included in RisingWave v1.0.0 and v1.1) may no longer function correctly. To restore functionality to your applications, please carefully review the syntax and parameters outlined on this page and make any necessary revisions to your code.
+:::caution Beta feature
+The Iceberg sink connector in RisingWave is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
 :::
 
 ## Prerequisites
@@ -40,17 +36,18 @@ WITH (
 
 | Parameter Names | Description |
 | --------------- | ---------------------------------------------------------------------- |
-| type            | Required. Currently only `appendonly` is supported. |
+| type            | Required. Allowed values: `appendonly` and `upsert`. |
+| force_append_only| Optional. If `true`, forces the sink to be `append-only`, even if it cannot be. |
 | s3.endpoint     | Optional. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be <http://${MINIO_HOST}:${MINIO_PORT>}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
 | s3.region       | Optional. The region where the S3 bucket is hosted. Either `s3.endpoint` or `s3.region` must be specified.|
 | s3.access.key   | Required. Access key of the S3 compatible object store.|
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
 | database.name   | Required. The database of the target Iceberg table.|
 | table.name      | Required. The name of the target Iceberg table.|
-| catalog.type    | Optional. Catalog type used in this table, currently only support `storage` or `rest`. If not set, `storage` is used. |
-| warehouse.path  | Optional. The path of the Iceberg warehouse. Currently, only S3-compatible object store is supported, such as AWS S3, or MinIO. It's required in `storage` catalog.|
-| catalog.uri     | Optional. The url of rest catalog, which is required for rest catalog. |
-| primary_key     | Primary key for upsert sink. Only appliable for upsert mode. |
+| catalog.type    | Optional. The catalog type used in this table. Currently, the supported values are `storage` and `rest`. If not specified, `storage` is used. For details, see [Catalogs](#catalogs).|
+| warehouse.path  | Conditional. The path of the Iceberg warehouse. Currently, only S3-compatible object storage systems, such as AWS S3 and MinIO, are supported. It's required if the `catalog.type` is  `storage`.|
+| catalog.uri     | Conditional. The URL of the catalog. It is required when `catalog.type` is `rest`. |
+| primary_key     | The primary key for an upsert sink. It is only appliable to the upsert mode. |
 
 ## Data Type Mapping
 
@@ -68,17 +65,16 @@ Risingwave converts risingwave data types from/to Iceberg according to the follo
 | timestamptz   | timestamptz |
 | timestamp     | timestamp   |
 
-## Catalog
+## Catalogs
 
-Currently iceberg supports two kinds of catalogs:
+Iceberg supports two types of catalogs:
 
-- Storage catalog. Storage catalog is similar to [Hadoop Catalog](https://iceberg.apache.org/docs/1.3.0/java-api-quickstart/#using-a-hadoop-catalog), e.g. all metadata are stored in underlying file system, such as hadoop, s3. Currently we only support s3 as underlying file system.
+- Storage catalog: The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system.
+- REST catalog: Risingwave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use Risingwave with Iceberg tables.
 
-- Rest catalog. Risingwave supports [rest catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which can be used as a proxy to other catalogs such as hive, jdbc, nessie catalog. This is also the recommended way to use risingwave with iceberg tables.
+## Iceberg table format
 
-## Table Format
-
-Currently risingwave only supports table format v2.
+Currently, RisingWave only supports Iceberg tables in format v2.
 
 ## Examples
 
@@ -193,7 +189,7 @@ WITH (
 
 ### Upsert sink from upsert source
 
-Iceberg sink now supoorts writing upserts into iceberg table, you can create a sink to sink upserts into iceberg table directly.
+In RisingWave, you can directly sink data as upserts into Iceberg tables.
 
 ```sql
 CREATE SINK s1_sink FROM s1_table
