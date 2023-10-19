@@ -8,9 +8,9 @@ slug: /looker-integration
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/looker-integration/" />
 </head>
 
-Looker is a data analytics platform that provides data insights through interactive dashboards, reports, and SQL querying. It integrates with databases like PostgreSQL, MySQL, and more.
+Looker is a BI (business intelligence) platform that provides data insights through interactive dashboards, reports, and SQL querying. It can integrate with databases like PostgreSQL, MySQL, and more.
 
-Since RisingWave is compatible with PostgreSQL, you can easily connect Looker to RisingWave by reusing the PostgreSQL driver.
+Since RisingWave is compatible with PostgreSQL, you can easily connect Looker to RisingWave by using the PostgreSQL driver.
 
 ## Prerequisites
 
@@ -20,9 +20,9 @@ Since RisingWave is compatible with PostgreSQL, you can easily connect Looker to
 
 ## Establish the connection
 
-1. Choose the PostgreSQL connector in the data sources.
+1. Choose the PostgreSQL connector from the list of data sources.
 
-2. Configure the connection (take “Basic” as an example):
+2. Configure the connection (here “Basic” is used as an example):
 
     - Host: The hostname or IP address of the RisingWave database. The default **Host** for RisingWave is `localhost`.
 
@@ -34,6 +34,21 @@ Since RisingWave is compatible with PostgreSQL, you can easily connect Looker to
 
     - Password: The password associated with the provided username. By default, there is no password for `root`.
 
+    <img
+    src={require('../images/looker-connection.png').default}
+    alt="Fill in connection settings in Looker"
+    />
+
 3. Click `AUTHENTICATE` to confirm the connection is successful.
 
-4. Looker will now have access to the databases and tables in RisingWave. You can select the table you need, or fill in the query manually, and then click `CONNECT` button in the upper right corner. Now you can start building dashboards, charts, and explore the real-time data.
+4. Looker will now have access to the databases and tables in RisingWave. You can select the table you need, or fill in the query manually, then click `CONNECT` in the upper right corner. Now you can start building dashboards and charts to explore real-time data.
+
+    <img
+    src={require('../images/looker-query.png').default}
+    alt="Fill out query in Looker"
+    />
+
+    <img
+    src={require('../images/looker-chart.png').default}
+    alt="Create dashboard in Looker"
+    />
