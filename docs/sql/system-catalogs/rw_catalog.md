@@ -115,7 +115,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_ddl_progress       | Contains the progress of running DDL statements. You can use this relation to view the progress of running DDL statements. For details, see [View statement progress](/manage/view-statement-progress.md).|
  rw_fragments          | Contains low-level information about fragments in the database, including fragment IDs, table IDs, and more. |
  rw_functions          | Contains information about functions in the database, including their IDs, names, schema identifiers, types, argument and return data types, programming language, and more. |
- rw_hummock_branched_objects         | Contains information about branched objects of Hummock (the compaction engine in RisingWave), including object IDs, corresponding SST IDs, and compaction group IDs. |
+ rw_hummock_branched_objects         | Contains information about branched objects of Hummock (the storage engine in RisingWave), including object IDs, corresponding SST IDs, and compaction group IDs. |
  rw_hummock_checkpoint_version       | Contains information about the checkpoint version of data in Hummock, including version ID, maximum committed epoch, safe epoch, and compaction group details.|
  rw_hummock_compaction_group_configs | Contains information about the configuration settings for the Hummock compaction groups in the database, including configuration entry IDs, parent IDs, member tables, compaction settings, and active write limits. |
  rw_hummock_current_version          | Contains information about the current version of data in Hummock, including version ID, maximum committed epoch, safe epoch, and compaction group details. |
