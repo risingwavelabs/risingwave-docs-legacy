@@ -33,6 +33,10 @@ rr.Stack(
 
 <drawer SVG={svg} />
 
+:::tip
+To perform the operations in the background, you can execute `SET BACKGROUND_DDL=true;` before running the `CREATE MATERIALIZED VIEW` statement. See details in [`SET BACKGROUND_DDL`](/sql/commands/sql-set-background-ddl.md).
+:::
+
 ## Parameters
 
 |Parameter or clause        | Description           |
