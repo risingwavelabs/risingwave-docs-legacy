@@ -24,7 +24,7 @@ SET BACKGROUND_DDL = { true | false };
 
 - When `BACKGROUND_DDL` is set to true, any subsequent DDL operations will be executed in the background, allowing you to proceed with other tasks. 
 
-- When `BACKGROUND_DDL` is set to false (or not set at all), the DDL operations will execute as per normal.
+- When `BACKGROUND_DDL` is set to false (or not set at all), the DDL operations will execute as normal.
 
 ## Supported DDL operations
 
