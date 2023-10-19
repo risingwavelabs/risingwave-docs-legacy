@@ -41,7 +41,7 @@ FORMAT data_format ENCODE data_encode [ (
 |aws.credentials.session_token |Optional. The session token associated with the temporary security credentials. |
 |aws.credentials.role.arn |Optional. The Amazon Resource Name (ARN) of the role to assume.|
 |aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources. |
-|primary_key| Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. Primary keys are optional when creating a `PLAIN` sink but required for `UPSERT` and `DEBEZIUM` sinks.|
+|primary_key| Required. The primary keys of the sink. Use ',' to delimit the primary key columns. |
 
 ## Sink parameters
 
