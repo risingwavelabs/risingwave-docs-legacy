@@ -1,47 +1,55 @@
 ---
 id: supabase-integration
-title: Supabase Integration
-description: Use RisingWave in Supabase application to enpower real-time data processing. 
+title: Supabase
+description: Empower Supabase with stream processing capabilities 
 slug: /supabase-integration
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/supabase-integration/" />
 </head>
 
-Supabase is an open source Firebase alternative. It uses Postgres database as the underlying storage. This [blog](https://www.risingwave.com/blog/unleash-the-true-power-of-supabase-realtime-with-risingwave/) shows how Supabase users can seamlessly integrate with RisingWave to enpower the product with stream processing ability. 
+Supabase is an open source Firebase alternative. It uses PostgreSQL as the underlying storage system, and therefore can be integrated with RisingWave seamlessly.
 
-In this example, we will use Supabase to create a simple demo of social media platform where users can send posts. The example will be illustrated by
-the following steps:
+You can ingest data from Supabase into RisingWave, and sink data from RisingWave to Supabase.
 
-* Ingest data from Supabase into RisingWave.
-* Calculate the real-time results of recent posts, the number of posts sent by users.
-* Sink real-time results from RisingWave into Supabase.
+We have an [end-to-end demo](https://www.risingwave.com/blog/unleash-the-true-power-of-supabase-realtime-with-risingwave/)) to show how Supabase users can seamlessly integrate RisingWave to enhance the product with stream processing capabilities.
+
+This guide provides a simplified integration between RisingWave and Supabase, focusing on a social media monitoring scenario.
+
+Throughout this guide, we will cover the following tasks:
+
+- Ingesting user and post data from Supabase into RisingWave.
+- Calculating real-time results for recent posts, such as the number of posts sent by users.
+- Sinking the real-time results from RisingWave back into Supabase.
 
 ## Prerequisites
 
-* Follow the instruction [here](https://docs.risingwave.com/cloud/quickstart/) to start a free-tier RisingWave cluster. 
-* Create a new [Supabase](https://supabase.com/docs/guides/getting-started) project.
+- Install and connect to RisingWave. For details, see [Get starated](get-started.md).
+- Create a new [Supabase project](https://supabase.com/docs/guides/getting-started).
 
-## Create Supabase Tables and Replication
+## Create Supabase tables and enable table replication
 
-First, let's create two tables in Supabase. One is `users` table to store user information, and the other is `posts` table to store posts sent by users.
+First, let's create two tables in Supabase. The `users` table stores user information, and the `posts` table stores posts sent by users.
 
 <img
   src={require('../images/supabase-integration/supabase-table-visualization.png').default}
-  alt="Supabase tables visualization"
+  alt="Supabase tables"
 />
 
-Make sure the data replication of these two tables are enabled. More information about data replication can be found [here](https://supabase.com/docs/guides/database/replication).
+Make sure the data replication of these two tables are enabled. To learn about data replication for Supabase tables, see [Replication](https://supabase.com/docs/guides/database/replication).
 
 <img
   src={require('../images/supabase-integration/supabase-replication.png').default}
   alt="Enable table replication in Supabase"
 />
 
-## Ingest Data into RisingWave
-Then we can [postgres-cdc connector](https://docs.risingwave.com/docs/1.1/ingest-from-postgres-cdc/) to replicate data from Supabase to RisingWave. 
-Note that the data are ingested into RisingWave in real-time. To do this, we can use [RisingWave Web Console](https://docs.risingwave.com/cloud/console-overview/) or any other Postgres client tools to run the following SQL statements in the RisingWave cluster.
-```sql
+## Ingest data into RisingWave
+
+Then we can use the [PostgreSQL CDC connector](/guides/ingest-from-postgres-cdc.md) to replicate data from Supabase to RisingWave.
+
+To ingest data into RisingWave in real-time, you need to create two tables with connector settings in RisingWave:
+
+```sql title="First table"
 CREATE TABLE users (
   id int8,
   created_at TIMESTAMPTZ, 
@@ -59,7 +67,9 @@ WITH (
   table.name = 'users',
   publication.name = 'rw_publication' -- Database Replications name in Supabase
 );
+```
 
+```sql title="Second table"
 CREATE TABLE posts (
   id int8,
   created_at TIMESTAMPTZ, 
@@ -72,14 +82,14 @@ WITH (
 );
 ```
 
-## Calculate Real-Time Results
-With the data ingested from the source, we can create some metrialized views now. 
-Note that the results of materialized views are updated in real-time. 
-So if you query the materialized views, you will always get the latest results at different time.
-Use [RisingWave Web Console](https://docs.risingwave.com/cloud/console-overview/) or any other Postgres client tools to run the following SQL statements in the RisingWave cluster.
+## Calculate real-time results
 
-### Recent Posts
-The following SQL statement creates a materialized view in RisingWave to show the most recent 100 posts.
+With data ingested into RisingWave, real-time data calculations can now be performed using materialized views. Materialized views in RisingWave enable incremental computations, ensuring that the latest results are obtained whenever the materialized view is queried.
+
+### Get the most recent posts
+
+The following SQL statement creates a materialized view in RisingWave to get the most recent 100 posts.
+
 ```sql
 CREATE MATERIALIZED VIEW recent_posts AS (
   SELECT name, content, posts.created_at as created_at FROM posts 
@@ -88,8 +98,10 @@ CREATE MATERIALIZED VIEW recent_posts AS (
 );
 ```
 
-### Trending Hashtags
-The following SQL statement creates a materialized view in RisingWave to show the daily trending hashtags.
+### Get trending hashtags in real-time
+
+The following SQL statement creates a materialized view in RisingWave to get the daily trending hashtags.
+
 ```sql
 CREATE MATERIALIZED VIEW hot_hashtags AS WITH tags AS (
   SELECT
@@ -108,8 +120,10 @@ GROUP BY
   window_start;
 ```
 
-### The Number of Posts Sent by Users
-The following SQL statement creates a materialized view in RisingWave to show the number of posts sent by users.
+### Get the number of posts sent by users
+
+The following SQL statement creates a materialized view in RisingWave to get the number of posts sent by users.
+
 ```sql
 CREATE MATERIALIZED VIEW user_posts_cnt AS (
   SELECT 
@@ -120,19 +134,23 @@ CREATE MATERIALIZED VIEW user_posts_cnt AS (
 );
 ```
 
-## Sink Real-Time Results into Supabase
-Though RisingWave can serve those real-time results directly, you might want to process these results in Supabase for other business logic. 
-RisingWave support [JDBC connector](https://docs.risingwave.com/docs/1.1/sink-to-postgres/) to sink data from RisingWave to Supabase.
+## Sink real-time results into supabase
 
-Let's sink the real-time result of the number of posts sent by users to Supabase. 
-Before we create the sink in RisingWave, we need to create the destination table `user_posts_cnt` in Supabase. Now the schema looks like:
+While RisingWave can directly serve real-time results, you may prefer to process these results in Supabase for further analysis.
+
+You can use the [JDBC connector](/guides/sink-to-postgres.md) to sink data from RisingWave to Supabase.
+
+Let's sink the real-time result of the number of posts sent by users to Supabase.
+
+Before we create the sink in RisingWave, we need to create the destination table `user_posts_cnt` in Supabase. The schema looks like this:
 
 <img
   src={require('../images/supabase-integration/supabase-sink-table.png').default}
   alt="new table for sink in supabase"
 />
 
-After the table is created, we can now execute the following statement in RisingWave to sink the result to the Supabase table we just created.
+After the table is created, we can now run the following statement in RisingWave to sink the result to the Supabase table we just created.
+
 ```sql
 CREATE SINK supabase_user_posts_cnt 
 FROM user_posts_cnt WITH (
@@ -143,4 +161,5 @@ FROM user_posts_cnt WITH (
   primary_key= 'user_id'
 )
 ```
-Once the sink is successfully created, you should be able to see the results in Supabase. Try to send some posts in the Supabase application and you will see the results are updated in real-time.
+
+Once the sink is successfully created, you should be able to see the results in Supabase. Try adding new rows to the `users` and `posts` table, and you will see the results in `user_posts_cnt` are updated in real-time.
