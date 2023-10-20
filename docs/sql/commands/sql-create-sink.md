@@ -73,14 +73,20 @@ rr.Stack(
 
 Click a sink name to see the SQL syntax, options, and sample statement of sinking data from RisingWave to the sink.
 
-* [Kafka](/guides/create-sink-kafka.md) (Supports versions 3.1.0 or later)
-* [MySQL](/guides/sink-to-mysql.md) (Supports versions 5.7 and 8.0.x)
-* [PostgreSQL](/guides/sink-to-postgres.md)
-* [AWS Kinesis](/guides/sink-to-aws-kinesis.md)
-* [TiDB](/guides/sink-to-tidb.md)
+* [Apache Doris](/guides/sink-to-doris.md)
 * [Apache Iceberg](/guides/sink-to-iceberg.md)
+* [AWS Kinesis](/guides/sink-to-aws-kinesis.md)
+* [Cassandra or ScyllaDB](/guides/sink-to-cassandra.md)
+* [ClickHouse](/guides/sink-to-clickhouse.md)
 * [Delta Lake](/guides/sink-to-delta-lake.md)
 * [Elasticsearch](/guides/sink-to-elasticsearch.md)
+* [Kafka](/guides/create-sink-kafka.md) (Supports versions 3.1.0 or later)
+* [MySQL](/guides/sink-to-mysql.md) (Supports versions 5.7 and 8.0.x)
+* [NATS](/guides/sink-to-nats.md)
+* [PostgreSQL](/guides/sink-to-postgres.md)
+* [Pulsar](/guides/sink-to-pulsar.md)
+* [TiDB](/guides/sink-to-tidb.md)
+
 
 ## See also
 
