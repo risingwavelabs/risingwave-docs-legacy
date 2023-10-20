@@ -4,6 +4,9 @@ title: INSERT
 description: Insert new rows of data into a table.
 slug: /sql-insert
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-insert/" />
+</head>
 
 Use the `INSERT` command to insert new rows into an existing table.
 

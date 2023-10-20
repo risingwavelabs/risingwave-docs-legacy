@@ -4,8 +4,13 @@ title: Run RisingWave for testing purposes
 description: Install, run, and connect to RisingWave for testing purposes
 slug: /risingwave-trial
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-trial/" />
+</head>
 
 Select an installation or running method.
+
+These options are all for testing purposes. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -14,14 +19,29 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="overview" label="Overview">
 
-RisingWave offers two running modes and several installation or running options. See the table below for comparisons.
+RisingWave offers several installation or running options. Choose the option that best fits your needs.
 
-|Comparison \ Mode|Playground mode|Full-featured mode|
-|---|---|---|
-|**Purpose**|Quick tests|Advanced tests|
-|**Starts in**|A single-node instance|A full-featured, multi-node cluster|
-|**Data persistence**|Data is stored solely in memory and will not be persisted after the service is terminated.|Data is persisted in storage.|
-|**Choose a method to run RisingWave**|Try out from browser <br /><lightButton text="Playground" doc="risingwave-trial?method=playground" block />Install directly <lightButton text="Homebrew" doc="risingwave-trial?method=homebrew" block /><lightButton text="Binaries" doc="risingwave-trial?method=binaries" block />Run in container <lightButton text="Docker" doc="risingwave-trial?method=docker" block />|Set up a local cluster <lightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" block />|
+<br/>
+
+## Quick tests
+
+RisingWave will be started as a single-node instance. Data is stored solely in memory and will not be persisted after the service is terminated.
+
+These options are available:
+
+<lightButton text="Playground in a Web browser" doc="risingwave-trial?method=playground" />
+<lightButton text="Homebrew" doc="risingwave-trial?method=homebrew" />
+<lightButton text="Binaries" doc="risingwave-trial?method=binaries" />
+<lightButton text="Docker image" doc="risingwave-trial?method=docker" />
+
+<br/>
+<br/>
+
+## Advanced tests
+
+For advanced tests, we recommend using Docker Compose to start RisingWave as a multi-node cluster. With this option, data is persisted in storage. However, please be aware that certain critical features such as failover and resource management are not implemented in this mode. Therefore, this option is not recommended for production deployments.
+
+<lightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" />
 
 </TabItem>
 
@@ -32,7 +52,7 @@ RisingWave offers two running modes and several installation or running options.
 Try out RisingWave without the need for any installation or setup with RisingWave Playground, an interactive web application. You can access RisingWave Playground directly from your browser.
 
 :::caution
-RisingWave Playground is intended for quick testing purposes only. Your data will not persist after a session expires. Some functionality may be limited.
+RisingWave Playground is intended for quick tests only. Your data will not be persisted after a session expires. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may lead to out-of-memory (OOM) errors. Some functionality may be limited.
 :::
 
 <defaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
@@ -54,7 +74,8 @@ RisingWave Playground is intended for quick testing purposes only. Your data wil
 Start a RisingWave standalone instance in your local environment with Homebrew.
 
 :::caution
-This method starts RisingWave in playground mode, where data is temporarily stored in memory. The service automatically terminates after 30 minutes of inactivity, causing all data to be lost.
+This method launches RisingWave in playground mode, where data is stored solely in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may result in out-of-memory (OOM) errors. Use this method for quick tests only.
+
 To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md).
 :::
 
@@ -95,7 +116,8 @@ Notes about the `psql` options:
 Start a RisingWave standalone instance in your local environment with the pre-built binary.
 
 :::caution
-This method starts RisingWave in playground mode, where data is temporarily stored in memory. The service automatically terminates after 30 minutes of inactivity, causing all data to be lost.
+This method launches RisingWave in playground mode, where data is stored solely in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may lead to out-of-memory (OOM) errors. Use this method for quick tests only.
+
 To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md).
 :::
 
@@ -173,7 +195,8 @@ To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwav
 Pull a RisingWave image and run it as a Docker container.
 
 :::caution
-This method starts RisingWave in playground mode, where data is temporarily stored in memory. The service automatically terminates after 30 minutes of inactivity, causing all data to be lost.
+This method launches RisingWave in playground mode, where data is stored solely in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may lead to out-of-memory (OOM) errors. Use this method for quick tests only.
+
 To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md).
 :::
 
@@ -225,9 +248,13 @@ Notes about the `psql` options:
 
 Use the pre-defined Docker Compose configuration file to set up a multi-node RisingWave cluster.
 
-:::info
+:::caution
 
-If you intend to deploy RisingWave in production environments, please use [RisingWave Cloud](/deploy/risingwave-cloud.md) or [the Kubernetes Operator for RisingWave](/deploy/risingwave-kubernetes.md). This is because it has better support for resource management and we conduct comprehensive tests for it.
+Although this option is not in playground mode, it's important to note that certain essential features, such as failover and resource separation, are not implemented on the backend for this option. Additionally, this option relies on etcd, and its performance is highly dependent on disk performance. These factors can result in out-of-memory errors and potential data loss.
+
+If you intend to deploy RisingWave in production environments, please use [RisingWave Cloud](/deploy/risingwave-cloud.md) or [the Kubernetes Operator for RisingWave](/deploy/risingwave-kubernetes.md). These options provide better support for resource management, and we have conducted comprehensive tests on them.
+
+Meanwhile, we are developing a new standalone mode that resolves most of these issues. Stay tuned for updates on its availability and functionality.
 :::
 
 The cluster is composed of multiple RisingWave components, including:

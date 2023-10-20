@@ -4,6 +4,9 @@ title: SHOW CREATE SOURCE
 description: Show the query used to create the specified source. 
 slug: /sql-show-create-source
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-create-source/" />
+</head>
 
 Use the `SHOW CREATE SOURCE` command to see the SQL statement used to create the specified source. By
 using this command, you can verify the source's settings and troubleshoot any issues.

@@ -3,6 +3,10 @@ id: window-functions
 slug: /window-functions
 title: Window functions (OVER clause)
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/window-functions/" />
+</head>
+
 Window or windowing functions perform a calculation over a set of rows that are related to the current row (the "window").
 
 The "window" is defined by the `OVER` clause, which generally consists of three parts:

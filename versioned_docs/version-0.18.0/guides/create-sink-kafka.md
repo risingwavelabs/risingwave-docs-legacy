@@ -4,6 +4,9 @@ title: Sink to Kafka
 description: Sink data from RisingWave to Kafka topics.
 slug: /create-sink-kafka
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-sink-kafka/" />
+</head>
 
 This topic describes how to sink data from RisingWave to a Kafka broker and how to specify security (encryption and authentication) settings.
 

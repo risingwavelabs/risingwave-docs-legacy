@@ -3,6 +3,9 @@ id: sql-function-aggregate
 slug: /sql-function-aggregate
 title: Aggregate functions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-aggregate/" />
+</head>
 
 Aggregate functions compute a single result from a set of input values.
 
@@ -31,6 +34,26 @@ avg ( expression ) -> see description
 Input types include smallint, int, bigint, numeric, real, and double precision.
 
 Return type is numeric for integer inputs and double precision for float point inputs.
+
+---  
+
+### `bit_and`
+
+Returns the bitwise AND of all non-null input values or null if no non-null values are provided.
+
+```bash title=Syntax
+bit_and ( smallint, int, or bigint ) -> same as input type
+```
+
+---  
+
+### `bit_or`
+
+Returns the bitwise OR of all non-null input values or null if no non-null values are provided.
+
+```bash title=Syntax
+bit_or ( smallint, int, or bigint ) -> same as input type
+```
 
 ---  
 

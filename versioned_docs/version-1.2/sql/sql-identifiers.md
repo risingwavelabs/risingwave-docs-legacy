@@ -3,6 +3,9 @@ id: sql-identifiers
 slug: /sql-identifiers
 title: Identifiers
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-identifiers/" />
+</head>
 
 ## Naming restrictions
 

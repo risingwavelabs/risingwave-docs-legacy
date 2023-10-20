@@ -4,6 +4,9 @@ title: CREATE SOURCE
 description: Supported data sources and how to connect RisingWave to the sources.
 slug: /sql-create-source
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-source/" />
+</head>
 
 A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command.
 If you choose to persist the data from the source in RisingWave, use the `CREATE TABLE` command with connector settings. For more details, see [CREATE TABLE](sql-create-table.md).
@@ -14,8 +17,10 @@ Regardless of whether the data is persisted in RisingWave, you can create materi
 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name (
-    col_name data_type [ AS generation_expression ],...
-    [ watermark_clause ]
+    col_name data_type [ AS generation_expression ],
+    ...
+   [ PRIMARY KEY (col_name, ... ) ]
+   [ watermark_clause ]
 )
 [ WITH (
     connector='connector_name',
@@ -26,23 +31,15 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name (
 ];
 ```
 
-### schema_definition
+## Notes
 
-```sql
-col_name data_type [ AS generation_expression ],
-...
-[WATERMARK FOR col_name as generation_expression]
-```
+For sources with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record.
 
-:::note
-To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
-:::
-
-:::note
+A [generated column](/sql/query-syntax/query-syntax-generated-columns.md) that is defined with non-deterministic functions cannot be specified as part of the primary key. For example, if `A1` is defined as `current_timestamp()`, then it cannot be part of the primary key.
 
 Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
 
-:::
+To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
 
 ## Parameters
 

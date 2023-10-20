@@ -4,6 +4,10 @@ title: Ingest data from NATS JetStream
 description: Ingest data from NATS JetStream into RisingWave.
 slug: /create-source-nats
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-nats/" />
+</head>
+
 You can ingest data from NATS JetStream into RisingWave by using the NATS source connector in RisingWave.
 
 [NATS](https://nats.io/) is an open source messaging system for cloud native applications. It provides a lightweight publish-subscribe architecture for high performance messaging.
@@ -34,12 +38,19 @@ CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [ schema_definition ]
 WITH (
    connector='nats',
-   nats.server_url='<your nats server>:<port>', [ <another_server_url_if_available>, ...]
-   nats.subject='<your subject>',
+   server_url='<your nats server>:<port>', [ <another_server_url_if_available>, ...]
+   subject='<your subject>',
 
-   -- Optional parameters
-   nats.user='<your user name>',
-   nats.password='<your password>'
+-- optional parameters
+   connect_mode=<connect_mode>
+   username='<your user name>',
+   password='<your password>'
+   jwt=`<your jwt>`,
+   nkey=`<your nkey>`
+
+-- delivery parameters
+   scan.startup.mode=`startup_mode`
+   scan.startup.timestamp_millis='xxxxx',
 )
 FORMAT PLAIN ENCODE JSON;
 ```
@@ -60,14 +71,30 @@ RisingWave performs primary key constraint checks on tables with connector setti
 For a table with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
 :::
 
+:::note
+
+According to the [NATS documentation](https://docs.nats.io/running-a-nats-service/nats_admin/jetstream_admin/naming), stream names must adhere to subject naming rules as well as being friendly to the file system. Here are the recommended guidelines for stream names:
+
+* Use alphanumeric values.
+* Avoid spaces, tabs, periods (`.`), greater than (`>`) or asterisks (`*`).
+* Do not include path separators (forward slash or backward slash).
+* Keep the name length limited to 32 characters as the JetStream storage directories include the account, stream name, and consumer name.
+* Avoid using reserved file names like `NUL` or `LPT1`.
+* Be cautious of case sensitivity in file systems. To prevent collisions, ensure that stream or account names do not clash due to case differences. For example, `Foo` and `foo` would collide on Windows or macOS systems.
+
+:::
+
 ### Parameters
 
 |Field|Notes|
 |---|---|
-|nats.server_url| Required. URLs of the NATS JetStream server, in the format of *address*:*port*. If multiple addresses are specified, use commas to separate them.|
-|nats.subject| Required. NATS subject that you want to ingest from.|
-|nats.user| Optional. If authentication is required, specify the client user name.|
-|nats.password| Optinal. If authentication is required, specify the client password.|
+|`server_url`| Required. URLs of the NATS JetStream server, in the format of *address*:*port*. If multiple addresses are specified, use commas to separate them.|
+|`subject`| Required. NATS subject that you want to ingest from.|
+|`connect_mode`|Required. Authentication mode for the connection. Allowed values: <ul><li>`plain`: No authentication. </li><li>`user_and_password`: Use user name and password for authentication. For this option, `username` and `password` must be specified.</li><li> `credential`: Use JSON Web Token (JWT) and NKeys for authentication. For this option, `jwt` and `nkey` must be specified.</li></ul> |
+|`jwt` and `nkey`|JWT and NKEY for authentication. For details, see [JWT](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/jwt) and [NKeys](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/nkey_auth).|
+|`username` and `password`| Conditional. The client user name and pasword. Required when `connect_mode` is `user_and_password`.|
+|`scan.startup.mode`|Optional. The offset mode that RisingWave will use to consume data. The supported modes are: <ul><li>`earliest`: Consume data from the earliest offset.</li><li>`latest`: Consume data from the latest offset.</li><li>`timestamp_millis`: Consume data from a particular UNIX timestamp, which is specified via `scan.startup.timestamp_millis`.</li></ul>If not specified, the default value `earliest` will be used.|
+|`scan.startup.timestamp_millis`|Conditional. Required when `scan.startup.mode` is `timestamp_millis`. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
 
 ## What's next
 

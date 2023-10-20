@@ -4,6 +4,9 @@ title: CREATE CONNECTION
 description: Create a connection between VPCs.
 slug: /sql-create-connection
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-connection/" />
+</head>
 
 Use the `CREATE CONNECTION` command to create an AWS PrivateLink connection for a Kafka source connector. This is necessary in order to be able to consume messages from a Kafka service located in a different VPC from the RisingWave cluster in the cloud.
 
@@ -65,7 +68,7 @@ You can either tag the VPC endpoints by specifying the `tags` parameter when usi
 The statement below creates an AWS PrivateLink connection.
 
 ```sql
-CREATE CONNECTION connection_name with (
+CREATE CONNECTION connection_name WITH (
     type = 'privatelink',
     provider = 'aws',
     service.name = 'com.amazonaws.xyz.us-east-1.abc-xyz-0000'
@@ -103,35 +106,7 @@ Follow the steps below to create an AWS PrivateLink connection.
     ```
 
 7. Create a source or sink with AWS PrivateLink connection.
-    - Use the `CREATE SOURCE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see the [Ingest data from Kafka](/create-source/create-source-kafka.md) topic. Here is an example of connecting to a Kafka source through AWS PrivateLink.
 
-    ```sql
-    CREATE SOURCE tcp_metrics_rw (
-    device_id VARCHAR,
-    metric_name VARCHAR,
-    report_time TIMESTAMP,
-    metric_value DOUBLE PRECISION
-    ) WITH (
-    connector = 'kafka',
-    topic = 'tcp_metrics',
-    properties.bootstrap.server = 'ip1:9092, ip2:9092',
-    connection.name = 'my_connection',
-    privatelink.targets = '[{"port": 8001}, {"port": 8002}]',
-    scan.startup.mode = 'earliest'
-    ) FORMAT PLAIN ENCODE JSON;
-    ```
+   * Use the `CREATE SOURCE/TABLE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see [Ingest data from Kafka](/create-source/create-source-kafka.md) — [Create source with AWS PrivateLink connection](/create-source/create-source-kafka.md#create-source-with-aws-privatelink-connection).
+   * Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details on the syntax, see [Sink to Kafka](/guides/create-sink-kafka.md) — [Create sink with AWS PrivateLink connection](/guides/create-sink-kafka.md#create-sink-with-aws-privatelink-connection).
 
-     - Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details on the syntax, see the [Sink to Kafka](/guides/create-sink-kafka.md) topic. Here is an example of sinking to Kafka with an AWS PrivateLink.
-
-    ```sql
-    CREATE SINK sink2 FROM mv2
-    WITH (
-    connector='kafka',
-    type='append-only',
-    properties.bootstrap.server='b-1.xxx.amazonaws.com:9092,b-2.test.xxx.amazonaws.com:9092',
-    topic='msk_topic',
-    force_append_only='true',
-    connection.name = 'connection1',
-    privatelink.targets = '[{"port": 8001}, {"port": 8002}]'
-    );
-    ```

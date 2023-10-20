@@ -4,6 +4,9 @@ title: DROP FUNCTION
 description: Drop a user-defined function.
 slug: /sql-drop-function
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-function/" />
+</head>
 
 Use the `DROP FUNCTION` command to remove an existing [user-defined function (UDF)](/sql/udf/user-defined-functions.md).
 

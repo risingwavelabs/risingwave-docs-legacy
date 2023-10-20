@@ -3,6 +3,9 @@ id: sql-function-string
 slug: /sql-function-string
 title: String functions and operators
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-string/" />
+</head>
 
 
 ## String operators

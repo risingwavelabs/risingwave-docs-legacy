@@ -161,3 +161,7 @@ MSK
 msk
 NATS
 ScyllaDB
+OOM
+DataGrip
+PgAdmin
+clickhouse

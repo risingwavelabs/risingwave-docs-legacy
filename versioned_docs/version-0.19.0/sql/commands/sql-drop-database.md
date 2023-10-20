@@ -4,6 +4,9 @@ title: DROP DATABASE
 description: Remove a database.
 slug: /sql-drop-database
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-database/" />
+</head>
 
 Use the `DROP DATABASE` command to remove a database from your RisingWave instance.
 

@@ -4,6 +4,9 @@ title: SHOW VIEWS
 description: Show existing views.
 slug: /sql-show-views
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-views/" />
+</head>
 
 Use the `SHOW VIEW` command to list existing views in a particular schema.
 

@@ -4,6 +4,9 @@
  description: Sink data from RisingWave to PostgreSQL with the JDBC connector.
  slug: /sink-to-postgres
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-postgres/" />
+</head>
 
 This guide will show you how to sink data from RisingWave to PostgreSQL using the JDBC connector. The sink parameters are similar to those for other JDBC-available databases, such as MySQL. However, we will cover the configurations specific to PostgreSQL and how to verify that data is successfully sunk.
 
@@ -191,4 +194,8 @@ LIMIT 10;
 
 For the PostgreSQL data type mapping table, see the [Data type mapping table](/guides/ingest-from-postgres-cdc.md#data-type-mapping) under the Ingest data from PostgreSQL CDC topic.
 
-Note that only one-dimensional arrays can be sinked to PostgreSQL.
+Additional notes regarding sinking data to PostgreSQL:
+
+- A `varchar` column in RisingWave can be sinked to a `uuid` column in Postgres.
+
+- Only one-dimensional arrays in RisingWave can be sinked to PostgreSQL.

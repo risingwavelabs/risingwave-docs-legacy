@@ -1,6 +1,6 @@
 ---
 id: query-syntax-values-clause
-slug: /query-syntax-values-clause
+
 title: VALUES clause
 ---
 

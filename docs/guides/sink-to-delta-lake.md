@@ -4,6 +4,9 @@ title: Sink data from RisingWave to Delta Lake
 description: Sink data from RisingWave to Delta Lake.
 slug: /sink-to-delta-lake
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-delta-lake/" />
+</head>
 
 This guide describes how to sink data from RisingWave to Delta Lake. Delta Lake is an open-source storage framework designed to allow you to build a Lakehouse architecture with another compute engine. For more information, see [Delta Lake](https://delta.io).
 

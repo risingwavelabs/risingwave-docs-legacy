@@ -3,6 +3,9 @@ id: query-syntax-where-clause
 slug: /query-syntax-where-clause
 title: WHERE clause
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-where-clause/" />
+</head>
 
 The `WHERE` clause specifies any conditions or filters to apply to your data. This allows you to select only a specific subset of the data. The `WHERE` clause is used right after the `FROM` clause.
 

@@ -3,6 +3,9 @@ id: information-schema
 slug: /information-schema
 title: Information schema
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/information-schema/" />
+</head>
 
 The information schema consists of a set of views that contain information about the objects defined in the current database.
 
