@@ -58,7 +58,7 @@ const sidebars = {
             },
             {
               type: "doc",
-              id: "key-concepts",
+              id: "concepts/key-concepts",
               label: "Key concepts and terms",
             },
             {
@@ -92,35 +92,9 @@ const sidebars = {
           id: "get-started",
         },
         {
-          type: "category",
-          label: "Run RisingWave",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              id: "deploy/risingwave-trial",
-              label: "Try out",
-            },
-            {
-              type: "category",
-              label: "Deploy to production",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: "doc",
-                  id: "deploy/risingwave-cloud",
-                  label: "RisingWave Cloud",
-                },
-                {
-                  type: "doc",
-                  id: "deploy/risingwave-kubernetes",
-                  label: "Kubernetes",
-                },
-              ],
-            },
-          ],
+          type: "doc",
+          id: "deploy/risingwave-trial",
+          label: "Test RisingWave",
         },
       ],
     },
@@ -396,6 +370,11 @@ const sidebars = {
               type: "doc",
               label: "Apache Iceberg",
               id: "guides/sink-to-iceberg",
+            },
+            {
+              type: "doc",
+              label: "Apache Pulsar",
+              id: "guides/sink-to-pulsar",
             },
             {
               type: "doc",
@@ -714,7 +693,7 @@ const sidebars = {
                 {
                   type: "doc",
                   id: "sql/system-catalogs/information-schema",
-                  label: "information_schema",
+                  label: "Information schema",
                 },
                 {
                   type: "doc",
@@ -766,17 +745,52 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Manage",
+      label: "Deploy & operate",
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: "doc",
-          id: "manage/access-control",
+          id: "deploy/hardware-requirements",
+          label: "Hardware requirements",
+        },
+        {
+          type: "doc",
+          id: "deploy/risingwave-cloud",
+          label: "Deploy on RisingWave Cloud",
+        },
+        {
+          type: "doc",
+          id: "deploy/risingwave-kubernetes",
+          label: "Deploy on Kubernetes with Operator",
+        },
+        {
+          type: "doc",
+          id: "deploy/risingwave-k8s-helm",
+          label: "Deploy on Kubernetes with Helm",
+        },
+        {
+          type: "doc",
+          id: "deploy/upgrade-risingwave-k8s",
+          label: "Upgrade RisingWave with Helm",
+        },
+        {
+          type: "doc",
+          id: "deploy/k8s-cluster-scaling",
+          label: "Cluster scaling",
+        },
+        {
+          type: "doc",
+          id: "deploy/uninstall-risingwave-k8s",
+          label: "Uninstall RisingWave from a cluster",
         },
         {
           type: "doc",
           id: "manage/monitor-risingwave-cluster",
+        },
+        {
+          type: "doc",
+          id: "manage/access-control",
         },
         {
           type: "doc",
@@ -797,13 +811,14 @@ const sidebars = {
         {
           type: "doc",
           id: "manage/dedicated-compute-node",
+          label: "Set up a dedicated compute node",
         },
         {
           type: "doc",
           label: "Telemetry",
           id: "telemetry",
         },
-      ],
+      ]
     },
     {
       type: "doc",

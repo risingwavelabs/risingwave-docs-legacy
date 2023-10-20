@@ -35,6 +35,16 @@ When the results of a view expression are stored in a database system, they are 
 
 Indexes in a database are typically created on one or more columns of a table, allowing the database management system (DBMS) to  locate and retrieve the desired data from the table quickly. This can greatly improve the performance of database queries, especially for large tables or frequently accessed tables.
 
+## Streaming actors
+
+RisingWave distributes its computation across lightweight threads called "streaming actors," which run simultaneously on CPU cores.
+
+By spreading these streaming actors across cores, RisingWave achieves parallel computation, resulting in improved performance, scalability, and throughput.
+
+### Fragments
+
+In RisingWave, When a streaming query plan executes, it divides into multiple independent fragments to allow parallel execution. Each fragment is a chain of SQL operators. Under the hood, it is executed by parallel actors. The degree of parallelism between fragments can be different.
+
 ### Streaming database
 
 A streaming database is broadly defined as a data store designed to collect, process, and/or enrich streams of data in real time, typically immediately after the data is created.

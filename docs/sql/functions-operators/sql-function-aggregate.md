@@ -37,6 +37,26 @@ Return type is numeric for integer inputs and double precision for float point i
 
 ---  
 
+### `bit_and`
+
+Returns the bitwise AND of all non-null input values or null if no non-null values are provided.
+
+```bash title=Syntax
+bit_and ( smallint, int, or bigint ) -> same as input type
+```
+
+---  
+
+### `bit_or`
+
+Returns the bitwise OR of all non-null input values or null if no non-null values are provided.
+
+```bash title=Syntax
+bit_or ( smallint, int, or bigint ) -> same as input type
+```
+
+---  
+
 ### `bool_and`
 
 Returns true if all input values are true, otherwise false.
