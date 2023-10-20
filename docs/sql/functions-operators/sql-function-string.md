@@ -154,7 +154,7 @@ This function produces output formatted according to a format string, in a style
 format( format_string [, format_arg [, ...] ] ) → output_string
 ```
 
-The *format_string* specifies how the *output_string* should be formatted. It consists of text and format specifiers. Text is copied directly to the output string. Format specifies are placeholders for the arguments to be inserted into the output string.
+The *format_string* specifies how the *output_string* should be formatted. It consists of text and format specifiers. Text is copied directly to the output string. Format specifiers are placeholders for the arguments to be inserted into the output string. The number of format specifiers should be equal to or less than the number of arguments.
 
 The syntax of the format specifier:
 
@@ -168,7 +168,7 @@ The allowed values for *type* are:
 
 - `s`: Formats the argument value as a string. NULL is treated as an empty string.
 - `I`: Treats the argument value as an SQL identifer.
-- `L`: Quotes the argument value as an SQL literal.
+<!-- `L` is not supported yet - `L`: Quotes the argument value as an SQL literal. -->
 
 Please note that *format_string* and *format_arg* can be variables.
 
