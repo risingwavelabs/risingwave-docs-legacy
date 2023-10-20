@@ -51,6 +51,17 @@ The NATS sink connector in RisingWave provides at-least-once delivery semantics.
 
 :::
 
+:::note
+According to [NATS doc](https://docs.nats.io/running-a-nats-service/nats_admin/jetstream_admin/naming), stream names must adhere to subject naming rules as well as being friendly to the file system. We recommend the following guidelines for stream names:
+
+* Alphanumeric values are recommended.
+* Spaces, tabs, period (`.`), greater than (`>`) or asterisk (`*`) are prohibited.
+* Path separators (i.e. forward slash and backward slash) are prohibited.
+* Limit name length: The JetStream storage directories will include the account, stream name, and consumer name, so a generally safe approach would be to keep names under 32 characters.
+* Do not use reserved file names like `NUL`, `LPT1`, etc.
+* Be aware that some file systems are case insensitive so do not use stream or account names that would collide in a file system. For example, `Foo` and `foo` would collide on a Windows or Mac OSx System.
+:::
+
 ### Parameters
 
 |Field|Notes|
