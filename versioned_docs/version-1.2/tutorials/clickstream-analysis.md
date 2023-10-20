@@ -49,13 +49,13 @@ Now that we have set up the data stream in Kafka (in JSON) using the demo cluste
 
 ```sql
 CREATE SOURCE user_behaviors (
-    user_id VARCHAR,
-    target_id VARCHAR,
-    target_type VARCHAR,
-    event_timestamp TIMESTAMP,
-    behavior_type VARCHAR,
-    parent_target_type VARCHAR,
-    parent_target_id VARCHAR
+    user_id varchar,
+    target_id varchar,
+    target_type varchar,
+    event_timestamp timestamptz,
+    behavior_type varchar,
+    parent_target_type varchar,
+    parent_target_id varchar
 ) WITH (
     connector = 'kafka',
     topic = 'user_behaviors',
@@ -85,7 +85,7 @@ CREATE MATERIALIZED VIEW thread_view_count AS WITH t AS (
     FROM
         TUMBLE(
             user_behaviors,
-            event_timestamp,
+            event_timestamptz,
             INTERVAL '10 minutes'
         )
     WHERE
@@ -126,39 +126,37 @@ LIMIT 5;
 The result may look like this:
 
 ```
- target_id | view_count |    window_start     |     window_end      
------------+------------+---------------------+---------------------
- thread58  |         15 | 2022-09-22 06:50:00 | 2022-09-23 06:50:00
- thread58  |         15 | 2022-09-22 07:00:00 | 2022-09-23 07:00:00
- thread58  |         15 | 2022-09-22 07:10:00 | 2022-09-23 07:10:00
- thread58  |         15 | 2022-09-22 07:20:00 | 2022-09-23 07:20:00
- thread58  |         15 | 2022-09-22 07:30:00 | 2022-09-23 07:30:00
-(5 rows)
+ target_id | view_count |       window_start        |        window_end         
+-----------+------------+---------------------------+---------------------------
+ thread84  |          6 | 2023-10-19 05:50:00+00:00 | 2023-10-20 05:50:00+00:00
+ thread91  |          6 | 2023-10-19 05:50:00+00:00 | 2023-10-20 05:50:00+00:00
+ thread78  |          6 | 2023-10-19 05:50:00+00:00 | 2023-10-20 05:50:00+00:00
+ thread78  |          6 | 2023-10-19 06:00:00+00:00 | 2023-10-20 06:00:00+00:00
+ thread84  |          6 | 2023-10-19 06:00:00+00:00 | 2023-10-20 06:00:00+00:00
 ```
 
 We can also query results by specifying a time interval. To learn more about data and time functions and operators, see [Date and time](/sql/functions-operators/sql-function-datetime.md/sql-function-datetime/).
 
 ```sql
 SELECT * FROM thread_view_count
-WHERE window_start > ('2022-09-23 06:50' :: TIMESTAMP - INTERVAL '1 day')
+WHERE window_start > ('2023-10-20 05:50:00+00:00' :: TIMESTAMPTZ - INTERVAL '1 day')
 AND window_start < 
-('2022-09-23 07:40' :: TIMESTAMP - INTERVAL '1 day' + INTERVAL '10 minutes')
-AND target_id = 'thread58'
+('2023-10-20 06:40:00+00:00' :: TIMESTAMPTZ - INTERVAL '1 day' + INTERVAL '10 minutes')
+AND target_id = 'thread78'
 ORDER BY window_start;
 ```
 
 The result looks like this:
 
 ```
- target_id | view_count |    window_start     |     window_end      
------------+------------+---------------------+---------------------
- thread58  |         15 | 2022-09-22 06:50:00 | 2022-09-23 06:50:00
- thread58  |         15 | 2022-09-22 07:00:00 | 2022-09-23 07:00:00
- thread58  |         15 | 2022-09-22 07:10:00 | 2022-09-23 07:10:00
- thread58  |         15 | 2022-09-22 07:20:00 | 2022-09-23 07:20:00
- thread58  |         15 | 2022-09-22 07:30:00 | 2022-09-23 07:30:00
- thread58  |         15 | 2022-09-22 07:40:00 | 2022-09-23 07:40:00
-(6 rows)
+ target_id | view_count |       window_start        |        window_end         
+-----------+------------+---------------------------+---------------------------
+ thread78  |         10 | 2023-10-19 06:00:00+00:00 | 2023-10-20 06:00:00+00:00
+ thread78  |         10 | 2023-10-19 06:10:00+00:00 | 2023-10-20 06:10:00+00:00
+ thread78  |         10 | 2023-10-19 06:20:00+00:00 | 2023-10-20 06:20:00+00:00
+ thread78  |         10 | 2023-10-19 06:30:00+00:00 | 2023-10-20 06:30:00+00:00
+ thread78  |         10 | 2023-10-19 06:40:00+00:00 | 2023-10-20 06:40:00+00:00
+(5 rows)
 ```
 
 When you finish, run the following command to disconnect RisingWave.
