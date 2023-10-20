@@ -373,6 +373,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Apache Pulsar",
+              id: "guides/sink-to-pulsar",
+            },
+            {
+              type: "doc",
               label: "AWS Kinesis",
               id: "guides/sink-to-aws-kinesis",
             },

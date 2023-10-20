@@ -194,4 +194,8 @@ LIMIT 10;
 
 For the PostgreSQL data type mapping table, see the [Data type mapping table](/guides/ingest-from-postgres-cdc.md#data-type-mapping) under the Ingest data from PostgreSQL CDC topic.
 
-Note that only one-dimensional arrays can be sinked to PostgreSQL.
+Additional notes regarding sinking data to PostgreSQL:
+
+- A `varchar` column in RisingWave can be sinked to a `uuid` column in Postgres.
+
+- Only one-dimensional arrays in RisingWave can be sinked to PostgreSQL.

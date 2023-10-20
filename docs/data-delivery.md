@@ -13,15 +13,11 @@ To stream data out of RisingWave, you must create a sink. A sink is an external 
 
 Currently, RisingWave supports the following sink connectors:
 
-- Kafka sink connector (`connector = 'kafka'`)
+- Apache Doris sink connector (`connector = 'doris'`)
   
-  With this connector, you can sink data from RisingWave to Kafka topics. For details about the syntax and parameters, see [Sink data to Kafka](/guides/create-sink-kafka.md).
+  With this connector, you can sink data from RisingWave to Apache Doris. For details about the syntax and parameters, see [Sink data to Apache Doris](/guides/sink-to-doris.md).
 
-- JDBC sink connector (`connector = 'jdbc'`)
-
-  With this connector, you can sink data from RisingWave to JDBC-available databases, such as MySQL or PostgreSQL. When sinking to a database with a JDBC driver, ensure that the corresponding table created in RisingWave has the same schema as the table in the database you are sinking to. For details about the syntax and parameters, see [Sink to MySQL](/guides/sink-to-mysql.md) or [Sink to PostgreSQL](/guides/sink-to-postgres.md).
-
-- Iceberg sink connector (`connector = 'iceberg'`)
+- Apache Iceberg sink connector (`connector = 'iceberg'`)
   
   With this connector, you can sink data from RisingWave to Apache Iceberg. For details about the syntax and parameters, see [Sink data to Apache Iceberg](/guides/sink-to-iceberg.md).
 
@@ -29,19 +25,37 @@ Currently, RisingWave supports the following sink connectors:
 
   With this connector, you can sink data from RisingWave to AWS Kinesis. For details about the syntax and parameters, see [Sink data to AWS Kinesis](/guides/sink-to-aws-kinesis.md).
 
+- Cassandra and ScyllaDB sink connector (`connector = 'cassandra'`)
+
+  With this connector, you can sink data from RisingWave to Cassandra or ScyllaDB. For details about the syntax and parameters, see [Sink data to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).
+
+- ClickHouse sink connector (`connector = 'clickhouse'`)
+
+  With this connector, you can sink data from RisingWave to ClickHouse. For details about the syntax and parameters, see [Sink data to ClickHouse](/guides/sink-to-clickhouse.md).
+
 - Delta Lake sink connector (`connector = 'deltalake'`)
 
   With this connector, you can sink data from RisingWave to Delta Lake. For details about the syntax and parameters, see [Sink data to Delta Lake](/guides/sink-to-delta-lake.md).
-
-
-- Cassandra sink connector (`connector = 'cassandra'`)
-
-  With this connector, you can sink data from RisingWave to Cassandra or ScyllaDB. For details about the syntax and parameters, see [Sink data to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).
 
 - Elasticsearch sink connector (`connector = 'elasticsearch'`)
 
   With this connector, you can sink data from RisingWave to Elasticsearch. For details about the syntax and parameters, see [Sink data to Elasticsearch](/guides/sink-to-elasticsearch.md).
 
+- JDBC sink connector for MySQL, PostgreSQL, or TiDB (`connector = 'jdbc'`)
+
+  With this connector, you can sink data from RisingWave to JDBC-available databases, such as MySQL, PostgreSQL, or TiDB. When sinking to a database with a JDBC driver, ensure that the corresponding table created in RisingWave has the same schema as the table in the database you are sinking to. For details about the syntax and parameters, see [Sink to MySQL](/guides/sink-to-mysql.md), [Sink to PostgreSQL](/guides/sink-to-postgres.md), or [Sink to TiDB](/guides/sink-to-tidb.md).
+
+- Kafka sink connector (`connector = 'kafka'`)
+  
+  With this connector, you can sink data from RisingWave to Kafka topics. For details about the syntax and parameters, see [Sink data to Kafka](/guides/create-sink-kafka.md).
+
+- NATS sink connector (`connector = 'nats'`)
+
+  With this connector, you can sink data from RisingWave to NATS. For details about the syntax and parameters, see [Sink data to NATS](/guides/sink-to-nats.md).
+
+- Pulsar sink connector (`connector = 'pulsar'`)
+
+  With this connector, you can sink data from RisingWave to Delta Lake. For details about the syntax and parameters, see [Sink data to Pulsar](/guides/sink-to-pulsar.md).
 
 ## Upsert sinks and primary keys
 
