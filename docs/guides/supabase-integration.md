@@ -1,31 +1,31 @@
 ---
 id: supabase-integration
 title: Supabase
-description: Empower Supabase with stream processing capabilities 
+description: Empower Supabase with stream processing capabilities.
 slug: /supabase-integration
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/supabase-integration/" />
 </head>
 
-Supabase is an open source Firebase alternative. It uses PostgreSQL as the underlying storage system, and therefore can be integrated with RisingWave seamlessly.
+Supabase is an open-source Firebase alternative. It uses PostgreSQL as the underlying storage system, and therefore can be integrated with RisingWave seamlessly.
 
 You can ingest data from Supabase into RisingWave, and sink data from RisingWave to Supabase.
 
-We have an [end-to-end demo](https://www.risingwave.com/blog/unleash-the-true-power-of-supabase-realtime-with-risingwave/)) to show how Supabase users can seamlessly integrate RisingWave to enhance the product with stream processing capabilities.
+We have an [end-to-end demo](https://www.risingwave.com/blog/unleash-the-true-power-of-supabase-realtime-with-risingwave/) to showcase how Supabase users can seamlessly integrate RisingWave to enhance the product with stream processing capabilities.
 
 This guide provides a simplified integration between RisingWave and Supabase, focusing on a social media monitoring scenario.
 
 Throughout this guide, we will cover the following tasks:
 
-- Ingesting user and post data from Supabase into RisingWave.
+- Ingesting user information and post data from Supabase into RisingWave.
 - Calculating real-time results for recent posts, such as the number of posts sent by users.
-- Sinking the real-time results from RisingWave back into Supabase.
+- Sinking the real-time results from RisingWave back to Supabase.
 
 ## Prerequisites
 
-- Install and connect to RisingWave. For details, see [Get starated](get-started.md).
-- Create a new [Supabase project](https://supabase.com/docs/guides/getting-started).
+- Install and connect to RisingWave. For details, see [Get started](get-started.md).
+- Create a new Supabase project. See [Supabase docs](https://supabase.com/docs/guides/getting-started) for details.
 
 ## Create Supabase tables and enable table replication
 
@@ -45,9 +45,9 @@ Make sure the data replication of these two tables are enabled. To learn about d
 
 ## Ingest data into RisingWave
 
-Then we can use the [PostgreSQL CDC connector](/guides/ingest-from-postgres-cdc.md) to replicate data from Supabase to RisingWave.
+Then, we can use the [PostgreSQL CDC connector](/guides/ingest-from-postgres-cdc.md) to replicate data from Supabase to RisingWave.
 
-To ingest data into RisingWave in real-time, you need to create two tables with connector settings in RisingWave:
+To ingest data into RisingWave in real time, you need to create two tables with connector settings in RisingWave:
 
 ```sql title="First table"
 CREATE TABLE users (
@@ -98,7 +98,7 @@ CREATE MATERIALIZED VIEW recent_posts AS (
 );
 ```
 
-### Get trending hashtags in real-time
+### Get trending hashtags in real time
 
 The following SQL statement creates a materialized view in RisingWave to get the daily trending hashtags.
 
@@ -127,14 +127,14 @@ The following SQL statement creates a materialized view in RisingWave to get the
 ```sql
 CREATE MATERIALIZED VIEW user_posts_cnt AS (
   SELECT 
-    users.id as user_id,
-    COUNT(posts.id) as cnt 
+    users.id AS user_id,
+    COUNT(posts.id) AS cnt 
   FROM posts JOIN users ON users.id = posts.user_id
   GROUP BY users.id
 );
 ```
 
-## Sink real-time results into supabase
+## Sink real-time results to Supabase
 
 While RisingWave can directly serve real-time results, you may prefer to process these results in Supabase for further analysis.
 
@@ -162,4 +162,4 @@ FROM user_posts_cnt WITH (
 )
 ```
 
-Once the sink is successfully created, you should be able to see the results in Supabase. Try adding new rows to the `users` and `posts` table, and you will see the results in `user_posts_cnt` are updated in real-time.
+Once the sink is successfully created, you should be able to see the results in Supabase. Try adding new rows to the `users` and `posts` table, and you will see the results in `user_posts_cnt` are updated in real time.
