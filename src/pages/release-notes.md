@@ -9,6 +9,62 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
 
+## v1.3.0
+
+This version was released on October 18, 2023.
+
+### Main changes
+
+#### SQL features
+
+- SQL commands
+    - Experimental: Variable `BACKGROUND_DDL` can be set to `true` when creating a materialized view. [12355](https://github.com/risingwavelabs/risingwave/pull/12355)
+    - `ALTER COLUMN` command can be used for tables with non-schema-registry source. [12164](https://github.com/risingwavelabs/risingwave/pull/12164)
+- SQL functions & operators
+    - Supports `array_min`. [12071](https://github.com/risingwavelabs/risingwave/pull/12071)
+    - Supports `array_max`. [12100](https://github.com/risingwavelabs/risingwave/pull/12100)
+    - Supports `array_sort`. [12189](https://github.com/risingwavelabs/risingwave/pull/12189)
+    - Supports `array_sum`. [12162](https://github.com/risingwavelabs/risingwave/pull/12162)
+    - `format` function supports variable inputs. [12178](https://github.com/risingwavelabs/risingwave/pull/12178)
+    - Regular expression functions support back reference, positive, negative lookahead, and positive, negative lookbehind. [12329](https://github.com/risingwavelabs/risingwave/pull/12329)
+    - Supports `||` operator for concatenating JSONB data together. [12502](https://github.com/risingwavelabs/risingwave/pull/12502)
+    - Supports `bool_and` and `bool_or` in materialized views. [11956](https://github.com/risingwavelabs/risingwave/pull/11956)
+- Query syntax:
+    - Supports `WITH ORDINALITY` clause. [12273](https://github.com/risingwavelabs/risingwave/pull/12273)
+- System catalog
+    - Adds new system function `pg_sleep`. [12294](https://github.com/risingwavelabs/risingwave/pull/12294)
+    - Adds new system function `_pg_expandarray`. [12448](https://github.com/risingwavelabs/risingwave/pull/12448)
+    - Adds new storage related system tables:
+        - `rw_hummock_sstables` [12532](https://github.com/risingwavelabs/risingwave/pull/12532)
+        - `rw_hommock_pinned_versions`, `rw_hommock_pinned_snapshots`  [12285](https://github.com/risingwavelabs/risingwave/pull/12285)
+        - `rw_hummock_branched_objects` ,  `rw_hummock_current_version` , `rw_hummock_checkpoint_version` ,  `rw_hummock_version_deltas` [12309](https://github.com/risingwavelabs/risingwave/pull/12309)
+        - `rw_hummock_meta_configs`,  `rw_hummock_compaction_group_configs` [12337](https://github.com/risingwavelabs/risingwave/pull/12337)
+
+#### Sources & sinks
+
+- Generated columns defined with non-deterministic functions cannot be part of the primary key. [12181](https://github.com/risingwavelabs/risingwave/pull/12181)
+- Adds new `properties.enable.auto.commit` parameter for the Kafka consumer, which sets the `enable.auto.commit` parameter for the Kafka client. [12223](https://github.com/risingwavelabs/risingwave/pull/12223)
+- Adds `privatelink.endpoint` parameter to the WITH clause, to support private link for Kafka connector on GCP and AWS. [12266](https://github.com/risingwavelabs/risingwave/pull/12266)
+- Adds parameters `message.timeout.ms` and `max.in.flight.requests.per.connection` for Kafka sources.  [12574](https://github.com/risingwavelabs/risingwave/pull/12574)
+- Allows Kinesis source to start ingesting data from specific timestamp. `sequence_number` is no longer supported as a startup mode option. [12241](https://github.com/risingwavelabs/risingwave/pull/12241)
+- Allow optional `FORMAT DEBEZIUM ENCODE JSON` after the connector definition of CDC tables. Allow optional `FORMAT NATIVE ENCODE NATIVE` after the connector definition of Nexmark sources or tables. [12306](https://github.com/risingwavelabs/risingwave/pull/12306)
+- Allows multiple URLs when defining schema registries. [11982](https://github.com/risingwavelabs/risingwave/pull/11982)
+- Adds support for versions 7 and 8 of Elasticsearch sink. [10357](https://github.com/risingwavelabs/risingwave/pull/10357), [10415](https://github.com/risingwavelabs/risingwave/pull/10415), [1303](https://github.com/risingwavelabs/risingwave-docs/issues/1303)
+- Adds support for sinking append-only data to the NATS messaging system.  [11924](https://github.com/risingwavelabs/risingwave/pull/11924)
+- Adds support for Doris sink. [12336](https://github.com/risingwavelabs/risingwave/pull/12336)
+- Adds support for Pulsar sink. [12286](https://github.com/risingwavelabs/risingwave/pull/12286)
+- Adds support for Cassandra and ScyllaDB sink. [11878](https://github.com/risingwavelabs/risingwave/pull/11878)
+- Adds support for creating upsert Iceberg sinks. [12576](https://github.com/risingwavelabs/risingwave/pull/12576)
+- Supports specifying the `sink_decouple` session variable as `default`, `true` and `enable`, or `false` and `disable`. [12544](https://github.com/risingwavelabs/risingwave/pull/12544)
+- A `varchar` column in RisingWave can sink into a `uuid` column in Postgres. [12704](https://github.com/risingwavelabs/risingwave/pull/12704)
+- New syntax for specifying data format and data encode when creating a Kafka, Kinesis, and Pulsar sink. [12556](https://github.com/risingwavelabs/risingwave/pull/12556)
+
+#### Administration & observability
+
+- Support querying from `information_schema.views` , which contains formations about views defined in the database. [12045](https://github.com/risingwavelabs/risingwave/pull/12045)
+
+See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/v1.2-rc...v1.3-rc).
+
 ## v1.2.0
 
 This version was released on September 11, 2023.
