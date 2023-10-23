@@ -61,7 +61,7 @@ This version was released on October 18, 2023.
 
 #### Administration & observability
 
-- Support querying from `information_schema.views` , which contains formations about views defined in the database. [12045](https://github.com/risingwavelabs/risingwave/pull/12045)
+- Supports querying from `information_schema.views` , which contains formations about views defined in the database. [12045](https://github.com/risingwavelabs/risingwave/pull/12045)
 
 ### Assets
 
