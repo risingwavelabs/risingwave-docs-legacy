@@ -334,6 +334,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Supabase",
+          id: "guides/supabase-integration",
+        },
+        {
+          type: "doc",
           label: "Superset",
           id: "guides/superset-integration",
         },

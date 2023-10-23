@@ -37,7 +37,7 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 ## Basic Parameters
 
-All `WITH` options are required except `force_append_only` and `primary_key`.
+All `WITH` options are required unless explicitly mentioned as optional.
 
 |Parameter or clause|Description|
 |---|---|
@@ -48,9 +48,8 @@ All `WITH` options are required except `force_append_only` and `primary_key`.
 |`properties.bootstrap.server`|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
 |`type`|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](/data-delivery.md).|
-|`force_append_only`| If `true`, forces the sink to be `append-only`, even if it cannot be.|
-|`primary_key`| The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
-|`properties.client.id`|Optional. Client ID associated with the Kafka client. |
+|`force_append_only`| Optional. If `true`, forces the sink to be `append-only`, even if it cannot be.|
+|`primary_key`| Optional. The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
 
 ## Additional Kafka parameters
 
@@ -58,8 +57,10 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 
 | Kafka parameter name | RisingWave parameter name | Type |
 |----------------------|---------------------------|------|
+|allow.auto.create.topics|properties.allow.auto.create.topics|bool|
 |batch.num.messages |properties.batch.num.messages|int|
 |batch.size |properties.batch.size| int|
+|client.id|properties.client.id| string |
 |enable.idempotence |properties.enable.idempotence |bool |
 |message.max.bytes | properties.message.max.bytes | int |
 |message.send.max.retries |properties.message.send.max.retries| int|
@@ -68,6 +69,7 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |queue.buffering.max.ms |properties.queue.buffering.max.ms |float|
 |retry.backoff.ms |properties.retry.backoff.ms| int|
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
+
 
 ## Examples
 

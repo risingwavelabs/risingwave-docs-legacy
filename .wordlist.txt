@@ -165,3 +165,4 @@ OOM
 DataGrip
 PgAdmin
 clickhouse
+Supabase
