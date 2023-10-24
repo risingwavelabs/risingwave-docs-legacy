@@ -360,6 +360,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Looker",
+          id: "guides/looker-integration",
+        },
+        {
+          type: "doc",
           label: "Superset",
           id: "guides/superset-integration",
         },
