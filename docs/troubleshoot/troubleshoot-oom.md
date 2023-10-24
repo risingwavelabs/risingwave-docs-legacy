@@ -30,7 +30,7 @@ If OOM happens during creating a new materialized view, it might be caused by th
 SET RW_STREAMING_RATE_LIMIT = <rate_limit_per_actor> 
 ```
 
-Note that the limit value must be larger than the value for `stream_chunk_size` (usually 256). Otherwise the flow control executor can’t throttle the chunk.
+Note that the limit value must be larger than the value for `stream_chunk_size` (usually 256). Otherwise the flow control executor cannot throttle the chunk.
 
 If the query of the materialized view is complex, consider improving the query performance.
 
@@ -42,8 +42,8 @@ Instead of solely addressing the memory problem, we recommend investigating why 
 
 ## Troubleshoot using the memory profiling utility
 
-We have added a heap profiling utility in RisingWave Dashboard to help you analyze memory usage and identify memory-related issues.
+We have added a heap profiling utility in the RisingWave Dashboard to help you analyze memory usage and identify memory-related issues.
 
-go to the RisingWave Dashboard and select **Debug** > **Heap Profiling**. If RisingWave is running on your local machine, you can access the RisingWave Dashboard at `127.0.0.1:5691`.
+Go to the RisingWave Dashboard and select **Debug** > **Heap Profiling**. If RisingWave is running on your local machine, you can access the RisingWave Dashboard at `127.0.0.1:5691`.
 
-By default, the heap profile data is automatically dumped when the memory usage reaches 90%. You also have the option to manually dump heap profile data. Once the data is dumped, you can click on **Analyze** within the Dashboard to examine memory usage patterns and potential issues without leaving the Dashboard.
+By default, the heap profile data is automatically dumped when the memory usage reaches 90%. You also have the option to manually dump heap profile data. Once the data is dumped, you can click on **Analyze** within the dashboard to examine memory usage patterns and potential issues without leaving the dashboard.
