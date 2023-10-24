@@ -41,7 +41,7 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 ## Basic Parameters
 
-All `WITH` options are required except `primary_key`.
+All `WITH` options are required unless explicitly mentioned as optional.
 
 |Parameter or clause|Description|
 |---|---|
@@ -51,8 +51,9 @@ All `WITH` options are required except `primary_key`.
 |`connector`| Sink connector type must be `'kafka'` for Kafka sink. |
 |`properties.bootstrap.server`|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
-|`primary_key`| The primary keys of the sink. Use ',' to delimit the primary key columns. Primary keys are optional when creating a `PLAIN` sink but required for `UPSERT` and `DEBEZIUM` sinks.|
-|`properties.client.id`|Optional. Client ID associated with the Kafka client. |
+|`type`|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](/data-delivery.md).|
+|`force_append_only`| Optional. If `true`, forces the sink to be `append-only`, even if it cannot be.|
+|`primary_key`| Optional. The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
 
 ## Sink parameters
 
@@ -68,8 +69,10 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 
 | Kafka parameter name | RisingWave parameter name | Type |
 |----------------------|---------------------------|------|
+|allow.auto.create.topics|properties.allow.auto.create.topics|bool|
 |batch.num.messages |properties.batch.num.messages|int|
 |batch.size |properties.batch.size| int|
+|client.id|properties.client.id| string |
 |enable.idempotence |properties.enable.idempotence |bool |
 |message.max.bytes | properties.message.max.bytes | int |
 |message.send.max.retries |properties.message.send.max.retries| int|
@@ -78,6 +81,7 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |queue.buffering.max.ms |properties.queue.buffering.max.ms |float|
 |retry.backoff.ms |properties.retry.backoff.ms| int|
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
+
 
 ## Examples
 
@@ -153,8 +157,9 @@ To create a Kafka sink with a PrivateLink connection, in the WITH section of you
 
 |Parameter| Notes|
 |---|---|
-|`connection.name`| The name of the connection, which comes from the connection created using the `CREATE CONNECTION` statement.|
+|`connection.name`| The name of the connection, which comes from the connection created using the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) statement.|
 |`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
+|`privatelink.endpoint`|The DNS name of the AWS VPC endpoint or the GCP private link endpoint.|
 
 Here is an example of creating a Kafka sink using a PrivateLink connection. Notice that `{"port": 8001}` corresponds to the broker `ip1:9092`, and `{"port": 8002}` corresponds to the broker `ip2:9092`.
 
@@ -165,7 +170,7 @@ WITH (
    properties.bootstrap.server='b-1.xxx.amazonaws.com:9092,b-2.test.xxx.amazonaws.com:9092',
    topic='msk_topic',
    force_append_only='true',
-   connection.name = 'connection1',
+   privatelink.endpoint='10.148.0.4',
    privatelink.targets = '[{"port": 8001}, {"port": 8002}]'
 )
 FORMAT PLAIN ENCODE JSON;

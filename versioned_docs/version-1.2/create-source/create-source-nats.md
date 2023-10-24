@@ -64,6 +64,19 @@ RisingWave performs primary key constraint checks on tables with connector setti
 For a table with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
 :::
 
+:::note
+
+According to the [NATS documentation](https://docs.nats.io/running-a-nats-service/nats_admin/jetstream_admin/naming), stream names must adhere to subject naming rules as well as being friendly to the file system. Here are the recommended guidelines for stream names:
+
+* Use alphanumeric values.
+* Avoid spaces, tabs, periods (`.`), greater than (`>`) or asterisks (`*`).
+* Do not include path separators (forward slash or backward slash).
+* Keep the name length limited to 32 characters as the JetStream storage directories include the account, stream name, and consumer name.
+* Avoid using reserved file names like `NUL` or `LPT1`.
+* Be cautious of case sensitivity in file systems. To prevent collisions, ensure that stream or account names do not clash due to case differences. For example, `Foo` and `foo` would collide on Windows or macOS systems.
+
+:::
+
 ### Parameters
 
 |Field|Notes|
