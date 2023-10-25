@@ -4,15 +4,15 @@
 
 - **Description**
 
-  [ What's changed? Which parts of the docs are affected? ]
+  - [ What's changed? Which parts of the docs are affected? ]
 
 - **Notes**
 
-  [ Include any supplementary context or references here. ]
+  - [ Include any supplementary context or references here. ]
 
 - **Related code PR**
 
-  [ Provide a link to the relevant code PR here, if applicable. ]
+  - [ Provide a link to the relevant code PR here, if applicable. ]
 
 - **Related doc issue**
   
@@ -26,11 +26,11 @@
 
 - **Preview**
 
-  [ Paste the preview link to the updated page(s) here. Edit this item after the preview site is ready. To find the updated pages, scroll down to locate and open the Amplify preview link and select the **upcoming** version of the documentation. ]
+  - [ Paste the preview link to the updated page(s) here. Edit this item after the preview site is ready. To find the updated pages, scroll down to locate and open the Amplify preview link and select the **dev** version of the documentation. ]
 
 - **Key points**
 
-  [ Parts that may need revision or extra consideration. ]
+  - [ Parts that may need revision or extra consideration. ]
 
 ## Before merging
 
