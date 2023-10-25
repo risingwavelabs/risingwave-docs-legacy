@@ -25,7 +25,7 @@ For tools or integrations that you would like to use but are not listed in the t
 | Confluent Cloud | Available. See [Ingest data from Confluent Cloud](/guides/confluent-kafka-source.md) for details. | |
 | Amazon MSK | Available. See [Ingest data from Amazon MSK](/guides/connector-amazon-msk.md) for details. | |
 |Redpanda | Available. See [Ingest data from Redpanda](/create-source/create-source-redpanda.md) for details. |Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.|
-|Apache Pulsar|Available. See [Ingest data from Pulsar](/create-source/create-source-pulsar.md) for details. | Researching <voteNotify note="pulsar_sink" />|
+|Apache Pulsar|Available. See [Ingest data from Pulsar](/create-source/create-source-pulsar.md) for details. | Available. See [Sink data to Pulsar](/guides/sink-to-pulsar.md) for details.|
 |DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <voteNotify note="astra_streaming_sink" />|
 |StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
 |Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Available. See [Sink data to Kinesis](/guides/sink-to-aws-kinesis.md) for details.|
@@ -118,3 +118,4 @@ For tools or integrations that you would like to use but are not listed in the t
 |System | |Availability |
 |---|---|---|
 |Alluxio| |Researching <voteNotify note="alluxio" />|
+|Supabase| |Available. For details, see [Empower Supabase with stream processing capabilities](/guides/supabase-integration.md).|
