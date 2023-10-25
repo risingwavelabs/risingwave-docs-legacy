@@ -3,6 +3,9 @@ id: query-syntax-join-clause
 slug: /query-syntax-join-clause
 title: Joins
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-join-clause/" />
+</head>
 
 A JOIN clause, also known as a join, combines the results of two or more table expressions based on certain conditions, such as whether the values of some columns are equal.
 

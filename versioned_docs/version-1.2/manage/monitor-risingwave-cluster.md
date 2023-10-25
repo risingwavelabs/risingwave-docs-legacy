@@ -4,6 +4,9 @@ title: Monitor a RisingWave cluster
 description: Set up a Grafana and Prometheus stack to monitor a RisingWave cluster.
 slug: /monitor-risingwave-cluster
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/monitor-risingwave-cluster/" />
+</head>
 
 If you run RisingWave in a Kubernetes cluster, you can monitor its performance, including the usage of resources like CPU, memory, and network, and the status of different nodes.
 

@@ -3,9 +3,68 @@ id: troubleshooting
 title: Troubleshooting
 slug: /troubleshooting
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/troubleshooting/" />
+</head>
 
-We are currently in the process of developing a comprehensive troubleshooting guide to help address any issues you may encounter. We understand the importance of providing you with the necessary resources to resolve your concerns effectively.
+This guide assumes that you deploy RisingWave on K8s using the RisingWave K8s Operator. In the Operator, we packaged RisingWave, RisingWave Dashboard, and third-party observability and logging tools like Promethus and Grafana.
 
-While we work diligently to create this troubleshooting guide, we encourage you to take advantage of our vibrant Slack Community. Our community members are knowledgeable and passionate individuals who are eager to assist you with any questions or issues you may have. They will be more than happy to provide guidance and support during this interim period.
+## Monitor your cluster
 
-To join our Slack Community, simply click the [RisingWave Slack Community invitation link](https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw) and become part of our growing network of users. Engage in discussions, seek assistance, and share your experiences with fellow users who can provide valuable insights and solutions.
+### Get an overview of the cluster
+
+RisingWave Dashboard is the built-in dashboard of RisingWave. From RisingWave Dashboard, you can get an overview of your RisingWave cluster, including the objects that you have created, streaming or batch job execution details. The objects you can view include sources, tables, materialized views, indexes, internal tables, and sinks.
+
+You can access RisingWave Dashboard at `http://localhost:5692` by default.
+
+<img
+  src={require('../images/risingwave-dashboard.png').default}
+  alt="RisingWave Dashboard"
+/>
+
+### View performance metrics
+
+You can monitor the performance metrics of a RisingWave cluster, including the usage of resources like CPU, memory, and network, and the status of different nodes.
+
+RisingWave uses Prometheus for collecting data, and Grafana for visualization and alerting. This monitoring stack requires configuration. To configure the monitoring stack, follow the steps detailed in [Monitor a RisingWave cluster](../manage/monitor-risingwave-cluster.md).
+
+After you complete the configuration, go to <http://localhost:3000> to access Grafana from a local machine, or [http://<client_address>:3000] to access Grafana from a different host, where <client_address> is the IP address of the machine running the Grafana service. When prompted, enter the default credentials (username: `admin`; password: `prom-operator`).
+
+There are 2 built-in dashboards in the official release.
+
+- **risingwave_dashboard** contains user-facing key metrics.
+- **risingwave_dev_dashboard** contains more low-level metrics for RisingWave developers.
+
+<img
+  src={require('../images/dev-dashboard.png').default}
+  alt="Developer Dashboard"
+/>
+
+## Review error messages and logs
+
+Generally you get an error when something goes wrong. The error message should provide some basic information about what went wrong. We are summarizing the common errors and solutions. We'll publish this summary as soon as it's ready.
+
+The logs of RisingWave are outputted to `stdout` by default. If you are deploying RisingWave via our official Kubernetes operator, you can view them via the `kubectl logs` command.
+
+We recommend that you deploy a dedicated logging system, such as [Grafana Loki](https://grafana.com/oss/loki/) or [Elasticsearch](https://www.elastic.co/elasticsearch).
+
+## Leverage system catalogs
+
+System catalogs provide comprehensive information about the definitions and metadatas of objects in RisingWave. For a detailed list of system catalogs available, see [System catalogs](/sql/system-catalogs/pg_catalog.md).
+
+## Support resources
+
+The most direct way to get help is reporting your issues in our [Slack Community workspace](https://www.risingwave.com/slack).
+
+When reporting your issues in the Slack workspace, remember to include the logs. Including logs will help our engineers troubleshoot.
+
+## File an issue
+
+If you've tried to troubleshoot an issue yourself but didn't succeed, you can [file an issue in GitHub](https://github.com/risingwavelabs/risingwave/issues/new/choose).
+
+Please include the following details in your GitHub issue:
+
+- A summary of the issue.
+- The steps to reproduce the issue.
+- The result you expected.
+- The result that actually occurred.

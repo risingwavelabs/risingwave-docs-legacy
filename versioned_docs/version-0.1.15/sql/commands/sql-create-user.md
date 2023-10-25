@@ -4,6 +4,9 @@ title: CREATE USER
 description: Create a new user account.
 slug: /sql-create-user
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-user/" />
+</head>
 
 Use the `CREATE USER` command to create a new user account in RisingWave.
 

@@ -4,6 +4,10 @@ title: Access control
 description: Manage users and privileges
 slug: /access-control
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/access-control/" />
+</head>
+
 RisingWave uses a user-based access control to handle authentication and authorization. Privileges can be granted to or revoked from users to control what actions can be performed on different object levels.
 
 When creating a user, the administrator of an organization can determine the system-level permissions and set a password. The system permissions and the user names can be revised with the `ALTER USER` command. For details about the system permissions, see [System permissions](/sql/commands/sql-create-user.md#system-permissions).

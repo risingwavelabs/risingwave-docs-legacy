@@ -4,6 +4,9 @@ title: Sink data from RisingWave to ClickHouse
 description: Sink data from RisingWave to ClickHouse.
 slug: /sink-to-clickhouse 
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-clickhouse/" />
+</head>
 
 This guide describes how to sink data from RisingWave to ClickHouse using the ClickHouse sink connector in RisingWave.
 
@@ -66,10 +69,10 @@ Note that only S3-compatible object store is supported, such as AWS S3 or MinIO.
 ```sql
 CREATE TABLE demo_test(
     seq_id Int32,
-    seq_id Int32,
-    user_name String,
+    user_id Int32,
+    user_name String
 ) ENGINE = ReplacingMergeTree
-PRIMARY KEY (user_id);
+PRIMARY KEY (seq_id);
 ```
 
 ### Create an upstream materialized view or source

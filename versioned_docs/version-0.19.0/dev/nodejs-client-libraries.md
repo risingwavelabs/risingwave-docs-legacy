@@ -4,6 +4,9 @@ title: Use RisingWave in your Node.js application
 description: Use RisingWave in your Node.js application
 slug: /nodejs-client-libraries
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/nodejs-client-libraries/" />
+</head>
 
 As RisingWave is wire-compatible with PostgreSQL, you can use third-party PostgreSQL drivers to interact with RisingWave from your Node.js applications.
 

@@ -4,6 +4,10 @@ title: Ingest data from Pulsar
 description: Connect RisingWave to a Pulsar broker.
 slug: /create-source-pulsar
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-pulsar/" />
+</head>
+
 You can ingest data from Pulsar into RisingWave by using the Pulsar source connector in RisingWave.
 
 :::caution Beta feature
@@ -159,7 +163,7 @@ ROW SCHEMA LOCATION 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.av
 
 ```sql
 CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
-   column1 string,
+   column1 varchar,
    column2 integer,
 )
 WITH (
@@ -182,7 +186,7 @@ ROW FORMAT JSON;
 
 ```sql
 CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc (
-   column1 string,
+   column1 varchar,
    column2 integer,
 )
 WITH (

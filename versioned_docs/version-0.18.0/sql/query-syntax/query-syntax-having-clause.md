@@ -3,6 +3,9 @@ id: query-syntax-having-clause
 slug: /query-syntax-having-clause
 title: HAVING clause
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-having-clause/" />
+</head>
 
 The `HAVING` clause is optional and eliminates group rows that do not satisfy a given condition. `HAVING` is similar to the `WHERE` clause, but `WHERE` occurs before the grouping, and `HAVING` occurs after. 
 

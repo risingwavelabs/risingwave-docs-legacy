@@ -4,6 +4,9 @@ title: Ingest data from Kafka
 description: Connect RisingWave to a Kafka broker.
 slug: /create-source-kafka
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-kafka/" />
+</head>
 
 This topic describes how to connect RisingWave to a Kafka broker that you want to receive data from, and how to specify data formats, schemas, and security (encryption and authentication) settings.
 
@@ -145,6 +148,7 @@ When creating a source in RisingWave, you can specify the following Kafka parame
 
 | Kafka parameter name | RisingWave parameter name | Type |
 |----------------------|---------------------------|------|
+|enable.auto.commit | properties.enable.auto.commit | boolean |
 |fetch.max.bytes | properties.fetch.max.bytes | int |
 |fetch.wait.max.ms | properties.fetch.wait.max.ms | int |
 |message.max.bytes | properties.message.max.bytes | int |
@@ -372,25 +376,35 @@ To create a Kafka source with a PrivateLink connection, in the WITH section of y
 
 |Parameter| Notes|
 |---|---|
-|`connection.name`| The name of the connection, which comes from the connection created using the `CREATE CONNECTION` statement.|
 |`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
+|`privatelink.endpoint`|The DNS name of the AWS VPC endpoint or the GCP Private Service Connect endpoint. <br/> Using `privatelink.endpoint` is the recommended way to use PrivateLink. With a provisioned PrivateLink endpoint, you don't need to create a connection in RisingWave.|
+|`connection.name`| The name of the connection. <br/> This parameter should only be included if you are using a AWS PrivateLink connection created with the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) statement. Omit this parameter if you have provisioned an AWS VPC endpoint or the GCP Private Service Connect endpoint using `privatelink.endpoint` (recommended).|
 
-Here is an example of creating a Kafka source using a PrivateLink connection. Notice that `{"port": 8001}` corresponds to the broker `ip1:9092`, and `{"port": 8002}` corresponds to the broker `ip2:9092`.
+Here is an example of creating a Kafka source using a PrivateLink connection. Notice that `{"port": 9094}` corresponds to the broker `broker1-endpoint`, `{"port": 9095}` corresponds to the broker `broker2-endpoint`, and `{"port": 9096}` corresponds to the broker `broker3-endpoint`.
 
 ```sql
-CREATE SOURCE tcp_metrics_rw (
-   device_id VARCHAR,
-   metric_name VARCHAR,
-   report_time TIMESTAMP,
-   metric_value DOUBLE PRECISION
+CREATE TABLE IF NOT EXISTS crypto_source (
+  product_id VARCHAR,
+  price NUMERIC,
+  open_24h NUMERIC,
+  volume_24h NUMERIC,
+  low_24h NUMERIC,
+  high_24h NUMERIC,
+  volume_30d NUMERIC,
+  best_bid  NUMERIC,
+  best_ask  NUMERIC,
+  side VARCHAR,
+  time timestamp,
+  trade_id bigint,
 )
 WITH (
-   connector = 'kafka',
-   topic = 'tcp_metrics',
-   properties.bootstrap.server = 'ip1:9092, ip2:9092',
-   connection.name = 'my_connection',
-   privatelink.targets = '[{"port": 8001}, {"port": 8002}]',
-   scan.startup.mode = 'earliest'
+  connector='kafka',
+  topic='crypto',
+  privatelink.endpoint='10.148.0.4',
+  privatelink.targets='[{"port": 9094}, {"port": 9095}, {"port": 9096}]',
+  properties.bootstrap.server='broker1-endpoint,broker2-endpoint,broker3-endpoint',
+  scan.startup.mode='latest',
+  properties.group.id='test_group'
 ) FORMAT PLAIN ENCODE JSON;
 ```
 

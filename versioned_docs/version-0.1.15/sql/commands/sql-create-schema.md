@@ -4,6 +4,9 @@ title: CREATE SCHEMA
 description: Create a new schema.
 slug: /sql-create-schema
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-schema/" />
+</head>
 
 Use the `CREATE SCHEMA` command to create a new schema.
 

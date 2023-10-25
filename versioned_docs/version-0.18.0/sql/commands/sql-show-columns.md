@@ -4,6 +4,9 @@ title: SHOW COLUMNS
 description: Show columns in a table, source, or materialized view.
 slug: /sql-show-columns
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-columns/" />
+</head>
 
 Use the `SHOW COLUMNS` command to view columns in the specified table, source, or materialized view.
 

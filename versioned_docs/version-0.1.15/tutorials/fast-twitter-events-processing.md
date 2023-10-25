@@ -4,6 +4,9 @@ slug: /fast-twitter-events-processing
 title: Fast Twitter events processing
 description: RisingWave makes it possible to process and analyze Twitter events in a low code manner.
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/fast-twitter-events-processing/" />
+</head>
 
 ## Overview
 Social media platforms process countless messages from millions of users every day. It is demanding for companies to keep up with these posts as popular topics are constantly changing. But analyzing these messages is imperative as it allows businesses to make more strategic business decisions by understanding the values of their consumers and competitors. A streaming system would be helpful in this case as it enables companies to update with trending topics constantly.

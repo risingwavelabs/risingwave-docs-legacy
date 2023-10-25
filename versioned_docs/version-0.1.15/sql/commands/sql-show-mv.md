@@ -4,6 +4,9 @@ title: SHOW MATERIALIZED VIEWS
 description: Show existing materialized views.
 slug: /sql-show-mv
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-mv/" />
+</head>
 
 Use the `SHOW MATERIALZED VIEWS` command to show existing materialized views.
 

@@ -4,6 +4,9 @@ title: Sink data from RisingWave to Apache Iceberg
 description: Sink data from RisingWave to Apache Iceberg with the JDBC connector.
 slug: /sink-to-iceberg
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-iceberg/" />
+</head>
 
 This guide describes how to sink data from RisingWave to Apache Iceberg. Apache Iceberg is a table format designed to support huge tables. For more information, see [Apache Iceberg](https://iceberg.apache.org).
 

@@ -5,10 +5,13 @@ description: Summary of integrations
 slug: /rw-integration-summary
 keywords: [kafka, confluent cloud, amazon msk, data ingestion]
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw-integration-summary/" />
+</head>
 
 We aim to minimize the hassle of integrating RisingWave with your existing data stack. With that purpose in mind, we will try to support the mainstream data formats, tools, and as many systems as possible.
 
-However, with limited resources, we cannot achieve this goal in a short period of time. If a connector or integration is crucial to you but has not been supported, please let us know in the [RisingWave Slack workspace](https://join.slack.com/t/risingwave-community/shared_invite/zt-120rft0mr-d8uGk3d~NZiZAQWPnElOfw), or by clicking the thumb-up icon in the corresponding cell on this page. We will prioritize the development based on the number of requests for each system.
+However, with limited resources, we cannot achieve this goal in a short period of time. If a connector or integration is crucial to you but has not been supported, please let us know in the [RisingWave Slack workspace](https://www.risingwave.com/slack), or by clicking the thumb-up icon in the corresponding cell on this page. We will prioritize the development based on the number of requests for each system.
 
 If you wish to receive notifications when a connector or integration is available, you can click the small bell icon to enter your email address.
 
@@ -98,6 +101,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |System ||Availability |
 |---|-|--|
 |Apache Superset| |Available. See [Visualize RisingWave data in Superset](/guides/superset-integration.md) for details. |
+|Beekeeper Studio| |Available. See [Connect Beekeeper Studio to RisingWave](/guides/beekeeper-integration.md) for details. |
 |Cube.js| | Researching <voteNotify note="cubejs" />|
 |DBeaver| | Available. See [Connect DBeaver to RisingWave](/guides/dbeaver-integration.md) for details. |
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
@@ -105,6 +109,8 @@ For tools or integrations that you would like to use but are not listed in the t
 |Looker||Researching <voteNotify note="looker" /> |
 |Metabase ||In progress <voteNotify note="metabase" />|
 |Redash || Available |
+|DataGrip | |Researching <voteNotify note="datagrip" /> |
+|PgAdmin | |Researching <voteNotify note="pgadmin" /> |
 
 ## Other systems
 

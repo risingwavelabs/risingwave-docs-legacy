@@ -5,6 +5,9 @@ description: Get started with RisingWave.
 slug: /get-started
 toc_max_heading_level: 2
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/get-started/" />
+</head>
 
 This guide is designed to help you get up and running with RisingWave quickly and easily. In this guide, we will walk you through the common tasks of using RisingWave.
 

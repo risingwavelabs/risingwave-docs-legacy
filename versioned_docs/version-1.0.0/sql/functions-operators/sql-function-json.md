@@ -3,6 +3,9 @@ id: sql-function-json
 slug: /sql-function-json
 title: JSON functions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-json/" />
+</head>
 
 ### `jsonb_array_elements`
 
