@@ -7,11 +7,11 @@ description: Use RisingWave to process and prepare real-time abandon cart data f
 
 ## Overview
 
-Abandoned cart data refers to the data collected when customers begin making purchases on an e-commerce platform by adding items to their shopping carts, but do not complete the transaction. This is a valuable resource that businesses can leverage to improve their e-commerce strategies and customer retention rates. By knowing when a customer abandons their purchase, a business can set up real-time notifications to remind the customer to return to their cart and finish the purchase.
+Abandoned cart data refers to the data collected when customers begin making purchases on an e-commerce platform by adding items to their shopping carts, but do not complete the transaction. This is a valuable resource that businesses can leverage to improve their e-commerce strategies and customer retention rates. By knowing when a customer abandons their purchase, a business can set up real-time notifications to remind the customer to return to their cart and finish the purchase. Or, the business can offer the customer personalized discounts based on the items left in the cart to improve conversion rates.
 
-To implement real-time capabilities or to perform real-time data transformations, a strong technological infrastructure is necessary. This can be difficult to maintain as there are numerous moving parts and many real-time data transformation tools are tricky to manage and use. However, RisingWave can easily build streaming data pipelines. Data can be ingested from a variety of sources, transformed and aggregated in real-time with SQL queries, and sinked to data warehouses and lakes. To see how easily you can run RisingWave, see [Quick start](/get-started.md).
+To implement real-time capabilities or to perform real-time data transformations, a strong technological infrastructure is necessary. It may also be necessary to join existing batch data with data streams. This can be difficult to set up and maintain as there are numerous moving parts and many real-time data transformation tools are tricky to manage and use. However, RisingWave makes it simple to build real-time data pipelines. Data can be ingested from a variety of sources, joined, transformed, and aggregated in real-time using SQL queries, and sinked to data warehouses and lakes. To see how easily you can run RisingWave, see [Quick start](/get-started.md).
 
-This topic will introduce the idea of using RisingWave to process and transform abandoned cart data from multiple sources
+This topic will introduce the idea of using RisingWave to process and transform abandoned cart data from multiple sources.
 
 ## Step 1: Ingest data in RisingWave
 
@@ -130,14 +130,10 @@ SELECT
   p.category
 FROM
   abandoned_carts a
-JOIN
-  users u
-ON
-  a.user_id = u.id
-JOIN
-  products p
-ON
-  a.product_id = p.id;
+  JOIN
+    users u ON a.user_id = u.id
+  JOIN
+    products p ON a.product_id = p.id;
 ```
 
 ## Summary
