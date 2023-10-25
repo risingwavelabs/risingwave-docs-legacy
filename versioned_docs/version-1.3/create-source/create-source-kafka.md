@@ -403,7 +403,6 @@ WITH (
   privatelink.targets='[{"port": 9094}, {"port": 9095}, {"port": 9096}]',
   properties.bootstrap.server='broker1-endpoint,broker2-endpoint,broker3-endpoint',
   scan.startup.mode='latest',
-  properties.group.id='test_group'
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
