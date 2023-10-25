@@ -62,32 +62,23 @@ A group of interconnected nodes and services that acts as a single system runnin
 
 ### Nodes
 
-A node is a logical collection of IT resources that handles specific workloads based on their types. There are four types of nodes in RisingWave:
+A node is a logical collection of IT resources that handles specific workloads based on their types. There are two types of nodes in RisingWave:
 
-- Frontend node
 - Compute node
 - Compactor node
-- Connector node
-
-### Frontend nodes
-
-A frontend node acts as a stateless proxy that accepts user queries through Postgres protocol. It is responsible for parsing and validating queries, optimizing query execution plans, and delivering query results.
+- Meta node
 
 ### Compute nodes
 
-A compute node executes the optimized query plans and handles data ingestion and output.
+The compute nodes in RisingWave are responsible for ingesting data from upstream systems, parsing and running SQL queries, and delivering data to downstream systems.
 
 ### Compactor nodes
 
-A stateless worker node that compacts data for the storage engine.
+The compact nodes handle data storage and retrieval from object storage. They also perform data compaction to optimize storage efficiency.
 
-### Connector node
+### Meta node
 
-The connector node is a Java component that handles consuming CDC events from upstream systems and sinking data from RisingWave to downstream systems. When running RisingWave with Docker, this node is enabled by default. If running RisingWave locally, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
-
-### Meta service
-
-The central metadata management service. It also acts as a failure detector that periodically sends heartbeats to frontend nodes and compute nodes in the cluster.
+The meta node takes charge of managing the metadata of compute and compact nodes and orchestrating operations across the system.
 
 ## Data processing concepts and terms
 

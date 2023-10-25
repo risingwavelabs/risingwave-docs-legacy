@@ -334,6 +334,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Supabase",
+          id: "guides/supabase-integration",
+        },
+        {
+          type: "doc",
           label: "Superset",
           id: "guides/superset-integration",
         },
@@ -370,6 +375,11 @@ const sidebars = {
               type: "doc",
               label: "Apache Iceberg",
               id: "guides/sink-to-iceberg",
+            },
+            {
+              type: "doc",
+              label: "Apache Pulsar",
+              id: "guides/sink-to-pulsar",
             },
             {
               type: "doc",
@@ -514,6 +524,11 @@ const sidebars = {
                   type: "doc",
                   id: "sql/query-syntax/query-syntax-with-clause",
                   label: "WITH clause",
+                },
+                {
+                  type: "doc",
+                  id: "sql/query-syntax/query-syntax-with-ordinality-clause",
+                  label: "WITH ORDINALITY clause",
                 },
               ],
             },
