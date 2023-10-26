@@ -3,20 +3,18 @@ sidebar_position: 3
 id: architecture
 title: Architecture
 slug: /architecture
-
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/architecture/" />
 </head>
 
-RisingWave includes these key components:
+The architecture of RisingWave is illustrated in the diagram below. It comprises three main components: a meta node, compute nodes, and compact nodes.
 
-* A serving layer that parses SQL queries and performs planning and optimizations of query jobs.
-* A processing layer that performs all the data computation and status updates.
-* A metadata management service that manages the metadata of different nodes, and coordinates operations among these nodes. It consists of a local metadata store and various management modules.
-* A storage layer that stores data to and retrieves data from object storage like S3.
+The meta node takes charge of managing the metadata of compute and compact nodes and orchestrating operations across the system.
+The compute nodes are responsible for ingesting data from upstream systems, parsing and running SQL queries, and delivering data to downstream systems.
+The compact nodes handle data storage and retrieval from object storage. They also perform data compaction to optimize storage efficiency.
 
 <img
-  src={require('./images/architecture.png').default}
+  src={require('./images/rw_architecture.png').default}
   alt="RisingWave Architecture"
 />
