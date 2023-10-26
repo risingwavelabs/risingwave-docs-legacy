@@ -107,7 +107,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |DBeaver| | Available. See [Connect DBeaver to RisingWave](/guides/dbeaver-integration.md) for details. |
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
 |Jupyter Notebook||Researching <voteNotify note="jupyter" />|
-|Looker||Researching <voteNotify note="looker" /> |
+|Looker|Available. See [Connect Looker to RisingWave](/guides/looker-integration.md) for details. |
 |Metabase ||In progress <voteNotify note="metabase" />|
 |Redash || Available |
 |DataGrip | |Researching <voteNotify note="datagrip" /> |
