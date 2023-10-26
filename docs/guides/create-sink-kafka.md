@@ -51,8 +51,7 @@ All `WITH` options are required unless explicitly mentioned as optional.
 |`connector`| Sink connector type must be `'kafka'` for Kafka sink. |
 |`properties.bootstrap.server`|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
-|`format`|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](/data-delivery.md).|
-|`primary_key`| Optional. The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
+|`primary_key`| Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. This field is optional if creating a `PLAIN` sink, but required if creating a `DEBEZIUM` or `UPSERT` sink.|
 
 ## Sink parameters
 
