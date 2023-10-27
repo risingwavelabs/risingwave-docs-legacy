@@ -124,7 +124,7 @@ To persist your data, deploy RisingWave to K8s with [the RisingWave Operator](/d
 1. ### Download the binaries
 
   ```shell
-  wget https://github.com/risingwavelabs/risingwave/releases/download/v1.3.0/risingwave-v1.3.0-x86_64-unknown-linux.tar.gz
+  wget https://github.com/risingwavelabs/risingwave/releases/download/v1.3.0/risingwave-v1.3.0-x86_64-linux-all-in-one.tar.gz
   ```
 
   > You can find previous binary releases in [Release notes](/release-notes).
@@ -138,7 +138,7 @@ To persist your data, deploy RisingWave to K8s with [the RisingWave Operator](/d
 1. ### Start RisingWave
 
   ```shell
-  ./risingwave playground
+  CONNECTOR_LIBS_PATH=./libs ./risingwave playground
   ```
 
   If you see the logs, you have successfully started RisingWave.
