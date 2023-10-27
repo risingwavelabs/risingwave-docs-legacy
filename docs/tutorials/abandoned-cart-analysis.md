@@ -139,13 +139,13 @@ FROM
 If we query from the materialized view, the output might look like the following.
 
 ```
- cart_id |       abandonment_time        | user_id | first_name | last_name |          email          | product_id | product_name |     product_description      |  price  |  category   
---------+-----------------------------+---------+------------+-----------+------------------------+------------+--------------+-----------------------------+--------+------------
-      1 | 2023-10-25 10:15:00         |       1 | John       | Doe       | johndoe@example.com    |        101 | Product A    | Description of Product A  |  19.99 | Category 1
-      2 | 2023-10-25 11:30:00         |       2 | Alice      | Smith     | alicesmith@example.com |        102 | Product B    | Description of Product B  |  29.99 | Category 2
-      3 | 2023-10-25 12:45:00         |       3 | Bob        | Johnson   | bobjohnson@example.com |        103 | Product C    | Description of Product C  |   9.99 | Category 1
-      4 | 2023-10-25 14:00:00         |       4 | Eve        | Williams  | evewilliams@example.com |        104 | Product D    | Description of Product D  |  39.99 | Category 3
-      5 | 2023-10-25 15:15:00         |       1 | John       | Doe       | johndoe@example.com    |        102 | Product B    | Description of Product B  |  29.99 | Category 2
+ cart_id |  abandonment_time   | user_id | first_name | last_name |          email          | product_id | product_name | product_description       | price  | category   
+---------+---------------------+---------+------------+-----------+-------------------------+------------+------------- +---------------------------+--------+------------
+       1 | 2023-10-25 10:15:00 |       1 | John       | Doe       | johndoe@example.com     |        101 | Product A    | Description of Product A  |  19.99 | Category 1
+       2 | 2023-10-25 11:30:00 |       2 | Alice      | Smith     | alicesmith@example.com  |        102 | Product B    | Description of Product B  |  29.99 | Category 2
+       3 | 2023-10-25 12:45:00 |       3 | Bob        | Johnson   | bobjohnson@example.com  |        103 | Product C    | Description of Product C  |   9.99 | Category 1
+       4 | 2023-10-25 14:00:00 |       4 | Eve        | Williams  | evewilliams@example.com |        104 | Product D    | Description of Product D  |  39.99 | Category 3
+       5 | 2023-10-26 15:15:00 |       1 | John       | Doe       | johndoe@example.com     |        102 | Product B    | Description of Product B  |  29.99 | Category 2
 (5 rows)
 ```
 
