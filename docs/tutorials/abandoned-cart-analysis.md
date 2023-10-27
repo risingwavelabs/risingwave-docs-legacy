@@ -9,7 +9,7 @@ description: Use RisingWave to process and prepare real-time abandon cart data f
 
 Abandoned cart data refers to the data collected when customers begin making purchases on an e-commerce platform by adding items to their shopping carts, but do not complete the transaction. This is a valuable resource that businesses can leverage to improve their e-commerce strategies and customer retention rates. By knowing when a customer abandons their purchase, a business can set up real-time notifications to remind the customer to return to their cart and finish the purchase. Or, the business can offer the customer personalized discounts based on the items left in the cart to improve conversion rates.
 
-To implement real-time capabilities or to perform real-time data transformations, a strong technological infrastructure is necessary. It may also be necessary to join existing batch data with data streams. This can be difficult to set up and maintain as there are numerous moving parts and many real-time data transformation tools are tricky to manage and use. However, RisingWave makes it simple to build real-time data pipelines. Data can be ingested from a variety of sources, joined, transformed, and aggregated in real-time using SQL queries, and sinked to data warehouses and lakes. To see how easily you can run RisingWave, see [Quick start](/get-started.md).
+To implement real-time capabilities or to perform real-time data transformations, a strong technological infrastructure is necessary. It may also be necessary to join existing batch data with data streams. This can be difficult to set up and maintain as there are numerous moving parts and many real-time data transformation tools are tricky to manage and use. However, RisingWave makes it simple to build real-time data pipelines. Both streaming data and batch data can be ingested into RisingWave, joined, transformed, and aggregated in real-time using SQL queries, and sinked to data warehouses and lakes. To see how easily you can run RisingWave, see [Quick start](/get-started.md).
 
 This topic will introduce the idea of using RisingWave to process and transform abandoned cart data from multiple sources.
 
@@ -134,6 +134,19 @@ FROM
     users u ON a.user_id = u.id
   JOIN
     products p ON a.product_id = p.id;
+```
+
+If we query from the materialized view, the output might look like the following.
+
+```
+ cart_id |       abandonment_time        | user_id | first_name | last_name |          email          | product_id | product_name |     product_description      |  price  |  category   
+--------+-----------------------------+---------+------------+-----------+------------------------+------------+--------------+-----------------------------+--------+------------
+      1 | 2023-10-25 10:15:00         |       1 | John       | Doe       | johndoe@example.com    |        101 | Product A    | Description of Product A  |  19.99 | Category 1
+      2 | 2023-10-25 11:30:00         |       2 | Alice      | Smith     | alicesmith@example.com |        102 | Product B    | Description of Product B  |  29.99 | Category 2
+      3 | 2023-10-25 12:45:00         |       3 | Bob        | Johnson   | bobjohnson@example.com |        103 | Product C    | Description of Product C  |   9.99 | Category 1
+      4 | 2023-10-25 14:00:00         |       4 | Eve        | Williams  | evewilliams@example.com |        104 | Product D    | Description of Product D  |  39.99 | Category 3
+      5 | 2023-10-25 15:15:00         |       1 | John       | Doe       | johndoe@example.com    |        102 | Product B    | Description of Product B  |  29.99 | Category 2
+(5 rows)
 ```
 
 ## Summary
