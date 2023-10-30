@@ -18,7 +18,7 @@ Data in RisingWave can be output to external targets such as message brokers, da
 <br/>
 
 <img
-  src={require('./images/new_archi_grey.png).default}
+  src={require('./images/new_archi_grey.png').default}
   alt="RisingWave Architecture"
 />
 
