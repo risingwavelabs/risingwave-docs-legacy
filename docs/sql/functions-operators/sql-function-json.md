@@ -230,7 +230,7 @@ SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
 
 ### `jsonb @> jsonb -> boolean`
 
-This operator checks if the left `jsonb` value contains the right `jsonb` value.
+This operator checks if the left `jsonb` value contains the right `jsonb` value at the top level.
 
 ```sql title=Syntax
 left_jsonb_value @> right_jsonb_value → BOOLEAN
@@ -248,7 +248,7 @@ left_jsonb_value @> right_jsonb_value → BOOLEAN
 
 ### `jsonb <@ jsonb -> boolean`
 
-This operator checks if the left `jsonb` value is contained within the right `jsonb` value.
+This operator checks if the left `jsonb` value is contained at the top level within the right `jsonb` value.
 
 ```sql title=Syntax
 left_jsonb_value <@ right_jsonb_value → BOOLEAN
@@ -307,7 +307,7 @@ jsonb_value ?& text_array TEXT[] → BOOLEAN
 
 '["a", "b", "c"]'::jsonb ?& array['a', 'b'] → t
 
-'"b"'::jsonb ?& array['b'] → t
+'["a", "b", "c"]'::jsonb ?& array['a', 'd'] → f
 ``` 
 
 ## `IS JSON` predicate
