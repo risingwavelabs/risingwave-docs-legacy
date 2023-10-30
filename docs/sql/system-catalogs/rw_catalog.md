@@ -113,7 +113,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_columns            | Contains information about columns of all relations (except sources and sinks) in the database, including their names, positions, data types, and more.|
  rw_databases          | Contains information about the databases available in the database, such as the IDs, names, and owners.|
  rw_ddl_progress       | Contains the progress of running DDL statements. You can use this relation to view the progress of running DDL statements. For details, see [View statement progress](/manage/view-statement-progress.md).|
- rw_description        | Contains optional comments for each database object. Descriptions can be added with the `COMMENT ON` command and viewed with `DESCRIBE` or `SHOW COLUMNS IN` command.|
+ rw_description        | Contains optional descriptions (comments) for each database object. Descriptions can be added with the [`COMMENT ON`](/sql/commands/sql-comment-on.md) command and viewed with `DESCRIBE` or `SHOW COLUMNS IN` command.|
  rw_fragments          | Contains low-level information about fragments in the database, including fragment IDs, table IDs, and more. |
  rw_functions          | Contains information about functions in the database, including their IDs, names, schema identifiers, types, argument and return data types, programming language, and more. |
  rw_hummock_branched_objects         | Contains information about branched objects of Hummock (the storage engine in RisingWave), including object IDs, corresponding SST IDs, and compaction group IDs. |
