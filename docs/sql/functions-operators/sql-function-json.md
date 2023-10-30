@@ -119,7 +119,7 @@ number
 
 ### `jsonb_pretty`
 
-This function takes a `jsonb` object and returns a text representing the formatted, indented JSON value.
+This function takes a `jsonb` value and returns a text representing the formatted, indented JSON value.
 
 ```sql title=Syntax
 jsonb_pretty ( jsonb_object JSONB ) → TEXT
@@ -137,7 +137,7 @@ jsonb_pretty('[{"f1":1,"f2":null}, 2]') → '[
 
 ### `jsonb_object`
 
-This function takes an array of text elements and returns a `jsonb` object where adjacent pairs of values are taken as the key and value of an object property.
+This function takes an array of text elements and returns a `jsonb` value where adjacent pairs of values are taken as the key and value of an object property.
 
 ```sql title=Syntax
 jsonb_object ( text_array TEXT[] ) → JSONB
