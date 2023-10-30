@@ -117,6 +117,37 @@ number
 
 ```
 
+### `jsonb_pretty`
+
+This function takes a `jsonb` object and returns a text representing the formatted, indented JSON value.
+
+```sql title=Syntax
+jsonb_pretty ( jsonb_object JSONB ) → TEXT
+```
+
+```sql title=Examples
+jsonb_pretty('[{"f1":1,"f2":null}, 2]') → '[
+    {
+        "f1": 1,
+        "f2": null
+    },
+    2
+]'
+```
+
+### `jsonb_object`
+
+This function takes an array of text elements and returns a `jsonb` object where adjacent pairs of values are taken as the key and value of an object property.
+
+```sql title=Syntax
+jsonb_object ( text_array TEXT[] ) → JSONB
+```
+
+```sql title=Examples
+jsonb_object('{a, 1, b, def, c, 3.5}' :: text[]) → '{"a": "1", "b": "def", "c": "3.5"}'
+jsonb_object(array['a', null]) → '{"a": null}'
+``` 
+
 ## JSON operators
 
 ### `jsonb -> integer`
