@@ -310,6 +310,36 @@ jsonb_value ?& text_array TEXT[] → BOOLEAN
 '["a", "b", "c"]'::jsonb ?& array['a', 'd'] → f
 ``` 
 
+### `jsonb #> text[] -> jsonb`
+
+This operator extracts a nested value from a JSONB object using a text array of keys or indices.
+
+```sql title=Syntax
+jsonb_value #> text_array TEXT[] → JSONB
+```
+
+```sql title=Examples
+'{"a": {"b": ["foo","bar"]}}'::jsonb #> '{a,b,1}'::text[] → "bar"
+
+'{"a": {"b": ["foo","bar"]}}'::jsonb #> '{a,b,null}'::text[] → NULL
+``` 
+
+### `jsonb #>> text[] -> text`
+
+This operator extracts a nested value as text from a JSONB object using a text array of keys or indices.
+
+```sql title=Syntax
+jsonb_value #>> text_array TEXT[] → TEXT
+```
+
+```sql title=Examples
+'{"a": {"b": ["foo","bar"]}}'::jsonb #>> '{a,b,1}'::text[] → bar
+
+'{"a": {"b": ["foo",null]}}'::jsonb #>> '{a,b,1}'::text[] → NULL
+
+'{"a": {"b": ["foo","bar"]}}'::jsonb #>> '{a,b,null}'::text[] → NULL
+``` 
+
 ## `IS JSON` predicate
 
 This predicate tests whether an expression can be parsed as JSON, optionally of a specified type. It evaluates the JSON structure and returns a boolean result indicating whether the value matches the specified JSON type.
