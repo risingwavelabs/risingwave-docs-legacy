@@ -395,10 +395,10 @@ regexp_split_to_array ( input_string TEXT, pattern TEXT ) → TEXT[]
 ```
 
 ```sql title=Examples
-regexp_split_to_array('apple,banana,orange', ',') → '{apple,banana,orange}'
-regexp_split_to_array('apple.banana!orange', '[.!]') → '{apple,banana,orange}'
-regexp_split_to_array('applebananaorange', ',') → '{applebananaorange}'
-``` 
+regexp_split_to_array('apple,banana,orange', ',') → {apple,banana,orange}
+regexp_split_to_array('apple.banana!orange', '[.!]') → {apple,banana,orange}
+regexp_split_to_array('applebananaorange', ',') → {applebananaorange}
+```
 
 ---
 

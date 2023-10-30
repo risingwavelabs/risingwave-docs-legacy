@@ -126,13 +126,15 @@ jsonb_pretty ( jsonb JSONB ) → TEXT
 ```
 
 ```sql title=Examples
-jsonb_pretty('[{"f1":1,"f2":null}, 2]') → '[
+SELECT jsonb_pretty('[{"f1":1,"f2":null}, 2]');
+------RESULT
+[
     {
         "f1": 1,
         "f2": null
     },
     2
-]'
+]
 ```
 
 ### `jsonb_object`
@@ -144,9 +146,9 @@ jsonb_object ( text_array TEXT[] ) → JSONB
 ```
 
 ```sql title=Examples
-jsonb_object('{a, 1, b, def, c, 3.5}' :: text[]) → '{"a": "1", "b": "def", "c": "3.5"}'
-jsonb_object(array['a', null]) → '{"a": null}'
-``` 
+jsonb_object('{a, 1, b, def, c, 3.5}' :: text[]) → {"a": "1", "b": "def", "c": "3.5"}
+jsonb_object(array['a', null]) → {"a": null}
+```
 
 ## JSON operators
 
@@ -249,6 +251,7 @@ SELECT js,
 FROM (VALUES
       ('123'), ('"abc"'), ('{"a": "b"}'), ('[1,2]'),('abc')) foo(js);
 ```
+
 ```
 ------RESULT
 
