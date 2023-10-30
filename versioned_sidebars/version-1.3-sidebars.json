@@ -75,8 +75,8 @@
         {
           "type": "category",
           "label": "Install RisingWave",
-          "collapsible": false,
-          "collapsed": false,
+          "collapsible": true,
+          "collapsed": true,
           "items": [
             {
               "type": "doc",
@@ -86,8 +86,8 @@
             {
               "type": "category",
               "label": "Production environments",
-              "collapsible": false,
-              "collapsed": false,
+              "collapsible": true,
+              "collapsed": true,
               "items": [
                 {
                   "type": "doc",

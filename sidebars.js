@@ -94,8 +94,8 @@ const sidebars = {
         {
           "type": "category",
           "label": "Install RisingWave",
-          "collapsible": false,
-          "collapsed": false,
+          "collapsible": true,
+          "collapsed": true,
           "items": [
             {
               "type": "doc",
@@ -105,8 +105,8 @@ const sidebars = {
             {
               "type": "category",
               "label": "Production environments",
-              "collapsible": false,
-              "collapsed": false,
+              "collapsible": true,
+              "collapsed": true,
               "items": [
                 {
                   "type": "doc",
