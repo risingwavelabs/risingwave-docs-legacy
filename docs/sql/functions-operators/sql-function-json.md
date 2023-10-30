@@ -122,7 +122,7 @@ number
 This function takes a `jsonb` value and returns a text representing the formatted, indented JSON value.
 
 ```sql title=Syntax
-jsonb_pretty ( jsonb_object JSONB ) → TEXT
+jsonb_pretty ( jsonb JSONB ) → TEXT
 ```
 
 ```sql title=Examples
