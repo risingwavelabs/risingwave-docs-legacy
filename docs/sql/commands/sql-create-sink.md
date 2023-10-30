@@ -20,8 +20,15 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 WITH (
    connector='connector_name',
    connector_parameter = 'value', ...
-);
+)
+[ FORMAT data_format ENCODE data_encode [ (
+    format_parameter = 'value'
+) ] ];
 ```
+:::note
+The optional `FORMAT data_format ENCODE data_encode` syntax is only used for Kafka, Kinesis, and Pulsar sinks. 
+:::
+
 
 import rr from '@theme/RailroadDiagram'
 

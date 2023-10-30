@@ -26,6 +26,8 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 
     Ensure that [Docker](https://docs.docker.com/desktop/) is installed in your environment and running.
 
+* Ensure you allocate enough resources for the deployment, and use the recommended disks for etcd. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
+
 ## Create a Kubernetes cluster
 
 :::info
