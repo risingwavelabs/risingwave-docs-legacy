@@ -42,22 +42,34 @@ export const svg = rr.Diagram(
 
 
 ## Parameters
-|Parameter or clause        | Description           |
-|---------------------------|-----------------------|
-|*table_name*               |The table, source, or materialized view whose columns will be listed.|
 
+| Parameter or clause | Description                                                           |
+| ------------------- | --------------------------------------------------------------------- |
+| *table_name*        | The table, source, or materialized view whose columns will be listed. |
 
 ## Example
 
-This statement shows the columns and indexes of the `t1` table:
 ```sql
-DESCRIBE t1;
-```
-```
-    Name     |      Type
--------------+-----------------
- col1        | integer
- col2        | integer
- primary key | col1
- idx1        | index(col2) distributed by(col2)
+CREATE TABLE customers (
+  customer_id BIGINT PRIMARY KEY,  
+  name VARCHAR,
+  email VARCHAR
+);
+COMMENT ON COLUMN customers.customer_id IS 'Unique identifier for each customer';
+COMMENT ON COLUMN customers.name IS 'Name of the customer';
+COMMENT ON COLUMN customers.email IS 'Email address of the customer';
+COMMENT ON TABLE customers IS 'All customer records';
+CREATE INDEX idx_customers_email ON customers(email);
+
+DESCRIBE customers;
+
+| Name                | Type                                                                  | Is Hidden | Description                         |
+| ------------------- | --------------------------------------------------------------------- | --------- | ----------------------------------- |
+| customer_id         | bigint                                                                | false     | Unique identifier for each customer |
+| name                | character varying                                                     | false     | Name of the customer                |
+| email               | character varying                                                     | false     | Email address of the customer       |
+| primary key         | customer_id                                                           |           |                                     |
+| distribution key    | customer_id                                                           |           |                                     |
+| idx_customers_email | index(email ASC, customer_id ASC) include(name) distributed by(email) |           |                                     |
+| table description   | customers                                                             |           | All customer records                |
 ```
