@@ -92,10 +92,41 @@ const sidebars = {
           id: "get-started",
         },
         {
-          type: "doc",
-          id: "deploy/risingwave-trial",
-          label: "Test RisingWave",
-        },
+          "type": "category",
+          "label": "Install RisingWave",
+          "collapsible": true,
+          "collapsed": true,
+          "items": [
+            {
+              "type": "doc",
+              "id": "deploy/risingwave-trial",
+              "label": "Quick install"
+            },
+            {
+              "type": "category",
+              "label": "Production environments",
+              "collapsible": true,
+              "collapsed": true,
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "deploy/risingwave-cloud",
+                  "label": "Deploy on RisingWave Cloud"
+                },
+                {
+                  "type": "doc",
+                  "id": "deploy/risingwave-kubernetes",
+                  "label": "Deploy on Kubernetes with Operator"
+                },
+                {
+                  "type": "doc",
+                  "id": "deploy/risingwave-k8s-helm",
+                  "label": "Deploy on Kubernetes with Helm"
+                }
+              ]
+            }
+          ]
+        }
       ],
     },
     {
@@ -337,7 +368,7 @@ const sidebars = {
           label: "Looker",
           id: "guides/looker-integration",
         },
-             {
+        {
           type: "doc",
           label: "Supabase",
           id: "guides/supabase-integration",
@@ -768,21 +799,6 @@ const sidebars = {
           type: "doc",
           id: "deploy/hardware-requirements",
           label: "Hardware requirements",
-        },
-        {
-          type: "doc",
-          id: "deploy/risingwave-cloud",
-          label: "Deploy on RisingWave Cloud",
-        },
-        {
-          type: "doc",
-          id: "deploy/risingwave-kubernetes",
-          label: "Deploy on Kubernetes with Operator",
-        },
-        {
-          type: "doc",
-          id: "deploy/risingwave-k8s-helm",
-          label: "Deploy on Kubernetes with Helm",
         },
         {
           type: "doc",

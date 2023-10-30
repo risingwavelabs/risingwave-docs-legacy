@@ -117,6 +117,39 @@ number
 
 ```
 
+### `jsonb_pretty`
+
+This function takes a `jsonb` value and returns a text representing the formatted, indented JSON value.
+
+```sql title=Syntax
+jsonb_pretty ( jsonb JSONB ) → TEXT
+```
+
+```sql title=Examples
+SELECT jsonb_pretty('[{"f1":1,"f2":null}, 2]');
+------RESULT
+[
+    {
+        "f1": 1,
+        "f2": null
+    },
+    2
+]
+```
+
+### `jsonb_object`
+
+This function takes an array of text elements and returns a `jsonb` object where adjacent pairs of values are taken as the key and value of an object property.
+
+```sql title=Syntax
+jsonb_object ( text_array TEXT[] ) → JSONB
+```
+
+```sql title=Examples
+jsonb_object('{a, 1, b, def, c, 3.5}' :: text[]) → {"a": "1", "b": "def", "c": "3.5"}
+jsonb_object(array['a', null]) → {"a": null}
+```
+
 ## JSON operators
 
 ### `jsonb -> integer`
@@ -199,17 +232,13 @@ SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
 
 This predicate tests whether an expression can be parsed as JSON, optionally of a specified type. It evaluates the JSON structure and returns a boolean result indicating whether the value matches the specified JSON type.
 
-#### Syntax
-
-```sql
+```sql title=Syntax
 expression IS [ NOT ] JSON [ VALUE | ARRAY | OBJECT | SCALAR ] → bool
 ```
 
 If SCALAR, ARRAY, or OBJECT is specified, the test is whether or not the JSON is of that particular type.
 
-#### Example
-
-```sql
+```sql title=Example
 SELECT js,
   js IS JSON "json?",
   js IS JSON SCALAR "scalar?",
@@ -218,8 +247,8 @@ SELECT js,
 FROM (VALUES
       ('123'), ('"abc"'), ('{"a": "b"}'), ('[1,2]'),('abc')) foo(js);
 ```
-```
-------RESULT
+
+```markdown title=Result
 
  js         | json? | scalar? | object? | array?
 ------------+-------+---------+---------+---------

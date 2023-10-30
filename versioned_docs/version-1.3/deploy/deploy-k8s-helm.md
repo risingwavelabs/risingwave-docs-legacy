@@ -8,21 +8,23 @@ slug: /risingwave-k8s-helm
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-k8s-helm/" />
 </head>
 
-This guide walks you through the process of deploying RisingWave in a single Kubernetes cluster with Helm.
+This guide walks you through the process of deploying RisingWave in a single Kubernetes cluster with [Helm](https://helm.sh/).
 
 ## Prerequisites
 
-Ensure you allocate enough resources for the deployment, and use the recommended disks for etcd. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
+- Ensure you have Helm 3.7 + installed in your environment. For details about how to install Helm, see the [Helm documentation](https://helm.sh/docs/intro/install/).
+- Ensure you have [Kubernetes](https://kubernetes.io/) 1.24 or higher installed in your environment.
+- Ensure you allocate enough resources for the deployment, and use the recommended disks for etcd. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
 
 ## Step 1: Start Kubernetes
 
-Install Kubernetes 1.24 or higher, and start a Kubernetes cluster. For details about starting a Kubernetes cluster, see Kubernetes' [Getting started guide](https://kubernetes.io/docs/setup/).
+Start a Kubernetes cluster. For details about starting a Kubernetes cluster, see Kubernetes' [Getting started guide](https://kubernetes.io/docs/setup/).
 
 ## Step 2: Start RisingWave
 
 Now start a RisingWave cluster with Helm.
 
-1. Install the [Helm client (version 3.0 or higher)](https://helm.sh/docs/intro/install/) and add the `risingwave` chart repository:
+1. Add the `risingwave` chart repository:
 
 ```bash
 helm repo add risingwavelabs https://risingwavelabs.github.io/helm-charts/
