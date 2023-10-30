@@ -232,17 +232,13 @@ SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
 
 This predicate tests whether an expression can be parsed as JSON, optionally of a specified type. It evaluates the JSON structure and returns a boolean result indicating whether the value matches the specified JSON type.
 
-#### Syntax
-
-```sql
+```sql title=Syntax
 expression IS [ NOT ] JSON [ VALUE | ARRAY | OBJECT | SCALAR ] → bool
 ```
 
 If SCALAR, ARRAY, or OBJECT is specified, the test is whether or not the JSON is of that particular type.
 
-#### Example
-
-```sql
+```sql title=Example
 SELECT js,
   js IS JSON "json?",
   js IS JSON SCALAR "scalar?",
@@ -252,8 +248,7 @@ FROM (VALUES
       ('123'), ('"abc"'), ('{"a": "b"}'), ('[1,2]'),('abc')) foo(js);
 ```
 
-```
-------RESULT
+```markdown title=Result
 
  js         | json? | scalar? | object? | array?
 ------------+-------+---------+---------+---------
