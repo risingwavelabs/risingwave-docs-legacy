@@ -228,6 +228,88 @@ SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
 [{"a": "b"}, 42]
 ```
 
+### `jsonb @> jsonb -> boolean`
+
+This operator checks if the left `jsonb` value contains the right `jsonb` value.
+
+```sql title=Syntax
+left_jsonb_value @> right_jsonb_value → BOOLEAN
+```
+
+```sql title=Examples
+'[1, 2, 3]'::jsonb @> '[1, 3]'::jsonb → t
+
+'{"product": "PostgreSQL", "version": 9.4, "jsonb": true}'::jsonb @> '{"version": 9.4}'::jsonb → t
+
+'{"foo": {"bar": "baz"}}'::jsonb @> '{"bar": "baz"}'::jsonb → f
+
+'{"foo": {"bar": "baz"}}'::jsonb @> '{"foo": {}}'::jsonb → t
+```
+
+### `jsonb <@ jsonb -> boolean`
+
+This operator checks if the left `jsonb` value is contained within the right `jsonb` value.
+
+```sql title=Syntax
+left_jsonb_value <@ right_jsonb_value → BOOLEAN
+```
+
+```sql title=Examples
+'{"b":2}'::jsonb <@ '{"a":1, "b":2}'::jsonb → t
+```
+
+### `jsonb ? text -> boolean`
+
+This operator checks if a string exists as a top-level array element or object key within a `jsonb` value.
+
+```sql title=Syntax
+jsonb_value ? string → BOOLEAN
+```
+
+```sql title=Examples
+'["foo", "bar", "baz"]'::jsonb ? 'bar' → t
+
+'{"foo": "bar"}'::jsonb ? 'foo' → t
+
+'{"foo": "bar"}'::jsonb ? 'bar' → f
+
+'{"foo": {"bar": "baz"}}'::jsonb ? 'bar' → f
+
+'"foo"'::jsonb ? 'foo' → t
+```
+
+### `jsonb ?| text[] -> boolean`
+
+This operator checks if any string in an array exists as a top-level array element or object key within a `jsonb` value.
+
+```sql title=Syntax
+jsonb_value ?| text_array TEXT[] → BOOLEAN
+```
+
+```sql title=Examples
+'{"a":1, "b":2, "c":3}'::jsonb ?| array['b', 'd'] → t
+
+'["a", "b", "c"]'::jsonb ?| array['b', 'd'] → t
+
+'"b"'::jsonb ?| array['b', 'd'] → t
+``` 
+
+### `json ?& text[] -> boolean`
+
+This operator checks if all strings in an array exist as top-level array elements or object keys within a `jsonb` value.
+
+```sql title=Syntax
+jsonb_value ?& text_array TEXT[] → BOOLEAN
+```
+
+```sql title=Examples
+'{"a":1, "b":2, "c":3}'::jsonb ?& array['a', 'b'] → t
+
+'["a", "b", "c"]'::jsonb ?& array['a', 'b'] → t
+
+'"b"'::jsonb ?& array['b'] → t
+``` 
+
 ## `IS JSON` predicate
 
 This predicate tests whether an expression can be parsed as JSON, optionally of a specified type. It evaluates the JSON structure and returns a boolean result indicating whether the value matches the specified JSON type.
