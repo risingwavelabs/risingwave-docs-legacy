@@ -519,16 +519,20 @@ starts_with('RisingWave is powerful', 'Rising') → true
 
 ### `substr`/`substring`
 
-Extracts the substring from input_string starting at position start_int and extending for count_int characters, if specified. start_int should be equal to or larger than 1.
+Extracts the substring from a string or a bytea value starting at position `start_int` for `count_int` characters. If `count_int` is omitted, the substring extends to the end of the string or bytea value.
 
-```bash title=Syntax
-substr( input_string, start_int[, count_int] ) → output_string
+```sql title=Syntax
+substr(string TEXT, start_int INTEGER [, count_int INTEGER]) → TEXT
+substr(bytea_value BYTEA, start_int INTEGER [, count_int INTEGER]) → BYTEA
 ```
 
-```bash title=Examples
+```sql title=Examples
 substr('alphabet', 3) → 'phabet';
 substring('alphabet', 3, 2) → 'ph'
-```
+
+substr('abcde'::bytea, 2, 7) → \x62636465
+substr('abcde'::bytea, -2, 5) → \x6162
+``` 
 
 ---
 
