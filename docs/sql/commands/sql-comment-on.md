@@ -64,25 +64,10 @@ SELECT * FROM rw_description;
 
 ```sql
 SHOW COLUMNS FROM t1;
-------
-  Name   |  Type   | Is Hidden |             Description             
----------+---------+-----------+-------------------------------------
- v1      | integer | false     | column for the duration of the trip
- v2      | integer | false     | 
- _row_id | serial  | true      | 
 ```
 
 ```sql
 DESCRIBE t1;
-------
-       Name        |  Type   | Is Hidden |             Description             
--------------------+---------+-----------+-------------------------------------
- v1                | integer | false     | column for the duration of the trip
- v2                | integer | false     | 
- _row_id           | serial  | true      | 
- primary key       | _row_id |           | 
- distribution key  | _row_id |           | 
- table description | t1      |           | table to store traffic data
 ```
 
 ## Related topics
