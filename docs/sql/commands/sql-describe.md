@@ -49,7 +49,7 @@ export const svg = rr.Diagram(
 
 ## Example
 
-```sql
+```sql title=Preparation
 CREATE TABLE customers (
   customer_id BIGINT PRIMARY KEY,  
   name VARCHAR,
@@ -60,9 +60,15 @@ COMMENT ON COLUMN customers.name IS 'Name of the customer';
 COMMENT ON COLUMN customers.email IS 'Email address of the customer';
 COMMENT ON TABLE customers IS 'All customer records';
 CREATE INDEX idx_customers_email ON customers(email);
+```
 
+After creating the table, columns, and indexes, as well as adding comments to each of them, we can use the `describe` command to see all this information in a structured format.
+
+```sql title=Output
 DESCRIBE customers;
+```
 
+```
 | Name                | Type                                                                  | Is Hidden | Description                         |
 | ------------------- | --------------------------------------------------------------------- | --------- | ----------------------------------- |
 | customer_id         | bigint                                                                | false     | Unique identifier for each customer |
