@@ -118,7 +118,7 @@ For a table with primary key constraints, if a new data record with an existing 
 |aws.credentials.session_token |Optional. The session token associated with the temporary security credentials. |
 |aws.credentials.role.arn |Optional. The Amazon Resource Name (ARN) of the role to assume.|
 |aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources. |
-|scan.startup.mode |Optional. The startup mode for Kinesis consumer. Supported modes: `earliest` (starts from the earliest offset), `latest` (starts from the latest offset), and `timestampr` (starts from a specific timestamp, specified by `scan.startup.timestamp.millis`). The default mode is `earliest`.|
+|scan.startup.mode |Optional. The startup mode for Kinesis consumer. Supported modes: `earliest` (starts from the earliest offset), `latest` (starts from the latest offset), and `timestamp` (starts from a specific timestamp, specified by `scan.startup.timestamp.millis`). The default mode is `earliest`.|
 |scan.startup.timestamp.millis |Optional. This field specifies the timestamp, represented in i64, to start consuming from. |
 
 ### Other parameters
