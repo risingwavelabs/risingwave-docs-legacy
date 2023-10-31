@@ -18,7 +18,7 @@ Data in RisingWave can be output to external targets such as message brokers, da
 <br/>
 
 <img
-  src={require('./images/archi_simple.png').default}
+  src={require('./images/new_archi_grey.png').default}
   alt="RisingWave Architecture"
 />
 
@@ -26,7 +26,7 @@ Data in RisingWave can be output to external targets such as message brokers, da
 
 Both Apache Flink and RisingWave are stream processing systems. However, RisingWave is more than just a modern alternative to Flink.
 
-If you are looking for a simple, cost-efficient, SQL-based solution for real-time data processing, RisingWave is an excellent choice. RisingWave is designed to be easy to use and can be deployed quickly. This makes it an ideal option for fast-growing businesses that require real-time data processing capabilities.
+If you are looking for an easy to use, cost-efficient, SQL-based solution for real-time data processing, RisingWave is an excellent choice. RisingWave is designed to be user-friendly and can be deployed quickly. This makes it an ideal option for fast-growing businesses that require real-time data processing capabilities.
 
 For a detailed comparison between RisingWave and Flink, see [RisingWave vs. Flink](/risingwave-flink-comparison.md).
 
