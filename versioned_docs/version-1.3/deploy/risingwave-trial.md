@@ -130,8 +130,14 @@ To persist your data, deploy RisingWave to K8s with [the RisingWave Operator](/d
 1. ### Extract the tarball
 
   ```shell
-  tar xvf risingwave-v1.3.0-x86_64-unknown-linux.tar.gz
+  tar xvf risingwave-v1.3.0-x86_64-linux-all-in-one.tar.gz
   ```
+
+:::note
+
+Do not move the extracted files or folders. This could cause issues when starting RisingWave.
+
+:::
 
 1. ### Start RisingWave
 
