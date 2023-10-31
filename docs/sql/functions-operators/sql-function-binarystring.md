@@ -166,4 +166,3 @@ SELECT substr('abcde'::bytea, -2, 5);
 ```
 \x6162
 ```
----  

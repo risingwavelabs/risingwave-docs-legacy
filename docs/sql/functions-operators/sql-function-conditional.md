@@ -111,3 +111,4 @@ Returns null if *value1* equals to *value2*, otherwise returns *value1*.
 ```sql
 NULLIF ( value1, value2 )
 ```
+
