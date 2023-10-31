@@ -1,11 +1,11 @@
 ---
-id: create-source-s3
+id: ingest-from-s3
 title: Ingest data from S3 buckets
 description: Ingest data from S3 buckets
-slug: /create-source-s3
+slug: /ingest-from-s3
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-s3/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-s3/" />
 </head>
 
 Use the SQL statement below to connect RisingWave to an Amazon S3 source.
@@ -81,12 +81,10 @@ export const svg = rr.Diagram(
     )
 );
 
-
 <drawer SVG={svg} />
 
-
-
 **schema_definition**:
+
 ```sql
 (
    column_name data_type [ PRIMARY KEY ], ...
@@ -98,8 +96,8 @@ export const svg = rr.Diagram(
 
 |Field|Notes|
 |---|---|
-|s3.region_name	|Required. The service region.|
-|s3.bucket_name	|Required. The name of the bucket the data source is stored in.	|
+|s3.region_name |Required. The service region.|
+|s3.bucket_name |Required. The name of the bucket the data source is stored in. |
 |s3.credentials.access|Required. This field indicates the access key ID of AWS. |
 |s3.credentials.secret|Required. This field indicates the secret access key of AWS.|
 |match_pattern| Conditional. This field is used to find object keys in `s3.bucket_name` that match the given pattern. Standard Unix-style glob syntax is supported. |
@@ -117,6 +115,7 @@ Empty cells in CSV files will be parsed to `NULL`.
 |*delimiter*| How RisingWave splits contents. For `JSON` encode, the delimiter is `\n`. |
 
 ## Example
+
 Here are examples of connecting RisingWave to an S3 source to read data from individual streams.
 
 import Tabs from '@theme/Tabs';

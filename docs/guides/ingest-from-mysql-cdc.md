@@ -26,7 +26,7 @@ You can ingest CDC data from MySQL in two ways:
 
   You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave.
 
-This topic describes how to ingest MySQL CDC data into RisingWave using the native MySQL CDC connector. Using an external CDC tool and a message broker is introduced in [Create source via event streaming systems](/create-source/create-source-cdc.md).
+This topic describes how to ingest MySQL CDC data into RisingWave using the native MySQL CDC connector. Using an external CDC tool and a message broker is introduced in [Create source via event streaming systems](/create-source/ingest-from-cdc.md).
 
 ## Set up MySQL
 
