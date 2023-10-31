@@ -18,34 +18,29 @@ Use the `DESCRIBE` command to view columns in the specified table, source, or ma
 
 :::
 
-
 ## Syntax
 
 ```sql
-DESCRIBE table_name;
+DESCRIBE relation_name;
 ```
-
-
 
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
     rr.Sequence(
         rr.Terminal('DESCRIBE'),
-        rr.NonTerminal('table_name', 'skip'),
+        rr.NonTerminal('relation_name', 'skip'),
         rr.Terminal(';')
     )
 );
 
 <drawer SVG={svg} />
 
-
-
 ## Parameters
 
 | Parameter or clause | Description                                                           |
 | ------------------- | --------------------------------------------------------------------- |
-| *table_name*        | The table, source, or materialized view whose columns will be listed. |
+| *relation_name*        | The table, source, or materialized view whose columns will be listed. |
 
 ## Example
 
@@ -62,13 +57,13 @@ COMMENT ON TABLE customers IS 'All customer records';
 CREATE INDEX idx_customers_email ON customers(email);
 ```
 
-After creating the table, columns, and indexes, as well as adding comments to each of them, we can use the `describe` command to see all this information in a structured format.
+After creating the table, columns, and indexes, as well as adding comments to each of them, we can use the `DESCRIBE` command to see all the information in a structured format.
 
 ```sql title=Output
 DESCRIBE customers;
 ```
 
-```
+```markdown
 | Name                | Type                                                                  | Is Hidden | Description                         |
 | ------------------- | --------------------------------------------------------------------- | --------- | ----------------------------------- |
 | customer_id         | bigint                                                                | false     | Unique identifier for each customer |
