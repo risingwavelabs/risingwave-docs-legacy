@@ -230,13 +230,13 @@ SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
 
 ### `jsonb @> jsonb -> boolean`
 
-This operator checks if the left `jsonb` value contains the right `jsonb` value at the top level.
+This operator checks if the left `jsonb` value contains the right `jsonb` value. For a detailed description and examples about containment and existence, see [jsonb Containment and Existence](https://www.postgresql.org/docs/current/datatype-json.html) in PostgreSQL's documentation.
 
 ```sql title=Syntax
 left_jsonb_value @> right_jsonb_value → BOOLEAN
 ```
 
-```sql title=Examples
+```bash title=Examples
 '[1, 2, 3]'::jsonb @> '[1, 3]'::jsonb → t
 
 '{"product": "PostgreSQL", "version": 9.4, "jsonb": true}'::jsonb @> '{"version": 9.4}'::jsonb → t
@@ -248,7 +248,7 @@ left_jsonb_value @> right_jsonb_value → BOOLEAN
 
 ### `jsonb <@ jsonb -> boolean`
 
-This operator checks if the left `jsonb` value is contained at the top level within the right `jsonb` value.
+This operator checks if the left `jsonb` value is contained within the right `jsonb` value. For a detailed description and examples about containment and existence, see [jsonb Containment and Existence](https://www.postgresql.org/docs/current/datatype-json.html) in PostgreSQL's documentation.
 
 ```sql title=Syntax
 left_jsonb_value <@ right_jsonb_value → BOOLEAN
@@ -266,7 +266,7 @@ This operator checks if a string exists as a top-level array element or object k
 jsonb_value ? string → BOOLEAN
 ```
 
-```sql title=Examples
+```bash title=Examples
 '["foo", "bar", "baz"]'::jsonb ? 'bar' → t
 
 '{"foo": "bar"}'::jsonb ? 'foo' → t
@@ -292,7 +292,7 @@ jsonb_value ?| text_array TEXT[] → BOOLEAN
 '["a", "b", "c"]'::jsonb ?| array['b', 'd'] → t
 
 '"b"'::jsonb ?| array['b', 'd'] → t
-``` 
+```
 
 ### `json ?& text[] -> boolean`
 
@@ -308,7 +308,7 @@ jsonb_value ?& text_array TEXT[] → BOOLEAN
 '["a", "b", "c"]'::jsonb ?& array['a', 'b'] → t
 
 '["a", "b", "c"]'::jsonb ?& array['a', 'd'] → f
-``` 
+```
 
 ### `jsonb #> text[] -> jsonb`
 
@@ -322,7 +322,7 @@ jsonb_value #> text_array TEXT[] → JSONB
 '{"a": {"b": ["foo","bar"]}}'::jsonb #> '{a,b,1}'::text[] → "bar"
 
 '{"a": {"b": ["foo","bar"]}}'::jsonb #> '{a,b,null}'::text[] → NULL
-``` 
+```
 
 ### `jsonb #>> text[] -> text`
 
@@ -338,7 +338,7 @@ jsonb_value #>> text_array TEXT[] → TEXT
 '{"a": {"b": ["foo",null]}}'::jsonb #>> '{a,b,1}'::text[] → NULL
 
 '{"a": {"b": ["foo","bar"]}}'::jsonb #>> '{a,b,null}'::text[] → NULL
-``` 
+```
 
 ## `IS JSON` predicate
 
