@@ -50,8 +50,6 @@ All `WITH` options are required unless explicitly mentioned as optional.
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |`connector`| Sink connector type must be `'kafka'` for Kafka sink. |
 |`properties.bootstrap.server`|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
-|`max.in.flight.requests.per.connection`|Optional. The maximum number of unacknowledged requests the Kafka client sends on a connection before blocking. By default, this value is 5. |
-|`message.timeout.ms`| Optional. The amount of time, in milliseconds, a produced message waits for delivery before timing out. By default, this value is 5000. |
 |`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
 |`primary_key`| Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. This field is optional if creating a `PLAIN` sink, but required if creating a `DEBEZIUM` or `UPSERT` sink.|
 
@@ -81,6 +79,8 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |queue.buffering.max.ms |properties.queue.buffering.max.ms |float|
 |retry.backoff.ms |properties.retry.backoff.ms| int|
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
+|max.in.flight.requests.per.connection| properties.max.in.flight.requests.per.connection| int |
+|message.timeout.ms| properties.message.timeout.ms| int |
 
 
 ## Examples
