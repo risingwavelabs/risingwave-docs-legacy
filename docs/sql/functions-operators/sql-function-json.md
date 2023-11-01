@@ -102,6 +102,30 @@ f1
 f2
 ```
 
+### `jsonb_strip_nulls`
+
+Removes all object fields that have null values from a given JSONB value, recursively. Empty objects or null values that are not object fields are left untouched.
+
+
+```bash title=Syntax
+jsonb_strip_nulls ( jsonb ) → jsonb
+```
+
+```sql title=Example
+
+Examples are not ready. Need test!!
+
+-- Handling non-null values
+SELECT jsonb_strip_nulls('{"a": 1, "b": null, "c": {"d": null, "e": 2}}');
+------RESULT
+{"a": 1, "c": {"e": 2}}
+
+-- Empty object preservation
+SELECT jsonb_strip_nulls('{"a": {"b": null, "c": null}, "d": {} }');
+------RESULT
+{"a": {"c": null}, "d": {}}
+```
+
 ### `jsonb_typeof`
 
 Returns the type of the top-level JSON value as a text string.
