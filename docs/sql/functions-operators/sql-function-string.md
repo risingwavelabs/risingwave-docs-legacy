@@ -519,7 +519,7 @@ starts_with('RisingWave is powerful', 'Rising') → true
 
 ### `substr`/`substring`
 
-Extracts the substring from input_string starting at position start_int and extending for count_int characters, if specified. start_int should be equal to or larger than 1.
+Extracts the substring from input_string starting at position start_int and extending for count_int characters.
 
 ```bash title=Syntax
 substr( input_string, start_int[, count_int] ) → output_string

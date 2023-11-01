@@ -53,14 +53,6 @@ All `WITH` options are required unless explicitly mentioned as optional.
 |`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
 |`primary_key`| Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. This field is optional if creating a `PLAIN` sink, but required if creating a `DEBEZIUM` or `UPSERT` sink.|
 
-## Sink parameters
-
-|Field|Notes|
-|-----|-----|
-|data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
-|data_encode| Data encode. Supported encode: `JSON`. |
-|force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
-
 ## Additional Kafka parameters
 
 When creating a Kafka sink in RisingWave, you can specify the following Kafka-specific parameters. To set the parameter, add the RisingWave equivalent of the Kafka parameter as a `WITH` option. For additional details on these parameters, see the [Configuration properties](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md).
@@ -80,6 +72,40 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |retry.backoff.ms |properties.retry.backoff.ms| int|
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
 
+## Sink parameters
+
+|Field|Notes|
+|-----|-----|
+|data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
+|data_encode| Data encode. Supported encodes: `JSON` and `AVRO`. Only `UPSERT AVRO` sinks are supported. |
+|force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
+
+### Avro specific parameters
+
+When creating an upsert Avro sink, the following options can be used following `FORMAT UPSERT ENCODE AVRO`. 
+
+|Field|Notes|
+|-----|-----|
+|schema.registry| Required. The address of the schema registry. |
+|schema.registry.username| Optional. The user name used to access the schema registry. |
+|schema.registry.password| Optional. The password associated with the user name. |
+|schema.registry.name.strategy| Optional. Accepted options include `topic_name_strategy` (default), `record_name_strategy`, and `topic_record_name_strategy`.|
+|key.message| Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`. |
+|message| Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`.|
+
+Syntax:
+
+```sql
+FORMAT UPSERT
+ENCODE AVRO (
+   schema.registry = 'schema_registry_url',
+   [schema.registry.username = 'username'],
+   [schema.registry.password = 'password'],
+   [schema.registry.name.strategy = 'topic_name_strategy'],
+   [key.message = 'test_key'],
+   [message = 'main_message',]
+)
+```
 
 ## Examples
 
