@@ -85,7 +85,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
 |SQL Server| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Researching <voteNotify note="sql_server_sink" /> |
 |TiDB| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Available. For details, see [Sink data from RisingWave to TiDB](/guides/sink-to-tidb.md). |
-|Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
+|Redis|Researching <voteNotify note="redis_source" />|Available. For details, see [Sink data from RisingWave to Redis](/guides/sink-to-redis.md).|
 |Greenplum| No plan| Researching <voteNotify note="greenplum_sink" /> |
 |Elasticsearch| No plan| Available. Only versions 7.x and 8.x are supported. For details, see [Sink data from RisingWave to Elasticsearch](/guides/sink-to-elasticsearch.md).|
 

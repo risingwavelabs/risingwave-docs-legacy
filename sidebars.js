@@ -459,6 +459,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Redis",
+              id: "guides/sink-to-redis",
+            },
+            {
+              type: "doc",
               label: "TiDB",
               id: "guides/sink-to-tidb",
             },
