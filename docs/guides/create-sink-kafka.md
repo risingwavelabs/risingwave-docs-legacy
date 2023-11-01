@@ -89,7 +89,7 @@ When creating an upsert Avro sink, the following options can be used following `
 |schema.registry| Required. The address of the schema registry. |
 |schema.registry.username| Optional. The user name used to access the schema registry. |
 |schema.registry.password| Optional. The password associated with the user name. |
-|schema.registry.name.strategy| Optional if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`.|
+|schema.registry.name.strategy| Optional. Accepted options include `topic_name_strategy` (default), `record_name_strategy`, and `topic_record_name_strategy`.|
 |key.message| Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`. |
 |message| Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`.|
 
