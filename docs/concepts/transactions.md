@@ -3,6 +3,7 @@ id: transactions
 title: Transactions
 slug: /transactions
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/transactions/" />
 </head>

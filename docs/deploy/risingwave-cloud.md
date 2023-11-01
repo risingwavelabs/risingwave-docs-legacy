@@ -4,6 +4,7 @@ title: RisingWave Cloud
 description: Run fully-managed RisingWave clusters with RisingWave Cloud.
 slug: /risingwave-cloud
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-cloud/" />
 </head>
@@ -16,6 +17,6 @@ Experience intuitive and effortless stream processing with RisingWave Cloud. Sig
 <br/>
 
 <img
-  src={require('../images/cloud-overview.png').default}
-  alt="RisingWave Cloud Overview"
+src={require('../images/cloud-overview.png').default}
+alt="RisingWave Cloud Overview"
 />

@@ -4,6 +4,7 @@ title: RisingWave use cases
 slug: /use-cases
 keywords: [streaming database, risingwave, use cases]
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/use-cases/" />
 </head>
@@ -26,7 +27,7 @@ It typically involves the use of stream processing frameworks such as Apache Fl
 ### How does RisingWave support streaming ETL?
 
 - Extract: RisingWave supports ingesting data from a wide range of data sources, such as message queues, log files, or change data capture (CDC) streams from databases.
-- Transform: RisingWave allows you to do all sorts of data transformations, such as mapping,  filtering, joining, aggregation, windowing and stateful processing, over streaming data.
+- Transform: RisingWave allows you to do all sorts of data transformations, such as mapping, filtering, joining, aggregation, windowing and stateful processing, over streaming data.
 - Load: You can sink processed data from RisingWave to downstream systems such as databases, data warehouses, or message queues.
 
 ### Where does RisingWave fit in your technical stack for streaming ETL?

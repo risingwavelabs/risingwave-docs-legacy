@@ -4,6 +4,7 @@ title: Use RisingWave in your Java application
 description: Use RisingWave in your Java application
 slug: /java-client-libraries
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/java-client-libraries/" />
 </head>
@@ -15,6 +16,7 @@ In this guide, we use the [PostgreSQL JDBC](https://jdbc.postgresql.org/) driver
 ## Run RisingWave
 
 To learn about how to run RisingWave, see [Run RisingWave](/get-started.md#run-risingwave).
+
 > You do not need to connect to RisingWave at this stage.
 
 ## Download the PostgreSQL JDBC driver
@@ -41,7 +43,7 @@ public class RisingWaveConnect {
 
         //If needed, add the code for issuing queries here.
         conn.close();
-    }   
+    }
 }
 ```
 
@@ -94,7 +96,7 @@ public class create_mv {
         String sqlQuery = "CREATE MATERIALIZED VIEW counter AS " +
         "SELECT sum(distance) AS total_distance, sum(duration) AS total_duration " +
         "FROM walk; ";
-        PreparedStatement st = conn.prepareStatement(sqlQuery); 
+        PreparedStatement st = conn.prepareStatement(sqlQuery);
         st.executeQuery();
         conn.close();
     }

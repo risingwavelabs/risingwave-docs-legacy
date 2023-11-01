@@ -3,6 +3,7 @@ id: data-delivery
 title: Overview of data delivery
 slug: /data-delivery
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-delivery/" />
 </head>
@@ -14,11 +15,11 @@ To stream data out of RisingWave, you must create a sink. A sink is an external 
 Currently, RisingWave supports the following sink connectors:
 
 - Apache Doris sink connector (`connector = 'doris'`)
-  
+
   With this connector, you can sink data from RisingWave to Apache Doris. For details about the syntax and parameters, see [Sink data to Apache Doris](/guides/sink-to-doris.md).
 
 - Apache Iceberg sink connector (`connector = 'iceberg'`)
-  
+
   With this connector, you can sink data from RisingWave to Apache Iceberg. For details about the syntax and parameters, see [Sink data to Apache Iceberg](/guides/sink-to-iceberg.md).
 
 - AWS Kinesis sink connector (`connector = 'kinesis'`)
@@ -46,7 +47,7 @@ Currently, RisingWave supports the following sink connectors:
   With this connector, you can sink data from RisingWave to JDBC-available databases, such as MySQL, PostgreSQL, or TiDB. When sinking to a database with a JDBC driver, ensure that the corresponding table created in RisingWave has the same schema as the table in the database you are sinking to. For details about the syntax and parameters, see [Sink to MySQL](/guides/sink-to-mysql.md), [Sink to PostgreSQL](/guides/sink-to-postgres.md), or [Sink to TiDB](/guides/sink-to-tidb.md).
 
 - Kafka sink connector (`connector = 'kafka'`)
-  
+
   With this connector, you can sink data from RisingWave to Kafka topics. For details about the syntax and parameters, see [Sink data to Kafka](/guides/create-sink-kafka.md).
 
 - NATS sink connector (`connector = 'nats'`)

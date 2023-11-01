@@ -5,6 +5,7 @@ description: Get started with RisingWave.
 slug: /get-started
 toc_max_heading_level: 2
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/get-started/" />
 </head>
@@ -117,12 +118,12 @@ A materialized views can be created on tables, sources, or joined data between t
 Let's create a materialized view to get the total page visits, unique visitors, and the last visit time for each page based on the data in source `website_visits_stream`.
 
 ```sql
-CREATE MATERIALIZED VIEW visits_stream_mv AS 
-SELECT page_id, 
-count(*) AS total_visits, 
-count(DISTINCT user_id) AS unique_visitors, 
-max(timestamp) AS last_visit_time 
-FROM website_visits_stream 
+CREATE MATERIALIZED VIEW visits_stream_mv AS
+SELECT page_id,
+count(*) AS total_visits,
+count(DISTINCT user_id) AS unique_visitors,
+max(timestamp) AS last_visit_time
+FROM website_visits_stream
 GROUP BY page_id;
 ```
 
@@ -164,7 +165,7 @@ SELECT * FROM visits_stream_mv;
 ```
 
 ```
- page_id | total_visits | unique_visitors |   last_visit_time   
+ page_id | total_visits | unique_visitors |   last_visit_time
 ---------+--------------+-----------------+---------------------
  page2   |            3 |               3 | 2023-06-13 10:12:00
  page3   |            3 |               3 | 2023-06-13 10:13:00

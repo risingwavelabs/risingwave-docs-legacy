@@ -4,6 +4,7 @@ title: Connect DBeaver to RisingWave
 description: Connect DBeaver to RisingWave.
 slug: /dbeaver-integration
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/dbeaver-integration/" />
 </head>
@@ -26,20 +27,20 @@ This guide will go over how to connect DBeaver to RisingWave so you can seamless
 
 3. Under **Connection settings**, provide the following information:
 
-    - Host: The hostname or IP address of the RisingWave database. The default **Host** is `localhost`.
+   - Host: The hostname or IP address of the RisingWave database. The default **Host** is `localhost`.
 
-    - Port: The port number of the RisingWave database. The default **Port** is `4566`.
+   - Port: The port number of the RisingWave database. The default **Port** is `4566`.
 
-    - Database: The name of the RisingWave database you want to connect to. The default **Database** is `dev`.
+   - Database: The name of the RisingWave database you want to connect to. The default **Database** is `dev`.
 
-    - Username: The username for accessing the database. The default **Username** is `root`.
+   - Username: The username for accessing the database. The default **Username** is `root`.
 
-    - Password: The password associated with the provided username. By default, there is no password for `root`.
+   - Password: The password associated with the provided username. By default, there is no password for `root`.
 
-    <img
-    src={require('../images/dbeaver-connect-pg.png').default}
-    alt="Fill in connection settings in DBeaver"
-    />
+   <img
+   src={require('../images/dbeaver-connect-pg.png').default}
+   alt="Fill in connection settings in DBeaver"
+   />
 
 4. Click **Test connection**. If there are no errors, click **Finish**.
 
