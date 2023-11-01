@@ -17,7 +17,7 @@ FROM table_name
 WHERE condition
 ```
 
-Here, `condition` is any expression that evaluates to a result of type boolean. Any row that does not satisfy this condition will be removed from the output. A row satisfies the condition if it returns true when the actual row values are substituted for any variable references.
+Here, `condition` is any expression that evaluates to a result of type boolean. Any row that does not satisfy this condition will be removed from the output. A row satisfies the condition if it returns true when the actual row values are substituted for any variable references. Subqueries are allowed in a condition expression.
 
 Basic `WHERE` clause example:
 
@@ -34,13 +34,9 @@ This query results in a table with columns for department, job title, and averag
 
 Notice that the `WHERE` clause comes before the `GROUP BY` clause in this example because the `WHERE` clause is used to filter the rows in a table before any aggregations are performed. In contrast, the `HAVING` clause filters data after aggregations are performed.
 
-
-
-
 <!-- Syntax diagram:
 
 import rr from '@theme/RailroadDiagram'
-
 
 export const svg = rr.Diagram(
 rr.Stack(
