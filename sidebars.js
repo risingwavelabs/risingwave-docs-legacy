@@ -326,14 +326,21 @@ const sidebars = {
           label: "Window functions",
         },
         {
-          type: "doc",
-          id: "transform/emit-on-window-close",
+          type: "category",
           label: "Emit on window close",
-        },
-        {
-          type: "doc",
-          id: "transform/watermarks",
-          label: "Watermarks",
+          collapsible: true,
+          collapsed: true,
+          link: {
+            type: "doc",
+            id: "transform/emit-on-window-close",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "transform/watermarks",
+              label: "Watermarks",
+            },
+          ]
         },
         {
           type: "doc",
