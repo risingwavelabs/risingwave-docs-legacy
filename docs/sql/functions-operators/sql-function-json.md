@@ -117,6 +117,39 @@ number
 
 ```
 
+### `jsonb_pretty`
+
+This function takes a `jsonb` value and returns a text representing the formatted, indented JSON value.
+
+```sql title=Syntax
+jsonb_pretty ( jsonb JSONB ) → TEXT
+```
+
+```sql title=Examples
+SELECT jsonb_pretty('[{"f1":1,"f2":null}, 2]');
+------RESULT
+[
+    {
+        "f1": 1,
+        "f2": null
+    },
+    2
+]
+```
+
+### `jsonb_object`
+
+This function takes an array of text elements and returns a `jsonb` object where adjacent pairs of values are taken as the key and value of an object property.
+
+```sql title=Syntax
+jsonb_object ( text_array TEXT[] ) → JSONB
+```
+
+```sql title=Examples
+jsonb_object('{a, 1, b, def, c, 3.5}' :: text[]) → {"a": "1", "b": "def", "c": "3.5"}
+jsonb_object(array['a', null]) → {"a": null}
+```
+
 ## JSON operators
 
 ### `jsonb -> integer`
@@ -195,21 +228,129 @@ SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
 [{"a": "b"}, 42]
 ```
 
+### `jsonb @> jsonb -> boolean`
+
+This operator checks if the left `jsonb` value contains the right `jsonb` value. For a detailed description and examples about containment and existence, see [jsonb Containment and Existence](https://www.postgresql.org/docs/current/datatype-json.html) in PostgreSQL's documentation.
+
+```sql title=Syntax
+left_jsonb_value @> right_jsonb_value → BOOLEAN
+```
+
+```bash title=Examples
+'[1, 2, 3]'::jsonb @> '[1, 3]'::jsonb → t
+
+'{"product": "PostgreSQL", "version": 9.4, "jsonb": true}'::jsonb @> '{"version": 9.4}'::jsonb → t
+
+'{"foo": {"bar": "baz"}}'::jsonb @> '{"bar": "baz"}'::jsonb → f
+
+'{"foo": {"bar": "baz"}}'::jsonb @> '{"foo": {}}'::jsonb → t
+```
+
+### `jsonb <@ jsonb -> boolean`
+
+This operator checks if the left `jsonb` value is contained within the right `jsonb` value. For a detailed description and examples about containment and existence, see [jsonb Containment and Existence](https://www.postgresql.org/docs/current/datatype-json.html) in PostgreSQL's documentation.
+
+```sql title=Syntax
+left_jsonb_value <@ right_jsonb_value → BOOLEAN
+```
+
+```sql title=Examples
+'{"b":2}'::jsonb <@ '{"a":1, "b":2}'::jsonb → t
+```
+
+### `jsonb ? text -> boolean`
+
+This operator checks if a string exists as a top-level array element or object key within a `jsonb` value.
+
+```sql title=Syntax
+jsonb_value ? string → BOOLEAN
+```
+
+```bash title=Examples
+'["foo", "bar", "baz"]'::jsonb ? 'bar' → t
+
+'{"foo": "bar"}'::jsonb ? 'foo' → t
+
+'{"foo": "bar"}'::jsonb ? 'bar' → f
+
+'{"foo": {"bar": "baz"}}'::jsonb ? 'bar' → f
+
+'"foo"'::jsonb ? 'foo' → t
+```
+
+### `jsonb ?| text[] -> boolean`
+
+This operator checks if any string in an array exists as a top-level array element or object key within a `jsonb` value.
+
+```sql title=Syntax
+jsonb_value ?| text_array TEXT[] → BOOLEAN
+```
+
+```sql title=Examples
+'{"a":1, "b":2, "c":3}'::jsonb ?| array['b', 'd'] → t
+
+'["a", "b", "c"]'::jsonb ?| array['b', 'd'] → t
+
+'"b"'::jsonb ?| array['b', 'd'] → t
+```
+
+### `json ?& text[] -> boolean`
+
+This operator checks if all strings in an array exist as top-level array elements or object keys within a `jsonb` value.
+
+```sql title=Syntax
+jsonb_value ?& text_array TEXT[] → BOOLEAN
+```
+
+```sql title=Examples
+'{"a":1, "b":2, "c":3}'::jsonb ?& array['a', 'b'] → t
+
+'["a", "b", "c"]'::jsonb ?& array['a', 'b'] → t
+
+'["a", "b", "c"]'::jsonb ?& array['a', 'd'] → f
+```
+
+### `jsonb #> text[] -> jsonb`
+
+This operator extracts a nested value from a JSONB object using a text array of keys or indices.
+
+```sql title=Syntax
+jsonb_value #> text_array TEXT[] → JSONB
+```
+
+```sql title=Examples
+'{"a": {"b": ["foo","bar"]}}'::jsonb #> '{a,b,1}'::text[] → "bar"
+
+'{"a": {"b": ["foo","bar"]}}'::jsonb #> '{a,b,null}'::text[] → NULL
+```
+
+### `jsonb #>> text[] -> text`
+
+This operator extracts a nested value as text from a JSONB object using a text array of keys or indices.
+
+```sql title=Syntax
+jsonb_value #>> text_array TEXT[] → TEXT
+```
+
+```sql title=Examples
+'{"a": {"b": ["foo","bar"]}}'::jsonb #>> '{a,b,1}'::text[] → bar
+
+'{"a": {"b": ["foo",null]}}'::jsonb #>> '{a,b,1}'::text[] → NULL
+
+'{"a": {"b": ["foo","bar"]}}'::jsonb #>> '{a,b,null}'::text[] → NULL
+```
+
 ## `IS JSON` predicate
 
 This predicate tests whether an expression can be parsed as JSON, optionally of a specified type. It evaluates the JSON structure and returns a boolean result indicating whether the value matches the specified JSON type.
 
-#### Syntax
-
-```sql
+```sql title=Syntax
 expression IS [ NOT ] JSON [ VALUE | ARRAY | OBJECT | SCALAR ] → bool
 ```
 
 If SCALAR, ARRAY, or OBJECT is specified, the test is whether or not the JSON is of that particular type.
 
-#### Example
-
-```sql
+```sql title=Example
 SELECT js,
   js IS JSON "json?",
   js IS JSON SCALAR "scalar?",
@@ -218,8 +359,8 @@ SELECT js,
 FROM (VALUES
       ('123'), ('"abc"'), ('{"a": "b"}'), ('[1,2]'),('abc')) foo(js);
 ```
-```
-------RESULT
+
+```markdown title=Result
 
  js         | json? | scalar? | object? | array?
 ------------+-------+---------+---------+---------

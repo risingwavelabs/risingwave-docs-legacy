@@ -21,15 +21,15 @@ For tools or integrations that you would like to use but are not listed in the t
 
 |Broker or streaming service| Source | Sink |
 |---|---|---|
-|Apache Kafka | Available. See [Ingest data from Kafka](/create-source/create-source-kafka.md) for details. | Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.| |
+|Apache Kafka | Available. See [Ingest data from Kafka](/create-source/ingest-from-kafka.md) for details. | Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.| |
 | Confluent Cloud | Available. See [Ingest data from Confluent Cloud](/guides/confluent-kafka-source.md) for details. | |
 | Amazon MSK | Available. See [Ingest data from Amazon MSK](/guides/connector-amazon-msk.md) for details. | |
-|Redpanda | Available. See [Ingest data from Redpanda](/create-source/create-source-redpanda.md) for details. |Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.|
-|Apache Pulsar|Available. See [Ingest data from Pulsar](/create-source/create-source-pulsar.md) for details. | Available. See [Sink data to Pulsar](/guides/sink-to-pulsar.md) for details.|
+|Redpanda | Available. See [Ingest data from Redpanda](/create-source/ingest-from-redpanda.md) for details. |Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.|
+|Apache Pulsar|Available. See [Ingest data from Pulsar](/create-source/ingest-from-pulsar.md) for details. | Available. See [Sink data to Pulsar](/guides/sink-to-pulsar.md) for details.|
 |DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <voteNotify note="astra_streaming_sink" />|
 |StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
-|Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Available. See [Sink data to Kinesis](/guides/sink-to-aws-kinesis.md) for details.|
-|NATS / NATS JetStream | Available. See [Ingest data from NATS JetStream](/create-source/create-source-nats.md) for details. | Available. See [Sink data to NATS](/guides/sink-to-nats.md) for details.|
+|Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/ingest-from-kinesis.md) for details.|Available. See [Sink data to Kinesis](/guides/sink-to-aws-kinesis.md) for details.|
+|NATS / NATS JetStream | Available. See [Ingest data from NATS JetStream](/create-source/ingest-from-nats.md) for details. | Available. See [Sink data to NATS](/guides/sink-to-nats.md) for details.|
 
 ## ETL/ELT and data integration
 
@@ -81,10 +81,10 @@ For tools or integrations that you would like to use but are not listed in the t
 |DataStax Astra DB & Apache Cassandra & ScyllaDB| Researching <voteNotify note="cassandra_source" /> |Available. For details, see [Sink data to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).|
 |CockroachDB| Researching <voteNotify note="cockroachdb_source" />|Researching <voteNotify note="cockroachdb_sink" /> |
 |Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
-|MongoDB| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Researching <voteNotify note="mongodb_sink" /> |
+|MongoDB| Available. For details, see [CDC via event streaming systems](/create-source/ingest-from-cdc.md).|Researching <voteNotify note="mongodb_sink" /> |
 |Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
-|SQL Server| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Researching <voteNotify note="sql_server_sink" /> |
-|TiDB| Available. For details, see [CDC via event streaming systems](/create-source/create-source-cdc.md).|Available. For details, see [Sink data from RisingWave to TiDB](/guides/sink-to-tidb.md). |
+|SQL Server| Available. For details, see [CDC via event streaming systems](/create-source/ingest-from-cdc.md).|Researching <voteNotify note="sql_server_sink" /> |
+|TiDB| Available. For details, see [CDC via event streaming systems](/create-source/ingest-from-cdc.md).|Available. For details, see [Sink data from RisingWave to TiDB](/guides/sink-to-tidb.md). |
 |Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
 |Greenplum| No plan| Researching <voteNotify note="greenplum_sink" /> |
 |Elasticsearch| No plan| Available. Only versions 7.x and 8.x are supported. For details, see [Sink data from RisingWave to Elasticsearch](/guides/sink-to-elasticsearch.md).|
@@ -107,7 +107,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |DBeaver| | Available. See [Connect DBeaver to RisingWave](/guides/dbeaver-integration.md) for details. |
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
 |Jupyter Notebook||Researching <voteNotify note="jupyter" />|
-|Looker||Researching <voteNotify note="looker" /> |
+|Looker|Available. See [Connect Looker to RisingWave](/guides/looker-integration.md) for details. |
 |Metabase ||In progress <voteNotify note="metabase" />|
 |Redash || Available |
 |DataGrip | |Researching <voteNotify note="datagrip" /> |

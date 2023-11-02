@@ -8,9 +8,7 @@ slug: /risingwave-trial
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-trial/" />
 </head>
 
-Select an installation or running method.
-
-These options are all for testing purposes. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
+All of the options on this page are for testing purposes. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -19,7 +17,7 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="overview" label="Overview">
 
-RisingWave offers several installation or running options. Choose the option that best fits your needs.
+RisingWave offers several installation options. Choose the option that best fits your needs.
 
 <br/>
 
@@ -118,13 +116,13 @@ Start a RisingWave standalone instance in your local environment with the pre-bu
 :::caution
 This method launches RisingWave in playground mode, where data is stored solely in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may lead to out-of-memory (OOM) errors. Use this method for quick tests only.
 
-To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/docs/deploy/risingwave-cloud.md).
+To persist your data, deploy RisingWave to K8s with [the RisingWave Operator](/deploy/risingwave-kubernetes.md) or [Helm](/deploy/deploy-k8s-helm.md), or [Deploy on RisingWave Cloud](/docs/deploy/risingwave-cloud.md).
 :::
 
 1. ### Download the binaries
 
   ```shell
-  wget https://github.com/risingwavelabs/risingwave/releases/download/v1.1.3/risingwave-v1.1.3-x86_64-unknown-linux.tar.gz
+  wget https://github.com/risingwavelabs/risingwave/releases/download/v1.3.0/risingwave-v1.3.0-x86_64-unknown-linux-all-in-one.tar.gz
   ```
 
   > You can find previous binary releases in [Release notes](/release-notes).
@@ -132,13 +130,19 @@ To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwav
 1. ### Extract the tarball
 
   ```shell
-  tar xvf risingwave-v1.1.3-x86_64-unknown-linux.tar.gz
+  tar xvf risingwave-v1.3.0-x86_64-unknown-linux-all-in-one.tar.gz
   ```
+
+:::note
+
+Do not move the extracted files or folders. This could cause issues when starting RisingWave.
+
+:::
 
 1. ### Start RisingWave
 
   ```shell
-  ./risingwave playground
+./risingwave playground
   ```
 
   If you see the logs, you have successfully started RisingWave.
@@ -211,7 +215,7 @@ To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwav
   ```
 
   :::tip
-  You can find the previous releases and nightly builds on [Docker Hub](https://hub.docker.com/r/risingwavelabs/risingwave/tags).<br/>If you want to run a particular version, replace `latest` with the actual version name (for example, `v0.19.0`)
+  You can find the previous releases and nightly builds on [Docker Hub](https://hub.docker.com/r/risingwavelabs/risingwave/tags).<br/>If you want to run a particular version, replace `latest` with the actual version name (for example, `v1.3.0`)
   :::
 
   If you see the logs, you have successfully started RisingWave.
@@ -252,7 +256,7 @@ Use the pre-defined Docker Compose configuration file to set up a multi-node Ris
 
 Although this option is not in playground mode, it's important to note that certain essential features, such as failover and resource separation, are not implemented on the backend for this option. Additionally, this option relies on etcd, and its performance is highly dependent on disk performance. These factors can result in out-of-memory errors and potential data loss.
 
-If you intend to deploy RisingWave in production environments, please use [RisingWave Cloud](/deploy/risingwave-cloud.md) or [the Kubernetes Operator for RisingWave](/deploy/risingwave-kubernetes.md). These options provide better support for resource management, and we have conducted comprehensive tests on them.
+If you intend to deploy RisingWave in production environments, please [deploy on RisingWave Cloud](/deploy/risingwave-cloud.md) or deploy to a K8s cluster using [the RisingWave Operator](/deploy/risingwave-kubernetes.md) or [Helm](/deploy/deploy-k8s-helm.md). These options provide better support for resource management, and we have conducted comprehensive tests on them.
 
 Meanwhile, we are developing a new standalone mode that resolves most of these issues. Stay tuned for updates on its availability and functionality.
 :::
@@ -263,7 +267,6 @@ The cluster is composed of multiple RisingWave components, including:
 - A compute node
 - A meta node
 - A compactor node
-- A connector node
 
 RisingWave also incorporates these third-party components:
 

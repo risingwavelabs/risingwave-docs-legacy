@@ -386,6 +386,22 @@ regexp_replace('RisingWave', '[aeiou]', 'X', 1, 3, 'i') → RisingWXve
 
 ---
 
+### `regexp_split_to_array`
+
+This function splits a string into an array of substrings based on a regular expression pattern.
+
+```sql title=Syntax
+regexp_split_to_array ( input_string TEXT, pattern TEXT ) → TEXT[]
+```
+
+```sql title=Examples
+regexp_split_to_array('apple,banana,orange', ',') → {apple,banana,orange}
+regexp_split_to_array('apple.banana!orange', '[.!]') → {apple,banana,orange}
+regexp_split_to_array('applebananaorange', ',') → {applebananaorange}
+```
+
+---
+
 ### `repeat`
 
 Repeats *input_string* specific times. Null is returned when *times_int* is zero, negative, or null.
@@ -503,7 +519,7 @@ starts_with('RisingWave is powerful', 'Rising') → true
 
 ### `substr`/`substring`
 
-Extracts the substring from input_string starting at position start_int and extending for count_int characters, if specified. start_int should be equal to or larger than 1.
+Extracts the substring from input_string starting at position start_int and extending for count_int characters.
 
 ```bash title=Syntax
 substr( input_string, start_int[, count_int] ) → output_string

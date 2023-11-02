@@ -26,7 +26,11 @@ CREATE SINK [ IF NOT EXISTS ] sink_name
 WITH (
    connector='kafka',
    connector_parameter = 'value', ...
-);
+)
+FORMAT data_format ENCODE data_encode [ (
+    format_parameter = 'value'
+) ]
+;
 ```
 
 :::note
@@ -47,9 +51,7 @@ All `WITH` options are required unless explicitly mentioned as optional.
 |`connector`| Sink connector type must be `'kafka'` for Kafka sink. |
 |`properties.bootstrap.server`|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
 |`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
-|`type`|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `debezium`: Output change data capture (CDC) log in Debezium format.</li><li> `upsert`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `upsert` sink, see the [Overview](/data-delivery.md).|
-|`force_append_only`| Optional. If `true`, forces the sink to be `append-only`, even if it cannot be.|
-|`primary_key`| Optional. The primary keys of the sink. Use ',' to delimit the primary key columns. If the external sink has its own primary key, this field should not be specified.|
+|`primary_key`| Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. This field is optional if creating a `PLAIN` sink, but required if creating a `DEBEZIUM` or `UPSERT` sink.|
 
 ## Additional Kafka parameters
 
@@ -70,6 +72,40 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |retry.backoff.ms |properties.retry.backoff.ms| int|
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
 
+## Sink parameters
+
+|Field|Notes|
+|-----|-----|
+|data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
+|data_encode| Data encode. Supported encodes: `JSON` and `AVRO`. Only `UPSERT AVRO` sinks are supported. |
+|force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
+
+### Avro specific parameters
+
+When creating an upsert Avro sink, the following options can be used following `FORMAT UPSERT ENCODE AVRO`. 
+
+|Field|Notes|
+|-----|-----|
+|schema.registry| Required. The address of the schema registry. |
+|schema.registry.username| Optional. The user name used to access the schema registry. |
+|schema.registry.password| Optional. The password associated with the user name. |
+|schema.registry.name.strategy| Optional. Accepted options include `topic_name_strategy` (default), `record_name_strategy`, and `topic_record_name_strategy`.|
+|key.message| Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`. |
+|message| Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`.|
+
+Syntax:
+
+```sql
+FORMAT UPSERT
+ENCODE AVRO (
+   schema.registry = 'schema_registry_url',
+   [schema.registry.username = 'username'],
+   [schema.registry.password = 'password'],
+   [schema.registry.name.strategy = 'topic_name_strategy'],
+   [key.message = 'test_key'],
+   [message = 'main_message',]
+)
+```
 
 ## Examples
 
@@ -79,10 +115,10 @@ Create a sink by selecting an entire materialized view.
 CREATE SINK sink1 FROM mv1 
 WITH (
    connector='kafka',
-   type='append-only'
    properties.bootstrap.server='localhost:9092',
    topic='test'
-);
+)
+FORMAT PLAIN ENCODE JSON;
 ```
 
 Create a sink with the Kafka configuration `message.max.bytes` set at 2000 by setting `properties.message.max.bytes` to 2000.
@@ -91,11 +127,11 @@ Create a sink with the Kafka configuration `message.max.bytes` set at 2000 by se
 CREATE SINK sink1 FROM mv1 
 WITH (
    connector='kafka',
-   type='append-only'
    properties.bootstrap.server='localhost:9092',
    topic='test',
    properties.message.max.bytes = 2000
-);
+)
+FORMAT PLAIN ENCODE JSON;
 ```
 
 Create a sink by selecting the average `distance` and `duration` from `taxi_trips`.
@@ -130,10 +166,10 @@ SELECT
 FROM taxi_trips
 WITH (
    connector='kafka',
-   type = 'append-only'
    properties.bootstrap.server='localhost:9092',
    topic='test'
-);
+)
+FORMAT PLAIN ENCODE JSON;
 
 ```
 
@@ -155,13 +191,13 @@ Here is an example of creating a Kafka sink using a PrivateLink connection. Noti
 CREATE SINK sink2 FROM mv2
 WITH (
    connector='kafka',
-   type='append-only',
    properties.bootstrap.server='b-1.xxx.amazonaws.com:9092,b-2.test.xxx.amazonaws.com:9092',
    topic='msk_topic',
    force_append_only='true',
    privatelink.endpoint='10.148.0.4',
    privatelink.targets = '[{"port": 8001}, {"port": 8002}]'
-);
+)
+FORMAT PLAIN ENCODE JSON;
 ```
 
 ## TLS/SSL encryption and SASL authentication
@@ -207,7 +243,6 @@ Here is an example of creating a sink encrypted with SSL without using SASL auth
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   type = 'append-only',
    topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    properties.security.protocol='SSL',
@@ -215,7 +250,8 @@ WITH (
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
    properties.ssl.key.location='/home/ubuntu/kafka/secrets/client_risingwave_client.key',
    properties.ssl.key.password='abcdefgh'
-);
+)
+FORMAT PLAIN ENCODE JSON;
 ```
 
 ### `SASL/PLAIN`
@@ -252,7 +288,8 @@ WITH (
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
    properties.sasl.password='admin-secret'
-);
+)
+FORMAT PLAIN ENCODE JSON;
 ```
 
 This is an example of creating a sink authenticated with SASL/PLAIN with SSL encryption.
@@ -261,7 +298,6 @@ This is an example of creating a sink authenticated with SASL/PLAIN with SSL enc
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   type = 'append-only',
    topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    properties.sasl.mechanism='PLAIN',
@@ -272,7 +308,8 @@ WITH (
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
    properties.ssl.key.location='/home/ubuntu/kafka/secrets/client_risingwave_client.key',
    properties.ssl.key.password='abcdefgh'
-);
+)
+FORMAT PLAIN ENCODE JSON;
 ```
 
 ### `SASL/SCRAM`
@@ -303,12 +340,12 @@ Here is an example of creating a sink authenticated with SASL/SCRAM without SSL 
 CREATE SINK sink1 FROM mv1                 
 WITH (
    connector='kafka',
-   type = 'append-only',
    topic='quickstart-events',
    properties.bootstrap.server='localhost:9093',
    properties.sasl.mechanism='SCRAM-SHA-256',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
    properties.sasl.password='admin-secret'
-);
+)
+FORMAT PLAIN ENCODE JSON;
 ```
