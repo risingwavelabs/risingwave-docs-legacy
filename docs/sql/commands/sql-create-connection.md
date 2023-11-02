@@ -19,31 +19,6 @@ WITH (
 );
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE CONNECTION'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('connection_name'),
-        ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Sequence(
-                rr.NonTerminal('connection_parameter'),
-                rr.Terminal('='),
-                rr.NonTerminal('value'),
-            ),
-            rr.Terminal(')'),
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 All WITH options are required unless stated otherwise.
@@ -104,5 +79,5 @@ Follow the steps below to create an AWS PrivateLink connection.
 
 7. Create a source or sink with AWS PrivateLink connection.
 
-   * Use the `CREATE SOURCE/TABLE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see [Ingest data from Kafka](/create-source/ingest-from-kafka.md) — [Create source with AWS PrivateLink connection](/create-source/ingest-from-kafka.md#ingest-from-with-aws-privatelink-connection).
-   * Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details on the syntax, see [Sink to Kafka](/guides/create-sink-kafka.md) — [Create sink with AWS PrivateLink connection](/guides/create-sink-kafka.md#create-sink-with-aws-privatelink-connection).
+   * Use the `CREATE SOURCE/TABLE` command to create a Kafka source with PrivateLink connection. For more details, see [Create source with AWS PrivateLink connection](/ingest/ingest-from-kafka.md#ingest-from-with-aws-privatelink-connection).
+   * Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details, see [Create sink with AWS PrivateLink connection](/guides/create-sink-kafka.md#create-sink-with-aws-privatelink-connection).
