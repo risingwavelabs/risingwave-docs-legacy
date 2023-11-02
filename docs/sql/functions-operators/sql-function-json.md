@@ -87,6 +87,43 @@ SELECT * FROM jsonb_each_text('{"a":"foo", "b":"bar"}'::jsonb);
 
 ```
 
+### `jsonb_extract_path`
+
+Extracts JSON sub-object at the specified path.
+
+This function is equivalent to the [`#>`](#jsonb--text---jsonb) operator in functionality.
+
+```bash title=Syntax
+jsonb_extract_path ( from_json jsonb, VARIADIC path_elems text[] ) → jsonb
+```
+- `from_json` is the input JSON value from which to extract the sub-object.
+
+- `path_elems` is the path elements that specify the location of the desired sub-object in the JSON structure. Multiple path elements can be provided as separate arguments.
+
+
+```sql title=Example
+SELECT json_extract_path('{"f2":{"f3":1},"f4":{"f5":99,"f6":"foo"}}', 'f4', 'f6')
+------RESULT
+"foo"
+```
+
+### `jsonb_extract_path_text`
+
+Extracts JSON sub-object at the specified path as text.
+
+This function is equivalent to the [`#>>`](#jsonb--text---text) operator in functionality.
+
+
+```bash title=Syntax
+jsonb_extract_path_text ( from_json jsonb, VARIADIC path_elems text[] ) → text
+```
+
+```sql title=Example
+SELECT jsonb_extract_path_text('{"f2":{"f3":1},"f4":{"f5":99,"f6":"string"}}', 'f4', 'f6');
+------RESULT
+string
+```
+
 ### `jsonb_object_keys`
 
 Returns the set of keys in the top-level JSON object.
