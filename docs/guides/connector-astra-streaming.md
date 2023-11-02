@@ -34,7 +34,7 @@ See the [Get started](/get-started.md) guide for options on how you can run Risi
 
 ### Create a table in RisingWave
 
-To learn about the specific syntax used to consume data from a Pulsar topic, see [Ingest data from Pulsar](/create-source/create-source-pulsar.md). To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](/create-source/create-source-kafka.md).
+To learn about the specific syntax used to consume data from a Pulsar topic, see [Ingest data from Pulsar](/create-source/ingest-from-pulsar.md). To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](/create-source/ingest-from-kafka.md).
 
 As an example, the following query creates a table that consumes data from an Astra Streaming topic connected to Pulsar.
 
