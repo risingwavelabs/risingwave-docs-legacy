@@ -164,11 +164,14 @@ const config = {
           },
           {
             to: "https://tutorials.risingwave.com/",
-            position: "left",
+            position: "right",
             html: `
-            <a href="https://tutorials.risingwave.com/" target="_blank" rel="noreferrer noopener" aria-label="Tutorials">
+            <img
+  src="/img/tutorial/icon.svg"
+  alt="RisingWave Tutorials"
+  style="width:22px;margin-top:-10px;"
+/>
              <span>Tutorials</span>
-            </a>
           `,
           },
           {
