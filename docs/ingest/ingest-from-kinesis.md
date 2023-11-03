@@ -1,11 +1,11 @@
 ---
-id: create-source-kinesis
+id: ingest-from-kinesis
 title: Ingest data from Kinesis
 description: Connect RisingWave to Kinesis Data Streams
-slug: /create-source-kinesis
+slug: /ingest-from-kinesis
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-kinesis/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-kinesis/" />
 </head>
 
 Use the SQL statement below to connect RisingWave to Kinesis Data Streams.

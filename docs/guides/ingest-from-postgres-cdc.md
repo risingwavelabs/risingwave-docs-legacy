@@ -24,7 +24,7 @@ You can ingest CDC data from PostgreSQL into RisingWave in two ways:
 
 - Using a CDC tool and a message broker
   
-  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/create-source/create-source-cdc.md) topic.
+  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/create-source/ingest-from-cdc.md) topic.
 
 ## Set up PostgreSQL
 

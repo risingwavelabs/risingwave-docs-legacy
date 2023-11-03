@@ -10,13 +10,13 @@ slug: /sink-to-delta-lake
 
 This guide describes how to sink data from RisingWave to Delta Lake. Delta Lake is an open-source storage framework designed to allow you to build a Lakehouse architecture with another compute engine. For more information, see [Delta Lake](https://delta.io).
 
-## Prerequisites 
+## Prerequisites
 
 - Ensure you already have an Delta Lake table that you can sink data to. For additional guidance on creating a table and setting up Delta Lake, refer to this [quickstart guide](https://docs.delta.io/latest/quick-start.html#create-a-table).
 
 - Ensure you have an upstream materialized view or source that you can sink data from.
 
-## Syntax 
+## Syntax
 
 ```sql
 CREATE SINK [ IF NOT EXISTS ] sink_name
@@ -62,7 +62,7 @@ spark-sql --packages io.delta:delta-core_2.12:2.2.0,org.apache.hadoop:hadoop-aws
 
 ### Create an upstream materialized view or source
 
-The following query creates a source using the built-in load generator, which creates mock data. For more details, see [CREATE SOURCE](/sql/commands/sql-create-source.md) and [Generate test data](/create-source/create-source-datagen.md). You can transform the data using additional SQL queries if needed.
+The following query creates a source using the built-in load generator, which creates mock data. For more details, see [CREATE SOURCE](/sql/commands/sql-create-source.md) and [Generate test data](/create-source/ingest-from-datagen.md). You can transform the data using additional SQL queries if needed.
 
 ```sql
 CREATE SOURCE s1_source (id int, name varchar)
@@ -96,7 +96,7 @@ WITH (
 
 #### Append-only sink from append-only source
 
-If you have an `append-only` source and want to create an `append-only` sink, set `type = append-only` in the `CREATE SINK` query. 
+If you have an `append-only` source and want to create an `append-only` sink, set `type = append-only` in the `CREATE SINK` query.
 
 ```sql
 CREATE SINK s1_sink FROM s1_source
