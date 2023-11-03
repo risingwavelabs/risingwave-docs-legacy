@@ -173,11 +173,10 @@ const config = {
             position: "right",
             html: `
             <img
-  src="/img/tutorial/icon.svg"
+  src="/img/tutorial/entrance.png"
   alt="RisingWave Tutorials"
-  style="width:22px;margin-top:-10px;"
+  style="height:30px;margin-top:7px;"
 />
-             <span>Tutorials</span>
           `,
           },
           {
