@@ -19,7 +19,6 @@ Regardless of whether the data is persisted in RisingWave, you can create materi
 CREATE SOURCE [ IF NOT EXISTS ] source_name (
     col_name data_type [ AS generation_expression ],
     ...
-   [ PRIMARY KEY (col_name, ... ) ]
    [ watermark_clause ]
 )
 [ WITH (
@@ -33,9 +32,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name (
 
 ## Notes
 
-For sources with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record.
-
-A [generated column](/sql/query-syntax/query-syntax-generated-columns.md) that is defined with non-deterministic functions cannot be specified as part of the primary key. For example, if `A1` is defined as `current_timestamp()`, then it cannot be part of the primary key.
+A [generated column](/sql/query-syntax/query-syntax-generated-columns.md) is defined with non-deterministic functions. When the data is ingested, the function will be evaluated to generated the value of this field.
 
 Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
 
@@ -56,8 +53,6 @@ To know when a data record is loaded to RisingWave, you can define a column that
 ## Supported sources
 
 Click a connector name to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
-
-Data formats denoted with an M only support materialized sources, which require a primary key to be specified. Otherwise, both materialized and non-materialized sources are supported.
 
 | Connector | Version | Format |
 |---------|---------|---------|
