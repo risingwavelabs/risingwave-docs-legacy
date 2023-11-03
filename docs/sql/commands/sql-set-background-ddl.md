@@ -30,10 +30,11 @@ SET BACKGROUND_DDL = { true | false };
 
 ## Persistence
 
-For materialized views created in the background, their table definitions persist, even if errors occur during checkpointing. This allows the materialized view jobs to be recovered from where they left off before the failure. Their table definitions and fragments will only be dropped if the job is canceled.
+For materialized views being created in the background, their table definitions persist while they are being created, even if errors occur during checkpointing. This allows the materialized view jobs to be recovered from where they left off before the failure. Their table definitions and fragments will only be dropped if the job is canceled.
 
-For materialized views created in the foreground, their table and fragments will be cleaned up if checkpointing fails or when the streaming job restarts from the beginning.
+For materialized views being created in the foreground, their table and fragments will be cleaned up if checkpointing fails, if the cluster is restarted, or if the stream job is cancelled.
 
+The key difference is during the **creating phase** of a materialized view. After a materialized view is created (i.e. backfilling has completed), both foreground and background materialized views are functionally the same.
 ## Background management
 
 ### Monitor progress
