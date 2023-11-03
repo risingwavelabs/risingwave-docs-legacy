@@ -62,7 +62,7 @@ spark-sql --packages io.delta:delta-core_2.12:2.2.0,org.apache.hadoop:hadoop-aws
 
 ### Create an upstream materialized view or source
 
-The following query creates a source using the built-in load generator, which creates mock data. For more details, see [CREATE SOURCE](/sql/commands/sql-create-source.md) and [Generate test data](/create-source/ingest-from-datagen.md). You can transform the data using additional SQL queries if needed.
+The following query creates a source using the built-in load generator, which creates mock data. For more details, see [CREATE SOURCE](/sql/commands/sql-create-source.md) and [Generate test data](/ingest/ingest-from-datagen.md). You can transform the data using additional SQL queries if needed.
 
 ```sql
 CREATE SOURCE s1_source (id int, name varchar)
