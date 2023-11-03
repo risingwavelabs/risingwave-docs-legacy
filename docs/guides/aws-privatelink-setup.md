@@ -34,7 +34,7 @@ Follow the steps below to create an AWS PrivateLink connection.
     ```
 
 7. Create a source or sink with AWS PrivateLink connection.
-    - Use the `CREATE SOURCE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see the [Ingest data from Kafka](/create-source/ingest-from-kafka.md) topic. Here is an example of connecting to a Kafka source through AWS PrivateLink.
+    - Use the `CREATE SOURCE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see the [Ingest data from Kafka](/ingest/ingest-from-kafka.md) topic. Here is an example of connecting to a Kafka source through AWS PrivateLink.
 
     ```sql
     CREATE SOURCE tcp_metrics_rw (

@@ -206,12 +206,12 @@ psql -h localhost -p 4566 -d dev -U root
 
 ### Create a source in RisingWave
 
-To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](/create-source/ingest-from-kafka.md).
+To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](/ingest/ingest-from-kafka.md).
 
-For example, the following query creates a materialized source that consumes data from an MSK topic connected to Kafka.
+For example, the following query creates a table that consumes data from an MSK topic connected to Kafka.
 
 ```sql
-CREATE MATERIALIZED SOURCE s (v1 int, v2 varchar) 
+CREATE TABLE s (v1 int, v2 varchar) 
 WITH (
   connector = 'kafka', topic = '<topic-name>', 
   properties.bootstrap.server = '<broker-url>', 

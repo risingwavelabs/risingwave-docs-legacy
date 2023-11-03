@@ -29,7 +29,7 @@ A view is a virtual relation that acts as an actual relation. It is not a part o
 
 ### Materialized views
 
-When the results of a view expression are stored in a database system, they are called materialized views. In RisingWave, the result of a materialized view is updated when a relevant event arrives in the system. When you query the result, it is returned instantly as the computation has already been completed when the data comes in. You need to use the [`CREATE MATERIALIZED VIEW`](/sql/commands/sql-create-mv.md) statement to create a materialized source.
+When the results of a view expression are stored in a database system, they are called materialized views. In RisingWave, the result of a materialized view is updated when a relevant event arrives in the system. When you query the result, it is returned instantly as the computation has already been completed when the data comes in. You need to use the [`CREATE MATERIALIZED VIEW`](/sql/commands/sql-create-mv.md) statement to create a materialized view.
 
 ### Indexes
 
