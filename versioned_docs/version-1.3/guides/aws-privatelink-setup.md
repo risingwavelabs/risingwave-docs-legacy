@@ -24,6 +24,7 @@ Follow the steps below to create an AWS PrivateLink connection.
 5. Create a [VPC endpoint service](https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html) associated with the Networkd Load Balancer created. Be sure to add the AWS principal of the account that will access the endpoint service to allow the service consumer to connect. See [Manage permissions](https://docs.aws.amazon.com/vpc/latest/privatelink/configure-endpoint-service.html#add-remove-permissions) for more details.
 
 6. Use the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) command in RisingWave to create an AWS PrivateLink connection referencing the endpoint service created. Here is an example of creating an AWS PrivateLink connection.
+
     ```sql
     CREATE CONNECTION connection_name WITH (
         type = 'privatelink',
@@ -33,7 +34,7 @@ Follow the steps below to create an AWS PrivateLink connection.
     ```
 
 7. Create a source or sink with AWS PrivateLink connection.
-    - Use the `CREATE SOURCE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see the [Ingest data from Kafka](/create-source/create-source-kafka.md) topic. Here is an example of connecting to a Kafka source through AWS PrivateLink.
+    - Use the `CREATE SOURCE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see the [Ingest data from Kafka](/ingest/ingest-from-kafka.md) topic. Here is an example of connecting to a Kafka source through AWS PrivateLink.
 
     ```sql
     CREATE SOURCE tcp_metrics_rw (

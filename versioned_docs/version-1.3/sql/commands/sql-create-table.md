@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS taxi_trips(
       tolls DOUBLE PRECISION>);
 ```
 
-The statement below creates a materialized source with a Kafka broker as the source.
+The statement below creates a table with the Kafka connector.
 
 ```sql
 CREATE TABLE IF NOT EXISTS source_abc (
