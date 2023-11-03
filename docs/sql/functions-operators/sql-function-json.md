@@ -197,8 +197,8 @@ SELECT '{"a":1,"b":2}'::jsonb ->> 'b';
 Deletes a key (and its value) from a JSON object, or matching string value(s) from a JSON array.
 
 ```bash title=Examples
-{"a": "b", "c": "d"}'::jsonb - 'a' → {"c": "d"}
-["a", "b", "c", "b"]'::jsonb - 'b' → ["a", "c"]
+'{"a": "b", "c": "d"}'::jsonb - 'a' → {"c": "d"}
+'["a", "b", "c", "b"]'::jsonb - 'b' → ["a", "c"]
 ```
 
 ### `jsonb - text[] → jsonb`
@@ -206,7 +206,7 @@ Deletes a key (and its value) from a JSON object, or matching string value(s) fr
 Deletes all matching keys or array elements from a JSON object.
 
 ```bash title=Example
-{"a": "b", "c": "d"}'::jsonb - '{a,c}'::text[] → {}
+'{"a": "b", "c": "d"}'::jsonb - '{a,c}'::text[] → {}
 ```
 
 ### `jsonb - integer → jsonb`
@@ -214,7 +214,7 @@ Deletes all matching keys or array elements from a JSON object.
 Deletes the array element with the specified index (negative integers counting from the end). Throws an error if JSON object is not an array.
 
 ```bash title=Example
-["a", "b"]'::jsonb - 1 → ["a"]
+'["a", "b"]'::jsonb - 1 → ["a"]
 ```
 
 ### `jsonb #- text[] → jsonb`
@@ -222,7 +222,7 @@ Deletes the array element with the specified index (negative integers counting f
 Deletes the field or array element at the specified path, where path elements can be either field keys or array indexes.
 
 ```bash title=Example
-["a", {"b":1}]'::jsonb #- '{1,b}' → ["a", {}]
+'["a", {"b":1}]'::jsonb #- '{1,b}' → ["a", {}]
 ```
 
 ### `(jsonb || jsonb) -> jsonb`
@@ -246,13 +246,13 @@ SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
 This operator checks if the left `jsonb` value contains the right `jsonb` value. For a detailed description and examples about containment and existence, see [jsonb Containment and Existence](https://www.postgresql.org/docs/current/datatype-json.html) in PostgreSQL's documentation.
 
 ```bash title=Examples
-[1, 2, 3]'::jsonb @> '[1, 3]'::jsonb → t
+'[1, 2, 3]'::jsonb @> '[1, 3]'::jsonb → t
 
-{"product": "PostgreSQL", "version": 9.4, "jsonb": true}'::jsonb @> '{"version": 9.4}'::jsonb → t
+'{"product": "PostgreSQL", "version": 9.4, "jsonb": true}'::jsonb @> '{"version": 9.4}'::jsonb → t
 
-{"foo": {"bar": "baz"}}'::jsonb @> '{"bar": "baz"}'::jsonb → f
+'{"foo": {"bar": "baz"}}'::jsonb @> '{"bar": "baz"}'::jsonb → f
 
-{"foo": {"bar": "baz"}}'::jsonb @> '{"foo": {}}'::jsonb → t
+'{"foo": {"bar": "baz"}}'::jsonb @> '{"foo": {}}'::jsonb → t
 ```
 
 ### `jsonb <@ jsonb -> boolean`
@@ -260,7 +260,7 @@ This operator checks if the left `jsonb` value contains the right `jsonb` value.
 This operator checks if the left `jsonb` value is contained within the right `jsonb` value. For a detailed description and examples about containment and existence, see [jsonb Containment and Existence](https://www.postgresql.org/docs/current/datatype-json.html) in PostgreSQL's documentation.
 
 ```bash title=Examples
-{"b":2}'::jsonb <@ '{"a":1, "b":2}'::jsonb → t
+'{"b":2}'::jsonb <@ '{"a":1, "b":2}'::jsonb → t
 ```
 
 ### `jsonb ? text -> boolean`
@@ -268,15 +268,15 @@ This operator checks if the left `jsonb` value is contained within the right `js
 This operator checks if a string exists as a top-level array element or object key within a `jsonb` value.
 
 ```bash title=Examples
-["foo", "bar", "baz"]'::jsonb ? 'bar' → t
+'["foo", "bar", "baz"]'::jsonb ? 'bar' → t
 
-{"foo": "bar"}'::jsonb ? 'foo' → t
+'{"foo": "bar"}'::jsonb ? 'foo' → t
 
-{"foo": "bar"}'::jsonb ? 'bar' → f
+'{"foo": "bar"}'::jsonb ? 'bar' → f
 
-{"foo": {"bar": "baz"}}'::jsonb ? 'bar' → f
+'{"foo": {"bar": "baz"}}'::jsonb ? 'bar' → f
 
-"foo"'::jsonb ? 'foo' → t
+'"foo"'::jsonb ? 'foo' → t
 ```
 
 ### `jsonb ?| text[] -> boolean`
@@ -284,11 +284,11 @@ This operator checks if a string exists as a top-level array element or object k
 This operator checks if any string in an array exists as a top-level array element or object key within a `jsonb` value.
 
 ```sql title=Examples
-{"a":1, "b":2, "c":3}'::jsonb ?| array['b', 'd'] → t
+'{"a":1, "b":2, "c":3}'::jsonb ?| array['b', 'd'] → t
 
-["a", "b", "c"]'::jsonb ?| array['b', 'd'] → t
+'["a", "b", "c"]'::jsonb ?| array['b', 'd'] → t
 
-"b"'::jsonb ?| array['b', 'd'] → t
+'"b"'::jsonb ?| array['b', 'd'] → t
 ```
 
 ### `json ?& text[] -> boolean`
@@ -296,11 +296,11 @@ This operator checks if any string in an array exists as a top-level array eleme
 This operator checks if all strings in an array exist as top-level array elements or object keys within a `jsonb` value.
 
 ```sql title=Examples
-{"a":1, "b":2, "c":3}'::jsonb ?& array['a', 'b'] → t
+'{"a":1, "b":2, "c":3}'::jsonb ?& array['a', 'b'] → t
 
-["a", "b", "c"]'::jsonb ?& array['a', 'b'] → t
+'["a", "b", "c"]'::jsonb ?& array['a', 'b'] → t
 
-["a", "b", "c"]'::jsonb ?& array['a', 'd'] → f
+'["a", "b", "c"]'::jsonb ?& array['a', 'd'] → f
 ```
 
 ### `jsonb #> text[] -> jsonb`
@@ -308,9 +308,9 @@ This operator checks if all strings in an array exist as top-level array element
 This operator extracts a nested value from a JSONB object using a text array of keys or indices.
 
 ```sql title=Examples
-{"a": {"b": ["foo","bar"]}}'::jsonb #> '{a,b,1}'::text[] → "bar"
+'{"a": {"b": ["foo","bar"]}}'::jsonb #> '{a,b,1}'::text[] → "bar"
 
-{"a": {"b": ["foo","bar"]}}'::jsonb #> '{a,b,null}'::text[] → NULL
+'{"a": {"b": ["foo","bar"]}}'::jsonb #> '{a,b,null}'::text[] → NULL
 ```
 
 ### `jsonb #>> text[] -> text`
@@ -318,11 +318,11 @@ This operator extracts a nested value from a JSONB object using a text array of 
 This operator extracts a nested value as text from a JSONB object using a text array of keys or indices.
 
 ```sql title=Examples
-{"a": {"b": ["foo","bar"]}}'::jsonb #>> '{a,b,1}'::text[] → bar
+'{"a": {"b": ["foo","bar"]}}'::jsonb #>> '{a,b,1}'::text[] → bar
 
-{"a": {"b": ["foo",null]}}'::jsonb #>> '{a,b,1}'::text[] → NULL
+'{"a": {"b": ["foo",null]}}'::jsonb #>> '{a,b,1}'::text[] → NULL
 
-{"a": {"b": ["foo","bar"]}}'::jsonb #>> '{a,b,null}'::text[] → NULL
+'{"a": {"b": ["foo","bar"]}}'::jsonb #>> '{a,b,null}'::text[] → NULL
 ```
 
 ## `IS JSON` predicate
