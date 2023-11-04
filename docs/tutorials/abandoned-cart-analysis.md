@@ -136,7 +136,11 @@ FROM
     products p ON a.product_id = p.id;
 ```
 
-If we query from the materialized view, the output might look like the following.
+Here is an example of what the output might be if we query from `abandoned_cart_analysis`.
+
+```sql
+SELECT * FROM abandoned_cart_analysis LIMIT 5;
+```
 
 ```
  cart_id |  abandonment_time   | user_id | first_name | last_name |          email          | product_id | product_name | product_description       | price  | category   
@@ -146,8 +150,34 @@ If we query from the materialized view, the output might look like the following
        3 | 2023-10-25 12:45:00 |       3 | Bob        | Johnson   | bobjohnson@example.com  |        103 | Product C    | Description of Product C  |   9.99 | Category 1
        4 | 2023-10-25 14:00:00 |       4 | Eve        | Williams  | evewilliams@example.com |        104 | Product D    | Description of Product D  |  39.99 | Category 3
        5 | 2023-10-26 15:15:00 |       1 | John       | Doe       | johndoe@example.com     |        102 | Product B    | Description of Product B  |  29.99 | Category 2
-(5 rows)
 ```
+
+## Step 3: Further analysis
+
+Using the `abandoned_cart_analysis` materialized view, we can perform numerous types of analysis related to abandoned shopping carts, users, and products. We can either query directly from the materialized view to get an overall idea during a specific moment, or build materialized views on top to create live dashboards.
+
+For instance, we can analyze users' behaviors by identifying users with the most abandoned carts with the following SQL query. By creating a materialized view, these results will be constantly updated, allowing us to see which users are often browsing the catalog, but not purchasing many items. 
+
+```sql
+CREATE MATERIALIZED VIEW most_abandoned AS
+SELECT user_id, COUNT(DISTINCT cart_id) AS abandoned_carts
+FROM abandoned_cart_analysis
+GROUP BY user_id
+ORDER BY abandoned_carts DESC;
+```
+
+If we query from the materialized view, the results may look like the following.
+
+```
+ user_id | abandoned_carts
+---------+-----------------
+ 39       | 40
+ 10       | 23
+ 439      | 12
+ 219      | 4
+```
+
+This is just a simple example of the type of analysis you can perform based on the `abandon_cart_analysis` materialized view. RisingWave supports many SQL commands and functions that you can leverage to conduct more detailed and thorough analysis. 
 
 ## Summary
 
