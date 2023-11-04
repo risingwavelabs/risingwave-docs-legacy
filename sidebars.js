@@ -58,7 +58,7 @@ const sidebars = {
             },
             {
               type: "doc",
-              id: "key-concepts",
+              id: "concepts/key-concepts",
               label: "Key concepts and terms",
             },
             {
@@ -92,36 +92,41 @@ const sidebars = {
           id: "get-started",
         },
         {
-          type: "category",
-          label: "Run RisingWave",
-          collapsible: true,
-          collapsed: true,
-          items: [
+          "type": "category",
+          "label": "Install RisingWave",
+          "collapsible": true,
+          "collapsed": true,
+          "items": [
             {
-              type: "doc",
-              id: "deploy/risingwave-trial",
-              label: "Try out",
+              "type": "doc",
+              "id": "deploy/risingwave-trial",
+              "label": "Quick install"
             },
             {
-              type: "category",
-              label: "Deploy to production",
-              collapsible: true,
-              collapsed: true,
-              items: [
+              "type": "category",
+              "label": "Production environments",
+              "collapsible": true,
+              "collapsed": true,
+              "items": [
                 {
-                  type: "doc",
-                  id: "deploy/risingwave-cloud",
-                  label: "RisingWave Cloud",
+                  "type": "doc",
+                  "id": "deploy/risingwave-cloud",
+                  "label": "Deploy on RisingWave Cloud"
                 },
                 {
-                  type: "doc",
-                  id: "deploy/risingwave-kubernetes",
-                  label: "Kubernetes",
+                  "type": "doc",
+                  "id": "deploy/risingwave-kubernetes",
+                  "label": "Deploy on Kubernetes with Operator"
                 },
-              ],
-            },
-          ],
-        },
+                {
+                  "type": "doc",
+                  "id": "deploy/risingwave-k8s-helm",
+                  "label": "Deploy on Kubernetes with Helm"
+                }
+              ]
+            }
+          ]
+        }
       ],
     },
     {
@@ -176,7 +181,12 @@ const sidebars = {
         {
           type: "doc",
           label: "Overview",
-          id: "data-ingestion",
+          id: "ingest/data-ingestion",
+        },
+        {
+          type: "doc",
+          label: "Modify source or table schemas",
+          id: "ingest/modify-schemas",
         },
         {
           type: "category",
@@ -193,7 +203,7 @@ const sidebars = {
                 {
                   type: "doc",
                   label: "Apache Kafka",
-                  id: "create-source/create-source-kafka",
+                  id: "ingest/ingest-from-kafka",
                 },
                 {
                   type: "doc",
@@ -216,7 +226,7 @@ const sidebars = {
                 {
                   type: "doc",
                   label: "Apache Pulsar",
-                  id: "create-source/create-source-pulsar",
+                  id: "ingest/ingest-from-pulsar",
                 },
                 {
                   type: "doc",
@@ -228,17 +238,17 @@ const sidebars = {
             {
               type: "doc",
               label: "AWS Kinesis",
-              id: "create-source/create-source-kinesis",
+              id: "ingest/ingest-from-kinesis",
             },
             {
               type: "doc",
               label: "AWS S3",
-              id: "create-source/create-source-s3",
+              id: "ingest/ingest-from-s3",
             },
             {
               type: "doc",
               label: "CDC via event streaming systems",
-              id: "create-source/create-source-cdc",
+              id: "ingest/ingest-from-cdc",
             },
             {
               type: "doc",
@@ -248,7 +258,7 @@ const sidebars = {
             {
               type: "doc",
               label: "Load generator",
-              id: "create-source/create-source-datagen",
+              id: "ingest/ingest-from-datagen",
             },
             {
               type: "doc",
@@ -263,7 +273,7 @@ const sidebars = {
             {
               type: "doc",
               label: "NATS JetStream",
-              id: "create-source/create-source-nats",
+              id: "ingest/ingest-from-nats",
             },
             {
               type: "doc",
@@ -273,7 +283,7 @@ const sidebars = {
             {
               type: "doc",
               label: "Redpanda",
-              id: "create-source/create-source-redpanda",
+              id: "ingest/ingest-from-redpanda",
             },
           ]
         },
@@ -321,14 +331,21 @@ const sidebars = {
           label: "Window functions",
         },
         {
-          type: "doc",
-          id: "transform/emit-on-window-close",
+          type: "category",
           label: "Emit on window close",
-        },
-        {
-          type: "doc",
-          id: "transform/watermarks",
-          label: "Watermarks",
+          collapsible: true,
+          collapsed: true,
+          link: {
+            type: "doc",
+            id: "transform/emit-on-window-close",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "transform/watermarks",
+              label: "Watermarks",
+            },
+          ]
         },
         {
           type: "doc",
@@ -360,6 +377,16 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Looker",
+          id: "guides/looker-integration",
+        },
+        {
+          type: "doc",
+          label: "Supabase",
+          id: "guides/supabase-integration",
+        },
+        {
+          type: "doc",
           label: "Superset",
           id: "guides/superset-integration",
         },
@@ -384,6 +411,11 @@ const sidebars = {
           items: [
             {
               type: "doc",
+              label: "Apache Doris",
+              id: "guides/sink-to-doris",
+            },
+            {
+              type: "doc",
               label: "Apache Kafka",
               id: "guides/create-sink-kafka",
             },
@@ -391,6 +423,11 @@ const sidebars = {
               type: "doc",
               label: "Apache Iceberg",
               id: "guides/sink-to-iceberg",
+            },
+            {
+              type: "doc",
+              label: "Apache Pulsar",
+              id: "guides/sink-to-pulsar",
             },
             {
               type: "doc",
@@ -536,6 +573,11 @@ const sidebars = {
                   id: "sql/query-syntax/query-syntax-with-clause",
                   label: "WITH clause",
                 },
+                {
+                  type: "doc",
+                  id: "sql/query-syntax/query-syntax-with-ordinality-clause",
+                  label: "WITH ORDINALITY clause",
+                },
               ],
             },
             {
@@ -551,13 +593,13 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  id: "sql/data-types/data-type-array",
-                  label: "Array",
+                  id: "sql/data-types/data-type-casting",
+                  label: "Casting",
                 },
                 {
                   type: "doc",
-                  id: "sql/data-types/data-type-casting",
-                  label: "Casting",
+                  id: "sql/data-types/data-type-array",
+                  label: "Array",
                 },
                 {
                   type: "doc",
@@ -709,7 +751,7 @@ const sidebars = {
                 {
                   type: "doc",
                   id: "sql/system-catalogs/information-schema",
-                  label: "information_schema",
+                  label: "Information schema",
                 },
                 {
                   type: "doc",
@@ -761,17 +803,37 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Manage",
+      label: "Deploy & operate",
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: "doc",
-          id: "manage/access-control",
+          id: "deploy/hardware-requirements",
+          label: "Hardware requirements",
+        },
+        {
+          type: "doc",
+          id: "deploy/upgrade-risingwave-k8s",
+          label: "Upgrade RisingWave with Helm",
+        },
+        {
+          type: "doc",
+          id: "deploy/k8s-cluster-scaling",
+          label: "Cluster scaling",
+        },
+        {
+          type: "doc",
+          id: "deploy/uninstall-risingwave-k8s",
+          label: "Uninstall RisingWave from a cluster",
         },
         {
           type: "doc",
           id: "manage/monitor-risingwave-cluster",
+        },
+        {
+          type: "doc",
+          id: "manage/access-control",
         },
         {
           type: "doc",
@@ -792,13 +854,14 @@ const sidebars = {
         {
           type: "doc",
           id: "manage/dedicated-compute-node",
+          label: "Set up a dedicated compute node",
         },
         {
           type: "doc",
           label: "Telemetry",
           id: "telemetry",
         },
-      ],
+      ]
     },
     {
       type: "doc",

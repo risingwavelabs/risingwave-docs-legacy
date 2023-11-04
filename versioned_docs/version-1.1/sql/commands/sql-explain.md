@@ -4,6 +4,9 @@ title: EXPLAIN
 description: Show the execution plan of a statement.
 slug: /sql-explain
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-explain/" />
+</head>
 
 <!--Track the implementation progress of EXPALIN here: https://github.com/risingwavelabs/risingwave/issues/4856-->
 

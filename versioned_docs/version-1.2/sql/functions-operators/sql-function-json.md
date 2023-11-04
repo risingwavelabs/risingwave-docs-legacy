@@ -3,6 +3,9 @@ id: sql-function-json
 slug: /sql-function-json
 title: JSON functions and operators
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-json/" />
+</head>
 
 ## JSON functions
 

@@ -4,6 +4,10 @@ title: View statement progress
 description: View the progress of a statement in RisingWave and abort it if it takes too long.
 slug: /view-statement-progress
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/view-statement-progress/" />
+</head>
+
 SQL statements like `CREATE MATERIALIZED VIEW`, `CREATE INDEX`, or `CREATE SINK` might take a while to complete, because they may consume a lot of data. In RisingWave, you can view the progress of such a statement, and abort it if necessary.
 
 To view the progress of a running `CREATE MATERIALIZED VIEW`, `CREATE INDEX`, or `CREATE SINK` statement, run the following command:

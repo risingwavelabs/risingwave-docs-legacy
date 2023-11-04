@@ -4,6 +4,9 @@ title: SHOW CREATE MATERIALIZED VIEW
 description: Show the query used to create the specified materialized view. 
 slug: /sql-show-create-mv
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-create-mv/" />
+</head>
 
 Use the `SHOW CREATE MATERIALIZED VIEW` command to see what query was used to create the specified materialized view. 
 

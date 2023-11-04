@@ -3,6 +3,9 @@ id: sql-function-time-window
 slug: /sql-function-time-window
 title: Time window functions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-time-window/" />
+</head>
 
 In stream processing, time windows are time intervals based on which we can divide events and perform data computations.
 

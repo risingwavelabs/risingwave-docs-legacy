@@ -4,6 +4,9 @@
  description: Describes how to ingest data from Citus CDC.
  slug: /ingest-from-citus-cdc
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-citus-cdc/" />
+</head>
 
 RisingWave supports ingesting change data capture (CDC) data from Citus database. Version 10.2 of Citus is supported.
 

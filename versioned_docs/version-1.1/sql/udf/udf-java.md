@@ -4,6 +4,9 @@ slug: /udf-java
 title: Use UDFs in Java
 description: Define your own functions with the help of the RisingWave Java UDF SDK.
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/udf-java/" />
+</head>
 
 This article provides a step-by-step guide for installing the RisingWave Java UDF SDK, defining functions using Java, starting a Java process as a UDF server, and declaring and using UDFs in RisingWave.
 

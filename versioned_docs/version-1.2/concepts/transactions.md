@@ -3,6 +3,9 @@ id: transactions
 title: Transactions
 slug: /transactions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/transactions/" />
+</head>
 
 Transactions in databases refer to logical units of work that consist of one or more database operations. A transaction is a sequence of database operations, such as reads (queries) and writes (updates or inserts), that are treated as a single indivisible and consistent unit. The main purpose of transactions is to ensure data integrity and maintain the ACID (Atomicity, Consistency, Isolation, Durability) properties of the database.
 

@@ -4,6 +4,9 @@ title: SHOW CREATE INDEX
 description: Show the query used to create the specified index. 
 slug: /sql-show-create-index
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-create-index/" />
+</head>
 
 Use the `SHOW CREATE INDEX` command to see what query was used to create the specified index. 
 

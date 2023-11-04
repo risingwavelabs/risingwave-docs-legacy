@@ -3,6 +3,9 @@ id: query-syntax-generated-columns
 slug: /query-syntax-generated-columns
 title: Generated columns
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-generated-columns/" />
+</head>
 
 A generated column is a special column that is always computed from other columns. In RisingWave, you can create a generated column when creating a table or source.
 

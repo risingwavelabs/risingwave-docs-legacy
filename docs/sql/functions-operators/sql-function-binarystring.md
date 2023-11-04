@@ -3,6 +3,9 @@ id: sql-function-binarystring
 slug: /sql-function-binarystring
 title: Binary string functions and operators
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-binarystring/" />
+</head>
 
 ### `bit_length`
 
@@ -140,3 +143,26 @@ SELECT sha512('risingwave'::bytea);
 \x3d6d6078c75ad459cdc689216d5de35bd6d9a9a50b9bed96417aaf7ad25057b37460564f0ad23a589c655eda45026096a6bab08b3c863f0425cbfea64b5f84a8
 ```
 
+---
+
+### `substr`
+
+Extracts a substring from a binary string (bytea) starting at position `start_int` for `count_int` bytes. If `count_int` is omitted, the substring extends to the end of the bytea value.
+
+```sql title=Syntax
+substr ( bytea_value, start_int, [, count_int] ) -> bytea
+```
+
+```sql title=Example
+SELECT substr('abcde'::bytea, 2, 7);
+```
+```
+\x62636465
+```
+
+```sql title=Example
+SELECT substr('abcde'::bytea, -2, 5);
+```
+```
+\x6162
+```

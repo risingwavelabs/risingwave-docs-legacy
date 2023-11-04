@@ -4,6 +4,9 @@ title: Ingest data from MySQL CDC
 description: Ingest data from MySQL CDC.
 slug: /ingest-from-mysql-cdc
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-mysql-cdc/" />
+</head>
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
 
@@ -23,7 +26,7 @@ You can ingest CDC data from MySQL in two ways:
 
   You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave.
 
-This topic describes how to ingest MySQL CDC data into RisingWave using the native MySQL CDC connector. Using an external CDC tool and a message broker is introduced in [Create source via event streaming systems](/create-source/create-source-cdc.md).
+This topic describes how to ingest MySQL CDC data into RisingWave using the native MySQL CDC connector. Using an external CDC tool and a message broker is introduced in [Create source via event streaming systems](/ingest/ingest-from-cdc.md).
 
 ## Set up MySQL
 
@@ -173,7 +176,8 @@ CREATE TABLE [ IF NOT EXISTS ] source_name (
 WITH (
    connector='mysql-cdc',
    <field>=<value>, ...
-);
+)
+[ FORMAT DEBEZIUM ENCODE JSON ];
 ```
 
 Note that a primary key is required.
@@ -190,7 +194,7 @@ All the fields listed below are required.
 |password| Password of the database. |
 |database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
-|server.id| A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster.|
+|server.id| Optional. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table is an experimental feature. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 ### Data format

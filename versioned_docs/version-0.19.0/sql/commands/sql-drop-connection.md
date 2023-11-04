@@ -4,6 +4,9 @@ title: DROP CONNECTION
 description: Remove a connection.
 slug: /sql-drop-connection
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-connection/" />
+</head>
 
 Use the `DROP CONNECTION` command to remove a connection.
 
