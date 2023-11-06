@@ -32,10 +32,10 @@ WITH (
 | --------------- | ---------------------------------------------------------------------- |
 | `type`          | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, the table you are sinking to needs to have a `UNIQUE KEY`. |
 | `doris.url`     | Required. The connection port for the frontend of Doris. This is not the MySQL connection port. |
-| `doris.username`| Optional. The user name of the Doris user. |
-| `doris.password`| Optional. The password associated with the Doris user. |
-| `doris.database`| Optional. The Doris database you want to sink data to. |
-| `doris.table`   | Optional. The Doris table you want to sink data to. |
+| `doris.username`| Required. The user name of the Doris user. |
+| `doris.password`| Required. The password associated with the Doris user. |
+| `doris.database`| Required. The Doris database you want to sink data to. |
+| `doris.table`   | Required. The Doris table you want to sink data to. |
 | `force_append_only`| Optional. If `true`, forces the sink to be `append-only`, even if it cannot be. |
 | `primary_key`   | Optional. The primary keys of the sink. Use ',' to delimit the primary key columns. |
 
