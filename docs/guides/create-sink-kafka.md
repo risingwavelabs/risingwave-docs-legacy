@@ -81,7 +81,7 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
 |data_encode| Data encode. Supported encodes: `JSON` and `AVRO`. Only `UPSERT AVRO` sinks are supported. |
 |force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
-|schemas.enable| Only accepted for `UPSERT` sinks. If `true`, the schema information will also be outputted to the Kafka sink. |
+|schemas.enable| Only configurable for upsert JSON sinks. By default, this value is `false` for upsert JSON sinks and `true` for debezium `JSON` sinks. If `true`, RisingWave will sink the data with the schema to the Kafka sink. Note that this is not referring to a schema registry containing a JSON schema, but rather schema formats defined using [Kafka Connect](https://www.confluent.io/blog/kafka-connect-deep-dive-converters-serialization-explained/#json-schemas).|
 
 ### Avro specific parameters
 
