@@ -10,7 +10,7 @@ slug: /create-sink-kafka
 
 This topic describes how to sink data from RisingWave to a Kafka broker and how to specify security (encryption and authentication) settings.
 
-A sink is an external target that you can send data to. To stream data out of RisingWave, you need to create a sink. Use the `CREATE SINK` statement to create a sink. You can create a sink with data from a materialized source, a materialized view, or a table. RisingWave only supports writing messages in non-transactional mode.
+A sink is an external target that you can send data to. To stream data out of RisingWave, you need to create a sink. Use the `CREATE SINK` statement to create a sink. You can create a sink with data from a materialized view, a table or a source. RisingWave only supports writing messages in non-transactional mode.
 
 :::tip Guided setup
 RisingWave Cloud provides an intuitive guided setup for creating a Kafka sink. For more information, see [Create a sink using guided setup](/cloud/create-a-sink/#using-guided-setup) in the RisingWave Cloud documentation.
@@ -72,14 +72,15 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |batch.size |properties.batch.size| int|
 |client.id|properties.client.id| string |
 |enable.idempotence |properties.enable.idempotence |bool |
+|max.in.flight.requests.per.connection| properties.max.in.flight.requests.per.connection| int |
 |message.max.bytes | properties.message.max.bytes | int |
 |message.send.max.retries |properties.message.send.max.retries| int|
+|message.timeout.ms| properties.message.timeout.ms| int |
 |queue.buffering.max.kbytes |properties.queue.buffering.max.kbytes| int|
 |queue.buffering.max.messages |properties.queue.buffering.max.messages |int|
 |queue.buffering.max.ms |properties.queue.buffering.max.ms |float|
 |retry.backoff.ms |properties.retry.backoff.ms| int|
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
-
 
 ## Examples
 

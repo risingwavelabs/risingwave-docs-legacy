@@ -10,7 +10,6 @@ slug: /sql-create-connection
 
 Use the `CREATE CONNECTION` command to create an AWS PrivateLink connection for a Kafka source connector. This is necessary in order to be able to consume messages from a Kafka service located in a different VPC from the RisingWave cluster in the cloud.
 
-
 ## Syntax
 
 ```sql
@@ -19,7 +18,6 @@ WITH (
     connection_parameter = 'value'
 );
 ```
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -46,10 +44,9 @@ export const svg = rr.Diagram(
 
 <drawer SVG={svg} />
 
-
 ## Parameters
 
-All WITH options are required unless stated otherwise. 
+All WITH options are required unless stated otherwise.
 
 |Parameter or clause            | Description           |
 |-------------------------------|-----------------------|
@@ -60,7 +57,7 @@ All WITH options are required unless stated otherwise.
 |tags                           |Optional. The AWS tags used to check for resource leakage. This parameter should have the format: `key1=value1, key2=value2, ...`.|
 
 :::note
-You can either tag the VPC endpoints by specifying the `tags` parameter when using the `CREATE CONNECTION` command or by specifying the environment variable `RW_PRIVATELINK_ENDPOINT_DEFAULT_TAGS`. When specifying the tags, follow the format of `key1=value1, key2=value2, ...`. If both are specified, the tags specified in the environment variable will be appended to the ones specified by the `tags` parameter. 
+You can either tag the VPC endpoints by specifying the `tags` parameter when using the `CREATE CONNECTION` command or by specifying the environment variable `RW_PRIVATELINK_ENDPOINT_DEFAULT_TAGS`. When specifying the tags, follow the format of `key1=value1, key2=value2, ...`. If both are specified, the tags specified in the environment variable will be appended to the ones specified by the `tags` parameter.
 :::
 
 ## Example
@@ -107,6 +104,5 @@ Follow the steps below to create an AWS PrivateLink connection.
 
 7. Create a source or sink with AWS PrivateLink connection.
 
-   * Use the `CREATE SOURCE/TABLE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see [Ingest data from Kafka](/create-source/create-source-kafka.md) — [Create source with AWS PrivateLink connection](/create-source/create-source-kafka.md#create-source-with-aws-privatelink-connection).
+   * Use the `CREATE SOURCE/TABLE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see [Ingest data from Kafka](/ingest/ingest-from-kafka.md) — [Create source with AWS PrivateLink connection](/ingest/ingest-from-kafka.md#create-source-with-aws-privatelink-connection).
    * Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details on the syntax, see [Sink to Kafka](/guides/create-sink-kafka.md) — [Create sink with AWS PrivateLink connection](/guides/create-sink-kafka.md#create-sink-with-aws-privatelink-connection).
-

@@ -1,11 +1,11 @@
 ---
-id: create-source-nats
+id: ingest-from-nats
 title: Ingest data from NATS JetStream
 description: Ingest data from NATS JetStream into RisingWave.
-slug: /create-source-nats
+slug: /ingest-from-nats
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-nats/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-nats/" />
 </head>
 
 You can ingest data from NATS JetStream into RisingWave by using the NATS source connector in RisingWave.
@@ -34,12 +34,13 @@ When creating a source, you can choose to persist the data from the source in Ri
 ### Syntax
 
 ```sql
-CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
+CREATE { TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
 [ schema_definition ]
 WITH (
    connector='nats',
    server_url='<your nats server>:<port>', [ <another_server_url_if_available>, ...]
-   subject='<your subject>',
+   subject='<subject>[,<another_subject...]',
+   stream='stream_name',
 
 -- optional parameters
    connect_mode=<connect_mode>
@@ -75,12 +76,12 @@ For a table with primary key constraints, if a new data record with an existing 
 
 According to the [NATS documentation](https://docs.nats.io/running-a-nats-service/nats_admin/jetstream_admin/naming), stream names must adhere to subject naming rules as well as being friendly to the file system. Here are the recommended guidelines for stream names:
 
-* Use alphanumeric values.
-* Avoid spaces, tabs, periods (`.`), greater than (`>`) or asterisks (`*`).
-* Do not include path separators (forward slash or backward slash).
-* Keep the name length limited to 32 characters as the JetStream storage directories include the account, stream name, and consumer name.
-* Avoid using reserved file names like `NUL` or `LPT1`.
-* Be cautious of case sensitivity in file systems. To prevent collisions, ensure that stream or account names do not clash due to case differences. For example, `Foo` and `foo` would collide on Windows or macOS systems.
+- Use alphanumeric values.
+- Avoid spaces, tabs, periods (`.`), greater than (`>`) or asterisks (`*`).
+- Do not include path separators (forward slash or backward slash).
+- Keep the name length limited to 32 characters as the JetStream storage directories include the account, stream name, and consumer name.
+- Avoid using reserved file names like `NUL` or `LPT1`.
+- Be cautious of case sensitivity in file systems. To prevent collisions, ensure that stream or account names do not clash due to case differences. For example, `Foo` and `foo` would collide on Windows or macOS systems.
 
 :::
 
@@ -89,7 +90,8 @@ According to the [NATS documentation](https://docs.nats.io/running-a-nats-servic
 |Field|Notes|
 |---|---|
 |`server_url`| Required. URLs of the NATS JetStream server, in the format of *address*:*port*. If multiple addresses are specified, use commas to separate them.|
-|`subject`| Required. NATS subject that you want to ingest from.|
+|`subject`| Required. NATS subject that you want to ingest data from. To specify more than one subjects, use a comma.|
+|`stream` | Required. NATS stream that you want to ingest data from.|
 |`connect_mode`|Required. Authentication mode for the connection. Allowed values: <ul><li>`plain`: No authentication. </li><li>`user_and_password`: Use user name and password for authentication. For this option, `username` and `password` must be specified.</li><li> `credential`: Use JSON Web Token (JWT) and NKeys for authentication. For this option, `jwt` and `nkey` must be specified.</li></ul> |
 |`jwt` and `nkey`|JWT and NKEY for authentication. For details, see [JWT](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/jwt) and [NKeys](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/nkey_auth).|
 |`username` and `password`| Conditional. The client user name and pasword. Required when `connect_mode` is `user_and_password`.|
