@@ -24,8 +24,8 @@ FROM TUMBLE(events, event_time, INTERVAL '1' MINUTE)
 GROUP BY window_start;
 ```
 
-- **Emit on update:** With this policy, the aggregation operator emits a new count(*) result downstream whenever each barrier passes (default interval is 1 second). This updated count is then reflected in the materialized view or outputted to external systems.
-- **Emit on window close:** When the watermark defined on event_time surpasses the end time of a time window, the aggregation operator emits the final immutable aggregation result downstream. This result represents the complete aggregation for the window and is not subject to further changes.
+- **Emit on update:** With this policy, the aggregation operator emits a new `count(*)` result downstream whenever each barrier passes (default interval is 1 second). This updated count is then reflected in the materialized view or outputted to external systems.
+- **Emit on window close:** When the watermark defined on `event_time` surpasses the end time of a time window, the aggregation operator emits the final immutable aggregation result downstream. This result represents the complete aggregation for the window and is not subject to further changes.
 
 RisingWave defaults to the emit-on-update behavior to ensure consistency between materialized views and base tables. This choice aligns with the SQL definition of view and helps maintain coherence across the system.
 

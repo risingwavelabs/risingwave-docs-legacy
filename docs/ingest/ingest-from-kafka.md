@@ -1,11 +1,11 @@
 ---
-id: create-source-kafka
+id: ingest-from-kafka
 title: Ingest data from Kafka
 description: Connect RisingWave to a Kafka broker.
-slug: /create-source-kafka
+slug: /ingest-from-kafka
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-kafka/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-kafka/" />
 </head>
 
 This topic describes how to connect RisingWave to a Kafka broker that you want to receive data from, and how to specify data formats, schemas, and security (encryption and authentication) settings.
@@ -113,9 +113,9 @@ For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SO
 
 :::note
 
-RisingWave performs primary key constraint checks on materialized sources but not on non-materialized sources. If you need the checks to be performed, please create a materialized source.
+RisingWave performs primary key constraint checks on tables but not on sources. If you need the checks to be performed, please create a table.
 
-For materialized sources with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
+For tables with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
 
 :::
 
@@ -444,10 +444,10 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 
 :::
 
-Here is an example of creating a materialized source encrypted with SSL without using SASL authentication.
+Here is an example of creating a table encrypted with SSL without using SASL authentication.
 
 ```sql
-CREATE TABLE IF NOT EXISTS source_1 (
+CREATE TABLE IF NOT EXISTS table_1 (
    column1 varchar,
    column2 integer,
 )
@@ -550,10 +550,10 @@ For SASL/SCRAM with SSL, you also need to include these SSL parameters:
 - `properties.ssl.key.location`
 - `properties.ssl.key.password`
 
-Here is an example of creating a materialized source authenticated with SASL/SCRAM without SSL encryption.
+Here is an example of creating a table authenticated with SASL/SCRAM without SSL encryption.
 
 ```sql
-CREATE TABLE IF NOT EXISTS source_4 (
+CREATE TABLE IF NOT EXISTS table_4 (
    column1 varchar,
    column2 integer,
 )

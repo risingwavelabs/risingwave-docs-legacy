@@ -1,11 +1,11 @@
 ---
-id: create-source-pulsar
+id: ingest-from-pulsar
 title: Ingest data from Pulsar
 description: Connect RisingWave to a Pulsar broker.
-slug: /create-source-pulsar
+slug: /ingest-from-pulsar
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-pulsar/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-pulsar/" />
 </head>
 
 You can ingest data from Pulsar into RisingWave by using the Pulsar source connector in RisingWave.

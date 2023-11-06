@@ -14,8 +14,6 @@ To ingest data from Amazon MSK into RisingWave, you need an operational Amazon M
 
 This guide will detail the ingesting streaming data from Amazon MSK into RisingWave.
 
-
-
 ## Set up Amazon MSK
 
 To learn about how to set up an Amazon MSK account and create a cluster, see [Getting started using Amazon MSK](https://docs.aws.amazon.com/msk/latest/developerguide/getting-started.html). For this demo, we will assume the selection of **Quick create** for the **Cluster creation method** and **Provisioned** for the **Cluster type**. The cluster creation can take about 15 minutes.
@@ -28,22 +26,13 @@ While creating your cluster, note down the following information regarding the c
 
 3. Get the **ARN** value from the **Cluster summary**.
 
-
 To customize the IAM policy, see [IAM access control](https://docs.aws.amazon.com/msk/latest/developerguide/iam-access-control.html).
-
-
-
 
 ## Set up EC2 on AWS
 
 To learn how to create an EC2 client machine and add the security group of the client to the inbound rules of the cluster's security group from the VPC console, see [Create a client machine](https://docs.aws.amazon.com/msk/latest/developerguide/create-client-machine.html).
 
-
-
-
-
 ## Configure MSK Kafka
-
 
 ### Enable SASL
 
@@ -54,8 +43,6 @@ To learn how to create an EC2 client machine and add the security group of the c
 3. Select **SASL/SCRAM authentication** and click **Save changes**.
 
 For more information regarding SASL settings, see [Sign-in credentials authentication with AWS Secrets Manager](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html).
-
-
 
 ### Create a symmetric key
 
@@ -72,9 +59,6 @@ For more information regarding SASL settings, see [Sign-in credentials authentic
 6. Lastly, review the details and click **Finish**.
 
 For more information, see [Creating symmetric encryption KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk).
-
-
-
 
 ### Store a new Secret
 
@@ -101,9 +85,6 @@ For more information, see [Creating symmetric encryption KMS keys](https://docs.
 
 For more information, see [Sign-in credentials authentication with AWS Secrets Manager](https://docs.aws.amazon.com/msk/latest/developerguide/msk-password.html).
 
-
-
-
 ### Link the Secret with the MSK cluster
 
 1. Access the [Amazon MSK console](https://console.aws.amazon.com/msk/) and select the MSK cluster.
@@ -115,9 +96,6 @@ For more information, see [Sign-in credentials authentication with AWS Secrets M
 4. Back on the main page, click the **Properties** tab, and in the **Security settings** section, under **SASL/SCRAM authentication**, click **Associate secrets**.
 
 5. Paste the **Secret ARN** value you recorded in the previous step and click **Associate secrets**.
-
-
-
 
 ### Use SSH to log into the EC2 machine
 
@@ -131,9 +109,6 @@ To find your specific command values:
 
 2. Click **Connect**, select **SSH client**, and copy the command example provided.
 
-
-
-
 ### Install AWS CLI and Java
 
 ```terminal
@@ -144,8 +119,6 @@ sudo ./aws/install
 sudo apt install openjdk-8-jdk -y
 ```
 
-
-
 ### Download Kakfa client
 
 ```terminal
@@ -153,10 +126,7 @@ wget https://archive.apache.org/dist/kafka/2.6.2/kafka_2.12-2.6.2.tgz
 tar -xzf kafka_2.12-2.6.2.tgz
 ```
 
-
-
 ### Configure AWS IAM credentials on EC2
-
 
 1. Run the following command to configure AWS credentials and default settings.
 
@@ -194,10 +164,7 @@ tar -xzf kafka_2.12-2.6.2.tgz
     ssl.truststore.location=/home/ubuntu/kafka.client.truststore.jks
     ```
 
-
-
 ### Create a topic using the broker address with SASL
-
 
 1. Access the [Amazon MSK console](https://console.aws.amazon.com/msk/) and select the cluster.
 
@@ -239,12 +206,12 @@ psql -h localhost -p 4566 -d dev -U root
 
 ### Create a source in RisingWave
 
-To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](/create-source/create-source-kafka.md).
+To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](/ingest/ingest-from-kafka.md).
 
-For example, the following query creates a materialized source that consumes data from an MSK topic connected to Kafka.
+For example, the following query creates a table that consumes data from an MSK topic connected to Kafka.
 
 ```sql
-CREATE MATERIALIZED SOURCE s (v1 int, v2 varchar) 
+CREATE TABLE s (v1 int, v2 varchar) 
 WITH (
   connector = 'kafka', topic = '<topic-name>', 
   properties.bootstrap.server = '<broker-url>', 
