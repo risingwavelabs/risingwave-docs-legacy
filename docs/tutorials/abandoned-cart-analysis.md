@@ -162,11 +162,15 @@ For instance, we can analyze users' behaviors by identifying users with the most
 CREATE MATERIALIZED VIEW most_abandoned AS
 SELECT user_id, COUNT(DISTINCT cart_id) AS abandoned_carts
 FROM abandoned_cart_analysis
-GROUP BY user_id
-ORDER BY abandoned_carts DESC;
+GROUP BY user_id;
 ```
 
-If we query from the materialized view, the results may look like the following.
+If we query from the materialized view and order `abandoned_carts` from greatest to least, we can see which customers are not making many purchases. Note that the `ORDER BY` clause was not included when creating the materialized view. The order is not maintained as the materialized view gets refreshed with new data. The results may look like the following.
+
+```sql
+SELECT * FROM most_abandoned
+ORDER BY abandoned_carts DESC
+```
 
 ```
  user_id | abandoned_carts
