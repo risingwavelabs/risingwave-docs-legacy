@@ -162,13 +162,13 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "tutorials/use-risingwave-to-monitor-risingwave-metrics",
-          label: "Use RisingWave to monitor RisingWave metrics",
+          id: "tutorials/abandoned-carts",
+          label: "Process and transform abandoned cart events",
         },
         {
           type: "doc",
-          id: "tutorials/abandoned-carts",
-          label: "Process and transform abandoned cart events",
+          id: "tutorials/use-risingwave-to-monitor-risingwave-metrics",
+          label: "Use RisingWave to monitor RisingWave metrics",
         },
       ],
     },
