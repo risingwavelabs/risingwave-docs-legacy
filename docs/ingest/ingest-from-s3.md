@@ -16,7 +16,7 @@ Use the SQL statement below to connect RisingWave to an Amazon S3 source.
 CREATE SOURCE [ IF NOT EXISTS ] source_name 
 schema_definition
 WITH (
-   connector='s3',
+   connector={ 's3' | 's3_v2' },
    connector_parameter='value', ...
 )
 FORMAT data_format ENCODE data_encode (
@@ -62,14 +62,19 @@ export const svg = rr.Diagram(
                     rr.Sequence(
                         rr.Terminal('connector'),
                         rr.Terminal('='),
-                        rr.NonTerminal('s3', 'skip'),
+                        rr.Choice(1,
+                            rr.Terminal('\'s3\''),
+                            rr.Terminal('\'s3_v2\'')
+                        ),
                         rr.Terminal(','),
                     ),
                     rr.OneOrMore(
                         rr.Sequence(
                             rr.NonTerminal('connector_parameter', 'skip'),
                             rr.Terminal('='),
+                            rr.Terminal('\''),
                             rr.NonTerminal('value', 'skip'),
+                            rr.Terminal('\''),
                             rr.Terminal(','),
                         ),
                     ),
@@ -96,6 +101,7 @@ export const svg = rr.Diagram(
 
 |Field|Notes|
 |---|---|
+|connector|Required. Select between the `s3` and `s3_v2` (recommended) connector. [Learn more about `s3_v2`](#s3_v2-connector).|
 |s3.region_name |Required. The service region.|
 |s3.bucket_name |Required. The name of the bucket the data source is stored in. |
 |s3.credentials.access|Required. This field indicates the access key ID of AWS. |
@@ -113,6 +119,12 @@ Empty cells in CSV files will be parsed to `NULL`.
 |*data_encode*| Supported data encodes: `CSV`, `JSON`. |
 |*without_header*| Whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
 |*delimiter*| How RisingWave splits contents. For `JSON` encode, the delimiter is `\n`. |
+
+### `s3_v2` connector
+
+The `s3` connector treats files as splits, resulting in poor scalability and potential timeouts when dealing with a large number of files.
+
+The `s3_v2` connector is designed to address the scalability and performance limitations of the `s3` connector by implementing a more efficient listing and fetching mechanism. If you want to explore the technical details of this new approach, refer to [the design doc](https://github.com/risingwavelabs/rfcs/blob/main/rfcs/0076-refined-s3-source.md).
 
 ## Example
 
@@ -132,7 +144,7 @@ CREATE TABLE s(
     primary key(id)
 ) 
 WITH (
-    connector = 's3',
+    connector = 's3_v2',
     s3.region_name = 'ap-southeast-2',
     s3.bucket_name = 'example-s3-source',
     s3.credentials.access = 'xxxxx',
@@ -154,7 +166,7 @@ CREATE TABLE s3(
     mark int,
 )
 WITH (
-    connector = 's3',
+    connector = 's3_v2',
     match_pattern = '%Ring%*.ndjson',
     s3.region_name = 'ap-southeast-2',
     s3.bucket_name = 'example-s3-source',
