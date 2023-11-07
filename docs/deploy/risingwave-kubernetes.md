@@ -74,7 +74,7 @@ Before the deployment, ensure that the following requirements are satisfied.
     Run the following command to install a specific version instead of the latest version.
 
     ```shell
-    # Replace ${VERSION} with the version you want to install, e.g., v0.4.0
+    # Replace ${VERSION} with the version you want to install, e.g., v1.3.0
     kubectl apply --server-side -f https://github.com/risingwavelabs/risingwave-operator/releases/download/${VERSION}/risingwave-operator.yaml
     ```
 
@@ -156,9 +156,9 @@ If you want to apply the standard S3 manifest file in the Operator's manifest di
 
 1. Create a Secret with the name `s3-credentials`.
 
-    ```shell
-    kubectl create secret generic s3-credentials --from-literal AccessKeyID=${ACCESS_KEY} --from-literal SecretAccessKey=${SECRET_ACCESS_KEY}
-    ```
+```shell
+kubectl create secret generic s3-credentials --from-literal AccessKeyID=${ACCESS_KEY} --from-literal SecretAccessKey=${SECRET_ACCESS_KEY}
+```
 
 2. On the S3 console, [create a bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html) with the name `risingwave` in the US East (N. Virginia) (`us-east-1`) region.
 
@@ -173,8 +173,8 @@ curl https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/d
 And then, apply the manifest file by using the following command:
 
  ```shell
-        kubectl apply -f a.yaml      # relative path
-        kubectl apply -f /tmp/a.yaml # absolute path
+kubectl apply -f a.yaml      # relative path
+kubectl apply -f /tmp/a.yaml # absolute path
 ```
 
 To customize the state backend of your RisingWave cluster, edit the `spec:stateStore` section under the RisingWave resource (`kind: RisingWave`).
@@ -183,10 +183,10 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="storage_selection">
-<TabItem value="s3" label="etcd+S3">
+<TabItem value="s3" label="AWS S3">
 
 </TabItem>
-<TabItem value="minio" label="etcd+MinIO">
+<TabItem value="minio" label="MinIO">
 
 :::note
 The performance of MinIO is closely tied to the disk performance of the node where it is hosted. We have observed that AWS EBS does not perform well in our tests. For optimal performance, we recommend using S3 or a compatible cloud service.
@@ -326,32 +326,10 @@ kubectl get risingwave
 
 If the instance is running properly, the output should look like this:
 
-<Tabs groupId="storage_selection">
-<TabItem value="s3" label="etcd+S3">
-
-```
+```shell
 NAME        RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
 risingwave  True      etcd            S3                30s
 ```
-
-</TabItem>
-<TabItem value="minio" label="etcd+MinIO">
-
-```
-NAME        RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
-risingwave  True      etcd            MinIO             30s
-```
-
-</TabItem>
-<TabItem value="hdfs" label="etcd+HDFS">
-
-```
-NAME                   RUNNING    STORAGE(META)   STORAGE(OBJECT)   AGE
-risingwave-etcd-hdfs   True       Etcd            HDFS              30s
-```
-
-</TabItem>
-</Tabs>
 
 ## Connect to RisingWave
 
