@@ -11,7 +11,10 @@ slug: /sql-update
 Use the `UPDATE` command to modify values of existing rows in a table.
 
 :::info
-UPDATE cannot modify data in the primary key column of a table.
+
+- `UPDATE` cannot modify data in the primary key column of a table.
+
+- Call [`FLUSH`](/sql/commands/sql-flush.md) after `UPDATE` to persist the changes to storage. This ensures that the changes are committed and visible for subsequent reads.
 :::
 
 ## Syntax
