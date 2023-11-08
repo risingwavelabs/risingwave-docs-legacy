@@ -4,6 +4,9 @@ title: SELECT
 description: Retrieve data from a table or a materialized view. 
 slug: /sql-select
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-select/" />
+</head>
 
 Use the `SELECT` command to retrieve rows from a table or materialized view. It returns the rows that satisfy the creteria that you specify with the clauses and conditions in your query.
 
@@ -11,8 +14,8 @@ Use the `SELECT` command to retrieve rows from a table or materialized view. It 
 
 ```sql
 [ WITH clause ]
-SELECT [ ALL | DISTINCT ] [ * | expression [ AS output_name ] [ , expression [ AS output_name ] ... ] ]
-    [ VALUE clause ]
+SELECT [ ALL | DISTINCT ] [ [table_name.]* [ EXCEPT ( [table_name.]except_column, ... ] ) ] | expression [ AS output_name ] [ , expression [ AS output_name ] ... ] ]
+    [ VALUES clause ]
     [ FROM from_item [ , from_item ...] ]
     [ WHERE condition ]
     [ GROUP BY grouping_expression [ , grouping_expression ... ] ]
@@ -36,6 +39,7 @@ Where `from_item` can be:
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
 |**WITH** clause           | Provides a way to write supplemental statements for a larger query. For more information, see [`WITH` clause](/sql/query-syntax/query-syntax-with-clause.md). |
+|**EXCEPT** clause|Exclude one or more columns from the result set. By specifying *except_column*, the query will return all columns in the result set except those specified.|
 |*expression*               |A column or an expression.|
 |**VALUES** clause          | This clause generates one or more rows of data as a table expression. For details, see [VALUES clause](/sql/query-syntax/query-syntax-values-clause.md).|
 |*alias*                    |A temporary alternative name for a table or materialized view in a query.|

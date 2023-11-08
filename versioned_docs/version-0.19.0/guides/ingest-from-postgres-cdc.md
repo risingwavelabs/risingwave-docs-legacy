@@ -4,6 +4,9 @@
  description: Describes how to ingest data from PostgreSQL CDC.
  slug: /ingest-from-postgres-cdc
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-postgres-cdc/" />
+</head>
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
 
@@ -125,6 +128,12 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
     src={require('../images/modify-instances.png').default}
     alt="Apply changes"
     />
+
+4. Grant the RDS replication privileges to the user.
+
+    ```sql
+    GRANT rds_replication TO <username>;
+    ```
 
 </TabItem>
 </Tabs>

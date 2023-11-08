@@ -4,12 +4,12 @@ title: ALTER TABLE
 description: Modify the structure of an existing table.
 slug: /sql-alter-table
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-table/" />
+</head>
 
-Use the `ALTER TABLE` command to modify the structure of an existing regular table by adding or deleteing its columns.
+Use the `ALTER TABLE` command to modify the structure of an existing regular table by adding or deleting its columns. Tables defined with connector settings but without a schema registry can be altered. 
 
-:::note
-Currently, `ALTER TABLE` does not support tables with connector settings (i.e. materialized sources created with [`CREATE TABLE`](sql-create-table.md)). This functionality will be available in future releases.
-:::
 
 ## Syntax
 
@@ -22,7 +22,7 @@ ALTER TABLE table_name alter_option;
 ## Adding a new column
 
 ```sql title=alter_option
-ADD [ COLUMN ] column_name data_type [ PRIMARY KEY ]
+ADD [ COLUMN ] column_name data_type [ PRIMARY KEY ] [ DEFAULT default_expr ]
 ```
 
 :::note
@@ -34,6 +34,7 @@ Columns added by this command cannot be used by any existing materialized views 
 | **ADD [ COLUMN ]**  | `COLUMN` is optional.                           |
 | *column_name*       | Specify the name of the column you want to add. |
 | *data_type*         | The data type of the new column.                |
+|**DEFAULT**|The `DEFAULT` clause allows you to assign a default value to a column. This default value is used when a new row is inserted, and no explicit value is provided for that column. `default_expr` is any constant value or variable-free expression that does not reference other columns in the current table or involve subqueries. The data type of `default_expr` must match the data type of the column.<br/>If `default_expr` is impure, such as using a function like `now()`, all historical data will be filled with the result of the expression evaluated at the time the statement was executed. For future insertions, the default expression will be evaluated at the time of each respective insertion.|
 
 ```sql title=Example
 -- Add a column named "age" to a table named "employees" with a data type of integer

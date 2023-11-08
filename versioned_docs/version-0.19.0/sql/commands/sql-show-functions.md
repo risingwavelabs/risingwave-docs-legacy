@@ -4,6 +4,9 @@ title: SHOW FUNCTIONS
 description: Show all user-defined functions.
 slug: /sql-show-functions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-functions/" />
+</head>
 
 Run `SHOW FUNCTIONS` to get a list of existing [user-defined functions](/sql/functions-operators/user-defined-functions.md). The returned information includes the name, argument types, return type, language, and server address of each function.
 

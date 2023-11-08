@@ -4,20 +4,17 @@ title: Ingest data from MySQL CDC
 description: Ingest data from MySQL CDC.
 slug: /ingest-from-mysql-cdc
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-mysql-cdc/" />
+</head>
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
 
-RisingWave supports ingesting row-level data (`INSERT`, `UPDATE`, and `DELETE` operations) from the changes of a MySQL database.
-
-:::note
-
-The supported MySQL versions are 5.7 and 8.0.x.
-
-:::
+RisingWave supports ingesting row-level data (`INSERT`, `UPDATE`, and `DELETE` operations) from the changes of a MySQL database. The supported MySQL versions are 5.7 and 8.0.x.
 
 You can ingest CDC data from MySQL in two ways:
 
-- Using the built-in MySQL CDC connector
+- Using the native MySQL CDC connector in RisingWave
 
   With this connector, RisingWave can connect to MySQL databases directly to obtain data from the binlog without starting additional services.
 
@@ -27,7 +24,9 @@ You can ingest CDC data from MySQL in two ways:
 
 - Using a CDC tool and a message broker
 
-  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/create-source/create-source-cdc.md) topic.
+  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave.
+
+This topic describes how to ingest MySQL CDC data into RisingWave using the native MySQL CDC connector. Using an external CDC tool and a message broker is introduced in [Create source via event streaming systems](/ingest/ingest-from-cdc.md).
 
 ## Set up MySQL
 
@@ -46,13 +45,13 @@ To use the MySQL CDC features, we need to create a MySQL user account with appro
 1. Create a MySQL user with the following query.
 
 ```sql
-CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'user'@'%' IDENTIFIED BY 'password';
 ```
 
 2. Grant the appropriate privileges to the user.
 
 ```sql
-GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user'@'localhost';
+GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user'@'%';
 ```
 
 3. Finalize the privileges.
@@ -153,6 +152,16 @@ The connector node is enabled by default in this docker-compose configuration. T
 
 If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
 
+:::note EXPERIMENTAL ENHANCEMENT AVAILABLE
+
+We have optimized the data backfilling logic for CDC tables to improve data ingestion performance of the MySQL CDC connector. This is currently an experimental feature, and is not enabled by default. To enable it, run this command in RisingWave:
+
+```sql
+SET cdc_backfill="true";
+```
+
+:::
+
 ## Create a table using the native CDC connector in RisingWave
 
 To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
@@ -167,98 +176,9 @@ CREATE TABLE [ IF NOT EXISTS ] source_name (
 WITH (
    connector='mysql-cdc',
    <field>=<value>, ...
-);
+)
+[ FORMAT DEBEZIUM ENCODE JSON ];
 ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE TABLE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('source_name', 'wrap')
-        ),
-        rr.Terminal('('),
-        rr.Stack(
-            rr.Sequence(
-                rr.NonTerminal('column_name', 'skip'),
-                rr.NonTerminal('data_type', 'skip'),
-                rr.Terminal('PRIMARY KEY'),
-                rr.Terminal(','),
-            ),
-            rr.ZeroOrMore(
-                rr.Sequence(
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.NonTerminal('data_type', 'skip'),
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Terminal(','),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Terminal('('),
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.Optional(rr.Terminal(',')),
-                    rr.ZeroOrMore(
-                        rr.Sequence(
-                            rr.Terminal(','),
-                            rr.NonTerminal('column_name', 'skip'),
-                            rr.Optional(rr.Terminal(',')),
-                        ),
-                    ),
-                    rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Terminal(')'),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.NonTerminal('mysql-cdc', 'skip'),
-                        rr.Terminal(','),
-                    ),
-                    rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('field', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                    ),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Stack(
-            rr.Sequence(
-                rr.Terminal('ROW FORMAT'),
-                rr.NonTerminal('data_format', 'skip'),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('MESSAGE'),
-                    rr.NonTerminal('message', 'skip'),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('ROW SCHEMA LOCATION'),
-                    rr.NonTerminal('location', 'skip'),
-                    rr.Terminal(';'),
-                ),
-            ),
-        ),
-    )
-);
-
-<drawer SVG={svg} />
 
 Note that a primary key is required.
 
@@ -274,7 +194,8 @@ All the fields listed below are required.
 |password| Password of the database. |
 |database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
-|server.id| A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster.|
+|server.id| Optional. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table is an experimental feature. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 ### Data format
 
@@ -303,9 +224,9 @@ CREATE TABLE orders (
 );
 ```
 
-### Data type mapping
+## Data type mapping
 
-The following table shows the corresponding data type in RisingWave that should be specified when creating a source. For details on native RisingWave data types, see [Overview of data types](../sql/sql-data-types.md).
+The following table shows the corresponding data type in RisingWave that should be specified when creating a source. For details on native RisingWave data types, see [Overview of data types](/sql/sql-data-types.md).
 
 RisingWave data types marked with an asterisk indicates that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
 

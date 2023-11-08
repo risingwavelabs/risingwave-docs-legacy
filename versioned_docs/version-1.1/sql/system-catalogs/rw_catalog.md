@@ -3,6 +3,9 @@ id: rw_catalog
 slug: /rw_catalog
 title: RisingWave catalogs
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw_catalog/" />
+</head>
 
 RisingwWave catalogs contain system tables and views that provide metadata about different relations in the system, as well as information about the cluster jobs and their status. The metadata includes details about each database, schema, and relation in the system, such as materialized views, tables, sources, sinks, indexes, and views. The status information includes the progress of DDL commands, system snapshots, and more.
 
@@ -66,20 +69,26 @@ DESCRIBE rw_catalog.rw_meta_snapshot;
 (6 rows)
 ```
 
+You can also retrieve the values of the catalogs. Please note that the schema (`rw_catalog`) is optional.
+
 ```sql
-DESCRIBE rw_catalog.rw_relation_info;
+SELECT name, owner, definition FROM rw_tables;
 ------RESULTS
-       Name       |  Type   
-------------------+---------
- schemaname       | varchar
- relationname     | varchar
- relationowner    | integer
- definition       | varchar
- relationtype     | varchar
- relationid       | integer
- relationtimezone | varchar
- fragments        | varchar
-(8 rows)
+ name | owner |            definition            
+------+-------+----------------------------------
+ t1   |     1 | CREATE TABLE t1 (v1 INT, v2 INT)
+(1 row)
+```
+
+You can use two time-related fields, `created_at` and `initiated_at`, to retrieve the times when an object is created and initialized. This can be useful when you want learn about when a source or materialized view is created or initialized.
+
+```sql
+SELECT name, initialized_at, created_at FROM rw_sources;
+------RESULT
+ name |        initialized_at         |          created_at
+------+-------------------------------+-------------------------------
+ s    | 2023-07-25 10:53:30.128+00:00 | 2023-07-25 10:53:30.130+00:00
+(1 row)
 ```
 
 ## Available RisingWave catalogs

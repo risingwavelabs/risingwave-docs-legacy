@@ -4,6 +4,9 @@ title: SHOW CLUSTERS
 description: Show the details of your RisingWave cluster.
 slug: /sql-show-cluster
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-cluster/" />
+</head>
 
 Use the `SHOW CLUSTERS` command to show the details of your RisingWave cluster, including the address of the cluster, its state, the parallel units it is using, and whether it's streaming data, serving data or unschedulable.
 

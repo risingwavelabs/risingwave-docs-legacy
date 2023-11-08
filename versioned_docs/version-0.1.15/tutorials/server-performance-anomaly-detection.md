@@ -4,6 +4,9 @@ slug: /server-performance-anomaly-detection
 title: Server performance anomaly detection
 description: RisingWave makes it possible to detect server anomalies in a low code manner.
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/server-performance-anomaly-detection/" />
+</head>
 
 ## Overview
 

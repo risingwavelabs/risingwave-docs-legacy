@@ -3,6 +3,9 @@ id: sql-data-types
 slug: /sql-data-types
 title: Overview of data types
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-data-types/" />
+</head>
 
 RisingWave supports the following data types:
 
@@ -12,7 +15,7 @@ RisingWave supports the following data types:
 |smallint| |Two-byte integer | Range: -32768 to 32767 |
 |integer|int|Four-byte integer | Range: -2147483648 to 2147483647 |
 |bigint| |Eight-byte integer | Range: -9223372036854775808 to 9223372036854775807 |
-|numeric|decimal|Exact numeric. <br/>We do not support specifying precision and scale as of now. | Range: Up to 131072 digits before the decimal point; up to 16383 digits after the decimal point |
+|numeric|decimal|Exact numeric. <br/>We do not support specifying precision and scale as of now. | Precision: 28 decimal digits. Note that the range is smaller compared to PostgreSQL.  |
 |real| |Single precision floating-point number (4 bytes) | Range: 6 decimal digits precision |
 |double precision|double|Double precision floating-point number (8 bytes) | Range: 15 decimal digits precision |
 |character varying|varchar, string|Variable-length character string. <br/>We do not support specifying the maximum length as of now. | Example: `'Hello World!'` |

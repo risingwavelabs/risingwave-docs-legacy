@@ -4,9 +4,11 @@ title: CREATE CONNECTION
 description: Create a connection between VPCs.
 slug: /sql-create-connection
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-connection/" />
+</head>
 
 Use the `CREATE CONNECTION` command to create an AWS PrivateLink connection for a Kafka source connector. This is necessary in order to be able to consume messages from a Kafka service located in a different VPC from the RisingWave cluster in the cloud.
-
 
 ## Syntax
 
@@ -17,36 +19,9 @@ WITH (
 );
 ```
 
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE CONNECTION'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('connection_name'),
-        ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Sequence(
-                rr.NonTerminal('connection_parameter'),
-                rr.Terminal('='),
-                rr.NonTerminal('value'),
-            ),
-            rr.Terminal(')'),
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
-
 ## Parameters
 
-All WITH options are required unless stated otherwise. 
+All WITH options are required unless stated otherwise.
 
 |Parameter or clause            | Description           |
 |-------------------------------|-----------------------|
@@ -57,7 +32,7 @@ All WITH options are required unless stated otherwise.
 |tags                           |Optional. The AWS tags used to check for resource leakage. This parameter should have the format: `key1=value1, key2=value2, ...`.|
 
 :::note
-You can either tag the VPC endpoints by specifying the `tags` parameter when using the `CREATE CONNECTION` command or by specifying the environment variable `RW_PRIVATELINK_ENDPOINT_DEFAULT_TAGS`. When specifying the tags, follow the format of `key1=value1, key2=value2, ...`. If both are specified, the tags specified in the environment variable will be appended to the ones specified by the `tags` parameter. 
+You can either tag the VPC endpoints by specifying the `tags` parameter when using the `CREATE CONNECTION` command or by specifying the environment variable `RW_PRIVATELINK_ENDPOINT_DEFAULT_TAGS`. When specifying the tags, follow the format of `key1=value1, key2=value2, ...`. If both are specified, the tags specified in the environment variable will be appended to the ones specified by the `tags` parameter.
 :::
 
 ## Example
@@ -65,7 +40,7 @@ You can either tag the VPC endpoints by specifying the `tags` parameter when usi
 The statement below creates an AWS PrivateLink connection.
 
 ```sql
-CREATE CONNECTION connection_name with (
+CREATE CONNECTION connection_name WITH (
     type = 'privatelink',
     provider = 'aws',
     service.name = 'com.amazonaws.xyz.us-east-1.abc-xyz-0000'
@@ -103,35 +78,6 @@ Follow the steps below to create an AWS PrivateLink connection.
     ```
 
 7. Create a source or sink with AWS PrivateLink connection.
-    - Use the `CREATE SOURCE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see the [Ingest data from Kafka](/create-source/create-source-kafka.md) topic. Here is an example of connecting to a Kafka source through AWS PrivateLink.
 
-    ```sql
-    CREATE SOURCE tcp_metrics_rw (
-    device_id VARCHAR,
-    metric_name VARCHAR,
-    report_time TIMESTAMP,
-    metric_value DOUBLE PRECISION
-    ) WITH (
-    connector = 'kafka',
-    topic = 'tcp_metrics',
-    properties.bootstrap.server = 'ip1:9092, ip2:9092',
-    connection.name = 'my_connection',
-    privatelink.targets = '[{"port": 8001}, {"port": 8002}]',
-    scan.startup.mode = 'earliest'
-    ) FORMAT PLAIN ENCODE JSON;
-    ```
-
-     - Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details on the syntax, see the [Sink to Kafka](/guides/create-sink-kafka.md) topic. Here is an example of sinking to Kafka with an AWS PrivateLink.
-
-    ```sql
-    CREATE SINK sink2 FROM mv2
-    WITH (
-    connector='kafka',
-    type='append-only',
-    properties.bootstrap.server='b-1.xxx.amazonaws.com:9092,b-2.test.xxx.amazonaws.com:9092',
-    topic='msk_topic',
-    force_append_only='true',
-    connection.name = 'connection1',
-    privatelink.targets = '[{"port": 8001}, {"port": 8002}]'
-    );
-    ```
+   * Use the `CREATE SOURCE/TABLE` command to create a Kafka source with PrivateLink connection. For more details, see [Create source with AWS PrivateLink connection](/ingest/ingest-from-kafka.md#ingest-from-with-aws-privatelink-connection).
+   * Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details, see [Create sink with AWS PrivateLink connection](/guides/create-sink-kafka.md#create-sink-with-aws-privatelink-connection).

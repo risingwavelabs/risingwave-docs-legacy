@@ -4,6 +4,9 @@ title: Ingest data from MySQL CDC
 description: Ingest data from MySQL CDC.
 slug: /ingest-from-mysql-cdc
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-mysql-cdc/" />
+</head>
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
 
@@ -46,13 +49,13 @@ To use the MySQL CDC features, we need to create a MySQL user account with appro
 1. Create a MySQL user with the following query.
 
 ```sql
-CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'user'@'%' IDENTIFIED BY 'password';
 ```
 
 2. Grant the appropriate privileges to the user.
 
 ```sql
-GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user'@'localhost';
+GRANT SELECT, RELOAD, SHOW DATABASES, LOCK TABLES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user'@'%';
 ```
 
 3. Finalize the privileges.

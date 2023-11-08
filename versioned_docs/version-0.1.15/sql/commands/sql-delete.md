@@ -4,6 +4,9 @@ title: DELETE
 description: Remove rows from a table.
 slug: /sql-delete
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-delete/" />
+</head>
 
 Use the `DELETE` command to permanently remove rows from a table.
 

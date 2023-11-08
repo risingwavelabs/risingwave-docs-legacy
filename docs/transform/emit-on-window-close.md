@@ -3,6 +3,9 @@ id: emit-on-window-close
 slug: /emit-on-window-close
 title: Emit on window close
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/emit-on-window-close/" />
+</head>
 
 :::caution Experimental feature
 Emit on window close is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
@@ -21,8 +24,8 @@ FROM TUMBLE(events, event_time, INTERVAL '1' MINUTE)
 GROUP BY window_start;
 ```
 
-- **Emit on update:** With this policy, the aggregation operator emits a new count(*) result downstream whenever each barrier passes (default interval is 1 second). This updated count is then reflected in the materialized view or outputted to external systems.
-- **Emit on window close:** When the watermark defined on event_time surpasses the end time of a time window, the aggregation operator emits the final immutable aggregation result downstream. This result represents the complete aggregation for the window and is not subject to further changes.
+- **Emit on update:** With this policy, the aggregation operator emits a new `count(*)` result downstream whenever each barrier passes (default interval is 1 second). This updated count is then reflected in the materialized view or outputted to external systems.
+- **Emit on window close:** When the watermark defined on `event_time` surpasses the end time of a time window, the aggregation operator emits the final immutable aggregation result downstream. This result represents the complete aggregation for the window and is not subject to further changes.
 
 RisingWave defaults to the emit-on-update behavior to ensure consistency between materialized views and base tables. This choice aligns with the SQL definition of view and helps maintain coherence across the system.
 
@@ -57,9 +60,16 @@ After making this modification, the `window_count` results will no longer includ
 
 ## What queries can achieve better performance with the emit-on-window-close triggering policy?
 
-RisingWave supports the emit-on-window-close" triggering policy for any query. However, for the following specific types of queries, RisingWave can utilize specialized operators to enhance performance further.
+RisingWave supports the emit-on-window-close triggering policy for any query. However, for the following specific types of queries, RisingWave can utilize specialized operators to enhance performance further.
 
-1. Windowed aggregation
+**Emit the order of rows by the watermark column**
+
+```sql
+CREATE SINK s AS
+select time, foo from t emit on window close;
+```
+
+**Windowed aggregation**
 
 ```sql
 CREATE MATERIALIZED VIEW mv AS
@@ -70,7 +80,7 @@ GROUP BY window_start
 EMIT ON WINDOW CLOSE;
 ```
 
-1. SQL window functions
+**SQL window functions**
 
 ```sql
 CREATE MATERIALIZED VIEW mv2 AS

@@ -3,6 +3,9 @@ id: sql-function-aggregate
 slug: /sql-function-aggregate
 title: Aggregate functions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-aggregate/" />
+</head>
 
 Aggregate functions compute a single result from a set of input values.
 

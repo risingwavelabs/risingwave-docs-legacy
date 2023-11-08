@@ -3,11 +3,15 @@ id: window-functions
 slug: /window-functions
 title: Window functions (OVER clause)
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/window-functions/" />
+</head>
+
 Window or windowing functions perform a calculation over a set of rows that are related to the current row (the "window").
 
 The "window" is defined by the `OVER` clause, which generally consists of three parts:
 
-- Window partitioning (the `PARTITION` clause): Specifies how to partition rows into smaller sets. If not provided, RisingWave will not partition the rows into smaller sets.
+- Window partitioning (the `PARTITION BY` clause): Specifies how to partition rows into smaller sets.
 - Window ordering (the `ORDER BY` clause): Specifies how the rows are ordered. This part is required for ranking functions.
 - Window frame (the `ROWS` clause): Specifies a particular row or the range of the rows over which calculations are performed.
 
@@ -20,21 +24,22 @@ window_function ( [expression [, expression ... ]] ) OVER
 ( PARTITION BY partition_expression 
 [ ORDER BY sort_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
 [frame_clause])
-
 ```
+
+:::note
+
+Currently, the `PARTITION BY` clause is required. If you do not want to partition the rows into smaller sets, you can work around by specifying `PARTITION BY 1::int`.
+
+For ranking window functions like `row_number` and `rank`, `ORDER BY` clause is required.
+
+When operating in the emit-on-window-close mode for a streaming query, `ORDER BY` clause is required for each window function. Please ensure that you specify only one column to order by. This column, generally a timestamp column, must have a watermark defined for it. It's important to note that when using the timestamp column from this streaming query in another streaming query, the watermark information associated with the column is not retained.
+
+:::
 
 `window_function` can be one of the following:
 
 - [General-purpose window functions](#general-purpose-window-functions)
 - [Aggregate functions](#aggregate-window-functions)
-
-:::note
-
-Currently, the `PARTITION` clause is required. If you do not want to partition the rows into smaller sets, you can work around by specifying `PARTITION BY 1::int`.
-
-:::
-
-When operating in the emit-on-window-close mode for a streaming query, it is necessary to include an ORDER BY clause for each window function. Please ensure that you specify only one column to order by. This column, generally a timestamp column, must have a watermark defined for it. It's important to note that when using the timestamp column from this streaming query in another streaming query, the watermark information associated with the column is not retained.
 
 The syntax of `frame_clause` is:
 

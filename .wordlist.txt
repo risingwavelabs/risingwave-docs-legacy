@@ -177,3 +177,14 @@ TPC
 Greenplum
 updateable
 ClickHouse
+JetStream
+MSK
+msk
+NATS
+ScyllaDB
+OOM
+DataGrip
+PgAdmin
+clickhouse
+Supabase
+Redis

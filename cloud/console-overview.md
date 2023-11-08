@@ -56,7 +56,7 @@ width="600px"
 
 Jobs allow you to organize your SQL statements into groups, making managing and executing multiple queries easier.
 
-Click <img src={require('./images/icon-console-queryeditor-jobs-add.png').default} width="20px"/> to add a job.
+Click <img class="disabled-zoom" src={require('./images/icon-console-queryeditor-jobs-add.png').default} width="20px"/> to add a job.
 
 <img
 src={require('./images/console-queryeditor-jobs.png').default}
@@ -102,7 +102,7 @@ width="600px"
 
 #### Refresh results
 
-Click <img src={require('./images/icon-rerun.png').default} width="15px"/> to rerun the last executed query manually or set a timer to refresh the results automatically.
+Click <img class="icon" src={require('./images/icon-rerun.png').default} width="15px"/> to rerun the last executed query manually or set a timer to refresh the results automatically.
 
 <img
 src={require('./images/console-queryresults-refresh.png').default}
@@ -112,7 +112,7 @@ width="300px"
 
 #### Download results
 
-Click <img src={require('./images/icon-console-queryresults-download.png').default} width="40px"/> to download a CSV copy of the results.
+Click <img class="icon" src={require('./images/icon-console-queryresults-download.png').default} width="40px"/> to download a CSV copy of the results.
 
 #### Query log
 

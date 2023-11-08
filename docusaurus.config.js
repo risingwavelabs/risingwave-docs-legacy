@@ -5,7 +5,7 @@
 const config = {
   title: "RisingWave",
   tagline: "Get started with RisingWave",
-  url: "https://www.risingwave-labs.com",
+  url: "https://docs.risingwave.com",
   baseUrl: "/",
   trailingSlash: true,
   onBrokenLinks: "warn",
@@ -31,14 +31,26 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "1.2 (dev)",
-              path: "/upcoming",
+              label: "1.4 (dev)",
+              path: "/dev",
               badge: false,
               banner: "unreleased",
             },
-            "1.1": {
-              label: "1.1 (current)",
+            1.3: {
+              label: "1.3 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            1.2: {
+              label: "1.2",
+              path: "/1.2",
+              badge: false,
+              banner: "none",
+            },
+            1.1: {
+              label: "1.1",
+              path: "/1.1",
               badge: false,
               banner: "none",
             },
@@ -118,7 +130,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       zoom: {
-        selector: ".markdown img:not(.disabled-zoom)",
+        selector: ".markdown img:not(.disabled-zoom, .icon)",
         background: {
           light: "#ffffff",
           dark: "#0a1721",
@@ -142,6 +154,7 @@ const config = {
         logo: {
           alt: "RisingWave Logo",
           src: "img/logo-title.png",
+          href: "https://www.risingwave.com/",
         },
         items: [
           {
@@ -160,7 +173,17 @@ const config = {
             to: "/cloud/intro",
             label: "RisingWave Cloud",
             position: "left",
-            activeBaseRegex: `/cloud/`,
+          },
+          {
+            to: "https://tutorials.risingwave.com/",
+            position: "right",
+            html: `
+            <img
+  src="/img/tutorial/entrance.png"
+  alt="RisingWave Tutorials"
+  style="height:30px;margin-top:7px;"
+/>
+          `,
           },
           {
             type: "docsVersionDropdown",
@@ -201,7 +224,7 @@ const config = {
       items: [{ label: "Latest", to: "docs/latest/intro" }],
     }),
   customFields: {
-    docsUrl: "https://www.risingwave.dev",
+    docsUrl: "https://docs.risingwave.com",
     requestUrl: "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
     bugReportUrl:
       "https://github.com/risingwavelabs/risingwave-docs/issues/new?assignees=CharlieSYH%2C+hengm3467&labels=bug&template=bug_report.yml&title=Bug%3A+&link=",
