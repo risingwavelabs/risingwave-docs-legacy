@@ -121,7 +121,7 @@ const sidebars = {
         },
         {
           "type": "doc",
-          "id": "guides/install-psql-without-full-postgres",
+          "id": "guides/install-psql-without-postgresql",
           "label": "Install `psql`"
         }
       ],
