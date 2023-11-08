@@ -451,6 +451,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Google BigQuery",
+              id: "guides/sink-to-bigquery",
+            },
+            {
+              type: "doc",
               label: "MySQL",
               id: "guides/sink-to-mysql-with-jdbc",
             },

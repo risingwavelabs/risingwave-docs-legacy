@@ -77,7 +77,7 @@ For tools or integrations that you would like to use but are not listed in the t
 |AWS Redshift| No plan|Researching <voteNotify note="redshift_sink" />|
 |ClickHouse|No plan |Available. For details, see [Sink data to ClickHouse](/guides/sink-to-clickhouse.md).|
 |Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
-|Google BigQuery| No plan |Researching <voteNotify note="bigquery_sink" />|
+|Google BigQuery| No plan |Available. For details, see [Sink data to Google BigQuery](/guides/sink-to-bigquery.md).|
 |DataStax Astra DB & Apache Cassandra & ScyllaDB| Researching <voteNotify note="cassandra_source" /> |Available. For details, see [Sink data to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).|
 |CockroachDB| Researching <voteNotify note="cockroachdb_source" />|Researching <voteNotify note="cockroachdb_sink" /> |
 |Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
