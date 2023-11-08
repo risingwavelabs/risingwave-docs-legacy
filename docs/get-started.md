@@ -11,9 +11,19 @@ toc_max_heading_level: 2
 
 This guide is designed to help you get up and running with RisingWave quickly and easily. In this guide, we will walk you through the common tasks of using RisingWave.
 
-## Install and start RisingWave
+## Start RisingWave
 
-Ensure you have [Homebrew](https://brew.sh/) installed and then run the following commands:
+### Docker
+
+Ensure [Docker Desktop](https://docs.docker.com/get-docker/) is installed and running in your environment.
+
+```shell
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:latest playground
+```
+
+### Homebrew
+
+Ensure [Homebrew](https://brew.sh/) in installed, and run the following commands:
 
 ```shell
 brew tap risingwavelabs/risingwave
@@ -21,11 +31,24 @@ brew install risingwave
 risingwave playground
 ```
 
+### Binaries
+
+```shell
+wget https://github.com/risingwavelabs/risingwave/releases/download/v1.3.0/risingwave-v1.3.0-x86_64-unknown-linux.tar.gz
+tar xvf risingwave-v1.3.0-x86_64-unknown-linux.tar.gz 
+# Do not move the extracted files or folders. This could cause issues when starting RisingWave.
+./risingwave playground
+```
+
+### From a Web browser
+
+[https://playground.risingwave.dev/](https://playground.risingwave.dev/)
+
 :::info
-This method launches RisingWave in playground mode, where data is stored solely in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may result in out-of-memory (OOM) errors. Use this method for quick tests only.
+These options start RisingWave in playground mode, where data is stored solely in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may result in out-of-memory (OOM) errors. Use this method for quick tests only.
 :::
 
-Other installation options are available. If you intend to deploy RisingWave to production environments, use [Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service.
+Other installation options are available. For advanced testing, please consider [starting RisingWave via Docker Compose](/deploy/risingwave-docker-compose.md). If you intend to deploy RisingWave to production environments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service, or [deploy on Kubernetes using the Operator](/deploy/risingwave-kubernetes.md) or [Helm Chart](/deploy/deploy-k8s-helm.md).
 
 ## Connect to RisingWave
 
