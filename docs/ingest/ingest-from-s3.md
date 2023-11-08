@@ -124,7 +124,7 @@ Empty cells in CSV files will be parsed to `NULL`.
 
 The `s3` connector treats files as splits, resulting in poor scalability and potential timeouts when dealing with a large number of files.
 
-The `s3_v2` connector is designed to address the scalability and performance limitations of the `s3` connector by implementing a more efficient listing and fetching mechanism. If you want to explore the technical details of this new approach, refer to [the design doc](https://github.com/risingwavelabs/rfcs/blob/main/rfcs/0076-refined-s3-source.md).
+The `s3_v2` connector is designed to address the scalability and performance limitations of the `s3` connector by implementing a more efficient listing and fetching mechanism. If you want to explore the technical details of this new approach, refer to [the design document](https://github.com/risingwavelabs/rfcs/blob/main/rfcs/0076-refined-s3-source.md).
 
 ## Example
 
