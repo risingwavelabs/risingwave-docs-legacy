@@ -116,13 +116,9 @@ CREATE TABLE personnel (
 
 To install and start RisingWave locally, see the [Get started](/get-started.md) guide. We recommend running RisingWave locally for testing purposes.
 
-### Enable the connector node in RisingWave
+### Notes about running RisingWave from binaries
 
-The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
-
-The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-docker-compose.md).
-
-If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+If you are running RisingWave locally from binaries, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
 
 ## Create a sink
 
@@ -156,7 +152,7 @@ All `WITH` options are required.
 
 ### Create a table and sink
 
-To sink to MySQL, make sure that RisingWave and the connector node share the same table schema. Use the following queries in RisingWave to create a table and sink.
+To sink to MySQL, make sure that RisingWave table and the MySQL table share the same table schema. Use the following queries in RisingWave to create a table and sink.
 
 The `jdbc.url` must be accurate. The format varies slightly depending on if you are using AWS RDS MySQL or a self-hosted version of MySQL. If your MySQL is self-hosted, the `jdbc.url` would have the following format: `jdbc:mysql://127.0.0.1:3306/testdb?user=<username>&password=<password>`.
 

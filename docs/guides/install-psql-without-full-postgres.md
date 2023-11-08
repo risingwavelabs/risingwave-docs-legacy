@@ -24,17 +24,20 @@ import TabItem from '@theme/TabItem';
     ```
     brew update
     ```
+
 1. Install [`libpq`](https://www.postgresql.org/docs/current/libpq.html).
 
     ```
     brew install libpq
     ```
+
     > Homebrew's package for the PostgreSQL client tools is `libpq`, which includes `psql`, `pg_dump`, and other client utilities.
 1. Link all binaries of `libpq` to `/usr/local/bin`.
 
     ```
     brew link --force libpq
     ```
+
     > `libpq` does not install itself in the `/usr/local/bin` directory. Thus, you need to link them to the directory to use the installed binaries.
 
 </TabItem>
@@ -56,7 +59,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="redhat" label="Red Hat/CentOS">
 
 1. Install the repository RPM to point YUM at the PostgreSQL repository.
-    
+
     Go to [Linux Downloads (Red Hat Family)](https://www.postgresql.org/download/linux/redhat/) and select your platform for the command and repository URL.
     <img
     src={require('../images/install_postgresql_redhat.png').default}
@@ -67,8 +70,8 @@ import TabItem from '@theme/TabItem';
     ```
     sudo yum install postgresql
     ```
-    > Strange as it may seem, `postgresql` is the right package we are looking for in YUM.<br/>`postgresql` — PostgreSQL client programs including `psql`<br/>`postgresql-server` — The complete set of programs required to set up a PostgreSQL server
 
+    > Strange as it may seem, `postgresql` is the right package we are looking for in YUM.<br/>`postgresql` — PostgreSQL client programs including `psql`<br/>`postgresql-server` — The complete set of programs required to set up a PostgreSQL server
 
 </TabItem>
 <TabItem value="fedora" label="Fedora">
@@ -78,6 +81,7 @@ Simply run:
 ```
 sudo dnf install postgresql.x86_64 
 ```
+
 > `postgresql` represents the PostgreSQL client programs including `psql` in DNF.
 
 </TabItem>
@@ -89,4 +93,3 @@ This is the usual way of installing PostgreSQL on Windows. But to install the cl
 
 </TabItem>
 </Tabs>
-

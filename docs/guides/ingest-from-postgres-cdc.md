@@ -139,13 +139,9 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 </TabItem>
 </Tabs>
 
-## Enable the connector node in RisingWave
+## Notes about running RisingWave from binaries
 
-The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
-
-The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-docker-compose.md).
-
-If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+If you are running RisingWave locally from binaries, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
 
 ## Create a table using the native CDC connector
 
