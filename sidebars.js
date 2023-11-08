@@ -122,7 +122,7 @@ const sidebars = {
         {
           "type": "doc",
           "id": "guides/install-psql-without-postgresql",
-          "label": "Install `psql`"
+          "label": "Install psql"
         }
       ],
     },
