@@ -119,7 +119,7 @@ docker-compose -f docker-compose-with-hdfs.yml up
 
 ## Connect to RisingWave
 
-  After RisingWave is up and running, you need to connect to it via the Postgres interactive terminal `psql` so that you can issue queries to RisingWave and see the query results. If you don't have `psql` installed, [Install `psql`](/guides/install-psql-without-full-postgres.md) first.
+  After RisingWave is up and running, you need to connect to it via the Postgres interactive terminal `psql` so that you can issue queries to RisingWave and see the query results. If you don't have `psql` installed, [install `psql`](/guides/install-psql-without-full-postgres.md) first.
 
   ```shell
   psql -h localhost -p 4566 -d dev -U root
@@ -131,7 +131,7 @@ docker-compose -f docker-compose-with-hdfs.yml up
 - The `-p` option is used to specify the port number that the server is listening on.
 - The `-d` option is used to specify the name of the database to connect to.
 - The `-U` option is used to specify the name of the database user to connect as.
-- By default, the PostgreSQL server uses the `root user` account to authenticate connections to the `dev` database. Note that this user account does not require a password to connect.
+- By default, the PostgreSQL server uses the `root` user account to authenticate connections to the `dev` database. Note that this user account does not require a password to connect.
 
 ## Manage your RisingWave cluster
 
