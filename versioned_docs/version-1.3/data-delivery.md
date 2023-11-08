@@ -55,7 +55,7 @@ Currently, RisingWave supports the following sink connectors:
 
 - Pulsar sink connector (`connector = 'pulsar'`)
 
-  With this connector, you can sink data from RisingWave to Delta Lake. For details about the syntax and parameters, see [Sink data to Pulsar](/guides/sink-to-pulsar.md).
+  With this connector, you can sink data from RisingWave to Pulsar. For details about the syntax and parameters, see [Sink data to Pulsar](/guides/sink-to-pulsar.md).
 
 ## Sink decoupling
 

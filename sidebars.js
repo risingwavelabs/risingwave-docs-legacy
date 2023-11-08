@@ -466,6 +466,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Redis",
+              id: "guides/sink-to-redis",
+            },
+            {
+              type: "doc",
               label: "TiDB",
               id: "guides/sink-to-tidb",
             },
@@ -588,13 +593,13 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  id: "sql/data-types/data-type-array",
-                  label: "Array",
+                  id: "sql/data-types/data-type-casting",
+                  label: "Casting",
                 },
                 {
                   type: "doc",
-                  id: "sql/data-types/data-type-casting",
-                  label: "Casting",
+                  id: "sql/data-types/data-type-array",
+                  label: "Array",
                 },
                 {
                   type: "doc",
