@@ -154,7 +154,7 @@ const config = {
         logo: {
           alt: "RisingWave Logo",
           src: "img/logo-title.png",
-          href: "https://www.risingwave.com/", 
+          href: "https://www.risingwave.com/",
         },
         items: [
           {
@@ -167,7 +167,17 @@ const config = {
             to: "/cloud/intro",
             label: "RisingWave Cloud",
             position: "left",
-            activeBaseRegex: `/cloud/`,
+          },
+          {
+            to: "https://tutorials.risingwave.com/",
+            position: "right",
+            html: `
+            <img
+  src="/img/tutorial/entrance.png"
+  alt="RisingWave Tutorials"
+  style="height:30px;margin-top:7px;"
+/>
+          `,
           },
           {
             type: "docsVersionDropdown",

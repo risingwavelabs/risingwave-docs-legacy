@@ -166,3 +166,4 @@ DataGrip
 PgAdmin
 clickhouse
 Supabase
+Redis
