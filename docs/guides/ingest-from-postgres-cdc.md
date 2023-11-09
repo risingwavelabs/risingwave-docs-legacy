@@ -141,7 +141,7 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 
 ## Notes about running RisingWave from binaries
 
-If you are running RisingWave locally from binaries, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
+If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
 
 ## Create a table using the native CDC connector
 

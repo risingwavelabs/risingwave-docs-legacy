@@ -16,7 +16,7 @@ The Cassandra sink connector in RisingWave is currently an experimental feature.
 
 - Ensure your Cassandra or ScyllaDB cluster is accessible from RisingWave.
 
-- If you are running RisingWave locally from binaries, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
+- If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
 
 ## Syntax
 
