@@ -21,6 +21,7 @@ COMMENT ON <object_type> <relation_name>.<object_name> IS <comment>
 ## Parameters
 
 |Parameter| Notes|
+|---------|-----------------------|
 |*object_type* | Type of the object that you want to add comments to. Allowed values: `TABLE`, `COLUMN`.|
 |*relation_name.object_name*| Name of the object that you want to add comments to. For columns, you also need to specify the table name.|
 |*comment*| Comment that you want to add.|
