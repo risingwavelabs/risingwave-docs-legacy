@@ -17,14 +17,24 @@ If you wish to receive notifications when a connector or integration is availabl
 
 For tools or integrations that you would like to use but are not listed in the tables below, you can [submit a feature request](https://github.com/risingwavelabs/risingwave/issues/new?assignees=&labels=type%2Ffeature&template=feature_request.yml), or let us know in the Slack workspace.
 
+:::note Note about sink status
+
+RisingWave can sink data to Kafka. This allows indirectly sinking data to any system that can ingest from Kafka. The tables below show direct sink status:
+
+"Available" means a direct sink connector exists for that system.
+
+"Researching" means no direct sink yet, but the system can still be used if it can ingest from Kafka.
+
+:::
+
 ## Message brokers or streaming services
 
 |Broker or streaming service| Source | Sink |
 |---|---|---|
-|Apache Kafka | Available. See [Ingest data from Kafka](/ingest/ingest-from-kafka.md) for details. | Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.| |
+|Apache Kafka | Available. See [Ingest data from Kafka](/ingest/ingest-from-kafka.md) for details. | Available. See [Sink data to Kafka](/guides/create-sink-kafka.md) for details.| |
 | Confluent Cloud | Available. See [Ingest data from Confluent Cloud](/guides/confluent-kafka-source.md) for details. | |
 | Amazon MSK | Available. See [Ingest data from Amazon MSK](/guides/connector-amazon-msk.md) for details. | |
-|Redpanda | Available. See [Ingest data from Redpanda](/ingest/ingest-from-redpanda.md) for details. |Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.|
+|Redpanda | Available. See [Ingest data from Redpanda](/ingest/ingest-from-redpanda.md) for details. |Available. See [Sink data to Kafka](/guides/create-sink-kafka.md) for details.|
 |Apache Pulsar|Available. See [Ingest data from Pulsar](/ingest/ingest-from-pulsar.md) for details. | Available. See [Sink data to Pulsar](/guides/sink-to-pulsar.md) for details.|
 |DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <voteNotify note="astra_streaming_sink" />|
 |StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|

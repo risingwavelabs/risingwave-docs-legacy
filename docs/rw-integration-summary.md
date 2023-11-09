@@ -17,6 +17,16 @@ If you wish to receive notifications when a connector or integration is availabl
 
 For tools or integrations that you would like to use but are not listed in the tables below, you can [submit a feature request](https://github.com/risingwavelabs/risingwave/issues/new?assignees=&labels=type%2Ffeature&template=feature_request.yml), or let us know in the Slack workspace.
 
+:::note Note about sink status
+
+RisingWave can sink data to Kafka. This allows indirectly sinking data to any system that can ingest from Kafka. The tables below show direct sink status:
+
+"Available" means a direct sink connector exists for that system.
+
+"Researching" means no direct sink yet, but the system can still be used if it can ingest from Kafka.
+
+:::
+
 ## Message brokers or streaming services
 
 |Broker or streaming service| Source | Sink |

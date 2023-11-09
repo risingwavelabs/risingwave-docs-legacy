@@ -92,40 +92,37 @@ const sidebars = {
           id: "get-started",
         },
         {
+          type: "doc",
+          label: "Install RisingWave via Docker Compose",
+          id: "deploy/risingwave-docker-compose",
+        },
+        {
           "type": "category",
-          "label": "Install RisingWave",
+          "label": "Deploy in production environments",
           "collapsible": true,
           "collapsed": true,
           "items": [
             {
               "type": "doc",
-              "id": "deploy/risingwave-trial",
-              "label": "Quick install"
+              "id": "deploy/risingwave-cloud",
+              "label": "Deploy on RisingWave Cloud"
             },
             {
-              "type": "category",
-              "label": "Production environments",
-              "collapsible": true,
-              "collapsed": true,
-              "items": [
-                {
-                  "type": "doc",
-                  "id": "deploy/risingwave-cloud",
-                  "label": "Deploy on RisingWave Cloud"
-                },
-                {
-                  "type": "doc",
-                  "id": "deploy/risingwave-kubernetes",
-                  "label": "Deploy on Kubernetes with Operator"
-                },
-                {
-                  "type": "doc",
-                  "id": "deploy/risingwave-k8s-helm",
-                  "label": "Deploy on Kubernetes with Helm"
-                }
-              ]
+              "type": "doc",
+              "id": "deploy/risingwave-kubernetes",
+              "label": "Deploy on Kubernetes with Operator"
+            },
+            {
+              "type": "doc",
+              "id": "deploy/risingwave-k8s-helm",
+              "label": "Deploy on Kubernetes with Helm"
             }
           ]
+        },
+        {
+          "type": "doc",
+          "id": "guides/install-psql-without-postgresql",
+          "label": "Install psql"
         }
       ],
     },
