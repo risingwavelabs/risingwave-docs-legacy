@@ -162,5 +162,5 @@ docker-compose -f docker-compose-with-hdfs.yml up
 If you don't need the RisingWave containers and the associated networks and persisted data, run the following command to delete them:
 
 ```shell
-docker-commpose down -v
+docker-compose down -v
 ```
