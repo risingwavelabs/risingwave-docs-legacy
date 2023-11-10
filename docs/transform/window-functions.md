@@ -102,7 +102,9 @@ The syntax of `rank()` is:
 ```sql
 rank() → integer
 ```
+
 ### `dense_rank()`
+
 `dense_rank()` returns the rank of the current row, without gaps; that is, if some rows share the same rank, the row next to them is assigned the next consecutive rank.
 
 The syntax of `dense_rank()` is:
