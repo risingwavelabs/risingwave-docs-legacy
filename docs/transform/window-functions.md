@@ -93,7 +93,7 @@ We recommend using `row_number()` only for top-N pattern queries. For details ab
 
 :::
 
-### `rank()` 
+### `rank()`
 
 `rank()` returns the rank of the current row, with gaps; that is, the `row_number` of the first row in its peer group.
 
