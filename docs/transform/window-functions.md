@@ -144,6 +144,8 @@ The syntax of `last_value()` is:
 ```sql
 last_value ( value anyelement ) → anyelement
 ```
+sss2
+xxx
 
 ## Aggregate window functions
 
