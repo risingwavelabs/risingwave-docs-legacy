@@ -146,6 +146,7 @@ last_value ( value anyelement ) → anyelement
 ```
 sss2
 xxx
+111
 
 ## Aggregate window functions
 
