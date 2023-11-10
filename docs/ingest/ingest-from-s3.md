@@ -122,6 +122,12 @@ Empty cells in CSV files will be parsed to `NULL`.
 
 ### `s3_v2` connector
 
+:::caution BETA FEATURE
+
+The `s3_v2` connector is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
+
+:::
+
 The `s3` connector treats files as splits, resulting in poor scalability and potential timeouts when dealing with a large number of files.
 
 The `s3_v2` connector is designed to address the scalability and performance limitations of the `s3` connector by implementing a more efficient listing and fetching mechanism. If you want to explore the technical details of this new approach, refer to [the design document](https://github.com/risingwavelabs/rfcs/blob/main/rfcs/0076-refined-s3-source.md).
