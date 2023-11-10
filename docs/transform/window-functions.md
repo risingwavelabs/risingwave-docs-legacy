@@ -93,7 +93,7 @@ We recommend using `row_number()` only for top-N pattern queries. For details ab
 
 :::
 
-### `rank()` and `dense_rank()`
+### `rank()` 
 
 `rank()` returns the rank of the current row, with gaps; that is, the `row_number` of the first row in its peer group.
 
@@ -102,8 +102,8 @@ The syntax of `rank()` is:
 ```sql
 rank() → integer
 ```
-
-`dense_rank()` is similar to `rank()`, but it ensures a continuous sequence of numbers. That is, if some rows share the same rank, the row next to them is assigned the next consecutive rank without gaps.
+### `dense_rank()`
+`dense_rank()` returns the rank of the current row, without gaps; that is, if some rows share the same rank, the row next to them is assigned the next consecutive rank.
 
 The syntax of `dense_rank()` is:
 
