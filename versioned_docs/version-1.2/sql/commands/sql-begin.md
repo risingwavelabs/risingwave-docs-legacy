@@ -8,7 +8,7 @@ slug: /sql-begin
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-begin/" />
 </head>
 
-RisingWave supports read-only transactions. You can use the `BEGIN READ ONLY` command to start a read-only transaction. For more information about transactions in RisingWave, see [Transactions](/concepts/tranactions.md).
+RisingWave supports read-only transactions. You can use the `BEGIN READ ONLY` command to start a read-only transaction. For more information about transactions in RisingWave, see [Transactions](/concepts/transactions.md).
 
 The `BEGIN` command starts the read-write transaction mode, which is not supported yet in RisingWave. For compatibility reasons, this command will still succeed but no transaction is actually started. That is why you need to specify the `READ ONLY` option to start a transaction in read-only mode.
 

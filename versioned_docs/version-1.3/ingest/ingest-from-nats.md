@@ -1,11 +1,11 @@
 ---
-id: create-source-nats
+id: ingest-from-nats
 title: Ingest data from NATS JetStream
 description: Ingest data from NATS JetStream into RisingWave.
-slug: /create-source-nats
+slug: /ingest-from-nats
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-nats/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-nats/" />
 </head>
 
 You can ingest data from NATS JetStream into RisingWave by using the NATS source connector in RisingWave.
