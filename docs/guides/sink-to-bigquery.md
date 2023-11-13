@@ -7,7 +7,7 @@
 
 This guide describes how to sink data from RisingWave to Google BigQuery.
 
-[BigQuery](https://cloud.google.com/bigquery?hl=en) is Google's fully managed data warehouse and data analytics platform, capable of handling and analyzing large volumes of data as it is highly scalable. 
+[BigQuery](https://cloud.google.com/bigquery?hl=en) is Google's fully managed data warehouse and data analytics platform, capable of handling and analyzing large volumes of data as it is highly scalable.
 
 You can test out this process on your own device by using the `big-query-sink` demo in the [`integration_test directory`](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) of the RisingWave repository.
 
@@ -16,7 +16,7 @@ You can test out this process on your own device by using the `big-query-sink` d
 Before sinking data from RisingWave to BigQuery, please ensure the following:
 
 - The BigQuery table you want to sink to is accessible from RisingWave.
-- Ensure you have an upstream materialized view or source in RisingWave that you can sink data from.
+- Ensure you have an upstream materialized view or table in RisingWave that you can sink data from.
 
 ## Syntax
 
@@ -38,7 +38,7 @@ WITH (
 |AS *select_query*| A `SELECT` query that specifies the data to be output to the sink. Either this query or a *sink_from* clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the `SELECT` command.|
 | type | Required. Only `append-only` sinks are supported as BigQuery has limited support for updates and deletes.|
 | force_append_only | Optional. If `true`, forces the sink to be `append-only`, even if it cannot be. |
-| bigquery.local.path | Optional. The file path leading to the JSON key file located in your local server. Details can be found in [Service Accounts](https://console.cloud.google.com/iam-admin/serviceaccounts) under your Google Cloud account. At least one of `bigquery.local.path` or `bigquery.s3.path` must be specified. |
+| bigquery.local.path | Optional. The file path leading to the JSON key file located in your local server. Details can be found in [Service Accounts](https://console.cloud.google.com/iam-admin/serviceaccounts) under your Google Cloud account. Either `bigquery.local.path` or `bigquery.s3.path` must be specified. |
 | bigquery.s3.path | Optional. The file path leading to the JSON key file located in S3. Details can be found in [Service Accounts](https://console.cloud.google.com/iam-admin/serviceaccounts) under your Google Cloud account. At least one of `bigquery.local.path` or `bigquery.s3.path` must be specified.|
 | bigquery.project | Required. The BigQuery project ID. |
 | bigquery.dataset | Required. The BigQuery dataset ID. |
@@ -65,7 +65,7 @@ WITH (
 );
 ```
 
-Or we can create a BigQuery sink with an S3 JSON key file. 
+Or we can create a BigQuery sink with an S3 JSON key file.
 
 ```sql
 CREATE SINK big_query_sink_s3
@@ -84,7 +84,7 @@ WITH (
 );
 ```
 
-## Data type mapping 
+## Data type mapping
 
 |RisingWave Data Type | BigQuery Data Type|
 |-----|-----|
