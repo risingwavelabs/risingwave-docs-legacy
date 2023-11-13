@@ -613,6 +613,11 @@ const sidebars = {
                   id: "sql/data-types/data-type-rw_int256",
                   label: "rw_int256",
                 },
+                {
+                  type: "doc",
+                  id: "sql/data-types/protobuf-types",
+                  label: "Supported protobuf types",
+                },
               ],
             },
             {
