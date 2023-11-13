@@ -7,7 +7,7 @@
 
 This guide describes how to sink data from RisingWave to Redis.
 
-Redis is an open-source, in-memory data structure store, often referred to as a data structure server. RisingWave sinks data to Redis in the form of strings storing key-value pairs in the specified format (`JSON` or `TEMPLATE`), so a primary key must always be provided. 
+[Redis](https://redis.io) is an open-source, in-memory data structure store, often referred to as a data structure server. RisingWave sinks data to Redis in the form of strings storing key-value pairs in the specified format (`JSON` or `TEMPLATE`), so a primary key must always be provided. 
 
 You can test out this process on your own device by using the `redis-sink` demo in the [`integration_test directory`](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) of the RisingWave repository.
 
