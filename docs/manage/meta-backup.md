@@ -32,7 +32,7 @@ Here's an example of how to create a new meta snapshot with `risectl`:
 risectl meta backup-meta
 ```
 
-`risectl` is included in the pre-built RisingWave binary. It can also be built from source. For details, see [Install RisingWave from the binaries](/deploy/risingwave-trial.md/?method=binaries).
+`risectl` is included in the pre-built RisingWave binary. For details, see [Quick start](get-started.md#binaries).
 
 ## View existing meta snapshots
 
@@ -84,6 +84,7 @@ Use the following steps to restore from a meta snapshot.
     ```
 
     If etcd enables authentication, also specify
+
     ```bash
     --etcd-auth \
     --etcd-username [etcd_username] \

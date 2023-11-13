@@ -95,7 +95,7 @@ We recommend using `row_number()` only for top-N pattern queries. For details ab
 
 ### `rank()`
 
-Returns the rank of the current row, with gaps; that is, the `row_number` of the first row in its peer group.
+`rank()` returns the rank of the current row, with gaps; that is, the `row_number` of the first row in its peer group.
 
 The syntax of `rank()` is:
 
@@ -103,11 +103,15 @@ The syntax of `rank()` is:
 rank() → integer
 ```
 
-:::note
+### `dense_rank()`
 
-The rank() function is only supported in top-N pattern queries. For details about this pattern, see [Top-N by group](/sql/syntax/sql-pattern-topn.md).
+`dense_rank()` returns the rank of the current row, without gaps; that is, if some rows share the same rank, the row next to them is assigned the next consecutive rank.
 
-:::
+The syntax of `dense_rank()` is:
+
+```sql
+dense_rank() → integer
+```
 
 ### `lag()` and `lead()`
 

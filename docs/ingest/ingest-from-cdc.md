@@ -1,11 +1,11 @@
 ---
-id: create-source-cdc
+id: ingest-from-cdc
 title: CDC via event streaming systems
 description: Ingest CDC data via event streaming systems.
-slug: /create-source-cdc
+slug: /ingest-from-cdc
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-cdc/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-cdc/" />
 </head>
 
 Change data capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
@@ -63,11 +63,11 @@ ENCODE { JSON | AVRO | PROTOBUF | CSV } [( encode properties ... )];
 
 Please see the respective data ingestion pages for the connection parameters.
 
-- [Kafka](create-source-kafka.md)
+- [Kafka](ingest-from-kafka.md)
 
-- [Pulsar](create-source-pulsar.md)
+- [Pulsar](ingest-from-pulsar.md)
 
-- [Kinesis](create-source-kinesis.md)
+- [Kinesis](ingest-from-kinesis.md)
 
 ## Examples
 

@@ -11,7 +11,10 @@ slug: /sql-update
 Use the `UPDATE` command to modify values of existing rows in a table.
 
 :::info
-UPDATE cannot modify data in the primary key column of a table.
+
+- `UPDATE` cannot modify data in the primary key column of a table.
+
+- Call [`FLUSH`](/sql/commands/sql-flush.md) after `UPDATE` to persist the changes to storage. This ensures that the changes are committed and visible for subsequent reads.
 :::
 
 ## Syntax
@@ -23,75 +26,14 @@ UPDATE table_name
     [ RETURNING col_name ];
 ```
 
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-  rr.Stack(
-    rr.Sequence(
-      rr.Terminal("UPDATE"),
-      rr.NonTerminal("table_name")
-    ),
-    rr.Sequence(
-      rr.Terminal("SET"),
-      rr.Choice(
-        1,
-        rr.OneOrMore(
-          rr.Sequence(
-            rr.NonTerminal("col_name"),
-            rr.Terminal("="),
-            rr.NonTerminal("value")
-          ),
-          ","
-        ),
-        rr.Sequence(
-          rr.Terminal("("),
-          rr.OneOrMore(
-            rr.NonTerminal("col_name"),
-            ","
-          ),
-          rr.Terminal(")"),
-          rr.Terminal("="),
-          rr.Terminal("("),
-          rr.OneOrMore(
-            rr.NonTerminal("value"),
-            ","
-          ),
-          rr.Terminal(")")
-        )
-      )
-    ),
-    rr.Optional(
-      rr.Sequence(
-        rr.Terminal("WHERE"),
-        rr.NonTerminal("condition")
-      ),
-    ),
-    rr.Sequence(
-      rr.Optional(
-      rr.Sequence(
-        rr.Terminal("RETURNING"),
-        rr.NonTerminal("col_name")
-      )
-    ),
-    rr.Terminal(";")
-    )
-  )
-);
-
-<drawer SVG={svg} />
-
-
-
 ## Parameters
 
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
 |*table_name*               |The table whose rows you want to update.|
 |**SET** *col_name* = *value*  |Assign a value or result of an expression to a specific column.<br/>*col_name* cannot be a primary key.|
-|**WHERE** *condition*      |Specify which rows you want to update using an expression that returns a boolean value. Rows for which this expression returns true will be updated. <br/> If you omit the WHERE clause, all rows in the table will be updated.|
+|**WHERE** *condition*      |Specify which rows you want to update using an expression that returns a boolean value. Rows for which this expression returns true will be updated. <br/> If you omit the WHERE clause, all rows in the table will be updated. Subqueries are supported in the condition expression.|
 |**RETURNING**               |Returns the values of any column based on each updated row.|
-
 
 ## Example
 
@@ -100,6 +42,7 @@ The `taxi_trips` table has three records:
 ```sql
 SELECT * FROM taxi_trips;
 ```
+
 ```
  id | distance |    city     
 ----+----------+-------------
@@ -118,23 +61,10 @@ WHERE city = 'Yerba Buena'
 RETURNING id;
 ```
 
-The following statement converts the distance unit from kilometer to mile.
+The following statement converts the distance unit from kilometer to mile for certain areas.
 
 ```sql
 UPDATE taxi_trips 
-SET distance = distance * 0.6214;
-```
-
-Let's see the result.
-
-```sql
-SELECT * FROM taxi_trips ORDER BY id;
-```
-```
- id |      distance      |     city      
-----+--------------------+---------------
-  1 |             9.9424 | San Francisco
-  2 |            14.2922 | New York
-  3 | 3.7283999999999997 | Chicago
-(3 rows)
+SET distance = distance * 0.6214
+WHERE city NOT IN (SELECT city FROM restricted_zones);
 ```

@@ -10,7 +10,7 @@ slug: /create-sink-kafka
 
 This topic describes how to sink data from RisingWave to a Kafka broker and how to specify security (encryption and authentication) settings.
 
-A sink is an external target that you can send data to. To stream data out of RisingWave, you need to create a sink. Use the `CREATE SINK` statement to create a sink. You can create a sink with data from a materialized source, a materialized view, or a table. RisingWave only supports writing messages in non-transactional mode.
+A sink is an external target that you can send data to. To stream data out of RisingWave, you need to create a sink. Use the `CREATE SINK` statement to create a sink. You can create a sink with data from a materialized view or a table. RisingWave only supports writing messages in non-transactional mode.
 
 :::tip Guided setup
 RisingWave Cloud provides an intuitive guided setup for creating a Kafka sink. For more information, see [Create a sink using guided setup](/cloud/create-a-sink/#using-guided-setup) in the RisingWave Cloud documentation.
@@ -53,14 +53,6 @@ All `WITH` options are required unless explicitly mentioned as optional.
 |`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
 |`primary_key`| Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. This field is optional if creating a `PLAIN` sink, but required if creating a `DEBEZIUM` or `UPSERT` sink.|
 
-## Sink parameters
-
-|Field|Notes|
-|-----|-----|
-|data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
-|data_encode| Data encode. Supported encode: `JSON`. |
-|force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
-
 ## Additional Kafka parameters
 
 When creating a Kafka sink in RisingWave, you can specify the following Kafka-specific parameters. To set the parameter, add the RisingWave equivalent of the Kafka parameter as a `WITH` option. For additional details on these parameters, see the [Configuration properties](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md).
@@ -72,14 +64,52 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |batch.size |properties.batch.size| int|
 |client.id|properties.client.id| string |
 |enable.idempotence |properties.enable.idempotence |bool |
+|max.in.flight.requests.per.connection| properties.max.in.flight.requests.per.connection| int |
 |message.max.bytes | properties.message.max.bytes | int |
 |message.send.max.retries |properties.message.send.max.retries| int|
+|message.timeout.ms| properties.message.timeout.ms| int |
 |queue.buffering.max.kbytes |properties.queue.buffering.max.kbytes| int|
 |queue.buffering.max.messages |properties.queue.buffering.max.messages |int|
 |queue.buffering.max.ms |properties.queue.buffering.max.ms |float|
 |retry.backoff.ms |properties.retry.backoff.ms| int|
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
 
+## Sink parameters
+
+|Field|Notes|
+|-----|-----|
+|data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
+|data_encode| Data encode. Supported encodes: `JSON` and `AVRO`. Only `UPSERT AVRO` sinks are supported. |
+|force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
+|timestamptz.handling.mode|Controls the timestamptz output format. This parameter specifically applies to append-only or upsert sinks using JSON encoding. <br/> - If omitted, the output format of timestamptz is `2023-11-11T18:30:09.453000Z` which includes the UTC suffix `Z`. <br/> - When `utc_without_suffix` is specified, the format is changed to `2023-11-11 18:30:09.453000`.|
+|schemas.enable| Only configurable for upsert JSON sinks. By default, this value is `false` for upsert JSON sinks and `true` for debezium `JSON` sinks. If `true`, RisingWave will sink the data with the schema to the Kafka sink. Note that this is not referring to a schema registry containing a JSON schema, but rather schema formats defined using [Kafka Connect](https://www.confluent.io/blog/kafka-connect-deep-dive-converters-serialization-explained/#json-schemas).|
+
+### Avro specific parameters
+
+When creating an upsert Avro sink, the following options can be used following `FORMAT UPSERT ENCODE AVRO`.
+
+|Field|Notes|
+|-----|-----|
+|schema.registry| Required. The address of the schema registry. |
+|schema.registry.username| Optional. The user name used to access the schema registry. |
+|schema.registry.password| Optional. The password associated with the user name. |
+|schema.registry.name.strategy| Optional. Accepted options include `topic_name_strategy` (default), `record_name_strategy`, and `topic_record_name_strategy`.|
+|key.message| Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`. |
+|message| Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`.|
+
+Syntax:
+
+```sql
+FORMAT UPSERT
+ENCODE AVRO (
+   schema.registry = 'schema_registry_url',
+   [schema.registry.username = 'username'],
+   [schema.registry.password = 'password'],
+   [schema.registry.name.strategy = 'topic_name_strategy'],
+   [key.message = 'test_key'],
+   [message = 'main_message',]
+)
+```
 
 ## Examples
 

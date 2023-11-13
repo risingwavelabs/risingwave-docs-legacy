@@ -93,9 +93,37 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "deploy/risingwave-trial",
-          label: "Test RisingWave",
+          label: "Install RisingWave via Docker Compose",
+          id: "deploy/risingwave-docker-compose",
         },
+        {
+          "type": "category",
+          "label": "Deploy in production environments",
+          "collapsible": true,
+          "collapsed": true,
+          "items": [
+            {
+              "type": "doc",
+              "id": "deploy/risingwave-cloud",
+              "label": "Deploy on RisingWave Cloud"
+            },
+            {
+              "type": "doc",
+              "id": "deploy/risingwave-kubernetes",
+              "label": "Deploy on Kubernetes with Operator"
+            },
+            {
+              "type": "doc",
+              "id": "deploy/risingwave-k8s-helm",
+              "label": "Deploy on Kubernetes with Helm"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "guides/install-psql-without-postgresql",
+          "label": "Install psql"
+        }
       ],
     },
     {
@@ -167,7 +195,7 @@ const sidebars = {
                 {
                   type: "doc",
                   label: "Apache Kafka",
-                  id: "create-source/create-source-kafka",
+                  id: "ingest/ingest-from-kafka",
                 },
                 {
                   type: "doc",
@@ -190,7 +218,7 @@ const sidebars = {
                 {
                   type: "doc",
                   label: "Apache Pulsar",
-                  id: "create-source/create-source-pulsar",
+                  id: "ingest/ingest-from-pulsar",
                 },
                 {
                   type: "doc",
@@ -202,17 +230,17 @@ const sidebars = {
             {
               type: "doc",
               label: "AWS Kinesis",
-              id: "create-source/create-source-kinesis",
+              id: "ingest/ingest-from-kinesis",
             },
             {
               type: "doc",
               label: "AWS S3",
-              id: "create-source/create-source-s3",
+              id: "ingest/ingest-from-s3",
             },
             {
               type: "doc",
               label: "CDC via event streaming systems",
-              id: "create-source/create-source-cdc",
+              id: "ingest/ingest-from-cdc",
             },
             {
               type: "doc",
@@ -222,7 +250,7 @@ const sidebars = {
             {
               type: "doc",
               label: "Load generator",
-              id: "create-source/create-source-datagen",
+              id: "ingest/ingest-from-datagen",
             },
             {
               type: "doc",
@@ -237,7 +265,7 @@ const sidebars = {
             {
               type: "doc",
               label: "NATS JetStream",
-              id: "create-source/create-source-nats",
+              id: "ingest/ingest-from-nats",
             },
             {
               type: "doc",
@@ -247,7 +275,7 @@ const sidebars = {
             {
               type: "doc",
               label: "Redpanda",
-              id: "create-source/create-source-redpanda",
+              id: "ingest/ingest-from-redpanda",
             },
           ]
         },
@@ -295,14 +323,21 @@ const sidebars = {
           label: "Window functions",
         },
         {
-          type: "doc",
-          id: "transform/emit-on-window-close",
+          type: "category",
           label: "Emit on window close",
-        },
-        {
-          type: "doc",
-          id: "transform/watermarks",
-          label: "Watermarks",
+          collapsible: true,
+          collapsed: true,
+          link: {
+            type: "doc",
+            id: "transform/emit-on-window-close",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "transform/watermarks",
+              label: "Watermarks",
+            },
+          ]
         },
         {
           type: "doc",
@@ -337,7 +372,7 @@ const sidebars = {
           label: "Looker",
           id: "guides/looker-integration",
         },
-             {
+        {
           type: "doc",
           label: "Supabase",
           id: "guides/supabase-integration",
@@ -425,6 +460,11 @@ const sidebars = {
               type: "doc",
               label: "PostgreSQL",
               id: "guides/sink-to-postgres",
+            },
+            {
+              type: "doc",
+              label: "Redis",
+              id: "guides/sink-to-redis",
             },
             {
               type: "doc",
@@ -550,13 +590,13 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  id: "sql/data-types/data-type-array",
-                  label: "Array",
+                  id: "sql/data-types/data-type-casting",
+                  label: "Casting",
                 },
                 {
                   type: "doc",
-                  id: "sql/data-types/data-type-casting",
-                  label: "Casting",
+                  id: "sql/data-types/data-type-array",
+                  label: "Array",
                 },
                 {
                   type: "doc",
@@ -768,21 +808,6 @@ const sidebars = {
           type: "doc",
           id: "deploy/hardware-requirements",
           label: "Hardware requirements",
-        },
-        {
-          type: "doc",
-          id: "deploy/risingwave-cloud",
-          label: "Deploy on RisingWave Cloud",
-        },
-        {
-          type: "doc",
-          id: "deploy/risingwave-kubernetes",
-          label: "Deploy on Kubernetes with Operator",
-        },
-        {
-          type: "doc",
-          id: "deploy/risingwave-k8s-helm",
-          label: "Deploy on Kubernetes with Helm",
         },
         {
           type: "doc",

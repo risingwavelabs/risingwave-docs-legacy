@@ -10,7 +10,7 @@ slug: /connector-astra-streaming
 
 Astra Streaming is a multi-cloud streaming-as-a-service product built on Apache Pulsar by DataStax. Pulsar is a cloud-native, multi-tenant, high-performance solution for server-to-server messaging and queuing built on the publisher-subscribe (pub-sub) pattern. Pulsar combines the best features of a traditional messaging system like RabbitMQ with those of a pub-sub system like Apache Kafka, scaling up or down dynamically without downtime.
 
-To ingest data from Astra Streaming into RisingWave, you need to set up an Astra Streaming account and create an Astra Streaming topic. You can then create a materialized or non-materialized source connection using the Pulsar or Kafka connector in RisingWave to consume data from the Astra Streaming topic.
+To ingest data from Astra Streaming into RisingWave, you need to set up an Astra Streaming account and create an Astra Streaming topic. You can then create a source or table using the Pulsar or Kafka connector in RisingWave to consume data from the Astra Streaming topic.
 
 This guide will go over how to ingest streaming data from Astra Streaming in RisingWave.
 
@@ -34,7 +34,7 @@ See the [Get started](/get-started.md) guide for options on how you can run Risi
 
 ### Create a table in RisingWave
 
-To learn about the specific syntax used to consume data from a Pulsar topic, see [Ingest data from Pulsar](/create-source/create-source-pulsar.md). To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](/create-source/create-source-kafka.md).
+To learn about the specific syntax used to consume data from a Pulsar topic, see [Ingest data from Pulsar](/ingest/ingest-from-pulsar.md). To learn about the specific syntax used to consume data from a Kafka topic, see [Ingest data from Kafka](/ingest/ingest-from-kafka.md).
 
 As an example, the following query creates a table that consumes data from an Astra Streaming topic connected to Pulsar.
 

@@ -55,7 +55,27 @@ Currently, RisingWave supports the following sink connectors:
 
 - Pulsar sink connector (`connector = 'pulsar'`)
 
-  With this connector, you can sink data from RisingWave to Delta Lake. For details about the syntax and parameters, see [Sink data to Pulsar](/guides/sink-to-pulsar.md).
+  With this connector, you can sink data from RisingWave to Pulsar. For details about the syntax and parameters, see [Sink data to Pulsar](/guides/sink-to-pulsar.md).
+
+- Redis sink connector (`connector = 'redis'`)
+
+  With this connector, you can sink data from RisingWave to Redis. For details about the syntax and parameters, see [Sink data to Redis](/guides/sink-to-redis.md).
+
+## Sink decoupling
+
+The `sink_decouple` session variable can be specified to enable or disable sink decoupling. The default value for the session variable is `default`. 
+
+To enable sink decoupling for all sinks created in the sessions, set `sink_decouple` as `true` or `enable`.
+
+```sql
+SET sink_decouple = true;
+```
+
+To disable sink decoupling, set `sink_decouple` as `false` or `disable`, regardless of the default setting. 
+
+```sql
+SET sink_decouple = false;
+```
 
 ## Upsert sinks and primary keys
 

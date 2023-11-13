@@ -8,9 +8,7 @@ slug: /risingwave-trial
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-trial/" />
 </head>
 
-Select an installation or running method.
-
-These options are all for testing purposes. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
+All of the options on this page are for testing purposes. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -19,7 +17,7 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="overview" label="Overview">
 
-RisingWave offers several installation or running options. Choose the option that best fits your needs.
+RisingWave offers several installation options. Choose the option that best fits your needs.
 
 <br/>
 
@@ -124,7 +122,7 @@ To persist your data, deploy RisingWave to K8s with [the RisingWave Operator](/d
 1. ### Download the binaries
 
   ```shell
-  wget https://github.com/risingwavelabs/risingwave/releases/download/v1.3.0/risingwave-v1.3.0-x86_64-linux-all-in-one.tar.gz
+  wget https://github.com/risingwavelabs/risingwave/releases/download/v1.3.0/risingwave-v1.3.0-x86_64-unknown-linux-all-in-one.tar.gz
   ```
 
   > You can find previous binary releases in [Release notes](/release-notes).
@@ -132,8 +130,14 @@ To persist your data, deploy RisingWave to K8s with [the RisingWave Operator](/d
 1. ### Extract the tarball
 
   ```shell
-  tar xvf risingwave-v1.3.0-x86_64-unknown-linux.tar.gz
+  tar xvf risingwave-v1.3.0-x86_64-unknown-linux-all-in-one.tar.gz
   ```
+
+:::note
+
+Do not move the extracted files or folders. This could cause issues when starting RisingWave.
+
+:::
 
 1. ### Start RisingWave
 
@@ -403,7 +407,7 @@ docker-compose -f docker-compose-with-hdfs.yml up
 If you don't need the RisingWave containers and the associated networks and persisted data, run the following command to delete them:
 
 ```shell
-docker-commpose down -v
+docker-compose down -v
 ```
 
 </TabItem>

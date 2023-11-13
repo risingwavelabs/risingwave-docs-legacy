@@ -92,6 +92,7 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 * [NATS](/guides/sink-to-nats.md)
 * [PostgreSQL](/guides/sink-to-postgres.md)
 * [Pulsar](/guides/sink-to-pulsar.md)
+* [Redis](/guides/sink-to-redis.md)
 * [TiDB](/guides/sink-to-tidb.md)
 
 

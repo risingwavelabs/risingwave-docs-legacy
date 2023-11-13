@@ -10,6 +10,12 @@ slug: /sql-delete
 
 Use the `DELETE` command to permanently remove rows from a table.
 
+:::info
+
+Call [`FLUSH`](/sql/commands/sql-flush.md) after `DELETE` to persist the changes to storage. This ensures that the changes are committed and visible for subsequent reads.
+
+:::
+
 ## Syntax
 
 ```sql
