@@ -139,6 +139,8 @@ See how RisingWave can integrate with your existing data stack. [Request an inte
 {src:"/img/ecosystem/mysql.svg", doc:"ingest-from-mysql-cdc", text: "MySQL"},
 {src:"/img/ecosystem/tidb.svg", doc:"create-source-cdc", text: "TiDB"},
 {src:"/img/ecosystem/citus.svg", doc:"ingest-from-citus-cdc", text: "Citus"},
+{src:"/img/ecosystem/mongodb.svg", doc:"ingest-from-mongodb-cdc", text: "MongoDB"},
+{src:"/img/ecosystem/nats.svg", doc:"ingest-from-nats", text: "NATS JetStream"},
 ]}>
 
 ### Sources
