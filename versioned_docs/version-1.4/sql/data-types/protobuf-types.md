@@ -16,7 +16,7 @@ RisingWave converts [well-known types](https://protobuf.dev/reference/protobuf/g
 
 Protobuf type | RisingWave type
 -- | --
-any | 
+any | JSONB (actual value can be extracted using a key)
 double | double precision
 float | real
 int32 | int
