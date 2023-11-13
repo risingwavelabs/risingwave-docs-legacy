@@ -448,6 +448,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Google BigQuery",
+              id: "guides/sink-to-bigquery",
+            },
+            {
+              type: "doc",
               label: "MySQL",
               id: "guides/sink-to-mysql-with-jdbc",
             },
@@ -612,6 +617,11 @@ const sidebars = {
                   type: "doc",
                   id: "sql/data-types/data-type-rw_int256",
                   label: "rw_int256",
+                },
+                {
+                  type: "doc",
+                  id: "sql/data-types/protobuf-types",
+                  label: "Supported protobuf types",
                 },
               ],
             },
