@@ -136,7 +136,7 @@ For materialized sources with primary key constraints, if a new data record with
 
 |Field|Notes|
 |---|---|
-|*data_format*| Data format. Supported formats: , `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`. |
+|*data_format*| Data format. Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`. |
 |*data_encode*| Data encode. Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
 |*message* | Message name of the main Message in schema definition. Required for Protobuf. |
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
