@@ -204,39 +204,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs groupId="state_backend_options">
-<TabItem value="minio" label="MinIO">
-
-:::note
-The performance of MinIO is closely tied to the disk performance of the node where it is hosted. We have observed that AWS EBS does not perform well in our tests. For optimal performance, we recommend using S3 or a compatible cloud service.
-:::
-
-```yaml
-spec:
-  stateStore:
-    # Prefix to objects in the object stores or directory in file system. Default to "hummock".
-    dataDirectory: hummock
-    
-    # Declaration of the MinIO state store backend.
-    minio:
-      # Endpoint of the MinIO service.
-      endpoint: risingwave-minio:9301
-      
-      # Name of the MinIO bucket.
-      bucket: hummock001
-      
-      # Credentials to access the MinIO bucket.
-      credentials:
-        # Name of the Kubernetes secret that stores the credentials.
-        secretName: minio-credentials
-        
-        # Key of the username ID in the secret.
-        usernameKeyRef: username
-        
-        # Key of the password key in the secret.
-        passwordKeyRef: password 
-```
-
-</TabItem>
 <TabItem value="AWS S3" label="AWS S3">
 
 ```yaml
@@ -271,7 +238,39 @@ spec:
 ```
 
 </TabItem>
+<TabItem value="minio" label="MinIO">
 
+:::note
+The performance of MinIO is closely tied to the disk performance of the node where it is hosted. We have observed that AWS EBS does not perform well in our tests. For optimal performance, we recommend using S3 or a compatible cloud service.
+:::
+
+```yaml
+spec:
+  stateStore:
+    # Prefix to objects in the object stores or directory in file system. Default to "hummock".
+    dataDirectory: hummock
+    
+    # Declaration of the MinIO state store backend.
+    minio:
+      # Endpoint of the MinIO service.
+      endpoint: risingwave-minio:9301
+      
+      # Name of the MinIO bucket.
+      bucket: hummock001
+      
+      # Credentials to access the MinIO bucket.
+      credentials:
+        # Name of the Kubernetes secret that stores the credentials.
+        secretName: minio-credentials
+        
+        # Key of the username ID in the secret.
+        usernameKeyRef: username
+        
+        # Key of the password key in the secret.
+        passwordKeyRef: password 
+```
+
+</TabItem>
 <TabItem value="s3-compatible" label="S3-compatible">
 
 ```yaml
