@@ -253,26 +253,6 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 
 <grid item xs={6} sm={6} md={3}>
 
-### <JoinInnerOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> References
-
----
-
-[Commands](/docs/current/sql-commands)
-
-[Query syntax](/docs/current/query-syntax)
-
-[Data types](/docs/current/sql-data-types)
-
-[Functions and operators](/docs/current/sql-functions)
-
-[Patterns](/docs/current/sql-patterns)
-
-[See all →](/docs/current/sql-references)
-
-</grid>
-
-<grid item xs={6} sm={6} md={3}>
-
 ### <NextWeekOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Demos
 
 ---
@@ -291,6 +271,32 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 
 </grid>
 
+<grid item xs={6} sm={6} md={3}>
+
+### <JoinInnerOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> Transformation
+
+---
+
+[Dynamic filters](/docs/current/sql-pattern-dynamic-filters)
+
+[Temporal filters](/docs/current/sql-pattern-temporal-filters)
+
+[Joins](/docs/current/query-syntax-join-clause)
+
+[Top-N by group](/docs/current/sql-pattern-topn)
+
+[Time window functions](/docs/current/sql-function-time-window)
+
+[User-defined functions](/docs/current/user-defined-functions)
+
+[Window functions](/docs/current/window-functions)
+
+[Emit on window close](/docs/current/emit-on-window-close)
+
+[Watermarks](/docs/current/watermarks)
+
+</grid>
+
 </grid>
 
 <br/>
@@ -302,6 +308,26 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
  justifyContent="flex-start"
  justifyItems="stretch"
  alignItems="stretch">
+
+ <grid item xs={6} sm={6} md={3}>
+
+### <JoinInnerOutlinedIcon sx={{ verticalAlign: "sub", color: "var(--ifm-font-color-base)" }} /> References
+
+---
+
+[Commands](/docs/current/sql-commands)
+
+[Query syntax](/docs/current/query-syntax)
+
+[Data types](/docs/current/sql-data-types)
+
+[Functions and operators](/docs/current/sql-functions)
+
+[Patterns](/docs/current/sql-patterns)
+
+[See all →](/docs/current/sql-references)
+
+</grid>
 
 <grid item xs={6} sm={6} md={3}>
 
