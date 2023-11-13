@@ -87,6 +87,7 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 * [ClickHouse](/guides/sink-to-clickhouse.md)
 * [Delta Lake](/guides/sink-to-delta-lake.md)
 * [Elasticsearch](/guides/sink-to-elasticsearch.md)
+* [Google BigQuery](/guides/sink-to-bigquery.md)
 * [Kafka](/guides/create-sink-kafka.md) (Supports versions 3.1.0 or later)
 * [MySQL](/guides/sink-to-mysql.md) (Supports versions 5.7 and 8.0.x)
 * [NATS](/guides/sink-to-nats.md)
