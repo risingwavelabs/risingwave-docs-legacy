@@ -54,6 +54,30 @@ SELECT jsonb_array_length('[1,2,3,{"f1":1,"f2":[5,6]},4]');
 5
 ```
 
+### `jsonb_build_array`
+
+Builds a JSON array out of a variadic argument list. Each argument is converted as per `to_jsonb`.
+
+```bash title=Syntax
+jsonb_build_array ( VARIADIC "any" ) → jsonb
+```
+
+```sql title=Example
+jsonb_build_array(1, 2, 'foo', 4, 5) → [1, 2, "foo", 4, 5]
+```
+
+### `jsonb_build_object`
+
+Builds a JSON object out of a variadic argument list. By convention, the argument list consists of alternating keys and values. Key arguments are coerced to text; value arguments are converted as per `to_jsonb`.
+
+```bash title=Syntax
+jsonb_build_array ( VARIADIC "any" ) → jsonb
+```
+
+```sql title=Example
+jsonb_build_object('foo', 1, 2, row(3,'bar')) → {"foo" : 1, "2" : {"f1":3,"f2":"bar"}}
+```
+
 ### `jsonb_each`
 
 Expands the top-level JSON object into a set of key-value pairs.
