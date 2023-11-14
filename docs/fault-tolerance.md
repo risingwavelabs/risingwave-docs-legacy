@@ -3,6 +3,7 @@ id: fault-tolerance
 title: Fault tolerance
 slug: /fault-tolerance
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/fault-tolerance/" />
 </head>

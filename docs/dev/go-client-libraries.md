@@ -4,6 +4,7 @@ title: Use RisingWave in your Go application
 description: Use RisingWave in your Go application
 slug: /go-client-libraries
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/go-client-libraries/" />
 </head>
@@ -60,7 +61,7 @@ Note that you need to place the code inside a function.
 
 ```go
 sql := `CREATE TABLE walk(distance INT, duration INT)
-        WITH ( 
+        WITH (
             connector = 'datagen',
             fields.distance.kind = 'sequence',
             fields.distance.start = '1',
@@ -75,12 +76,13 @@ sql := `CREATE TABLE walk(distance INT, duration INT)
 _, err := conn.Exec(context.Background(), sql)
 return err
 ```
+
 ## Create a materialized view
 
 The code in this section creates a materialized view `counter` to capture the latest total distance and duration. Note that you need to place the code inside a function.
 
 ```go
-sql := `CREATE MATERIALIZED VIEW counter AS 
+sql := `CREATE MATERIALIZED VIEW counter AS
         SELECT
             SUM(distance) as total_distance,
             SUM(duration) as total_duration

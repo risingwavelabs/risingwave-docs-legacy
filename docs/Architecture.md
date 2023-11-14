@@ -3,8 +3,8 @@ sidebar_position: 3
 id: architecture
 title: Architecture
 slug: /architecture
-
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/architecture/" />
 </head>
@@ -16,6 +16,6 @@ The compute nodes are responsible for ingesting data from upstream systems, pars
 The compact nodes handle data storage and retrieval from object storage. They also perform data compaction to optimize storage efficiency.
 
 <img
-  src={require('./images/rw_architecture.png').default}
-  alt="RisingWave Architecture"
+src={require('./images/rw_architecture.png').default}
+alt="RisingWave Architecture"
 />

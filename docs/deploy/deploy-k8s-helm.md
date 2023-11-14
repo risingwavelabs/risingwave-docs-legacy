@@ -4,6 +4,7 @@ title: Deploy RisingWave on Kubernetes with Helm
 description: Deploy RisingWave in a Kubernetes cluster with Helm.
 slug: /risingwave-k8s-helm
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-k8s-helm/" />
 </head>
@@ -126,7 +127,7 @@ The `--reuse-values` option ensures that the previous configuration will be kept
 A typical `values.yml` looks like this:
 
 ```yaml
-...
+---
 compactorComponent:
   resources:
     limits:
@@ -135,7 +136,6 @@ compactorComponent:
     requests:
       cpu: 100m
       memory: 64Mi
-...
 ```
 
 To view the user-specified configurations of your RisingWave cluster:
@@ -163,7 +163,7 @@ compactorComponent:
 By editing the configurations in `values.yml`, you can resize a worker node. The compactor node configurations are in the `compactorComponent` section. Configurations for the meta node and compute node are in `metaComponent` and `computeComponent` sections respectively.
 
 ```bash
-# To resize other types of node, please replace the name with 
+# To resize other types of node, please replace the name with
 # computeComponent, or metaComponent.
 compactorComponent:
   resources:

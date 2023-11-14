@@ -3,6 +3,7 @@ id: key-concepts
 title: Key concepts and terms
 slug: /key-concepts
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/key-concepts/" />
 </head>
@@ -33,7 +34,7 @@ When the results of a view expression are stored in a database system, they are 
 
 ### Indexes
 
-Indexes in a database are typically created on one or more columns of a table, allowing the database management system (DBMS) to  locate and retrieve the desired data from the table quickly. This can greatly improve the performance of database queries, especially for large tables or frequently accessed tables.
+Indexes in a database are typically created on one or more columns of a table, allowing the database management system (DBMS) to locate and retrieve the desired data from the table quickly. This can greatly improve the performance of database queries, especially for large tables or frequently accessed tables.
 
 ## Streaming actors
 

@@ -4,6 +4,7 @@ title: Hardware requirements
 description: Hardware requirements and recommendations for production deployments.
 slug: /hardware-requirements
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/resource-planning/" />
 </head>
