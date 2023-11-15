@@ -20,7 +20,7 @@ This version was released on November 10, 2023.
 - Query syntax:
   - Supports using subqueries in `UPDATE` and `DELETE` statements. [#12995](https://github.com/risingwavelabs/risingwave/pull/12995)
 - SQL commands
-  - Supports `COMMENT ON` clause for tables and columns. [#12849](https://github.com/risingwavelabs/risingwave/pull/12849). [See documentation.](../../versioned_docs/version-1.4/sql/commands/sql-comment-on.md)
+  - Supports `COMMENT ON` clause for tables and columns. [#12849](https://github.com/risingwavelabs/risingwave/pull/12849). [See documentation.](/versioned_docs/version-1.4/sql/commands/sql-comment-on.md)
   - Supports persistent background materialized views. [#12167](https://github.com/risingwavelabs/risingwave/pull/12167). [See documentation.](../../versioned_docs/version-1.4/sql/commands/sql-set-background-ddl.md)
   - Supports exposing hidden columns and distribution keys when using `SHOW COLUMNS FROM` command. [#12839](https://github.com/risingwavelabs/risingwave/pull/12839)
   - Supports exposing hidden columns when using `DESCRIBE` command. [#12839](https://github.com/risingwavelabs/risingwave/pull/12839)
