@@ -63,7 +63,9 @@ jsonb_build_array ( VARIADIC "any" ) → jsonb
 ```
 
 ```sql title=Example
-jsonb_build_array(1, 2, 'foo', 4, 5) → [1, 2, "foo", 4, 5]
+SELECT jsonb_build_array(1, 2, 'foo', 4, 5);
+------RESULT
+ [1, 2, "foo", 4, 5]
 ```
 
 ### `jsonb_build_object`
@@ -71,11 +73,13 @@ jsonb_build_array(1, 2, 'foo', 4, 5) → [1, 2, "foo", 4, 5]
 Builds a JSON object out of a variadic argument list. By convention, the argument list consists of alternating keys and values. Key arguments are coerced to text; value arguments are converted as per `to_jsonb`.
 
 ```bash title=Syntax
-jsonb_build_array ( VARIADIC "any" ) → jsonb
+jsonb_build_object ( VARIADIC "any" ) → jsonb
 ```
 
 ```sql title=Example
-jsonb_build_object('foo', 1, 2, row(3,'bar')) → {"foo" : 1, "2" : {"f1":3,"f2":"bar"}}
+SELECT jsonb_build_object('foo', 1, 2, row(3,'bar'));
+------RESULT
+{"2": {"f1": 3, "f2": "bar"}, "foo": 1}
 ```
 
 ### `jsonb_each`
