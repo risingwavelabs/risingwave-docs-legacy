@@ -1,11 +1,13 @@
 ---
 id: sql-function-array
 slug: /sql-function-array
-title: Array functions
+title: Array functions and operators
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-array/" />
 </head>
+
+## Array functions
 
 ### `array_append`
 
@@ -419,4 +421,56 @@ unnest(Array[Array[1,3,4,5],Array[2,3]]) →
 5
 2
 3
+```
+
+## Array operators
+
+### `array @> array -> boolean`
+
+This operator checks if the left array contains all elements of the right array.
+
+```bash title=Example
+SELECT array[1,2,3] @> array[2,3];
+------RESULT
+t
+```
+
+### `array <@ array -> boolean`
+
+This operator checks if the left array is contained by the right array
+
+```bash title=Example
+SELECT array[2,3] <@ array[1,2,3];
+------RESULT
+t
+```
+
+### `array_append`
+
+Appends *any_compatible* to the end of the input array. 
+
+```bash title=Example
+array[66] || 123 → {66, 123}
+```
+
+---
+
+### `array_cat`
+
+Concatenates two arrays with the same data type. 
+
+If the one of the input arrays is a 2-dimensional array, the other array will be appended within the first array as the last element if it is the second argument. The other array will be prepended within the first array as the first element if it is the first argument.
+
+```bash title=Example
+array[66] || array[123] → {66, 123}
+```
+
+---
+
+### `array_prepend`
+
+Prepends *any_compatible* to the beginning of the input array.
+
+```bash title=Example
+123 || array[66] → {123, 66}
 ```
