@@ -65,6 +65,12 @@ This is the default option. To start a RisingWave cluster with MinIO as the stor
 docker compose up -d
 ```
 
+:::tip Command not found?
+The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2). 
+
+If you're using Compose V1, use `docker-compose` instead.
+:::
+
 ### S3 or S3-compatible storage
 
 To use S3 as the storage backend, configure your AWS credential information in `/docker/aws.env`.
@@ -80,7 +86,7 @@ In `docker-compose-with-s3.yml`, specify the bucket name via the `hummock+s3` pa
 Run this command to start the RisingWave cluster:
 
 ```shell
-docker-compose -f docker-compose-with-s3.yml up
+docker compose -f docker-compose-with-s3.yml up
 ```
 
 ### Google Cloud Storage, Alibaba Cloud OSS, or Azure Blob Storage
@@ -96,7 +102,7 @@ In the corresponding `docker-compose-with-xxx.yml` file (for example, `docker-co
 Run the following command to start the RisingWave cluster with one of the cloud storage service that you choose.
 
 ```shell
-docker-compose -f docker-compose-with-xxx.yml up
+docker compose -f docker-compose-with-xxx.yml up
 ```
 
 Remember to replace the `docker-compose-with-xxx.yml` with the full file name of the corresponding configuration file.
@@ -114,7 +120,7 @@ In `/docker-compose-with-hdfs.yml`, specify the cluster name via the `hummock+hd
 Run the following command to start a RisingWave cluster:
 
 ```shell
-docker-compose -f docker-compose-with-hdfs.yml up
+docker compose -f docker-compose-with-hdfs.yml up
 ```
 
 ## Connect to RisingWave
@@ -162,5 +168,5 @@ docker-compose -f docker-compose-with-hdfs.yml up
 If you don't need the RisingWave containers and the associated networks and persisted data, run the following command to delete them:
 
 ```shell
-docker-compose down -v
+docker compose down -v
 ```
