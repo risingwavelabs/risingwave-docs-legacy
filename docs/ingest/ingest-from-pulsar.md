@@ -225,7 +225,7 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 ) FORMAT PLAIN ENCODE PROTOBUF (
-   message = 'FooMessage',
+   message = 'package.message_name',
    schema.location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
 );
 ```

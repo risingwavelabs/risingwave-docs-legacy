@@ -179,6 +179,7 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 ) FORMAT PLAIN ENCODE AVRO (
+   message = 'message_name',
    schema.registry = 'http://127.0.0.1:8081'
 );
 ```
@@ -257,7 +258,7 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 ) FORMAT PLAIN ENCODE PROTOBUF (
-   message = 'main_message',
+   message = 'package.message_name',
    location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
 );
 ```
