@@ -97,8 +97,6 @@ Aggregates values, including nulls, as a JSON array. The `ORDER BY` clause is op
 jsonb_agg ( expression ) -> jsonb    
 ```
 
-Currently, input types include boolean, smallint, int, bigint, real, double precision, varchar and jsonb.
-
 ---  
 
 ### `jsonb_object_agg`
@@ -110,8 +108,6 @@ jsonb_object_agg ( key , value ) -> jsonb
 ```
 
 `key`: varchar only.
-
-`value`: Currently supports null, boolean, smallint, int, bigint, real, double precision, varchar, and jsonb.
 
 ---  
 
