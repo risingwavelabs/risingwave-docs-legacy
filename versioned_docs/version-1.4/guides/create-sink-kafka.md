@@ -197,11 +197,12 @@ WITH (
    connector='kafka',
    properties.bootstrap.server='b-1.xxx.amazonaws.com:9092,b-2.test.xxx.amazonaws.com:9092',
    topic='msk_topic',
-   force_append_only='true',
    privatelink.endpoint='10.148.0.4',
    privatelink.targets = '[{"port": 8001}, {"port": 8002}]'
 )
-FORMAT PLAIN ENCODE JSON;
+FORMAT PLAIN ENCODE JSON (
+   force_append_only='true'
+);
 ```
 
 ## TLS/SSL encryption and SASL authentication
