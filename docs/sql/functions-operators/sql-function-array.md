@@ -437,7 +437,7 @@ t
 
 ### `array <@ array -> boolean`
 
-This operator checks if the left array is contained by the right array
+This operator checks if the left array is contained by the right array.
 
 ```bash title=Example
 SELECT array[2,3] <@ array[1,2,3];
