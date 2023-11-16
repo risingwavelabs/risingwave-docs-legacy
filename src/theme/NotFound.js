@@ -46,9 +46,5 @@ export default function NotFoundWrapper(props) {
     }
   }, []);
 
-  return (
-    <>
-      <NotFound {...props} />
-    </>
-  );
+  return <>{/*<NotFound {...props} />*/}</>;
 }
