@@ -208,6 +208,19 @@ jsonb_object('{a, 1, b, def, c, 3.5}' :: text[]) → {"a": "1", "b": "def", "c":
 jsonb_object(array['a', null]) → {"a": null}
 ```
 
+### `to_jsonb`
+
+Converts any SQL value to JSONB data type. It recursively handles arrays and composites, transforming them into arrays and objects in the resulting JSON representation. If a direct cast from the SQL data type to JSON is available, it is used for the conversion; otherwise, scalar values are produced as JSON scalars, with text representations appropriately escaped to ensure valid JSON string values.
+
+```sql title=Syntax
+to_jsonb ( any ) → JSONB
+```
+
+```sql title=Examples
+to_jsonb(array['apple', 'banana', 'cherry']) → ["apple", "banana", "cherry"]
+to_jsonb('Products labeled "expired"'::string) → "Products labeled \"expired\""
+```
+
 ## JSON operators
 
 ### `jsonb -> integer → jsonb`

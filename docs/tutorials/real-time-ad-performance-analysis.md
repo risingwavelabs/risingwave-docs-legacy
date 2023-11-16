@@ -45,6 +45,12 @@ cd risingwave/integration_tests/ad-ctr
 docker compose up -d
 ```
 
+:::tip Command not found?
+The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2). 
+
+If you're using Compose V1, use `docker-compose` instead.
+:::
+
 Necessary RisingWave components, including frontend node, compute node, metadata node, and MinIO, will be started. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, data of materialized views will be stored in the MinIO instance.
 
 
@@ -250,7 +256,7 @@ When you finish, run the following command to disconnect RisingWave.
 Optional: To remove the containers and the data generated, use the following command.
 
 ```shell
-docker-compose down
+docker compose down -v
 ```
 
 ## Summary
