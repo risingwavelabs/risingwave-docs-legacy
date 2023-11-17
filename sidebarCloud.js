@@ -169,6 +169,28 @@ module.exports = {
           ],
         },
         {
+          type: "category",
+          label: "VPC connection",
+          collapsible: true,
+          collapsed: true,
+          link: { type: "doc", id: "vpc-overview" },
+          items: [
+            {
+              type: "doc",
+              id: "vpc-overview",
+              label: "Overview",
+            },
+            {
+              type: "doc",
+              id: "vpc-create-a-connection",
+            },
+            {
+              type: "doc",
+              id: "vpc-drop-a-connection",
+            },
+          ],
+        },
+        {
           type: "doc",
           id: "console-overview",
         },
