@@ -54,14 +54,26 @@ Follow the steps below to establish a secure connection with your VPC through AW
 
     <details><summary>For GCP, enter the server target URL of the service attachment.</summary> 
 
-    [TBC] You can find it in the [Google Cloud Console](https://console.cloud.google.com/) → **VPC network** → **Serverless VPC access** → **Service attachments** → **Server target URL** section.
-
-    <img
-    src={require('./images/aws-endpoint-service-name.png').default}
-    alt="AWS endpoint service name"
-    />
+    [To be updated] You can find it in the [Google Cloud Console](https://console.cloud.google.com/) → **VPC network** → **Serverless VPC access** → **Service attachments** → **Server target URL** section.
 
     </details>
 
 6. Click **Confirm** to create the connection.
+
+## What's next
+
+Now, you can create a source or sink with the VPC connection using SQL.
+
+:::note
+Guided setup for creating a source or sink with a VPC connection is coming soon.
+:::
+
+After you created the connection, a VPC connection endpoint is generated for your cluster. You can find it in [**Connection**](https://cloud.risingwave.com/connection/).
+
+<img
+src={require('./images/vpc-connection-endpoint.png').default}
+alt="VPC connection endpoint "
+/>
+
+For details on how to use the VPC endpoint to create a source with the VPC connection, see [Create source with VPC connection](https://docs.risingwave.com/docs/current/ingest-from-kafka/#create-source-with-vpc-connection). For creating a sink, see [Create sink with VPC connection](https://docs.risingwave.com/docs/current/create-sink-kafka/#create-sink-with-vpc-connection).
 
