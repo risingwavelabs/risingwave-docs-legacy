@@ -11,7 +11,7 @@ title: Array functions and operators
 
 ### `array_append`
 
-Appends *any_compatible* to the end of the input array. The `||` operator can also be used.
+Appends *any_compatible* to the end of the input array.
 
 ```bash title=Syntax
 array_append ( array, any_compatible ) → array
@@ -25,7 +25,7 @@ array_append(array[66], 123) → {66, 123}
 
 ### `array_cat`
 
-Concatenates two arrays with the same data type. The `||` operator can also be used.
+Concatenates two arrays with the same data type.
 
 If the one of the input arrays is a 2-dimensional array, the other array will be appended within the first array as the last element if it is the second argument. The other array will be prepended within the first array as the first element if it is the first argument.
 
@@ -207,7 +207,7 @@ array_positions(array[1,2,3,4,5,6,1,2,3,4,5,6], 4) → {4, 10}
 
 ### `array_prepend`
 
-Prepends *any_compatible* to the beginning of the input array. The `||` operator can also be used.
+Prepends *any_compatible* to the beginning of the input array.
 
 ```bash title=Syntax
 array_prepend ( any_compatible, array ) → array
@@ -425,9 +425,7 @@ unnest(Array[Array[1,3,4,5],Array[2,3]]) →
 This operator checks if the left array contains all elements of the right array.
 
 ```bash title=Example
-SELECT array[1,2,3] @> array[2,3];
-------RESULT
-t
+array[1,2,3] @> array[2,3] → t
 ```
 
 ### `array <@ array -> boolean`
@@ -435,14 +433,12 @@ t
 This operator checks if the left array is contained by the right array.
 
 ```bash title=Example
-SELECT array[2,3] <@ array[1,2,3];
-------RESULT
-t
+array[2,3] <@ array[1,2,3] → t
 ```
 
 ### `array || anycompatible → array`
 
-Appends *any_compatible* to the end of the input array. This is equal to `array_append`.
+Appends *any_compatible* to the end of the input array. This operation achieves the same result as using `array_append`.
 
 ```bash title=Example
 array[66] || 123 → {66, 123}
@@ -452,7 +448,7 @@ array[66] || 123 → {66, 123}
 
 ### `array || array → array`
 
-Concatenates two arrays with the same data type. This is equal to `array_cat`.
+Concatenates two arrays with the same data type. This operation achieves the same result as using `array_cat`.
 
 ```bash title=Example
 array[66] || array[123] → {66, 123}
@@ -462,7 +458,7 @@ array[66] || array[123] → {66, 123}
 
 ### `anycompatible || array → array`
 
-Prepends *any_compatible* to the beginning of the input array. This is equal to `array_prepend`.
+Prepends *any_compatible* to the beginning of the input array. This operation achieves the same result as using `array_prepend`.
 
 ```bash title=Example
 123 || array[66] → {123, 66}
