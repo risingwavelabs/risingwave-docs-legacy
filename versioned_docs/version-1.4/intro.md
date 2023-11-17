@@ -37,7 +37,7 @@ Compared to existing stream processing systems like [Apache Flink](https://flink
 ### Cost efficiency
 
 * **Highly efficient in complex queries**
-  * RisingWave persists internal states in remote storages (e.g., S3), and users can confidently and efficiently perform complex streaming queries (e.g., joining dozens of data streams) in a production environment, without worrying about state size.
+  * RisingWave persists internal states in remote storage (e.g., S3), and users can confidently and efficiently perform complex streaming queries (e.g., joining dozens of data streams) in a production environment, without worrying about state size.
 * **Transparent dynamic scaling**
   * RisingWave's state management mechanism enables near-instantaneous dynamic scaling without any service interruptions.
 * **Instant failure recovery**
