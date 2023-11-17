@@ -442,7 +442,7 @@ t
 
 ### `array || anycompatible → array`
 
-Appends *any_compatible* to the end of the input array. This is equal to array_append.
+Appends *any_compatible* to the end of the input array. This is equal to `array_append`.
 
 ```bash title=Example
 array[66] || 123 → {66, 123}
@@ -450,10 +450,9 @@ array[66] || 123 → {66, 123}
 
 ---
 
-### `array_cat`
-array || array → array
+### `array || array → array`
 
-Concatenates two arrays with the same data type. 
+Concatenates two arrays with the same data type. This is equal to `array_cat`.
 
 ```bash title=Example
 array[66] || array[123] → {66, 123}
@@ -461,11 +460,9 @@ array[66] || array[123] → {66, 123}
 
 ---
 
-### `array_prepend`
+### `anycompatible || array → array`
 
-anycompatible || array → array
-
-Prepends *any_compatible* to the beginning of the input array.
+Prepends *any_compatible* to the beginning of the input array. This is equal to `array_prepend`.
 
 ```bash title=Example
 123 || array[66] → {123, 66}
