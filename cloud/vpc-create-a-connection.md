@@ -22,7 +22,7 @@ Follow the steps below to establish a secure connection with your VPC through AW
 
 ## Steps
 
-1. Go to the [**Connection**](https://risingwave.cloud/connection/) page and click **Create connection**.
+1. Go to the [**Connection**](https://cloud.risingwave.com/connection/) page and click **Create connection**.
 
     <img
     src={require('./images/create-connection-page.png').default}

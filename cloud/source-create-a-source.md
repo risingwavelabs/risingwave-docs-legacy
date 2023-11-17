@@ -16,7 +16,7 @@ You can create a source with one of the following methods:
 
 ## Using guided setup
 
-1. Go to [**Source**](https://risingwave.cloud/source/).
+1. Go to [**Source**](https://cloud.risingwave.com/source/).
 
 2. Specify the cluster and database, and log in as a database user.
 

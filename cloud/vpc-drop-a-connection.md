@@ -7,7 +7,7 @@ slug: /drop-a-connection
 
 Follow the steps below to drop a connection to your VPC when you no longer need it.
 
-1. Go to the [**Connection**](https://risingwave.cloud/connection/) page and click **Create connection**.
+1. Go to the [**Connection**](https://cloud.risingwave.com/connection/) page and click **Create connection**.
 
     <img
     src={require('./images/connection-page.png').default}

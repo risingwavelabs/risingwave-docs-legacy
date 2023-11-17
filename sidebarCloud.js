@@ -33,7 +33,7 @@ module.exports = {
         },
         {
           type: "link",
-          href: "https://www.risingwave.cloud/auth/signup/",
+          href: "https://cloud.risingwave.com/auth/signup/",
           label: "Sign up and log in",
         },
       ],

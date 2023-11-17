@@ -16,7 +16,7 @@ alt="VPC connection diagram"
 
 RisingWave Cloud supports VPC connections through AWS PrivateLink and GCP Private Service Connect.
 
-You can go to the [**Connection**](https://risingwave.cloud/connection/) page to manage your VPC connections.
+You can go to the [**Connection**](https://cloud.risingwave.com/connection/) page to manage your VPC connections.
 
 <img
   src={require('./images/connection-page.png').default}
