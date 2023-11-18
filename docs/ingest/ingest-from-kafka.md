@@ -150,6 +150,7 @@ When creating a source in RisingWave, you can specify the following Kafka parame
 |----------------------|---------------------------|------|
 |enable.auto.commit | properties.enable.auto.commit | boolean |
 |fetch.max.bytes | properties.fetch.max.bytes | int |
+|fetch.queue.backoff.ms | properties.fetch.queue.backoff.ms | int |
 |fetch.wait.max.ms | properties.fetch.wait.max.ms | int |
 |message.max.bytes | properties.message.max.bytes | int |
 |queued.max.messages.kbytes| properties.queued.max.messages.kbytes | int |
