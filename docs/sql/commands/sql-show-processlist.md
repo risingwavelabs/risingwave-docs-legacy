@@ -11,6 +11,7 @@ slug: /sql-show-processlist
 Use the `SHOW PROCESSLIST` command to display the current workload of the system. The output of this command consists of id, user, host, database, time, and info. 
 
 The following table explains the output in detail:
+
 | Output | Description|
 |-----------|-------------|
 |`id`|The id of the process.|
