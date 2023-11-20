@@ -54,7 +54,12 @@ Follow the steps below to establish a secure connection with your VPC through AW
 
     <details><summary>For GCP, enter the server target URL of the service attachment.</summary> 
 
-    [To be updated] You can find it in the [Google Cloud Console](https://console.cloud.google.com/) → **VPC network** → **Serverless VPC access** → **Service attachments** → **Server target URL** section.
+    You can find it in the [Google Cloud Console](https://console.cloud.google.com/) → **Network services** → **Private Service Connect**.
+
+    <img
+    src={require('./images/gcp-service-attachment.png').default}
+    alt="GCP Service attachment"
+    />
 
     </details>
 
