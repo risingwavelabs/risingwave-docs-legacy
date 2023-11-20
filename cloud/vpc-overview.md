@@ -5,6 +5,8 @@ description: Manage VPC connections.
 slug: /vpc-overview
 ---
 
+## Concept
+
 If you want to connect to a cloud-hosted source or sink, there might be connectivity issues when your service is located within a virtual private cloud (VPC) that is not publicly accessible. 
 
 To establish a secure and direct connection between the VPC and your clusters in RisingWave Cloud and allow RisingWave to read consumer messages from the broker or send messages to the broker, you need to establish a VPC connection.
@@ -13,6 +15,8 @@ To establish a secure and direct connection between the VPC and your clusters in
 src={require('./images/vpc-diagram.png').default}
 alt="VPC connection diagram"
 />
+
+## Connecting to VPCs
 
 RisingWave Cloud supports VPC connections through AWS PrivateLink and GCP Private Service Connect.
 
