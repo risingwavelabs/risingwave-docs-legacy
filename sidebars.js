@@ -562,6 +562,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/query-syntax/query-syntax-owner-to-clause",
+                  label: "OWNER TO clause",
+                },
+                {
+                  type: "doc",
                   id: "sql/query-syntax/query-syntax-values-clause",
                   label: "VALUES clause",
                 },
