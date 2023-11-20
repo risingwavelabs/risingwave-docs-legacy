@@ -35,7 +35,7 @@ Follow the steps below to establish a secure connection with your VPC through AW
 
 3. For **Cluster**, select the cluster you want to connect the VPC to.
    
-   Notice that the VPC and the cluster must be in the same region.
+   Ensure that the VPC and the cluster are in the same region.
 
 4. For **Connection name**, enter a descriptive name for the connection.
    
