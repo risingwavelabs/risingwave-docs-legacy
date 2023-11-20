@@ -15,7 +15,7 @@ Here is the basic syntax of an `ALTER` statement with the `OWNER TO` clause:
 ALTER { DATABASE | SCHEMA | TABLE | [MATERIALIZED] VIEW | SOURCE | SINK } target OWNER TO new_user
 ```
 :::info
-Note that the statement `ALTER TABLE target OWNER TO new_user` will also change the owner of the table's indexes, internal tables and the associated source (if the table is created using `CREATE TABLE table_name WITH (connector='connector_name')`).
+Note that the statement `ALTER ... OWNER TO ...` will cascadingly change all related sub-objects as well.
 :::
 
 Basic `OWNER TO` clause examples:
