@@ -51,24 +51,24 @@ export const svg = rr.Diagram(
 ```sql
 SHOW PROCESSLIST;
 ------RESULT
-  Id   | User |      Host       | Database | Time |                 Info
+Id   | User |      Host       | Database | Time |                 Info
 -------+------+-----------------+----------+------+---------------------------------------
- 56-56 | root | 127.0.0.1:57542 | dev      | 6ms  | SELECT c FROM sbtest1 WHERE id=197719
- 57-57 | root | 127.0.0.1:57545 | dev      |      |
- 64-64 | root | 127.0.0.1:57552 | dev      |      |
- 67-67 | root | 127.0.0.1:57554 | dev      |      |
- 52-52 | root | 127.0.0.1:57540 | dev      | 0ms  | SELECT c FROM sbtest1 WHERE id=961513
- 16-16 | root | 127.0.0.1:57054 | dev      | 0ms  | show processlist;
- 58-58 | root | 127.0.0.1:57546 | dev      |      |
- 54-54 | root | 127.0.0.1:57543 | dev      | 3ms  | SELECT c FROM sbtest1 WHERE id=99465
- 55-55 | root | 127.0.0.1:57544 | dev      | 1ms  | SELECT c FROM sbtest1 WHERE id=601879
- 53-53 | root | 127.0.0.1:57541 | dev      |      |
- 65-65 | root | 127.0.0.1:57553 | dev      | 0ms  | SELECT c FROM sbtest1 WHERE id=547609
- 61-61 | root | 127.0.0.1:57549 | dev      | 2ms  | SELECT c FROM sbtest1 WHERE id=394922
- 60-60 | root | 127.0.0.1:57548 | dev      | 4ms  | SELECT c FROM sbtest1 WHERE id=453909
- 63-63 | root | 127.0.0.1:57551 | dev      | 0ms  | SELECT c FROM sbtest1 WHERE id=190594
- 62-62 | root | 127.0.0.1:57550 | dev      | 0ms  | SELECT c FROM sbtest1 WHERE id=128925
- 66-66 | root | 127.0.0.1:57555 | dev      |      |
- 59-59 | root | 127.0.0.1:57547 | dev      | 0ms  | SELECT c FROM sbtest1 WHERE id=772039
+ 56 | root | 127.0.0.1:57542 | dev      | 6ms  | SELECT c FROM sbtest1 WHERE id=197719
+ 57 | root | 127.0.0.1:57545 | dev      |      |
+ 64 | root | 127.0.0.1:57552 | dev      |      |
+ 67 | root | 127.0.0.1:57554 | dev      |      |
+ 52 | root | 127.0.0.1:57540 | dev      | 0ms  | SELECT c FROM sbtest1 WHERE id=961513
+ 16 | root | 127.0.0.1:57054 | dev      | 0ms  | show processlist;
+ 58 | root | 127.0.0.1:57546 | dev      |      |
+ 54 | root | 127.0.0.1:57543 | dev      | 3ms  | SELECT c FROM sbtest1 WHERE id=99465
+ 55 | root | 127.0.0.1:57544 | dev      | 1ms  | SELECT c FROM sbtest1 WHERE id=601879
+ 53 | root | 127.0.0.1:57541 | dev      |      |
+ 65 | root | 127.0.0.1:57553 | dev      | 0ms  | SELECT c FROM sbtest1 WHERE id=547609
+ 61 | root | 127.0.0.1:57549 | dev      | 2ms  | SELECT c FROM sbtest1 WHERE id=394922
+ 60 | root | 127.0.0.1:57548 | dev      | 4ms  | SELECT c FROM sbtest1 WHERE id=453909
+ 63 | root | 127.0.0.1:57551 | dev      | 0ms  | SELECT c FROM sbtest1 WHERE id=190594
+ 62 | root | 127.0.0.1:57550 | dev      | 0ms  | SELECT c FROM sbtest1 WHERE id=128925
+ 66 | root | 127.0.0.1:57555 | dev      |      |
+ 59 | root | 127.0.0.1:57547 | dev      | 0ms  | SELECT c FROM sbtest1 WHERE id=772039
 (17 rows)
 ```
