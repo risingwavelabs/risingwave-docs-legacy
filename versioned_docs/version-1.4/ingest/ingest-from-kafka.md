@@ -328,6 +328,7 @@ describe source_name;
  _row_id             | serial                      | true      |
 ```
 
+You can select other internal columns, just like you selected `_rw_kafka_timestamp`.
 
 ## Read schemas from locations
 
