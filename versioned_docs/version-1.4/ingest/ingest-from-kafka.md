@@ -316,6 +316,19 @@ SELECT * FROM source_name
 WHERE _rw_kafka_timestamp > now() - interval '10 minute';
 ```
 
+## Other internal columns
+
+When ingesting from Kafka, RisingWave will create more internal columns. To see them, please use 
+
+```sql 
+describe source_name;
+        Name         |            Type             | Is Hidden | Description
+---------------------+-----------------------------+-----------+-------------
+ _rw_kafka_timestamp | timestamp with time zone    | true      |
+ _row_id             | serial                      | true      |
+```
+
+
 ## Read schemas from locations
 
 RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Avro or Protobuf format.
