@@ -94,7 +94,7 @@ The input can be of any supported data type.
 Aggregates values, including nulls, as a JSON array. The `ORDER BY` clause is optional and specifies the order of rows processed in the aggregation, which determines the order of the elements in the result array.
 
 ```bash title=Syntax
-jsonb_agg ( expression ) -> jsonb    
+jsonb_agg ( any_element ) -> jsonb    
 ```
 
 ---  
@@ -104,10 +104,8 @@ jsonb_agg ( expression ) -> jsonb
 Aggregates name/value pairs as a JSON object.
 
 ```bash title=Syntax
-jsonb_object_agg ( key , value ) -> jsonb   
+jsonb_object_agg ( key "any" , value "any" ) -> jsonb   
 ```
-
-`key`: varchar only.
 
 ---  
 
