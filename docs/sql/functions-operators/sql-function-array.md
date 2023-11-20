@@ -438,7 +438,7 @@ array[2,3] <@ array[1,2,3] → t
 
 ### `array || anycompatible → array`
 
-Appends *any_compatible* to the end of the input array. This operation achieves the same result as using `array_append`.
+Appends *any_compatible* to the end of *array*. This operation achieves the same result as using `array_append`.
 
 ```bash title=Example
 array[66] || 123 → {66, 123}
@@ -458,7 +458,7 @@ array[66] || array[123] → {66, 123}
 
 ### `anycompatible || array → array`
 
-Prepends *any_compatible* to the beginning of the input array. This operation achieves the same result as using `array_prepend`.
+Prepends *any_compatible* to the beginning of *array*. This operation achieves the same result as using `array_prepend`.
 
 ```bash title=Example
 123 || array[66] → {123, 66}
