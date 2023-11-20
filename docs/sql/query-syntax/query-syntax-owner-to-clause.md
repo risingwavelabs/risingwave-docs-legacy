@@ -7,7 +7,7 @@ title: OWNER TO clause
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-owner-to-clause/" />
 </head>
 
-"OWNER TO" is a clause that is used to assign or change the owner of an object, including the database, schema, table, materialized view, source, and sink. It is typically used in conjunction with the ALTER statement.
+`OWNER TO` is a clause that is used to assign or change the owner of an object, including the database, schema, table, materialized view, source, and sink. It is typically used in conjunction with the `ALTER` statement.
 
 Here is the basic syntax of an `ALTER` statement with the `OWNER TO` clause:
 
