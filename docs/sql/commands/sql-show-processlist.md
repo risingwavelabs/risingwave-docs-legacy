@@ -61,7 +61,7 @@ Id   | User |      Host       | Database | Time |                 Info
 
 ## Terminate the process
 
-After using the `SHOW PROCESSLIST` command to display the running processes, you can terminate the idle process with the `KILL` command.
+After using the `SHOW PROCESSLIST` command to display the running processes, you can terminate the idle process by the `KILL` command.
 
 ### Syntax
 
