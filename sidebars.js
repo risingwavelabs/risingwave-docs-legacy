@@ -822,7 +822,7 @@ const sidebars = {
         {
           type: "doc",
           id: "deploy/upgrade-risingwave-k8s",
-          label: "Upgrade RisingWave with Helm",
+          label: "Upgrade RisingWave",
         },
         {
           type: "doc",

@@ -48,7 +48,7 @@ If you intend to deploy RisingWave in production environments, please use Kubern
 
 Experience intuitive and effortless stream processing with RisingWave Cloud. Sign up now and get a free, fully managed cluster up and running with a few clicks.
 
-<defaultButton text="Sign up for RisingWave Cloud" url="https://risingwave.cloud/auth/signup/"/><lightButton text="Learn more" cloud="intro"/><lightButton text="FAQ" cloud="faq"/>
+<defaultButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/"/><lightButton text="Learn more" cloud="intro"/><lightButton text="FAQ" cloud="faq"/>
 
 <br/>
 <br/>
