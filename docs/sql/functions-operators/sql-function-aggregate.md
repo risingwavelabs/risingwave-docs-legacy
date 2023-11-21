@@ -104,7 +104,7 @@ jsonb_agg ( any_element ) -> jsonb
 Aggregates name/value pairs as a JSON object.
 
 ```bash title=Syntax
-jsonb_object_agg ( key "any" , value "any" ) -> jsonb   
+jsonb_object_agg ( key "string" , value "any" ) -> jsonb   
 ```
 
 ---  
