@@ -66,7 +66,7 @@ After using the `SHOW PROCESSLIST` command to display the running processes, you
 ### Syntax
 
 ```sql
-KILL process_name;
+KILL process_id;
 ```
 
 ### Example
