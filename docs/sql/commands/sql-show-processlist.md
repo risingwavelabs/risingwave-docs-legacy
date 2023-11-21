@@ -77,6 +77,7 @@ Id   | User |      Host       | Database | Time |                 Info
 
 After using the `SHOW PROCESSLIST` command to display the running processes, you can terminate the idle process by the `KILL` command.
 
+### Syntax
 
 ```sql
 KILL process_name;
@@ -92,6 +93,7 @@ export const svg = rr.Diagram(
     )
 );
 
+<drawer SVG={svg} />
 
 
 
