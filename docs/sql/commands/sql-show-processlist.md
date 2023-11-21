@@ -72,3 +72,46 @@ Id   | User |      Host       | Database | Time |                 Info
  59 | root | 127.0.0.1:57547 | dev      | 0ms  | SELECT c FROM sbtest1 WHERE id=772039
 (17 rows)
 ```
+
+## Terminate the process
+
+After using the `SHOW PROCESSLIST` command to display the running processes, you can terminate the idle process by the `KILL` command.
+
+
+```sql
+KILL process_name;
+```
+
+import rr from '@theme/RailroadDiagram'
+
+export const svg = rr.Diagram(
+    rr.Sequence(
+        rr.Terminal('KILL'),
+        rr.NonTerminal('process_name'),
+        rr.Terminal(';')
+    )
+);
+
+
+
+
+
+### Example
+```sql
+SHOW PROCESSLIST;
+------RESULT
+ Id | User |      Host       | Database |  Time   |                            Info
+----+------+-----------------+----------+---------+------------------------------------------------------------
+ 0  | root | 127.0.0.1:60858 | dev      | 35363ms | insert into t select i from generate_series(1, 1000000) i;
+ 1  | root | 127.0.0.1:60935 | dev      | 0ms     | show processlist;
+ 2  | root | 127.0.0.1:60941 | dev      | 4304ms  | create materialized view mv2 as select * from t;
+(3 rows)
+
+KILL 2;
+------RESULT
+KILL
+
+KILL 0;
+------RESULT
+KILL
+```
