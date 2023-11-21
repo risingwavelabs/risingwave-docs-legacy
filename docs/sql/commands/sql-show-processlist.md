@@ -32,20 +32,6 @@ This command only shows the frontend received processlist now.
 SHOW PROCESSLIST;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW PROCESSLIST'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
-
-
-
 ## Example
 
 ```sql
@@ -82,21 +68,6 @@ After using the `SHOW PROCESSLIST` command to display the running processes, you
 ```sql
 KILL process_name;
 ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('KILL'),
-        rr.NonTerminal('process_name'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
-
-
 
 ### Example
 ```sql
