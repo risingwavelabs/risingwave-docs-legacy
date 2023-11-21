@@ -1,7 +1,7 @@
 ---
 id: upgrade-risingwave-k8s
-title: Upgrade RisingWave in a cluster
-description: Upgrade RisingWave in a K8 cluster
+title: Upgrade RisingWave in a Kubernetes cluster
+description: Upgrade RisingWave in a Kubernetes cluster
 slug: /upgrade-risingwave-k8s
 ---
 <head>
