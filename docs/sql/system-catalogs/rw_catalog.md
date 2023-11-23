@@ -7,7 +7,7 @@ title: RisingWave catalogs
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw_catalog/" />
 </head>
 
-RisingwWave catalogs contain system tables and views that provide metadata about different relations in the system, as well as information about the cluster jobs and their status. The metadata includes details about each database, schema, and relation in the system, such as materialized views, tables, sources, sinks, indexes, and views. The status information includes the progress of DDL commands, system snapshots, and more.
+RisingWave catalogs contain system tables and views that provide metadata about different relations in the system, as well as information about the cluster jobs and their status. The metadata includes details about each database, schema, and relation in the system, such as materialized views, tables, sources, sinks, indexes, and views. The status information includes the progress of DDL commands, system snapshots, and more.
 
 ## How to display RisingWave catalogs
 
@@ -142,4 +142,4 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_user_secrets       | This table stores the encrypted passwords of all users in the database and is accessible exclusively to super users.|
  rw_users              | Contains information about users that are available in the database, including their unique IDs, names, and boolean flags indicating whether they are a superuser, whether they can create databases, whether they can create other users, and whether can log in.|
  rw_views              | Contains information about views that are available in the database, including their unique IDs, names, schema IDs, owner IDs, definitions, and more.|
- rw_worker_nodes       | Contains information about worker nodes that are available in the database, including their unique IDs, hostnames, ports, types, states, parallelism levels, and boolean flags indicating whether they are used for streaming, serving, or are unschedulable.|
+ rw_worker_nodes       | Contains information about worker nodes that are available in the database (meta nodes, compactor nodes, compute nodes, and frontend nodes), including their unique IDs, hostnames, ports, types, states, parallelism levels, boolean flags indicating whether they are used for streaming, serving, or are unschedulable, versions, memory bytes, CPU cores, and start timestamps.
