@@ -13,7 +13,7 @@ See the [Release Notes of RisingWave](https://docs.risingwave.com/docs/current/r
 You can only update the RisingWave version of a cluster to a newer version. You cannot downgrade it.
 :::
 
-1. Go to [**Clusters**](https://risingwave.cloud/clusters/).
+1. Go to [**Clusters**](https://cloud.risingwave.com/clusters/).
 
 2. Click the update button on the cluster you want to update the database version.
 

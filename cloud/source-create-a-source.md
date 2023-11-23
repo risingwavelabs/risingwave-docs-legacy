@@ -16,7 +16,7 @@ You can create a source with one of the following methods:
 
 ## Using guided setup
 
-1. Go to [**Source**](https://risingwave.cloud/source/).
+1. Go to [**Source**](https://cloud.risingwave.com/source/).
 
 2. Specify the cluster and database, and log in as a database user.
 
@@ -30,7 +30,7 @@ You can create a source with one of the following methods:
 4. Select the service you want to connect to.
 
     :::note
-    Currently, the guided setup only supports Kafka. More services will be supported in future releases.
+    More services will be supported in future releases.
     :::
 
 5. Configure the connector settings, source details, and schema according to the instuctions of the guided setup.

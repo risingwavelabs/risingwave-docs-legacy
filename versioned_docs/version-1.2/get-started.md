@@ -53,7 +53,7 @@ As RisingWave is a database, you can directly create a table and insert data int
 
 ```sql
 CREATE TABLE website_visits (
-  timestamp timestamp,
+  timestamp timestamp with time zone,
   user_id varchar,
   page_id varchar,
   action varchar
@@ -93,7 +93,7 @@ You can now connect to the topic from RisingWave by running the following comman
 
 ```sql
 CREATE SOURCE IF NOT EXISTS website_visits_stream (
- timestamp timestamp,
+ timestamp timestamp with time zone,
  user_id varchar,
  page_id varchar,
  action varchar
@@ -139,11 +139,11 @@ SELECT * FROM visits_stream_mv;
 ```
 
 ```
- page_id | total_visits | unique_visitors |   last_visit_time
----------+--------------+-----------------+---------------------
- page2   |            2 |               2 | 2023-06-13 10:08:00
- page1   |            2 |               2 | 2023-06-13 10:07:00
- page3   |            1 |               1 | 2023-06-13 10:09:00
+ page_id | total_visits | unique_visitors |      last_visit_time
+---------+--------------+-----------------+---------------------------
+ page2   |            2 |               2 | 2023-06-13 10:08:00+00:00
+ page1   |            2 |               2 | 2023-06-13 10:07:00+00:00
+ page3   |            1 |               1 | 2023-06-13 10:09:00+00:00
 (3 rows)
 ```
 
@@ -166,11 +166,11 @@ SELECT * FROM visits_stream_mv;
 ```
 
 ```
- page_id | total_visits | unique_visitors |   last_visit_time   
----------+--------------+-----------------+---------------------
- page2   |            3 |               3 | 2023-06-13 10:12:00
- page3   |            3 |               3 | 2023-06-13 10:13:00
- page1   |            4 |               4 | 2023-06-13 10:14:00
+ page_id | total_visits | unique_visitors |      last_visit_time   
+---------+--------------+-----------------+---------------------------
+ page2   |            3 |               3 | 2023-06-13 10:12:00+00:00
+ page3   |            3 |               3 | 2023-06-13 10:13:00+00:00
+ page1   |            4 |               4 | 2023-06-13 10:14:00+00:00
 (3 rows)
 ```
 

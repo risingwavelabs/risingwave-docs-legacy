@@ -12,7 +12,7 @@ Select the plan below to see the details.
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-<Tabs>
+<Tabs queryString="plan">
 
 <TabItem value="free" label="Free plan">
 
