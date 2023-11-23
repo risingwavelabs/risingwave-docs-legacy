@@ -30,7 +30,7 @@ RisingWave is a rapidly evolving system, with [new features](https://docs.rising
 
 ### Check RisingWave version
 
-To check your current version, go to [**Clusters**](https://risingwave.cloud/clusters/).
+To check your current version, go to [**Clusters**](https://cloud.risingwave.com/clusters/).
 
 <img
   src={require('./images/cluster-rwversion.png').default}

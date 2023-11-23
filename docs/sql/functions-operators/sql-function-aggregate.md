@@ -94,10 +94,8 @@ The input can be of any supported data type.
 Aggregates values, including nulls, as a JSON array. The `ORDER BY` clause is optional and specifies the order of rows processed in the aggregation, which determines the order of the elements in the result array.
 
 ```bash title=Syntax
-jsonb_agg ( expression ) -> jsonb    
+jsonb_agg ( any_element ) -> jsonb    
 ```
-
-Currently, input types include boolean, smallint, int, bigint, real, double precision, varchar and jsonb.
 
 ---  
 
@@ -106,12 +104,8 @@ Currently, input types include boolean, smallint, int, bigint, real, double prec
 Aggregates name/value pairs as a JSON object.
 
 ```bash title=Syntax
-jsonb_object_agg ( key , value ) -> jsonb   
+jsonb_object_agg ( key "string" , value "any" ) -> jsonb   
 ```
-
-`key`: varchar only.
-
-`value`: Currently supports null, boolean, smallint, int, bigint, real, double precision, varchar, and jsonb.
 
 ---  
 

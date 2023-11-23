@@ -15,7 +15,7 @@ A sink is an external target that you can send data to. To stream data out of Ri
 :::tip Guided setup
 RisingWave Cloud provides an intuitive guided setup for creating a Kafka sink. For more information, see [Create a sink using guided setup](/cloud/create-a-sink/#using-guided-setup) in the RisingWave Cloud documentation.
 
-<lightButton text="Sign up for RisingWave Cloud" url="https://www.risingwave.cloud/auth/signup/" />
+<lightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
 :::
 
 ## Syntax
@@ -168,11 +168,12 @@ WITH (
    connector='kafka',
    properties.bootstrap.server='b-1.xxx.amazonaws.com:9092,b-2.test.xxx.amazonaws.com:9092',
    topic='msk_topic',
-   force_append_only='true',
    privatelink.endpoint='10.148.0.4',
    privatelink.targets = '[{"port": 8001}, {"port": 8002}]'
 )
-FORMAT PLAIN ENCODE JSON;
+FORMAT PLAIN ENCODE JSON (
+   force_append_only='true'
+);
 ```
 
 ## TLS/SSL encryption and SASL authentication

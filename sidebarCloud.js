@@ -33,7 +33,7 @@ module.exports = {
         },
         {
           type: "link",
-          href: "https://www.risingwave.cloud/auth/signup/",
+          href: "https://cloud.risingwave.com/auth/signup/",
           label: "Sign up and log in",
         },
       ],
@@ -165,6 +165,28 @@ module.exports = {
             {
               type: "doc",
               id: "sink-drop-a-sink",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "VPC connection",
+          collapsible: true,
+          collapsed: true,
+          link: { type: "doc", id: "vpc-overview" },
+          items: [
+            {
+              type: "doc",
+              id: "vpc-overview",
+              label: "Overview",
+            },
+            {
+              type: "doc",
+              id: "vpc-create-a-connection",
+            },
+            {
+              type: "doc",
+              id: "vpc-drop-a-connection",
             },
           ],
         },
