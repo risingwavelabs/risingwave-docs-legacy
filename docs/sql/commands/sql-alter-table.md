@@ -19,7 +19,7 @@ ALTER TABLE table_name alter_option;
 
 *`alter_option`* depends on the operation you want to perform on a table.
 
-## Adding a new column
+## Add a new column
 
 ```sql title=alter_option
 ADD [ COLUMN ] column_name data_type [ PRIMARY KEY ] [ DEFAULT default_expr ]
@@ -41,7 +41,7 @@ Columns added by this command cannot be used by any existing materialized views 
 ALTER TABLE employees ADD age int;
 ```
 
-## Dropping an existing column
+## Drop an existing column
 
 ```sql title=alter_option
 DROP [ COLUMN ] [ IF EXISTS ] column_name
@@ -61,3 +61,47 @@ You cannot drop columns referenced by materialized views or indexes.
 -- Remove a column named "fax" from the "employees" table
 ALTER TABLE employees DROP fax;
 ```
+
+## Assign or change the owner
+
+```sql title=alter_option
+ALTER TABLE table_name OWNER TO new_user;
+```
+
+:::note
+This statement will cascadingly change all related internal-objects as well, and the associated indexes will be changed too.
+:::
+
+| Parameter or clause | Description                                     |
+| ------------------- | ----------------------------------------------- |
+
+| *table_name*       | Specify the name of the table you want to change its owner. |
+| *new_user*         | Specify the user you want to assign to the table.               |
+
+```sql title=Example
+-- Change the owner of a table
+ALTER TABLE t OWNER TO user1;
+```
+
+## Move to another schema
+
+```sql title=alter_option
+ALTER TABLE table_name SET SCHEMA schema_name
+```
+
+:::note
+This statement will cascadingly change all related internal-objects as well, and the associated indexes will be changed too.
+:::
+
+| Parameter or clause | Description                                     |
+| ------------------- | ----------------------------------------------- |
+
+| *table_name*       | Specify the name of the table you want to change its owner. |
+| *new_user*         | Specify the user you want to assign to the table.               |
+
+```sql title=Example
+-- Change the owner of a table
+ALTER TABLE t OWNER TO user1;
+```
+
+## 
