@@ -30,7 +30,6 @@ export default function NotFoundWrapper(props) {
 
       if (res) {
         setShow(true);
-        history.push(`${res.path}/${queries}`);
       } else {
         const currentVersion = globalData["docusaurus-plugin-content-docs"].default["versions"].find((item) => {
           return item.path === "/docs/current";
