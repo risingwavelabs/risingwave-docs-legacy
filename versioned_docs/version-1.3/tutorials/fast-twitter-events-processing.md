@@ -76,7 +76,7 @@ CREATE SOURCE twitter (
     id VARCHAR,
     text VARCHAR,
     lang VARCHAR >,
-    author STRUCT < created_at TIMESTAMP WITh TIME ZONE,
+    author STRUCT < created_at TIMESTAMP WITH TIME ZONE,
     id VARCHAR,
     name VARCHAR,
     username VARCHAR,
