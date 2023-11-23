@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import NotFound from "@theme-original/NotFound";
 import { useHistory, useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -7,6 +7,7 @@ export default function NotFoundWrapper(props) {
   const { globalData } = useDocusaurusContext();
   const location = useLocation();
   const history = useHistory();
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const paths = location.pathname.split("/");
@@ -26,7 +27,9 @@ export default function NotFoundWrapper(props) {
           return v.name === version;
         }
       });
+
       if (res) {
+        setShow(true);
         history.push(`${res.path}/${queries}`);
       } else {
         const currentVersion = globalData["docusaurus-plugin-content-docs"].default["versions"].find((item) => {
@@ -46,5 +49,5 @@ export default function NotFoundWrapper(props) {
     }
   }, []);
 
-  return <>{/*<NotFound {...props} />*/}</>;
+  return <>{show && <NotFound {...props} />}</>;
 }
