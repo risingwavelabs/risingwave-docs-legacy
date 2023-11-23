@@ -16,7 +16,7 @@ You can create a sink with one of the following methods:
 
 ## Using guided setup
 
-1. Go to [**Sink**](https://risingwave.cloud/sink/).
+1. Go to [**Sink**](https://cloud.risingwave.com/sink/).
 
 2. Specify the cluster and database, and log in as a database user.
 
@@ -30,7 +30,7 @@ You can create a sink with one of the following methods:
 4. Select the service you want to connect to.
 
     :::note
-    Currently, the guided setup only supports Kafka. More services will be supported in future releases.
+    More services will be supported in future releases.
     :::
 
 5. Configure the connector settings in the **Create sink** tab.

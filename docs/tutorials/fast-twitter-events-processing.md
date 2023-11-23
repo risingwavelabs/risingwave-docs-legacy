@@ -37,6 +37,12 @@ cd risingwave/integration_tests/twitter
 docker compose up -d
 ```
 
+:::tip Command not found?
+The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2). 
+
+If you're using Compose V1, use `docker-compose` instead.
+:::
+
 Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, data of materialized views will be stored in the MinIO instance.
 
 Now connect to RisingWave to manage data streams and perform data analysis.
@@ -53,7 +59,7 @@ Below are the schemas for tweets and Twitter users. In the `tweet` schema, `text
 
 ```json
 {
-    "tweet": {
+    "data": {
         "created_at": "2020-02-12T17:09:56.000Z",
         "id": "1227640996038684673",
         "text": "Doctors: Googling stuff online does not make you a doctor\n\nDevelopers: https://t.co/mrju5ypPkb",
@@ -72,11 +78,11 @@ Connect to the data stream with the following SQL statement.
 
 ```sql
 CREATE SOURCE twitter (
-    data STRUCT < created_at TIMESTAMP,
+    data STRUCT < created_at TIMESTAMP WITH TIME ZONE,
     id VARCHAR,
     text VARCHAR,
     lang VARCHAR >,
-    author STRUCT < created_at TIMESTAMP,
+    author STRUCT < created_at TIMESTAMP WITH TIME ZONE,
     id VARCHAR,
     name VARCHAR,
     username VARCHAR,
@@ -101,17 +107,17 @@ To do so, start by extracting all the hashtags used within a tweet by using the 
 The `regexp_matches` function will find all the text in the tweet that matches the RegEx pattern `#\w+`. This extracts all the hashtags from the tweet and stores them in an array.
 
 ```
-       hashtag	      |     created_at
-----------------------+--------------------
-[#RisingWave, #cloud] | 2022-05-18 17:00:00
+       hashtag        |        created_at
+----------------------+--------------------------
+[#RisingWave, #cloud] | 2022-05-18 17:00:00+00:00
 ```
 
 Then the `unnest` function will separate each item in the array into separate rows.
 ```
-   hashtag   |     created_at
-----------------------------------
- #RisingWave | 2022-05-18 17:00:00
-   #cloud    | 2022-05-18 17:00:00
+   hashtag   |        created_at
+----------------------------------------
+ #RisingWave | 2022-05-18 17:00:00+00:00
+   #cloud    | 2022-05-18 17:00:00+00:00
 ```
 
 Finally, we can group by `hashtag` and `window_start` to count how many times each hashtag was used daily.
@@ -148,18 +154,18 @@ LIMIT 10;
 The results may look like this:
 
 ```
-  hashtag  | hashtag_occurrences |    window_start
-------------------------------------------------------
-   #Multi  |         262         | 2022-08-18 00:00:00
-   #zero   |         198         | 2022-08-18 00:00:00
- knowledge |         150         | 2022-08-18 00:00:00
-   #Open   |         148         | 2022-08-18 00:00:00
-   #User   |         142         | 2022-08-18 00:00:00
-  #Cross   |         141         | 2022-08-18 00:00:00
-  #local   |         139         | 2022-08-18 00:00:00
-  #client  |         138         | 2022-08-18 00:00:00
-  #system  |         135         | 2022-08-18 00:00:00
-    #Re    |         132         | 2022-08-18 00:00:00
+  hashtag  | hashtag_occurrences |       window_start
+------------------------------------------------------------
+   #Multi  |         262         | 2022-08-18 00:00:00+00:00
+   #zero   |         198         | 2022-08-18 00:00:00+00:00
+ knowledge |         150         | 2022-08-18 00:00:00+00:00
+   #Open   |         148         | 2022-08-18 00:00:00+00:00
+   #User   |         142         | 2022-08-18 00:00:00+00:00
+  #Cross   |         141         | 2022-08-18 00:00:00+00:00
+  #local   |         139         | 2022-08-18 00:00:00+00:00
+  #client  |         138         | 2022-08-18 00:00:00+00:00
+  #system  |         135         | 2022-08-18 00:00:00+00:00
+    #Re    |         132         | 2022-08-18 00:00:00+00:00
 ```
 
 Most used hashtags from different dates will be shown if the workload generator runs for multiple days.
@@ -173,7 +179,7 @@ When you finish, run the following command to disconnect RisingWave.
 Optional: To remove the containers and the data generated, use the following command.
 
 ```shell
-docker-compose down -v
+docker compose down -v
 ```
 
 ## Summary

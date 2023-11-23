@@ -38,6 +38,12 @@ cd risingwave/integration_tests/prometheus
 docker compose up -d
 ```
 
+:::tip Command not found?
+The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2). 
+
+If you're using Compose V1, use `docker-compose` instead.
+:::
+
 Necessary RisingWave components, Prometheus, and Grafana will be started. Prometheus will start collecting data from RisingWave and write them to Kafka topics. In this demo cluster, the data ingested from the Kafka topic will be stored in the MinIO instance.
 
 Now connect to RisingWave to manage data streams and perform data analysis.
@@ -75,7 +81,7 @@ CREATE SOURCE prometheus (
         job VARCHAR
     >,
     name VARCHAR,
-    timestamp TIMESTAMP,
+    timestamp TIMESTAMP WITH TIME ZONE,
     value VARCHAR
 ) WITH (
     connector = 'kafka',
@@ -117,13 +123,13 @@ SELECT * FROM metric_avg_30s LIMIT 5;
 ```
 
 ```
-                           metric_name                         |     metric_time     | metric_value       
----------------------------------------------------------------+---------------------+--------------
-                        all_barrier_nums                       | 2022-11-07 21:38:00 |      0 
-            etcd_debugging_mvcc_pending_events_total           | 2022-11-07 21:38:00 |      0
-                 etcd_debugging_mvcc_txn_total                 | 2022-11-07 21:38:00 |      2
-  etcd_debugging_snap_save_marshalling_duration_seconds_bucket | 2022-11-07 21:38:00 |      0
-   etcd_debugging_snap_save_marshalling_duration_seconds_sum   | 2022-11-07 21:38:00 |      0
+                           metric_name                         |        metric_time        | metric_value       
+---------------------------------------------------------------+---------------------------+--------------
+                        all_barrier_nums                       | 2022-11-07 21:38:00+00:00 |      0 
+            etcd_debugging_mvcc_pending_events_total           | 2022-11-07 21:38:00+00:00 |      0
+                 etcd_debugging_mvcc_txn_total                 | 2022-11-07 21:38:00+00:00 |      2
+  etcd_debugging_snap_save_marshalling_duration_seconds_bucket | 2022-11-07 21:38:00+00:00 |      0
+   etcd_debugging_snap_save_marshalling_duration_seconds_sum   | 2022-11-07 21:38:00+00:00 |      0
 ```
 
 ## Step 4: Add RisingWave as a data source in Grafana
@@ -175,7 +181,7 @@ When you finish, run the following command to disconnect RisingWave.
 Optional: Remove the containers and the data generated with the following command.
 
 ```shell
-docker-compose down -v
+docker compose down -v
 ```
 
 ## Summary:

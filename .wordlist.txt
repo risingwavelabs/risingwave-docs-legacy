@@ -167,3 +167,6 @@ PgAdmin
 clickhouse
 Supabase
 BigQuery
+transactional
+OLAP
+ksqlDB

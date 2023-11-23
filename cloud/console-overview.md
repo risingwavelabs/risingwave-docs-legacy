@@ -12,7 +12,7 @@ src={require('./images/console.png').default}
 alt="Console"
 />
 
-<defaultButton text="Go to query console" url="https://risingwave.cloud/console/" block/>
+<defaultButton text="Go to query console" url="https://cloud.risingwave.com/console/" block/>
 
 ## Sections
 

@@ -54,6 +54,34 @@ SELECT jsonb_array_length('[1,2,3,{"f1":1,"f2":[5,6]},4]');
 5
 ```
 
+### `jsonb_build_array`
+
+Builds a JSON array out of a variadic argument list. Each argument is converted as per `to_jsonb`.
+
+```bash title=Syntax
+jsonb_build_array ( VARIADIC "any" ) → jsonb
+```
+
+```sql title=Example
+SELECT jsonb_build_array(1, 2, 'foo', 4, 5);
+------RESULT
+ [1, 2, "foo", 4, 5]
+```
+
+### `jsonb_build_object`
+
+Builds a JSON object out of a variadic argument list. By convention, the argument list consists of alternating keys and values. Key arguments are coerced to text; value arguments are converted as per `to_jsonb`.
+
+```bash title=Syntax
+jsonb_build_object ( VARIADIC "any" ) → jsonb
+```
+
+```sql title=Example
+SELECT jsonb_build_object('foo', 1, 2, row(3,'bar'));
+------RESULT
+{"2": {"f1": 3, "f2": "bar"}, "foo": 1}
+```
+
 ### `jsonb_each`
 
 Expands the top-level JSON object into a set of key-value pairs.
@@ -206,6 +234,19 @@ jsonb_object ( text_array TEXT[] ) → JSONB
 ```sql title=Examples
 jsonb_object('{a, 1, b, def, c, 3.5}' :: text[]) → {"a": "1", "b": "def", "c": "3.5"}
 jsonb_object(array['a', null]) → {"a": null}
+```
+
+### `to_jsonb`
+
+Converts any SQL value to JSONB data type. It recursively handles arrays and composites, transforming them into arrays and objects in the resulting JSON representation. If a direct cast from the SQL data type to JSON is available, it is used for the conversion; otherwise, scalar values are produced as JSON scalars, with text representations appropriately escaped to ensure valid JSON string values.
+
+```sql title=Syntax
+to_jsonb ( any ) → JSONB
+```
+
+```sql title=Examples
+to_jsonb(array['apple', 'banana', 'cherry']) → ["apple", "banana", "cherry"]
+to_jsonb('Products labeled "expired"'::string) → "Products labeled \"expired\""
 ```
 
 ## JSON operators

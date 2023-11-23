@@ -38,6 +38,12 @@ cd risingwave/integration_tests/clickstream
 docker compose up -d
 ```
 
+:::tip Command not found?
+The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2). 
+
+If you're using Compose V1, use `docker-compose` instead.
+:::
+
 Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, data of materialized views will be stored in the MinIO instance.
 
 Now connect to RisingWave to manage data streams and perform data analysis.
@@ -55,7 +61,7 @@ CREATE SOURCE user_behaviors (
     user_id VARCHAR,
     target_id VARCHAR,
     target_type VARCHAR,
-    event_timestamp TIMESTAMP,
+    event_timestamp TIMESTAMP WITH TIME ZONE,
     behavior_type VARCHAR,
     parent_target_type VARCHAR,
     parent_target_id VARCHAR
@@ -129,13 +135,13 @@ LIMIT 5;
 The result may look like this:
 
 ```
- target_id | view_count |    window_start     |     window_end      
------------+------------+---------------------+---------------------
- thread58  |         15 | 2022-09-22 06:50:00 | 2022-09-23 06:50:00
- thread58  |         15 | 2022-09-22 07:00:00 | 2022-09-23 07:00:00
- thread58  |         15 | 2022-09-22 07:10:00 | 2022-09-23 07:10:00
- thread58  |         15 | 2022-09-22 07:20:00 | 2022-09-23 07:20:00
- thread58  |         15 | 2022-09-22 07:30:00 | 2022-09-23 07:30:00
+ target_id | view_count |       window_start        |        window_end
+-----------+------------+---------------------------+---------------------------
+ thread58  |         15 | 2022-09-22 06:50:00+00:00 | 2022-09-23 06:50:00+00:00
+ thread58  |         15 | 2022-09-22 07:00:00+00:00 | 2022-09-23 07:00:00+00:00
+ thread58  |         15 | 2022-09-22 07:10:00+00:00 | 2022-09-23 07:10:00+00:00
+ thread58  |         15 | 2022-09-22 07:20:00+00:00 | 2022-09-23 07:20:00+00:00
+ thread58  |         15 | 2022-09-22 07:30:00+00:00 | 2022-09-23 07:30:00+00:00
 (5 rows)
 ```
 
@@ -143,9 +149,9 @@ We can also query results by specifying a time interval. To learn more about dat
 
 ```sql
 SELECT * FROM thread_view_count
-WHERE window_start > ('2022-09-23 06:50' :: TIMESTAMP - INTERVAL '1 day')
+WHERE window_start > ('2022-09-23 06:50Z' :: TIMESTAMP WITH TIME ZONE - INTERVAL '1 day')
 AND window_start < 
-('2022-09-23 07:40' :: TIMESTAMP - INTERVAL '1 day' + INTERVAL '10 minutes')
+('2022-09-23 07:40Z' :: TIMESTAMP WITH TIME ZONE - INTERVAL '1 day' + INTERVAL '10 minutes')
 AND target_id = 'thread58'
 ORDER BY window_start;
 ```
@@ -153,14 +159,14 @@ ORDER BY window_start;
 The result looks like this:
 
 ```
- target_id | view_count |    window_start     |     window_end      
------------+------------+---------------------+---------------------
- thread58  |         15 | 2022-09-22 06:50:00 | 2022-09-23 06:50:00
- thread58  |         15 | 2022-09-22 07:00:00 | 2022-09-23 07:00:00
- thread58  |         15 | 2022-09-22 07:10:00 | 2022-09-23 07:10:00
- thread58  |         15 | 2022-09-22 07:20:00 | 2022-09-23 07:20:00
- thread58  |         15 | 2022-09-22 07:30:00 | 2022-09-23 07:30:00
- thread58  |         15 | 2022-09-22 07:40:00 | 2022-09-23 07:40:00
+ target_id | view_count |       window_start        |        window_end
+-----------+------------+---------------------------+---------------------------
+ thread58  |         15 | 2022-09-22 06:50:00+00:00 | 2022-09-23 06:50:00+00:00
+ thread58  |         15 | 2022-09-22 07:00:00+00:00 | 2022-09-23 07:00:00+00:00
+ thread58  |         15 | 2022-09-22 07:10:00+00:00 | 2022-09-23 07:10:00+00:00
+ thread58  |         15 | 2022-09-22 07:20:00+00:00 | 2022-09-23 07:20:00+00:00
+ thread58  |         15 | 2022-09-22 07:30:00+00:00 | 2022-09-23 07:30:00+00:00
+ thread58  |         15 | 2022-09-22 07:40:00+00:00 | 2022-09-23 07:40:00+00:00
 (6 rows)
 ```
 
@@ -173,7 +179,7 @@ When you finish, run the following command to disconnect RisingWave.
 Optional: To remove the containers and the data generated, use the following command.
 
 ```shell
-docker-compose down -v
+docker compose down -v
 ```
 
 ## Summary

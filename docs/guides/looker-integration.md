@@ -14,7 +14,7 @@ Since RisingWave is compatible with PostgreSQL, you can easily connect Looker to
 
 ## Prerequisites
 
-- Ensure that Looker[https://cloud.google.com/looker] is installed and accessible from the RisingWave cluster. 
+- Ensure that [Looker](https://cloud.google.com/looker) is installed and accessible from the RisingWave cluster. 
 
 - Install and start RisingWave. For instructions on how to get started, see the [Quick start guide](/get-started.md).
 

@@ -43,6 +43,12 @@ cd risingwave/integration_tests/cdn-metrics
 docker compose up -d
 ```
 
+:::tip Command not found?
+The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2). 
+
+If you're using Compose V1, use `docker-compose` instead.
+:::
+
 Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, data of materialized views will be stored in the MinIO instance.
 
 ## Step 2: Connect RisingWave to data streams
@@ -60,7 +66,7 @@ CREATE SOURCE nics_metrics (
     metric_name VARCHAR,
     aggregation VARCHAR,
     nic_name VARCHAR,
-    report_time TIMESTAMP,
+    report_time TIMESTAMP WITH TIME ZONE,
     bandwidth DOUBLE PRECISION,
     metric_value DOUBLE PRECISION
 ) WITH (
@@ -75,7 +81,7 @@ CREATE SOURCE nics_metrics (
 CREATE SOURCE tcp_metrics (
     device_id VARCHAR,
     metric_name VARCHAR,
-    report_time TIMESTAMP,
+    report_time TIMESTAMP WITH TIME ZONE,
     metric_value DOUBLE PRECISION
 ) WITH (
     connector = 'kafka',
@@ -152,11 +158,11 @@ SELECT * FROM high_util_tcp_metrics;
 Here is an example result.
 
 ```
-             device_id            |      window_end     |   metric_name  | metrics_value | tcp_avg_bandwidth_util
-----------------------------------+---------------------+----------------+---------------+-----------------------
- eccbc87e4b5ce2fe28308fd9f2a7baf3 | 2022-08-17 18:02:00 | download_speed |   1126.3827   |      45.26712
- eccbc87e4b5ce2fe28308fd9f2a7baf3 | 2022-08-17 18:02:00 |  retrans_rate  |    0.19406    |      45.26712
- eccbc87e4b5ce2fe28308fd9f2a7baf3 | 2022-08-17 18:02:00 |      srtt      |   649.25184   |      45.26712
+             device_id            |        window_end         |   metric_name  | metrics_value | tcp_avg_bandwidth_util
+----------------------------------+---------------------------+----------------+---------------+-----------------------
+ eccbc87e4b5ce2fe28308fd9f2a7baf3 | 2022-08-17 18:02:00+00:00 | download_speed |   1126.3827   |      45.26712
+ eccbc87e4b5ce2fe28308fd9f2a7baf3 | 2022-08-17 18:02:00+00:00 |  retrans_rate  |    0.19406    |      45.26712
+ eccbc87e4b5ce2fe28308fd9f2a7baf3 | 2022-08-17 18:02:00+00:00 |      srtt      |   649.25184   |      45.26712
 ```
 
 ### Set up  materialized views from a materialized view
@@ -222,10 +228,10 @@ SELECT * FROM srtt_incidents;
 ```
 
 ```
-            device_id            |	   trigger_time    | trigger_value
----------------------------------+---------------------+---------------
-cfcd208495d565ef66e7dff9f98764da | 2022-08-18 18:02:00 |   698.14387
-e4da3b7fbbce2345d7772b0674a318d5 | 2022-08-18 18:09:00 |   973.03618
+            device_id            |       trigger_time        | trigger_value
+---------------------------------+---------------------------+---------------
+cfcd208495d565ef66e7dff9f98764da | 2022-08-18 18:02:00+00:00 |   698.14387
+e4da3b7fbbce2345d7772b0674a318d5 | 2022-08-18 18:09:00+00:00 |   973.03618
 ```
 
 You can rerun the query a couple of minutes later to see if the results are updated.
@@ -238,7 +244,7 @@ When you finish, run the following command to disconnect RisingWave.
 Optional: To remove the containers and the data generated, use the following command.
 
 ```shell
-docker-compose down -v
+docker compose down -v
 ```
 ## Summary
 
