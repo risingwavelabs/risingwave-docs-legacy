@@ -207,6 +207,11 @@ const sidebars = {
                   label: "Amazon MSK",
                   id: "guides/connector-amazon-msk",
                 },
+               {
+                  type: "doc",
+                  label: "AutoMQ Kafka",
+                  id: "ingest/ingest-from-automq-kafka",
+                },
               ]
             },
             {
