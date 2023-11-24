@@ -1,3 +1,13 @@
+---
+id: ingest-from-automq-kafka
+title: Ingest data from AutoMQ Kafka
+description: Connect RisingWave to a AutoMQ Kafka.
+slug: /ingest-from-automq-kafka
+---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-kafka/" />
+</head>
+
 [AutoMQ for Kafka](https://docs.automq.com/zh/docs/automq-s3kafka/YUzOwI7AgiNIgDk1GJAcu6Uanog) is a cloud-native version of Kafka redesigned for cloud environments. 
 AutoMQ Kafka is [open source](https://github.com/AutoMQ/automq-for-kafka) and fully compatible with the Kafka protocol, fully leveraging cloud benefits. 
 Compared to self-managed Apache Kafka, AutoMQ Kafka, with its cloud-native architecture, offers features like capacity auto scaling, self-balancing of network traffic, move partition in seconds. These features contribute to a significantly lower Total Cost of Ownership (TCO) for users.
@@ -58,7 +68,7 @@ sh kafka-console-consumer.sh --bootstrap-server 10.0.96.4:9092 --topic example_t
 1. Go to [**Clusters**](https://cloud.risingwave.com/clusters/) and create a RisingWave cluster.
 2. Go to [**Source**](https://cloud.risingwave.com/source/).
 3. Specify the cluster and database, and log in as a database user.
-4. AutoMQ is 100% compatible with Apache Kafka, just click **Create source** and select Kafka. 
+4. AutoMQ Kafka is 100% compatible with Apache Kafka, just click **Create source** and select Kafka. 
 5. Configure the connector settings, source details, and schema according to the instuctions of the guided setup.
 
    :::note
