@@ -37,7 +37,7 @@ Generate a simple JSON format test data
 }
 ```
 
-#### Write Test Data
+#### Write test data
 Use Kafka’s command-line tools or programming methods to write test data into example_topic. Here is an example using command-line tools:
 ```shell
 echo '{"id": 1, "name": "testuser", "timestamp": "2023-11-10T12:00:00", "status": "active"}' | sh kafka-console-producer.sh --broker-list 10.0.96.4:9092 --topic example_topic
@@ -54,7 +54,7 @@ To view the recently written topic data, use the following command:
 sh kafka-console-consumer.sh --bootstrap-server 10.0.96.4:9092 --topic example_topic --from-beginning
 ```
 
-## Create AutoMQ Kafka Data Source in RisingWave Cloud
+## Create AutoMQ Kafka data source in RisingWave Cloud
 1. Go to [**Clusters**](https://cloud.risingwave.com/clusters/) and create a RisingWave cluster.
 2. Go to [**Source**](https://cloud.risingwave.com/source/).
 3. Specify the cluster and database, and log in as a database user.
