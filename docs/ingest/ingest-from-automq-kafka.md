@@ -74,19 +74,11 @@ sh kafka-console-consumer.sh --bootstrap-server 10.0.96.4:9092 --topic example_t
    :::note
 
    Default AutoMQ Kafka port is 9092 and SSL is not enabled. If you want to use SSL, please reference the [Apache Kafka Documentation](https://kafka.apache.org/documentation/#security_ssl).
-   
-   :::
-
-6. Configure the connector settings, source details, and schema according to the instuctions of the guided setup.
-
-   :::note
-   
    You can use json format and set startup mode to earliest to read data from the beginning in this example.
 
    :::
-   
 
-7. Check the generated SQL statement and click **Confirm** to create the source in your database.
+6. Check the generated SQL statement and click **Confirm** to create the source in your database.
 
 ## Query the ingested data
 1. Go to [**Console**](https://cloud.risingwave.com/console/) and login your cluster
