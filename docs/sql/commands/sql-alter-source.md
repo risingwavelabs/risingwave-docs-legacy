@@ -8,14 +8,60 @@ slug: /sql-alter-source
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-source/" />
 </head>
 
-Use the `ALTER SOURCE` command to add columns to the source or modify the name of the source. If your source was created with a schema registry, columns cannot be altered.
+Use the `ALTER SOURCE` command to do the following operations to a source：
+
++ add columns
++ modify the name
 
 ## Syntax
 
 ```sql
 ALTER SOURCE current_source_name 
-    {ADD COLUMN col_name data_type | RENAME TO new_source_name} ;
+    alter_option;
 ```
+
+*`alter_option`* depends on the operation you want to perform on the source.
+
+```sql
+ALTER SOURCE current_source_name 
+    ADD COLUMN col_name data_type
+    RENAME TO new_source_name
+```
+
+## Add columns
+
+```sql title=syntax
+ALTER SOURCE current_source_name 
+    ADD COLUMN col_name data_type;
+```
+:::note If your source was created with a schema registry, columns cannot be altered. :::
+
+## Parameters
+
+|Parameter or clause        | Description           |
+|---------------------------|-----------------------|
+|**ADD COLUMN** |Indicates the intention to add a column to the specified source.|
+|*col_name* | The name of the new column you want to add to the source.|
+|*data_type* | The data type of the newly added column. With the struct data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>").|
+
+## Example
+
+```sql
+ALTER SOURCE src 
+   RENAME TO src1;
+```
+
+```sql
+ALTER SOURCE src1 
+    ADD COLUMN v3 int;
+```
+## Add columns
+
+```sql title=syntax
+ALTER SOURCE current_source_name 
+    ADD COLUMN col_name data_type;
+```
+:::note If your source was created with a schema registry, columns cannot be altered. :::
 
 ## Parameters
 
