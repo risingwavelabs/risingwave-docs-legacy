@@ -8,25 +8,39 @@ slug: /sql-alter-table
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-table/" />
 </head>
 
-Use the `ALTER TABLE` command to modify the structure of an existing regular table by adding or deleting its columns. Tables defined with connector settings but without a schema registry can be altered. 
+Use the `ALTER TABLE` command to do the following operations to a table：
 
++ add columns
++ delete columns
++ change the owner
++ change the schema
 
 ## Syntax
 
 ```sql
-ALTER TABLE table_name alter_option;
+ALTER TABLE table_name 
+    alter_option;
 ```
 
-*`alter_option`* depends on the operation you want to perform on a table.
+*`alter_option`* depends on the operation you want to perform on the table.
 
-## Add a new column
+```sql
+ALTER TABLE table_name 
+    ADD [ COLUMN ] column_name data_type [ PRIMARY KEY ] [ DEFAULT default_expr ]
+    DROP [ COLUMN ] [ IF EXISTS ] column_name
+    OWNER TO new_user
+    SET SCHEMA schema_name
+```
 
-```sql title=alter_option
-ADD [ COLUMN ] column_name data_type [ PRIMARY KEY ] [ DEFAULT default_expr ]
+## Add columns
+
+```sql title=syntax
+ALTER TABLE table_name 
+    ADD [ COLUMN ] column_name data_type [ PRIMARY KEY ] [ DEFAULT default_expr ];
 ```
 
 :::note
-Columns added by this command cannot be used by any existing materialized views or indexes. You must create new materialized views or indexes to reference it.
+Tables defined with connector settings but without a schema registry can be altered. Columns added by this command cannot be used by any existing materialized views or indexes. You must create new materialized views or indexes to reference it. 
 :::
 
 | Parameter or clause | Description                                     |
@@ -41,14 +55,15 @@ Columns added by this command cannot be used by any existing materialized views 
 ALTER TABLE employees ADD age int;
 ```
 
-## Drop an existing column
+## Drop columns
 
-```sql title=alter_option
-DROP [ COLUMN ] [ IF EXISTS ] column_name
+```sql title=syntax
+ALTER TABLE table_name 
+    DROP [ COLUMN ] [ IF EXISTS ] column_name;
 ```
 
 :::note
-You cannot drop columns referenced by materialized views or indexes.
+Tables defined with connector settings but without a schema registry can be altered. You cannot drop columns referenced by materialized views or indexes.
 :::
 
 | Parameter or clause | Description                                                                                |
@@ -64,8 +79,9 @@ ALTER TABLE employees DROP fax;
 
 ## Change the owner
 
-```sql title=alter_option
-ALTER TABLE table_name OWNER TO new_user;
+```sql title=syntax
+ALTER TABLE table_name 
+    OWNER TO new_user;
 ```
 
 :::note
@@ -76,7 +92,6 @@ This statement will cascadingly change all related internal-objects as well, and
 
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
-| *table_name* | Specify the name of the table you want to change its owner. |
 | *new_user* | Specify the user you want to assign to the table. |
 
 ```sql title=Example
@@ -87,20 +102,20 @@ ALTER TABLE t OWNER TO user1;
 
 ## Change the schema
 
-```sql title=alter_option
-ALTER TABLE table_name SET SCHEMA schema_name;
+```sql title=syntax
+ALTER TABLE table_name 
+    SET SCHEMA schema_name;
 ```
 
 :::note
 
-As this statement moves the table into another schema, associated indexes, constraints, and sequences owned by table columns are moved as well.
+As this statement moves the table into a different schema, associated indexes, constraints, and sequences owned by table columns are moved as well.
 
 :::
 
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
-| *table_name* | Specify the name of the table you want to move into another schema. |
-| *schema_name* | Specify the name of the schema that you will move the table into it. |
+| *schema_name* | Specify the schema that you will move the table into it. |
 
 ```sql title=Example
 -- Move a table named "test_table" into a schema named "test_schema"
