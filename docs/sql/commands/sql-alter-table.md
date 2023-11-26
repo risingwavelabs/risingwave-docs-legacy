@@ -1,14 +1,14 @@
 ---
 id: sql-alter-table
 title: ALTER TABLE
-description: Modify the structure of an existing table.
+description: Modify the properties of an existing table.
 slug: /sql-alter-table
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-table/" />
 </head>
 
-Use the `ALTER TABLE` command to do the following operations to a table：
+Use the `ALTER TABLE` command to do the following operations on a table：
 
 + add columns
 + delete columns
@@ -124,7 +124,7 @@ As this statement moves the table into a different schema, associated indexes, c
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
 |**SET SCHEMA**| This clause moves the table into another schema.|
-| *schema_name* | Specify the schema to which the table will be move. |
+| *schema_name* | Specify the schema to which the table will be moved. |
 
 ```sql title=Example
 -- Move a table named "test_table" into a schema named "test_schema"

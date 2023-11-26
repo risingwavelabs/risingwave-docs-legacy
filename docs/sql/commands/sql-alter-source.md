@@ -1,14 +1,14 @@
 ---
 id: sql-alter-source
 title: ALTER SOURCE
-description: Modify existing source name.
+description: Modify the properties of an existing source.
 slug: /sql-alter-source
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-source/" />
 </head>
 
-Use the `ALTER SOURCE` command to do the following operations to a source：
+Use the `ALTER SOURCE` command to do the following operations on a source：
 
 + add columns
 + modify the name
@@ -101,7 +101,7 @@ ALTER SOURCE current_source_name
 
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
-|**SET SCHEMA**|This clause move the source to a different schema.|
+|**SET SCHEMA**|This clause moves the source to a different schema.|
 |*schema_name*|The name of the schema to which the source will be moved.|
 
 ```sql title=Example
