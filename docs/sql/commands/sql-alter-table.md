@@ -34,21 +34,25 @@ ALTER TABLE table_name
 
 ## Add columns
 
-```sql title=syntax
+```sql title=Syntax
 ALTER TABLE table_name 
     ADD [ COLUMN ] column_name data_type [ PRIMARY KEY ] [ DEFAULT default_expr ];
 ```
 
 :::note
-Tables defined with connector settings but without a schema registry can be altered. Columns added by this command cannot be used by any existing materialized views or indexes. You must create new materialized views or indexes to reference it. 
+
++ If your table is defined with a schema registry, its columns can not be altered.  
+
++ Columns added by this command cannot be used by any existing materialized views or indexes. You must create new materialized views or indexes to reference it.  
 :::
 
 | Parameter or clause | Description                                     |
 | ------------------- | ----------------------------------------------- |
-| **ADD [ COLUMN ]**  | `COLUMN` is optional.                           |
+| **ADD [ COLUMN ]**  | This clause adds a new column to the table. `COLUMN` is optional.                           |
 | *column_name*       | Specify the name of the column you want to add. |
 | *data_type*         | The data type of the new column.                |
-|**DEFAULT**|The `DEFAULT` clause allows you to assign a default value to a column. This default value is used when a new row is inserted, and no explicit value is provided for that column. `default_expr` is any constant value or variable-free expression that does not reference other columns in the current table or involve subqueries. The data type of `default_expr` must match the data type of the column.<br/>If `default_expr` is impure, such as using a function like `now()`, all historical data will be filled with the result of the expression evaluated at the time the statement was executed. For future insertions, the default expression will be evaluated at the time of each respective insertion.|
+|**DEFAULT**|The `DEFAULT` clause allows you to assign a default value to a column. This default value is used when a new row is inserted, and no explicit value is provided for that column. |
+| *default_expr* | `default_expr` is any constant value or variable-free expression that does not reference other columns in the current table or involve subqueries. The data type of `default_expr` must match the data type of the column.<br/>If `default_expr` is impure, such as using a function like `now()`, all historical data will be filled with the result of the expression evaluated at the time the statement was executed. For future insertions, the default expression will be evaluated at the time of each respective insertion.|
 
 ```sql title=Example
 -- Add a column named "age" to a table named "employees" with a data type of integer
@@ -57,20 +61,23 @@ ALTER TABLE employees ADD age int;
 
 ## Drop columns
 
-```sql title=syntax
+```sql title=Syntax
 ALTER TABLE table_name 
     DROP [ COLUMN ] [ IF EXISTS ] column_name;
 ```
 
 :::note
-Tables defined with connector settings but without a schema registry can be altered. You cannot drop columns referenced by materialized views or indexes.
+
++ If your table is defined with a schema registry, its column can not be altered. 
+
++ You cannot drop columns referenced by materialized views or indexes.
 :::
 
 | Parameter or clause | Description                                                                                |
 | ------------------- | ------------------------------------------------------------------------------------------ |
-| **DROP [ COLUMN ]** | `COLUMN` is optional.                                                                      |
-| *column_name*       | Specify the column you want to remove.                                                     |
+| **DROP [ COLUMN ]** | This clause drops an existing column from a table. `COLUMN` is optional.                                                                      |
 | **IF EXISTS**       | Do not return an error if the specified column does not exist. A notice is issued instead. |
+| *column_name*       | Specify the column you want to remove.                                                     |
 
 ```sql title=Example
 -- Remove a column named "fax" from the "employees" table
@@ -79,7 +86,7 @@ ALTER TABLE employees DROP fax;
 
 ## Change the owner
 
-```sql title=syntax
+```sql title=Syntax
 ALTER TABLE table_name 
     OWNER TO new_user;
 ```
@@ -92,6 +99,7 @@ This statement will cascadingly change all related internal-objects as well, and
 
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
+|**OWNER TO**| This clause changes the owner of the table to the specified user.|
 | *new_user* | Specify the user you want to assign to the table. |
 
 ```sql title=Example
@@ -102,7 +110,7 @@ ALTER TABLE t OWNER TO user1;
 
 ## Change the schema
 
-```sql title=syntax
+```sql title=Syntax
 ALTER TABLE table_name 
     SET SCHEMA schema_name;
 ```
@@ -115,7 +123,8 @@ As this statement moves the table into a different schema, associated indexes, c
 
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
-| *schema_name* | Specify the schema that you will move the table into it. |
+|**SET SCHEMA**| This clause moves the table into another schema.|
+| *schema_name* | Specify the schema to which the table will be move. |
 
 ```sql title=Example
 -- Move a table named "test_table" into a schema named "test_schema"
