@@ -48,6 +48,5 @@ To change a function's schema, you must also have `CREATE` privilege on the new 
 
 ```sql title=Example
 -- Change the schema of the function named "test_func" to a schema named "test_schema"
-
-ALTER FUNCTION test_func SET SCHEMA test_schema;
+ALTER FUNCTION test_func(INT) SET SCHEMA test_schema;
 ```
