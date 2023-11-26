@@ -8,7 +8,7 @@ slug: /sql-alter-materialized-view
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-materialized-view/" />
 </head>
 
-Use the `ALTER MATERIALIZED VIEW` command to do the following operations on a materialized view：
+Use the `ALTER MATERIALIZED VIEW` command to do the following operations on a materialized view:
 
 + change the owner
 + change the schema

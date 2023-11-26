@@ -8,7 +8,7 @@ slug: /sql-alter-source
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-source/" />
 </head>
 
-Use the `ALTER SOURCE` command to do the following operations on a source：
+Use the `ALTER SOURCE` command to do the following operations on a source:
 
 + add columns
 + modify the name

@@ -8,7 +8,7 @@ slug: /sql-alter-table
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-table/" />
 </head>
 
-Use the `ALTER TABLE` command to do the following operations on a table：
+Use the `ALTER TABLE` command to do the following operations on a table:
 
 + add columns
 + delete columns

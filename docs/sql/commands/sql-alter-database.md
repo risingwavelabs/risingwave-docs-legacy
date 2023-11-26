@@ -8,7 +8,7 @@ slug: /sql-alter-database
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-database/" />
 </head>
 
-Use the `ALTER DATABASE` command to do the following operations on a database：
+Use the `ALTER DATABASE` command to do the following operations on a database:
 
 + change the owner
 

@@ -8,7 +8,7 @@ slug: /sql-alter-sink
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-sink/" />
 </head>
 
-Use the `ALTER SINK` command to do the following operations on a sink：
+Use the `ALTER SINK` command to do the following operations on a sink:
 
 + change the owner
 + change the schema
