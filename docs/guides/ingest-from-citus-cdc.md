@@ -86,6 +86,10 @@ Unless specified otherwise, the fields listed are required.
 |slot.name| Optional. The slot name for each source. Each source should have a unique slot name.|
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table is an experimental feature. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
+### Multiple CDC tables
+
+For more information on how to create multiple CDC tables from a single Citus source, see [Create multiple CDC tables with the same source](/ingest/ingest-from-cdc.md#create-multiple-cdc-tables-with-the-same-source) 
+
 ### Example
 
 ```sql
