@@ -22,17 +22,9 @@ ALTER TABLE table_name
     alter_option;
 ```
 
-*`alter_option`* depends on the operation you want to perform on the table.
+*`alter_option`* depends on the operation you want to perform on the table. For the supported `alter_action` and detailed syntaxes, see the sections below.
 
-```sql
-ALTER TABLE table_name 
-    ADD [ COLUMN ] column_name data_type [ PRIMARY KEY ] [ DEFAULT default_expr ]
-    DROP [ COLUMN ] [ IF EXISTS ] column_name
-    OWNER TO new_user
-    SET SCHEMA schema_name
-```
-
-## Add columns
+## `ADD COLUMN`
 
 ```sql title=Syntax
 ALTER TABLE table_name 
@@ -59,7 +51,7 @@ ALTER TABLE table_name
 ALTER TABLE employees ADD age int;
 ```
 
-## Drop columns
+## `DROP COLUMN`
 
 ```sql title=Syntax
 ALTER TABLE table_name 
@@ -84,7 +76,7 @@ ALTER TABLE table_name
 ALTER TABLE employees DROP fax;
 ```
 
-## Change the owner
+## `OWNER TO`
 
 ```sql title=Syntax
 ALTER TABLE table_name 
@@ -104,11 +96,10 @@ This statement will cascadingly change all related internal-objects as well, and
 
 ```sql title=Example
 -- Change the owner of the table named "t" to the user "user1"
-
 ALTER TABLE t OWNER TO user1;
 ```
 
-## Change the schema
+## `SET SCHEMA`
 
 ```sql title=Syntax
 ALTER TABLE table_name 
@@ -128,6 +119,5 @@ As this statement moves the table into a different schema, associated indexes, c
 
 ```sql title=Example
 -- Move a table named "test_table" into a schema named "test_schema"
-
 ALTER TABLE test_table SET SCHEMA test_schema;
 ```
