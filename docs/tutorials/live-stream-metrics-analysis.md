@@ -67,7 +67,7 @@ CREATE SOURCE live_stream_metrics (
     video_rtt BIGINT,
     video_lost_pps BIGINT,
     video_total_freeze_duration BIGINT,
-    report_timestamp TIMESTAMP,
+    report_timestamp TIMESTAMP WITH TIME ZONE,
     country VARCHAR
 ) WITH (
     connector = 'kafka',
@@ -115,13 +115,13 @@ SELECT * FROM live_video_qos_10min ORDER BY room_id, report_ts;
 Here is an example result.
 
 ```
-      report_ts     |   room_id	 |video_total_freeze_duration | video_lost_pps |  video_rtt
---------------------+------------+----------------------------+----------------+-----------
-2022-10-19 11:30:00 | 3998783950 |	          1528            |     4.64286    |  196.21429
-2022-10-19 11:40:00	| 3998783950 |            3635            |     4.66667	   |  196.53333
-2022-10-19 11:50:00	| 3998783950 |            603             |     4.09091	   |  175.18182
-2022-10-19 11:30:00	| 658508327  |            1431	          |     4.32143	   |  201.35714
-2022-10-19 11:40:00	| 658508327  |            3619	          |     5.23333	   |  191.86667
+        report_ts         |   room_id  | video_total_freeze_duration | video_lost_pps |  video_rtt
+--------------------------+------------+-----------------------------+----------------+-----------
+2022-10-19 11:30:00+00:00 | 3998783950 |            1528             |     4.64286    |  196.21429
+2022-10-19 11:40:00+00:00 | 3998783950 |            3635             |     4.66667    |  196.53333
+2022-10-19 11:50:00+00:00 | 3998783950 |            603              |     4.09091    |  175.18182
+2022-10-19 11:30:00+00:00 | 658508327  |            1431             |     4.32143    |  201.35714
+2022-10-19 11:40:00+00:00 | 658508327  |            3619             |     5.23333    |  191.86667
 
 ```
 
@@ -156,13 +156,13 @@ SELECT * FROM total_user_visit_1min ORDER BY report_ts;
 Here is an example result.
 
 ```
-      report_ts    	| uv
---------------------+----
-2022-10-19 11:35:00	| 2
-2022-10-19 11:36:00	| 2
-2022-10-19 11:37:00	| 2
-2022-10-19 11:38:00	| 2
-2022-10-19 11:39:00	| 2
+        report_ts         | uv
+--------------------------+----
+2022-10-19 11:35:00+00:00 | 2
+2022-10-19 11:36:00+00:00 | 2
+2022-10-19 11:37:00+00:00 | 2
+2022-10-19 11:38:00+00:00 | 2
+2022-10-19 11:39:00+00:00 | 2
 ```
 
 The second materialized view will track each streamer’s unique viewers every minute. We will use the tumble function to map each event into a one-minute window and then group by the room_id to each streamer’s unique viewers.
@@ -193,13 +193,13 @@ SELECT * FROM room_user_visit_1min ORDER BY room_id, report_ts;
 Here is an example result.
 
 ```
-      report_ts     | uv |  room_id
---------------------+----+-----------
-2022-10-19 11:35:00 | 1  | 3998783950
-2022-10-19 11:36:00 | 1  | 3998783950
-2022-10-19 11:37:00 | 1  | 3998783950
-2022-10-19 11:38:00 | 1  | 3998783950
-2022-10-19 11:39:00 | 1  | 3998783950
+        report_ts         | uv |  room_id
+--------------------------+----+-----------
+2022-10-19 11:35:00+00:00 | 1  | 3998783950
+2022-10-19 11:36:00+00:00 | 1  | 3998783950
+2022-10-19 11:37:00+00:00 | 1  | 3998783950
+2022-10-19 11:38:00+00:00 | 1  | 3998783950
+2022-10-19 11:39:00+00:00 | 1  | 3998783950
 
 ```
 

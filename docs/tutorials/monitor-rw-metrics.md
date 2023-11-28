@@ -81,7 +81,7 @@ CREATE SOURCE prometheus (
         job VARCHAR
     >,
     name VARCHAR,
-    timestamp TIMESTAMP,
+    timestamp TIMESTAMP WITH TIME ZONE,
     value VARCHAR
 ) WITH (
     connector = 'kafka',
@@ -123,13 +123,13 @@ SELECT * FROM metric_avg_30s LIMIT 5;
 ```
 
 ```
-                           metric_name                         |     metric_time     | metric_value       
----------------------------------------------------------------+---------------------+--------------
-                        all_barrier_nums                       | 2022-11-07 21:38:00 |      0 
-            etcd_debugging_mvcc_pending_events_total           | 2022-11-07 21:38:00 |      0
-                 etcd_debugging_mvcc_txn_total                 | 2022-11-07 21:38:00 |      2
-  etcd_debugging_snap_save_marshalling_duration_seconds_bucket | 2022-11-07 21:38:00 |      0
-   etcd_debugging_snap_save_marshalling_duration_seconds_sum   | 2022-11-07 21:38:00 |      0
+                           metric_name                         |        metric_time        | metric_value       
+---------------------------------------------------------------+---------------------------+--------------
+                        all_barrier_nums                       | 2022-11-07 21:38:00+00:00 |      0 
+            etcd_debugging_mvcc_pending_events_total           | 2022-11-07 21:38:00+00:00 |      0
+                 etcd_debugging_mvcc_txn_total                 | 2022-11-07 21:38:00+00:00 |      2
+  etcd_debugging_snap_save_marshalling_duration_seconds_bucket | 2022-11-07 21:38:00+00:00 |      0
+   etcd_debugging_snap_save_marshalling_duration_seconds_sum   | 2022-11-07 21:38:00+00:00 |      0
 ```
 
 ## Step 4: Add RisingWave as a data source in Grafana

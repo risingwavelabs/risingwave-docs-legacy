@@ -194,7 +194,7 @@ WITH (
    aws.credentials.access_key_id = 'your_access_key',
    aws.credentials.secret_access_key = 'your_secret_key'
 ) FORMAT PLAIN ENCODE PROTOBUF (
-    message = 'demo_message',
+    message = 'package.message_name',
     schema.location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
 );
 ```

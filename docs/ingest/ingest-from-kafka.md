@@ -150,6 +150,7 @@ When creating a source in RisingWave, you can specify the following Kafka parame
 |----------------------|---------------------------|------|
 |enable.auto.commit | properties.enable.auto.commit | boolean |
 |fetch.max.bytes | properties.fetch.max.bytes | int |
+|fetch.queue.backoff.ms | properties.fetch.queue.backoff.ms | int |
 |fetch.wait.max.ms | properties.fetch.wait.max.ms | int |
 |message.max.bytes | properties.message.max.bytes | int |
 |queued.max.messages.kbytes| properties.queued.max.messages.kbytes | int |
@@ -179,6 +180,7 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 ) FORMAT PLAIN ENCODE AVRO (
+   message = 'message_name',
    schema.registry = 'http://127.0.0.1:8081'
 );
 ```
@@ -257,7 +259,7 @@ WITH (
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
 ) FORMAT PLAIN ENCODE PROTOBUF (
-   message = 'main_message',
+   message = 'package.message_name',
    location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
 );
 ```
