@@ -116,7 +116,7 @@ ENCODE AVRO (
 Create a sink by selecting an entire materialized view.
 
 ```sql
-CREATE SINK sink1 FROM mv1 
+CREATE SINK sink1 FROM mv1
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
@@ -128,7 +128,7 @@ FORMAT PLAIN ENCODE JSON;
 Create a sink with the Kafka configuration `message.max.bytes` set at 2000 by setting `properties.message.max.bytes` to 2000.
 
 ```sql
-CREATE SINK sink1 FROM mv1 
+CREATE SINK sink1 FROM mv1
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
@@ -154,7 +154,7 @@ The schema of `taxi_trips` is like this:
 The table may look like this:
 
 ```
- id | distance | duration |   city   
+ id | distance | duration |   city
 ----+----------+----------+----------
   1 |       16 |       23 | Dallas
   2 |       23 |        9 | New York
@@ -163,10 +163,10 @@ The table may look like this:
 ```
 
 ```sql
-CREATE SINK sink2 AS 
-SELECT 
-   avg(distance) as avg_distance, 
-   avg(duration) as avg_duration 
+CREATE SINK sink2 AS
+SELECT
+   avg(distance) as avg_distance,
+   avg(duration) as avg_duration
 FROM taxi_trips
 WITH (
    connector='kafka',
@@ -245,7 +245,7 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 Here is an example of creating a sink encrypted with SSL without using SASL authentication.
 
 ```sql
-CREATE SINK sink1 FROM mv1                 
+CREATE SINK sink1 FROM mv1
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -284,7 +284,7 @@ For SASL/PLAIN with SSL, you need to include these SSL parameters:
 Here is an example of creating a sink authenticated with SASL/PLAIN without SSL encryption.
 
 ```sql
-CREATE SINK sink1 FROM mv1                 
+CREATE SINK sink1 FROM mv1
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -300,7 +300,7 @@ FORMAT PLAIN ENCODE JSON;
 This is an example of creating a sink authenticated with SASL/PLAIN with SSL encryption.
 
 ```sql
-CREATE SINK sink1 FROM mv1                 
+CREATE SINK sink1 FROM mv1
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -342,7 +342,7 @@ For SASL/SCRAM with SSL, you also need to include these SSL parameters:
 Here is an example of creating a sink authenticated with SASL/SCRAM without SSL encryption.
 
 ```sql
-CREATE SINK sink1 FROM mv1                 
+CREATE SINK sink1 FROM mv1
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -354,3 +354,25 @@ WITH (
 )
 FORMAT PLAIN ENCODE JSON;
 ```
+
+## Data type mapping - RisingWave and Debezium JSON
+
+|RisingWave Data Type | schema type | schema name|
+|-----|-----|-----|
+|boolean | boolean | n/a|
+|smallint | int16 | n/a|
+|integer | int32 | n/a|
+|bigint | int64 | n/a|
+|real| float| n/a|
+|double precision|double| n/a|
+|character varying|string| n/a|
+|bytea | bytes | n/a|
+|numeric|string| n/a|
+|date | int32 | org.apache.kafka.connect.data.Date|
+|time without time zone| int64|org.apache.kafka.connect.data.Time|
+|timestamp without time zone| int64|org.apache.kafka.connect.data.Timestamp|
+|timestamp with time zone|string |io.debezium.time.ZonedTimestamp|
+|interval|string|io.debezium.time.Interval|
+|JSONB | string|io.debezium.data.Json|
+|struct| string| n/a|
+|array | string| n/a|
