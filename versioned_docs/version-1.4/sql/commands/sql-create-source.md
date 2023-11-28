@@ -54,6 +54,8 @@ To know when a data record is loaded to RisingWave, you can define a column that
 
 Click a connector name to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
 
+Data formats denoted with an M only support materialized sources, which require a primary key to be specified. Otherwise, both materialized and non-materialized sources are supported.
+
 | Connector | Version | Format |
 |---------|---------|---------|
 |[Kafka](/ingest/ingest-from-kafka.md)|3.1.0 or later versions |[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (M), [Debezium AVRO](#debezium-avro) (M), [DEBEZIUM_MONGO_JSON](#debezium-mongo-json) (M), [Maxwell JSON](#maxwell-json) (M), [Canal JSON](#canal-json) (M), [Upsert JSON](#upsert-json), [Upsert AVRO](#upsert-avro), [Bytes](#bytes)|
