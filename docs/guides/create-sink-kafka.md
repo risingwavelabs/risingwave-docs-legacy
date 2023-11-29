@@ -357,7 +357,7 @@ FORMAT PLAIN ENCODE JSON;
 
 ## Data type mapping - RisingWave and Debezium JSON
 
-|RisingWave Data Type | schema type | schema name|
+|RisingWave Data Type | JSON Schema Data Type | Schema Name|
 |-----|-----|-----|
 |boolean | boolean | n/a|
 |smallint | int16 | n/a|
@@ -370,8 +370,8 @@ FORMAT PLAIN ENCODE JSON;
 |numeric|string| n/a|
 |date | int32 | org.apache.kafka.connect.data.Date|
 |time without time zone| int64|org.apache.kafka.connect.data.Time|
-|timestamp without time zone| int64|org.apache.kafka.connect.data.Timestamp|
-|timestamp with time zone|string |io.debezium.time.ZonedTimestamp|
+|timestamp| int64|org.apache.kafka.connect.data.Timestamp|
+|timestamptz|string |io.debezium.time.ZonedTimestamp|
 |interval|string|io.debezium.time.Interval|
 |JSONB | string|io.debezium.data.Json|
 |struct| string| n/a|
