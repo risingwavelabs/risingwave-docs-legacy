@@ -357,7 +357,7 @@ FORMAT PLAIN ENCODE JSON;
 
 ## Data type mapping - RisingWave and Debezium JSON
 
-|RisingWave Data Type | Schema Type | Schema Name|
+|RisingWave Data Type | Schema Type in JSON | Schema Name in JSON|
 |-----|-----|-----|
 |boolean | boolean | n/a|
 |smallint | int16 | n/a|
