@@ -137,6 +137,7 @@ multibyte
 protobuf
 Protobuf
 timestamptz
+timestamptzs
 unary
 zstd
 http

@@ -100,7 +100,7 @@ WITH (
 
 The following table shows the data types that can be generated for each load generator type.
 
-|Generator &#92; Data|Number|Timestamp|Timestampz|Varchar|Struct|Array|
+|Generator &#92; Data|Number|Timestamp|Timestamptz|Varchar|Struct|Array|
 |---|---|---|---|---|---|---|
 |**Sequence**|✓|✕|✕|✕|✓|✓|
 |**Random**|✓|✓|✓|✓|✓|✓|
@@ -142,34 +142,19 @@ Specify the following fields for every column in the source you are creating.
 </Tabs>
 
 </TabItem>
-<TabItem value="timestamp" label="Timestamp">
+<TabItem value="timestamp/timestamptz" label="Timestamp and Timestamptz">
 
-The random timestamp generator produces random timestamp earlier than the current date and time or the source creation time.
-
-Specify the following fields for every column in the source you are creating.
-
-|`column_parameter`|Description|Value|Required?|
-|---|---|---|---|
-|`kind`|Generator type|Set to `random`.|False<br/>Default: `random`|
-|`max_past`|Specify the maximum deviation from the baseline timestamp to determine the earliest possible timestamp can be generated. |An [interval](/sql/sql-data-types.md)<br/>Example: `2h 37min`|False<br/>Default: `1 day`|
-|`max_past_mode`|Specify the baseline timestamp. <br/> The range for generated timestamps is [base time - `max_past` , base time]|`absolute` — The base time is set to the execution time of the generator. The base time is fixed for each generation.<br />`relative` —  The base time is the system time obtained each time a new record is generated.|False<br/>Default: `absolute`|
-|`basetime`|If set, the generator will ignore `max_past_mode` and use the specified time as the base time.|A [date and time string](https://docs.rs/chrono/latest/chrono/struct.DateTime.html#method.parse_from_rfc3339)<br/>Example: `2023-04-01T16:39:57-08:00`|False<br/>Default: generator execution time|
-|`seed`|A seed number that initializes the random load generator. The sequence of the generated timestamps is determined by the seed value. If given the same seed number, the generator will produce the same sequence of timestamps.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of timestamps will be generated (if the system time is constant).|
-
-</TabItem>
-<TabItem value="timestampz" label="Timestampz">
-
-The random timestampz generator produces random timestamps with time zone earlier than the current date and time or the source creation time.
+The random timestamp and timestamptz generator produces random timestamps and timestamps with time zone, respectively, earlier than the current date and time or the source creation time.
 
 Specify the following fields for every column in the source you are creating.
 
 |`column_parameter`|Description|Value|Required?|
 |---|---|---|---|
 |`kind`|Generator type|Set to `random`.|False<br/>Default: `random`|
-|`max_past`|Specify the maximum deviation from the baseline timestampz to determine the earliest possible timestampz that can be generated. |An [interval](/sql/sql-data-types.md)<br/>Example: `2h 37min`|False<br/>Default: `1 day`|
-|`max_past_mode`|Specify the baseline timestampz. <br/> The range for generated timestampzs is [base time - `max_past` , base time]|`absolute` — The base time is set to the execution time of the generator. The base time is fixed for each generation.<br />`relative` —  The base time is the system time obtained each time a new record is generated.|False<br/>Default: `absolute`|
+|`max_past`|Specify the maximum deviation from the baseline timestamp or timestamptz to determine the earliest possible timestamp or timestamptz that can be generated. |An [interval](/sql/sql-data-types.md)<br/>Example: `2h 37min`|False<br/>Default: `1 day`|
+|`max_past_mode`|Specify the baseline timestamp or timestamptz. <br/> The range for generated timestamps or timestamptzs is [base time - `max_past` , base time]|`absolute` — The base time is set to the execution time of the generator. The base time is fixed for each generation.<br />`relative` —  The base time is the system time obtained each time a new record is generated.|False<br/>Default: `absolute`|
 |`basetime`|If set, the generator will ignore `max_past_mode` and use the specified time as the base time.|A [date and time string](https://docs.rs/chrono/latest/chrono/struct.DateTime.html#method.parse_from_rfc3339)<br/>Example: `2023-04-01T16:39:57-08:00`|False<br/>Default: generator execution time|
-|`seed`|A seed number that initializes the random load generator. The sequence of the generated timestampzs is determined by the seed value. If given the same seed number, the generator will produce the same sequence of timestampzs.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of timestampzs will be generated (if the system time is constant).|
+|`seed`|A seed number that initializes the random load generator. The sequence of the generated timestamps or timestamptzs is determined by the seed value. If given the same seed number, the generator will produce the same sequence of timestamps or timestamptzs.|A positive integer<br/>Example: `3`|False<br/>If not specified, a fixed sequence of timestamps or timestamptzs will be generated (if the system time is constant).|
 
 </TabItem>
 <TabItem value="varchar" label="Varchar">
@@ -268,7 +253,7 @@ The following statement creates a source `s1` with five columns:
 - `c1` — Random strings with each consists of 16 characters
 
 ```sql
-CREATE TABLE s1 (i1 int [], v1 struct<v2 int, v3 double>, t1 timestamp, z1 timestampz, c1 varchar) 
+CREATE TABLE s1 (i1 int [], v1 struct<v2 int, v3 double>, t1 timestamp, z1 timestamptz, c1 varchar) 
 WITH (
      connector = 'datagen',
   
