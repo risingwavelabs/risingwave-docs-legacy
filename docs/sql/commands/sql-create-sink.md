@@ -85,6 +85,7 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 * [AWS Kinesis](/guides/sink-to-aws-kinesis.md)
 * [Cassandra or ScyllaDB](/guides/sink-to-cassandra.md)
 * [ClickHouse](/guides/sink-to-clickhouse.md)
+* [CockroachDB](/guides/sink-to-cockroach.md)
 * [Delta Lake](/guides/sink-to-delta-lake.md)
 * [Elasticsearch](/guides/sink-to-elasticsearch.md)
 * [Google BigQuery](/guides/sink-to-bigquery.md)

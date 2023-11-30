@@ -33,6 +33,10 @@ Currently, RisingWave supports the following sink connectors:
 
   With this connector, you can sink data from RisingWave to ClickHouse. For details about the syntax and parameters, see [Sink data to ClickHouse](/guides/sink-to-clickhouse.md).
 
+- CockroachDB sink connector (`connector = 'jdbc'`)
+
+  With this connector, you can sink data from RisingWave to CockroachDB. For details about the syntax and parameters, see [Sink data to CockroachDB](/guides/sink-to-cockroach.md).
+
 - Delta Lake sink connector (`connector = 'deltalake'`)
 
   With this connector, you can sink data from RisingWave to Delta Lake. For details about the syntax and parameters, see [Sink data to Delta Lake](/guides/sink-to-delta-lake.md).
