@@ -54,7 +54,11 @@ To know when a data record is loaded to RisingWave, you can define a column that
 
 Click a connector name to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
 
-Data formats marked with a "T" only support tables with connector settings, which are created through the `CREATE TABLE` command. Otherwise, both sources or tables with connector settings are supported.
+::note
+
+To ingest data in formats marked with "T", you need to create tables (with connector settings). Otherwise, you can create either sources or tables (with connector settings).
+
+:::
 
 | Connector | Version | Format |
 |---------|---------|---------|
