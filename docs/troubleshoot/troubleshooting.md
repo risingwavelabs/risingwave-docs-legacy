@@ -7,7 +7,7 @@ slug: /troubleshooting
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/troubleshooting/" />
 </head>
 
-This guide assumes that you deploy RisingWave on K8s using the RisingWave K8s Operator. In the Operator, we packaged RisingWave, RisingWave Dashboard, and third-party observability and logging tools like Promethus and Grafana.
+This guide assumes that you deploy RisingWave on K8s using the RisingWave K8s Operator. In the Operator, we packaged RisingWave, RisingWave Dashboard, and third-party observability and logging tools like Prometheus and Grafana.
 
 ## Monitor your cluster
 
