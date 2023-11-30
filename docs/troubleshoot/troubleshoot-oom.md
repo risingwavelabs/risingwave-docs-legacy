@@ -34,8 +34,8 @@ The parameter `streaming_rate_limit` means the maximum number of records per sec
 
 Alternatively, you may use `risectl` to alter the streaming rate limit of an existent materialized view, where the `<id>` can be found either from the RisingWave Dashboard or `rw_catalog` schema.
 
-```bash
-./risedev ctl throttle source/mv <id> <streaming_rate_limit>
+```sh
+risingwave ctl throttle source/mv <id> <streaming_rate_limit>
 ```
 
 ## OOM caused by barrier latency
@@ -53,8 +53,8 @@ Instead of solely addressing the memory problem, we recommend investigating why 
 
 Some tools will be helpful in troubleshooting this issue:
 
-1. Observe the backpressure between fragments (actors) from Grafana. A high backpressure between 2 fragments indicates that the downstream one is not able to process the data fast enough, therefore slowing down the whole streaming job. 
-2. Check the Await Tree Dump of all compute nodes in RisingWave Dashboard. If the barrier is stuck, the Await Tree Dump will show the barrier is waiting for a specific operation to finish. This fragment is likely to be the bottleneck of the streaming job.
+- Observe the backpressure between fragments (actors) in Grafana. A high backpressure between 2 fragments indicates that the downstream one is not able to process the data fast enough, therefore slowing down the whole streaming job. 
+- Check the Await Tree Dump of all compute nodes in RisingWave Dashboard. If the barrier is stuck, the Await Tree Dump will show the barrier is waiting for a specific operation to finish. This fragment is likely to be the bottleneck of the streaming job.
 
 In either case, you can try to increase the parallelism by adding more nodes into the cluster, or check the SQL query to see if there is any room for optimization.
 
