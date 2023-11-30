@@ -1,7 +1,7 @@
 ---
 id: sql-cancel-jobs
 title: CANCEL JOBS
-description: Cancel specific streaming jobs
+description: Cancel specific streaming jobs.
 slug: /sql-cancel-jobs
 keywords: [query progress, query status, cancel SQL query]
 ---
@@ -9,7 +9,7 @@ keywords: [query progress, query status, cancel SQL query]
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-cancel-jobs/" />
 </head>
 
-Use `CANCEL JOBS` to cancel jobs that are in progress. You need to specify the IDs of the jobs that you want to cancel. You can use [`SHOW JOBS`](/sql/commands/sql-show-jobs.md) to get the IDs of the jobs that are in progress.
+Use `CANCEL JOBS` to cancel specific streaming jobs that are in progress. A streaming job is a job that creates an index, a materialized view, a table, a sink, or a source with connectors. You need to specify the IDs of the jobs that you want to cancel. You can use [`SHOW JOBS`](/sql/commands/sql-show-jobs.md) to get the IDs of the jobs that are in progress.
 
 ## Syntax
 
