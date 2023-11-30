@@ -49,7 +49,7 @@ Barrier latency can be observed from Grafana dashboard - Barrier latency panel. 
   alt="Out-of-memory symptom"
 />
 
-Instead of solely addressing the memory problem, we recommend investigating why the barrier is getting stuck. This issue could be due to heavy streaming jobs, sudden impact of input traffic, or even some temporary issues.
+Instead of solely addressing the memory problem, we recommend investigating why the barrier is getting stuck. This issue could be caused by heavy streaming jobs, sudden impact of input traffic, or even some temporary issues.
 
 Some tools will be helpful in troubleshooting this issue:
 
