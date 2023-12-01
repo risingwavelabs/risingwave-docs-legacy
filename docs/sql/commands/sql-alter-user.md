@@ -1,7 +1,7 @@
 ---
 id: sql-alter-user
 title: ALTER USER
-description: Modify properties of a user.
+description: Modify the properties of a user.
 slug: /sql-alter-user
 ---
 <head>

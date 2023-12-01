@@ -223,6 +223,10 @@ The following table shows the corresponding data type in RisingWave that should 
 
 RisingWave data types marked with an asterisk indicates that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
 
+:::note
+RisingWave cannot correctly parse composite types from PostgreSQL as Debezium does not support composite types in PostgreSQL. 
+:::
+
 | PostgreSQL type | RisingWave type |
 |------------|-----------------|
 |BOOLEAN |BOOLEAN |
