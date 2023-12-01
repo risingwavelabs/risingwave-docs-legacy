@@ -259,7 +259,7 @@ RisingWave data types marked with an asterisk indicates that while there is no c
 | TIMESTAMP[(M)] | TIMESTAMPTZ |
 | DATE | DATE |
 | TIME[(M)] | TIME |
-| DATETIME[(fsp)] Optional fractional seconds precision (fsp: 0-6). Default precision is 0 when omitted.| TIMESTAMP |
+| DATETIME[(fsp)] <br /> Optional fractional seconds precision (fsp: 0-6). If omitted, the default precision is 0.| TIMESTAMP |
 | NUMERIC[(M[,D])] | NUMERIC |
 | DECIMAL[(M[,D])] | NUMERIC |
 | GEOMETRY, LINESTRING, POLYGON, <br />MULTIPOINT, MULTILINESTRING, <br />MULTIPOLYGON, GEOMETRYCOLLECTION | STRUCT |
