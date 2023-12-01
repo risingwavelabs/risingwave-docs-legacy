@@ -256,11 +256,19 @@ RisingWave data types marked with an asterisk indicates that while there is no c
 | ENUM | CHARACTER VARYING* |
 | SET | No support |
 | YEAR[(2\|4)] | INTEGER |
-| TIMESTAMP[(M)] | TIMESTAMP WITH TIME ZONE |
+| TIMESTAMP[(M)] | TIMESTAMPTZ |
 | DATE | DATE |
-| TIME[(M)] | TIME WITHOUT TIME ZONE |
-| DATETIME, DATETIME(0), DATETIME(1), DATETIME(2), DATETIME(3) | TIMESTAMP WITHOUT TIME ZONE |
-| DATETIME(4), DATETIME(5), DATETIME(6) | TIMESTAMP WITHOUT TIME ZONE |
+| TIME[(M)] | TIME |
+| DATETIME[(fsp)] Optional fractional seconds precision (fsp: 0-6). Default precision is 0 when omitted.| TIMESTAMP |
 | NUMERIC[(M[,D])] | NUMERIC |
 | DECIMAL[(M[,D])] | NUMERIC |
 | GEOMETRY, LINESTRING, POLYGON, <br />MULTIPOINT, MULTILINESTRING, <br />MULTIPOLYGON, GEOMETRYCOLLECTION | STRUCT |
+
+Please be aware that the range of specific values varies among MySQL types and RisingWave types. Refer to the table below for detailed information.
+
+| MySQL type | RisingWave type | MySQL range | RisingWave range |
+| --- | --- | --- | --- |
+| TIME | DATE | `-838:59:59.000000` to `838:59:59.000000` | `00:00:00` to `23:59:59` |
+| DATE | DATE | `1000-01-01` to `9999-12-31` | `0001-01-01` to `9999-12-31` |
+| DATETIME | TIMESTAMP | `1000-01-01 00:00:00.000000` to `9999-12-31 23:59:59.49999` | `1973-03-03 09:46:40` to `5138-11-16 09:46:40` |
+| TIMESTAMP | TIMESTAMPTZ | `1970-01-01 00:00:01.000000` to `2038-01-19 03:14:07.499999` | `0001-01-01 00:00:00` to `9999-12-31 23:59:59` |
