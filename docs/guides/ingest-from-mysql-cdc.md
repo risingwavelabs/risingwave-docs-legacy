@@ -268,7 +268,7 @@ Please be aware that the range of specific values varies among MySQL types and R
 
 | MySQL type | RisingWave type | MySQL range | RisingWave range |
 | --- | --- | --- | --- |
-| TIME | DATE | `-838:59:59.000000` to `838:59:59.000000` | `00:00:00` to `23:59:59` |
+| TIME | TIME | `-838:59:59.000000` to `838:59:59.000000` | `00:00:00` to `23:59:59` |
 | DATE | DATE | `1000-01-01` to `9999-12-31` | `0001-01-01` to `9999-12-31` |
 | DATETIME | TIMESTAMP | `1000-01-01 00:00:00.000000` to `9999-12-31 23:59:59.49999` | `1973-03-03 09:46:40` to `5138-11-16 09:46:40` |
 | TIMESTAMP | TIMESTAMPTZ | `1970-01-01 00:00:01.000000` to `2038-01-19 03:14:07.499999` | `0001-01-01 00:00:00` to `9999-12-31 23:59:59` |
