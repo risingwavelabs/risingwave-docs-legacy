@@ -31,6 +31,7 @@ ALTER DATABASE current_database_name
 
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
+|**OWNER TO**|This clause changes the owner of the database.|
 |*new_user*|The new owner you want to assign to the database.|
 
 ```sql title=Example
@@ -51,6 +52,7 @@ ALTER DATABASE current_database_name
 
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
+|**RENAME TO**|This clause change the name of the database.|
 |*new_name*|The new name of the database.|
 
 ```sql title=Example
