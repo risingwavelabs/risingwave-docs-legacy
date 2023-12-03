@@ -30,17 +30,13 @@ ALTER SCHEMA current_schema_name
 
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
-|**OWNER TO**|This clause changes the owner of the schema.|
+|**OWNER TO**|This clause changes the owner of the schema. To alter the owner, you must be able to `SET ROLE` to the new owning role, and you must have the `CREATEDB` privilege. Note that superusers have all these privileges automatically.|
 |*new_user*|The new owner you want to assign to the schema.|
 
 ```sql title=Example
 -- Change the owner of the schema named "schema1" to user "user1"
 ALTER SCHEMA schema1 OWNER TO user1;
 ```
-
-:::note
- To alter the owner, you must be able to `SET ROLE` to the new owning role, and you must have the `CREATEDB` privilege. Note that superusers have all these privileges automatically.
-:::
 
 ### `RENAME TO`
 
@@ -51,14 +47,10 @@ ALTER SCHEMA current_schema_name
 
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
-|**RENAME TO**|This clause change the name of the schema.|
+|**RENAME TO**|This clause changes the name of the schema. To rename a schema you must also have the `CREATE` privilege for the database. Note that superusers have the privilege automatically.|
 |*new_name*|The new name of the schema.|
 
 ```sql title=Example
 -- Rename the schema named "schema0" to "schema1".
 ALTER SCHEMA schema0 RENAME TO schema1;
 ```
-
-:::note 
-To rename a schema you must also have the `CREATE` privilege for the database. Note that superusers have the privilege automatically.
-:::

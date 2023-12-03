@@ -8,7 +8,7 @@ slug: /sql-alter-materialized-view
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-materialized-view/" />
 </head>
 
-The `ALTER MATERIALIZED VIEW` command modifies the definition of a materialized view. You must own the materialized view to use `ALTER MATERIALIZED VIEW`.
+The `ALTER MATERIALIZED VIEW` command modifies the definition of a materialized view. You must own the materialized view to use this command.
 
 ## Syntax
 
@@ -30,17 +30,13 @@ ALTER MATERIALIZED VIEW materialized_view_name
 
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
-|**OWNER TO**|This clause changes the owner of the materialized view.|
+|**OWNER TO**|This clause changes the owner of the materialized view. Note that this will cascadingly change all related internal objects as well.|
 |*new_user*|The new owner you want to assign to the materialized view.|
 
 ```sql title=Example
 -- Change the owner of the materialized view named "materialized_view1" to user "user1"
 ALTER MATERIALIZED VIEW materialized_view1 OWNER TO user1;
 ```
-
-:::note
-This statement will cascadingly change all related internal objects as well.
-:::
 
 ### `SET SCHEMA`
 

@@ -30,17 +30,13 @@ ALTER SINK sink_name
 
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
-|**OWNER TO**|This clause changes the owner of the sink.|
+|**OWNER TO**|This clause changes the owner of the sink. This will cascadingly change all related internal-objects as well.|
 |*new_user*|The new owner you want to assign to the sink.|
 
 ```sql title=Example
 -- Change the owner of the sink named "sink1" to user "user1"
 ALTER SINK sink1 OWNER TO user1;
 ```
-
-:::note
-This statement will cascadingly change all related internal-objects as well.
-:::
 
 ### `SET SCHEMA`
 

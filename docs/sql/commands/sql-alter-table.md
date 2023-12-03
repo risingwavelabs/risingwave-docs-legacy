@@ -82,19 +82,13 @@ ALTER TABLE table_name
 
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
-|**OWNER TO**| This clause changes the owner of the table to the specified user.|
+|**OWNER TO**| This clause changes the owner of the table to the specified user. It will cascadingly change all related internal objects as well, and the associated indexes will be changed too.|
 | *new_user* | Specify the user you want to assign to the table. |
 
 ```sql title=Example
 -- Change the owner of the table named "t" to the user "user1"
 ALTER TABLE t OWNER TO user1;
 ```
-
-:::note
-
-This statement will cascadingly change all related internal-objects as well, and the associated indexes will be changed too.
-
-:::
 
 ### `SET SCHEMA`
 
@@ -105,19 +99,13 @@ ALTER TABLE table_name
 
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
-|**SET SCHEMA**| This clause moves the table into another schema.|
+|**SET SCHEMA**| This clause moves the table into another schema. Associated indexes, constraints, and sequences owned by table columns are moved as well.|
 | *schema_name* | Specify the schema to which the table will be moved. |
 
 ```sql title=Example
 -- Move a table named "test_table" into a schema named "test_schema"
 ALTER TABLE test_table SET SCHEMA test_schema;
 ```
-
-:::note
-
-As this statement moves the table into a different schema, associated indexes, constraints, and sequences owned by table columns are moved as well.
-
-:::
 
 ### `RENAME TO`
 
