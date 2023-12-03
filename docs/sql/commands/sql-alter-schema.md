@@ -1,14 +1,14 @@
 ---
 id: sql-alter-schema
 title: ALTER SCHEMA
-description: Modify the properties of an existing schema.
+description: Modify the properties of a schema.
 slug: /sql-alter-schema
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-schema/" />
 </head>
 
-The `ALTER SCHEMA` command modifies the definition of a schema. To use `ALTER SCHEMA`, you must own the schema.
+The `ALTER SCHEMA` command modifies the definition of a schema. To use this command, you must own the schema.
 
 ## Syntax
 

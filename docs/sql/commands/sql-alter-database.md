@@ -1,7 +1,7 @@
 ---
 id: sql-alter-database
 title: ALTER DATABASE
-description: Modify the properties of an existing database.
+description: Modify the properties of a database.
 slug: /sql-alter-database
 ---
 <head>

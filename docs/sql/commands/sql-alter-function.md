@@ -1,18 +1,14 @@
 ---
 id: sql-alter-function
 title: ALTER FUNCTION
-description: Modify the properties of an existing function.
+description: Modify the properties of a function.
 slug: /sql-alter-function
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-function/" />
 </head>
 
-Use the `ALTER FUNCTION` command to do the following operations on a function:
-
-+ change the schema
-
-To use `ALTER FUNCTION`, you must own the function.
+The `ALTER FUNCTION` command modifies the definition of a function. To use this command, you must own the function.
 
 ## Syntax
 
@@ -21,29 +17,20 @@ ALTER FUNCTION function( argument_type [, ...] )
     alter_option;
 ```
 
-*`alter_option`* depends on the operation you want to perform on the function.
+*`alter_option`* depends on the operation you want to perform on the function. For all supported clauses, see the sections below.
 
-```sql
-ALTER FUNCTION function( argument_type [, ...] )
-    SET SCHEMA schema_name
-```
+## Clause
 
-## Change the schema
+### `SET SCHEMA`
 
 ```sql title=Syntax
 ALTER FUNCTION function( argument_type [, ...] )
     SET SCHEMA schema_name;
 ```
 
-:::note
-
-To change a function's schema, you must also have `CREATE` privilege on the new schema.
-
-:::
-
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
-|**SET SCHEMA**| This clause changes the schema of the function.|
+|**SET SCHEMA**| This clause changes the schema of the function. To change a function's schema, you must also have `CREATE` privilege on the new schema.|
 | *schema_name* | Specify the schema to which you want to change. |
 
 ```sql title=Example

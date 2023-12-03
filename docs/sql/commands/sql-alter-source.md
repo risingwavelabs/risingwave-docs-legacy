@@ -1,19 +1,14 @@
 ---
 id: sql-alter-source
 title: ALTER SOURCE
-description: Modify the properties of an existing source.
+description: Modify the properties of a source.
 slug: /sql-alter-source
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-source/" />
 </head>
 
-Use the `ALTER SOURCE` command to do the following operations on a source:
-
-+ add columns
-+ modify the name
-+ change the owner
-+ change the schema
+The `ALTER SOURCE` command modifies the definition of a source.
 
 ## Syntax
 
@@ -22,28 +17,16 @@ ALTER SOURCE current_source_name
     alter_option;
 ```
 
-*`alter_option`* depends on the operation you want to perform on the source.
+*`alter_option`* depends on the operation you want to perform on the source. For all supported clauses, see the sections below.
 
-```sql
-ALTER SOURCE current_source_name 
-    ADD COLUMN col_name data_type
-    RENAME TO new_source_name
-    OWNER TO new_user
-    SET SCHEMA schema_name
-```
+## Clause
 
-## Add columns
+### `ADD COLUMN`
 
 ```sql title=Syntax
-ALTER SOURCE current_source_name 
+ALTER SOURCE source_name 
     ADD COLUMN col_name data_type;
 ```
-
-:::note
-
-If your source was created with a schema registry, columns cannot be altered. 
-
-:::
 
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
@@ -57,10 +40,19 @@ ALTER SOURCE src1
     ADD COLUMN v3 int;
 ```
 
-## Modify the name
+:::note
+
++ If your source is created with a schema registry, columns cannot be altered.
+
++ You cannot add a primary key column to a source or table in RisingWave. To modify the primary key of a source or table, you need to recreate the table.
+
++ You cannot remove a column from a source in RisingWave. If you intend to remove a column from a source, you'll need to drop the source and create the source again.
+:::
+
+### `RENAME TO`
 
 ```sql title=Syntax
-ALTER SOURCE current_source_name 
+ALTER SOURCE source_name 
     RENAME TO new_source_name;
 ```
 
@@ -75,7 +67,7 @@ ALTER SOURCE src
    RENAME TO src1;
 ```
 
-## Change the owner
+### `OWNER TO`
 
 ```sql title=Syntax
 ALTER SOURCE current_source_name 
@@ -92,7 +84,7 @@ ALTER SOURCE current_source_name
 ALTER SOURCE src OWNER TO user1;
 ```
 
-## Change the schema
+### `SET SCHEMA`
 
 ```sql title=Syntax
 ALTER SOURCE current_source_name

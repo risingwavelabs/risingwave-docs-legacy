@@ -1,14 +1,14 @@
 ---
 id: sql-alter-materialized-view
 title: ALTER MATERIALIZED VIEW
-description: Modify the properties of an existing materialized view.
+description: Modify the properties of a materialized view.
 slug: /sql-alter-materialized-view
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-materialized-view/" />
 </head>
 
-The `ALTER MATERIALIZED VIEW` command modifies the definition of a materialized view. You must own the materialized view to use this command.
+The `ALTER MATERIALIZED VIEW` command modifies the definition of a materialized view. To use this command, you must own the materialized view.
 
 ## Syntax
 

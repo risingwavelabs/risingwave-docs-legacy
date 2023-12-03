@@ -1,7 +1,7 @@
 ---
 id: sql-alter-sink
 title: ALTER SINK
-description: Modify the properties of an existing sink.
+description: Modify the properties of a sink.
 slug: /sql-alter-sink
 ---
 <head>

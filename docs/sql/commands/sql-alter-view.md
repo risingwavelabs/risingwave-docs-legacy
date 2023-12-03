@@ -1,14 +1,14 @@
 ---
 id: sql-alter-view
 title: ALTER VIEW
-description: Modify the properties of an existing view.
+description: Modify the properties of a view.
 slug: /sql-alter-view
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-view/" />
 </head>
 
-The `ALTER VIEW` command modifies the definition of a view. You must own the view to use `ALTER VIEW`.
+The `ALTER VIEW` command modifies the definition of a view. To use this command, you must own the view.
 
 ## Syntax
 

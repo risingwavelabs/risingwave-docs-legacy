@@ -1,7 +1,7 @@
 ---
 id: sql-alter-table
 title: ALTER TABLE
-description: Modify the properties of an existing table.
+description: Modify the properties of a table.
 slug: /sql-alter-table
 ---
 <head>
