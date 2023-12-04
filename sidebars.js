@@ -759,6 +759,13 @@ const sidebars = {
               label: "System catalogs",
               collapsible: true,
               collapsed: true,
+              link: {
+                type: "generated-index",
+                title: "System catalogs",
+                description: "System catalogs that can be used to query metadata.",
+                slug: "/system-catalogs",
+                keywords: ["catalog, system, metadata"],
+              },
               items: [
                 {
                   type: "doc",
