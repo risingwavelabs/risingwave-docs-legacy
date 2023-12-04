@@ -173,10 +173,8 @@ docker compose down -v
 
 ## Common Issues
 
-Some time you may encounter errors show there's no sufficient space for storage. For example:
+One of the common issues you may encounter is no sufficient space for storage. For example:
 ```
 Error { code: "XMinioStorageFull", message: "Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed."
 ```
-
-Here's the solution:
-This usually happens on MacOS with Docker Desktop. The Docker Deskup runs in the macOS Hypervisor. All the data, including logs, images, volumes, and so on, is stored in this hypervisor and the hypervisor has a default disk capacity limit. So when this message emerges, simply cleaning up the unused containers or images can help mitigate. You can also increase the capacity limit by clicking the Docker Desktop icon in the menu bar, then clicking Preferences > Resources > `Increase Disk image size`. For other platforms, please check whether there's sufficient space on the local disk.
+This issue typically occurs on macOS when using Docker Desktop. Docker Desktop runs within the macOS Hypervisor, where all the data, including logs, images, and volumes, is stored. The macOS Hypervisor has a default limit on disk capacity. If you encounter this error, you can resolve it by cleaning up any unused containers or images. Another option is to increase the disk image size limit by following these steps: Click on the Docker Desktop icon in the menu bar, then go to **Preferences** > **Resources** > **Advanced**, adjust the slider for disk image size to allocate more space for Docker images. If you are using a different platform, please ensure that there is sufficient space available on the local disk.
