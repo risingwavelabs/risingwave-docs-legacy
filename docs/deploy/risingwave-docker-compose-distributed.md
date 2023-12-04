@@ -10,7 +10,7 @@ slug: /risingwave-docker-compose-distributed
 
 This topic describes how to start RisingWave as a multi-node cluster. With this option, data is persisted in your preferred storage service, and observability is enabled for enhanced monitoring and analysis.
 
-However, please be aware that certain critical features such as failover and resource management are not implemented in this mode. Therefore, this option is not recommended for production deployments. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
+However, please be aware that this mode does not implement certain critical features such as failover and resource management. Therefore, this option is not recommended for production deployments. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
 
 This option uses a pre-defined Docker Compose configuration file to set up a multi-node RisingWave cluster.
 
@@ -30,7 +30,7 @@ RisingWave also incorporates these third-party components:
 
 ## Download the source file
 
-  As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment. Ensure that it is running before launching the cluster.
+As a prerequisite, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment. Ensure that it is running before launching the cluster.
 
   Then, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
 
@@ -38,7 +38,7 @@ RisingWave also incorporates these third-party components:
   git clone https://github.com/risingwavelabs/risingwave.git
   ```
 
-  Open the repository in terminal and run the following command to navigate to the `docker` directory.
+  Open the repository in a terminal and run the following command to navigate to the `docker` directory.
   
   ```shell
   cd docker
@@ -91,7 +91,7 @@ docker compose -f docker-compose-with-s3.yml up
 
 ### Google Cloud Storage, Alibaba Cloud OSS, or Azure Blob Storage
 
-Configure the credentias for the cloud service you want to use in `/docker/multiple_object_storage.env`.
+Configure the credentials for the cloud service you want to use in `/docker/multiple_object_storage.env`.
 
 In the corresponding `docker-compose-with-xxx.yml` file (for example, `docker-compose-with-gcs.yml` for Google Cloud Storage), specify the bucket name via the `hummock+<xxx>` parameter.
 
@@ -99,7 +99,7 @@ In the corresponding `docker-compose-with-xxx.yml` file (for example, `docker-co
  - "hummock+<xxx>://<bucket-name>"
 ```
 
-Run the following command to start the RisingWave cluster with one of the cloud storage service that you choose.
+Run the following command to start the RisingWave cluster with one of the cloud storage services that you choose.
 
 ```shell
 docker compose -f docker-compose-with-xxx.yml up
@@ -109,7 +109,7 @@ Remember to replace the `docker-compose-with-xxx.yml` with the full file name of
 
 ### HDFS
 
-Mount your `HADOOP_HOME` in the volumns of the compactor node, the computer node, and the meta node.
+Mount your `HADOOP_HOME` in the compactor node, computer node, and meta node volumes.
 
 In `/docker-compose-with-hdfs.yml`, specify the cluster name via the `hummock+hdfs` parameter.
 
@@ -133,7 +133,7 @@ docker compose -f docker-compose-with-hdfs.yml up
 
   Notes about the `psql` options:
 
-- The `-h` option is used to specify the host name or IP address of the PostgreSQL server to connect to.
+- The `-h` option is used to specify the hostname or IP address of the PostgreSQL server to connect to.
 - The `-p` option is used to specify the port number that the server is listening on.
 - The `-d` option is used to specify the name of the database to connect to.
 - The `-U` option is used to specify the name of the database user to connect as.
@@ -149,7 +149,7 @@ docker compose -f docker-compose-with-hdfs.yml up
 
 - **Grafana**
 
- Access Grafana at [http://127.0.0.1:3001/](http://127.0.0.1:3001/), and search for `risingwave_dashboard`. In this dashboard, you can view the internal metrics such as node count, memory consumption, thoroughputs, and latencies. You can use these metrics to troubleshoot and optimize the cluster performance.
+ Access Grafana at [http://127.0.0.1:3001/](http://127.0.0.1:3001/) and search for `risingwave_dashboard`. In this dashboard, you can view the internal metrics such as node count, memory consumption, throughput, and latencies. You can use these metrics to troubleshoot and optimize the cluster performance.
 
 - **MinIO**
 
@@ -165,10 +165,10 @@ docker compose -f docker-compose-with-hdfs.yml up
 
 ## Common Issues
 
-One of the common issues you may encounter is no sufficient space for storage. For example:
+One of the common issues you may encounter is insufficient storage space. For example:
 
 ```
 Error { code: "XMinioStorageFull", message: "Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed."
 ```
 
-This issue typically occurs on macOS when using Docker Desktop. Docker Desktop runs within the macOS Hypervisor, where all the data, including logs, images, and volumes, is stored. The macOS Hypervisor has a default limit on disk capacity. If you encounter this error, you can resolve it by cleaning up any unused containers or images. Another option is to increase the disk image size limit by following these steps: Click on the Docker Desktop icon in the menu bar, then go to **Preferences** > **Resources** > **Advanced**, adjust the slider for disk image size to allocate more space for Docker images. If you are using a different platform, please ensure that there is sufficient space available on the local disk.
+This issue typically occurs on macOS when using Docker Desktop. Docker Desktop runs within the macOS Hypervisor, where all the data, including logs, images, and volumes, is stored. The macOS Hypervisor has a default limit on disk capacity. If you encounter this error, you can resolve it by cleaning up unused containers or images. Another option is to increase the disk image size limit by following these steps: Click on the Docker Desktop icon in the menu bar, then go to **Preferences** > **Resources** > **Advanced**, and adjust the slider for disk image size to allocate more space for Docker images. If you are using a different platform, please ensure sufficient space is available on the local disk.
