@@ -92,9 +92,22 @@ const sidebars = {
           id: "get-started",
         },
         {
-          type: "doc",
-          label: "Install RisingWave via Docker Compose",
-          id: "deploy/risingwave-docker-compose",
+          "type": "category",
+          "label": "Deploy on a single machine",
+          "collapsible": true,
+          "collapsed": true,
+          "items": [
+            {
+              "type": "doc",
+              "id": "deploy/risingwave-docker-compose",
+              "label": "Standalone mode"
+            },
+            {
+              "type": "doc",
+              "id": "deploy/risingwave-docker-compose-distributed",
+              "label": "Distributed mode"
+            }
+          ]
         },
         {
           "type": "category",
