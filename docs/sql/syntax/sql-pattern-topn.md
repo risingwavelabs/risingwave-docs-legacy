@@ -46,7 +46,7 @@ You must follow the pattern exactly to construct a valid Top-N query.
 |*function_name*| RisingWave supports two window functions in top-N queries: <ul><li>`row_number()`: Returns the sequential row ordinal (1-based) of each row for each ordered partition.</li><li>`rank()`: Returns the ordinal (1-based) rank of each row within the ordered partition. All peer rows receive the same rank value. The next row or set of peer rows receives a rank value which increments by the number of peers with the previous rank value.</li></ul>|
 |`PARTITION BY` clause |Specifies the partition columns. Each partition will have a Top-N result.|
 |`ORDER BY` clause|Specifies how the rows are ordered.|
-|rank_range|Specifies the range of the rank number. The rank range is required for the query to be recognized as a top-N query. Optionally, you can specify any additional conditions to further filter the results. |
+|rank_range|Specifies the range of the rank number. The rank range is required for the query to be recognized as a top-N query. The range can be specified in these forms. <br />Examples: `WHERE M < rank AND rank < N` or `WHERE rank between M and N`. Optionally, you can specify any additional conditions to further filter the results. |
 
 ## Example
 
@@ -73,7 +73,7 @@ SELECT r1
   FROM (
     SELECT
       *,
-      row_number() OVER (PARTITION BY x ORDER BY y) r,
+      row_number() OVER (PARTITION BY x ORDER BY y) r
     FROM t
   ) Q
 WHERE Q.r1 < 10;
