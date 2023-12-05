@@ -85,7 +85,3 @@ WITH (
 ```
 
 After the table is created, you can view and transform the data based on your needs.
-
-### Multiple CDC tables
-
-For more information on how to create multiple CDC tables from a single MongoDB source, see [Create multiple CDC tables with the same source](/ingest/ingest-from-cdc.md#create-multiple-cdc-tables-with-the-same-source) 

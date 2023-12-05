@@ -197,9 +197,58 @@ All the fields listed below are required.
 
 Data is in Debezium JSON or Debezium AVRO format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON or AVRO as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
 
-### Multiple CDC tables
+### Create multiple CDC tables with the same source
 
-For more information on how to create multiple CDC tables from a single MySQL source, see [Create multiple CDC tables with the same source](/ingest/ingest-from-cdc.md#create-multiple-cdc-tables-with-the-same-source) 
+RisingWave supports creating multiple CDC tables that share a single MySQL CDC source. 
+
+Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/create-source.md) command and MySQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
+
+```sql
+CREATE SOURCE mysql_mydb WITH (
+    connector = 'mysql-cdc',
+    hostname = '127.0.0.1',
+    port = '8306',
+    username = 'root',
+    password = '123456',
+    database.name = 'mydb',
+    server.id = 5888
+);
+```
+
+With the source created, you can create multiple CDC tables that ingests data from different tables in the upstream database without needing to specify the database connection parameters again. 
+
+For instance, the following CDC table in RisingWave ingests data from table `t1` in database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be qualified. 
+
+```sql
+CREATE TABLE t1_rw (
+    v1 int,
+    v2 int,
+    PRIMARY KEY(v1)
+) FROM mysql_mydb TABLE 'mydb.t1';
+```
+
+You can create another CDC table in RisingWave that ingests data from table `t3` in the same database `mydb`.
+
+```sql
+CREATE TABLE t3_rw (
+  v1 INTEGER,
+  v2 timestamptz,
+  PRIMARY KEY (v1)
+) FROM mysql_mydb TABLE 'mydb.t3';
+```
+
+To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it. For instance, the following SQL query shows the progress of a CDC table named `orders_rw`.
+
+```sql
+SELECT * FROM __internal_orders_rw_4002_streamcdcscan_5002;
+
+-[ RECORD 1 ]-----+---------------------------------------------------------------
+split_id          | 5001
+o_orderkey        | 4024320
+backfill_finished | f
+row_count         | 1006080
+cdc_offset        | {"MySql": {"filename": "binlog.000005", "position": 60946679}}
+```
 
 ### Example
 

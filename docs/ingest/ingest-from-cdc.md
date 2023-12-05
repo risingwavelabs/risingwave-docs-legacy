@@ -69,52 +69,6 @@ Please see the respective data ingestion pages for the connection parameters.
 
 - [Kinesis](ingest-from-kinesis.md)
 
-## Create multiple CDC tables with the same source
-
-RisingWave supports creating multiple CDC tables that share a single source. 
-
-To enable this feature, the `cdc_backfill` variable to `true`.
-
-```sql
-SET cdc_backfill = "true";
-```
-
-Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/create-source.md) command. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified. While a MySQL database is used as an example, any CDC source will work. 
-
-```sql
-CREATE SOURCE mysql_mydb WITH (
-    connector = 'mysql-cdc',
-    hostname = '127.0.0.1',
-    port = '8306',
-    username = 'root',
-    password = '123456',
-    database.name = 'mydb',
-    server.id = 5888
-);
-```
-
-With the source created, you can create multiple CDC tables that ingests data from different tables in the upstream database. 
-
-For instance, the following CDC table in RisingWave ingests data from table `t1` in database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be qualified. 
-
-```sql
-CREATE TABLE t1_rw (
-    v1 int,
-    v2 int,
-    PRIMARY KEY(v1)
-) FROM mysql_mydb TABLE 'mydb.t1';
-```
-
-You can create another CDC table in RisingWave that ingests data from table `t3` in the same database `mydb`.
-
-```sql
-CREATE TABLE t3_rw (
-  v1 INTEGER,
-  v2 timestamptz,
-  PRIMARY KEY (v1)
-) FROM mysql_mydb TABLE 'mydb.t3';
-```
-
 ## Examples
 
 ### Kafka

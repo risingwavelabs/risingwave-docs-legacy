@@ -189,8 +189,6 @@ RisingWave implements CDC via PostgresQL replication. Inspect the current progre
 
 If you are creating multiple PostgreSQL CDC tables, we recommend you to create a publication in the PostgreSQL database in advance. Specify the publication name with the `publication.name` parameter. Otherwise, some tables may not function as expected.
 
-For more information on how to create multiple CDC tables from a single PostgreSQL source, see [Create multiple CDC tables with the same source](/ingest/ingest-from-cdc.md#create-multiple-cdc-tables-with-the-same-source). 
-
 ### Data format
 
 Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
