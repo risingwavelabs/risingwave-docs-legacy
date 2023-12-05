@@ -23,7 +23,7 @@ You can test out this process on your own device by using the `cockroach-sink` d
 
 ## Syntax and Parameters
 
-Since CockroachDB is PostgreSQL-compatible, the syntax and parameters are the same as creating a PostgreSQL sink. For the syntax and parameters, see [Create a Sink](/guides/sink-to-postgres.md#create-a-sink​) under Sink to PostgreSQL. 
+Since CockroachDB is PostgreSQL-compatible, the syntax and parameters are the same as creating a PostgreSQL sink. For the syntax and parameters, see [Create a sink](/guides/sink-to-postgres.md#create-a-sink​). 
 
 ## Examples
 
