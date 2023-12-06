@@ -31,7 +31,7 @@ CREATE USER user_name [ [ WITH ] system_permission [ ... ]['PASSWORD' { password
 
 ## Example
 
-The following statement rename the user `user1` to `user001`.
+The following statement renames the user `user1` to `user001`.
 
 ```sql
 ALTER USER user1 RENAME TO user001;

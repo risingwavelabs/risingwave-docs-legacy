@@ -30,7 +30,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
 For the syntax of `schema_definition`, see [Parameters](sql-create-table.md#parameters) in `CREATE TABLE`.
 
 :::note
-To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
+To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestamptz AS proctime()`) when creating the table or source.
 :::
 
 import rr from '@theme/RailroadDiagram'

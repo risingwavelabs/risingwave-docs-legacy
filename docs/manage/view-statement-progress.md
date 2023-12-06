@@ -23,6 +23,8 @@ SELECT * FROM rw_catalog.rw_ddl_progress;
 
 ```
 
+**Note that the `progress` given here is just an estimate.**
+
 To abort a running `CREATE MATERIALIZED VIEW`, `CREATE INDEX`, or `CREATE SINK` statement, press `CTRL+C` (or `Control+C`).
 
 For example:

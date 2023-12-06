@@ -16,27 +16,13 @@ This article provides a step-by-step guide for installing the RisingWave Java UD
 
 - Ensure that you have [Apache Maven](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) (3.0 or later) installed on your computer. Maven is a build tool that helps manage Java projects and dependencies.
 
+## 1. Create a Maven project from template
 
-## 1. Install the RisingWave Java UDF SDK
-
-Run the following command to clone the RisingWave repository.
+The RisingWave Java UDF SDK is distributed as a Maven artifact. We have prepared a sample project so you don't have to create it from scratch. Run the following command to clone the template repository.
 
 ```sh
-git clone https://github.com/risingwavelabs/risingwave.git
+git clone https://github.com/risingwavelabs/risingwave-java-udf-template.git
 ```
-
-Run the following commands to navigate to the `/java/udf` directory and install the SDK.
-
-```
-cd risingwave/java/udf
-mvn install
-```
-
-## 2. Create a Maven project
-
-The RisingWave Java UDF SDK is distributed as a Maven artifact. To use it in your UDF project, you need to declare a dependency on it in your project's Maven `pom.xml` file.
-
-We have prepared a sample project so you don't have to create it from scratch. Navigate to the `/java/udf/udf-example` directory in the RisingWave repository and use it as a template to create your own UDFs.
 
 <details>
   <summary>I'd like to start from scratch</summary>
@@ -64,7 +50,7 @@ We have prepared a sample project so you don't have to create it from scratch. N
           <dependency>
               <groupId>com.risingwave.java</groupId>
               <artifactId>risingwave-udf</artifactId>
-              <version>0.0.1</version>
+              <version>0.1.1</version>
           </dependency>
       </dependencies>
   </project>
@@ -89,7 +75,7 @@ We have prepared a sample project so you don't have to create it from scratch. N
 
 </details>
 
-## 3. Define your functions in Java  
+## 2. Define your functions in Java  
 
 ### Scalar functions   
 
@@ -164,7 +150,7 @@ public class Series implements TableFunction {
 
 :::
 
-## 4. Start a UDF server
+## 3. Start a UDF server
 
 Run the following command to create a UDF server and register for the functions you defined.
 
@@ -195,7 +181,7 @@ _JAVA_OPTIONS="--add-opens=java.base/java.nio=ALL-UNNAMED" mvn exec:java -Dexec.
 
 The UDF server will start running, allowing you to call the defined UDFs from RisingWave.
 
-## 5. Declare your functions in RisingWave
+## 4. Declare your functions in RisingWave
 
 In RisingWave, use the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md) command to declare the functions you defined.
 
@@ -211,7 +197,7 @@ AS series
 USING LINK 'http://localhost:8815';
 ```
 
-## 6. Use your functions in RisingWave
+## 5. Use your functions in RisingWave
 
 Once the UDFs are created in RisingWave, you can use them in SQL queries just like any built-in functions. For example:
 

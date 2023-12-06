@@ -170,3 +170,11 @@ If you don't need the RisingWave containers and the associated networks and pers
 ```shell
 docker compose down -v
 ```
+
+## Common Issues
+
+One of the common issues you may encounter is no sufficient space for storage. For example:
+```
+Error { code: "XMinioStorageFull", message: "Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed."
+```
+This issue typically occurs on macOS when using Docker Desktop. Docker Desktop runs within the macOS Hypervisor, where all the data, including logs, images, and volumes, is stored. The macOS Hypervisor has a default limit on disk capacity. If you encounter this error, you can resolve it by cleaning up any unused containers or images. Another option is to increase the disk image size limit by following these steps: Click on the Docker Desktop icon in the menu bar, then go to **Preferences** > **Resources** > **Advanced**, adjust the slider for disk image size to allocate more space for Docker images. If you are using a different platform, please ensure that there is sufficient space available on the local disk.
