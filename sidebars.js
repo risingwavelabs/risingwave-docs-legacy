@@ -597,6 +597,13 @@ const sidebars = {
               label: "Data types",
               collapsible: true,
               collapsed: true,
+              link: {
+                type: "generated-index",
+                title: "Data types",
+                description: "Data types supported by RisingWave",
+                slug: "/data-types",
+                keywords: ["type, data"],
+              },
               items: [
                 {
                   type: "doc",
