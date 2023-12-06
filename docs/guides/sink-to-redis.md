@@ -44,7 +44,7 @@ FORMAT data_format ENCODE data_encode [ (
 | Field | Notes |
 | --------------- | ---------------------------------------------------------------------- |
 |data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `UPSERT`: Output data as a changelog stream. </li></ul>|
-|data_encode| Data encode. Supported encode:  <ul><li>`JSON`:<ul><li>`date`: number of days since CE.</li></ul><ul><li>`interval`: `P<years>Y<months>M<days>DT<hours>H<minutes>M<seconds>S` format string.</li></ul><ul><li>`time without time zone`: number of milliseconds past the last midnight.</li></ul><ul><li>`timestamp`: number of milliseconds since Epoch.</li></ul></li><li>`TEMPLATE`: convert to the string specified by `redis_key_format`/`redis_value_format`.</li></ul> |
+|data_encode| Data encoding. Supported encodings:  <ul><li>`JSON`:<ul><li>`date`: number of days since the Common Era (CE).</li></ul><ul><li>`interval`: `P<years>Y<months>M<days>DT<hours>H<minutes>M<seconds>S` format string.</li></ul><ul><li>`time without time zone`: number of milliseconds past the last midnight.</li></ul><ul><li>`timestamp`: number of milliseconds since the Epoch.</li></ul></li><li>`TEMPLATE`: converts data to the string specified by `redis_key_format`/`redis_value_format`.</li></ul> |
 |force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
 |redis_key_format| Required if `data_encode` is `TEMPLATE`. Specify the format for the key as a string. |
 |redis_value_format| Required if `data_encode` is `TEMPLATE`. Specify the format for the value as a string. |
