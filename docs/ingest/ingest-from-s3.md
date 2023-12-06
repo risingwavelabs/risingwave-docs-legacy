@@ -8,7 +8,7 @@ slug: /ingest-from-s3
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-s3/" />
 </head>
 
-Use the SQL statement below to connect RisingWave to an Amazon S3 source.
+Use the SQL statement below to connect RisingWave to an Amazon S3 source. RisingWave supports both CSV and [ndjson](https://ndjson.org/) file formats.
 
 ## Syntax
 
@@ -184,3 +184,31 @@ WITH (
 
 </TabItem>
 </Tabs>
+
+## Important considerations
+
+### Object filtering in S3 buckets
+
+RisingWave has a prefix argument designed for filtering objects in the S3 bucket. It relies on [Apache Opendal](https://github.com/apache/incubator-opendal) whose prefix filter implementation is expected to be released soon.
+
+### Source file name as column
+
+A feature to create a column with the source file name is currently under development. You can track the progress [here](https://github.com/risingwavelabs/rfcs/pull/79).
+
+### Handling new files in the bucket
+
+RisingWave automatically ingests new files added to the bucket. However, it will not detect updates to a file if a file is deleted and a new file with the same name is added at the same time.
+
+### Reading data from the source
+
+You need to create a materialized view from the source or create a table with s3 connector to read the data. Here are some examples:
+
+```sql
+CREATE MATERIALIZED VIEW mv AS SELECT * FROM s3_source;
+
+CREATE TABLE t ( ... ) WITH ( connector = 's3_v2', ... );
+```
+
+### Handling unexpected file types or poorly formatted files
+
+RisingWave will attempt to interpret and parse files, regardless of their type, as CSV or ndjson, based on the specified rules. Warnings will be reported for parts of the file that cannot be parsed, but the source part will not fail. Poorly formatted parts of a file will be discarded.
