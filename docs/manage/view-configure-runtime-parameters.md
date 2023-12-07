@@ -62,4 +62,4 @@ SET parameter_name { TO | = } { value | 'value' | DEFAULT};
 
 Where `parameter_name` is the name of the parameter, and `value` or `'value'` is the new value of the parameter. `DEFAULT` can be written to specify resetting the parameter to its default value (that is, whatever value it would have had if no `SET` had been executed in the current session).
 
-For details about the `set_config()` function, see [System administration functions](/sql/functions-operators/sql-function-sys-admin.md#set_config).
+For details about the `set_config()` function, see [System administration functions](/sql/functions-operators/sql-function-sys-admin.md#set_config), and for details about the `SET` command, see [`SET`](/sql/commands/sql-show-jobs.md).
