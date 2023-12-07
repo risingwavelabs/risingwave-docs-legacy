@@ -19,9 +19,8 @@ The following table shows the corresponding data types between RisingWave and Ti
 | RisingWave type | TiDB type |
 |-----------------|------------|
 | BOOLEAN | BOOLEAN |
-| SMALLINT | TINYINT |
-| SMALLINT | SMALLINT |
-| INT | MEDIUMINT |
+| SMALLINT | TINYINT/SMALLINT |
+| INT | INT/MEDIUMINT |
 | BIGINT | BIGINT |
 | REAL | FLOAT |
 | DOUBLE | DOUBLE |
@@ -29,15 +28,7 @@ The following table shows the corresponding data types between RisingWave and Ti
 | DATE | DATE |
 | TIMESTAMP | DATETIME |
 | TIME | TIME |
-| TIMESTAMP | TIMESTAMP |
 | TIMESTAMPTZ | TIMESTAMP |
-| VARCHAR | CHAR |
-| BYTEA | BINARY |
-| BYTEA | VARBINARY |
-| BYTEA | BLOB |
-| TEXT | TEXT |
+| VARCHAR | VARCHAR/CHAR/TEXT/TINYTEXT/<br/>MEDIUMTEXT/LONGTEXT |
+| BYTEA | VARBINARY/BINARY/BLOB/TINYBLOB/<br/>MEDIUMBLOB/LONGBLOB |
 | JSONB | JSON |
-
-:::note
-`TIMESTAMPTZ` types in RisingWave will be converted to `TIMESTAMP` when sinked to TiDB. TiDB doesn't natively support `TIMESTAMPTZ`, but it processes timezone conversions during storage and retrieval. For more information, see [Timezone Handling](https://docs.pingcap.com/tidb/stable/data-type-date-and-time#timezone-handling).
-:::
