@@ -16,23 +16,28 @@ For the syntax, settings, and examples, see [Sink data from RisingWave to MySQL 
 
 The following table shows the corresponding data types between RisingWave and TiDB. For details on native RisingWave data types, see [Overview of data types](../sql/sql-data-types.md).
 
-| TiDB type  | RisingWave type |
-|------------|-----------------|
+| RisingWave type | TiDB type |
+|-----------------|------------|
 | BOOLEAN | BOOLEAN |
-| TINYINT | SMALLINT |
+| SMALLINT | TINYINT |
 | SMALLINT | SMALLINT |
-| MEDIUMINT | INT |
+| INT | MEDIUMINT |
 | BIGINT | BIGINT |
-| FLOAT | REAL |
+| REAL | FLOAT |
 | DOUBLE | DOUBLE |
 | DECIMAL | DECIMAL |
 | DATE | DATE |
-| DATETIME | TIMESTAMP |
+| TIMESTAMP | DATETIME |
 | TIME | TIME |
 | TIMESTAMP | TIMESTAMP |
-| CHAR | VARCHAR |
-| BINARY | BYTEA |
-| VARBINARY | BYTEA |
-| BLOB | BYTEA |
+| TIMESTAMPTZ | TIMESTAMP |
+| VARCHAR | CHAR |
+| BYTEA | BINARY |
+| BYTEA | VARBINARY |
+| BYTEA | BLOB |
 | TEXT | TEXT |
-| JSON | JSONB |
+| JSONB | JSON |
+
+:::note
+`TIMESTAMPTZ` types in RisingWave will be converted to `TIMESTAMP` when sinked to TiDB. TiDB doesn't natively support `TIMESTAMPTZ`, but it processes timezone conversions during storage and retrieval. For more information, see [Timezone Handling](https://docs.pingcap.com/tidb/stable/data-type-date-and-time#timezone-handling).
+:::
