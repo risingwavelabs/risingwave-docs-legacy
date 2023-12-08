@@ -1,14 +1,14 @@
 ---
 id: sql-describe
 title: DESCRIBE
-description: Get information about the columns in a table, source, or materialized view.
+description: Get information about the columns in a table, source, sink, view, or materialized view.
 slug: /sql-describe
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-describe/" />
 </head>
 
-Use the `DESCRIBE` command to view columns in the specified table, source, or materialized view.
+Use the `DESCRIBE` command to view columns in the specified table, source, sink, view, or materialized view.
 
 `DESCRIBE` is a shortcut for [`SHOW COLUMNS`](sql-show-columns.md).
 
@@ -24,25 +24,13 @@ Use the `DESCRIBE` command to view columns in the specified table, source, or ma
 DESCRIBE relation_name;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DESCRIBE'),
-        rr.NonTerminal('relation_name', 'skip'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 | Parameter or clause | Description                                                           |
 | ------------------- | --------------------------------------------------------------------- |
-| *relation_name*        | The table, source, or materialized view whose columns will be listed. |
+| *relation_name*        | The table, source, sink, view or materialized view whose columns will be listed. |
 
-## Example
+## Examples
 
 ```sql title=Preparation
 CREATE TABLE customers (
