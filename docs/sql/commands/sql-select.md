@@ -8,7 +8,7 @@ slug: /sql-select
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-select/" />
 </head>
 
-Use the `SELECT` command to retrieve rows from a table or materialized view. It returns the rows that satisfy the creteria that you specify with the clauses and conditions in your query.
+Use the `SELECT` command to retrieve rows from a table or materialized view. It returns the rows that satisfy the criteria that you specify with the clauses and conditions in your query.
 
 ## Syntax
 
