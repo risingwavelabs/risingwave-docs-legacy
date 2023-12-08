@@ -217,7 +217,7 @@ CREATE SOURCE mysql_mydb WITH (
 
 With the source created, you can create multiple CDC tables that ingests data from different tables in the upstream database without needing to specify the database connection parameters again. 
 
-For instance, the following CDC table in RisingWave ingests data from table `t1` in database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be qualified. 
+For instance, the following CDC table in RisingWave ingests data from table `t1` in database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be specified. 
 
 ```sql
 CREATE TABLE t1_rw (
