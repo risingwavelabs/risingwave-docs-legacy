@@ -170,3 +170,20 @@ WITH (
     clickhouse.table='demo_test'
 );
 ```
+## Data type mapping
+
+|RisingWave Data Type | ClickHouse Data Type|
+|-----|-----|
+|bool | bool |
+|smallint | UInt16/Int16 |
+|integer |UInt32/Int32|
+|bigint |UInt64/Int64|
+|real(float32) |Float32|
+|float(float64)|Float64|
+|decimal |Decimal|
+|date |Date32|
+|varchar |String|
+|timestamptz|DateTime64|
+|struct | Nested|
+|list |Array |
+|serial| UInt64/Int64|
