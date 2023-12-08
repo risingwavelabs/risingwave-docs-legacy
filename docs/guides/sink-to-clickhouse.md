@@ -172,11 +172,11 @@ WITH (
 ```
 ## Data type mapping
 
-|RisingWave Data Type | ClickHouse Data Type|
-|----------------------|----------------------|
+|RisingWave Data Type  | ClickHouse Data Type |
+|--------------------- |--------------------- |
 |bool                  | Bool                 |
 |smallint              | UInt16/Int16         |
-|integer               | UInt32/Int32         |
+|int                   | UInt32/Int32         |
 |bigint                | UInt64/Int64         |
 |real(float32)         | Float32              |
 |float(float64)        | Float64              |
