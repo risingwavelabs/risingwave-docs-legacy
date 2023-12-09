@@ -91,6 +91,6 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 
 Timestamptz values are stored in UTC.
 
-When sinking downstream, timestamptz is represented in i64 with a resolution of microseconds.
+When sinking downstream, timestamptz is represented as a string in the format `2023-11-11 18:30:09.453000`.
 
 :::

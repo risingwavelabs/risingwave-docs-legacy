@@ -185,9 +185,9 @@ Unless specified otherwise, the fields listed are required.
 RisingWave implements CDC via PostgresQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot).
 :::
 
-### Multiple CDC source tables
+### Multiple CDC tables
 
-If you are creating multiple PostgreSQL CDC source tables, we recommend you to create a publication in the PostgreSQL database in advance. Specify the publication name with the `publication.name` parameter. Otherwise, some tables may not function as expected.
+If you are creating multiple PostgreSQL CDC tables, we recommend you to create a publication in the PostgreSQL database in advance. Specify the publication name with the `publication.name` parameter. Otherwise, some tables may not function as expected.
 
 ### Data format
 
