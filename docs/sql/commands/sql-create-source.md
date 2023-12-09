@@ -104,8 +104,8 @@ For data in Avro format, you must specify a message and a schema file location. 
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-:::caution Experimental feature
-`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 Note that the timestamp displayed in RisingWave may be different from the upstream system as timezone information is lost in Avro serialization.
@@ -136,8 +136,8 @@ When creating a source from streams in with Debezium AVRO, the schema of the sou
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-:::caution Experimental feature
-`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::caution Beta Feature
+`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 Syntax:
@@ -160,8 +160,8 @@ When consuming data in AVRO from Kafka topics, the `FORMAT` and `ENCODE` section
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-:::caution Experimental feature
-`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 Syntax:
@@ -264,8 +264,8 @@ For data in protobuf format, you must specify a message and a schema location. T
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-:::caution Experimental feature
-`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta feature
+`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 :::info

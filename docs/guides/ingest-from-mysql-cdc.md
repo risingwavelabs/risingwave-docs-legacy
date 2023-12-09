@@ -18,8 +18,8 @@ You can ingest CDC data from MySQL in two ways:
 
   With this connector, RisingWave can connect to MySQL databases directly to obtain data from the binlog without starting additional services.
 
-  :::caution Beta feature
-  The built-in MySQL CDC connector in RisingWave is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
+  :::note Beta feature
+  The built-in MySQL CDC connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
   :::
 
 - Using a CDC tool and a message broker
@@ -148,16 +148,6 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
 
 If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
 
-:::note EXPERIMENTAL ENHANCEMENT AVAILABLE
-
-We have optimized the data backfilling logic for CDC tables to improve data ingestion performance of the MySQL CDC connector. This is currently an experimental feature, and is not enabled by default. To enable it, run this command in RisingWave:
-
-```sql
-SET cdc_backfill="true";
-```
-
-:::
-
 ## Create a table using the native CDC connector in RisingWave
 
 To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
@@ -191,7 +181,7 @@ All the fields listed below are required.
 |database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| Optional. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
-|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table is an experimental feature. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table is currently in Beta. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 ### Data format
 

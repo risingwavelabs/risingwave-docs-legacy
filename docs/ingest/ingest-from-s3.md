@@ -122,9 +122,9 @@ Empty cells in CSV files will be parsed to `NULL`.
 
 ### `s3_v2` connector
 
-:::caution BETA FEATURE
+:::note BETA FEATURE
 
-The `s3_v2` connector is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
+The `s3_v2` connector is currently in Beta. Please contact us if you encounter any issues or have feedback.
 
 :::
 

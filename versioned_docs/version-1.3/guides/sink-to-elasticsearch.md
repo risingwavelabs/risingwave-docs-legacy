@@ -10,8 +10,8 @@ This guide describes how to sink data from RisingWave to Elasticsearch using the
 
 [Elasticsearch](https://www.elastic.co/elasticsearch/) is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases. It centrally stores your data for lightning fast search, fine‑tuned relevancy, and powerful analytics that scale with ease.
 
-:::caution Experimental feature
-The Elasticsearch sink connector in RisingWave is currently an experimental feature that supports only versions 7.x and 8.x of Elasticsearch. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+The Elasticsearch sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 :::note
