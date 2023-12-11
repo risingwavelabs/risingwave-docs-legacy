@@ -92,22 +92,9 @@ const sidebars = {
           id: "get-started",
         },
         {
-          "type": "category",
-          "label": "Deploy on a single machine",
-          "collapsible": true,
-          "collapsed": true,
-          "items": [
-            {
-              "type": "doc",
-              "id": "deploy/risingwave-docker-compose",
-              "label": "Standalone mode"
-            },
-            {
-              "type": "doc",
-              "id": "deploy/risingwave-docker-compose-distributed",
-              "label": "Distributed mode"
-            }
-          ]
+          "type": "doc",
+          "id": "deploy/risingwave-docker-compose",
+          "label": "Deploy with Docker Compose"
         },
         {
           "type": "category",

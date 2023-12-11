@@ -1,20 +1,20 @@
 ---
 id: risingwave-docker-compose
-title: Start RisingWave in standalone mode using Docker Compose
-description: Start a RisingWave cluster in standalone mode using Docker Compose.
+title: Start RisingWave using Docker Compose
+description: Start a RisingWave cluster using Docker Compose.
 slug: /risingwave-docker-compose
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-docker-compose/" />
 </head>
 
-This topic describes how to start RisingWave in standalone mode using Docker Compose. With this option, data is persisted in storage, and observability is enabled for enhanced monitoring and analysis.
+This topic describes how to start RisingWave using Docker Compose on a single machine. With this option, data is persisted in your preferred storage service, and observability is enabled for enhanced monitoring and analysis.
 
-In standalone mode, RisingWave functions as an all-in-one service. All components of RisingWave, including the compute node, frontend node, meta node, and compactor node, are put into a single process. They are executed in different threads, eliminating the need to start each component as a separate process. You can also start a multi-node RisingWave cluster with your own storage service using Docker Compose for more flexibility. See details in [Start RisingWave in distributed mode using Docker Compose](/deploy/risingwave-docker-compose-distributed.md).
+In this option, RisingWave functions as an all-in-one service. All components of RisingWave, including the compute node, frontend node, meta node, and compactor node, are put into a single process. They are executed in different threads, eliminating the need to start each component as a separate process.
 
 However, please be aware that certain critical features, such as failover and resource management, are not implemented in this mode. Therefore, this option is not recommended for production deployments. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
 
-This option uses a pre-defined Docker Compose configuration file to set up a single-node RisingWave cluster.
+This option uses a pre-defined Docker Compose configuration file to set up a RisingWave cluster.
 
 The cluster also incorporates these third-party components:
 
@@ -27,21 +27,34 @@ The cluster also incorporates these third-party components:
 
 As a prerequisite, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment. Ensure that it is running before launching the cluster.
 
-  Then, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
+Then, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
 
-  ```shell
-  git clone https://github.com/risingwavelabs/risingwave.git
-  ```
+```shell
+git clone https://github.com/risingwavelabs/risingwave.git
+```
 
-  Open the repository in a terminal and run the following command to navigate to the `docker` directory.
-  
-  ```shell
-  cd docker
-  ```
+Open the repository in a terminal and run the following command to navigate to the `docker` directory.
+
+```shell
+cd docker
+```
 
 ## Start a RisingWave cluster
 
-You can now start a RisingWave cluster. By default, the configuration file uses MinIO as the storage backend of RisingWave.
+You can now start a RisingWave cluster. You can use the following storage options as the storage backend of RisingWave:
+
+- MinIO
+- S3 or S3-compatible storage
+- Google Cloud Storage
+- Alicloud OSS
+- Azure Blob Storage
+- HDFS
+
+For each of the options, we have a Docker Compose configuration file that you can use after the necessary configurations.
+
+### MinIO
+
+This is the default option. To start a standalone RisingWave cluster with MinIO as the storage backend, run the following command:
 
 ```shell
 docker compose up -d
@@ -52,6 +65,72 @@ The default command-line syntax in Compose V2 starts with `docker compose`. See 
 
 If you're using Compose V1, use `docker-compose` instead.
 :::
+
+<details>
+<summary>I'd like to start RisingWave components separately in a multi-node cluster.</summary>
+
+You can also start a multi-node cluster where all components of RisingWave, including the compute node, frontend node, meta node, and compactor node, are started as separate processes.
+
+By default, this mode uses MinIO as the storage backend of RisingWave. 
+
+To start a multi-node RisingWave cluster with MinIO as the storage backend, run the following command:
+
+```shell
+docker compose -f docker-compose-distributed.yml up
+```
+</details>
+
+### S3 or S3-compatible storage
+
+To use S3 as the storage backend, configure your AWS credential information in `/docker/aws.env`.
+
+To use S3-compatible storage options like Tencent Cloud COS, you need to configure the endpoint via the `RW_S3_ENDPOINT` parameter in `/docker/aws.env`. Don't include the bucket name in the endpoint.
+
+In `docker-compose-with-s3.yml`, specify the bucket name via the `hummock+s3` parameter.
+
+```bash
+- "hummock+s3://<bucket-name>"
+```
+
+Run this command to start the RisingWave cluster:
+
+```shell
+docker compose -f docker-compose-with-s3.yml up
+```
+
+### Google Cloud Storage, Alibaba Cloud OSS, or Azure Blob Storage
+
+Configure the credentials for the cloud service you want to use in `/docker/multiple_object_storage.env`.
+
+In the corresponding `docker-compose-with-service_name.yml` file (for example, `docker-compose-with-gcs.yml` for Google Cloud Storage), specify the bucket name via the `hummock+<service_name>` parameter.
+
+```bash
+ - "hummock+<service_name>://<bucket-name>"
+```
+
+Run the following command to start the RisingWave cluster with one of the cloud storage services that you choose.
+
+```shell
+docker compose -f docker-compose-with-service_name.yml up
+```
+
+Remember to replace the `docker-compose-with-service_name.yml` with the full file name of the corresponding configuration file.
+
+### HDFS
+
+Mount your `HADOOP_HOME` in the compactor node, computer node, and meta node volumes.
+
+In `/docker-compose-with-hdfs.yml`, specify the cluster name via the `hummock+hdfs` parameter.
+
+```bash
+- "hummock+hdfs://<cluster_name>"
+```
+
+Run the following command to start a RisingWave cluster:
+
+```shell
+docker compose -f docker-compose-with-hdfs.yml up
+```
 
 ## Connect to RisingWave
 
@@ -93,7 +172,7 @@ If you're using Compose V1, use `docker-compose` instead.
 
  Access Prometheus at [http://127.0.0.1:9500/](http://127.0.0.1:9500/). No credentials are needed. You can use Prometheus for real-time alerting.
 
-## Common Issues
+## Common issues
 One of the common issues you may encounter is insufficient storage space. For example:
 
 ```
