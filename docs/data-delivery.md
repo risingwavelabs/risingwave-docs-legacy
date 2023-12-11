@@ -12,7 +12,7 @@ RisingWave supports delivering data to downstream systems via its sink connector
 To stream data out of RisingWave, you must create a sink. A sink is an external target that you can send data to. Use the [`CREATE SINK`](/sql/commands/sql-create-sink.md) statement to create a sink. You need to specify what data to be exported, the format, and the sink parameters.
 
 Sinks will take some time to catch up to their upstream source(s) due to latency of the sink, connector or backfilling process.
-So you can expect that the data in the sink will be eventually consistent.
+To determine whether the process is complete and the data in the sink is consistent, refer to [Monitor statement progress](/manage/view-statement-progress.md).
 
 Currently, RisingWave supports the following sink connectors:
 
