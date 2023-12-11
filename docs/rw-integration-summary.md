@@ -49,6 +49,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Airbyte | |Researching  <voteNotify note="airbyte" /> |
 |dbt| |Available. For details, see [Use dbt for data transformations](/transform/use-dbt.md).|
 |Hightouch| |Researching <voteNotify note="hightouch" />|
+|Vector| |Available. |
 
 ## Query engines
 
@@ -117,7 +118,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |DBeaver| | Available. See [Connect DBeaver to RisingWave](/guides/dbeaver-integration.md) for details. |
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
 |Jupyter Notebook||Researching <voteNotify note="jupyter" />|
-|Looker|Available. See [Connect Looker to RisingWave](/guides/looker-integration.md) for details. |
+|Looker||Available. See [Connect Looker to RisingWave](/guides/looker-integration.md) for details. |
 |Metabase ||In progress <voteNotify note="metabase" />|
 |Redash || Available |
 |DataGrip | |Researching <voteNotify note="datagrip" /> |
