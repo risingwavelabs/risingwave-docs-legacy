@@ -1,37 +1,30 @@
 ---
 id: sql-alter-view
 title: ALTER VIEW
-description: Modify the properties of an existing view.
+description: Modify the properties of a view.
 slug: /sql-alter-view
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-view/" />
 </head>
 
-Use the `ALTER VIEW` command to do the following operations on a view：
-
-+ change the owner
-+ change the schema
+The `ALTER VIEW` command modifies the definition of a view. To use this command, you must own the view.
 
 ## Syntax
 
 ```sql
-ALTER VIEW current_view_name 
+ALTER VIEW view_name 
     alter_option;
 ```
 
-*`alter_option`* depends on the operation you want to perform on the view.
+*`alter_option`* depends on the operation you want to perform on the view. For all supported clauses, see the sections below.
 
-```sql
-ALTER VIEW current_view_name
-    OWNER TO new_user
-    SET SCHEMA schema_name
-```
+## Clause
 
-## Change the owner
+### `OWNER TO`
 
 ```sql title=Syntax
-ALTER VIEW current_view_name
+ALTER VIEW view_name
     OWNER TO new_user;
 ```
 
@@ -45,10 +38,10 @@ ALTER VIEW current_view_name
 ALTER VIEW view1 OWNER TO user1;
 ```
 
-## Change the schema
+### `SET SCHEMA`
 
 ```sql title=Syntax
-ALTER VIEW current_view_name
+ALTER VIEW view_name
     SET SCHEMA schema_name;
 ```
 
@@ -60,4 +53,21 @@ ALTER VIEW current_view_name
 ```sql title=Example
 -- Move the view named "test_view" to the schema named "test_schema"
 ALTER VIEW test_view SET SCHEMA test_schema;
+```
+
+### `RENAME TO`
+
+```sql title=Syntax
+ALTER VIEW view_name
+    RENAME TO new_name;
+```
+
+|Parameter or clause        | Description           |
+|---------------------------|-----------------------|
+|**RENAME TO**|This clause changes the name of the view.|
+|*new_name*|The new name of the view.|
+
+```sql title=Example
+-- Change the name of the view named "view1" to "view2"
+ALTER VIEW view1 RENAME TO view2;
 ```

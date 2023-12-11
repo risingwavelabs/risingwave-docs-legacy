@@ -9,8 +9,8 @@ This guide describes how to sink data from RisingWave to Apache Pulsar.
 
 [Apache Pulsar](https://pulsar.apache.org) is an open-source distributed pub-sub messaging system and event streaming platform that is scaleable and designed to support geo-replication.
 
-:::caution Beta feature
-The Pulsar sink connector in RisingWave is currently in Beta. Please use this with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
+:::note Beta feature
+The Pulsar sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 ## Prerequisites
@@ -38,20 +38,20 @@ FORMAT data_format ENCODE data_encode [ (
 
 | Parameter Names | Description |
 | --------------- | ---------------------------------------------------------------------- |
-|topic	|Required. The address of the Pulsar topic. One source can only correspond to one topic.|
-|service.url	|Required. The address of the Pulsar service.|
-|auth.token	|Optional. A token for auth. If both `auth.token` and `oauth` are set, only `oauth` authorization is considered.|
-|oauth.issuer.url	|Conditional. The issuer URL for OAuth2. This field must be filled if other `oauth` fields are specified.|
-|oauth.credentials.url	|Conditional. The path for credential files, which starts with `file://`. This field must be filled if other `oauth` fields are specified.|
-|oauth.audience	|Conditional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.|
-|oauth.scope	|Optional. The scope for OAuth2.|
-|access_key	|Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
-|secret_access	|Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
-|max_retry_num	|Optional. The maximum number of times to retry sending a batch to Pulsar. This allows retrying in case of transient errors. The default value is 3. |
-|retry_interval	|Optional. The time in milliseconds to wait after a failure before retrying to send a batch. The default value is 100ms.|
+|topic |Required. The address of the Pulsar topic. One source can only correspond to one topic.|
+|service.url |Required. The address of the Pulsar service.|
+|auth.token |Optional. A token for auth. If both `auth.token` and `oauth` are set, only `oauth` authorization is considered.|
+|oauth.issuer.url |Conditional. The issuer URL for OAuth2. This field must be filled if other `oauth` fields are specified.|
+|oauth.credentials.url |Conditional. The path for credential files, which starts with `file://`. This field must be filled if other `oauth` fields are specified.|
+|oauth.audience |Conditional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.|
+|oauth.scope |Optional. The scope for OAuth2.|
+|access_key |Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
+|secret_access |Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
+|max_retry_num |Optional. The maximum number of times to retry sending a batch to Pulsar. This allows retrying in case of transient errors. The default value is 3. |
+|retry_interval |Optional. The time in milliseconds to wait after a failure before retrying to send a batch. The default value is 100ms.|
 |primary_key| Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. Primary keys are optional when creating a `PLAIN` sink but required for `UPSERT` and `DEBEZIUM` sinks.|
 
-## Sink parameters 
+## Sink parameters
 
 | Field | Notes |
 | --------------- | ---------------------------------------------------------------------- |

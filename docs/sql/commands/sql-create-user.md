@@ -28,8 +28,6 @@ If you do not want password authentication for the user, omit the PASSWORD optio
 | `NOCREATEDB`| Denies the user the permission to create databases. `NOCREATEDB` is the default value.|
 | `CREATEUSER`| Grants the user the permission to create new users and/or alter and drop existing users. `NOCREATEUSER` is the default value. |
 | `NOCREATEUSER` | Denies the user the ability to create new users and/or alter and drop existing users. `NOCREATEUSER` is the default value. |
-| `LOGIN` | Grants the user the ability to log in when establishing connection with RisingWave. `LOGIN` is the default value. |
-| `NOLOGIN` | Denies the user the ability to log in when establishing connection with RisingWave. `LOGIN` is the default value. |
 
 ## Examples
 

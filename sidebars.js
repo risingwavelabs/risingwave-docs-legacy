@@ -456,6 +456,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "CockroachDB",
+              id: "guides/sink-to-cockroach",
+            },
+            {
+              type: "doc",
               label: "Delta Lake",
               id: "guides/sink-to-delta-lake",
             },
@@ -772,6 +777,13 @@ const sidebars = {
               label: "System catalogs",
               collapsible: true,
               collapsed: true,
+              link: {
+                type: "generated-index",
+                title: "System catalogs",
+                description: "System catalogs that can be used to query metadata.",
+                slug: "/system-catalogs",
+                keywords: ["catalog, system, metadata"],
+              },
               items: [
                 {
                   type: "doc",

@@ -188,6 +188,136 @@ SELECT jsonb_strip_nulls('{"a": {"b": null, "c": null}, "d": {} }');
 {"a": {}, "d": {}}
 ```
 
+### `jsonb_path_exists`
+
+Checks if a JSON path returns any items from a JSON value.
+
+If the `vars` argument is provided, it must be a JSON object. Its fields act as named values that are substituted into the `path` expression. When the `silent` argument is specified and set to `true`, the function will suppress errors like the [`@?`](#jsonb--varchar--boolean) and [`@@`](#jsonb--varchar--boolean-1) operators.
+
+For information on the SQL/JSON Path syntax, refer to the [PostgreSQL documentation](https://www.postgresql.org/docs/current/functions-json.html#FUNCTIONS-SQLJSON-PATH).
+
+```bash title=Syntax
+jsonb_path_exists ( target jsonb, path varchar [, vars jsonb [, silent boolean ]] ) → boolean
+```
+
+```sql title=Example
+SELECT jsonb_path_exists('{"a":1, "b":2, "c":3}', '$.b');
+------RESULT
+t
+```
+
+### `jsonb_path_match`
+
+Evaluates a JSON path predicate on a JSON value and returns the results as a boolean. Only the first item of the result is taken into account.
+
+```bash title=Syntax
+jsonb_path_match ( target jsonb, path varchar [, vars jsonb [, silent boolean ]] ) → boolean
+```
+
+```sql title=Example
+SELECT jsonb_path_match('{"employee":{"name":"John","age":30}}', 'exists($.employee.age ? (@ > 25))');
+------RESULT
+t
+```
+
+### `jsonb_path_query`
+
+Extracts items from a JSON value matching a JSON path and returns as a set.
+
+```bash title=Syntax
+jsonb_path_query ( target jsonb, path varchar [, vars jsonb [, silent boolean ]] ) → setof jsonb
+```
+
+```sql title=Example
+SELECT jsonb_path_query('{
+  "employees": [
+    {
+      "name": "John",
+      "age": 30
+    },
+    {
+      "name": "Jane",
+      "age": 25
+    },
+    {
+      "name": "David",
+      "age": 35
+    },
+    {
+      "name": "Michael",
+      "age": 32
+    }
+  ]
+}', '$.employees[*] ? (@.age >= 25 && @.age <= 30)');
+------RESULT
+       jsonb_path_query       
+------------------------------
+ {"age": 30, "name": "John"}
+ {"age": 25, "name": "Jane"}
+```
+
+### `jsonb_path_query_array`
+
+Extracts matching JSON path items and returns them wrapped in an array.
+
+```bash title=Syntax
+jsonb_path_query_array ( target jsonb, path varchar [, vars jsonb [, silent boolean ]] ) → jsonb
+```
+
+```sql title=Example
+SELECT jsonb_path_query_array('{
+  "employees": [
+    {
+      "name": "John",
+      "age": 30
+    },
+    {
+      "name": "Alice",
+      "age": 35
+    },
+    {
+      "name": "Bob",
+      "age": 25
+    }
+  ]
+}', '$.employees[*] ? (@.age >= $min && @.age <= $max)', '{"min": 24, "max": 32}');
+------RESULT
+                  jsonb_path_query_array                   
+-----------------------------------------------------------
+ [{"age": 30, "name": "John"}, {"age": 25, "name": "Bob"}]
+```
+
+### `jsonb_path_query_first`
+
+Extracts the first matching item from a JSON value using a JSON path.
+
+```bash title=Syntax
+jsonb_path_query_first ( target jsonb, path varchar [, vars jsonb [, silent boolean ]] ) → jsonb
+```
+
+```sql title=Example
+SELECT jsonb_path_query_first('{
+  "employees": [
+    {
+      "name": "John",
+      "age": 30
+    },
+    {
+      "name": "Jane",
+      "age": 25
+    },
+    {
+      "name": "David",
+      "age": 35
+    }
+  ]
+}', '$.employees[0]');
+------RESULT
+   jsonb_path_query_first    
+-----------------------------
+ {"age": 30, "name": "John"}
+```
+
 ### `jsonb_typeof`
 
 Returns the type of the top-level JSON value as a text string.
@@ -324,7 +454,7 @@ Deletes the field or array element at the specified path, where path elements ca
 '["a", {"b":1}]'::jsonb #- '{1,b}' → ["a", {}]
 ```
 
-### `(jsonb || jsonb) -> jsonb`
+### `(jsonb || jsonb) → jsonb`
 
 Concatenates jsonb data.
 
@@ -340,7 +470,7 @@ SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
 [{"a": "b"}, 42]
 ```
 
-### `jsonb @> jsonb -> boolean`
+### `jsonb @> jsonb → boolean`
 
 This operator checks if the left `jsonb` value contains the right `jsonb` value. For a detailed description and examples about containment and existence, see [jsonb Containment and Existence](https://www.postgresql.org/docs/current/datatype-json.html) in PostgreSQL's documentation.
 
@@ -354,7 +484,7 @@ This operator checks if the left `jsonb` value contains the right `jsonb` value.
 '{"foo": {"bar": "baz"}}'::jsonb @> '{"foo": {}}'::jsonb → t
 ```
 
-### `jsonb <@ jsonb -> boolean`
+### `jsonb <@ jsonb → boolean`
 
 This operator checks if the left `jsonb` value is contained within the right `jsonb` value. For a detailed description and examples about containment and existence, see [jsonb Containment and Existence](https://www.postgresql.org/docs/current/datatype-json.html) in PostgreSQL's documentation.
 
@@ -362,7 +492,7 @@ This operator checks if the left `jsonb` value is contained within the right `js
 '{"b":2}'::jsonb <@ '{"a":1, "b":2}'::jsonb → t
 ```
 
-### `jsonb ? text -> boolean`
+### `jsonb ? text → boolean`
 
 This operator checks if a string exists as a top-level array element or object key within a `jsonb` value.
 
@@ -378,7 +508,7 @@ This operator checks if a string exists as a top-level array element or object k
 '"foo"'::jsonb ? 'foo' → t
 ```
 
-### `jsonb ?| text[] -> boolean`
+### `jsonb ?| text[] → boolean`
 
 This operator checks if any string in an array exists as a top-level array element or object key within a `jsonb` value.
 
@@ -390,7 +520,7 @@ This operator checks if any string in an array exists as a top-level array eleme
 '"b"'::jsonb ?| array['b', 'd'] → t
 ```
 
-### `json ?& text[] -> boolean`
+### `json ?& text[] → boolean`
 
 This operator checks if all strings in an array exist as top-level array elements or object keys within a `jsonb` value.
 
@@ -402,7 +532,7 @@ This operator checks if all strings in an array exist as top-level array element
 '["a", "b", "c"]'::jsonb ?& array['a', 'd'] → f
 ```
 
-### `jsonb #> text[] -> jsonb`
+### `jsonb #> text[] → jsonb`
 
 This operator extracts a nested value from a JSONB object using a text array of keys or indices.
 
@@ -412,7 +542,7 @@ This operator extracts a nested value from a JSONB object using a text array of 
 '{"a": {"b": ["foo","bar"]}}'::jsonb #> '{a,b,null}'::text[] → NULL
 ```
 
-### `jsonb #>> text[] -> text`
+### `jsonb #>> text[] → text`
 
 This operator extracts a nested value as text from a JSONB object using a text array of keys or indices.
 
@@ -422,6 +552,30 @@ This operator extracts a nested value as text from a JSONB object using a text a
 '{"a": {"b": ["foo",null]}}'::jsonb #>> '{a,b,1}'::text[] → NULL
 
 '{"a": {"b": ["foo","bar"]}}'::jsonb #>> '{a,b,null}'::text[] → NULL
+```
+
+### `jsonb @? varchar → boolean`
+
+Determine whether the specified JSON path returns any item for the given JSON value.
+
+```sql title=Examples
+SELECT '{"a":1, "b":2, "c":3}'::jsonb @? '$.a';
+------RESULT
+t
+
+SELECT '{"a":1, "b":2, "c":3}'::jsonb @? '$.d';
+------RESULT
+f
+```
+
+### `jsonb @@ varchar → boolean`
+
+Returns the result of a JSON path predicate check on the specified JSON value, considering only the first item of the result. If the result is not a Boolean, it returns NULL.
+
+```sql title=Examples
+SELECT '{"numbers":[1,2,3,4,5]}'::jsonb @@ '$.numbers[*] == 5';
+------RESULT
+t
 ```
 
 ## `IS JSON` predicate

@@ -1,19 +1,14 @@
 ---
 id: sql-alter-table
 title: ALTER TABLE
-description: Modify the properties of an existing table.
+description: Modify the properties of a table.
 slug: /sql-alter-table
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-table/" />
 </head>
 
-Use the `ALTER TABLE` command to do the following operations on a table:
-
-+ add columns
-+ delete columns
-+ change the owner
-+ change the schema
+The `ALTER TABLE` command modifies the definition of a table.
 
 ## Syntax
 
@@ -22,21 +17,16 @@ ALTER TABLE table_name
     alter_option;
 ```
 
-*`alter_option`* depends on the operation you want to perform on the table. For the supported `alter_action` and detailed syntaxes, see the sections below.
+*`alter_option`* depends on the operation you want to perform on the table. For all supported clauses, see the sections below.
 
-## `ADD COLUMN`
+## Clause
+
+### `ADD COLUMN`
 
 ```sql title=Syntax
 ALTER TABLE table_name 
     ADD [ COLUMN ] column_name data_type [ PRIMARY KEY ] [ DEFAULT default_expr ];
 ```
-
-:::note
-
-+ If your table is defined with a schema registry, its columns can not be altered.  
-
-+ Columns added by this command cannot be used by any existing materialized views or indexes. You must create new materialized views or indexes to reference it.  
-:::
 
 | Parameter or clause | Description                                     |
 | ------------------- | ----------------------------------------------- |
@@ -51,19 +41,19 @@ ALTER TABLE table_name
 ALTER TABLE employees ADD age int;
 ```
 
-## `DROP COLUMN`
+:::note
+
++ If your table is defined with a schema registry, its columns can not be altered.  
+
++ Columns added by this command cannot be used by any existing materialized views or indexes. You must create new materialized views or indexes to reference it.  
+:::
+
+### `DROP COLUMN`
 
 ```sql title=Syntax
 ALTER TABLE table_name 
     DROP [ COLUMN ] [ IF EXISTS ] column_name;
 ```
-
-:::note
-
-+ If your table is defined with a schema registry, its column can not be altered. 
-
-+ You cannot drop columns referenced by materialized views or indexes.
-:::
 
 | Parameter or clause | Description                                                                                |
 | ------------------- | ------------------------------------------------------------------------------------------ |
@@ -76,22 +66,23 @@ ALTER TABLE table_name
 ALTER TABLE employees DROP fax;
 ```
 
-## `OWNER TO`
+:::note
+
++ If your table is defined with a schema registry, its column can not be altered.
+
++ You cannot drop columns referenced by materialized views or indexes.
+:::
+
+### `OWNER TO`
 
 ```sql title=Syntax
 ALTER TABLE table_name 
     OWNER TO new_user;
 ```
 
-:::note
-
-This statement will cascadingly change all related internal-objects as well, and the associated indexes will be changed too.
-
-:::
-
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
-|**OWNER TO**| This clause changes the owner of the table to the specified user.|
+|**OWNER TO**| This clause changes the owner of the table to the specified user. It will cascadingly change all related internal objects as well, and the associated indexes will be changed too.|
 | *new_user* | Specify the user you want to assign to the table. |
 
 ```sql title=Example
@@ -99,25 +90,36 @@ This statement will cascadingly change all related internal-objects as well, and
 ALTER TABLE t OWNER TO user1;
 ```
 
-## `SET SCHEMA`
+### `SET SCHEMA`
 
 ```sql title=Syntax
 ALTER TABLE table_name 
     SET SCHEMA schema_name;
 ```
 
-:::note
-
-As this statement moves the table into a different schema, associated indexes, constraints, and sequences owned by table columns are moved as well.
-
-:::
-
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
-|**SET SCHEMA**| This clause moves the table into another schema.|
+|**SET SCHEMA**| This clause moves the table into another schema. Associated indexes, constraints, and sequences owned by table columns are moved as well.|
 | *schema_name* | Specify the schema to which the table will be moved. |
 
 ```sql title=Example
 -- Move a table named "test_table" into a schema named "test_schema"
 ALTER TABLE test_table SET SCHEMA test_schema;
+```
+
+### `RENAME TO`
+
+```sql title=Syntax
+ALTER TABLE table_name
+    RENAME TO new_name;
+```
+
+|Parameter or clause        | Description           |
+|---------------------------|-----------------------|
+|**RENAME TO**|This clause changes the name of the table.|
+|*new_name*|The new name of the table.|
+
+```sql title=Example
+-- Change the name of the table named "table0" to "table1"
+ALTER TABLE table0 RENAME TO table1;
 ```

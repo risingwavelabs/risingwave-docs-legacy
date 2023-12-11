@@ -89,7 +89,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
 |Google BigQuery| No plan |Available. For details, see [Sink data to Google BigQuery](/guides/sink-to-bigquery.md).|
 |DataStax Astra DB & Apache Cassandra & ScyllaDB| Researching <voteNotify note="cassandra_source" /> |Available. For details, see [Sink data to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).|
-|CockroachDB| Researching <voteNotify note="cockroachdb_source" />|Researching <voteNotify note="cockroachdb_sink" /> |
+|CockroachDB| Researching <voteNotify note="cockroachdb_source" />|Available. For details, see [Sink data to CockroachDB](/guides/sink-to-clickhouse.md). |
 |Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
 |MongoDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <voteNotify note="mongodb_sink" /> |
 |Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |

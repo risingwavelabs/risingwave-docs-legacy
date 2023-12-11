@@ -64,6 +64,12 @@ If the barrier latency is normal, but the memory usage is still increasing, you 
 
 We have added a heap profiling utility in the RisingWave Dashboard to help you analyze memory usage and identify memory-related issues.
 
+:::info
+
+To enable memory profiling, please set the environment variable `MALLOC_CONF=prof:true` for the compute nodes. 
+
+:::
+
 Go to the RisingWave Dashboard and select **Debug** > **Heap Profiling**. If RisingWave is running on your local machine, you can access the RisingWave Dashboard at `127.0.0.1:5691`.
 
 By default, the heap profile data is automatically dumped when the memory usage reaches 90%. You also have the option to manually dump heap profile data. Once the data is dumped, you can click on **Analyze** within the dashboard to examine memory usage patterns and potential issues without leaving the dashboard.

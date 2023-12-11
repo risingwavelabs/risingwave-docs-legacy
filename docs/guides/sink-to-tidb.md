@@ -16,23 +16,19 @@ For the syntax, settings, and examples, see [Sink data from RisingWave to MySQL 
 
 The following table shows the corresponding data types between RisingWave and TiDB. For details on native RisingWave data types, see [Overview of data types](../sql/sql-data-types.md).
 
-| TiDB type  | RisingWave type |
-|------------|-----------------|
+| RisingWave type | TiDB type |
+|-----------------|------------|
 | BOOLEAN | BOOLEAN |
-| TINYINT | SMALLINT |
-| SMALLINT | SMALLINT |
-| MEDIUMINT | INT |
+| SMALLINT | TINYINT/SMALLINT |
+| INT | INT/MEDIUMINT |
 | BIGINT | BIGINT |
-| FLOAT | REAL |
+| REAL | FLOAT |
 | DOUBLE | DOUBLE |
 | DECIMAL | DECIMAL |
 | DATE | DATE |
-| DATETIME | TIMESTAMP |
+| TIMESTAMP | DATETIME |
 | TIME | TIME |
-| TIMESTAMP | TIMESTAMP |
-| CHAR | VARCHAR |
-| BINARY | BYTEA |
-| VARBINARY | BYTEA |
-| BLOB | BYTEA |
-| TEXT | TEXT |
-| JSON | JSONB |
+| TIMESTAMPTZ | TIMESTAMP |
+| VARCHAR | VARCHAR/CHAR/TEXT/TINYTEXT/<br/>MEDIUMTEXT/LONGTEXT |
+| BYTEA | VARBINARY/BINARY/BLOB/TINYBLOB/<br/>MEDIUMBLOB/LONGBLOB |
+| JSONB | JSON |
