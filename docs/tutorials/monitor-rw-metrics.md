@@ -2,7 +2,7 @@
 id: use-risingwave-to-monitor-risingwave-metrics
 slug: /use-risingwave-to-monitor-risingwave-metrics
 title: Use RisingWave to monitor RisingWave metrics
-description: Use RisingWave to monitor Risingwave metrics.
+description: Use RisingWave to monitor RisingWave metrics.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/use-risingwave-to-monitor-risingwave-metrics/" />

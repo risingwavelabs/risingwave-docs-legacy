@@ -51,9 +51,9 @@ WITH (
 
 ## Data Type Mapping
 
-Risingwave converts risingwave data types from/to Iceberg according to the following data type mapping table:
+RisingWave converts risingwave data types from/to Iceberg according to the following data type mapping table:
 
-|Risingwave Type| Iceberg Type|
+|RisingWave Type| Iceberg Type|
 |---------------|-------------|
 | boolean       | boolean     |
 | int           | integer     |

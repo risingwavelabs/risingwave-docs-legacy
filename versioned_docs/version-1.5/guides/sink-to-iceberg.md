@@ -51,9 +51,9 @@ WITH (
 
 ## Data Type Mapping
 
-Risingwave converts risingwave data types from/to Iceberg according to the following data type mapping table:
+RisingWave converts risingwave data types from/to Iceberg according to the following data type mapping table:
 
-|Risingwave Type| Iceberg Type|
+|RisingWave Type| Iceberg Type|
 |---------------|-------------|
 | boolean       | boolean     |
 | int           | integer     |
@@ -70,7 +70,7 @@ Risingwave converts risingwave data types from/to Iceberg according to the follo
 Iceberg supports two types of catalogs:
 
 - Storage catalog: The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system.
-- REST catalog: Risingwave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use Risingwave with Iceberg tables.
+- REST catalog: RisingWave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use RisingWave with Iceberg tables.
 
 ## Iceberg table format
 
