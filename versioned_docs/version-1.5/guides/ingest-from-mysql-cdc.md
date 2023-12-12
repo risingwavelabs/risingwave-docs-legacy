@@ -191,7 +191,7 @@ Data is in Debezium JSON or Debezium AVRO format. [Debezium](https://debezium.io
 
 RisingWave supports creating multiple CDC tables that share a single MySQL CDC source. 
 
-Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/create-source.md) command and MySQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
+Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command and MySQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
 
 ```sql
 CREATE SOURCE mysql_mydb WITH (

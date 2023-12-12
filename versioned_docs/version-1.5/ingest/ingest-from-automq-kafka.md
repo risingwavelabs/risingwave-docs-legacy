@@ -14,7 +14,7 @@ This article will guide you on how to import data from AutoMQ Kafka into RisingW
 
 ## Prepare AutoMQ Kafka and generate test data
 
-To set up your AutoMQ Kafka environment and test the data, please follow the [AutoMQ Quick Start guide](https://docs.automq.com/zh/docs/automq-s3kafka/VKpxwOPvciZmjGkHk5hcTz43nde). This guide will help you deploy your AutoMQ Kafka cluster. Ensure that RisingWave can directly connect to your AutoMQ Kafka server. You can refer [Create a VPC connection](https://docs.risingwave.com/cloud/create-a-connection/) to learn about how to establish a secure connection with your VPC through AWS PrivateLink or GCP Private Service Connect.
+To set up your AutoMQ Kafka environment and test the data, please follow the [AutoMQ Quick Start guide](https://docs.automq.com/zh/docs/automq-s3kafka/VKpxwOPvciZmjGkHk5hcTz43nde). This guide will help you deploy your AutoMQ Kafka cluster. Ensure that RisingWave can directly connect to your AutoMQ Kafka server. You can refer [Create a VPC connection](/cloud/create-a-connection) to learn about how to establish a secure connection with your VPC through AWS PrivateLink or GCP Private Service Connect.
 
 ### Create a topic
 
