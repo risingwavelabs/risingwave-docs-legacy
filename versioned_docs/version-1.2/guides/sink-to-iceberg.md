@@ -49,7 +49,7 @@ WITH (
 | database.name   | Required. The database of the target Iceberg table.|
 | table.name      | Required. The name of the target Iceberg table.|
 
-## Data Type Mapping
+## Data type mapping
 
 RisingWave converts risingwave data types from/to Iceberg according to the following data type mapping table:
 

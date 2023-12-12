@@ -49,7 +49,7 @@ WITH (
 | catalog.uri     | Conditional. The URL of the catalog. It is required when `catalog.type` is `rest`. |
 | primary_key     | The primary key for an upsert sink. It is only appliable to the upsert mode. |
 
-## Data Type Mapping
+## Data type mapping
 
 RisingWave converts risingwave data types from/to Iceberg according to the following data type mapping table:
 
