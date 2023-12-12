@@ -34,7 +34,7 @@ This version was released on December 11, 2023.
 - System catalog
   - Adds columns `rw_version`, `total_memory_bytes`, `total_cpu_cores`, and `started_at`, and all nodes in system table `rw_worker_nodes`. [#13487](https://github.com/risingwavelabs/risingwave/pull/13487).
   - Adds system table `rw_internal_tables`. [#13272](https://github.com/risingwavelabs/risingwave/pull/13272). See [RisingWave catalogs](/docs/current/rw_catalog/).
-  - Supports sink columns in `rw_columns` and `information_schema.columns`. [#13626](https://github.com/risingwavelabs/risingwave/pull/13626). See [Information schema](sql/system-catalogs/information-schema.md) and [RisingWave catalogs](sql/system-catalogs/rw_catalog.md).
+  - Supports sink columns in `rw_columns` and `information_schema.columns`. [#13626](https://github.com/risingwavelabs/risingwave/pull/13626). See [Information schema](/docs/current/information-schema/) and [RisingWave catalogs](/docs/current/rw_catalog/).
 
 ### Sources & sink
 
