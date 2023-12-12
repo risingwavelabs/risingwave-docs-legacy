@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Drawer } from "@mui/material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import CasePanel from "./CasePanel";
-import { useChatQuery, QueryInput, Answer, AskItem } from "@risingwavelabs/web-packages-chatbox";
-import "@risingwavelabs/web-packages-chatbox/lib/dist/style.css";
+import { useChatQuery, QueryInput, Answer, AskItem } from "./chat-bot-package/chat-box.es";
+import "./chat-bot-package/style.css";
 import styles from './styles.module.css';
 
 const ChatbotItem = (props) => {
