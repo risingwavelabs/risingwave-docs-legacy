@@ -92,9 +92,9 @@ const sidebars = {
           id: "get-started",
         },
         {
-          type: "doc",
-          label: "Install RisingWave via Docker Compose",
-          id: "deploy/risingwave-docker-compose",
+          "type": "doc",
+          "id": "deploy/risingwave-docker-compose",
+          "label": "Deploy with Docker Compose"
         },
         {
           "type": "category",
