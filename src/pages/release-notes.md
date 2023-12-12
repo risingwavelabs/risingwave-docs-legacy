@@ -76,7 +76,7 @@ This version was released on November 10, 2023.
   - Supports persistent background materialized views. [#12167](https://github.com/risingwavelabs/risingwave/pull/12167). See [SET BACKGROUND_DDL.](/docs/1.4/sql-set-background-ddl)
   - Supports exposing hidden columns and distribution keys when using `SHOW COLUMNS FROM` command. [#12839](https://github.com/risingwavelabs/risingwave/pull/12839)
   - Supports exposing hidden columns when using `DESCRIBE` command. [#12839](https://github.com/risingwavelabs/risingwave/pull/12839)
-- SQL functions & operators
+- SQL functions & operators:
   - Supports `substring` and `substr` functions for `bytea` data type. [#13088](https://github.com/risingwavelabs/risingwave/pull/13088). See [String functions and operators.](/docs/1.4/sql-function-string/#substrsubstring) See [Binary string functions and operators.](/docs/1.4/sql-function-binarystring/#substr)
   - Supports functions `jsonb_pretty`,  `jsonb_object`, `jsonb_strip_nulls`, and `jsonb_extract_path`. [#13050](https://github.com/risingwavelabs/risingwave/pull/13050), [#13036](https://github.com/risingwavelabs/risingwave/pull/13036), [#13169](https://github.com/risingwavelabs/risingwave/pull/13169), [#13143](https://github.com/risingwavelabs/risingwave/pull/13143). See [JSON functions.](/docs/1.4/sql-function-json/#json-functions)
   - Supports jsonb `@>`, `<@`, `?`, `?|, ?&`, `#>`,  `#>>`, `-` and `#-` operators.  [#13056](https://github.com/risingwavelabs/risingwave/pull/13056), [#13110](https://github.com/risingwavelabs/risingwave/pull/13110), [#13118](https://github.com/risingwavelabs/risingwave/pull/13118). See [JSON operators.](/docs/1.4/sql-function-json/#json-operators)
@@ -85,7 +85,7 @@ This version was released on November 10, 2023.
   - Supports `bit_and` and `bit_or` aggregate functions in materialized views. [#12758](https://github.com/risingwavelabs/risingwave/pull/12758). See [Aggregate functions](/docs/1.4/sql-function-aggregate/#bit_and)
   - Supports `jsonb_agg` and `jsonb_object_agg` in streaming mode. [#12836](https://github.com/risingwavelabs/risingwave/pull/12836). See [Aggregate functions.](/docs/1.4/sql-function-aggregate/#jsonb_agg)
   - Supports general `rank` and `dense_rank` window functions. [#13183](https://github.com/risingwavelabs/risingwave/pull/13183). See [Window functions.](/docs/1.4/window-functions)
-- System catalog
+- System catalog:
   - Adds column `parallelism` in system table `rw_fragments`. [#12901](https://github.com/risingwavelabs/risingwave/pull/12901)
   - Adds columns `is_hidden`, `is_primary_key`, and `is_distribution_key` in `rw_columns` system table. [#12839](https://github.com/risingwavelabs/risingwave/pull/12839)
 
