@@ -5,6 +5,7 @@ import DocItemMetadata from "@theme/DocItem/Metadata";
 import DocItemLayout from "@theme/DocItem/Layout";
 import FeedbackForm from "@site/src/components/FeedbackForm";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import ChatbotItem from "@site/src/components/ChatbotItem";
 import styles from "./styles.module.css";
 
 export default function DocItem(props) {
@@ -27,6 +28,7 @@ export default function DocItem(props) {
           <MDXComponent />
         </DocItemLayout>
       </HtmlClassNameProvider>
+      <ChatbotItem />
       {metadata.editUrl && (
         <div className="row">
           <FeedbackForm

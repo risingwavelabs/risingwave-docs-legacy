@@ -1,0 +1,35 @@
+.chatbot-wrapper {
+  position: fixed;
+  top: 74px;
+  right: 22px;
+}
+.chatbot-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background-color: #8080803b;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.drawer-wrapper {
+  width: 20vw;
+  min-width: 365px;
+
+  padding: 16px 12px 30px 8px;
+}
+
+.query-panel {
+  margin-top: 20px;
+  padding-bottom: 48px;
+}
+
+.ask-item {
+  margin-bottom: 8px;
+}
+
+.answer-item {
+  margin-bottom: 16px;
+}
