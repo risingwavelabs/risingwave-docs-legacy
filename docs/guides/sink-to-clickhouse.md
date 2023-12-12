@@ -12,8 +12,8 @@ This guide describes how to sink data from RisingWave to ClickHouse using the Cl
 
 ClickHouse® is a high-performance, column-oriented SQL database management system (DBMS) for online analytical processing (OLAP). For more information about ClickHouse, see [ClickHouse official website](https://clickhouse.com).
 
-:::caution Experimental feature
-The ClickHouse sink connector in RisingWave is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+The ClickHouse sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 ## Prerequisites
@@ -170,3 +170,27 @@ WITH (
     clickhouse.table='demo_test'
 );
 ```
+
+## Data type mapping
+
+|RisingWave Data Type  | ClickHouse Data Type |
+|--------------------- |--------------------- |
+|bool                  | Bool                 |
+|smallint              | UInt16 or Int16      |
+|int                   | UInt32 or Int32      |
+|bigint                | UInt64 or Int64      |
+|real(float32)         | Float32              |
+|float(float64)        | Float64              |
+|decimal               | Decimal              |
+|date                  | Date32               |
+|varchar               | String               |
+|timestamptz           | DateTime64           |
+|struct                | Nested               |
+|list                  | Array                |
+|serial                | UInt64 or Int64      |
+
+:::note
+
+In ClickHouse, the `Nested` data type doesn't support multiple levels of nesting. Therefore, when sinking RisingWave's `struct` data to ClickHouse, you need to flatten or restructure the nested data to align with ClickHouse's requirement.
+
+:::

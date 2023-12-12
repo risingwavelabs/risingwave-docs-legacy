@@ -30,7 +30,7 @@ You can use the `SHOW ALL` command to get the complete list of runtime parameter
 set_config ( setting_name text, new_value text, is_local boolean ) → text
 ```
 
-Sets the parameter `setting_name` to `new_value`, and returns that value. If `is_local` is `true`, the new value will only apply during the current transaction. If you want the new value to apply for the rest of the current session, use `false` instead. This function corresponds to the SQL command `SET`.
+Sets the parameter `setting_name` to `new_value`, and returns that value. If `is_local` is `true`, the new value will only apply during the current transaction. If you want the new value to apply for the rest of the current session, use `false` instead. This function corresponds to the SQL command [`SET`](/sql/commands/sql-set.md).
 
 ```sql title="Example"
 SELECT set_config('rw_implicit_flush', 'true', false);

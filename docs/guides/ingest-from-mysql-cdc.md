@@ -18,8 +18,8 @@ You can ingest CDC data from MySQL in two ways:
 
   With this connector, RisingWave can connect to MySQL databases directly to obtain data from the binlog without starting additional services.
 
-  :::caution Beta feature
-  The built-in MySQL CDC connector in RisingWave is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
+  :::note Beta feature
+  The built-in MySQL CDC connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
   :::
 
 - Using a CDC tool and a message broker
@@ -148,16 +148,6 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
 
 If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
 
-:::note EXPERIMENTAL ENHANCEMENT AVAILABLE
-
-We have optimized the data backfilling logic for CDC tables to improve data ingestion performance of the MySQL CDC connector. This is currently an experimental feature, and is not enabled by default. To enable it, run this command in RisingWave:
-
-```sql
-SET cdc_backfill="true";
-```
-
-:::
-
 ## Create a table using the native CDC connector in RisingWave
 
 To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
@@ -191,11 +181,64 @@ All the fields listed below are required.
 |database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| Optional. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
-|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table is an experimental feature. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table are currently in Beta. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 ### Data format
 
 Data is in Debezium JSON or Debezium AVRO format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON or AVRO as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
+
+### Create multiple CDC tables with the same source
+
+RisingWave supports creating multiple CDC tables that share a single MySQL CDC source. 
+
+Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/create-source.md) command and MySQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
+
+```sql
+CREATE SOURCE mysql_mydb WITH (
+    connector = 'mysql-cdc',
+    hostname = '127.0.0.1',
+    port = '8306',
+    username = 'root',
+    password = '123456',
+    database.name = 'mydb',
+    server.id = 5888
+);
+```
+
+With the source created, you can create multiple CDC tables that ingests data from different tables in the upstream database without needing to specify the database connection parameters again. 
+
+For instance, the following CDC table in RisingWave ingests data from table `t1` in database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be specified. 
+
+```sql
+CREATE TABLE t1_rw (
+    v1 int,
+    v2 int,
+    PRIMARY KEY(v1)
+) FROM mysql_mydb TABLE 'mydb.t1';
+```
+
+You can create another CDC table in RisingWave that ingests data from table `t3` in the same database `mydb`.
+
+```sql
+CREATE TABLE t3_rw (
+  v1 INTEGER,
+  v2 timestamptz,
+  PRIMARY KEY (v1)
+) FROM mysql_mydb TABLE 'mydb.t3';
+```
+
+To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it. For instance, the following SQL query shows the progress of a CDC table named `orders_rw`.
+
+```sql
+SELECT * FROM __internal_orders_rw_4002_streamcdcscan_5002;
+
+-[ RECORD 1 ]-----+---------------------------------------------------------------
+split_id          | 5001
+o_orderkey        | 4024320
+backfill_finished | f
+row_count         | 1006080
+cdc_offset        | {"MySql": {"filename": "binlog.000005", "position": 60946679}}
+```
 
 ### Example
 

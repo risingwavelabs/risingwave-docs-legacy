@@ -13,6 +13,12 @@ This guide is designed to help you get up and running with RisingWave quickly an
 
 ## Start RisingWave
 
+:::info
+The following options start RisingWave in playground mode, which is designed for quick tests. In this mode, data is stored in memory and the service automatically terminates after 30 minutes of inactivity, deleting all user data. Due to limited memory capacity, resource-intensive operations may lead to out-of-memory (OOM) errors.
+
+For extensive testing or single-machine deployment, consider [starting RisingWave via Docker Compose](/deploy/risingwave-docker-compose.md). For production environments, consider [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service, or [deployment on Kubernetes using the Operator](/deploy/risingwave-kubernetes.md) or [Helm Chart](/deploy/deploy-k8s-helm.md).
+:::
+
 ### Docker
 
 Ensure [Docker Desktop](https://docs.docker.com/get-docker/) is installed and running in your environment.
@@ -43,12 +49,6 @@ tar xvf risingwave-v1.4.0-x86_64-unknown-linux-all-in-one.tar.gz
 ### From a Web browser
 
 [https://playground.risingwave.dev/](https://playground.risingwave.dev/)
-
-:::info
-These options start RisingWave in playground mode, where data is stored solely in memory. The service is designed to automatically terminate after 30 minutes of inactivity, and any data stored will be deleted upon termination. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may result in out-of-memory (OOM) errors. Use this method for quick tests only.
-:::
-
-Other installation options are available. For advanced testing, please consider [starting RisingWave via Docker Compose](/deploy/risingwave-docker-compose.md). If you intend to deploy RisingWave to production environments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service, or [deploy on Kubernetes using the Operator](/deploy/risingwave-kubernetes.md) or [Helm Chart](/deploy/deploy-k8s-helm.md).
 
 ## Connect to RisingWave
 

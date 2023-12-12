@@ -10,7 +10,6 @@ slug: /sql-create-connection
 
 Use the `CREATE CONNECTION` command to create an AWS PrivateLink connection for a Kafka source connector. This is necessary in order to be able to consume messages from a Kafka service located in a different VPC from the RisingWave cluster in the cloud.
 
-
 ## Syntax
 
 ```sql
@@ -19,7 +18,6 @@ WITH (
     connection_parameter = 'value'
 );
 ```
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -46,10 +44,9 @@ export const svg = rr.Diagram(
 
 <drawer SVG={svg} />
 
-
 ## Parameters
 
-All WITH options are required unless stated otherwise. 
+All WITH options are required unless stated otherwise.
 
 |Parameter or clause            | Description           |
 |-------------------------------|-----------------------|
@@ -60,7 +57,7 @@ All WITH options are required unless stated otherwise.
 |tags                           |Optional. The AWS tags used to check for resource leakage. This parameter should have the format: `key1=value1, key2=value2, ...`.|
 
 :::note
-You can either tag the VPC endpoints by specifying the `tags` parameter when using the `CREATE CONNECTION` command or by specifying the environment variable `RW_PRIVATELINK_ENDPOINT_DEFAULT_TAGS`. When specifying the tags, follow the format of `key1=value1, key2=value2, ...`. If both are specified, the tags specified in the environment variable will be appended to the ones specified by the `tags` parameter. 
+You can either tag the VPC endpoints by specifying the `tags` parameter when using the `CREATE CONNECTION` command or by specifying the environment variable `RW_PRIVATELINK_ENDPOINT_DEFAULT_TAGS`. When specifying the tags, follow the format of `key1=value1, key2=value2, ...`. If both are specified, the tags specified in the environment variable will be appended to the ones specified by the `tags` parameter.
 :::
 
 ## Example
@@ -79,7 +76,7 @@ CREATE CONNECTION connection_name with (
 
 If you are using a cloud-hosted source or sink, such as AWS MSK, there might be connectivity issues when your service is located in a different VPC from where you have deployed RisingWave. To establish a secure, direct connection between these two different VPCs and allow RisingWave to read consumer messages from the broker or send messages to the broker, use the [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html) service.
 
-:::caution Experimental feature
+:::note Beta Feature
 The support for AWS PrivateLink connection is a beta feature and the syntax for `CREATE CONNECTION` is subject to change in future versions.
 :::
 

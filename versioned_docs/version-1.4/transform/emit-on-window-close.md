@@ -7,8 +7,8 @@ title: Emit on window close
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/emit-on-window-close/" />
 </head>
 
-:::caution Experimental feature
-Emit on window close is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+Emit on window close is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 In streaming systems, there are typically two types of triggering policies for window calculations:

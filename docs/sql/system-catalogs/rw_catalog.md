@@ -110,7 +110,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
 |---|---|
  rw_actors             | Contains the available actor IDs, their statuses, and the corresponding fragment IDs, and parallel unit IDs. |
  rw_connections        | Contains details about the connections available in the database, such as their IDs, names, owners, types, and more.|
- rw_columns            | Contains information about columns of all relations (except sources and sinks) in the database, including their names, positions, data types, and more.|
+ rw_columns            | Contains information about columns of all relations (except sources) in the database, including their names, positions, data types, and more.|
  rw_databases          | Contains information about the databases available in the database, such as the IDs, names, and owners.|
  rw_ddl_progress       | Contains the progress of running DDL statements. You can use this relation to view the progress of running DDL statements. For details, see [View statement progress](/manage/view-statement-progress.md).|
  rw_description        | Contains optional descriptions (comments) for each database object. Descriptions can be added with the [`COMMENT ON`](/sql/commands/sql-comment-on.md) command and viewed with `DESCRIBE` or `SHOW COLUMNS FROM` command.|
@@ -126,6 +126,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_hummock_sstables                 | Contains information about the SSTables (Sorted String Tables) used in Hummock (the storage engine in RisingWave). |
  rw_hummock_version_deltas           | Contains information about version deltas in Hummock (the storage engine in RisingWave). A version delta represents the modifications or differences in data between consecutive epochs.|
  rw_indexes            | Contains information about indexes in the database, including their IDs, names, schema identifiers, definitions, and more.|
+ rw_internal_tables    | Contains information about internal tables in the database. Internal tables are tables that store intermediate results (also known as internal states) of queries. Equivalent to the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command.|
  rw_materialized_views | Contains information about materialized views in the database, including their names, definitions, schema and owner IDs, and access control lists.
  rw_meta_snapshot      | Contains information about existing snapshots of the RisingWave meta service. You can use this relation to get IDs of meta snapshots and then restore the meta service from a snapshot. For details, see [Back up and restore meta service](/manage/meta-backup.md).|
  rw_parallel_units     | Contains information about parallel worker units used for executing database operations, including their unique IDs, worker IDs, and primary keys.|

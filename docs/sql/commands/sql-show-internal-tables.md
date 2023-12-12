@@ -10,6 +10,8 @@ slug: /sql-show-internal-tables
 
 Use the `SHOW INTERNAL TABLES` command to view the existing internal tables in RisingWave. Internal tables are tables that store intermediate results (also known as internal states) of queries.
 
+In addition to `SHOW INTERNAL TABLES`, you can also use the [`rw_internal_tables`](/sql/system-catalogs/rw_catalog.md#available-risingwave-catalogs) table to display internal table information. This is useful when you need to join internal table information with other data.
+
 ## Syntax
 
 ```sql

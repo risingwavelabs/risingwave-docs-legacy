@@ -25,7 +25,7 @@ This version was released on November 10, 2023.
   - Supports exposing hidden columns and distribution keys when using `SHOW COLUMNS FROM` command. [#12839](https://github.com/risingwavelabs/risingwave/pull/12839)
   - Supports exposing hidden columns when using `DESCRIBE` command. [#12839](https://github.com/risingwavelabs/risingwave/pull/12839)
 - SQL functions & operators
-  - Supports `substring` and `substr` functions for `bytea` data type. [#13088](https://github.com/risingwavelabs/risingwave/pull/13088). [See String functions and operators. ](/docs/current/sql-function-string/#substrsubstring)[See Binary string functions and operators.](/docs/current/sql-function-binarystring/#substr)
+  - Supports `substring` and `substr` functions for `bytea` data type. [#13088](https://github.com/risingwavelabs/risingwave/pull/13088). [See String functions and operators.](/docs/current/sql-function-string/#substrsubstring)[See Binary string functions and operators.](/docs/current/sql-function-binarystring/#substr)
   - Supports functions `jsonb_pretty`,  `jsonb_object`, `jsonb_strip_nulls`, and `jsonb_extract_path`. [#13050](https://github.com/risingwavelabs/risingwave/pull/13050), [#13036](https://github.com/risingwavelabs/risingwave/pull/13036), [#13169](https://github.com/risingwavelabs/risingwave/pull/13169), [#13143](https://github.com/risingwavelabs/risingwave/pull/13143). [See JSON functions.](/docs/current/sql-function-json/#json-functions)
   - Supports jsonb `@>`, `<@`, `?`, `?|, ?&`, `#>`,  `#>>`, `-` and `#-` operators.  [#13056](https://github.com/risingwavelabs/risingwave/pull/13056), [#13110](https://github.com/risingwavelabs/risingwave/pull/13110), [#13118](https://github.com/risingwavelabs/risingwave/pull/13118). [See JSON operators.](/docs/current/sql-function-json/#json-operators)
   - Supports `greatest` and `least` functions. [#12838](https://github.com/risingwavelabs/risingwave/pull/12838). [See Conditional expressions.](/docs/current/sql-function-conditional/#greatest)
@@ -74,7 +74,7 @@ This version was released on October 18, 2023.
 #### SQL features
 
 - SQL commands
-  - Experimental: Variable `BACKGROUND_DDL` can be set to `true` when creating a materialized view. [#12355](https://github.com/risingwavelabs/risingwave/pull/12355)
+  - Beta: Variable `BACKGROUND_DDL` can be set to `true` when creating a materialized view. [#12355](https://github.com/risingwavelabs/risingwave/pull/12355)
   - `ALTER COLUMN` command can be used for tables with non-schema-registry source. [#12164](https://github.com/risingwavelabs/risingwave/pull/12164)
 - SQL functions & operators
   - Supports `array_min`. [#12071](https://github.com/risingwavelabs/risingwave/pull/12071)
@@ -190,7 +190,7 @@ This version was released on September 11, 2023.
 - Adds a new parameter `schema.registry.name.strategy` to the Kafka connector, with which you can specify naming strategies for schema registries. [#11384](https://github.com/risingwavelabs/risingwave/pull/11384)
 - Breaking Change: Implements a Rust-native Iceberg sink connector to improve stability and performance. The connector introduces new parameters. Applications that rely on the previous version of the feature (specifically, the version included in RisingWave v1.0 and v1.1) may no longer function correctly. To restore functionality to your applications, please carefully review the syntax and parameters outlined on this page and make any necessary revisions to your code. Please refer to [Sink data to Iceberg](https://docs.risingwave.com/docs/current/sink-to-iceberg/) for details.   [#11326](https://github.com/risingwavelabs/risingwave/pull/11326)
 - Adds support for sinking data to ClickHouse. For a detailed guide about how to sink data from RisingWave to ClickHouse, see [Sink data to ClickHouse](https://docs.risingwave.com/docs/current/sink-to-clickhouse/). [#11240](https://github.com/risingwavelabs/risingwave/pull/11240)
-- Experimental: An enhancement has been made to the mysql-cdc connector to improve data ingestion performance. It achieves so by optimizing the data backfilling logic for CDC tables. This feature is not enabled by default. To enable it, run this command: `SET cdc_backfill="true";` [#11707](https://github.com/risingwavelabs/risingwave/pull/11707)
+- Beta: An enhancement has been made to the mysql-cdc connector to improve data ingestion performance. It achieves so by optimizing the data backfilling logic for CDC tables. This feature is not enabled by default. To enable it, run this command: `SET cdc_backfill="true";` [#11707](https://github.com/risingwavelabs/risingwave/pull/11707)
 - Adds a parameter `client.id` for Kafka sources. [#11911](https://github.com/risingwavelabs/risingwave/pull/11911)
 
 #### Deployment
