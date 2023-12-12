@@ -21,7 +21,7 @@ RisingWave is a distributed SQL streaming database that enables simple, efficien
 
 ## Why RisingWave for stream processing?
 
-RisingWave specializes in providing **incrementally updated, consistent materialized views** — a persistent data structure that represents the results of stream processing. RisingWave significantly reduces the complexity of building stream processing applications by allowing developers to express intricate stream processing logic through cascaded materialized views. Furthermore, it allows users to persist data directly within the system, eliminating the need to deliver results to external databases for storage and query serving.
+RisingWave specializes in providing **incrementally updated, consistent materialized views** — a persistent data structure that represents the results of stream processing. RisingWave significantly reduces the complexity of building stream-processing applications by allowing developers to express intricate stream-processing logic through cascaded materialized views. Furthermore, it allows users to persist data directly within the system, eliminating the need to deliver results to external databases for storage and query serving.
 
 Compared to existing stream processing systems like [Apache Flink](https://flink.apache.org/), [Apache Spark Streaming](https://spark.apache.org/docs/latest/streaming-programming-guide.html), and [ksqlDB](https://ksqldb.io/), RisingWave stands out in two primary dimensions: Ease-of-use and cost efficiency, thanks to its [PostgreSQL](https://www.postgresql.org/)-style interaction experience and  [Snowflake](https://snowflake.com/)-like architectural design (i.e., decoupled storage and compute).
 
