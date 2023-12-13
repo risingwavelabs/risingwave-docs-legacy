@@ -9,6 +9,59 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
 
+## v1.5.0
+
+This version was released on December 11, 2023.
+
+### Main changes
+
+#### SQL features
+
+- SQL Commands:
+  - Supports `SET SCHEMA` syntax for `ALTER {TABLE t | [MATERIALIZED] VIEW (m)v | SOURCE src | SINK sink | CONNECTION c | FUNCTION f( argument_type [, ...] )}`. [#13341](https://github.com/risingwavelabs/risingwave/pull/13341). See [SQL commands](/docs/current/sql-commands/).
+  - Supports `OWNER TO` syntax for ALTER {`DATABASE | SCHEMA | TABLE | [MATERIALIZED] VIEW | SOURCE | SINK`}. [#13216](https://github.com/risingwavelabs/risingwave/pull/13216). See [SQL commands](/docs/current/sql-commands/).
+  - Supports `RENAME TO` syntax for `ALTER { DATABASE db | SCHEMA s}`. [#13713](https://github.com/risingwavelabs/risingwave/pull/13713). See [SQL commands](/docs/current/sql-commands/).
+  - Supports `KILL` command. [#13434](https://github.com/risingwavelabs/risingwave/pull/13434)
+  - Supports `SHOW PROCESSLIST` command. [#13287](https://github.com/risingwavelabs/risingwave/pull/13287). See [`SHOW PROCESSLIST` command](/docs/current/sql-show-processlist/).
+  - Supports `SET TO DEFAULT` command. [#13693](https://github.com/risingwavelabs/risingwave/pull/13693). See [`SET` command](/docs/current/sql-set/).
+  - Supports `SHOW COLUMNS` and `DESCRIBE` from sinks and views. [#13626](https://github.com/risingwavelabs/risingwave/pull/13626). See [`SHOW COLUMNS`](/docs/current/sql-show-columns/) and [`DESCRIBE`](/docs/current/sql-describe/) command. 
+- SQL functions & operators
+  - Supports list and struct types for `jsonb_agg` and `jsonb_object_agg`. [#13299](https://github.com/risingwavelabs/risingwave/pull/13299). See [JSON functions operators](/docs/current/sql-function-json).
+  - Supports `jsonb_build_array` and `jsonb_build_object`. [#13198](https://github.com/risingwavelabs/risingwave/pull/13198). See [JSON functions operators](/docs/current/sql-function-json).
+  - Supports `to_jsonb`. [#13161](https://github.com/risingwavelabs/risingwave/pull/13161). See [JSON functions and operators](/docs/current/sql-function-json).
+  - Supports JSON path operators and functions. [#13568](https://github.com/risingwavelabs/risingwave/pull/13568). See [JSON functions and operators](/docs/current/sql-function-json).
+  - Supports array operators `@>` and `<@`. [#13253](https://github.com/risingwavelabs/risingwave/pull/13253). See [Array functions and operators](/docs/current/sql-function-array).
+- System catalog
+  - Adds columns `rw_version`, `total_memory_bytes`, `total_cpu_cores`, and `started_at`, and all nodes in system table `rw_worker_nodes`. [#13487](https://github.com/risingwavelabs/risingwave/pull/13487).
+  - Adds system table `rw_internal_tables`. [#13272](https://github.com/risingwavelabs/risingwave/pull/13272). See [RisingWave catalogs](/docs/current/rw_catalog/).
+  - Supports sink columns in `rw_columns` and `information_schema.columns`. [#13626](https://github.com/risingwavelabs/risingwave/pull/13626). See [Information schema](/docs/current/information-schema/) and [RisingWave catalogs](/docs/current/rw_catalog/).
+
+### Sources & sink
+
+- The load generator can generate `timestamptz` columns. [#13451](https://github.com/risingwavelabs/risingwave/pull/13451). See [Generate test data](/docs/current/ingest-from-datagen/).
+- Adds option `[properties.fetch.queue.backoff.ms](http://properties.fetch.queue.backoff.ms)` for Kafka source. [#13321](https://github.com/risingwavelabs/risingwave/pull/13321). See [Ingest data from Kafka](/docs/current/ingest-from-kafka/).
+- Supports creating multiple CDC tables that share the same source, which allows for incremental and lock-free snapshot loading. [#12535](https://github.com/risingwavelabs/risingwave/pull/12535). See [Ingest data from MySQL CDC](/docs/current/ingest-from-mysql-cdc/).
+- `CREATE SINK` statements no longer need to wait for backfill to complete. [#13665](https://github.com/risingwavelabs/risingwave/pull/13665)
+
+### Deployment
+
+- Adds a docker-compose file for standalone mode. [#13233](https://github.com/risingwavelabs/risingwave/pull/13233). See [Start RisingWave using Docker Compose](/docs/current/risingwave-docker-compose/).
+
+### Cluster configuration changes
+
+- Adds support for system parameter `pause_on_next_bootstrap`. [#11936](https://github.com/risingwavelabs/risingwave/pull/11936)
+
+### Assets
+
+- Run this version from Docker:<br/>
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v1.5.0 playground`
+- [Prebuilt all-in-one library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v1.5.0/risingwave-v1.5.0-x86_64-unknown-linux-all-in-one.tar.gz)
+- [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.5.0.zip)
+- [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.5.0.tar.gz)
+- [risectl-v1.5.0-x86_64-unknown-linux.tar.gz](https://github.com/risingwavelabs/risingwave/releases/download/v1.5.0/risectl-v1.5.0-x86_64-unknown-linux.tar.gz)
+
+See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/v1.4-rc...v1.5.0-rc).
+
 ## v1.4.0
 
 This version was released on November 10, 2023.
@@ -20,35 +73,35 @@ This version was released on November 10, 2023.
 - Query syntax:
   - Supports using subqueries in `UPDATE` and `DELETE` statements. [#12995](https://github.com/risingwavelabs/risingwave/pull/12995)
 - SQL commands
-  - Supports `COMMENT ON` clause for tables and columns. [#12849](https://github.com/risingwavelabs/risingwave/pull/12849). [See `COMMENT ON` command.](/docs/current/sql-comment-on/)
-  - Supports persistent background materialized views. [#12167](https://github.com/risingwavelabs/risingwave/pull/12167). [See SET BACKGROUND_DDL.](/docs/current/sql-set-background-ddl)
+  - Supports `COMMENT ON` clause for tables and columns. [#12849](https://github.com/risingwavelabs/risingwave/pull/12849). See [`COMMENT ON` command](/docs/1.4/sql-comment-on/).
+  - Supports persistent background materialized views. [#12167](https://github.com/risingwavelabs/risingwave/pull/12167). See [SET BACKGROUND_DDL](/docs/1.4/sql-set-background-ddl).
   - Supports exposing hidden columns and distribution keys when using `SHOW COLUMNS FROM` command. [#12839](https://github.com/risingwavelabs/risingwave/pull/12839)
   - Supports exposing hidden columns when using `DESCRIBE` command. [#12839](https://github.com/risingwavelabs/risingwave/pull/12839)
-- SQL functions & operators
-  - Supports `substring` and `substr` functions for `bytea` data type. [#13088](https://github.com/risingwavelabs/risingwave/pull/13088). [See String functions and operators. ](/docs/current/sql-function-string/#substrsubstring)[See Binary string functions and operators.](/docs/current/sql-function-binarystring/#substr)
-  - Supports functions `jsonb_pretty`,  `jsonb_object`, `jsonb_strip_nulls`, and `jsonb_extract_path`. [#13050](https://github.com/risingwavelabs/risingwave/pull/13050), [#13036](https://github.com/risingwavelabs/risingwave/pull/13036), [#13169](https://github.com/risingwavelabs/risingwave/pull/13169), [#13143](https://github.com/risingwavelabs/risingwave/pull/13143). [See JSON functions.](/docs/current/sql-function-json/#json-functions)
-  - Supports jsonb `@>`, `<@`, `?`, `?|, ?&`, `#>`,  `#>>`, `-` and `#-` operators.  [#13056](https://github.com/risingwavelabs/risingwave/pull/13056), [#13110](https://github.com/risingwavelabs/risingwave/pull/13110), [#13118](https://github.com/risingwavelabs/risingwave/pull/13118). [See JSON operators.](/docs/current/sql-function-json/#json-operators)
-  - Supports `greatest` and `least` functions. [#12838](https://github.com/risingwavelabs/risingwave/pull/12838). [See Conditional expressions.](/docs/current/sql-function-conditional/#greatest)
-  - Supports `regexp_split_to_array` function. [#12844](https://github.com/risingwavelabs/risingwave/pull/12844). [See String functions and operators](/docs/current/sql-function-string/#regexp_split_to_array)
-  - Supports `bit_and` and `bit_or` aggregate functions in materialized views. [#12758](https://github.com/risingwavelabs/risingwave/pull/12758). [See Aggregate functions](/docs/current/sql-function-aggregate/#bit_and)
-  - Supports `jsonb_agg` and `jsonb_object_agg` in streaming mode. [#12836](https://github.com/risingwavelabs/risingwave/pull/12836). [See Aggregate functions.](/docs/current/sql-function-aggregate/#jsonb_agg)
-  - Supports general `rank` and `dense_rank` window functions. [#13183](https://github.com/risingwavelabs/risingwave/pull/13183). [See Window functions.](/docs/current/window-functions)
-- System catalog
+- SQL functions & operators:
+  - Supports `substring` and `substr` functions for `bytea` data type. [#13088](https://github.com/risingwavelabs/risingwave/pull/13088). See [String functions and operators](/docs/1.4/sql-function-string/#substrsubstring). See [Binary string functions and operators](/docs/1.4/sql-function-binarystring/#substr).
+  - Supports functions `jsonb_pretty`,  `jsonb_object`, `jsonb_strip_nulls`, and `jsonb_extract_path`. [#13050](https://github.com/risingwavelabs/risingwave/pull/13050), [#13036](https://github.com/risingwavelabs/risingwave/pull/13036), [#13169](https://github.com/risingwavelabs/risingwave/pull/13169), [#13143](https://github.com/risingwavelabs/risingwave/pull/13143). See [JSON functions](/docs/1.4/sql-function-json/#json-functions).
+  - Supports jsonb `@>`, `<@`, `?`, `?|, ?&`, `#>`,  `#>>`, `-` and `#-` operators.  [#13056](https://github.com/risingwavelabs/risingwave/pull/13056), [#13110](https://github.com/risingwavelabs/risingwave/pull/13110), [#13118](https://github.com/risingwavelabs/risingwave/pull/13118). See [JSON operators](/docs/1.4/sql-function-json/#json-operators).
+  - Supports `greatest` and `least` functions. [#12838](https://github.com/risingwavelabs/risingwave/pull/12838). See [Conditional expressions](/docs/1.4/sql-function-conditional/#greatest).
+  - Supports `regexp_split_to_array` function. [#12844](https://github.com/risingwavelabs/risingwave/pull/12844). See [String functions and operators](/docs/1.4/sql-function-string/#regexp_split_to_array).
+  - Supports `bit_and` and `bit_or` aggregate functions in materialized views. [#12758](https://github.com/risingwavelabs/risingwave/pull/12758). See [Aggregate functions](/docs/1.4/sql-function-aggregate/#bit_and).
+  - Supports `jsonb_agg` and `jsonb_object_agg` in streaming mode. [#12836](https://github.com/risingwavelabs/risingwave/pull/12836). See [Aggregate functions](/docs/1.4/sql-function-aggregate/#jsonb_agg).
+  - Supports general `rank` and `dense_rank` window functions. [#13183](https://github.com/risingwavelabs/risingwave/pull/13183). See [Window functions](/docs/1.4/window-functions).
+- System catalog:
   - Adds column `parallelism` in system table `rw_fragments`. [#12901](https://github.com/risingwavelabs/risingwave/pull/12901)
   - Adds columns `is_hidden`, `is_primary_key`, and `is_distribution_key` in `rw_columns` system table. [#12839](https://github.com/risingwavelabs/risingwave/pull/12839)
 
 #### Sources & sinks
 
-- Adds `google.protobuf.Any` support for Protobuf sources. [#12291](https://github.com/risingwavelabs/risingwave/pull/12291). [See Supported protobuf types.](/docs/current/protobuf-types)
-- Adds `schemas.enable` support for Kafka sinks with upsert JSON. [#12113](https://github.com/risingwavelabs/risingwave/pull/12113). [See Sink to Kafka.](/docs/current/create-sink-kafka/#sink-parameters)
-- Adds support for Kafka sinks with upsert Avro using schema registry. [#13007](https://github.com/risingwavelabs/risingwave/pull/13007). [See Sink to Kafka.](/docs/current/create-sink-kafka/#avro-specific-parameters)
+- Adds `google.protobuf.Any` support for Protobuf sources. [#12291](https://github.com/risingwavelabs/risingwave/pull/12291). See [Supported protobuf types](/docs/1.4/protobuf-types).
+- Adds `schemas.enable` support for Kafka sinks with upsert JSON. [#12113](https://github.com/risingwavelabs/risingwave/pull/12113). See [Sink to Kafka](/docs/1.4/create-sink-kafka/#sink-parameters).
+- Adds support for Kafka sinks with upsert Avro using schema registry. [#13007](https://github.com/risingwavelabs/risingwave/pull/13007). See [Sink to Kafka](/docs/1.4/create-sink-kafka/#avro-specific-parameters).
 - `server.id` option is now optional for MySQL CDC source. [#13031](https://github.com/risingwavelabs/risingwave/pull/13031)
-- Enables `timestamptz.handling.mode` option to control the timestamptz output format for certain sinks. [#13109](https://github.com/risingwavelabs/risingwave/pull/13109). [See Sink to Kafka.](/docs/current/create-sink-kafka/#sink-parameters) [See Sink to AWS Kinesis.](/docs/current/sink-to-aws-kinesis/#sink-parameters) [See Sink to Pulsar.](/docs/current/sink-to-pulsar/#sink-parameters)
-- Adds the `stream` field and support for multiple inputs for the `subject` field for NATS source connector. [#12799](https://github.com/risingwavelabs/risingwave/pull/12799). [See Ingest data from NATS JetStream.](/docs/current/ingest-from-nats)
-- Adds new option `properties.allow.auto.create.topics` for Kafka sink. [#12766](https://github.com/risingwavelabs/risingwave/pull/12766). [See Sink to Kafka.](/docs/current/create-sink-kafka/#additional-kafka-parameters)
-- Adds support for `s3_v2` source connector, a more efficient version of the S3 source. [#12595](https://github.com/risingwavelabs/risingwave/pull/12595). [See Ingest data from S3 buckets.](/docs/current/ingest-from-s3)
-- Adds support for Google BigQuery sink.[#12873](https://github.com/risingwavelabs/risingwave/pull/12873). [See Sink to Google BigQuery.](/docs/current/sink-to-bigquery)
-- Adds support for Redis sink. [#11999](https://github.com/risingwavelabs/risingwave/pull/11999),[#13003](https://github.com/risingwavelabs/risingwave/pull/13003). [See Sink to Redis.](/docs/current/sink-to-redis)
+- Enables `timestamptz.handling.mode` option to control the timestamptz output format for certain sinks. [#13109](https://github.com/risingwavelabs/risingwave/pull/13109). See [Sink to Kafka](/docs/1.4/create-sink-kafka/#sink-parameters). See [Sink to AWS Kinesis.](/docs/1.4/sink-to-aws-kinesis/#sink-parameters) See [Sink to Pulsar](/docs/1.4/sink-to-pulsar/#sink-parameters).
+- Adds the `stream` field and support for multiple inputs for the `subject` field for NATS source connector. [#12799](https://github.com/risingwavelabs/risingwave/pull/12799). See [Ingest data from NATS JetStream](/docs/1.4/ingest-from-nats).
+- Adds new option `properties.allow.auto.create.topics` for Kafka sink. [#12766](https://github.com/risingwavelabs/risingwave/pull/12766). See [Sink to Kafka](/docs/1.4/create-sink-kafka/#additional-kafka-parameters).
+- Adds support for `s3_v2` source connector, a more efficient version of the S3 source. [#12595](https://github.com/risingwavelabs/risingwave/pull/12595). See [Ingest data from S3 buckets](/docs/1.4/ingest-from-s3).
+- Adds support for Google BigQuery sink.[#12873](https://github.com/risingwavelabs/risingwave/pull/12873). See [Sink to Google BigQuery](/docs/1.4/sink-to-bigquery).
+- Adds support for Redis sink. [#11999](https://github.com/risingwavelabs/risingwave/pull/11999),[#13003](https://github.com/risingwavelabs/risingwave/pull/13003). See [Sink to Redis](/docs/1.4/sink-to-redis).
 
 #### Deployment
 
@@ -74,7 +127,7 @@ This version was released on October 18, 2023.
 #### SQL features
 
 - SQL commands
-  - Experimental: Variable `BACKGROUND_DDL` can be set to `true` when creating a materialized view. [#12355](https://github.com/risingwavelabs/risingwave/pull/12355)
+  - Beta: Variable `BACKGROUND_DDL` can be set to `true` when creating a materialized view. [#12355](https://github.com/risingwavelabs/risingwave/pull/12355)
   - `ALTER COLUMN` command can be used for tables with non-schema-registry source. [#12164](https://github.com/risingwavelabs/risingwave/pull/12164)
 - SQL functions & operators
   - Supports `array_min`. [#12071](https://github.com/risingwavelabs/risingwave/pull/12071)
@@ -190,7 +243,7 @@ This version was released on September 11, 2023.
 - Adds a new parameter `schema.registry.name.strategy` to the Kafka connector, with which you can specify naming strategies for schema registries. [#11384](https://github.com/risingwavelabs/risingwave/pull/11384)
 - Breaking Change: Implements a Rust-native Iceberg sink connector to improve stability and performance. The connector introduces new parameters. Applications that rely on the previous version of the feature (specifically, the version included in RisingWave v1.0 and v1.1) may no longer function correctly. To restore functionality to your applications, please carefully review the syntax and parameters outlined on this page and make any necessary revisions to your code. Please refer to [Sink data to Iceberg](https://docs.risingwave.com/docs/current/sink-to-iceberg/) for details.   [#11326](https://github.com/risingwavelabs/risingwave/pull/11326)
 - Adds support for sinking data to ClickHouse. For a detailed guide about how to sink data from RisingWave to ClickHouse, see [Sink data to ClickHouse](https://docs.risingwave.com/docs/current/sink-to-clickhouse/). [#11240](https://github.com/risingwavelabs/risingwave/pull/11240)
-- Experimental: An enhancement has been made to the mysql-cdc connector to improve data ingestion performance. It achieves so by optimizing the data backfilling logic for CDC tables. This feature is not enabled by default. To enable it, run this command: `SET cdc_backfill="true";` [#11707](https://github.com/risingwavelabs/risingwave/pull/11707)
+- Beta: An enhancement has been made to the mysql-cdc connector to improve data ingestion performance. It achieves so by optimizing the data backfilling logic for CDC tables. This feature is not enabled by default. To enable it, run this command: `SET cdc_backfill="true";` [#11707](https://github.com/risingwavelabs/risingwave/pull/11707)
 - Adds a parameter `client.id` for Kafka sources. [#11911](https://github.com/risingwavelabs/risingwave/pull/11911)
 
 #### Deployment

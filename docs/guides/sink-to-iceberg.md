@@ -10,8 +10,8 @@ slug: /sink-to-iceberg
 
 This guide describes how to sink data from RisingWave to Apache Iceberg using the Iceberg sink connector in RisingWave. Apache Iceberg is a table format designed to support huge tables. For more information, see [Apache Iceberg](https://iceberg.apache.org).
 
-:::caution Beta feature
-The Iceberg sink connector in RisingWave is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
+:::note Beta feature
+The Iceberg sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 ## Prerequisites
@@ -49,11 +49,11 @@ WITH (
 | catalog.uri     | Conditional. The URL of the catalog. It is required when `catalog.type` is `rest`. |
 | primary_key     | The primary key for an upsert sink. It is only appliable to the upsert mode. |
 
-## Data Type Mapping
+## Data type mapping
 
-Risingwave converts risingwave data types from/to Iceberg according to the following data type mapping table:
+RisingWave converts risingwave data types from/to Iceberg according to the following data type mapping table:
 
-|Risingwave Type| Iceberg Type|
+|RisingWave Type| Iceberg Type|
 |---------------|-------------|
 | boolean       | boolean     |
 | int           | integer     |
@@ -70,7 +70,7 @@ Risingwave converts risingwave data types from/to Iceberg according to the follo
 Iceberg supports two types of catalogs:
 
 - Storage catalog: The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system.
-- REST catalog: Risingwave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use Risingwave with Iceberg tables.
+- REST catalog: RisingWave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use RisingWave with Iceberg tables.
 
 ## Iceberg table format
 
