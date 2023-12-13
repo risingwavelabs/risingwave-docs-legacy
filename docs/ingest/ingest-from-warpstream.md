@@ -9,25 +9,41 @@ slug: /ingest-from-warpstream
 </head>
 
 You can ingest data from WarpStream, an Apache Kafka-compatible data streaming platform built directly on top of S3, into RisingWave.
-## Set Up WarpStream 
-### Installation of WarpStream Agent
-Install WarpStream Agent / CLI to interact with the WarpStream cluster:
+
+This guide will help you set up WarpStream, ingest data into RisingWave, and create and query a materialized view in RisingWave.
+
+## Set up WarpStream 
+
+### Install WarpStream Agent
+
+To interact with the WarpStream cluster, install the WarpStream Agent or CLI:
 
 ```shell
 curl https://console.warpstream.com/install.sh | bash
 ```
-### Creating a Kafka Topic and Producing Sample Data
 
-After installing the WarpStream agent, run the following command in the terminal:
+### Create a Kafka topic and produce sample data
+
+After the installation, run the following commands in the terminal:
+
+- Initiate WarpStream playground:
+
 ```shell  
 warpstream playground
 ```
-Run the below command to create a Kafka topic and populate it with the data that can be consumed by RisingWave.
+
+- Generate a Kafka topic with sample data:
+
 ```shell
 warpstream demo
 ```
-## Ingesting Data into RisingWave 
-After successfully creating a RisingWave cluster, you create a source named website_visits to ingest data from WarpStream into the RisingWave cluster:
+
+## Ingest data into RisingWave
+
+### Create a source
+
+In RisingWave, create a source named "website_visits" to connect RisingWave to the WarpStream topic:
+
 ```sql
 CREATE SOURCE IF NOT EXISTS website_visits_stream (
  timestamp timestamp,
@@ -42,8 +58,11 @@ WITH (
  scan.startup.mode='earliest'
  ) ROW FORMAT JSON;
 ```
-### Creating a Materialized View
-Now, you create a materialized view in RisingWave:
+
+### Create a materialized view
+
+In RisingWave, create a materialized view that offers insights into user behavior on different pages for analyzing website traffic and engagement.
+
 ```sql
 CREATE MATERIALIZED VIEW visits_stream_mv AS 
 SELECT page_id, 
@@ -53,12 +72,17 @@ max(timestamp) AS last_visit_time
 FROM website_visits_stream 
 GROUP BY page_id;
 ```
-### Querying the Materialized View
-After creating a materialized view, now you query it:
+
+### Query the materialized view
+
+Let's retrieve data from the created materialized view:
+
 ```sql
-select * FROM visits_stream_mv;
+SELECT * FROM visits_stream_mv;
 ```
-This shows the following result:
+
+Expected result:
+
 ```sql
 
  page_id | total_visits | unique_visitors |   last_visit_time   
@@ -74,4 +98,5 @@ This shows the following result:
  page_2  |            4 |               4 | 2023-07-26 19:02:58
  page_6  |            7 |               6 | 2023-07-26 19:03:03
 ```
+
 You have successfully ingested data from WarpStream into RisingWave, created a materialized view, and queried it in RisingWave.
