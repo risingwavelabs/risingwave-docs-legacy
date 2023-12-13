@@ -32,7 +32,7 @@ After the installation, run the following commands in the terminal:
   warpstream playground
   ```
 
-- Generate a Kafka topic with sample data:
+- Generate a Kafka topic with fake click stream data:
 
   ```shell
   warpstream demo
