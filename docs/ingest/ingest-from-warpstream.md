@@ -28,15 +28,15 @@ After the installation, run the following commands in the terminal:
 
 - Initiate WarpStream playground:
 
-```shell  
-warpstream playground
-```
+  ```shell  
+  warpstream playground
+  ```
 
 - Generate a Kafka topic with sample data:
 
-```shell
-warpstream demo
-```
+  ```shell
+  warpstream demo
+  ```
 
 ## Ingest data into RisingWave
 
