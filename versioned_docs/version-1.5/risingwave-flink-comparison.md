@@ -18,6 +18,7 @@ We periodically update this article to keep up with the rapidly evolving landsca
 |Version |1.17| Latest version|
 |License |Apache License 2.0 |Apache License 2.0|
 |System category |Stream processing framework |Streaming database|
+|Real-time pipeline orchestration|Complex|Simple|
 |Architecture |MapReduce-style |Cloud-native|
 |Native API |Java, Scala, Python, SQL |SQL|
 |Client libraries |None |Java, Python, Node.js, and more|
@@ -41,6 +42,28 @@ Apache Flink is a popular open-source distributed stream processing framework th
 ### RisingWave
 
 RisingWave is an open-source distributed SQL database designed for stream processing. Initiated in late 2020, RisingWave focuses on reducing the complexity and cost of building real-time applications. Built from scratch using Rust, RisingWave is well-optimized for supporting high-throughput and low-latency stream processing in the cloud. It guarantees data consistency and completeness, even if node failure occurs. As a database system, RisingWave has its own storage for persisting data and serving user-initiated queries. It also offers dozens of connectors to mainstream systems, allowing users to connect to external systems freely.
+
+## Real-time pipeline orchestration
+
+*When developing applications using Apache Flink, developers need to manage multiple systems and handle the consistency relationships between them. When using RisingWave, developers only need to manage a single system and do not need to consider any relationships between different system components.*
+
+When developing applications using Apache Flink, users need to connect multiple instances of a stream processing engine with multiple instances of message queues to express complex logic. To query the results, users must export the stream processing results to a dedicated downstream database and perform queries there. This architecture is complex, incurs high operational costs, and requires users to take responsibility for the consistency of computation results across systems.
+
+The diagram below illustrates the situation when building applications using traditional stream processing engines like Apache Flink. Developers need to manage multiple systems and handle the consistency relationships between them.
+
+<img
+  src={require('./images/stream_processing_without_risingwave.jpeg').default}
+  alt="Stream Processing Without RisingWave"
+/>
+
+When using RisingWave, users only need to focus on constructing materialized views and can reduce development complexity by splitting complex logic into multiple cascading materialized views. RisingWave guarantees the consistency, persistence, and high concurrent query access of materialized views. Users only need to manage a RisingWave cluster, as RisingWave ensures the consistency between different materialized views.
+
+The diagram below illustrates the situation when developing applications using the RisingWave stream database. Developers only need to manage a single system and do not need to consider any relationships between different system components.
+
+<img
+  src={require('./images/stream_processing_with_risingwave.jpeg').default}
+  alt="Stream Processing With RisingWave"
+/>
 
 ## Architecture
 

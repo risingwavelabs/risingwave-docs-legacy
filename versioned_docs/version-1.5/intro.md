@@ -25,7 +25,7 @@ RisingWave specializes in providing **incrementally updated, consistent material
 
 <img
   src={require('./images/stream_processing_with_and_without_rw.jpeg').default}
-  alt="RisingWave Architecture"
+  alt="Stream Processing With And Without RisingWave"
 />
 
 Compared to existing stream processing systems like [Apache Flink](https://flink.apache.org/), [Apache Spark Streaming](https://spark.apache.org/docs/latest/streaming-programming-guide.html), and [ksqlDB](https://ksqldb.io/), RisingWave stands out in two primary dimensions: Ease-of-use and cost efficiency, thanks to its [PostgreSQL](https://www.postgresql.org/)-style interaction experience and  [Snowflake](https://snowflake.com/)-like architectural design (i.e., decoupled storage and compute).
