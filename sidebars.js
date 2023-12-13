@@ -254,11 +254,6 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "Load generator",
-              id: "ingest/ingest-from-datagen",
-            },
-            {
-              type: "doc",
               label: "MongoDB CDC",
               id: "guides/ingest-from-mongodb-cdc",
             },
@@ -281,6 +276,16 @@ const sidebars = {
               type: "doc",
               label: "Redpanda",
               id: "ingest/ingest-from-redpanda",
+            },
+            {
+              type: "doc",
+              label: "WrapStream",
+              id: "ingest/ingest-from-warpstream",
+            },
+            {
+              type: "doc",
+              label: "Load generator",
+              id: "ingest/ingest-from-datagen",
             },
           ]
         },
