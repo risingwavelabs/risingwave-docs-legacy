@@ -1,0 +1,39 @@
+.expand-wrapper {
+  position: relative;
+}
+
+.expand-wrapper > .icon {
+  position: relative;
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9;
+}
+
+.expand-wrapper > .icon .arrow {
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #005eec;
+  margin-right: 5px;
+}
+
+.expand-wrapper > .icon.expand {
+  position: absolute;
+}
+
+.expand-wrapper > .icon.expand > .arrow {
+  transform: rotateZ(180deg);
+}
+
+.expand-wrapper > form {
+  margin-left: 15px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

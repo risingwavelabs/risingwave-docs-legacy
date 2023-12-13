@@ -26,10 +26,7 @@
   padding-bottom: 48px;
 }
 
-.ask-item {
-  margin-bottom: 8px;
-}
-
+.ask-item,
 .answer-item {
   margin-bottom: 16px;
 }

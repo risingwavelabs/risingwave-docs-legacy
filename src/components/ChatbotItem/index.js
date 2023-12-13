@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Drawer } from "@mui/material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import CasePanel from "./CasePanel";
-import { useChatQuery, QueryInput, Answer, AskItem } from "./chat-bot-package/chat-box.es";
-import "./chat-bot-package/style.css";
+import {useChatQuery} from "./useChatQuery"
+import QueryInput from "./QueryInput/index"
+import Answer from "./QueryResult/Answer"
+import AskItem from "./QueryResult/AskItem"
 import styles from './styles.module.css';
 
 const ChatbotItem = (props) => {
@@ -56,12 +58,12 @@ const ChatbotItem = (props) => {
             {chatList.length === 0 ? <CasePanel handleChoose={handleChoose} /> : 
                chatList.map((item, index) => {
                 return item.type === "ask" ? (
-                  <div className={styles["ask-item"]} key={index}>
+                  <div className={styles["ask-item"]} key={`ask-${index}`}>
                     <AskItem content={item.content} />
                   </div>
                 ) : (
-                  <div className={styles["answer-item"]}>
-                    <Answer key={index} content={item.content} />
+                  <div className={styles["answer-item"]} key={`answer-${index}`}>
+                    <Answer content={item.content} />
                   </div>
                 );
               })
