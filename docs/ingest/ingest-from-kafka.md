@@ -138,6 +138,9 @@ For tables with primary key constraints, if a new data record with an existing k
 |*data_encode*| Data encode. Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
 |*message* | Message name of the main Message in schema definition. Required for Protobuf. |
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
+|*schema.registry*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
+|*schema.registry.username*|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
+|*schema.registry.password*|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
 
 ## Additional Kafka parameters
 
