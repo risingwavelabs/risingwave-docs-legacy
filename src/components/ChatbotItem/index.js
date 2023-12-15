@@ -46,7 +46,7 @@ const ChatbotItem = (props) => {
         sx={{
           "&.MuiDrawer-root": { width: 0 },
         }}
-        PaperProps={{ sx: { "&.MuiPaper-root": { top: "45px",height: "calc(100% - 45px)", background: "#f9f9f9" } } }}
+        PaperProps={{ sx: { "&.MuiPaper-root": { top: "45px",maxWidth:"400px",width:"100%",height: "calc(100% - 45px)", background: "#f9f9f9" } } }}
         hideBackdrop
         variant="persistent"
         open={showDraw}

@@ -1,8 +1,14 @@
 .chatbot-wrapper {
   position: fixed;
-  top: 74px;
-  right: 22px;
+  right: 70px;
+  top: 5px;
   z-index: 999;
+}
+@media (min-width: 768px) {
+  .chatbot-wrapper {
+    top: 74px;
+    right: 22px;
+  }
 }
 .chatbot-icon {
   display: flex;
