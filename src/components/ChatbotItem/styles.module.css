@@ -2,6 +2,7 @@
   position: fixed;
   top: 74px;
   right: 22px;
+  z-index: 999;
 }
 .chatbot-icon {
   display: flex;
@@ -17,13 +18,16 @@
 .drawer-wrapper {
   width: 20vw;
   min-width: 365px;
-
+  height: 100%;
+  box-sizing: border-box;
   padding: 16px 12px 30px 8px;
 }
 
 .query-panel {
   margin-top: 20px;
   padding-bottom: 48px;
+  height: calc(100% - 60px);
+  overflow: auto;
 }
 
 .ask-item,
