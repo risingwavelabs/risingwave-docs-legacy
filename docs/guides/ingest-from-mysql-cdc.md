@@ -24,7 +24,7 @@ You can ingest CDC data from MySQL in two ways:
 
 - Using a CDC tool and a message broker
 
-  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave.
+  You can use a CDC tool and then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave.
 
 This topic describes how to ingest MySQL CDC data into RisingWave using the native MySQL CDC connector. Using an external CDC tool and a message broker is introduced in [Create source via event streaming systems](/ingest/ingest-from-cdc.md).
 
@@ -146,7 +146,7 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
 
 ## Notes about running RisingWave from binaries
 
-If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
+If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions installed in your environment.
 
 ## Create a table using the native CDC connector in RisingWave
 
@@ -191,7 +191,7 @@ Data is in Debezium JSON or Debezium AVRO format. [Debezium](https://debezium.io
 
 RisingWave supports creating multiple CDC tables that share a single MySQL CDC source. 
 
-Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/create-source.md) command and MySQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
+Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command and MySQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
 
 ```sql
 CREATE SOURCE mysql_mydb WITH (
@@ -205,9 +205,9 @@ CREATE SOURCE mysql_mydb WITH (
 );
 ```
 
-With the source created, you can create multiple CDC tables that ingests data from different tables in the upstream database without needing to specify the database connection parameters again. 
+With the source created, you can create multiple CDC tables that ingest data from different tables in the upstream database without needing to specify the database connection parameters again. 
 
-For instance, the following CDC table in RisingWave ingests data from table `t1` in database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be specified. 
+For instance, the following CDC table in RisingWave ingests data from table `t1` in the database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be specified. 
 
 ```sql
 CREATE TABLE t1_rw (
@@ -267,7 +267,7 @@ CREATE TABLE orders (
 
 The following table shows the corresponding data type in RisingWave that should be specified when creating a source. For details on native RisingWave data types, see [Overview of data types](/sql/sql-data-types.md).
 
-RisingWave data types marked with an asterisk indicates that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
+RisingWave data types marked with an asterisk indicate that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
 
 | MySQL type | RisingWave type |
 |------------|-----------------|
