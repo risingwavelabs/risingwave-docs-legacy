@@ -22,7 +22,7 @@ Start by signing up for a free Upstash Cloud account, which will grant you acces
 
 ## Create a Kafka Cluster
 
-Once you're logged in, create your Kafka cluster with the following details:
+Once you are logged in, create your Kafka cluster with the following details:
 
 - **Cluster Name**: Give your Kafka cluster a unique name for identification.
 - **Region**: Choose the region where your Kafka cluster will be hosted.
@@ -32,13 +32,13 @@ Once you're logged in, create your Kafka cluster with the following details:
 
 ## Set Up a Kafka Topic
 
-After creating your Kafka cluster, set up a Kafka topic effortlessly. Upstash Kafka provides default configurations for the number of partitions and retention policy, simplifying the setup process.
+After creating your Kafka cluster, set up a Kafka topic. Upstash Kafka provides default configurations for the number of partitions and retention policy, simplifying the setup process.
 
 ![3](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/61003e9f-1cb1-4c45-a90d-ccefe5c6a835)
 
 ## Connect and Interact with Your Kafka Cluster
 
-You're now ready to connect to your Kafka cluster using various Kafka clients. These clients enable you to both produce and consume data from your Kafka topic. This step empowers you to create real-time event-driven applications and services both using Kafka and RisingWave.
+You are now ready to connect to your Kafka cluster using various Kafka clients. These clients enable you to both produce and consume data from your Kafka topic. So, retrieve real-time data from the Python Wikipedia API and produce it to a Kafka topic in Upstash.
 
 ![4](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/5937c6c1-076a-4dab-8ceb-6abf9904743a)
 
@@ -57,7 +57,7 @@ After successfully deploying the RisingWave cluster, create a source in the Risi
 CREATE SOURCE wiki_source (
   contributor VARCHAR,
   title VARCHAR,
-  timestamp TIMESTAMPTZ,
+  edit_timestamp TIMESTAMPTZ,
   registration TIMESTAMPTZ,
   gender VARCHAR,
   edit_count VARCHAR
@@ -70,7 +70,7 @@ scan.startup.mode = 'earliest',
 properties.sasl.mechanism = 'SCRAM-SHA-512', 
 properties.security.protocol = 'SASL_SSL', 
 properties.sasl.username = '<your-username>', 
-properties.sasl.password = ‘<your-password>’'
+properties.sasl.password = '<your-password>'
 ) FORMAT PLAIN ENCODE JSON;
 ```
 ## Create a Materialized View
@@ -81,12 +81,12 @@ CREATE MATERIALIZED VIEW wiki_mv AS
 SELECT  
   contributor,
   title,
-  CAST(timestamp AS TIMESTAMP) AS timestamp,
+  CAST(edit_timestamp AS TIMESTAMP) AS edit_timestamp,
   CAST(registration AS TIMESTAMP) AS registration,
   gender,
   CAST(edit_count AS INT) AS edit_count
 FROM wiki_source
-WHERE timestamp IS NOT NULL
+WHERE edit_timestamp IS NOT NULL
   AND registration IS NOT NULL
   AND edit_count IS NOT NULL;
 ```
@@ -98,7 +98,8 @@ The materialized view can be queried to retrieve the latest data from the source
 SELECT * FROM wiki_mv LIMIT 5;
 ```
 The retrieved result from the above query:
-contributor    |   title                     |     timestamp             |       registration        | gender  | edit_count
+```sql
+contributor    |   title                     |     edit_timestamp             |       registration        | gender  | edit_count
 ---------------+-----------------------------+---------------------------+---------------------------+---------+-----------
 
 Omnipaedista   | Template:Good and evil      | 2023-12-03 10:22:02+00:00 | 2008-12-14 06:02:32+00:00 | male    | 222563
@@ -108,5 +109,5 @@ Fau Tzy        | 2023 Liga 3 Maluku          | 2023-12-03 10:23:17+00:00 | 2022-
 Cavarrone      | Cheers (season 8)           | 2023-12-03 10:23:40+00:00 | 2008-08-23 11:13:14+00:00 | male    | 83643
 
 (5 rows)
-
-Well done, you have consumed data from an Upstash Kafka topic into the RisingWave source table and then, queried it.
+```
+Well done, you have successfully consumed data from an Upstash Kafka topic into the RisingWave, created source and materialized view, and then, queried it.
