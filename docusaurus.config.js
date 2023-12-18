@@ -185,7 +185,7 @@ const config = {
             position: "right",
             html: `
             <img
-  src="/img/tutorial/entrance.png"
+  src="/img/tutorial/entrance.svg"
   alt="RisingWave Tutorials"
   style="height:30px;margin-top:7px;"
 />
@@ -200,7 +200,7 @@ const config = {
             href: "https://github.com/risingwavelabs/risingwave",
             label: "GitHub",
             position: "right",
-          },
+          }
         ],
       },
       footer: {

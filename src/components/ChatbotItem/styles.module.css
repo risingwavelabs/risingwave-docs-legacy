@@ -1,0 +1,42 @@
+.chatbot-wrapper {
+  position: fixed;
+  right: 70px;
+  top: 5px;
+  z-index: 999;
+}
+@media (min-width: 768px) {
+  .chatbot-wrapper {
+    top: 74px;
+    right: 22px;
+  }
+}
+.chatbot-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  background-color: #8080803b;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.drawer-wrapper {
+  width: 20vw;
+  min-width: 365px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 16px 12px 30px 8px;
+}
+
+.query-panel {
+  margin-top: 20px;
+  padding-bottom: 48px;
+  height: calc(100% - 60px);
+  overflow: auto;
+}
+
+.ask-item,
+.answer-item {
+  margin-bottom: 16px;
+}

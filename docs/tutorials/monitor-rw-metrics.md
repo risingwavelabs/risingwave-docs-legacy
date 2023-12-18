@@ -123,13 +123,15 @@ SELECT * FROM metric_avg_30s LIMIT 5;
 ```
 
 ```
-                           metric_name                         |        metric_time        | metric_value       
----------------------------------------------------------------+---------------------------+--------------
-                        all_barrier_nums                       | 2022-11-07 21:38:00+00:00 |      0 
-            etcd_debugging_mvcc_pending_events_total           | 2022-11-07 21:38:00+00:00 |      0
-                 etcd_debugging_mvcc_txn_total                 | 2022-11-07 21:38:00+00:00 |      2
-  etcd_debugging_snap_save_marshalling_duration_seconds_bucket | 2022-11-07 21:38:00+00:00 |      0
-   etcd_debugging_snap_save_marshalling_duration_seconds_sum   | 2022-11-07 21:38:00+00:00 |      0
+SELECT * FROM metric_avg_30s LIMIT 5;
+
+               metric_name               |        metric_time        |          metric_value
+-----------------------------------------+---------------------------+--------------------------------
+ frontend_latency_local_execution_bucket | 2023-12-13 10:00:00+00:00 |                              0
+ etcd_snap_fsync_duration_seconds_sum    | 2023-12-13 10:00:00+00:00 |                              0
+ prometheus_api_remote_read_queries      | 2023-12-13 10:00:00+00:00 |                              0
+ etcd_server_leader_changes_seen_total   | 2023-12-13 10:00:00+00:00 |                              1
+ process_virtual_memory_bytes            | 2023-12-13 10:00:00+00:00 | 4224736530.7317073170731707317
 ```
 
 ## Step 4: Add RisingWave as a data source in Grafana

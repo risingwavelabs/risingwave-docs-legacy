@@ -1,0 +1,34 @@
+.answer-pre {
+  position: relative;
+  padding-bottom: 10px;
+}
+.answer-pre > .copy-button {
+  all: unset;
+  position: absolute;
+  cursor: pointer;
+  right: 15px;
+  bottom: 25px;
+}
+.answer-pre > .copy-button:focus {
+  outline: revert;
+}
+.answer-pre > pre {
+  scrollbar-width: thin;
+  scrollbar-color: #bbb transparent;
+}
+.answer-pre > pre::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.answer-pre > pre::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+.answer-pre > pre::-webkit-scrollbar-corner {
+  background: transparent;
+}
+.answer-pre > pre::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  background-color: #bbb;
+}

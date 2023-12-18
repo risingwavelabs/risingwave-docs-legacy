@@ -279,7 +279,7 @@ WITH (
      fields.z1.kind = 'random',
      fields.z1.max_past = '2h 37min',
      fields.z1.max_past_mode = 'relative',
-     fields.z1.seed = '3'
+     fields.z1.seed = '3',
 
      fields.c1.kind = 'random',
      fields.c1.length = '16',
