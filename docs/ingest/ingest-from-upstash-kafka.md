@@ -8,19 +8,21 @@ slug: /ingest-from-upstash-kafka
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-upstash-kafka/" />
 </head>
 
+# Ingesting Data from Upstash Kafka to RisingWave
+
 You can ingest data from Kafka deployed in Upstash into RisingWave. Upstash is a serverless platform that offers Redis, Kafka, and Qstash with the benefits of scalability, advanced security options, and dedicated support.
 
-# Set Up Kafka on Uptash
+## Set Up Kafka on Uptash
 
 This guide goes through the steps to create a Kafka cluster on Uptash and to connect it to RisingWave to read from it. For more information related to the data ingestion from Upstash, please refer to [Upstash Documentaion](https://upstash.com/docs/kafka/overall/getstarted).
 
-## Sign Up for an Upstash Cloud Account
+### Sign Up for an Upstash Cloud Account
 
 Start by signing up for a free Upstash Cloud account, which will grant you access to our Kafka services. To create your account, visit [Upstash Cloud Account](https://console.upstash.com/kafka).
 
 ![1](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/e7685303-1e16-4f00-8095-aa12de40e9e8)
 
-## Create a Kafka Cluster
+### Create a Kafka Cluster
 
 Once you are logged in, create your Kafka cluster with the following details:
 
@@ -30,27 +32,27 @@ Once you are logged in, create your Kafka cluster with the following details:
 
 ![2](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/b633cbc5-d084-47ab-99ae-61765fffb308)
 
-## Set Up a Kafka Topic
+### Set Up a Kafka Topic
 
 After creating your Kafka cluster, set up a Kafka topic. Upstash Kafka provides default configurations for the number of partitions and retention policy, simplifying the setup process.
 
 ![3](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/61003e9f-1cb1-4c45-a90d-ccefe5c6a835)
 
-## Connect and Interact with Your Kafka Cluster
+### Connect and Interact with Your Kafka Cluster
 
 You are now ready to connect to your Kafka cluster using various Kafka clients. These clients enable you to both produce and consume data from your Kafka topic. So, retrieve real-time data from the Python Wikipedia API and produce it to a Kafka topic in Upstash.
 
 ![4](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/5937c6c1-076a-4dab-8ceb-6abf9904743a)
 
-With these four steps, you are on your way to leveraging the capabilities of Upstash Kafka. Explore the full potential of event streaming for your applications!
+With these steps, you are on your way to leveraging the capabilities of Upstash Kafka and RisingWave to build stream processing applications and pipelines!
 
 For detailed documentation and client-specific guides, please refer to our [Upstash Kafka Documentation](https://upstash.com/docs/kafka).
 
-# Connect Upstash with RisingWave
+## Connect Upstash Kafka with RisingWave
 
 Create a RisingWave cluster within [RisingWave Cloud](https://cloud.risingwave.com/) using the RisingWave free-tier account.
 
-## Create a Source
+### Create a Source
 After successfully deploying the RisingWave cluster, create a source in the RisingWave SQL editor as:
 
 ```sql
@@ -73,7 +75,7 @@ properties.sasl.username = '<your-username>',
 properties.sasl.password = '<your-password>'
 ) FORMAT PLAIN ENCODE JSON;
 ```
-## Create a Materialized View
+### Create a Materialized View
 We create a materialized view named wiki_mv based on the source wiki_source that filters out the rows with null values.
 
 ```sql
@@ -90,7 +92,7 @@ WHERE edit_timestamp IS NOT NULL
   AND registration IS NOT NULL
   AND edit_count IS NOT NULL;
 ```
-## Query the Materialized View
+### Query the Materialized View
 
 The materialized view can be queried to retrieve the latest data from the source:
 
