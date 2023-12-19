@@ -10,72 +10,61 @@ slug: /alter-streaming
 
 This document covers the mechanisms for altering logic within streaming pipelines in RisingWave. Understanding these mechanisms is crucial for managing and evolving your data processing workflows.
 
-## Concepts & Pipeline Composition
 
-Altering streaming logic essentially modifies the pipeline's **intermediate states, logic**, and **materialized results**:
+## Alter a table or source
 
-- **Logic:** The transformation applied to the data stream.
-- **State:** Internal data structures holding intermediate results used for calculations and updates.
-- **Materialized results:** The persistent table structure used for serving queries.
+To add or drop columns from a table or source, simply use the [ALTER TABLE](https://docs.risingwave.com/docs/dev/sql-alter-table/) or [ALTER SOURCE](https://docs.risingwave.com/docs/dev/sql-alter-source/) command. For example:
 
-## Sink
+```sql
+ALTER TABLE customers ADD COLUMN birth_date;
 
-Sink pipelines consist of logic and intermediate states, but without materialized results:
-
-```
-logic + intermediate states (persistent)
+ALTER SOURCE test_source ADD COLUMN birth_date;
 ```
 
-Here are different scenarios for altering sink logic:
+The new column will be `NULL` for existing records. 
 
-- **Add separate sinks**. This avoids affecting existing state, but requires the modification to be independent. Consistency between new and existing sinks is not guaranteed.
+## Alter a materialized view
+
+To alter a materialized view, you will need to create the new materialized view and drop the old materialized view. 
+
+For example, suppose we want to add a new column to the materialized view `mv1`:
     
-    For example, suppose we want to add a new column to the destination table:
+```sql
+ALTER TABLE customers ADD COLUMN birth_date;
+```
+
+Here we create a new materialized view `mv1_new` with the new column `sales_count`:
     
-    ```sql
-    ALTER TABLE customers ADD COLUMN birth_date;
-    ```
-    
-    We can create a new sink that specifically writes the additional column `birth_date` to the downstream table `customers`.
-    
-    ```sql
-    ALTER SOURCE test_source ADD COLUMN birth_date;
-    
-    CREATE SINK sink_1 AS
-      SELECT
+```sql
+CREATE MATERIALIZED VIEW mv1_new AS
+    SELECT
         customer_id,
-        SUM(total_price) AS sales_amount
-      FROM test_source
-      GROUP BY customer_id
-    WITH (
-      'table.name' = 'customers',
-      'primary_key' = 'customer_id'
-    );
-    
-    CREATE SINK sink_2 AS
-      SELECT 
-        customer_id,
-        birth_date -- additional column
-      FROM test_source
-    WITH (
-      'table.name' = 'customers',
-      'primary_key' = 'customer_id'
-    );
-    ```
-    
-    In the above case, `birth_date` will not be updated along with each `sales_amount` update.
-    
-- **Drop and recreate sinks**. This solution discards previous states. Choose this option if the modification depends on previous sinks.
-
-## ****Materialized View****
-
-Unlike sinks, materialized views tightly couple logic, states, and results. This semantic coupling makes altering the logic infeasible.
-
-```
-logic + intermediate states (persistent) -> materialized results (persistent)
+        SUM(total_price) AS sales_amount,
+        COUNT(*) AS sales_count -- The new column
+    FROM test_source
+    GROUP BY customer_id;
 ```
 
-The only current option is to drop and recreate the entire materialized view. Let’s use an example to illustrate the inherent reason for this constraint.
+After the new materialized view is created, we can drop the old materialized view `mv1` and rename `mv1_new` to `mv1`:
+
+```sql
+DROP SINK mv1;
+ALTER SINK mv1_new RENAME TO mv1;
+```
+
+## Alter a sink
+
+To alter a sink, you will need to create a new sink and drop the old sink. Please check the example from the last section.
+
+Specifically, if your sink is created based on a materialized view i.e. created with `CREATE SINK ... FROM ...` statement, you may optionally specify `without_backfill = true` to skip the existing data.
+
+```sql
+CREATE SINK ... FROM ... WITH (without_backfill = true).
+```
+
+## Why I cannot modify a streaming job in place?
+
+Streaming systems like RisingWave need to maintain **internal state** for streaming operators, such as joins and aggregations. Generally, modifying a materialized view would require consistent changes to the internal state accordingly, which is not always feasible. Let’s take the example below to illustrate it.
 
 Given a table `adult_users` that tracks the number of users aged ≥ 18. 
 
@@ -87,13 +76,9 @@ CREATE MATERIALIZED VIEW adult_users AS
   WHERE age >= 18;
 ```
 
-Later, it turns out that the legal definition for adulthood should be ≥16. Intuitively, one may attempt to simply modify the filter condition from `age ≥ 18` to `age ≥ 16`. However, this is not possible due to the nature of stream processing: records with age < 18 were already filtered out. Consequently, the only way to refill the missing data is to recompute the entire stream from scratch.
+Later, it turns out that the legal definition for adulthood should be ≥16. Intuitively, one may attempt to simply modify the filter condition from `age >= 18` to `age >= 16`. However, this is not possible due to the nature of stream processing: records with age between 16 and 18 were already filtered out. Consequently, the only way to refill the missing data is to recompute the entire stream from scratch.
 
 Therefore, as a best practice, it is recommended to persistently store the source data in a long-term storage, e.g, [a RisingWave Table](https://docs.risingwave.com/docs/current/sql-create-table/). This enables recomputing the materialized view when altering logic is necessary.
-
-## Table
-
-Similar to traditional databases, RisingWave offers [dynamic table schema change](https://docs.risingwave.com/docs/current/sql-alter-table/). Unlike sinks, tables essentially involve no transformation logic or intermediate states. Users can add or drop columns, while the schema change will not directly affect materialized views atop the table.
 
 ## Future Roadmap
 
