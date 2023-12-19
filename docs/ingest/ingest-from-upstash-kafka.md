@@ -14,11 +14,11 @@ You can ingest data from Kafka deployed in Upstash into RisingWave. Upstash is a
 
 ## Set Up Kafka on Uptash
 
-This guide goes through the steps to create a Kafka cluster on Uptash and to connect it to RisingWave to read from it. For more information related to the data ingestion from Upstash, please refer to [Upstash Documentaion](https://upstash.com/docs/kafka/overall/getstarted).
+This guide goes through the steps to create a Kafka cluster on Uptash and to connect it to RisingWave for data ingestion. For more information regarding the data ingestion from Upstash, please refer to [Upstash Documentaion](https://upstash.com/docs/kafka/overall/getstarted).
 
 ### Sign Up for an Upstash Cloud Account
 
-Start by signing up for a free Upstash Cloud account, which will grant you access to Kafka services. To create your account, visit [Upstash Cloud Account](https://console.upstash.com/kafka).
+Begin by signing up for a free Upstash Cloud account, which provides you with access to Kafka services. To create your account, visit [Upstash Cloud Account](https://console.upstash.com/kafka).
 
 ![1](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/e7685303-1e16-4f00-8095-aa12de40e9e8)
 
@@ -53,7 +53,7 @@ For detailed documentation and client-specific guides, please refer to [Upstash 
 Create a RisingWave cluster within [RisingWave Cloud](https://cloud.risingwave.com/) using the RisingWave free-tier account.
 
 ### Create a Source
-After successfully deploying the RisingWave cluster, create a source in the RisingWave SQL editor as:
+Once you have successfully deployed the RisingWave cluster, create a source in the RisingWave SQL editor as:
 
 ```sql
 CREATE SOURCE wiki_source (
@@ -76,7 +76,7 @@ properties.sasl.password = '<your-password>'
 ) FORMAT PLAIN ENCODE JSON;
 ```
 ### Create a Materialized View
-We create a materialized view named wiki_mv based on the source wiki_source that filters out the rows with null values.
+We create a materialized view named `wiki_mv` based on the source `wiki_source` that filters out the rows with null values.
 
 ```sql
 CREATE MATERIALIZED VIEW wiki_mv AS
