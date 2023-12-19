@@ -10,7 +10,7 @@ slug: /ingest-from-upstash-kafka
 
 # Ingesting Data from Upstash Kafka to RisingWave
 
-You can ingest data from Kafka deployed in Upstash into RisingWave. Upstash is a serverless platform that offers Redis, Kafka, and Qstash with the benefits of scalability, advanced security options, and dedicated support.
+You can ingest data from Kafka deployed in Upstash into RisingWave. Upstash is a serverless platform that offers Redis, Kafka, and Qstash, providing the benefits of scalability, advanced security options, and dedicated support.
 
 ## Set Up Kafka on Uptash
 
