@@ -18,7 +18,7 @@ This guide goes through the steps to create a Kafka cluster on Uptash and to con
 
 ### Sign Up for an Upstash Cloud Account
 
-Start by signing up for a free Upstash Cloud account, which will grant you access to our Kafka services. To create your account, visit [Upstash Cloud Account](https://console.upstash.com/kafka).
+Start by signing up for a free Upstash Cloud account, which will grant you access to Kafka services. To create your account, visit [Upstash Cloud Account](https://console.upstash.com/kafka).
 
 ![1](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/e7685303-1e16-4f00-8095-aa12de40e9e8)
 
@@ -46,7 +46,7 @@ You are now ready to connect to your Kafka cluster using various Kafka clients. 
 
 With these steps, you are on your way to leveraging the capabilities of Upstash Kafka and RisingWave to build stream processing applications and pipelines!
 
-For detailed documentation and client-specific guides, please refer to our [Upstash Kafka Documentation](https://upstash.com/docs/kafka).
+For detailed documentation and client-specific guides, please refer to [Upstash Kafka Documentation](https://upstash.com/docs/kafka).
 
 ## Connect Upstash Kafka with RisingWave
 
