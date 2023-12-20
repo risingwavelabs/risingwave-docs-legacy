@@ -8,21 +8,22 @@ slug: /ingest-from-upstash-kafka
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-upstash-kafka/" />
 </head>
 
-# Ingesting Data from Upstash Kafka to RisingWave
-
 You can ingest data from Kafka deployed in Upstash into RisingWave. Upstash is a serverless platform that offers Redis, Kafka, and Qstash, providing the benefits of scalability, advanced security options, and dedicated support.
 
-## Set Up Kafka on Uptash
+## Set up Kafka on Uptash
 
 This guide goes through the steps to create a Kafka cluster on Uptash and to connect it to RisingWave for data ingestion. For more information regarding the data ingestion from Upstash, please refer to [Upstash Documentaion](https://upstash.com/docs/kafka/overall/getstarted).
 
-### Sign Up for an Upstash Cloud Account
+### Sign up for an Upstash Cloud account
 
-Begin by signing up for a free Upstash Cloud account, which provides you with access to Kafka services. To create your account, visit [Upstash Cloud Account](https://console.upstash.com/kafka).
+Begin by signing up for a free Upstash Cloud account, which provides access to Kafka services. To create an account, visit [Upstash Cloud Account](https://console.upstash.com/kafka).
 
-![1](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/e7685303-1e16-4f00-8095-aa12de40e9e8)
+<img
+  src={require('./images/upstash-signup.png').default}
+  alt="Sign up for Upstash Cloud"
+/>
 
-### Create a Kafka Cluster
+### Create a Kafka cluster
 
 Once you are logged in, create your Kafka cluster with the following details:
 
@@ -30,30 +31,42 @@ Once you are logged in, create your Kafka cluster with the following details:
 - **Region**: Choose the region where your Kafka cluster will be hosted.
 - **Cluster Type**: Select the cluster type that suits your needs.
 
-![2](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/b633cbc5-d084-47ab-99ae-61765fffb308)
+<img
+  src={require('./images/upstash-create-cluster.png').default}
+  alt="Create a cluster"
+/>
 
-### Set Up a Kafka Topic
+### Set up a Kafka topic
 
 After creating your Kafka cluster, set up a Kafka topic. Upstash Kafka provides default configurations for the number of partitions and retention policy, simplifying the setup process.
 
-![3](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/61003e9f-1cb1-4c45-a90d-ccefe5c6a835)
+<img
+  src={require('./images/upstash-create-topic.png').default}
+  alt="Create a topic"
+/>
 
-### Connect and Interact with Your Kafka Cluster
+### Connect and interact with your Kafka cluster
 
-You are now ready to connect to your Kafka cluster using various Kafka clients. These clients enable you to both produce and consume data from your Kafka topic. So, retrieve real-time data from the Python Wikipedia API and produce it to a Kafka topic in Upstash.
+You are now ready to connect to your Kafka cluster using various Kafka clients. These clients enable you to both produce and consume data from your Kafka topic. Therefore, you can extract real-time data from the Python Wikipedia API and feed it into a Kafka topic in Upstash.
 
-![4](https://github.com/fahadullahshah261/risingwave-tutorials/assets/99340455/5937c6c1-076a-4dab-8ceb-6abf9904743a)
+<img
+  src={require('./images/upstash-connect-interact.png').default}
+  alt="Connect and interact with your Kafka cluster"
+/>
 
 With these steps, you are on your way to leveraging the capabilities of Upstash Kafka and RisingWave to build stream processing applications and pipelines!
 
 For detailed documentation and client-specific guides, please refer to [Upstash Kafka Documentation](https://upstash.com/docs/kafka).
 
-## Connect Upstash Kafka with RisingWave
+## Ingest and process data from Upstash Kafka
 
-Create a RisingWave cluster within [RisingWave Cloud](https://cloud.risingwave.com/) using the RisingWave free-tier account.
+### Create a RisingWave cluster
 
-### Create a Source
-Once you have successfully deployed the RisingWave cluster, create a source in the RisingWave SQL editor as:
+Create a RisingWave cluster in [RisingWave Cloud](https://cloud.risingwave.com/) using the free plan. See the [documentation of RisingWave Cloud](https://docs.risingwave.com/cloud/manage-clusters/) for instructions.
+
+### Create a source
+
+Once you have deployed the RisingWave cluster, create a source in the [Query console](https://docs.risingwave.com/cloud/console-overview/) using the following SQL query:
 
 ```sql
 CREATE SOURCE wiki_source (
@@ -75,8 +88,10 @@ properties.sasl.username = '<your-username>',
 properties.sasl.password = '<your-password>'
 ) FORMAT PLAIN ENCODE JSON;
 ```
-### Create a Materialized View
-We create a materialized view named `wiki_mv` based on the source `wiki_source` that filters out the rows with null values.
+
+### Create a materialized view
+
+Let's create a materialized view named `wiki_mv` based on the source `wiki_source`, which filters out the rows with null values.
 
 ```sql
 CREATE MATERIALIZED VIEW wiki_mv AS
@@ -92,15 +107,18 @@ WHERE edit_timestamp IS NOT NULL
   AND registration IS NOT NULL
   AND edit_count IS NOT NULL;
 ```
-### Query the Materialized View
+
+### Query the materialized view
 
 The materialized view can be queried to retrieve the latest data from the source:
 
 ```sql
 SELECT * FROM wiki_mv LIMIT 5;
 ```
-The retrieved result from the above query:
-```sql
+
+The retrieved result should look like this:
+
+```
 contributor    |   title                     |     edit_timestamp             |       registration        | gender  | edit_count
 ---------------+-----------------------------+---------------------------+---------------------------+---------+-----------
 
@@ -112,4 +130,5 @@ Cavarrone      | Cheers (season 8)           | 2023-12-03 10:23:40+00:00 | 2008-
 
 (5 rows)
 ```
-Well done, you have successfully consumed data from an Upstash Kafka topic into the RisingWave, created source and materialized view, and then, queried it.
+
+You have successfully consumed data from an Upstash Kafka topic into the RisingWave, created a source and a materialized view, and then queried it.
