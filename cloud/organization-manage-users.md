@@ -5,7 +5,13 @@ description: Invite others to your organization and manage them. Share your clus
 slug: /manage-users
 ---
 
-Users in an organization can access the same set of resources for seamless collaboration. You, as the organization owner, can invite others to join your organization as member users and share resources among them.
+Users in an organization can access the same set of resources for seamless collaboration. As the organization owner, you can invite others to join your organization as member users and share resources among them.
+
+An organization can have one owner and multiple member users.
+
+- The owner can [invite others to join the organization](#invite-users-to-join-your-organization) and [manage users in the organization](#manage-users-in-your-organization). The owner shares all resources, including clusters and databases, with the organization. You become the owner of your organization when you [sign up](https://cloud.risingwave.com/signup) for RisingWave Cloud by yourself, not through an invitation.
+
+- A member user can access all the resources in the organization that the owner shares. A member user can also invite others to join the organization and manage them but cannot remove the owner from the organization. You become a member user when you [accept an invitation](#accept-invitation-to-join-an-organization-as-a-member) to join an organization.
 
 ## Invite users to join your organization
 
