@@ -20,7 +20,7 @@ alt="Invitations"
 
 1. Go to the [**Org.**](https://cloud.risingwave.com/organization/) tab and select **Invitations**.
 
-2. Click **New invitation**.
+2. Click **Invite new user**.
 
 3. Enter the email address of the user you want to invite.
 
