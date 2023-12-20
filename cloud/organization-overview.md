@@ -19,10 +19,6 @@ In an organization, you can:
 
 - Set up service accounts for your applications that access RisingWave Cloud using API keys.
 
-<img
-src={require('./images/org-architecture.png').default}
-alt="Architecture of organization"
-/>
 
 ## Manage your organization
 
