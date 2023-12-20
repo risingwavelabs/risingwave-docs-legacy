@@ -2,7 +2,7 @@
 id: sink-to-clickhouse
 title: Sink data from RisingWave to ClickHouse
 description: Sink data from RisingWave to ClickHouse.
-slug: /sink-to-clickhouse 
+slug: /sink-to-clickhouse
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-clickhouse/" />
@@ -176,18 +176,22 @@ WITH (
 |RisingWave Data Type  | ClickHouse Data Type |
 |--------------------- |--------------------- |
 |bool                  | Bool                 |
-|smallint              | UInt16 or Int16      |
-|int                   | UInt32 or Int32      |
-|bigint                | UInt64 or Int64      |
-|real(float32)         | Float32              |
-|float(float64)        | Float64              |
+|smallint              | Int16                |
+|integer               | Int32                |
+|bigint                | Int64                |
+|real                  | Float32              |
+|double precision      | Float64              |
 |decimal               | Decimal              |
+|character varying     | String               |
+|bytea                 | Not supported        |
 |date                  | Date32               |
-|varchar               | String               |
+|time without time zone| Not supported        |
+|timestamp             | Not supported        |
 |timestamptz           | DateTime64           |
+|interval              | Not supported        |
 |struct                | Nested               |
-|list                  | Array                |
-|serial                | UInt64 or Int64      |
+|array                 | Array                |
+|JSONB                 | Not supported        |
 
 :::note
 
