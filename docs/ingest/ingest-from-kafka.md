@@ -156,6 +156,11 @@ When creating a source in RisingWave, you can specify the following Kafka parame
 |queued.max.messages.kbytes| properties.queued.max.messages.kbytes | int |
 |queued.min.messages | properties.queued.min.messages | int |
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
+|ssl.endpoint.identification.algorithm | properties.ssl.endpoint.identification.algorithm | str |
+
+:::Note
+Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure.
+:::
 
 ## Examples
 

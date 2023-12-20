@@ -73,6 +73,11 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |queue.buffering.max.ms |properties.queue.buffering.max.ms |float|
 |retry.backoff.ms |properties.retry.backoff.ms| int|
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
+|ssl.endpoint.identification.algorithm | properties.ssl.endpoint.identification.algorithm | str |
+
+:::Note
+Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure.
+:::
 
 ## Sink parameters
 
