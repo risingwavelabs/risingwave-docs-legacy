@@ -42,7 +42,7 @@ WITH (
 
 | Parameter Names       | Description |
 | --------------------- | ---------------------------------------------------------------------- |
-| `type`                | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key.|
+| `type`                | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key and [Upsert sinks](#upsert-sinks) on limitations.|
 | `primary_key`          | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the ClickHouse sink.|
 | `clickhouse.url`        | Required. Address of the ClickHouse server that you want to sink data to. Format: `ip:port`.|
 | `clickhouse.user`       | Required. User name for accessing the ClickHouse server. |
@@ -56,11 +56,17 @@ ClickHouse does not recommend using the `upsert`(`update` and `delete`) feature 
 
 :::
 
+### Upsert sinks
+
+While RisingWave supports `append-only` sinks for all Clickhouse engines, support for `upsert` sinks is limited. Additionally, for ReplacingMergeTree engines, an `append-only` sink will not insert duplicate data.
+
+We support creating `upsert` sinks for CollapsingMergeTree and VersionedCollapsingMergeTree engines. RisingWave will transform `DELETE` into `INSERT SIGN = 1`.
+
 ## Examples
 
 This section includes several examples that you can use if you want to quickly experiment with sinking data to ClickHouse.
 
-### Create an ClickHouse table (if you do not already have one)
+### Create a ClickHouse table (if you do not already have one)
 
 For example, let's consider creating a basic ClickHouse table with the primary key as `seq_id` and the ENGINE set to `ReplacingMergeTree`. It's important to emphasize that without using `ReplacingMergeTree` or other deduplication techniques, there is a significant risk of duplicate writes to ClickHouse.
 
@@ -138,7 +144,7 @@ WITH (
 
 ### Append-only sink from upsert source
 
-If you have an upsert source and want to create an append-only sink, set `type = append-only` and `force_append_only = true`. This will ignore delete messages in the upstream, and to turn upstream update messages into insert messages.
+If you have an upsert source and want to create an append-only sink, set `type = append-only` and `force_append_only = true`. This will ignore delete messages in the upstream, and turn upstream update messages into insert messages.
 
 ```sql
 CREATE SINKs1_sink FROM s1_source
