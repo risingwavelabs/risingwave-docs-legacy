@@ -50,7 +50,7 @@ Configure the properties below on the IdP platform:
 
   <details><summary>If you're using Okta, you can find the values here</summary>
 
-    1. Log in to your Okta account and navigate to the `Applications` section.
+    1. Log in to your Okta account and navigate to the **Applications** section.
   
     2. Select the SAML application you created for RisingWave Cloud.
 
