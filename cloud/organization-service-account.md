@@ -52,7 +52,7 @@ You can generate multiple API keys for a service account. Each API key will have
   alt="Generate API keys"
   />
 
-3. Click **Add new API key**.
+3. Click **Add new API Key**.
 
 4. Enter a descriptive name for your API key and click **Submit**.
 
