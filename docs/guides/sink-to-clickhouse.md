@@ -175,7 +175,7 @@ WITH (
 
 |RisingWave Data Type  | ClickHouse Data Type |
 |--------------------- |--------------------- |
-|bool                  | Bool                 |
+|boolean               | Bool                 |
 |smallint              | Int16                |
 |integer               | Int32                |
 |bigint                | Int64                |
