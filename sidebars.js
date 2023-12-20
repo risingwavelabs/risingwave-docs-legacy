@@ -212,6 +212,11 @@ const sidebars = {
                   label: "AutoMQ Kafka",
                   id: "ingest/ingest-from-automq-kafka",
                 },
+                {
+                  type: "doc",
+                  label: "Upstash Kafka",
+                  id: "ingest/ingest-from-upstash-kafka",
+                },
               ]
             },
             {
