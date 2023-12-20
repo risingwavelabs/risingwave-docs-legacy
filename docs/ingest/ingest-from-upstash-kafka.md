@@ -78,14 +78,14 @@ CREATE SOURCE wiki_source (
   edit_count VARCHAR
 )
 WITH(
-connector = 'kafka',
-topic = '<topic-name>', 
-properties.bootstrap.server = '<broker-url>', 
-scan.startup.mode = 'earliest', 
-properties.sasl.mechanism = 'SCRAM-SHA-512', 
-properties.security.protocol = 'SASL_SSL', 
-properties.sasl.username = '<your-username>', 
-properties.sasl.password = '<your-password>'
+  connector = 'kafka',
+  topic = '<topic-name>', 
+  properties.bootstrap.server = '<broker-url>', 
+  scan.startup.mode = 'earliest', 
+  properties.sasl.mechanism = 'SCRAM-SHA-512', 
+  properties.security.protocol = 'SASL_SSL', 
+  properties.sasl.username = '<your-username>', 
+  properties.sasl.password = '<your-password>'
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
