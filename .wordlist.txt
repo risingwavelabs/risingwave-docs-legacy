@@ -172,3 +172,4 @@ transactional
 OLAP
 ksqlDB
 backfilling
+GraphQL
