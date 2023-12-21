@@ -75,8 +75,8 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
 |ssl.endpoint.identification.algorithm | properties.ssl.endpoint.identification.algorithm | str |
 
-:::Note
-Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure.
+:::note
+Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
 :::
 
 ## Sink parameters
