@@ -126,7 +126,7 @@ For tables with primary key constraints, if a new data record with an existing k
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+|scan.startup.timestamp.millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
 |properties.sync.call.timeout | Optional. Specify the timeout. By default, the timeout is 5 seconds.  |
 |properties.client.id|Optional. Client ID associated with the Kafka client. |
 
@@ -178,7 +178,7 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
+   scan.startup.timestamp.millis='140000000'
 ) FORMAT PLAIN ENCODE AVRO (
    message = 'message_name',
    schema.registry = 'http://127.0.0.1:8081'
@@ -215,7 +215,7 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
+   scan.startup.timestamp.millis='140000000'
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
@@ -257,7 +257,7 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
+   scan.startup.timestamp.millis='140000000'
 ) FORMAT PLAIN ENCODE PROTOBUF (
    message = 'package.message_name',
    location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
