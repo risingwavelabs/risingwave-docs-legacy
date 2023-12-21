@@ -1,6 +1,6 @@
 ---
 id: alter-streaming
-title: Alter streaming jobs
+title: Alter a streaming job
 description: Update an existing streaming job.
 slug: /alter-streaming
 ---
