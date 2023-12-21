@@ -32,9 +32,10 @@ We periodically update this article to keep up with the rapidly evolving landsca
 |Typical use cases| Streaming ETL, streaming analytics | Streaming ETL, streaming analytics, online serving|
 
 <img
-src={require('./images/RisingWave vs Flink.jpg').default}
-alt="RisingWave vs Flink"
->
+  src={require('./images/stream_processing_with_and_without_rw.jpeg').default}
+  alt="Stream Processing With And Without RisingWave"
+/>
+
 
 ## Introduction
 
