@@ -34,6 +34,7 @@ Once you are logged in, create your Kafka cluster with the following details:
 <img
   src={require('../images/upstash-create-cluster.PNG').default}
   alt="Create a cluster"
+  width="430"
 />
 
 ### Set up a Kafka topic
@@ -43,6 +44,7 @@ After creating your Kafka cluster, set up a Kafka topic. Upstash Kafka provides 
 <img
   src={require('../images/upstash-create-topic.PNG').default}
   alt="Create a topic"
+  width="400"
 />
 
 ### Connect and interact with your Kafka cluster
