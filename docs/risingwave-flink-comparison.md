@@ -33,7 +33,7 @@ We periodically update this article to keep up with the rapidly evolving landsca
 
 <img
 src={require('./images/RisingWave vs Flink').default}
-  alt="RisingWave vs Flink"
+alt="RisingWave vs Flink"
 >
 
 ## Introduction
