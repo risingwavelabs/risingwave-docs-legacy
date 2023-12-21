@@ -118,6 +118,41 @@ concat_ws(',', 'Abcde', 2, NULL, 22) → 'Abcde,2,22'
 
 ---
 
+### `convert_from`
+
+This function converts a string to the database encoding. The original encoding is specified by `src_encoding name`. The string must be valid in this encoding.
+
+```bash title=Syntax
+convert_from(string bytea, src_encoding name)  →  text
+```
+
+```bash title=Examples
+convert_from('\x4346464558'::bytea, 'utf8')  →  'CFFEX'
+```
+
+:::note
+For this function, only encoding UTF8 is supported. RisingWave uses UTF8 encoding to store text, so all that is done here is just type conversion.
+:::
+---
+
+### `convert_to`
+
+This function converts a string to the encoding specified by `dest_encoding name` and returns a byte array.
+
+```bash title=Syntax
+convert_to(string text, dest_encoding name) → bytea
+```
+
+```bash title=Examples
+convert_to('Hello World', 'UTF8') → '\\x48656c6c6f20576f726c64'
+```
+
+:::note
+For this function, only encoding UTF8 is supported. RisingWave uses UTF8 encoding to store text, so all that is done here is just type conversion.
+:::
+
+---
+
 ### `decode`
 
 This function decodes the text data in the input string into binary data. Supported formats for the encoded input string include `base64`, `hex`, and `escape`.
