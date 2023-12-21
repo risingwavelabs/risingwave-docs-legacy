@@ -878,6 +878,10 @@ const sidebars = {
         },
         {
           type: 'doc',
+          id: 'manage/alter-streaming',
+        },
+        {
+          type: 'doc',
           id: 'manage/meta-backup',
         },
         {
