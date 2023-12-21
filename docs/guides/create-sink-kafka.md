@@ -125,8 +125,8 @@ When creating an append-only Protobuf sink, the following options can be used fo
 |message| Required. Message name of the main Message in the schema definition. . |
 |schema.location| Required. The schema location. This can be in either `file://`, `http://`, or `https://` format. |
 
-:::note Beta feature
-Specifying `schema.location` is currently in Beta. The `file://` format is not recommended for production use. If it is used, it needs to be available for both meta and compute nodes. Please contact us if you encounter any issues or have feedback.
+:::note
+The `file://` format is not recommended for production use. If it is used, it needs to be available for both meta and compute nodes.
 :::
 
 Syntax:
