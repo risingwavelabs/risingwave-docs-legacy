@@ -70,9 +70,9 @@ Given a table `adult_users` that tracks the number of users aged ≥ 18.
 
 ```sql
 CREATE MATERIALIZED VIEW adult_users AS
-	SELECT
-	  COUNT(*) as user_count
-	FROM users
+  SELECT
+    COUNT(*) as user_count
+  FROM users
   WHERE age >= 18;
 ```
 
