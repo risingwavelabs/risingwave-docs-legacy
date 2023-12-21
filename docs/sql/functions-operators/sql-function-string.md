@@ -131,7 +131,7 @@ convert_from('\x4346464558'::bytea, 'utf8')  →  'CFFEX'
 ```
 
 :::note
-For this function, only encoding UTF8 is supported. RisingWave uses UTF8 encoding to store text, so all that is done here is just type conversion.
+For this function, only encoding UTF8 is supported. RisingWave uses UTF8 encoding to store text, so this function primarily serves as a type conversion operation.
 :::
 ---
 
@@ -148,7 +148,7 @@ convert_to('Hello World', 'UTF8') → '\\x48656c6c6f20576f726c64'
 ```
 
 :::note
-For this function, only encoding UTF8 is supported. RisingWave uses UTF8 encoding to store text, so all that is done here is just type conversion.
+For this function, only encoding UTF8 is supported. RisingWave uses UTF8 encoding to store text, so this function primarily serves as a type conversion operation.
 :::
 
 ---
