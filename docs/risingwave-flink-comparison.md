@@ -32,7 +32,7 @@ We periodically update this article to keep up with the rapidly evolving landsca
 |Typical use cases| Streaming ETL, streaming analytics | Streaming ETL, streaming analytics, online serving|
 
 <img
-src={require('./images/RisingWave vs Flink').default}
+src={require('./images/RisingWave vs Flink.jpg').default}
 alt="RisingWave vs Flink"
 >
 
