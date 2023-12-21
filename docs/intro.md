@@ -58,6 +58,15 @@ Compared to existing stream processing systems like [Apache Flink](https://flink
   
   RisingWave's state management mechanism also allows it to recover from failure in seconds, not minutes or hours.
 
+## Key feature differences: RisingWave vs. Flink
+
+The diagram below shows the key feature differences between RisingWave and Flink.
+
+<img
+  src={require('./images/RisingWave vs Flink.jpg').default}
+  alt="RisingWave vs Flink"
+/>
+
 ## RisingWave's limitations
 
 RisingWave isn’t a panacea for all data engineering hurdles. It has its own set of limitations:
