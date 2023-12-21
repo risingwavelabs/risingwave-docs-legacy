@@ -1,7 +1,7 @@
 ---
-id: streaming-sql-cheatsheet-preview
-title: Streaming SQl cheat sheet preview
-slug: /streaming-sql-preview
+id: streaming-preview
+title: Streaming SQL cheat sheet preview
+slug: /streaming-preview
 ---
 
 ## Flink SQL Cheat Sheet
@@ -54,7 +54,7 @@ WITH (
 
 ### Create a table with a watermark column
 
-Watermark marks a specific point in a data stream, ensuring that all events up to that point have been received.
+A watermark marks a specific point in a data stream, ensuring that all events up to that point have been received.
 
 ```sql
 CREATE TABLE my_event_table (
@@ -266,7 +266,7 @@ FORMAT UPSERT ENCODE AVRO (
 ALTER TABLE my_event_table ADD COLUMN new_field INT;
 ```
 
-### Ingest a batch of values into table
+### Ingest a batch of values into a table
 
 ```sql
 INSERT INTO my_table (column1, column2, column3)
@@ -275,11 +275,11 @@ VALUES
 FLUSH;
 ```
 
-The FLUSH command ensures the data committed completely.
+The FLUSH command ensures the data is committed completely.
 
 ## DATA TRANSFORMATION
 
-Your transformation logic should be expressed in the definition of materialized views, so that you can
+Your transformation logic should be expressed in the definition of materialized views so that you can
 query the latest results from time to time. If you want to use RisingWave for pure streaming ETL and there is
 no need to query the results, your transformation logic can be expressed in the definition of sinks (`CREATE SINK AS SELECT...`).
 
@@ -339,7 +339,7 @@ GROUP BY
 
 ### HOP time window function
 
-Hoppping windows allow for overlapping intervals of time. There are two intervals to specify in the `HOP()` function.
+Hopping windows allow for overlapping intervals of time. There are two intervals to specify in the `HOP()` function.
 The first is the size of the hop, which is how often you want a new window to start.
 The second is the size of the window, which is how long each window lasts.
 
@@ -366,7 +366,7 @@ In RisingWave, the ability to create materialized views atop existing materializ
 
 ### Watermark and Emit-On-Window-Close (EOWC)
 
-The following example emits total orders per minute at 5-minute intervals. This optimization allows the materialized view to maintain the append-only semantic, which can improve efficiency particularly for downstreams that prefer append-only writes, such as S3 sink.
+The following example emits total orders per minute at 5-minute intervals. This optimization allows the materialized view to maintain the append-only semantic, which can improve efficiency particularly for downstream systems that prefer append-only writes, such as S3 sink.
 
 ```sql
 CREATE SOURCE orders (
