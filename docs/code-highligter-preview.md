@@ -2,7 +2,6 @@
 id: streaming-sql-cheatsheet-preview
 title: Streaming SQl cheat sheet preview
 slug: /streaming-sql-preview
-keywords: [streaming database, risingwave, introduction]
 ---
 
 ## Flink SQL Cheat Sheet
