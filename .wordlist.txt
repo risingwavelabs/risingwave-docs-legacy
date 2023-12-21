@@ -172,3 +172,14 @@ transactional
 OLAP
 ksqlDB
 backfilling
+UNNEST
+TTL
+middleware
+schemas
+unnesting
+cumulate
+CUMULATE
+deduplication
+EOWC
+jsonb
+setof
