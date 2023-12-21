@@ -126,7 +126,7 @@ When creating an append-only Protobuf sink, the following options can be used fo
 |schema.location| Required. The schema location. This can be in either `file://`, `http://`, or `https://` format. |
 
 :::note Beta feature
-Specifying `schema.location` in `http://` or `https://` format is currently in Beta. Please contact us if you encounter any issues or have feedback.
+Specifying `schema.location` is currently in Beta. The `file://` format is not recommended for production use. If it is used, it needs to be available for both meta and compute nodes. Please contact us if you encounter any issues or have feedback.
 :::
 
 Syntax:
