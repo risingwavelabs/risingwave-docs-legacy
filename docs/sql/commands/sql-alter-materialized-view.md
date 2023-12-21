@@ -8,7 +8,11 @@ slug: /sql-alter-materialized-view
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-materialized-view/" />
 </head>
 
-The `ALTER MATERIALIZED VIEW` command modifies the definition of a materialized view. To use this command, you must own the materialized view.
+The `ALTER MATERIALIZED VIEW` command modifies the metadata of a materialized view. To use this command, you must own the materialized view.
+
+:::info
+To modify the SQL definition of a materialized view, please refer to [Alter a streaming job](/manage/alter-streaming.md).
+:::
 
 ## Syntax
 
