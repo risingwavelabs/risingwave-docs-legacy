@@ -377,7 +377,7 @@ To create a Kafka source with a VPC connection, in the WITH section of your `CRE
 |Parameter| Notes|
 |---|---|
 |`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
-|`privatelink.endpoint`|The DNS name of the VPC endpoint. <br/> If you're using RisingWave Cloud, you can find the auto-generated endpoint after you created a connection. See details in [Create a VPC connection](/cloud/vpc-create-a-connection.md#whats-next).|
+|`privatelink.endpoint`|The DNS name of the VPC endpoint. <br/> If you're using RisingWave Cloud, you can find the auto-generated endpoint after you created a connection. See details in [Create a VPC connection](/cloud/create-a-connection#whats-next).|
 |`connection.name`| The name of the connection. <br/> This parameter should only be included if you are using a connection created with the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) statement. Omit this parameter if you have provisioned a VPC endpoint using `privatelink.endpoint` (recommended).|
 
 Here is an example of creating a Kafka source using a PrivateLink connection. Notice that `{"port": 9094}` corresponds to the broker `broker1-endpoint`, `{"port": 9095}` corresponds to the broker `broker2-endpoint`, and `{"port": 9096}` corresponds to the broker `broker3-endpoint`.
