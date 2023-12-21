@@ -32,7 +32,7 @@ Once you are logged in, create your Kafka cluster with the following details:
 - **Cluster Type**: Select the cluster type that suits your needs.
 
 <img
-  src={require('../images/upstash-create-cluster.png').default}
+  src={require('../images/upstash-create-cluster.PNG').default}
   alt="Create a cluster"
 />
 
@@ -41,7 +41,7 @@ Once you are logged in, create your Kafka cluster with the following details:
 After creating your Kafka cluster, set up a Kafka topic. Upstash Kafka provides default configurations for the number of partitions and retention policy, simplifying the setup process.
 
 <img
-  src={require('../images/upstash-create-topic.png').default}
+  src={require('../images/upstash-create-topic.PNG').default}
   alt="Create a topic"
 />
 
@@ -50,7 +50,7 @@ After creating your Kafka cluster, set up a Kafka topic. Upstash Kafka provides 
 You are now ready to connect to your Kafka cluster using various Kafka clients. These clients enable you to both produce and consume data from your Kafka topic. Therefore, you can extract real-time data from the Python Wikipedia API and feed it into a Kafka topic in Upstash.
 
 <img
-  src={require('../images/upstash-connect-interact.png').default}
+  src={require('../images/upstash-connect-interact.PNG').default}
   alt="Connect and interact with your Kafka cluster"
 />
 
