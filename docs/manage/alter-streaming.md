@@ -53,7 +53,7 @@ CREATE MATERIALIZED VIEW mv1_new AS
 After the new materialized view is created, we can drop the old materialized view `mv1` and rename `mv1_new` to `mv1`:
 
 ```sql
-DROP SINK mv1;
+DROP MATERIALIZED VIEW mv1;
 ALTER MATERIALIZED VIEW mv1_new RENAME TO mv1;
 ```
 
