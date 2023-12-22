@@ -195,3 +195,90 @@ SELECT * FROM series(10);
 8
 9
 ```
+
+## 6. Scale the UDF Server
+
+Due to the limitations of the Python interpreter's [Global Interpreter Lock (GIL)](https://realpython.com/python-gil/), the UDF server can only utilize a single CPU core when processing requests. If you find that the throughput of the UDF server is insufficient, consider scaling up the UDF server.
+
+:::info
+How to determine if the UDF server needs scaling?
+
+You can use tools like `top` to monitor the CPU usage of the UDF server. If the CPU usage is close to 100%, it indicates that the CPU resources of the UDF server are insufficient, and scaling is necessary.
+:::
+
+To scale the UDF server, you can launch multiple UDF servers on different ports and use a load balancer to distribute requests among these servers.
+
+First, you can use the `multiprocessing` module to start multiple UDF servers on different ports. The specific code is as follows:
+
+```python title="udf.py"
+from multiprocessing import Pool
+
+def start_server(port: int):
+    """Start a UDF server listening on the specified port."""
+    server = UdfServer(location=f"localhost:{port}")
+    # add functions ...
+    server.serve()
+
+if __name__ == "__main__":
+    """Start multiple servers listening on different ports."""
+    n = 4
+    with Pool(n) as p:
+        p.map(start_server, range(8816, 8816 + n))
+```
+
+Then, you can use a load balancer like Nginx to distribute requests to different UDF servers.
+
+<details>
+<summary>How to install Nginx?</summary>
+
+```shell
+# On Ubuntu
+sudo apt install nginx
+# On macOS
+brew install nginx
+```
+</details>
+
+Modify the Nginx configuration file to specify the addresses of the UDF servers and the port for the proxy service. The specific configuration is as follows:
+
+```conf title="nginx.conf"
+http {
+    upstream udf_servers {
+        # List the addresses of the UDF servers here
+        server localhost:8816;
+        server localhost:8817;
+        server localhost:8818;
+        server localhost:8819;
+    }
+
+    server {
+        # Specify the port on which the load balancer listens
+        # This should match the link address specified in the CREATE FUNCTION statement.
+        listen 8815 http2;
+
+        location / {
+            grpc_pass grpc://udf_servers;
+        }
+    }
+}
+```
+
+<details>
+<summary>Where is the Nginx configuration file?</summary>
+
+```text
+# On Ubuntu
+/etc/nginx/nginx.conf
+# On macOS
+/opt/homebrew/etc/nginx/nginx.conf
+```
+</details>
+
+After modifying the configuration file, you need to restart the Nginx service to apply the new settings:
+
+```shell
+# On Ubuntu
+sudo nginx -s reload
+# On macOS
+brew services restart nginx
+```
