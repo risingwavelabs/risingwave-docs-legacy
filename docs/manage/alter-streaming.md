@@ -8,7 +8,7 @@ slug: /alter-streaming
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/alter-streaming/" />
 </head>
 
-This document covers the mechanisms for altering logic within streaming pipelines in RisingWave. Understanding these mechanisms is crucial for managing and evolving your data processing workflows.
+This document explains how to modify the logic in streaming pipelines within RisingWave. Understanding these mechanisms is essential for effectively managing your data processing workflows.
 
 
 ## Alter a table or source
