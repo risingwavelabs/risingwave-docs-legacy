@@ -25,7 +25,7 @@ The new column will be `NULL` for existing records.
 
 ## Alter a materialized view
 
-To alter a materialized view, you will need to create the new materialized view and drop the old materialized view. 
+To alter a materialized view, you need to create a new materialized view and drop the existing one. 
 
 For example, suppose we want to add a new column to the materialized view `mv1`:
     
