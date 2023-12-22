@@ -62,7 +62,7 @@ If your sink is created based on a materialized view using the CREATE SINK ... F
 CREATE SINK ... FROM ... WITH (without_backfill = true).
 ```
 
-## Why I cannot modify a streaming job in place?
+## Why is it not possible to modify a streaming job in place?
 
 Streaming systems like RisingWave need to maintain **internal state** for streaming operators, such as joins and aggregations. Generally, modifying a materialized view would require consistent changes to the internal state accordingly, which is not always feasible. Let’s see an example.
 
