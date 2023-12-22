@@ -31,6 +31,11 @@ We periodically update this article to keep up with the rapidly evolving landsca
 | Performance cost| High | Low |
 |Typical use cases| Streaming ETL, streaming analytics | Streaming ETL, streaming analytics, online serving|
 
+<img
+  src={require('./images/RisingWave vs Flink.jpg').default}
+  alt="RisingWave vs Flink"
+/>
+
 ## Introduction
 
 *Apache Flink is a distributed stream processing framework; RisingWave is a distributed SQL streaming database.*
