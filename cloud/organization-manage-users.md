@@ -24,7 +24,7 @@ alt="Invitations"
 
 **Steps:**
 
-1. Go to the [**Org.**](https://cloud.risingwave.com/organization/) tab and select **Invitations**.
+1. Go to the [**Org.**](https://cloud.risingwave.com/organization/) tab and select **Invitations** or **Users**.
 
 2. Click **Invite new user**.
 
