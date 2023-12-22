@@ -12,10 +12,6 @@ RisingWave supports ingesting change data capture (CDC) data from Citus database
 
 Citus database is an extension to PostgreSQL that transforms PostgreSQL into a distributed database. For more details, see [Citus data](https://www.citusdata.com).
 
-:::note Beta Feature
-Ingesting CDC data from Citus database is currently in Beta. Please contact us if you encounter any issues or have feedback.
-:::
-
 ## Set up Citus
 
 1. Create a `superuser` role in the Citus cluster.

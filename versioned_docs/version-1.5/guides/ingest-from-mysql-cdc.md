@@ -18,10 +18,6 @@ You can ingest CDC data from MySQL in two ways:
 
   With this connector, RisingWave can connect to MySQL databases directly to obtain data from the binlog without starting additional services.
 
-  :::note Beta feature
-  The built-in MySQL CDC connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
-  :::
-
 - Using a CDC tool and a message broker
 
   You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave.
@@ -181,7 +177,7 @@ All the fields listed below are required.
 |database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| Optional. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
-|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table are currently in Beta. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 ### Data format
 
