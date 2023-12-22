@@ -64,7 +64,7 @@ CREATE SINK ... FROM ... WITH (without_backfill = true).
 
 ## Why I cannot modify a streaming job in place?
 
-Streaming systems like RisingWave need to maintain **internal state** for streaming operators, such as joins and aggregations. Generally, modifying a materialized view would require consistent changes to the internal state accordingly, which is not always feasible. Let’s take the example below to illustrate it.
+Streaming systems like RisingWave need to maintain **internal state** for streaming operators, such as joins and aggregations. Generally, modifying a materialized view would require consistent changes to the internal state accordingly, which is not always feasible. Let’s see an example.
 
 Given a table `adult_users` that tracks the number of users aged ≥ 18. 
 
