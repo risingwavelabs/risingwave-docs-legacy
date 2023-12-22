@@ -198,7 +198,7 @@ SELECT * FROM series(10);
 
 ## 6. Scale the UDF Server
 
-Due to the limitations of the Python interpreter's [Global Interpreter Lock (GIL)](https://realpython.com/python-gil/), the UDF server can only utilize a single CPU core when processing requests. If you find that the throughput of the UDF server is insufficient, consider scaling up the UDF server.
+Due to the limitations of the Python interpreter's [Global Interpreter Lock (GIL)](https://realpython.com/python-gil/), the UDF server can only utilize a single CPU core when processing requests. If you find that the throughput of the UDF server is insufficient, consider scaling out the UDF server.
 
 :::info
 How to determine if the UDF server needs scaling?
