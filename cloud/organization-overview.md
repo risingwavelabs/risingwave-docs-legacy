@@ -11,7 +11,7 @@ In RisingWave Cloud, an organization serves as the central entity that owns all 
 
 In an organization, you can:
 
-- Share clusters, databases (and their tables, sources, sinks, and views), VPC connection, and other resources with all users.
+- Share clusters, databases (and their tables, sources, sinks, and views), VPC connections, and other resources with all users.
 
 - Allow users to manage the resources.
 
