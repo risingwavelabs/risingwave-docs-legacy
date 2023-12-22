@@ -49,7 +49,7 @@ After the new materialized view is created, we can drop the old materialized vie
 
 ```sql
 DROP SINK mv1;
-ALTER SINK mv1_new RENAME TO mv1;
+ALTER MATERIALIZED VIEW mv1_new RENAME TO mv1;
 ```
 
 ## Alter a sink
