@@ -56,7 +56,7 @@ ALTER MATERIALIZED VIEW mv1_new RENAME TO mv1;
 
 To alter a sink, you will need to create a new sink and drop the old sink. Please check the example from the last section.
 
-Specifically, if your sink is created based on a materialized view i.e. created with `CREATE SINK ... FROM ...` statement, you may optionally specify `without_backfill = true` to skip the existing data.
+If your sink is created based on a materialized view using the CREATE SINK ... FROM ... statement, you have the option to specify `without_backfill = true` to exclude existing data.
 
 ```sql
 CREATE SINK ... FROM ... WITH (without_backfill = true).
