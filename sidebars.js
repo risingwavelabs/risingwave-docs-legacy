@@ -212,6 +212,11 @@ const sidebars = {
                   label: "AutoMQ Kafka",
                   id: "ingest/ingest-from-automq-kafka",
                 },
+                {
+                  type: "doc",
+                  label: "Upstash Kafka",
+                  id: "ingest/ingest-from-upstash-kafka",
+                },
               ]
             },
             {
@@ -875,6 +880,10 @@ const sidebars = {
         {
           type: 'doc',
           id: 'manage/view-configure-runtime-parameters',
+        },
+        {
+          type: 'doc',
+          id: 'manage/alter-streaming',
         },
         {
           type: 'doc',

@@ -198,6 +198,34 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Organization",
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          id: "organization-overview",
+          label: "Overview",
+        },
+        {
+          type: "doc",
+          id: "organization-manage-users",
+          label: "Invite and manage users",
+        },
+        {
+          type: "doc",
+          id: "organization-sso",
+          label: "Single Sign-On (SSO)",
+        },
+        // {
+        //   type: "doc",
+        //   id: "organization-service-account",
+        //   label: "Service account & API key",
+        // },
+      ],
+    },
+    {
+      type: "category",
       label: "Account",
       collapsible: false,
       collapsed: false,
