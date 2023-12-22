@@ -215,7 +215,7 @@ module.exports = {
         {
           type: "doc",
           id: "organization-sso",
-          label: "Single Sing-On (SSO)",
+          label: "Single Sign-On (SSO)",
         },
         // {
         //   type: "doc",
