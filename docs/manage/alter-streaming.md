@@ -30,7 +30,12 @@ To alter a materialized view, you need to create a new materialized view and dro
 For example, suppose we want to add a new column to the materialized view `mv1`:
     
 ```sql
-ALTER TABLE customers ADD COLUMN birth_date;
+CREATE MATERIALIZED VIEW mv1 AS
+    SELECT
+        customer_id,
+        SUM(total_price) AS sales_amount,
+    FROM test_source
+    GROUP BY customer_id;
 ```
 
 Here we create a new materialized view `mv1_new` with the new column `sales_count`:
