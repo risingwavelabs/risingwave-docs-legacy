@@ -39,7 +39,7 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 :::
 
-## Basic Parameters
+## Basic parameters
 
 All `WITH` options are required unless explicitly mentioned as optional.
 
