@@ -878,12 +878,20 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/meta-backup',
+          id: 'manage/configure-node-specific-parameters',
+        },
+        {
+          type: 'doc',
+          id: 'manage/node-specific-parameters',
         },
         {
           type: "doc",
           id: "manage/dedicated-compute-node",
           label: "Set up a dedicated compute node",
+        },
+        {
+          type: 'doc',
+          id: 'manage/meta-backup',
         },
         {
           type: "doc",
