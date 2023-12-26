@@ -13,12 +13,6 @@ Transactions in databases refer to logical units of work that consist of one or 
 
 RisingWave supports read-only transactions, where all reads within a transaction are executed against the consistent Hummock snapshot. Hummock is the LSM-Tree-based storage engine in RisingWave that is specifically optimized for streaming workloads.
 
-:::note Beta Feature
-
-Read-only transactions are currently in Beta. Please contact us if you encounter any issues or have feedback.
-
-:::
-
 To initiate a transaction, use either the `START TRANSACTION READ ONLY` or `BEGIN READ ONLY` command. Subsequently, you can execute queries to read data from the consistent snapshot. To finalize the transaction and submit the queries as a single unit, use the `COMMIT` command.
 
 Please note that data modifications are not allowed while a transaction is initiated but not yet committed. The statements listed below are not allowed within a transaction:
@@ -30,12 +24,6 @@ Please note that data modifications are not allowed while a transaction is initi
 
 ## Transactions within a CDC table
 
-RisingWave supports transactions within a CDC table as a Beta feature. When you create a table to ingest CDC streams, you can enable this feature by setting `transactional` to `true` in the WITH clause of the `CREATE TABLE` statement. Note that this feature is only available if you are using the native [MySQL CDC](/guides/ingest-from-mysql-cdc.md), [PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md), or [Citus CDC](/guides/ingest-from-citus-cdc.md) connectors.
+When you create a table to ingest CDC streams, you can enable this feature by setting `transactional` to `true` in the WITH clause of the `CREATE TABLE` statement. Note that this feature is only available if you are using the native [MySQL CDC](/guides/ingest-from-mysql-cdc.md), [PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md), or [Citus CDC](/guides/ingest-from-citus-cdc.md) connectors.
 
 For performance considerations, transactions involving changes to more than 4096 rows cannot be guaranteed.
-
-:::note Beta Feature
-
-Transactions within a CDC table are currently in Beta. Please contact us if you encounter any issues or have feedback.
-
-:::

@@ -8,7 +8,11 @@ slug: /sql-alter-sink
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-sink/" />
 </head>
 
-The `ALTER SINK` command modifies the definition of a sink.
+The `ALTER SINK` command modifies the metadata of a sink.
+
+:::info
+To modify the SQL definition of a sink, please refer to [Alter a streaming job](/manage/alter-streaming.md).
+:::
 
 ## Syntax
 

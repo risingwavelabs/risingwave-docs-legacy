@@ -883,6 +883,10 @@ const sidebars = {
         },
         {
           type: 'doc',
+          id: 'manage/alter-streaming',
+        },
+        {
+          type: 'doc',
           id: 'manage/meta-backup',
         },
         {
@@ -898,9 +902,24 @@ const sidebars = {
       ]
     },
     {
-      type: "doc",
+      type: "category",
       label: "Optimize performance",
-      id: "performance/optimize-performance"
+      collapsible: true,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          id: "performance/faq"
+        },
+        {
+          type: "doc",
+          id: "performance/performance-metrics"
+        },
+        {
+          type: "doc",
+          id: "performance/best-practices"
+        },
+      ]
     },
     {
       type: "category",
