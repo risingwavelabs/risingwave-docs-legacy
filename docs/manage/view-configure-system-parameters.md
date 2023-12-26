@@ -12,7 +12,7 @@ slug: /view-configure-system-parameters
 
 System parameters in RisingWave refer to the parameters that advanced users can use to adjust how internal components work in RisingWave.
 
-Currently, these system parameters are availble in RisingWave.
+Currently, these system parameters are available in RisingWave.
 
 | Parameter           |    Description    |
 |---|---|
@@ -81,6 +81,6 @@ For example, to initialize the setting of `data_directory`:
 
 :::note
 
-As RisingWave reads system parameters at different times, there is no guarantee that a parameter value change takes effect immediately. We recommend that you adjust system parameters before running a streaming query after your RisingWave cluster starts.
+As RisingWave reads system parameters at different times, there is no guarantee that a parameter value change will take effect immediately. We recommend that you adjust system parameters before running a streaming query after your RisingWave cluster starts.
 
 :::
