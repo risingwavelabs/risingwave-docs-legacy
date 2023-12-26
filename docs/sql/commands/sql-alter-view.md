@@ -8,7 +8,7 @@ slug: /sql-alter-view
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-view/" />
 </head>
 
-The `ALTER VIEW` command modifies the definition of a view. To use this command, you must own the view.
+The `ALTER VIEW` command modifies the metadata of a view. To use this command, you must own the view.
 
 ## Syntax
 

@@ -12,12 +12,6 @@ RisingWave supports read-only transactions. You can use the `COMMIT` command to 
 
 You can start a read-only transaction by using the `BEGIN READ ONLY` or `START TRANSACTION READ ONLY` command.
 
-:::note Beta Feature
-
-Read-only transactions are currently in Beta. Please contact us if you encounter any issues or have feedback.
-
-:::
-
 ## Syntax
 
 ```sql
