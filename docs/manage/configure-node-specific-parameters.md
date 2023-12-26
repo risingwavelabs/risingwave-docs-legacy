@@ -10,15 +10,45 @@ slug: /configure-node-specific-parameters
 
 In RisingWave, certain parameters are node-specific and can vary between different nodes. These parameters are typically stored in a TOML configuration file, which is read at system startup.
 
-## Configuring node-specific parameters
+## Setting up node-specific parameters
 
-There are two ways to specify the path to the TOML configuration file:
+Node-specific parameters can be configured in the `risingwave.toml` configuration file. Here's the steps on how to set them up:
 
-- Use the `--config-path` command-line argument when starting the compute node.
+1. Create or locate your `risingwave.toml` file.
+   
+   This file will contain all your node-specific configurations. If it doesn't exist, create a new one.
 
-- Set the `RW_CONFIG_PATH` environment variable.
+2. Edit the `risingwave.toml` file.
+   
+   Open the file in a text editor. Each parameter should be specified in the format `parameter_name = value`. For example:
 
-For example, in a Kubernetes environment, you can copy the configuration file into the Docker container, or mount a path containing the configuration file into the pod. Then, specify the path to the configuration file using the `RW_CONFIG_PATH` environment variable or the `--config-path` command-line argument.
+    ```toml
+    [storage.data_file_cache]
+    dir = "/risingwave/foyer/meta"
+    capacity_mb = 20480
+    ```
+
+3. Save your changes.
+   
+   After editing, save the `risingwave.toml` file.
+
+4. Provide the configuration file to the node.
+   
+   You can do this via the `--config-path` command-line argument when starting the node. For example:
+
+   ```shell
+   risingwave --config-path=/path/to/risingwave.toml
+   ```
+
+   Alternatively, you can set the `RW_CONFIG_PATH` environment variable to the path of your `risingwave.toml` file.
+
+   For example, in a Kubernetes environment, you can copy the configuration file into the Docker container, or mount a path containing the configuration file into the pod. Then, specify the path to the configuration file using the `RW_CONFIG_PATH` environment variable or the `--config-path` command-line argument.
+
+5. Restart the node.
+   
+   For the changes to take effect, you may need to restart the node.
+
+Any items present in `risingwave.toml` will override the default values in the source code. If no configuration file is specified, the default values in `/risingwave/src/common/src/config.rs` will be used.
 
 ## Node-specific parameters
 
