@@ -16,7 +16,7 @@ When launching a compute node, its role can be specified via either the `--role`
 
 You need to restart the node to update the role. A role can be one of:
 
-- `both`: The default role is not specified. Indicates that the compute node is available for both streaming and serving.
+- `both`: The default role, if not specified. Indicates that the compute node is available for both streaming and serving.
 - `serving`: Indicates that the compute node is read-only and executes batch queries only.
 - `streaming`: Indicates that the compute node is only available for streaming.
 
