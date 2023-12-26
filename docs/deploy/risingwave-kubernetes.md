@@ -189,9 +189,9 @@ If you intend to customize a resource file, download the file to a local path an
 curl https://raw.githubusercontent.com/risingwavelabs/risingwave-operator/main/docs/manifests/<sub-directory> -o risingwave.yaml
 ```
 
-You can also create your own resoure file from scratch if you are familar with Kubernetes resource files.
+You can also create your own resource file from scratch if you are familiar with Kubernetes resource files.
 
-And then, apply the resource file by using the following command:
+Then, apply the resource file by using the following command:
 
  ```shell
 kubectl apply -f a.yaml      # relative path
