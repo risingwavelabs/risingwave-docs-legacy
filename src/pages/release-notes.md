@@ -31,6 +31,8 @@ This version was released on December 11, 2023.
   - Supports `to_jsonb`. [#13161](https://github.com/risingwavelabs/risingwave/pull/13161). See [JSON functions and operators](/docs/current/sql-function-json).
   - Supports JSON path operators and functions. [#13568](https://github.com/risingwavelabs/risingwave/pull/13568). See [JSON functions and operators](/docs/current/sql-function-json).
   - Supports array operators `@>` and `<@`. [#13253](https://github.com/risingwavelabs/risingwave/pull/13253). See [Array functions and operators](/docs/current/sql-function-array).
+  - Fixes the correctness of case expressions. Previously if there were multiple matching values, the last one would match. [#13890](https://github.com/risingwavelabs/risingwave/pull/13890). **The fix introduces a breaking change**. It is recommended to drop and recreate any materialized views that contain `CASE` expressions.
+    If your instance enters a crash-loop, we suggest upgrading to v1.5.2, and dropping the corresponding materialized view that contains `CASE` expressions.
 - System catalog
   - Adds columns `rw_version`, `total_memory_bytes`, `total_cpu_cores`, and `started_at`, and all nodes in system table `rw_worker_nodes`. [#13487](https://github.com/risingwavelabs/risingwave/pull/13487).
   - Adds system table `rw_internal_tables`. [#13272](https://github.com/risingwavelabs/risingwave/pull/13272). See [RisingWave catalogs](/docs/current/rw_catalog/).

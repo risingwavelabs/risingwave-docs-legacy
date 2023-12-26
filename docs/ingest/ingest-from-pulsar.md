@@ -116,7 +116,7 @@ For a table with primary key constraints, if a new data record with an existing 
 |topic |Required. Address of the Pulsar topic. One source can only correspond to one topic.|
 |service.url| Required. Address of the Pulsar service. |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis.| Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
+|scan.startup.timestamp.millis.| Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
 |auth.token | Optional. A token for auth. If both `auth.token` and `oauth` are set, only `oauth` authorization is effective.|
 |oauth.issuer.url | Conditional. The issuer url for OAuth2. This field must be filled if other `oauth` fields are specified. |
 |oauth.credentials.url | Conditional. The path for credential files, starts with `file://`. This field must be filled if other `oauth` fields are specified.|
@@ -176,7 +176,7 @@ WITH (
    access_key='access_key',
    secret_access='secret_access',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
+   scan.startup.timestamp.millis='140000000'
 ) FORMAT PLAIN ENCODE AVRO (
    message = 'message',
    schema.location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.avsc'
@@ -201,7 +201,7 @@ WITH (
    access_key='access_key',
    secret_access='secret_access',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
+   scan.startup.timestamp.millis='140000000'
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
@@ -223,7 +223,7 @@ WITH (
    access_key='access_key',
    secret_access='secret_access',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
+   scan.startup.timestamp.millis='140000000'
 ) FORMAT PLAIN ENCODE PROTOBUF (
    message = 'package.message_name',
    schema.location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
