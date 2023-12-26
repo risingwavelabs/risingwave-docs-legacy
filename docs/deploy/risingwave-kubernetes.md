@@ -309,7 +309,6 @@ spec:
 <TabItem value="azure-blob" label="Azure Blob Storage">
 
 ```yaml
-Explain
 spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
