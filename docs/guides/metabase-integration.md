@@ -45,3 +45,14 @@ alt="Fill in the Connection Details"
 
 Once connected, you will see the RisingWave database available in Metabase. You can now build dashboards, charts, and graphs on top of the real-time data in RisingWave.
 
+<img
+src={require('../images/save-the-connection.png').default}
+alt="Save the Connection"
+/>
+
+It should be noted that Metabase's minimum auto-refresh is 1 minute, while RisingWave typically delivers a second-level of data freshness. As a workaround, you can append `#refresh=5` to the URL, such as `http://127.0.0.1:3000/dashboard/1-jaffle-shop#refresh=5`, thus setting the refresh interval to 5 seconds.
+
+<img
+src={require('../images/auto-refresh.png').default}
+alt="Auto Refresh"
+/>
