@@ -176,9 +176,9 @@ WITH (
 |RisingWave Data Type  | ClickHouse Data Type |
 |--------------------- |--------------------- |
 |boolean               | Bool                 |
-|smallint              | Int16                |
-|integer               | Int32                |
-|bigint                | Int64                |
+|smallint              | Int16 or UInt16      |
+|integer               | Int32 or UInt32      |
+|bigint                | Int64 or UInt64      |
 |real                  | Float32              |
 |double precision      | Float64              |
 |decimal               | Decimal              |
@@ -198,3 +198,10 @@ WITH (
 In ClickHouse, the `Nested` data type doesn't support multiple levels of nesting. Therefore, when sinking RisingWave's `struct` data to ClickHouse, you need to flatten or restructure the nested data to align with ClickHouse's requirement.
 
 :::
+
+Please be aware that the range of specific values varies among ClickHouse types and RisingWave types. Refer to the table below for detailed information.
+
+| ClickHouse type | RisingWave type | ClickHouse range | RisingWave range |
+| --- | --- | --- | --- |
+| Date32 | DATE | `1900-01-01` to `2299-12-31` | `0001-01-01` to `9999-12-31` |
+| DateTime64 | TIMESTAMPTZ | `1900-01-01 00:00:00` to `2299-12-31 23:59:59.99999999` | `0001-01-01 00:00:00` to `9999-12-31 23:59:59` |
