@@ -875,7 +875,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/manage/alter-streaming',
+          id: 'manage/alter-streaming',
         },
         {
           type: "doc",
