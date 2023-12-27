@@ -1,6 +1,6 @@
 ---
 id: data-ingestion-dml
-title: Data ingestion with DML
+title: Ingesting data with DML
 description: RisingWave supports ingesting data using DML (Data Manipulation Language) operations such as INSERT, UPDATE, and DELETE. This document provides an overview of how to use DML for data ingestion and the best practices to follow.
 slug: /data-ingestion-dml
 ---
@@ -14,29 +14,68 @@ RisingWave supports ingesting data using DML (Data Manipulation Language) operat
 
 DML operations can be used for data ingestion in RisingWave in the following ways:
 
-- **INSERT**: To add new data to a normal table (i.e. table without connector settings) in RisingWave.
-- **UPDATE**: To modify existing data in a normal table in RisingWave.
-- **DELETE**: To remove data from a normal table in RisingWave.
+- **INSERT**: To add new data to a table.
 
-## Best practices for using DML for data ingestion
+- **UPDATE**: To modify existing data in a table. Remember that updates are not processed for sources and append-only tables.
 
-When using DML for data ingestion, consider the following best practices:
-
-1. **Batch operations**: Group together multiple DML operations to improve performance.
-2. **Use prepared statements**: If the same DML operation is executed multiple times, use a prepared statement to improve performance.
-3. **Error handling**: Include error handling in your DML operations to handle any issues that might occur during data ingestion.
-4. **Use transactions**: Group together DML operations that need to be executed together into a transaction to maintain data integrity.
-5. **Consider indexes**: If the ingested data is frequently queried, consider creating indexes on the queried columns to improve query performance.
-6. **Monitor performance**: Regularly monitor the performance of your DML operations and make adjustments as necessary.
+- **DELETE**: To remove data from a table. Note that deletes are not processed for sources and append-only tables.
 
 ## Common use cases for using DML for data ingestion
 
 DML operations can be used for data ingestion in RisingWave in the following scenarios:
 
-1. **Data correction**: Use UPDATE to correct errors in the ingested data.
-2. **Data deletion**: Use DELETE to remove data that should not have been ingested.
-3. **Data insertion**: Use INSERT to add additional data to RisingWave, especially when adding small amounts of data.
-4. **Data transformation**: Use DML operations to transform the data in RisingWave.
-5. **Testing and development**: During testing and development, use DML operations to insert test data into RisingWave.
+- **Data correction**
 
-Remember, these are general use cases and might need to be adjusted based on your specific needs and data.
+  If there are errors in the data ingested into RisingWave, you can use DML statements to correct these errors. For example, you can use an UPDATE statement to correct inaccurate data. However, remember that updates and deletes are not processed for sources and append-only tables in RisingWave. More details can be found here(create-source).
+
+- **Data deletion**
+
+  If some data should not have been ingested into RisingWave, you can use a DELETE statement to remove this data. Again, note that deletes are not processed for sources and append-only tables.
+
+- **Data insertion**
+
+  If you need to add additional data to RisingWave, you can use an INSERT statement. This is particularly useful for adding small amounts of data without needing to create a new data source. However, for large amounts of data, consider creating a source or declaring append only on a table, as discussed in the best practices.
+
+- **Data transformation**
+
+  You can use DML statements to transform the data in RisingWave. For example, you can use an UPDATE statement to change the format of a date column. Remember to create indexes on the columns used in the select statement and the where condition to optimize the performance of these transformations.
+
+- **Testing and development**
+
+  During testing and development, it's often easier to use DML statements to insert test data into RisingWave rather than setting up data sources. However, be mindful of the resources allocated to each query, as discussed in the FAQ.
+
+## Best practices for using DML for data ingestion
+
+When using DML for data ingestion, consider the following best practices:
+
+- **Use DML for small amounts of data**
+
+  For large amounts of data, consider creating a source or declaring `append-only` on a table. See details in [When to create a source or declare append only on a table?](1234567890docs.risingwave.com).
+
+- **Choosing between Source, Table, and Append-Only Table**
+
+  When connecting to an external upstream system, consider the trade-off between storage space and the ability to modify data. If data modification within RisingWave is not required, consider declaring the data as a source or an append-only table to save storage space. Sources and append-only tables do not process updates or deletes, which can lead to performance optimization. If the data is frequently changing and needs to be updated or deleted, consider using a table. If the data is immutable (like transactions), consider using a source or an append-only table.
+
+- **Consider Indexes**
+  
+  If the ingested data is frequently queried, consider creating indexes on the queried columns to improve query performance, as discussed in the [best practices](https://docs.risingwave.com/docs/current/best-practices/).
+
+- **Use Transactions**
+
+  Group together DML operations that need to be executed together into a transaction to maintain data integrity. See details in [Transactions](/concepts/transactions.md).
+
+- **Avoid Large Transactions**
+
+  While transactions ensure data integrity, large transactions can lock up resources and impact performance. Try to keep transactions as small and short as possible.
+
+- **Optimize for Write Operations**
+
+  If you're frequently using DML operations for data ingestion, consider optimizing your RisingWave configuration for write operations. This could involve adjusting resource allocation, as discussed in the FAQ.
+
+- **Monitor Performance**
+
+  Regularly monitor the performance of your DML operations and make adjustments as necessary, as discussed in the [FAQ](https://docs.risingwave.com/docs/current/faq/).
+
+- **Materialized Views**
+
+  When creating materialized views, consider the nature of the data. If the data is frequently changing, use a table. If the data is immutable, use a source or an append-only table.
