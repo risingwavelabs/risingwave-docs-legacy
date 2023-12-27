@@ -29,12 +29,13 @@ alt="Add a Database"
 2. For the database type, select "PostgreSQL" since RisingWave uses the PostgreSQL wire protocol.
 
 3. Fill in the connection details:
-    - Name: Choose a friendly name.
-    - Host: The hostname or IP address of the RisingWave database. The default **Host** is `localhost`.
-    - Port: The port number of the RisingWave database. The default **Port** is `4566`.
-    - Database name: The name of the RisingWave database you want to connect to. The default **Database** is `dev`.
-    - Username: The username for accessing the database. The default **Username** is `root`.
-    - Password: The password associated with the provided username. By default, there is no password for `root`.
+
+  - Name: Choose a friendly name.
+  - Host: The hostname or IP address of the RisingWave database.
+  - Port: The port number of the RisingWave database.
+  - Database name: The name of the RisingWave database you want to connect to.
+  - Username: The username for accessing the database.
+  - Password: The password associated with the provided username.
     
 <img
 src={require('../images/connection-details.png').default}
@@ -50,7 +51,7 @@ src={require('../images/save-the-connection.png').default}
 alt="Save the Connection"
 />
 
-It should be noted that Metabase's minimum auto-refresh is 1 minute, while RisingWave typically delivers a second-level of data freshness. As a workaround, you can append `#refresh=5` to the URL, such as `http://127.0.0.1:3000/dashboard/1-jaffle-shop#refresh=5`, thus setting the refresh interval to 5 seconds.
+It should be noted that Metabase's minimum auto-refresh is 1 minute, while RisingWave typically delivers a second-level data freshness. As a workaround, you can append `#refresh=5` to the URL, such as `http://127.0.0.1:3000/dashboard/1-jaffle-shop#refresh=5`, thus setting the refresh interval to 5 seconds.
 
 <img
 src={require('../images/auto-refresh.png').default}
