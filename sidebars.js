@@ -177,6 +177,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "DML",
+          id: "ingest/data-ingestion-dml",
+        },
+        {
+          type: "doc",
           label: "Modify source or table schemas",
           id: "ingest/modify-schemas",
         },
