@@ -35,9 +35,11 @@ When connector settings are specified for a table in RisingWave, it can store st
 
 Regardless of whether data is persisted in RisingWave, you can create materialized views to transform or analyze them.
 
-## Insert data into tables (without connectors)
+## Load data into tables (without connectors)
 
-You can also load data to RisingWave by creating tables ([`CREATE TABLE`](/sql/commands/sql-create-table.md)) and inserting data into tables ([`INSERT`](/sql/commands/sql-insert.md)).
+You can also load data into RisingWave by creating tables without connector settings and using DML commands to insert, update, or delete data in the tables directly.
+
+See [Data ingestion with DML](/ingest/data-ingestion-dml.md) for more information.
 
 ## Supported sources and formats
 
