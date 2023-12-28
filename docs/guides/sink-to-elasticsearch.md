@@ -24,18 +24,18 @@ The Elasticsearch sink connector in RisingWave provides at-least-once delivery s
 
 - Ensure the Elasticsearch cluster (version 7.x or 8.x) is accessible from RisingWave.
 
-- If you are running RisingWave locally from binaries, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
+- If you are running RisingWave locally from binaries, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions installed in your environment.
 
-## Create a Elasticsearch sink
+## Create an Elasticsearch sink
 
-Use the following syntax to create a Elasticsearch sink. Once a sink is created, any insert or update to the sink will be streamed to the specified Elasticsearch endpoint.
+Use the following syntax to create an Elasticsearch sink. Once a sink is created, any insert or update to the sink will be streamed to the specified Elasticsearch endpoint.
 
 ```sql
 CREATE SINK sink_name
 [ FROM sink_from | AS select_query ]
 WITH (
   connector = 'elasticsearch',
-  type = '<type>',
+  primary_key = '<primary key of the sink_from object>',
   index = '<your Elasticsearch index>',
   url = 'http://<ES hostname>:<ES port>',
   username = '<your ES username>', 
@@ -51,16 +51,19 @@ WITH (
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
+|`primary_key` | When your sink_from object has a primary key, you must specify it via this parameter. |
 | `index`         |Required. Name of the Elasticsearch index that you want to write data to. |
 | `url`          | Required. URL of the Elasticsearch REST API endpoint.|
 | `username`        | Optional. `elastic` user name for accessing the Elasticsearch endpoint. It must be used with `password`.|
 | `password`       | Optional. Password for accessing the Elasticseaerch endpoint. It must be used with `username`.|
 |`delimiter` | Optional. Delimiter for Elasticsearch ID when the sink's primary key has multiple columns.|
 
-### Notes about Elasticsearch ID
+### Notes about sink type and Elasticsearch ID
 
-If the sink has a primary key (normally it is inherited from a materialized view), RisingWave will use the primary key as the Elasticsearch ID.
-If the sink doesn't have a primary key (in the case that the materialized view is append-only), RisingWave will use the first column in the sink definition as the Elasticsearch ID.
+The Elasticsearch sink defaults to the `upsert` sink type. It does not support the `append-only` sink type.
+
+If the sink_from object has a primary key, please specify it via the `primary_key` parameter. RisingWave will use it as the Elasticsearch ID.
+If the sink_from object doesn't have a primary key, which means the object is append-only, or you sink from a select_query, RisingWave will use the first column in the sink definition as the Elasticsearch ID.
 
 ## Data type mapping
 
