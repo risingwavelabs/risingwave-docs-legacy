@@ -389,6 +389,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Metabase",
+          id: "guides/metabase-integration",
+        },
+        {
+          type: "doc",
           label: "Supabase",
           id: "guides/supabase-integration",
         },
