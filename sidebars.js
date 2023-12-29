@@ -214,6 +214,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "Instaclustr Kafka",
+                  id: "ingest/ingest-from-instaclustr-kafka",
+                },
+                {
+                  type: "doc",
                   label: "Upstash Kafka",
                   id: "ingest/ingest-from-upstash-kafka",
                 },
