@@ -122,6 +122,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Redash || Available |
 |DataGrip | |Researching <voteNotify note="datagrip" /> |
 |PgAdmin | |Researching <voteNotify note="pgadmin" /> |
+|MindsDB||Available.|
 
 ## Other systems
 

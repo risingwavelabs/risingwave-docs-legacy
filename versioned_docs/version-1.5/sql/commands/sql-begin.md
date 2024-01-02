@@ -16,12 +16,6 @@ The `BEGIN` command is the same as the `START TRANSACTION` command.
 
 You can end a transaction by using the `COMMIT` command.
 
-:::note Beta Feature
-
-Read-only transactions are currently in Beta. Please contact us if you encounter any issues or have feedback.
-
-:::
-
 ## Syntax
 
 ```sql

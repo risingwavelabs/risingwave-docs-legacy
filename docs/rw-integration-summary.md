@@ -45,9 +45,10 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 
 |System | |Availability |
 |---|---|---|
-|Fivetran| |Researching <voteNotify note="fivetran" /> |
 |Airbyte | |Researching  <voteNotify note="airbyte" /> |
+|[Census](https://www.getcensus.com/)||Researching  <voteNotify note="census" /> |
 |dbt| |Available. For details, see [Use dbt for data transformations](/transform/use-dbt.md).|
+|Fivetran| |Researching <voteNotify note="fivetran" /> |
 |Hightouch| |Researching <voteNotify note="hightouch" />|
 |Vector| |Available. |
 
@@ -59,6 +60,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |AWS Athena| |Researching <voteNotify note="athena" />|
 |Presto| |Researching <voteNotify note="presto" />|
 |Trino| |Researching <voteNotify note="trino" />|
+|GraphQL| |Available. See this blog for details: [Query real-time data with GraphQL, Kafka and RisingWave streaming database](https://blog.det.life/query-real-time-data-with-graphql-and-streaming-database-78bba4d08c97).|
 
 ## Databases
 
@@ -119,7 +121,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
 |Jupyter Notebook||Researching <voteNotify note="jupyter" />|
 |Looker||Available. See [Connect Looker to RisingWave](/guides/looker-integration.md) for details. |
-|Metabase ||In progress <voteNotify note="metabase" />|
+|Metabase ||Available. See [Connect Metabase to RisingWave](/guides/metabsase-integration.md) for details.|
 |Redash || Available |
 |DataGrip | |Researching <voteNotify note="datagrip" /> |
 |PgAdmin | |Researching <voteNotify note="pgadmin" /> |
