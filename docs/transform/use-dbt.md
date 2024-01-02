@@ -69,11 +69,11 @@ RisingWave accepts these [materializations](https://docs.getdbt.com/docs/build/m
 |`view`|Create a view. To use this materialization, add `{{ config(materialized='view') }}` to your model SQL files. |
 |`ephemeral`|This materialization uses [common table expressions](/sql/query-syntax/query-syntax-with-clause.md) in RisingWave under the hood. To use this materialization, add `{{ config(materialized='ephemeral') }}` to your model SQL files.|
 |`materializedview`| To be deprecated. It is available only for backward compatibility purposes. Use `materialized_view` instead.|
-|`materialized_view`| Creates a [materialized view](/sql/commands/sql-create-mv.md). This materialization is corresponding to the `incremental` one in dbt. To use this materialization, add `{{ config(materialized='materialized_view') }}` to your model SQL files.|
+|`materialized_view`| Creates a [materialized view](/sql/commands/sql-create-mv.md). This materialization corresponds the `incremental` one in dbt. To use this materialization, add `{{ config(materialized='materialized_view') }}` to your model SQL files.|
 | `incremental`|Use `materialized_view` instead. Since RisingWave is designed to use materialized view to manage data transformation in an incremental way, you can just use the `materialized_view` materilization.|
-|`source`| Defines a source. To use this materialization, add {{ config(materialized='source') }} to your model SQL files. You need to provide your create source statement as a whole in this model. See [Example model fiels](#example-model-files) for details.|
-|`table_with_connector`| Defines a table with connector settings. A table with connector settings is similar to a source. The difference is that a table object with connector settings persists raw streaming data in the source, while a source object does not. To use this materialization, add {{ config(materialized='table_with_connector') }} to your model SQL files. You need to provide your create table with connector statement as a whole in this model (see [Example model fiels](#example-model-files) for details). Because dbt table has its own semantics, RisingWave use `table_with_connector` to distinguish itself from a dbt table.|
-|`sink`| Defines a sink. To use this materialization, add {{ config(materialized='sink') }} to your SQL files. You need to provide your create sink statement as a whole in this model. See [Example model fiels](#example-model-files) for details.|
+|`source`| Defines a source. To use this materialization, add {{ config(materialized='source') }} to your model SQL files. You need to provide your create source statement as a whole in this model. See [Example model files](#example-model-files) for details.|
+|`table_with_connector`| Defines a table with connector settings. A table with connector settings is similar to a source. The difference is that a table object with connector settings persists raw streaming data in the source, while a source object does not. To use this materialization, add {{ config(materialized='table_with_connector') }} to your model SQL files. You need to provide your create table with connector statement as a whole in this model (see [Example model files](#example-model-files) for details). Because dbt table has its own semantics, RisingWave use `table_with_connector` to distinguish itself from a dbt table.|
+|`sink`| Defines a sink. To use this materialization, add {{ config(materialized='sink') }} to your SQL files. You need to provide your create sink statement as a whole in this model. See [Example model files](#example-model-files) for details.|
 
 To learn about how to define SQL models in general, see [SQL models](https://docs.getdbt.com/docs/build/sql-models).
 
@@ -95,7 +95,7 @@ First, you can run `dbt debug` to check your connection to RisingWave.
 dbt debug
 ```
 
-If the connection is valid, you will see a "OK connection ok" message. In this case, you can run your models. Otherwise, please check `~/.dbt/profiles.yml` to ensure your connection configurations are valid.
+If the connection is valid, you will see an "OK connection ok" message. In this case, you can run your models. Otherwise, please check `~/.dbt/profiles.yml` to ensure your connection configurations are valid.
 
 Run the following command to run your models.
 
