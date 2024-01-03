@@ -1,10 +1,10 @@
 ---
-id: faq
-title: FAQ
-slug: /faq
+id: performance-faq
+title: Performance-related FAQs
+slug: /performance-faq
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/faq/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/performance-faq/" />
 </head>
 
 This topic addresses common queries related to resource allocation and adjustment for both streaming and batch queries. This will assist you in fine-tuning performance and maximizing efficiency.
@@ -39,13 +39,13 @@ By default, all the computes will run both streaming queries and batch queries. 
 
 As mentioned earlier, batch queries suitable for RisingWave to process are those with sub-second latency. In production, it is intolerable to have huge latency fluctuation due to resource competition. This is when a dedicated batch-serving cluster can help.
 
-Additionally, the failure of compute nodes for stream processing does not affect the availability of processing batch queries. 
+Additionally, the failure of compute nodes for stream processing does not affect the availability of processing batch queries.
 
 ## Is there any difference between configuring a CN for stream processing only and for batch serving only?
 
 Yes. The default configuration, i.e., without providing a customized `toml` configuration file (examples can be found [here](https://github.com/risingwavelabs/risingwave/tree/main/src/config)), is mainly optimized for processing streaming queries. In essence, we allocate more memory for streaming queries’ operator cache to reduce fetching data and state from the object store, and less memory for storage’s block cache and meta cache.
 
-When a CN is used for batch serving only, the operator cache is no longer needed. We can increase the memory size of the block cache and meta cache so that more data for batch queries can be cached to reduce the number of remote I/Os to S3. 
+When a CN is used for batch serving only, the operator cache is no longer needed. We can increase the memory size of the block cache and meta cache so that more data for batch queries can be cached to reduce the number of remote I/Os to S3.
 
 We recommend using this [configuration](https://github.com/risingwavelabs/risingwave/blob/main/src/config/serving-only.toml).
 
