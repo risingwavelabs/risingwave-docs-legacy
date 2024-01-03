@@ -58,6 +58,12 @@ Some tools will be helpful in troubleshooting this issue:
 
 In either case, you can try to increase the parallelism by adding more nodes into the cluster, or check the SQL query to see if there is any room for optimization.
 
+## OOM caused by prefetching
+
+If OOM occurs during long batch queries, it might result from excessive memory usage on compute nodes. In such case, consider reducing the memory usage of prefetching by adjusting the value of the `storage.prefetch_buffer_capacity_mb` parameter in the TOML file.
+
+The `storage.prefetch_buffer_capacity_mb` configuration defines the maximum memory allowed for prefetching. It aims to optimize streaming executor and batch query performance through pre-reading. This feature allows hummock to read larger chunks of data in a single I/O operation, but at a higher memory cost. When the memory usage during prefetch operations reaches this limit, hummock will revert to the original read method, processing data in 64 KB blocks. If you set the parameter to 0, this feature will be disabled. By default, it is set to 7% of the total machine memory.
+
 ## Troubleshoot using the memory profiling utility
 
 If the barrier latency is normal, but the memory usage is still increasing, you may need to do memory profiling to identify the root cause.
