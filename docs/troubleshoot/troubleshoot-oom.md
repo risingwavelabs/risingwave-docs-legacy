@@ -53,12 +53,12 @@ Instead of solely addressing the memory problem, we recommend investigating why 
 
 Some tools will be helpful in troubleshooting this issue:
 
-- Observe the backpressure between fragments (actors) in Grafana. A high backpressure between 2 fragments indicates that the downstream one is not able to process the data fast enough, therefore slowing down the whole streaming job. 
+- Observe the backpressure between fragments (actors) in Grafana. A high backpressure between 2 fragments indicates that the downstream one is not able to process the data fast enough, therefore slowing down the whole streaming job.
 - Check the Await Tree Dump of all compute nodes in RisingWave Dashboard. If the barrier is stuck, the Await Tree Dump will show the barrier is waiting for a specific operation to finish. This fragment is likely to be the bottleneck of the streaming job.
 
 In either case, you can try to increase the parallelism by adding more nodes into the cluster, or check the SQL query to see if there is any room for optimization.
 
-## OOM caused by prefetching
+## OOM during prefetching
 
 If OOM occurs during long batch queries, it might result from excessive memory usage on compute nodes. In such case, consider reducing the memory usage of prefetching by adjusting the value of the `storage.prefetch_buffer_capacity_mb` parameter in the TOML file.
 
@@ -72,7 +72,7 @@ We have added a heap profiling utility in the RisingWave Dashboard to help you a
 
 :::info
 
-To enable memory profiling, please set the environment variable `MALLOC_CONF=prof:true` for the compute nodes. 
+To enable memory profiling, please set the environment variable `MALLOC_CONF=prof:true` for the compute nodes.
 
 :::
 
