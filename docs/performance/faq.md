@@ -41,11 +41,11 @@ As mentioned earlier, batch queries suitable for RisingWave to process are those
 
 Additionally, the failure of compute nodes for stream processing does not affect the availability of processing batch queries.
 
-## Is there any difference between configuring a CN for stream processing only and for batch serving only?
+## Is there any difference between configuring a compute node for stream processing only and for batch serving only?
 
 Yes. The default configuration, i.e., without providing a customized `toml` configuration file (examples can be found [here](https://github.com/risingwavelabs/risingwave/tree/main/src/config)), is mainly optimized for processing streaming queries. In essence, we allocate more memory for streaming queries’ operator cache to reduce fetching data and state from the object store, and less memory for storage’s block cache and meta cache.
 
-When a CN is used for batch serving only, the operator cache is no longer needed. We can increase the memory size of the block cache and meta cache so that more data for batch queries can be cached to reduce the number of remote I/Os to S3.
+When a compute node is used for batch serving only, the operator cache is no longer needed. We can increase the memory size of the block cache and meta cache so that more data for batch queries can be cached to reduce the number of remote I/Os to S3.
 
 We recommend using this [configuration](https://github.com/risingwavelabs/risingwave/blob/main/src/config/serving-only.toml).
 
