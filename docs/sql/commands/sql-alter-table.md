@@ -107,6 +107,23 @@ ALTER TABLE table_name
 ALTER TABLE test_table SET SCHEMA test_schema;
 ```
 
+### `SET PARALLELISM`
+
+```sql title=Syntax
+ALTER TABLE table_name 
+SET PARALLELISM = parallelism_number;
+```
+
+| Parameter or clause | Description |
+| ------------------- | ----------------------------------------------- |
+|**SET PARALLELISM**| This clause controls the degree of parallelism for the table.|
+| *parallelism_number* | This parameter can be `AUTO` or a fixed number, like 1, 2, 3, etc. Altering the parameter to `AUTO` will expand the table's degree of parallelism to encompass all available units, whereas setting it to a fixed number will lock the table’s parallelism at that specific figure. Setting it to `0` is equivalent to `AUTO`. |
+
+```sql title=Example
+-- Move a table named "test_table" into a schema named "test_schema"
+ALTER TABLE test_table SET SCHEMA test_schema;
+```
+
 ### `RENAME TO`
 
 ```sql title=Syntax
