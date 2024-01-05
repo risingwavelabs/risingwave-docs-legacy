@@ -681,3 +681,42 @@ You can use `ESCAPE ''` to disable the escape mechanism, but specifying a custom
 'abc' LIKE '_b_'           true
 'abc' LIKE 'c'             false
 ```
+
+## `SIMILAR TO` pattern matching expressions
+
+```sql
+string [ NOT ] SIMILAR TO pattern [ ESCAPE '' ]
+```
+
+The `SIMILAR TO` expression returns true if the string matches the supplied pattern. The `NOT SIMILAR TO` expression returns false if `SIMILAR TO` returns true. The matching is case-sensitive.
+
+### Metacharacter
+
+| Operator | Description                                            |
+|----------|--------------------------------------------------------|
+| %        | Matches any sequence of zero or more characters.       |
+| _        | Matches any single character.                          |
+| \|       | Denotes alternation (either of two alternatives).     |
+| *        | Repeat the previous item zero or more times.           |
+| +        | Repeat the previous item one or more times.            |
+| ?        | Repeat the previous item zero or one time.            |
+| {m}      | Repeat the previous item exactly m times.              |
+| {m,}     | Repeat the previous item m or more times.              |
+| {m,n}    | Repeat the previous item at least m and not more than n times. |
+| ()       | Parentheses group items into a single logical item.   |
+| [...]    | A bracket expression specifies a character class. |
+
+
+### Escape
+
+To match a literal underscore or percent sign without matching other characters, the respective character in pattern must be preceded by the escape character `\`. To match the escape character itself, write two escape characters: `\\`.
+
+You can use `ESCAPE ''` to disable the escape mechanism, but specifying a custom escape character using the `ESCAPE` clause is not supported.
+
+### Examples
+
+```sql
+'abc' SIMILAR TO 'a|b|c'                false
+'abc' SIMILAR TO '(a|b|c)+'             true
+'a_b' SIMILAR TO 'a$_b' ESCAPE '$'      true
+```
