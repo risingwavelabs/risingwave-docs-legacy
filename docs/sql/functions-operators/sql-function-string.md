@@ -661,7 +661,7 @@ Alternatively, you can use the operators `~~` and `~~*` as equivalents to `LIKE`
 
 ### Wildcards
 
-- An underscore `_` in a pattern matches any single character
+- An underscore `_` in a pattern matches any single character.
   
 - A percent sign `%` matches any sequence of zero or more characters.
 
@@ -694,22 +694,21 @@ The `SIMILAR TO` expression returns true if the string matches the supplied pa
 
 | Operator | Description                                            |
 |----------|--------------------------------------------------------|
-| %        | Matches any sequence of zero or more characters.       |
-| _        | Matches any single character.                          |
-| \|       | Denotes alternation (either of two alternatives).     |
-| *        | Repeat the previous item zero or more times.           |
-| +        | Repeat the previous item one or more times.            |
-| ?        | Repeat the previous item zero or one time.            |
-| {m}      | Repeat the previous item exactly m times.              |
-| {m,}     | Repeat the previous item m or more times.              |
-| {m,n}    | Repeat the previous item at least m and not more than n times. |
+| %        | Matches any sequence of zero or more characters.         |
+| _        | Matches any single character.                            |
+| |        | Denotes alternation (either of two alternatives).       |
+| *        | Repeats the previous item zero or more times.           |
+| +        | Repeats the previous item one or more times.            |
+| ?        | Repeats the previous item zero or one time.            |
+| {m}      | Repeats the previous item exactly m times.              |
+| {m,}     | Repeats the previous item m or more times.              |
+| {m,n}    | Repeats the previous item at least m and not more than n times. |
 | ()       | Parentheses group items into a single logical item.   |
 | [...]    | A bracket expression specifies a character class. |
 
-
 ### Escape
 
-To match a literal underscore or percent sign without matching other characters, the respective character in pattern must be preceded by the escape character `\`. To match the escape character itself, write two escape characters: `\\`.
+To match a metacharacter literally, use the escape character `\` before the respective character in the pattern. To match the escape character itself, write two escape characters: `\\`.
 
 You can use `ESCAPE ''` to disable the escape mechanism, but specifying a custom escape character using the `ESCAPE` clause is not supported.
 
