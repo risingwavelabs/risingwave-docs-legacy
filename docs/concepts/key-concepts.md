@@ -41,6 +41,14 @@ RisingWave distributes its computation across lightweight threads called "stream
 
 By spreading these streaming actors across cores, RisingWave achieves parallel computation, resulting in improved performance, scalability, and throughput.
 
+### Streaming jobs
+
+A streaming job is a job that creates an index, a materialized view, a table, a sink, or a source with connectors.
+
+### Parallelism
+
+Parallelism refers to the technique of simultaneously executing multiple database operations or queries to improve performance and increase efficiency. It involves dividing a database workload into smaller tasks and executing them concurrently on multiple processors or machines. In RisingWave, you can set the parallelism of streaming jobs, like [tables](../sql/commands/sql-alter-table.md#set-parallelism), [materialized views](../sql/commands/sql-alter-materialized-view.md), and [sinks](../sql/commands/sql-alter-sink.md).
+
 ### Fragments
 
 In RisingWave, When a streaming query plan executes, it divides into multiple independent fragments to allow parallel execution. Each fragment is a chain of SQL operators. Under the hood, it is executed by parallel actors. The degree of parallelism between fragments can be different.
