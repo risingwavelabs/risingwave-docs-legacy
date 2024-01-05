@@ -33,7 +33,7 @@ The `information_schema.tables` view contains the following columns.
 
 The `information_schema.views` view contains information about the views in the database.
 
-It contains the following columns.
+The `information_schema.views`` view contains the following columns.
 
 |Column|Type|Description|
 |---|---|---|
