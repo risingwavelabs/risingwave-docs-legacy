@@ -8,10 +8,6 @@ description: rw_int256 is a custom data type that represents a signed 256-bit in
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-type-rw_int256/" />
 </head>
 
-:::note Beta feature
-`rw_int256` data type is currently in Beta. Please contact us if you encounter any issues or have feedback.
-:::
-
 :::note
 `rw_int256` values can be very large, and therefore require more memory and processing power compared to smaller data types.
 :::

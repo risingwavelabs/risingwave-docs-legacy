@@ -70,4 +70,4 @@ Go to the [**Org.**](https://cloud.risingwave.com/organization/) tab and select 
 
 Here, you can get a list of all users in your organization.
 
-You can click the trash icon to remove a user from the organization. Removed users will lose access to all the resources in the organization, and their accounts will be deleted.
+The owner can click the trash icon to remove a user from the organization. Removed users will lose access to all the resources in the organization, and their accounts will be deleted.
