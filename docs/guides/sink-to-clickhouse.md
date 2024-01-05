@@ -192,7 +192,7 @@ WITH (
 |bytea                 | Not supported        |
 |date                  | Date32               |
 |time without time zone| Not supported        |
-|timestamp             | Not supported        |
+|timestamp             | Not supported. You need to convert `timestamp` to `timestamptz` within RisingWave before sinking.                    |
 |timestamptz           | DateTime64           |
 |interval              | Not supported        |
 |struct                | Nested               |

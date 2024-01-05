@@ -185,9 +185,46 @@ Unless specified otherwise, the fields listed are required.
 RisingWave implements CDC via PostgresQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot).
 :::
 
-### Multiple CDC tables
+### Create multiple CDC tables with the same source
 
-If you are creating multiple PostgreSQL CDC tables, we recommend you to create a publication in the PostgreSQL database in advance. Specify the publication name with the `publication.name` parameter. Otherwise, some tables may not function as expected.
+RisingWave supports creating multiple CDC tables that share a single PostgreSQL CDC source. 
+
+Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command and PostgreSQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
+
+```sql
+CREATE SOURCE pg_mydb WITH (
+    connector = 'postgres-cdc',
+    hostname = '127.0.0.1',
+    port = '8306',
+    username = 'root',
+    password = '123456',
+    database.name = 'mydb',
+    slot.name = 'mydb_slot'
+);
+```
+
+With the source created, you can create multiple CDC tables that ingest data from different tables and schemas in the upstream database without needing to specify the database connection parameters again. 
+
+For instance, the following CDC table in RisingWave ingests data from table `tt3` in the schema `public`. When specifying the PostgreSQL table name in the `FROM` clause after the keyword `TABLE`, the schema name must also be specified. 
+
+```sql
+CREATE TABLE tt3 (
+    v1 integer primary key,
+    v2 timestamp with time zone
+) FROM pg_mydb TABLE 'public.tt3';
+```
+
+You can create another CDC table in RisingWave that ingests data from table `tt4` in the schema `ods`.
+
+```sql
+CREATE TABLE tt4 (
+  v1 integer primary key,
+  v2 varchar,
+  PRIMARY KEY (v1)
+) FROM pg_mydb TABLE 'ods.tt4';
+```
+
+To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it.
 
 ### Data format
 
