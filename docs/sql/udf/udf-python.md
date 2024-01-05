@@ -208,7 +208,7 @@ You can use tools like `top` to monitor the CPU usage of the UDF server. If the 
 
 To scale the UDF server, you can launch multiple UDF servers on different ports and use a load balancer to distribute requests among these servers.
 
-First, you can use the `multiprocessing` module to start multiple UDF servers on different ports. The specific code is as follows:
+The specific code is as follows:
 
 ```python title="udf.py"
 from multiprocessing import Pool
@@ -226,59 +226,4 @@ if __name__ == "__main__":
         p.map(start_server, range(8816, 8816 + n))
 ```
 
-Then, you can use a load balancer like Nginx to distribute requests to different UDF servers.
-
-<details>
-<summary>How to install Nginx?</summary>
-
-```shell
-# On Ubuntu
-sudo apt install nginx
-# On macOS
-brew install nginx
-```
-</details>
-
-Modify the Nginx configuration file to specify the addresses of the UDF servers and the port for the proxy service. The specific configuration is as follows:
-
-```conf title="nginx.conf"
-http {
-    upstream udf_servers {
-        # List the addresses of the UDF servers here
-        server localhost:8816;
-        server localhost:8817;
-        server localhost:8818;
-        server localhost:8819;
-    }
-
-    server {
-        # Specify the port on which the load balancer listens
-        # This should match the link address specified in the CREATE FUNCTION statement.
-        listen 8815 http2;
-
-        location / {
-            grpc_pass grpc://udf_servers;
-        }
-    }
-}
-```
-
-<details>
-<summary>Where is the Nginx configuration file?</summary>
-
-```text
-# On Ubuntu
-/etc/nginx/nginx.conf
-# On macOS
-/opt/homebrew/etc/nginx/nginx.conf
-```
-</details>
-
-After modifying the configuration file, you need to restart the Nginx service to apply the new settings:
-
-```shell
-# On Ubuntu
-sudo nginx -s reload
-# On macOS
-brew services restart nginx
-```
+Then, you can start a load balancer, such as Nginx. It listens on port 8815 and forwards requests to UDF servers on ports 8816-8819.
