@@ -35,6 +35,10 @@ Also the temporal filter condition can not be connected with expressions includi
 AND (t < NOW() - INTERVAL '1 hour' OR a < 1)
 ```
 
+## Usage1: delete and cleaning the and expired data
+
+When the time expression with `now()` is the lower bound condition of the base relation such as `t > NOW() - INTERVAL '1 hour'`, it can filter records with the too old event time.
+
 The following query returns all rows from the `sales` table where the `sale_date` column plus one week is greater than the current date and time. In other words, it will return all sales records within the past week.
 
 ```sql
@@ -55,3 +59,39 @@ WHERE last_active + session_timeout * 2 > NOW();
 ```
 
 The temporal filter in this query is in the `WHERE` clause. It checks whether the timestamp of the last activity plus twice the session timeout is greater than the current time or `NOW()`. This indicates that the session is still active.
+
+## Usage2: delay the table's changes
+
+When the time expression with `now()` is the upper bound condition of the base relation such as `ts + interval '1 hour' < now()`, it can "delay" the table's changes of the input relation. It could be useful when using with the [Temporal Join](/sql/query-syntax/query-syntax-join-clause.md)
+
+Here is a typical example of the temporal join used to widen a fact table.
+```SQL
+  create source fact(id1 int, a1 int, p_time timestamptz as proctime()) with (connector = 'kafka', ...);
+  create table dimension(id2 int, a2 int, primary key (id2)) with ( connector = 'jdbc', ...);
+  create materialized view mv as select id1, a1, a2 from fact left join dimension FOR SYSTEM_TIME AS OF PROCTIME() on id1 = id2;
+```
+
+But due to the delays caused by the network or other phases, it is not ensured that when the record of the `fact` comes, the corresponding record in the `dimension` table have arrived. So a temporal filter can be set on the `fact` source to delay some times to wait the dimension table's changes.
+
+```SQL
+  create materialized view mv as 
+  select 
+    id1, a1, a2 
+  from (
+    /* delay the source for 5 seconds */
+    select * from fact where fact.p_time + INTERVAL '5' SECOND < now()
+  ) fact
+  left join dimension FOR SYSTEM_TIME AS OF PROCTIME() on id1 = id2;
+```
+
+:::note
+
+Currently, RisingWave's optimizer can not ensure the temporal filter's predicate push down. So please add the temporal filter in the `FROM` clause as a sub-query like the SQL in the example instead of write the temporal filter in the query's top `where` clause. 
+
+:::
+
+:::info
+
+the proc_time in the example can be replaced with the event time in the records.
+
+:::
