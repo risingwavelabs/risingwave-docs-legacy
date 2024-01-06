@@ -88,7 +88,7 @@ ElasticSearch uses a mechanism called [dynamic field mapping](https://www.elasti
 |json |struct (RisingWave's ElasticSearch sink will send JSON as a JSON string, and ElasticSearch will convert it into a struct structure)|
 
 :::note
-Unlike normal databases, Elasticsearch doesn't require users to explicitly `CREATE TABLE`. Instead, it infers the schema on-the-fly based on the first record ingested. For example, if a record contains a jsonb '{v1: 100}', v1 will be inferred as a long type. However, if the next record is '{v1: "abc"}', the ingestion will fail because "abc" is inferred as string and the two types are incompatible.
+Unlike normal databases, Elasticsearch doesn't require users to explicitly `CREATE TABLE`. Instead, it infers the schema on-the-fly based on the first record ingested. For example, if a record contains a jsonb '{v1: 100}', v1 will be inferred as a long type. However, if the next record is '{v1: "abc"}', the ingestion will fail because "abc" is inferred as a string and the two types are incompatible.
 
-This behavior should be noted, or your data may be less than it should be. In terms of monitoring, you can checkout Grafana, where there is a panel for all sink write errors.
+This behavior should be noted, or your data may be less than it should be. In terms of monitoring, you can check out Grafana, where there is a panel for all sink write errors.
 :::
