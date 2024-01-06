@@ -48,6 +48,7 @@ SHOW ALL;
  server_version                 | 8.3.0           | The version of the server.
  server_version_num             | 80300           | The version number of the server.
  rw_force_split_distinct_agg    | false           | Enable split the distinct aggregation.
+ statement_timeout              | 10              | Abort query statement that takes more than the specified amount of time in sec. If log_min_error_statement is set to ERROR or lower, the statement that timed out will also be logged. If this value is specified without units, it is taken as milliseconds. A value of zero (the default) disables the timeout.
 ```
 
 ## How to configure runtime parameters?
