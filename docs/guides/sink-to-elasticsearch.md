@@ -24,11 +24,11 @@ The Elasticsearch sink connector in RisingWave provides at-least-once delivery s
 
 - Ensure the Elasticsearch cluster (version 7.x or 8.x) is accessible from RisingWave.
 
-- If you are running RisingWave locally from binaries, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
+- If you are running RisingWave locally from binaries, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions installed in your environment.
 
-## Create a Elasticsearch sink
+## Create an Elasticsearch sink
 
-Use the following syntax to create a Elasticsearch sink. Once a sink is created, any insert or update to the sink will be streamed to the specified Elasticsearch endpoint.
+Use the following syntax to create an Elasticsearch sink. Once a sink is created, any insert or update to the sink will be streamed to the specified Elasticsearch endpoint.
 
 ```sql
 CREATE SINK sink_name
@@ -85,3 +85,10 @@ ElasticSearch uses a mechanism called [dynamic field mapping](https://www.elasti
 |struct |Not supported|
 |array |array|
 |JSONB |text|
+|json |struct (RisingWave's ElasticSearch sink will send JSON as a JSON string, and ElasticSearch will convert it into a struct structure)|
+
+:::note
+Unlike normal databases, Elasticsearch doesn't require users to explicitly `CREATE TABLE`. Instead, it infers the schema on-the-fly based on the first record ingested. For example, if a record contains a jsonb '{v1: 100}', v1 will be inferred as a long type. However, if the next record is '{v1: "abc"}', the ingestion will fail because "abc" is inferred as string and the two types are incompatible.
+
+This behavior should be noted, or your data may be less than it should be. In terms of monitoring, you can checkout Grafana, where there is a panel for all sink write errors.
+:::
