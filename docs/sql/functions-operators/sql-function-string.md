@@ -710,7 +710,7 @@ The `SIMILAR TO` expression returns true if the string matches the supplied pa
 
 To match a metacharacter literally, use the escape character `\` before the respective character in the pattern. To match the escape character itself, write two escape characters: `\\`.
 
-You can use `ESCAPE ''` to disable the escape mechanism, but specifying a custom escape character using the `ESCAPE` clause is not supported.
+You can use `ESCAPE ''` to disable the escape mechanism. The `ESCAPE` clause supports specifying a custom escape character, which must be either empty or a single character.
 
 ### Examples
 
