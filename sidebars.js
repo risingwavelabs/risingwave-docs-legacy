@@ -919,7 +919,7 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          id: "performance/faq"
+          id: "performance/performance-faq"
         },
         {
           type: "doc",
