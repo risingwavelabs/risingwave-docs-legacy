@@ -650,9 +650,9 @@ upper('tom') → 'TOM'
 ## `LIKE` pattern matching expressions
 
 ```sql
-string [ NOT ] { LIKE | ILIKE } pattern [ ESCAPE '' ]
+string [ NOT ] { LIKE | ILIKE } pattern
 
-string [!]~~[*] pattern [ ESCAPE '' ]
+string [!]~~[*] pattern
 ```
 
 The `LIKE` expression returns true if the string matches the supplied pattern. The `NOT LIKE` expression returns false if `LIKE` returns true. By using `ILIKE` instead of `LIKE`, the matching becomes case-insensitive.
@@ -671,7 +671,11 @@ If the pattern does not contain `_` or `%`, then the pattern only represents the
 
 To match a literal underscore or percent sign without matching other characters, the respective character in pattern must be preceded by the escape character `\`. To match the escape character itself, write two escape characters: `\\`.
 
+:::note
+
 You can use `ESCAPE ''` to disable the escape mechanism, but specifying a custom escape character using the `ESCAPE` clause is not supported.
+
+:::
 
 ### Examples
 
@@ -696,7 +700,7 @@ The `SIMILAR TO` expression returns true if the string matches the supplied pa
 |----------|--------------------------------------------------------|
 | %        | Matches any sequence of zero or more characters.         |
 | _        | Matches any single character.                            |
-| |        | Denotes alternation (either of two alternatives).       |
+| \|        | Denotes alternation (either of two alternatives).       |
 | *        | Repeats the previous item zero or more times.           |
 | +        | Repeats the previous item one or more times.            |
 | ?        | Repeats the previous item zero or one time.            |
