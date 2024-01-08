@@ -14,11 +14,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 32px;
-  height: 32px;
-  background-color: #8080803b;
+  height: 36px;
+  padding: 0 10px;
+  background: linear-gradient(to right, #4b6bdd, #4b1166);
   border-radius: 10px;
   cursor: pointer;
+  transition: all 1s linear;
+}
+
+.chatbot-icon .chatbot-icon-text {
+  display: none;
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  margin-right: 10px;
+  line-height: 36px;
+}
+.chatbot-icon:hover .chatbot-icon-text {
+  display: inline-block;
+}
+
+.chatbot-icon .chatbot-icon-img {
+  width: 21px;
 }
 
 .drawer-wrapper {
