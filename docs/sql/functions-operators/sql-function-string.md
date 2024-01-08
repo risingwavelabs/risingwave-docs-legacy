@@ -685,7 +685,7 @@ You can use `ESCAPE ''` to disable the escape mechanism, but specifying a custom
 ## `SIMILAR TO` pattern matching expressions
 
 ```sql
-string [ NOT ] SIMILAR TO pattern [ ESCAPE '' ]
+string [ NOT ] SIMILAR TO pattern [ ESCAPE escape-character ]
 ```
 
 The `SIMILAR TO` expression returns true if the string matches the supplied pattern. The `NOT SIMILAR TO` expression returns false if `SIMILAR TO` returns true. The matching is case-sensitive.
