@@ -12,7 +12,7 @@ slug: /view-configure-system-parameters
 
 System parameters in RisingWave refer to the parameters that advanced users can use to adjust how internal components work in RisingWave.
 
-Currently, these system parameters are availble in RisingWave.
+Currently, these system parameters are available in RisingWave.
 
 | Parameter           |    Description    |
 |---|---|
@@ -27,6 +27,7 @@ Currently, these system parameters are availble in RisingWave.
 |`backup_storage_directory` | The directory of the remote storage for backups.|
 |`telemetry_enabled` | Whether to enable telemetry or not. For more information, see [Telemetry](/telemetry.md).|
 |`max_concurrent_creating_streaming_jobs`|The maximum number of streaming jobs that can be created concurrently. That is, the maximum of materialized views, indexes, tables, sinks, or sources that can be created concurrently. |
+|`pause_on_next_bootstrap`|This parameter is used for debugging and maintenance purposes. Setting it to `true` will pause all data sources, such as connectors and DMLs, when the cluster restarts. This parameter will then be reset to its default value (`false`). To resume data ingestion, simply run `risectl meta resume` or restart the cluster again. |
 
 ## How to view system parameters?
 
@@ -38,7 +39,7 @@ The `Mutable` column indicates whether the parameter can be altered using the [A
 SHOW PARAMETERS;
 ```
 
-```
+```markdown
            Name                         |     Value      | Mutable 
 ----------------------------------------+----------------+---------
  barrier_interval_ms                    | 1000           | f
@@ -52,6 +53,7 @@ SHOW PARAMETERS;
  backup_storage_directory               | backup         | f
  telemetry_enabled                      | true           | t
  max_concurrent_creating_streaming_jobs | 1              | t
+ pause_on_next_bootstrap                | false          | t
 
 ```
 
