@@ -23,7 +23,7 @@ SHOW ALL;
 For example, you may see a table similar to this:
 
 
-``` title=Runtime Parameters
+```sql title="Runtime Parameters"
           Name                  |     Setting     |        Description
 --------------------------------+-----------------+--------------------------------------
  rw_implicit_flush              | false           | If `RW_IMPLICIT_FLUSH` is on, then every INSERT/UPDATE/DELETE statement will block until the entire dataflow is refreshed.
