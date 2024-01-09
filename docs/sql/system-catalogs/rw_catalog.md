@@ -13,6 +13,8 @@ RisingWave catalogs contain system tables and views that provide metadata about 
 
 After you connect to RisingWave vis `psql`, enter `\d` to display RisingWave catalogs.
 
+The result looks like this:
+
 ```sql
 \d
 ------RESULTS
@@ -22,37 +24,7 @@ After you connect to RisingWave vis `psql`, enter `\d` to display RisingWave cat
  rw_catalog | rw_actors                           | table | root
  rw_catalog | rw_columns                          | table | root
  rw_catalog | rw_connections                      | table | root
- rw_catalog | rw_databases                        | table | root
- rw_catalog | rw_ddl_progress                     | table | root
- rw_catalog | rw_fragments                        | table | root
- rw_catalog | rw_functions                        | table | root
- rw_catalog | rw_hummock_branched_objects         | table | root
- rw_catalog | rw_hummock_checkpoint_version       | table | root
- rw_catalog | rw_hummock_compaction_group_configs | table | root
- rw_catalog | rw_hummock_current_version          | table | root
- rw_catalog | rw_hummock_meta_configs             | table | root
- rw_catalog | rw_hummock_pinned_snapshots         | table | root
- rw_catalog | rw_hummock_pinned_versions          | table | root
- rw_catalog | rw_hummock_sstables                 | table | root
- rw_catalog | rw_hummock_version_deltas           | table | root
- rw_catalog | rw_indexes                          | table | root
- rw_catalog | rw_materialized_views               | table | root
- rw_catalog | rw_meta_snapshot                    | table | root
- rw_catalog | rw_parallel_units                   | table | root
- rw_catalog | rw_relation_info                    | table | root
- rw_catalog | rw_relations                        | view  | root
- rw_catalog | rw_schemas                          | table | root
- rw_catalog | rw_sinks                            | table | root
- rw_catalog | rw_sources                          | table | root
- rw_catalog | rw_system_tables                    | table | root
- rw_catalog | rw_table_fragments                  | table | root
- rw_catalog | rw_table_stats                      | table | root
- rw_catalog | rw_tables                           | table | root
- rw_catalog | rw_types                            | table | root
- rw_catalog | rw_user_secrets                     | table | root
- rw_catalog | rw_users                            | table | root
- rw_catalog | rw_views                            | table | root
- rw_catalog | rw_worker_nodes                     | table | root
+...
 ```
 
 You can view the schemas of these catalogs:
@@ -137,7 +109,6 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_schemas            | Contains information about schemas that are available in the database, including their names, unique IDs, owner IDs, and more. |
  rw_sinks              | Contains information about sinks that are available in the database, including their unique IDs, names, schema IDs, owner IDs, connector types, sink types, connection IDs, definitions, and more.|
  rw_sources            | Contains information about sources that are available in the database, including their unique IDs, names, schema IDs, owner IDs, connector types, column definitions, row formats, append-only flags, connection IDs, and more.|
- rw_streaming_parallelism | Contains information about the parallelism of streaming jobs, including job IDs, names, relation types, fragment IDs, state table IDs, and more.|
  rw_system_tables      | Contains information about system tables in the database, including their unique IDs, names, schema IDs, owners, and more. |
  rw_table_fragments    | Contains information about table fragments in the database, including their parent table IDs, fragment statuses, and primary keys.|
  rw_table_stats        | Contains statistical information about tables, including their unique IDs, total key count, total key size, and total value size in bytes.|
