@@ -89,18 +89,19 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Apache Pinot| No plan|Researching <voteNotify note="pinot_sink" />|
 |AWS Redshift| No plan|Researching <voteNotify note="redshift_sink" />|
 |ClickHouse|No plan |Available. For details, see [Sink data to ClickHouse](/guides/sink-to-clickhouse.md).|
-|Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
-|Google BigQuery| No plan |Available. For details, see [Sink data to Google BigQuery](/guides/sink-to-bigquery.md).|
-|DataStax Astra DB & Apache Cassandra & ScyllaDB| Researching <voteNotify note="cassandra_source" /> |Available. For details, see [Sink data to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).|
 |CockroachDB| Researching <voteNotify note="cockroachdb_source" />|Available. For details, see [Sink data to CockroachDB](/guides/sink-to-clickhouse.md). |
+|DataStax Astra DB & Apache Cassandra & ScyllaDB| Researching <voteNotify note="cassandra_source" /> |Available. For details, see [Sink data to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).|
 |Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
+|Elasticsearch| No plan| Available. Only versions 7.x and 8.x are supported. For details, see [Sink data from RisingWave to Elasticsearch](/guides/sink-to-elasticsearch.md).|
+|Greenplum| No plan| Researching <voteNotify note="greenplum_sink" /> |
+|Google BigQuery| No plan |Available. For details, see [Sink data to Google BigQuery](/guides/sink-to-bigquery.md).|
 |MongoDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <voteNotify note="mongodb_sink" /> |
 |Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
-|SQL Server| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <voteNotify note="sql_server_sink" /> |
-|TiDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Available. For details, see [Sink data from RisingWave to TiDB](/guides/sink-to-tidb.md). |
 |Redis|Researching <voteNotify note="redis_source" />|Available. For details, see [Sink data from RisingWave to Redis](/guides/sink-to-redis.md).|
-|Greenplum| No plan| Researching <voteNotify note="greenplum_sink" /> |
-|Elasticsearch| No plan| Available. Only versions 7.x and 8.x are supported. For details, see [Sink data from RisingWave to Elasticsearch](/guides/sink-to-elasticsearch.md).|
+|Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
+|SQL Server| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <voteNotify note="sql_server_sink" /> |
+|StarRocks| No plan | Available. For details, see [Sink data to StarRocks(/guides/sink-to-starrocks.md).]
+|TiDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Available. For details, see [Sink data from RisingWave to TiDB](/guides/sink-to-tidb.md). |
 
 ## Data lakes
 

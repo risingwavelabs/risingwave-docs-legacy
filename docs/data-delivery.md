@@ -72,6 +72,10 @@ Currently, RisingWave supports the following sink connectors:
 
   With this connector, you can sink data from RisingWave to Redis. For details about the syntax and parameters, see [Sink data to Redis](/guides/sink-to-redis.md).
 
+- StarRocks sink connector (`connector = 'starrocks'`)
+
+  With this connector, you can sink data from RisingWave to StarRocks. For details about the syntax and parameters, see [Sink data to StarRocks](/guides/sink-to-starrocks.md).
+
 ## Sink decoupling
 
 The `sink_decouple` session variable can be specified to enable or disable sink decoupling. The default value for the session variable is `default`. 
