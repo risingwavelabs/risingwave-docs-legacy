@@ -33,7 +33,7 @@ WITH (
 
 All parameters are required unless specified otherwise.
 
-| Parameter Names | Description |
+| Parameter names | Description |
 | --------------- | ---------------------------------------------------------------------- |
 | starrocks.host  | The StarRocks host address. |
 | starrocks.mysqlport | The address that connects to the frontend. By default, this will be `9030`.|
