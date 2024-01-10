@@ -92,4 +92,13 @@ reclaim_rate_limit_mb = 0
 ring_buffer_capacity_mb = 256
 catalog_bits = 6
 compression = "none"
+
+[storage.cache_refill]
+data_refill_levels = []
+timeout_ms = 6000
+concurrency = 10
+unit = 64
+threshold = 0.5
+recent_filter_layers = 6
+recent_filter_rotate_interval_ms = 10000`
 ```
