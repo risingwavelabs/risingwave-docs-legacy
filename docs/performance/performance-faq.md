@@ -49,4 +49,4 @@ When a compute node is used for batch serving only, the operator cache is no lon
 
 We recommend using this [configuration](https://github.com/risingwavelabs/risingwave/blob/main/src/config/serving-only.toml).
 
-For any other questions or tips regarding performance tuning, feel free to join our [Slack Community](https://www.risingwave.com/slack) and become part of our growing network of users. Engage in discussions, seek assistance, and share your experiences with fellow users who can provide valuable insights and solutions.
+For any other questions or tips regarding performance tuning, feel free to join our [Slack community](https://www.risingwave.com/slack) and become part of our growing network of users. Engage in discussions, seek assistance, and share your experiences with fellow users and our engineers who are eager to provide insights and solutions.

@@ -156,4 +156,4 @@ For example, RisingWave may ingest data from an upstream message queue. Either t
 
 We suggest users also monitor the CPU utilization, disk I/O, and network I/O of RisingWave’s upstream systems, e.g., message queues or databases, to determine the end-to-end bottleneck. 
 
-We are now inviting you to join our community for any questions or tips regarding performance tuning. To join our Slack Community, simply click the [RisingWave Slack Community invitation link](https://www.risingwave.com/slack) and become part of our growing network of users. Engage in discussions, seek assistance, and share your experiences with fellow users who can provide valuable insights and solutions.
+For any other questions or tips regarding performance tuning, feel free to join our [Slack community](https://www.risingwave.com/slack) and become part of our growing network of users. Engage in discussions, seek assistance, and share your experiences with fellow users and our engineers who are eager to provide insights and solutions.

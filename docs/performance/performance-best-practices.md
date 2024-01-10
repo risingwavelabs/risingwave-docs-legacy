@@ -62,4 +62,4 @@ This append-only versus non-append-only difference can make an impact in a few u
 
 This is an advanced feature that is still in the experimental stage, which may or may not exist in the future version of RisingWave. Feel free to raise the question in RisingWave’s Slack channel before making a decision.
 
-To join our Slack community, simply click the [invitation link](https://www.risingwave.com/slack) and become part of our growing network of users. Engage in discussions, seek assistance, and share your experiences with fellow users and our engineers who are eager to provide insights and solutions.
+For any other questions or tips regarding performance tuning, feel free to join our [Slack community](https://www.risingwave.com/slack) and become part of our growing network of users. Engage in discussions, seek assistance, and share your experiences with fellow users and our engineers who are eager to provide insights and solutions.
