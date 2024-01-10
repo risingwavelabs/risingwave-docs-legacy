@@ -927,7 +927,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "performance/best-practices"
+          id: "performance/performance-best-practices"
         },
       ]
     },

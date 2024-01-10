@@ -1,10 +1,10 @@
 ---
-id: best-practices
-title: Best practices
-slug: /best-practices
+id: performance-best-practices
+title: Best practices for optimizing performance
+slug: /performance-best-practices
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/best-practices/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/performance-best-practices/" />
 </head>
 
 This topic outlines best practices for optimizing RisingWave performance.
@@ -15,9 +15,9 @@ Indexes in RisingWave are used to accelerate batch queries. The basics of indexe
 
 We determine how the index should be created by checking:
 
-1. Which columns of the materialized views are used in the `select` statement. These columns should all appear in the `include` clause when creating the index.
+1. Which columns of the materialized views are used in the `select` statement? These columns should all appear in the `include` clause when creating the index.
 
-2. Which columns of the materialized views are included in an optional `where` condition in the batch queries. Suppose the batch query filters a column named timestamp with the condition `timestamp between t1 and t2`, then the column `timestamp` should be included in the `index_column`.  The same principle applies to any other filter conditions such as equality and inequalities.
+2. Which columns of the materialized views are included in an optional `where` condition in the batch queries? Suppose the batch query filters a column named timestamp with the condition `timestamp between t1 and t2`, then the column `timestamp` should be included in the `index_column`.  The same principle applies to any other filter conditions such as equality and inequalities.
 
 We remark that the incremental maintenance of indexes in RisingWave is similar to the incremental maintenance of materialized views but with minimal computation. Therefore, it is cost-effective to create indexes in RisingWave. We encourage users to detect the patterns in batch queries and create indexes if the pattern occurs frequently or/and a batch query is slow.
 
@@ -36,7 +36,7 @@ The discussion is limited to compute nodes and compactor nodes as other componen
 
 RisingWave was built as a scalable distributed processing system from day one. However, just like any other distributed system, being a distributed system introduces extra overhead as there is more network communication among different machines. Moreover, resource fragmentation is more likely to appear with more machines splitting the same total amount of resources. We remark that this is the intrinsic nature of a distributed system but not a special limitation of RisingWave itself.
 
-Therefore, we generally prefer scaling up over scaling out for compute nodes. If the streaming queries are mostly stateless queries (i.e., those without aggregation, join, or over window functions) that do not involve data shuffling, then scaling up and scaling out is the same.
+Therefore, we generally prefer scaling up over scaling out for compute nodes. If the streaming queries are mostly stateless (i.e., those without aggregation, join, or over window functions) that do not involve data shuffling, then scaling up and scaling out is the same.
 
 In terms of compactor nodes, we favor scaling up when the resources of the compactor node are less than 4 CPU and 8 GB memory. This is because some compaction tasks can occasionally be quite resource-intensive and use up to 4 CPU and 8 GB memory. However, once the resource of the compactor node exceeds this threshold, both scaling up and scaling out are equally fine.
 
@@ -62,4 +62,4 @@ This append-only versus non-append-only difference can make an impact in a few u
 
 This is an advanced feature that is still in the experimental stage, which may or may not exist in the future version of RisingWave. Feel free to raise the question in RisingWave’s Slack channel before making a decision.
 
-To join our Slack Community, simply click the [RisingWave Slack Community invitation link](https://www.risingwave.com/slack) and become part of our growing network of users. Engage in discussions, seek assistance, and share your experiences with fellow users who can provide valuable insights and solutions.
+To join our Slack community, simply click the [invitation link](https://www.risingwave.com/slack) and become part of our growing network of users. Engage in discussions, seek assistance, and share your experiences with fellow users and our engineers who are eager to provide insights and solutions.
