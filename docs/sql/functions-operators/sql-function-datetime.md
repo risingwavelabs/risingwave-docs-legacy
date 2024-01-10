@@ -201,6 +201,7 @@ Converts the input to string according to the given format. Both uppercase and l
 ```bash title=Syntax
 to_char ( timestamptz, format ) → *string*
 to_char ( timestamp, format ) → *string*
+to_char ( interval, format ) → *string*
 ```
 
 ```bash title=Example
@@ -208,6 +209,8 @@ to_char ( timestamp, format ) → *string*
 to_char(timestamp '2002-04-20 17:31:12.66', 'HH12:MI:SS') → '05:31:12'
 
 to_char('2023-07-11 20:01:00-07:00'::timestamptz, 'HH12:MI:SS TZH:TZM') → 03:01:00 +00:00
+
+to_char('1year 2 month 3day 4hour 5minute 6second'::interval, 'YYYY MM DD PM HH12 HH24 MI SS MS US') → 0001 02 03 AM 04 04 05 06 000 000000
 ```
 
 ---
