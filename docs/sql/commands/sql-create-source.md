@@ -73,7 +73,7 @@ To ingest data in formats marked with "T", you need to create tables (with conne
 |[Amazon S3](/ingest/ingest-from-s3.md)| Latest |[JSON](#json), CSV| |
 |[Load generator](/ingest/ingest-from-datagen.md)|Built-in|[JSON](#json)|
 |Google Pub/Sub | | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T) |
-|Google Cloud Storage | [JSON](#json)|
+|[Google Cloud Storage](/ingest/ingest-from-gcs.md) | [JSON](#json)|
 
 :::note
 When a source is created, RisingWave does not ingest data immediately. RisingWave starts to process data when a materialized view is created based on the source.

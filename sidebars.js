@@ -265,7 +265,7 @@ const sidebars = {
             {
               type: "doc",
               label: "Google Cloud Storage",
-              id: "guides/ingest-from-gcs",
+              id: "ingest/ingest-from-gcs",
             },
             {
               type: "doc",
