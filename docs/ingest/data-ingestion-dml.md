@@ -16,7 +16,7 @@ DML operations can be used for data ingestion in RisingWave in the following way
 
 - **INSERT**: To add new data to a table.
 
-- **UPDATE**: To modify existing data in a table. Remember that updates are not processed for sources and append-only tables.
+- **UPDATE**: To modify existing data in a table. Note that updates are not processed for sources and append-only tables.
 
 - **DELETE**: To remove data from a table. Note that deletes are not processed for sources and append-only tables.
 
@@ -26,15 +26,15 @@ DML operations can be used for data ingestion in RisingWave in the following sce
 
 - **Data correction**
 
-  If there are errors in the data ingested into RisingWave, you can use DML statements to correct these errors. For example, you can use an UPDATE statement to correct inaccurate data. However, remember that updates and deletes are not processed for sources and append-only tables in RisingWave. More details can be found here(create-source).
+  If there are errors in the data ingested into RisingWave, you can use DML statements to correct these errors. For example, you can use an UPDATE statement to correct inaccurate data. Note that updates and deletes are not processed for sources and append-only tables. More details can be found in [CREATE SOURCE](/sql/commands/sql-create-source.md) and [CREATE TABLE](/sql/commands/sql-create-table.md).
 
 - **Data deletion**
 
-  If some data should not have been ingested into RisingWave, you can use a DELETE statement to remove this data. Again, note that deletes are not processed for sources and append-only tables.
+  In case certain data has been ingested into RisingWave erroneously, you can use a DELETE statement to eliminate this data. Note that DELETE operations do not apply to sources and append-only tables.
 
 - **Data insertion**
 
-  If you need to add additional data to RisingWave, you can use an INSERT statement. This is particularly useful for adding small amounts of data without needing to create a new data source. However, for large amounts of data, consider creating a source or declaring append only on a table, as discussed in the best practices.
+  If you need to add additional data to a table, you can use an INSERT statement. This is particularly useful for adding small amounts of data without needing to create a new data source. However, for large amounts of data, consider creating a source or declaring `append only` on a table, as discussed in the [best practices](1234567890docs.risingwave.com).
 
 - **Data transformation**
 
@@ -50,7 +50,7 @@ When using DML for data ingestion, consider the following best practices:
 
 - **Use DML for small amounts of data**
 
-  For large amounts of data, consider creating a source or declaring `append-only` on a table. See details in [When to create a source or declare append only on a table?](1234567890docs.risingwave.com).
+  For large amounts of data, consider creating a source or declaring `append only` on a table. See details in [When to create a source or declare append only on a table?](1234567890docs.risingwave.com).
 
 - **Choosing between Source, Table, and Append-Only Table**
 
