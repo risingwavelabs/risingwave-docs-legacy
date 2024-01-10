@@ -39,7 +39,7 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 :::
 
-## Basic Parameters
+## Basic parameters
 
 All `WITH` options are required unless explicitly mentioned as optional.
 
@@ -84,7 +84,7 @@ Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the v
 |Field|Notes|
 |-----|-----|
 |data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
-|data_encode| Data encode. Supported encodes: `JSON` and `AVRO`. Only `UPSERT AVRO` sinks are supported. |
+|data_encode| Data encode. Supported encodes: `JSON`, `AVRO`, and `PROTOBUF`. For `AVRO` encode, only `UPSERT AVRO` sinks are supported. For `PROTOBUF` encode, only `PLAIN PROTOBUF` sinks are supported.|
 |force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
 |timestamptz.handling.mode|Controls the timestamptz output format. This parameter specifically applies to append-only or upsert sinks using JSON encoding. <br/> - If omitted, the output format of timestamptz is `2023-11-11T18:30:09.453000Z` which includes the UTC suffix `Z`. <br/> - When `utc_without_suffix` is specified, the format is changed to `2023-11-11 18:30:09.453000`.|
 |schemas.enable| Only configurable for upsert JSON sinks. By default, this value is `false` for upsert JSON sinks and `true` for debezium `JSON` sinks. If `true`, RisingWave will sink the data with the schema to the Kafka sink. Note that this is not referring to a schema registry containing a JSON schema, but rather schema formats defined using [Kafka Connect](https://www.confluent.io/blog/kafka-connect-deep-dive-converters-serialization-explained/#json-schemas).|
@@ -113,6 +113,29 @@ ENCODE AVRO (
    [schema.registry.name.strategy = 'topic_name_strategy'],
    [key.message = 'test_key'],
    [message = 'main_message',]
+)
+```
+
+### Protobuf specific parameters
+
+When creating an append-only Protobuf sink, the following options can be used following `FORMAT PLAIN ENCODE PROTOBUF`.
+
+|Field|Notes|
+|-----|-----|
+|message| Required. Message name of the main Message in the schema definition. . |
+|schema.location| Required. The schema location. This can be in either `file://`, `http://`, or `https://` format. |
+
+:::note
+The `file://` format is not recommended for production use. If it is used, it needs to be available for both meta and compute nodes.
+:::
+
+Syntax:
+
+```sql
+FORMAT PLAIN
+ENCODE PROTOBUF (
+   message = 'main_message',
+   schema.location = 'location'
 )
 ```
 

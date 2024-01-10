@@ -219,6 +219,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "Instaclustr Kafka",
+                  id: "ingest/ingest-from-instaclustr-kafka",
+                },
+                {
+                  type: "doc",
                   label: "Upstash Kafka",
                   id: "ingest/ingest-from-upstash-kafka",
                 },
@@ -391,6 +396,11 @@ const sidebars = {
           type: "doc",
           label: "Looker",
           id: "guides/looker-integration",
+        },
+        {
+          type: "doc",
+          label: "Metabase",
+          id: "guides/metabase-integration",
         },
         {
           type: "doc",
@@ -914,7 +924,7 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          id: "performance/faq"
+          id: "performance/performance-faq"
         },
         {
           type: "doc",

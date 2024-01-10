@@ -650,9 +650,9 @@ upper('tom') → 'TOM'
 ## `LIKE` pattern matching expressions
 
 ```sql
-string [ NOT ] { LIKE | ILIKE } pattern [ ESCAPE '' ]
+string [ NOT ] { LIKE | ILIKE } pattern
 
-string [!]~~[*] pattern [ ESCAPE '' ]
+string [!]~~[*] pattern
 ```
 
 The `LIKE` expression returns true if the string matches the supplied pattern. The `NOT LIKE` expression returns false if `LIKE` returns true. By using `ILIKE` instead of `LIKE`, the matching becomes case-insensitive.
@@ -661,7 +661,7 @@ Alternatively, you can use the operators `~~` and `~~*` as equivalents to `LIKE`
 
 ### Wildcards
 
-- An underscore `_` in a pattern matches any single character
+- An underscore `_` in a pattern matches any single character.
   
 - A percent sign `%` matches any sequence of zero or more characters.
 
@@ -671,7 +671,11 @@ If the pattern does not contain `_` or `%`, then the pattern only represents the
 
 To match a literal underscore or percent sign without matching other characters, the respective character in pattern must be preceded by the escape character `\`. To match the escape character itself, write two escape characters: `\\`.
 
+:::note
+
 You can use `ESCAPE ''` to disable the escape mechanism, but specifying a custom escape character using the `ESCAPE` clause is not supported.
+
+:::
 
 ### Examples
 
@@ -680,4 +684,42 @@ You can use `ESCAPE ''` to disable the escape mechanism, but specifying a custom
 'abc' LIKE 'a%'            true
 'abc' LIKE '_b_'           true
 'abc' LIKE 'c'             false
+```
+
+## `SIMILAR TO` pattern matching expressions
+
+```sql
+string [ NOT ] SIMILAR TO pattern [ ESCAPE escape-character ]
+```
+
+The `SIMILAR TO` expression returns true if the string matches the supplied pattern. The `NOT SIMILAR TO` expression returns false if `SIMILAR TO` returns true. The matching is case-sensitive.
+
+### Metacharacter
+
+| Operator | Description                                            |
+|----------|--------------------------------------------------------|
+| %        | Matches any sequence of zero or more characters.         |
+| _        | Matches any single character.                            |
+| \|        | Denotes alternation (either of two alternatives).       |
+| *        | Repeats the previous item zero or more times.           |
+| +        | Repeats the previous item one or more times.            |
+| ?        | Repeats the previous item zero or one time.            |
+| {m}      | Repeats the previous item exactly m times.              |
+| {m,}     | Repeats the previous item m or more times.              |
+| {m,n}    | Repeats the previous item at least m and not more than n times. |
+| ()       | Parentheses group items into a single logical item.   |
+| [...]    | A bracket expression specifies a character class. |
+
+### Escape
+
+To match a metacharacter literally, use the escape character `\` before the respective character in the pattern. To match the escape character itself, write two escape characters: `\\`.
+
+You can use `ESCAPE ''` to disable the escape mechanism. The `ESCAPE` clause supports specifying a custom escape character, which must be either empty or a single character.
+
+### Examples
+
+```sql
+'abc' SIMILAR TO 'a|b|c'                false
+'abc' SIMILAR TO '(a|b|c)+'             true
+'a_b' SIMILAR TO 'a$_b' ESCAPE '$'      true
 ```

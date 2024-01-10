@@ -43,12 +43,11 @@ cd docker
 
 You can now start a RisingWave cluster. You can use the following storage options as the storage backend of RisingWave:
 
-- MinIO
-- S3 or S3-compatible storage
-- Google Cloud Storage
-- Alicloud OSS
-- Azure Blob Storage
-- HDFS
+- [MinIO](#minio)
+- [S3 or S3-compatible storage](#s3-or-s3-compatible-storage)
+- [Google Cloud Storage, Alibaba Cloud OSS, or Azure Blob Storage](#google-cloud-storage-alibaba-cloud-oss-or-azure-blob-storage)
+- [HDFS](#hdfs)
+- [Huawei Cloud OBS](#huawei-cloud-obs)
 
 For each of the options, we have a Docker Compose configuration file that you can use after the necessary configurations.
 
@@ -130,6 +129,22 @@ Run the following command to start a RisingWave cluster:
 
 ```shell
 docker compose -f docker-compose-with-hdfs.yml up
+```
+
+### Huawei Cloud OBS
+
+To use Huawei Cloud OBS as the storage backend, you need to configure your OBS credential information in the `multiple_object_storage.env` file. Uncomment and set the following environment variables: `OBS_ENDPOINT`, `OBS_ACCESS_KEY_ID`, and `OBS_SECRET_ACCESS_KEY`. Don't include the bucket name in the endpoint.
+
+In the `docker-compose-with-obs.yml` file, specify the bucket name via the `hummock+obs` parameter. Replace `<bucket-name>` with the name of your OBS bucket.
+
+```bash
+--state-store hummock+obs://<bucket-name>
+```
+
+To start the RisingWave cluster with OBS as the storage backend, run the following command:
+
+```shell
+docker compose -f docker-compose-with-obs.yml up
 ```
 
 ## Connect to RisingWave
