@@ -118,44 +118,58 @@ SET PARALLELISM = parallelism_number;
 
 | Parameters or clauses | Description |
 | ------------------- | ----------------------------------------------- |
-|**SET PARALLELISM**| This clause controls the degree of parallelism for the targeted [streaming job](/docs/concepts/key-concepts.md#streaming-jobs).|
-| *parallelism_number* | This parameter can be `AUTO` or a fixed number, like 1, 2, 3, etc. Altering the parameter to `AUTO` will expand the streaming job's degree of parallelism to encompass all available units, whereas setting it to a fixed number will lock the job's parallelism at that specific figure. Setting it to `0` is equivalent to `AUTO`. |
+|**SET PARALLELISM**| This clause controls the degree of [parallelism](../../concepts/key-concepts.md#parallelism) for the targeted [streaming job](../../concepts/key-concepts.md#streaming-jobs).|
+| *parallelism_number* | This parameter can be `AUTO` or a fixed number, like 1, 2, 3, etc. Altering the parameter to `AUTO` will expand the streaming job's degree of parallelism to encompass all available units, whereas setting it to a fixed number will lock the job's parallelism at that specific figure. Setting it to `0` is equivalent to `AUTO`. <br/><br/>After setting the parallelism, the parallelism status of a table can be observed within the internal [`rw_table_fragments`](../../manage/view-configure-runtime-parameters.md) table or the [`rw_fragments`](../../manage/view-configure-runtime-parameters.md)table.|
 
 ```sql title=Examples
 ALTER TABLE test_table SET PARALLELISM = 8;
 ```
 
-After setting the parallelism, the parallelism status of a table can be observed within the internal `rw_table_fragments table`.
+Here is a more detailed example for you to practise this clause:
 
-With the `enable_automatic_parallelism_control` option activated in the meta configuration, the addition of new compute nodes will automatically trigger an adjustment in parallelism.
-
-Streaming jobs in `AUTO` mode will automatically be scaled up to include new compute nodes, whereas jobs in fixed mode will undergo a rebalance while maintaining the set level of parallelism.
+First, let's set the parallelism to `3` by the [`SET` command](../../manage/view-configure-runtime-parameters.md#how-to-configure-runtime-parameters).
 
 ```sql title=Examples
-dev=> set streaming_parallelism = 3;
-SET_VARIABLE
-dev=> create table t(v int);
-CREATE_TABLE
-dev=> select fragment_id, parallelism from rw_fragments;
+SET streaming_parallelism = 3;
+```
+
+Then let's create a table to view the parallelism we set. As mentioned, the parallelism status of a table can be observed within the [`rw_fragments`](../../manage/view-configure-runtime-parameters.md) table.
+
+```sql title=Examples
+-- Create a table.
+CREATE TABLE t(v int);
+-- View parrellelism by rw_fragments table.
+SELECT fragment_id, parallelism FROM rw_fragments;
+
+------RESULTS
  fragment_id | parallelism
 -------------+-------------
            1 |           3
            2 |           3
 (2 rows)
+```
 
-dev=> alter table t set parallelism = 8;
-ALTER_TABLE
-dev=> select fragment_id, parallelism from rw_fragments;
+Now we can use `SET PARALLELISM` to change the parallelism and view the change:
+
+```sql title=Examples
+-- Set to a fixed number.
+ALTER TABLE t SET PARALLELISM = 8;
+SELECT fragment_id, parallelism FROM rw_fragments;
+
+------RESULTS
  fragment_id | parallelism
 -------------+-------------
            1 |           8
            2 |           8
 (2 rows)
+```
 
-dev=> alter table t set parallelism = auto;
-ALTER_TABLE
+```sql title=Examples
+-- Set to AUTO
+ALTER TABLE t SET PARALLELISM = auto;
+SELECT fragment_id, parallelism FROM rw_fragments;
 
-dev=> select fragment_id, parallelism from rw_fragments;
+------RESULTS
  fragment_id | parallelism
 -------------+-------------
            1 |          12
