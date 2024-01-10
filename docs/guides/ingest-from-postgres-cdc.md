@@ -48,6 +48,10 @@ import TabItem from '@theme/TabItem';
 
     Keep in mind that changing the `wal_level` requires a restart of the PostgreSQL instance and can affect database performance.
 
+    :::note
+    If you choose to create multiple CDC tables without using a shared source, be sure to set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 10. 
+    :::
+
 2. Assign `REPLICATION`, `LOGIN` and `CREATEDB` role attributes to the user.
 
     For an existing user, run the following statement to assign the attributes:
@@ -110,6 +114,10 @@ import TabItem from '@theme/TabItem';
 Here we will use a standard class instance without Multi-AZ deployment as an example.
 
 1. Check whether the `wal_level` parameter is set to `logical`. If it is `logical` then we are done. Otherwise, create a parameter group for your Postgres instance. We created a parameter group named **pg-cdc** for the instance that is running Postgres 12. Next, click the **pg-cdc** parameter group to edit the value of `rds.logical_replication` to 1.
+
+    :::note
+    If you choose to create multiple CDC tables without using a shared source, set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 20 for version 13 and later. 
+    :::
 
     <img
     src={require('../images/wal-level.png').default}
