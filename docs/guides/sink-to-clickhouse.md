@@ -2,7 +2,7 @@
 id: sink-to-clickhouse
 title: Sink data from RisingWave to ClickHouse
 description: Sink data from RisingWave to ClickHouse.
-slug: /sink-to-clickhouse 
+slug: /sink-to-clickhouse
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-clickhouse/" />
@@ -181,22 +181,33 @@ WITH (
 
 |RisingWave Data Type  | ClickHouse Data Type |
 |--------------------- |--------------------- |
-|bool                  | Bool                 |
-|smallint              | UInt16 or Int16      |
-|int                   | UInt32 or Int32      |
-|bigint                | UInt64 or Int64      |
-|real(float32)         | Float32              |
-|float(float64)        | Float64              |
+|boolean               | Bool                 |
+|smallint              | Int16 or UInt16      |
+|integer               | Int32 or UInt32      |
+|bigint                | Int64 or UInt64      |
+|real                  | Float32              |
+|double precision      | Float64              |
 |decimal               | Decimal              |
+|character varying     | String               |
+|bytea                 | Not supported        |
 |date                  | Date32               |
-|varchar               | String               |
+|time without time zone| Not supported        |
+|timestamp             | Not supported. You need to convert `timestamp` to `timestamptz` within RisingWave before sinking.                    |
 |timestamptz           | DateTime64           |
+|interval              | Not supported        |
 |struct                | Nested               |
-|list                  | Array                |
-|serial                | UInt64 or Int64      |
+|array                 | Array                |
+|JSONB                 | Not supported        |
 
 :::note
 
 In ClickHouse, the `Nested` data type doesn't support multiple levels of nesting. Therefore, when sinking RisingWave's `struct` data to ClickHouse, you need to flatten or restructure the nested data to align with ClickHouse's requirement.
 
 :::
+
+Please be aware that the range of specific values varies among ClickHouse types and RisingWave types. Refer to the table below for detailed information.
+
+| ClickHouse type | RisingWave type | ClickHouse range | RisingWave range |
+| --- | --- | --- | --- |
+| Date32 | DATE | `1900-01-01` to `2299-12-31` | `0001-01-01` to `9999-12-31` |
+| DateTime64 | TIMESTAMPTZ | `1900-01-01 00:00:00` to `2299-12-31 23:59:59.99999999` | `0001-01-01 00:00:00` to `9999-12-31 23:59:59` |
