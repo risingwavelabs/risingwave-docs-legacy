@@ -45,7 +45,7 @@ A simplified description of RisingWave’s memory control mechanism:
 
 3. RisingWave periodically checks the current memory usage against the rest 80% of the total memory, i.e., usable memory, and decides if it should evict data. If it exceeds 70% of usable memory, it gracefully evicts. The eviction will be further intensified if it exceeds 80% and 90%.
 
-In the figure above, we have allocated 12 GB of memory to the CN node. The real memory usage keeps fluctuating around 8.64 GB (90% of usable memory). This suggests that the eviction is triggered constantly as RisingWave tries to use more memory.
+In the figure above, we have allocated 12 GB of memory to the compute node. The real memory usage keeps fluctuating around 8.64 GB (90% of usable memory). This suggests that the eviction is triggered constantly as RisingWave tries to use more memory.
 
 **Takeaway**
 
@@ -57,7 +57,7 @@ In the figure above, we have allocated 12 GB of memory to the CN node. The real 
 
 Operators such as Join and Aggregation are stateful. They maintain intermediate states in their operator cache to facilitate incremental computation.
 
-For example, the following are the cache miss ratio metrics of the join operator, showing the metrics at the actor level. Each operator is parallelized by multiple actors, whose number is equal to the `streaming_parallelism`. By default, the parallelism is the same as the number of CPUs on CN.
+For example, the following are the cache miss ratio metrics of the join operator, showing the metrics at the actor level. Each operator is parallelized by multiple actors, whose number is equal to the `streaming_parallelism`. By default, the parallelism is the same as the number of CPUs on compute nodes.
 
 <img
   src={require('../images/cash_miss_1.png').default}
