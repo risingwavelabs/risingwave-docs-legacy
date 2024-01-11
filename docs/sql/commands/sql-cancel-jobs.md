@@ -17,7 +17,7 @@ Use `CANCEL JOBS/JOB` to cancel specific streaming jobs that are in progress. A 
 CANCEL [ JOBS | JOB ] job_id [,...];
 ```
 
-## Example
+## Examples
 
 ```sql title="Show all jobs"
 SHOW JOBS;
