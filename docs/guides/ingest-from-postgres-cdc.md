@@ -8,7 +8,7 @@
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-postgres-cdc/" />
 </head>
 
-Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
+Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database and then delivering the changes to a downstream service in real time.
 
 RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, and 14 of PostgreSQL are supported.
 
@@ -24,7 +24,7 @@ You can ingest CDC data from PostgreSQL into RisingWave in two ways:
 
 - Using a CDC tool and a message broker
   
-  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/ingest/ingest-from-cdc.md) topic.
+  You can use a CDC tool and then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/ingest/ingest-from-cdc.md) topic.
 
 ## Set up PostgreSQL
 
@@ -149,16 +149,16 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 
 ## Notes about running RisingWave from binaries
 
-If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
+If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or a later version installed in your environment.
 
 ## Create a table using the native CDC connector
 
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
+To ensure all data changes are captured, you must create a table or source and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
 
 ### Syntax
 
  ```sql
- CREATE TABLE [ IF NOT EXISTS ] source_name (
+ CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name (
     column_name data_type PRIMARY KEY , ...
     PRIMARY KEY ( column_name, ... )
  ) 
@@ -187,15 +187,44 @@ Unless specified otherwise, the fields listed are required.
 |slot.name| Optional. The [replication slot](https://www.postgresql.org/docs/14/logicaldecoding-explanation.html#LOGICALDECODING-REPLICATION-SLOTS) for this PostgreSQL source. By default, a unique slot name will be randomly generated. Each source should have a unique slot name.|
 |publication.name| Optional. Name of the publication. By default, the value is `rw_publication`. For more information, see [Multiple CDC source tables](#multiple-cdc-source-tables). |
 |publication.create.enable| Optional. By default, the value is `true`. If `publication.name` does not exist and this value is `true`, a `publication.name` will be created. If `publication.name` does not exist and this value is `false`, an error will be returned. |
-|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 :::note
-RisingWave implements CDC via PostgresQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot).
+RisingWave implements CDC via PostgreSQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot).
 :::
 
+### Data format
+
+Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
+
+## Examples
+
+### Create a single CDC table
+
+The following example creates a table in RisingWave that reads CDC data from the `shipments` table in PostgreSQL. The `shipments` table is located in the `public` schema, under the `dev` database. When connecting to a specific table in PostgreSQL, use the `CREATE TABLE` command.
+
+```sql
+ CREATE TABLE shipments (
+    shipment_id integer,
+    order_id integer,
+    origin string,
+    destination string,
+    is_arrived boolean,
+    PRIMARY KEY (shipment_id)
+) WITH (
+    connector = 'postgres-cdc',
+    hostname = '127.0.0.1',
+    port = '5432',
+    username = 'postgres',
+    password = 'postgres',
+    database.name = 'dev',
+    schema.name = 'public',
+    table.name = 'shipments'
+);
+```
 ### Create multiple CDC tables with the same source
 
-RisingWave supports creating multiple CDC tables that share a single PostgreSQL CDC source. 
+RisingWave supports creating a single PostgreSQL source that allows you to read CDC data from multiple tables located in the same database.
 
 Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command and PostgreSQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
 
@@ -234,37 +263,11 @@ CREATE TABLE tt4 (
 
 To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it.
 
-### Data format
-
-Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
-
-### Example
-
-```sql
- CREATE TABLE shipments (
-    shipment_id integer,
-    order_id integer,
-    origin string,
-    destination string,
-    is_arrived boolean,
-    PRIMARY KEY (shipment_id)
-) WITH (
- connector = 'postgres-cdc',
- hostname = '127.0.0.1',
- port = '5432',
- username = 'postgres',
- password = 'postgres',
- database.name = 'dev',
- schema.name = 'public',
- table.name = 'shipments'
-);
-```
-
 ## Data type mapping
 
 The following table shows the corresponding data type in RisingWave that should be specified when creating a source. For details on native RisingWave data types, see [Overview of data types](/sql/sql-data-types.md).
 
-RisingWave data types marked with an asterisk indicates that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
+RisingWave data types marked with an asterisk indicate that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
 
 :::note
 RisingWave cannot correctly parse composite types from PostgreSQL as Debezium does not support composite types in PostgreSQL.
