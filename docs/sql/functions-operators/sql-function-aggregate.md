@@ -222,21 +222,26 @@ SELECT mode() WITHIN GROUP (ORDER BY column1) FROM table1;
 Computes the continuous percentile, which is a value corresponding to the specified fraction within the ordered set of aggregated argument values. It can interpolate between adjacent input items if needed.
 
 ```sql title=Syntax
-percentile_cont ( fraction_or_expression ) WITHIN GROUP ( ORDER BY sort_expression double precision ) -> double precision
+percentile_cont ( fraction_or_expression ) WITHIN GROUP ( ORDER BY sort_expression ) -> fraction or NULL
 ```
 
-`fraction_or_expression`: Represents the desired percentile. This can be either a fraction value (e.g., 0.5) or a fraction expression (e.g., 0.2 + 0.3) that represents the desired percentile. It should be between 0 and 1.
+`fraction_or_expression`: Represents the desired percentile. This can be a fraction value (e.g., 0.5) or a fraction expression (e.g., 0.2 + 0.3) or NULL. The fraction or expression should be between 0 and 1.
 
 The examples below calculate the median (50th percentile) of the values in `column1` from `table1`.
 
-```sql title=Example 1
+```sql title=Example
 SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
 
-```sql title=Example 2
+```sql title=Example
 SELECT percentile_cont(0.2 + 0.3) WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
----  
+
+If NULL is provided, the function will not calculate a specific percentile and return NULL instead.
+
+```sql title=Example
+SELECT percentile_cont(0.3 + NULL) WITHIN GROUP (ORDER BY column1) FROM table1; -> NULL
+```
 
 ### `percentile_disc`
 
