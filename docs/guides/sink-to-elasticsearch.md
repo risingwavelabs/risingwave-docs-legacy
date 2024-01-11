@@ -35,7 +35,6 @@ CREATE SINK sink_name
 [ FROM sink_from | AS select_query ]
 WITH (
   connector = 'elasticsearch',
-  type = '<type>',
   index = '<your Elasticsearch index>',
   url = 'http://<ES hostname>:<ES port>',
   username = '<your ES username>', 
@@ -56,6 +55,12 @@ WITH (
 | `username`        | Optional. `elastic` user name for accessing the Elasticsearch endpoint. It must be used with `password`.|
 | `password`       | Optional. Password for accessing the Elasticseaerch endpoint. It must be used with `username`.|
 |`delimiter` | Optional. Delimiter for Elasticsearch ID when the sink's primary key has multiple columns.|
+
+:::note
+For versions under 8.x, there was once a parameter `type`. In Elasticsearch 6.x, users could directly set the type, but starting from 7.x, it is set to not recommended and the default value is unified to '_doc.' In version 8.x, the type has been completely removed.
+
+So, if you are using Elasticsearch 7.x, we set it to the Elasticsearch official default recommended value, which is '_doc'. If you are using Elasticsearch 8.x, this parameter has been removed by the Elasticsearch official, so no setting is required.
+:::
 
 ### Notes about Elasticsearch ID
 
