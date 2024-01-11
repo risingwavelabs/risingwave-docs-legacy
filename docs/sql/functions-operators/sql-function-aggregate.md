@@ -199,10 +199,6 @@ var_samp ( expression ) -> output_value
 
 ## Ordered-set aggregate functions
 
-:::note
-At present, ordered-set aggregate functions support only constant fraction arguments.
-:::
-
 ### `mode`
 
 Computes the mode, which is the most frequent value of the aggregated argument. If there are multiple equally-frequent values, it arbitrarily chooses the first one.
@@ -225,18 +221,21 @@ SELECT mode() WITHIN GROUP (ORDER BY column1) FROM table1;
 
 Computes the continuous percentile, which is a value corresponding to the specified fraction within the ordered set of aggregated argument values. It can interpolate between adjacent input items if needed.
 
-```bash title=Syntax
-percentile_cont ( fraction double precision ) WITHIN GROUP ( ORDER BY sort_expression double precision ) -> double precision
+```sql title=Syntax
+percentile_cont ( fraction_or_expression ) WITHIN GROUP ( ORDER BY sort_expression double precision ) -> double precision
 ```
 
-`fraction`: The fraction value representing the desired percentile. It should be between 0 and 1.
+`fraction_or_expression`: Represents the desired percentile. This can be either a fraction value (e.g., 0.5) or a fraction expression (e.g., 0.2 + 0.3) that represents the desired percentile. It should be between 0 and 1.
 
-This example calculates the median (50th percentile) of the values in `column1` from `table1`.
+The examples below calculate the median (50th percentile) of the values in `column1` from `table1`.
 
-```sql title=Example
+```sql title=Example 1
 SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
 
+```sql title=Example 2
+SELECT percentile_cont(0.2 + 0.3) WITHIN GROUP (ORDER BY column1) FROM table1;
+```
 ---  
 
 ### `percentile_disc`
