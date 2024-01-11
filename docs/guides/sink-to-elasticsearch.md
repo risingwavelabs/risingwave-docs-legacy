@@ -57,7 +57,7 @@ WITH (
 |`delimiter` | Optional. Delimiter for Elasticsearch ID when the sink's primary key has multiple columns.|
 
 :::note
-For versions under 8.x, there was once a parameter `type`. In Elasticsearch 6.x, users could directly set the type, but starting from 7.x, it is set to not recommended and the default value is unified to '_doc.' In version 8.x, the type has been completely removed.
+For versions under 8.x, there was once a parameter `type`. In Elasticsearch 6.x, users could directly set the type, but starting from 7.x, it is set to not recommended and the default value is unified to '_doc.' In version 8.x, the type has been completely removed. See [Elasticsearch's official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html) for more details.
 
 So, if you are using Elasticsearch 7.x, we set it to the Elasticsearch official default recommended value, which is '_doc'. If you are using Elasticsearch 8.x, this parameter has been removed by the Elasticsearch official, so no setting is required.
 :::
