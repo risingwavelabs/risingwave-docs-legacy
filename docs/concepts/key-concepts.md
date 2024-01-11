@@ -62,7 +62,7 @@ A group of interconnected nodes and services that acts as a single system runnin
 
 ### Nodes
 
-A node is a logical collection of IT resources that handles specific workloads based on their types. There are two types of nodes in RisingWave:
+A node is a logical collection of IT resources that handles specific workloads based on their types. There are three types of nodes in RisingWave:
 
 - Compute node
 - Compactor node
