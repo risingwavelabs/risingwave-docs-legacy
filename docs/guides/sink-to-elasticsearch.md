@@ -82,10 +82,9 @@ ElasticSearch uses a mechanism called [dynamic field mapping](https://www.elasti
 |timestamp without time zone | text|
 |timestamp with time zone |text|
 |interval |text|
-|struct |Not supported|
+|struct |struct|
 |array |array|
-|JSONB |text|
-|json |struct (RisingWave's ElasticSearch sink will send JSON as a JSON string, and ElasticSearch will convert it into a struct structure)|
+|JSONB|struct (RisingWave's ElasticSearch sink will send JSONB as a JSON string, and ElasticSearch will convert it into a struct structure)|
 
 :::note
 Unlike normal databases, Elasticsearch doesn't require users to explicitly `CREATE TABLE`. Instead, it infers the schema on-the-fly based on the first record ingested. For example, if a record contains a jsonb '{v1: 100}', v1 will be inferred as a long type. However, if the next record is '{v1: "abc"}', the ingestion will fail because "abc" is inferred as a string and the two types are incompatible.
