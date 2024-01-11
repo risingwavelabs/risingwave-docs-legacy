@@ -72,7 +72,7 @@ ElasticSearch uses a mechanism called [dynamic field mapping](https://www.elasti
 |smallint |long|
 |integer |long|
 |bigint |long|
-|numeric |float|
+|numeric |text|
 |real |float|
 |double precision |float|
 |character varying |text|
