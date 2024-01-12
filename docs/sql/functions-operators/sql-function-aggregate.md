@@ -225,7 +225,7 @@ SELECT mode() WITHIN GROUP (ORDER BY column1) FROM table1;
 
 Computes the continuous percentile, which is a value corresponding to the specified fraction within the ordered set of aggregated argument values. It can interpolate between adjacent input items if needed.
 
-```bash title=Syntax
+```sql title=Syntax
 percentile_cont ( fraction double precision ) WITHIN GROUP ( ORDER BY sort_expression double precision ) -> double precision
 ```
 
@@ -236,6 +236,8 @@ This example calculates the median (50th percentile) of the values in `column1` 
 ```sql title=Example
 SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
+
+If NULL is provided, the function will not calculate a specific percentile and return NULL instead.
 
 ---  
 
@@ -256,6 +258,8 @@ This example calculates the 75th percentile of the values in `column1` from `tab
 ```sql title=Example
 SELECT percentile_disc(0.75) WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
+
+If NULL is provided, the function will not calculate a specific percentile and return NULL instead.
 
 ## Grouping operation functions
 

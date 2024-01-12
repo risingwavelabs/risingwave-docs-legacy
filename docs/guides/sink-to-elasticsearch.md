@@ -24,18 +24,18 @@ The Elasticsearch sink connector in RisingWave provides at-least-once delivery s
 
 - Ensure the Elasticsearch cluster (version 7.x or 8.x) is accessible from RisingWave.
 
-- If you are running RisingWave locally from binaries, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
+- If you are running RisingWave locally from binaries, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions installed in your environment.
 
-## Create a Elasticsearch sink
+## Create an Elasticsearch sink
 
-Use the following syntax to create a Elasticsearch sink. Once a sink is created, any insert or update to the sink will be streamed to the specified Elasticsearch endpoint.
+Use the following syntax to create an Elasticsearch sink. Once a sink is created, any insert or update to the sink will be streamed to the specified Elasticsearch endpoint.
 
 ```sql
 CREATE SINK sink_name
 [ FROM sink_from | AS select_query ]
 WITH (
   connector = 'elasticsearch',
-  type = '<type>',
+  primary_key = '<primary key of the sink_from object>',
   index = '<your Elasticsearch index>',
   url = 'http://<ES hostname>:<ES port>',
   username = '<your ES username>', 
@@ -51,16 +51,26 @@ WITH (
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
+|`primary_key` |Optional. The primary keys of the sink. If the primary key has multiple columns, set a delimiter in the `delimiter` parameter below to join them. |
 | `index`         |Required. Name of the Elasticsearch index that you want to write data to. |
 | `url`          | Required. URL of the Elasticsearch REST API endpoint.|
 | `username`        | Optional. `elastic` user name for accessing the Elasticsearch endpoint. It must be used with `password`.|
 | `password`       | Optional. Password for accessing the Elasticseaerch endpoint. It must be used with `username`.|
 |`delimiter` | Optional. Delimiter for Elasticsearch ID when the sink's primary key has multiple columns.|
 
-### Notes about Elasticsearch ID
+:::note
+For versions under 8.x, there was once a parameter `type`. In Elasticsearch 6.x, users could directly set the type, but starting from 7.x, it is set to not recommended and the default value is unified to '_doc.' In version 8.x, the type has been completely removed. See [Elasticsearch's official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html) for more details.
 
-If the sink has a primary key (normally it is inherited from a materialized view), RisingWave will use the primary key as the Elasticsearch ID.
-If the sink doesn't have a primary key (in the case that the materialized view is append-only), RisingWave will use the first column in the sink definition as the Elasticsearch ID.
+So, if you are using Elasticsearch 7.x, we set it to the official's recommended value, which is '_doc'. If you are using Elasticsearch 8.x, this parameter has been removed by the Elasticsearch official, so no setting is required.
+:::
+
+### Notes about primary keys and Elasticsearch IDs
+
+The Elasticsearch sink defaults to the `upsert` sink type. It does not support the `append-only` sink type.
+
+If you want to customize your Elasticsearch ID, please specify it via the `primary_key` parameter. RisingWave will combine multiple primary key values into a single string with the delimiter you set, and use it as the Elasticsearch ID.
+
+If you don't want to customize your Elasticsearch ID, RisingWave will use the first column in the sink definition as the Elasticsearch ID.
 
 ## Data type mapping
 
@@ -72,7 +82,7 @@ ElasticSearch uses a mechanism called [dynamic field mapping](https://www.elasti
 |smallint |long|
 |integer |long|
 |bigint |long|
-|numeric |float|
+|numeric |text|
 |real |float|
 |double precision |float|
 |character varying |text|
@@ -82,6 +92,12 @@ ElasticSearch uses a mechanism called [dynamic field mapping](https://www.elasti
 |timestamp without time zone | text|
 |timestamp with time zone |text|
 |interval |text|
-|struct |Not supported|
+|struct |object|
 |array |array|
-|JSONB |text|
+|JSONB|object (RisingWave's Elasticsearch sink will send JSONB as a JSON string, and Elasticsearch will convert it into an object)|
+
+:::note
+Elasticsearch doesn't require users to explicitly `CREATE TABLE`. Instead, it infers the schema on-the-fly based on the first record ingested. For example, if a record contains a jsonb '{v1: 100}', v1 will be inferred as a long type. However, if the next record is '{v1: "abc"}', the ingestion will fail because "abc" is inferred as a string and the two types are incompatible.
+
+This behavior should be noted, or your data may be less than it should be. In terms of monitoring, you can check out Grafana, where there is a panel for all sink write errors.
+:::

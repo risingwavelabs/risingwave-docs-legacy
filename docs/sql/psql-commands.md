@@ -15,4 +15,5 @@ RisingWave supports the following psql commands:
 |\di|Lists all indexes in the current database.|
 |\dm|Lists all materialized views in the current database.|
 |\dt|Lists all tables in the current database.|
+|\du|Lists all users and their privileges in the current database.|
 |\q|Quits psql.|
