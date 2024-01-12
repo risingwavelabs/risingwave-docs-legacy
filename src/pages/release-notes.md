@@ -41,7 +41,7 @@ This version was released on January 11, 2024.
 - Supports `FORMAT PLAIN ENCODE PROTOBUF` syntax for Kafka sink. [#12858](https://github.com/risingwavelabs/risingwave/pull/12858).
 - Supports GCS file source. [#13414](https://github.com/risingwavelabs/risingwave/pull/13414).
 - **Breaking change:** For ClickHouse sinks, `timestamptz` can be sinked to `DateTime64`. `timestamp` cannot be sinked and has to be converted to `timestamptz` first before being sinked. [#13672](https://github.com/risingwavelabs/risingwave/pull/13672).
-- For Elasticsearch sinks, the default es.type is set as `_doc` for Elasticsearch 6.x and 7.x. [#14273](https://github.com/risingwavelabs/risingwave/pull/14273).
+- For Elasticsearch sinks, the default es.type is set as `_doc` for Elasticsearch 6.x and 7.x, and is removed in Elasticsearch 8.x. [#14273](https://github.com/risingwavelabs/risingwave/pull/14273). Besides, RisingWave's Elasticsearch sink will now send JSONB as a JSON string, and Elasticsearch will convert it into an object.
 - `connector = 'iceberg_java'` is deprecated, and users can only Iceberg sinks with the Rust version of Iceberg. Similarly, the DeltaLake sink will also use the Rust version implementation. [#14277](https://github.com/risingwavelabs/risingwave/pull/14277).
 - Supports StarRocks sink. [#12681](https://github.com/risingwavelabs/risingwave/pull/12681).
 
