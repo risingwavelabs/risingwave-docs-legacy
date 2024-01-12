@@ -51,7 +51,7 @@ WITH (
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
-|`primary_key` | The primary keys of the sink. If the primary key has multiple columns, set a delimiter in the `delimiter` parameter below to join them. |
+|`primary_key` |Optional. The primary keys of the sink. If the primary key has multiple columns, set a delimiter in the `delimiter` parameter below to join them. |
 | `index`         |Required. Name of the Elasticsearch index that you want to write data to. |
 | `url`          | Required. URL of the Elasticsearch REST API endpoint.|
 | `username`        | Optional. `elastic` user name for accessing the Elasticsearch endpoint. It must be used with `password`.|
@@ -68,9 +68,9 @@ So, if you are using Elasticsearch 7.x, we set it to the Elasticsearch official 
 
 The Elasticsearch sink defaults to the `upsert` sink type. It does not support the `append-only` sink type.
 
-If the sink_from object has primary keys, please specify them via the `primary_key` parameter. RisingWave will combine multiple primary key values into a single string with the delimiter you set, and use it as the Elasticsearch ID.
+If you want to customize your Elasticsearch ID, please specify it via the `primary_key` parameter. RisingWave will combine multiple primary key values into a single string with the delimiter you set, and use it as the Elasticsearch ID.
 
-If the sink_from object doesn't have a primary key, RisingWave will use the first column in the sink definition as the Elasticsearch ID.
+If you don't want to customize your Elasticsearch ID, RisingWave will use the first column in the sink definition as the Elasticsearch ID.
 
 ## Data type mapping
 
