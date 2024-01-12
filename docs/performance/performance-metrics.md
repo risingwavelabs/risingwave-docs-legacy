@@ -15,7 +15,7 @@ The details of the dashboard can be found [here](https://github.com/risingwavela
 
 2. Implement a [user-facing dashboard](https://github.com/risingwavelabs/risingwave/blob/main/grafana/risingwave-user-dashboard.dashboard.py). It summarizes some high-level metrics.
 
-## CPU Usage
+## CPU usage
 
 <img
   src={require('../images/CPU_Usage.png').default}
@@ -30,7 +30,7 @@ Among all of the components, we primarily focus on the CPU usage of compute node
 
 2. We can apply the same reasoning to compactor nodes. We will revisit this when we introduce the metrics “LSM Compact Pending Bytes”, which suggests the ideal number of CPUs to reserve for compaction workload.
 
-## Memory Usage
+## Memory usage
 
 <img
   src={require('../images/memory_usage.png').default}
@@ -45,7 +45,7 @@ A simplified description of RisingWave’s memory control mechanism:
 
 3. RisingWave periodically checks the current memory usage against the rest 80% of the total memory, i.e., usable memory, and decides if it should evict data. If it exceeds 70% of usable memory, it gracefully evicts. The eviction will be further intensified if it exceeds 80% and 90%.
 
-In the figure above, we have allocated 12 GB of memory to the CN node. The real memory usage keeps fluctuating around 8.64 GB (90% of usable memory). This suggests that the eviction is triggered constantly as RisingWave tries to use more memory.
+In the figure above, we have allocated 12 GB of memory to the compute node. The real memory usage keeps fluctuating around 8.64 GB (90% of usable memory). This suggests that the eviction is triggered constantly as RisingWave tries to use more memory.
 
 **Takeaway**
 
@@ -53,11 +53,11 @@ In the figure above, we have allocated 12 GB of memory to the CN node. The real 
 
 2. If the memory is higher than 70% of the usable memory, we consider allocating more memory to speed up if the extra cost is acceptable. Additionally, we recommend taking the cache miss ratio below into consideration when making this decision.
 
-## Cache Miss
+## Cache miss
 
 Operators such as Join and Aggregation are stateful. They maintain intermediate states in their operator cache to facilitate incremental computation.
 
-For example, the following are the cache miss ratio metrics of the join operator, showing the metrics at the actor level. Each operator is parallelized by multiple actors, whose number is equal to the `streaming_parallelism`. By default, the parallelism is the same as the number of CPUs on CN.
+For example, the following are the cache miss ratio metrics of the join operator, showing the metrics at the actor level. Each operator is parallelized by multiple actors, whose number is equal to the `streaming_parallelism`. By default, the parallelism is the same as the number of CPUs on compute nodes.
 
 <img
   src={require('../images/cash_miss_1.png').default}
@@ -102,7 +102,7 @@ It implies that even just a small percentage of cache misses in the meta cache c
     - How much extra cost the user can afford
     - The number of cache misses may be reduced a little (a lot) if the workload has a weak (strong) data locality.
 
-## LSM Tree Compact Pending Bytes
+## LSM tree compact pending bytes
 
 As described in the CPU usage section, we can estimate the ideal CPU resources allocated for compactors by considering the LSM Tree Compact Pending Bytes.
 
@@ -117,7 +117,7 @@ This metric illustrates the amount of pending workload from the compactor’s pe
 
 Since the total pending bytes keep changing, we first calculate its average over a time period of more than 10 minutes. As a general rule of thumb, we then divide the average over 4 GB to estimate the ideal number of CPUs.
 
-## Barrier Latency and Barrier Number
+## Barrier latency and barrier number
 
 <img
   src={require('../images/barrier_latency.png').default}
@@ -141,7 +141,7 @@ In a perfect world, the barrier latency should stay at 1 second. But in reality,
 
 We typically check them out first when we log into Grafana to diagnose any performance issues or even bugs. We further investigate which resources we need to increase once we run into the phenomena (1).
 
-## Source Throughput
+## Source throughput
 
 <img
   src={require('../images/source_throughput.png').default}
@@ -156,4 +156,4 @@ For example, RisingWave may ingest data from an upstream message queue. Either t
 
 We suggest users also monitor the CPU utilization, disk I/O, and network I/O of RisingWave’s upstream systems, e.g., message queues or databases, to determine the end-to-end bottleneck. 
 
-We are now inviting you to join our community for any questions or tips regarding performance tuning. To join our Slack Community, simply click the [RisingWave Slack Community invitation link](https://www.risingwave.com/slack) and become part of our growing network of users. Engage in discussions, seek assistance, and share your experiences with fellow users who can provide valuable insights and solutions.
+For any other questions or tips regarding performance tuning, feel free to join our [Slack community](https://www.risingwave.com/slack) and become part of our growing network of users. Engage in discussions, seek assistance, and share your experiences with fellow users and our engineers who are eager to provide insights and solutions.

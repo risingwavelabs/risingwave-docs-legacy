@@ -895,7 +895,7 @@
       "items": [
         {
           "type": "doc",
-          "id": "performance/faq"
+          "id": "performance/performance-faq"
         },
         {
           "type": "doc",
@@ -903,7 +903,8 @@
         },
         {
           "type": "doc",
-          "id": "performance/best-practices"
+          "label": "Best practices",
+          "id": "performance/performance-best-practices"
         }
       ]
     },

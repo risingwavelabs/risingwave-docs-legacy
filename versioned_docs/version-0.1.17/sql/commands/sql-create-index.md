@@ -35,7 +35,7 @@ CREATE INDEX index_name ON object_name ( index_column [ DESC ], [, ...] )
 
 ### Parameters
 
-| Parameter or clause| Descriptiion|
+| Parameter or clause| Description|
 |-----------|-------------|
 |*index_name*    |The name of the index to be created.|
 |*object_name*    |The name of the table or materialized view where the index is created.|

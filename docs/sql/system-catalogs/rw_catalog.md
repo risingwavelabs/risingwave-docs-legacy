@@ -13,6 +13,8 @@ RisingWave catalogs contain system tables and views that provide metadata about 
 
 After you connect to RisingWave vis `psql`, enter `\d` to display RisingWave catalogs.
 
+The result looks like this:
+
 ```sql
 \d
 ------RESULTS
@@ -22,37 +24,7 @@ After you connect to RisingWave vis `psql`, enter `\d` to display RisingWave cat
  rw_catalog | rw_actors                           | table | root
  rw_catalog | rw_columns                          | table | root
  rw_catalog | rw_connections                      | table | root
- rw_catalog | rw_databases                        | table | root
- rw_catalog | rw_ddl_progress                     | table | root
- rw_catalog | rw_fragments                        | table | root
- rw_catalog | rw_functions                        | table | root
- rw_catalog | rw_hummock_branched_objects         | table | root
- rw_catalog | rw_hummock_checkpoint_version       | table | root
- rw_catalog | rw_hummock_compaction_group_configs | table | root
- rw_catalog | rw_hummock_current_version          | table | root
- rw_catalog | rw_hummock_meta_configs             | table | root
- rw_catalog | rw_hummock_pinned_snapshots         | table | root
- rw_catalog | rw_hummock_pinned_versions          | table | root
- rw_catalog | rw_hummock_sstables                 | table | root
- rw_catalog | rw_hummock_version_deltas           | table | root
- rw_catalog | rw_indexes                          | table | root
- rw_catalog | rw_materialized_views               | table | root
- rw_catalog | rw_meta_snapshot                    | table | root
- rw_catalog | rw_parallel_units                   | table | root
- rw_catalog | rw_relation_info                    | table | root
- rw_catalog | rw_relations                        | view  | root
- rw_catalog | rw_schemas                          | table | root
- rw_catalog | rw_sinks                            | table | root
- rw_catalog | rw_sources                          | table | root
- rw_catalog | rw_system_tables                    | table | root
- rw_catalog | rw_table_fragments                  | table | root
- rw_catalog | rw_table_stats                      | table | root
- rw_catalog | rw_tables                           | table | root
- rw_catalog | rw_types                            | table | root
- rw_catalog | rw_user_secrets                     | table | root
- rw_catalog | rw_users                            | table | root
- rw_catalog | rw_views                            | table | root
- rw_catalog | rw_worker_nodes                     | table | root
+...
 ```
 
 You can view the schemas of these catalogs:
@@ -109,15 +81,17 @@ SELECT name, initialized_at, created_at FROM rw_sources;
 |Relation Name | Description|
 |---|---|
  rw_actors             | Contains the available actor IDs, their statuses, and the corresponding fragment IDs, and parallel unit IDs. |
+  rw_columns            | Contains information about columns of all relations (except sources) in the database, including their names, positions, data types, and more.|
  rw_connections        | Contains details about the connections available in the database, such as their IDs, names, owners, types, and more.|
- rw_columns            | Contains information about columns of all relations (except sources) in the database, including their names, positions, data types, and more.|
  rw_databases          | Contains information about the databases available in the database, such as the IDs, names, and owners.|
  rw_ddl_progress       | Contains the progress of running DDL statements. You can use this relation to view the progress of running DDL statements. For details, see [View statement progress](/manage/view-statement-progress.md).|
  rw_description        | Contains optional descriptions (comments) for each database object. Descriptions can be added with the [`COMMENT ON`](/sql/commands/sql-comment-on.md) command and viewed with `DESCRIBE` or `SHOW COLUMNS FROM` command.|
+ rw_event_logs         | Contains information about events, including event IDs, timestamps, event types, and additional information if available. |
  rw_fragments          | Contains low-level information about fragments in the database, including fragment IDs, table IDs, and more. |
  rw_functions          | Contains information about functions in the database, including their IDs, names, schema identifiers, types, argument and return data types, programming language, and more. |
  rw_hummock_branched_objects         | Contains information about branched objects of Hummock (the storage engine in RisingWave), including object IDs, corresponding SST IDs, and compaction group IDs. |
  rw_hummock_checkpoint_version       | Contains information about the checkpoint version of data in Hummock (the storage engine in RisingWave), including version ID, maximum committed epoch, safe epoch, and compaction group details.|
+ rw_hummock_compact_task_progress    | Contains information about compaction task status, including compaction group IDs, task IDs, SST-related information, numbers of pending read and write IOs, and more.|
  rw_hummock_compaction_group_configs | Contains information about the configuration settings for the Hummock compaction groups in the database, including compaction group IDs, parent compaction group IDs, member tables, compaction settings, and active write limits. |
  rw_hummock_current_version          | Contains information about the current version of data in Hummock (the storage engine in RisingWave), including version ID, maximum committed epoch, safe epoch, and compaction group details. |
  rw_hummock_meta_configs             | Contains metadata configurations and their values for Hummock (the storage engine in RisingWave). |

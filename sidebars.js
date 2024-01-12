@@ -562,6 +562,11 @@ const sidebars = {
               items: [
                 {
                   type: "doc",
+                  id: "sql/query-syntax/query-syntax-literals",
+                  label: "Literals",
+                },
+                {
+                  type: "doc",
                   id: "sql/query-syntax/query-syntax-value-exp",
                   label: "Value expressions",
                 },
@@ -919,7 +924,7 @@ const sidebars = {
       items: [
         {
           type: "doc",
-          id: "performance/faq"
+          id: "performance/performance-faq"
         },
         {
           type: "doc",
@@ -927,7 +932,8 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "performance/best-practices"
+          label: "Best practices",
+          id: "performance/performance-best-practices"
         },
       ]
     },
