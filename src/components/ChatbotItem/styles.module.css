@@ -11,14 +11,43 @@
   }
 }
 .chatbot-icon {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 32px;
-  height: 32px;
-  background-color: #8080803b;
+  height: 36px;
+  width: 36px;
+  padding: 0 8px;
+  background: linear-gradient(to right, #4b6bdd, #4b1166);
   border-radius: 10px;
   cursor: pointer;
+  transition: all 0.15s linear;
+  overflow: hidden;
+}
+
+.chatbot-icon .chatbot-icon-text {
+  opacity: 0;
+  color: #fff;
+  width: 100%;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 36px;
+  transition: all 0.15s linear;
+  white-space: nowrap;
+}
+.chatbot-icon:hover {
+  width: 90px;
+}
+.chatbot-icon:hover .chatbot-icon-text {
+  opacity: 1;
+  margin-left: 4px;
+}
+
+.chatbot-icon .chatbot-icon-img {
+  position: absolute;
+  right: 8px;
+  width: 21px;
 }
 
 .drawer-wrapper {
