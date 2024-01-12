@@ -7,15 +7,15 @@ title: Literals
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-literals/" />
 </head>
 
-Literals play a crucial role in improving the accuracy of data representation and optimizing system efficiency. See the following subsections for an introduction of various types of literals.
+Literals play a crucial role in enhancing the accuracy of data representation and optimizing system efficiency. See the following subsections for the introduction of various types of literals.
 
 ## String literals
 
 ### Standard string literals
 
-A string literal is a sequence of characters enclosed within single quotes ('). For example, `'Database'` is a string constant.
+A string literal is a sequence of characters enclosed within single quotes ('). For example, `'Database'` is a string literal.
 
-To include a single-quote character within a string constant, you can use two consecutive single quotes. For example, `'Stream processing''s advantages'` is a valid string constant that incorporates a single-quote character.
+To include a single-quote character within a string literal, you can use two consecutive single quotes. For example, `'Stream processing''s advantages'` is a valid string literal that incorporates a single-quote character.
 
 ### String literals with C-style escapes
 
