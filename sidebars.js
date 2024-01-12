@@ -562,8 +562,8 @@ const sidebars = {
               items: [
                 {
                   type: "doc",
-                  id: "sql/query-syntax/query-syntax-constants",
-                  label: "Constants",
+                  id: "sql/query-syntax/query-syntax-literals",
+                  label: "Literals",
                 },
                 {
                   type: "doc",
