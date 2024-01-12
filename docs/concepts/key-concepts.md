@@ -49,7 +49,7 @@ A node is a logical collection of IT resources that handles specific workloads b
 
 ### Parallelism
 
-Parallelism refers to the technique of simultaneously executing multiple database operations or queries to improve performance and increase efficiency. It involves dividing a database workload into smaller tasks and executing them concurrently on multiple processors or machines. In RisingWave, you can set the parallelism of streaming jobs, like [tables](../sql/commands/sql-alter-table.md#set-parallelism), [materialized views](../sql/commands/sql-alter-materialized-view.md#set-parallelism), and [sinks](../sql/commands/sql-alter-sink.md#set-parallelism).
+Parallelism refers to the technique of simultaneously executing multiple database operations or queries to improve performance and increase efficiency. It involves dividing a database workload into smaller tasks and executing them concurrently on multiple processors or machines. In RisingWave, you can set the parallelism of streaming jobs, like [tables](/sql/commands/sql-alter-table.md#set-parallelism), [materialized views](/sql/commands/sql-alter-materialized-view.md#set-parallelism), and [sinks](/sql/commands/sql-alter-sink.md#set-parallelism).
 
 ### Sinks
 
