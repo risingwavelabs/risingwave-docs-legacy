@@ -38,7 +38,7 @@ const QueryInput = ({ disabled, expand, onSubmit, onHandleExpand }) => {
                 type: "search",
                 startAdornment: (
                   <InputAdornment position="start">
-                    <SmartToyIcon className={styles["cursor-pointer"]} color="primary" onClick={handleSubmit} />
+                    <img className={styles["chatbot-icon-img"]} src="/img/AI.png" onClick={handleSubmit} />
                   </InputAdornment>
                 ),
               }}

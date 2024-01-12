@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Drawer } from "@mui/material";
-import SmartToyIcon from "@mui/icons-material/SmartToy";
 import CasePanel from "./CasePanel";
 import {useChatQuery} from "./useChatQuery"
 import QueryInput from "./QueryInput/index"
@@ -39,8 +38,9 @@ const ChatbotItem = (props) => {
 
   return (
     <div className={styles["chatbot-wrapper"]}>
-      <div className={styles["chatbot-icon"]}>
-        <SmartToyIcon sx={{fontSize:"20px"}} color="primary" onClick={onHandleExpand} />
+      <div className={styles["chatbot-icon"]}  onClick={onHandleExpand}>
+        <span className={styles["chatbot-icon-text"]} >Ask AI</span>
+        <img className={styles["chatbot-icon-img"]} src="/img/AI.png" />
       </div>
       <Drawer
         sx={{
