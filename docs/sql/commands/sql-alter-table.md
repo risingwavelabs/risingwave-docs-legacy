@@ -127,7 +127,7 @@ ALTER TABLE test_table SET PARALLELISM = 8;
 
 Here is a more detailed example for you to practise this clause:
 
-First, let's set the parallelism to `3` by the [`SET` command](../../manage/view-configure-runtime-parameters.md#how-to-configure-runtime-parameters).
+First, let's set the parallelism to `3` by the [`SET` command](/manage/view-configure-runtime-parameters.md#how-to-configure-runtime-parameters).
 
 ```sql title=Examples
 SET streaming_parallelism = 3;
