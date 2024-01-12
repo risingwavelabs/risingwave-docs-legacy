@@ -36,15 +36,15 @@ All parameters are required unless specified otherwise.
 | Parameter names | Description |
 | --------------- | ---------------------------------------------------------------------- |
 | starrocks.host  | The StarRocks host address. |
-| starrocks.mysqlport | The address that connects to the MySQL client of the frontend. By default, this will be `9030`.|
-| starrocks.httpport | The http port for data import. By default, this will be `8030`. |
+| starrocks.mysqlport | The address that connects to the MySQL client of the frontend. By default, this is `9030`.|
+| starrocks.httpport | The http port for data import. By default, this is `8030`. |
 | starrocks.user | The user name used to access the StarRocks database. |
 | starrocks.password | The password associated with the user. |
-| starrocks.database | The StarRocks database the target table is located in. |
+| starrocks.database | The StarRocks database where the target table is located |
 | starrocks.table | The StarRocks table you want to sink data to. |
-| type | Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a chagelog stream. The corresponding primary key in StarRocks must be set. </li></ul> |
+| type | Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a chagelog stream. In StarRocks, Primary Key table must be selected. </li></ul> |
 | force_append_only | If `true`, forces the sink to be `append-only`, even if it cannot be. |
-| primary_key | Required if `type` is `upsert`. The primary key of the downstream table. 
+| primary_key | Required if `type` is `upsert`. The primary key of the downstream table. |
 
 ## Examples
 
