@@ -19,7 +19,7 @@ To include a single-quote character within a string literal, you can use two con
 
 ### String literals with C-style escapes
 
-String literals with C-style escapes use escape sequences to represent special characters within a string, just as in the C programming language. These literals are constructed by prepending the letter 'e' to the string literal.
+String literals with C-style escapes use escape sequences to represent special characters within a string, just as in the C programming language. These literals are constructed by prepending the letter 'e' to the string literal. For example, `e'abc\n\tdef'`.
 
 The following escape sequences are supported:
 
