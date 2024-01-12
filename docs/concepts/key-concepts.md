@@ -7,7 +7,7 @@ slug: /key-concepts
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/key-concepts/" />
 </head>
 
-This page explains key concepts and terms that are used throughout the documentation. It is divided into two parts. In the first part, we present some terms strongly related to RisingWave. In the second part, we includ a broader range of terms in a glossary. 
+This page explains key concepts and terms that are used throughout the documentation. In the first part, we present terms closely related to RisingWave. In the second part, we include a broader range of terms in a glossary. 
 
 ## Key concepts of RisingWave
 
