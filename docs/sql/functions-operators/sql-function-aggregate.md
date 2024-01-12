@@ -239,6 +239,8 @@ SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY column1) FROM table1;
 
 If NULL is provided, the function will not calculate a specific percentile and return NULL instead.
 
+---  
+
 ### `percentile_disc`
 
 Computes the discrete percentile, which is the first value within the ordered set of aggregated argument values whose position in the ordering equals or exceeds the specified fraction.
