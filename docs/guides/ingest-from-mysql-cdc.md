@@ -8,7 +8,7 @@ slug: /ingest-from-mysql-cdc
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-mysql-cdc/" />
 </head>
 
-Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database and then delivering the changes to a downstream service in real time.
+Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, and then delivering the changes to a downstream service in real time.
 
 RisingWave supports ingesting row-level data (`INSERT`, `UPDATE`, and `DELETE` operations) from the changes of a MySQL database. The supported MySQL versions are 5.7 and 8.0.x.
 
