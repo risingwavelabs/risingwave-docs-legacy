@@ -23,7 +23,7 @@ String literals with C-style escapes use escape sequences to represent special c
 
 The following escape sequences are supported:
 
-Escape Sequence | Interpretation
+Escape sequence | Interpretation
 --- | ---
 `\b` | backspace
 `\f` | form feed
