@@ -1,7 +1,7 @@
 ---
 id: ingest-from-gcs
 title: Ingest data from Google Cloud Storage
-description: Ingest data from Google Cloud Storage
+description: Ingest data from Google Cloud Storage into RisingWave using a SQL command.
 slug: /ingest-from-gcs
 ---
 
@@ -45,11 +45,11 @@ FORMAT data_format ENCODE data_encode (
 |Field|Notes|
 |---|---|
 |*data_format*| Supported data format: `PLAIN`. |
-|*data_encode*| Supported data encodes: `JSON`. |
+|*data_encode*| Supported data encodes: `CSV`, `JSON`. |
 |*without_header*| Whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
 |*delimiter*| How RisingWave splits contents. For `JSON` encode, the delimiter is `\n`. |
 
-## Example
+## Examples
 
 Here is an example of connecting RisingWave to a GCS source to read data.
 
@@ -68,3 +68,4 @@ WITH (
     without_header = 'true',
     delimiter = '\n'
 );
+```
