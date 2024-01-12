@@ -9,6 +9,63 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
 
+## v1.6.0
+
+This version was released on January 11, 2024. 
+
+### Main changes
+
+#### SQL features
+
+- Query syntax:
+    - Allows `NOW` in upper bound condition for temporal filters. [#13985](https://github.com/risingwavelabs/risingwave/pull/13985).
+    - Supports temporal filters with multiple `OR` expressions. [#14382](https://github.com/risingwavelabs/risingwave/pull/14382).
+    - Supports `<expr> [ NOT ] SIMILAR TO <pat> [ ESCAPE <esc_text> ]` clause. [#14000](https://github.com/risingwavelabs/risingwave/pull/14000).
+    - **Breaking change**: Fixes the correctness of `SOME`, `ALL`, and `ANY` expressions. Drop and recreate any materialized views that use these expressions. [#14221](https://github.com/risingwavelabs/risingwave/pull/14221).
+    - Supports array subquery and \du command. [#14044](https://github.com/risingwavelabs/risingwave/pull/14044).
+    - Supports `SET PARALLELISM` clause for `ALTER` commands. [#14240](https://github.com/risingwavelabs/risingwave/pull/14240).
+- SQL commands:
+    - Technical preview feature: Supports `CREATE SINK INTO TABLE` Multiple sinks can use the same table as the destination. [#13185](https://github.com/risingwavelabs/risingwave/pull/13185), [#13659](https://github.com/risingwavelabs/risingwave/pull/13659).
+- SQL functions & operators:
+    - **Breaking change**: `0b10` is now interpreted as binary `10` instead of `0 as b10`. Integer literals can be given in hex `0x`, oct `0o` and bin `0b`. [#14262](https://github.com/risingwavelabs/risingwave/pull/14262).
+    - Supports interval type as input for `to_char()`. [#14071](https://github.com/risingwavelabs/risingwave/pull/14071).
+- System catalog:
+    - Add system view `rw_streaming_parallelism`. [#14261](https://github.com/risingwavelabs/risingwave/pull/14261).
+
+#### Connectors
+
+- Adds CDC backfill support for Postgres so users can ingest multiple PostgreSQL tables with a single replication slot. [#13958](https://github.com/risingwavelabs/risingwave/pull/13958).
+- Support multi-table transactions from upstream MySQL & Postgres CDC. Specify `transactional = true` in the `WITH` options to enable it. [#14375](https://github.com/risingwavelabs/risingwave/pull/14375).
+- Renames `scan.startup.timestamp_millis` to `scan.startup.timestamp.millis` for Kafka, Pulsar and NATS source. [#13656](https://github.com/risingwavelabs/risingwave/pull/13656).
+- Adds `properties.ssl.endpoint.identification.algorithm` parameter for Kafka source and sink.[#13990](https://github.com/risingwavelabs/risingwave/pull/13990).
+- Supports `FORMAT PLAIN ENCODE PROTOBUF` syntax for Kafka sink. [#12858](https://github.com/risingwavelabs/risingwave/pull/12858).
+- Supports GCS file source. [#13414](https://github.com/risingwavelabs/risingwave/pull/13414).
+- **Breaking change:** For ClickHouse sinks, `timestamptz` can be sinked to `DateTime64`. `timestamp` cannot be sinked and has to be converted to `timestamptz` first before being sinked. [#13672](https://github.com/risingwavelabs/risingwave/pull/13672).
+- For Elasticsearch sinks, the default es.type is set as `_doc` for Elasticsearch 6.x and 7.x. [#14273](https://github.com/risingwavelabs/risingwave/pull/14273).
+- `connector = 'iceberg_java'` is deprecated, and users can only Iceberg sinks with the Rust version of Iceberg. Similarly, the DeltaLake sink will also use the Rust version implementation. [#14277](https://github.com/risingwavelabs/risingwave/pull/14277).
+- Supports StarRocks sink. [#12681](https://github.com/risingwavelabs/risingwave/pull/12681).
+
+#### Installation and deployment
+
+- Allows for `storage.prefetch_buffer_capacity_mb` to be configured in the TOML file to prevent out-of-memory issues. [#13558](https://github.com/risingwavelabs/risingwave/pull/13558).
+- Supports Huawei Cloud OBS as the storage backend. [#13844](https://github.com/risingwavelabs/risingwave/pull/13844).
+
+#### Cluster configuration changes
+
+- Supports setting `statement_timeout` value for queries. [#13933](https://github.com/risingwavelabs/risingwave/pull/13933).
+- Exposes SSL functionality through `RW_SSL_CERT` and `RW_SSL_KEY` environment variables to configure SSL certificates and key file location. [#14062](https://github.com/risingwavelabs/risingwave/pull/14062).
+
+### Assets
+
+- Run this version from Docker:<br/>
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v1.6.0 playground`
+- [Prebuilt all-in-one library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v1.6.0/risingwave-v1.6.0-x86_64-unknown-linux-all-in-one.tar.gz)
+- [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.6.0.zip)
+- [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.6.0.tar.gz)
+- [risectl-v1.6.0-x86_64-unknown-linux.tar.gz](https://github.com/risingwavelabs/risingwave/releases/download/v1.6.0/risectl-v1.6.0-x86_64-unknown-linux.tar.gz)
+
+See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/release-1.5...release-1.6).
+
 ## v1.5.0
 
 This version was released on December 11, 2023.
