@@ -133,7 +133,7 @@ First, let's set the parallelism to `3` by the [`SET` command](../../manage/view
 SET streaming_parallelism = 3;
 ```
 
-Then let's create a table to view the parallelism we set. As mentioned, the parallelism status of a table can be observed within the [`rw_fragments`](../../manage/view-configure-runtime-parameters.md) table.
+Then let's create a table to view the parallelism we set. As mentioned, the parallelism status of a table can be observed within the [`rw_fragments`](/manage/view-configure-runtime-parameters.md) table.
 
 ```sql title=Examples
 -- Create a table.
