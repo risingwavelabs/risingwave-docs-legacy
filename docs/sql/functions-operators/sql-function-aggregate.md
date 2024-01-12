@@ -199,6 +199,10 @@ var_samp ( expression ) -> output_value
 
 ## Ordered-set aggregate functions
 
+:::note
+At present, ordered-set aggregate functions support only constant fraction arguments.
+:::
+
 ### `mode`
 
 Computes the mode, which is the most frequent value of the aggregated argument. If there are multiple equally-frequent values, it arbitrarily chooses the first one.
@@ -222,26 +226,18 @@ SELECT mode() WITHIN GROUP (ORDER BY column1) FROM table1;
 Computes the continuous percentile, which is a value corresponding to the specified fraction within the ordered set of aggregated argument values. It can interpolate between adjacent input items if needed.
 
 ```sql title=Syntax
-percentile_cont ( fraction_or_expression ) WITHIN GROUP ( ORDER BY sort_expression ) -> fraction or NULL
+percentile_cont ( fraction double precision ) WITHIN GROUP ( ORDER BY sort_expression double precision ) -> double precision
 ```
 
-`fraction_or_expression`: Represents the desired percentile. This can be a fraction value (e.g., 0.5) or a fraction expression (e.g., 0.2 + 0.3) or NULL. The fraction or expression should be between 0 and 1.
+`fraction`: The fraction value representing the desired percentile. It should be between 0 and 1.
 
-The examples below calculate the median (50th percentile) of the values in `column1` from `table1`.
+This example calculates the median (50th percentile) of the values in `column1` from `table1`.
 
 ```sql title=Example
 SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
 
-```sql title=Example
-SELECT percentile_cont(0.2 + 0.3) WITHIN GROUP (ORDER BY column1) FROM table1;
-```
-
 If NULL is provided, the function will not calculate a specific percentile and return NULL instead.
-
-```sql title=Example
-SELECT percentile_cont(0.3 + NULL) WITHIN GROUP (ORDER BY column1) FROM table1; -> NULL
-```
 
 ### `percentile_disc`
 
@@ -260,6 +256,8 @@ This example calculates the 75th percentile of the values in `column1` from `tab
 ```sql title=Example
 SELECT percentile_disc(0.75) WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
+
+If NULL is provided, the function will not calculate a specific percentile and return NULL instead.
 
 ## Grouping operation functions
 
