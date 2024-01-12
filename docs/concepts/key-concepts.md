@@ -29,7 +29,7 @@ In RisingWave, When a streaming query plan executes, it divides into multiple in
 
 ### Indexes
 
-Indexes in a database are typically created on one or more columns of a table, allowing the database management system (DBMS) to  locate and retrieve the desired data from the table quickly. This can greatly improve the performance of database queries, especially for large tables or frequently accessed tables.
+Indexes in a database are typically created on one or more columns of a table, allowing the database management system (DBMS) to locate and retrieve the desired data from the table quickly. This can significantly improve the performance of database queries, especially for large tables or frequently accessed tables. In RisingWave, indexes can speed up batch queries.
 
 ### Materialized views
 
