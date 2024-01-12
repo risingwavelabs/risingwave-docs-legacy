@@ -61,7 +61,7 @@ WITH (
 :::note
 For versions under 8.x, there was once a parameter `type`. In Elasticsearch 6.x, users could directly set the type, but starting from 7.x, it is set to not recommended and the default value is unified to '_doc.' In version 8.x, the type has been completely removed. See [Elasticsearch's official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html) for more details.
 
-So, if you are using Elasticsearch 7.x, we set it to the Elasticsearch official default recommended value, which is '_doc'. If you are using Elasticsearch 8.x, this parameter has been removed by the Elasticsearch official, so no setting is required.
+So, if you are using Elasticsearch 7.x, we set it to the official's recommended value, which is '_doc'. If you are using Elasticsearch 8.x, this parameter has been removed by the Elasticsearch official, so no setting is required.
 :::
 
 ### Notes about primary keys and Elasticsearch IDs
@@ -94,7 +94,7 @@ ElasticSearch uses a mechanism called [dynamic field mapping](https://www.elasti
 |interval |text|
 |struct |object|
 |array |array|
-|JSONB|object (RisingWave's Elasticsearch sink will send JSONB as a JSON string, and ElasticSearch will convert it into an object)|
+|JSONB|object (RisingWave's Elasticsearch sink will send JSONB as a JSON string, and Elasticsearch will convert it into an object)|
 
 :::note
 Elasticsearch doesn't require users to explicitly `CREATE TABLE`. Instead, it infers the schema on-the-fly based on the first record ingested. For example, if a record contains a jsonb '{v1: 100}', v1 will be inferred as a long type. However, if the next record is '{v1: "abc"}', the ingestion will fail because "abc" is inferred as a string and the two types are incompatible.
