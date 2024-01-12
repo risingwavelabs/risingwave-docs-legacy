@@ -51,7 +51,7 @@ WITH (
 |sink_name| Name of the sink to be created.|
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
-|`primary_key` | The primary keys of the sink. The delimiter is set by the `delimiter` parameter below. |
+|`primary_key` | The primary keys of the sink. If the primary key has multiple columns, set a delimiter in the `delimiter` parameter below to join them. |
 | `index`         |Required. Name of the Elasticsearch index that you want to write data to. |
 | `url`          | Required. URL of the Elasticsearch REST API endpoint.|
 | `username`        | Optional. `elastic` user name for accessing the Elasticsearch endpoint. It must be used with `password`.|
