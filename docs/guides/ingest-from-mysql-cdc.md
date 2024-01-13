@@ -150,12 +150,14 @@ If you are running RisingWave locally from binaries and intend to use the native
 
 ## Create a table using the native CDC connector in RisingWave
 
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
+To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details.
 
 ### Syntax
 
+Syntax for creating a CDC table. Note that a primary key is required.
+
 ```sql
-CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name (
+CREATE TABLE [ IF NOT EXISTS ] table_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
 ) 
@@ -166,7 +168,14 @@ WITH (
 [ FORMAT DEBEZIUM ENCODE JSON ];
 ```
 
-Note that a primary key is required.
+Syntax for creating a CDC source.
+
+```sql
+CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
+   connector='mysql-cdc',
+   <field>=<value>, ...
+);
+```
 
 ### WITH parameters
 
@@ -180,12 +189,12 @@ All the fields listed below are required.
 |password| Password of the database. |
 |database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
-|server.id| Optional. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
+|server.id| Required if creating a shared source. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 ### Data format
 
-Data is in Debezium JSON or Debezium AVRO format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON or AVRO as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
+Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
 
 ## Examples
 

@@ -10,7 +10,7 @@
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, and then delivering the changes to a downstream service in real time.
 
-RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, and 14 of PostgreSQL are supported.
+RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, 14, and 15 of PostgreSQL are supported.
 
 You can ingest CDC data from PostgreSQL into RisingWave in two ways:
 
@@ -153,12 +153,14 @@ If you are running RisingWave locally from binaries and intend to use the native
 
 ## Create a table using the native CDC connector
 
-To ensure all data changes are captured, you must create a table or source and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
+To ensure all data changes are captured, you must create a table or source and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details.
 
 ### Syntax
 
+ Syntax for creating a CDC table. Note that a primary key is required.
+
  ```sql
- CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name (
+ CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] table_name (
     column_name data_type PRIMARY KEY , ...
     PRIMARY KEY ( column_name, ... )
  ) 
@@ -169,7 +171,14 @@ To ensure all data changes are captured, you must create a table or source and s
  [ FORMAT DEBEZIUM ENCODE JSON ];
  ```
 
-Note that a primary key is required.
+ Syntax for creating a CDC source.
+
+```sql
+CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
+   connector='postgres-cdc',
+   <field>=<value>, ...
+);
+```
 
 ### WITH parameters
 
@@ -190,7 +199,7 @@ Unless specified otherwise, the fields listed are required.
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 :::note
-RisingWave implements CDC via PostgreSQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot).
+RisingWave implements CDC via PostgreSQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot). RisingWave does not automatically drop inactive replication slots. You must do this manually to prevent WAL files from accumulating in the upstream PostgreSQL database.
 :::
 
 ### Data format
