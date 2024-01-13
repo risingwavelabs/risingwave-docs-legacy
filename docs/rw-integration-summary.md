@@ -123,7 +123,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
 |Jupyter Notebook||Researching <voteNotify note="jupyter" />|
 |Looker||Available. See [Connect Looker to RisingWave](/guides/looker-integration.md) for details. |
-|Metabase ||Available. See [Connect Metabase to RisingWave](/guides/metabsase-integration.md) for details.|
+|Metabase ||Available. See [Connect Metabase to RisingWave](/guides/metabase-integration.md) for details.|
 |Redash || Available |
 |DataGrip | |Researching <voteNotify note="datagrip" /> |
 |PgAdmin | |Researching <voteNotify note="pgadmin" /> |
