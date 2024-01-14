@@ -4,7 +4,7 @@ slug: /data-type-array
 title: Array type
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-type-array" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-type-array/" />
 </head>
 
 An array is an ordered list of zero or more elements that share the same data type including the array type. 
