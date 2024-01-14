@@ -83,4 +83,4 @@ CREATE MATERIALIZED VIEW adult_users AS
 
 It was discovered later that the legal definition for adulthood should be set at ≥16. Initially, one might consider modifying the filter condition from `age >= 18` to `age >= 16` as a straightforward solution. However, this is not feasible in stream processing since records with ages between 16 and 18 have already been filtered out. Therefore, the only option to restore the missing data is to recompute the entire stream from the beginning.
 
-Therefore, we recommend persistently storing the source data in a long-term storage solution, such as [a RisingWave table](/sql/commands/sql-create-table/). This allows for the recomputation of the materialized view when altering the logic becomes necessary.
+Therefore, we recommend persistently storing the source data in a long-term storage solution, such as [a RisingWave table](/sql/commands/sql-create-table.md). This allows for the recomputation of the materialized view when altering the logic becomes necessary.
