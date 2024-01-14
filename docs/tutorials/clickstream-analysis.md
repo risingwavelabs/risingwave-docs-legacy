@@ -12,7 +12,7 @@ description: Use RisingWave to perform clickstream analysis.
 
 Whether a website gets a few hundred visitors a day or a few million, clickstream data can reveal valuable insights by using different metrics from the website. Not only does clickstream data reveal how popular a particular page on a website is, but it is also a useful substitute for traditional market research methods. We can determine the effectiveness of a digital marketing campaign, UX design, and more based on user behaviors without using traditional surveys.
 
-Clickstream data provide a detailed log of how users travel through a particular website. It shows how long a user has been on a specific page, how they arrived at it, and what the user clicked on next. If many users quickly leave a page, it suggests that improvements are needed to encourage more user interaction.
+Clickstream data provides a detailed log of how users travel through a particular website. It shows how long a user has been on a specific page, how they arrived at it, and what the user clicked on next. If many users quickly leave a page, it suggests that improvements are needed to encourage more user interaction.
 
 In this tutorial, you will learn how to track the number of clicks a webpage gets over time with RisingWave. We have set up a demo cluster for this tutorial so you can easily try it out.
 
@@ -23,7 +23,7 @@ In this tutorial, you will learn how to track the number of clicks a webpage get
 
 ## Step 1: Launch the demo cluster
 
-In the demo cluster, we packaged RisingWave and a workload generator. The workload generator will start to generate random traffic and feed them into Kafka as soon as the cluster is started.
+In the demo cluster, we packaged RisingWave and a workload generator. The workload generator will start to generate random traffic and feed it into Kafka as soon as the cluster is started.
 
 First, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository to the environment.
 
@@ -31,7 +31,7 @@ First, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repo
 git clone https://github.com/risingwavelabs/risingwave.git
 ```
 
-Now navigate to the `integration_tests/clickstream` directory and start the demo cluster from the docker compose file.
+Now navigate to the `integration_tests/clickstream` directory and start the demo cluster from the docker-compose file.
 
 ```shell
 cd risingwave/integration_tests/clickstream
@@ -145,7 +145,7 @@ The result may look like this:
 (5 rows)
 ```
 
-We can also query results by specifying a time interval. To learn more about data and time functions and operators, see [Date and time](/sql/functions-operators/sql-function-datetime.md/sql-function-datetime/).
+We can also query results by specifying a time interval. To learn more about data and time functions and operators, see [Date and time](/sql/functions-operators/sql-function-datetime.md).
 
 ```sql
 SELECT * FROM thread_view_count
