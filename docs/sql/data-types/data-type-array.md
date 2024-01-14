@@ -13,7 +13,7 @@ An array is an ordered list of zero or more elements that share the same data ty
 
 To define an array in a schema, append `[]` to the data type of the column when you define the schema. For example, you can use `trip_id VARCHAR[]` to create an array that stores trip IDs.
 
-You can also define a temporary array in a SQL statement in this syntax:
+You can also define a temporary array in an SQL statement in this syntax:
 
 ```sql
 Array[value1, value2, ...]
@@ -88,7 +88,7 @@ SELECT a[2] FROM x;
 {2,3}
 ```
 
-Retrieve the first element in array `trip_id` from the `taxi` table.
+Retrieve the first element in the array `trip_id` from the `taxi` table.
 
 ```sql
 SELECT trip_id[1] 
@@ -97,9 +97,9 @@ FROM taxi;
 'ABCD1234'
 ```
 
-### Retrieve slice of an array
+### Retrieve a slice of an array
 
-To retrieve data in an array, use the `ARRAY_COLUMN[n:m]` syntax, where `n` and `m` are integers representing indices and are both inclusive. Either `n`, `m`, or both can be omitted. Relative positions start from 1. In multidimensial arrays, arrays with unmatching dimensions are allowed.
+To retrieve data in an array, use the `ARRAY_COLUMN[n:m]` syntax, where `n` and `m` are integers representing indices and are both inclusive. Either `n`, `m`, or both can be omitted. Relative positions start from 1. In multidimensional arrays, arrays with unmatching dimensions are allowed.
 
 #### Examples
 
@@ -131,7 +131,7 @@ In RisingWave, assume `arr` is of type T[ ][ ][ ]:
 
 In PostgreSQL, a 3-dimensional array `arr` is still of type T[ ]:
 
-- arr[x] or arr[x][y] is of type T but due to insufficient number of indices is of `NULL` value
+- arr[x] or arr[x][y] is of type T but due to an insufficient number of indices is of `NULL` value
 - arr[x][y][z] is of type T
 - arr[x0:x1][y0:y1][z0:z1] is of type T[ ] and 3-dimensional
 - arr[x0:x1] is interpreted as arr[x0:x1][:][:], and of type T[ ] and 3-dimensional
@@ -139,7 +139,7 @@ In PostgreSQL, a 3-dimensional array `arr` is still of type T[ ]:
 
 ### Unnest data from an array
 
-You can use the `unnest()` function to spread values in an array into seperate rows.
+You can use the `unnest()` function to spread values in an array into separate rows.
 
 ```sql
 SELECT unnest(array[1,2,3,4]);
