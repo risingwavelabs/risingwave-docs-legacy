@@ -168,11 +168,11 @@ This version was released on October 18, 2023.
 - Adds support for creating upsert Iceberg sinks. [#12576](https://github.com/risingwavelabs/risingwave/pull/12576)
 - Supports specifying the `sink_decouple` session variable as `default`, `true` and `enable`, or `false` and `disable`. [#12544](https://github.com/risingwavelabs/risingwave/pull/12544)
 - A `varchar` column in RisingWave can sink into a `uuid` column in Postgres. [#12704](https://github.com/risingwavelabs/risingwave/pull/12704)
-- New syntaxes for specifying data format and data encode when creating a Kafka, Kinesis, and Pulsar sink. [#12556](https://github.com/risingwavelabs/risingwave/pull/12556)
+- New syntaxes for specifying data format and data encoding when creating a Kafka, Kinesis, and Pulsar sink. [#12556](https://github.com/risingwavelabs/risingwave/pull/12556)
 
 #### Administration & observability
 
-- Supports querying from `information_schema.views` , which contains formations about views defined in the database. [#12045](https://github.com/risingwavelabs/risingwave/pull/12045)
+- Supports querying from `information_schema.views`, which contains formations about views defined in the database. [#12045](https://github.com/risingwavelabs/risingwave/pull/12045)
 
 ### Assets
 
@@ -237,7 +237,7 @@ This version was released on September 11, 2023.
 
 - System catalog
   - A new group of system catalogs (`rw_relations`, `rw_system_tables`, `rw_types`, `rw_user_secrets`, and `rw_columns`) are available for you to retrieve system data and metadata. [#11334](https://github.com/risingwavelabs/risingwave/pull/11334)
-  - Adds new system function `pg_relation_size()` . [#11687](https://github.com/risingwavelabs/risingwave/pull/11687)
+  - Adds new system function `pg_relation_size()`. [#11687](https://github.com/risingwavelabs/risingwave/pull/11687)
 - Adds support for transactions for single-table CDC data. [#11453](https://github.com/risingwavelabs/risingwave/pull/11453)
 
 #### Sources & sinks
@@ -255,7 +255,7 @@ This version was released on September 11, 2023.
 #### Administration & observability
 
 - Adds a new system parameter `max_concurrent_creating_streaming_jobs`, with which users can specify the maximum number of streaming jobs that can be created concurrently.  [#11601](https://github.com/risingwavelabs/risingwave/pull/11601)
-- Improves the calculation logic of the *Mem Table Size (Max)* metric in RisingWave Dashboard. [#11442](https://github.com/risingwavelabs/risingwave/pull/11442)
+- Improves the calculation logic of the *Mem Table Size (Max)* metric in the RisingWave Dashboard. [#11442](https://github.com/risingwavelabs/risingwave/pull/11442)
 - Adds new metrics to RisingWave Dashboard:
   - *Materialized View Memory Usage* [#10958](https://github.com/risingwavelabs/risingwave/pull/10958)
   - *Materialized View Read Size*, *Materialized View Write Size* [#11054](https://github.com/risingwavelabs/risingwave/pull/11054)
@@ -289,7 +289,7 @@ This version was released on August 8, 2023.
 
   - Supports new commands `START TRANSACTION`, `BEGIN`, and `COMMIT` for read-only transactions. [#10735](https://github.com/risingwavelabs/risingwave/pull/10735)
 
-  - Supports `SHOW CLUSTER` to show the details of your RisingWave cluster, including the address of the cluster, its state, the parallel units it is using, and whether it's streaming data, serving data or unschedulable. [#10656](https://github.com/risingwavelabs/risingwave/pull/10656), [#10932](https://github.com/risingwavelabs/risingwave/pull/10932)
+  - Supports `SHOW CLUSTER` to show the details of your RisingWave cluster, including the address of the cluster, its state, the parallel units it is using, and whether it's streaming data, serving data, or unschedulable. [#10656](https://github.com/risingwavelabs/risingwave/pull/10656), [#10932](https://github.com/risingwavelabs/risingwave/pull/10932)
 
 - SQL functions:
 
@@ -309,7 +309,7 @@ This version was released on August 8, 2023.
 
   - Supports the `zone_string` parameter in the `date_trunc()`, `extract()`, and `date_part()` functions, ensuring compatibility with PostgreSQL. [#10480](https://github.com/risingwavelabs/risingwave/pull/10480)
 
-    - **Breaking change**: Previously, when the input for `date_trunc` was actually a date, the function would cast it to a timestamp and record the choice in the query plan. However, after this release, new query plans will cast the input to `timestamptz` instead. As a result, some old SQL queries, especially those saved as views, may fail to bind correctly and require type adjustments. It's important to note that old query plans will still continue working because the casting choice is recorded with a cast to timestamp.
+    - **Breaking change**: Previously, when the input for `date_trunc` was actually a date, the function would cast it to a timestamp and record the choice in the query plan. However, after this release, new query plans will cast the input to `timestamptz` instead. As a result, some old SQL queries, especially those saved as views, may fail to bind correctly and require type adjustments. It's important to note that old query plans will continue working because the casting choice is recorded with a cast to timestamp.
 
         Before this release:
 
@@ -505,7 +505,7 @@ This version was released on June 1, 2023.
 
 #### Installation
 
-- Now, you can easily install RisingWave on your local machine with Homebrew by running  `brew install risingwave`. See [Run RisingWave](/get-started.md#run-risingwave).
+- Now, you can easily install RisingWave on your local machine with Homebrew by running `brew install risingwave`. See [Run RisingWave](/docs/0.19.0/get-started/#install-and-start-risingwave).
 
 #### Administration
 
@@ -514,7 +514,7 @@ This version was released on June 1, 2023.
 
 #### SQL features
 
-- Experimental features: Adds support for 256-bit integer. [#9146](https://github.com/risingwavelabs/risingwave/pull/9146), [#9184](https://github.com/risingwavelabs/risingwave/pull/9184), [#9186](https://github.com/risingwavelabs/risingwave/pull/9186), [#9191](https://github.com/risingwavelabs/risingwave/pull/9191), [#9217](https://github.com/risingwavelabs/risingwave/pull/9217)
+- Experimental features: Adds support for 256-bit integers. [#9146](https://github.com/risingwavelabs/risingwave/pull/9146), [#9184](https://github.com/risingwavelabs/risingwave/pull/9184), [#9186](https://github.com/risingwavelabs/risingwave/pull/9186), [#9191](https://github.com/risingwavelabs/risingwave/pull/9191), [#9217](https://github.com/risingwavelabs/risingwave/pull/9217)
 - Indexes can be created on expressions. [#9142](https://github.com/risingwavelabs/risingwave/pull/9142)
 - Adds support for expressions in aggregate function arguments. [#9955](https://github.com/risingwavelabs/risingwave/pull/9955)
 - Adds support for `VALUES` clause. [#8751](https://github.com/risingwavelabs/risingwave/pull/8751)
@@ -666,9 +666,9 @@ This version was released on February 28, 2023
 
 #### Connectors
 
-- Adds a new parameter `match_pattern` to the S3 connector. With the new parameter, users can specify the pattern to filter files that they want to ingest from S3 buckets. For documentation updates, see [Ingest data from S3 buckets](/create-source/create-source-s3.md). [#7565](https://github.com/risingwavelabs/risingwave/pull/7565)
-- Adds the PostgreSQL CDC connector. Users can use this connector to ingest data and CDC events from PostgreSQL directly. For documentation updates, see [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md). [#6869](https://github.com/risingwavelabs/risingwave/pull/6869), [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
-- Adds the MySQL CDC connector. Users can use this connector to ingest data and CDC events from MySQL directly. For documentation updates, see [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md). [#6689](https://github.com/risingwavelabs/risingwave/pull/6689), [#6345](https://github.com/risingwavelabs/risingwave/pull/6345), [#6481](https://github.com/risingwavelabs/risingwave/pull/6481), [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
+- Adds a new parameter `match_pattern` to the S3 connector. With the new parameter, users can specify the pattern to filter files that they want to ingest from S3 buckets. For documentation updates, see [Ingest data from S3 buckets](/docs/0.1.17/create-source-s3/). [#7565](https://github.com/risingwavelabs/risingwave/pull/7565)
+- Adds the PostgreSQL CDC connector. Users can use this connector to ingest data and CDC events from PostgreSQL directly. For documentation updates, see [Ingest data from PostgreSQL CDC](/docs/0.1.17/ingest-from-postgres-cdc/). [#6869](https://github.com/risingwavelabs/risingwave/pull/6869), [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
+- Adds the MySQL CDC connector. Users can use this connector to ingest data and CDC events from MySQL directly. For documentation updates, see [Ingest data from MySQL CDC](/docs/0.1.17/ingest-from-mysql-cdc/). [#6689](https://github.com/risingwavelabs/risingwave/pull/6689), [#6345](https://github.com/risingwavelabs/risingwave/pull/6345), [#6481](https://github.com/risingwavelabs/risingwave/pull/6481), [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
 - Adds the JDBC sink connector, with which users can sink data to MySQL, PostgreSQL, or other databases that are compliant with JDBC. [#6493](https://github.com/risingwavelabs/risingwave/pull/6493)
 - Add new parameters to the Kafka sink connector.
   - `force_append_only` : Specifies whether to force a sink to be append-only. [#7922](https://github.com/risingwavelabs/risingwave/pull/7922)
