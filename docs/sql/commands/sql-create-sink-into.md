@@ -60,7 +60,7 @@ Currently, If there are sinks into the table, the table can not be altered to ad
 ## Examples
 
 We can union data from two different Kafka topics 
-```sql
+```SQL
 CREATE TABLE orders (
     id int primary key,
     price int,
@@ -92,6 +92,11 @@ CREATE source orders_s1 (
 
 CREATE SINK orders_sink0 FROM orders_s0 INTO orders;
 CREATE SINK orders_sink1 FROM orders_s1 INTO orders;
+```
+And when we do not want one of the topics, we can drop it.
+
+```SQL
+DROP SINK orders_sink0;
 ```
 
 ## See also
