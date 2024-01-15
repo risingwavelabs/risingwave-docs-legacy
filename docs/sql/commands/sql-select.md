@@ -14,7 +14,7 @@ Use the `SELECT` command to retrieve rows from a table or materialized view. It 
 
 ```sql
 [ WITH clause ]
-SELECT [ ALL | DISTINCT ] [ [table_name.]* [ EXCEPT ( [table_name.]except_column, ... ] ) ] | expression [ AS output_name ] [ , expression [ AS output_name ] ... ] ]
+SELECT [ ALL | DISTINCT [ ON ( expression [, ...] ) ]] [ [table_name.]* [ EXCEPT ( [table_name.]except_column, ... ] ) ] | expression [ AS output_name ] [ , expression [ AS output_name ] ... ] ]
     [ VALUES clause ]
     [ FROM from_item [ , from_item ...] ]
     [ WHERE condition ]
@@ -39,6 +39,7 @@ Where `from_item` can be:
 |Parameter or clause        | Description           |
 |---------------------------|-----------------------|
 |**WITH** clause           | Provides a way to write supplemental statements for a larger query. For more information, see [`WITH` clause](/sql/query-syntax/query-syntax-with-clause.md). |
+|**DISTINCT** clause|This clause eliminates duplicate rows from the result. `SELECT DISTINCT` eliminates duplicate rows based on **all selected columns**. `SELECT DISTINCT ON` allows you to specify expressions or columns and returns only the first row for each unique combination. It requires the use of the `ORDER BY` clause to determine the first row, and the `DISTINCT ON` expression must match the leftmost `ORDER BY` expression. The `ORDER BY` clause will normally contain additional expressions that determine the desired precedence of rows within each `DISTINCT ON` group. In this case, this expression can be an alternative with group [topN](/sql/syntax/sql-pattern-topn.md) when "N=1". See [examples of this clause](#distinct-clause) below to know more about it.|
 |**EXCEPT** clause|Exclude one or more columns from the result set. By specifying *except_column*, the query will return all columns in the result set except those specified.|
 |*expression*               |A column or an expression.|
 |**VALUES** clause          | This clause generates one or more rows of data as a table expression. For details, see [VALUES clause](/sql/query-syntax/query-syntax-values-clause.md).|
@@ -60,7 +61,29 @@ Where `from_item` can be:
 |**LIMIT** clause           | When the `ORDER BY` clause is not present, the `LIMIT` clause cannot be used as part of a materialized view. For more information, see [`LIMIT` clause](/sql/query-syntax/query-syntax-limit-clause.md).|
 |**WHERE** clause           | Specifies any conditions or filters to apply to your data. For more information, see [`WHERE` clause](/sql/query-syntax/query-syntax-where-clause.md). |
 
-## Example
+## Examples
+
+### `DISTINCT` clause
+
+Here is an example of `SELECT DISTINCT`. This query will return only the unique combinations of `first_name` and `last_name`, eliminating any duplicate rows.
+
+```sql
+-- Retrieve the names of employees.
+SELECT DISTINCT first_name, last_name
+FROM employees;
+```
+
+Here is an example of `SELECT DISTINCT ON`. The query returns the latest order for each unique `customer_id`. `ORDER BY` is used to ensure that the desired row, that is, the row with the latest order date, appears first; otherwise, the returned row will be unpredictable.
+
+```sql
+-- Retrieve the latest order for each unique customer.
+SELECT DISTINCT ON (customer_id) order_id, customer_id, order_date, total_amount
+FROM orders
+ORDER BY customer_id, order_date DESC;
+```
+
+
+### Example of using several clauses
 
 Below are the tables within the same schema that we will be writing queries from.
 

@@ -7,9 +7,53 @@ slug: /key-concepts
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/key-concepts/" />
 </head>
 
-This page explains key concepts and terms that are used throughout the documentation.
+This page explains key concepts and terms that are used throughout the documentation. In the first part, we present terms closely related to RisingWave. In the second part, we include a broader range of terms in a glossary. 
 
 ## Key concepts of RisingWave
+
+### Clusters
+
+A group of interconnected nodes and services that act as a single system running an instance of RisingWave.
+
+### Compute nodes
+
+The compute nodes in RisingWave are responsible for ingesting data from upstream systems, parsing and running SQL queries, and delivering data to downstream systems.
+
+### Compact nodes
+
+The compact nodes handle data storage and retrieval from object storage. They also perform data compaction to optimize storage efficiency.
+
+### Fragments
+
+In RisingWave, when a streaming query plan executes, it divides into multiple independent fragments to allow parallel execution. Each fragment is a chain of SQL operators. Under the hood, it is executed by parallel actors. The degree of parallelism between fragments can be different.
+
+### Indexes
+
+Indexes in a database are typically created on one or more columns of a table, allowing the database management system (DBMS) to locate and retrieve the desired data from the table quickly. This can significantly improve the performance of database queries, especially for large tables or frequently accessed tables. In RisingWave, indexes can speed up batch queries.
+
+### Materialized views
+
+When the results of a view expression are stored in a database system, they are called materialized views. In RisingWave, the result of a materialized view is updated when a relevant event arrives in the system. When you query the result, it is returned instantly as the computation has already been completed when the data comes in. You need to use the [`CREATE MATERIALIZED VIEW`](/sql/commands/sql-create-mv.md) statement to create a materialized view.
+
+### Meta node
+
+The meta node takes charge of managing the metadata of compute and compact nodes and orchestrating operations across the system.
+
+### Nodes
+
+A node is a logical collection of IT resources that handles specific workloads based on their types. RisingWave has the following types of nodes:
+
+- Compute node
+- Compact node
+- Meta node
+
+### Parallelism
+
+Parallelism refers to the technique of simultaneously executing multiple database operations or queries to improve performance and increase efficiency. It involves dividing a database workload into smaller tasks and executing them concurrently on multiple processors or machines. In RisingWave, you can set the parallelism of streaming jobs, like [tables](/sql/commands/sql-alter-table.md#set-parallelism), [materialized views](/sql/commands/sql-alter-materialized-view.md#set-parallelism), and [sinks](/sql/commands/sql-alter-sink.md#set-parallelism).
+
+### Sinks
+
+A sink is an external target to which you can send data. RisingWave now supports exporting data to Kafka topics. Before you stream data out of RisingWave to a sink, you need to create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md) statement to establish the connection.
 
 ### Sources
 
@@ -19,68 +63,30 @@ If you want to persist the data from the source, you should use the [`CREATE TAB
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform data transformations.
 
-### Sinks
-
-A sink is an external target to which you can send data. RisingWave now supports exporting data to Kafka topics. Before you stream data out of RisingWave to a sink, you need to create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md) statement to establish the connection.
-
-### Views
-
-A view is a virtual relation that acts as an actual relation. It is not a part of the logical relational model of the database system. The query expression of the view is stored in the database system. The results of a non-materialized view are not stored in the database system and are calculated every time the view is accessed.
-
-### Materialized views
-
-When the results of a view expression are stored in a database system, they are called materialized views. In RisingWave, the result of a materialized view is updated when a relevant event arrives in the system. When you query the result, it is returned instantly as the computation has already been completed when the data comes in. You need to use the [`CREATE MATERIALIZED VIEW`](/sql/commands/sql-create-mv.md) statement to create a materialized view.
-
-### Indexes
-
-Indexes in a database are typically created on one or more columns of a table, allowing the database management system (DBMS) to  locate and retrieve the desired data from the table quickly. This can greatly improve the performance of database queries, especially for large tables or frequently accessed tables.
-
-## Streaming actors
-
-RisingWave distributes its computation across lightweight threads called "streaming actors," which run simultaneously on CPU cores.
-
-By spreading these streaming actors across cores, RisingWave achieves parallel computation, resulting in improved performance, scalability, and throughput.
-
-### Fragments
-
-In RisingWave, When a streaming query plan executes, it divides into multiple independent fragments to allow parallel execution. Each fragment is a chain of SQL operators. Under the hood, it is executed by parallel actors. The degree of parallelism between fragments can be different.
-
-### Streaming database
-
-A streaming database is broadly defined as a data store designed to collect, process, and/or enrich streams of data in real time, typically immediately after the data is created.
-
 ### Stream processing
 
 Stream processing is the processing of data in motion, or in other words, computing on data directly as it is produced or received.
 The majority of data are born as continuous streams: sensor events, user activity on a website, financial trades, and so on – all these data are created as a series of events over time.
 
-## RisingWave architecture terms
+### Streaming actors
 
-### Clusters
+RisingWave distributes its computation across lightweight threads called "streaming actors," which run simultaneously on CPU cores.
 
-A group of interconnected nodes and services that acts as a single system running an instance of RisingWave.
+By spreading these streaming actors across cores, RisingWave achieves parallel computation, resulting in improved performance, scalability, and throughput.
 
-### Nodes
+### Streaming database
 
-A node is a logical collection of IT resources that handles specific workloads based on their types. There are three types of nodes in RisingWave:
+A streaming database is broadly defined as a data store designed to collect, process, and/or enrich streams of data in real time, typically immediately after the data is created.
 
-- Compute node
-- Compactor node
-- Meta node
+### Streaming jobs
 
-### Compute nodes
+A streaming job is a job that creates an index, a materialized view, a table, a sink, or a source with connectors.
 
-The compute nodes in RisingWave are responsible for ingesting data from upstream systems, parsing and running SQL queries, and delivering data to downstream systems.
+### Views
 
-### Compactor nodes
+A view is a virtual relation that acts as an actual relation. It is not a part of the logical relational model of the database system. The query expression of the view is stored in the database system. The results of a non-materialized view are not stored in the database system and are calculated every time the view is accessed.
 
-The compact nodes handle data storage and retrieval from object storage. They also perform data compaction to optimize storage efficiency.
-
-### Meta node
-
-The meta node takes charge of managing the metadata of compute and compact nodes and orchestrating operations across the system.
-
-## Data processing concepts and terms
+## Glossary
 
 ### Avro
 
