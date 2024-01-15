@@ -1,7 +1,7 @@
 ---
 id: sql-create-sink-into
 title: CREATE SINK INTO
-description: Create a sink into RisingWave's table..
+description: Create a sink into RisingWave's table.
 slug: /sql-create-sink-into
 ---
 <head>
