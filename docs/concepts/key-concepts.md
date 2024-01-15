@@ -13,19 +13,19 @@ This page explains key concepts and terms that are used throughout the documenta
 
 ### Clusters
 
-A group of interconnected nodes and services that acts as a single system running an instance of RisingWave.
+A group of interconnected nodes and services that act as a single system running an instance of RisingWave.
 
 ### Compute nodes
 
 The compute nodes in RisingWave are responsible for ingesting data from upstream systems, parsing and running SQL queries, and delivering data to downstream systems.
 
-### Compactor nodes
+### Compact nodes
 
 The compact nodes handle data storage and retrieval from object storage. They also perform data compaction to optimize storage efficiency.
 
 ### Fragments
 
-In RisingWave, When a streaming query plan executes, it divides into multiple independent fragments to allow parallel execution. Each fragment is a chain of SQL operators. Under the hood, it is executed by parallel actors. The degree of parallelism between fragments can be different.
+In RisingWave, when a streaming query plan executes, it divides into multiple independent fragments to allow parallel execution. Each fragment is a chain of SQL operators. Under the hood, it is executed by parallel actors. The degree of parallelism between fragments can be different.
 
 ### Indexes
 
@@ -44,7 +44,7 @@ The meta node takes charge of managing the metadata of compute and compact nodes
 A node is a logical collection of IT resources that handles specific workloads based on their types. RisingWave has the following types of nodes:
 
 - Compute node
-- Compactor node
+- Compact node
 - Meta node
 
 ### Parallelism
