@@ -105,6 +105,8 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 
 [`SHOW CREATE SINK`](sql-show-create-sink.md) — Show the SQL statement used to create a sink.
 
+[`CREATE SINK INTO`](sql-create-sink-into.md) — Create a sink into RisingWave's table.
+
 :::note
 
 Timestamptz values are stored in UTC.
