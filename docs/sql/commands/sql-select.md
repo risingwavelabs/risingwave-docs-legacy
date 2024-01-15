@@ -73,7 +73,7 @@ SELECT DISTINCT first_name, last_name
 FROM employees;
 ```
 
-Here is an example of `SELECT DISTINCT ON`. The query returns the latest order for each unique `customer_id`. `ORDER BY` is used to ensure that the desired row, the latest order, appears first, or the row you get will be unpredictable.
+Here is an example of `SELECT DISTINCT ON`. The query returns the latest order for each unique `customer_id`. `ORDER BY` is used to ensure that the desired row, that is, the row with the latest order date, appears first; otherwise, the returned row will be unpredictable.
 
 ```sql
 -- Retrieve the latest order for each unique customer.
