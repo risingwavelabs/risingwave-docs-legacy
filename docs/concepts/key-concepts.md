@@ -41,7 +41,7 @@ The meta node takes charge of managing the metadata of compute and compact nodes
 
 ### Nodes
 
-A node is a logical collection of IT resources that handles specific workloads based on their types. There are two types of nodes in RisingWave:
+A node is a logical collection of IT resources that handles specific workloads based on their types. RisingWave has the following types of nodes:
 
 - Compute node
 - Compactor node
