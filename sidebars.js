@@ -264,6 +264,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Google Cloud Storage",
+              id: "ingest/ingest-from-gcs",
+            },
+            {
+              type: "doc",
               label: "MongoDB CDC",
               id: "guides/ingest-from-mongodb-cdc",
             },
@@ -500,6 +505,11 @@ const sidebars = {
               type: "doc",
               label: "Redis",
               id: "guides/sink-to-redis",
+            },
+            {
+              type: "doc",
+              label: "StarRocks",
+              id: "guides/sink-to-starrocks",
             },
             {
               type: "doc",

@@ -176,4 +176,9 @@ GraphQL
 src
 img
 jpg
+StarRocks
+starrocks
+md
 Bytebase
+GCS
+gcs
