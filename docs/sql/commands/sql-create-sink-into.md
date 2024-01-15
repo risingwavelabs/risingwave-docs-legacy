@@ -46,21 +46,21 @@ rr.Stack(
 
 :::note
 
-A table without primary key can only accept append-only sink.
+A table without a primary key can only accept the append-only sink.
 
 :::
 
 :::note
 
-Currently, If there are sinks into the table, the table can not be altered to add or drop column.
+Currently, if there are sinks in the table, the table cannot be altered to add or drop columns.
 
 :::
 
-
 ## Examples
 
-We can union data from two different Kafka topics 
-```SQL
+You can union data from two different Kafka topics.
+
+```sql
 CREATE TABLE orders (
     id int primary key,
     price int,
@@ -93,18 +93,17 @@ CREATE source orders_s1 (
 CREATE SINK orders_sink0 FROM orders_s0 INTO orders;
 CREATE SINK orders_sink1 FROM orders_s1 INTO orders;
 ```
-And when we do not want one of the topics, we can drop it.
 
-```SQL
+If you don't want one of the topics, you can drop it.
+
+```sql
 DROP SINK orders_sink0;
 ```
 
 ## See also
 
-[`CREATE SINK`](sql-create-sink.md) Create sink into an external target
+[`CREATE SINK`](sql-create-sink.md) — Create a sink into an external target.
 
 [`DROP SINK`](sql-drop-sink.md) — Remove a sink.
 
 [`SHOW CREATE SINK`](sql-show-create-sink.md) — Show the SQL statement used to create a sink.
-
-
