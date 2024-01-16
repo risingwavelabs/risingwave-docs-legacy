@@ -31,14 +31,20 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "1.6 (dev)",
+              label: "1.7 (dev)",
               path: "/dev",
               badge: false,
               banner: "unreleased",
             },
-            1.5: {
-              label: "1.5 (current)",
+            1.6: {
+              label: "1.6 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            1.5: {
+              label: "1.5",
+              path: "/1.5",
               badge: false,
               banner: "none",
             },
