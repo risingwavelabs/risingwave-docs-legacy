@@ -36,7 +36,7 @@ const config = {
               badge: false,
               banner: "unreleased",
             },
-            1.5: {
+            1.6: {
               label: "1.6 (current)",
               path: "/current",
               badge: false,
