@@ -40,8 +40,8 @@ risingwave playground
 ### Binaries
 
 ```shell
-wget https://github.com/risingwavelabs/risingwave/releases/download/v1.5.0/risingwave-v1.5.0-x86_64-unknown-linux-all-in-one.tar.gz
-tar xvf risingwave-v1.5.0-x86_64-unknown-linux-all-in-one.tar.gz 
+wget https://github.com/risingwavelabs/risingwave/releases/download/v1.6.0/risingwave-v1.6.0-x86_64-unknown-linux-all-in-one.tar.gz
+tar xvf risingwave-v1.6.0-x86_64-unknown-linux-all-in-one.tar.gz 
 # Do not move the extracted files or folders. This could cause issues when starting RisingWave.
 ./risingwave playground
 ```
