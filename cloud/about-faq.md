@@ -27,4 +27,4 @@ Your data will be kept for an additional seven days. If you want to get a backup
 
 ## Can I share my cluster with others?
 
-Yes. You can invite others to join your organization and share your clusters and other resources with them. See [Organization](/organization-overview) for more information.
+Yes. You can invite others to join your organization and share your clusters and other resources with them. See [Organization](/organization-overview.md) for more information.

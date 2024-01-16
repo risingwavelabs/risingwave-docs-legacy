@@ -264,6 +264,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Google Cloud Storage",
+              id: "ingest/ingest-from-gcs",
+            },
+            {
+              type: "doc",
               label: "MongoDB CDC",
               id: "guides/ingest-from-mongodb-cdc",
             },
@@ -503,6 +508,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "StarRocks",
+              id: "guides/sink-to-starrocks",
+            },
+            {
+              type: "doc",
               label: "TiDB",
               id: "guides/sink-to-tidb",
             },
@@ -560,6 +570,11 @@ const sidebars = {
                 keywords: ["query, syntax"],
               },
               items: [
+                {
+                  type: "doc",
+                  id: "sql/query-syntax/query-syntax-literals",
+                  label: "Literals",
+                },
                 {
                   type: "doc",
                   id: "sql/query-syntax/query-syntax-value-exp",
@@ -927,7 +942,8 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "performance/best-practices"
+          label: "Best practices",
+          id: "performance/performance-best-practices"
         },
       ]
     },

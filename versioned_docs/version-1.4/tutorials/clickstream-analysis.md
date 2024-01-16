@@ -139,7 +139,7 @@ The result may look like this:
 (5 rows)
 ```
 
-We can also query results by specifying a time interval. To learn more about data and time functions and operators, see [Date and time](/sql/functions-operators/sql-function-datetime.md/sql-function-datetime/).
+We can also query results by specifying a time interval. To learn more about data and time functions and operators, see [Date and time](/sql/functions-operators/sql-function-datetime.md).
 
 ```sql
 SELECT * FROM thread_view_count

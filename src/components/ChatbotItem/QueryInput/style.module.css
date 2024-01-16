@@ -34,6 +34,11 @@
   margin-left: 15px;
 }
 
+.expand-wrapper .chatbot-icon-img {
+  width: 20px;
+  cursor: pointer;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

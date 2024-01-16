@@ -8,7 +8,7 @@ slug: /access-control
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/access-control/" />
 </head>
 
-RisingWave uses a user-based access control to handle authentication and authorization. Privileges can be granted to or revoked from users to control what actions can be performed on different object levels.
+RisingWave uses a user-based access control to handle authentication and authorization. Privileges can be granted to or revoked by users to control what actions can be performed on different object levels.
 
 When creating a user, the administrator of an organization can determine the system-level permissions and set a password. The system permissions and the user names can be revised with the `ALTER USER` command. For details about the system permissions, see [System permissions](/sql/commands/sql-create-user.md#system-permissions).
 
@@ -40,7 +40,7 @@ Create a user with default permissions:
 CREATE USER user_name;
 ```
 
-Create a user and grant it the permission to create databases, and set a password for it:
+Create a user and permit it to create databases, and set a password for it:
 
 ```sql
 CREATE USER user001 WITH CREATEDB PASSWORD '1234abcd';
@@ -75,9 +75,9 @@ See the table below for the privileges available in RisingWave and the correspon
 |`CREATE` |Permission to create new objects within the database. |Schema, Database, Table|
 |`CONNECT`|Permission to connect to a database.| Database|
 
-You use the `GRANT` command to grant priviledges to a user, and the `REVOKE` command to revoke priviledges from a user. For the syntaxes of these two commands, see [`GRANT`](/sql/commands/sql-grant.md) and [`REVOKE`](/sql/commands/sql-revoke).
+You use the `GRANT` command to grant privileges to a user, and the `REVOKE` command to revoke privileges from a user. For the syntaxes of these two commands, see [`GRANT`](/sql/commands/sql-grant.md) and [`REVOKE`](/sql/commands/sql-revoke.md).
 
-This statements grants the `SELECT` privilege for materialized view `mv1`, which is in schema `schema1` of database `db1`, to user `user1`. `user1` is able to grant the `SELECT` privilege other users.
+This statement grants the `SELECT` privilege for materialized view `mv1`, which is in schema `schema1` of database `db1`, to user `user1`. `user1` is able to grant the `SELECT` privilege to other users.
 
 ```sql
 GRANT SELECT
