@@ -82,13 +82,13 @@ CREATE TABLE t (v1 int);
 insert into t values(1, 2), (3, 4), (5, 6);
 insert into t values(1, 0), (3, 1), (5, 2);
 flush;
-select * from t; -- A
-select v1, v2, array_agg(v2) over (partition by v1 order by v2 desc ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING ) FROM t; -- B
+select * from t;
+select v1, v2, array_agg(v2) over (partition by v1 order by v2 desc ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING ) FROM t;
 ```
 
 Output:
 ```
-A:
+-- select * from t;
  v1 | v2 
 ----+----
   1 |  2
@@ -99,7 +99,7 @@ A:
   5 |  2
 (6 rows)
 
-B:
+-- select v1, v2, array_agg(v2) over (partition by v1 order by v2 desc ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING ) FROM t;
  v1 | v2 | array_agg 
 ----+----+-----------
   1 |  2 | {2,0}
