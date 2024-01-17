@@ -33,7 +33,7 @@ For example, suppose we want to add a new column to the materialized view `cust_
 CREATE MATERIALIZED VIEW cust_sales AS
     SELECT
         customer_id,
-        SUM(total_price) AS sales_amount,
+        SUM(total_price) AS sales_amount
     FROM orders
     GROUP BY customer_id;
 ```
@@ -78,7 +78,7 @@ CREATE MATERIALIZED VIEW orders AS
     SELECT
         order_id,
         customer_id,
-        SUM(price * quantity) AS total_price,
+        SUM(price * quantity) AS total_price
     FROM order_items, price
     WHERE order_items.product_id = price.product_id
     GROUP BY order_id, customer_id;
@@ -86,7 +86,7 @@ CREATE MATERIALIZED VIEW orders AS
 CREATE MATERIALIZED VIEW cust_sales AS
     SELECT
         customer_id,
-        SUM(total_price) AS sales_amount,
+        SUM(total_price) AS sales_amount
     FROM orders
     GROUP BY customer_id;
 ```
@@ -109,18 +109,18 @@ CREATE MATERIALIZED VIEW cust_sales_new AS
         customer_id,
         SUM(total_price) AS sales_amount,
         SUM(item_count) AS sales_count -- The new column
-    FROM orders
+    FROM orders_new -- the new one
     GROUP BY customer_id;
 ```
 
 After the new materialized views are created, we can drop the old materialized view `cust_sales` and rename `cust_sales_new` to `cust_sales`:
 
 ```sql
-DROP MATERIALIZED VIEW orders;
-ALTER MATERIALIZED VIEW orders_new RENAME TO orders;
-
 DROP MATERIALIZED VIEW cust_sales;
 ALTER MATERIALIZED VIEW cust_sales_new RENAME TO cust_sales;
+
+DROP MATERIALIZED VIEW orders;
+ALTER MATERIALIZED VIEW orders_new RENAME TO orders;
 ```
 
 ## Why is it not possible to modify a streaming job in place?
