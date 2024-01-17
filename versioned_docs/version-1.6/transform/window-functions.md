@@ -67,11 +67,57 @@ EXCLUDE CURRENT ROW
 EXCLUDE NO OTHERS
 ```
 
+`EXCLUDE CURRENT ROW` just means that the `CURRENT ROW` will excluded from the frame.
+`EXCLUDE NO OTHERS` is the default, which means that all rows in the frame will be processed. It can be omitted.
+
 :::note
 
 In RisingWave, `frame_clause` is optional. Depending on whether the `ORDER BY` clause is present, the default value is different. When the `ORDER BY` clause is present, the default value is `ROWS UNBOUNDED PRECEDING AND CURRENT ROW`. When the `ORDER BY` clause is not present, the default value is `ROWS UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING`. This is different from the behavior in PostgreSQL. The difference is temporary. Once the `RANGE` frame clause is supported in RisingWave, the default values will be aligned with PostgreSQL.
 
 :::
+
+Example:
+```sql
+CREATE TABLE t (v1 int);
+insert into t values(1, 2), (3, 4), (5, 6);
+insert into t values(1, 0), (3, 1), (5, 2);
+flush;
+select * from t; -- A
+select v1, v2, array_agg(v2) over (partition by v1 order by v2 desc ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING ) FROM t; -- B
+```
+
+Output:
+```
+A:
+ v1 | v2 
+----+----
+  1 |  2
+  3 |  4
+  5 |  6
+  1 |  0
+  3 |  1
+  5 |  2
+(6 rows)
+
+B:
+ v1 | v2 | array_agg 
+----+----+-----------
+  1 |  2 | {2,0}
+  1 |  0 | {0}
+  3 |  4 | {4,1}
+  3 |  1 | {1}
+  5 |  6 | {6,2}
+  5 |  2 | {2}
+(6 rows)
+```
+
+Explanation:
+1. `array_agg` concatenates a set of values together.
+2. `partition by v1` is similiar to our aggregation clause of `GROUP BY`. We will group all rows with the same `v1` value, so we have 3 unique partitions: `v1:1`, `v1:3`, `v1:5`.
+3. Next, we consider 1 partition, `v1:1`. For this partition, we have 2 rows.
+   `{v1:1, v2:2}` and `{v1:1, v2:0}`.
+5. `order by v2 desc` tells us to process the records in descending order by `v2`, so you can see that we first append `v2:2` then `v2:0`, yielding `{2,0}` for the `array_agg` of partition `v1:1`.
+6. The frame expression `ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING` also applies to each partition, so for the partition `v1:1`'s first row, we have `{2, 0}` as the `array_agg`, but for the second row, since there's no row following the current one, we only get `{0}`.
 
 ## General-purpose window functions
 
