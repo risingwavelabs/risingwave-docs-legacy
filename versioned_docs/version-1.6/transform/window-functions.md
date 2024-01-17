@@ -67,7 +67,7 @@ EXCLUDE CURRENT ROW
 EXCLUDE NO OTHERS
 ```
 
-`EXCLUDE CURRENT ROW` just means that the `CURRENT ROW` will excluded from the frame.
+`EXCLUDE CURRENT ROW` means that the `CURRENT ROW` will be excluded from the frame.
 `EXCLUDE NO OTHERS` is the default, which means that all rows in the frame will be processed. It can be omitted.
 
 :::note
