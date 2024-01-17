@@ -18,7 +18,7 @@ To add or drop columns from a table or source, simply use the [ALTER TABLE](http
 ```sql
 ALTER TABLE customers ADD COLUMN birth_date;
 
-ALTER SOURCE orders ADD COLUMN birth_date;
+ALTER SOURCE customers ADD COLUMN birth_date;
 ```
 
 The new column will be `NULL` for existing records. 
