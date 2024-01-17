@@ -79,7 +79,7 @@ In RisingWave, `frame_clause` is optional. Depending on whether the `ORDER BY` c
 Example:
 ```sql
 CREATE TABLE t (v1 int);
-insert into t values(1, 2), (3, 4), (5, 6);
+INSERT INTO t VALUES(1, 2), (3, 4), (5, 6);
 insert into t values(1, 0), (3, 1), (5, 2);
 flush;
 select * from t;
