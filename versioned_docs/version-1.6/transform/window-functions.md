@@ -114,10 +114,11 @@ Output:
 Explanation:
 1. `array_agg` concatenates a set of values together.
 2. `partition by v1` is similiar to our aggregation clause of `GROUP BY`. We will group all rows with the same `v1` value, so we have 3 unique partitions: `v1:1`, `v1:3`, `v1:5`.
-3. Next, we consider 1 partition, `v1:1`. For this partition, we have 2 rows.
+4. Next, we consider 1 partition, `v1:1`. For this partition, we have 2 rows.
    `{v1:1, v2:2}` and `{v1:1, v2:0}`.
 5. `order by v2 desc` tells us to process the records in descending order by `v2`, so you can see that we first append `v2:2` then `v2:0`, yielding `{2,0}` for the `array_agg` of partition `v1:1`.
 6. The frame expression `ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING` also applies to each partition, so for the partition `v1:1`'s first row, we have `{2, 0}` as the `array_agg`, but for the second row, since there's no row following the current one, we only get `{0}`.
+7. Repeat the logic from 4-6 across the other partitions, and you will get the expected results.
 
 ## General-purpose window functions
 
