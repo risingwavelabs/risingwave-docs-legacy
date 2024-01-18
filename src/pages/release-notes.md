@@ -18,16 +18,16 @@ This version was released on January 11, 2024.
 #### SQL features
 
 - Query syntax:
-    - Allows `NOW` in upper bound condition for temporal filters. [#13985](https://github.com/risingwavelabs/risingwave/pull/13985). See [Temporal filters](/docs/current/sql-pattern-temporal-filters.md).
-    - Supports temporal filters with multiple `OR` expressions. [#14382](https://github.com/risingwavelabs/risingwave/pull/14382). See [Temporal filters](/docs/current/sql-pattern-temporal-filters.md).
-    - Supports `<expr> [ NOT ] SIMILAR TO <pat> [ ESCAPE <esc_text> ]` clause. [#14000](https://github.com/risingwavelabs/risingwave/pull/14000). See [`SIMILAR TO` pattern matching expressions](docs/current/sql-function-string/#similar-to-pattern-matching-expressions).
+    - Allows `NOW` in upper bound condition for temporal filters. [#13985](https://github.com/risingwavelabs/risingwave/pull/13985). See [Temporal filters](/docs/current/sql-pattern-temporal-filters).
+    - Supports temporal filters with multiple `OR` expressions. [#14382](https://github.com/risingwavelabs/risingwave/pull/14382). See [Temporal filters](/docs/current/sql-pattern-temporal-filters).
+    - Supports `<expr> [ NOT ] SIMILAR TO <pat> [ ESCAPE <esc_text> ]` clause. [#14000](https://github.com/risingwavelabs/risingwave/pull/14000). See [`SIMILAR TO` pattern matching expressions](/docs/current/sql-function-string#similar-to-pattern-matching-expressions).
     - **Breaking change**: Fixes the correctness of `SOME`, `ALL`, and `ANY` expressions. Drop and recreate any materialized views that use these expressions. [#14221](https://github.com/risingwavelabs/risingwave/pull/14221).
     - Supports array subquery and \du command. [#14044](https://github.com/risingwavelabs/risingwave/pull/14044).
     - Supports `SET PARALLELISM` clause for `ALTER` commands. [#14240](https://github.com/risingwavelabs/risingwave/pull/14240).
 - SQL commands:
     - Technical preview feature: Supports `CREATE SINK INTO TABLE` Multiple sinks can use the same table as the destination. [#13185](https://github.com/risingwavelabs/risingwave/pull/13185), [#13659](https://github.com/risingwavelabs/risingwave/pull/13659). See [`CREATE SINK INTO`](/docs/current/sql-create-sink-into/).
 - SQL functions & operators:
-    - **Breaking change**: `0b10` is now interpreted as binary `10` instead of `0 as b10`. Integer literals can be given in hex `0x`, oct `0o` and bin `0b`. [#14262](https://github.com/risingwavelabs/risingwave/pull/14262).
+    - **Breaking change**: `0b10` is now interpreted as binary `10` instead of `0 as b10`. Integer literals can be given in hex `0x`, oct `0o`, and bin `0b`. [#14262](https://github.com/risingwavelabs/risingwave/pull/14262).
     - Supports interval type as input for `to_char()`. [#14071](https://github.com/risingwavelabs/risingwave/pull/14071). See [Date and time functions](/docs/current/sql-function-datetime/#date-and-time-functions).
     - Supports `NULL` and fraction expression as direct arguments of ordered-set aggregate functions. [#14080](https://github.com/risingwavelabs/risingwave/pull/14080). See [Ordered-set aggregate functions](/docs/current/sql-function-aggregate/#ordered-set-aggregate-functions).
 - System catalog:
@@ -37,7 +37,7 @@ This version was released on January 11, 2024.
 
 - Adds CDC backfill support for Postgres so users can ingest multiple PostgreSQL tables with a single replication slot. [#13958](https://github.com/risingwavelabs/risingwave/pull/13958). See [Create multiple CDC tables with the same source](/docs/current/ingest-from-postgres-cdc/#create-multiple-cdc-tables-with-the-same-source).
 - Support multi-table transactions from upstream MySQL & Postgres CDC. Specify `transactional = true` in the `WITH` options to enable it. [#14375](https://github.com/risingwavelabs/risingwave/pull/14375). See [Ingest data from PostgreSQL CDC](/docs/current/ingest-from-postgres-cdc/) and [Ingest data from MySQL CDC](/docs/current/ingest-from-mysql-cdc/).
-- Renames `scan.startup.timestamp_millis` to `scan.startup.timestamp.millis` for Kafka, Pulsar and NATS source. [#13656](https://github.com/risingwavelabs/risingwave/pull/13656).
+- Renames `scan.startup.timestamp_millis` to `scan.startup.timestamp.millis` for Kafka, Pulsar, and NATS source. [#13656](https://github.com/risingwavelabs/risingwave/pull/13656).
 - Adds `properties.ssl.endpoint.identification.algorithm` parameter for Kafka source and sink.[#13990](https://github.com/risingwavelabs/risingwave/pull/13990). See [Ingest data from Kafka](/docs/current/ingest-from-kafka/) and [Sink to Kafka](/docs/current/create-sink-kafka/).
 - Supports `FORMAT PLAIN ENCODE PROTOBUF` syntax for Kafka sink. [#12858](https://github.com/risingwavelabs/risingwave/pull/12858). See [Sink to Kafka](/docs/current/create-sink-kafka/).
 - Supports GCS file source. [#13414](https://github.com/risingwavelabs/risingwave/pull/13414). See [Ingest data from Google Cloud Storage](/docs/current/ingest-from-gcs/).
