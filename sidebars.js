@@ -254,6 +254,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              label: "Google Pub/Sub",
+              id: "ingest/ingest-from-google-pubsub",
+            },
+            {
+              type: "doc",
               label: "CDC via event streaming systems",
               id: "ingest/ingest-from-cdc",
             },
