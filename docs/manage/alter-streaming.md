@@ -73,6 +73,8 @@ If the modified materialized view is depended upon by other materialized views o
 
 Let's continue with the previous example, but suppose the upstream `orders` is not a table but another materialized view, derived from tables `order_items` and `price`.
 
+![The materialized view `cust_sales` depends on `orders`, which is derived from tables `order_items` and `price`](../images/streaming-with-dependecies.svg)
+
 ```sql
 CREATE MATERIALIZED VIEW orders AS
     SELECT
@@ -92,6 +94,8 @@ CREATE MATERIALIZED VIEW cust_sales AS
 ```
 
 To add a new column `sales_count` to `cust_sales`, we need to create the new materialized views `cust_sales_new` and `orders_new` first:
+
+![Create the new materialized views `cust_sales_new` and `orders_new`](../images/streaming-with-dependecies-create-new.svg)
 
 ```sql
 CREATE MATERIALIZED VIEW orders_new AS
