@@ -966,6 +966,19 @@ const sidebars = {
       ]
     },
     {
+      type: "category",
+      label: "Frequently asked questions",
+      collapsible: true,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          label: "Why does RisingWave not Accept Kafka Consumer Group ID",
+          id: "faq/kafka-consumer-group-id"
+        },
+      ]
+    },
+    {
       type: "link",
       href: "/release-notes",
       label: "Releases",
