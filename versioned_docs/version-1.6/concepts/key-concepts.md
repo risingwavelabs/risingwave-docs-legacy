@@ -19,9 +19,9 @@ A group of interconnected nodes and services that act as a single system running
 
 The compute nodes in RisingWave are responsible for ingesting data from upstream systems, parsing and running SQL queries, and delivering data to downstream systems.
 
-### Compact nodes
+### Compactor nodes
 
-The compact nodes handle data storage and retrieval from object storage. They also perform data compaction to optimize storage efficiency.
+The compactor nodes handle data storage and retrieval from object storage. They also perform data compaction to optimize storage efficiency.
 
 ### Fragments
 
@@ -37,7 +37,7 @@ When the results of a view expression are stored in a database system, they are 
 
 ### Meta node
 
-The meta node takes charge of managing the metadata of compute and compact nodes and orchestrating operations across the system.
+The meta node takes charge of managing the metadata of compute and compactor nodes and orchestrating operations across the system.
 
 ### Nodes
 
