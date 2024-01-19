@@ -974,7 +974,7 @@ const sidebars = {
         {
           type: "doc",
           label: "Why does RisingWave not Accept Kafka Consumer Group ID",
-          id: "faq/kafka-consumer-group-id"
+          id: "faq/faq-kafka-consumer-group-id"
         },
       ]
     },

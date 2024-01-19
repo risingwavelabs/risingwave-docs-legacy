@@ -575,3 +575,7 @@ WITH (
    properties.sasl.password='admin-secret'
 ) FORMAT PLAIN ENCODE JSON;
 ```
+
+## See also
+
+[Why does RisingWave not Accept Kafka Consumer Group ID](faq-kafka-consumer-group-id.md)

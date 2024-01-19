@@ -1,27 +1,30 @@
 ---
 id: faq-kafka-consumer-group-id
-title: Why does RisingWave not Accept Kafka Consumer Group ID
-description: Why does RisingWave not Accept Kafka Consumer Group ID
+title: Why does RisingWave not accept Kafka consumer group ID
+description: Why not accept Kafka consumer group ID
 slug: /faq-kafka-consumer-group-id
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/faq-kafka-consumer-group-id/" />
 </head>
 
-This topic unveils the strategic decision behind RisingWave's rejection of Kafka Consumer Group IDs.
+This topic unveils the strategic decision behind RisingWave's rejection of Kafka consumer group IDs.
 
-# What is a Kafka Consumer Group
+## Background
 
-To understand why RisingWave does not accept Kafka Consumer Group IDs, it's essential to first grasp the concept of a Kafka Consumer Group. A Kafka consumer group is a concept in Apache Kafka, a distributed streaming platform. It refers to a group of consumers that work together to consume data from one or more topics.
+To understand why RisingWave does not accept Kafka consumer group IDs, it's essential to first grasp the concept of a Kafka consumer group. A Kafka consumer group is a concept in Apache Kafka, a distributed streaming platform. It refers to a group of consumers that work together to consume data from one or more topics.
 
-1. **Grouping Consumers**: Kafka allows multiple consumers to form a group (called a consumer group) to consume messages from a topic. Consumers divide the topic's partitions among themselves to consume messages more efficiently.
-2. **Partition Assignment**: In Kafka, topics are divided into partitions for scalability and parallelism. Each consumer in a group is assigned one or more partitions to read messages from. This split of tasks helps process data in parallel.
-3. **Load Balancing**: Kafka automatically distributes partitions among consumers. When new consumers join the group or existing consumers leave, Kafka rebalances the partition assignments among the remaining consumers. This ensures even workload distribution and high availability.
+1. **Grouping consumers**: Kafka allows multiple consumers to form a group (called a consumer group) to consume messages from a topic. Consumers divide the topic's partitions among themselves to consume messages more efficiently.
+
+2. **Partition assignment**: In Kafka, topics are divided into partitions for scalability and parallelism. Each consumer in a group is assigned one or more partitions to read messages from. This split of tasks helps process data in parallel.
+
+3. **Load balancing**: Kafka automatically distributes partitions among consumers. When new consumers join the group or existing consumers leave, Kafka rebalances the partition assignments among the remaining consumers. This ensures even workload distribution and high availability.
+
 4. **Scalability and Fault Tolerance**: Kafka consumer groups provide scalability by distributing the consumption process across multiple consumers. If a consumer fails, others in the group can take over its partitions, ensuring fault tolerance.
 
 ## RisingWave's Task Parallelism
 
-In RisingWave, each task necessitates parallel processing. The smallest operational units within tasks, called **`actors`**, are assigned globally unique actor IDs by the meta. This design is pivotal for efficient task execution.
+In RisingWave, each task necessitates parallel processing. The smallest operational units within tasks, called `actors`, are assigned globally unique actor IDs by the meta. This design is pivotal for efficient task execution.
 
 ## Design of Kafka Sources in RisingWave
 
@@ -30,4 +33,5 @@ For Kafka source, RisingWave operates with the assumption that each actor receiv
 ## Issues with Specifying Group IDs
 
 1. **Data Loss**: In Kafka's fault tolerance, if a consumer fails, others in the group can take over its partitions. This behavior contradicts RisingWave’s foundational assumption about sources. Specifically, if `actor_1` crashes at time `T0` and the Kafka broker reassigns its partition to `actor_2`, `actor_2` will discard messages not from its assigned partition. When `actor_1` recovers and the broker reassigns the original partition back, messages between `T0` and `T1` are considered consumed and not present, leading to data loss. This scenario violates the "exactly once" semantics requirement and disrupts the state table's records, as broker scheduling in consumer groups is likely misaligned with RisingWave's checkpoints, potentially causing state table write failures.
+
 2. **Disruption of existing RisingWave behavior**: Allowing users to specify group IDs in sources leads to another issue. For instance, if two downstream materialized views (MVs) depend on the same source (assuming a parallelism degree of 3 and the upstream topic has 3 partitions), the current implementation would involve two sets of source executors, totaling six, all sharing the same group ID. Given that "each consumer in a group is assigned one or more partitions to read messages from," some consumers won't receive data if the number of consumers exceeds the number of partitions. This scenario clearly fails to meet the requirement of both MVs receiving complete data sets.
