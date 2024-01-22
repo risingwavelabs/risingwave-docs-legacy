@@ -24,7 +24,7 @@ FORMAT data_format ENCODE data_encode (
 );
 ```
 
-### Connector parameters
+## Parameters
 
 | Field | Note |
 | --- | --- |
@@ -39,15 +39,13 @@ FORMAT data_format ENCODE data_encode (
 The Pub/Sub topic provided must have `retain_acked_messages` enabled and must define a retention policy. For details, see [Configure subscription message retention](https://cloud.google.com/pubsub/docs/replay-overview#subscription_message_retention).
 :::
 
-### Recovery mechanism
-
-Achieving exactly once semantic for the pubsub source is not possible due to limitations in the SDK. However, we can achieve at least once semantic. Here's how the recovery process works:
+We can only achieve at-least-once semantic for the Pub/Sub source rather than exactly once because the SDK cannot seek back to a specific message offset. Here's how the recovery process works:
 
 1. Record the timestamp for each message as an offset.
 
 2. During recovery, seek back to the specific timestamp and consume messages again from the topic.
 
-It's worthy noting that if two messages are produced almost at the same time, it is possible to receive each message more than once.
+If two messages are produced almost at the same time, it is possible to receive each message more than once.
 
 ## Example
 
