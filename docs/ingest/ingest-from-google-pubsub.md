@@ -32,7 +32,6 @@ FORMAT data_format ENCODE data_encode (
 | pubsub.credentials | Required. a JSON string containing the service account credentials for authorization, see the [service-account credentials guide](https://developers.google.com/workspace/guides/create-credentials#create_credentials_for_a_service_account). The provided account credential must have the `pubsub.subscriber` [role](https://cloud.google.com/pubsub/docs/access-control#roles). |
 | pubsub.start_offset.nanos | Optional. Cannot be set together with pubsub.start_snapshot. Specifies a numeric timestamp in nanoseconds, ideally the publish timestamp of a message in the subscription. If present, the connector seeks the subscription to the timestamp and starts consuming from there. Note that the seek operation is subject to limitations based on the message retention policy of the subscription.|
 | pubsub.start_snapshot | Optional. Cannot be set together with `pubsub.start_offset.nanos`. If present, the connector first seeks to the specified snapshot before starting consumption. |
-|  |  |
 
 :::note
 The Pub/Sub topic provided must have `retain_acked_messages` enabled and must define a retention policy. For details, see [Configure subscription message retention](https://cloud.google.com/pubsub/docs/replay-overview#subscription_message_retention).
