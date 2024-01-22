@@ -54,7 +54,7 @@ To know when a data record is loaded to RisingWave, you can define a column that
 
 Click a connector name to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
 
-::note
+:::note
 
 To ingest data in formats marked with "T", you need to create tables (with connector settings). Otherwise, you can create either sources or tables (with connector settings).
 
@@ -72,7 +72,7 @@ To ingest data in formats marked with "T", you need to create tables (with conne
 |[CDC via Kafka](/ingest/ingest-from-cdc.md)||[Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T)|
 |[Amazon S3](/ingest/ingest-from-s3.md)| Latest |[JSON](#json), CSV| |
 |[Load generator](/ingest/ingest-from-datagen.md)|Built-in|[JSON](#json)|
-|Google Pub/Sub | | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T) |
+|[Google Pub/Sub](/ingest/ingest-from-google-pubsub.md) | | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T) |
 |[Google Cloud Storage](/ingest/ingest-from-gcs.md) | [JSON](#json)|
 
 :::note
