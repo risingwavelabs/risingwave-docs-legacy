@@ -49,7 +49,7 @@ Here's how the recovery process works:
 
 If two messages are produced almost at the same time, it is possible to receive each message more than once.
 
-## Example
+## Examples
 
 ```sql
 CREATE TABLE s1 (v1 int, v2 varchar) WITH (
