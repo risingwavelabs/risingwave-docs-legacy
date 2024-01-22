@@ -576,5 +576,5 @@ WITH (
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
-## See also
-For more details on RisingWave's approach to Kafka consumer group IDs, refer to the article [Why does RisingWave not Accept Kafka consumer group ID](/faq-kafka-consumer-group-id.md)
+## Related topics
+[Why does RisingWave not Accept Kafka consumer group ID](/rw-faq.md#why-risingwave-does-not-accept-kafka-consumer-group-ids)

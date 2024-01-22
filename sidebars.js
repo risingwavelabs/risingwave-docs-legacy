@@ -46,6 +46,11 @@ const sidebars = {
           id: "rw-integration-summary",
         },
         {
+          type: "doc",
+          label: "FAQ",
+          id: "rw-faq",
+        },
+        {
           type: "category",
           label: "Deep-dive",
           collapsible: true,
@@ -962,19 +967,6 @@ const sidebars = {
           type: "doc",
           label: "Troubleshoot out-of-memory problems",
           id: "troubleshoot/troubleshoot-oom"
-        },
-      ]
-    },
-    {
-      type: "category",
-      label: "Frequently asked questions",
-      collapsible: true,
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
-          label: "Why does RisingWave not Accept Kafka Consumer Group ID",
-          id: "faq/faq-kafka-consumer-group-id"
         },
       ]
     },
