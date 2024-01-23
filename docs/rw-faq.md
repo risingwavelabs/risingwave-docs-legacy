@@ -24,7 +24,7 @@ A Kafka consumer group is a concept in Apache Kafka. It refers to a group of con
 
 ### RisingWave's task parallelism
 
-In RisingWave, each task necessitates parallel processing. The smallest operational units within tasks, called `actors`, are assigned globally unique actor IDs by the meta. This design is pivotal for efficient task execution.
+In RisingWave, each task is divided into smaller operational units known as `actors.` These actors are assigned globally unique actor IDs by the meta. This design is crucial for ensuring efficient execution of tasks.
 
 ### Design of Kafka sources in RisingWave
 
