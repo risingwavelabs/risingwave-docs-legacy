@@ -198,12 +198,12 @@ CREATE TABLE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
-   topic='test_topic',
-   schema.registry.username='your_schema_registry_username',
-   schema.registry.password='your_schema_registry_password'
+   topic='test_topic'
 )
 FORMAT UPSERT ENCODE AVRO (
-   schema.registry = 'http://127.0.0.1:8081'
+   schema.registry = 'http://127.0.0.1:8081',
+   schema.registry.username='your_schema_registry_username',
+   schema.registry.password='your_schema_registry_password'
 );
 ```
 
