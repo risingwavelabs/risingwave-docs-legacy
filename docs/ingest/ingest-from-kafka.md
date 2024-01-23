@@ -577,4 +577,4 @@ WITH (
 ```
 
 ## Related topics
-[Why does RisingWave not Accept Kafka consumer group ID](/rw-faq.md#why-risingwave-does-not-accept-kafka-consumer-group-ids)
+[Why does RisingWave not accept Kafka consumer group ID](/rw-faq.md#why-risingwave-does-not-accept-kafka-consumer-group-ids)
