@@ -73,7 +73,7 @@ The Cassandra sink in RisingWave provides at-least-once delivery semantics. Even
 |bytea |blob|
 |date |date|
 |time without time zone |time|
-|timestamp without time zone |unsupported. You need to convert `timestamp` to `timestamptz` within RisingWave before sinking.|
+|timestamp without time zone |unsupported. You need to convert `timestamp` to `timestamptz` in RisingWave before sinking.|
 |timestamp with time zone |timestamp|
 |interval |duration|
 |struct |unsupported|
