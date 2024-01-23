@@ -28,7 +28,7 @@ In RisingWave, each task is divided into smaller operational units known as `act
 
 ### Design of Kafka sources in RisingWave
 
-For Kafka source, RisingWave operates with the assumption that each actor receives messages exclusively from a designated Kafka partition. This assumption significantly simplifies offset management, aiming to distribute partitions across different actors to maximize throughput. However, if the upstream Kafka topic's partitions are fewer than RisingWave's task parallelism, some actors may be inactive, not producing messages downstream. Each active actor processes at least one partition, passing the consumed data and the latest offset of each partition downstream, which is then recorded in the state table. The state table, within the same epoch, permits only one actor to write for a given partition (the primary key), necessitating a clear mapping between partitions and actors.
+For Kafka sources, RisingWave operates under the assumption that each actor exclusively receives messages from a designated Kafka partition. This assumption simplifies offset management and allows for the distribution of partitions across different actors to optimize throughput. However, in scenarios where the number of partitions in the upstream Kafka topic is fewer than RisingWave's task parallelism, some actors may remain inactive and not produce messages downstream. Each active actor processes at least one partition, forwarding the consumed data and the latest offset of each partition downstream. This information is then recorded in the state table. Within the same epoch, the state table only allows one actor to write for a given partition, requiring a clear mapping between partitions and actors.
 
 ### Issues with specifying group IDs
 
