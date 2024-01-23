@@ -117,7 +117,7 @@ Explanation:
 4. Next, we consider 1 partition, `v1:1`. For this partition, we have 2 rows.
    `{v1:1, v2:2}` and `{v1:1, v2:0}`.
 5. `order by v2 desc` tells us to process the records in descending order by `v2`, so you can see that we first append `v2:2` then `v2:0`, yielding `{2,0}` for the `array_agg` of partition `v1:1`.
-6. The frame expression `ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING` also applies to each partition, so for the partition `v1:1`'s first row, we have `{2, 0}` as the `array_agg`, but for the second row, since there's no row following the current one, we only get `{0}`.
+6. The frame expression `ROWS BETWEEN CURRENT ROW AND 1 FOLLOWING` also applies to each partition. For the first row in the `v1:1` partition, we have `{2, 0}` as the result of `array_agg`. However, since there's no row following the second row in the partition, the `array_agg` function only yields `{0}` for that row.
 7. Repeat the logic from 4-6 for the other partitions, and you will get the expected results.
 
 ## General-purpose window functions
