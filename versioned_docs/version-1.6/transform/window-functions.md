@@ -68,7 +68,7 @@ EXCLUDE NO OTHERS
 ```
 
 `EXCLUDE CURRENT ROW` means that the `CURRENT ROW` will be excluded from the frame.
-`EXCLUDE NO OTHERS` is the default, which means that all rows in the frame will be processed. It can be omitted.
+`EXCLUDE NO OTHERS` indicates that all rows within the frame will be processed. As this is the default setting, there is no need to explicitly specify it.
 
 :::note
 
