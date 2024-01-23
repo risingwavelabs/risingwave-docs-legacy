@@ -135,11 +135,29 @@ select add_return(1, 1);
 - SQL UDF with multiple types interleaving
 
 ```sql title="Create function"
+-- Multiple type interleaving
 create function add_sub(INT, FLOAT, INT) returns float language sql as $$select -$1 + $2 - $3$$;
+
+-- Multiple type interleaving with return expression
+create function add_sub_return(INT, FLOAT, INT) returns float language sql return -$1 + $2 - $3;
+
+-- Complex types interleaving
+create function add_sub_types(INT, BIGINT, FLOAT, DECIMAL, REAL) returns real language sql as 'select $1 + $2 - $3 + $4 + $5';
 ```
 
 ```sql title="Call function"
 
+select add_sub(1, 5.1415926, 1);
+----RESULT
+3.1415926
+
+select add_sub_return(1, 5.1415926, 1);
+----RESULT
+3.1415926
+
+select add_sub_types(1, 1919810114514, 3.1415926, 1.123123, 101010.191919);
+----RESULT
+1919810215523.1734494
 ```
 
 - SQL UDF calling other pre-defined SQL UDFs
