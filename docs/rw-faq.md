@@ -12,7 +12,7 @@ This topic lists frequently asked questions to provide the information you need 
 
 ## Why does RisingWave not accept Kafka consumer group IDs?
 
-A Kafka consumer group is a concept in Apache Kafka, a distributed streaming platform. It refers to a group of consumers that work together to consume data from one or more topics.
+A Kafka consumer group is a concept in Apache Kafka. It refers to a group of consumers that work together to consume data from one or more topics.
 
 1. **Grouping consumers**: Kafka allows multiple consumers to form a group (called a consumer group) to consume messages from a topic. Consumers divide the topic's partitions among themselves to consume messages more efficiently.
 
