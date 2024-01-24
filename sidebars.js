@@ -46,6 +46,11 @@ const sidebars = {
           id: "rw-integration-summary",
         },
         {
+          type: "doc",
+          label: "FAQ",
+          id: "rw-faq",
+        },
+        {
           type: "category",
           label: "Deep-dive",
           collapsible: true,
@@ -251,6 +256,11 @@ const sidebars = {
               type: "doc",
               label: "AWS S3",
               id: "ingest/ingest-from-s3",
+            },
+            {
+              type: "doc",
+              label: "Google Pub/Sub",
+              id: "ingest/ingest-from-google-pubsub",
             },
             {
               type: "doc",
