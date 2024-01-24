@@ -49,7 +49,7 @@ There are a few limitations when ingesting CDC data from Citus in RisingWave.
 
 ## Notes about running RisingWave from binaries
 
-If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
+If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions installed in your environment.
 
 ## Create a table in RisingWave using the native CDC connector
 
@@ -71,7 +71,7 @@ WITH (
 
 ### WITH parameters
 
-Unless specified otherwise, the fields listed are required.
+Unless specified otherwise, the fields listed are required. Note that the value of these parameters should be enclosed in single quotation marks.
 
 |Field|Notes|
 |---|---|
