@@ -83,11 +83,10 @@ For more details about the supported syntax, see the [examples of SQL UDFs](#exa
 
 :::note
 
+
 + The currently supported syntax is for anonymous SQL UDFs. So `create function with_param_names(a INT, b INT) returns int language sql as 'select a + b';` is invalid at present in RisingWave.
 
-+ Recursive definition is NOT supported. For example, the statement `create function recursive(INT, INT) returns int language sql as 'select recursive($1, $2) + recursive($1, $2)';` will fail.
-
-+ The current implementation will only check for syntax correctness (i.e., the SQL body in the `AS` clause) by utilizing `Parser::parse_sql`, semantic check will be implemented in the future.
++ Recursive definition is NOT supported at present. For example, the statement `create function recursive(INT, INT) returns int language sql as 'select recursive($1, $2) + recursive($1, $2)';` will fail.
 
 :::
 
