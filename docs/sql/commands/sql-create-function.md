@@ -82,9 +82,11 @@ For more details about the supported syntax, see the [examples of SQL UDFs](#exa
 | **RETURNS** *return_type* | Specifies the data type of the return value from the UDF.|
 | **LANGUAGE** *sql* | Its value must be `sql`.|
 | **AS** *as_definition* | Defines the implementation of the function using SQL statements. `as_definition` can be single quote definition (e.g., `'select $1 + $2'`) or double dollar definition (e.g., `$$select $1 + $1$$`).|
-| **RETURN** *return_definition*| Alternative to the `AS` clause. `return_definition` can be an expression (e.g., `$1 + $2`).|
+| **RETURN** *return_definition*| Alternative to the `AS` clause. `return_definition` can be an expression (e.g., `$1 + $2`). Note that **`AS` and `RETURN` can not be specified simultaneously.**|
 
 :::note
+
++ The currently supported syntax is for anonymous SQL UDFs. So `create function with_param_names(a INT, b INT) returns int language sql as 'select a + b';` is invalid at present in RisingWave.
 
 + Recursive definition is NOT supported. For example, the statement `create function recursive(INT, INT) returns int language sql as 'select recursive($1, $2) + recursive($1, $2)';` will fail.
 
