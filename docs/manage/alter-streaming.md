@@ -69,7 +69,7 @@ CREATE SINK ... FROM ... WITH (without_backfill = true).
 
 ## Alter streaming jobs with dependencies
 
-If the modified materialized view is depended upon by other materialized views or sinks, or if multiple materialized views or sinks with dependencies need to be modified simultaneously, similarly, first create all the new ones and then drop all the old ones.
+If other materialized views or sinks depend upon the modified materialized view, or if multiple materialized views or sinks with dependencies need updating simultaneously, similarly, create all the new ones and then drop all the old ones.
 
 Let's continue with the previous example, but suppose the upstream `orders` is not a table but another materialized view, derived from tables `order_items` and `price`.
 
