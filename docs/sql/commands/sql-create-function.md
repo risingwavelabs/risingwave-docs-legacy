@@ -178,7 +178,7 @@ select add_sub_binding();
 2
 
 select add_sub_wrapper(1, 1);
-----
+----RESULT
 114514
 ```
 
