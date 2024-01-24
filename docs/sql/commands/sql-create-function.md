@@ -77,7 +77,7 @@ For more details about the supported syntax, see the [examples of SQL UDFs](#exa
 
 | Parameter or clause | Description |
 | --- | --- |
-| *function_name* | The name of the UDF that you want to declare in RisingWave. |
+| *function_name* | The name of the SQL UDF that you want to declare in RisingWave. |
 | *argument_type* | The data type of the input parameter(s) that the UDF expects to receive.|
 | **RETURNS** *return_type* | Specifies the data type of the return value from the UDF.|
 | **LANGUAGE** *sql* | Its value must be `sql`.|
