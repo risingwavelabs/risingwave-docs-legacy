@@ -144,7 +144,6 @@ create function add_sub_types(INT, BIGINT, FLOAT, DECIMAL, REAL) returns real la
 ```
 
 ```sql title="Call function"
-
 select add_sub(1, 5.1415926, 1);
 ----RESULT
 3.1415926
@@ -161,7 +160,6 @@ select add_sub_types(1, 1919810114514, 3.1415926, 1.123123, 101010.191919);
 - SQL UDF calling other pre-defined SQL UDFs
 
 ```sql  title="Create function"
-
 -- Create two pre-defined SQL UDFs
 create function add(INT, INT) returns int language sql as $$select $1 + $2$$;
 
