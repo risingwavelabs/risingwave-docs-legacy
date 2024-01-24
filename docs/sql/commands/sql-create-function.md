@@ -57,7 +57,7 @@ USING LINK 'http://localhost:8815';
 
 ## SQL UDFs
 
-You can also define UDFs in RisingWave by SQL UDFs. The `CREATE FUNCTION` command is used to create and define these UDFs.
+You can also define SQL UDFs in RisingWave by using the `CREATE FUNCTION` command.
 
 ### Syntax
 
