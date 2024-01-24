@@ -75,11 +75,11 @@ For more details about the supported syntax, see the [examples of SQL UDFs](#exa
 | Parameter or clause | Description |
 | --- | --- |
 | *function_name* | The name of the SQL UDF that you want to declare in RisingWave. |
-| *argument_type* | The data type of the input parameter(s) that the UDF expects to receive.|
+| *argument_type* | The data type of the input parameter(s) that the SQL UDF expects to receive.|
 | **RETURNS** *return_type* | Specifies the data type of the return value from the UDF.|
 | **LANGUAGE** *sql* | Its value must be `sql`.|
 | **AS** *as_definition* | Defines the implementation of the function using SQL statements. `as_definition` can be single quote definition (e.g., `'select $1 + $2'`) or double dollar definition (e.g., `$$select $1 + $1$$`).|
-| **RETURN** *return_definition*| Alternative to the `AS` clause. `return_definition` can be an expression (e.g., `$1 + $2`). Note that **`AS` and `RETURN` can not be specified simultaneously.**|
+| **RETURN** *return_definition*| Alternative to the `AS` clause. `return_definition` can be an expression (e.g., `$1 + $2`). Note that **you must specify an `AS` definition or a `RETURN` definition, and they can not be specified simultaneously.**|
 
 :::note
 
