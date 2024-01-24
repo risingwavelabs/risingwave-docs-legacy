@@ -63,12 +63,9 @@ You can also define SQL UDFs in RisingWave by using the `CREATE FUNCTION` comman
 
 ```sql
 CREATE FUNCTION function_name ( argument_type [, ...] )
-    [ RETURNS return_type ]
-    [ LANGUAGE sql ]
-    [
-      | AS as_definition
-      | RETURN return_definition
-    ]; 
+    RETURNS return_type
+    LANGUAGE sql
+    { AS as_definition | RETURN return_definition }; 
 ```
 
 For more details about the supported syntax, see the [examples of SQL UDFs](#examples-1) below.
