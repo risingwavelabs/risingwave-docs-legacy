@@ -130,7 +130,7 @@ select add_return(1, 1);
 2
 ```
 
-- SQL UDF with multiple types interleaving
+- SQL UDF with input of different data types
 
 ```sql title="Create function"
 -- Multiple type interleaving
