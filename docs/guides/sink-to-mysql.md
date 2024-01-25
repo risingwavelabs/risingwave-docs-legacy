@@ -201,7 +201,7 @@ SELECT * FROM personnel;
 
 For the MySQL data type mapping table, see the [Data type mapping table](/guides/ingest-from-mysql-cdc.md#data-type-mapping) under the Ingest data from MySQL CDC topic.
 
-Additional notes regarding sinking data to PostgreSQL:
+Additional notes regarding sinking data to MySQL:
 
 - Note that array data types in RisingWave when sinked to MySQL will be converted to a string. Only one-dimensional arrays can be sinked to MySQL. For instance, `ARRAY['Value 1', 'Value 2']` when sinked to MySQL will be converted to the string `Value 1, Value 2`.
 
