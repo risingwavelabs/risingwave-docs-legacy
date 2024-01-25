@@ -13,7 +13,7 @@ This guide assumes that you deploy RisingWave on K8s using the RisingWave K8s Op
 
 ### Get an overview of the cluster
 
-RisingWave Dashboard is the built-in dashboard of RisingWave. From RisingWave Dashboard, you can get an overview of your RisingWave cluster, including the objects that you have created, streaming or batch job execution details. The objects you can view include sources, tables, materialized views, indexes, internal tables, and sinks.
+RisingWave Dashboard is the built-in dashboard of RisingWave. From RisingWave Dashboard, you can get an overview of your RisingWave cluster, including the objects that you have created, streaming or batch job execution details. The objects you can view include sources, tables, materialized views, indexes, internal tables, and sinks. For the fragment graph, the dashboard allows easy monitoring of the back-pressure rate through a color bar that varies in color and width based on the rate.
 
 You can access RisingWave Dashboard at `http://localhost:5692` by default.
 

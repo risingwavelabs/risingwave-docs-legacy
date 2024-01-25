@@ -137,8 +137,6 @@ Input can be of any numeric, string, date/time, or interval type, or an array of
 
 Combines non-null values into a string, separated by `delimiter_string`. The `ORDER BY` clause is optional and specifies the order of rows processed in the aggregation, which determines the order of the elements in the result array.
 
-#### Syntax
-
 ```bash title=Syntax
 string_agg ( expression, delimiter_string ) -> output_string  
 ```
