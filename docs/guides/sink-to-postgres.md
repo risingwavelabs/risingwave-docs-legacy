@@ -195,3 +195,5 @@ Additional notes regarding sinking data to PostgreSQL:
 - A `varchar` column in RisingWave can be sinked to a `uuid` column in Postgres.
 
 - Only one-dimensional arrays in RisingWave can be sinked to PostgreSQL.
+
+- For array type, we only support `smallint`, `integer`, `bigint`, `real`, `double precision`, and `varchar` type now.
