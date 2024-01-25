@@ -163,7 +163,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
 ) 
 WITH (
    connector='mysql-cdc',
-   <field>=<value>, ...
+   connector_parameter='value', ...
 )
 [ FORMAT DEBEZIUM ENCODE JSON ];
 ```
@@ -177,7 +177,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
 );
 ```
 
-### WITH parameters
+### Connector parameters
 
 All the fields listed below are required. Note that the value of these parameters should be enclosed in single quotation marks.
 
@@ -190,7 +190,7 @@ All the fields listed below are required. Note that the value of these parameter
 |database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| Required if creating a shared source. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
-|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `false`. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'false'`. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 ### Data format
 
