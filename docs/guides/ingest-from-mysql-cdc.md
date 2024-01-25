@@ -290,7 +290,7 @@ RisingWave data types marked with an asterisk indicate that while there is no co
 | TINYINT | SMALLINT |
 | SMALLINT[(M)] | SMALLINT |
 | MEDIUMINT[(M)] |INTEGER |
-| INTEGER[(M)] | INTEGER |
+| INT, INTEGER[(M)] | INTEGER |
 | BIGINT[(M)] | BIGINT |
 | REAL[(M,D)]| REAL |
 | FLOAT[(P)] | REAL |
