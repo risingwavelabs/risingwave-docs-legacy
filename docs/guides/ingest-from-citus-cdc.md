@@ -64,12 +64,12 @@ CREATE TABLE [ IF NOT EXISTS ] source_name (
 ) 
 WITH (
     connector='citus-cdc',
-    <field>=<value>, ...
+    connector_parameter='value', ...
 )
 [ FORMAT DEBEZIUM ENCODE JSON ];
 ```
 
-### WITH parameters
+### Connector parameters
 
 Unless specified otherwise, the fields listed are required. Note that the value of these parameters should be enclosed in single quotation marks.
 
@@ -85,7 +85,7 @@ Unless specified otherwise, the fields listed are required. Note that the value 
 |table.name| Name of the table that you want to ingest data from. |
 |slot.name| Optional. The slot name for each source. Each source should have a unique slot name.|
 
-### Example
+### Examples
 
 ```sql
 CREATE TABLE github_events_rw (
