@@ -206,3 +206,4 @@ Additional notes regarding sinking data to MySQL:
 - Note that array data types in RisingWave when sinked to MySQL will be converted to a string. Only one-dimensional arrays can be sinked to MySQL. For instance, `ARRAY['Value 1', 'Value 2']` when sinked to MySQL will be converted to the string `Value 1, Value 2`.
 
 - For array type, we only support `smallint`, `integer`, `bigint`, `real`, `double precision`, and `varchar` type now.
+- It's better to set `connectionTimeZone=UTC` in `jdbc.url` to get the correct `timestamptz` type data. For more details, see [MySQL's documentation](https://dev.mysql.com/doc/connector-j/en/connector-j-usagenotes-known-issues-limitations.html).
