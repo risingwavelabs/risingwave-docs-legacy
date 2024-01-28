@@ -103,7 +103,7 @@ ALTER SOURCE test_source SET SCHEMA test_schema;
 
 ### `FORMAT and ENCODE options`
 
-At present, combined with the `ALTER SOURCE` command, you can refresh the schema registry by refilling the FORMAT and ENCODE options. For more details about these options, see [CREATE SOURCE](/sql/commands/sql-create-source.md).
+At present, combined with the `ALTER SOURCE` command, you can refresh the schema registry of a source by refilling the FORMAT and ENCODE options. For more details about these options, see [CREATE SOURCE](/sql/commands/sql-create-source.md).
 
 ```sql title=Syntax
 ALTER SOURCE source_name FORMAT data_format ENCODE data_encode [ (
