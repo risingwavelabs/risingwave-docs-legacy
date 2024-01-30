@@ -35,7 +35,7 @@ current_role() → *current_role_name*
 SELECT current_role(); → 'root'
 ```
 
-## `current_shema`
+## `current_schema`
 
 Returns the current schema. This is the schema that will be used for creating tables or other named objects without specifying a target schema.
 

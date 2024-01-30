@@ -62,7 +62,7 @@ Here is an example that uses the tumble window function.
 
 
 ```sql
-SELECT trip_id,  taxi_id, completed_at, window_start, window_end
+SELECT trip_id, taxi_id, completed_at, window_start, window_end
 FROM TUMBLE (taxi_trips, completed_at, INTERVAL '2 MINUTES');
 ```
 
