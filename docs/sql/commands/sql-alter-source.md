@@ -137,5 +137,5 @@ ALTER SOURCE src_user FORMAT PLAIN ENCODE PROTOBUF(
 
 
 :::note
-Altering `data_format` and `data_encode` is not supported at present. In addition, for refreshing the schema registry, if the statement will drop columns or change types, it's not allowed.
+Currently, it is not supported to modify the `data_format` and `data_encode`. Furthermore, when refreshing the schema registry of a source, it is not allowed to drop columns or change types in the statement.
 :::
