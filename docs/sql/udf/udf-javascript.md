@@ -10,12 +10,11 @@ description: Define your own functions in JavaScript.
 
 This article provides a step-by-step guide for defining JavaScript functions in RisingWave.
 
-JavaScript code is inlined in `CREATE FUNCTION` statement and then run on the embedded QuickJS virtual machine in RisingWave. It does not support access to external networks and is limited to computational tasks only.
-Compared to other languages, JavaScript UDFs offer the easiest way to define UDFs in RisingWave.
+JavaScript code is inlined in `CREATE FUNCTION` statement and then run on the embedded QuickJS virtual machine in RisingWave. It does not support access to external networks and is limited to computational tasks only. Compared to other languages, JavaScript UDFs offer the easiest way to define UDFs in RisingWave.
 
 ## Define your functions
 
-You can use the `CREATE FUNCTION` statement to create JavaScript UDFs. The syntax is as follows:
+You can use the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md) command to create JavaScript UDFs. See the syntax as follows:
 
 ```sql
 CREATE FUNCTION function_name ( arg_name arg_type [, ...] )
@@ -24,7 +23,7 @@ CREATE FUNCTION function_name ( arg_name arg_type [, ...] )
     AS [ $$ function_body $$ | 'function_body' ];
 ```
 
-The argument names you define can be used in the function body. For example:
+The argument names you defined can be used in the function body. For example:
 
 ```sql
 CREATE FUNCTION gcd(a int, b int) RETURNS int LANGUAGE javascript AS $$
@@ -40,9 +39,9 @@ CREATE FUNCTION gcd(a int, b int) RETURNS int LANGUAGE javascript AS $$
 $$;
 ```
 
-The correspondence between SQL types and JavaScript types can be found in the [appendix table](#appendix-type-mapping). You need to ensure that the type of the return value is either `null` or consistent with the type in the `RETURNS` clause.
+See the correspondence between SQL types and JavaScript types in the [data type mapping](udf-javascript.md#appendix-type-mapping). You need to ensure that the type of the return value is either `null` or consistent with the type in the `RETURNS` clause.
 
-If the function you define returns a table, you need to use the `yield` statement to return the data of each row. For example:
+If the function you defined returns a table, you need to use the `yield` statement to return the data of each row. For example:
 
 ```sql
 CREATE FUNCTION series(n int) RETURNS TABLE (x int) LANGUAGE javascript AS $$
@@ -61,11 +60,11 @@ SELECT gcd(25, 15);
 SELECT * from series(5);
 ```
 
-## Appendix: Type Mapping
+## Data type mapping
 
-The following table shows the type mapping between SQL and JavaScript:
+The following table shows the data type mapping between SQL and JavaScript:
 
-| SQL Type              | JS Type       | Note                  |
+| SQL Type              | JavaScript Type       | Note          |
 | --------------------- | ------------- | --------------------- |
 | boolean               | boolean       |                       |
 | smallint              | number        |                       |
@@ -74,11 +73,11 @@ The following table shows the type mapping between SQL and JavaScript:
 | real                  | number        |                       |
 | double precision      | number        |                       |
 | decimal               | [BigDecimal]  | BigDecimal is in TC39 proposal stage, implemented by QuickJS |
-| date                  |               | not supported yet     |
-| time                  |               | not supported yet     |
-| timestamp             |               | not supported yet     |
-| timestamptz           |               | not supported yet     |
-| interval              |               | not supported yet     |
+| date                  | not supported yet  |                  |
+| time                  | not supported yet  |                  |
+| timestamp             | not supported yet  |                  |
+| timestamptz           | not supported yet  |                  |
+| interval              | not supported yet  |                  |
 | varchar               | string        |                       |
 | bytea                 | Uint8Array    |                       |
 | jsonb                 | null, boolean, number, string, array or object | `JSON.parse(string)`  |
