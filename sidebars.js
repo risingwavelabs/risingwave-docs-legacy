@@ -794,6 +794,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/udf/udf-rust",
+                  label: "Rust",
+                },
+                {
+                  type: "doc",
                   id: "sql/udf/udf-javascript",
                   label: "JavaScript",
                 },
