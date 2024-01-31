@@ -153,5 +153,5 @@ with engine.connect() as conn:
 You can create materialized views and query from materialized views using the same format shown above. 
 
 :::note
-When creating tables using SQLAlchemy, `BIGINT` types will automatically be converted to `BIGSERIAL` types, which is not supported in RisingWave.
+When creating tables using SQLAlchemy 2.0, `BIGINT` types will automatically be converted to `BIGSERIAL` types, which is not supported in RisingWave.
 :::
