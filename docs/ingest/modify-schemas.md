@@ -58,3 +58,48 @@ To remove a column from a table, use this command:
 ```sql
 ALTER TABLE table_name DROP COLUMN column_name;
 ```
+
+## Refresh the schema registry
+
+At present, combined with the [`ALTER SOURCE` command](/sql/commands/sql-alter-source.md#format-and-encode-options), you can refresh the schema registry of a source by refilling its [FORMAT and ENCODE options](/sql/commands/sql-create-source.md#parameters). The syntax is:
+
+```sql title=Syntax
+ALTER SOURCE source_name FORMAT data_format ENCODE data_encode [ (
+    message='message',
+    schema.location='location', ...) ];
+```
+
+Here is a simple example. Let's assume we have a source as follows:
+
+```sql title=Example
+-- Create a source.
+CREATE SOURCE src_user WITH (
+    connector = 'kafka',
+    topic = 'sr_pb_test',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
+)
+FORMAT PLAIN ENCODE PROTOBUF(
+    schema.registry = 'http://message_queue:8081',
+    message = 'test.User');
+```
+
+Then you can refresh the schema registry by the following command:
+
+```sql title=Example
+ALTER SOURCE src_user FORMAT PLAIN ENCODE PROTOBUF(
+    schema.registry = 'http://message_queue:8081',
+    message = 'test.UserWithMoreFields'
+);
+```
+
+
+:::note
+Currently, it is not supported to modify the `data_format` and `data_encode`. Furthermore, when refreshing the schema registry of a source, it is not allowed to drop columns or change types.
+:::
+
+## See also
+
+- [`ALTER SOURCE` command](/sql/commands/sql-alter-source.md)
+- [`ALTER TABLE` command](/sql/commands/sql-alter-table.md)
+- [`ALTER SCHEMA` command](/sql/commands/sql-alter-schema.md)
