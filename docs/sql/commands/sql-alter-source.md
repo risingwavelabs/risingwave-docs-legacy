@@ -100,3 +100,42 @@ ALTER SOURCE current_source_name
 -- Move the source named "test_source" to the schema named "test_schema"
 ALTER SOURCE test_source SET SCHEMA test_schema;
 ```
+
+### `FORMAT and ENCODE options`
+
+At present, combined with the `ALTER SOURCE` command, you can refresh the schema registry of a source by refilling the FORMAT and ENCODE options. For more details about these options, see [CREATE SOURCE](/sql/commands/sql-create-source.md).
+
+```sql title=Syntax
+ALTER SOURCE source_name FORMAT data_format ENCODE data_encode [ (
+    message='message',
+    schema.location='location', ...) ];
+```
+
+Here is an example. Let's assume the original FORMAT and ENCODE options are as follows:
+
+```sql title=Example
+-- Create a source.
+CREATE SOURCE src_user WITH (
+    connector = 'kafka',
+    topic = 'sr_pb_test',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
+)
+FORMAT PLAIN ENCODE PROTOBUF(
+    schema.registry = 'http://message_queue:8081',
+    message = 'test.User');
+```
+
+Then you can refresh the schema registry by the following command:
+
+```sql title=Example
+ALTER SOURCE src_user FORMAT PLAIN ENCODE PROTOBUF(
+    schema.registry = 'http://message_queue:8081',
+    message = 'test.UserWithMoreFields'
+);
+```
+
+
+:::note
+Currently, it is not supported to modify the `data_format` and `data_encode`. Furthermore, when refreshing the schema registry of a source, it is not allowed to drop columns or change types.
+:::
