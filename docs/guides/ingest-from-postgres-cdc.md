@@ -115,8 +115,10 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 
 1. Check whether the `wal_level` parameter is set to `logical`. If it is `logical` then we are done. Otherwise, create a parameter group for your Postgres instance. We created a parameter group named **pg-cdc** for the instance that is running Postgres 12. Next, click the **pg-cdc** parameter group to edit the value of `rds.logical_replication` to 1.
 
-    :::note
     If you choose to create multiple CDC tables without using a shared source, set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 20 for version 13 and later. 
+
+    :::note
+    There is a known issue regarding WAL sender error when decoding, which leads to data loss. This affects Aurora PostgreSQL versions 14.5, 13.8, 12.12, and 11.17. To avoid this set the `rds.logical_wal_cache` parameter to 0.
     :::
 
     <img
