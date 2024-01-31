@@ -55,14 +55,14 @@ AS gcd
 USING LINK 'http://localhost:8815';
 ```
 
-Use `CREATE FUNCTION` to declare a UDF defined by Rust. For more details, see [Use UDFs in Rust].
+Use `CREATE FUNCTION` to declare a UDF defined by Rust. For more details, see [Use UDFs in Rust](/sql/udf/udf-rust.md).
 
 ```sql
 CREATE FUNCTION gcd(int, int) RETURNS int
 LANGUAGE wasm USING BASE64 'encoded-wasm-binary';
 ```
 
-Use `CREATE FUNCTION` to declare a UDF defined by JavaScript. For more details, see [Use UDFs in JavaScript].
+Use `CREATE FUNCTION` to declare a UDF defined by JavaScript. For more details, see [Use UDFs in JavaScript](/sql/udf/udf-javascript.md).
 
 ```sql
 CREATE FUNCTION gcd(a int, b int) RETURNS int LANGUAGE javascript AS $$
