@@ -308,3 +308,4 @@ ENCODE BYTES
 
 - [`DROP SOURCE`](sql-drop-source.md) — Remove a source.
 - [`SHOW CREATE SOURCE`](sql-show-create-source.md) — Show the SQL statement used to create a source.
+- [`ALTER SOURCE`](sql-alter-source.md) — Modify a source.

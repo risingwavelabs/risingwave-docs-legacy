@@ -99,11 +99,11 @@ const sidebars = {
         {
           "type": "doc",
           "id": "deploy/risingwave-docker-compose",
-          "label": "Deploy with Docker Compose"
+          "label": "Deploy locally with Docker Compose"
         },
         {
           "type": "category",
-          "label": "Deploy in production environments",
+          "label": "Deploy in distributed environments",
           "collapsible": true,
           "collapsed": true,
           "items": [
@@ -791,6 +791,16 @@ const sidebars = {
                   type: "doc",
                   id: "sql/udf/udf-java",
                   label: "Java",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-rust",
+                  label: "Rust",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-javascript",
+                  label: "JavaScript",
                 },
                 {
                   type: "doc",
