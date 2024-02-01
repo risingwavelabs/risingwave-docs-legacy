@@ -99,7 +99,7 @@ const sidebars = {
         {
           "type": "doc",
           "id": "deploy/risingwave-docker-compose",
-          "label": "Standalone deployment with Docker Compose"
+          "label": "Deploy locally with Docker Compose"
         },
         {
           "type": "category",
