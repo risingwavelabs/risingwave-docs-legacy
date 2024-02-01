@@ -10,7 +10,7 @@ description: Define your own functions with the help of the RisingWave Rust UDF 
 
 This article provides a step-by-step guide for defining Rust functions in RisingWave.
 
-Rust functions are compiled into WebAssembly modules and then run on the embedded WebAssembly virtual machine in RisingWave. Rust UDFs provide **higher performance** (near native) compared to Python and Java. The **RisingWave Kernel** handles the management of Rust UDFs, eliminating the need for additional maintenance. However, for security reasons, Rust UDFs currently **do not support access to external networks and are limited to computational tasks only**, with restricted CPU and memory resources. Therefore, we recommend using Rust UDFs for **computationally intensive tasks** like packet parsing and format conversion.
+Rust functions are compiled into WebAssembly modules and then run on the embedded WebAssembly virtual machine in RisingWave. Rust UDFs provide **higher performance** (near native) compared to Python and Java. The **RisingWave kernel** handles the management of Rust UDFs, eliminating the need for additional maintenance. However, for security reasons, Rust UDFs currently **do not support access to external networks** and are **limited to computational tasks only**, with restricted CPU and memory resources. Therefore, we recommend using Rust UDFs for **computationally intensive tasks** like packet parsing and format conversion.
 
 ## Prerequisites
 
@@ -65,7 +65,7 @@ fn series(n: i32) -> impl Iterator<Item = i32> {
 
 You can find more usages in these [functions](https://docs.rs/arrow_udf/0.1.0/arrow_udf/attr.function.html) and more examples in these [tests](https://github.com/risingwavelabs/arrow-udf/blob/main/arrow-udf/tests/tests.rs).
 
-Currently we only support a limited set of data types, `timestamptz` and complex array types are not supported yet. See the [data type mapping](udf-rust.md#data-type-mapping) section for details.
+Currently we only support a limited set of data types, `timestamptz` and complex array types are not supported yet. See the [Data type mapping](udf-rust.md#data-type-mapping) section for details.
 
 ## 3. Build the project
 

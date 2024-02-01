@@ -39,7 +39,7 @@ CREATE FUNCTION gcd(a int, b int) RETURNS int LANGUAGE javascript AS $$
 $$;
 ```
 
-See the correspondence between SQL types and JavaScript types in the [data type mapping](udf-javascript.md#appendix-type-mapping). You need to ensure that the type of the return value is either `null` or consistent with the type in the `RETURNS` clause.
+See the correspondence between SQL types and JavaScript types in the [Data type mapping](udf-javascript.md#appendix-type-mapping). You need to ensure that the type of the return value is either `null` or consistent with the type in the `RETURNS` clause.
 
 If the function you defined returns a table, you need to use the `yield` statement to return the data of each row. For example:
 
