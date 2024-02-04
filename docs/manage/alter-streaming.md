@@ -18,7 +18,7 @@ To add or drop columns from a table or source, simply use the [ALTER TABLE](http
 ```sql
 ALTER TABLE customers ADD COLUMN birth_date;
 
-ALTER SOURCE test_source ADD COLUMN birth_date;
+ALTER SOURCE customers ADD COLUMN birth_date;
 ```
 
 The new column will be `NULL` for existing records. 
@@ -27,44 +27,104 @@ The new column will be `NULL` for existing records.
 
 To alter a materialized view, you need to create a new materialized view and drop the existing one. 
 
-For example, suppose we want to add a new column to the materialized view `mv1`:
+For example, suppose we want to add a new column to the materialized view `cust_sales`:
     
 ```sql
-CREATE MATERIALIZED VIEW mv1 AS
+CREATE MATERIALIZED VIEW cust_sales AS
     SELECT
         customer_id,
-        SUM(total_price) AS sales_amount,
-    FROM test_source
+        SUM(total_price) AS sales_amount
+    FROM orders
     GROUP BY customer_id;
 ```
 
-Here we create a new materialized view `mv1_new` with the new column `sales_count`:
+Here we create a new materialized view `cust_sales_new` with the new column `sales_count`:
     
 ```sql
-CREATE MATERIALIZED VIEW mv1_new AS
+CREATE MATERIALIZED VIEW cust_sales_new AS
     SELECT
         customer_id,
         SUM(total_price) AS sales_amount,
         COUNT(*) AS sales_count -- The new column
-    FROM test_source
+    FROM orders
     GROUP BY customer_id;
 ```
 
-After the new materialized view is created, we can drop the old materialized view `mv1` and rename `mv1_new` to `mv1`:
+After the new materialized view is created, we can drop the old materialized view `cust_sales` and rename `cust_sales_new` to `cust_sales`:
 
 ```sql
-DROP MATERIALIZED VIEW mv1;
-ALTER MATERIALIZED VIEW mv1_new RENAME TO mv1;
+DROP MATERIALIZED VIEW cust_sales;
+ALTER MATERIALIZED VIEW cust_sales_new RENAME TO cust_sales;
 ```
 
 ## Alter a sink
 
 To alter a sink, you will need to create a new sink and drop the old sink. Please check the example from the last section.
 
-If your sink is created based on a materialized view using the CREATE SINK ... FROM ... statement, you have the option to specify `without_backfill = true` to exclude existing data.
+If your sink is created based on a materialized view using the `CREATE SINK ... FROM ...` statement, you have the option to specify `without_backfill = true` to exclude existing data.
 
 ```sql
 CREATE SINK ... FROM ... WITH (without_backfill = true).
+```
+
+## Alter streaming jobs with dependencies
+
+If other materialized views or sinks depend upon the modified materialized view, or if multiple materialized views or sinks with dependencies need updating simultaneously, similarly, create all the new ones and then drop all the old ones.
+
+Let's continue with the previous example, but suppose the upstream `orders` is not a table but another materialized view, derived from tables `order_items` and `price`.
+
+![The materialized view `cust_sales` depends on `orders`, which is derived from tables `order_items` and `price`](../images/streaming-with-dependecies.svg)
+
+```sql
+CREATE MATERIALIZED VIEW orders AS
+    SELECT
+        order_id,
+        customer_id,
+        SUM(price * quantity) AS total_price
+    FROM order_items, price
+    WHERE order_items.product_id = price.product_id
+    GROUP BY order_id, customer_id;
+
+CREATE MATERIALIZED VIEW cust_sales AS
+    SELECT
+        customer_id,
+        SUM(total_price) AS sales_amount
+    FROM orders
+    GROUP BY customer_id;
+```
+
+To add a new column `sales_count` to `cust_sales`, we need to create the new materialized views `cust_sales_new` and `orders_new` first:
+
+![Create the new materialized views `cust_sales_new` and `orders_new`](../images/streaming-with-dependecies-create-new.svg)
+
+```sql
+CREATE MATERIALIZED VIEW orders_new AS
+    SELECT
+        order_id,
+        customer_id,
+        SUM(price * quantity) AS total_price,
+        COUNT(*) AS item_count -- The new column
+    FROM order_items, price
+    WHERE order_items.product_id = price.product_id
+    GROUP BY order_id, customer_id;
+
+CREATE MATERIALIZED VIEW cust_sales_new AS
+    SELECT
+        customer_id,
+        SUM(total_price) AS sales_amount,
+        SUM(item_count) AS sales_count -- The new column
+    FROM orders_new -- the new one
+    GROUP BY customer_id;
+```
+
+After the new materialized views are created, we can drop the old materialized view `cust_sales` and rename `cust_sales_new` to `cust_sales`:
+
+```sql
+DROP MATERIALIZED VIEW cust_sales;
+ALTER MATERIALIZED VIEW cust_sales_new RENAME TO cust_sales;
+
+DROP MATERIALIZED VIEW orders;
+ALTER MATERIALIZED VIEW orders_new RENAME TO orders;
 ```
 
 ## Why is it not possible to modify a streaming job in place?
