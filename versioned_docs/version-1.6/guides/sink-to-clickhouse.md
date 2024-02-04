@@ -44,7 +44,7 @@ WITH (
 | --------------------- | ---------------------------------------------------------------------- |
 | `type`                | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key and [Upsert sinks](#upsert-sinks) on limitations.|
 | `primary_key`          | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the ClickHouse sink.|
-| `clickhouse.url`        | Required. Address of the ClickHouse server that you want to sink data to. Format: `http://ip:port`. The default port ist `8123`.|
+| `clickhouse.url`        | Required. Address of the ClickHouse server that you want to sink data to. Format: `http://ip:port`. The default port is `8123`.|
 | `clickhouse.user`       | Required. User name for accessing the ClickHouse server. |
 | `clickhouse.password`   | Required. Password for accessing the ClickHouse server.|
 | `clickhouse.database`  | Required. Name of the ClickHouse database that you want to sink data to.|
