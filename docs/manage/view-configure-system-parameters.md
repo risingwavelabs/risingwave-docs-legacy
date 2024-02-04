@@ -19,7 +19,7 @@ Currently, these system parameters are available in RisingWave.
 |`barrier_interval_ms`     | The time interval of the periodic barriers.|
 |`checkpoint_frequency`      | Specify the number of barriers for which a checkpoint will be created. The value must be a positive integer.|
 |`sstable_size_mb`          | The target size of SSTable.|
-|`parallel_compact_size_mb` |This parameter works together with `max_sub_compaction` to manage the concurrency of individual tasks. When the data size is smaller than `parallel_compact_size_mb`, only one thread is used to execute the compaction task. If the data size of a task exceeds `parallel_compact_size_mb`, then N / `parallel_compact_size_mb` (up to a maximum of `max_sub_compaction`) concurrent threads are started to complete the task. Each task will be limited to a size of `parallel_compact_size_mb`.|
+|`parallel_compact_size_mb` |This parameter, along with `max_sub_compaction`, controls the concurrency of individual tasks. If the data size is smaller than `parallel_compact_size_mb`, only a single thread is used to execute the compaction task. If the data size of an individual task exceeds `parallel_compact_size_mb`, multiple concurrent threads are started to complete the task. At this time, if the data size is N, then the total number of these threads is determined by dividing N by `parallel_compact_size_mb`. Additionally,  each sub-task's size cannot exceed `parallel_compact_size_mb`, and the total number of sub-tasks cannot exceed `max_sub_compaction`.|
 |`block_size_kb`          | The size of each block in bytes in SSTable.|
 |`bloom_false_positive`     | False positive rate of bloom filter in SSTable.|
 |`state_store`             | The state store URL. |
