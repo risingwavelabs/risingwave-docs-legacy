@@ -19,7 +19,7 @@ Currently, these system parameters are available in RisingWave.
 |`barrier_interval_ms`     | The time interval of the periodic barriers.|
 |`checkpoint_frequency`      | Specify the number of barriers for which a checkpoint will be created. The value must be a positive integer.|
 |`sstable_size_mb`          | The target size of SSTable.|
-|`parallel_compact_size_mb` ||
+|`parallel_compact_size_mb` |This parameter works together with `max_sub_compaction` to manage the concurrency of individual tasks. When the data size is smaller than `parallel_compact_size_mb`, only one thread is used to execute the compaction task. If the data size of a task exceeds `parallel_compact_size_mb`, then N / `parallel_compact_size_mb` (up to a maximum of `max_sub_compaction`) concurrent threads are started to complete the task. Each task will be limited to a size of `parallel_compact_size_mb`.|
 |`block_size_kb`          | The size of each block in bytes in SSTable.|
 |`bloom_false_positive`     | False positive rate of bloom filter in SSTable.|
 |`state_store`             | The state store URL. |
@@ -29,7 +29,6 @@ Currently, these system parameters are available in RisingWave.
 |`telemetry_enabled` | Whether to enable telemetry or not. For more information, see [Telemetry](/telemetry.md).|
 |`max_concurrent_creating_streaming_jobs`|The maximum number of streaming jobs that can be created concurrently. That is, the maximum of materialized views, indexes, tables, sinks, or sources that can be created concurrently. |
 |`pause_on_next_bootstrap`|This parameter is used for debugging and maintenance purposes. Setting it to `true` will pause all data sources, such as connectors and DMLs, when the cluster restarts. This parameter will then be reset to its default value (`false`). To resume data ingestion, simply run `risectl meta resume` or restart the cluster again. |
-|`wasm_storage_url`||
 |`enable_tracing`|Whether to enable distributed tracing. This parameter is used to togglle the opentelemetry tracing during runtime. It is only used to toggle the functionality, not to specify the endpoint URL. Its default value is `false`.|
 
 ## How to view system parameters?
@@ -57,8 +56,7 @@ SHOW PARAMETERS;
  backup_storage_directory               | hummock_001/backup | t
  max_concurrent_creating_streaming_jobs | 1              | t
  pause_on_next_bootstrap                | false          | t
- wasm_storage_url                       | fs://.risingwave/data | f
- enable_tracing                         | false                 | t
+ enable_tracing                         | false          | t
 ```
 
 ## How to configure system parameters?
