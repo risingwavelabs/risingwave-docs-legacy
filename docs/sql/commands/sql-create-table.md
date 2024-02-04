@@ -24,6 +24,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
     [ watermark_clause ]
 )
 [ APPEND ONLY ]
+[ ON CONFLICT conflict_action ]
 [ WITH (
     connector='connector_name',
     connector_parameter='value', ...)]
@@ -56,12 +57,24 @@ To know when a data record is loaded to RisingWave, you can define a column that
 |`generation_expression`| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |`watermark_clause`| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For the watermark clause to be valid, the table must be an append-only table. That is, the `APPEND ONLY` option must be specified. This restriction only applies to a table. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
 |`APPEND ONLY` | When this option is specified, the table will be created as an append-only table. An append-only table cannot have primary keys. `UPDATE` and `DELETE` statements are not valid for append-only tables. Note that append-only tables is a Beta feature. |
+|`ON CONFLICT` | Specify the alternative action when the newly inserted record bring a violation of PRIMARY KEY constraint on the table.  See Section "PK Conflict Behavior" below for more information. |
 |**WITH** clause |Specify the connector settings here if trying to store all the source data. See the [Data ingestion](/ingest/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
 |**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
 
 ## Watermarks
 
 RisingWave supports generating watermarks when creating an append-only streaming table. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. For more information on the syntax on how to create a watermark, see [Watermarks](/transform/watermarks.md).
+
+## PK Conflict Behavior
+The record with "insert" operation could introduce duplicate records with the same primary key in the table. In that case, an alternative action Specified by the `ON CONFLICT` clause will be adopted. The record can come from Insert DML statement, table's external connectors or sinks into the table([`CREATE SINK INTO`](sql-create-sink-into.md)). 
+The option could one of the belows 
+- `DO NOTHING`: ignore the newly inserted record.
+- `DO UPDATE FULL`: replace the exist row in the table. 
+- `DO UPDATE IF NOT NULL`: only replace those fields which is not NULL in the inserted row
+
+:::note
+The "delete" and "update" operation on the table can not break the primary key constraint on the table. So the option will not take effect for those cases.
+:::
 
 ## Examples
 
