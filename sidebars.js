@@ -876,6 +876,11 @@ const sidebars = {
               id: "dev/go-client-libraries",
               label: "Go",
             },
+            {
+              type: "doc",
+              id: "dev/ruby-client-libraries",
+              label: "Ruby",
+            },
           ],
         },
       ],
