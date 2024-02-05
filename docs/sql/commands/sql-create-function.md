@@ -32,27 +32,47 @@ CREATE FUNCTION function_name ( argument_type [, ...] )
 | --- | --- |
 | *function_name* | The name of the UDF that you want to declare in RisingWave. |
 | *argument_type* | The data type of the input parameter(s) that the UDF expects to receive.|
-| **RETURNS** *return_type* | Use this if the function returns a single value (i.e., scalar). It specifies the data type of the return value from the UDF.<br />The struct type, which can contain multiple values, is supported. But the field names must be consistent between Python and SQL definitions, or it will be considered a type mismatch.|
+| **RETURNS** *return_type* | Use this if the function returns a single value (i.e., scalar). It specifies the data type of the return value from the UDF.<br />The struct type, which can contain multiple values, is supported. But the field names must be consistent between the programming language and SQL definitions, or it will be considered a type mismatch.|
 | **RETURNS TABLE** | Use this if the function is a table-valued function (TVF). It specifies the structure of the table that the UDF returns. |
-| **LANGUAGE** | Optional. Specifies the programming language used to implement the UDF. <br/> Currently, `python` and `java` are supported.|
+| **LANGUAGE** | Optional. Specifies the programming language used to implement the UDF. <br/> Currently, `Python`, `Java`,`Rust`, and `JavaScript` are supported.|
 | **AS** *function_name_defined_in_server* | Specifies the function name defined in the UDF server.|
 | **USING LINK** '*udf_server_address*' | Specifies the UDF server address. <br/>If you are running RisingWave in your local environment, the address is `http://localhost:<port>` <br/> If you are running RisingWave using Docker, the address is `http://host.docker.internal:<port>/`|
 
 ### Examples
 
-Here is an example of using `CREATE FUNCTION` to declare a UDF defined by Python. For more details about how to define a UDF in Python, see [Use UDFs in Python](/sql/udf/udf-python.md).
+Use `CREATE FUNCTION` to declare a UDF defined by Python. For more details, see [Use UDFs in Python](/sql/udf/udf-python.md).
 
 ```sql
 CREATE FUNCTION gcd(int, int) RETURNS int
 LANGUAGE python AS gcd USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
 ```
 
-Here is an example of using `CREATE FUNCTION` to declare a UDF defined by Java. For more details about how to define a UDF in Java, see [Use UDFs in Java](/sql/udf/udf-java.md).
+Use `CREATE FUNCTION` to declare a UDF defined by Java. For more details, see [Use UDFs in Java](/sql/udf/udf-java.md).
 
 ```sql
 CREATE FUNCTION gcd(int, int) RETURNS int  
 AS gcd  
 USING LINK 'http://localhost:8815';
+```
+
+Use `CREATE FUNCTION` to declare a UDF defined by Rust. For more details, see [Use UDFs in Rust](/sql/udf/udf-rust.md).
+
+```sql
+CREATE FUNCTION gcd(int, int) RETURNS int
+LANGUAGE wasm USING BASE64 'encoded-wasm-binary';
+```
+
+Use `CREATE FUNCTION` to declare a UDF defined by JavaScript. For more details, see [Use UDFs in JavaScript](/sql/udf/udf-javascript.md).
+
+```sql
+CREATE FUNCTION gcd(a int, b int) RETURNS int LANGUAGE javascript AS $$
+    while (b != 0) {
+        let t = b;
+        b = a % b;
+        a = t;
+    }
+    return a;
+$$;
 ```
 
 ## SQL UDFs

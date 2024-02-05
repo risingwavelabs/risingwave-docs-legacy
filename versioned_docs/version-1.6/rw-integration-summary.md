@@ -100,7 +100,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Redis|Researching <voteNotify note="redis_source" />|Available. For details, see [Sink data from RisingWave to Redis](/guides/sink-to-redis.md).|
 |Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
 |SQL Server| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <voteNotify note="sql_server_sink" /> |
-|StarRocks| No plan | Available. For details, see [Sink data to StarRocks(/guides/sink-to-starrocks.md).]
+|StarRocks| No plan | Available. For details, see [Sink data to StarRocks](/guides/sink-to-starrocks.md).|
 |TiDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Available. For details, see [Sink data from RisingWave to TiDB](/guides/sink-to-tidb.md). |
 
 ## Data lakes
