@@ -4,10 +4,6 @@ title: Use RisingWave in your Ruby application
 description: Use RisingWave in your Ruby application
 slug: /ruby-client-libraries
 ---
-<head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ruby-client-libraries/" />
-</head>
-
 
 As RisingWave is wire-compatible with PostgreSQL, you can use third-party PostgreSQL drivers to interact with RisingWave from your Ruby applications.
 
