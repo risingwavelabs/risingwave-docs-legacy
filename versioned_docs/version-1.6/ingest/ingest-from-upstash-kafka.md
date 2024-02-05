@@ -64,7 +64,7 @@ For detailed documentation and client-specific guides, please refer to [Upstash 
 
 ### Create a RisingWave cluster
 
-Create a RisingWave cluster in [RisingWave Cloud](https://cloud.risingwave.com/) using the free plan. See the [documentation of RisingWave Cloud](https://docs.risingwave.com/cloud/manage-clusters/) for instructions.
+Create a RisingWave cluster in [RisingWave Cloud](https://cloud.risingwave.com/) using the free plan. See the [documentation of RisingWave Cloud](/cloud/manage-clusters/) for instructions.
 
 ### Create a source
 
