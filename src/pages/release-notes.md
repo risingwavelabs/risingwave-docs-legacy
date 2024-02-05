@@ -563,7 +563,7 @@ This version was released on June 1, 2023.
 
 #### Installation
 
-- Now, you can easily install RisingWave on your local machine with Homebrew by running `brew install risingwave`. See [Run RisingWave](/docs/0.19.0/get-started/#install-and-start-risingwave).
+- Now, you can easily install RisingWave on your local machine with Homebrew by running `brew install risingwave`. See [Run RisingWave](/docs/current/get-started/#install-and-start-risingwave).
 
 #### Administration
 
@@ -724,9 +724,9 @@ This version was released on February 28, 2023
 
 #### Connectors
 
-- Adds a new parameter `match_pattern` to the S3 connector. With the new parameter, users can specify the pattern to filter files that they want to ingest from S3 buckets. For documentation updates, see [Ingest data from S3 buckets](/docs/0.1.17/create-source-s3/). [#7565](https://github.com/risingwavelabs/risingwave/pull/7565)
-- Adds the PostgreSQL CDC connector. Users can use this connector to ingest data and CDC events from PostgreSQL directly. For documentation updates, see [Ingest data from PostgreSQL CDC](/docs/0.1.17/ingest-from-postgres-cdc/). [#6869](https://github.com/risingwavelabs/risingwave/pull/6869), [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
-- Adds the MySQL CDC connector. Users can use this connector to ingest data and CDC events from MySQL directly. For documentation updates, see [Ingest data from MySQL CDC](/docs/0.1.17/ingest-from-mysql-cdc/). [#6689](https://github.com/risingwavelabs/risingwave/pull/6689), [#6345](https://github.com/risingwavelabs/risingwave/pull/6345), [#6481](https://github.com/risingwavelabs/risingwave/pull/6481), [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
+- Adds a new parameter `match_pattern` to the S3 connector. With the new parameter, users can specify the pattern to filter files that they want to ingest from S3 buckets. For documentation updates, see [Ingest data from S3 buckets](/docs/current/create-source-s3/). [#7565](https://github.com/risingwavelabs/risingwave/pull/7565)
+- Adds the PostgreSQL CDC connector. Users can use this connector to ingest data and CDC events from PostgreSQL directly. For documentation updates, see [Ingest data from PostgreSQL CDC](/docs/current/ingest-from-postgres-cdc/). [#6869](https://github.com/risingwavelabs/risingwave/pull/6869), [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
+- Adds the MySQL CDC connector. Users can use this connector to ingest data and CDC events from MySQL directly. For documentation updates, see [Ingest data from MySQL CDC](/docs/current/ingest-from-mysql-cdc/). [#6689](https://github.com/risingwavelabs/risingwave/pull/6689), [#6345](https://github.com/risingwavelabs/risingwave/pull/6345), [#6481](https://github.com/risingwavelabs/risingwave/pull/6481), [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
 - Adds the JDBC sink connector, with which users can sink data to MySQL, PostgreSQL, or other databases that are compliant with JDBC. [#6493](https://github.com/risingwavelabs/risingwave/pull/6493)
 - Add new parameters to the Kafka sink connector.
   - `force_append_only` : Specifies whether to force a sink to be append-only. [#7922](https://github.com/risingwavelabs/risingwave/pull/7922)
