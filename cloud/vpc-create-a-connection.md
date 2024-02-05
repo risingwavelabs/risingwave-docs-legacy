@@ -80,5 +80,5 @@ src={require('./images/vpc-connection-endpoint.png').default}
 alt="VPC connection endpoint "
 />
 
-For details on how to use the VPC endpoint to create a source with the VPC connection, see [Create source with VPC connection](https://docs.risingwave.com/docs/current/ingest-from-kafka/#create-source-with-vpc-connection). For creating a sink, see [Create sink with VPC connection](https://docs.risingwave.com/docs/current/create-sink-kafka/#create-sink-with-vpc-connection).
+For details on how to use the VPC endpoint to create a source with the VPC connection, see [Create source with VPC connection](/docs/current/ingest-from-kafka/#create-source-with-vpc-connection). For creating a sink, see [Create sink with VPC connection](/docs/current/create-sink-kafka/#create-sink-with-vpc-connection).
 

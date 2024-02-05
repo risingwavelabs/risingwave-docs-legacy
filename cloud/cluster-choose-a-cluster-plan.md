@@ -67,7 +67,7 @@ The customized plan offers the flexibility of configuring the resources to bette
 
     Configure each node's instance resources and numbers according to your actual needs.
     
-    To learn more about the nodes, see the [architecture of RisingWave](https://docs.risingwave.com/docs/current/architecture/).
+    To learn more about the nodes, see the [architecture of RisingWave](/docs/current/architecture).
 
 </TabItem>
 

@@ -32,4 +32,4 @@ You can drop a sink with one of the following methods:
 
 ## Using SQL command
 
-Refer to [`DROP SINK`](https://docs.risingwave.com/docs/current/sql-drop-sink) in the RisngWave Database documentation.
+Refer to [`DROP SINK`](/docs/current/sql-drop-sink) in the RisngWave Database documentation.
