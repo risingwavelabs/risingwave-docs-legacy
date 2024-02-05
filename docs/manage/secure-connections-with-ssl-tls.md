@@ -10,7 +10,7 @@ The terms SSL and TLS are often used interchangeably to mean a secure encrypted 
 
 ## Configure SSL in RisingWave
 
-In the frontend node of RisingWavenode, set the environment variables `RW_SSL_CERT` and `RW_SSL_KEY` to specify the paths of the server-side SSL certificate (typically `server.crt`) and private key (typically `server.key`).
+When running RisingWave frontend node, set the environment variables `RW_SSL_CERT` and `RW_SSL_KEY` to specify the paths of the server-side SSL certificate (typically `server.crt`) and private key (typically `server.key`).
 
 ## Connect to RisingWave using SSL
 
