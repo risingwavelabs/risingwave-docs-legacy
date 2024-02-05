@@ -68,7 +68,7 @@ Create a RisingWave cluster in [RisingWave Cloud](https://cloud.risingwave.com/)
 
 ### Create a source
 
-Once you have deployed the RisingWave cluster, create a source in the [Query console](https://docs.risingwave.com/cloud/console-overview/) using the following SQL query:
+Once you have deployed the RisingWave cluster, create a source in the [Query console](/cloud/console-overview/) using the following SQL query:
 
 ```sql
 CREATE SOURCE wiki_source (
