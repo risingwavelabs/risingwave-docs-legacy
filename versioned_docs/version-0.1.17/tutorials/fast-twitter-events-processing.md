@@ -89,7 +89,7 @@ CREATE SOURCE twitter (
 ) ROW FORMAT JSON;
 ```
 
-Note that the SQL statement uses the STRUCT data type. For details about the STRUCT data type, please see [Data types.](https://docs.risingwave.com/docs/current/sql-data-types/)
+Note that the SQL statement uses the STRUCT data type. For details about the STRUCT data type, please see [Data types](/docs/sql/sql-data-types.md).
 
 ## Step 3: Define a materialized view and analyze data
 This tutorial will create a materialized view that tracks how often each hashtag is used daily. 
