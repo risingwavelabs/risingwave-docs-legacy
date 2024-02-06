@@ -212,7 +212,7 @@ const sidebars = {
                   label: "Amazon MSK",
                   id: "guides/connector-amazon-msk",
                 },
-               {
+                {
                   type: "doc",
                   label: "AutoMQ Kafka",
                   id: "ingest/ingest-from-automq-kafka",
@@ -938,6 +938,11 @@ const sidebars = {
           type: "doc",
           id: "manage/dedicated-compute-node",
           label: "Set up a dedicated compute node",
+        },
+        {
+          type: "doc",
+          id: "manage/secure-connections-with-ssl-tls",
+          label: "Secure connections with SSL/TLS",
         },
         {
           type: "doc",
