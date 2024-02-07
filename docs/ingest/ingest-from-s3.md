@@ -10,6 +10,8 @@ slug: /ingest-from-s3
 
 Use the SQL statement below to connect RisingWave to an Amazon S3 source. RisingWave supports both CSV and [ndjson](https://ndjson.org/) file formats.
 
+The S3 connector does not guarantee the sequential reading of files or complete file reading.
+
 ## Syntax
 
 ```sql

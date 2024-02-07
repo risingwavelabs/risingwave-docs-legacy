@@ -111,6 +111,8 @@ RisingWave performs primary key constraint checks on tables with connector setti
 For a table with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
 :::
 
+### Connector parameters
+
 |Field|Notes|
 |---|---|
 |topic |Required. Address of the Pulsar topic. One source can only correspond to one topic.|
@@ -124,11 +126,16 @@ For a table with primary key constraints, if a new data record with an existing 
 |oauth.scope | Optional. The scope for OAuth2. |
 |access_key | Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
 |secret_access | Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path. |
+|region| Required if loading descriptors from S3. The AWS service region. |
+|arn| Optional. The Amazon Resource Name (ARN) of the role to assume. |
+|external_id| Optional. The [external](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) id used to authorize access to third-party resources. |
+
+### Other parameters
 
 |Field|Notes|
 |---|---|
-|*data_format*| Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`.|
-|*data_encode*| Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
+|*data_format*| Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`.|
+|*data_encode*| Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`,  `BYTES`. |
 |*message* |Message name of the main Message in schema definition. Required when `data_encode` is `PROTOBUF`.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when `data_encode` is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 

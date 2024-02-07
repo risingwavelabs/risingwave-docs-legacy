@@ -7,6 +7,8 @@ slug: /ingest-from-gcs
 
 Use the SQL statement below to connect RisingWave to a Google Cloud Storage source.
 
+The GCS connector does not guarantee the sequential reading of files or complete file reading.
+
 ## Syntax
 
 ```sql
@@ -57,8 +59,7 @@ Here is an example of connecting RisingWave to a GCS source to read data.
 CREATE TABLE s(
     id int,
     name varchar,
-    age int,
-    primary key(id)
+    age int
 ) 
 WITH (
     connector = 'gcs',
