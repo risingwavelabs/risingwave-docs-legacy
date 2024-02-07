@@ -148,8 +148,7 @@ import TabItem from '@theme/TabItem';
 CREATE TABLE s(
     id int,
     name varchar,
-    age int,
-    primary key(id)
+    age int
 ) 
 WITH (
     connector = 's3_v2',

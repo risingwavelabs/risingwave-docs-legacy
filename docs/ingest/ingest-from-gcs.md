@@ -59,7 +59,8 @@ Here is an example of connecting RisingWave to a GCS source to read data.
 CREATE TABLE s(
     id int,
     name varchar,
-    age int
+    age int, 
+    primary key(id)
 ) 
 WITH (
     connector = 'gcs',

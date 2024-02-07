@@ -124,11 +124,6 @@ For a table with primary key constraints, if a new data record with an existing 
 |oauth.credentials.url | Conditional. The path for credential files, starts with `file://`. This field must be filled if other `oauth` fields are specified.|
 |oauth.audience | Conditional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.|
 |oauth.scope | Optional. The scope for OAuth2. |
-|access_key | Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
-|secret_access | Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path. |
-|region| Required if loading descriptors from S3. The AWS service region. |
-|arn| Optional. The Amazon Resource Name (ARN) of the role to assume. |
-|external_id| Optional. The [external](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) id used to authorize access to third-party resources. |
 
 ### Other parameters
 
@@ -138,6 +133,11 @@ For a table with primary key constraints, if a new data record with an existing 
 |*data_encode*| Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`,  `BYTES`. |
 |*message* |Message name of the main Message in schema definition. Required when `data_encode` is `PROTOBUF`.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when `data_encode` is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
+|*access_key* | Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
+|*secret_access* | Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path. |
+|*region*| Required if loading descriptors from S3. The AWS service region. |
+|*arn*| Optional. The Amazon Resource Name (ARN) of the role to assume. |
+|*external_id*| Optional. The [external](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) id used to authorize access to third-party resources. |
 
 ## Read schemas from locations
 

@@ -129,11 +129,6 @@ For tables with primary key constraints, if a new data record with an existing k
 |scan.startup.timestamp.millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
 |properties.sync.call.timeout | Optional. Specify the timeout. By default, the timeout is 5 seconds.  |
 |properties.client.id|Optional. Client ID associated with the Kafka client. |
-|access_key|Required if loading descriptors from S3. The access key ID of AWS. | 
-|secret_key|Required if loading descriptors from S3. The secret access key of AWS. |
-|region|Required if loading descriptors from S3. The AWS service region. |
-|arn|Optional. The Amazon Resource Name (ARN) of the role to assume. |
-|external_id| Optional. The [external](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) id used to authorize access to third-party resources. |
 
 ### Other parameters
 
@@ -147,6 +142,11 @@ For tables with primary key constraints, if a new data record with an existing k
 |*schema.registry.username*|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
 |*schema.registry.password*|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
 |*schema.registry.name.strategy*|Optional. Accepts `topic_name_strategy` (default), `record_name_strategy`, `topic_record_name_strategy`. If it is set to either `record_name_strategy` or `topic_record_name_strategy`, the `message` parameter must also be set. It can only be specified with *schema.registry*. |
+|*access_key*|Required if loading descriptors from S3. The access key ID of AWS. | 
+|*secret_key*|Required if loading descriptors from S3. The secret access key of AWS. |
+|*region*|Required if loading descriptors from S3. The AWS service region. |
+|*arn*|Optional. The Amazon Resource Name (ARN) of the role to assume. |
+|*external_id*| Optional. The [external](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) id used to authorize access to third-party resources. |
 
 ## Additional Kafka parameters
 
