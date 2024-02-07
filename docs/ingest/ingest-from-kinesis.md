@@ -41,21 +41,6 @@ export const svg = rr.Diagram(
         ),
         rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
         rr.Sequence(
-         rr.Terminal('FORMAT'),
-         rr.NonTerminal('format', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('ENCODE'),
-         rr.NonTerminal('encode', 'skip'),
-         rr.Optional(
-            rr.Sequence(
-               rr.Terminal('('),
-               rr.NonTerminal('encode_parameter', 'skip'),
-               rr.Terminal(')'),
-            ),
-         ),
-      ),
-        rr.Sequence(
             rr.Terminal('WITH'),
             rr.Terminal('('),
             rr.Stack(
@@ -78,6 +63,21 @@ export const svg = rr.Diagram(
                 rr.Terminal(')'),
             ),
         ),
+                rr.Sequence(
+         rr.Terminal('FORMAT'),
+         rr.NonTerminal('format', 'skip')
+      ),
+      rr.Sequence(
+         rr.Terminal('ENCODE'),
+         rr.NonTerminal('encode', 'skip'),
+         rr.Optional(
+            rr.Sequence(
+               rr.Terminal('('),
+               rr.NonTerminal('encode_parameter', 'skip'),
+               rr.Terminal(')'),
+            ),
+         ),
+      ),
         rr.Terminal(';'),
     )
 );
