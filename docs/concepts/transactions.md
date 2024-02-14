@@ -24,6 +24,6 @@ Please note that data modifications are not allowed while a transaction is initi
 
 ## Transactions within a CDC table
 
-When you create a table to ingest CDC streams, you can enable this feature by setting `transactional` to `true` in the WITH clause of the `CREATE TABLE` statement. Note that this feature is only available if you are using the native [MySQL CDC](/guides/ingest-from-mysql-cdc.md), [PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md), or [Citus CDC](/guides/ingest-from-citus-cdc.md) connectors.
+When you create a table to ingest CDC streams, you can enable this feature by setting `transactional` to `true` in the WITH clause of the `CREATE TABLE` statement. Note that this feature is only available if you are using the native [MySQL CDC](/guides/ingest-from-mysql-cdc.md) or [PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) connectors.
 
 For performance considerations, transactions involving changes to more than 4096 rows cannot be guaranteed.
