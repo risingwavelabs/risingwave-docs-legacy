@@ -160,7 +160,7 @@ To ensure all data changes are captured, you must create a table or source and s
  Syntax for creating a CDC table. Note that a primary key is required.
 
  ```sql
- CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] table_name (
+ CREATE TABLE [ IF NOT EXISTS ] table_name (
     column_name data_type PRIMARY KEY , ...
     PRIMARY KEY ( column_name, ... )
  ) 
