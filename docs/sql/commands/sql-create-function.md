@@ -103,16 +103,15 @@ For more details about the supported syntax, see the [examples of SQL UDFs](#exa
 
 :::note
 
-
-+ The currently supported syntax is for anonymous SQL UDFs. So `create function with_param_names(a INT, b INT) returns int language sql as 'select a + b';` is invalid at present in RisingWave.
-
 + Recursive definition is NOT supported at present. For example, the statement `create function recursive(INT, INT) returns int language sql as 'select recursive($1, $2) + recursive($1, $2)';` will fail.
 
 :::
 
 ### Examples
 
-Here are the examples of current supported syntax:
+At present, we support both anonymous and named SQL UDFs. This section offers examples of their current supported syntax. Simple examples will be provided first to help you understand and grasp these syntaxes. Then, we will offer some examples that are closer to real-world scenarios at the end, such as a mock table, for your further practice and understanding.
+
+#### Anonymous SQL UDFs
 
 - `AS` clause with single quote definition
 
@@ -138,10 +137,10 @@ select add(1, -1);
 0
 ```
 
-- SQL UDF with `RETURN` expression
+- Anonymous SQL UDF with `RETURN` expression
 
 ```sql title="Create function"
-create function add(INT, INT) returns int language sql return $1 + $2;
+create function add_return(INT, INT) returns int language sql return $1 + $2;
 ```
 
 ```sql title="Call function"
@@ -150,7 +149,7 @@ select add_return(1, 1);
 2
 ```
 
-- SQL UDF with input of different data types
+- Anonymous SQL UDF with input of different data types
 
 ```sql title="Create function"
 -- Multiple type interleaving
@@ -177,7 +176,7 @@ select add_sub_types(1, 1919810114514, 3.1415926, 1.123123, 101010.191919);
 1919810215523.1734494
 ```
 
-- SQL UDF calling other pre-defined SQL UDFs
+- Anonymous SQL UDF calling other pre-defined anonymous SQL UDFs
 
 ```sql  title="Create function"
 -- Create two pre-defined SQL UDFs
@@ -202,7 +201,7 @@ select add_sub_wrapper(1, 1);
 114514
 ```
 
-- SQL UDF calling other built-in functions
+- Anonymous SQL UDF calling other built-in functions
 
 ```sql  title="Create function"
 create function call_regexp_replace() returns varchar language sql as $$select regexp_replace('cat is the cutest animal', 'cat', 'dog')$$;
@@ -217,6 +216,119 @@ dog is the cutest animal
 :::note
 The double dollar signs should be used otherwise the parsing will fail here.
 :::
+
+- Mock table example of anonymous SQL UDF
+
+
+```sql title="Create function"
+# Create two anonymous sql udfs
+create function sub(INT, INT) returns int language sql as 'select $1 - $2';
+create function add(INT, INT) returns int language sql as 'select $1 + $2';
+```
+
+```sql title="Create table"
+# Create a mock table for anonymous sql udf
+create table t1 (c1 INT, c2 INT);
+
+# Insert some data into the mock table
+insert into t1 values (1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
+```
+
+```sql title="Call function"
+select sub(c1, c2), c1, c2, add(c1, c2) from t1 order by c1 asc;
+----RESULT
+0 1 1 2
+0 2 2 4
+0 3 3 6
+0 4 4 8
+0 5 5 10
+```
+
+
+#### Named SQL UDFs
+
+- Named SQL UDF with `AS` clause
+
+```sql title="Create function"
+# Create a named sql udf
+create function add_named(a INT, b INT) returns int language sql as 'select a + b';
+
+# Create another named sql udf
+create function sub_named(a INT, b INT) returns int language sql as 'select a - b';
+```
+
+```sql title="Call function"
+select add_named(1, -1);
+----RESULT
+0
+
+select sub_named(1, 1);
+----RESULT
+0
+```
+
+- Named SQL UDF with anonymous parameters
+
+```sql title="Create function"
+create function add_sub_mix(INT, a INT, INT) returns int language sql as 'select $1 - a + $3';
+```
+
+```sql title="Call function"
+select add_sub_mix(1, 2, 3);
+----RESULT
+2
+```
+
+
+- Call anonymous SQL UDF inside named SQL UDF
+
+```sql title="Create function"
+# Create an anonymous SQL UDF
+
+create function add_named_wrapper(a INT, b INT) returns int language sql as 'select add(a, b)';
+```
+
+```sql title="Call function"
+select corner_case(1, 2, 3);
+----
+$1 + a + $3
+```
+
+- Named SQL UDF with corner case
+
+```sql title="Create function"
+create function corner_case(INT, a INT, INT) returns varchar language sql as $$select '$1 + a + $3'$$;
+```
+
+```sql title="Call function"
+select add_named_wrapper(1, -1);
+----
+0
+```
+- Mock table example of named SQL UDF
+
+```sql title="Create function"
+# Create a named sql udf
+create function add_named(a INT, b INT) returns int language sql as 'select a + b';
+```
+
+```sql title="Create table"
+# Create a mock table for named sql udf
+create table t2 (a INT, b INT);
+
+# Insert some data into the mock table
+insert into t2 values (1, 1), (2, 2), (3, 3), (4, 4), (5, 5);
+```
+
+```sql title="Call function"
+select add_named(a, b) from t2 order by a asc;
+----RESULT
+2
+4
+6
+8
+10
+```
 
 ## See also
 
