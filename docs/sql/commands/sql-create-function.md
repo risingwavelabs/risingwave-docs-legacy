@@ -284,14 +284,15 @@ select add_sub_mix(1, 2, 3);
 
 ```sql title="Create function"
 # Create an anonymous SQL UDF
-
+create function add(INT, INT) returns int language sql return $1 + $2;
+# Create a named function calling the anobymous SQL UDF
 create function add_named_wrapper(a INT, b INT) returns int language sql as 'select add(a, b)';
 ```
 
 ```sql title="Call function"
-select corner_case(1, 2, 3);
-----
-$1 + a + $3
+select add_named_wrapper(1, -1);
+----RESULT
+0
 ```
 
 - Named SQL UDF with corner case
@@ -302,9 +303,10 @@ create function corner_case(INT, a INT, INT) returns varchar language sql as $$s
 
 ```sql title="Call function"
 select add_named_wrapper(1, -1);
-----
+----RESULT
 0
 ```
+
 - Mock table example of named SQL UDF
 
 ```sql title="Create function"
