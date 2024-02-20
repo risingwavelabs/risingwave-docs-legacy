@@ -221,13 +221,13 @@ The double dollar signs should be used otherwise the parsing will fail here.
 
 
 ```sql title="Create function"
-# Create two anonymous sql udfs
+# Create two anonymous SQL UDFs
 create function sub(INT, INT) returns int language sql as 'select $1 - $2';
 create function add(INT, INT) returns int language sql as 'select $1 + $2';
 ```
 
 ```sql title="Create table"
-# Create a mock table for anonymous sql udf
+# Create a mock table for anonymous SQL UDF
 create table t1 (c1 INT, c2 INT);
 
 # Insert some data into the mock table
@@ -250,10 +250,10 @@ select sub(c1, c2), c1, c2, add(c1, c2) from t1 order by c1 asc;
 - Named SQL UDF with `AS` clause
 
 ```sql title="Create function"
-# Create a named sql udf
+# Create a named SQL UDF
 create function add_named(a INT, b INT) returns int language sql as 'select a + b';
 
-# Create another named sql udf
+# Create another named SQL UDF
 create function sub_named(a INT, b INT) returns int language sql as 'select a - b';
 ```
 
@@ -310,12 +310,12 @@ select add_named_wrapper(1, -1);
 - Mock table example of named SQL UDF
 
 ```sql title="Create function"
-# Create a named sql udf
+# Create a named SQL UDF
 create function add_named(a INT, b INT) returns int language sql as 'select a + b';
 ```
 
 ```sql title="Create table"
-# Create a mock table for named sql udf
+# Create a mock table for named SQL UDF
 create table t2 (a INT, b INT);
 
 # Insert some data into the mock table
