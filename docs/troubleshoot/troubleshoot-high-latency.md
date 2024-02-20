@@ -33,7 +33,7 @@ Once you've pinpointed the bottleneck fragment, consider the following actions t
 - Enhance the streaming query performance by removing or rewriting the bottleneck part of the SQL query.
 - Increase the parallelism by adding more nodes into the cluster, or check the SQL query to see if there is any room for optimization.
 
-## Example
+## Example: High latency caused by high join amplification
 
 Joins with low-cardinality columns as equal conditions can cause high join amplification, which will lead to high latency.
 
