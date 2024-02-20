@@ -45,3 +45,5 @@ For example, the following figure shows a materialized view with extremely high 
   src={require('../images/example_high_join_matched_rows.png').default}
   alt="An example of extremly high latency"
 />
+
+To solve the issue, try to rewrite the SQL query to reduce the join amplification, such as adding more equal conditions to the problematic join to reduce the number of matched rows.
