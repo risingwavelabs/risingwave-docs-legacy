@@ -37,6 +37,12 @@ Once you've pinpointed the bottleneck fragment, consider the following actions t
 
 Joins with low-cardinality columns as equal conditions can cause high join amplification, which will lead to high latency.
 
+:::info
+The term "Cardinality" describes how many distinct values exist in a column. For example, "nation" often has a lower cardinality, while "user_id" often has a higher cardinality.
+
+When using a low-cardinality column as the equal condition for a join, such as `A join B on A.nation = B.nation`, any operation on a row in A or B will be amplified by the join to potentially thousands or millions of rows, depending on how many rows share that nation. This could lead to extremely high latency.
+:::
+
 For example, the following figure shows a materialized view with extremely high latency caused by high join amplification. See the panel through **Grafana dashboard (dev)** > **Streaming** > **Join Executor Matched Rows**, which indicates the number of matched rows from the opposite side in the streaming join executors.
 
 <img
@@ -44,4 +50,4 @@ For example, the following figure shows a materialized view with extremely high 
   alt="An example of extremely high latency"
 />
 
-To solve the issue, consider rewriting the SQL query to reduce join amplification, such as adding more equal conditions to the problematic join to reduce the number of matched rows.
+To solve the issue, consider rewriting the SQL query to reduce join amplification, such as using better equal conditions on the problematic join to reduce the number of matched rows.
