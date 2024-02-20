@@ -725,6 +725,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/functions-operators/sql-function-cryptographic-functions",
+                  label: "Cryptographic functions",
+                },
+                {
+                  type: "doc",
                   id: "sql/functions-operators/sql-function-datetime",
                   label: "Date & time",
                 },
