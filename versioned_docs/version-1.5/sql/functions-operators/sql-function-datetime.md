@@ -165,6 +165,16 @@ extract(epoch from '2010-01-01 12:34:56.789012Z'::timestamp with time zone) → 
 ```
 
 ---
+### `now`
+Returns the current date and time. For streaming queries, `now()` can only be used with WHERE, HAVING, and ON clauses. For more information, see [Temporal filters](/sql/syntax/sql-pattern-temporal-filters.md). This constraint does not apply to batch queries.
+```bash title=Syntax
+now() → timestamptz
+```
+```bash title=Example
+now() → '2023-08-04 21:29:59.662+00:00'
+```
+
+---
 
 ### `proctime`
 
