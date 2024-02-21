@@ -109,7 +109,83 @@ For more details about the supported syntax, see the [examples of SQL UDFs](#exa
 
 ### Examples
 
-At present, we support both anonymous and named SQL UDFs. This section offers examples of their current supported syntax. Simple examples will be provided first to help you understand and grasp these syntaxes. Then, we will offer some examples that are closer to real-world scenarios at the end, such as a mock table, for your further practice and understanding.
+At present, we support SQL UDFs with unnamed and named parameters. This section offers examples of the current supported syntax. We will offer some basic examples first to help you understand and grasp them. Then, we will offer some examples that are closer to real-world scenarios, such as a mock table, for your further practice and understanding.
+
+#### Basic examples
+
+- Create a SQL UDF with unnamed parameters and double dollar definition.
+
+```sql title="Create function"
+create function add(INT, INT) returns int language sql as $$select $1 + $2$$;
+```
+
+```sql title="Call function"
+select add(1, -1);
+----
+0
+```
+
+- Create a SQL UDF with unnamed parameters and single quote definition.
+
+```sql title="Create function"
+create function sub(INT, INT) returns int language sql as 'select $1 - $2';
+```
+
+```sql title="Call function"
+select sub(1, 1);
+----
+0
+```
+
+- Create a SQL UDF with unnamed parameters that calls other pre-defined SQL UDFs.
+
+```sql title="Create function"
+# Create two pre-defined SQL UDFs
+create function add(INT, INT) returns int language sql as $$select $1 + $2$$;
+create function sub(INT, INT) returns int language sql as 'select $1 - $2';
+
+create function add_sub_binding() returns int language sql as 'select add(1, 1) + sub(2, 2)';
+```
+
+```sql title="Call function"
+select add_sub_binding();
+----
+2
+
+select add(1, -1), sub(1, 1), add_sub_binding();
+----
+0 0 2
+```
+
+- Create a SQL UDF with named parameters and single quote definition.
+
+```sql title="Create function"
+create function add_named(a INT, b INT) returns int language sql as 'select a + b';
+```
+
+```sql title="Call function"
+select add_named(1, -1);
+----
+0
+```
+
+
+
+
+
+
+
+- 
+
+```sql title="Create function"
+
+```
+
+```sql title="Call function"
+
+```
+
+
 
 #### Anonymous SQL UDFs
 
