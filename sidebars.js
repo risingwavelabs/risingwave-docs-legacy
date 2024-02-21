@@ -985,8 +985,13 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Troubleshoot out-of-memory problems",
+          label: "Troubleshoot out-of-memory",
           id: "troubleshoot/troubleshoot-oom"
+        },
+        {
+          type: "doc",
+          label: "Troubleshoot high latency",
+          id: "troubleshoot/troubleshoot-high-latency"
         },
       ]
     },
