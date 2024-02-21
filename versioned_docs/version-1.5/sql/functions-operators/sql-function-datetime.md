@@ -180,6 +180,60 @@ now() → '2023-08-04 21:29:59.662+00:00'
 
 ---
 
+### `make_date`
+
+Creates date from year, month, and day fields (negative years signify BC).
+
+```bash title=Syntax
+make_date ( year int, month int, day int ) → date
+```
+
+```bash title=Example
+make_date(2024, 1, 31) → 2024-01-31
+```
+
+---
+
+### `make_time`
+
+Creates time from hour, minute, and seconds fields.
+
+```bash titile=Syntax
+
+```
+
+```bash title=Example
+make_date(2024, 1, 31) → 2024-01-31
+```
+
+---
+
+### `make_time`
+
+Creates time from hour, minute, and seconds fields.
+
+```bash titile=Syntax
+make_time ( hour int, min int, sec double precision ) → time
+```
+
+```bash title=Example
+make_date(2024, 1, 31) → 2024-01-31
+```
+
+---
+
+```
+
+
+
+
+make_time(1, 45, 30.2) → 01:45:30.2
+
+make_timestamp ( year int, month int, day int, hour int, min int, sec double precision ) → timestamp
+Create timestamp from year, month, day, hour, minute and seconds fields (negative years signify BC)
+make_timestamp(2024, 1, 31, 1, 45, 30.2) → 2024-01-31 01:45:30.2
+```
+
 ### `proctime`
 
 Returns the system time with time zone when a record is processed. You can use this function to specify the processing time of a record in a table or source.
