@@ -119,7 +119,7 @@ SET PARALLELISM = parallelism_number;
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
 |**SET PARALLELISM**| This clause controls the degree of [parallelism](/concepts/key-concepts.md#parallelism) for the targeted [streaming job](/concepts/key-concepts.md#streaming-jobs).|
-| *parallelism_number* | This parameter can be `AUTO` or a fixed number, like 1, 2, 3, etc. Altering the parameter to `AUTO` will expand the streaming job's degree of parallelism to encompass all available units, whereas setting it to a fixed number will lock the job's parallelism at that specific figure. Setting it to `0` is equivalent to `AUTO`. <br/><br/>After setting the parallelism, the parallelism status of a table can be observed within the internal [`rw_table_fragments`](/manage/view-configure-runtime-parameters.md) table or the [`rw_fragments`](/manage/view-configure-runtime-parameters.md)table.|
+| *parallelism_number* | This parameter can be `ADAPTIVE` or a fixed number, like 1, 2, 3, etc. Altering the parameter to `ADAPTIVE` will expand the streaming job's degree of parallelism to encompass all available units, whereas setting it to a fixed number will lock the job's parallelism at that specific figure. Setting it to `0` is equivalent to `ADAPTIVE`. <br/><br/>After setting the parallelism, the parallelism status of a table can be observed within the internal [`rw_table_fragments`](/manage/view-configure-runtime-parameters.md) table or the [`rw_fragments`](/manage/view-configure-runtime-parameters.md)table.|
 
 ```sql title=Example
 ALTER TABLE test_table SET PARALLELISM = 8;
@@ -165,8 +165,8 @@ SELECT fragment_id, parallelism FROM rw_fragments;
 ```
 
 ```sql title=Example
--- Set to AUTO
-ALTER TABLE t SET PARALLELISM = auto;
+-- Set to ADAPTIVE
+ALTER TABLE t SET PARALLELISM = adaptive;
 SELECT fragment_id, parallelism FROM rw_fragments;
 
 ------RESULTS

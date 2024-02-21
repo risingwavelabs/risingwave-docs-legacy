@@ -90,8 +90,8 @@ CREATE source orders_s1 (
     ...
 ) FORMAT PLAIN ENCODE JSON;
 
-CREATE SINK orders_sink0 FROM orders_s0 INTO orders;
-CREATE SINK orders_sink1 FROM orders_s1 INTO orders;
+CREATE SINK orders_sink0 INTO orders FROM orders_s0;
+CREATE SINK orders_sink1 INTO orders FROM orders_s1;
 ```
 
 If you don't want one of the topics, you can drop it.
