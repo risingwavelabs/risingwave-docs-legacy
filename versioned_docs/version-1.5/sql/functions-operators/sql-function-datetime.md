@@ -166,20 +166,6 @@ extract(epoch from '2010-01-01 12:34:56.789012Z'::timestamp with time zone) → 
 
 ---
 
-### `now`
-
-Returns the current date and time. For streaming queries, `now()` can only be used with WHERE, HAVING, and ON clauses. For more information, see [Temporal filters](/sql/syntax/sql-pattern-temporal-filters.md). This constraint does not apply to batch queries.
-
-```bash title=Syntax
-now() → timestamptz
-```
-
-```bash title=Example
-now() → '2023-08-04 21:29:59.662+00:00'
-```
-
----
-
 ### `make_date`
 
 Creates date from year, month, and day fields (negative years signify BC).
@@ -199,40 +185,42 @@ make_date(2024, 1, 31) → 2024-01-31
 Creates time from hour, minute, and seconds fields.
 
 ```bash titile=Syntax
-
-```
-
-```bash title=Example
-make_date(2024, 1, 31) → 2024-01-31
-```
-
----
-
-### `make_time`
-
-Creates time from hour, minute, and seconds fields.
-
-```bash titile=Syntax
 make_time ( hour int, min int, sec double precision ) → time
 ```
 
 ```bash title=Example
-make_date(2024, 1, 31) → 2024-01-31
+make_time(1, 45, 30.2) → 01:45:30.2
 ```
 
 ---
 
+### `make_timestamp`
+
+Creates timestamp from year, month, day, hour, minute, and seconds fields (negative years signify BC).
+
+```bash titile=Syntax
+make_timestamp ( year int, month int, day int, hour int, min int, sec double precision ) → timestamp
 ```
 
-
-
-
-make_time(1, 45, 30.2) → 01:45:30.2
-
-make_timestamp ( year int, month int, day int, hour int, min int, sec double precision ) → timestamp
-Create timestamp from year, month, day, hour, minute and seconds fields (negative years signify BC)
+```bash title=Example
 make_timestamp(2024, 1, 31, 1, 45, 30.2) → 2024-01-31 01:45:30.2
 ```
+
+---
+
+### `now`
+
+Returns the current date and time. For streaming queries, `now()` can only be used with WHERE, HAVING, and ON clauses. For more information, see [Temporal filters](/sql/syntax/sql-pattern-temporal-filters.md). This constraint does not apply to batch queries.
+
+```bash title=Syntax
+now() → timestamptz
+```
+
+```bash title=Example
+now() → '2023-08-04 21:29:59.662+00:00'
+```
+
+---
 
 ### `proctime`
 
