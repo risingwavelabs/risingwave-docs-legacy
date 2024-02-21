@@ -69,7 +69,7 @@ SET PARALLELISM = parallelism_number;
 | Parameter or clause | Description |
 | ------------------- | ----------------------------------------------- |
 |**SET PARALLELISM**| This clause controls the degree of [parallelism](/concepts/key-concepts.md#parallelism) for the targeted [streaming job](/concepts/key-concepts.md#streaming-jobs).|
-| *parallelism_number* | This parameter can be `AUTO` or a fixed number, like 1, 2, 3, etc. Altering the parameter to `AUTO` will expand the streaming job's degree of parallelism to encompass all available units, whereas setting it to a fixed number will lock the job's parallelism at that specific figure. Setting it to `0` is equivalent to `AUTO`.|
+| *parallelism_number* | This parameter can be `ADAPTIVE` or a fixed number, like 1, 2, 3, etc. Altering the parameter to `ADAPTIVE` will expand the streaming job's degree of parallelism to encompass all available units, whereas setting it to a fixed number will lock the job's parallelism at that specific figure. Setting it to `0` is equivalent to `ADAPTIVE`.|
 
 ```sql title=Examples
 -- Set the parallelism of the materialized view "m_join" to 3.
