@@ -87,7 +87,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_ddl_progress       | Contains the progress of running DDL statements. You can use this relation to view the progress of running DDL statements. For details, see [View statement progress](/manage/view-statement-progress.md).|
  rw_description        | Contains optional descriptions (comments) for each database object. Descriptions can be added with the [`COMMENT ON`](/sql/commands/sql-comment-on.md) command and viewed with `DESCRIBE` or `SHOW COLUMNS FROM` command.|
  rw_event_logs         | Contains information about events, including event IDs, timestamps, event types, and additional information if available. |
- rw_fragment_parallelism          | Contains information about the parallelism configuration on the fragment level, including fragment IDs, parallelism, and more. |
+ rw_fragment_parallelism          | Contains information about the parallelism configuration at the fragment level, including fragment IDs, parallelism, and more. |
  rw_fragments          | Contains low-level information about fragments in the database, including fragment IDs, table IDs, and more. |
  rw_functions          | Contains information about functions in the database, including their IDs, names, schema identifiers, types, argument and return data types, programming language, and more. |
  rw_hummock_branched_objects         | Contains information about branched objects of Hummock (the storage engine in RisingWave), including object IDs, corresponding SST IDs, and compaction group IDs. |
