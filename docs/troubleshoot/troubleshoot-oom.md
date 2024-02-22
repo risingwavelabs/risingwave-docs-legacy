@@ -38,7 +38,7 @@ Alternatively, you may use `risectl` to alter the streaming rate limit of an exi
 risingwave ctl throttle source/mv <id> <streaming_rate_limit>
 ```
 
-## OOM caused by extremly high barrier latency
+## OOM caused by extremely high barrier latency
 
 Barriers play a vital role in our system, supporting the proper functioning of important components like memory management and LRU caches.
 
