@@ -38,6 +38,25 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestamptz AS proctime()`) when creating the table or source. See also [`proctime()`](/sql/functions-operators/sql-function-datetime.md#proctime).
 
+For a source with schema from external connector, use `*` to represent all columns from the external connector first, so that you can define a generated column on source with an external connector. See the example below.
+
+```sql title=Example
+CREATE SOURCE from_kafka (
+  *,
+  gen_i32_field INT AS int32_field + 2,
+  PRIMARY KEY (some_key)
+)
+INCLUDE KEY AS some_key
+WITH (
+  connector = 'kafka',
+  topic = 'test-rw-sink-upsert-avro',
+  properties.bootstrap.server = 'message_queue:29092'
+)
+FORMAT upsert ENCODE AVRO (
+  schema.registry = 'http://message_queue:8081'
+);
+```
+
 ## Parameters
 
 | Parameter| Description|

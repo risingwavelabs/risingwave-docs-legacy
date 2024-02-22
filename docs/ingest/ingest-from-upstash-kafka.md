@@ -64,11 +64,11 @@ For detailed documentation and client-specific guides, please refer to [Upstash 
 
 ### Create a RisingWave cluster
 
-Create a RisingWave cluster in [RisingWave Cloud](https://cloud.risingwave.com/) using the free plan. See the [documentation of RisingWave Cloud](https://docs.risingwave.com/cloud/manage-clusters/) for instructions.
+Create a RisingWave cluster in [RisingWave Cloud](https://cloud.risingwave.com/) using the free plan. See the [documentation of RisingWave Cloud](/cloud/manage-clusters/) for instructions.
 
 ### Create a source
 
-Once you have deployed the RisingWave cluster, create a source in the [Query console](https://docs.risingwave.com/cloud/console-overview/) using the following SQL query:
+Once you have deployed the RisingWave cluster, create a source in the [Query console](/cloud/console-overview/) using the following SQL query:
 
 ```sql
 CREATE SOURCE wiki_source (

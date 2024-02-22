@@ -212,7 +212,7 @@ const sidebars = {
                   label: "Amazon MSK",
                   id: "guides/connector-amazon-msk",
                 },
-               {
+                {
                   type: "doc",
                   label: "AutoMQ Kafka",
                   id: "ingest/ingest-from-automq-kafka",
@@ -941,6 +941,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "manage/secure-connections-with-ssl-tls",
+          label: "Secure connections with SSL/TLS",
+        },
+        {
+          type: "doc",
           label: "Telemetry",
           id: "telemetry",
         },
@@ -980,8 +985,13 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Troubleshoot out-of-memory problems",
+          label: "Troubleshoot out-of-memory",
           id: "troubleshoot/troubleshoot-oom"
+        },
+        {
+          type: "doc",
+          label: "Troubleshoot high latency",
+          id: "troubleshoot/troubleshoot-high-latency"
         },
       ]
     },
