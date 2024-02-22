@@ -304,7 +304,7 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "WrapStream",
+              label: "WarpStream",
               id: "ingest/ingest-from-warpstream",
             },
             {
