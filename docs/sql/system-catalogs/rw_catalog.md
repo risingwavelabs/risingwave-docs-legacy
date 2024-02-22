@@ -87,6 +87,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_ddl_progress       | Contains the progress of running DDL statements. You can use this relation to view the progress of running DDL statements. For details, see [View statement progress](/manage/view-statement-progress.md).|
  rw_description        | Contains optional descriptions (comments) for each database object. Descriptions can be added with the [`COMMENT ON`](/sql/commands/sql-comment-on.md) command and viewed with `DESCRIBE` or `SHOW COLUMNS FROM` command.|
  rw_event_logs         | Contains information about events, including event IDs, timestamps, event types, and additional information if available. |
+ rw_fragment_parallelism          | Contains information about the fragment parallelism configuration, including fragment IDs, parallelism, and more. |
  rw_fragments          | Contains low-level information about fragments in the database, including fragment IDs, table IDs, and more. |
  rw_functions          | Contains information about functions in the database, including their IDs, names, schema identifiers, types, argument and return data types, programming language, and more. |
  rw_hummock_branched_objects         | Contains information about branched objects of Hummock (the storage engine in RisingWave), including object IDs, corresponding SST IDs, and compaction group IDs. |
@@ -109,6 +110,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_schemas            | Contains information about schemas that are available in the database, including their names, unique IDs, owner IDs, and more. |
  rw_sinks              | Contains information about sinks that are available in the database, including their unique IDs, names, schema IDs, owner IDs, connector types, sink types, connection IDs, definitions, and more.|
  rw_sources            | Contains information about sources that are available in the database, including their unique IDs, names, schema IDs, owner IDs, connector types, column definitions, row formats, append-only flags, connection IDs, and more.|
+ rw_streaming_parallelism            | Contains information about the streaming parallelism configuration for streaming jobs, including their IDs, names, relation types, and parallelism.|
  rw_system_tables      | Contains information about system tables in the database, including their unique IDs, names, schema IDs, owners, and more. |
  rw_table_fragments    | Contains information about table fragments in the database, including their parent table IDs, fragment statuses, and primary keys.|
  rw_table_stats        | Contains statistical information about tables, including their unique IDs, total key count, total key size, and total value size in bytes.|
