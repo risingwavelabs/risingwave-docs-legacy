@@ -19,3 +19,5 @@ You need to restart the node to update the role. A role can be one of:
 - `both`: The default role if not specified. Indicates that the compute node is available for both streaming and serving.
 - `serving`: Indicates that the compute node is only available for serving.
 - `streaming`: Indicates that the compute node is only available for streaming.
+
+For specific changes required in the YAML file, see [Separate batch streaming modes](https://github.com/risingwavelabs/risingwave-operator/blob/main/docs/manifests/risingwave/advanced/separate-batch-streaming-modes.yaml).
