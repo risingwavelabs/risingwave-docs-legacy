@@ -95,6 +95,9 @@ The option could one of the belows
 The "delete" and "update" operation on the table can not break the primary key constraint on the table. So the option will not take effect for those cases.
 :::
 
+:::note
+When `DO UPDATE IF NOT NULL` behavior is applied, `DEFAULT` clause is not allowed on the table's columns.
+:::
 ## Examples
 
 The statement below creates a table that has three columns.
