@@ -109,7 +109,7 @@ For more details about the supported syntax, see the [examples of SQL UDFs](#exa
 
 ### Examples
 
-At present, we support SQL UDFs with unnamed and named parameters. This section offers examples of the current supported syntax. We will offer some basic examples first to help you understand and grasp them. Then, we will offer some examples that are closer to real-world scenarios, such as a mock table, for your further practice and understanding.
+At present, we support SQL UDFs with unnamed and named parameters. This section offers examples of the current supported syntax. We will offer some basic examples first to help you understand and grasp them. Then, we will offer more examples that are closer to real-world scenarios, such as a mock table, for your further practice and understanding.
 
 #### Basic examples
 
@@ -140,8 +140,8 @@ select sub(1, 1);
 - Create a SQL UDF with unnamed parameters that calls other pre-defined SQL UDFs.
 
 ```sql title="Create function"
-# Create two pre-defined SQL UDFs
-create function add(INT, INT) returns int language sql as $$select $1 + $2$$;
+# Create two pre-defined SQL UDFs (skip if you've created them in the examples above)
+create function add(INT, INT) returns int language sql as 'select $1 + $2';
 create function sub(INT, INT) returns int language sql as 'select $1 - $2';
 
 create function add_sub_binding() returns int language sql as 'select add(1, 1) + sub(2, 2)';
@@ -168,9 +168,134 @@ select add_named(1, -1);
 ----
 0
 ```
+- Create a SQL UDF with named parameters and double dollar definition.
 
+```sql title="Create function"
+create function sub_named(a INT, b INT) returns int language sql as $$select a - b$$;
+```
 
+```sql title="Call function"
+select sub_named(1, 1);
+----
+0
+```
 
+- Create a SQL UDF with mixed named and unnamed parameters.
+
+```sql title="Create function"
+create function add_sub_mix(INT, a INT, INT) returns int language sql as 'select $1 - a + $3';
+```
+
+```sql title="Call function"
+select add_sub_mix(1, 2, 3);
+----
+2
+```
+
+- Call a SQL UDF with unnamed parameters inside a SQL UDF with named parameters.
+
+```sql title="Create function"
+create function add(INT, INT) returns int language sql as $$select $1 + $2$$;
+create function add_named_wrapper(a INT, b INT) returns int language sql as 'select add(a, b)';
+```
+
+```sql title="Call function"
+select add_named_wrapper(1, -1);
+----
+0
+```
+
+- Create a SQL UDF with unnamed parameters and a return expression.
+
+```sql title="Create function"
+create function add_return(INT, INT) returns int language sql return $1 + $2;
+```
+
+```sql title="Call function"
+select add_return(1, 1);
+----
+2
+```
+
+- Create another SQL UDF with a return expression using previously defined UDFs.
+
+```sql title="Create function"
+# Create a pre-defined UDF
+create function add_return1(INT, INT) returns int language sql return $1 + $2;
+
+create function add_return_binding() returns int language sql return add_return1(1, 1) + add_return1(1, 1);
+```
+
+```sql title="Call function"
+select add_return_binding();
+----
+4
+```
+
+- Create a SQL UDF with a single quote definition.
+
+```sql title="Create function"
+create function print(INT) returns int language sql as 'select $1';
+```
+
+```sql title="Call function"
+select print(114514);
+----
+114514
+```
+- Create a SQL UDF with multiple type interleaving.
+
+```sql title="Create function"
+create function add_sub(INT, FLOAT, INT) returns float language sql as $$select -$1 + $2 - $3$$;
+```
+
+```sql title="Call function"
+select add_sub(1, 5.1415926, 1);
+----
+3.1415926
+```
+
+```sql title="Combined function calls"
+select add(1, -1), sub(1, 1), add_sub(1, 5.1415926, 1);
+----
+0 0 3.1415926
+```
+
+- Create a SQL UDF with complex types interleaving.
+
+```sql title="Create function"
+create function add_sub_types(INT, BIGINT, FLOAT, DECIMAL, REAL) returns double language sql as 'select $1 + $2 - $3 + $4 + $5';
+```
+
+```sql title="Call function"
+select add_sub_types(1, 1919810114514, 3.1415926, 1.123123, 101010.191919);
+----
+1919810215523.1734494
+```
+
+- Create a SQL UDF with a return expression.
+
+```sql title="Create function"
+create function add_sub_return(INT, FLOAT, INT) returns float language sql return -$1 + $2 - $3;
+```
+
+```sql title="Call function"
+select add_sub_return(1, 5.1415926, 1);
+----
+3.1415926
+```
+
+- Create a wrapper function for `add` & `sub`.
+
+```sql title="Create function"
+create function add_sub_wrapper(INT, INT) returns int language sql as 'select add($1, $2) + sub($1, $2) + 114512';
+```
+
+```sql title="Call function"
+select add_sub_wrapper(1, 1);
+----
+114514
+```
 
 
 
