@@ -47,18 +47,15 @@ aes-ecb => AES algorithm, ecb mode, enabling padding
 ```  
 
 ```sql title="Example of raw encryption functions"
-SELECT encrypt('Hello, World!', 'my_secret_key', 'aes-cbc/pad:pkcs');
+SELECT encrypt('Hello, World!', 'my_secret_key111', 'aes-cbc/pad:pkcs');
 ----RESULT
-\330\317\204\357\327\367\206\241\253\024\303\013\215\030\231\257
+\x9cf6a49f90b3ac816aeeeed286606fdb
 (1 row)
 ```
 
 ```sql title="Example of raw encryption functions"
-SELECT decrypt('\330\317\204\357\327\367\206\241\253\024\303\013\215\030\231\257', 'my_secret_key', 'aes-cbc/pad:pkcs');
+SELECT decrypt('\x9cf6a49f90b3ac816aeeeed286606fdb','my_secret_key111', 'aes-cbc/pad:pkcs');)
 ----RESULT
-Hello, World!
+\x48656c6c6f2c20576f726c6421
 (1 row)
 ```
-
-
-
