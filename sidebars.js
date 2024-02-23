@@ -186,6 +186,11 @@ const sidebars = {
           id: "ingest/modify-schemas",
         },
         {
+          type: "doc",
+          label: "Ingest additional fields with `INCLUDE` clause",
+          id: "ingest/include-clause"
+        },
+        {
           type: "category",
           label: "Sources",
           collapsible: true,
