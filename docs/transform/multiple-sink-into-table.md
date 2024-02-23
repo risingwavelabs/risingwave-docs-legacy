@@ -13,7 +13,7 @@ In some cases with limitation, use the [CREATE SINK INTO TABLE](/commands/sql-cr
 ## Merge multiple sinks with the same primary key
 
 :::note
-  Because the ON CONFLICT clause does not influence the Update or Delete operation, the sinks should be forced to append only, otherwise, the delete or update from any sink can delete the whole row.
+Keep in mind that the `ON CONFLICT` clause does not affect the update or delete events, the sinks should be forced to be append-only, otherwise, the delete or update events from any sink will delete the regarding row.
 :::
 
 ```SQL
