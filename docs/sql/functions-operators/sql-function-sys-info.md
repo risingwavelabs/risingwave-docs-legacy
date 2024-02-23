@@ -78,8 +78,8 @@ pg_get_viewdef(view_name) → text
 ```sql title=Examples
 -- Create a table
 CREATE TABLE table1 (
-    id serial PRIMARY KEY,
-    name VARCHAR(50)
+    id int PRIMARY KEY,
+    name VARCHAR 
 );
 
 -- Create a materialized view
@@ -89,7 +89,9 @@ FROM table1;
 
 -- Retrieve the definition of the materialized view using pg_get_viewdef
 SELECT pg_get_viewdef('materialized_view1'::regclass);
-
+----RESULT
+ SELECT id, name FROM table1
+(1 row)
 ```
 
 ## `pg_typeof()`
