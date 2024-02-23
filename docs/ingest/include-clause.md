@@ -4,9 +4,6 @@ title: `INCLUDE` clause
 description: Use the `INCLUDE` clause when creating a table or source to ingest fields not included in the payload.
 slug: /include-clause
 ---
-<head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/include-clause/" />
-</head>
 
 This topic describes how to use the `INCLUDE` clause when creating a table or source with an external connector to extract fields not included in the payload as separate columns. The payload refers to the actual content or information carried by a message, event, or record, defined in the schema when creating a source or table.
 
