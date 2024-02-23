@@ -91,6 +91,7 @@ FROM table1;
 SELECT pg_get_viewdef('materialized_view1'::regclass);
 
 ```
+
 ## `pg_typeof()`
 
 Returns the standard name of the data type of the provided value. More specifically, it returns the OID of the data type of the provided value. It returns a regtype, which is an OID alias type. Therefore it’s the same as an OID for comparison purposes but displays as a type name.
