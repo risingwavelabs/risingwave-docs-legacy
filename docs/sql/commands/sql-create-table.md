@@ -86,6 +86,7 @@ RisingWave supports generating watermarks when creating an append-only streaming
 
 ## PK Conflict Behavior
 The record with "insert" operation could introduce duplicate records with the same primary key in the table. In that case, an alternative action Specified by the `ON CONFLICT` clause will be adopted. The record can come from Insert DML statement, table's external connectors or sinks into the table([`CREATE SINK INTO`](sql-create-sink-into.md)). 
+
 The option could one of the belows 
 - `DO NOTHING`: ignore the newly inserted record.
 - `DO UPDATE FULL`: replace the exist row in the table. 

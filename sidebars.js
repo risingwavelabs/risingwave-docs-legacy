@@ -379,6 +379,11 @@ const sidebars = {
           id: "transform/use-dbt",
           label: "Use dbt for data transformations",
         },
+        {
+          type: "doc",
+          id: "transform/multiple-table-sink",
+          label: "Maintain wide table with table sinks",
+        },
       ],
     },
     {

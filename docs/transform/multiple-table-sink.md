@@ -1,13 +1,14 @@
 ---
-id: multiple-sink-into-table
-slug: /multiple-sink-into-table
-title: multiple-sink-into-table
+id: multiple-table-sink
+slug: /multiple-table-sink
+title: Multiple Table Sink
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/multiple-sink-into-table/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/multiple-table-sink/" />
 </head>
 
 This guide tells a way to maintain a wide table whose columns are comes from different sources. Traditional data warehouse or ETL use a join query to do it. But the streaming join brings issues such as low efficiency and large memory consumption. 
+
 In some cases with limitation, use the [CREATE SINK INTO TABLE](/commands/sql-create-sink-into.md) and [ON CONFLICT clause](/commands/sql-create-table.md#pk-conflict-behavior) can save the resources and get high efficiency.
 
 ## Merge multiple sinks with the same primary key
