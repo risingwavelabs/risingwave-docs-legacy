@@ -17,7 +17,7 @@ encrypt(data bytea, key bytea, type text) -> bytea
 decrypt(data bytea, key bytea, type text) -> bytea
 ```  
 
-Encrypt/decrypt data use the cipher method specified by `type`. The syntax of the `type` string is:
+The cipher method is specified by `type`. The syntax of the `type` string is:
 
 ```sql
 algorithm [ - mode ] [ /pad: padding ]
