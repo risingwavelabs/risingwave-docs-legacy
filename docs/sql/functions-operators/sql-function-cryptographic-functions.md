@@ -2,7 +2,7 @@
 id: sql-function-cryptographic-functions
 slug: /sql-function-cryptographic-functions
 title: Cryptographic functions
-description: Cryptographic functions
+description: Cryptographic functions.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-cryptographic-functions/" />
@@ -17,7 +17,7 @@ encrypt(data bytea, key bytea, type text) -> bytea
 decrypt(data bytea, key bytea, type text) -> bytea
 ```  
 
-Encrypt/decrypt data using the cipher method specified by `type`. The syntax of the `type` string is:
+Encrypt/decrypt data use the cipher method specified by `type`. The syntax of the `type` string is:
 
 ```sql
 algorithm [ - mode ] [ /pad: padding ]
