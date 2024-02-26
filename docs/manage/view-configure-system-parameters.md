@@ -72,6 +72,8 @@ The full syntax of the `ALTER SYSTEM SET` statement is:
 ALTER SYSTEM SET parameter_name { TO | = } { value | 'value' | DEFAULT };
 ```
 
+When using `ALTER SYSTEM SET` command to set system parameters, you can use the Tab key on the keyboard to automatically complete parameter names. For example, after you input `ALTER SYSTEM SET chec`, you can press the Tab key and the parameter name will automatically become `ALTER SYSTEM SET checkpoint_frequency`.
+
 Immutable parameters need to be initialized in the CLI of the meta node. `state_store` and `data_directory` need to be initialized before starting a cluster.
 
 To configure parameter settings in the CLI of the meta node, navigate to the directory where RisingWave is installed and run the following command:
