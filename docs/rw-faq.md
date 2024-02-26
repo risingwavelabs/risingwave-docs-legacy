@@ -88,7 +88,7 @@ In summary, materialized views in stream databases like RisingWave have the foll
 
 **Resource isolation**: Materialized views involve continuous stream computation and consume a significant amount of computing resources. To avoid interference between materialized view computations and other computations, some users transfer the materialized view functionality from OLTP or OLAP databases to RisingWave, achieving resource isolation.
 
-## Questions for streamling your experience
+## Questions for streamlining your experience
 
 ### Why does RisingWave not accept Kafka consumer group IDs?
 
