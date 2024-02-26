@@ -318,7 +318,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Transform data",
+      label: "Transform and query data",
       collapsible: true,
       collapsed: true,
       items: [
@@ -383,7 +383,7 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Query & visualize data",
+      label: "Visualize data",
       collapsible: true,
       collapsed: true,
       items: [
