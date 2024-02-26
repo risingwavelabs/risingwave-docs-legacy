@@ -26,7 +26,7 @@ To scale your cluster:
 
 ## Configuring node resources
 
-When scaling, you will configure the vCPU numbers for each component, with the memory size automatically scaling at a 1:4 ratio with the vCPUs. The [RWU](/cloud/billing-pricing.md#risingwave-unit-rwu) numbers are calculated based on the vCPU and memory size.
+When scaling, you will configure the vCPU numbers for each component, with the memory size automatically scaling at a 1:4 ratio with the vCPUs. The [RWU](/billing-pricing.md#risingwave-unit-rwu) numbers are calculated based on the vCPU and memory size.
 
 <img
    src={require('./images/cluster-edit-spec-page.png').default}
@@ -47,8 +47,8 @@ When scaling, you will configure the vCPU numbers for each component, with the m
     - RWU options: 1, 2, 4, 8, 16
     - You can have up to 2 compactor nodes in a cluster.
 
-For detailed information on each node, see [Understanding nodes in RisingWave](/cloud/cluster-choose-a-cluster-plan.md#understanding-nodes-in-risingwave).
+For detailed information on each node, see [Understanding nodes in RisingWave](/cluster-choose-a-cluster-plan.md#understanding-nodes-in-risingwave).
 
 ## Pricing
 
-For information on how scaling impacts pricing, see [Pricing](/cloud/billing-pricing.md).
+For information on how scaling impacts pricing, see [Pricing](/billing-pricing.md).

@@ -34,13 +34,13 @@ RisingWave Cloud offers two types of cluster plans to cater to your specific nee
 
     You only pay for your actual usage of computational resources and storage. To help you keep track of your expenditures, RisingWave Cloud employs the RisingWave Unit (RWU), a virtual unit of resources, and the hours of usage to calculate your charges.
 
-See details in [Pricing](/cloud/billing-pricing.md).
+See details in [Pricing](/billing-pricing.md).
 
 ## Monitoring current usage and spending
 
 You can view the usage and the corresponding charges for each cluster during the ongoing billing period.
 
-See details in [Check current spending](/cloud/billing-check-spending-details.md#check-current-spending).
+See details in [Check current spending](/billing-check-spending-details.md#check-current-spending).
 
 ## Reviewing and paying invoices
 
@@ -48,16 +48,16 @@ Each month, RisingWave Cloud generates an invoice summarizing your service usage
 
 If there are any outstanding payments, you can settle them manually. You can also access your history invoices.
 
-See details in [Review and pay invoices](/cloud/billing-review-and-pay-invoices.md).
+See details in [Review and pay invoices](/billing-review-and-pay-invoices.md).
 
 ## Setting up automatic payments
 
 You can automate payments through saved bank cards. After each billing period, RisingWave Cloud will automatically charge your saved cards.
 
-See details in [Manage payment methods](/cloud/billing-manage-payment-methods.md).
+See details in [Manage payment methods](/billing-manage-payment-methods.md).
 
 ## Settling outstanding payments
 
 You can settle outstanding payments manually during the due period if automatic payments fail.
 
-See details in [Pay invoices manually](/cloud/billing-review-and-pay-invoices.md#pay-invoices-manually).
+See details in [Pay invoices manually](/billing-review-and-pay-invoices.md#pay-invoices-manually).

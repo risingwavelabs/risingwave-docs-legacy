@@ -53,7 +53,7 @@ The Standard plan operates on a pay-as-you-go model. You only pay for your actua
     - Compactor node
     - ETCD
 
-    For detailed information on each node, see [Understanding nodes in RisingWave](/cloud/cluster-choose-a-cluster-plan.md#understanding-nodes-in-risingwave).
+    For detailed information on each node, see [Understanding nodes in RisingWave](/cluster-choose-a-cluster-plan.md#understanding-nodes-in-risingwave).
 
 - **Storage capacity**: RisingWave Cloud bills the storage in per GB-month increments at a second rate. You pay for the storage capacity of the data your RisingWave cluster persisted during stream processing, such as tables, materialized views, and internal states.
 

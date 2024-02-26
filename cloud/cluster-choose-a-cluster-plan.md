@@ -34,7 +34,7 @@ import TabItem from '@theme/TabItem';
 
 The **Developer** plan is designed for individual developers or small teams looking to explore and develop on the RisingWave platform. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave at a cheap and affordable price. 
 
-Each RisingWave cluster is given a 7-day free trial. You must [add a payment method](/cloud/billing-manage-payment-methods.md) to continue your use after the free trial. 
+Each RisingWave cluster is given a 7-day free trial. You must [add a payment method](/billing-manage-payment-methods.md) to continue your use after the free trial. 
 
 You can create up to three clusters with the Developer plan in your account. Your cluster will be allocated with 2 RWUs with standalone deployment.
 
@@ -58,7 +58,7 @@ You can create up to three clusters with the Developer plan in your account. You
 
 The **Standard** plan offers a customizable and scalable cluster suitable for larger teams and more complex projects. You can tailor your cluster's resources to align with your project's specific needs, with the flexibility to adjust configurations as your project evolves. In the Standard plan, you can customize the resources of each component in the RisingWave cluster.
 
-You have to [add a payment method](/cloud/billing-manage-payment-methods.md) before you can access the **Standard** plan.
+You have to [add a payment method](/billing-manage-payment-methods.md) before you can access the **Standard** plan.
 
 #### **Configuration**
 
@@ -131,4 +131,4 @@ For the architecture of RisingWave, see [RisingWave architecture](/docs/current/
 
 ## Pricing
 
-For information on your service fee, see [Pricing](/cloud/billing-pricing.md).
+For information on your service fee, see [Pricing](/billing-pricing.md).

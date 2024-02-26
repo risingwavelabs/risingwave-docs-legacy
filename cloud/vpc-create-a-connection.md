@@ -11,7 +11,7 @@ Follow the steps below to establish a secure connection with your VPC through AW
 
 - You have created a cluster in RisingWave Cloud and:
   
-  - It is created with the [customized plan](/cloud/choose-a-cluster-plan/?plan=customized). Free clusters do not support VPC connections.
+  - It is created with the Standard plan or Invited plan. Developer clusters do not support VPC connections. See [Choose a cluster plan](/choose-a-cluster-plan) for more information.
   
   - The VPC you want to connect to and your cluster must be in the same region. If your preferred region is not available when creating a cluster, contact our support team.
   
