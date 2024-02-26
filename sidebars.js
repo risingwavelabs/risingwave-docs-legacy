@@ -187,7 +187,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Ingest additional fields with `INCLUDE` clause",
+          label: "Ingest additional fields with INCLUDE clause",
           id: "ingest/include-clause",
         },
         {
