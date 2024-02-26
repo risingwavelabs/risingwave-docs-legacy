@@ -199,8 +199,8 @@ module.exports = {
     {
       type: "category",
       label: "Organization",
-      collapsible: false,
-      collapsed: false,
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -226,9 +226,38 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Billing",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "billing-overview",
+          label: "Overview",
+        },
+        {
+          type: "doc",
+          id: "billing-pricing",
+        },
+        {
+          type: "doc",
+          id: "billing-check-spending-details",
+        },
+        {
+          type: "doc",
+          id: "billing-review-and-pay-invoices",
+        },
+        {
+          type: "doc",
+          id: "billing-manage-payment-methods",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Account",
-      collapsible: false,
-      collapsed: false,
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: "category",
