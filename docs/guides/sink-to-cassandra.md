@@ -2,7 +2,7 @@
 id: sink-to-cassandra
 title: Sink data from RisingWave to Cassandra or ScyllaDB
 description: Sink data from RisingWave to Cassandra or ScyllaDB.
-slug: /sink-to-cassandra 
+slug: /sink-to-cassandra
 ---
 You can sink data from RisingWave to [Cassandra](https://cassandra.apache.org/). As [ScyllaDB](https://www.scylladb.com/) can work as a drop-in replacement for Cassandra, it means you can sink data from RisingWave to ScyllaDB as well.
 
@@ -31,7 +31,7 @@ WITH (
     cassandra.url = '<node1>,<node2>,<node3>',
     cassandra.keyspace = '<keyspace>',
     cassandra.table = '<cassandra_table>',
-    cassandra.datacenter = '<data_center>' 
+    cassandra.datacenter = '<data_center>'
 );
 ```
 
@@ -73,7 +73,7 @@ The Cassandra sink in RisingWave provides at-least-once delivery semantics. Even
 |bytea |blob|
 |date |date|
 |time without time zone |time|
-|timestamp without time zone |timestamp|
+|timestamp without time zone |unsupported. You need to convert `timestamp` to `timestamptz` in RisingWave before sinking.|
 |timestamp with time zone |timestamp|
 |interval |duration|
 |struct |unsupported|

@@ -31,14 +31,20 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "1.6 (dev)",
+              label: "1.7 (dev)",
               path: "/dev",
               badge: false,
               banner: "unreleased",
             },
-            1.5: {
-              label: "1.5 (current)",
+            1.6: {
+              label: "1.6 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            1.5: {
+              label: "1.5",
+              path: "/1.5",
               badge: false,
               banner: "none",
             },
@@ -69,42 +75,6 @@ const config = {
             "1.0.0": {
               label: "1.0",
               path: "/1.0",
-              badge: false,
-              banner: "none",
-            },
-            "0.19.0": {
-              label: "0.19.0",
-              path: "/0.19.0",
-              badge: false,
-              banner: "none",
-            },
-            "0.18.0": {
-              label: "0.18.0",
-              path: "/0.18.0",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.17": {
-              label: "0.1.17",
-              path: "/0.1.17",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.16": {
-              label: "0.1.16",
-              path: "/0.1.16",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.15": {
-              label: "0.1.15",
-              path: "/0.1.15",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.14": {
-              label: "0.1.14",
-              path: "/0.1.14",
               badge: false,
               banner: "none",
             },

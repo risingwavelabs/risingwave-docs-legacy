@@ -36,7 +36,26 @@ A [generated column](/sql/query-syntax/query-syntax-generated-columns.md) is def
 
 Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
 
-To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestamptz AS proctime()`) when creating the table or source.
+To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestamptz AS proctime()`) when creating the table or source. See also [`proctime()`](/sql/functions-operators/sql-function-datetime.md#proctime).
+
+For a source with schema from external connector, use `*` to represent all columns from the external connector first, so that you can define a generated column on source with an external connector. See the example below.
+
+```sql title=Example
+CREATE SOURCE from_kafka (
+  *,
+  gen_i32_field INT AS int32_field + 2,
+  PRIMARY KEY (some_key)
+)
+INCLUDE KEY AS some_key
+WITH (
+  connector = 'kafka',
+  topic = 'test-rw-sink-upsert-avro',
+  properties.bootstrap.server = 'message_queue:29092'
+)
+FORMAT upsert ENCODE AVRO (
+  schema.registry = 'http://message_queue:8081'
+);
+```
 
 ## Parameters
 
@@ -54,7 +73,7 @@ To know when a data record is loaded to RisingWave, you can define a column that
 
 Click a connector name to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
 
-::note
+:::note
 
 To ingest data in formats marked with "T", you need to create tables (with connector settings). Otherwise, you can create either sources or tables (with connector settings).
 
@@ -72,7 +91,7 @@ To ingest data in formats marked with "T", you need to create tables (with conne
 |[CDC via Kafka](/ingest/ingest-from-cdc.md)||[Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T)|
 |[Amazon S3](/ingest/ingest-from-s3.md)| Latest |[JSON](#json), CSV| |
 |[Load generator](/ingest/ingest-from-datagen.md)|Built-in|[JSON](#json)|
-|Google Pub/Sub | | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T) |
+|[Google Pub/Sub](/ingest/ingest-from-google-pubsub.md) | | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T) |
 |[Google Cloud Storage](/ingest/ingest-from-gcs.md) | [JSON](#json)|
 
 :::note
@@ -308,3 +327,4 @@ ENCODE BYTES
 
 - [`DROP SOURCE`](sql-drop-source.md) — Remove a source.
 - [`SHOW CREATE SOURCE`](sql-show-create-source.md) — Show the SQL statement used to create a source.
+- [`ALTER SOURCE`](sql-alter-source.md) — Modify a source.

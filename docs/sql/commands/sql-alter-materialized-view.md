@@ -59,6 +59,23 @@ ALTER MATERIALIZED VIEW materialized_view_name
 ALTER MATERIALIZED VIEW test_materialized_view SET SCHEMA test_schema;
 ```
 
+### `SET PARALLELISM`
+
+```sql title=Syntax
+ALTER MATERIALIZED VIEW materialized_view_name
+SET PARALLELISM = parallelism_number;
+```
+
+| Parameter or clause | Description |
+| ------------------- | ----------------------------------------------- |
+|**SET PARALLELISM**| This clause controls the degree of [parallelism](/concepts/key-concepts.md#parallelism) for the targeted [streaming job](/concepts/key-concepts.md#streaming-jobs).|
+| *parallelism_number* | This parameter can be `ADAPTIVE` or a fixed number, like 1, 2, 3, etc. Altering the parameter to `ADAPTIVE` will expand the streaming job's degree of parallelism to encompass all available units, whereas setting it to a fixed number will lock the job's parallelism at that specific figure. Setting it to `0` is equivalent to `ADAPTIVE`.|
+
+```sql title=Examples
+-- Set the parallelism of the materialized view "m_join" to 3.
+ALTER MATERIALIZED VIEW m_join SET PARALLELISM = 3;
+```
+
 ### `RENAME TO`
 
 ```sql title=Syntax

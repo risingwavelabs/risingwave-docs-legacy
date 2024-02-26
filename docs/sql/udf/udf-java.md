@@ -77,7 +77,7 @@ git clone https://github.com/risingwavelabs/risingwave-java-udf-template.git
 
 ## 2. Define your functions in Java  
 
-### Scalar functions   
+### Scalar functions
 
 A user-defined scalar function maps zero, one, or multiple scalar values to a new scalar value.
 
@@ -85,7 +85,7 @@ In order to define a scalar function, you have to create a new class that implem
 interface in `com.risingwave.functions` and implement exactly one evaluation method named `eval(...)`.
 This method must be declared public and non-static.
 
-Any data type listed in [Supported data types](#supported-data-types) can be used as a parameter or return type of an evaluation method.
+Any data type listed in [Data type mapping](udf-java.md#data-type-mapping) can be used as a parameter or return type of an evaluation method.
 
 Here's an example of a scalar function that calculates the greatest common divisor (GCD) of two integers:
 
@@ -123,7 +123,7 @@ In order to define a table function, you have to create a new class that impleme
 interface in `com.risingwave.functions` and implement exactly one evaluation method named `eval(...)`.
 This method must be declared public and non-static.
 
-The return type must be an `Iterator` of any data type listed in [Supported data types](#supported-data-types).
+The return type must be an `Iterator` of any data type listed in [Data type mapping](udf-java.md#data-type-mapping).
 
 Similar to scalar functions, input and output data types are automatically extracted using reflection.
 This includes the generic argument T of the return value for determining an output data type.
@@ -207,7 +207,7 @@ SELECT * FROM series(10);
 ```
 
 
-## Supported data types
+## Data type mapping
 
 The RisingWave Java UDF SDK supports the following data types:
 

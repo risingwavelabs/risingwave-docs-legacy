@@ -8,13 +8,19 @@ slug: /sink-to-delta-lake
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-delta-lake/" />
 </head>
 
-This guide describes how to sink data from RisingWave to Delta Lake. Delta Lake is an open-source storage framework designed to allow you to build a Lakehouse architecture with another compute engine. For more information, see [Delta Lake](https://delta.io).
+This guide describes how to sink data from RisingWave to Delta Lake. Delta Lake is an open-source storage framework designed to allow you to build a lakehouse architecture with another compute engine. For more information, see [Delta Lake](https://delta.io).
 
 ## Prerequisites
 
-- Ensure you already have an Delta Lake table that you can sink data to. For additional guidance on creating a table and setting up Delta Lake, refer to this [quickstart guide](https://docs.delta.io/latest/quick-start.html#create-a-table).
+- Ensure you already have a Delta Lake table that you can sink data to. For additional guidance on creating a table and setting up Delta Lake, refer to this [quickstart guide](https://docs.delta.io/latest/quick-start.html#create-a-table).
 
 - Ensure you have an upstream materialized view or source that you can sink data from.
+
+## Spark compatibility
+
+Version 2.4 of Delta Lake is compatible with version 3.4 of Spark.
+
+Versions 2.3, 2.2, and 2.1 of Delta Lake are compatible with version 3.3 of Spark.
 
 ## Syntax
 

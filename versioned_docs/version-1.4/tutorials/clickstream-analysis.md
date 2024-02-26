@@ -77,7 +77,7 @@ First, the `tumble()` function will map each event into a 10-minute window to cr
 
 Next, the `hop()` function will create 24-hour time windows every 10 minutes. Each event will be mapped to corresponding windows. Finally, they will be grouped by `target_id` and `window_time` to calculate the total number of clicks of each thread within 24 hours.
 
-Please refer to [User time windows](/sql/functions-operators/sql-function-time-window.md) for an explanation of the tumble and hop functions and aggregations.
+Please refer to [Time window functions](/sql/functions-operators/sql-function-time-window.md) for an explanation of the tumble and hop functions and aggregations.
 
 ```sql
 CREATE MATERIALIZED VIEW thread_view_count AS WITH t AS (
@@ -139,7 +139,7 @@ The result may look like this:
 (5 rows)
 ```
 
-We can also query results by specifying a time interval. To learn more about data and time functions and operators, see [Date and time](/sql/functions-operators/sql-function-datetime.md/sql-function-datetime/).
+We can also query results by specifying a time interval. To learn more about data and time functions and operators, see [Date and time](/sql/functions-operators/sql-function-datetime.md).
 
 ```sql
 SELECT * FROM thread_view_count

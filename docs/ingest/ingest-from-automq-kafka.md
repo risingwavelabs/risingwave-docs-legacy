@@ -14,7 +14,7 @@ This article will guide you on how to import data from AutoMQ Kafka into RisingW
 
 ## Prepare AutoMQ Kafka and generate test data
 
-To set up your AutoMQ Kafka environment and test the data, please follow the [AutoMQ Quick Start guide](https://docs.automq.com/zh/docs/automq-s3kafka/VKpxwOPvciZmjGkHk5hcTz43nde). This guide will help you deploy your AutoMQ Kafka cluster. Ensure that RisingWave can directly connect to your AutoMQ Kafka server. You can refer [Create a VPC connection](https://docs.risingwave.com/cloud/create-a-connection/) to learn about how to establish a secure connection with your VPC through AWS PrivateLink or GCP Private Service Connect.
+To set up your AutoMQ Kafka environment and test the data, please follow the [AutoMQ Quick Start guide](https://docs.automq.com/zh/docs/automq-s3kafka/VKpxwOPvciZmjGkHk5hcTz43nde). This guide will help you deploy your AutoMQ Kafka cluster. Ensure that RisingWave can directly connect to your AutoMQ Kafka server. You can refer [Create a VPC connection](/cloud/create-a-connection/) to learn about how to establish a secure connection with your VPC through AWS PrivateLink or GCP Private Service Connect.
 
 ### Create a topic
 
@@ -64,7 +64,7 @@ sh kafka-console-consumer.sh --bootstrap-server 10.0.96.4:9092 --topic example_t
 1. If you do not have a RisingWave cluster, you need to create one by navigating to [**Clusters**](https://cloud.risingwave.com/clusters/) in RisingWave.
 2. Go to [**Source**](https://cloud.risingwave.com/source/), and log in to your database. Create a database user if necessary.
 3. Click **Create source**. Because AutoMQ Kafka is 100% compatible with Apache Kafka, you can simply select Kafka in the window that opens. 
-5. Specify the parameters for connecting to the AutoMQ Kafka topic that you created earier.
+5. Specify the parameters for connecting to the AutoMQ Kafka topic that you created earlier.
 
    :::note
 
@@ -85,8 +85,8 @@ SELECT * from your_source_name limit 1;
 ```
 :::note
 
-Replace `your_source_name` with the name you defined when create the source.
+Replace `your_source_name` with the name you defined when creating the source.
 
 :::
 
-When you see actual results, that means that you have successfully ingested data from AutoMQ Kafka into RisingWave Cloud. You can now wrte more data into the topic, or transform the ingested data by creating materialized views in RisingWave Cloud.
+When you see actual results, that means that you have successfully ingested data from AutoMQ Kafka into RisingWave Cloud. You can now write more data into the topic, or transform the ingested data by creating materialized views in RisingWave Cloud.

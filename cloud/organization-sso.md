@@ -7,7 +7,7 @@ slug: /sso
 
 Single Sign-On (SSO) is an authentication method that allows a user to access multiple applications with one set of login credentials.
 
-Currently, RisingWave Cloud supports Okta as an identity provider (IdP) platform for SSO.
+RisingWave Cloud supports SAML-based identity provider (IdP) platforms for SSO.
 
 This article will guide you through the process of setting up SSO for your organization on RisingWave Cloud and logging in with SSO.
 

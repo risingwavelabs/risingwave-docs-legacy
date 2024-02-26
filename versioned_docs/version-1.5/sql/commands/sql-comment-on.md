@@ -73,4 +73,4 @@ DESCRIBE t1;
 
 ## Related topics
 
-- [`DESCRIBE``](/sql/commands/sql-describe.md)
+- [`DESCRIBE`](/sql/commands/sql-describe.md)

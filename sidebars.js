@@ -46,6 +46,11 @@ const sidebars = {
           id: "rw-integration-summary",
         },
         {
+          type: "doc",
+          label: "FAQ",
+          id: "rw-faq",
+        },
+        {
           type: "category",
           label: "Deep-dive",
           collapsible: true,
@@ -94,11 +99,11 @@ const sidebars = {
         {
           "type": "doc",
           "id": "deploy/risingwave-docker-compose",
-          "label": "Deploy with Docker Compose"
+          "label": "Deploy locally with Docker Compose"
         },
         {
           "type": "category",
-          "label": "Deploy in production environments",
+          "label": "Deploy in distributed environments",
           "collapsible": true,
           "collapsed": true,
           "items": [
@@ -207,7 +212,7 @@ const sidebars = {
                   label: "Amazon MSK",
                   id: "guides/connector-amazon-msk",
                 },
-               {
+                {
                   type: "doc",
                   label: "AutoMQ Kafka",
                   id: "ingest/ingest-from-automq-kafka",
@@ -221,6 +226,11 @@ const sidebars = {
                   type: "doc",
                   label: "Upstash Kafka",
                   id: "ingest/ingest-from-upstash-kafka",
+                },
+                {
+                  type: "doc",
+                  label: "WarpStream",
+                  id: "ingest/ingest-from-warpstream",
                 },
               ]
             },
@@ -251,6 +261,11 @@ const sidebars = {
               type: "doc",
               label: "AWS S3",
               id: "ingest/ingest-from-s3",
+            },
+            {
+              type: "doc",
+              label: "Google Pub/Sub",
+              id: "ingest/ingest-from-google-pubsub",
             },
             {
               type: "doc",
@@ -291,11 +306,6 @@ const sidebars = {
               type: "doc",
               label: "Redpanda",
               id: "ingest/ingest-from-redpanda",
-            },
-            {
-              type: "doc",
-              label: "WrapStream",
-              id: "ingest/ingest-from-warpstream",
             },
             {
               type: "doc",
@@ -784,6 +794,16 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/udf/udf-rust",
+                  label: "Rust",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-javascript",
+                  label: "JavaScript",
+                },
+                {
+                  type: "doc",
                   id: "sql/udf/udf-foreign-data",
                   label: "Foreign data",
                 },
@@ -921,6 +941,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "manage/secure-connections-with-ssl-tls",
+          label: "Secure connections with SSL/TLS",
+        },
+        {
+          type: "doc",
           label: "Telemetry",
           id: "telemetry",
         },
@@ -960,8 +985,13 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Troubleshoot out-of-memory problems",
+          label: "Troubleshoot out-of-memory",
           id: "troubleshoot/troubleshoot-oom"
+        },
+        {
+          type: "doc",
+          label: "Troubleshoot high latency",
+          id: "troubleshoot/troubleshoot-high-latency"
         },
       ]
     },

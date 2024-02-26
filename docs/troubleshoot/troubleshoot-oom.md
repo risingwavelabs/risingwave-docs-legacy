@@ -38,7 +38,7 @@ Alternatively, you may use `risectl` to alter the streaming rate limit of an exi
 risingwave ctl throttle source/mv <id> <streaming_rate_limit>
 ```
 
-## OOM caused by barrier latency
+## OOM caused by extremely high barrier latency
 
 Barriers play a vital role in our system, supporting the proper functioning of important components like memory management and LRU caches.
 
@@ -46,17 +46,12 @@ Barrier latency can be observed from Grafana dashboard - Barrier latency panel. 
 
 <img
   src={require('../images/example_bad_barrier_latency.png').default}
-  alt="Out-of-memory symptom"
+  alt="An example of extremely high latency"
 />
 
 Instead of solely addressing the memory problem, we recommend investigating why the barrier is getting stuck. This issue could be caused by heavy streaming jobs, sudden impact of input traffic, or even some temporary issues.
 
-Some tools will be helpful in troubleshooting this issue:
-
-- Observe the backpressure between fragments (actors) in Grafana. A high backpressure between 2 fragments indicates that the downstream one is not able to process the data fast enough, therefore slowing down the whole streaming job.
-- Check the Await Tree Dump of all compute nodes in RisingWave Dashboard. If the barrier is stuck, the Await Tree Dump will show the barrier is waiting for a specific operation to finish. This fragment is likely to be the bottleneck of the streaming job.
-
-In either case, you can try to increase the parallelism by adding more nodes into the cluster, or check the SQL query to see if there is any room for optimization.
+Please refer to [Troubleshoot high latency](/troubleshoot-high-latency) for more details.
 
 ## OOM during prefetching
 
