@@ -71,3 +71,14 @@ Go to the [**Org.**](https://cloud.risingwave.com/organization/) tab and select 
 Here, you can get a list of all users in your organization.
 
 The owner can click the trash icon to remove a user from the organization. Removed users will lose access to all the resources in the organization, and their accounts will be deleted.
+
+## Assign ownership to another user
+
+The owner can assign ownership to another user in the organization. The new owner will have the highest authority to manage the organization and its resources. The previous owner will become a member user.
+
+Click the **Assign owner role** button on the user you want to assign ownership to and then confirm your decision.
+
+<img
+src={require('./images/org-assign-owner.png').default}
+alt="Assign ownership"
+/>
