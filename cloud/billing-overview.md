@@ -44,11 +44,9 @@ See details in [Check current spending](/cloud/billing-check-spending-details.md
 
 ## Reviewing and paying invoices
 
-Each month, RisingWave Cloud generates an invoice summarizing your service usage and associated charges for the previous billing period. Normally, you can expect to receive your invoice within the first few days of the new month. 
+Each month, RisingWave Cloud generates an invoice summarizing your service usage and associated charges for the previous billing period. Normally, you can expect to receive your invoice within the first few days of the new month. This invoice provides a breakdown of your usage. 
 
-This invoice provides a breakdown of your usage. If there are any outstanding payments, you can settle them manually.
-
-You can also access your history invoices.
+If there are any outstanding payments, you can settle them manually. You can also access your history invoices.
 
 See details in [Review and pay invoices](/cloud/billing-review-and-pay-invoices.md).
 
