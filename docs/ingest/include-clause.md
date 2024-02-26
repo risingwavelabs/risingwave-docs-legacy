@@ -32,6 +32,8 @@ FORMAT data_format ENCODE data_encode (
 );
 ```
 
+Note that for `UPSERT` types of sources and tables, `INCLUDE KEY` is required as RisingWave will use this column to perform upsert semantics. A primary key cannot be defined as multiple columns in this case. 
+
 ## Supported connectors
 
 The `INCLUDE` clause can be used with the following source connectors.
@@ -50,13 +52,13 @@ When ingesting data from Kafka, the following additional fields can be included.
 
 In the case of headers, there are two ways to define it.
 
-You can choose to generate headers with type `List[Struct<Varchar, Bytea>]`, which can be difficult to interpret in SQL.
+You can choose to generate headers with type `List[Struct<Varchar, Bytea>]`.
 
 ```sql
 INCLUDE header [AS kafka_header]
 ```
 
-Or you can generate a type `bytea` header, where the column content will be specified as the value associated with the specified key, `header_col`. In this case, the generated column name will have the format `_rw_kafka_header_{header col name}_{col type}`, where `col type` is the data type of the header column.
+Or you can generate a type `bytea` header, where the column content will be specified as the value associated with the specified key, `header_col`. The `header_col` field can only be defined when including a header. In this case, the generated column name will have the format `_rw_kafka_header_{header col name}_{col type}`, where `col type` is the data type of the header column.
 
 ```sql
 INCLUDE header 'header_col' [AS kafka_header]
