@@ -85,3 +85,23 @@ with (
   force_append_only = 'true',
 );
 ```
+
+The example above and the following SQL with left join operation are completely equivalent.
+
+```SQL
+CREATE MATERIALIZED VIEW wide_fact AS 
+SELECT fact.pk, d1.v v1, d2.v v2, d3.v v3
+FROM fact
+LEFT JOIN d1 ON fact.k1 = d1.pk
+LEFT JOIN d2 ON fact.k2 = d2.pk
+LEFT JOIN d3 ON fact.k3 = d3.pk
+```
+
+But maintaining wide table with table sinks can save the resources and get high efficiency
+
+<img
+  src={require('./images/maintain_wide_table_with_table_sink.drawio.png').default}
+  alt="The streaming state when maintain wide table with table sinks"
+/>
+
+Furthermore, for the large dimension table, the [Temporal Join](/sql/query-syntax/query-syntax-join-clause.md) can be used as the partial join to reduce the streaming state and improve performance.
