@@ -1,7 +1,7 @@
 ---
 id: multiple-table-sink
 slug: /multiple-table-sink
-title: Multiple Table Sink
+title: Maintain wide table with table sinks
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/multiple-table-sink/" />
