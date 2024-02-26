@@ -28,6 +28,22 @@ WITH (
 ...
 ```
 
+After creating a table or source, RisingWave will continuously consume data from the upstream system.
+
+### Difference between table and source
+
+The table below shows the fundamental differences between a table and a source.
+
+| Functionalities | `table` | `source` |
+| :: | :: | :: |
+| Support persisting data     | yes       | no |
+| Support primary key   | yes        | no |
+| Support appending data  | yes        | yes |
+| Support updating/deleting data   | yes, but a primary key needs to be defined       | no |
+
+As shown, a very fundamental difference between them is that a table will persist the consumed data, while a source will not. For instance, if the upstream inputs 5 records: `AA` `BB` `CC` `DD` `EE`, if using table, these 5 records will be persisted within RisingWave; if using source, these records will not be persisted. 
+
+
 When connector settings are specified for a table in RisingWave, it is able to store streaming data. However, a table with connector settings is different from a source in RisingWave.
 
 - A source does not persist all data that flows in. It persists only results from materialized views. It accepts only append-only data, such as application events or log messages.
