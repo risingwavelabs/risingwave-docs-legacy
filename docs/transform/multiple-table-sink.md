@@ -9,7 +9,7 @@ title: Maintain wide table with table sinks
 
 This guide tells a way to maintain a wide table whose columns are comes from different sources. Traditional data warehouse or ETL use a join query to do it. But the streaming join brings issues such as low efficiency and large memory consumption. 
 
-In some cases with limitation, use the [CREATE SINK INTO TABLE](/commands/sql-create-sink-into.md) and [ON CONFLICT clause](/commands/sql-create-table.md#pk-conflict-behavior) can save the resources and get high efficiency.
+In some cases with limitation, use the [CREATE SINK INTO TABLE](/sql/commands/sql-create-sink-into.md) and [ON CONFLICT clause](/sql/commands/sql-create-table.md#pk-conflict-behavior) can save the resources and get high efficiency.
 
 ## Merge multiple sinks with the same primary key
 
@@ -17,7 +17,7 @@ In some cases with limitation, use the [CREATE SINK INTO TABLE](/commands/sql-cr
 Keep in mind that the `ON CONFLICT` clause does not affect the update or delete events, the sinks should be forced to be append-only, otherwise, the delete or update events from any sink will delete the regarding row.
 :::
 
-```SQL
+```sql
 CREATE TABLE d1(v1 int, k int primary key);
 CREATE TABLE d2(v2 int, k int primary key);
 CREATE TABLE d3(v3 int, k int primary key);
@@ -88,7 +88,7 @@ with (
 
 The example above and the following SQL with left join operation are completely equivalent.
 
-```SQL
+```sql
 CREATE MATERIALIZED VIEW wide_fact AS 
 SELECT fact.pk, d1.v v1, d2.v v2, d3.v v3
 FROM fact
@@ -100,7 +100,7 @@ LEFT JOIN d3 ON fact.k3 = d3.pk
 But maintaining wide table with table sinks can save the resources and get high efficiency
 
 <img
-  src={require('./images/maintain_wide_table_with_table_sink.drawio.png').default}
+  src={require('../images/maintain_wide_table_with_table_sink.drawio.png').default}
   alt="The streaming state when maintain wide table with table sinks"
 />
 
