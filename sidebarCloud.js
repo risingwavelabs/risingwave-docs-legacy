@@ -70,6 +70,10 @@ module.exports = {
             },
             {
               type: "doc",
+              id: "cluster-scale-a-cluster-manually"
+            },
+            {
+              type: "doc",
               id: "cluster-update-database-version",
               label: "Update database version",
             },
