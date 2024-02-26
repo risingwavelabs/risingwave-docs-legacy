@@ -24,21 +24,24 @@ CREATE TABLE d3(v3 int, k int primary key);
 CREATE TABLE wide_d(v1 int, v2 int, v3 int, k primary key)
 ON CONFLICT DO UPDATE IF NOT NULL;
 
-CREATE SINK sink1 INTO wide_d AS SELECT v1, NULL, NULL, k FROM d1
-with (
-    type = 'append-only',
-    force_append_only = 'true',
-);
-CREATE SINK sink2 INTO wide_d AS SELECT NULL, v2, NULL, k FROM d2
-with (
-    type = 'append-only',
-    force_append_only = 'true',
-);
-CREATE SINK sink3 INTO wide_d AS SELECT NULL, NULL, v3, k FROM d3
-with (
-    type = 'append-only',
-    force_append_only = 'true',
-);
+CREATE SINK sink1 INTO wide_d (v1, k) AS
+  SELECT v1, k FROM d1
+  with (
+      type = 'append-only',
+      force_append_only = 'true',
+  );
+CREATE SINK sink2 INTO wide_d (v2, k) AS
+  SELECT v2, k FROM d2
+  with (
+      type = 'append-only',
+      force_append_only = 'true',
+  );
+CREATE SINK sink3 INTO wide_d (v3,k) AS 
+  SELECT v3, k FROM d3
+  with (
+      type = 'append-only',
+      force_append_only = 'true',
+  );
 ```
 
 ## Enrich data with foreign keys in Star/Snowflake Schema Model
@@ -55,31 +58,30 @@ CREATE TABLE wide_fact(pk int primary key, v1 int, v2 int, v3 int)
   ON CONFLICT DO UPDATE IF NOT NULL;
 
 /* the main sink is not force-append-only to control if the record exists*/
-CREATE SINK fact_sink INTO wide_fact AS
-  SELECT pk, NULL, NULL, NULL
-  FROM fact;
+CREATE SINK fact_sink INTO wide_fact (pk) AS
+  SELECT pk FROM fact;
 
-CREATE SINK sink1 INTO wide_fact AS
-  SELECT fact.pk, d1.v, NULL, NULL
+CREATE SINK sink1 INTO wide_fact (pk, v1) AS
+  SELECT fact.pk, d1.v
   FROM fact JOIN d1 ON fact.k1 = d1.pk
 with (
-    type = 'append-only',
-    force_append_only = 'true',
+  type = 'append-only',
+  force_append_only = 'true',
 );
 
-CREATE SINK sink2 INTO wide_fact AS
-  SELECT fact.pk, NULL, d2.v, NULL
+CREATE SINK sink2 INTO wide_fact (pk, v2) AS
+  SELECT fact.pk, d2.v
   FROM fact JOIN d2 ON fact.k2 = d2.pk
 with (
-    type = 'append-only',
-    force_append_only = 'true',
+  type = 'append-only',
+  force_append_only = 'true',
 );
 
-CREATE SINK sink3 INTO wide_fact AS
-  SELECT fact.pk, NULL NULL, d3.v
+CREATE SINK sink3 INTO wide_fact (pk, v3) AS
+  SELECT fact.pk, d3.v
   FROM fact JOIN d3 ON fact.k3 = d3.pk
 with (
-    type = 'append-only',
-    force_append_only = 'true',
+  type = 'append-only',
+  force_append_only = 'true',
 );
 ```
