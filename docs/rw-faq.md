@@ -90,6 +90,8 @@ In summary, materialized views in stream databases like RisingWave have the foll
 
 ## Questions for streamlining your experience
 
+The questions below provide information for streamlining your using experience.
+
 ### Why does RisingWave not accept Kafka consumer group IDs?
 
 A Kafka consumer group is a concept in Apache Kafka. It refers to a group of consumers that work together to consume data from one or more topics.
