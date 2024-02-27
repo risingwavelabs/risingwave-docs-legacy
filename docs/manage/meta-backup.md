@@ -24,7 +24,7 @@ To learn about how to configure system parameters, see [How to configure system 
 
 ## Create a meta snapshot
 
-Meta snapshot is created by meta service.
+Meta snapshot is created by meta service whenever requested by user. There is no automatic process in RisingWave kernel that creates meta snapshot regularly.
 
 Here's an example of how to create a new meta snapshot with `risectl`:
 
@@ -77,10 +77,10 @@ Use the following steps to restore from a meta snapshot.
     --meta-store-type etcd \
     --meta-snapshot-id [snapshot_id] \
     --etcd-endpoints [etcd_endpoints] \
-    --backup-storage-url [backup_storage_url] \
-    --backup-storage-directory [backup_storage_directory ] \
-    --hummock-storage-url [hummock_storage_url] \
-    --hummock-storage-directory [hummock_storage_directory]
+    --backup-storage-url [backup_storage_url, e.g. s3://bucket_read_from] \
+    --backup-storage-directory [backup_storage_directory, e.g. dir_read_from] \
+    --hummock-storage-url [hummock_storage_url, e.g. s3://bucket_write_to] \
+    --hummock-storage-directory [hummock_storage_directory, e.g. dir_write_to]
     ```
 
     If etcd enables authentication, also specify
@@ -92,6 +92,22 @@ Use the following steps to restore from a meta snapshot.
     ```
 
     `restore-meta` reads snapshot data from backup storage and writes them to etcd and hummock storage.
+
+    For example, with 
+    ```
+    psql=> show parameters;
+                  Name                     |                Value                 | Mutable
+   ----------------------------------------+--------------------------------------+---------
+    state_store                            | hummock+s3://state_bucket            | f
+    data_directory                         | state_data                           | f
+    backup_storage_url                     | s3://backup_bucket                   | t
+    backup_storage_directory               | backup_data                          | t
+    ```
+    parameters to `risectl meta restore-meta` should be:
+    - `--backup-storage-url s3://backup_bucket`.
+    - `--backup-storage-directory backup`.
+    - `--hummock-storage-url s3://state_bucket`. Note that the `hummock+` prefix is stripped.
+    - `--hummock-storage-directory backup_data`.
 4. Configure meta service to use the new meta store.
 
 ## Access historical data backed up by meta snapshot
