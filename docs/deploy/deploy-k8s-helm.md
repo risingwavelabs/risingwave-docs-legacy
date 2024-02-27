@@ -182,7 +182,7 @@ Please note that increasing the CPU resource will not automatically increase the
 
 ### Customize state backends
 
-By default, the RisingWave Helm chart uses MinIO as the default state backend. You can edit the `values.yml` file to use other options as the state backend.
+By default, the RisingWave Helm chart uses MinIO as the default state backend. You can edit the `values.yml` file to customize the state backend. 
 
 
 import Tabs from '@theme/Tabs';
