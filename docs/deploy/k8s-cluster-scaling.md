@@ -7,124 +7,76 @@ slug: /k8s-cluster-scaling
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/k8s-cluster-scaling/" />
 </head>
-This article describes how to increase or reduce nodes and customize resources for existing nodes in a RisingWave cluster that is deployed on Kubernetes.
 
-You can adjust the computational resources of RisingWave as your workload changes. By default, RisingWave uses all the CPU cores on each node. If you add new nodes or CPUs to the cluster, you can configure RisingWave to take advantage of the additional computing power. Similarly, if the available compute resources are reduced, you can adjust the parallelism in RisingWave to optimize resource utilization.
+This article describes adaptive parallelism as the default scaling policy for all new streaming jobs starting from v1.7 in RisingWave. With adaptive parallelism, the system will automatically adjust parallelism to leverage added CPU cores or nodes in the cluster, ensuring optimal utilization of resources.
 
-Currently, scaling needs to be done manually. However, we are developing an automatic scaling feature to simplify the process.
+## Scaling policies
 
-## Configuring session parallelisms
+RisingWave supports **adaptive parallelism** and **fixed parallelism** for **tables**, **materialized views**, and **sinks**.
 
-RisingWave distributes its computation across lightweight threads called "streaming actors," which run simultaneously on CPU cores.
+- **Adaptive parallelism (recommended)**
+    Adaptive parallelism is the **default** setting for newly created streaming jobs since v1.7. In this mode, RisingWave automatically adjusts parallelism to utilize all CPU cores across the compute nodes in the cluster. When nodes are added or removed, parallelism adjusts accordingly based on the current number of CPU cores.
 
-By spreading these streaming actors across cores, RisingWave achieves parallel computation, resulting in improved performance, scalability, and throughput.
+    To modify the scaling policy to adaptive parallelism, use the SQL command:
 
-You can configure the parallelism of streaming actors for the current session of a materialized view, index, sink, or table by adjusting the session variable using the following command:
+    ```sql
+    ALTER TABLE t SET PARALLELISM = adaptive;
+    ```
 
-```sql
-SET STREAMING_PARALLELISM={num}
-```
+    To modify on a materialized view:
 
-By default, the streaming parallelism is set to 0, which means that RisingWave utilizes all available CPU cores.
+    ```sql
+    ALTER MATERIALIZED VIEW mv SET PARALLELISM = adaptive;
+    ```
 
-To get the currently configured parallelism, run the following command:
+- **Fixed parallelism**
 
-```sql
-dev=> SHOW STREAMING_PARALLELISM;
- streaming_parallelism
------------------------
- 0
-(1 row)
-```
+    Fixed parallelism is the advanced mode allows manually specifying a parallelism number that remains constant as the cluster resizes. It’s commonly used to throttle stream bandwidth and ensures predictable resource allocation. For example:
 
-The value of `STREAMING_PARALLELISM` only applies to the streams created in the current session.
+    ```sql
+    ALTER TABLE t SET PARALLELISM = 16; -- Replace 16 with the desired parallelism
+    ```
 
-Please note that setting `STREAMING_PARALLELISM` to a value, for example, 4, does not parallel all fragments in 4 threads. This is because not all SQL operators can be distributed across CPU cores.
+RisingWave distributes its computation across lightweight threads called "streaming actors," which run simultaneously on CPU cores. By spreading these streaming actors across cores, RisingWave achieves parallel computation, resulting in improved performance, scalability, and throughput.
 
-## Scaling
+In both scaling modes, streaming actors will redistribute across the cluster to maintain balanced workloads.
 
-For the instructions below, we assume that you have deployed RisingWave on Kubernetes with [Helm](/deploy/deploy-k8s-helm.md).
+# Scale-in
 
-The scaling commands will be issued through `risingwave ctl`, which is a command-line tool that is included in the latest version of RisingWave.
-
-Please run this command in the meta node Pod to avoid potential connectivity issue.
-
-```bash
-kubectl exec -it my-risingwave-meta-0 -- bash -c 'cd /risingwave/bin && bash'
-```
-
-Please also remember to set the environment variable `RW_META_ADDR` to the meta node's address. As you have logged into the meta node Pod, the address is `http://127.0.0.1:5690`.
-
-```bash
-export RW_META_ADDR=http://127.0.0.1:5690
-```
-
-## Add or remove nodes
-
-To scale out the cluster (adding nodes) to the maximum parallelism, please run:
-
-```bash
-/risingwave/bin/risingwave ctl scale horizon --include-workers all
-```
-
-You may need to update the configuration file of your Kubernetes cluster (for example, `values.yml` for deployments with Helm chart) before running the above command to scale out.
-
-To remove a particular compute node, please run:
-
-```bash
-/risingwave/bin/risingwave ctl scale horizon --exclude-workers {hostname of the compute node}
-```
-
-You can find worker node IDs with this command:
-
-```bash
-dev=> select * from rw_worker_nodes;
- id |                                host                                | port |     type     |  state  | parallelism | is_streaming | is_serving | is_unschedulable
-----+--------------------------------------------------------------------+------+--------------+---------+-------------+--------------+------------+------------------
-  1 | my-risingwave-compute-0.my-risingwave-compute-headless.default.svc | 5688 | COMPUTE_NODE | RUNNING |           8 | t            | t          | f
-(1 row)
-```
-
-## Adjust the parallelism of a worker node (vertical scaling)
-
-To adjust the parallelism of a specific worker node, use the `vertical` command. Increasing the parallelism of a worker node means allocating more computing resources to it.
-
-For example, to reduce the parallelism of `my-risingwave-compute-0` to 1, you can run:
-
-```bash
-/risingwave/bin/risingwave ctl scale vertical --workers http://my-risingwave-compute-0 \
---target-parallelism-per-worker 1
-```
-
-## Check the parallelism of a materialized view
-
-To see if scaling operations work as expected, you can check the running parallelism for each materialized view fragment using this query:
+By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls. To manually trigger immediate scale-in:
 
 ```sql
-WITH all_objects AS (
-    SELECT id, name FROM rw_tables
-    UNION ALL
-    SELECT id, name FROM rw_materialized_views
-    UNION ALL
-    SELECT id, name FROM rw_sinks
-    UNION ALL
-    SELECT id, name FROM rw_indexes
-),
-fragment_parallelism AS (
-    SELECT
-    f.fragment_id,
-    COUNT(a.actor_id) AS parallelism
-    FROM rw_actors a
-    INNER JOIN rw_fragments f ON a.fragment_id = f.fragment_id
-    GROUP BY f.fragment_id
-)
-SELECT
-    f.*,
-    fp.parallelism
-FROM all_objects ao
-INNER JOIN rw_fragments f ON ao.id = f.table_id
-INNER JOIN fragment_parallelism fp ON f.fragment_id = fp.fragment_id
-ORDER BY ao.name;
+risingwave ctl meta unregister-worker {id}
+```
+
+# **Upgrade to v1.7**
+
+After upgrading to v1.7 from prior versions, if the parallelism is unset, streaming jobs will automatically upgrade to adaptive parallelism (`adaptive`). If the parallelism is set, streaming jobs will use `fixed` parallelism.
+
+If you prefer not to use the `adaptive` setting by default, you can specify the global configuration `default.scaling.policy` as ‘none’. This configuration sets the default scaling policy to neither `adaptive` nor `fixed`, aligning with the old behavior.
+
+# **Monitoring parallelism**
+
+RisingWave includes a system table enabling users to view the current scaling policy of tables, materialized views, and sinks:
+
+```sql
+dev=> SELECT * FROM rw_streaming_parallelism;
+  id  | name |   relation_type   | parallelism
+------+------+-------------------+-------------
+ 1001 | t    | table             | FIXED(4)
+ 1002 | mv1  | materialized view | AUTO
+ 1004 | idx  | index             | AUTO
+(3 rows)
+```
+
+To view the parallelism of fragments within a specific streaming job, please use the system table `rw_fragment_parallelism` instead:
+
+```sql
+dev=> SELECT * FROM rw_fragment_parallelism WHERE name = 't';
+  id  | name |   relation_type   | fragment_id | distribution_type | state_table_ids | upstream_fragment_ids |        flags        | parallelism
+------+------+-------------------+-------------+-------------------+-----------------+-----------------------+---------------------+-------------
+ 1001 | t    | table             |           2 | HASH              | {}              | {}                    | {SOURCE,DML}        |           4
+ 1001 | t    | table             |           1 | HASH              | {1001}          | {2}                   | {MVIEW}             |           4
 ```
 
 To understand the output of the query, you may need to know about these two concepts: [streaming actors](/concepts/key-concepts.md#streaming-actors) and [fragments](/concepts/key-concepts.md#fragments)
