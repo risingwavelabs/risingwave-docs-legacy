@@ -44,7 +44,7 @@ In both scaling modes, streaming actors will redistribute across the cluster to
 
 ## Scale-in
 
-By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls. To manually trigger immediate scale-in:
+Scale-in here refers to the process of decreasing the computational resources to align with the current workload or operational requirements. By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls. To manually trigger immediate scale-in:
 
 ```sql
 risingwave ctl meta unregister-worker {id}
@@ -56,9 +56,9 @@ After upgrading to v1.7 from prior versions, if the parallelism is unset, stream
 
 If you prefer not to use the `adaptive` setting by default, you can specify the global configuration `default.scaling.policy` as ‘none’. This configuration sets the default scaling policy to neither `adaptive` nor `fixed`, aligning with the old behavior.
 
-## Monitoring parallelism
+## Monitor parallelism
 
-RisingWave includes a system table enabling users to view the current scaling policy of tables, materialized views, and sinks:
+You can use a system table to view the current scaling policy of tables, materialized views, and sinks:
 
 ```sql
 dev=> SELECT * FROM rw_streaming_parallelism;
