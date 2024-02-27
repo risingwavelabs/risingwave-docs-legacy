@@ -17,14 +17,14 @@ A meta snapshot is a backup of meta service's data at a specific point in time. 
 Before you can create a meta snapshot, you need to set the `backup_storage_url` and `backup_storage_directory` system parameters prior to the first backup attempt.
 
 :::caution
-Be careful not to set the `backup_storage_url` and `backup_storage_directory` when there are snapshots. However, it's not strictly forbidden. If you insist to do so, please note the snapshots taken before the setting will all be invalidated and cannot be used in restoration anymore.
+Be careful not to set the `backup_storage_url` and `backup_storage_directory` when there are snapshots. However, it's not strictly forbidden. If you insist on doing so, please note the snapshots taken before the setting will all be invalidated and cannot be used in restoration anymore.
 :::
 
 To learn about how to configure system parameters, see [How to configure system parameters](../manage/view-configure-system-parameters.md#how-to-configure-system-parameters).
 
 ## Create a meta snapshot
 
-Meta snapshot is created by meta service whenever requested by user. There is no automatic process in RisingWave kernel that creates meta snapshot regularly.
+Meta snapshot is created by meta service whenever requested by users. There is no automatic process in RisingWave kernel that creates meta snapshot regularly.
 
 Here's an example of how to create a new meta snapshot with `risectl`:
 
@@ -83,7 +83,7 @@ Use the following steps to restore from a meta snapshot.
     --hummock-storage-directory [hummock_storage_directory, e.g. dir_write_to]
     ```
 
-    If etcd enables authentication, also specify
+    If etcd enables authentication, also specify the following:
 
     ```bash
     --etcd-auth \
@@ -93,7 +93,7 @@ Use the following steps to restore from a meta snapshot.
 
     `restore-meta` reads snapshot data from backup storage and writes them to etcd and hummock storage.
 
-    For example, with 
+    Below is an example of setting parameters:
     ```
     psql=> show parameters;
                   Name                     |                Value                 | Mutable
@@ -103,7 +103,7 @@ Use the following steps to restore from a meta snapshot.
     backup_storage_url                     | s3://backup_bucket                   | t
     backup_storage_directory               | backup_data                          | t
     ```
-    parameters to `risectl meta restore-meta` should be:
+    Parameters to `risectl meta restore-meta` should be:
     - `--backup-storage-url s3://backup_bucket`.
     - `--backup-storage-directory backup_data`.
     - `--hummock-storage-url s3://state_bucket`. Note that the `hummock+` prefix is stripped.
