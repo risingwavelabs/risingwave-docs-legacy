@@ -11,7 +11,7 @@ After creating a cluster, you have the flexibility to scale its resources and ca
 You can scale the clusters created in the Standard plan and the Invited plan. The Developer plan has a fixed number of nodes and resources.
 :::
 
-## Scaling your cluster
+## Scale your cluster
 
 To scale your cluster:
 
@@ -24,7 +24,7 @@ To scale your cluster:
    width="300"
 />
 
-## Configuring node resources
+## Configure node resources
 
 When scaling, you will configure the vCPU numbers for each component, with the memory size automatically scaling at a 1:4 ratio with the vCPUs. The [RWU](/billing-pricing.md#risingwave-unit-rwu) numbers are calculated based on the vCPU and memory size.
 
