@@ -190,7 +190,7 @@ import TabItem from '@theme/TabItem';
 
 <Tabs groupId="state_backend_options">
 
-<TabItem value="AWS S3" label="AWS S3">
+<TabItem value="aws-s3" label="AWS S3">
 
 ```yaml
 tags:

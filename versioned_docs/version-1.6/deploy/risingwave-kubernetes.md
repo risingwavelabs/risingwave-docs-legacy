@@ -368,6 +368,38 @@ spec:
 ```
 
 </TabItem>
+<TabItem value="aliyun-oss" label="Aliyun OSS">
+
+```yaml
+spec:
+  stateStore:
+    # Prefix to objects in the object stores or directory in file system. Default to "hummock".
+    dataDirectory: hummock
+    
+    # Declaration of the Aliyun OSS state store backend.
+    aliyunOSS:
+      # Region of the Aliyun OSS bucket.
+      region: cn-hangzhou
+      
+      # Name of the Aliyun OSS compatible bucket.
+      bucket: risingwave
+
+      # Use internal endpoint or not. Check the following document for details:
+      # https://www.alibabacloud.com/help/en/oss/user-guide/regions-and-endpoints
+      internalEndpoint: false
+      
+      # Credentials to access the Aliyun OSS bucket.
+      credentials:
+        # Name of the Kubernetes secret that stores the credentials.
+        secretName: oss-credentials
+        
+        # Key of the access key ID in the secret.
+        accessKeyRef: ACCESS_KEY_ID
+        
+        # Key of the secret access key in the secret.
+        secretAccessKeyRef: SECRET_ACCESS_KEY_ID
+```
+</TabItem>
 
 </Tabs>
 
