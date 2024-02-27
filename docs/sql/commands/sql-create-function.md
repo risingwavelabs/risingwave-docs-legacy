@@ -303,7 +303,7 @@ select add_sub_wrapper(1, 1);
 114514
 ```
 
-### Basic SQL UDFs integrated with the use of mock tables 
+#### Basic SQL UDFs integrated with the use of mock tables 
 
 The examples in this section are a simulation of real-world use cases.
 
@@ -382,7 +382,7 @@ select add_named_mc(a, b) from t3 order by a asc;
 10
 ```
 
-### Examples of corner and special cases tests
+#### Examples of corner and special cases tests
 
 ```sql title="Create function"
 -- Mixed parameters with calling inner SQL UDFs
