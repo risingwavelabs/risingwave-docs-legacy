@@ -393,7 +393,7 @@ spec:
       # Credentials to access the Aliyun OSS bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
-        secretName: cos-credentials
+        secretName: oss-credentials
         
         # Key of the access key ID in the secret.
         accessKeyRef: ACCESS_KEY_ID
