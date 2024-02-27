@@ -211,7 +211,7 @@ stateStore:
 ```
 </TabItem>
 
-<TabItem value="alibaba-cloud-storage" label="Alibaba Cloud Storage">
+<TabItem value="aliyun-oss" label="Aliyun OSS">
 
 ```yaml
 tags:

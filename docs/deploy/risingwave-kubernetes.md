@@ -123,7 +123,7 @@ RisingWave supports using these systems or services as state backends.
 * S3-compatible object storages
 * Google Cloud Storage
 * Azure Blob Storage
-* Alibaba Cloud Storage
+* Aliyun OSS
 
 You can [customize etcd as a separate cluster](#optional-customize-the-etcd-deployment), [customize the state backend](#optional-customize-the-state-backend), or [customize the state store directory](#optional-customize-the-state-store-directory).
 
@@ -370,7 +370,7 @@ spec:
 
 </TabItem>
 
-<TabItem value="alibaba-cloud-storage" label="Alibaba Cloud Storage">
+<TabItem value="aliyun-oss" label="Aliyun OSS">
 
 ```yaml
 spec:
