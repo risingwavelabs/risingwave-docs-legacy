@@ -140,7 +140,7 @@ select sub(1, 1);
 - Create a SQL UDF with unnamed parameters that calls other pre-defined SQL UDFs.
 
 ```sql title="Create function"
-# Create two pre-defined SQL UDFs
+-- Create two pre-defined SQL UDFs
 create function add1(INT, INT) returns int language sql as 'select $1 + $2';
 create function sub1(INT, INT) returns int language sql as 'select $1 - $2';
 
@@ -227,7 +227,7 @@ select add_return(1, 1);
 - Create a SQL UDF with a return expression using previously defined UDFs.
 
 ```sql title="Create function"
-# Create a pre-defined UDF
+-- Create a pre-defined UDF
 create function add_return1(INT, INT) returns int language sql return $1 + $2;
 
 create function add_return_binding() returns int language sql return add_return1(1, 1) + add_return1(1, 1);
