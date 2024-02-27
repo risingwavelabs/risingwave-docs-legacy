@@ -42,7 +42,7 @@ Ensure [Homebrew](https://brew.sh/) in installed, and run the following commands
 ```shell
 brew tap risingwavelabs/risingwave
 brew install risingwave
-./risingwave
+risingwave
 ```
 
 ### From a Web browser
