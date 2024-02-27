@@ -395,7 +395,7 @@ create function add_sub_mix_wrapper(INT, a INT, INT) returns int language sql as
 
 ```sql title="Call function"
 select add_sub_mix_wrapper(1, 2, 3);
-----
+----RESULT
 4
 ```
 
@@ -408,7 +408,7 @@ create function corner_case(INT, a INT, INT) returns varchar language sql as $$s
 
 ```sql title="Call function"
 select corner_case(1, 2, 3);
-----
+----RESULT
 $1 + a + $3
 ```
 
@@ -422,7 +422,7 @@ create function call_regexp_replace() returns varchar language sql as $$select r
 
 ```sql title="Call function"
 select call_regexp_replace();
-----
+----RESULT
 Dog is the cutest animal.
 ```
 
@@ -432,7 +432,7 @@ create function regexp_replace_wrapper(varchar) returns varchar language sql as 
 
 ```sql title="Call function"
 select regexp_replace_wrapper('Cat is the cutest animal.');
-----
+----RESULT
 Dog is the cutest animal.
 ```
 
@@ -449,7 +449,7 @@ create function foo(INT) returns varchar language sql as $$select 'foo(INT)'$$;
 
 ```sql title="Call function"
 select foo(114514);
-----
+----RESULT
 foo(INT)
 ```
 
@@ -464,7 +464,7 @@ create function print_add_two(INT) returns int language sql as 'select print($1 
 
 ```sql title="Call function"
 select print_add_one(1), print_add_one(114513), print_add_two(2);
-----
+----RESULT
 2 114514 4
 ```
 
