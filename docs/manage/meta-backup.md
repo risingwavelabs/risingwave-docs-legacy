@@ -105,9 +105,9 @@ Use the following steps to restore from a meta snapshot.
     ```
     parameters to `risectl meta restore-meta` should be:
     - `--backup-storage-url s3://backup_bucket`.
-    - `--backup-storage-directory backup`.
+    - `--backup-storage-directory backup_data`.
     - `--hummock-storage-url s3://state_bucket`. Note that the `hummock+` prefix is stripped.
-    - `--hummock-storage-directory backup_data`.
+    - `--hummock-storage-directory state_data`.
 4. Configure meta service to use the new meta store.
 
 ## Access historical data backed up by meta snapshot
