@@ -123,7 +123,7 @@ RisingWave supports using these systems or services as state backends.
 * S3-compatible object storages
 * Google Cloud Storage
 * Azure Blob Storage
-* Aliyun OSS
+* Alibaba Cloud OSS
 
 You can [customize etcd as a separate cluster](#optional-customize-the-etcd-deployment), [customize the state backend](#optional-customize-the-state-backend), or [customize the state store directory](#optional-customize-the-state-store-directory).
 
@@ -370,7 +370,7 @@ spec:
 
 </TabItem>
 
-<TabItem value="aliyun-oss" label="Aliyun OSS">
+<TabItem value="alibaba-cloud-oss" label="Alibaba Cloud OSS">
 
 ```yaml
 spec:
@@ -378,19 +378,19 @@ spec:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
     
-    # Declaration of the Aliyun OSS state store backend.
+    # Declaration of the Alibaba Cloud OSS state store backend.
     aliyunOSS:
-      # Region of the Aliyun OSS bucket.
+      # Region of the Alibaba Cloud OSS bucket.
       region: cn-hangzhou
       
-      # Name of the Aliyun OSS compatible bucket.
+      # Name of the Alibaba Cloud OSS compatible bucket.
       bucket: risingwave
 
       # Use internal endpoint or not. Check the following document for details:
       # https://www.alibabacloud.com/help/en/oss/user-guide/regions-and-endpoints
       internalEndpoint: false
       
-      # Credentials to access the Aliyun OSS bucket.
+      # Credentials to access the Alibaba Cloud OSS bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: oss-credentials
