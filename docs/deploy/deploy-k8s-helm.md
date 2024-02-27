@@ -223,7 +223,7 @@ stateStore:
 
   oss:
     enabled: true
-    region: <your oss region, e.g, "hangzhou">
+    region: <your oss region, e.g, "cn-hangzhou">
     bucket: <your bucket name>
     authentication:
       useServiceAccount: false
