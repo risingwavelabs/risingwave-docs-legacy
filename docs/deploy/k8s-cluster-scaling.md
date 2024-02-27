@@ -8,9 +8,9 @@ slug: /k8s-cluster-scaling
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/k8s-cluster-scaling/" />
 </head>
 
-This article describes adaptive parallelism as the default scaling mode for all new streaming jobs starting from v1.7 in RisingWave. With adaptive parallelism, the system will automatically adjust parallelism to leverage added CPU cores or nodes in the cluster, ensuring optimal resource utilization.
+This article describes adaptive parallelism as the default scaling policy for all new streaming jobs starting from v1.7 in RisingWave. With adaptive parallelism, the system will automatically adjust parallelism to leverage added CPU cores or nodes in the cluster, ensuring optimal resource utilization.
 
-## Scaling mode
+## Scaling policies
 
 RisingWave supports adaptive parallelism and fixed parallelism for tables, materialized views, and sinks.
 
