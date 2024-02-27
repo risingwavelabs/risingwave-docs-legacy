@@ -184,9 +184,15 @@ Please note that increasing the CPU resource will not automatically increase the
 
 By default, the RisingWave Helm chart uses MinIO as the default state backend. You can edit the `values.yml` file to use other options as the state backend.
 
-For example, if you intend to use AWS S3 as the state backend, you can revise the configuration as follows:
 
-```bash
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="state_backend_options">
+
+<TabItem value="AWS S3" label="AWS S3">
+
+```yaml
 tags:
   minio: false
 
@@ -203,3 +209,27 @@ stateStore:
       accessKey: <your access key>
       secretAccessKey: <your secret access key>
 ```
+</TabItem>
+
+<TabItem value="alibaba-cloud-storage" label="Alibaba Cloud Storage">
+
+```yaml
+tags:
+  minio: false
+
+stateStore:
+  minio:
+    enabled: false
+
+  oss:
+    enabled: true
+    region: <your oss region, e.g, "ap-southeast-1">
+    bucket: <your bucket name>
+    authentication:
+      useServiceAccount: false
+      accessKey: <your access key>
+      secretAccessKey: <your secret access key>
+```
+</TabItem>
+
+</Tabs>
