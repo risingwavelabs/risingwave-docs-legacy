@@ -270,7 +270,6 @@ select add_sub_types(1, 1919810114514, 3.1415926, 1.123123, 101010.191919);
 - Create a wrapper function.
 
 ```sql title="Create function"
-
 -- Create two SQL UDFs.
 create function add_wp(INT, INT) returns int language sql as $$select $1 + $2$$;
 create function sub_wp(INT, INT) returns int language sql as 'select $1 - $2';
