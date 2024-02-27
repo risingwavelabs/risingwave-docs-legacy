@@ -197,7 +197,6 @@ select add_sub_mix(1, 2, 3);
 2
 ```
 
-
 - Call a SQL UDF with unnamed parameters inside a SQL UDF with named parameters.
 
 ```sql title="Create function"
@@ -210,6 +209,8 @@ select add_named_wrapper(1, -1);
 ----RESULT
 0
 ```
+
+---
 
 - Create a SQL UDF with unnamed parameters and a return expression.
 
@@ -238,18 +239,9 @@ select add_return_binding();
 4
 ```
 
-- Create a SQL UDF with a single quote definition.
+---
 
-```sql title="Create function"
-create function print(INT) returns int language sql as 'select $1';
-```
-
-```sql title="Call function"
-select print(114514);
-----RESULT
-114514
-```
-- Create a SQL UDF with multiple type interleaving.
+- Create a SQL UDF with multiple types of parameters.
 
 ```sql title="Create function"
 create function add_sub(INT, FLOAT, INT) returns float language sql as $$select -$1 + $2 - $3$$;
@@ -261,13 +253,7 @@ select add_sub(1, 5.1415926, 1);
 3.1415926
 ```
 
-```sql title="Combined function calls"
-select add(1, -1), sub(1, 1), add_sub(1, 5.1415926, 1);
-----RESULT
-0 0 3.1415926
-```
-
-- Create a SQL UDF with complex types interleaving.
+- Create a SQL UDF with complex types of parameters.
 
 ```sql title="Create function"
 create function add_sub_types(INT, BIGINT, FLOAT, DECIMAL, REAL) returns double language sql as 'select $1 + $2 - $3 + $4 + $5';
@@ -279,22 +265,18 @@ select add_sub_types(1, 1919810114514, 3.1415926, 1.123123, 101010.191919);
 1919810215523.1734494
 ```
 
-- Create a SQL UDF with a return expression.
+---
+
+- Create a wrapper function.
 
 ```sql title="Create function"
-create function add_sub_return(INT, FLOAT, INT) returns float language sql return -$1 + $2 - $3;
-```
 
-```sql title="Call function"
-select add_sub_return(1, 5.1415926, 1);
-----RESULT
-3.1415926
-```
+-- Create two SQL UDFs.
+create function add_wp(INT, INT) returns int language sql as $$select $1 + $2$$;
+create function sub_wp(INT, INT) returns int language sql as 'select $1 - $2';
 
-- Create a wrapper function for `add` & `sub`.
-
-```sql title="Create function"
-create function add_sub_wrapper(INT, INT) returns int language sql as 'select add($1, $2) + sub($1, $2) + 114512';
+-- Create a wrapper function.
+create function add_sub_wrapper(INT, INT) returns int language sql as 'select add_wp($1, $2) + sub_wp($1, $2) + 114512';
 ```
 
 ```sql title="Call function"
