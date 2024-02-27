@@ -8,13 +8,14 @@ slug: /k8s-cluster-scaling
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/k8s-cluster-scaling/" />
 </head>
 
-This article describes adaptive parallelism as the default scaling policy for all new streaming jobs starting from v1.7 in RisingWave. With adaptive parallelism, the system will automatically adjust parallelism to leverage added CPU cores or nodes in the cluster, ensuring optimal utilization of resources.
+This article describes adaptive parallelism as the default scaling mode for all new streaming jobs starting from v1.7 in RisingWave. With adaptive parallelism, the system will automatically adjust parallelism to leverage added CPU cores or nodes in the cluster, ensuring optimal resource utilization.
 
-## Scaling policies
+## Scaling mode
 
-RisingWave supports **adaptive parallelism** and **fixed parallelism** for **tables**, **materialized views**, and **sinks**.
+RisingWave supports adaptive parallelism and fixed parallelism for tables, materialized views, and sinks.
 
-- **Adaptive parallelism (recommended)**
+- Adaptive parallelism (recommended)
+
     Adaptive parallelism is the **default** setting for newly created streaming jobs since v1.7. In this mode, RisingWave automatically adjusts parallelism to utilize all CPU cores across the compute nodes in the cluster. When nodes are added or removed, parallelism adjusts accordingly based on the current number of CPU cores.
 
     To modify the scaling policy to adaptive parallelism, use the SQL command:
@@ -29,9 +30,9 @@ RisingWave supports **adaptive parallelism** and **fixed parallelism** for **tab
     ALTER MATERIALIZED VIEW mv SET PARALLELISM = adaptive;
     ```
 
-- **Fixed parallelism**
+- Fixed parallelism
 
-    Fixed parallelism is the advanced mode allows manually specifying a parallelism number that remains constant as the cluster resizes. It’s commonly used to throttle stream bandwidth and ensures predictable resource allocation. For example:
+    Fixed parallelism is the advanced mode that allows manually specifying a parallelism number that remains constant as the cluster resizes. It’s commonly used to throttle stream bandwidth and ensures predictable resource allocation. For example:
 
     ```sql
     ALTER TABLE t SET PARALLELISM = 16; -- Replace 16 with the desired parallelism
@@ -41,7 +42,7 @@ RisingWave distributes its computation across lightweight threads called "stream
 
 In both scaling modes, streaming actors will redistribute across the cluster to maintain balanced workloads.
 
-# Scale-in
+## Scale-in
 
 By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls. To manually trigger immediate scale-in:
 
@@ -49,13 +50,13 @@ By default, there's a 5-minute delay in scale-in operations. The delay is intent
 risingwave ctl meta unregister-worker {id}
 ```
 
-# **Upgrade to v1.7**
+## Upgrade to v1.7
 
 After upgrading to v1.7 from prior versions, if the parallelism is unset, streaming jobs will automatically upgrade to adaptive parallelism (`adaptive`). If the parallelism is set, streaming jobs will use `fixed` parallelism.
 
 If you prefer not to use the `adaptive` setting by default, you can specify the global configuration `default.scaling.policy` as ‘none’. This configuration sets the default scaling policy to neither `adaptive` nor `fixed`, aligning with the old behavior.
 
-# **Monitoring parallelism**
+## Monitoring parallelism
 
 RisingWave includes a system table enabling users to view the current scaling policy of tables, materialized views, and sinks:
 
@@ -79,4 +80,4 @@ dev=> SELECT * FROM rw_fragment_parallelism WHERE name = 't';
  1001 | t    | table             |           1 | HASH              | {1001}          | {2}                   | {MVIEW}             |           4
 ```
 
-To understand the output of the query, you may need to know about these two concepts: [streaming actors](/concepts/key-concepts.md#streaming-actors) and [fragments](/concepts/key-concepts.md#fragments)
+To understand the output of the query, you may need to know about these two concepts: [streaming actors](/concepts/key-concepts.md#streaming-actors) and [fragments](/concepts/key-concepts.md#fragments).
