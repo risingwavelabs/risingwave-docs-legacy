@@ -168,7 +168,7 @@ extract(epoch from '2010-01-01 12:34:56.789012Z'::timestamp with time zone) → 
 
 ### `make_date`
 
-Creates date from year, month, and day fields (negative years signify BC).
+Creates date from year, month, and day fields.
 
 ```bash title=Syntax
 make_date ( year int, month int, day int ) → date
