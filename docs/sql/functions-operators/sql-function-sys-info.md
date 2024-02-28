@@ -69,7 +69,7 @@ Returns the file system location of a tablespace. To use this function, you need
 
 ## `pg_get_viewdef()`
 
-Returns the definition of a specified materialized view.
+Returns the definition of a specified view or materialized view.
 
 ```sql title=Syntax
 pg_get_viewdef(view_name) → text
