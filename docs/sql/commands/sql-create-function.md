@@ -140,7 +140,7 @@ select sub(1, 1);
 - Create a SQL UDF with unnamed parameters that calls other pre-defined SQL UDFs.
 
 ```sql title="Create function"
--- Create two pre-defined SQL UDFs
+-- Create two SQL UDFs for subsequent call
 create function add1(INT, INT) returns int language sql as 'select $1 + $2';
 create function sub1(INT, INT) returns int language sql as 'select $1 - $2';
 
