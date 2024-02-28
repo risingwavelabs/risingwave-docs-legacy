@@ -391,9 +391,7 @@ select corner_case(1, 2, 3);
 ----RESULT
 $1 + a + $3
 ```
-
 ---
-
 
 ```sql title="Create function"
 -- Create a SQL UDF with unnamed parameters that calls built-in functions
