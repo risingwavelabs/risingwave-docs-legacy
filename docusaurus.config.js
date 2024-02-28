@@ -20,6 +20,9 @@ const config = {
           trackingID: "G-VG98SVDEYE",
           anonymizeIP: true,
         },
+        googleTagManager: {
+          containerId: 'GTM-KJRVWHT7',
+        },
         docs: {
           admonitions: {
             tag: ":::",
