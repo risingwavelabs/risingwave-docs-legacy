@@ -11,17 +11,17 @@ As RisingWave is wire-compatible with PostgreSQL, you can use third-party Postgr
 
 In this section, we use the [`ruby-pg`](https://github.com/ged/ruby-pg) driver to connect to RisingWave.
 
-### Run RisingWave
+## Run RisingWave
 
 To learn about how to run RisingWave, see [Run RisingWave](/get-started.md#run-risingwave).
 
 
-### Install the `ruby-pg` driver
+## Install the `ruby-pg` driver
 
 For information about how to install `ruby-pg`, see the [official ruby-pg documentation](https://github.com/ged/ruby-pg?tab=readme-ov-file#how-to-install).
 
 
-### Connect to RisingWave
+## Connect to RisingWave
 
 To connect to RisingWave via `ruby-pg`:
 
@@ -37,7 +37,7 @@ The `BasicTypeMapForResults` class isn't supported currently, you need to cast R
 
 :::
 
-### Create a source
+## Create a source
 
 The code below creates a source `walk` with the `datagen` connector. The `datagen` connector is used to generate mock data. The `walk` source consists of two columns, `distance` and `duration`, which respectively represent the distance and the duration of a walk. The source is a simplified version of the data that is tracked by smart watches.
 
@@ -70,7 +70,7 @@ All the code examples in this guide include a section for connecting to RisingWa
 :::
 
 
-### Create a materialized view
+## Create a materialized view
 
 The code in this section creates a materialized view `counter` to capture the latest total distance and duration.
 
@@ -89,7 +89,7 @@ EOF
 conn.exec(sql)
 ```
 
-### Query a materialized view
+## Query a materialized view
 
 The code in this section queries the materialized view `counter` to get real-time data.
 
