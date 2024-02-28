@@ -186,6 +186,11 @@ const sidebars = {
           id: "ingest/modify-schemas",
         },
         {
+          type: "doc",
+          label: "Formats and encoding",
+          id: "ingest/formats-and-encoding",
+        },
+        {
           type: "category",
           label: "Sources",
           collapsible: true,
@@ -388,6 +393,11 @@ const sidebars = {
           type: "doc",
           id: "transform/ad-hoc-queries",
           label: "Ad-hoc Queries",
+        },
+        {
+          type: "doc",
+          id: "transform/deletes-and-updates",
+          label: "/Deletes and updates",
         },
       ],
     },
