@@ -196,7 +196,7 @@ make_time(1, 45, 30.2) → 01:45:30.200
 
 ### `make_timestamp`
 
-Creates timestamp from year, month, day, hour, minute, and seconds fields (negative years signify BC).
+Creates timestamp from year, month, day, hour, minute, and seconds fields.
 
 ```bash titile=Syntax
 make_timestamp ( year int, month int, day int, hour int, min int, sec double precision ) → timestamp
