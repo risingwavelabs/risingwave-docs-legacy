@@ -227,6 +227,11 @@ const sidebars = {
                   label: "Upstash Kafka",
                   id: "ingest/ingest-from-upstash-kafka",
                 },
+                {
+                  type: "doc",
+                  label: "WarpStream",
+                  id: "ingest/ingest-from-warpstream",
+                },
               ]
             },
             {
@@ -301,11 +306,6 @@ const sidebars = {
               type: "doc",
               label: "Redpanda",
               id: "ingest/ingest-from-redpanda",
-            },
-            {
-              type: "doc",
-              label: "WrapStream",
-              id: "ingest/ingest-from-warpstream",
             },
             {
               type: "doc",
@@ -990,8 +990,13 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Troubleshoot out-of-memory problems",
+          label: "Troubleshoot out-of-memory",
           id: "troubleshoot/troubleshoot-oom"
+        },
+        {
+          type: "doc",
+          label: "Troubleshoot high latency",
+          id: "troubleshoot/troubleshoot-high-latency"
         },
       ]
     },
