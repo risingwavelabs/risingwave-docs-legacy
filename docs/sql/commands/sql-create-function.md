@@ -286,7 +286,7 @@ select add_sub_wrapper(1, 1);
 
 #### Basic SQL UDFs integrated with the use of mock tables 
 
-The examples in this section are a simulation of real-world use cases.
+The examples in this section are a basic simulation of real-world use cases.
 
 ```sql title="Create table"
 -- Create 3 tables. t1 and t2 are for unamed SQL UDF. t3 is for named SQL UDF.
