@@ -36,8 +36,8 @@ All parameters are required unless specified otherwise.
 | Parameter names | Description |
 | --------------- | ---------------------------------------------------------------------- |
 | starrocks.host  | The StarRocks host address. |
-| starrocks.query_port | The port address that connects to the frontend client. By default, this is `9030`.|
-| starrocks.http_port | The http port for data import. By default, this is `8030`. |
+| starrocks.query_port | The port to the MySQL server of the StarRocks frontend. |
+| starrocks.http_port | The port to the HTTP server of the StarRocks frontend.|
 | starrocks.user | The user name used to access the StarRocks database. |
 | starrocks.password | The password associated with the user. |
 | starrocks.database | The StarRocks database where the target table is located |
