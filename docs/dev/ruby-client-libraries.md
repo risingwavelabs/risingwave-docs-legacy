@@ -7,9 +7,7 @@ slug: /ruby-client-libraries
 
 As RisingWave is wire-compatible with PostgreSQL, you can use third-party PostgreSQL drivers to interact with RisingWave from your Ruby applications.
 
-## Use `ruby-pg` to connect to RisingWave
-
-In this section, we use the [`ruby-pg`](https://github.com/ged/ruby-pg) driver to connect to RisingWave.
+In this guide, we use the [`ruby-pg`](https://github.com/ged/ruby-pg) driver to connect to RisingWave.
 
 ## Run RisingWave
 
