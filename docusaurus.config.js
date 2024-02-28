@@ -20,6 +20,9 @@ const config = {
           trackingID: "G-VG98SVDEYE",
           anonymizeIP: true,
         },
+        googleTagManager: {
+          containerId: 'GTM-KJRVWHT7',
+        },
         docs: {
           admonitions: {
             tag: ":::",
@@ -75,42 +78,6 @@ const config = {
             "1.0.0": {
               label: "1.0",
               path: "/1.0",
-              badge: false,
-              banner: "none",
-            },
-            "0.19.0": {
-              label: "0.19.0",
-              path: "/0.19.0",
-              badge: false,
-              banner: "none",
-            },
-            "0.18.0": {
-              label: "0.18.0",
-              path: "/0.18.0",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.17": {
-              label: "0.1.17",
-              path: "/0.1.17",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.16": {
-              label: "0.1.16",
-              path: "/0.1.16",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.15": {
-              label: "0.1.15",
-              path: "/0.1.15",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.14": {
-              label: "0.1.14",
-              path: "/0.1.14",
               badge: false,
               banner: "none",
             },

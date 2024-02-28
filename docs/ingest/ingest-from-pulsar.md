@@ -31,65 +31,6 @@ FORMAT data_format ENCODE data_encode (
 );
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Choice(1,
-                rr.Terminal('CREATE TABLE'),
-                rr.Terminal('CREATE SOURCE')
-            ),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('source_name', 'wrap')
-        ),
-        rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
-        rr.Sequence(
-            rr.Terminal('FORMAT'),
-            rr.NonTerminal('format', 'skip')
-        ),
-        rr.Sequence(
-            rr.Terminal('ENCODE'),
-            rr.NonTerminal('encode', 'skip'),
-            rr.Optional(
-                rr.Sequence(
-                rr.Terminal('('),
-                rr.NonTerminal('encode_parameter', 'skip'),
-                rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.NonTerminal('pulsar', 'skip'),
-                        rr.Terminal(','),
-                    ),
-                    rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('connector_parameter', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                    ),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Stack(
-            rr.Terminal(';'),
-        ),
-    )
-);
-
-<drawer SVG={svg} />
-
 **schema_definition**:
 
 ```sql
@@ -111,6 +52,8 @@ RisingWave performs primary key constraint checks on tables with connector setti
 For a table with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
 :::
 
+### Connector parameters
+
 |Field|Notes|
 |---|---|
 |topic |Required. Address of the Pulsar topic. One source can only correspond to one topic.|
@@ -122,15 +65,20 @@ For a table with primary key constraints, if a new data record with an existing 
 |oauth.credentials.url | Conditional. The path for credential files, starts with `file://`. This field must be filled if other `oauth` fields are specified.|
 |oauth.audience | Conditional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.|
 |oauth.scope | Optional. The scope for OAuth2. |
-|access_key | Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
-|secret_access | Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path. |
+
+### Other parameters
 
 |Field|Notes|
 |---|---|
-|*data_format*| Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`.|
-|*data_encode*| Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
+|*data_format*| Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`.|
+|*data_encode*| Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`,  `BYTES`. |
 |*message* |Message name of the main Message in schema definition. Required when `data_encode` is `PROTOBUF`.|
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when `data_encode` is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
+|*access_key* | Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
+|*secret_access* | Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path. |
+|*region*| Required if loading descriptors from S3. The AWS service region. |
+|*arn*| Optional. The Amazon Resource Name (ARN) of the role to assume. |
+|*external_id*| Optional. The [external](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) id used to authorize access to third-party resources. |
 
 ## Read schemas from locations
 

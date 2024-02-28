@@ -13,10 +13,6 @@ A cluster in RisingWave Cloud provides the necessary resources for hosting indep
 
 In RisingWave, a database user is similar to a database user or role in Postgres, allowing a person or application to access a specific database or set of databases within a cluster. Database users can be assigned specific permissions to control their database privileges.
 
-## What are the differences between the free plan and the customized plan for invited users?
-
-The free plan offers all the essential resources to operate a RisingWave, but there is a seven-day limit on its lifespan. In contrast, the customized plan provides more flexibility in configuring the resources to meet your specific requirements and has no lifespan limit.
-
 ## Can I change the cluster plan?
 
 You cannot change the plan of a cluster after creating it. You can create a new cluster with the desired plan.
