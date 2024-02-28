@@ -54,7 +54,7 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 #### To connect via `psql` client:
 
-1. [Install `psql`](https://docs.risingwave.com/docs/current/install-psql-without-postgresql/) in your environment.
+1. [Install `psql`](/docs/current/install-psql-without-postgresql/) in your environment.
 
     > `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
 

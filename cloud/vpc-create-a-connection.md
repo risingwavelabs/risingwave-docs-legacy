@@ -11,7 +11,7 @@ Follow the steps below to establish a secure connection with your VPC through AW
 
 - You have created a cluster in RisingWave Cloud and:
   
-  - It is created with the [customized plan](/cloud/choose-a-cluster-plan/?plan=customized). Free clusters do not support VPC connections.
+  - It is created with the Standard plan or Invited plan. Developer clusters do not support VPC connections. See [Choose a cluster plan](/cluster-choose-a-cluster-plan.md) for more information.
   
   - The VPC you want to connect to and your cluster must be in the same region. If your preferred region is not available when creating a cluster, contact our support team.
   
@@ -80,5 +80,5 @@ src={require('./images/vpc-connection-endpoint.png').default}
 alt="VPC connection endpoint "
 />
 
-For details on how to use the VPC endpoint to create a source with the VPC connection, see [Create source with VPC connection](https://docs.risingwave.com/docs/current/ingest-from-kafka/#create-source-with-vpc-connection). For creating a sink, see [Create sink with VPC connection](https://docs.risingwave.com/docs/current/create-sink-kafka/#create-sink-with-vpc-connection).
+For details on how to use the VPC endpoint to create a source with the VPC connection, see [Create source with VPC connection](/docs/current/ingest-from-kafka/#create-source-with-vpc-connection). For creating a sink, see [Create sink with VPC connection](/docs/current/create-sink-kafka/#create-sink-with-vpc-connection).
 

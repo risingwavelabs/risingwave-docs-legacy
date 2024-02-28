@@ -17,6 +17,6 @@ Choose one of the following to create a [database user](cluster-manage-database-
     alt="Database users of a cluster"
     />
 
-- You can run the [CREATE USER](https://docs.risingwave.com/docs/current/sql-create-user/) command to create a new user after [connecting to a cluster](cluster-connect-to-a-cluster.md) using the console or terminal.
+- You can run the [CREATE USER](/docs/current/sql-create-user/) command to create a new user after [connecting to a cluster](cluster-connect-to-a-cluster.md) using the console or terminal.
 
     Ensure that you have logged in to the cluster with a user that has the `CREATEUSER` privilege. A super user has all privileges, including `CREATEUSER`.

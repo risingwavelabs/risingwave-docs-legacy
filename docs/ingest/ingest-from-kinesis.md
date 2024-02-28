@@ -23,66 +23,9 @@ WITH (
 )
 FORMAT data_format ENCODE data_encode (
    message = 'message',
-   schema.location = 'location' | schema.registry = 'schema_registry_url'
+   schema.location = 'location'
 );
 ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Choice(1,
-                rr.Terminal('CREATE TABLE'),
-                rr.Terminal('CREATE SOURCE')
-            ),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('source_name', 'wrap')
-        ),
-        rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
-        rr.Sequence(
-         rr.Terminal('FORMAT'),
-         rr.NonTerminal('format', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('ENCODE'),
-         rr.NonTerminal('encode', 'skip'),
-         rr.Optional(
-            rr.Sequence(
-               rr.Terminal('('),
-               rr.NonTerminal('encode_parameter', 'skip'),
-               rr.Terminal(')'),
-            ),
-         ),
-      ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.NonTerminal('kinesis', 'skip'),
-                        rr.Terminal(','),
-                    ),
-                    rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('connector_parameter', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                    ),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
 
 **schema_definition**:
 
@@ -115,7 +58,7 @@ For a table with primary key constraints, if a new data record with an existing 
 |endpoint |Optional. URL of the entry point for the AWS Kinesis service.|
 |aws.credentials.access_key_id |Required. This field indicates the access key ID of AWS. |
 |aws.credentials.secret_access_key |Required. This field indicates the secret access key of AWS. |
-|aws.credentials.session_token |Optional. The session token associated with the temporary security credentials. |
+|aws.credentials.session_token |Optional. The session token associated with the temporary security credentials. Using this field is not recommended as RisingWave contains long-running jobs and the token may expire. Creating a [new role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html) is preferred.|
 |aws.credentials.role.arn |Optional. The Amazon Resource Name (ARN) of the role to assume.|
 |aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources. |
 |scan.startup.mode |Optional. The startup mode for Kinesis consumer. Supported modes: `earliest` (starts from the earliest offset), `latest` (starts from the latest offset), and `timestamp` (starts from a specific timestamp, specified by `scan.startup.timestamp.millis`). The default mode is `earliest`.|
@@ -125,8 +68,8 @@ For a table with primary key constraints, if a new data record with an existing 
 
 |Field| Notes|
 |---|---|
-|*data_format*| Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`.|
-|*data_encode*| Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`.|
+|*data_format*| Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`.|
+|*data_encode*| Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`, `BYTES`.|
 |*message* |Message name of the main Message in schema definition. Required when `data_encode` is `PROTOBUF`.|
 |*location*| Web location of the schema file in  `http://...`, `https://...`, or `S3://...` format. Required when `data_encode` is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 
