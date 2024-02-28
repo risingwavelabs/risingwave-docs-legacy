@@ -58,7 +58,7 @@ After these steps, you are on your way to build stream processing applications a
 
 ### Create a RisingWave cluster
 
-You can create a RisingWave cluster and connect to it by following the steps in the [Quick Start](https://docs.risingwave.com/docs/current/get-started/) in the RisingWave documentation.
+You can create a RisingWave cluster and connect to it by following the steps in the [Quick Start](/get-started.md) in the RisingWave documentation.
 
 ### Create a source
 

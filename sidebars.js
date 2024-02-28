@@ -227,6 +227,11 @@ const sidebars = {
                   label: "Upstash Kafka",
                   id: "ingest/ingest-from-upstash-kafka",
                 },
+                {
+                  type: "doc",
+                  label: "WarpStream",
+                  id: "ingest/ingest-from-warpstream",
+                },
               ]
             },
             {
@@ -301,11 +306,6 @@ const sidebars = {
               type: "doc",
               label: "Redpanda",
               id: "ingest/ingest-from-redpanda",
-            },
-            {
-              type: "doc",
-              label: "WrapStream",
-              id: "ingest/ingest-from-warpstream",
             },
             {
               type: "doc",
