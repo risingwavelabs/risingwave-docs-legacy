@@ -20,7 +20,7 @@ decrypt(data bytea, key bytea, type text) -> bytea
 The cipher method is specified by `type`. The syntax of the `type` string is:
 
 ```sql
-algorithm [ - mode ] [ /pad: padding ]
+algorithm [-mode][/pad:padding]
 ```
 
 `algorithm` is:
