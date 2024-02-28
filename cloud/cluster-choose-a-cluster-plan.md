@@ -107,7 +107,7 @@ To access the Invited plan, please contact our sales team. We will provide you w
 
     Configure each node's instance resources and numbers according to your actual needs.
     
-    To learn more about the nodes, see [Understanding nodes in RisingWave](#understanding-nodes-in-risingwave).
+    To learn more about the nodes, see the [architecture of RisingWave](https://docs.risingwave.com/docs/current/architecture/).
 
 </TabItem>
 
