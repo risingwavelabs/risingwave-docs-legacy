@@ -40,15 +40,6 @@ Compactor nodes perform background compaction jobs to optimize state storage. In
   - ≥2 CPU cores
   - ≥2 GB memory
 
-## Frontend nodes
-
-Frontend nodes parse queries and create execution plans. They can operate with minimum resources.
-
-- Minimum: None, since Frontends are stateless
-- Recommended:
-  - ≥2 CPU cores
-  - ≥1 GB memory
-
 ## Meta nodes
 
 Meta nodes manage metadata and coordinate the cluster. It is advisable to deploy 2 meta nodes (primary and backup) to ensure faster recovery and avoid single points of failure (SPOF).
