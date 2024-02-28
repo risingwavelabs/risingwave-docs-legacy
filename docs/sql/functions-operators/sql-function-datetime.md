@@ -203,7 +203,7 @@ make_timestamp ( year int, month int, day int, hour int, min int, se
 ```
 
 ```bash title=Example
-make_timestamp(2024, 1, 31, 1, 45, 30.2) → 2024-01-31 01:45:30.2
+make_timestamp(2024, 1, 31, 1, 45, 30.2) → 2024-01-31 01:45:30.200
 ```
 
 ---
