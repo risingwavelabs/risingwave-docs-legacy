@@ -189,7 +189,7 @@ make_time ( hour int, min int, sec double precision ) → time
 ```
 
 ```bash title=Example
-make_time(1, 45, 30.2) → 01:45:30.2
+make_time(1, 45, 30.2) → 01:45:30.200
 ```
 
 ---
