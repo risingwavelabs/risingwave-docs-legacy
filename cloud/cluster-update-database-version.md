@@ -7,7 +7,7 @@ slug: /update-database-version
 
 When a newer version of RisingWave is available, you can update the database version of your cluster to the latest.
 
-See the [Release Notes of RisingWave](https://docs.risingwave.com/docs/current/release-notes/) for feature updates of each version.
+See the [Release Notes of RisingWave](/release-notes/) for feature updates of each version.
 
 :::note
 You can only update the RisingWave version of a cluster to a newer version. You cannot downgrade it.

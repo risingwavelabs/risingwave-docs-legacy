@@ -32,6 +32,6 @@ You can drop a source with one of the following methods:
 
 ## Using SQL command
 
-- Use the [`DROP SOURCE`](https://docs.risingwave.com/docs/current/sql-drop-source/) command to drop a source from the database.
+- Use the [`DROP SOURCE`](/docs/current/sql-drop-source/) command to drop a source from the database.
 
-- Use the [`DROP TABLE`](https://docs.risingwave.com/docs/current/sql-drop-table/) command if it's a materialized source.
+- Use the [`DROP TABLE`](/docs/current/sql-drop-table/) command if it's a materialized source.

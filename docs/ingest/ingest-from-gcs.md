@@ -50,6 +50,12 @@ FORMAT data_format ENCODE data_encode (
 |*without_header*| Whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
 |*delimiter*| How RisingWave splits contents. For `JSON` encode, the delimiter is `\n`. |
 
+## Loading order of GCS files
+
+The GCS connector does not guarantee the sequential reading of files.
+
+For example, RisingWave reads file F1 to offset O1 and crashes. After RisingWave rebuilds the task queue, it is not guaranteed the next task is reading file F1.
+
 ## Examples
 
 Here is an example of connecting RisingWave to a GCS source to read data.
@@ -58,7 +64,7 @@ Here is an example of connecting RisingWave to a GCS source to read data.
 CREATE TABLE s(
     id int,
     name varchar,
-    age int,
+    age int, 
     primary key(id)
 ) 
 WITH (

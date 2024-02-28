@@ -66,6 +66,34 @@ SELECT current_user(); → `root`
 Returns the file system location of a tablespace. To use this function, you need to provide the OID of the tablespace you want to get the location for as an argument.
 -->
 
+
+## `pg_get_viewdef()`
+
+Returns the definition of a specified view or materialized view.
+
+```sql title=Syntax
+pg_get_viewdef(view_name) → text
+```
+
+```sql title=Examples
+-- Create a table
+CREATE TABLE table1 (
+    id int PRIMARY KEY,
+    name VARCHAR 
+);
+
+-- Create a materialized view
+CREATE MATERIALIZED VIEW materialized_view1 AS 
+SELECT id, name 
+FROM table1;
+
+-- Retrieve the definition of the materialized view using pg_get_viewdef
+SELECT pg_get_viewdef('materialized_view1'::regclass);
+----RESULT
+ SELECT id, name FROM table1
+(1 row)
+```
+
 ## `pg_typeof()`
 
 Returns the standard name of the data type of the provided value. More specifically, it returns the OID of the data type of the provided value. It returns a regtype, which is an OID alias type. Therefore it’s the same as an OID for comparison purposes but displays as a type name.
