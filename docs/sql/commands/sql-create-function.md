@@ -253,7 +253,7 @@ select add_sub(1, 5.1415926, 1);
 3.1415926
 ```
 
-- Create a SQL UDF with complex types of parameters.
+- Create a SQL UDF with complex types of unnamed parameters.
 
 ```sql title="Create function"
 create function add_sub_types(INT, BIGINT, FLOAT, DECIMAL, REAL) returns double language sql as 'select $1 + $2 - $3 + $4 + $5';
