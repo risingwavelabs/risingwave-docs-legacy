@@ -54,8 +54,6 @@ risingwave ctl meta unregister-worker {id}
 
 After upgrading to v1.7 from prior versions, if the parallelism is unset, streaming jobs will automatically upgrade to adaptive parallelism (`adaptive`). If the parallelism is set, streaming jobs will use `fixed` parallelism.
 
-If you prefer not to use the `adaptive` setting by default, you can specify the global configuration `default.scaling.policy` as ‘none’. This configuration sets the default scaling policy to neither `adaptive` nor `fixed`, aligning with the old behavior.
-
 ## Monitor parallelism
 
 You can use a system table to view the current scaling policy of tables, materialized views, and sinks:
