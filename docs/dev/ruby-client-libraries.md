@@ -1,7 +1,7 @@
 ---
 id: ruby-client-libraries
 title: Use RisingWave in your Ruby application
-description: Use RisingWave in your Ruby application
+description: Use RisingWave in your Ruby application.
 slug: /ruby-client-libraries
 ---
 
