@@ -7,8 +7,6 @@ slug: /ingest-from-gcs
 
 Use the SQL statement below to connect RisingWave to a Google Cloud Storage source.
 
-The GCS connector does not guarantee the sequential reading of files or complete file reading.
-
 ## Syntax
 
 ```sql
@@ -50,6 +48,12 @@ FORMAT data_format ENCODE data_encode (
 |*data_encode*| Supported data encodes: `CSV`, `JSON`. |
 |*without_header*| Whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
 |*delimiter*| How RisingWave splits contents. For `JSON` encode, the delimiter is `\n`. |
+
+## Loading order of GCS files
+
+The GCS connector does not guarantee the sequential reading of files.
+
+For example, RisingWave reads file F1 to offset O1 and crashes. After RisingWave rebuilds the task queue, it is not guaranteed the next task is reading file F1.
 
 ## Examples
 
