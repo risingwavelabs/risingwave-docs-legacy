@@ -318,10 +318,15 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Transform and query data",
+      label: "Transform & query data",
       collapsible: true,
       collapsed: true,
       items: [
+        {
+          type: "doc",
+          label: "Overview",
+          id: "transform/transform-overview",
+        },
         {
           type: "doc",
           id: "sql/syntax/sql-pattern-dynamic-filters",
@@ -379,6 +384,11 @@ const sidebars = {
           id: "transform/use-dbt",
           label: "Use dbt for data transformations",
         },
+        {
+          type: "doc",
+          id: "transform/ad-hoc-queries",
+          label: "Ad-hoc Queries",
+        },
       ],
     },
     {
@@ -387,6 +397,11 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
+        {
+          type: "doc",
+          label: "Overview",
+          id: "guides/visualize-overview",
+        },
         {
           type: "doc",
           label: "Beekeeper Studio",
