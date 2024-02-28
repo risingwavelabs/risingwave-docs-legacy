@@ -33,7 +33,7 @@ conn = PG.connect(host: '127.0.0.1', port: 4566, dbname: 'dev', user: 'root')
 
 :::note
 
-`BasicTypeMapForResults` class doesn't support currently, you need cast RisingWave types into Ruby types manually.
+The `BasicTypeMapForResults` class isn't supported currently, you need to cast RisingWave types into Ruby types manually.
 
 :::
 
