@@ -346,7 +346,6 @@ select c1, c2, c3, add_mc(c1, c3), sub_mc(c1, c3), add_sub_return_mc(c1, c2, c3)
 1 3.14 2 3 -1 0.14000000000000012
 2 4.44 5 7 -3 -2.5599999999999996
 20 10.3 2 22 18 -11.7
-
 ```
 
 ```sql title="Create function"
