@@ -44,7 +44,7 @@ In both scaling modes, streaming actors will redistribute across the cluster to
 
 ## Scale-in
 
-Scale-in here refers to the process of decreasing the computational resources to align with the current workload or operational requirements. By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls. To manually trigger immediate scale-in:
+Scale-in here refers to the process of decreasing the computational resources to align with the current workload or operational requirements. By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls. To manually trigger immediate scale-in, use the following statement:
 
 ```sql
 risingwave ctl meta unregister-worker {id}
