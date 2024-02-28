@@ -227,7 +227,7 @@ select add_return(1, 1);
 - Create a SQL UDF with a return expression using previously defined UDFs.
 
 ```sql title="Create function"
--- Create a pre-defined UDF
+-- Create a SQL UDF used in subsequent call
 create function add_return1(INT, INT) returns int language sql return $1 + $2;
 
 create function add_return_binding() returns int language sql return add_return1(1, 1) + add_return1(1, 1);
