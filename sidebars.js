@@ -358,9 +358,42 @@ const sidebars = {
           label: "Time window functions",
         },
         {
-          type: "doc",
-          id: "sql/udf/user-defined-functions",
+          type: "category",
           label: "User-defined functions",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              id: "sql/udf/user-defined-functions",
+              label: "Overview",
+            },
+            {
+              type: "doc",
+              id: "sql/udf/udf-python",
+              label: "Python",
+            },
+            {
+              type: "doc",
+              id: "sql/udf/udf-java",
+              label: "Java",
+            },
+            {
+              type: "doc",
+              id: "sql/udf/udf-rust",
+              label: "Rust",
+            },
+            {
+              type: "doc",
+              id: "sql/udf/udf-javascript",
+              label: "JavaScript",
+            },
+            {
+              type: "doc",
+              id: "sql/udf/udf-foreign-data",
+              label: "Foreign data",
+            },
+          ],
         },
         {
           type: "doc",
@@ -397,7 +430,7 @@ const sidebars = {
         {
           type: "doc",
           id: "transform/deletes-and-updates",
-          label: "/Deletes and updates",
+          label: "Deletes and updates",
         },
       ],
     },
@@ -793,44 +826,6 @@ const sidebars = {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-sys-info",
                   label: "System information",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "User-defined functions",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: "doc",
-                  id: "sql/udf/user-defined-functions",
-                  label: "Overview",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-python",
-                  label: "Python",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-java",
-                  label: "Java",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-rust",
-                  label: "Rust",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-javascript",
-                  label: "JavaScript",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-foreign-data",
-                  label: "Foreign data",
                 },
               ],
             },
