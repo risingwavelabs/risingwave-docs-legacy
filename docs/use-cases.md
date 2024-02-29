@@ -48,7 +48,7 @@ Compared to the traditional batch-based analytics, real-time analytics has clear
 
 ### How does RisingWave support real-time analytics?
 
-RisingWave supports real-time analytics by ingesting and transforming data in real-time from a variety of data sources, such as message queues, databases, and log files. It maintains the always fresh results in its own storage, which allows for directly serving queries from dashboards. RisingWave also offers the option to sink data to a database, warehouse, or data lake. This givers user the flexibility to further enrich their dataset to query from. Additionally, it supports streaming SQL to make it easier to set up the stack.
+RisingWave supports real-time analytics by ingesting and transforming data in real-time from a variety of data sources, such as message queues, databases, and log files. It maintains the always fresh results in its own storage, which allows for directly serving queries from dashboards. RisingWave also offers the option to sink data to a database, warehouse, or data lake. This gives user the flexibility to further enrich their dataset to query from. Additionally, it supports streaming SQL to make it easier to set up the stack.
 
 ### Where does RisingWave fit in your technical stack for real-time analytics?
 

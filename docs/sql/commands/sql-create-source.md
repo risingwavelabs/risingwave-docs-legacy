@@ -21,6 +21,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name (
     ...
    [ watermark_clause ]
 )
+[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 [ WITH (
     connector='connector_name',
     connector_parameter='value', ...)]
@@ -66,6 +67,7 @@ FORMAT upsert ENCODE AVRO (
 |*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
 |*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |*watermark_clause*| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
+|**INCLUDE** clause | Extract fields not included in the payload as separate columns. For more details on its usage, see [`INCLUDE` clause](/ingest/include-clause.md). |
 |**WITH** clause |Specify the connector settings here if trying to store all the source data. See [Supported sources](#supported-sources) for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
 |**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Supported formats](#supported-formats). |
 

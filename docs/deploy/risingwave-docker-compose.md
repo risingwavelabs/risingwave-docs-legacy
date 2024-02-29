@@ -10,7 +10,7 @@ slug: /risingwave-docker-compose
 
 This topic describes how to start RisingWave using Docker Compose on a single machine. With this option, data is persisted in your preferred storage service, and observability is enabled for enhanced monitoring and analysis.
 
-In this option, RisingWave functions as an all-in-one service. All components of RisingWave, including the compute node, frontend node, meta node, and compactor node, are put into a single process. They are executed in different threads, eliminating the need to start each component as a separate process.
+In this option, RisingWave functions as an all-in-one service. All components of RisingWave, including the compute node, meta node, and compactor node, are put into a single process. They are executed in different threads, eliminating the need to start each component as a separate process.
 
 However, please be aware that certain critical features, such as failover and resource management, are not implemented in this mode. Therefore, this option is not recommended for production deployments. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
 
@@ -68,7 +68,7 @@ If you're using Compose V1, use `docker-compose` instead.
 <details>
 <summary>I'd like to start RisingWave components separately in a multi-node cluster.</summary>
 
-You can also start a multi-node cluster where all components of RisingWave, including the compute node, frontend node, meta node, and compactor node, are started as separate processes.
+You can also start a multi-node cluster where all components of RisingWave, including the compute node, meta node, and compactor node, are started as separate processes.
 
 By default, this mode uses MinIO as the storage backend of RisingWave. 
 
