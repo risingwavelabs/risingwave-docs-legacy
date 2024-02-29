@@ -339,6 +339,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "transform/indexes",
+          label: "Indexes",
+        },
+        {
+          type: "doc",
           id: "sql/syntax/sql-pattern-temporal-filters",
           label: "Temporal filters",
         },
