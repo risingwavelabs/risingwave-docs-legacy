@@ -8,7 +8,7 @@ slug: /ingest-from-warpstream
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-warpstream/" />
 </head>
 
-You can ingest data from WarpStream, an Apache Kafka-compatible data streaming platform built directly on top of S3, into RisingWave.
+You can ingest data from [WarpStream](https://www.warpstream.com/), an Apache Kafka-compatible data streaming platform built directly on top of object storage, into RisingWave.
 
 This guide will help you set up WarpStream, ingest data into RisingWave, and create and query a materialized view in RisingWave.
 

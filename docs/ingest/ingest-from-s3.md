@@ -10,6 +10,8 @@ slug: /ingest-from-s3
 
 Use the SQL statement below to connect RisingWave to an Amazon S3 source. RisingWave supports both CSV and [ndjson](https://ndjson.org/) file formats.
 
+The S3 connector does not guarantee the sequential reading of files or complete file reading.
+
 ## Syntax
 
 ```sql
@@ -19,6 +21,7 @@ WITH (
    connector={ 's3' | 's3_v2' },
    connector_parameter='value', ...
 )
+[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 FORMAT data_format ENCODE data_encode (
    without_header = 'true' | 'false',
    delimiter = 'delimiter'
@@ -146,8 +149,7 @@ import TabItem from '@theme/TabItem';
 CREATE TABLE s(
     id int,
     name varchar,
-    age int,
-    primary key(id)
+    age int
 ) 
 WITH (
     connector = 's3_v2',

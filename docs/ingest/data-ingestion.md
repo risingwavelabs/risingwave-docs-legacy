@@ -28,7 +28,6 @@ WITH (
 
 After creating a table or source, RisingWave will continuously consume data from the upstream system, and carry out incremental computations.
 
-
 ### Difference between table and source
 
 As for the differences between a table and a source, you can refer to the table below, which summarizes their main differences.
@@ -50,6 +49,7 @@ Here are a few key points worth noting about table:
 - A table accepts both append-only data and updateable data. To accept updateable data, you need to specify a primary key when creating the table. CDC sources and Kafka data in upsert formats are the examples of updateable data.
 
 The significant advantage of using table to persist records is that it can speed up queries. Naturally, if the data is within the same system, queries will be much more efficient, although the downside is that it occupies storage. Another advantage is the ability to consume data changes. That is to say, if the upstream system deletes or updates a record, this operation will be consumed by RisingWave, thereby modifying the results of the stream computation. On the other hand, source only supports appending records and cannot handle data changes. To allow table to accept data changes, a primary key must be specified on the table.
+
 
 Here are a few important points worth noting about source:
 
