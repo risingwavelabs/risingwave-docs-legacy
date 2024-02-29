@@ -187,6 +187,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Ingest additional fields with INCLUDE clause",
+          id: "ingest/include-clause",
+        },
+        {
+          type: "doc",
           label: "Formats and encoding",
           id: "ingest/formats-and-encoding",
         },
@@ -780,6 +785,11 @@ const sidebars = {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-comparison",
                   label: "Comparison",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-cryptographic-functions",
+                  label: "Cryptographic",
                 },
                 {
                   type: "doc",

@@ -73,7 +73,7 @@ For details about the syntax and the parameters, see [`CREATE TABLE`](/sql/comma
 
 ```sql title=Example
 CREATE TABLE source_name (
-   _id jsonb PRIMARY KEY
+   _id jsonb PRIMARY KEY,
    payload jsonb
 )
 WITH (
