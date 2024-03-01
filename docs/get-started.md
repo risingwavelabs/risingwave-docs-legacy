@@ -32,7 +32,7 @@ curl https://risingwave.com/sh | sh
 Ensure [Docker Desktop](https://docs.docker.com/get-docker/) is installed and running in your environment.
 
 ```shell
-docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v1.7.0-standalone risingwave
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v1.7.0-standalone single_node
 ```
 
 ### Homebrew
