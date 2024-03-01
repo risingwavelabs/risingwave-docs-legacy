@@ -28,10 +28,10 @@ Your invoices provide a record of your usage and payments. It includes:
 ### Invoice status
 
 - **Pending**: Still in active tracking of ongoing service usage throughout the month. You can [check the details of your current spending](/billing-check-spending-details.md#check-current-spending).
-- **Open**: Commencement of the payment process once the billing period ends. Automatic payments will be made using your saved [payment methods](/billing-manage-payment-methods.md).
+- **Open**: Commencement of the payment process once the billing period ends. Automatic payments will be made using your saved [payment methods](/billing-manage-payment-methods.md). This status will last for 10 days.
 - **Paid**: Payment has been successfully processed, either automatically or manually.
-- **Overdue**: Notification of outstanding payments (15-day grace period) if the automatic payment fails. Please make a payment manually within 15 days.
-- **Failed**: If a payment is not successfully fulfilled in the 15-day overdue period. All services that you’re currently using will be stopped.
+- **Overdue**: Notification of outstanding payments (10-day grace period) if the automatic payment fails. Please make a payment manually within 10 days.
+- **Failed**: If a payment is not successfully fulfilled in the 10-day overdue period. All services that you’re currently using will be stopped.
 
 ## Pay invoices automatically
 
@@ -46,5 +46,5 @@ The automatic payment process could fail if your payment methods are invalid or 
 To pay an invoice manually, click the **Pay Now** button on the invoice you want to pay and follow the instructions on the screen.
 
 :::caution
-If you don't settle the outstanding payments within 15 days of the "Overdue" period, all services that you’re currently using will be stopped and you won't be able to create any new clusters. You have to contact the support team to resume the services.
+If you don't settle the outstanding payments within 10 days of the "Overdue" period, all services that you’re currently using will be stopped and you won't be able to create any new clusters. You have to contact the support team to resume the services.
 :::
