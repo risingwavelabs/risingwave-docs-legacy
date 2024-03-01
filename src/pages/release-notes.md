@@ -45,6 +45,7 @@ This version was released on February 29, 2024.
 #### Installation and deployment
 
 - [Pre-Release] Supports the standalone mode to run RisingWave in a single process. [#14951](https://github.com/risingwavelabs/risingwave/pull/14951). See [Quick start](/docs/current/get-started/).
+- Supports Alibaba Cloud OSS as the storage backend. See [Start RisingWave using Docker Compose](/docs/current/risingwave-docker-compose/).
 
 #### Cluster configuration changes
 
