@@ -167,7 +167,10 @@ CREATE INDEX people_names ON people ((first_name || ' ' || last_name));
 ## See also
 
 
-[`CREATE INDEX`](/sql/commands/sql-create-index.md) - Create an in dex constructed on a table or a materialized view.
+[`CREATE INDEX`](/sql/commands/sql-create-index.md) - Create an index constructed on a table or a materialized view.
+
 [`DROP INDEX`](/sql/commands/sql-drop-index.md) — Remove an index constructed on a table or a materialized view.
+
 [`SHOW CREATE INDEX`](/docs/sql/commands/sql-show-create-index.md) - See what query was used to create the specified index.
+
 [`ALTER INDEX`](/docs/sql/commands/sql-alter-create-index.md) - Modify an index.

@@ -11,36 +11,35 @@ Data transformation is a critical process in converting raw data into valuable i
 
 ## How transformation is performed
 
- Data transformation is performed normally via a materialized view, but can also be done via a sink. Let's understand how transformation logic is expressed with simple examples. 
+ Data transformation is performed normally via a materialized view, but can also be done via a sink. Let's understand how transformation logic is expressed with materialized views. 
 
- First, assume we have a `sales_data` table that saves information about product ID(`product_id`) and product sales amount(`sales_amount`).
+ First, assume we have a `sales_data` table, which saves information about product ID (`product_id`) and product sales amount (`sales_amount`).
 
 ```sql title="sales_data"
-product_id | sales_amount
---------------------------
-1          | 100.50
-1          | 75.25
-2          | 150.75
-2          | 125.00
-3          | 200.00
-
+product_id | sales_amount 
+------------+--------------
+          1 |           75
+          2 |          150
+          2 |          125
+          1 |          100
+          3 |          200
 ```
 
 You can use the following statement to create this table.
 
 ```sql title="Create table and insert data"
 CREATE TABLE sales_data (
-product_id INT,
-sales_amount DECIMAL(10, 2)
+    product_id INT,
+    sales_amount INT
 );
 
 INSERT INTO sales_data (product_id, sales_amount) 
 VALUES 
-    (1, 100.50),
-    (1, 75.25),
-    (2, 150.75),
-    (2, 125.00),
-    (3, 200.00);
+    (1, 100),
+    (1, 75),
+    (2, 150),
+    (2, 125),
+    (3, 200);
 ```
 
 Based on this table, we create a materialized view `mv_sales_summary` to calculate total sales amount by product:
@@ -58,6 +57,14 @@ Then we can query the materialized view to retrieve the transformed data:
 
 ```sql
 SELECT * FROM mv_sales_summary;
+
+----RESULT
+ product_id | total_sales 
+------------+-------------
+          1 |         175
+          2 |         275
+          3 |         200
+(3 rows)
 ```
 
 By following the above steps, you have successfully transformed the data from the `sales_data` table into a materialized view `mv_sales_summary` that provides the total sales amount for each product. Materialized views offer a way to precompute and store aggregated data, improving query performance and simplifying data analysis tasks.
