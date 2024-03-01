@@ -60,7 +60,7 @@ This version was released on February 29, 2024.
 - [Prebuilt all-in-one library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v1.7.0/risingwave-v1.7.0-x86_64-unknown-linux-all-in-one.tar.gz)
 - [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.7.0.zip)
 - [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.7.0.tar.gz)
-- [risectl-v1.7.0-x86_64-unknown-linux.tar.gz](https://github.com/risingwavelabs/risingwave/releases/download/v1.7.0/risectl-v1.7.0-x86_64-unknown-linux.tar.gz)
+- [risectl - a CLI tool for managing and accessing RisingWave clusters](https://github.com/risingwavelabs/risingwave/releases/download/v1.7.0/risectl-v1.7.0-x86_64-unknown-linux.tar.gz)
 
 See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/release-1.6...release-1.7).
 
