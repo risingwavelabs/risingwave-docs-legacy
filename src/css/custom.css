@@ -224,7 +224,7 @@ h3 {
   margin-left: 1.5rem;
 }
 
-.theme-doc-markdown ol li:not(.tabs__item) > :first-child:not(code, strong)::before {
+.theme-doc-markdown >ol >li:not(.tabs__item) > :first-child:not(code, strong)::before {
   font-size: 0.75rem;
   font-weight: bold;
   counter-increment: circle-counter;

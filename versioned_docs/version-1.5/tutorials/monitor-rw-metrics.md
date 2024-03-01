@@ -95,7 +95,7 @@ We have connected RisingWave to the streams, but RisingWave has not started to c
 
 ## Step 3: Create a materialized view
 
-Now, create a materialized view that tracks the average metric values every 30 seconds. We will split the stream into 30 seconds windows and calculate the average metric value over each window. Here we use the [tumble window](https://docs.risingwave.com/docs/current/sql-function-time-window/) functionality to support window slicing.
+Now, create a materialized view that tracks the average metric values every 30 seconds. We will split the stream into 30 seconds windows and calculate the average metric value over each window. Here we use the [tumble window](/sql/functions-operators/sql-function-time-window.md) functionality to support window slicing.
 
 ```sql
 CREATE MATERIALIZED VIEW metric_avg_30s AS
