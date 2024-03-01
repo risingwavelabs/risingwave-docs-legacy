@@ -1,5 +1,5 @@
 ---
-id: sql-show-index
+id: sql-show-indexes
 title: SHOW INDEXES
 description: Show existing indexes from a particular table.
 slug: /sql-show-indexes

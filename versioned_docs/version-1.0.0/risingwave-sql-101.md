@@ -124,4 +124,4 @@ Finally, we can output the processed data to a data sink using [CREATE SINK](sql
 
 ## More to read
 
-We also prepared several [demos](/docs/current/demos), each focusing on solving a real-world stream processing task, with simulated data.
+We also prepared several demos in the Demos section of the docs, each focusing on solving a real-world stream processing task, with simulated data.

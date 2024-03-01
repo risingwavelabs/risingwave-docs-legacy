@@ -24,6 +24,8 @@ You need to restart the node to update the role. A role can be one of:
 In a production environment, it's advisable to use separate nodes for batch and streaming operations. The `both` mode, which allows a node to handle both batch and streaming queries, is more suited for testing scenarios. While it's possible to execute batch and streaming queries concurrently, it's recommended to avoid running resource-intensive batch and streaming queries at the same time.
 :::
 
+For specific changes required in the YAML file, see [Separate batch streaming modes](https://github.com/risingwavelabs/risingwave-operator/blob/main/docs/manifests/risingwave/advanced/separate-batch-streaming-modes.yaml).
+
 ## Configuring a `serving` compute node for batch queries
 
 You can use a TOML configuration file to configure a `serving` compute node. For detailed instructions, see [Configure node-specific parameters](/manage/configure-node-specific-parameters.md).
