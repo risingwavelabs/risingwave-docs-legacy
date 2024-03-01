@@ -779,7 +779,7 @@ This version was released on February 28, 2023
 
 #### Connectors
 
-- Adds a new parameter `match_pattern` to the S3 connector. With the new parameter, users can specify the pattern to filter files that they want to ingest from S3 buckets. For documentation updates, see [Ingest data from S3 buckets](/docs/current/create-source-s3/). [#7565](https://github.com/risingwavelabs/risingwave/pull/7565)
+- Adds a new parameter `match_pattern` to the S3 connector. With the new parameter, users can specify the pattern to filter files that they want to ingest from S3 buckets. For documentation updates, see [Ingest data from S3 buckets](/docs/current/ingest-from-s3/). [#7565](https://github.com/risingwavelabs/risingwave/pull/7565)
 - Adds the PostgreSQL CDC connector. Users can use this connector to ingest data and CDC events from PostgreSQL directly. For documentation updates, see [Ingest data from PostgreSQL CDC](/docs/current/ingest-from-postgres-cdc/). [#6869](https://github.com/risingwavelabs/risingwave/pull/6869), [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
 - Adds the MySQL CDC connector. Users can use this connector to ingest data and CDC events from MySQL directly. For documentation updates, see [Ingest data from MySQL CDC](/docs/current/ingest-from-mysql-cdc/). [#6689](https://github.com/risingwavelabs/risingwave/pull/6689), [#6345](https://github.com/risingwavelabs/risingwave/pull/6345), [#6481](https://github.com/risingwavelabs/risingwave/pull/6481), [#7133](https://github.com/risingwavelabs/risingwave/pull/7133)
 - Adds the JDBC sink connector, with which users can sink data to MySQL, PostgreSQL, or other databases that are compliant with JDBC. [#6493](https://github.com/risingwavelabs/risingwave/pull/6493)
