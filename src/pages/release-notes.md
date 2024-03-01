@@ -44,7 +44,7 @@ This version was released on February 29, 2024.
 
 #### Installation and deployment
 
-- [Pre-Release] Supports `single_node` node to run RisingWave in a single process. [#14951](https://github.com/risingwavelabs/risingwave/pull/14951). See [Quick start](/docs/current/get-started/).
+- [Pre-Release] Supports the standalone mode to run RisingWave in a single process. [#14951](https://github.com/risingwavelabs/risingwave/pull/14951). See [Quick start](/docs/current/get-started/).
 
 #### Cluster configuration changes
 
