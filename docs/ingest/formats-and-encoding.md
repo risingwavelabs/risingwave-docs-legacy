@@ -1,7 +1,7 @@
 ---
 id: formats-and-encoding
 title: Formats and encoding
-slug: /data-ingestion
+slug: /formats-and-encoding
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/formats-and-encoding/" />

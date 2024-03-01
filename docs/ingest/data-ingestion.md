@@ -32,14 +32,14 @@ After creating a table or source, RisingWave will continuously consume data from
 
 As for the differences between a table and a source, you can refer to the table below, which summarizes their main differences.
 
-| Functionalities | `table` | `source` |
-| :: | :: | :: |
+| Functionalities | Table | Source |
+| ----------------| ----- | ------ |
 | Support persisting data     | yes       | no |
 | Support primary key   | yes        | no |
 | Support appending data  | yes        | yes |
 | Support updating/deleting data   | yes, but a primary key needs to be defined       | no |
 
-As shown above, a very fundamental difference between table and source is that a table will persist the consumed data, while a source will not. For instance, if the upstream inputs 5 records: `AA` `BB` `CC` `DD` `EE`, if using table, these 5 records will be persisted within RisingWave; if using source, these records will not be persisted. 
+As shown above, a very fundamental difference between table and source is that a table will persist the consumed data, while a source will not. For instance, let's assume the upstream inputs 5 records: `AA`, `BB`, `CC`, `DD`, and `EE`. If using table, these 5 records will be persisted within RisingWave; if using source, these records will not be persisted. 
 
 Here are a few key points worth noting about table:
 
