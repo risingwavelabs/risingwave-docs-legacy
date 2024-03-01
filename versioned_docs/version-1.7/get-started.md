@@ -41,7 +41,7 @@ Ensure [Homebrew](https://brew.sh/) in installed, and run the following commands
 
 ```shell
 brew tap risingwavelabs/risingwave
-brew install risingwave
+brew install risingwave@1.7-standalone
 risingwave
 ```
 
