@@ -49,7 +49,7 @@ The default command-line syntax in Compose V2 starts with `docker compose`. See 
 If you're using Compose V1, use `docker-compose` instead.
 :::
 
-Necessary RisingWave components will be started, including the frontend node, compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, data of materialized views will be stored in the MinIO instance.
+Necessary RisingWave components will be started, including the compute node, metadata node, and MinIO. The workload generator will start to generate random data and feed them into Kafka topics. In this demo cluster, data of materialized views will be stored in the MinIO instance.
 
 ## Step 2: Connect RisingWave to data streams
 
