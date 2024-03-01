@@ -51,7 +51,7 @@ Barrier latency can be observed from Grafana dashboard - Barrier latency panel. 
 
 Instead of solely addressing the memory problem, we recommend investigating why the barrier is getting stuck. This issue could be caused by heavy streaming jobs, sudden impact of input traffic, or even some temporary issues.
 
-Please refer to [Troubleshoot high latency](/troubleshoot-high-latency) for more details.
+Please refer to [Troubleshoot high latency](/troubleshoot/troubleshoot-high-latency.md) for more details.
 
 ## OOM during prefetching
 
