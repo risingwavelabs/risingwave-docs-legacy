@@ -14,17 +14,25 @@ This guide is designed to help you get up and running with RisingWave quickly an
 ## Start RisingWave
 
 :::info
-The following options start RisingWave in playground mode, which is designed for quick tests. In this mode, data is stored in memory and the service automatically terminates after 30 minutes of inactivity, deleting all user data. Due to limited memory capacity, resource-intensive operations may lead to out-of-memory (OOM) errors.
+The following options start RisingWave in standalone mode. In this mode, data is stored in the file system and the metadata is stored in the embedded SQLite database. Note that these connectors are not supported in standalone mode:`jdbc`, `postgresql-cdc`, `mysql-cdc`, `elastic-search`, and `cassandra`.
 
 For extensive testing or single-machine deployment, consider [starting RisingWave via Docker Compose](/deploy/risingwave-docker-compose.md). For production environments, consider [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service, or [deployment on Kubernetes using the Operator](/deploy/risingwave-kubernetes.md) or [Helm Chart](/deploy/deploy-k8s-helm.md).
 :::
+
+### Script installation
+
+Open a terminal and run the following `curl` command.
+
+```shell
+curl https://risingwave.com/sh | sh
+```
 
 ### Docker
 
 Ensure [Docker Desktop](https://docs.docker.com/get-docker/) is installed and running in your environment.
 
 ```shell
-docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:latest playground
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:latest risingwave
 ```
 
 ### Homebrew
@@ -34,16 +42,7 @@ Ensure [Homebrew](https://brew.sh/) in installed, and run the following commands
 ```shell
 brew tap risingwavelabs/risingwave
 brew install risingwave
-risingwave playground
-```
-
-### Binaries
-
-```shell
-wget https://github.com/risingwavelabs/risingwave/releases/download/v1.6.0/risingwave-v1.6.0-x86_64-unknown-linux-all-in-one.tar.gz
-tar xvf risingwave-v1.6.0-x86_64-unknown-linux-all-in-one.tar.gz 
-# Do not move the extracted files or folders. This could cause issues when starting RisingWave.
-./risingwave playground
+risingwave
 ```
 
 ### From a Web browser
