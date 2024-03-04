@@ -19,7 +19,7 @@ The following options start RisingWave in the standalone mode. In this mode, dat
 For extensive testing or single-machine deployment, consider [starting RisingWave via Docker Compose](/deploy/risingwave-docker-compose.md). For production environments, consider [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service, or [deployment on Kubernetes using the Operator](/deploy/risingwave-kubernetes.md) or [Helm Chart](/deploy/deploy-k8s-helm.md).
 :::
 
-:::warning
+:::caution
 There is a known limitation when using the standalone mode on macOS. Connectors for `jdbc`, `postgresql-cdc`, `mysql-cdc`, `elastic-search`, and `cassandra` may not function as expected. We anticipate that this limitation will be addressed in version 1.8.
 :::
 
