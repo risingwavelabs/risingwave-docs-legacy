@@ -139,5 +139,5 @@ dev=> SELECT * FROM average_exam_scores_101;
 
 Congratulations! You've successfully started RisingWave and used it to perform some basic data analysis. To dive deeper, you may want to: 
 
-- See [this GitHub repository](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) for runnable demos and tests.
+- See [this GitHub repository](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) for ready-to-run demos and tests.
 - Read our documentation to learn about how to ingest data from data streaming sources, transform data, and deliver data to downstream systems.
