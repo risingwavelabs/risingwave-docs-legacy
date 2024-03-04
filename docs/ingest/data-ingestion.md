@@ -93,11 +93,13 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
 
 ## Continuing reading
 
-- For more detailed conceptual information about a source, like its concept, type, format and encoding options, read [Introduction to source](/ingest/introduction-to-source.md).
+- For more detailed conceptual information about a source, like its concept, type, format and encoding options, see [Introduction to source](/ingest/introduction-to-source.md).
 
-- For instructions on how to perform some operations on a source, read:
+- For the complete list of supported sources and formats, see [Supported sources and formats](/sql/commands/sql-create-source.md#supported-sources).
+
+- For instructions on how to perform some operations on a source, see:
 
   - [Modify source or table schemas](/ingest/modify-schemas.md)
   - [Ingest additional fields with INCLUDE clause](/ingest/include-clause.md)
 
-- For specific instructions on ingesting data from a particular source supported by RisingWave, read the guides under the [Source part].
+- For specific instructions on ingesting data from a particular source supported by RisingWave, read the guides under the [Source part.
