@@ -9,9 +9,9 @@ toc_max_heading_level: 2
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/get-started/" />
 </head>
 
-This guide aims to provide a quick and easy way to get started with RisingWave. In this guide, we will walk you through the common tasks of using RisingWave.
+This guide aims to provide a quick and easy way to get started with RisingWave.
 
-## Step 1: Start RisingWave
+## Start RisingWave
 
 :::info
 The following options start RisingWave in standalone mode. In this mode, data is stored in the file system and the metadata is stored in the embedded SQLite database. Standalone mode only supports `jdbc`, `postgresql-cdc`, `mysql-cdc`, `elastic-search`, and `cassandra` connectors in certain user environments. Ubuntu users can utilize these connectors with Java installed, while Mac users will have to wait until the 1.8 release for support.
@@ -49,9 +49,9 @@ risingwave
 
 [https://playground.risingwave.dev/](https://playground.risingwave.dev/)
 
-## Step 2: Connect to RisingWave
+## Connect to RisingWave
 
-After RisingWave is up and running, connect to it via the Postgres interactive terminal `psql`. Ensure you have `psql` installed in your environment. To learn about how to install it, see [Install `psql` without PostgreSQL](/guides/install-psql-without-full-postgres.md).
+Ensure you have `psql` installed in your environment. To learn about how to install it, see [Install `psql` without PostgreSQL](/guides/install-psql-without-full-postgres.md).
 
 Open a new terminal window and run:
 
@@ -59,112 +59,85 @@ Open a new terminal window and run:
 psql -h localhost -p 4566 -d dev -U root
 ```
 
-Notes about the `psql` options:
+## Insert some data
 
-- The `-h` option is used to specify the host name or IP address of the PostgreSQL server to connect to.
-- The `-p` option is used to specify the port number that the server is listening on.
-- The `-d` option is used to specify the name of the database to connect to.
-- The `-U` option is used to specify the name of the database user to connect as.
-- By default, the PostgreSQL server uses the `root` user account to authenticate connections to the `dev` database. Note that this user account does not require a password to connect.
+RisingWave focuses on streaming data ingestion from sources like message queues and database change streams but directly inserting date is also supported. 
 
-## Step 3: Ingest data into RisingWave
+Let's now create a table and insert some data.
 
-After RisingWave starts, you can ingest data into it. You can either directly insert data into it, or ingest data from a streaming source like Kafka, Pulsar, Kinesis, or Postgres CDC.
-
-### Option A: Ingest streaming data from a source
-
-The recommended approach for streaming data ingestion into RisingWave is through upstream sources, such as message queues or Change Data Capture streams. To view the list of supported sources and formats, refer to [Supported sources](/sql/commands/sql-create-source.md#supported-sources).
-
-You can ingest streaming data by creating a table with connector settings using the [`CREATE TABLE`](/sql/commands/sql-create-table.md)) command or by creating a source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command. In RisingWave, a source stores the metadata of a stream but does not persist the data within the stream, while a table with connector settings persists the data in the stream.
-
-Before proceeding, please ensure that the streaming source, such as a Kafka topic, is available as a prerequisite. To keep this guide concise, we will not provide detailed instructions on setting up your upstream sources.
-
-### Option B: Insert data into RisingWave
-
-To insert data into RisingWave, the process is similar to inserting data into any SQL database.
-
-For instance, we can create a table called website_visits to store information about web page visits. We can then insert five rows of data into this table as an example.  It's important to note that the data in the table is intended to simulate the payload of a data stream.
+For instance, we can create a table called `exam_scores` to store information about examinations.
 
 ```sql title="Create the table"
-CREATE TABLE website_visits (
-  timestamp timestamp with time zone,
-  user_id varchar,
-  page_id varchar,
-  action varchar
+CREATE TABLE exam_scores (
+  score_id int,
+  exam_id int,
+  student_id int,
+  score real,
+  exam_date date
 );
 ```
 
-```sql title="Insert five rows of data
-INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
-  ('2023-06-13T10:00:00Z', 'user1', 'page1', 'view'),
-  ('2023-06-13T10:01:00Z', 'user2', 'page2', 'view'),
-  ('2023-06-13T10:02:00Z', 'user3', 'page3', 'view'),
-  ('2023-06-13T10:03:00Z', 'user4', 'page1', 'view'),
-  ('2023-06-13T10:04:00Z', 'user5', 'page2', 'view');
-```
-
-## Step 4: Transform data
-
-To perform data transformations in RisingWave, there is no requirement to set up processing jobs or pipelines. You have the option to express your data transformation logic within materialized views if you need to directly query the results within RisingWave. Alternatively, if you intend to deliver the results to a downstream system, such as a data warehouse, and query the results there, you can include the transformation logic within a sink. In RisingWave, a sink is an object used to deliver data to a downstream system.
-
-As an illustrative example, let's create a materialized view to obtain the total page visits, unique visitors, and the last visit time for each page based on the   `website_visits` table. 
-
-```sql
-CREATE MATERIALIZED VIEW visits_stream_mv AS 
-SELECT page_id, 
-count(*) AS total_visits, 
-count(DISTINCT user_id) AS unique_visitors, 
-max(timestamp) AS last_visit_time 
-FROM website_visits
-GROUP BY page_id;
-```
-
-## Step 5: Query data
-
-Like other databases, you can query data in RisingWave using the [`SELECT`](/sql/commands/sql-select.md) command.
-
-For example, let's see the latest results of the `visits_stream_mv` materialized view that we created earlier:
-
-```sql
-SELECT * FROM visits_stream_mv;
-------
- page_id | total_visits | unique_visitors |      last_visit_time
----------+--------------+-----------------+---------------------------
- page2   |            2 |               2 | 2023-06-13 10:08:00+00:00
- page1   |            2 |               2 | 2023-06-13 10:07:00+00:00
- page3   |            1 |               1 | 2023-06-13 10:09:00+00:00
-(3 rows)
-```
-
-As new data comes in, the results in `visits_stream_mv` will be automatically updated. Behind the scenes, RisingWave performs incremental computations when new data comes in.
-
-For example, if you insert five more rows of data into the `website_visits` table:
-
-
 ```sql title="Insert five rows of data"
-INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
-  {'2023-06-13T10:10:00Z', 'user1', 'page3', 'scroll'}
-  {'2023-06-13T10:11:00Z', 'user2', 'page1', 'click'}
-  {'2023-06-13T10:12:00Z', 'user3', 'page2', 'scroll'}
-  {'2023-06-13T10:13:00Z', 'user4', 'page3', 'view'}
-  {'2023-06-13T10:14:00Z', 'user5', 'page1', 'click'};
+INSERT INTO exam_scores (score_id, exam_id, student_id, score, exam_date)
+VALUES
+  (1, 101, 1001, 85.5, '2022-01-10'),
+  (2, 101, 1002, 92.0, '2022-01-10'),
+  (3, 101, 1003, 78.5, '2022-01-10'),
+  (4, 102, 1001, 91.2, '2022-02-15'),
+  (5, 102, 1003, 88.9, '2022-02-15');
 ```
 
-The results will be automatically updated:
+## Analyze and query data
 
-```sql
-SELECT * FROM visits_stream_mv;
+As an illustrative example, let's create a materialized view to calculate the average score for examination 101. 
+
+```sql title="Create a materialized view"
+CREATE MATERIALIZED VIEW average_exam_scores_101 AS
+SELECT
+    exam_id,
+    AVG(score) AS average_score,
+    COUNT(score) AS total_scores
+FROM
+    exam_scores
+WHERE
+    exam_id = 101
+GROUP BY
+    exam_id;
+```
+
+```sql title="Query the current result"
+SELECT * FROM average_exam_scores_101;
 ------
- page_id | total_visits | unique_visitors |      last_visit_time   
----------+--------------+-----------------+---------------------------
- page2   |            3 |               3 | 2023-06-13 10:12:00+00:00
- page3   |            3 |               3 | 2023-06-13 10:13:00+00:00
- page1   |            4 |               4 | 2023-06-13 10:14:00+00:00
-(3 rows)
+ exam_id |   average_score   | total_scores 
+---------+-------------------+--------------
+     101 | 85.33333333333333 |            3
+(1 row)
+```
+
+As new data comes in, the results in `average_exam_scores_101` will be automatically updated. Behind the scenes, RisingWave performs incremental computations when new data comes in.
+
+Now let's insert five more rows of data, and query the latest result.
+
+```sql title="Insert more data"
+INSERT INTO exam_scores (score_id, exam_id, student_id, score, exam_date)
+VALUES
+  (11, 101, 1004, 89.5, '2022-05-05'),
+  (12, 101, 1005, 93.2, '2022-05-05'),
+  (13, 102, 1004, 87.1, '2022-06-10'),
+  (14, 102, 1005, 91.7, '2022-06-10'),
+  (15, 102, 1006, 84.3, '2022-06-10');
+```
+```sql title="Query the latest result"
+dev=> SELECT * FROM average_exam_scores_101;
+ exam_id | average_score | total_scores 
+---------+---------------+--------------
+     101 |         87.74 |            5
+(1 row)
 ```
 
 ## What's next?
 
-- For runnable demos and integration tests, see [this GitHub repository](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests). Note that Docker is required to run the demos and tests.
+Congratulations! You've successfully started RisingWave and used it to perform some basic data analysis. To dive deeper, you may want to: 
 
-- You can export data from RisingWave to various destinations such as message queues, databases, data warehouses, or data lakes. For a complete list of destinations, see [Integrations](/rw-integration-summary.md). To deliver data from RisingWave to downstream systems, create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md) command.
+- See [this GitHub repository](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) for runnable demos and tests.
+- Read our documentation to learn about how to ingest data from data streaming sources, transform data, and deliver data to downstream systems.
