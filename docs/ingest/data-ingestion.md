@@ -7,10 +7,14 @@ slug: /data-ingestion
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-ingestion/" />
 </head>
 
-You can ingest data into RisingWave in two ways:
+In databases, users often use the `INSERT` statement to input data. However, in stream processing, data is continuously imported from upstream systems, and evidently, the `INSERT` statement is unable to meet this need. RisingWave allows users to directly create `table` and `source` to import upstream data. When there is new data entering from the upstream systems, RisingWave will directly consume the data and carry out incremental computations.
+
+In short, you can ingest data into RisingWave in two ways:
 
 - Connect to and ingest data from external sources such as databases and message brokers.
 - Use SQL statements to insert, update, or delete data in tables directly.
+
+It is important to note that as RisingWave is a streaming database, the first way, streaming data import, is the recommended method for data ingestion. The second way serves as a supplementary method, primarily suitable for data corrections and scenarios involving infrequent bulk imports.
 
 ## Ingest data from external sources
 
@@ -25,8 +29,6 @@ WITH (
 )
 ...
 ```
-
-After creating a table or source, RisingWave will continuously consume data from the upstream system, and carry out incremental computations.
 
 ### Difference between table and source
 
