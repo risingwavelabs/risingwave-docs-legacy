@@ -207,7 +207,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Ingest data from a specific source",
+          label: "Sources",
           collapsible: true,
           collapsed: true,
           link: {
