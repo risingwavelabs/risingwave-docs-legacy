@@ -56,21 +56,14 @@ WITH (
 <br/>
 <div></div>
 
-
-
 - When a user sends a `create table` request, the corresponding table will be immediately created and populated with data.
 - When a user creates a materialized view on the existing table, RisingWave will start reading data from the table and perform streaming computation.
 - RisingWave's batch processing engine supports direct batch reading of the table. Users can send ad-hoc queries to directly access the data within the table.
-- A table accepts both append-only data and updateable data. To accept updateable data, you need to specify a primary key when creating the table. CDC sources and Kafka data in upsert formats are the examples of updateable data.
 
-
-
-
-Here are a few important points worth noting about source:
+And here are the points worth noting about a source:
 
 - When a user sends a `create source` request, no physical objects are created, and data is not immediately read from the source.
 - Data from the source is only read when a user creates materialized views or sinks on that source.
-- A source persists only results from materialized views. It accepts only append-only data, such as application events or log messages.
 
 Regardless of whether data is persisted in RisingWave, you can create materialized views to transform or analyze them.
   </div>
@@ -97,3 +90,8 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
   ('2023-06-13T10:03:00Z', 'user4', 'page1', 'view'),
   ('2023-06-13T10:04:00Z', 'user5', 'page2', 'view');
 ```
+
+## Continuing reading
+
+- [Introduction to source](/ingest/introduction-to-source.md) - more detailed conceptual information about a source, like its concept, type, format and encoding options, and so on.
+- [Modify source or table schemas](/ingest/modify-schemas.md) - instructions on how to perform some operations on a source.

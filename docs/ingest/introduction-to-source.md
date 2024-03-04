@@ -1,6 +1,6 @@
 ---
 id: formats-and-encoding
-title: Formats and encoding
+title: Introduction to source
 slug: /formats-and-encoding
 ---
 <head>
