@@ -91,7 +91,9 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
   ('2023-06-13T10:04:00Z', 'user5', 'page2', 'view');
 ```
 
-## Continuing reading
+## Topics in this section
+
+Here is a simple introduction to what you will read in the "Ingest data" section:
 
 - For more detailed conceptual information about a source, like its concept, type, format and encoding options, see [Introduction to source](/ingest/introduction-to-source.md).
 
