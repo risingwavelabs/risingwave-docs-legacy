@@ -14,10 +14,14 @@ This guide aims to provide a quick and easy way to get started with RisingWave.
 ## Step 1: Start RisingWave
 
 :::info
-The following options start RisingWave in standalone mode. In this mode, data is stored in the file system and the metadata is stored in the embedded SQLite database. Standalone mode only supports `jdbc`, `postgresql-cdc`, `mysql-cdc`, `elastic-search`, and `cassandra` connectors in certain user environments. Ubuntu users can utilize these connectors with Java installed, while Mac users will have to wait until the 1.8 release for support.
+The following options start RisingWave in the standalone mode. In this mode, data is stored in the file system and the metadata is stored in the embedded SQLite database. 
 
 For extensive testing or single-machine deployment, consider [starting RisingWave via Docker Compose](/deploy/risingwave-docker-compose.md). For production environments, consider [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service, or [deployment on Kubernetes using the Operator](/deploy/risingwave-kubernetes.md) or [Helm Chart](/deploy/deploy-k8s-helm.md).
 :::
+
+:::warning
+There is a known limitation when using the standalone mode on macOS. Connectors for `jdbc`, `postgresql-cdc`, `mysql-cdc`, `elastic-search`, and `cassandra` may not function as expected. We anticipate that this limitation will be addressed in version 1.8.
+"""
 
 ### Script installation
 
@@ -37,7 +41,7 @@ docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave
 
 ### Homebrew
 
-Ensure [Homebrew](https://brew.sh/) in installed, and run the following commands:
+Ensure [Homebrew](https://brew.sh/) is installed, and run the following commands:
 
 ```shell
 brew tap risingwavelabs/risingwave
@@ -139,5 +143,8 @@ dev=> SELECT * FROM average_exam_scores_101;
 
 Congratulations! You've successfully started RisingWave and conducted some initial data analysis. To explore further, you may want to: 
 
-- See [this GitHub repository](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) for ready-to-run demos and tests.
+- Check out the ready-to-run examples:
+  * [Example A: Ingest data from Kafka](https://github.com/risingwavelabs/awesome-stream-processing/blob/main/00-get-started/01-ingest-kafka-data.md)
+  * [Example B: Ingest data from Postgres CDC](https://github.com/risingwavelabs/awesome-stream-processing/blob/main/00-get-started/02-ingest-pg-cdc.md)
+- See [this GitHub directory](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) for ready-to-run demos and integration examples.
 - Read our documentation to learn about how to ingest data from data streaming sources, transform data, and deliver data to downstream systems.
