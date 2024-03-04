@@ -11,7 +11,7 @@ toc_max_heading_level: 2
 
 This guide aims to provide a quick and easy way to get started with RisingWave.
 
-## Start RisingWave
+## Step 1: Start RisingWave
 
 :::info
 The following options start RisingWave in standalone mode. In this mode, data is stored in the file system and the metadata is stored in the embedded SQLite database. Standalone mode only supports `jdbc`, `postgresql-cdc`, `mysql-cdc`, `elastic-search`, and `cassandra` connectors in certain user environments. Ubuntu users can utilize these connectors with Java installed, while Mac users will have to wait until the 1.8 release for support.
@@ -49,7 +49,7 @@ risingwave
 
 [https://playground.risingwave.dev/](https://playground.risingwave.dev/)
 
-## Connect to RisingWave
+## Step 2: Connect to RisingWave
 
 Ensure you have `psql` installed in your environment. To learn about how to install it, see [Install `psql` without PostgreSQL](/guides/install-psql-without-full-postgres.md).
 
@@ -59,11 +59,11 @@ Open a new terminal window and run:
 psql -h localhost -p 4566 -d dev -U root
 ```
 
-## Insert some data
+## Step 3: Insert some data
 
-RisingWave specializes in streaming data ingestion from sources such as message queues and database change streams. However, it also supports direct data insertion.
+RisingWave supports both direct data insertion and streaming data ingestion from sources like message queues and database change streams.
 
-Now, let's create a table and insert some data.
+To keep things simple, we'll demonstrate the approach of direct data insertion. Let's create a table and insert some data.
 
 For instance, we can create a table named `exam_scores` to store information about examination scores.
 
@@ -87,9 +87,9 @@ VALUES
   (5, 102, 1003, 88.9, '2022-02-15');
 ```
 
-## Analyze and query data
+## Step 4: Analyze and query data
 
-As an illustrative example, let's create a materialized view to calculate the average score for examination 101, and then view the current value of the materialized view.
+As an illustrative example, let's create a materialized view to calculate the average score for examination 101, and then view the current result of the materialized view.
 
 ```sql title="Create a materialized view"
 CREATE MATERIALIZED VIEW average_exam_scores_101 AS
