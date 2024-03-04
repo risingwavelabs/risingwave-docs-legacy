@@ -21,7 +21,7 @@ For extensive testing or single-machine deployment, consider [starting RisingWav
 
 :::warning
 There is a known limitation when using the standalone mode on macOS. Connectors for `jdbc`, `postgresql-cdc`, `mysql-cdc`, `elastic-search`, and `cassandra` may not function as expected. We anticipate that this limitation will be addressed in version 1.8.
-"""
+:::
 
 ### Script installation
 
