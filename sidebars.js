@@ -182,8 +182,18 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Introduction to source",
-          id: "ingest/introduction-to-source",
+          label: "Source types",
+          id: "ingest/source-types",
+        },
+        {
+          type: "doc",
+          label: "Formats and encoding",
+          id: "ingest/formats-and-encoding",
+        },
+        {
+          type: "doc",
+          label: "Supported sources and formats",
+          id: "ingest/supported-sources-and-formats",
         },
         {
           type: "doc",
@@ -197,7 +207,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Sources",
+          label: "Ingest data from a specific source",
           collapsible: true,
           collapsed: true,
           link: {

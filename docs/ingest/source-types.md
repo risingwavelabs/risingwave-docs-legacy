@@ -1,15 +1,13 @@
 ---
-id: introduction-to-source
-title: Introduction to source
-slug: /introduction-to-source
+id: source-types
+title: Source types
+slug: /source-types
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/formats-and-encoding/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/source-types/" />
 </head>
 
 When ingesting data into RisingWave, you need to use sources. A source is a resource that RisingWave can read data from.
-
-## Types of sources
 
 Common upstream data sources for RisingWave include:
 
@@ -17,7 +15,7 @@ Common upstream data sources for RisingWave include:
 - **Change Data Capture (CDC) databases** like MySQL, PostgreSQL, MongoDB, etc.;
 - **Storage systems** like AWS S3.
 
-### Message queues
+## Message queues
 
 RisingWave supports ingesting data from message queues like Apache Kafka, Apache Pulsar, Redpanda, AWS Kinesis, etc., in various formats including Avro, Protobuf, JSON, CSV, Bytes, etc. For a comprehensive list, please refer to the [Supported sources and formats](/sql/commands/sql-create-source.md#supported-sources). 
 
@@ -36,21 +34,6 @@ WITH (
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
-The configuration of message queues and the starting consumption position are specified through parameters in the `WITH` clause. Different connectors have different set of parameters.
-
-The `FORMAT` parameter represents the organization format of the data and includes the following options:
-
-- `PLAIN`: No specific data format, and data in this format can be imported into RisingWave using `CREATE SOURCE` and `CREATE TABLE`.
-- `UPSERT`: UPSERT format, where messages consumed from the message queue will perform UPSERT in RisingWave based on the primary key. To ensure UPSERT correctness, data in UPSERT format from the message queue can only be imported into RisingWave using `CREATE TABLE`.
-- `DEBEZIUM`, `MAXWELL`, `CANAL`, `DEBEZIUM_MONGO`: Mainstream Change Data Capture (CDC) formats, where messages consumed from the message queue will be processed and imported into RisingWave according to the corresponding CDC format's specification. To ensure CDC correctness, data in CDC format from the message queue can only be imported into RisingWave using `CREATE TABLE`.
-
-The `ENCODE` parameter represents the data encoding and includes the following options:
-
-- `JSON`: Data serialized in JSON format in the message queue, compatible with all `FORMAT` options.
-- `AVRO`: Data serialized in AVRO format in the message queue, compatible with all `FORMAT` options.
-- `Protobuf`: Data serialized in Protobuf format in the message queue, compatible with `FORMAT PLAIN / UPSERT / CANAL`.
-- `CSV`: Data serialized in CSV format in the message queue, compatible with `FORMAT PLAIN`.
-- `Bytes`: Data exists in the message queue in raw bytes format, compatible with `FORMAT PLAIN`.
 
 In addition, RisingWave also supports specifying a schema registry for parsing data from the message queue. For example:
 
@@ -69,7 +52,7 @@ WITH (
 
 When the `schema.registry` is specified, users no longer need to define columns for tables or sources in the DDL. RisingWave will automatically deduce the correct schema through the `schema.registry`. It is worth noting that users can still explicitly specify the primary key in the DDL: `CREATE TABLE t1 (PRIMARY KEY(id))`. For UPSERT and CDC formatted data, the primary key is, by default, the key of the message in the message queue.
 
-### Change Data Capture (CDC)
+## Change Data Capture (CDC)
 
 RisingWave supports ingesting Change Data Capture (CDC) from upstream databases through two main methods:
 
@@ -112,7 +95,7 @@ Method 1 is suitable for users who have already established standard CDC pipelin
 
 It is worth noting that RisingWave is actively expanding the functionality and performance of direct CDC connectors. We plan to support more databases and advanced features such as full data backfill resumption, multi-table transactions, and more in the future.
 
-### **Storage System**
+## **Storage System**
 
 RisingWave supports ingesting data from upstream storage systems, notably S3 and S3-compatible systems. For example,
 
