@@ -102,4 +102,4 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
   - [Modify source or table schemas](/ingest/modify-schemas.md)
   - [Ingest additional fields with INCLUDE clause](/ingest/include-clause.md)
 
-- For specific instructions on ingesting data from a particular source supported by RisingWave, read the guides under the [Source part.
+- For specific instructions on ingesting data from a particular source supported by RisingWave, read the guides under the [Source part].

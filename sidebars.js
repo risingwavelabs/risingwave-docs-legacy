@@ -182,6 +182,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Introduction to source",
+          id: "ingest/introduction-to-source",
+        },
+        {
+          type: "doc",
           label: "Modify source or table schemas",
           id: "ingest/modify-schemas",
         },
@@ -191,15 +196,17 @@ const sidebars = {
           id: "ingest/include-clause",
         },
         {
-          type: "doc",
-          label: "Formats and encoding",
-          id: "ingest/formats-and-encoding",
-        },
-        {
           type: "category",
           label: "Sources",
           collapsible: true,
           collapsed: true,
+          link: {
+            type: "generated-index",
+            title: "Sources",
+            description: "Specific guides on ingesting data from a particular source supported by RisingWave.",
+            slug: "/sources",
+            keywords: ["sources"],
+          },
           items: [
             {
               type: "category",

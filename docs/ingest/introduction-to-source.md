@@ -1,7 +1,7 @@
 ---
-id: formats-and-encoding
+id: introduction-to-source
 title: Introduction to source
-slug: /formats-and-encoding
+slug: /introduction-to-source
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/formats-and-encoding/" />
