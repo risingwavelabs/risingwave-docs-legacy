@@ -93,34 +93,34 @@ VALUES
 
 ## Step 4: Analyze and query data
 
-As an example, let's create a materialized view to calculate the average score for examination 101, and then view the current result of the materialized view.
+As an example, let's create a materialized view to calculate the average score for each examination, and then view the current result of the materialized view.
 
 ```sql title="Create a materialized view"
-CREATE MATERIALIZED VIEW average_exam_scores_101 AS
+CREATE MATERIALIZED VIEW average_exam_scores AS
 SELECT
     exam_id,
     AVG(score) AS average_score,
     COUNT(score) AS total_scores
 FROM
     exam_scores
-WHERE
-    exam_id = 101
 GROUP BY
     exam_id;
 ```
 
 ```sql title="Query the current result"
-SELECT * FROM average_exam_scores_101;
+SELECT * FROM average_exam_scores;
 ------
  exam_id |   average_score   | total_scores 
 ---------+-------------------+--------------
+     102 | 90.05000000000001 |            2
      101 | 85.33333333333333 |            3
-(1 row)
+(2 rows)
+
 ```
 
-As new data is received, the `average_exam_scores_101` materialized view will be automatically updated. RisingWave performs incremental computations in the background to keep the results up to date.
+As new data is received, the `average_exam_scores` materialized view will be automatically updated. RisingWave performs incremental computations in the background to keep the results up to date.
 
-Now, let's insert five additional rows of data into the `exam_scores` table and query the latest result from the `average_exam_scores_101` materialized view. This will provide us with the updated average score for examination 101.
+Now, let's insert five additional rows of data into the `exam_scores` table and query the latest result from the `average_exam_scores` materialized view. This will provide us with the updated average score for each examination.
 
 ```sql title="Insert more data"
 INSERT INTO exam_scores (score_id, exam_id, student_id, score, exam_date)
@@ -132,11 +132,13 @@ VALUES
   (15, 102, 1006, 84.3, '2022-06-10');
 ```
 ```sql title="Query the latest result"
-dev=> SELECT * FROM average_exam_scores_101;
- exam_id | average_score | total_scores 
----------+---------------+--------------
-     101 |         87.74 |            5
-(1 row)
+SELECT * FROM average_exam_scores;
+------
+ exam_id |   average_score   | total_scores 
+---------+-------------------+--------------
+     101 |             87.74 |            5
+     102 | 88.64000000000001 |            5
+(2 rows)
 ```
 
 ## What's next?
