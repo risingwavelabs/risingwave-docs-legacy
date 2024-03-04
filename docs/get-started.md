@@ -9,12 +9,12 @@ toc_max_heading_level: 2
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/get-started/" />
 </head>
 
-This guide is designed to help you get up and running with RisingWave quickly and easily. In this guide, we will walk you through the common tasks of using RisingWave.
+This guide aims to provide a quick and easy way to get started with RisingWave. In this guide, we will walk you through the common tasks of using RisingWave.
 
-## Start RisingWave
+## Step 1: Start RisingWave
 
 :::info
-The following options start RisingWave in standalone mode. In this mode, data is stored in the file system and the metadata is stored in the embedded SQLite database. Note that these connectors are not supported in standalone mode:`jdbc`, `postgresql-cdc`, `mysql-cdc`, `elastic-search`, and `cassandra`.
+The following options start RisingWave in the standalone mode. In this mode, data is stored in the file system and the metadata is stored in the embedded SQLite database. Note that these connectors are not supported in standalone mode:`jdbc`, `postgresql-cdc`, `mysql-cdc`, `elastic-search`, and `cassandra`.
 
 For extensive testing or single-machine deployment, consider [starting RisingWave via Docker Compose](/deploy/risingwave-docker-compose.md). For production environments, consider [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service, or [deployment on Kubernetes using the Operator](/deploy/risingwave-kubernetes.md) or [Helm Chart](/deploy/deploy-k8s-helm.md).
 :::
@@ -49,7 +49,7 @@ risingwave
 
 [https://playground.risingwave.dev/](https://playground.risingwave.dev/)
 
-## Connect to RisingWave
+## Step 2: Connect to RisingWave
 
 After RisingWave is up and running, connect to it via the Postgres interactive terminal `psql`. Ensure you have `psql` installed in your environment. To learn about how to install it, see [Install `psql` without PostgreSQL](/guides/install-psql-without-full-postgres.md).
 
@@ -67,11 +67,25 @@ Notes about the `psql` options:
 - The `-U` option is used to specify the name of the database user to connect as.
 - By default, the PostgreSQL server uses the `root` user account to authenticate connections to the `dev` database. Note that this user account does not require a password to connect.
 
-## Create a table
+## Step 3: Ingest data into RisingWave
 
-As RisingWave is a database, you can directly create a table and insert data into it. For example, let's create a table to store data about web page visits.
+After RisingWave starts, you can ingest data into it. You can either directly insert data into it, or ingest data from a streaming source like Kafka, Pulsar, Kinesis, or Postgres CDC.
 
-```sql
+### Option A: Ingest streaming data from a source
+
+The recommended approach for streaming data ingestion into RisingWave is through upstream sources, such as message queues or Change Data Capture streams. To view the list of supported sources and formats, refer to [Supported sources](/sql/commands/sql-create-source.md#supported-sources).
+
+You can ingest streaming data by creating a table with connector settings using the [`CREATE TABLE`](/sql/commands/sql-create-table.md)) command or by creating a source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command. In RisingWave, a source stores the metadata of a stream but does not persist the data within the stream, while a table with connector settings persists the data in the stream.
+
+Before proceeding, please ensure that the streaming source, such as a Kafka topic, is available as a prerequisite. To keep this guide concise, we will not provide detailed instructions on setting up your upstream sources.
+
+### Option B: Insert data into RisingWave
+
+To insert data into RisingWave, the process is similar to inserting data into any SQL database.
+
+For instance, we can create a table called website_visits to store information about web page visits. We can then insert five rows of data into this table as an example.  It's important to note that the data in the table is intended to simulate the payload of a data stream.
+
+```sql title="Create the table"
 CREATE TABLE website_visits (
   timestamp timestamp with time zone,
   user_id varchar,
@@ -80,13 +94,7 @@ CREATE TABLE website_visits (
 );
 ```
 
-## Insert data
-
-You can get data into RisingWave in two ways, directly inserting data and consuming data from streaming data sources.
-
-Inserting data into RisingWave is the same as inserting data in any SQL database. Let's insert 5 rows of data to table `website_visits`.
-
-```sql
+```sql title="Insert five rows of data
 INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
   ('2023-06-13T10:00:00Z', 'user1', 'page1', 'view'),
   ('2023-06-13T10:01:00Z', 'user2', 'page2', 'view'),
@@ -95,48 +103,11 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
   ('2023-06-13T10:04:00Z', 'user5', 'page2', 'view');
 ```
 
-## Connect to a source
+## Step 4: Transform data
 
-The most common way for getting streaming data into RisingWave is through upstream sources such as message queues or Change Data Capture streams. For streaming data ingestion, you need to use the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command to connect to a source first.
+To perform data transformations in RisingWave, there is no requirement to set up processing jobs or pipelines. You have the option to express your data transformation logic within materialized views if you need to directly query the results within RisingWave. Alternatively, if you intend to deliver the results to a downstream system, such as a data warehouse, and query the results there, you can include the transformation logic within a sink. In RisingWave, a sink is an object used to deliver data to a downstream system.
 
-Let's assume that you have entered five rows of data in the same schema as table `website_visits` into the `test` topic in Kafka:
-
-```json
-{"timestamp": "2023-06-13T10:05:00Z", "user_id": "user1", "page_id": "page1", "action": "click"}
-{"timestamp": "2023-06-13T10:06:00Z", "user_id": "user2", "page_id": "page2", "action": "scroll"}
-{"timestamp": "2023-06-13T10:07:00Z", "user_id": "user3", "page_id": "page1", "action": "view"}
-{"timestamp": "2023-06-13T10:08:00Z", "user_id": "user4", "page_id": "page2", "action": "view"}
-{"timestamp": "2023-06-13T10:09:00Z", "user_id": "user5", "page_id": "page3", "action": "view"}
-```
-
-You can now connect to the topic from RisingWave by running the following command:
-
-```sql
-CREATE SOURCE IF NOT EXISTS website_visits_stream (
- timestamp timestamp with time zone,
- user_id varchar,
- page_id varchar,
- action varchar
- )
-WITH (
- connector='kafka',
- topic='test',
- properties.bootstrap.server='localhost:9092',
- scan.startup.mode='earliest'
- ) FORMAT PLAIN ENCODE JSON;
-```
-
-Note that after the source is created, data is not automatically ingested into RisingWave. You need to create a materialized view to start the data movement.
-
-RisingWave supports ingesting data from sources including mainstream message queues and databases. For supported sources and formats, see [Supported sources](/sql/commands/sql-create-source.md#supported-sources) and [Supported formats](/sql/commands/sql-create-source.md#supported-formats).
-
-## Transform data with materialized views
-
-In RisingWave, data are joined and transformed via materialized views. You do not need to set up processing jobs or pipelines.
-
-A materialized views can be created on tables, sources, or joined data between tables and sources.
-
-Let's create a materialized view to get the total page visits, unique visitors, and the last visit time for each page based on the data in source `website_visits_stream`.
+As an illustrative example, let's create a materialized view to obtain the total page visits, unique visitors, and the last visit time for each page based on the   `website_visits` table. 
 
 ```sql
 CREATE MATERIALIZED VIEW visits_stream_mv AS 
@@ -144,21 +115,19 @@ SELECT page_id,
 count(*) AS total_visits, 
 count(DISTINCT user_id) AS unique_visitors, 
 max(timestamp) AS last_visit_time 
-FROM website_visits_stream 
+FROM website_visits
 GROUP BY page_id;
 ```
 
-## Query data
+## Step 5: Query data
 
-Use the [`SELECT`](/sql/commands/sql-select.md) command to query data in a table or materialized view.
+Like other databases, you can query data in RisingWave using the [`SELECT`](/sql/commands/sql-select.md) command.
 
-For example, let's see the latest results of the `visits_stream_mv` materialized view:
+For example, let's see the latest results of the `visits_stream_mv` materialized view that we created earlier:
 
 ```sql
 SELECT * FROM visits_stream_mv;
-```
-
-```
+------
  page_id | total_visits | unique_visitors |      last_visit_time
 ---------+--------------+-----------------+---------------------------
  page2   |            2 |               2 | 2023-06-13 10:08:00+00:00
@@ -169,23 +138,23 @@ SELECT * FROM visits_stream_mv;
 
 As new data comes in, the results in `visits_stream_mv` will be automatically updated. Behind the scenes, RisingWave performs incremental computations when new data comes in.
 
-For example, if you enter five more rows of data into the `test` topic:
+For example, if you insert five more rows of data into the `website_visits` table:
 
-```json
-{"timestamp": "2023-06-13T10:10:00Z", "user_id": "user1", "page_id": "page3", "action": "scroll"}
-{"timestamp": "2023-06-13T10:11:00Z", "user_id": "user2", "page_id": "page1", "action": "click"}
-{"timestamp": "2023-06-13T10:12:00Z", "user_id": "user3", "page_id": "page2", "action": "scroll"}
-{"timestamp": "2023-06-13T10:13:00Z", "user_id": "user4", "page_id": "page3", "action": "view"}
-{"timestamp": "2023-06-13T10:14:00Z", "user_id": "user5", "page_id": "page1", "action": "click"}
+
+```sql title="Insert five rows of data"
+INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
+  {'2023-06-13T10:10:00Z', 'user1', 'page3', 'scroll'}
+  {'2023-06-13T10:11:00Z', 'user2', 'page1', 'click'}
+  {'2023-06-13T10:12:00Z', 'user3', 'page2', 'scroll'}
+  {'2023-06-13T10:13:00Z', 'user4', 'page3', 'view'}
+  {'2023-06-13T10:14:00Z', 'user5', 'page1', 'click'};
 ```
 
 The results will be automatically updated:
 
 ```sql
 SELECT * FROM visits_stream_mv;
-```
-
-```
+------
  page_id | total_visits | unique_visitors |      last_visit_time   
 ---------+--------------+-----------------+---------------------------
  page2   |            3 |               3 | 2023-06-13 10:12:00+00:00
@@ -194,21 +163,8 @@ SELECT * FROM visits_stream_mv;
 (3 rows)
 ```
 
-## Sink data out of RisingWave
+## What's next?
 
-Data in tables and materialized views are stored in RisingWave. You can sink data out of RisingWave and into Kafka topics or databases.
+- For runnable demos and integration tests, see [this GitHub repository](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests). Note that Docker is required to run the demos and tests.
 
-To sink data out of RisingWave, you need to create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md) command. A sink can be created from an existing table, source, or materialized view, or an ad-hoc `SELECT` query.
-
-Let's sink all data from `visits_stream_mv` to a Kafka topic:
-
-```sql
-CREATE SINK sink1 FROM visits_stream_mv
-WITH (
-connector='kafka',
-properties.bootstrap.server='localhost:9092',
-topic='sink1'
-) FORMAT PLAIN ENCODE JSON (
-force_append_only='true',
-);
-```
+- You can export data from RisingWave to various destinations such as message queues, databases, data warehouses, or data lakes. For a complete list of destinations, see [Integrations](/rw-integration-summary.md). To deliver data from RisingWave to downstream systems, create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md) command.
