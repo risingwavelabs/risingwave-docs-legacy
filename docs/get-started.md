@@ -61,11 +61,11 @@ psql -h localhost -p 4566 -d dev -U root
 
 ## Insert some data
 
-RisingWave focuses on streaming data ingestion from sources like message queues and database change streams but directly inserting date is also supported. 
+RisingWave specializes in streaming data ingestion from sources such as message queues and database change streams. However, it also supports direct data insertion.
 
-Let's now create a table and insert some data.
+Now, let's create a table and insert some data.
 
-For instance, we can create a table called `exam_scores` to store information about examinations.
+For instance, we can create a table named `exam_scores` to store information about examination scores.
 
 ```sql title="Create the table"
 CREATE TABLE exam_scores (
@@ -89,7 +89,7 @@ VALUES
 
 ## Analyze and query data
 
-As an illustrative example, let's create a materialized view to calculate the average score for examination 101. 
+As an illustrative example, let's create a materialized view to calculate the average score for examination 101, and then view the current value of the materialized view.
 
 ```sql title="Create a materialized view"
 CREATE MATERIALIZED VIEW average_exam_scores_101 AS
@@ -114,9 +114,9 @@ SELECT * FROM average_exam_scores_101;
 (1 row)
 ```
 
-As new data comes in, the results in `average_exam_scores_101` will be automatically updated. Behind the scenes, RisingWave performs incremental computations when new data comes in.
+As new data is received, the `average_exam_scores_101` materialized view will be automatically updated. RisingWave performs incremental computations in the background to keep the results up to date.
 
-Now let's insert five more rows of data, and query the latest result.
+Now, let's insert five additional rows of data into the `exam_scores` table and query the latest result from the `average_exam_scores_101` materialized view. This will provide us with the updated average score for examination 101.
 
 ```sql title="Insert more data"
 INSERT INTO exam_scores (score_id, exam_id, student_id, score, exam_date)
