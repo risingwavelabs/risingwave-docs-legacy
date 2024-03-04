@@ -14,7 +14,7 @@ This guide aims to provide a quick and easy way to get started with RisingWave. 
 ## Step 1: Start RisingWave
 
 :::info
-The following options start RisingWave in the standalone mode. In this mode, data is stored in the file system and the metadata is stored in the embedded SQLite database. Note that these connectors are not supported in standalone mode:`jdbc`, `postgresql-cdc`, `mysql-cdc`, `elastic-search`, and `cassandra`.
+The following options start RisingWave in standalone mode. In this mode, data is stored in the file system and the metadata is stored in the embedded SQLite database. Standalone mode only supports `jdbc`, `postgresql-cdc`, `mysql-cdc`, `elastic-search`, and `cassandra` connectors in certain user environments. Ubuntu users can utilize these connectors with Java installed, while Mac users will have to wait until the 1.8 release for support.
 
 For extensive testing or single-machine deployment, consider [starting RisingWave via Docker Compose](/deploy/risingwave-docker-compose.md). For production environments, consider [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service, or [deployment on Kubernetes using the Operator](/deploy/risingwave-kubernetes.md) or [Helm Chart](/deploy/deploy-k8s-helm.md).
 :::
