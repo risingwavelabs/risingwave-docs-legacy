@@ -7,11 +7,29 @@ slug: /formats-and-encoding
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/formats-and-encoding/" />
 </head>
 
-# Connector
+This topic will tell you more detailed information about sources, including: 
 
-When ingesting data into RisingWave or delivering data to a downstream system, you need to use connectors. For an overview of data ingestion and data delivery, please refer to [Data Ingestion](/docs/basics/ingestion.md) and [Data Delivery](/docs/basics/sink.md).
+   - The concept of a source.
+   - The difference between a source and a table in RisingWave.
+   - The types of sources that RisingWave supports.
+   - The formats and encoding options of sources.
 
 ## Source
+
+When ingesting data into RisingWave, you need to use sources. A source is a resource that RisingWave can read data from.
+
+
+
+
+
+
+### Supported sources and formats
+
+For the complete list of supported sources and formats, see [Supported sources and formats](/sql/commands/sql-create-source.md#supported-sources).
+
+
+
+
 
 Common upstream data sources for RisingWave include:
 

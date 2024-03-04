@@ -7,7 +7,7 @@ slug: /data-ingestion
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-ingestion/" />
 </head>
 
-In databases, users often use the `INSERT` statement to input data. However, in stream processing, data is continuously imported from upstream systems, and evidently, the `INSERT` statement is unable to meet this need. RisingWave allows users to directly create `table` and `source` to import upstream data. When there is new data entering from the upstream systems, RisingWave will directly consume the data and carry out incremental computations.
+In databases, users often use the `INSERT` statement to insert data. However, in stream processing, data is continuously imported from upstream systems, and evidently, the `INSERT` statement is unable to meet this need. RisingWave allows users to directly create `table` and `source` to import upstream data. When there is new data entering from the upstream systems, RisingWave will directly consume the data and carry out incremental computations.
 
 In short, you can ingest data into RisingWave in two ways:
 
@@ -30,9 +30,11 @@ WITH (
 ...
 ```
 
-### Difference between table and source
-
-As for the differences between a table and a source, you can refer to the table below, which summarizes their main differences.
+<details>
+  <summary>What's the difference between a table and a source?</summary>
+  <div>
+    <div>The table below shows the main differences between a table and a source in RisingWave.</div>
+<br/>
 
 | Functionalities | Table | Source |
 | ----------------| ----- | ------ |
@@ -40,17 +42,28 @@ As for the differences between a table and a source, you can refer to the table 
 | Support primary key   | yes        | no |
 | Support appending data  | yes        | yes |
 | Support updating/deleting data   | yes, but a primary key needs to be defined       | no |
+<br/>
 
-As shown above, a very fundamental difference between table and source is that a table will persist the consumed data, while a source will not. For instance, let's assume the upstream inputs 5 records: `AA`, `BB`, `CC`, `DD`, and `EE`. If using table, these 5 records will be persisted within RisingWave; if using source, these records will not be persisted. 
+<div>As shown above, a very fundamental difference between them is that a table will persist the consumed data, while a source will not. For instance, let's assume the upstream inputs 5 records: `AA`, `BB`, `CC`, `DD`, and `EE`. If using a table, these 5 records will be persisted within RisingWave; if using a source, these records will not be persisted. </div>
+<br/>
+<div>The advantage of using a table to persist records is that it can speed up queries. Naturally, if the data is within the same system, queries will be much more efficient, although the downside is that it occupies storage.</div>
+<br/>
 
-Here are a few key points worth noting about table:
+<div>Another advantage is the ability to consume data changes. That is to say, if the upstream system deletes or updates a record, this operation will be consumed by RisingWave, thereby modifying the results of the stream computation. On the other hand, a source only supports appending records and cannot handle data changes. Besides, to allow a table to accept data changes, a primary key must be specified on the table.</div>
+
+<br/>
+<div>Apart from the above differences, here are a few points worth noting about a table:</div>
+<br/>
+<div></div>
+
+
 
 - When a user sends a `create table` request, the corresponding table will be immediately created and populated with data.
 - When a user creates a materialized view on the existing table, RisingWave will start reading data from the table and perform streaming computation.
 - RisingWave's batch processing engine supports direct batch reading of the table. Users can send ad-hoc queries to directly access the data within the table.
 - A table accepts both append-only data and updateable data. To accept updateable data, you need to specify a primary key when creating the table. CDC sources and Kafka data in upsert formats are the examples of updateable data.
 
-The significant advantage of using table to persist records is that it can speed up queries. Naturally, if the data is within the same system, queries will be much more efficient, although the downside is that it occupies storage. Another advantage is the ability to consume data changes. That is to say, if the upstream system deletes or updates a record, this operation will be consumed by RisingWave, thereby modifying the results of the stream computation. On the other hand, source only supports appending records and cannot handle data changes. To allow table to accept data changes, a primary key must be specified on the table.
+
 
 
 Here are a few important points worth noting about source:
@@ -60,12 +73,27 @@ Here are a few important points worth noting about source:
 - A source persists only results from materialized views. It accepts only append-only data, such as application events or log messages.
 
 Regardless of whether data is persisted in RisingWave, you can create materialized views to transform or analyze them.
-
-### Supported sources and formats
-
-For the complete list of supported sources and formats, see [Supported sources and formats](/sql/commands/sql-create-source.md#supported-sources).
+  </div>
+</details>
 
 ## Insert data into tables (without connectors)
 
-You can also load data to RisingWave by creating tables ([`CREATE TABLE`](/sql/commands/sql-create-table.md)) and inserting data into tables ([`INSERT`](/sql/commands/sql-insert.md)).
+You can also load data to RisingWave by creating tables ([`CREATE TABLE`](/sql/commands/sql-create-table.md)) and inserting data into tables ([`INSERT`](/sql/commands/sql-insert.md)). For example, the statement below creates a table `website_visits` and inserts 5 rows of data.
 
+
+
+```sql
+CREATE TABLE website_visits (
+  timestamp timestamp with time zone,
+  user_id varchar,
+  page_id varchar,
+  action varchar
+);
+
+INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
+  ('2023-06-13T10:00:00Z', 'user1', 'page1', 'view'),
+  ('2023-06-13T10:01:00Z', 'user2', 'page2', 'view'),
+  ('2023-06-13T10:02:00Z', 'user3', 'page3', 'view'),
+  ('2023-06-13T10:03:00Z', 'user4', 'page1', 'view'),
+  ('2023-06-13T10:04:00Z', 'user5', 'page2', 'view');
+```
