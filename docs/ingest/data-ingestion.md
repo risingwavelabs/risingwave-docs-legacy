@@ -95,7 +95,7 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
 
 Above is just a simple overview of how to ingest data in RisingWave. The following topics in the "Ingest data" section will help you understand this process more deeply. Here is a simple introduction to the information you will find on each topic:
 
-- For more detailed information about a source, like its concept, type, format and encoding options, see [Source types](/ingest/source-types.md) and [Formats and encoding].
+- For more detailed information about a source, like its concept, type, format and encoding options, see [Source types](/ingest/source-types.md) and [Formats and encoding](/ingest/formats-and-encoding.md).
 
 - For the complete list of supported sources and formats, see [Supported sources and formats](/sql/commands/sql-create-source.md#supported-sources).
 
