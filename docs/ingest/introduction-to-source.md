@@ -7,39 +7,21 @@ slug: /introduction-to-source
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/formats-and-encoding/" />
 </head>
 
-This topic will tell you more detailed information about sources, including: 
-
-   - The concept of a source.
-   - The difference between a source and a table in RisingWave.
-   - The types of sources that RisingWave supports.
-   - The formats and encoding options of sources.
-
-## Source
-
 When ingesting data into RisingWave, you need to use sources. A source is a resource that RisingWave can read data from.
 
-
-
-
-
-
-### Supported sources and formats
-
-For the complete list of supported sources and formats, see [Supported sources and formats](/sql/commands/sql-create-source.md#supported-sources).
-
-
-
-
+## Types of sources
 
 Common upstream data sources for RisingWave include:
 
-- **Message Queues** like Apache Kafka, Apache Pulsar, Redpanda, etc.;
+- **Message queues** like Apache Kafka, Apache Pulsar, Redpanda, etc.;
 - **Change Data Capture (CDC) databases** like MySQL, PostgreSQL, MongoDB, etc.;
 - **Storage systems** like AWS S3.
 
-### Message Queues
+### Message queues
 
-RisingWave supports ingesting data from message queues like Apache Kafka, Apache Pulsar, Redpanda, AWS Kinesis, etc., in various formats including Avro, Protobuf, JSON, CSV, Bytes, etc. For a comprehensive list, please refer to the [documentation](https://docs.risingwave.com/docs/current/sql-create-source/#supported-sources). For example:
+RisingWave supports ingesting data from message queues like Apache Kafka, Apache Pulsar, Redpanda, AWS Kinesis, etc., in various formats including Avro, Protobuf, JSON, CSV, Bytes, etc. For a comprehensive list, please refer to the [Supported sources and formats](/sql/commands/sql-create-source.md#supported-sources). 
+
+Here is an example of ingesting data from Kafka:
 
 ```sql
 CREATE SOURCE IF NOT EXISTS source_abc (
@@ -85,7 +67,7 @@ WITH (
 );
 ```
 
-When the `schema.registry` is specified, users no longer need to define columns for tables or sources in the DDL. RisingWave will automatically deduce the correct schema through the  `shcema.registry`. It is worth noting that users can still explicitly specify the primary key in the DDL: `CREATE TABLE t1 (PRIMARY KEY(id))`. For UPSERT and CDC formatted data, the primary key is, by default, the key of the message in the message queue.
+When the `schema.registry` is specified, users no longer need to define columns for tables or sources in the DDL. RisingWave will automatically deduce the correct schema through the `schema.registry`. It is worth noting that users can still explicitly specify the primary key in the DDL: `CREATE TABLE t1 (PRIMARY KEY(id))`. For UPSERT and CDC formatted data, the primary key is, by default, the key of the message in the message queue.
 
 ### Change Data Capture (CDC)
 
@@ -155,68 +137,7 @@ WITH (
 
 Currently, data with CSV and JSON encoding can be imported from a specified bucket in S3. In the future, RisingWave will extend its support to import data from a wider range of upstream storage systems.
 
-### **DML Import**
+## Supported sources and formats
 
-In addition to streaming data from various upstream sources as mentioned above, RisingWave's tables also support data insertion using PostgreSQL's Data Manipulation Language (DML). Users can use `INSERT INTO ...` to insert data into RisingWave tables or explore bulk insertion using PostgreSQL-compatible bulk import tools. It is important to note that as RisingWave is a streaming database, streaming data import is the recommended method for data ingestion. DML data import serves as a supplementary method, primarily suitable for data corrections and scenarios involving infrequent bulk imports.
+For the complete list of supported sources and formats, see [Supported sources and formats](/sql/commands/sql-create-source.md#supported-sources).
 
-## Sink
-
-Common downstream systems supported by RisingWave include:
-
-- **Message queues**, such as Apache Kafka, Apache Pulsar, Redpanda, etc.
-- **Databases**, such as MySQL, PostgreSQL, TiDB, Apache Doris, Starrocks, ClickHouse, etc.
-- **Data lakes**, such as Apache Iceberg, Delta Lake, etc.
-- **Other systems**, such as Elasticsearch, Cassandra, Redis, etc.
-
-For the complete list, please refer to the [documentation](https://docs.risingwave.com/docs/current/data-delivery/).
-
-Users can export data from RisingWave to downstream systems using the `CREATE SINK` command. Similar to SOURCE, users can specify the data format (`FORMAT`) and encoding (`ENCODE`) for the SINK.
-
-The options for `FORMAT` are:
-
-- `PLAIN`: No specific data format; it depends on the supported formats of the downstream system.
-- `UPSERT`: UPSERT format, exporting data as a UPSERT stream with primary keys.
-- `DEBEZIUM`: CDC format, exporting data in the CDC format of DEBEZIUM.
-
-The options for `ENCODE` are:
-
-- `JSON`: Export data using JSON serialization.
-- `AVRO`: Export data using AVRO serialization; currently, it is only supported with the UPSERT format.
-
-Different downstream systems have varying support for `FORMAT` and `ENCODE`. For systems like databases and data lakes with explicit data models, when using `CREATE SINK`, there is no need to specify `FORMAT` and `ENCODE` separately. RisingWave will export data based on the downstream system's data model. However, for message queues, users can optionally specify `FORMAT` and `ENCODE` as needed.
-
-RisingWave supports `CREATE SINK FROM MV/SOURCE/TABLE` to directly export materialized views and table data. It also supports `CREATE SINK AS <query>` to select and transform data before the export.
-
-### `CREATE SINK FROM`
-
-You can use `CREATE SINK FROM` to sink data from an existing materialized view or table.
-
-```sql
-CREATE SINK sink1 FROM mv_or_table 
-WITH (
-   connector='kafka',
-   properties.bootstrap.server='localhost:9092',
-   topic='test'
-)
-FORMAT PLAIN ENCODE JSON;
-```
-
-### `CREATE SINK AS`
-
-You can use `CREATE SINK AS` to sink data from a query.
-
-```sql
-CREATE SINK sink2 AS 
-SELECT 
-   avg(distance) as avg_distance, 
-   avg(duration) as avg_duration 
-FROM taxi_trips
-WITH (
-   connector='kafka',
-   properties.bootstrap.server='localhost:9092',
-   topic='test'
-)
-FORMAT PLAIN ENCODE JSON;
-```
-
-It is worth noting that different downstream systems have various configurable options with `CREATE SINK`. For detailed information, please refer to the [documentation](https://docs.risingwave.com/docs/current/data-delivery/).
