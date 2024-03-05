@@ -93,31 +93,17 @@ In RisingWave, use the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md)
 
 There are two ways to load the WASM module:
 
-1. The WASM binary can be embedded in the SQL statement using base64 encoding. You can use the following shell script to encode the binary and generate the SQL statement:
-
-    ```shell
-    encoded=$(base64 -i udf.wasm)
-    sql="CREATE FUNCTION gcd(int, int) RETURNS int LANGUAGE wasm USING BASE64 '$encoded';"
-    echo "$sql" > create_function.sql
-    ```
-
-   When created successfully, the WASM binary will be automatically uploaded to the object store.
-
-2. The WASM binary can be loaded from the object store.
+1. Embed the WASM binary into SQL with base64 encoding. You can use the following command in psql:
 
     ```sql
-    CREATE FUNCTION gcd(int, int) RETURNS int
-    LANGUAGE wasm USING LINK 's3://bucket/path/to/udf.wasm';
-
-    CREATE FUNCTION series(int) RETURNS TABLE (x int)
-    LANGUAGE wasm USING LINK 's3://bucket/path/to/udf.wasm';
+    \set wasm_binary `base64 -i path/to/udf.wasm`
+    CREATE FUNCTION gcd(int, int) RETURNS int LANGUAGE wasm USING BASE64 :'wasm_binary';
     ```
 
-    Alternatively, if you run RisingWave locally, you can use the local file system:
+2. Load the WASM binary from the local file system of the frontend.
 
     ```sql
-    CREATE FUNCTION gcd(int, int) RETURNS int
-    LANGUAGE wasm USING LINK 'fs://path/to/udf.wasm';
+    CREATE FUNCTION gcd(int, int) RETURNS int LANGUAGE wasm USING LINK 'fs://path/to/udf.wasm';
     ```
 
 ## 5. Use your functions in RisingWave
