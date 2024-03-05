@@ -20,7 +20,7 @@ A few details worth noting:
 
 * Data on a materialized view cannot be directly updated or deleted by users, which aligns with the design of traditional databases.
 
-## Sample Code
+## Examples
 
 Let's quickly verify how RisingWave handles deletion or modification operations from upstream in materialized views.
 
