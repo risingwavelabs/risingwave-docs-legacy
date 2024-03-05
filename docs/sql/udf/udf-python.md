@@ -79,7 +79,7 @@ import struct
 import socket
 
 # Define a scalar function that returns a single value
-@udf(input_types=['INT', 'INT'], result_type='INT')
+@udf(input_types=['INT', 'INT'], result_type='INT', io_threads=32)
 def gcd(x, y):
     while y != 0:
         (x, y) = (y, x % y)
@@ -227,3 +227,27 @@ if __name__ == "__main__":
 ```
 
 Then, you can start a load balancer, such as Nginx. It listens on port 8815 and forwards requests to UDF servers on ports 8816-8819.
+
+## Data Types
+
+The RisingWave Python UDF SDK supports the following data types:
+
+| SQL Type         | Python Type                    | Notes              |
+| ---------------- | -----------------------------  | ------------------ |
+| BOOLEAN          | bool                           |                    |
+| SMALLINT         | int                            |                    |
+| INT              | int                            |                    |
+| BIGINT           | int                            |                    |
+| REAL             | float                          |                    |
+| DOUBLE PRECISION | float                          |                    |
+| DECIMAL          | decimal.Decimal                |                    |
+| DATE             | datetime.date                  |                    |
+| TIME             | datetime.time                  |                    |
+| TIMESTAMP        | datetime.datetime              |                    |
+| INTERVAL         | MonthDayNano / (int, int, int) | Fields can be obtained by `months()`, `days()` and `nanoseconds()` from `MonthDayNano` |
+| VARCHAR          | str                            |                    |
+| BYTEA            | bytes                          |                    |
+| JSONB            | any                            |                    |
+| T[]              | list[T]                        |                    |
+| STRUCT<>         | tuple                          |                    |
+| ...others        |                                | Not supported yet. |
