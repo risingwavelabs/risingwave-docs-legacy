@@ -26,7 +26,7 @@ WITH (
 ) ] ];
 ```
 :::note
-The optional `FORMAT data_format ENCODE data_encode` syntax is only used for Kafka, Kinesis, and Pulsar sinks. 
+The optional `FORMAT data_format ENCODE data_encode` syntax is only used for Kafka, Kinesis, Pulsar, and Redis sinks.
 :::
 
 
