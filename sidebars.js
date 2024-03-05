@@ -207,7 +207,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Sources",
+          label: "Guides for specific sources",
           collapsible: true,
           collapsed: true,
           link: {
