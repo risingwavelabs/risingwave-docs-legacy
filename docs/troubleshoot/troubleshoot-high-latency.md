@@ -46,6 +46,18 @@ Identifying the resource bottleneck of the streaming tasks is important, as it c
 
   **Grafana dashboard (dev)** > **Object Storage** > **Operation Retry Rate** panel
 
+### UDF bottleneck
+
+ **Grafana dashboard (dev)** > **User Defined Function** section
+
+
+### Sink bottleneck
+
+<!--
+https://github.com/risingwavelabs/risingwave/issues/15473
+
+-->
+
 ### State bottleneck(read)
 
   **Grafana dashboard (dev)** > **Actor/Table Id Info** > **State Table Info** panel
@@ -57,18 +69,7 @@ Identifying the resource bottleneck of the streaming tasks is important, as it c
 
 
 
-### UDF bottleneck
 
- **Grafana dashboard (dev)** > **User Defined Function** section
-
-
-### Sink bottleneck
-
-
-<!--
-https://github.com/risingwavelabs/risingwave/issues/15473
-
--->
 ## Solution
 
 Once you've pinpointed the bottleneck fragment, consider the following actions to resolve the issue:
