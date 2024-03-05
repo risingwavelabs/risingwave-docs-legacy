@@ -39,8 +39,7 @@ WITH (
    password='<your password>'
    jwt=`<your jwt>`,
    nkey=`<your nkey>`
-)
-FORMAT PLAIN ENCODE JSON;
+);
 ```
 
 After the sink is created, RisingWave will continuously sink data to the NATS subject in append-only mode.
