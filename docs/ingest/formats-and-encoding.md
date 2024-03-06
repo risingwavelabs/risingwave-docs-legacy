@@ -7,6 +7,8 @@ slug: /formats-and-encoding
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/formats-and-encoding/" />
 </head>
 
+When creating a source, you need to specify the data and encoding formats in the `FORMAT` and `ENCODE` section of the `CREATE SOURCE` or `CREATE TABLE` statement. This topic gives an introfuction to the `FORMAT` and `ENCODE` parameters. For the complete list of formats we support, see [Supported sources and formats](/ingest/supported-sources-and-formats.md)
+
 The `FORMAT` parameter represents the organization format of the data and includes the following options:
 
 - `PLAIN`: No specific data format, and data in this format can be imported into RisingWave using `CREATE SOURCE` and `CREATE TABLE`.

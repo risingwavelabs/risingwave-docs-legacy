@@ -15,7 +15,7 @@ When ingesting data into RisingWave, you need to use sources. A source is a reso
 
 ## Message queues
 
-RisingWave supports ingesting data from message queues like Apache Kafka, Apache Pulsar, Redpanda, AWS Kinesis, etc., in various formats including Avro, Protobuf, JSON, CSV, Bytes, etc. For a comprehensive list, please refer to the [Supported sources and formats](/sql/commands/sql-create-source.md#supported-sources). 
+RisingWave supports ingesting data from message queues like Apache Kafka, Apache Pulsar, Redpanda, AWS Kinesis, etc., in various formats including Avro, Protobuf, JSON, CSV, Bytes, etc. For a comprehensive list, please refer to the [Supported sources and formats](/iingest/supported-sources-and-formats.md). 
 
 Here is an example of ingesting data from Kafka:
 
@@ -54,8 +54,9 @@ When the `schema.registry` is specified, users no longer need to define columns 
 
 RisingWave supports ingesting Change Data Capture (CDC) from upstream databases through two main methods:
 
-1. RisingWave consumes CDC data from message queues. RisingWave supports mainstream CDC formats such as `DEBEZIUM`, `MAXWELL`, `CANAL`, etc., transmitted via message queues like Apache Kafka, Apache Pulsar, into RisingWave. Both OLTP databases (TiDB, MySQL, PostgreSQL, Oracle, etc.) and NoSQL databases (MongoDB, etc.) can transfer data to RisingWave using this approach.
-2. RisingWave directly connects to upstream databases for data ingestion. Currently, RisingWave supports direct CDC data ingestion from MySQL and PostgreSQL.
+- Method 1: RisingWave consumes CDC data from message queues. RisingWave supports mainstream CDC formats such as `DEBEZIUM`, `MAXWELL`, `CANAL`, etc., transmitted via message queues like Apache Kafka, Apache Pulsar, into RisingWave. Both OLTP databases (TiDB, MySQL, PostgreSQL, Oracle, etc.) and NoSQL databases (MongoDB, etc.) can transfer data to RisingWave using this approach.
+
+- Method 2: RisingWave directly connects to upstream databases for data ingestion. Currently, RisingWave supports direct CDC data ingestion from MySQL and PostgreSQL.
 
 Here is the example of method 1, CDC ingestion via message queues:
 
@@ -93,7 +94,7 @@ Method 1 is suitable for users who have already established standard CDC pipelin
 
 It is worth noting that RisingWave is actively expanding the functionality and performance of direct CDC connectors. We plan to support more databases and advanced features such as full data backfill resumption, multi-table transactions, and more in the future.
 
-## **Storage System**
+## **Storage system**
 
 RisingWave supports ingesting data from upstream storage systems, notably S3 and S3-compatible systems. For example,
 
