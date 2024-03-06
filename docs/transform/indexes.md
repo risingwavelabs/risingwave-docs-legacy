@@ -171,6 +171,6 @@ CREATE INDEX people_names ON people ((first_name || ' ' || last_name));
 
 [`DROP INDEX`](/sql/commands/sql-drop-index.md) — Remove an index constructed on a table or a materialized view.
 
-[`SHOW CREATE INDEX`](/docs/sql/commands/sql-show-create-index.md) - See what query was used to create the specified index.
+[`SHOW CREATE INDEX`](/sql/commands/sql-show-create-index.md) - See what query was used to create the specified index.
 
-[`ALTER INDEX`](/docs/sql/commands/sql-alter-create-index.md) - Modify an index.
+[`ALTER INDEX`](/sql/commands/sql-alter-index.md) - Modify an index.
