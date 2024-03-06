@@ -29,7 +29,7 @@ WITH (
 
 :::note
 
-- By adding `snapshot = 'false'` after the `CREATE SINK FROM MV` or `CREATE SINK FROM TABLE` syntax, you can skip the backfilling phase of the sink and transmit only incremental changes.
+- By setting `snapshot = 'false'`, you can skip the backfilling phase of the sink and transmit only incremental changes. The default is `true`. This feature is supported when using `CREATE SINK FROM MV` or `CREATE SINK FROM TABLE` syntax. Using it with `CREATE SINK AS <select_query>` will result in errors.
 
 - The optional `FORMAT data_format ENCODE data_encode` syntax is only used for Kafka, Kinesis, Pulsar, and Redis sinks.
 
