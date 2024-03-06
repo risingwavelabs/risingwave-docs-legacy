@@ -18,15 +18,21 @@ If your goal is to create an append-only sink, you can use the emit-on-window-cl
 CREATE SINK [ IF NOT EXISTS ] sink_name
 [FROM sink_from | AS select_query]
 WITH (
-   connector='connector_name',
-   connector_parameter = 'value', ...
+   connector = 'connector_name',
+   connector_parameter = 'value',
+   [ snapshot = 'true' | 'false' ],...
 )
 [ FORMAT data_format ENCODE data_encode [ (
     format_parameter = 'value'
 ) ] ];
 ```
+
 :::note
-The optional `FORMAT data_format ENCODE data_encode` syntax is only used for Kafka, Kinesis, and Pulsar sinks. 
+
+- By adding `snapshot = 'false'` after the `CREATE SINK FROM MV` or `CREATE SINK FROM TABLE` syntax, you can skip the backfilling phase of the sink and transmit only incremental changes.
+
+- The optional `FORMAT data_format ENCODE data_encode` syntax is only used for Kafka, Kinesis, Pulsar, and Redis sinks.
+
 :::
 
 
