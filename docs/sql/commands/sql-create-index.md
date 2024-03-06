@@ -13,7 +13,7 @@ Use the `CREATE INDEX` command to construct an [index](/transform/indexes.md) on
 ## Syntax
 
 ```sql
-CREATE INDEX index_name ON object_name ( index_column [ ASC | DESC ], [, ...] )
+CREATE INDEX [ IF NOT EXISTS ] index_name ON object_name ( index_column [ ASC | DESC ], [, ...] )
 [ INCLUDE ( include_column [, ...] ) ]
 [ DISTRIBUTED BY ( distributed_column [, ...] ) ];
 ```
@@ -22,6 +22,7 @@ CREATE INDEX index_name ON object_name ( index_column [ ASC | DESC ], [, ...] )
 
 | Parameter or clause| Description|
 |-----------|-------------|
+|**IF NOT EXISTS**|This clause is used to check if an index with the specified name already exists before creating a new index. If the index already exists, the clause prevents an error from occurring and the index creation operation is skipped. A notice is issued in this case. Note that there is no guarantee that the existing index is anything like the one that would have been created. Index name is required when `IF NOT EXISTS` is specified.|
 |*index_name*    |The name of the index to be created.|
 |*object_name*    |The name of the table or materialized view where the index is created.|
 |*index_column*   |The name of the column on which the index is created.|
