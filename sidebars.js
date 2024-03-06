@@ -182,7 +182,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Source types",
+          label: "Types of sources",
           id: "ingest/source-types",
         },
         {
@@ -207,12 +207,12 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Guides for specific sources",
+          label: "Specific source guides",
           collapsible: true,
           collapsed: true,
           link: {
             type: "generated-index",
-            title: "Sources",
+            title: "Specific source guides",
             description: "Specific guides on ingesting data from a particular source supported by RisingWave.",
             slug: "/sources",
             keywords: ["sources"],

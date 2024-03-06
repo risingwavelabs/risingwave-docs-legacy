@@ -97,11 +97,11 @@ Above is just a simple overview of how to ingest data in RisingWave. The followi
 
 - For more detailed information about a source, like its concept, type, format and encoding options, see [Source types](/ingest/source-types.md) and [Formats and encoding](/ingest/formats-and-encoding.md).
 
-- For the complete list of supported sources and formats, see [Supported sources and formats](/sql/commands/sql-create-source.md#supported-sources).
+- For the complete list of the sources and formats that we support in RisingWave, see [Supported sources and formats](/ingest/supported-sources-and-formats.md).
 
 - For instructions on how to perform some operations on a source, see:
 
   - [Modify source or table schemas](/ingest/modify-schemas.md)
   - [Ingest additional fields with INCLUDE clause](/ingest/include-clause.md)
 
-- For specific instructions on ingesting data from a particular source supported by RisingWave, read the guides under the [Source part](/docs/current/sources).
+- For specific instructions on ingesting data from a particular source supported by RisingWave, read the guides under the [Specific source guides](/docs/current/sources). 

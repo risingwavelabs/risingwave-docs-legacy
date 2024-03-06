@@ -1,15 +1,13 @@
 ---
 id: source-types
-title: Source types
+title: Types of sources
 slug: /source-types
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/source-types/" />
 </head>
 
-When ingesting data into RisingWave, you need to use sources. A source is a resource that RisingWave can read data from.
-
-Common upstream data sources for RisingWave include:
+When ingesting data into RisingWave, you need to use sources. A source is a resource that RisingWave can read data from. Common upstream data sources for RisingWave include:
 
 - **Message queues** like Apache Kafka, Apache Pulsar, Redpanda, etc.;
 - **Change Data Capture (CDC) databases** like MySQL, PostgreSQL, MongoDB, etc.;
