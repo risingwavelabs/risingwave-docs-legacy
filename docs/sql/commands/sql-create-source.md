@@ -68,8 +68,8 @@ FORMAT upsert ENCODE AVRO (
 |*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |*watermark_clause*| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
 |**INCLUDE** clause | Extract fields not included in the payload as separate columns. For more details on its usage, see [`INCLUDE` clause](/ingest/include-clause.md). |
-|**WITH** clause |Specify the connector settings here if trying to store all the source data. See [Supported sources](#supported-sources) for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
-|**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Supported formats](#supported-formats). |
+|**WITH** clause |Specify the connector settings here if trying to store all the source data. See [Supported sources](/ingest/supported-sources-and-formats.md#supported-sources) for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
+|**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Supported formats](/ingest/supported-sources-and-formats.md#supported-formats). |
 
 ## Watermarks
 
