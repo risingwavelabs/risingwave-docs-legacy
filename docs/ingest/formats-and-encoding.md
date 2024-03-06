@@ -7,7 +7,19 @@ slug: /formats-and-encoding
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/formats-and-encoding/" />
 </head>
 
-When creating a source, you need to specify the data and encoding formats in the `FORMAT` and `ENCODE` section of the `CREATE SOURCE` or `CREATE TABLE` statement. This topic gives an introfuction to the `FORMAT` and `ENCODE` parameters. For the complete list of formats we support, see [Supported sources and formats](/ingest/supported-sources-and-formats.md)
+When creating a source, you need to specify the `FORMAT` and `ENCODE` section of the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) or [`CREATE TABLE`](/sql/commands/sql-create-source.md) statement. This topic gives an introduction to them. For the complete list of formats we support, see [Supported sources and formats](/ingest/supported-sources-and-formats.md)
+
+```sql title="An example of creating a source"
+CREATE SOURCE src_user WITH (
+    connector = 'kafka',
+    topic = 'sr_pb_test',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
+)
+FORMAT PLAIN ENCODE PROTOBUF(
+    schema.registry = 'http://message_queue:8081',
+    message = 'test.User');
+```
 
 The `FORMAT` parameter represents the organization format of the data and includes the following options:
 
