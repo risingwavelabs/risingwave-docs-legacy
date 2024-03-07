@@ -27,22 +27,16 @@ WITH (
 ) ] ];
 ```
 
-:::note
-
-- By setting `snapshot = 'false'`, you can skip the backfilling phase of the sink and transmit only incremental changes. The default is `true`. This feature is supported when using `CREATE SINK FROM MV` or `CREATE SINK FROM TABLE` syntax. Using it with `CREATE SINK AS <select_query>` will result in errors.
-
-- The optional `FORMAT data_format ENCODE data_encode` syntax is only used for Kafka, Kinesis, Pulsar, and Redis sinks.
-
-:::
-
 ## Parameters
 
 | Parameter| Description|
 |-----------|-------------|
 |*sink_name*    |The name of the sink.|
-|*col_name*      |The name of a column.|
-|*snapshot*| Optional. Modifying the definition or query of an existing sink requires dropping and recreating the sink, which may lead to excessive duplicates due to the backfill. Setting this parameter to `false` allows you to skip the backfilling phase of the sink and transmit only incremental changes. This option is supported only when using the `CREATE SINK FROM` syntax, not `CREATE SINK AS <select_query>` syntax. Defaults to `true`. |
-|**WITH** clause |Specify the connector settings here if trying to store all the source data. See [Supported sinks](#supported-sinks) for the full list of supported sink as well as links to specific connector pages detailing the syntax for each source. |
+|*col_name*      |The name of the column.|
+|*sink_from*      |Specify the direct data source for output. It can be a materialized view or a table.|
+|*select_query*      |Specify the data to be output to the sink.|
+|*snapshot*| Optional. Currently, to modify the definition or query of an existing sink, you need to drop and re-create the sink, but this approach generates excessive duplicates due to the mandatory backfilling. To avoid this, you can set the parameter to `false` to skip the backfilling phase and transmit only incremental changes. This option is only applicable when using the `CREATE SINK FROM` syntax, not `CREATE SINK AS` syntax. Default is `true`. |
+|**WITH** clause |Specify the connector settings here if trying to store all the sink data. See [Supported sinks](#supported-sinks) for the full list of supported sink as well as links to specific connector pages detailing the syntax for each source. |
 |**FORMAT** and **ENCODE** options | Optional. Specify the data format and the encoding format of the sink data. It is only used for Kafka, Kinesis, Pulsar, and Redis sinks. |
 
 
