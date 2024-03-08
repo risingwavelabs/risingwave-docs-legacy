@@ -18,63 +18,26 @@ If your goal is to create an append-only sink, you can use the emit-on-window-cl
 CREATE SINK [ IF NOT EXISTS ] sink_name
 [FROM sink_from | AS select_query]
 WITH (
-   connector='connector_name',
-   connector_parameter = 'value', ...
+   connector = 'connector_name',
+   connector_parameter = 'value',
+   [ snapshot = 'true' | 'false' ],...
 )
 [ FORMAT data_format ENCODE data_encode [ (
     format_parameter = 'value'
 ) ] ];
 ```
-:::note
-The optional `FORMAT data_format ENCODE data_encode` syntax is only used for Kafka, Kinesis, and Pulsar sinks. 
-:::
 
+## Parameters
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal('CREATE SINK'),
-      rr.Optional(rr.Terminal('IF NOT EXISTS')),
-      rr.NonTerminal('sink_name', 'skip'),
-      rr.ZeroOrMore(
-      rr.Sequence(
-         rr.Terminal('FROM'),
-         rr.NonTerminal('sink_from', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('AS'),
-         rr.NonTerminal('select_query', 'skip')
-      ),
-   ),
-   ),
-   rr.Sequence(
-      rr.Terminal('WITH'),
-      rr.Terminal('('),
-      rr.Stack(
-         rr.Stack(
-            rr.Sequence(
-               rr.Terminal('connector'),
-               rr.Terminal('='),
-               rr.Terminal('\'connector_name\''),
-               rr.Terminal(','),
-            ),
-            rr.Sequence(
-               rr.Terminal('connector_parameter'),
-               rr.Terminal('='),
-               rr.Terminal('\'value\''),
-               rr.Terminal(','),
-            ),
-         ),
-      ),
-      rr.Terminal(')'),
-   ),
-   rr.Terminal(';'),
-)
-);
-
-<drawer SVG={svg} />
+| Parameter| Description|
+|-----------|-------------|
+|*sink_name*    |The name of the sink.|
+|*col_name*      |The name of the column.|
+|*sink_from*      |Specify the direct data source for output. It can be a materialized view or a table.|
+|*select_query*      |Specify the data to be output to the sink.|
+|*snapshot*| Optional. Currently, to modify the definition or query of an existing sink, you need to drop and re-create the sink, but this approach generates excessive duplicates due to the mandatory backfilling. To avoid this, you can set the parameter to `false` to skip the backfilling phase and transmit only incremental changes. This option is only applicable when using the `CREATE SINK FROM` syntax, not `CREATE SINK AS` syntax. The default value is `true`. |
+|**WITH** clause |Specify the connector settings here if trying to store all the sink data. See [Supported sinks](#supported-sinks) for the full list of supported sink as well as links to specific connector pages detailing the syntax for each sink. |
+|**FORMAT** and **ENCODE** options | Optional. Specify the data format and the encoding format of the sink data. It is only used for Kafka, Kinesis, Pulsar, and Redis sinks. |
 
 ## Supported sinks
 
