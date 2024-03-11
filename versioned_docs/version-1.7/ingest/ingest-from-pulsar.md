@@ -21,11 +21,11 @@ When creating a source, you can choose to persist the data from the source in Ri
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
 [ schema_definition ]
+[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 WITH (
    connector='pulsar',
    connector_parameter='value', ...
 )
-[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 FORMAT data_format ENCODE data_encode (
    message = 'message',
    schema.location = 'location' | schema.registry = 'schema_registry_url'
