@@ -202,18 +202,18 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Ingest additional fields with INCLUDE clause",
+          label: "Ingest additional source fields",
           id: "ingest/include-clause",
         },
         {
           type: "category",
-          label: "Specific source guides",
+          label: "Data ingestion guides",
           collapsible: true,
           collapsed: true,
           link: {
             type: "generated-index",
-            title: "Specific source guides",
-            description: "Specific guides on ingesting data from a particular source supported by RisingWave.",
+            title: "Data ingestion guides",
+            description: "Guides on ingesting data from sources supported by RisingWave.",
             slug: "/sources",
             keywords: ["sources"],
           },
@@ -452,7 +452,7 @@ const sidebars = {
         {
           type: "doc",
           id: "transform/ad-hoc-queries",
-          label: "Ad-hoc Queries",
+          label: "Ad-hoc queries",
         },
         {
           type: "doc",
