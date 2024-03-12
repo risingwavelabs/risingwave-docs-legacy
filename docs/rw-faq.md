@@ -8,11 +8,9 @@ slug: /rw-faq
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw-faq/" />
 </head>
 
-This topic lists two kinds of frequently asked questions. The first kind is asked by readers who first learn RisingWave. The second kind is to streamline your experience when using RisingWave.
+This topic lists two categories of frequently asked questions. The first category is about when to use RisingWave. The second category is about how to use RisingWave.
 
-## Fun questions for new learners
-
-Upon first learning RisingWave, readers from different backgrounds often ask many interesting questions. In this section, we summarize some common questions.
+## When to use RisingWave
 
 ### Can RisingWave replace Flink SQL?
 
@@ -27,70 +25,76 @@ RisingWave uses PostgreSQL syntax, which lowers the learning curve and makes it 
 
 ### Is RisingWave a unified batch and streaming system?
 
-The term "unified batch and streaming" was initially used to describe computing platforms like Apache Spark and Apache Flink, rather than databases. But if we apply this concept to databases, then stream processing refers to the continuous incremental computation on newly inserted data, while batch processing refers to batch computation on already stored data. RisingWave clearly supports both stream processing and batch processing.
+The term "unified batch and streaming" was originally used to describe computing platforms like Apache Spark and Apache Flink, rather than databases. However, if we apply this concept to databases, stream processing refers to continuous incremental computation on newly inserted data, while batch processing refers to computation on already stored data. RisingWave fully supports both stream processing and batch processing.
 
-It is important to note that RisingWave excels in stream processing. In terms of storage format, since RisingWave adopts a row-based storage, it is more suitable for point queries on stored data rather than full table scans. Therefore, if users have a significant need for ad-hoc full-table analytical queries, we recommend using OLAP databases like ClickHouse or Apache Pinot.
+It's important to highlight that RisingWave shines in stream processing. Regarding storage format, RisingWave utilizes a row-based storage, which is more suitable for point queries on stored data rather than full table scans. Therefore, if users have a significant need for ad-hoc full-table analytical queries, we recommend leveraging OLAP databases like ClickHouse or Apache Pinot.
 
 ### Does RisingWave support transaction processing?
 
-RisingWave does not support read-write transaction processing, but it does support read-only transactions. RisingWave cannot replace PostgreSQL for transaction processing. This design choice is primarily because in real-world scenarios, users generally require the use of dedicated transactional databases to support online business operations. Supporting both transaction processing and stream processing within the same database would make the workload management extremely complex and it would be difficult to optimize for both aspects.
+RisingWave does not support read-write transaction processing, but it does provide support for read-only transactions. It is important to note that RisingWave cannot replace PostgreSQL for transaction processing. This design choice is primarily driven by the fact that, in real-world scenarios, dedicated transactional databases are typically required to support online business operations. Combining transaction processing and stream processing within the same database would introduce complexity in workload management and make it challenging to optimize for both aspects.
 
-In production, the best practice for using RisingWave is to place it downstream from the transactional database. RisingWave reads serialized data from the transactional database using change data capture (CDC).
+As a best practice, in production environments, it is recommended to position RisingWave downstream from the transactional database. RisingWave utilizes change data capture (CDC) to read serialized data from the transactional database.
 
 ### Why does RisingWave use row-based storage for tables?
 
-RisingWave utilizes the same storage system to support internal state management and data storage. For internal state management, row-based storage is more suitable for storing various types of operators. In data storage, since users are more likely to perform ad-hoc point queries, row-based storage is also more appropriate. In the future, RisingWave may periodically transform row-based storage into columnar storage to better support ad-hoc analytical queries.
+RisingWave employs row-based storage for its tables because it utilizes the same storage system for both internal state management and data storage. Row-based storage is well-suited for storing different types of operators in internal state management. Additionally, for data storage, row-based storage is more suitable as users tend to perform ad-hoc point queries. However, it is worth mentioning that in the future, RisingWave may consider periodic transformations of row-based storage into columnar storage to enhance support for ad-hoc analytical queries.
 
-### Can a stream database be considered as a combination of a stream processing engine and a database?
+### Can a streaming database be considered as a combination of a stream processing engine and a database?
 
-A stream database is not simply a concatenation of a stream processing engine (such as Apache Flink) and a database (such as PostgreSQL). The main reasons include:
+No, a streaming database is not simply the merging of a stream processing engine (e.g., Apache Flink) and a database (e.g., PostgreSQL). Here are the main reasons:
 
-* From a design perspective, a stream database uses the same storage system for internal state management, result storage, and random result queries. An independent database is clearly not suitable for internal state storage because frequent cross-system data access would incur significant overhead, which is not desirable for stream processing systems that are latency-sensitive. In fact, earlier distributed stream processing engines like Apache Storm and Apache S4 attempted this approach, but it was not successful in the long run.
-* From a functional perspective, one of the core features of a stream database is cascading materialized views. To simulate cascading materialized views, users would need to introduce additional components like Kafka message queues outside of the stream processing engine and database to facilitate message passing between materialized views.
-* From an implementation perspective, ensuring consistency across multiple independent systems requires establishing a framework that ensures consistency even in the event of a system failure. Implementing such a framework requires significant engineering effort.
-* From an operational perspective, managing multiple independent systems would incur high operational costs.
-* From a user experience perspective, there is a significant difference between using multiple systems and using a single integrated system.
+Design: A streaming database uses a unified storage system for managing internal state, storing results, and executing random queries. In contrast, an independent database is unsuitable for storing internal state due to the high overhead and latency associated with frequent cross-system data access. Earlier attempts to combine distributed stream processing engines like Apache Storm and Apache S4 with independent databases did not succeed.
 
-### What's the difference between streaming databases and real-time OLAP databases?
+Functionality: Cascading materialized views are a key feature of streaming databases. To emulate this functionality, additional components like Kafka message queues would be required outside of the stream processing engine and database to facilitate message passing between materialized views.
 
-Mainstream streaming databases include RisingWave, KsqlDB, etc., while mainstream real-time OLAP databases include ClickHouse, Apache Pinot, etc.
+Implementation: Ensuring consistency across multiple independent systems necessitates establishing a framework that guarantees consistency, even in the event of a system failure. This requires significant engineering effort.
 
-In terms of use scenarios, stream databases are mainly used for monitoring, alerting, real-time dashboards, and similar business purposes. OLAP databases are primarily used for interactive reporting and similar business purposes. Additionally, stream databases are also used for streaming ETL operations.
+Operations: Managing multiple independent systems incurs higher operational costs compared to a single integrated system.
 
-In terms of functionality, both stream databases and OLAP databases support predefined queries through materialized views and can also handle ad-hoc queries. However, stream databases excel in supporting predefined queries, while OLAP databases excel in handling ad-hoc queries.
+User Experience: There is a notable difference between using multiple systems and utilizing a single integrated system, impacting the overall user experience.
 
-In terms of design, stream databases and OLAP databases optimize for different aspects. In the [Napa paper](http://www.vldb.org/pvldb/vol14/p2986-sankaranarayanan.pdf), Google engineers proposed the system's trade-off triangle, which states that any system can only optimize two out of the three aspects: freshness of results, performance of ad-hoc queries, and resource costs. It is not possible to optimize all aspects simultaneously.
+In summary, a streaming database goes beyond being a combination of a stream processing engine and a database, as it requires a unified storage system, specific functionality, implementation considerations, operational efficiency, and a seamless user experience.
 
-Assuming fixed resource costs, stream databases inherently optimize for result freshness, while OLAP databases optimize for the performance of ad-hoc queries. The following diagram illustrates the design trade-offs between stream databases, OLAP databases, and data warehouses.
+### What are the differences between streaming databases and real-time OLAP databases?
+
+Mainstream streaming databases, such as RisingWave and KsqlDB, are commonly used for monitoring, alerting, real-time dashboards, and similar business purposes. On the other hand, mainstream real-time OLAP databases, like ClickHouse and Apache Pinot, are primarily used for interactive reporting and similar business purposes. Streaming databases are also utilized for streaming ETL operations.
+
+In terms of functionality, both streaming databases and OLAP databases support predefined queries through materialized views and can handle ad-hoc queries. However, streaming databases excel in supporting predefined queries, while OLAP databases excel in handling ad-hoc queries.
+
+When it comes to design, streaming databases and OLAP databases optimize for different aspects. In the [Napa paper](http://www.vldb.org/pvldb/vol14/p2986-sankaranarayanan.pdf) by Google engineers, they proposed the system's trade-off triangle. According to this triangle, any system can only optimize two out of the three aspects: freshness of results, performance of ad-hoc queries, and resource costs. It is not possible to optimize all aspects simultaneously.
+
+Assuming fixed resource costs, streaming databases inherently optimize for result freshness, while OLAP databases optimize for the performance of ad-hoc queries. The diagram below illustrates the design trade-offs between streaming databases, OLAP databases, and data warehouses.
 
 <img
   src={require('./images/tradeoff_triangle.png').default}
   alt="Tradeoff Triangle"
 />
 
-### How are the materialized views in streaming databases different from those in OLAP databases?
+### How do materialized views in streaming databases differ from those in OLAP databases?
 
-Due to the different focuses of stream databases and OLAP databases, although their materialized views may seem similar, there are significant differences between them.
+Materialized views in streaming databases, such as RisingWave, differ significantly from those in OLAP databases due to their distinct focuses and requirements.
 
-In stream databases like RisingWave, materialized views are a core capability. Materialized views in stream databases need to present consistent and up-to-date computation results after stream processing. On the other hand, in OLAP databases like ClickHouse, materialized views are a supplemental capability. OLAP databases often update materialized views using a "best effort" approach. Additionally, materialized views in stream databases implement various advanced semantics of stream processing.
+In streaming databases, materialized views are a core capability and play a crucial role in presenting consistent and up-to-date computation results after stream processing. For example, RisingWave ensures that materialized views are updated synchronously, providing users with the freshest query results. Even for complex queries involving joins and windowing, RisingWave efficiently handles synchronous processing to maintain the freshness of materialized views. Additionally, materialized views in streaming databases implement advanced semantics specific to stream processing.
 
-In summary, materialized views in stream databases like RisingWave have the following important characteristics:
+On the other hand, materialized views in OLAP databases, like ClickHouse, are a supplemental capability. OLAP databases often update materialized views using a "best effort" approach, which may not guarantee immediate consistency or real-time updates. While OLAP databases support materialized views, their primary focus is on interactive reporting and ad-hoc query performance rather than real-time consistency.
 
-**Real-time**: Many databases update materialized views asynchronously or require manual updates by users. However, materialized views in RisingWave are updated synchronously, ensuring users always query the freshest results. Even for complex queries involving joins and windowing, RisingWave efficiently handles synchronous processing to maintain the freshness of materialized views.
+In summary, materialized views in streaming databases, such as RisingWave, possess the following important characteristics:
 
-**Consistency**: Some databases only provide eventually consistent materialized views, meaning the results on materialized views are approximate or contain errors. Especially when users create multiple materialized views with different refresh strategies, it becomes challenging to see consistent results across materialized views. Materialized views in RisingWave are consistent, ensuring that users always see correct results even when accessing multiple materialized views.
+- **Real-time**: RisingWave updates materialized views synchronously, ensuring users always query the freshest results, even for complex queries involving joins and windowing.
 
-**High availability**: RisingWave persists materialized views and implements frequent checkpoints for fast failure recovery. When a physical node running RisingWave experiences a failure, RisingWave achieves recovery within seconds and updates the calculation results to the latest state in seconds.
+- **Consistency**: Materialized views in RisingWave are consistent, providing correct results across multiple materialized views, even when different refresh strategies are employed.
 
-**High concurrency**: RisingWave supports high-concurrency ad-hoc queries. Since RisingWave persistently stores data in remote object storage in real-time, users can dynamically configure the number of query nodes based on the workload, effectively supporting business requirements.
+- **High availability**: RisingWave persists materialized views and implements frequent checkpoints for fast failure recovery, recovering from failures within seconds and updating calculation results to the latest state.
 
-**Stream processing semantics**: In stream processing, users can apply high-level syntax such as time windows and watermarks to process data streams. Traditional databases do not have these semantics, so users often rely on external systems to handle these semantics. RisingWave is a stream processing system that comes with various complex stream processing semantics, allowing users to operate on data streams using SQL statements.
+- **High concurrency**: RisingWave supports high-concurrency ad-hoc queries by persistently storing data in remote object storage in real-time and dynamically configuring the number of query nodes based on workload.
 
-**Resource isolation**: Materialized views involve continuous stream computation and consume a significant amount of computing resources. To avoid interference between materialized view computations and other computations, some users transfer the materialized view functionality from OLTP or OLAP databases to RisingWave, achieving resource isolation.
+- **Stream processing semantics**: RisingWave includes various complex stream processing semantics, allowing users to operate on data streams using SQL statements, incorporating features like time windows and watermarks.
 
-## Questions for streamlining your experience
+- **Resource isolation**: To avoid interference between materialized view computations and other computations, some users transfer materialized view functionality from OLTP or OLAP databases to RisingWave, achieving resource isolation.
 
-The questions below provide information for streamlining your using experience.
+In contrast, materialized views in OLAP databases may not prioritize real-time updates, consistency, or advanced stream processing semantics.
+
+## Using RisingWave
 
 ### Why does RisingWave not accept Kafka consumer group IDs?
 
