@@ -1,7 +1,7 @@
 ---
 id: query-syntax-order-by-clause
 title: ORDER BY clause
-description: 
+description: Use the ORDER BY clause to sort the result set of a query.
 slug: /query-syntax-order-by-clause
 ---
 <head>
@@ -33,7 +33,7 @@ employee_id | employee_name | salary
            5 | Eve           |  75000
 ```
 
-```sql title="Code of create the table and inserting data"
+```sql title="Code of creating the table and inserting data"
 CREATE TABLE employees (
     employee_id INT,
     employee_name VARCHAR,
