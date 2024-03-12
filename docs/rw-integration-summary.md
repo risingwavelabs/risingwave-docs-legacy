@@ -58,8 +58,8 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |---|---|---|
 |Apache Spark| |Researching <voteNotify note="spark" />|
 |AWS Athena| |Researching <voteNotify note="athena" />|
-|Presto| |Available|
-|Trino| |Available|
+|Presto| |Available. See [Presto documentation](https://prestodb.io/docs/current/connector/postgresql.html).|
+|Trino| |Available. See [Trino documentation](https://trino.io/docs/current/connector/postgresql.html).|
 |GraphQL| |Available. See this blog for details: [Query real-time data with GraphQL, Kafka and RisingWave streaming database](https://blog.det.life/query-real-time-data-with-graphql-and-streaming-database-78bba4d08c97).|
 
 ## Databases
