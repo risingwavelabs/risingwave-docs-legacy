@@ -1,11 +1,11 @@
 ---
-id: query-syntax-order-by
+id: query-syntax-order-by-clause
 title: ORDER BY clause
 description: 
-slug: /query-syntax-order-by
+slug: /query-syntax-order-by-clause
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-order-by/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-order-by-clause/" />
 </head>
 
 Use the `ORDER BY` clause to sort the result set of a query based on one or more columns in ascending or descending order. It is commonly used to organize data in a specific sequence for better analysis and presentation.
