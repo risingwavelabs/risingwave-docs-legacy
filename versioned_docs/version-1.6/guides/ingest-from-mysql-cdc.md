@@ -18,10 +18,6 @@ You can ingest CDC data from MySQL in two ways:
 
   With this connector, RisingWave can connect to MySQL databases directly to obtain data from the binlog without starting additional services.
 
-  :::note Beta feature
-  The built-in MySQL CDC connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
-  :::
-
 - Using a CDC tool and a message broker
 
   You can use a CDC tool and then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave.
@@ -191,6 +187,25 @@ All the fields listed below are required.
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| Required if creating a shared source. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+
+#### Debezium parameters
+
+[Debezium v2.4 connector configuration properties](https://debezium.io/documentation/reference/2.4/connectors/mysql.html#mysql-advanced-connector-configuration-properties) can also be specified under the `WITH` clause when creating a table or shared source. Add the prefix `debezium.` to the connector property you want to include. 
+
+For instance, to skip unknown DDL states, specify the `schema.history.internal.skip.unparseable.ddl` parameter as `debezium.schema.history.internal.skip.unparseable.ddl`.
+
+```sql
+CREATE SOURCE mysql_mydb WITH (
+  connector = 'mysql-cdc',
+  hostname = '127.0.0.1',
+  port = '8306',
+  username = 'root',
+  password = '123456',
+  database.name = 'mydb',
+  server.id = 5888,
+  debezium.schema.history.internal.skip.unparseable.ddl = 'true'
+);
+```
 
 ### Data format
 

@@ -18,10 +18,6 @@ You can ingest CDC data from PostgreSQL into RisingWave in two ways:
 
   With this connector, RisingWave can connect to PostgreSQL databases directly to obtain data from the binlog without starting additional services.
 
-  :::note Beta feature
-  The built-in PostgreSQL CDC connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
-  :::
-
 - Using a CDC tool and a message broker
   
   You can use a CDC tool and then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/ingest/ingest-from-cdc.md) topic.
@@ -160,7 +156,7 @@ To ensure all data changes are captured, you must create a table or source and s
  Syntax for creating a CDC table. Note that a primary key is required.
 
  ```sql
- CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] table_name (
+ CREATE TABLE [ IF NOT EXISTS ] table_name (
     column_name data_type PRIMARY KEY , ...
     PRIMARY KEY ( column_name, ... )
  ) 
@@ -201,6 +197,25 @@ Unless specified otherwise, the fields listed are required.
 :::note
 RisingWave implements CDC via PostgreSQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot). RisingWave does not automatically drop inactive replication slots. You must do this manually to prevent WAL files from accumulating in the upstream PostgreSQL database.
 :::
+
+#### Debezium parameters
+
+[Debezium v2.4 connector configuration properties](https://debezium.io/documentation/reference/2.4/connectors/postgresql.html#postgresql-advanced-configuration-properties) can also be specified under the `WITH` clause when creating a table or shared source. Add the prefix `debezium.` to the connector property you want to include. 
+
+For instance, to skip unknown DDL states, specify the `schema.history.internal.skip.unparseable.ddl` parameter as `debezium.schema.history.internal.skip.unparseable.ddl`.
+
+```sql
+CREATE SOURCE pg_mydb WITH (
+    connector = 'postgres-cdc',
+    hostname = '127.0.0.1',
+    port = '8306',
+    username = 'root',
+    password = '123456',
+    database.name = 'mydb',
+    slot.name = 'mydb_slot',
+    debezium.schema.history.internal.skip.unparseable.ddl = 'true'
+);
+```
 
 ### Data format
 

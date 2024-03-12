@@ -186,6 +186,11 @@ const sidebars = {
           id: "ingest/modify-schemas",
         },
         {
+          type: "doc",
+          label: "Ingest additional fields with INCLUDE clause",
+          id: "ingest/include-clause",
+        },
+        {
           type: "category",
           label: "Sources",
           collapsible: true,
@@ -226,6 +231,11 @@ const sidebars = {
                   type: "doc",
                   label: "Upstash Kafka",
                   id: "ingest/ingest-from-upstash-kafka",
+                },
+                {
+                  type: "doc",
+                  label: "WarpStream",
+                  id: "ingest/ingest-from-warpstream",
                 },
               ]
             },
@@ -301,11 +311,6 @@ const sidebars = {
               type: "doc",
               label: "Redpanda",
               id: "ingest/ingest-from-redpanda",
-            },
-            {
-              type: "doc",
-              label: "WrapStream",
-              id: "ingest/ingest-from-warpstream",
             },
             {
               type: "doc",
@@ -725,6 +730,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/functions-operators/sql-function-cryptographic-functions",
+                  label: "Cryptographic",
+                },
+                {
+                  type: "doc",
                   id: "sql/functions-operators/sql-function-datetime",
                   label: "Date & time",
                 },
@@ -876,6 +886,11 @@ const sidebars = {
               id: "dev/go-client-libraries",
               label: "Go",
             },
+            {
+              type: "doc",
+              id: "dev/ruby-client-libraries",
+              label: "Ruby",
+            },
           ],
         },
       ],
@@ -985,8 +1000,13 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Troubleshoot out-of-memory problems",
+          label: "Troubleshoot out-of-memory",
           id: "troubleshoot/troubleshoot-oom"
+        },
+        {
+          type: "doc",
+          label: "Troubleshoot high latency",
+          id: "troubleshoot/troubleshoot-high-latency"
         },
       ]
     },
