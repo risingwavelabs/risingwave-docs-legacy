@@ -7,51 +7,19 @@ slug: /change-data-capture
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/change-data-capture-risingwave/" />
 </head>
 
-RisingWave offers support for ingesting Change Data Capture (CDC) from upstream databases through two primary methods:
+CDC is a technology that captures data changes as they occur in the source systems, such as databases or applications. Unlike traditional batch processes that can introduce significant delays, CDC enables near real-time data integration and synchronization, allowing businesses to stay on top of the latest data changes and make timely decisions based on the most current information.
 
-Method 1: RisingWave establishes direct connections to upstream databases for data ingestion via the built-in CDC connectors in RisingWave. Currently, RisingWave supports direct CDC data ingestion from MySQL and PostgreSQL databases.
+RisingWave supports ingesting CDC data from databases through two methods:
 
-Method 2: RisingWave consumes CDC data from message queues. RisingWave is compatible with popular CDC formats such as DEBEZIUM, MAXWELL, and CANAL. These formats can be transmitted via message queues like Apache Kafka or Apache Pulsar into RisingWave. This approach allows for the transfer of data from both OLTP databases (such as TiDB, MySQL, PostgreSQL, and Oracle) and NoSQL databases (like MongoDB) to RisingWave.
+- Method A: Utilizing the built-in CDC connectors in RisingWave. Currently, built-in CDC connectors are available for these databases:
+  - PostgreSQL. See [Ingest CDC data from Postgres](/guides/ingest-from-postgres-cdc.md) for details.
+  - MySQL. See [Ingest CDC data from MySQL](/guides/ingest-from-mysql-cdc.md) for details.
+  - Citus. See [Ingest CDC data from Citus](/guides/ingest-from-citus-cdc.md) for details.
 
-Method 2 is suitable for users who have not implemented CDC via message queues or prefer a simplified architecture. Method 1 is ideal for users who have already set up standard CDC pipelines using message queues. Regardless of the chosen method for loading CDC data, RisingWave guarantees accurate import of both full and incremental data from the source table.
+- Method B: Leveraging third-party CDC formats and tools. RisingWave is compatible with popular CDC formats such as DEBEZIUM, MAXWELL, and CANAL. These formats can be transmitted via message queues like Apache Kafka or Apache Pulsar into RisingWave. This approach allows for the transfer of data from both OLTP databases (such as TiDB, MySQL, PostgreSQL, and Oracle) and NoSQL databases (like MongoDB) to RisingWave. For details about this method, see [CDC via message streaming systems](/docs/ingest/ingest-from-cdc.md).
 
-Here is the example of method 2, direct MySQL CDC data ingestion:
+Method A is suitable for users who have not implemented CDC via message queues or prefer a simplified architecture. Method B is ideal for users who have already set up standard CDC pipelines using message queues. Regardless of the chosen method for loading CDC data, RisingWave guarantees the accurate import of both full and incremental data from the source table.
 
-```sql
-CREATE TABLE orders (
-   order_id int,
-   price decimal,
-   PRIMARY KEY (order_id)
-) WITH (
- connector = 'mysql-cdc',
- hostname = '127.0.0.1',
- port = '3306',
- username = 'root',
- password = '123456',
- database.name = 'mydb',
- table.name = 'orders',
-);
-```
-
-Here is the example of method 1, CDC ingestion via Debezium:
-
-```sql
-CREATE TABLE IF NOT EXISTS mq_cdc
-WITH (
-   connector='kafka',
-   topic='cdc_topic',
-   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-   scan.startup.mode='earliest'
-) FORMAT DEBEZIUM ENCODE AVRO (
-   schema.registry = 'http://127.0.0.1:8081'
-);
-```
-
-
-
-
-
-It is worth noting that RisingWave is actively expanding the functionality and performance of direct CDC connectors. We plan to support more databases and advanced features such as full data backfill resumption, multi-table transactions, and more in the future.
 
 ## **Storage system**
 

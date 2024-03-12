@@ -54,15 +54,16 @@ Regardless of whether data is persisted in RisingWave, you can create materializ
   </div>
 </details>
 
+
 ### Supported source types
 
-A source is a resource that RisingWave can read data from. RisingWave supports these types of sources.
+A source is a connection to an external system that RisingWave can read data from. RisingWave supports these types of sources:
 
-- Message queues such as Apache Kafka, Apache Pulsar, Redpanda
+- Event streaming systems such as Apache Kafka, Apache Pulsar, AWS Kinesis
 - Change data capture streams from databases such as MySQL, PostgreSQL, and MongoDB
 - Storage systems such as AWS S3 or S3-compatible systems
 
-
+To ingest data from these sources, you need to create a source or table and specify the connector settings in the `CREATE SOURCE` or `CREATE TABLE` statements.
 
 ## Insert data into tables (without connectors)
 
@@ -90,7 +91,7 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
 
 The information presented above provides a brief overview of the data ingestion process in RisingWave. To gain a more comprehensive understanding of this process, the following topics in this section will delve deeper into the subject matter. Here is a brief introduction to what you can expect to find in each topic:
 
-- For more detailed information about the types, formats, and encoding options of sources, see [Source types](/ingest/source-types.md) and [Formats and encoding](/ingest/formats-and-encoding.md).
+- For more detailed information about the types, formats, and encoding options of sources, see [Formats and encoding](/ingest/formats-and-encoding.md).
 
 - For the complete list of the sources and formats supported in RisingWave, see [Supported sources and formats](/ingest/supported-sources-and-formats.md).
 

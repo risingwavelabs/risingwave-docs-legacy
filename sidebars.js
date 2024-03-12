@@ -182,11 +182,6 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Types of sources",
-          id: "ingest/source-types",
-        },
-        {
-          type: "doc",
           label: "Formats and encoding",
           id: "ingest/formats-and-encoding",
         },
