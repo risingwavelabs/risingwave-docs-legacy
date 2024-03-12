@@ -1,13 +1,13 @@
 ---
-id: formats-and-encoding
-title: Formats and encoding
-slug: /formats-and-encoding
+id: format-and-encode-parameters
+title: FORMAT and ENCODE parameters
+slug: /formats-and-encode-parameters
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/formats-and-encoding/" />
 </head>
 
-When creating a source, you need to specify the `FORMAT` and `ENCODE` section of the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) or [`CREATE TABLE`](/sql/commands/sql-create-source.md) statement. This topic gives an introduction to them. For the complete list of formats we support, see [Supported sources and formats](/ingest/supported-sources-and-formats.md)
+When creating a source or table using a connector, you need to specify the `FORMAT` and `ENCODE` section of the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) or [`CREATE TABLE`](/sql/commands/sql-create-source.md) statement. This topic provides an overview of the formats and encoding options. For the complete list of formats we support, see [Supported sources and formats](/ingest/supported-sources-and-formats.md)
 
 ```sql title="An example of creating a source"
 CREATE SOURCE src_user WITH (

@@ -183,7 +183,7 @@ const sidebars = {
         {
           type: "doc",
           label: "Formats and encoding",
-          id: "ingest/formats-and-encoding",
+          id: "ingest/format-and-encode-parameters",
         },
         {
           type: "doc",
