@@ -237,7 +237,7 @@ WITH (
 
 - CSV header is not supported when creating a table with Kafka connector. Add the `without_header` option to the encode parameters.
 
-- The `delimiter` option specifies the delimiter character used in the CSV data.
+- The `delimiter` option specifies the delimiter character used in the CSV data. Set `delimiter = E'\t'` for tab-delimited data.
 
 </TabItem>
 <TabItem value="bytes" label="Bytes">
