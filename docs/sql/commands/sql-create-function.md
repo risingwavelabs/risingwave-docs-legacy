@@ -8,7 +8,7 @@ slug: /sql-create-function
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-function/" />
 </head>
 
-The `CREATE FUNCTION` command can be used to create [user-defined functions](/sql/udf/user-defined-functions.md) (UDFs). There are two ways to create UDFs in RisingWave: UDFs as external functions and SQL UDFs. `CREATE FUNCTION` can be used for both ways with different syntax.
+The `CREATE FUNCTION` command can be used to create [user-defined functions](/sql/udf/user-defined-functions.md) (UDFs). There are three ways to create UDFs in RisingWave: UDFs as external functions, embedded UDFs, and SQL UDFs. `CREATE FUNCTION` can be used for them with different syntax.
 
 ## UDFs as external functions
 
