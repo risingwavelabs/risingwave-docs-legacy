@@ -79,7 +79,40 @@ $$;
 
 ---
 
-Here are the examples of inlining Python and Rust UDFs.
+Here are the example of inlining Python and Rust UDFs.
+
+```sql title="Inlined python udf"
+# scalar function
+dev=> create function gcd(a int, b int) returns int language python as $$
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+$$;
+CREATE_FUNCTION
+dev=> select gcd(15, 25);
+ gcd 
+-----
+   5
+(1 row)
+
+# table function
+dev=> create function series(n int) returns table (x int) language python as $$
+def series(n):
+    for i in range(n):
+        yield i
+$$;
+CREATE_FUNCTION
+dev=> select series(5);
+ series 
+--------
+      0
+      1
+      2
+      3
+      4
+(5 rows)
+```
 
 ## SQL UDFs
 
