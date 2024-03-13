@@ -8,7 +8,7 @@ slug: /sql-create-function
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-function/" />
 </head>
 
-The `CREATE FUNCTION` command can be used to create [user-defined functions](/sql/udf/user-defined-functions.md) (UDFs). There are three ways to create UDFs in RisingWave: UDFs as external functions, embedded UDFs, and SQL UDFs. `CREATE FUNCTION` can be used for them with different syntax.
+The `CREATE FUNCTION` command can be used to create [user-defined functions](/sql/udf/user-defined-functions.md) (UDFs). There are three ways to create UDFs in RisingWave: UDFs as external functions, embedded UDFs and SQL UDFs. `CREATE FUNCTION` can be used for them with different syntax.
 
 ## UDFs as external functions
 
@@ -77,41 +77,38 @@ CREATE FUNCTION gcd(a int, b int) RETURNS int LANGUAGE javascript AS $$
 $$;
 ```
 
----
+## Embedded UDFs
 
-Here are the example of inlining Python and Rust UDFs.
+Here are examples of embedded UDFs.
 
-```sql title="Inlined python udf"
-# scalar function
+```sql title="Inlined UDFs"
+# Embedded Python UDF
 create function gcd(a int, b int) returns int language python as $$
 def gcd(a, b):
     while b != 0:
         a, b = b, a % b
     return a
 $$;
-
-SELECT gcd(15, 25);
-
------RESULT
-   5
-(1 row)
-
-# table function
-dev=> create function series(n int) returns table (x int) language python as $$
-def series(n):
-    for i in range(n):
-        yield i
+# Embedded JavaScript UDF
+create function gcd(a int, b int) returns int language javascript as $$
+    while (b != 0) {
+        let t = b;
+        b = a % b;
+        a = t;
+    }
+    return a;
 $$;
-CREATE_FUNCTION
-dev=> select series(5);
- series 
---------
-      0
-      1
-      2
-      3
-      4
-(5 rows)
+# Embedded Rust UDF
+create function gcd(int, int) returns int language rust as $$
+    fn gcd(mut a: i32, mut b: i32) -> i32 {
+        while b != 0 {
+            let t = b;
+            b = a % b;
+            a = t;
+        }
+        a
+    }
+$$;
 ```
 
 ## SQL UDFs
