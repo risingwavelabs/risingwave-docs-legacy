@@ -1,7 +1,7 @@
 ---
 id: ingest-from-cdc
-title: CDC via event streaming systems
-description: Ingest CDC data via event streaming systems.
+title: CDC via messaging systems
+description: Ingest CDC data via messaging systems such as Kafka, Pulsar, etc.
 slug: /ingest-from-cdc
 ---
 <head>
@@ -10,7 +10,7 @@ slug: /ingest-from-cdc
 
 Change data capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
 
-You can use event streaming systems like Kafka, Pulsar, or Kinesis to stream changes from MySQL, PostgreSQL, and TiDB to RisingWave. In this case, you will need an additional CDC tool to stream the changes from the database and specify the corresponding formats when ingesting the streams into RisingWave.
+You can use event streaming systems like Apache Kafka, Pulsar, or Kinesis to stream changes from MySQL, PostgreSQL, and TiDB to RisingWave. In this case, you will need an additional CDC tool to stream the changes from the database and specify the corresponding formats when ingesting the streams into RisingWave.
 
 RisingWave also provides native MySQL and PostgreSQL CDC connectors. With these CDC connectors, you can ingest CDC data from these databases directly, without setting up additional services like Kafka. For complete step-to-step guides about using the native CDC connector to ingest MySQL and PostgreSQL data, see [Ingest data from MySQL](/guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](/guides/ingest-from-postgres-cdc.md). This topic only describes the configurations for using RisingWave to ingest CDC data from an event streaming system.
 
@@ -18,29 +18,29 @@ For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with
 
 RisingWave accepts these data formats:
 
-- Debezium JSON (for MySQL, PostgreSQL, and SQL Server)
+- **Debezium JSON (for MySQL, PostgreSQL, and SQL Server)**
 
     For Debezium JSON (`FORMAT DEBEZIUM ENCODE JSON`), you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), or [Debezium connector for SQL Server](https://debezium.io/documentation/reference/stable/connectors/sqlserver.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
 
     Note that if you are ingesting data of type `timestamp` or `timestamptz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning.
 
-- Debezium Mongo JSON (for MongoDB)
+- **Debezium Mongo JSON (for MongoDB)**
 
     For Debezium Mongo JSON (`FORMAT DEBEZIUM_MONGO ENCODE JSON`), you can use the [Debezium connector for MongoDB](https://debezium.io/documentation/reference/stable/connectors/mongodb.html) to convert CDC data to Kafka topics.
 
-- Debezium AVRO (for MySQL, PostgreSQL, and SQL Server)
+- **Debezium AVRO (for MySQL, PostgreSQL, and SQL Server)**
 
    For Debezium AVRO (`FORMAT DEBEZIUM ENCODE AVRO`), you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), or [Debezium connector for SQL Server](https://debezium.io/documentation/reference/stable/connectors/sqlserver.html) to convert CDC data to Kafka topics.
 
-- Maxwell JSON (for MySQL only)
+- **Maxwell JSON (for MySQL only)**
 
     For Maxwell JSON (`FORMAT MAXWELL ENCODE JSON`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
 
-- The TiCDC dialect of Canal JSON (for TiDB only)
+- **The TiCDC dialect of Canal JSON (for TiDB only)**
 
     For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`FORMAT CANAL ENCODE JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. You might need to define the topic name in a TiCDC configuration file. Note that only new changes will be captured from TiDB. Data that already exists within the target table will not be captured by TiCDC. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc).
 
-- Canal JSON (for MySQL only)
+- **Canal JSON (for MySQL only)**
 
     For Canal JSON (`FORMAT CANAL ENCODE JSON`), you need to use the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to convert MySQL change data to Pulsar topics.
 
@@ -176,7 +176,7 @@ WITH (
     stream='kafka',
     aws.region='user_test_topic',
     endpoint='172.10.1.1:9090,172.10.1.2:9090',
-    aws.credentials.session_token='AQoEXAMPLEH4aoAH0gNCAPyJxz4BlCFFxWNE1OPTgk5TthT+FvwqnKwRcOIfrRh3c/L To6UDdyJwOOvEVPvLXCrrrUtdnniCEXAMPLE/IvU1dYUg2RVAJBanLiHb4IgRmpRV3z rkuWJOgQs8IZZaIv2BXIa2R4OlgkBN9bkUDNCJiBeb/AXlzBBko7b15fjrBs2+cTQtp Z3CYWFXG8C5zqx37wnOE49mRl/+OtkIKGO7fAE',
+    aws.credentials.session_token='AQoEXAMPL...kIKGO7fAE',
     aws.credentials.role.arn='arn:aws-cn:iam::602389639824:role/demo_role',
     aws.credentials.role.external_id='demo_external_id'
 ) FORMAT DEBEZIUM ENCODE JSON;
