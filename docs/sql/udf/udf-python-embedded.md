@@ -16,7 +16,7 @@ Here are some examples:
 
 ```sql title="Create function"
 CREATE FUNCTION gcd(a int, b int) RETURNS int LANGUAGE python AS $$
-DEF gcd(a, b):
+def gcd(a, b):
     WHILE b != 0:
         a, b = b, a % b
     RETURN a
