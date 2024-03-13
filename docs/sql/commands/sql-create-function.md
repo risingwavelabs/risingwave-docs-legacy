@@ -83,16 +83,16 @@ Here are the example of inlining Python and Rust UDFs.
 
 ```sql title="Inlined python udf"
 # scalar function
-dev=> create function gcd(a int, b int) returns int language python as $$
+create function gcd(a int, b int) returns int language python as $$
 def gcd(a, b):
     while b != 0:
         a, b = b, a % b
     return a
 $$;
-CREATE_FUNCTION
-dev=> select gcd(15, 25);
- gcd 
------
+
+SELECT gcd(15, 25);
+
+-----RESULT
    5
 (1 row)
 
