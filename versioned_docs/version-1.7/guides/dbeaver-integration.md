@@ -14,7 +14,7 @@ This guide will go over how to connect DBeaver to RisingWave so you can seamless
 
 ## Prerequisites
 
-- Ensure that DBeaver is installed. To download DBeaver, see the [DBeaver download page](https://dbeaver.io/download/).
+- Ensure that DBeaver is installed. To download DBeaver, see the [DBeaver download page](https://dbeaver.io/download/). Please make sure that your DBeaver version is at least [v23.3.4](https://dbeaver.io/2024/02/04/dbeaver-23-3-4/).
 
 - Install and start RisingWave. For instructions on how to get started, see the [Quick start guide](/get-started.md).
 
@@ -22,7 +22,7 @@ This guide will go over how to connect DBeaver to RisingWave so you can seamless
 
 1. In DBeaver, from the menu bar, select **Database > New database connection**.
 
-2. In the **Connect to a database** window, select **PostgreSQL**. Click **Next**.
+2. In the **Connect to a database** window, select **RisingWave**. Click **Next**.
 
 3. Under **Connection settings**, provide the following information:
 
