@@ -1,7 +1,7 @@
 ---
 id: ingest-from-mysql-cdc
-title: Ingest data from MySQL CDC
-description: Ingest data from MySQL CDC.
+title: Ingest CDC data from MySQL
+description: Ingest CDC data from MySQL.
 slug: /ingest-from-mysql-cdc
 ---
 <head>

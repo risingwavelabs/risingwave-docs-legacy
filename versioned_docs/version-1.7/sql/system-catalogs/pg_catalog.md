@@ -22,7 +22,6 @@ RisingWave does not fully support all PostgreSQL system catalog columns.
 | [`pg_attribute`](https://www.postgresql.org/docs/current/catalog-pg-attribute.html) | Contains information about table columns.|
 | [`pg_cast`](https://www.postgresql.org/docs/current/catalog-pg-cast.html) | Contains information about type casts. |
 | [`pg_constraint`](https://www.postgresql.org/docs/current/catalog-pg-constraint.html) | Contains information about constraints defined for database tables. Constraints are used to enforce rules and restrictions on the data that can be stored in a table.|
-| [`pg_inherits`](https://www.postgresql.org/docs/current/catalog-pg-inherits.html)|
 | [`pg_conversion`](https://www.postgresql.org/docs/current/catalog-pg-conversion.html) | Contains information about encoding conversion functions. |
 | [`pg_class`](https://www.postgresql.org/docs/current/catalog-pg-class.html) | Contains information about tables, indexes, sequences, and views. |
 | [`pg_collation`](https://www.postgresql.org/docs/current/catalog-pg-collation.html) | Contains information about collations. |
@@ -36,8 +35,10 @@ RisingWave does not fully support all PostgreSQL system catalog columns.
 | [`pg_namespace`](https://www.postgresql.org/docs/current/catalog-pg-namespace.html) | Contains information about namespaces.|
 | [`pg_opclass`](https://www.postgresql.org/docs/current/catalog-pg-opclass.html) | Contains information about index access method operator classes. |
 | [`pg_operator`](https://www.postgresql.org/docs/current/catalog-pg-operator.html) | Contains information about operators. |
+| [`pg_partitioned_table`](https://www.postgresql.org/docs/current/catalog-pg-partitioned-table.html) | Contains information about how tables are partitioned. |
 | [`pg_proc`](https://www.postgresql.org/docs/current/catalog-pg-proc.html)|Contains information about functions, aggregate functions, and window functions. |
 | [`pg_roles`](https://www.postgresql.org/docs/current/view-pg-roles.html) | Contains information about database roles. |
+| [`pg_sequences`](https://www.postgresql.org/docs/current/view-pg-sequences.html) | Contains information about each sequence in the database. |
 | [`pg_settings`](https://www.postgresql.org/docs/current/view-pg-settings.html) | Contains information about run-time parameters of the server.|
 |[`pg_shadow`](https://www.postgresql.org/docs/current/view-pg-shadow.html) |Contains information about database users. Specifically, it contains information about the login roles that have been created in the database, including their usernames, password hashes, and other authentication-related information. |
 | [`pg_shdescription`](https://www.postgresql.org/docs/current/catalog-pg-shdescription.html) | Contains descriptive information about shared database objects. |

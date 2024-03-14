@@ -1,6 +1,6 @@
 ---
 id: include-clause
-title: INCLUDE clause
+title: Ingest additional fields with INCLUDE clause
 description: Use the `INCLUDE` clause when creating a table or source to ingest fields not included in the payload.
 slug: /include-clause
 ---

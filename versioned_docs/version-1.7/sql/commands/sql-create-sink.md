@@ -27,60 +27,17 @@ WITH (
 ) ] ];
 ```
 
-:::note
+## Parameters
 
-- By setting `snapshot = 'false'`, you can skip the backfilling phase of the sink and transmit only incremental changes. The default is `true`. This feature is supported when using `CREATE SINK FROM MV` or `CREATE SINK FROM TABLE` syntax. Using it with `CREATE SINK AS <select_query>` will result in errors.
-
-- The optional `FORMAT data_format ENCODE data_encode` syntax is only used for Kafka, Kinesis, Pulsar, and Redis sinks.
-
-:::
-
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal('CREATE SINK'),
-      rr.Optional(rr.Terminal('IF NOT EXISTS')),
-      rr.NonTerminal('sink_name', 'skip'),
-      rr.ZeroOrMore(
-      rr.Sequence(
-         rr.Terminal('FROM'),
-         rr.NonTerminal('sink_from', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('AS'),
-         rr.NonTerminal('select_query', 'skip')
-      ),
-   ),
-   ),
-   rr.Sequence(
-      rr.Terminal('WITH'),
-      rr.Terminal('('),
-      rr.Stack(
-         rr.Stack(
-            rr.Sequence(
-               rr.Terminal('connector'),
-               rr.Terminal('='),
-               rr.Terminal('\'connector_name\''),
-               rr.Terminal(','),
-            ),
-            rr.Sequence(
-               rr.Terminal('connector_parameter'),
-               rr.Terminal('='),
-               rr.Terminal('\'value\''),
-               rr.Terminal(','),
-            ),
-         ),
-      ),
-      rr.Terminal(')'),
-   ),
-   rr.Terminal(';'),
-)
-);
-
-<drawer SVG={svg} />
+| Parameter| Description|
+|-----------|-------------|
+|*sink_name*    |The name of the sink.|
+|*col_name*      |The name of the column.|
+|*sink_from*      |Specify the direct data source for output. It can be a materialized view or a table.|
+|*select_query*      |Specify the data to be output to the sink.|
+|*snapshot*| Optional. Currently, to modify the definition or query of an existing sink, you need to drop and re-create the sink, but this approach generates excessive duplicates due to the mandatory backfilling. To avoid this, you can set the parameter to `false` to skip the backfilling phase and transmit only incremental changes. This option is only applicable when using the `CREATE SINK FROM` syntax, not `CREATE SINK AS` syntax. The default value is `true`. |
+|**WITH** clause |Specify the connector settings here if trying to store all the sink data. See [Supported sinks](#supported-sinks) for the full list of supported sink as well as links to specific connector pages detailing the syntax for each sink. |
+|**FORMAT** and **ENCODE** options | Optional. Specify the data format and the encoding format of the sink data. It is only used for Kafka, Kinesis, Pulsar, and Redis sinks. |
 
 ## Supported sinks
 
@@ -103,7 +60,6 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 * [Redis](/guides/sink-to-redis.md)
 * [StarRocks](/guides/sink-to-starrocks.md)
 * [TiDB](/guides/sink-to-tidb.md)
-
 
 ## See also
 

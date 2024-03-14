@@ -66,7 +66,7 @@ The Cassandra sink in RisingWave provides at-least-once delivery semantics. Even
 |smallint | smallint |
 |integer |int|
 |bigint |bigint|
-|numeric |double|
+|numeric |decimal|
 |real |float|
 |double precision |double|
 |character varying (varchar) |text|

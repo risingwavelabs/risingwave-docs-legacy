@@ -27,7 +27,7 @@ CREATE USER user_name [ [ WITH ] system_permission [ ... ]['PASSWORD' { password
 | ------------------- | --------------------- |
 | *user_name* | The name of the user to be modified. |
 | *new_user_name* | The new name of the user. |
-| **system_permission* | See [System permissions](/sql/commands/sql-create-user.md#system-permissions).|
+| *system_permission* | See [System permissions](/sql/commands/sql-create-user.md#system-permissions).|
 
 ## Example
 

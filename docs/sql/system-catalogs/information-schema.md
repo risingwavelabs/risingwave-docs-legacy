@@ -61,6 +61,8 @@ The `information_schema.columns` view contains information about columns of all 
 |`ordinal_position`|int32| Ordinal position of the column within the table (count starts at 1)|
 |`is_nullable` | varchar| `YES` if the column is possibly nullable; `NO` if it is known not nullable.|
 |`data_type` | varchar| Data type of the column|
+|`is_generated` | varchar| `ALWAYS` if the column has a generated value; `NEVER` if it doesn't.|
+|`generation_expression` | varchar| Expression for generating values when `is_generated` is `ALWAYS`.|
 
 ## How to use the information schema views?
 
