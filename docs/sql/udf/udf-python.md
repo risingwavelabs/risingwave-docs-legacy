@@ -33,9 +33,10 @@ If "command not found: pip" is returned, <a href="https://packaging.python.org/e
 
 To better demonstrate this step, we have prepared a sample script for you to try out. Please create a Python file with the name `udf.py` and insert the script below.
 
+```python
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-
+```
 <details>
 <summary>How?</summary>
 Here are a few methods for creating a Python file.
