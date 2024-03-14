@@ -79,10 +79,16 @@ import struct
 import socket
 
 # Define a scalar function that returns a single value
-@udf(input_types=['INT', 'INT'], result_type='INT', io_threads=32)
+@udf(input_types=['INT', 'INT'], result_type='INT')
 def gcd(x, y):
     while y != 0:
         (x, y) = (y, x % y)
+    return x
+
+# Define a scalar function to erform some blocking operation, setting the `io_threads` parameter to run multiple function calls concurrently on a thread pool
+@udf(input_types=["INT"], result_type="INT", io_threads=32)
+def blocking(x):
+    time.sleep(0.01) 
     return x
 
 # Define a scalar function that returns multiple values (within a struct)
@@ -116,7 +122,7 @@ The script first imports the `struct` and `socket` modules and three components 
 
 `udf` and `udtf` are decorators used to define scalar and table functions respectively.
 
-The code defines two scalar functions and one table function:
+The code defines three scalar functions and one table function:
 
 - The scalar function `gcd`, decorated with `@udf`, takes two integer inputs and returns the greatest common divisor of the two integers. 
 - The scalar function `blocking`, decorated with `@udf`. The `io_threads` parameter specifies the number of threads that the Python UDF will use during execution to enhance processing performance of IO-intensive functions. Please note that multithreading can not speed up compute-intensive functions due to the GIL.
@@ -154,11 +160,14 @@ The UDF server will start running, allowing you to call the defined UDFs from Ri
 
 In RisingWave, use the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md) command to declare the functions you defined.
 
-Here are the SQL statements for declaring the three UDFs defined in [step 2](#2-define-your-functions-in-a-python-file).
+Here are the SQL statements for declaring the four UDFs defined in [step 2](#2-define-your-functions-in-a-python-file).
 
 ```sql
 CREATE FUNCTION gcd(int, int) RETURNS int
 LANGUAGE python AS gcd USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
+
+CREATE FUNCTION blocking(int) RETURNS int
+LANGUAGE python AS blocking USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
 
 CREATE FUNCTION extract_tcp_info(bytea)
 RETURNS struct<src_ip varchar, dst_ip varchar, src_port smallint, dst_port smallint>
@@ -178,6 +187,10 @@ Once the UDFs are created in RisingWave, you can use them in SQL queries just li
 SELECT gcd(25, 15);
 ---
 5
+
+SELECT blocking(2);
+---
+2
 
 SELECT extract_tcp_info(E'\\x45000034a8a8400040065b8ac0a8000ec0a80001035d20b6d971b900000000080020200493310000020405b4' :: bytea);
 ---
