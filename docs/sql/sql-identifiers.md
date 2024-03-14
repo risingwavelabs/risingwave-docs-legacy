@@ -21,7 +21,7 @@ title: Identifiers
     SELECT user, avatar FROM t; -- This is also the builtin `user`, rather than a column from the table `t`.
     ```
 
-  Some of such names that need to be especially noticed include **`user`, `current_timestamp`, `current_schema`, `current_role`, `current_user`,** and **`session_user`**. To avoid such issues, you can either avoid naming a column with these words, or qualify it with the table name (as shown in the example below) when such ambiguity happens.
+  Several names also require special attention, including **`user`, `current_timestamp`, `current_schema`, `current_role`, `current_user`,** and **`session_user`**. To avoid such issues, you can either avoid naming a column with these words, or qualify it with the table name (as shown in the example below) when such ambiguity happens.
 
   ```sql title="Solution to avoid naming conflicts"
   SELECT t.user, avatar FROM t; -- Qualify it with `t.` to select the column rather than the builtin.
