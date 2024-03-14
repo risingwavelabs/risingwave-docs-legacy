@@ -118,7 +118,8 @@ The script first imports the `struct` and `socket` modules and three components 
 
 The code defines two scalar functions and one table function:
 
-- The scalar function `gcd`, decorated with `@udf`, takes two integer inputs and returns the greatest common divisor of the two integers. The `io_threads` parameter specifies the number of threads that the Python UDF will use during execution to enhance processing performance and efficiency.
+- The scalar function `gcd`, decorated with `@udf`, takes two integer inputs and returns the greatest common divisor of the two integers. 
+- The scalar function `blocking`, decorated with `@udf`. The `io_threads` parameter specifies the number of threads that the Python UDF will use during execution to enhance processing performance of IO-intensive functions. Please note that multithreading can not speed up compute-intensive functions due to the GIL.
 - The scalar function `extract_tcp_info`, decorated with `@udf`, takes a single binary input and returns a structured output.
 
     The function takes a single argument `tcp_packet` of type bytes and uses the struct module to unpack the source and destination addresses and port numbers from `tcp_packet`, and then converts the binary IP addresses to strings using `socket.inet_ntoa`.
