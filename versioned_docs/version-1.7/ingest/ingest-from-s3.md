@@ -17,11 +17,11 @@ The S3 connector does not guarantee the sequential reading of files or complete 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name 
 schema_definition
+[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 WITH (
    connector={ 's3' | 's3_v2' },
    connector_parameter='value', ...
 )
-[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 FORMAT data_format ENCODE data_encode (
    without_header = 'true' | 'false',
    delimiter = 'delimiter'

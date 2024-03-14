@@ -12,11 +12,11 @@ Use the SQL statement below to connect RisingWave to a Google Cloud Storage sour
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name 
 schema_definition
+[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 WITH (
    connector = 'gcs',
    connector_parameter = 'value', ...
 )
-[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 FORMAT data_format ENCODE data_encode (
    without_header = 'true' | 'false',
    delimiter = 'delimiter'

@@ -42,7 +42,7 @@ ALTER SOURCE src1
 
 :::note
 
-+ If your source is created with a schema registry, columns cannot be altered.
++ To alter columns in a source created with a schema registry, see [FORMAT and ENCODE options](sql-alter-source.md#format-and-encode-options).
 
 + You cannot add a primary key column to a source or table in RisingWave. To modify the primary key of a source or table, you need to recreate the table.
 
@@ -134,7 +134,6 @@ ALTER SOURCE src_user FORMAT PLAIN ENCODE PROTOBUF(
     message = 'test.UserWithMoreFields'
 );
 ```
-
 
 :::note
 Currently, it is not supported to modify the `data_format` and `data_encode`. Furthermore, when refreshing the schema registry of a source, it is not allowed to drop columns or change types.

@@ -2,21 +2,34 @@
 id: user-defined-functions
 slug: /user-defined-functions
 title: User-defined functions
-description: Define your own functions with the help of the RisingWave UDF API.
+description: Define your own functions.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/user-defined-functions/" />
 </head>
 
-You can define your own functions (including table functions) and call these functions in RisingWave. With the user-defined function (UDF), you can tailor RisingWave to your needs.
+In modern data processing and analysis, SQL language is a powerful tool for handling structured data. However, as the complexity of data analysis increases, standard SQL statements and built-in functions may not be sufficient to meet all data processing needs. This is where user-defined functions (UDFs) come into play, allowing you to define custom functions to achieve more complex calculations and operations.
 
-At present, there are two ways to define your UDF. The first option is to use it as an external function, leveraging the capabilities of languages such as Python and Java to perform advanced data processing and analysis tasks. The second option is to use a SQL UDF. Currently, we support basic anonymous SQL UDFs and are actively working on enhancing the capabilities of SQL UDFs.
+## When do you need UDFs
+
+UDFs are crucial when there is a need to perform calculations that cannot be supported by standard SQL functions. Here are some typical scenarios and examples:
+
+- Complex mathematical or statistical calculations, such as calculating the greatest common divisor of two numbers.
+- Custom data transformations or validations, such as extracting information from network packets.
+- Need to use external services or resources, such as accessing OpenAI API to generate text.
+- Migration from existing systems, such as migrating Flink UDFs and implementing functions not currently supported by RisingWave.
+
+It is important to note that UDFs have lower execution efficiency compared to built-in functions due to cross-language communication and data conversion. Therefore, users should always prioritize the use of built-in functions.
+
+## Types of UDFs in RisingWave
+
+At present, there are two ways to define your UDF in RisingWave. The first option is to use it as an external function, leveraging the capabilities of languages such as Python and Java to perform advanced data processing and analysis tasks. The second option is to use a SQL UDF. Currently, we support basic SQL UDFs with named and unnamed parameters, and we are actively working on enhancing the capabilities of SQL UDFs.
 
 :::note Beta feature
 UDF is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
-## UDFs as external functions
+### UDFs as external functions
 
 RisingWave supports creating UDFs with the following programming languages:
 
@@ -28,7 +41,7 @@ RisingWave supports creating UDFs with the following programming languages:
 
 - [JavaScript](/sql/udf/udf-javascript.md)
 
-## SQL UDFs
+### SQL UDFs
 
 For details about how to create a SQL UDF and its use cases, see:
 
