@@ -85,7 +85,7 @@ def gcd(x, y):
         (x, y) = (y, x % y)
     return x
 
-# Define a scalar function to erform some blocking operation, setting the `io_threads` parameter to run multiple function calls concurrently on a thread pool
+# Define a scalar function to perform some blocking operation, setting the `io_threads` parameter to run multiple function calls concurrently on a thread pool
 @udf(input_types=["INT"], result_type="INT", io_threads=32)
 def blocking(x):
     time.sleep(0.01) 
