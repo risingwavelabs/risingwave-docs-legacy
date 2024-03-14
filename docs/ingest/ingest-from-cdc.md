@@ -14,7 +14,7 @@ You can use event streaming systems like Kafka, Pulsar, or Kinesis to stream cha
 
 RisingWave also provides native MySQL and PostgreSQL CDC connectors. With these CDC connectors, you can ingest CDC data from these databases directly, without setting up additional services like Kafka. For complete step-to-step guides about using the native CDC connector to ingest MySQL and PostgreSQL data, see [Ingest data from MySQL](/guides/ingest-from-mysql-cdc.md) and [Ingest data from PostgreSQL](/guides/ingest-from-postgres-cdc.md). This topic only describes the configurations for using RisingWave to ingest CDC data from an event streaming system.
 
-For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with primary keys and connector settings. This is different from creating a standard source, as CDC data needs to be persisted in RisingWave to ensure correctness.
+For RisingWave to ingest CDC data, you must create a table (`CREATE TABLE`) with primary keys and connector settings. This is different from creating a source, as CDC data needs to be persisted in RisingWave to ensure correctness.
 
 RisingWave accepts these data formats:
 

@@ -56,11 +56,13 @@ The `information_schema.columns` view contains information about columns of all 
 |---|---|---|
 |`table_catalog`|varchar| Name of the current database.|
 |`table_schema` |varchar| Name of the schema that contains the table, sink, view, or materialized view. The default schema for user-created objects is `public`.|
-|`table_name` | varchar| Name of the table, sink, view, or materialized view|
-|`column_name` | varchar| Name of the column|
-|`ordinal_position`|int32| Ordinal position of the column within the table (count starts at 1)|
+|`table_name` | varchar| Name of the table, sink, view, or materialized view.|
+|`column_name` | varchar| Name of the column.|
+|`ordinal_position`|int32| Ordinal position of the column within the table (count starts at 1).|
 |`is_nullable` | varchar| `YES` if the column is possibly nullable; `NO` if it is known not nullable.|
-|`data_type` | varchar| Data type of the column|
+|`data_type` | varchar| Data type of the column.|
+|`is_generated` | varchar| `ALWAYS` if the column has a generated value; `NEVER` if it doesn't.|
+|`generation_expression` | varchar| Expression for generating values when `is_generated` is `ALWAYS`.|
 
 ## How to use the information schema views?
 

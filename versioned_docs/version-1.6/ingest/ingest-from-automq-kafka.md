@@ -89,4 +89,4 @@ Replace `your_source_name` with the name you defined when create the source.
 
 :::
 
-When you see actual results, that means that you have successfully ingested data from AutoMQ Kafka into RisingWave Cloud. You can now wrte more data into the topic, or transform the ingested data by creating materialized views in RisingWave Cloud.
+When you see actual results, that means that you have successfully ingested data from AutoMQ Kafka into RisingWave Cloud. You can now write more data into the topic, or transform the ingested data by creating materialized views in RisingWave Cloud.
