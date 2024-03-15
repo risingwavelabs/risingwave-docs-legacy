@@ -55,7 +55,7 @@ Where `<my-risingwave>` is the release name you choose to use for your RisingWav
 If you want to install a particular version, you can specify the version via the `image-tag` attribute. For example:
 
 ```bash
-helm install --set wait=true --set image.tag=v1.2.0 <my-risingwave> risingwavelabs/risingwave
+helm install --set wait=true --set image.tag=<version_number> <my-risingwave> risingwavelabs/risingwave
 ```
 
 You may get an output message like this:
