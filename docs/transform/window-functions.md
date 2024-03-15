@@ -58,7 +58,9 @@ offset FOLLOWING
 UNBOUNDED FOLLOWING
 ```
 
-Where `offset` is a positive integer. If only `frame_start` is specified, `CURRENT ROW` will be used as the end of the window.
+If only `frame_start` is specified, `CURRENT ROW` will be used as the end of the window.
+
+The meaning of `offset` varies in different modes: in `ROWS` mode, the `offset` is a positive integer indicating the number of rows before or after the current row, while `RANGE` mode requires that the `ORDER BY` clause specify exactly one column, and the data type of the offset expression is determined by the data type of the ordering column.
 
 `frame_exclusion` can be either of these:
 
