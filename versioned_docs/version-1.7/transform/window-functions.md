@@ -13,7 +13,7 @@ The "window" is defined by the `OVER` clause, which generally consists of thre
 
 - Window partitioning (the `PARTITION BY` clause): Specifies how to partition rows into smaller sets.
 - Window ordering (the `ORDER BY` clause): Specifies how the rows are ordered. This part is required for ranking functions.
-- Window frame (the `ROWS` clause): Specifies a particular row or the range of the rows over which calculations are performed.
+- Window frame (the `ROWS` or `RANGE` clause): Specifies a particular row or the range of the rows over which calculations are performed.
 
 If your goal is to generate calculation results strictly as append-only output when a window closes, you can utilize the emit-on-window-close policy. This approach helps avoid unnecessary computations. For more information on the emit-on-window-close policy, please refer to [Emit on window close](/transform/emit-on-window-close.md).
 
@@ -44,8 +44,8 @@ When operating in the emit-on-window-close mode for a streaming query, `ORDER BY
 The syntax of `frame_clause` is:
 
 ```sql
-{ ROWS } frame_start [ frame_exclusion ]
-{ ROWS } BETWEEN frame_start AND frame_end [ frame_exclusion ]
+{ ROWS | RANGE } frame_start [ frame_exclusion ]
+{ ROWS | RANGE } BETWEEN frame_start AND frame_end [ frame_exclusion ]
 ```
 
 `frame_start` and `frame_end` can be:
@@ -69,7 +69,7 @@ EXCLUDE NO OTHERS
 
 :::note
 
-In RisingWave, `frame_clause` is optional. Depending on whether the `ORDER BY` clause is present, the default value is different. When the `ORDER BY` clause is present, the default value is `ROWS UNBOUNDED PRECEDING AND CURRENT ROW`. When the `ORDER BY` clause is not present, the default value is `ROWS UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING`. This is different from the behavior in PostgreSQL. The difference is temporary. Once the `RANGE` frame clause is supported in RisingWave, the default values will be aligned with PostgreSQL.
+In RisingWave, `frame_clause` is optional. Depending on whether the `ORDER BY` clause is present, the default value is different. When the `ORDER BY` clause is present, the default value is `ROWS UNBOUNDED PRECEDING AND CURRENT ROW`. When the `ORDER BY` clause is not present, the default value is `ROWS UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING`. This is different from the behavior in PostgreSQL.
 
 :::
 
