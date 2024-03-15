@@ -52,7 +52,7 @@ helm install --set wait=true <my-risingwave> risingwavelabs/risingwave
 
 Where `<my-risingwave>` is the release name you choose to use for your RisingWave deployment. This command will install the latest stable version of RisingWave.
 
-If you want to install a particular version, you can specify the version via the `image-tag` attribute. For example:
+If you want to install a particular version, you can specify the version via the `image-tag` attribute. Remember to replace `<version_number>` with the desired version, for example `v1.7.0`.
 
 ```bash
 helm install --set wait=true --set image.tag=<version_number> <my-risingwave> risingwavelabs/risingwave
