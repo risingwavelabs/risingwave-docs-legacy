@@ -91,7 +91,7 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
 
 The information presented above provides a brief overview of the data ingestion process in RisingWave. To gain a more comprehensive understanding of this process, the following topics in this section will delve deeper into the subject matter. Here is a brief introduction to what you can expect to find in each topic:
 
-- For more detailed information about the types, formats, and encoding options of sources, see [Formats and encoding](/ingest/format-and-encode-parameters.md).
+- For more detailed information about the types, formats, and encoding options of sources, see [Formats and encoding](/ingest/formats-and-encode-parameters.md).
 
 - For the complete list of the sources and formats supported in RisingWave, see [Supported sources and formats](/ingest/supported-sources-and-formats.md).
 
