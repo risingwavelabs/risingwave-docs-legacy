@@ -263,5 +263,5 @@ The RisingWave Python UDF SDK supports the following data types:
 | BYTEA            | bytes                          |                    |
 | JSONB            | any                            |                    |
 | T[]              | list[T]                        |                    |
-| STRUCT<>         | tuple                          |                    |
+| STRUCT&lt;&gt;        | tuple                          |                    |
 | ...others        |                                | Not supported yet. |
