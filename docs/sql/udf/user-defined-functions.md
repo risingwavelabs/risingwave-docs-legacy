@@ -37,8 +37,6 @@ RisingWave supports creating UDFs with the following programming languages:
 
 - [Java](/sql/udf/udf-java.md)
 
-- [Rust](/sql/udf/udf-rust.md)
-
 ### Embedded UDFs
 
 - [Python](/sql/udf/udf-python-embedded.md)
