@@ -13,7 +13,19 @@ title: Identifiers
 * The remaining characters of an identifier must be ASCII letters (e.g., `a`-`z` and `A`-`Z`), underscores (`_`), ASCII digits (`0`-`9`), or dollar signs (`$`).
 * Non-ASCII characters in unquoted identifiers are not allowed.
 * You can circumvent any above rules by double-quoting the identifier (e.g., `"5_source"`). All characters inside a quoted identifier are taken literally, except double-quotes must be escaped by writing two adjacent double-quotes, as in (e.g., `"two""quotes"`).
+* In an **expression**, certain names are interpreted as builtins rather than column names. For example:
 
+    ```sql title="Names interpreted as builtins"
+    SELECT user; -- This is the builtin `user`.
+
+    SELECT user, avatar FROM t; -- This is also the builtin `user`, rather than a column from the table `t`.
+    ```
+
+  Several such names require special attention, including **`user`, `current_timestamp`, `current_schema`, `current_role`, `current_user`,** and **`session_user`**. To avoid such issues, you can either avoid naming a column with these words, or qualify it with the table name (as shown in the example below) when such ambiguity happens.
+
+  ```sql title="Solution to avoid naming conflicts"
+  SELECT t.user, avatar FROM t; -- Qualify it with `t.` to select the column rather than the builtin.
+  ```
 
 ## Case sensitivity
 
