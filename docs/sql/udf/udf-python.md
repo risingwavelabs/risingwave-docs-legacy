@@ -85,6 +85,12 @@ def gcd(x, y):
         (x, y) = (y, x % y)
     return x
 
+# Define a scalar function to perform some blocking operation, setting the `io_threads` parameter to run multiple function calls concurrently on a thread pool
+@udf(input_types=["INT"], result_type="INT", io_threads=32)
+def blocking(x):
+    time.sleep(0.01) 
+    return x
+
 # Define a scalar function that returns multiple values (within a struct)
 @udf(input_types=['BYTEA'], result_type='STRUCT<VARCHAR, VARCHAR, SMALLINT, SMALLINT>')
 def extract_tcp_info(tcp_packet: bytes):
@@ -116,9 +122,10 @@ The script first imports the `struct` and `socket` modules and three components 
 
 `udf` and `udtf` are decorators used to define scalar and table functions respectively.
 
-The code defines two scalar functions and one table function:
+The code defines three scalar functions and one table function:
 
-- The scalar function `gcd`, decorated with `@udf`, takes two integer inputs and returns the greatest common divisor of the two integers.
+- The scalar function `gcd`, decorated with `@udf`, takes two integer inputs and returns the greatest common divisor of the two integers. 
+- The scalar function `blocking`, decorated with `@udf`. The `io_threads` parameter specifies the number of threads that the Python UDF will use during execution to enhance processing performance of IO-intensive functions. Please note that multithreading can not speed up compute-intensive functions due to the GIL.
 - The scalar function `extract_tcp_info`, decorated with `@udf`, takes a single binary input and returns a structured output.
 
     The function takes a single argument `tcp_packet` of type bytes and uses the struct module to unpack the source and destination addresses and port numbers from `tcp_packet`, and then converts the binary IP addresses to strings using `socket.inet_ntoa`.
@@ -153,11 +160,14 @@ The UDF server will start running, allowing you to call the defined UDFs from Ri
 
 In RisingWave, use the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md) command to declare the functions you defined.
 
-Here are the SQL statements for declaring the three UDFs defined in [step 2](#2-define-your-functions-in-a-python-file).
+Here are the SQL statements for declaring the four UDFs defined in [step 2](#2-define-your-functions-in-a-python-file).
 
 ```sql
 CREATE FUNCTION gcd(int, int) RETURNS int
 LANGUAGE python AS gcd USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
+
+CREATE FUNCTION blocking(int) RETURNS int
+LANGUAGE python AS blocking USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
 
 CREATE FUNCTION extract_tcp_info(bytea)
 RETURNS struct<src_ip varchar, dst_ip varchar, src_port smallint, dst_port smallint>
@@ -177,6 +187,10 @@ Once the UDFs are created in RisingWave, you can use them in SQL queries just li
 SELECT gcd(25, 15);
 ---
 5
+
+SELECT blocking(2);
+---
+2
 
 SELECT extract_tcp_info(E'\\x45000034a8a8400040065b8ac0a8000ec0a80001035d20b6d971b900000000080020200493310000020405b4' :: bytea);
 ---
@@ -227,3 +241,27 @@ if __name__ == "__main__":
 ```
 
 Then, you can start a load balancer, such as Nginx. It listens on port 8815 and forwards requests to UDF servers on ports 8816-8819.
+
+## Data Types
+
+The RisingWave Python UDF SDK supports the following data types:
+
+| SQL Type         | Python Type                    | Notes              |
+| ---------------- | -----------------------------  | ------------------ |
+| BOOLEAN          | bool                           |                    |
+| SMALLINT         | int                            |                    |
+| INT              | int                            |                    |
+| BIGINT           | int                            |                    |
+| REAL             | float                          |                    |
+| DOUBLE PRECISION | float                          |                    |
+| DECIMAL          | decimal.Decimal                |                    |
+| DATE             | datetime.date                  |                    |
+| TIME             | datetime.time                  |                    |
+| TIMESTAMP        | datetime.datetime              |                    |
+| INTERVAL         | MonthDayNano / (int, int, int) | Fields can be obtained by `months()`, `days()` and `nanoseconds()` from `MonthDayNano` |
+| VARCHAR          | str                            |                    |
+| BYTEA            | bytes                          |                    |
+| JSONB            | any                            |                    |
+| T[]              | list[T]                        |                    |
+| STRUCT&lt;&gt;        | tuple                          |                    |
+| ...others        |                                | Not supported yet. |

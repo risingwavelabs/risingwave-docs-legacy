@@ -81,7 +81,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
 |Relation Name | Description|
 |---|---|
  rw_actors             | Contains the available actor IDs, their statuses, and the corresponding fragment IDs, and parallel unit IDs. |
-  rw_columns            | Contains information about columns of all relations (except sources) in the database, including their names, positions, data types, and more.|
+  rw_columns            | Contains information about columns of all relations (except sources) in the database, including their names, positions, data types, generation details, and more.|
  rw_connections        | Contains details about the connections available in the database, such as their IDs, names, owners, types, and more.|
  rw_databases          | Contains information about the databases available in the database, such as the IDs, names, and owners.|
  rw_ddl_progress       | Contains the progress of running DDL statements. You can use this relation to view the progress of running DDL statements. For details, see [View statement progress](/manage/view-statement-progress.md).|

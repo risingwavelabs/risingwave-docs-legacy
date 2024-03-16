@@ -57,7 +57,7 @@ The Standard plan operates on a pay-as-you-go model. You only pay for your actua
 
 - **Storage capacity**: RisingWave Cloud bills the storage in per GB-month increments at a second rate. You pay for the storage capacity of the data your RisingWave cluster persisted during stream processing, such as tables, materialized views, and internal states.
 
-See the [pricing table](#pricing-table) below for the cost of compute resources and storage capacity in different regions.
+See the [pricing information](#pricing-information) below for the cost of compute resources and storage capacity in different regions.
 
 ### Invited plan
 
@@ -71,9 +71,11 @@ Each RWU is composed of approximately 1-core vCPU and 4 GB of memory. This alloc
 
 Billing for all components within a RisingWave cluster is based on RWU-hour usage. This means that possessing one RWU for one hour equates to 1 RWU-hour.
 
-## Pricing table
+## Pricing information
 
-Below is the pricing table of the compute resources and storage capacity for the Standard plan in different regions. The prices are listed in USD.
+For detailed pricing information on the compute resources and storage capacity for the Standard plan and Invited plan in different regions, please contact our sales team.
+
+<!-- Below is the pricing table of the compute resources and storage capacity for the Standard plan in different regions. The prices are listed in USD.
 
 For the Invited plan, please contact our sales for your customized offer.
 
@@ -99,13 +101,13 @@ For the Invited plan, please contact our sales for your customized offer.
 | GCP | asia-east2 (Hong Kong) | $0.1970 | $0.023 |
 | GCP | asia-southeast1 (Singapore) | $0.1737 | $0.020 |
 | GCP | austrilia-southeast1 (Sydney) | $0.1998 | $0.023 |
-| GCP | me-central (Doha) | $0.2253 | $0.023 |
+| GCP | me-central (Doha) | $0.2253 | $0.023 | -->
 
 ## Pricing example
 
 To better understand how pricing works in RisingWave Cloud, let's consider a hypothetical scenario. 
 
-Suppose you've provisioned a RisingWave cluster in the `us-east-1` (Ohio) region. The cluster configuration is as follows:
+Suppose you've provisioned a RisingWave cluster with the following configuration:
 
 - 3 Compute nodes, each with 8 RWUs
 - 3 Frontend nodes, each with 2 RWUs
@@ -113,13 +115,13 @@ Suppose you've provisioned a RisingWave cluster in the `us-east-1` (Ohio) region
 - 1 Compactor node with 4 RWUs
 - 3 ETCD nodes, each with 1 RWU
 
-In total, the cluster utilizes 41 RWUs. Additionally, the cluster stores 20GB of data and operates continuously for a 30-day month.
+In total, the cluster utilizes 41 RWUs and stores 20GB of data. The cluster operated for 700 hours in the past month.
 
-The base price for the `us-east-1` region is $0.1283 per RWU-hour for compute resources and $0.023 per GB-month for storage capacities.
+Suppose the base price for your region is $0.1283 per RWU-hour for compute resources and $0.023 per GB-month for storage capacities.
 
-Given these details, your monthly RisingWave Cloud bill will be calculated as follows:
+Given these details, your bill for this cluster for the past month will be calculated as follows:
 
-- Compute resources cost: $0.1283 \* 41 RWUs \* 30 days \* 24 hours/day = $3,787.42
+- Compute resources cost: $0.1283 \* 41 RWUs \* 700 hours = $3682.21
 - Storage capacity cost: $0.023 * 20GB = $0.46
 
-Therefore, the total cost for this example would be $3,787.88.
+Therefore, the total cost for this example would be $3682.67.

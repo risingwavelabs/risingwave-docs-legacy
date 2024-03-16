@@ -720,6 +720,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/query-syntax/query-syntax-order-by-clause",
+                  label: "ORDER BY clause",
+                },
+                {
+                  type: "doc",
                   id: "sql/query-syntax/query-syntax-having-clause",
                   label: "HAVING clause",
                 },
