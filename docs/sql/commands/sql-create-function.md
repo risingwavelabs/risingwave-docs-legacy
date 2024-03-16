@@ -16,8 +16,6 @@ You can define your own functions (including table functions) by some programmin
 
 The `CREATE FUNCTION` command is used to declare these UDFs. After that, you can use them in SQL queries like any built-in functions.
 
-Meanwhile, we also support inlining Python UDFs and Rust UDFs in the `CREATE FUNCTION` statement.
-
 ### Syntax
 
 ```sql
