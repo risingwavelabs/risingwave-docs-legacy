@@ -62,24 +62,11 @@ CREATE FUNCTION gcd(int, int) RETURNS int
 LANGUAGE wasm USING BASE64 'encoded-wasm-binary';
 ```
 
-Use `CREATE FUNCTION` to declare a UDF defined by JavaScript. For more details, see [Use UDFs in JavaScript](/sql/udf/udf-javascript.md).
-
-```sql
-CREATE FUNCTION gcd(a int, b int) RETURNS int LANGUAGE javascript AS $$
-    while (b != 0) {
-        let t = b;
-        b = a % b;
-        a = t;
-    }
-    return a;
-$$;
-```
-
 ## Embedded UDFs
 
 Here are examples of embedded UDFs.
 
-```sql title="Inlined UDFs"
+```sql title="Embedded UDFs"
 # Embedded Python UDF
 create function gcd(a int, b int) returns int language python as $$
 def gcd(a, b):
@@ -87,6 +74,11 @@ def gcd(a, b):
         a, b = b, a % b
     return a
 $$;
+```
+
+For more details, see [Embedded Python UDFs](/sql/udf/udf-python-embedded.md).
+
+```sql title="Embedded UDFs"
 # Embedded JavaScript UDF
 create function gcd(a int, b int) returns int language javascript as $$
     while (b != 0) {
@@ -96,6 +88,11 @@ create function gcd(a int, b int) returns int language javascript as $$
     }
     return a;
 $$;
+```
+
+For more details, see [Use UDFs in JavaScript](/sql/udf/udf-javascript.md).
+
+```sql title="Embedded UDFs"
 # Embedded Rust UDF
 create function gcd(int, int) returns int language rust as $$
     fn gcd(mut a: i32, mut b: i32) -> i32 {
@@ -108,6 +105,8 @@ create function gcd(int, int) returns int language rust as $$
     }
 $$;
 ```
+
+For more details, see [Use UDFs in Rust](/sql/udf/udf-rust.md).
 
 ## SQL UDFs
 
