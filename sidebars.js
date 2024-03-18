@@ -967,6 +967,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "deploy/guide-for-too-many-streaming-jobs",
+          label: "Guide for Too Many Streaming Jobs(Table/Index/MV/Sink)",
+        },
+        {
+          type: "doc",
           id: "deploy/uninstall-risingwave-k8s",
           label: "Uninstall RisingWave from a cluster",
         },
