@@ -145,7 +145,7 @@ SELECT json_extract_path('{"f2":{"f3":1},"f4":{"f5":99,"f6":"foo"}}', 'f4', 'f6'
 
 SELECT jsonb_extract_path('{"a": {"b": ["foo","bar"]}}', variadic array['a', 'b', '1']); 
 ------RESULT
- bar
+ "bar"
 
 ```
 
