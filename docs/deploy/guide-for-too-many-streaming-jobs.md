@@ -47,7 +47,7 @@ select distinct 'alter ' || fp.relation_type || ' ' || fp.name || ' set parallel
 In some references, `/risingwave/bin/risingwave ctl scale horizon --include-workers all` is used to scale out all streaming jobs to forbid the skew of the actor distribution. But it does not satisfy the too many streaming jobs case, because it does not respect the `default_parallelism` parameter. 
 :::
 
-## Other Notifications for many actors
+## Other Notifications for too many actors
 
 You can check the total actor number with the SQL, which means how many tasks running in your cluster.
 
