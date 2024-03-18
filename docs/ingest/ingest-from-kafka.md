@@ -97,6 +97,7 @@ When creating a source in RisingWave, you can specify the following Kafka parame
 | Kafka parameter name | RisingWave parameter name | Type |
 |----------------------|---------------------------|------|
 |enable.auto.commit | properties.enable.auto.commit | boolean |
+|enable.ssl.certificate.verification|properties.enable.ssl.certificate.verification|bool|
 |fetch.max.bytes | properties.fetch.max.bytes | int |
 |fetch.queue.backoff.ms | properties.fetch.queue.backoff.ms | int |
 |fetch.wait.max.ms | properties.fetch.wait.max.ms | int |
