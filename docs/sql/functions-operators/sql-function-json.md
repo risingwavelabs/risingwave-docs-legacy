@@ -66,6 +66,11 @@ jsonb_build_array ( VARIADIC "any" ) → jsonb
 SELECT jsonb_build_array(1, 2, 'foo', 4, 5);
 ------RESULT
  [1, 2, "foo", 4, 5]
+
+SELECT jsonb_build_array(variadic array[1, 2, 4, 5]);
+------RESULT
+ [1, 2, 4, 5]
+
 ```
 
 ### `jsonb_build_object`
@@ -80,6 +85,10 @@ jsonb_build_object ( VARIADIC "any" ) → jsonb
 SELECT jsonb_build_object('foo', 1, 2, row(3,'bar'));
 ------RESULT
 {"2": {"f1": 3, "f2": "bar"}, "foo": 1}
+
+SELECT jsonb_build_object(variadic array['foo', '1', '2', 'bar']); 
+------RESULT
+ {"2": "bar", "foo": 1}
 ```
 
 ### `jsonb_each`
@@ -133,6 +142,11 @@ jsonb_extract_path ( from_json jsonb, VARIADIC path_elems text[] ) → jsonb
 SELECT json_extract_path('{"f2":{"f3":1},"f4":{"f5":99,"f6":"foo"}}', 'f4', 'f6')
 ------RESULT
 "foo"
+
+SELECT jsonb_extract_path('{"a": {"b": ["foo","bar"]}}', variadic array['a', 'b', '1']); 
+------RESULT
+ bar
+
 ```
 
 ### `jsonb_extract_path_text`
@@ -150,6 +164,10 @@ jsonb_extract_path_text ( from_json jsonb, VARIADIC path_elems text[] ) → text
 SELECT jsonb_extract_path_text('{"f2":{"f3":1},"f4":{"f5":99,"f6":"string"}}', 'f4', 'f6');
 ------RESULT
 string
+
+SELECT jsonb_extract_path_text('{"a": {"b": ["foo","bar"]}}', variadic array['a', 'b', '1']); 
+------RESULT
+ bar
 ```
 
 ### `jsonb_object_keys`
