@@ -86,8 +86,8 @@ The following table shows the corresponding data type in RisingWave that should 
 | DATETIME | TIMESTAMP WITHOUT TIME ZONE |
 | No support | TIMESTAMP WITH TIME ZONE（Can be converted to timestamp in RisingWave then sinked into StarRocks ）|
 | No support | INTERVAL |
-| No support | STRUCT |
+| JSON | STRUCT |
 | ARRAY | ARRAY |
 | No support | BYTEA |
-| No support | JSONB |
+| JSONB | JSONB |
 | BIGINT | SERIAL |
