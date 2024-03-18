@@ -78,7 +78,9 @@ When creating a source from streams in with Debezium AVRO, the schema of the sou
 
 `schema.registry` can accept multiple addresses. RisingWave will send requests to all URLs and return the first successful result.
 
-Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
+Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject na
+
+`ignore_key` can be used to ignore the key part of given messages. By default, it is `false`. If set to `true`, only the payload part of the message will be consumed. In this case, the payload must not be empty and tombstone messages cannot be handled.
 
 :::caution Beta Feature
 `schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
@@ -92,7 +94,8 @@ ENCODE AVRO (
    message = 'main_message',
    schema.location = 'location' | schema.registry = 'schema_registry_url [, ...]',
    [schema.registry.name.strategy = 'topic_name_strategy'],
-   [key.message = 'test_key']
+   [key.message = 'test_key'],
+   [ignore_key = 'true | false']
 )
 ```
 
@@ -154,11 +157,15 @@ When creating a source from streams in Debezium JSON, you can define the schema 
 
 Note that if you are ingesting data of type `timestamp` or `timestamptz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning.
 
+`ignore_key` can be used to ignore the key part of given messages. By default, it is `false`. If set to `true`, only the payload part of the message will be consumed. In this case, the payload must not be empty and tombstone messages cannot be handled.
+
 Syntax:
 
 ```sql
 FORMAT DEBEZIUM
-ENCODE JSON
+ENCODE JSON [ (
+   [ ignore_key = 'true | false ' ]
+) ]
 ```
 
 ### Debezium Mongo JSON
