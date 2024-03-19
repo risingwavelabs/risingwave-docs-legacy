@@ -42,7 +42,7 @@ All parameters are required unless specified otherwise.
 | starrocks.password | The password associated with the user. |
 | starrocks.database | The StarRocks database where the target table is located |
 | starrocks.table | The StarRocks table you want to sink data to. |
-| starrocks.partial_update | Optional. If `true`, the [partial update optimization](https://docs.starrocks.io/docs/sql-reference/sql-statements/data-manipulation/UPDATE/#partial-updates-in-column-mode-since-v31) feature of StarRocks will be enabled. This improves ingestion performance when a small number of columns but a large number of rows need to be updated.|
+| starrocks.partial_update | Optional. If you set the value to "true", the partial update optimization feature of StarRocks will be enabled. This feature enhances ingestion performance in scenarios where there is a need to update a large number of rows with only a small number of columns. You can learn more about this feature in the [partial update optimization](https://docs.starrocks.io/docs/sql-reference/sql-statements/data-manipulation/UPDATE/#partial-updates-in-column-mode-since-v31) section of the StarRocks documentation.|
 | type | Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a chagelog stream. In StarRocks, Primary Key table must be selected. </li></ul> |
 | force_append_only | If `true`, forces the sink to be `append-only`, even if it cannot be. |
 | primary_key | Required if `type` is `upsert`. The primary key of the downstream table. |
