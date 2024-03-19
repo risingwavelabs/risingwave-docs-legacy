@@ -30,7 +30,15 @@ If you are want to create multiple streaming jobs at once with script or tools s
 After adding a new compute node into the cluster that has had many existing streaming jobs. The actor's distribution might be unbalanced among the compute nodes, leading to low workload on some nodes. This SQL can show the distribution of the actors on each compute node.
 
 ```SQL
-select parallelism, count(*) from rw_fragment_parallelism group by parallelism;
+select worker_id, count(*) from rw_actors a, rw_parallel_units p where a.parallel_unit_id = p.id group by p.worker_id;
+```
+Here is an example of an unbalanced result. The number of actors on worker node 12001 is much lower than on the other two worker nodes.
+```
+worker_id|count|
+---------+-----+
+    12001|  720|
+    12002|23455|
+    12003|23300|
 ```
 
 To rebalance the actor, after v1.7, you can alter the streaming jobs's parallelism, and the actors will be distributed to different compute nodes automatically. Refer to [Cluster scaling](/deploy/k8s-cluster-scaling.md) for more information.
