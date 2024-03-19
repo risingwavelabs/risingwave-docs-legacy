@@ -123,7 +123,7 @@ When creating an append-only Protobuf sink, the following options can be used fo
 |Field|Notes|
 |-----|-----|
 |message| Required. Message name of the main Message in the schema definition. . |
-|schema.registry| Required. The address of the schema registry. This can be in either `file://`, `http://`, `https://` format, or can come from a Confluent schema registry. |
+|schema.registry| Required. The address of the schema registry. This can be in either `file://`, `http://`, `https://` format, or a Confluent schema registry. |
 |schema.registry.username| Optional. The user name used to access the schema registry. |
 |schema.registry.password| Optional. The password associated with the user name. |
 |schema.registry.name.strategy| Optional. Accepted options include `topic_name_strategy` (default), `record_name_strategy`, and `topic_record_name_strategy`.|
