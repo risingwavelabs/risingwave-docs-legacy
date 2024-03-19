@@ -9,79 +9,52 @@ keywords: [mongodb cdc, data source]
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-mongodb-cdc/" />
 </head>
 
-This topic walks you through the steps to ingest change streams from MongoDB to RisingWave.
+For ingesting CDC data from MongoDB to RisingWave, you can use the built-in `mongodb-cdc` connector to easily ingest data from MongoDB into RisingWave. Alternatively, you can use the [Debezium connector for MongoDB](https://debezium.io/documentation/reference/stable/connectors/mongodb) to convert change streams from MongoDB to Kafka topics and ingest these topics into RisingWave.
 
-For ingesting CDC data from MongoDB to RisingWave, you'll need to use the Debezium connector for MongoDB to convert change streams from MongoDB to Kafka topics first, and then ingest these Kafka topics into RisingWave.
+This topic walks you through the steps to ingest change streams from MongoDB to RisingWave using the built-in connector.
 
-<img
-  src={require('../images/mongodb_cdc_into_rw.png').default}
-  alt="Ingest data from MongoDB CDC to RisingWave"
-/>
+## Notes about running RisingWave from binaries
 
-## Overview of the steps
+If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions installed in your environment.
 
-1. Configure MongoDB
+## Create a table in RisingWave using the native CDC connector
 
-2. Deploy the Debezium connector for MongoDB
+### Syntax
 
-3. Ingest data into RisingWave
-
-## Configure MongoDB
-
-First, you need to ensure MongoDB is installed and properly configured.
-
-Note that the Debezium connector for MongoDB uses MongoDB’s change streams to capture the changes, so the connector works only with MongoDB replica sets or with sharded clusters where each shard is a separate replica set.
-
-To learn about how to set up a replica set or sharded cluster, see the MongoDB documentation.
-
-You must also have a MongoDB user with the appropriate permissions, and perform other configurations. Follow the instructions in the [Setting up MongoDB](https://debezium.io/documentation/reference/stable/connectors/mongodb.html#setting-up-mongodb) section to complete the configurations in MongoDB.
-
-## Deploy the Debezium connector for MongoDB
-
-To deploy a Debezium MongoDB connector, you install the Debezium MongoDB connector archive, configure the connector, and start the connector by adding its configuration to Kafka Connect.
-
-When the connector is started, Debezium will create a CDC topic in Kafka and publish captured events to this topic.
-
-For the complete deployment instructions, see [Deployment](https://debezium.io/documentation/reference/stable/connectors/mongodb.html#mongodb-deploying-a-connector).
-
-### MongoDB connector configuration example
-
-Here is a connector configuration example.
-
-```json
-{
-  "name": "mongodb-connector",
-  "config": {
-    "connector.class": "io.debezium.connector.mongodb.MongoDbConnector",
-    "tasks.max": "1",
-    "mongodb.hosts": "<mongodb host>:27017",
-    "mongodb.name": "dbserver1",
-    "database.history.kafka.bootstrap.servers": "<message queue host>:29092"
-  }
-}
+```sql
+CREATE TABLE [ IF NOT EXISTS ] source_name (
+    _id data_type PRIMARY KEY , 
+    payload jsonb
+) 
+WITH (
+    connector='mongodb-cdc',
+    connector_parameter='value', ...
+);
 ```
 
-`<mongodb host>:27017` refers to a comma-separated list of hostname and port pairs (in the form 'host' or 'host:port') of the MongoDB servers in the replica set.
+### Connector parameters
 
-`<message queue host>:29092` refers to the bootstrap servers for the Kafka cluster that will store the database schema history topic.
+Unless specified otherwise, the fields listed are required. Note that the value of these parameters should be enclosed in single quotation marks.
 
-## Ingest data into RisingWave
+|Field|Notes|
+|---|---|
+|mongodb.url| The URL of MongoDB. |
+|collection.name| The collection you want to ingest data from. Use the format `db_name.collection_name` to specify which database the collection is located in. |
 
-To ensure all data changes are captured, you must create a table and specify primary keys in RisingWave. When creating a table, specify the connector as `kafka`, and use `DEBEZIUM_MONGO` as the format and `JSON` as the encoding option.
 
-For details about the syntax and the parameters, see [`CREATE TABLE`](/sql/commands/sql-create-table.md).
+### Examples
+
+The following SQL query creates a table that ingests data from all collections in the `dev` database.
 
 ```sql title=Example
 CREATE TABLE source_name (
-   _id jsonb PRIMARY KEY,
+   _id varchar PRIMARY KEY,
    payload jsonb
-)
-WITH (
-   connector='kafka',
-   topic='debezium_mongo_json_customers',
-   properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-   scan.startup.mode = 'earliest'
-) FORMAT DEBEZIUM_MONGO ENCODE JSON;
+) WITH (
+   connector='mongodb-cdc',
+   mongodb.url='mongodb://localhost:27017/?replicaSet=rs0',
+   collection.name='dev.*'
+);
 ```
 
 After the table is created, you can view and transform the data based on your needs.
