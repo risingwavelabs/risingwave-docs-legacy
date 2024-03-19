@@ -275,7 +275,7 @@ WHERE _rw_kafka_timestamp > now() - interval '10 minute';
 
 ## Read schemas from locations
 
-RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Avro or Protobuf format.
+RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Protobuf format. For Avro, only Confluent Schema Registry is supported for reading schemas.
 
 For Protobuf, if a schema location is specified, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
 
