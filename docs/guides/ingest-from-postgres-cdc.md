@@ -105,9 +105,9 @@ import TabItem from '@theme/TabItem';
     ```
 
 </TabItem>
-<TabItem value="AWS_rds_pg" label="AWS RDS">
+<TabItem value="AWS_rds_pg" label="AWS RDS and Aurora">
 
-Here we will use a standard class instance without Multi-AZ deployment as an example.
+Here we will use a standard class AWS RDS PostgreSQL instance without Multi-AZ deployment for illustration, but the process will be similar for Aurora.
 
 1. Check whether the `wal_level` parameter is set to `logical`. If it is `logical` then we are done. Otherwise, create a parameter group for your   Postgres instance. We created a parameter group named **pg-cdc** for the instance that is running Postgres 12. Next, click the **pg-cdc** parameter group to edit the value of `rds.logical_replication` to 1.
 
