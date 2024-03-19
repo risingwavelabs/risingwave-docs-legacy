@@ -8,7 +8,7 @@ slug: /guide-for-too-many-streaming-jobs
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/k8s-cluster-scaling/" />
 </head>
 
-By default, RisingWave makes Table/Index/MV/Sink(hereinafter collectively referred to as "streaming jobs") access maximum of all CPUs among the compute nodes and pursues every streaming jobs can utilizing all compute resources, designed for high performance. But when there are too many streaming jobs(more than 300) running in the cluster, it is not needed because compute resources can be utilized by different streaming jobs. And using the default configuration in this case can introduce issues due to the scheduling and communicating overhead of too many tasks on the compute node, bringing bad performance and OOM risks.
+By default, RisingWave makes Table/Index/MV/Sink(hereinafter collectively referred to as "streaming jobs") access maximum of all CPUs among the compute nodes and pursues every streaming jobs can utilizing all compute resources, designed for high performance. But when there are too many streaming jobs(more than 300) running in the cluster, this scheme is no longer optimal, considering that resources can be shared and contended by multiple streaming jobs. And using the default configuration in this case can introduce issues due to the scheduling and communicating overhead of too many tasks on the compute node, bringing bad performance and OOM risks.
 This guide describes and explains some do’s and don’ts in this case.
 
 ## Necessary Cluster Settings 
