@@ -43,7 +43,6 @@ WITH (
 | bigquery.project | Required. The BigQuery project ID. |
 | bigquery.dataset | Required. The BigQuery dataset ID. |
 | bigquery.table | Required. The BigQuery table you want to sink to. |
-| bigquery.max_batch_rows | Optional. The number of batch rows sent at a time. The default value is 1024. |
 | access_key | Conditional. The access key of the S3 file. This must be specified if sinking to an S3 file. |
 | secret_access | Conditional. The secret access key of the S3 file. This must be specified if sinking to an S3 file.|
 | region | Conditional. The service region of the S3 file. This must be specified if sinking to an S3 file. |
