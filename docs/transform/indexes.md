@@ -164,6 +164,21 @@ Then you might want to create an index like the following to improve the perform
 CREATE INDEX people_names ON people ((first_name || ' ' || last_name));
 ```
 
+
+This syntax is quite useful when working with a semi-structured table that utilizes the [JSONB](/sql/data-types/data-type-jsonb.md) datatype. Here is an example of creating an index on a specific field within a JSONB column.
+
+```sql
+dev=> create table t(v jsonb);
+CREATE_TABLE
+dev=> create index i on t((v -> 'field')::int);
+CREATE_INDEX
+dev=> explain select * from t where (v->'field')::int = 123;
+                                QUERY PLAN                                
+--------------------------------------------------------------------------
+ BatchExchange { order: [], dist: Single }
+ └─BatchScan { table: i, columns: [v], scan_ranges: [CAST = Int32(123)] }
+(2 rows)
+```
 ## See also
 
 
