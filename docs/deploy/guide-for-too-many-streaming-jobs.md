@@ -1,6 +1,6 @@
 ---
 id: guide-for-too-many-streaming-jobs
-title: Guide for Too Many Streaming Jobs(Table/Index/MV/Sink)
+title: Guide for Many Streaming Jobs
 description: Do’s and don’ts when deploy cluster for many(more than 300) streaming jobs.
 slug: /guide-for-too-many-streaming-jobs
 ---
