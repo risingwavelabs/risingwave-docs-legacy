@@ -44,7 +44,7 @@ WITH (
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
 | database.name   | Required. The database of the target Iceberg table.|
 | table.name      | Required. The name of the target Iceberg table.|
-| catalog.name    | Conditional. The name of Iceberg catalog. Can be omitted for storage catalog, required for other catalogs.|
+| catalog.name    | Conditional. The name of the Iceberg catalog. It can be omitted for storage catalog but required for other catalogs.|
 | catalog.type    | Optional. The catalog type used in this table. Currently, the supported values are `storage`, `rest`, `hive` and `jdbc`. If not specified, `storage` is used. For details, see [Catalogs](#catalogs).|
 | warehouse.path  | Conditional. The path of the Iceberg warehouse. Currently, only S3-compatible object storage systems, such as AWS S3 and MinIO, are supported. It's required if the `catalog.type` is not `rest`.|
 | catalog.uri     | Conditional. The URL of the catalog. It is required when `catalog.type` is `rest`. |
