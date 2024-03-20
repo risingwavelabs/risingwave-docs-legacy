@@ -89,5 +89,5 @@ The following table shows the corresponding data type in RisingWave that should 
 | JSON | STRUCT |
 | ARRAY | ARRAY |
 | No support | BYTEA |
-| JSONB | JSONB |
+| JSON | JSONB |
 | BIGINT | SERIAL |
