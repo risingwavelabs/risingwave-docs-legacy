@@ -23,11 +23,11 @@ RisingWave can run on the following hardware architectures:
 Compute nodes handle query processing and state management. More resources enable higher query throughput. For cost efficiency, machines with high memory-to-CPU ratios (4:1 or higher) are recommended due to RisingWave's memory-intensive nature.
 
 - Minimum:
-  - 4 CPU cores
-  - 4 GB memory
+  - 2 CPU cores
+  - 8 GB memory
 - Recommended:
-  - ≥8 CPU cores
-  - ≥8 GB memory
+  - ≥4 CPU cores
+  - ≥16 GB memory
 
 ## Compactor nodes
 
