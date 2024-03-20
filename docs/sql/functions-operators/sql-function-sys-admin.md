@@ -88,3 +88,7 @@ SELECT pg_stat_get_numscans('my_table');
                     0
 (1 row)
 ```
+
+:::note
+This is a dummy function, intended for compatibility with third-party tools. It will be eventually removed. We keep it here only for reference. So do not use it in production environments or any important tasks.
+:::
