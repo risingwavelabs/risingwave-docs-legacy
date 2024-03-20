@@ -1049,6 +1049,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Common errors and solutions",
+          id: "troubleshoot/troubleshooting-common-errors-and-solutions"
+        },
+        {
+          type: "doc",
           label: "Troubleshoot out-of-memory",
           id: "troubleshoot/troubleshoot-oom"
         },
