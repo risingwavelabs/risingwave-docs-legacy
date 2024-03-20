@@ -100,6 +100,7 @@ concat ( any_input-value_1 [, any_input-value_2 [, ...] ]) → output_string
 
 ```bash title=Examples
 concat('Abcde', 2, NULL, 22) → 'Abcde222'
+concat(variadic array['abcde', '2', NULL, '22']); -> "abcde222"
 ```
 
 ---
@@ -114,6 +115,7 @@ concat_ws ( separator_string, any_input-value_1 [, any_input-value_2 [, ...] ]) 
 
 ```bash title=Examples
 concat_ws(',', 'Abcde', 2, NULL, 22) → 'Abcde,2,22'
+concat_ws(',', variadic array['abcde', 2, NULL, 22] :: varchar[]); -> "abcde,2,22"
 ```
 
 ---
@@ -202,7 +204,7 @@ The syntax of the format specifier:
 The allowed values for *type* are:
 
 - `s`: Formats the argument value as a string. NULL is treated as an empty string.
-- `I`: Treats the argument value as an SQL identifer.
+- `I`: Treats the argument value as an SQL identifier.
 <!-- `L` is not supported yet - `L`: Quotes the argument value as an SQL literal. -->
 
 Please note that *format_string* and *format_arg* can be variables.
@@ -219,6 +221,10 @@ SELECT format(f, a, b) from (values
 Hello World
 Hello
 NULL
+```
+
+```sql title="More examples"
+format('%s %s', variadic array['Hello', 'World']); -> "Hello World"
 ```
 
 ---
