@@ -65,7 +65,7 @@ WITH (
 
 :::note
 
-Only one-dimensional arrays in RisingWave can be sinked to PostgreSQL.
+Only one-dimensional arrays in RisingWave can be sinked to CockroachDB.
 
 For array type, we only support `smallint`, `integer`, `bigint`, `real`, `double precision`, and `varchar` type now.
 
