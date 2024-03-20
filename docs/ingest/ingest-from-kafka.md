@@ -79,8 +79,8 @@ For tables with primary key constraints, if a new data record with an existing k
 |*data_format*| Data format. Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`. |
 |*data_encode*| Data encode. Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
 |*message* | Message name of the main Message in schema definition. Required for Protobuf. |
-|*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
-|*schema.registry*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
+|*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. This option is not supported for Avro data. For Protobuf data, you must specify either a schema location or a schema registry but not both.|
+|*schema.registry*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro data, you must specify a Confluent Schema Registry. For Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 |*schema.registry.username*|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
 |*schema.registry.password*|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
 |*schema.registry.name.strategy*|Optional. Accepts `topic_name_strategy` (default), `record_name_strategy`, `topic_record_name_strategy`. If it is set to either `record_name_strategy` or `topic_record_name_strategy`, the `message` parameter must also be set. It can only be specified with *schema.registry*. |
@@ -275,7 +275,7 @@ WHERE _rw_kafka_timestamp > now() - interval '10 minute';
 
 ## Read schemas from locations
 
-RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Avro or Protobuf format.
+RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Protobuf format. For Avro, only Confluent Schema Registry is supported for reading schemas.
 
 For Protobuf, if a schema location is specified, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
 
