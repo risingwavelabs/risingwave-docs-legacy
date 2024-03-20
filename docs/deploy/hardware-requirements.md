@@ -64,6 +64,6 @@ To optimize performance and stability, please consider the following recommendat
 
 ## Storage
 
-RisingWave is designed to work with a variety of storage systems. See [Set up a RisingWave cluster in Kubernetes](https://docs.risingwave.com/docs/dev/risingwave-kubernetes/#deploy-a-risingwave-instance) for the lists of supported storage backend.
+RisingWave is designed to work with a variety of storage systems. See [Set up a RisingWave cluster in Kubernetes](/deploy/risingwave-kubernetes.md#deploy-a-risingwave-instance) for the lists of supported storage backend.
 
 Please notice that storage performance can **significantly** impact RisingWave's performance. We recommend using high-performance cloud storage systems such as AWS S3. For self-managed storage systems such as MinIO or local file system, please ensure to use high-performance SSD disk.
