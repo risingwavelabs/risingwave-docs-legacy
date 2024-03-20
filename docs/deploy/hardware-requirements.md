@@ -61,3 +61,9 @@ To optimize performance and stability, please consider the following recommendat
 - If you have a single meta node, increase the value of `meta_leader_lease_secs` to optimize performance.
 - If using MinIO, avoid deploying etcd and MinIO on the same disks to prevent conflicts or performance degradation.
 - For detailed disk performance requirements and recommendations, refer to the [Disks](https://etcd.io/docs/v3.3/op-guide/hardware/#disks) section in the etcd documentation.
+
+## Storage
+
+RisingWave is designed to work with a variety of storage systems. See [Set up a RisingWave cluster in Kubernetes](https://docs.risingwave.com/docs/dev/risingwave-kubernetes/#deploy-a-risingwave-instance) for the lists of supported storage backend.
+
+Please notice that storage performance can **significantly** impact RisingWave's performance. We recommend using high-performance cloud storage systems such as AWS S3. For self-managed storage systems such as MinIO or local file system, please ensure to use high-performance SSD disk.
