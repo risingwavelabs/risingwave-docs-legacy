@@ -76,3 +76,19 @@ SELECT pg_table_size('t1');
            240
 (1 row)
 ```
+
+## `pg_stat_get_numscans('table_name')`
+
+Returns the total number of scans (sequential and index scans) performed on a specified table since the server was started.
+
+```sql title=Example
+SELECT pg_stat_get_numscans('my_table');
+ pg_stat_get_numscans 
+----------------------
+                    0
+(1 row)
+```
+
+:::note
+This is a dummy function intended for compatibility with third-party tools. We keep it here only for reference and it will be eventually removed. Please do not use it in production environments or any important tasks.
+:::
