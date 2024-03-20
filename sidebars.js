@@ -968,7 +968,7 @@ const sidebars = {
         {
           type: "doc",
           id: "deploy/guide-for-too-many-streaming-jobs",
-          label: "Guide for Too Many Streaming Jobs(Table/Index/MV/Sink)",
+          label: "Guide for Many Streaming Jobs",
         },
         {
           type: "doc",
