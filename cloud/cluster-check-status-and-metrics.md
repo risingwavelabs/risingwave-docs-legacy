@@ -26,6 +26,7 @@ The cluster details page includes:
 
 - Current activities
 - Configuration details
+- [Database users](cluster-manage-database-users.md)
 - Metrics
   - Key indicators — CPU usage, memory usage, throughput, storage usage, and network
   - Streaming — barrier latency, in-flight barrier number, backfilling throughput, backpressure rate
