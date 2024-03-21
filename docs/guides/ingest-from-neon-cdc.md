@@ -77,7 +77,7 @@ For more information about Neon, please refer to [Neon's official documentation]
     WHERE  grantee='<username>';
     ```
 
-    An example result:
+    An example result based on three tables that we created in Neon:
 
     ```sql
      table_name | grantee | privilege_type
@@ -85,8 +85,52 @@ For more information about Neon, please refer to [Neon's official documentation]
      customer   | rw      | SELECT
      orders     | rw      | SELECT
      supplier   | rw      | SELECT
-     region     | rw      | SELECT
-     (4 rows)
+     (3 rows)
     ```
+## 5. Ingest CDC data from Neon into RisingWave
+      ### Create a single CDC table
 
-      
+The following example creates a table in RisingWave that reads CDC data from the `customer` table in Neon. The `customer` table is located in the `public` schema, under the `dev` database. When connecting to a specific table in Neon, use the `CREATE TABLE` command.
+
+```sql
+ -- Create customer table
+CREATE TABLE customer (
+    customer_id INTEGER,
+    customer_name VARCHAR,
+    email VARCHAR,
+    phone_number VARCHAR
+    PRIMARY KEY (customer_id)
+) WITH (
+    connector = 'postgres-cdc',
+    hostname = '127.0.0.1',
+    port = '5432',
+    username = 'postgres',
+    password = 'postgres',
+    database.name = 'dev',
+    schema.name = 'public',
+    table.name = 'customer'
+);
+```
+You can also create another table in RisingWave based on the `orders` table in Neon with `public` schema, under the `dev` database.
+```sql
+-- Create orders table
+CREATE TABLE orders (
+    order_id INTEGER PRIMARY KEY,
+    customer_id INTEGER,
+    order_timestamp TIMESTAMP,
+    total_amount NUMERIC,
+    status VARCHAR
+) WITH (
+    connector = 'postgres-cdc',
+    hostname = '127.0.0.1',
+    port = '5432',
+    username = 'postgres',
+    password = 'postgres',
+    database.name = 'dev',
+    schema.name = 'public',
+    table.name = 'order'
+);
+
+:::note
+RisingWave supports creating a single PostgreSQL source that allows you to read CDC data from multiple tables located in the same database. But, this feature is under development for the Neon.
+:::
