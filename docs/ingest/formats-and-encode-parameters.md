@@ -34,3 +34,8 @@ The `ENCODE` parameter represents the data encoding and includes the following o
 - `Protobuf`: Data serialized in Protobuf format in the message queue, compatible with `FORMAT PLAIN / UPSERT / CANAL`.
 - `CSV`: Data serialized in CSV format in the message queue, compatible with `FORMAT PLAIN`.
 - `Bytes`: Data exists in the message queue in raw bytes format, compatible with `FORMAT PLAIN`.
+
+
+:::note
+Please make a distinction between the parameters set in FORMAT and ENCODE options and that set in the other clauses, like the `WITH` clause. Set them in the right place and do not misuse them.
+:::
