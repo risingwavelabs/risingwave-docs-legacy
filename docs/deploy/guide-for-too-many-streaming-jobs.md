@@ -1,14 +1,14 @@
 ---
 id: guide-for-too-many-streaming-jobs
 title: Guide for Many Streaming Jobs
-description: Do’s and don’ts when deploy cluster for many(more than 300) streaming jobs.
+description: Do’s and don’ts when deploy cluster for many (more than 300) streaming jobs.
 slug: /guide-for-too-many-streaming-jobs
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/k8s-cluster-scaling/" />
 </head>
 
-By default, RisingWave makes Table/Index/MV/Sink(hereinafter collectively referred to as "streaming jobs") access maximum of all CPUs among the compute nodes and pursues every streaming jobs can utilizing all compute resources, designed for high performance. But when there are too many streaming jobs(more than 300) running in the cluster, this scheme is no longer optimal, considering that resources can be shared and contended by multiple streaming jobs. And using the default configuration in this case can introduce issues due to the scheduling and communicating overhead of too many tasks on the compute node, bringing bad performance and OOM risks.
+By default, RisingWave makes Table/Index/MV/Sink (hereinafter collectively referred to as "streaming jobs") access maximum of all CPUs among the compute nodes and pursues every streaming jobs can utilizing all compute resources, designed for high performance. But when there are too many streaming jobs (more than 300) running in the cluster, this scheme is no longer optimal, considering that resources can be shared and contended by multiple streaming jobs. And using the default configuration in this case can introduce issues due to the scheduling and communicating overhead of too many tasks on the compute node, bringing bad performance and OOM risks.
 This guide describes and explains some do’s and don’ts in this case.
 
 ## Recommended cluster settings 
@@ -45,7 +45,7 @@ If the number is greater than 50000, please pay close attention and check the fo
 ### decrease the parallelism
 
 As mentioned at the beginning of the article, too much parallelism can be counterproductive when the total number of actors in the cluster is large.
-After v1.7, you can check the parallelism number of the running streaming jobs in the system table `rw_fragment_parallelism`, and you can alter the streaming jobs's parallelism with the `ALTER` statement.Refer to [Cluster scaling](/deploy/k8s-cluster-scaling.md) for more information.
+After v1.7, you can check the parallelism number of the running streaming jobs in the system table `rw_fragment_parallelism`, and you can alter the streaming jobs's parallelism with the `ALTER` statement. Refer to [Cluster scaling](/deploy/k8s-cluster-scaling.md) for more information.
 
 Here is an example to adjust the parallelism.
 
@@ -120,6 +120,6 @@ In some references, `/risingwave/bin/risingwave ctl scale horizon --include-work
 
 ## Other precautions for too many actors
 
-- resources of metastore(etcd) and meta node: There might be resources spike on the nodes during recovering or scaling, please try to scale up the nodes if OOM happens or there are some error logs in the meta such as `{"level":"ERROR","fields":{"message":"lease keeper failed","error":"grpc request error: status: Unavailable, message: \"etcdserver: request timed out, waiting for the applied index took too long\",}`. 
+- resources of metastore (etcd) and meta node: There might be resources spike on the nodes during recovering or scaling, please try to scale up the nodes if OOM happens or there are some error logs in the meta such as `{"level":"ERROR","fields":{"message":"lease keeper failed","error":"grpc request error: status: Unavailable, message: \"etcdserver: request timed out, waiting for the applied index took too long\",}`. 
 
 - resources of the prometheus or other monitoring systems: The number of metrics' time series grows linearly with the number of actors. So please pay attention to the workload and resources of your monitoring service.
