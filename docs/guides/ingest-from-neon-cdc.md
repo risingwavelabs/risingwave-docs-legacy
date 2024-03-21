@@ -93,7 +93,6 @@ For more information about Neon, please refer to [Neon's official documentation]
 The following example creates a table in RisingWave that reads CDC data from the `customer` table in Neon. The `customer` table is located in the `public` schema, under the `dev` database. When connecting to a specific table in Neon, use the `CREATE TABLE` command.
 
 ```sql
- -- Create customer table
 CREATE TABLE customer (
     customer_id INTEGER,
     customer_name VARCHAR,
@@ -111,9 +110,8 @@ CREATE TABLE customer (
     table.name = 'customer'
 );
 ```
-You can also create another table in RisingWave based on the `orders` table in Neon with `public` schema, under the `dev` database.
+Similarly, you can create another table reading CDC data in RisingWave based on the `orders` table in Neon with `public` schema, under the `dev` database.
 ```sql
--- Create orders table
 CREATE TABLE orders (
     order_id INTEGER PRIMARY KEY,
     customer_id INTEGER,
