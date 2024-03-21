@@ -127,6 +127,6 @@ According to Kafka's behavior, "each consumer in a group is assigned one or more
 <details>
 <summary>I'd like to explore more questions.</summary>
 
-If you can't find the questions you're looking for on this FAQ page, we recommend visiting this [community](https://risingwave-community.snowshoe.dev/). It collects questions asked by users and answers from our developers in our [Slack channel](https://www.risingwave.com/slack). We will regularly select the most frequently asked questions there and add them to this FAQ page, ensuring that valuable information becomes readily available to all users. We appreciate your understanding as we continue to develop and refine the community to ensure the best possible user experience.
+If you can't find the questions you're looking for on this FAQ page, we recommend visiting [the community-version of FAQ](https://risingwave-community.snowshoe.dev/). It collects questions posed by users and answers provided by our developers in our [Slack channel](https://www.risingwave.com/slack). Please note that the community version is organized by AI and the answers are not manually reviewed. We will regularly select the most frequently asked questions there and add them to this FAQ page, ensuring that valuable information becomes readily available to all users. We appreciate your understanding as we continue to develop and refine the community to ensure the best possible user experience.
 
 </details>
