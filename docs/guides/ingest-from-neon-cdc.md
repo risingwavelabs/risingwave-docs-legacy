@@ -47,6 +47,7 @@ For more information about Neon, please refer to [Neon's official documentation]
     For a new user, run the following statement to create the user and assign the attributes:
 
     `CREATE USER <username> REPLICATION LOGIN CREATEDB;`
+   
     You can check your role attributes by using the `\du` psql command:
 
     ```shell
@@ -58,7 +59,7 @@ For more information about Neon, please refer to [Neon's official documentation]
     postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
     ```
 
-3. Grant required privileges to the user.
+4. Grant required privileges to the user.
 
     Run the following statements to grant the required privileges to the user.
 
@@ -88,8 +89,7 @@ For more information about Neon, please refer to [Neon's official documentation]
      (3 rows)
     ```
 ## 5. Ingest CDC data from Neon into RisingWave
-      ### Create a single CDC table
-
+    
 The following example creates a table in RisingWave that reads CDC data from the `customer` table in Neon. The `customer` table is located in the `public` schema, under the `dev` database. When connecting to a specific table in Neon, use the `CREATE TABLE` command.
 
 ```sql
@@ -130,7 +130,9 @@ CREATE TABLE orders (
     schema.name = 'public',
     table.name = 'order'
 );
+```
+After the table is created, you can view and transform the CDC data from Neon based on your needs.
 
 :::note
-RisingWave supports creating a single PostgreSQL source that allows you to read CDC data from multiple tables located in the same database. But, this feature is under development for the Neon.
+RisingWave supports creating a single PostgreSQL source that allows you to read CDC data from multiple tables located in the same database. However, please note that this feature is currently under development for Neon. For further information, refer to the [PostgreSQL CDC](https://docs.risingwave.com/docs/current/ingest-from-postgres-cdc/) in the documentation.
 :::
