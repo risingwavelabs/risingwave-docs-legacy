@@ -1,8 +1,8 @@
 ---
-id: guide-for-too-many-streaming-jobs
+id: guide-for-many-streaming-jobs
 title: Guide for Many Streaming Jobs
 description: Do’s and don’ts when deploy cluster for many (more than 300) streaming jobs.
-slug: /guide-for-too-many-streaming-jobs
+slug: /guide-for-many-streaming-jobs
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/k8s-cluster-scaling/" />

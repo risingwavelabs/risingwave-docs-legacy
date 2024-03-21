@@ -967,7 +967,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "deploy/guide-for-too-many-streaming-jobs",
+          id: "deploy/guide-for-many-streaming-jobs",
           label: "Guide for Many Streaming Jobs",
         },
         {
