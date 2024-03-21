@@ -28,7 +28,7 @@ WITH (
    connector_parameter = 'value', ...
 )
 FORMAT data_format ENCODE data_encode [ (
-    format_encode_options = 'value'
+    key = 'value'
 ) ]
 ;
 ```
@@ -80,6 +80,10 @@ Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the v
 :::
 
 ## FORMAT and ENCODE options
+
+:::note
+These options should be set in `FORMAT data_format ENCODE data_encode (key = 'value')`, instead of the `WITH` clause
+:::
 
 |Field|Notes|
 |-----|-----|
