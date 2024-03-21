@@ -28,7 +28,7 @@ WITH (
    connector_parameter = 'value', ...
 )
 FORMAT data_format ENCODE data_encode [ (
-    format_parameter = 'value'
+    format_encode_options = 'value'
 ) ]
 ;
 ```
@@ -79,7 +79,7 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
 :::
 
-## Sink parameters
+## FORMAT and ENCODE options
 
 |Field|Notes|
 |-----|-----|
