@@ -65,7 +65,7 @@ CREATE FUNCTION key_value(varchar) RETURNS STRUCT<key varchar, value varchar> LA
 $$;
 ```
 
-Firstly, you need to define a structure using `struct` and annotate it with `#[derive(StructType)]`. Its fields must match the struct type declared in the `CREATE FUNCTION` statement. Then, define the function and annotate it with the `#[function("...")]` macro. The string in the macro represents the SQL signature of the function, with the tail return type being `struct StructName`. You can refer to the documentation of [arrow-udf](https://docs.rs/arrow-udf/0.2.1/arrow_udf/attr.function.html) for the specific syntax.
+First, define a structure using `struct` and annotate it with `#[derive(StructType)]`. Its fields must match the struct type declared in the `CREATE FUNCTION` statement. Then, define the function and annotate it with the `#[function("...")]` macro. The string in the macro represents the SQL signature of the function, with the tail return type being `struct StructName`. For the specific syntax, see [arrow-udf](https://docs.rs/arrow-udf/0.2.1/arrow_udf/attr.function.html).
 
 Currently, in `CREATE FUNCTION` statement, Rust code can only use libraries from the standard library, `chrono`, `rust_decimal`, `serde_json`, and does not support other third-party libraries. If you wish to use other libraries, you may consider [compiling WebAssembly modules manually](udf-rust.md#alternative-manually-build-your-functions-into-a-webassembly-module).
 
