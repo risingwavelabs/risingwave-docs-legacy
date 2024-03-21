@@ -71,6 +71,10 @@ FORMAT upsert ENCODE AVRO (
 |**WITH** clause |Specify the connector settings here if trying to store all the source data. See [Supported sources](/ingest/supported-sources-and-formats.md#supported-sources) for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
 |**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Supported formats](/ingest/supported-sources-and-formats.md#supported-formats). |
 
+:::note
+Please make a distinction between the parameters set in FORMAT and ENCODE options and that set in the `WITH` clause. Set them in the right place and do not misuse them.
+:::
+
 ## Watermarks
 
 RisingWave supports generating watermarks when creating a source. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. The [`WATERMARK`](/transform/watermarks.md) clause should be used within the `schema_definition`. For more information on how to create a watermark, see [Watermarks](/transform/watermarks.md).

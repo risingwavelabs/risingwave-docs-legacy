@@ -81,6 +81,10 @@ FORMAT upsert ENCODE AVRO (
 |**WITH** clause |Specify the connector settings here if trying to store all the source data. See the [Data ingestion](/ingest/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
 |**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
 
+:::note
+Please make a distinction between the parameters set in FORMAT and ENCODE options and that set the `WITH` clause. Set them in the right place and do not misuse them.
+:::
+
 ## Watermarks
 
 RisingWave supports generating watermarks when creating an append-only streaming table. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. For more information on the syntax on how to create a watermark, see [Watermarks](/transform/watermarks.md).

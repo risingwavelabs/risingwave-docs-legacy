@@ -37,5 +37,5 @@ The `ENCODE` parameter represents the data encoding and includes the following o
 
 
 :::note
-Please make a distinction between the parameters set in FORMAT and ENCODE options and that set in the other clauses, like the `WITH` clause. Set them in the right place and do not misuse them.
+Please make a distinction between the parameters set in FORMAT and ENCODE options and that set in the `WITH` clause. Set them in the right place and do not misuse them.
 :::
