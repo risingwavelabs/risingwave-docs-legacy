@@ -39,6 +39,10 @@ WITH (
 |**WITH** clause |Specify the connector settings here if trying to store all the sink data. See [Supported sinks](#supported-sinks) for the full list of supported sink as well as links to specific connector pages detailing the syntax for each sink. |
 |**FORMAT** and **ENCODE** options | Optional. Specify the data format and the encoding format of the sink data. It is only used for Kafka, Kinesis, Pulsar, and Redis sinks. |
 
+:::note
+Please make a distinction between the parameters set in FORMAT and ENCODE options and that set in the other clauses, like the `WITH` clause. Set them in the right place and do not misuse them.
+:::
+
 ## Supported sinks
 
 Click a sink name to see the SQL syntax, options, and sample statement of sinking data from RisingWave to the sink.
