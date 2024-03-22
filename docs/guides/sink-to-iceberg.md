@@ -44,8 +44,9 @@ WITH (
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
 | database.name   | Required. The database of the target Iceberg table.|
 | table.name      | Required. The name of the target Iceberg table.|
-| catalog.type    | Optional. The catalog type used in this table. Currently, the supported values are `storage` and `rest`. If not specified, `storage` is used. For details, see [Catalogs](#catalogs).|
-| warehouse.path  | Conditional. The path of the Iceberg warehouse. Currently, only S3-compatible object storage systems, such as AWS S3 and MinIO, are supported. It's required if the `catalog.type` is  `storage`.|
+| catalog.name    | Conditional. The name of the Iceberg catalog. It can be omitted for storage catalog but required for other catalogs.|
+| catalog.type    | Optional. The catalog type used in this table. Currently, the supported values are `storage`, `rest`, `hive` and `jdbc`. If not specified, `storage` is used. For details, see [Catalogs](#catalogs).|
+| warehouse.path  | Conditional. The path of the Iceberg warehouse. Currently, only S3-compatible object storage systems, such as AWS S3 and MinIO, are supported. It's required if the `catalog.type` is not `rest`.|
 | catalog.uri     | Conditional. The URL of the catalog. It is required when `catalog.type` is `rest`. |
 | primary_key     | The primary key for an upsert sink. It is only appliable to the upsert mode. |
 
@@ -67,10 +68,12 @@ RisingWave converts risingwave data types from/to Iceberg according to the follo
 
 ## Catalogs
 
-Iceberg supports two types of catalogs:
+Iceberg supports these types of catalogs:
 
 - Storage catalog: The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system.
 - REST catalog: RisingWave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use RisingWave with Iceberg tables.
+- Hive catalog: RisingWave supports the Hive catalog. You need to set `catalog.type` to `hive` to use it. See the full example in this [configuration file](https://github.com/risingwavelabs/risingwave/blob/main/integration_tests/iceberg-sink2/docker/hive/config.ini).
+- Jdbc Catalog: RisingWave supports the [JDBC catalog](https://iceberg.apache.org/docs/latest/jdbc/#configurations). See the full example in this [configuration file](https://github.com/risingwavelabs/risingwave/blob/main/integration_tests/iceberg-sink2/docker/jdbc/config.ini).
 
 ## Iceberg table format
 
