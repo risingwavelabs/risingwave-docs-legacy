@@ -96,9 +96,9 @@ SHOW VARIABLES LIKE 'log_bin';
 See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql) for more details.
 
 </TabItem>
-<TabItem value="AWS/Aurora MySQL" label="AWS RDS and Aurora">
+<TabItem value="AWS/Aurora MySQL" label="AWS RDS MySQL and Aurora (MySQL-Compatible)">
 
-If your MySQL is hosted on AWS RDS or Aurora, the configuration process is different. We will use a standard class AWS RDS MySQL instance without Multi-AZ deployment for illustration, but the process will be similar for Aurora.
+The configuration process is different for AWS RDS MySQL or Aurora (MySQL-Compatible) compared to the self-hosted version. We will use a standard class AWS RDS MySQL instance without Multi-AZ deployment for illustration, but the process will be similar for Aurora.
 
 1. Turn on binary logging and choose a non-zero value for the **Retention period**.
 <img

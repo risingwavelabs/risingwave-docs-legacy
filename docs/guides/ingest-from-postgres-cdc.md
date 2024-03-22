@@ -105,7 +105,7 @@ import TabItem from '@theme/TabItem';
     ```
 
 </TabItem>
-<TabItem value="AWS_rds_pg" label="AWS RDS and Aurora">
+<TabItem value="AWS_rds_pg" label="AWS RDS PostgreSQL and Aurora (PostgreSQL-Compatible)">
 
 Here we will use a standard class AWS RDS PostgreSQL instance without Multi-AZ deployment for illustration, but the process will be similar for Aurora.
 
