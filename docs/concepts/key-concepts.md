@@ -7,7 +7,7 @@ slug: /key-concepts
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/key-concepts/" />
 </head>
 
-This page explains key concepts and terms that are used throughout the documentation. In the first part, we present terms closely related to RisingWave. In the second part, we include a broader range of terms in a glossary. 
+This page explains key concepts and terms that are used throughout the documentation. In the first part, we present terms closely related to RisingWave. In the second part, we include a broader range of terms in a glossary.
 
 ## Key concepts of RisingWave
 
@@ -90,7 +90,7 @@ A view is a virtual relation that acts as an actual relation. It is not a part o
 
 ### Avro
 
-Avro is an open-source data serialization system that facilitates data exchange between systems, programming languages, and processing frameworks. Avro has a JSON-like data model, but it can be represented as either JSON or in a compact binary form. RisingWave can decode Avro data. You need to specify the schema by providing either a schema location or a schema registry URL (only for Kafka topics).
+Avro is an open-source data serialization system that facilitates data exchange between systems, programming languages, and processing frameworks. Avro has a JSON-like data model, but it can be represented as either JSON or in a compact binary form. RisingWave can decode Avro data. You need to specify the schema by providing a schema registry URL (only for Kafka topics).
 
 ### Connection
 

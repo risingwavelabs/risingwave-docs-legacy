@@ -10,7 +10,7 @@ slug: /ingest-from-nats
 
 You can ingest data from NATS JetStream into RisingWave by using the NATS source connector in RisingWave.
 
-[NATS](https://nats.io/) is an open source messaging system for cloud native applications. It provides a lightweight publish-subscribe architecture for high performance messaging.
+[NATS](https://nats.io/) is an open-source messaging system for cloud-native applications. It provides a lightweight publish-subscribe architecture for high-performance messaging.
 
 [NATS JetStream](https://docs.nats.io/nats-concepts/jetstream) is a streaming data platform built on top of NATS. It enables real-time and historical access to streams of data via durable subscriptions and consumer groups.
 
@@ -53,7 +53,7 @@ WITH (
    scan.startup.mode=`startup_mode`
    scan.startup.timestamp.millis='xxxxx',
 )
-FORMAT PLAIN ENCODE JSON;
+FORMAT PLAIN ENCODE data_encode;
 ```
 
 **schema_definition**:
@@ -96,8 +96,25 @@ According to the [NATS documentation](https://docs.nats.io/running-a-nats-servic
 |`jwt` and `nkey`|JWT and NKEY for authentication. For details, see [JWT](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/jwt) and [NKeys](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/nkey_auth).|
 |`username` and `password`| Conditional. The client user name and pasword. Required when `connect_mode` is `user_and_password`.|
 |`scan.startup.mode`|Optional. The offset mode that RisingWave will use to consume data. The supported modes are: <ul><li>`earliest`: Consume data from the earliest offset.</li><li>`latest`: Consume data from the latest offset.</li><li>`timestamp_millis`: Consume data from a particular UNIX timestamp, which is specified via `scan.startup.timestamp.millis`.</li></ul>If not specified, the default value `earliest` will be used.|
-|`scan.startup.timestamp.millis`|Conditional. Required when `scan.startup.mode` is `timestamp_millis`. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
+|`scan.startup.timestamp.millis`|Conditional. Required when `scan.startup.mode` is `timestamp_millis`. RisingWave will start to consume data from 
+|`data_encode`| Supported encodes: `JSON` or `PROTOBUF`. |
 
-## What's next
+## Examples
 
-After the source or table is created, you can create materialized views to transform or analyze your streaming data.
+The following SQL query creates a table that ingests data from a NATS JetStream source.
+
+```sql
+CREATE TABLE live_stream_metrics
+WITH
+  (
+    connector = 'nats',
+    server_url = 'nats-server:4222',
+    subject = 'live_stream_metrics',
+    stream = 'risingwave',
+    connect_mode = 'plain'
+  ) FORMAT PLAIN ENCODE PROTOBUF (
+    message = 'livestream.schema.LiveStreamMetrics',
+    schema.location = 'http://file_server:8080/schema'
+  );
+```
+

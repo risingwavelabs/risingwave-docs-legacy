@@ -40,3 +40,33 @@ WITH (
   primary_key = 'target_id'
 );
 ```
+
+## Data type mapping
+
+| RisingWave Data Type | CockroachDB Data Type|
+|--------------------- |--------------------- |
+|boolean               | BOOL                 |
+|smallint              | INT2                 |
+|integer               | INT4                 |
+|bigint                | INT                  |
+|numeric               | DECIMAL              |
+|real                  | REAL                 |
+|double precision      | DOUBLE PRECISION     |
+|varchar               | STRING               |
+|bytea                 | BYTES                |
+|date                  | DATE                 |
+|time without time zone| TIME                 |
+|timestamp without time zone| TIMESTAMP        |
+|timestamp with time zone| TIMESTAMPTZ        |
+|interval              | INTERVAL             |
+|JSONB                 | JSONB                |
+|array                 | ARRAY                |
+|struct                | unsupported          |
+
+:::note
+
+Only one-dimensional arrays in RisingWave can be sinked to CockroachDB.
+
+For array type, we only support `smallint`, `integer`, `bigint`, `real`, `double precision`, and `varchar` type now.
+
+:::
