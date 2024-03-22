@@ -38,7 +38,7 @@ col_name data_type [ AS generation_expression ],
 ```
 
 :::note
-To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
+To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestamptz AS proctime()`) when creating the table or source.
 :::
 
 :::note
@@ -107,8 +107,8 @@ For data in Avro format, you must specify a message and a schema file location. 
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-:::caution Experimental feature
-`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 Note that the timestamp displayed in RisingWave may be different from the upstream system as timezone information is lost in Avro serialization.
@@ -137,8 +137,8 @@ When creating a source from streams in with Debezium AVRO, the schema of the sou
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-:::caution Experimental feature
-`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 Syntax:
@@ -159,8 +159,8 @@ When consuming data in AVRO from Kafka topics, the `FORMAT` and `ENCODE` section
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-:::caution Experimental feature
-`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 Syntax:
@@ -205,7 +205,7 @@ ENCODE JSON
 
 When creating a source from streams in Debezium JSON, you can define the schema of the source within the parentheses after the source name (`schema_definition` in the syntax), and specify the data and encoding formats in the `FORMAT` and `ENCODE` sections. You can directly reference data fields in the JSON payload by their names as column names in the schema.
 
-Note that if you are ingesting data of type `timestamp` or `timestampz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning.
+Note that if you are ingesting data of type `timestamp` or `timestamptz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning.
 
 Syntax:
 
@@ -259,8 +259,8 @@ For data in Protobuf format, you must specify a message and a schema location. T
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-:::caution Experimental feature
-`schema.registry.name.strategy` is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 :::info

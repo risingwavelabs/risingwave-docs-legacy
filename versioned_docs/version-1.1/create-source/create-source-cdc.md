@@ -22,7 +22,7 @@ RisingWave accepts these data formats:
 
     For Debezium JSON (`FORMAT DEBEZIUM ENCODE JSON`), you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html), [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html), or [Debezium connector for SQL Server](https://debezium.io/documentation/reference/stable/connectors/sqlserver.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
 
-    Note that if you are ingesting data of type `timestamp` or `timestampz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning. 
+    Note that if you are ingesting data of type `timestamp` or `timestamptz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning. 
 
 - Debezium Mongo JSON (for MongoDB)
 

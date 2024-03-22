@@ -19,7 +19,7 @@ RisingWave supports exactly-once semantics by reading transactional messages onl
 :::tip Guided setup
 RisingWave Cloud provides an intuitive guided setup for creating a Kafka source. For more information, see [Create a source using guided setup](/cloud/create-a-source/#using-guided-setup) in the RisingWave Cloud documentation.
 
-<lightButton text="Sign up for RisingWave Cloud" url="https://www.risingwave.cloud/auth/signup/" />
+<lightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
 :::
 
 ## Syntax
@@ -27,6 +27,7 @@ RisingWave Cloud provides an intuitive guided setup for creating a Kafka source.
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
 [ schema_definition ]
+[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 WITH (
    connector='kafka',
    connector_parameter='value', ...
@@ -36,65 +37,6 @@ FORMAT data_format ENCODE data_encode (
    schema.location = 'location' | schema.registry = 'schema_registry_url'
 );
 ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-   rr.Stack(
-      rr.Sequence(
-         rr.Choice(1,
-            rr.Terminal('CREATE TABLE'),
-            rr.Terminal('CREATE SOURCE')
-         ),
-         rr.Optional(rr.Terminal('IF NOT EXISTS')),
-         rr.NonTerminal('source_name', 'skip'),
-      ),
-      rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
-      rr.Sequence(
-         rr.Terminal('FORMAT'),
-         rr.NonTerminal('format', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('ENCODE'),
-         rr.NonTerminal('encode', 'skip'),
-         rr.Optional(
-            rr.Sequence(
-               rr.Terminal('('),
-               rr.NonTerminal('encode_parameter', 'skip'),
-               rr.Terminal(')'),
-            ),
-         ),
-      ),
-      rr.Sequence(
-         rr.Terminal('WITH'),
-         rr.Terminal('('),
-         rr.Stack(
-            rr.Stack(
-               rr.Sequence(
-                  rr.Terminal('connector'),
-                  rr.Terminal('='),
-                  rr.NonTerminal('kafka', 'skip'),
-                  rr.Terminal(','),
-               ),
-               rr.OneOrMore(
-                  rr.Sequence(
-                     rr.NonTerminal('connector_parameter', 'skip'),
-                     rr.Terminal('='),
-                     rr.NonTerminal('value', 'skip'),
-                     rr.Terminal(','),
-                  ),
-               ),
-            ),
-            rr.Terminal(')'),
-         ),
-      ),
-      rr.Stack(
-         rr.Terminal(';')
-      ),
-   )
-);
-
-<drawer SVG={svg} />
 
 **schema_definition**:
 
@@ -107,7 +49,7 @@ export const svg = rr.Diagram(
 
 :::info
 
-For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement. The schema should be provided either in a Web location or a Confluent Schema Registry link in the `ROW SCHEMA LOCATION` section.
+For Avro and Protobuf data, do not specify `schema_definition` in the `CREATE SOURCE` statement.
 
 :::
 
@@ -126,21 +68,27 @@ For tables with primary key constraints, if a new data record with an existing k
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+|scan.startup.timestamp.millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
 |properties.sync.call.timeout | Optional. Specify the timeout. By default, the timeout is 5 seconds.  |
-|schema.registry.username|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
-|schema.registry.password|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
 |properties.client.id|Optional. Client ID associated with the Kafka client. |
 
 ### Other parameters
 
 |Field|Notes|
 |---|---|
-|*data_format*| Data format. Supported formats: , `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`. |
+|*data_format*| Data format. Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`. |
 |*data_encode*| Data encode. Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
 |*message* | Message name of the main Message in schema definition. Required for Protobuf. |
-|*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
-|*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
+|*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. This option is not supported for Avro data. For Protobuf data, you must specify either a schema location or a schema registry but not both.|
+|*schema.registry*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro data, you must specify a Confluent Schema Registry. For Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
+|*schema.registry.username*|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
+|*schema.registry.password*|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
+|*schema.registry.name.strategy*|Optional. Accepts `topic_name_strategy` (default), `record_name_strategy`, `topic_record_name_strategy`. If it is set to either `record_name_strategy` or `topic_record_name_strategy`, the `message` parameter must also be set. It can only be specified with *schema.registry*. |
+|*access_key*|Required if loading descriptors from S3. The access key ID of AWS. | 
+|*secret_key*|Required if loading descriptors from S3. The secret access key of AWS. |
+|*region*|Required if loading descriptors from S3. The AWS service region. |
+|*arn*|Optional. The Amazon Resource Name (ARN) of the role to assume. |
+|*external_id*| Optional. The [external](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) id used to authorize access to third-party resources. |
 
 ## Additional Kafka parameters
 
@@ -150,11 +98,17 @@ When creating a source in RisingWave, you can specify the following Kafka parame
 |----------------------|---------------------------|------|
 |enable.auto.commit | properties.enable.auto.commit | boolean |
 |fetch.max.bytes | properties.fetch.max.bytes | int |
+|fetch.queue.backoff.ms | properties.fetch.queue.backoff.ms | int |
 |fetch.wait.max.ms | properties.fetch.wait.max.ms | int |
 |message.max.bytes | properties.message.max.bytes | int |
 |queued.max.messages.kbytes| properties.queued.max.messages.kbytes | int |
 |queued.min.messages | properties.queued.min.messages | int |
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
+|ssl.endpoint.identification.algorithm | properties.ssl.endpoint.identification.algorithm | str |
+
+:::note
+Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
+:::
 
 ## Examples
 
@@ -177,8 +131,9 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
+   scan.startup.timestamp.millis='140000000'
 ) FORMAT PLAIN ENCODE AVRO (
+   message = 'message_name',
    schema.registry = 'http://127.0.0.1:8081'
 );
 ```
@@ -191,12 +146,12 @@ CREATE TABLE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
-   topic='test_topic',
-   schema.registry.username='your_schema_registry_username',
-   schema.registry.password='your_schema_registry_password'
+   topic='test_topic'
 )
 FORMAT UPSERT ENCODE AVRO (
-   schema.registry = 'http://127.0.0.1:8081'
+   schema.registry = 'http://127.0.0.1:8081',
+   schema.registry.username='your_schema_registry_username',
+   schema.registry.password='your_schema_registry_password'
 );
 ```
 
@@ -213,7 +168,7 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
+   scan.startup.timestamp.millis='140000000'
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
@@ -255,9 +210,11 @@ WITH (
    topic='demo_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='latest',
-   scan.startup.timestamp_millis='140000000'
+   scan.startup.timestamp.millis='140000000'
 ) FORMAT PLAIN ENCODE PROTOBUF (
-   message = 'main_message',
+   message = 'package.message_name',
+   access_key = 'your_access_key',
+   secret_key = 'your secret_key',
    location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
 );
 ```
@@ -280,7 +237,7 @@ WITH (
 
 - CSV header is not supported when creating a table with Kafka connector. Add the `without_header` option to the encode parameters.
 
-- The `delimiter` option specifies the delimiter character used in the CSV data.
+- The `delimiter` option specifies the delimiter character used in the CSV data. Set `delimiter = E'\t'` for tab-delimited data.
 
 </TabItem>
 <TabItem value="bytes" label="Bytes">
@@ -318,7 +275,7 @@ WHERE _rw_kafka_timestamp > now() - interval '10 minute';
 
 ## Read schemas from locations
 
-RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Avro or Protobuf format.
+RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Protobuf format. For Avro, only Confluent Schema Registry is supported for reading schemas.
 
 For Protobuf, if a schema location is specified, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
 
@@ -368,17 +325,17 @@ Based on the compatibility type that is configured for the schema registry, some
 
 To learn about compatibility types for Schema Registry and the changes allowed, see [Compatibility Types](https://docs.confluent.io/platform/current/schema-registry/avro.html#compatibility-types).
 
-## Create source with AWS PrivateLink connection
+## Create source with VPC connection
 
 If your Kafka source service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](/sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
 
-To create a Kafka source with a PrivateLink connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters.
+To create a Kafka source with a VPC connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters.
 
 |Parameter| Notes|
 |---|---|
 |`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
-|`privatelink.endpoint`|The DNS name of the AWS VPC endpoint or the GCP Private Service Connect endpoint. <br/> Using `privatelink.endpoint` is the recommended way to use PrivateLink. With a provisioned PrivateLink endpoint, you don't need to create a connection in RisingWave.|
-|`connection.name`| The name of the connection. <br/> This parameter should only be included if you are using a AWS PrivateLink connection created with the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) statement. Omit this parameter if you have provisioned an AWS VPC endpoint or the GCP Private Service Connect endpoint using `privatelink.endpoint` (recommended).|
+|`privatelink.endpoint`|The DNS name of the VPC endpoint. <br/> If you're using RisingWave Cloud, you can find the auto-generated endpoint after you created a connection. See details in [Create a VPC connection](/cloud/create-a-connection#whats-next).|
+|`connection.name`| The name of the connection. <br/> This parameter should only be included if you are using a connection created with the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) statement. Omit this parameter if you have provisioned a VPC endpoint using `privatelink.endpoint` (recommended).|
 
 Here is an example of creating a Kafka source using a PrivateLink connection. Notice that `{"port": 9094}` corresponds to the broker `broker1-endpoint`, `{"port": 9095}` corresponds to the broker `broker2-endpoint`, and `{"port": 9096}` corresponds to the broker `broker3-endpoint`.
 
@@ -568,3 +525,6 @@ WITH (
    properties.sasl.password='admin-secret'
 ) FORMAT PLAIN ENCODE JSON;
 ```
+
+## Related topics
+[Why does RisingWave not accept Kafka consumer group ID](/rw-faq.md#why-risingwave-does-not-accept-kafka-consumer-group-ids)

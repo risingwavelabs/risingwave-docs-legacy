@@ -11,11 +11,11 @@ RisingWave Cloud leverages the superpower of RisingWave, an open-source distribu
 
 Developers can refer to the user documentation for RisingWave to develop streaming applications with RisingWave Cloud. The documentation covers essential topics such as data ingestion, SQL references, data delivery, client libraries, and ecosystem, providing comprehensive information on how to utilize the capabilities of RisingWave to build and manage data workflows that consume streaming data, perform incremental computations, and update results dynamically.
 
-<defaultButton text="RisingWave user docs" url="https://docs.risingwave.com/docs/current/intro/"/> <lightButton text="See recommended topics" cloud="develop-overview#top-read-topics-for-developers"/>
+<defaultButton text="RisingWave user docs" url="/docs/current/intro/"/> <lightButton text="See recommended topics" cloud="develop-overview#top-read-topics-for-developers"/>
 
 ## How to use the docs
 
-RisingWave is a rapidly evolving system, with [new features](https://docs.risingwave.com/release-notes/) added with each release. However, this also means some features may not function properly in older versions. Therefore, when using the RisingWave user docs, it's important to select the corresponding documentation version based on your RisingWave cluster's version.
+RisingWave is a rapidly evolving system, with [new features](/release-notes/) added with each release. However, this also means some features may not function properly in older versions. Therefore, when using the RisingWave user docs, it's important to select the corresponding documentation version based on your RisingWave cluster's version.
 
 
 <grid
@@ -30,7 +30,7 @@ RisingWave is a rapidly evolving system, with [new features](https://docs.rising
 
 ### Check RisingWave version
 
-To check your current version, go to [**Clusters**](https://risingwave.cloud/clusters/).
+To check your current version, go to [**Clusters**](https://cloud.risingwave.com/clusters/).
 
 <img
   src={require('./images/cluster-rwversion.png').default}
@@ -73,7 +73,7 @@ Select the version of the corresponding docs when using the RisingWave user docs
  style={{height: "87%"}}
  title="Integrations"
  content="See how RisingWave can integrate with your existing data stack. Vote for your favorite data tools and streaming services to help us prioritize the integration development."
- url="https://docs.risingwave.com/docs/current/rw-integration-summary/"
+ url="/docs/current/rw-integration-summary/"
  />
 
 </grid>
@@ -84,7 +84,7 @@ Select the version of the corresponding docs when using the RisingWave user docs
  style={{height: "87%"}}
  title="Sources"
  content="Connect to and ingest data from external sources such as databases and message brokers. See supported data sources."
- url="https://docs.risingwave.com/docs/current/data-ingestion/"
+ url="/docs/current/data-ingestion/"
  />
   
 </grid>
@@ -95,7 +95,7 @@ Select the version of the corresponding docs when using the RisingWave user docs
  style={{height: "87%"}}
  title="Sinks"
  content="Stream processed data out of RisingWave to message brokers and databases. See supported data destinations."
- url="https://docs.risingwave.com/docs/current/data-delivery/"
+ url="/docs/current/data-delivery/"
  />
   
 </grid>
@@ -108,12 +108,12 @@ Select the version of the corresponding docs when using the RisingWave user docs
 title="SQL references"
 content="SQL syntax and functionality supported by RisingWave. While RisingWave is wire-compatible with PostgreSQL, it has some unique features and notable differences."
 links={[
-{text:"Overview", url:"https://docs.risingwave.com/docs/current/sql-references/"},
-{text:"Commands", url:"https://docs.risingwave.com/docs/current/sql-commands/"},
-{text:"Query syntax", url:"https://docs.risingwave.com/docs/current/query-syntax/"},
-{text:"Data types", url:"https://docs.risingwave.com/docs/current/sql-data-types/"},
-{text:"Functions and operators", url:"https://docs.risingwave.com/docs/current/sql-functions/"},
-{text:"Query patterns", url:"https://docs.risingwave.com/docs/current/sql-patterns/"}
+{text:"Overview", url:"/docs/current/sql-references/"},
+{text:"Commands", url:"/docs/current/sql-commands/"},
+{text:"Query syntax", url:"/docs/current/query-syntax/"},
+{text:"Data types", url:"/docs/current/sql-data-types/"},
+{text:"Functions and operators", url:"/docs/current/sql-functions/"},
+{text:"Query patterns", url:"/docs/current/sql-patterns/"}
 ]}
 />
 
@@ -123,10 +123,10 @@ links={[
 title="Client libraries"
 content="RisingWave offers support for popular PostgreSQL drivers, enabling seamless integration with your applications for interacting with it."
 links={[
-{text:"Java", url:"https://docs.risingwave.com/docs/current/java-client-libraries/"},
-{text:"Node.js", url:"https://docs.risingwave.com/docs/current/nodejs-client-libraries/"},
-{text:"Python", url:"https://docs.risingwave.com/docs/current/python-client-libraries/"},
-{text:"Go", url:"https://docs.risingwave.com/docs/current/go-client-libraries/"}
+{text:"Java", url:"/docs/current/java-client-libraries/"},
+{text:"Node.js", url:"/docs/current/nodejs-client-libraries/"},
+{text:"Python", url:"/docs/current/python-client-libraries/"},
+{text:"Go", url:"/docs/current/go-client-libraries/"}
 ]}
 />
 
@@ -147,10 +147,10 @@ links={[
  title="About RisingWave"
  content="Continue to learn about RisingWave."
  links={[
- {text:"Key concepts", url:"https://docs.risingwave.com/docs/current/key-concepts/"},
- {text:"Architechture", url:"https://docs.risingwave.com/docs/current/architecture/"},
- {text:"RisingWave vs. Apache Flink", url:"https://docs.risingwave.com/docs/current/risingwave-flink-comparison/"},
- {text:"Release notes", url:"https://docs.risingwave.com/release-notes/"}
+ {text:"Key concepts", url:"/docs/current/key-concepts/"},
+ {text:"Architechture", url:"/docs/current/architecture/"},
+ {text:"RisingWave vs. Apache Flink", url:"/docs/current/risingwave-flink-comparison/"},
+ {text:"Release notes", url:"/release-notes/"}
  ]}
  />
 

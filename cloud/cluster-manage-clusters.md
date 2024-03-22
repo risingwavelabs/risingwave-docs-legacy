@@ -28,7 +28,7 @@ A cluster in RisingWave Cloud provides the necessary resources for hosting indep
     alt="Create cluster button"
   />
 
-  You can find the **Create cluster** button in [**Clusters**](https://risingwave.cloud/clusters/).
+  You can find the **Create cluster** button in [**Clusters**](https://cloud.risingwave.com/clusters/).
 
  </grid>
 

@@ -10,8 +10,8 @@ slug: /sink-to-iceberg
 
 This guide describes how to sink data from RisingWave to Apache Iceberg using the Iceberg sink connector in RisingWave. Apache Iceberg is a table format designed to support huge tables. For more information, see [Apache Iceberg](https://iceberg.apache.org).
 
-:::caution Experimental feature
-The Iceberg sink connector in RisingWave is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+The Iceberg sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 ## Prerequisites

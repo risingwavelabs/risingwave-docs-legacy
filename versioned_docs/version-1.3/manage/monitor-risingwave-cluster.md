@@ -20,7 +20,7 @@ Clone or download the `RisingWave-Operator` repository to your environment.
 git clone https://github.com/risingwavelabs/risingwave-operator.git
 ```
 
-Run the script to install the mmonitoring stack. It will create the `monitoring` namespace and deploy all monitoring services in the namespace.
+Run the script to install the monitoring stack. It will create the `monitoring` namespace and deploy all monitoring services in the namespace.
 
 ```bash
 ./monitoring/install.sh

@@ -8,8 +8,8 @@ slug: /sql-set-background-ddl
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-set-background-ddl/" />
 </head>
 
-:::caution Experimental feature
-The `SET BACKGROUND_DDL` command is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+The `SET BACKGROUND_DDL` command is currently in Beta. Please contact us if you encounter any issues or have feedback.
 
 Currently, if the cluster crashes while a background DDL operation is still running, recovery is not supported.
 :::
@@ -22,7 +22,7 @@ Use the `SET BACKGROUND_DDL` command to run Data Definition Language (DDL) opera
 SET BACKGROUND_DDL = { true | false };
 ```
 
-- When `BACKGROUND_DDL` is set to true, any subsequent DDL operations will be executed in the background, allowing you to proceed with other tasks. 
+- When `BACKGROUND_DDL` is set to true, any subsequent DDL operations will be executed in the background, allowing you to proceed with other tasks.
 
 - When `BACKGROUND_DDL` is set to false (or not set at all), the DDL operations will execute as normal.
 

@@ -22,38 +22,29 @@ RisingWave can run on the following hardware architectures:
 
 Compute nodes handle query processing and state management. More resources enable higher query throughput. For cost efficiency, machines with high memory-to-CPU ratios (4:1 or higher) are recommended due to RisingWave's memory-intensive nature.
 
-- Minimal:
-  - 4 CPU cores
-  - 4 GB memory
+- Minimum:
+  - 2 CPU cores
+  - 8 GB memory
 - Recommended:
-  - ≥8 CPU cores
-  - ≥8 GB memory
+  - ≥4 CPU cores
+  - ≥16 GB memory
 
 ## Compactor nodes
 
 Compactor nodes perform background compaction jobs to optimize state storage. Insufficient resources for compactors will result in slow state access and impact overall performance.
 
-- Minimal:
+- Minimum:
   - 1 CPU core
   - 1 GB memory
 - Recommended:
   - ≥2 CPU cores
   - ≥2 GB memory
 
-## Frontend nodes
-
-Frontend nodes parse queries and create execution plans. They can operate with minimal resources.
-
-- Minimal: None, since Frontends are stateless
-- Recommended:
-  - ≥2 CPU cores
-  - ≥1 GB memory
-
 ## Meta nodes
 
 Meta nodes manage metadata and coordinate the cluster. It is advisable to deploy 2 meta nodes (primary and backup) to ensure faster recovery and avoid single points of failure (SPOF).
 
-- Minimal:
+- Minimum:
   - 1 CPU core
   - 1 GB memory
 - Recommended:
@@ -70,3 +61,9 @@ To optimize performance and stability, please consider the following recommendat
 - If you have a single meta node, increase the value of `meta_leader_lease_secs` to optimize performance.
 - If using MinIO, avoid deploying etcd and MinIO on the same disks to prevent conflicts or performance degradation.
 - For detailed disk performance requirements and recommendations, refer to the [Disks](https://etcd.io/docs/v3.3/op-guide/hardware/#disks) section in the etcd documentation.
+
+## Storage
+
+RisingWave offers support for multiple storage systems as storage backends. For the complete list of supported storage systems for Kubernetes deployments, see [Set up a RisingWave cluster in Kubernetes](/deploy/risingwave-kubernetes.md#deploy-a-risingwave-instance).
+
+Please notice that storage performance can **significantly** impact RisingWave's performance. We recommend using high-performance cloud storage systems such as AWS S3. For self-managed storage systems such as MinIO or local file system, please ensure to use high-performance SSD disks.

@@ -13,9 +13,9 @@ Transactions in databases refer to logical units of work that consist of one or 
 
 RisingWave supports read-only transactions, where all reads within a transaction are executed against the consistent Hummock snapshot. Hummock is the LSM-Tree-based storage engine in RisingWave that is specifically optimized for streaming workloads.
 
-:::caution Experimental Feature
+:::note Beta Feature
 
-Read-only transactions is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+Read-only transactions are currently in Beta. Please contact us if you encounter any issues or have feedback.
 
 :::
 
@@ -30,12 +30,12 @@ Please note that data modifications are not allowed while a transaction is initi
 
 ## Transactions within a CDC table
 
-RisingWave supports transactions within a CDC table as an experimental feature. When you create a table to ingest CDC streams, you can enable this feature by setting `transactional` to `true` in the WITH clause of the `CREATE TABLE` statement. Note that this feature is only available if you are using the native [MySQL CDC](/guides/ingest-from-mysql-cdc.md), [PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md), or [Citus CDC](/guides/ingest-from-citus-cdc.md) connectors.
+RisingWave supports transactions within a CDC table as a Beta feature. When you create a table to ingest CDC streams, you can enable this feature by setting `transactional` to `true` in the WITH clause of the `CREATE TABLE` statement. Note that this feature is only available if you are using the native [MySQL CDC](/guides/ingest-from-mysql-cdc.md), [PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md), or [Citus CDC](/guides/ingest-from-citus-cdc.md) connectors.
 
 For performance considerations, transactions involving changes to more than 4096 rows cannot be guaranteed.
 
-:::caution Experimental Feature
+:::note Beta Feature
 
-Transactions within a CDC table is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+Transactions within a CDC table are currently in Beta. Please contact us if you encounter any issues or have feedback.
 
 :::

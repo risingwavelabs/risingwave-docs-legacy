@@ -6,7 +6,7 @@ title: WITH ORDINALITY clause
 
 The `WITH ORDINALITY` clause can be used with set functions in the `FROM` clause of a query. An additional integer column will be added to the table, which numbers the rows returned by the function, starting from 1. By default, the generated column is named `ordinality`. 
 
-See [Set functions](/sql/function-operators/sql-function-set-functions.md) for a list of supported set functions.
+See [Set functions](/sql/functions-operators/sql-function-set-functions.md) for a list of supported set functions.
 
 Here is a simple example of how the `WITH ORDINALITY` clause works. 
 

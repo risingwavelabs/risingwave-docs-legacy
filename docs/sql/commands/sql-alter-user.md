@@ -1,7 +1,7 @@
 ---
 id: sql-alter-user
 title: ALTER USER
-description: Modify properties of a user.
+description: Modify the properties of a user.
 slug: /sql-alter-user
 ---
 <head>
@@ -27,11 +27,11 @@ CREATE USER user_name [ [ WITH ] system_permission [ ... ]['PASSWORD' { password
 | ------------------- | --------------------- |
 | *user_name* | The name of the user to be modified. |
 | *new_user_name* | The new name of the user. |
-| **system_permission* | See [System permissions](/sql/commands/sql-create-user.md#system-permissions).|
+| *system_permission* | See [System permissions](/sql/commands/sql-create-user.md#system-permissions).|
 
 ## Example
 
-The following statement rename the user `user1` to `user001`.
+The following statement renames the user `user1` to `user001`.
 
 ```sql
 ALTER USER user1 RENAME TO user001;

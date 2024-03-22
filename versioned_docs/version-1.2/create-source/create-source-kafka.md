@@ -19,7 +19,7 @@ RisingWave supports exactly-once semantics by reading transactional messages onl
 :::tip Guided setup
 RisingWave Cloud provides an intuitive guided setup for creating a Kafka source. For more information, see [Create a source using guided setup](/cloud/create-a-source/#using-guided-setup) in the RisingWave Cloud documentation.
 
-<lightButton text="Sign up for RisingWave Cloud" url="https://www.risingwave.cloud/auth/signup/" />
+<lightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
 :::
 
 ## Syntax
@@ -136,7 +136,7 @@ For materialized sources with primary key constraints, if a new data record with
 
 |Field|Notes|
 |---|---|
-|*data_format*| Data format. Supported formats: , `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`. |
+|*data_format*| Data format. Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`. |
 |*data_encode*| Data encode. Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
 |*message* | Message name of the main Message in schema definition. Required for Protobuf. |
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|

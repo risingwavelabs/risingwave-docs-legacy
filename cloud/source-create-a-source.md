@@ -7,7 +7,7 @@ slug: /create-a-source
 
 You need to create a source in the database to read external data. After a source is connected, you can create materialized views to perform analysis or sinks for data transformations.
 
-For the complete list of supported sources and formats, see [Supported sources and formats](https://docs.risingwave.com/docs/current/sql-create-source/#supported-sources).
+For the complete list of supported sources and formats, see [Supported sources and formats](/docs/current/sql-create-source/#supported-sources).
 
 You can create a source with one of the following methods:
 
@@ -16,7 +16,7 @@ You can create a source with one of the following methods:
 
 ## Using guided setup
 
-1. Go to [**Source**](https://risingwave.cloud/source/).
+1. Go to [**Source**](https://cloud.risingwave.com/source/).
 
 2. Specify the cluster and database, and log in as a database user.
 
@@ -30,7 +30,7 @@ You can create a source with one of the following methods:
 4. Select the service you want to connect to.
 
     :::note
-    Currently, the guided setup only supports Kafka. More services will be supported in future releases.
+    More services will be supported in future releases.
     :::
 
 5. Configure the connector settings, source details, and schema according to the instuctions of the guided setup.
@@ -44,4 +44,4 @@ You can create a source with one of the following methods:
 
 ## Using SQL command
 
-Refer to [`CREARE SOURCE`](https://docs.risingwave.com/docs/current/sql-create-source/#supported-sources) in the RisngWave documentation. Select a connector to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
+Refer to [`CREARE SOURCE`](/docs/current/sql-create-source/#supported-sources) in the RisngWave documentation. Select a connector to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.

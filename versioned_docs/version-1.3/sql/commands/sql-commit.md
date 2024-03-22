@@ -8,13 +8,13 @@ slug: /sql-commit
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-commit/" />
 </head>
 
-RisingWave supports read-only transactions. You can use the `COMMIT` command to commit the current transaction. For more information about transactions in RisingWave, see [Transactions](/concepts/tranactions.md).
+RisingWave supports read-only transactions. You can use the `COMMIT` command to commit the current transaction. For more information about transactions in RisingWave, see [Transactions](/concepts/transactions.md).
 
 You can start a read-only transaction by using the `BEGIN READ ONLY` or `START TRANSACTION READ ONLY` command.
 
-:::caution Experimental feature
+:::note Beta Feature
 
-Read-only transactions is currently an experimental feature in RisingWave, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+Read-only transactions are currently in Beta. Please contact us if you encounter any issues or have feedback.
 
 :::
 

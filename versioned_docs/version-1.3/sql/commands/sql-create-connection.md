@@ -76,7 +76,7 @@ CREATE CONNECTION connection_name WITH (
 
 If you are using a cloud-hosted source or sink, such as AWS MSK, there might be connectivity issues when your service is located in a different VPC from where you have deployed RisingWave. To establish a secure, direct connection between these two different VPCs and allow RisingWave to read consumer messages from the broker or send messages to the broker, use the [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html) service.
 
-:::caution Experimental feature
+:::note Beta Feature
 The support for AWS PrivateLink connection is a beta feature and the syntax for `CREATE CONNECTION` is subject to change in future versions.
 :::
 
@@ -90,7 +90,7 @@ Follow the steps below to create an AWS PrivateLink connection.
 
 4. Complete the [health check](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-health-checks.html) for each target group.
 
-5. Create a [VPC endpoint service](https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html) associated with the Networkd Load Balancer created. Be sure to add the AWS principal of the account that will access the endpoint service to allow the service consumer to connect. See [Manage permissions](https://docs.aws.amazon.com/vpc/latest/privatelink/configure-endpoint-service.html#add-remove-permissions) for more details.
+5. Create a [VPC endpoint service](https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html) associated with the Network Load Balancer created. Be sure to add the AWS principal of the account that will access the endpoint service to allow the service consumer to connect. See [Manage permissions](https://docs.aws.amazon.com/vpc/latest/privatelink/configure-endpoint-service.html#add-remove-permissions) for more details.
 
 6. Use the `CREATE CONNECTION` command in RisingWave to create an AWS PrivateLink connection referencing the endpoint service created. Here is an example of creating an AWS PrivateLink connection.
 
@@ -102,7 +102,7 @@ Follow the steps below to create an AWS PrivateLink connection.
     );
     ```
 
-7. Create a source or sink with AWS PrivateLink connection.
+7. Create a source or sink with VPC connection.
 
-   * Use the `CREATE SOURCE/TABLE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see [Ingest data from Kafka](/ingest/ingest-from-kafka.md) — [Create source with AWS PrivateLink connection](/ingest/ingest-from-kafka.md#create-source-with-aws-privatelink-connection).
-   * Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details on the syntax, see [Sink to Kafka](/guides/create-sink-kafka.md) — [Create sink with AWS PrivateLink connection](/guides/create-sink-kafka.md#create-sink-with-aws-privatelink-connection).
+   * Use the `CREATE SOURCE/TABLE` command to create a Kafka source with PrivateLink connection. For more details, see [Create source with AWS PrivateLink connection](/ingest/ingest-from-kafka.md#create-source-with-vpc-connection).
+   * Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details, see [Create sink with AWS PrivateLink connection](/guides/create-sink-kafka.md#create-sink-with-vpc-connection).

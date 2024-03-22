@@ -8,8 +8,8 @@ You can sink data from RisingWave to [Cassandra](https://cassandra.apache.org/).
 
 This guide describes how to sink data from RisingWave to Cassandra or ScyllaDB using the Cassandra sink connector in RisingWave.
 
-:::caution Experimental feature
-The Cassandra sink connector in RisingWave is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+The Cassandra sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 ## Prerequisites
@@ -66,7 +66,7 @@ The Cassandra sink in RisingWave provides at-least-once delivery semantics. Even
 |smallint | smallint |
 |integer |int|
 |bigint |bigint|
-|numeric |double|
+|numeric |decimal|
 |real |float|
 |double precision |double|
 |character varying (varchar) |text|

@@ -2,21 +2,21 @@
 id: sink-to-cassandra
 title: Sink data from RisingWave to Cassandra or ScyllaDB
 description: Sink data from RisingWave to Cassandra or ScyllaDB.
-slug: /sink-to-cassandra 
+slug: /sink-to-cassandra
 ---
 You can sink data from RisingWave to [Cassandra](https://cassandra.apache.org/). As [ScyllaDB](https://www.scylladb.com/) can work as a drop-in replacement for Cassandra, it means you can sink data from RisingWave to ScyllaDB as well.
 
 This guide describes how to sink data from RisingWave to Cassandra or ScyllaDB using the Cassandra sink connector in RisingWave.
 
-:::caution Experimental feature
-The Cassandra sink connector in RisingWave is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+The Cassandra sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 ## Prerequisites
 
 - Ensure your Cassandra or ScyllaDB cluster is accessible from RisingWave.
 
-- The Cassandra sink connector in RisingWave relies on the connector node to work. Please ensure the connector node is enabled in RisingWave. For details, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+- If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions is installed in your environment.
 
 ## Syntax
 
@@ -31,7 +31,7 @@ WITH (
     cassandra.url = '<node1>,<node2>,<node3>',
     cassandra.keyspace = '<keyspace>',
     cassandra.table = '<cassandra_table>',
-    cassandra.datacenter = '<data_center>' 
+    cassandra.datacenter = '<data_center>'
 );
 ```
 
@@ -51,7 +51,8 @@ Once the sink is created, data changes will be streamed to the specified table.
 | `cassandra.keyspace`       | Required. The name of the keyspace within the Cassandra database or ScyllaDB where you want to store the data. A keyspace is a logical container for organizing data in Cassandra.|
 | `cassandra.table`   | Required. The name of the table in the specified keyspace where you want to insert or update the data.|
 | `cassandra.datacenter`  | Optional. If you are working with a multi-data center Cassandra setup, you may need to specify the name of the target data center where the data should be written.|
-
+| `cassandra.max_batch_rows` | Optional. The number of batch rows sent at a time. The value must be between 1 and 65535. The default value is 512. |
+| `cassandra.request_timeout_ms` | Optional. The waiting time for each batch. The default value is 2000. It is recommended to reduce batch size first before trying to change the waiting time. |
 :::note
 
 The Cassandra sink in RisingWave provides at-least-once delivery semantics. Events may be redelivered in case of failures. We recommend using the `upsert` sink type to avoid duplicates.
@@ -66,14 +67,14 @@ The Cassandra sink in RisingWave provides at-least-once delivery semantics. Even
 |smallint | smallint |
 |integer |int|
 |bigint |bigint|
-|numeric |double|
+|numeric |decimal|
 |real |float|
 |double precision |double|
 |character varying (varchar) |text|
 |bytea |blob|
 |date |date|
 |time without time zone |time|
-|timestamp without time zone |timestamp|
+|timestamp without time zone |unsupported. You need to convert `timestamp` to `timestamptz` in RisingWave before sinking.|
 |timestamp with time zone |timestamp|
 |interval |duration|
 |struct |unsupported|

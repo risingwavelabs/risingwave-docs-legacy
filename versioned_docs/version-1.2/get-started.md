@@ -53,7 +53,7 @@ As RisingWave is a database, you can directly create a table and insert data int
 
 ```sql
 CREATE TABLE website_visits (
-  timestamp timestamp,
+  timestamp timestamp with time zone,
   user_id varchar,
   page_id varchar,
   action varchar
@@ -77,7 +77,7 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
 
 ## Connect to a source
 
-The most common way for getting streaming data into RisingWave is through upstream sources such as message queues or Change Data Capture streams. For streaming data ingestion, you need use the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command to connect to a source first.
+The most common way for getting streaming data into RisingWave is through upstream sources such as message queues or Change Data Capture streams. For streaming data ingestion, you need to use the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command to connect to a source first.
 
 Let's assume that you have entered five rows of data in the same schema as table `website_visits` into the `test` topic in Kafka:
 
@@ -93,7 +93,7 @@ You can now connect to the topic from RisingWave by running the following comman
 
 ```sql
 CREATE SOURCE IF NOT EXISTS website_visits_stream (
- timestamp timestamp,
+ timestamp timestamp with time zone,
  user_id varchar,
  page_id varchar,
  action varchar
@@ -139,11 +139,11 @@ SELECT * FROM visits_stream_mv;
 ```
 
 ```
- page_id | total_visits | unique_visitors |   last_visit_time
----------+--------------+-----------------+---------------------
- page2   |            2 |               2 | 2023-06-13 10:08:00
- page1   |            2 |               2 | 2023-06-13 10:07:00
- page3   |            1 |               1 | 2023-06-13 10:09:00
+ page_id | total_visits | unique_visitors |      last_visit_time
+---------+--------------+-----------------+---------------------------
+ page2   |            2 |               2 | 2023-06-13 10:08:00+00:00
+ page1   |            2 |               2 | 2023-06-13 10:07:00+00:00
+ page3   |            1 |               1 | 2023-06-13 10:09:00+00:00
 (3 rows)
 ```
 
@@ -166,11 +166,11 @@ SELECT * FROM visits_stream_mv;
 ```
 
 ```
- page_id | total_visits | unique_visitors |   last_visit_time   
----------+--------------+-----------------+---------------------
- page2   |            3 |               3 | 2023-06-13 10:12:00
- page3   |            3 |               3 | 2023-06-13 10:13:00
- page1   |            4 |               4 | 2023-06-13 10:14:00
+ page_id | total_visits | unique_visitors |      last_visit_time   
+---------+--------------+-----------------+---------------------------
+ page2   |            3 |               3 | 2023-06-13 10:12:00+00:00
+ page3   |            3 |               3 | 2023-06-13 10:13:00+00:00
+ page1   |            4 |               4 | 2023-06-13 10:14:00+00:00
 (3 rows)
 ```
 
@@ -178,7 +178,7 @@ SELECT * FROM visits_stream_mv;
 
 Data in tables and materialized views are stored in RisingWave. You can sink data out of RisingWave and into Kafka topics or databases.
 
-To sink data out of RisingWave, you need to create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md). A sink can be created from an existing table, source, or materialized view, or an ad-hoc `SELECT` query.
+To sink data out of RisingWave, you need to create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md) command. A sink can be created from an existing table, source, or materialized view, or an ad-hoc `SELECT` query.
 
 Let's sink all data from `visits_stream_mv` to a Kafka topic:
 

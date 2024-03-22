@@ -14,8 +14,8 @@ You can ingest data from NATS JetStream into RisingWave by using the NATS source
 
 [NATS JetStream](https://docs.nats.io/nats-concepts/jetstream) is a streaming data platform built on top of NATS. It enables real-time and historical access to streams of data via durable subscriptions and consumer groups.
 
-:::caution Experimental Feature
-The NATS source connector in RisingWave is currently an experimental feature, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+The NATS source connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 ## Prerequisites
@@ -68,12 +68,12 @@ For a table with primary key constraints, if a new data record with an existing 
 
 According to the [NATS documentation](https://docs.nats.io/running-a-nats-service/nats_admin/jetstream_admin/naming), stream names must adhere to subject naming rules as well as being friendly to the file system. Here are the recommended guidelines for stream names:
 
-* Use alphanumeric values.
-* Avoid spaces, tabs, periods (`.`), greater than (`>`) or asterisks (`*`).
-* Do not include path separators (forward slash or backward slash).
-* Keep the name length limited to 32 characters as the JetStream storage directories include the account, stream name, and consumer name.
-* Avoid using reserved file names like `NUL` or `LPT1`.
-* Be cautious of case sensitivity in file systems. To prevent collisions, ensure that stream or account names do not clash due to case differences. For example, `Foo` and `foo` would collide on Windows or macOS systems.
+- Use alphanumeric values.
+- Avoid spaces, tabs, periods (`.`), greater than (`>`) or asterisks (`*`).
+- Do not include path separators (forward slash or backward slash).
+- Keep the name length limited to 32 characters as the JetStream storage directories include the account, stream name, and consumer name.
+- Avoid using reserved file names like `NUL` or `LPT1`.
+- Be cautious of case sensitivity in file systems. To prevent collisions, ensure that stream or account names do not clash due to case differences. For example, `Foo` and `foo` would collide on Windows or macOS systems.
 
 :::
 

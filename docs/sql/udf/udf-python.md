@@ -78,11 +78,17 @@ from risingwave.udf import udf, udtf, UdfServer
 import struct
 import socket
 
-# Define a scalar functio that returns a single value
+# Define a scalar function that returns a single value
 @udf(input_types=['INT', 'INT'], result_type='INT')
 def gcd(x, y):
     while y != 0:
         (x, y) = (y, x % y)
+    return x
+
+# Define a scalar function to perform some blocking operation, setting the `io_threads` parameter to run multiple function calls concurrently on a thread pool
+@udf(input_types=["INT"], result_type="INT", io_threads=32)
+def blocking(x):
+    time.sleep(0.01) 
     return x
 
 # Define a scalar function that returns multiple values (within a struct)
@@ -116,9 +122,10 @@ The script first imports the `struct` and `socket` modules and three components 
 
 `udf` and `udtf` are decorators used to define scalar and table functions respectively.
 
-The code defines two scalar functions and one table function:
+The code defines three scalar functions and one table function:
 
-- The scalar function `gcd`, decorated with `@udf`, takes two integer inputs and returns the greatest common divisor of the two integers.
+- The scalar function `gcd`, decorated with `@udf`, takes two integer inputs and returns the greatest common divisor of the two integers. 
+- The scalar function `blocking`, decorated with `@udf`. The `io_threads` parameter specifies the number of threads that the Python UDF will use during execution to enhance processing performance of IO-intensive functions. Please note that multithreading can not speed up compute-intensive functions due to the GIL.
 - The scalar function `extract_tcp_info`, decorated with `@udf`, takes a single binary input and returns a structured output.
 
     The function takes a single argument `tcp_packet` of type bytes and uses the struct module to unpack the source and destination addresses and port numbers from `tcp_packet`, and then converts the binary IP addresses to strings using `socket.inet_ntoa`.
@@ -153,11 +160,14 @@ The UDF server will start running, allowing you to call the defined UDFs from Ri
 
 In RisingWave, use the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md) command to declare the functions you defined.
 
-Here are the SQL statements for declaring the three UDFs defined in [step 2](#2-define-your-functions-in-a-python-file).
+Here are the SQL statements for declaring the four UDFs defined in [step 2](#2-define-your-functions-in-a-python-file).
 
 ```sql
 CREATE FUNCTION gcd(int, int) RETURNS int
 LANGUAGE python AS gcd USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
+
+CREATE FUNCTION blocking(int) RETURNS int
+LANGUAGE python AS blocking USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
 
 CREATE FUNCTION extract_tcp_info(bytea)
 RETURNS struct<src_ip varchar, dst_ip varchar, src_port smallint, dst_port smallint>
@@ -178,6 +188,10 @@ SELECT gcd(25, 15);
 ---
 5
 
+SELECT blocking(2);
+---
+2
+
 SELECT extract_tcp_info(E'\\x45000034a8a8400040065b8ac0a8000ec0a80001035d20b6d971b900000000080020200493310000020405b4' :: bytea);
 ---
 (192.168.0.14,192.168.0.1,861,8374)
@@ -195,3 +209,59 @@ SELECT * FROM series(10);
 8
 9
 ```
+
+## 6. Scale the UDF Server
+
+Due to the limitations of the Python interpreter's [Global Interpreter Lock (GIL)](https://realpython.com/python-gil/), the UDF server can only utilize a single CPU core when processing requests. If you find that the throughput of the UDF server is insufficient, consider scaling out the UDF server.
+
+:::info
+How to determine if the UDF server needs scaling?
+
+You can use tools like `top` to monitor the CPU usage of the UDF server. If the CPU usage is close to 100%, it indicates that the CPU resources of the UDF server are insufficient, and scaling is necessary.
+:::
+
+To scale the UDF server, you can launch multiple UDF servers on different ports and use a load balancer to distribute requests among these servers.
+
+The specific code is as follows:
+
+```python title="udf.py"
+from multiprocessing import Pool
+
+def start_server(port: int):
+    """Start a UDF server listening on the specified port."""
+    server = UdfServer(location=f"localhost:{port}")
+    # add functions ...
+    server.serve()
+
+if __name__ == "__main__":
+    """Start multiple servers listening on different ports."""
+    n = 4
+    with Pool(n) as p:
+        p.map(start_server, range(8816, 8816 + n))
+```
+
+Then, you can start a load balancer, such as Nginx. It listens on port 8815 and forwards requests to UDF servers on ports 8816-8819.
+
+## Data Types
+
+The RisingWave Python UDF SDK supports the following data types:
+
+| SQL Type         | Python Type                    | Notes              |
+| ---------------- | -----------------------------  | ------------------ |
+| BOOLEAN          | bool                           |                    |
+| SMALLINT         | int                            |                    |
+| INT              | int                            |                    |
+| BIGINT           | int                            |                    |
+| REAL             | float                          |                    |
+| DOUBLE PRECISION | float                          |                    |
+| DECIMAL          | decimal.Decimal                |                    |
+| DATE             | datetime.date                  |                    |
+| TIME             | datetime.time                  |                    |
+| TIMESTAMP        | datetime.datetime              |                    |
+| INTERVAL         | MonthDayNano / (int, int, int) | Fields can be obtained by `months()`, `days()` and `nanoseconds()` from `MonthDayNano` |
+| VARCHAR          | str                            |                    |
+| BYTEA            | bytes                          |                    |
+| JSONB            | any                            |                    |
+| T[]              | list[T]                        |                    |
+| STRUCT&lt;&gt;        | tuple                          |                    |
+| ...others        |                                | Not supported yet. |

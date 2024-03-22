@@ -15,7 +15,7 @@ A sink is an external target that you can send data to. To stream data out of Ri
 :::tip Guided setup
 RisingWave Cloud provides an intuitive guided setup for creating a Kafka sink. For more information, see [Create a sink using guided setup](/cloud/create-a-sink/#using-guided-setup) in the RisingWave Cloud documentation.
 
-<lightButton text="Sign up for RisingWave Cloud" url="https://www.risingwave.cloud/auth/signup/" />
+<lightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
 :::
 
 ## Syntax
@@ -106,7 +106,7 @@ WITH (
 
 ## Create sink with AWS PrivateLink connection
 
-If your Kafka sink service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see see [Create an AWS PrivateLink connection](/sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
+If your Kafka sink service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](/sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
 
 To create a Kafka sink with a PrivateLink connection, in the WITH section of your `CREATE SINK` statement, specify the following parameters.
 

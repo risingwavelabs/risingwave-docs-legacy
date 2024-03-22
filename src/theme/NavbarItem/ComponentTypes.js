@@ -16,6 +16,6 @@ const ComponentTypes = {
   doc: DocNavbarItem,
   docSidebar: DocSidebarNavbarItem,
   docsVersion: DocsVersionNavbarItem,
-  docsVersionDropdown: DocsVersionDropdownNavbarItem,
+  docsVersionDropdown: DocsVersionDropdownNavbarItem
 };
 export default ComponentTypes;

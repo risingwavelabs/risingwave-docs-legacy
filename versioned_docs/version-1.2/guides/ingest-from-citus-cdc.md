@@ -12,8 +12,8 @@ RisingWave supports ingesting change data capture (CDC) data from Citus database
 
 Citus database is an extension to PostgreSQL that transforms PostgreSQL into a distributed database. For more details, see [Citus data](https://www.citusdata.com).
 
-:::caution Experimental feature
-Ingesting CDC data from Citus database is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+Ingesting CDC data from Citus database is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 ## Set up Citus
@@ -87,7 +87,7 @@ Unless specified otherwise, the fields listed are required.
 |schema.name| Optional. Name of the schema. By default, the value is `public`. |
 |table.name| Name of the table that you want to ingest data from. |
 |slot.name| Optional. The slot name for each source. Each source should have a unique slot name.|
-|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table is an experimental feature. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table are currently in Beta. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 ### Example
 
