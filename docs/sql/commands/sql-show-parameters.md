@@ -1,14 +1,14 @@
 ---
 id: sql-show-parameters
 title: SHOW PARAMETERS
-description: Show the details of your RisingWave cluster.
+description: Show the details of the system parameters.
 slug: /sql-show-parameters
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-parameters/" />
 </head>
 
-You can use the `SHOW PARAMETERS` command to view the system parameters, along with their current values.
+You can use the `SHOW PARAMETERS` command to view the [system parameters](/manage/view-configure-system-parameters.md), along with their current values.
 
 ```sql title="Examples"
 SHOW PARAMETERS;
