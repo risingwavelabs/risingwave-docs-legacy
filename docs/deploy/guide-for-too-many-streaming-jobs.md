@@ -11,6 +11,8 @@ slug: /guide-for-many-streaming-jobs
 By default, RisingWave makes Table/Index/MV/Sink (hereinafter collectively referred to as "streaming jobs") access maximum of all CPUs among the compute nodes and pursues every streaming jobs can utilizing all compute resources, designed for high performance. But when there are too many streaming jobs (more than 300) running in the cluster, this scheme is no longer optimal, considering that resources can be shared and contended by multiple streaming jobs. And using the default configuration in this case can introduce issues due to the scheduling and communicating overhead of too many tasks on the compute node, bringing bad performance and OOM risks.
 This guide describes and explains some do’s and don’ts in this case.
 
+Even with the correct cluster settings in place, RisingWave may still become overloaded, potentially causing performance issues such as high latency and even out-of-memory errors due to excessive workload. We recommend users increase resources if the issues still exist after all the optimizations below. We remark that scaling up/down/in/out in RW is easy and super quick. We advise users to adjust resources by trial and error.
+
 ## Recommended cluster settings 
 
 For clusters that are predicted to create more than 300 materialized views, the following configurations are worth noting.
