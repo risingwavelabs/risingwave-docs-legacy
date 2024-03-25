@@ -10,12 +10,7 @@ Choose one of the following to create a [database user](cluster-manage-database-
 
 - You can create a database user when [connecting to a cluster](cluster-connect-to-a-cluster.md).
 
-- You can click **Create user** in the **Database Users** tab on the [cluster details page](cluster-check-status-and-metrics.md#check-cluster-details) to create a new user.
-    
-    <img
-    src={require('./images/cluster-details-dbusers.png').default}
-    alt="Database users of a cluster"
-    />
+- You can click **Create database user** in the **Users** tab on the [cluster details page](cluster-check-status-and-metrics.md#check-cluster-details) to create a new user.
 
 - You can run the [CREATE USER](/docs/current/sql-create-user/) command to create a new user after [connecting to a cluster](cluster-connect-to-a-cluster.md) using the console or terminal.
 
