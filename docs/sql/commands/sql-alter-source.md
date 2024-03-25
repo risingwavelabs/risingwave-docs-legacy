@@ -104,7 +104,7 @@ ALTER SOURCE test_source SET SCHEMA test_schema;
 
 ### `FORMAT and ENCODE options`
 
-At present, combined with the `ALTER SOURCE` command, you can refresh the schema registry of a source by refilling the FORMAT and ENCODE options. For more details about these options, see [CREATE SOURCE](/sql/commands/sql-create-source.md).
+At present, combined with the `ALTER SOURCE` command, you can refresh the schema registry of a source by refilling the FORMAT and ENCODE options. For more details about these options, see [FORMAT and ENCODE parameters](/ingest/formats-and-encode-parameters.md).
 
 ```sql title=Syntax
 ALTER SOURCE source_name FORMAT data_format ENCODE data_encode [ (
@@ -138,4 +138,37 @@ ALTER SOURCE src_user FORMAT PLAIN ENCODE PROTOBUF(
 
 :::note
 Currently, it is not supported to modify the `data_format` and `data_encode`. Furthermore, when refreshing the schema registry of a source, it is not allowed to drop columns or change types.
+
+Another way of refreshing the schema is using the [`REFRESH SCHEMA` clause](#refresh-schema).
 :::
+
+### `REFRESH SCHEMA`
+
+This is another way of refreshing the schema of sources when the [`FORMAT and ENCODE options`](#format-and-encode-options) are not changed.
+
+```sql title=Syntax
+ALTER SOURCE source_name REFRESH SCHEMA;
+```
+
+For example, assume we have a source as follows:
+
+```sql title="Create a source"
+CREATE SOURCE src_user WITH (
+    connector = 'kafka',
+    topic = 'sr_pb_test',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
+)
+FORMAT PLAIN ENCODE PROTOBUF(
+    schema.registry = 'http://message_queue:8081',
+    message = 'test.User'
+);
+```
+
+Then we can refresh its schema with the following statement:
+
+```sql title="Refresh schema"
+ALTER SOURCE src_user REFRESH SCHEMA;
+```
+
+For more details about this example, see our [test file](https://github.com/risingwavelabs/risingwave/blob/994a2831088c9befc71721ed6f2f2d2e35c4d0a9/e2e_test/schema_registry/alter_sr.slt).
