@@ -78,6 +78,8 @@ Currently, RisingWave supports the following sink connectors:
 
 ## Sink decoupling
 
+Usually, Sink runs in a blocking manner. When the performance of the downstream target system fluctuates or becomes unavailable, the stream on RisingWave will be blocked, potentially compromising the stability of the RisingWave instance. Sink decoupling adds a buffering queue between the RisingWave Sink and the downstream system. This buffering helps maintain RisingWave's performance stability when the downstream system is temporarily slow or unavailable.
+
 The `sink_decouple` session variable can be specified to enable or disable sink decoupling. The default value for the session variable is `default`. 
 
 To enable sink decoupling for all sinks created in the sessions, set `sink_decouple` as `true` or `enable`.
