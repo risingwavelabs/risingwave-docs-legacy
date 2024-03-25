@@ -11,7 +11,7 @@ Temporal filters allow you to filter data based on time intervals, which are use
 
 ## Syntax
 
-The temporal filter is a expression with `now()`. It is only allowed in the `WHERE` and `Having` clause in the query.
+The temporal filter is an expression using `NOW()`. It can only be used in the `WHERE` and `HAVING` clauses in the query.
 
 An valid temporal filter comprises the following components:
 
@@ -20,6 +20,7 @@ An valid temporal filter comprises the following components:
 - A time expression with `NOW() +/- interval` as the right side
 
 There could be multiple temporal filters and other expressions in the `WHERE` clause connected with the `AND` operator.
+
 ```sql
 -- Allowed
 t > NOW() - INTERVAL '1 hour' AND t < NOW() + INTERVAL '1 hour' AND a < 1
@@ -38,7 +39,7 @@ t > NOW() - INTERVAL '1 hour' OR t < NOW() - INTERVAL '1 hour'
 (a < 1) OR (t > NOW() - INTERVAL '1 hour' AND t < NOW() - INTERVAL '1')
 ```
 
-Also, there is only one `OR` expression with temporal filter among the `AND` items of the  `WHERE` clause.
+Also, in the `WHERE` clause, each expression connected by the `AND` operator should have only one `OR` expression with a temporal filter.
 
 ```sql
 -- Invalid
