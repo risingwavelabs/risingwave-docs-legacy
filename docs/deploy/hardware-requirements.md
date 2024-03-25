@@ -23,11 +23,11 @@ RisingWave can run on the following hardware architectures:
 Compute nodes handle query processing and state management. More resources enable higher query throughput. For cost efficiency, machines with high memory-to-CPU ratios (4:1 or higher) are recommended due to RisingWave's memory-intensive nature.
 
 - Minimum:
-  - 4 CPU cores
-  - 4 GB memory
+  - 2 CPU cores
+  - 8 GB memory
 - Recommended:
-  - ≥8 CPU cores
-  - ≥8 GB memory
+  - ≥4 CPU cores
+  - ≥16 GB memory
 
 ## Compactor nodes
 
@@ -61,3 +61,9 @@ To optimize performance and stability, please consider the following recommendat
 - If you have a single meta node, increase the value of `meta_leader_lease_secs` to optimize performance.
 - If using MinIO, avoid deploying etcd and MinIO on the same disks to prevent conflicts or performance degradation.
 - For detailed disk performance requirements and recommendations, refer to the [Disks](https://etcd.io/docs/v3.3/op-guide/hardware/#disks) section in the etcd documentation.
+
+## Storage
+
+RisingWave offers support for multiple storage systems as storage backends. For the complete list of supported storage systems for Kubernetes deployments, see [Set up a RisingWave cluster in Kubernetes](/deploy/risingwave-kubernetes.md#deploy-a-risingwave-instance).
+
+Please notice that storage performance can **significantly** impact RisingWave's performance. We recommend using high-performance cloud storage systems such as AWS S3. For self-managed storage systems such as MinIO or local file system, please ensure to use high-performance SSD disks.

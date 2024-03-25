@@ -23,7 +23,7 @@ It is important to note that UDFs have lower execution efficiency compared to bu
 
 ## Types of UDFs in RisingWave
 
-At present, there are two ways to define your UDF in RisingWave. The first option is to use it as an external function, leveraging the capabilities of languages such as Python and Java to perform advanced data processing and analysis tasks. The second option is to use a SQL UDF. Currently, we support basic SQL UDFs with named and unnamed parameters, and we are actively working on enhancing the capabilities of SQL UDFs.
+At present, there are three ways to define your UDF. The first option is to use it as an external function, which runs as a standalone service and provides maximum flexibility. The second option is to use an embedded UDF, which runs internally in RisingWave. The third is to use a SQL UDF, which allows for the same capabilities as regular SQL while offering a more concise way to express complex queries.
 
 :::note Beta feature
 UDF is currently in Beta. Please contact us if you encounter any issues or have feedback.
@@ -37,9 +37,12 @@ RisingWave supports creating UDFs with the following programming languages:
 
 - [Java](/sql/udf/udf-java.md)
 
-- [Rust](/sql/udf/udf-rust.md)
+### Embedded UDFs
+
+- [Python](/sql/udf/udf-python-embedded.md)
 
 - [JavaScript](/sql/udf/udf-javascript.md)
+- [Rust](/sql/udf/udf-rust.md)
 
 ### SQL UDFs
 
