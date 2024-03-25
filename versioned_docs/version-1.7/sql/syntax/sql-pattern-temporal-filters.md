@@ -39,11 +39,11 @@ t > NOW() - INTERVAL '1 hour' OR t < NOW() - INTERVAL '1 hour'
 (a < 1) OR (t > NOW() - INTERVAL '1 hour' AND t < NOW() - INTERVAL '1')
 ```
 
-Also, in the `WHERE` clause, each expression connected by the `AND` operator should have only one `OR` expression with a temporal filter.
+Also, in the `WHERE` clause, each expression connected by the `AND` operator should have only one temporal filter connected with `OR` expression.
 
 ```sql
 -- Invalid
-(t > NOW() - INTERVAL '1 hour' OR t is NULL OR a < 1) 
+(t < NOW() - INTERVAL '1 hour' OR t > NOW() OR a < 1) 
 AND (t < NOW() - INTERVAL '1 hour' OR a < 1)
 ```
 
