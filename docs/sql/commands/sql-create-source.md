@@ -33,19 +33,18 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name (
 
 ## Notes
 
-A [generated column](/sql/query-syntax/query-syntax-generated-columns.md) is defined with non-deterministic functions. When the data is ingested, the function will be evaluated to generated the value of this field.
+A [generated column](/sql/query-syntax/query-syntax-generated-columns.md) is defined with non-deterministic functions. When the data is ingested, the function will be evaluated to generate the value of this field.
 
 Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
 
 To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestamptz AS proctime()`) when creating the table or source. See also [`proctime()`](/sql/functions-operators/sql-function-datetime.md#proctime).
 
-For a source with schema from external connector, use `*` to represent all columns from the external connector first, so that you can define a generated column on source with an external connector. See the example below.
+For a source with schema from an external connector, use `*` to represent all columns from the external connector first, so that you can define a generated column on the source with an external connector. See the example below.
 
 ```sql title=Example
 CREATE SOURCE from_kafka (
   *,
-  gen_i32_field INT AS int32_field + 2,
-  PRIMARY KEY (some_key)
+  gen_i32_field INT AS int32_field + 2
 )
 INCLUDE KEY AS some_key
 WITH (
@@ -77,7 +76,7 @@ RisingWave supports generating watermarks when creating a source. Watermarks are
 
 ## Change Data Capture (CDC)
 
-Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
+Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, and then delivering the changes to a downstream service in real-time.
 
 RisingWave provides native MySQL and PostgreSQL CDC connectors. With these CDC connectors, you can ingest CDC data from these databases directly, without setting up additional services like Kafka.
 
