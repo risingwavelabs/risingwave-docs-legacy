@@ -39,7 +39,7 @@ Unless specified otherwise, the fields listed are required. Note that the value 
 |Field|Notes|
 |---|---|
 |mongodb.url| The URL of MongoDB. |
-|collection.name| The collection you want to ingest data from. Use the format `db_name.collection_name` to specify which database the collection is located in. |
+|collection.name| The collection or collections you want to ingest data from. Use the format `db_name.collection_name` to specify which database the collection is in. To ingest data from collections in different database, use a comma-separated list of regular expressions. |
 
 
 ### Examples
@@ -57,4 +57,15 @@ CREATE TABLE source_name (
 );
 ```
 
-After the table is created, you can view and transform the data based on your needs.
+The following SQL query creates a table that ingests data from all collections in the databases `db1` and `db2`.
+
+```sql title=Example
+CREATE TABLE source_name (
+   _id varchar PRIMARY KEY,
+   payload jsonb
+) WITH (
+   connector='mongodb-cdc',
+   mongodb.url='mongodb://localhost:27017/?replicaSet=rs0',
+   collection.name='db1.*, db2.*'
+);
+```
