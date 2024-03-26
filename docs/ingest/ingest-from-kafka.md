@@ -300,7 +300,7 @@ CREATE TABLE table1 (PRIMARY KEY(id))
 
 ## Read schemas from Schema Registry
 
-Confluent Schema Registry provides a serving layer for your metadata. It provides a RESTful interface for storing and retrieving your schemas.
+Confluent and Karapace Schema Registry provide a serving layer for your metadata. They provide a RESTful interface for storing and retrieving your schemas.
 
 RisingWave supports reading schemas from a Schema Registry. The latest schema will be retrieved from the specified Schema Registry using the `TopicNameStrategy` strategy when the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
 
@@ -313,6 +313,8 @@ ENCODE data_encode (
 ```
 
 To learn more about Confluent Schema Registry and how to set up a Schema Registry, refer to the [Confluent Schema Registry documentation](https://docs.confluent.io/platform/current/schema-registry/index.html).
+
+To learn more about Karapace Schema Registry and how to get started, see [Karapace](https://aiven.io/docs/products/kafka/karapace). 
 
 If a primary key also needs to be defined, use the table constraint syntax.
 
