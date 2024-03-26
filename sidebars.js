@@ -1083,6 +1083,21 @@ const sidebars = {
           label: "Troubleshoot high latency",
           id: "troubleshoot/troubleshoot-high-latency"
         },
+        {
+          type: "doc",
+          label: "Troubleshoot streaming performance",
+          id: "troubleshoot/troubleshoot-streaming-performance"
+        },
+        {
+          type: "doc",
+          label: "Troubleshoot meta",
+          id: "troubleshoot/troubleshoot-meta"
+        },
+        {
+          type: "doc",
+          label: "Troubleshoot recovery failure",
+          id: "troubleshoot/troubleshoot-recovery-failure"
+        },
       ]
     },
     {
