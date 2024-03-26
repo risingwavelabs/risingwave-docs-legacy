@@ -96,5 +96,5 @@ WITH (
 Then, you can query the Iceberg source:
 
 ```sql
-select * from iceberg_source
+SELECT * FROM iceberg_source;
 ```
