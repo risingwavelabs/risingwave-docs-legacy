@@ -51,7 +51,8 @@ Once the sink is created, data changes will be streamed to the specified table.
 | `cassandra.keyspace`       | Required. The name of the keyspace within the Cassandra database or ScyllaDB where you want to store the data. A keyspace is a logical container for organizing data in Cassandra.|
 | `cassandra.table`   | Required. The name of the table in the specified keyspace where you want to insert or update the data.|
 | `cassandra.datacenter`  | Optional. If you are working with a multi-data center Cassandra setup, you may need to specify the name of the target data center where the data should be written.|
-
+| `cassandra.max_batch_rows` | Optional. The number of batch rows sent at a time. The value must be between 1 and 65535. The default value is 512. |
+| `cassandra.request_timeout_ms` | Optional. The waiting time for each batch. The default value is 2000. It is recommended to reduce batch size first before trying to change the waiting time. |
 :::note
 
 The Cassandra sink in RisingWave provides at-least-once delivery semantics. Events may be redelivered in case of failures. We recommend using the `upsert` sink type to avoid duplicates.
