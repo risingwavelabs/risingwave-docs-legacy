@@ -193,3 +193,23 @@ ALTER TABLE table_name
 -- Change the name of the table named "table0" to "table1"
 ALTER TABLE table0 RENAME TO table1;
 ```
+
+### `REFRESH SCHEMA`
+
+```sql title=Syntax
+ALTER TABLE table_name
+    REFRESH SCHEMA;
+```
+
+|Parameter or clause        | Description           |
+|---------------------------|-----------------------|
+|**REFRESH SCHEMA**|This clause alters the schema registry of table with connectors.|
+
+```sql title=Examples
+-- Refresh the schema of the table named "t_user".
+ALTER TABLE t_user REFRESH SCHEMA;
+```
+
+:::note
+If a downstream fragment references a column that is either missing or has undergone a type change in the updated schema, the command will be declined.
+:::
