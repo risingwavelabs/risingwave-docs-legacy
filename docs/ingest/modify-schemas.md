@@ -63,7 +63,7 @@ ALTER TABLE table_name DROP COLUMN column_name;
 
 ### Source
 
-At present, combined with the [`ALTER SOURCE` command](/sql/commands/sql-alter-source.md#format-and-encode-options), you can refresh the schema registry of a source by refilling its [FORMAT and ENCODE options]((/ingest/formats-and-encode-parameters.md)). The syntax is:
+At present, combined with the [`ALTER SOURCE` command](/sql/commands/sql-alter-source.md#format-and-encode-options), you can refresh the schema registry of a source by refilling its [FORMAT and ENCODE options](formats-and-encode-parameters.md). The syntax is:
 
 ```sql title=Syntax
 ALTER SOURCE source_name FORMAT data_format ENCODE data_encode [ (
@@ -99,7 +99,7 @@ ALTER SOURCE src_user FORMAT PLAIN ENCODE PROTOBUF(
 Currently, it is not supported to modify the `data_format` and `data_encode`. Furthermore, when refreshing the schema registry of a source, it is not allowed to drop columns or change types.
 :::
 
-In addition, when the [FORMAT and ENCODE options](/ingest/formats-and-encode-parameters.md) are not changed, the `REFRESH SCHEMA` clause of `ALTER SOURCE` can also be used to refresh the schema of a source.
+In addition, when the [FORMAT and ENCODE options](formats-and-encode-parameters.md) are not changed, the `REFRESH SCHEMA` clause of `ALTER SOURCE` can also be used to refresh the schema of a source.
 
 ```sql title=Syntax
 ALTER SOURCE source_name REFRESH SCHEMA;
@@ -131,11 +131,15 @@ For more details about this example, see our [test file](https://github.com/risi
 
 ### Table
 
-You can use the following statement to refresh the schema of a table with connectors. For more details, see [`ALTER TABLE`](/docs/sql/commands/sql-alter-table.md#refresh-schema).
+Similarly, you can use the following statement to refresh the schema of a table with connectors. For more details, see [`ALTER TABLE`](/sql/commands/sql-alter-table.md#refresh-schema).
 
 ```sql title="Refresh schema of table"
 ALTER TABLE src_user REFRESH SCHEMA;
 ```
+
+:::note
+If a downstream fragment references a column that is either missing or has undergone a type change in the updated schema, the command will be declined.
+:::
 
 ## See also
 
