@@ -8,7 +8,7 @@ slug: /sql-create-function
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-function/" />
 </head>
 
-The `CREATE FUNCTION` command can be used to create [user-defined functions](/sql/udf/user-defined-functions.md) (UDFs). There are two ways to create UDFs in RisingWave: UDFs as external functions and SQL UDFs. `CREATE FUNCTION` can be used for both ways with different syntax.
+The `CREATE FUNCTION` command can be used to create [user-defined functions](/sql/udf/user-defined-functions.md) (UDFs). There are three ways to create UDFs in RisingWave: UDFs as external functions, embedded UDFs and SQL UDFs. `CREATE FUNCTION` can be used for them with different syntax.
 
 ## UDFs as external functions
 
@@ -62,10 +62,25 @@ CREATE FUNCTION gcd(int, int) RETURNS int
 LANGUAGE wasm USING BASE64 'encoded-wasm-binary';
 ```
 
-Use `CREATE FUNCTION` to declare a UDF defined by JavaScript. For more details, see [Use UDFs in JavaScript](/sql/udf/udf-javascript.md).
+## Embedded UDFs
 
-```sql
-CREATE FUNCTION gcd(a int, b int) RETURNS int LANGUAGE javascript AS $$
+Here are examples of embedded UDFs.
+
+```sql title="Embedded UDFs"
+# Embedded Python UDF
+create function gcd(a int, b int) returns int language python as $$
+def gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
+$$;
+```
+
+For more details, see [Embedded Python UDFs](/sql/udf/udf-python-embedded.md).
+
+```sql title="Embedded UDFs"
+# Embedded JavaScript UDF
+create function gcd(a int, b int) returns int language javascript as $$
     while (b != 0) {
         let t = b;
         b = a % b;
@@ -74,6 +89,24 @@ CREATE FUNCTION gcd(a int, b int) RETURNS int LANGUAGE javascript AS $$
     return a;
 $$;
 ```
+
+For more details, see [Use UDFs in JavaScript](/sql/udf/udf-javascript.md).
+
+```sql title="Embedded UDFs"
+# Embedded Rust UDF
+create function gcd(int, int) returns int language rust as $$
+    fn gcd(mut a: i32, mut b: i32) -> i32 {
+        while b != 0 {
+            let t = b;
+            b = a % b;
+            a = t;
+        }
+        a
+    }
+$$;
+```
+
+For more details, see [Use UDFs in Rust](/sql/udf/udf-rust.md).
 
 ## SQL UDFs
 

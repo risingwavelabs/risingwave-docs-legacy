@@ -19,7 +19,7 @@ To ingest data in formats marked with "T", you need to create tables (with conne
 
 | Connector | Version | Format |
 |---------|---------|---------|
-|[Kafka](/ingest/ingest-from-kafka.md)|3.1.0 or later versions |[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Debezium AVRO](#debezium-avro) (T), [DEBEZIUM_MONGO_JSON](#debezium-mongo-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T), [Upsert JSON](#upsert-json), [Upsert AVRO](#upsert-avro), [Bytes](#bytes)|
+|[Kafka](/ingest/ingest-from-kafka.md)|3.1.0 or later versions |[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Debezium AVRO](#debezium-avro) (T), [DEBEZIUM_MONGO_JSON](#debezium-mongo-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T), [Upsert JSON](#upsert-json) (T), [Upsert AVRO](#upsert-avro), [Bytes](#bytes)|
 |[Redpanda](/ingest/ingest-from-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf) |
 |[Pulsar](/ingest/ingest-from-pulsar.md)| 2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T)|
 |[Astra Streaming](/guides/connector-astra-streaming.md)|Latest |[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|  
@@ -42,7 +42,7 @@ When creating a source, you need to specify the data and encoding formats in the
 
 ### Avro
 
-For data in Avro format, you must specify a message and a schema file location. The schema file location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Avro, instead of a schema file location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/ingest/ingest-from-kafka.md#read-schemas-from-schema-registry).
+For data in Avro format, you must specify a message and a schema registry. For Kafka data in Avro, you need to provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/ingest/ingest-from-kafka.md#read-schemas-from-schema-registry).
 
 `schema.registry` can accept multiple addresses. RisingWave will send requests to all URLs and return the first successful result.
 
@@ -66,7 +66,7 @@ Syntax:
 FORMAT PLAIN
 ENCODE AVRO (
    message = 'main_message',
-   schema.location = 'location' | schema.registry = 'schema_registry_url [, ...]',
+   schema.registry = 'schema_registry_url [, ...]',
    [schema.registry.name.strategy = 'topic_name_strategy'],
    [key.message = 'test_key']
 )
@@ -78,7 +78,9 @@ When creating a source from streams in with Debezium AVRO, the schema of the sou
 
 `schema.registry` can accept multiple addresses. RisingWave will send requests to all URLs and return the first successful result.
 
-Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
+Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see the [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy) in the Confluent documentation.
+
+`ignore_key` can be used to ignore the key part of given messages. By default, it is `false`. If set to `true`, only the payload part of the message will be consumed. In this case, the payload must not be empty and tombstone messages cannot be handled.
 
 :::caution Beta Feature
 `schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
@@ -92,7 +94,8 @@ ENCODE AVRO (
    message = 'main_message',
    schema.location = 'location' | schema.registry = 'schema_registry_url [, ...]',
    [schema.registry.name.strategy = 'topic_name_strategy'],
-   [key.message = 'test_key']
+   [key.message = 'test_key'],
+   [ignore_key = 'true | false']
 )
 ```
 
@@ -154,11 +157,15 @@ When creating a source from streams in Debezium JSON, you can define the schema 
 
 Note that if you are ingesting data of type `timestamp` or `timestamptz` in RisingWave, the upstream value must be in the range of `[1973-03-03 09:46:40, 5138-11-16 09:46:40] (UTC)`. The value may be parsed and ingested incorrectly without warning.
 
+`ignore_key` can be used to ignore the key part of given messages. By default, it is `false`. If set to `true`, only the payload part of the message will be consumed. In this case, the payload must not be empty and tombstone messages cannot be handled.
+
 Syntax:
 
 ```sql
 FORMAT DEBEZIUM
-ENCODE JSON
+ENCODE JSON [ (
+   [ ignore_key = 'true | false ' ]
+) ]
 ```
 
 ### Debezium Mongo JSON
