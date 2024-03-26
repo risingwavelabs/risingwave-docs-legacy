@@ -123,3 +123,10 @@ For Kafka sources, RisingWave operates under the assumption that each actor excl
 2. **Disruption of existing RisingWave behavior**: The issue arises when users are allowed to specify group IDs in sources. Let's consider a scenario where two downstream materialized views depend on the same source, assuming a parallelism degree of 3 and the upstream topic having 3 partitions. In the current implementation, there would be two sets of source executors, totaling six, all sharing the same group ID.
 
 According to Kafka's behavior, "each consumer in a group is assigned one or more partitions to read messages from." However, if the number of consumers exceeds the number of partitions, some consumers will not receive any data. This situation clearly fails to meet the requirement of both materialized views receiving complete data sets.
+
+<details>
+<summary>I'd like to explore more questions.</summary>
+
+If you can't find the questions you're looking for on this FAQ page, we recommend visiting [the community-version of FAQ](https://risingwave-community.snowshoe.dev/). It collects questions posed by users and answers provided by our developers in our [Slack channel](https://www.risingwave.com/slack). Please note that the community version is organized by AI and the answers are not manually reviewed. We will regularly select the most frequently asked questions there and add them to this FAQ page, ensuring that valuable information becomes readily available to all users. We appreciate your understanding as we work on improving the community to provide the best user experience possible.
+
+</details>

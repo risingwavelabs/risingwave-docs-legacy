@@ -397,24 +397,45 @@ const sidebars = {
                   label: "Overview",
                 },
                 {
-                  type: "doc",
-                  id: "sql/udf/udf-python",
-                  label: "Python",
+                  type: "category",
+                  label: "External UDFs",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      id: "sql/udf/udf-python",
+                      label: "Python",
+                    },
+                    {
+                      type: "doc",
+                      id: "sql/udf/udf-java",
+                      label: "Java",
+                    },
+                    {
+                      type: "doc",
+                      id: "sql/udf/udf-rust",
+                      label: "Rust",
+                    },
+                  ],
                 },
                 {
-                  type: "doc",
-                  id: "sql/udf/udf-java",
-                  label: "Java",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-rust",
-                  label: "Rust",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-javascript",
-                  label: "JavaScript",
+                  type: "category",
+                  label: "Embedded UDFs",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      id: "sql/udf/udf-python-embedded",
+                      label: "Python",
+                    },
+                    {
+                      type: "doc",
+                      id: "sql/udf/udf-javascript",
+                      label: "JavaScript",
+                    },
+                  ],
                 },
                 {
                   type: "doc",
