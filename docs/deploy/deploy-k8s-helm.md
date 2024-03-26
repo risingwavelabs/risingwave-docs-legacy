@@ -51,12 +51,12 @@ Update your Helm chart repositories to ensure that you are using the RisingWave 
 You can optionally customize your configuration for the RisingWave deployment by editing the [`values.yml`](https://github.com/risingwavelabs/helm-charts/blob/main/charts/risingwave/values.yaml) file.
 
 #### Customize meta backends
-   
-For meta backends, we recommend using `etcd` by setting `tags.etcd=true`. See [`Configuration`](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#customize-meta-store) for all the available meta backends.
+
+The meta backends store the metadata of a RisingWave cluster. We recommend using `etcd` as the backend by setting `tags.etcd=true`. See [`Configuration`](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#customize-meta-store) for all the available meta backends.
 
 #### Customize state backends
 
-By default, the RisingWave Helm chart uses `MinIO` as the default state backend. See [`Configuration`](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#customize-state-store) for all the available state backends. Examples:
+The state backends in RisingWave serve as a fault-tolerance storage system for the state. By default, the RisingWave Helm chart uses `MinIO` as the default state backend. See [`Configuration`](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#customize-state-store) for all the available state backends. Examples:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
