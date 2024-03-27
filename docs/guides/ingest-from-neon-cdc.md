@@ -12,7 +12,7 @@ Neon is a Serverless Postgres designed for the cloud that separates compute and 
 
 Follow these steps to ingest CDC data from Neon into RisingWave:
 
-## 1. Sign Up for a Neon Cloud Account
+## 1. Sign up for a Neon Cloud account
 
 Start by signing up for a free Neon Cloud account, which will grant you access to PostgreSQL services. To create your account, visit [Neon Cloud Account](https://console.neon.tech/sign_in).
 
