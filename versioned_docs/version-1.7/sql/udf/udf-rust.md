@@ -100,7 +100,7 @@ There are two ways to load the WASM module:
     CREATE FUNCTION gcd(int, int) RETURNS int LANGUAGE wasm USING BASE64 :'wasm_binary';
     ```
 
-2. Load the WASM binary from the local file system of the frontend. Note the `fs://` is URI schema, `/path/to/udf.wasm` is the real path.
+2. Load the WASM binary from the local file system of the frontend. Note the `fs://` is URI schema, and `/path/to/udf.wasm` is the real path.
 
     ```sql
     CREATE FUNCTION gcd(int, int) RETURNS int LANGUAGE wasm USING LINK 'fs:///path/to/udf.wasm';
