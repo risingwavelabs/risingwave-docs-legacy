@@ -20,7 +20,7 @@ Start by signing up for a free Neon Cloud account, which will grant you access t
 
 Navigate to the Neon Console and select "Create a project." Assign a name and region to your first Neon PostgreSQL project. You will be presented with connection details for your Neon project, so be sure to save them for later use when connecting to your PostgreSQL server.
 
-## 3. Connect to the Neon PostgreSQL Server
+## 3. Connect to the Neon PostgreSQL server
 
 You can connect to Neon through the SQL Editor in Neon, psql, or from other clients or applications.
 
