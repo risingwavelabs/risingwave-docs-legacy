@@ -16,7 +16,7 @@ Follow these steps to ingest CDC data from Neon into RisingWave:
 
 Start by signing up for a free Neon Cloud account, which will grant you access to PostgreSQL services. To create your account, visit [Neon Cloud Account](https://console.neon.tech/sign_in).
 
-## 2. Create Your First Neon Project
+## 2. Create your first Neon project
 
 Navigate to the Neon Console and select "Create a project." Assign a name and region to your first Neon PostgreSQL project. You will be presented with connection details for your Neon project, so be sure to save them for later use when connecting to your PostgreSQL server.
 
