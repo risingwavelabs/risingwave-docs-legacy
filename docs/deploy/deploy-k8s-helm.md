@@ -29,7 +29,7 @@ Now start a RisingWave cluster with Helm.
 Add the `risingwave` chart repository:
 
   ```bash
-  helm repo add risingwavelabs https://risingwavelabs.github.io/helm-charts/
+  helm repo add risingwavelabs https://risingwavelabs.github.io/helm-charts/ --force-update
   ```
 
 ### 2. Update Helm chart repo
