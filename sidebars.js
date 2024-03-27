@@ -281,6 +281,44 @@ const sidebars = {
                   ]
                 },
                 {
+                  type: "category",
+                  label: "CDC",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "CDC via event streaming systems",
+                      id: "ingest/ingest-from-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "Citus CDC",
+                      id: "guides/ingest-from-citus-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "MongoDB CDC",
+                      id: "guides/ingest-from-mongodb-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "MySQL CDC",
+                      id: "guides/ingest-from-mysql-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "PostgreSQL CDC",
+                      id: "guides/ingest-from-postgres-cdc",
+                    },
+                  ]
+                },
+                {
+                  type: "doc",
+                  label: "Apache Iceberg",
+                  id: "ingest/ingest-from-iceberg",
+                },
+                {
                   type: "doc",
                   label: "AWS Kinesis",
                   id: "ingest/ingest-from-kinesis",
@@ -297,38 +335,13 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  label: "CDC via event streaming systems",
-                  id: "ingest/ingest-from-cdc",
-                },
-                {
-                  type: "doc",
-                  label: "Citus CDC",
-                  id: "guides/ingest-from-citus-cdc",
-                },
-                {
-                  type: "doc",
                   label: "Google Cloud Storage",
                   id: "ingest/ingest-from-gcs",
                 },
                 {
                   type: "doc",
-                  label: "MongoDB CDC",
-                  id: "guides/ingest-from-mongodb-cdc",
-                },
-                {
-                  type: "doc",
-                  label: "MySQL CDC",
-                  id: "guides/ingest-from-mysql-cdc",
-                },
-                {
-                  type: "doc",
                   label: "NATS JetStream",
                   id: "ingest/ingest-from-nats",
-                },
-                {
-                  type: "doc",
-                  label: "PostgreSQL CDC",
-                  id: "guides/ingest-from-postgres-cdc",
                 },
                 {
                   type: "doc",
