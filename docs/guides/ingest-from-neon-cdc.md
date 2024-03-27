@@ -10,7 +10,7 @@
 
 Neon is a Serverless Postgres designed for the cloud that separates compute and storage to offer modern developer features such as autoscaling, branching, bottomless storage, and others.
 
-Follow these steps to successfully ingest CDC data from Neon into RisingWave:
+Follow these steps to ingest CDC data from Neon into RisingWave:
 
 ## 1. Sign Up for a Neon Cloud Account
 
@@ -22,9 +22,9 @@ Navigate to the Neon Console and select "Create a project." Assign a name and re
 
 ## 3. Connect to the Neon PostgreSQL Server
 
-You can connect to Neon through Neon's SQL Editor, psql, or from other clients or applications.
+You can connect to Neon through the SQL Editor in Neon, psql, or from other clients or applications.
 
-For more information about Neon, please refer to [Neon's official documentation](https://neon.tech/docs/introduction).
+For more information about Neon, please refer to the [official documentation of Neon](https://neon.tech/docs/introduction).
 
 ## 4. Configure Neon for CDC
 1. Ensure that `wal_level` is `logical`. Check by using the following statement.
@@ -33,7 +33,7 @@ For more information about Neon, please refer to [Neon's official documentation]
     SHOW wal_level;
     ```
 
-    By default, it is `replica`. For CDC, you will need to set it to logical through Neon's SQL Editor, psql, or from other clients. The following command will change the `wal_level`.
+    By default, it is `replica`. For CDC, you will need to set it to logical through the SQL Editor in Neon, psql, or from other clients. The following command will change the `wal_level`.
 
     ```sql
     ALTER SYSTEM SET wal_level = logical;
@@ -90,7 +90,7 @@ For more information about Neon, please refer to [Neon's official documentation]
     ```
 ## 5. Ingest CDC data from Neon into RisingWave
     
-The following example creates a table in RisingWave that reads CDC data from the `customer` table in Neon. The `customer` table is located in the `public` schema, under the `dev` database. When connecting to a specific table in Neon, use the `CREATE TABLE` command.
+The following example creates a table in RisingWave that reads CDC data from the `customer` table in Neon. The `customer` table is in the `public` schema within the `dev` database. When connecting to a specific table in Neon, use the `CREATE TABLE` command.
 
 ```sql
 CREATE TABLE customer (
@@ -110,7 +110,7 @@ CREATE TABLE customer (
     table.name = 'customer'
 );
 ```
-Similarly, you can create another table reading CDC data in RisingWave based on the `orders` table in Neon with `public` schema, under the `dev` database.
+Similarly, you can create another table reading CDC data in RisingWave based on the `orders` table in Neon with a `public` schema within the `dev` database.
 ```sql
 CREATE TABLE orders (
     order_id INTEGER PRIMARY KEY,
