@@ -314,7 +314,7 @@ ENCODE data_encode (
 
 To learn more about Confluent Schema Registry and how to set up a Schema Registry, refer to the [Confluent Schema Registry documentation](https://docs.confluent.io/platform/current/schema-registry/index.html).
 
-To learn more about Karapace Schema Registry and how to get started, see [Karapace](https://aiven.io/docs/products/kafka/karapace). 
+To learn more about Karapace Schema Registry and how to get started, see [Get started with Karapace](https://aiven.io/docs/products/kafka/karapace/get-started). 
 
 If a primary key also needs to be defined, use the table constraint syntax.
 
