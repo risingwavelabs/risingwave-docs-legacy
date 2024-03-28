@@ -29,7 +29,7 @@ Two solutions:
 2. Decrease the parallelism of the running streaming jobs or drop problematic streaming jobs.
     1. `alter system set pause_on_next_bootstrap to true;`
     2. Reboot the meta service, then the cluster will enter safe mode after recovery.
-    3. Drop the problematic streaming jobs or scale in them using `risectl` , refer to: [scaling risingwave](https://www.notion.so/Scaling-in-RisingWave-Draft-50e6f7c96fcd48d2bd089416256529dc?pvs=21).
+    3. Drop the problematic streaming jobs or scale in them using `risectl` , refer to: [scaling risingwave](/deploy/k8s-cluster-scaling.md).
     4. Restart the meta node, or resume the cluster by: `risectl meta resume`.
 
 ### Unconventional CN scaling down
