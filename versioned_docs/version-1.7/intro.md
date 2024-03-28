@@ -60,7 +60,7 @@ Compared to existing stream processing systems like [Apache Flink](https://flink
 
 ## Key feature differences: RisingWave vs. Flink
 
-For the key feature differences between RisingWave and Flink, see [RisingWave vs. Apache Flink: Which one to choose?](risingwave-flink-comparison.md)
+For the key feature differences between RisingWave and Flink, see: [RisingWave vs. Apache Flink: Which one to choose?](risingwave-flink-comparison.md)
 
 ## RisingWave's limitations
 
