@@ -84,7 +84,7 @@ Now start a RisingWave cluster with Helm.
 6. Use the following command to check the deployment status:
 
   ```bash
-  kubectl get pods -l app.kubernetes.io/instance=<my-risingwave>
+  kubectl -n risingwave get pods -l app.kubernetes.io/instance=<my-risingwave>
   ```
 
   When your status looks like below, it means the RisingWave cluster starts successfully:
