@@ -308,6 +308,11 @@ const sidebars = {
                     },
                     {
                       type: "doc",
+                      label: "Neon CDC",
+                      id: "guides/ingest-from-neon-cdc",
+                    },
+                    {
+                      type: "doc",
                       label: "PostgreSQL CDC",
                       id: "guides/ingest-from-postgres-cdc",
                     },
