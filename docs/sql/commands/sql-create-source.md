@@ -72,7 +72,7 @@ FORMAT upsert ENCODE AVRO (
 |**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Supported formats](/ingest/supported-sources-and-formats.md#supported-formats). |
 
 :::note
-Please make a distinction between the parameters set in FORMAT and ENCODE options and that set in the `WITH` clause. Set them in the right place and do not misuse them.
+Please distinguish between the parameters set in the FORMAT and ENCODE options and those set in the WITH clause. Ensure that you place them correctly and avoid any misuse.
 :::
 
 ## Watermarks
