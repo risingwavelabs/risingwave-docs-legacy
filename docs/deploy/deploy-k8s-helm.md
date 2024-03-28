@@ -65,13 +65,13 @@ Now start a RisingWave cluster with Helm.
   To customize your deployment during installation, run this command instead:
 
   ```bash
-  helm install --set wait=true -f values.yml <my-risingwave> risingwavelabs/risingwave
+  helm install -n risingwave --set wait=true -f values.yml <my-risingwave> risingwavelabs/risingwave
   ```
 
   To customize your deployment during upgrade, run this command instead:
 
   ```bash
-  helm upgrade -f values.yml --reuse-values <my-risingwave> risingwavelabs/risingwave
+  helm upgrade -n risingwave -f values.yml --reuse-values <my-risingwave> risingwavelabs/risingwave
   ```
 
   The `--reuse-values` option ensures that the previous configuration will be kept and only the provided configuration will be applied.
@@ -94,7 +94,7 @@ Now start a RisingWave cluster with Helm.
   To view the user-specified configurations of your RisingWave cluster:
 
   ```bash
-  helm get values my-risingwave
+  helm get values my-risingwave -n risingwave
   ```
 
   The output will look like this:
