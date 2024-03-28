@@ -56,7 +56,58 @@ Now start a RisingWave cluster with Helm.
 
     - **Bundled etcd and MinIO**: If you want to use `etcd` as the meta backend and `MinIO` as the state backend, the Helm chart for RisingWave offers the option to bundle them together. This allows for a quick and easy setup of the Helm chart. See [Configuration](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#bundled-etcdminio-as-stores) for more details. To enable this feature, set `tags.bundle=true`.
 
-5. Install the latest RisingWave Helm chart:
+5. During installation or upgrade, you also need to customize your RisingWave deployment by editing the [`values.yml`](https://github.com/risingwavelabs/helm-charts/blob/main/charts/risingwave/values.yaml) file. You should edit the file before specifying it during installation or upgrade.
+
+  To customize your deployment during installation, run this command instead:
+
+  ```bash
+  helm install --set wait=true -f values.yml <my-risingwave> risingwavelabs/risingwave
+  ```
+
+  To customize your deployment during upgrade, run this command instead:
+
+  ```bash
+  helm upgrade -f values.yml --reuse-values <my-risingwave> risingwavelabs/risingwave
+  ```
+
+  The `--reuse-values` option ensures that the previous configuration will be kept and only the provided configuration will be applied.
+
+  A typical `values.yml` looks like this:
+
+  ```yaml
+  ...
+  compactorComponent:
+    resources:
+      limits:
+        cpu: 1
+        memory: 2Gi
+      requests:
+        cpu: 100m
+        memory: 64Mi
+  ...
+  ```
+
+  To view the user-specified configurations of your RisingWave cluster:
+
+  ```bash
+  helm get values my-risingwave
+  ```
+
+  The output will look like this:
+
+  ```yaml
+  USER-SUPPLIED VALUES:
+  compactorComponent:
+    resources:
+      limits:
+        cpu: 1
+        memory: 2Gi
+      requests:
+        cpu: 100m
+        memory: 64Mi
+  ```
+
+6. Install the latest RisingWave Helm chart:
 
     ```bash
     helm install -n risingwave --create-namespace --set wait=true -f values.yaml <my-risingwave> risingwavelabs/risingwave
@@ -81,7 +132,7 @@ Now start a RisingWave cluster with Helm.
     TEST SUITE: None
     ```
 
-6. Use the following command to check the deployment status:
+7. Use the following command to check the deployment status:
 
   ```bash
   kubectl -n risingwave get pods -l app.kubernetes.io/instance=<my-risingwave>
@@ -106,7 +157,7 @@ By default, the RisingWave Helm Chart will deploy a ClusterIP service that enabl
 Once deployed, you can forward your local machine's port **`4567`** to the service's port via:
 
 ```bash
-kubectl port-forward svc/my-risingwave 4567:svc
+kubectl -n risingwave port-forward svc/my-risingwave 4567:svc
 ```
 
 You can then connect to RisingWave using a PostgreSQL client on port 4567. For example:
@@ -117,62 +168,9 @@ psql -h localhost -p 4567 -d dev -U root
 
 You can monitor the RisingWave cluster using the monitoring stack. For details, see [Monitoring a RisingWave cluster](/manage/monitor-risingwave-cluster.md).
 
-## Optional: Customize your RisingWave deployment
-
-During installation or upgrade, you can customize your RisingWave deployment by providing the configuration file `values.yml`. You should edit the file before specifying it during installation or upgrade.
-
-To customize your deployment during installation, run this command instead:
-
-```bash
-helm install --set wait=true -f values.yml <my-risingwave> risingwavelabs/risingwave
-```
-
-To customize your deployment during upgrade, run this command instead:
-
-```bash
-helm upgrade -f values.yml --reuse-values <my-risingwave> risingwavelabs/risingwave
-```
-
-The `--reuse-values` option ensures that the previous configuration will be kept and only the provided configuration will be applied.
-
-A typical `values.yml` looks like this:
-
-```yaml
-...
-compactorComponent:
-  resources:
-    limits:
-      cpu: 1
-      memory: 2Gi
-    requests:
-      cpu: 100m
-      memory: 64Mi
-...
-```
-
-To view the user-specified configurations of your RisingWave cluster:
-
-```bash
-helm get values my-risingwave
-```
-
-The output will look like this:
-
-```yaml
-USER-SUPPLIED VALUES:
-compactorComponent:
-  resources:
-    limits:
-      cpu: 1
-      memory: 2Gi
-    requests:
-      cpu: 100m
-      memory: 64Mi
-```
-
 ## Optional: Resize a node
 
-By editing the configurations in `values.yml`, you can resize a worker node. The compactor node configurations are in the `compactorComponent` section. Configurations for the meta node and compute node are in `metaComponent` and `computeComponent` sections respectively.
+By editing the configurations in [`values.yml`](https://github.com/risingwavelabs/helm-charts/blob/main/charts/risingwave/values.yaml), you can resize a worker node. The compactor node configurations are in the `compactorComponent` section. Configurations for the meta node and compute node are in `metaComponent` and `computeComponent` sections respectively. See [Customize pods of different components](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#customize-pods-of-different-components) for details.
 
 ```bash
 # To resize other types of node, please replace the name with 
