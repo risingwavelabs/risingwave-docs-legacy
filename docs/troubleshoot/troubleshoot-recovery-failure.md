@@ -34,7 +34,7 @@ Two solutions:
 
     2. Reboot the meta service, then the cluster will enter safe mode after recovery.
 
-    3. Drop the problematic streaming jobs or scale in them using `risectl` , refer to: [scaling risingwave](/deploy/k8s-cluster-scaling.md).
+    3. Drop the problematic streaming jobs or scale in them using `risectl` , refer to: [Cluster scaling](/deploy/k8s-cluster-scaling.md).
 
     4. Restart the meta node, or resume the cluster by: `risectl meta resume`.
 
