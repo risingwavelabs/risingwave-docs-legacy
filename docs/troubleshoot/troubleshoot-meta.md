@@ -8,7 +8,7 @@ slug: /troubleshoot-meta
 
 If the meta fails to start or suddenly exits in the middle, currently only one issue has been found that will cause this problem: the meta node failed to stay alive while participating in the campaign.
 
-### Symptoms
+## Symptoms
 
 If logs as follows found in the meta node:
 
@@ -16,11 +16,11 @@ If logs as follows found in the meta node:
 
 2. `ERROR risingwave_meta::rpc::election_client: keep alive failed, stopping main loop`
 
-### Possible causes
+## Possible causes
 
 It is likely to be ETCD going through some fluctuation due to a bad-quality disk used for ETCD or too large a request sent to it.
 
-### Solutions
+## Solutions
 
 1. Check the [notes about disks for etcd](/deploy/hardware-requirements.md#etcd).
 
