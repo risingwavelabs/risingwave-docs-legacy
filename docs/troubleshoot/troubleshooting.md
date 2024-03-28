@@ -50,11 +50,11 @@ We recommend that you deploy a dedicated logging system, such as [Grafana Loki](
 
 ## Leverage system catalogs
 
-System catalogs provide comprehensive information about the definitions and metadatas of objects in RisingWave. For a detailed list of system catalogs available, see [System catalogs](/sql/system-catalogs/pg_catalog.md).
+System catalogs provide comprehensive information about the definitions and metadata of objects in RisingWave. For a detailed list of system catalogs available, see [System catalogs](/sql/system-catalogs/pg_catalog.md).
 
 ## Support resources
 
-The most direct way to get help is reporting your issues in our [Slack Community workspace](https://www.risingwave.com/slack).
+The most direct way to get help is by reporting your issues in our [Slack Community workspace](https://www.risingwave.com/slack).
 
 When reporting your issues in the Slack workspace, remember to include the logs. Including logs will help our engineers troubleshoot.
 

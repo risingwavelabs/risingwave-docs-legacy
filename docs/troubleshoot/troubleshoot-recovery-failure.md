@@ -8,7 +8,7 @@ slug: /troubleshoot-recovery-failure
 
 When there are some problems in the RisingWave cluster, such as node restart and network abnormalities, the cluster will enter recovery processing to ensure data consistency. But some issues might also cause recovery failure, leading the cluster to be in a constant recovering state and unavailable. 
 
-## Observations
+## Possible causes
 
 It’s important to identify the root cause of the issue. Some common reasons for recovery failures include:
 
@@ -21,7 +21,7 @@ It’s important to identify the root cause of the issue. Some common reasons fo
 How to identify:
 
 1. When the meta node continues to enter the recovery state or when the actor keeps exiting during the recovery process.
-2. Check if the CN node is continuously restarting due to OOM, refer to: [Troubleshoot OOM](troubleshoot-oom.md).
+2. Check if the CN node is continuously restarting due to OOM, refer to: [Out-of-memory](troubleshoot-oom.md).
 
 Two solutions:
 
@@ -52,13 +52,13 @@ Solution:
         3. Remove the parameter `-parallelism` and start the compute nodes.
     2. Offline temporary nodes.
 
-Other: FYI, all these kinds of cases will be covered by `auto scaling` feature that is on the way.
+Other: all these kinds of cases will be covered by `auto scaling` feature that is on the way.
 
 ### Network connection issues
 
 How to identify:
 
-When there is a network connection problem between the meta and compute nodes, as well as between the meta and etcd nodes, the recovery of the cluster will also continue to fail. You may find some logs like `connection refused` or `error trying to connect: dns error: failed to lookup address information: Name or service not known` .
+When there is a network connection problem between the meta and compute nodes, as well as between the meta and etcd nodes, the recovery of the cluster will also continue to fail. You may find some logs like `connection refused` or `error trying to connect: dns error: failed to lookup address information: Name or service not known`.
 
 Solution:
 

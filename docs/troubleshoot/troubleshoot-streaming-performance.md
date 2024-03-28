@@ -11,7 +11,7 @@ slug: /troubleshoot-streaming-performance
 
 Every streaming job (i.e. materialized view) consists of multiple fragments, forming a DAG, and each fragment consists of multiple parallel actors, while every actor contains one or more streaming operators connected together. RisingWave Dashboard visualizes the actor/fragment topology of running jobs in the Actor/Fragment panel.
 
-Sometimes a streaming actor or fragments could become the bottleneck of the whole streaming jobs. This topic helps you to identify the bottleneck and solve the issue.
+Sometimes a streaming actor or fragments could become the bottleneck of the whole streaming job. This topic helps you to identify the bottleneck and solve the issue.
 
 ## Find out the back-pressured fragments
 
@@ -44,4 +44,4 @@ Some performance issues are caused by heavy SQL queries, such as:
 
 For these cases, you might consider rewriting your queries to perform better.
 
-If you have any difficulty with this, or if you encounter other issues that are listed here, please feel free to ask us for help in our Slack channel **#toubleshooting**.
+If you have any difficulty with this, or if you encounter other issues that are listed here, please feel free to ask us for help in our Slack channel [**#toubleshooting**](https://www.risingwave.com/slack). 
