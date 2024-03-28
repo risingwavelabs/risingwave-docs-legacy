@@ -1,8 +1,8 @@
 ---
-id: guide-for-many-streaming-jobs
-title: Guide for Many Streaming Jobs
+id: best-practices-for-managing-a-large-number-of-streaming-jobs
+title: Best practices for managing a large number of streaming jobs
 description: Do’s and don’ts when deploy cluster for many (more than 300) streaming jobs.
-slug: /guide-for-many-streaming-jobs
+slug: /best-practices-for-managing-a-large-number-of-streaming-jobs
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/k8s-cluster-scaling/" />

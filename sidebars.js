@@ -967,8 +967,8 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "deploy/guide-for-many-streaming-jobs",
-          label: "Guide for Many Streaming Jobs",
+          id: "deploy/best-practices-for-managing-a-large-number-of-streaming-jobs",
+          label: "Best practices for managing a large number of streaming jobs",
         },
         {
           type: "doc",
