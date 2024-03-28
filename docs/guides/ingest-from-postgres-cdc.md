@@ -178,6 +178,8 @@ WITH (
 FROM source TABLE table_name;
 ```
 
+To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it. 
+
 ### Connector parameters
 
 Unless specified otherwise, the fields listed are required. Note that the value of these parameters should be enclosed in single quotation marks.
