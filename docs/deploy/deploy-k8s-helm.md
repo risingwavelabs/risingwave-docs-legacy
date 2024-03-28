@@ -16,10 +16,6 @@ This guide walks you through the process of deploying RisingWave in a single Kub
 - Ensure you have [Kubernetes](https://kubernetes.io/) 1.24 or higher installed in your environment.
 - Ensure you allocate enough resources for the deployment, and use the recommended disks for etcd. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
 
-:::note
-If you want to use the bundled `etcd` and `MinIO`, and any local store backends, ensure that you have implemented the [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
-:::
-
 ## Step 1: Start Kubernetes
 
 Start a Kubernetes cluster. For details about starting a Kubernetes cluster, see Kubernetes' [Getting started guide](https://kubernetes.io/docs/setup/).
@@ -59,6 +55,10 @@ Now start a RisingWave cluster with Helm.
     - **Customize state store**: The state store in RisingWave serves as a fault-tolerant storage system for preserving system state. See [Configuration](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#customize-state-store) for all the available options and [Examples](https://github.com/risingwavelabs/helm-charts/tree/main/examples/state-stores) for detailed usage of state stores.
 
     - **Bundled etcd and MinIO**: If you want to use `etcd` as the meta backend and `MinIO` as the state backend, the Helm chart for RisingWave offers the option to bundle them together. This allows for a quick and easy setup of the Helm chart. See [Configuration](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#bundled-etcdminio-as-stores) for more details. To enable this feature, set `tags.bundle=true`.
+
+  :::note
+  Before using the bundled `etcd` and `MinIO`, and any local store backends, ensure that you have implemented the [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
+  :::
 
 5. During installation or upgrade, you also need to customize your RisingWave deployment by editing the [`values.yml`](https://github.com/risingwavelabs/helm-charts/blob/main/charts/risingwave/values.yaml) file. You should edit the file before specifying it during installation or upgrade.
 
