@@ -59,7 +59,7 @@ Now start a RisingWave cluster with Helm.
 5. Install the latest RisingWave Helm chart:
 
     ```bash
-    helm install --set wait=true <my-risingwave> risingwavelabs/risingwave
+    helm install -n risingwave --create-namespace --set wait=true -f values.yaml <my-risingwave> risingwavelabs/risingwave
     ```
 
     Where `<my-risingwave>` is the release name you choose to use for your RisingWave deployment. This command will install the latest stable version of RisingWave.
