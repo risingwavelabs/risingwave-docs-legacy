@@ -1,6 +1,6 @@
 ---
 id: troubleshoot-oom
-title: Troubleshoot out-of-memory issues
+title: Out-of-memory
 slug: /troubleshoot-oom
 ---
 
@@ -15,7 +15,7 @@ This guide focuses on addressing OOM issues on the compute node. If you encounte
 ## OOM symptoms
 
 1. The Kubernetes shows the compute node pod suddenly restarts due to **OOM Killed (137)**.
-2. The Grafana metrics show memory increases unbounded, beyond the limit of `total_memory` set for the compute node. Memory settings can be found in the booting logs of the compute node. Search for keyword “Memory outline" to locate the specific section.
+2. The Grafana metrics show memory increases unbounded, beyond the limit of `total_memory` set for the compute node. Memory settings can be found in the booting logs of the compute node. Search for the keyword “Memory outline" to locate the specific section.
 
 <img
   src={require('../images/oom-symptom.png').default}
@@ -24,7 +24,7 @@ This guide focuses on addressing OOM issues on the compute node. If you encounte
 
 ## OOM when creating materialized views
 
-If OOM happens during creating a new materialized view, it might be caused by the large amount of existing data in upstream systems like Kafka. In this case, before creating or recreating a materialized view, you can reduce the traffic by specifying the rate limit of each parallelism:
+If OOM happens during the creation of a new materialized view, it might be caused by the large amount of existing data in upstream systems like Kafka. In this case, before creating or recreating a materialized view, you can reduce the traffic by specifying the rate limit of each parallelism:
 
 ```sql
 CREATE MATERIALIZED VIEW mv WITH ( streaming_rate_limit = 200 ) AS ...
@@ -51,11 +51,11 @@ Barrier latency can be observed from Grafana dashboard - Barrier latency panel. 
 
 Instead of solely addressing the memory problem, we recommend investigating why the barrier is getting stuck. This issue could be caused by heavy streaming jobs, sudden impact of input traffic, or even some temporary issues.
 
-Please refer to [Troubleshoot high latency](/troubleshoot/troubleshoot-high-latency.md) for more details.
+Please refer to [High latency](/troubleshoot/troubleshoot-high-latency.md) for more details.
 
 ## OOM during prefetching
 
-If OOM occurs during long batch queries, it might result from excessive memory usage on compute nodes. In such case, consider reducing the memory usage of prefetching by adjusting the value of the `storage.prefetch_buffer_capacity_mb` parameter in the TOML file.
+If OOM occurs during long batch queries, it might result from excessive memory usage on compute nodes. In such a case, consider reducing the memory usage of prefetching by adjusting the value of the `storage.prefetch_buffer_capacity_mb` parameter in the TOML file.
 
 The `storage.prefetch_buffer_capacity_mb` configuration defines the maximum memory allowed for prefetching. It aims to optimize streaming executor and batch query performance through pre-reading. This feature allows hummock to read larger chunks of data in a single I/O operation, but at a higher memory cost. When the memory usage during prefetch operations reaches this limit, hummock will revert to the original read method, processing data in 64 KB blocks. If you set the parameter to 0, this feature will be disabled. By default, it is set to 7% of the total machine memory.
 

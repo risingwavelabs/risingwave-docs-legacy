@@ -1,13 +1,13 @@
 ---
-id: troubleshooting-common-errors-and-solutions
-title: Common errors and solutions
-slug: /troubleshooting-common-errors-and-solutions
+id: troubleshooting-deployment-issues
+title: Deployment issues
+slug: /troubleshooting-deployment-issues
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/troubleshooting-common-errors-and-solutions/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/troubleshooting-deployment-issues/" />
 </head>
 
-This page summarizes some common issues encountered in various scenarios and provides corresponding solutions.
+This page summarizes some issues about deployment.
 
 ## RisingWave is terminated with exit code `132`
 

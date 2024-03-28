@@ -1,6 +1,6 @@
 ---
 id: troubleshoot-streaming-performance
-title: Troubleshoot streaming performance
+title: Streaming performance
 slug: /troubleshoot-streaming-performance
 ---
 <head>

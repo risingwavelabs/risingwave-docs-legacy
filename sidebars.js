@@ -1070,33 +1070,42 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Common errors and solutions",
-          id: "troubleshoot/troubleshooting-common-errors-and-solutions"
-        },
-        {
-          type: "doc",
-          label: "Troubleshoot out-of-memory",
+          label: "Out-of-memory",
           id: "troubleshoot/troubleshoot-oom"
         },
         {
-          type: "doc",
-          label: "Troubleshoot high latency",
-          id: "troubleshoot/troubleshoot-high-latency"
+          type: "category",
+          label: "Performance issues",
+          collapsible: true,
+          collapsed: true,
+          items: 
+          [
+            {
+              type: "doc",
+              label: "High latency",
+              id: "troubleshoot/troubleshoot-high-latency"
+            },
+            {
+              type: "doc",
+              label: "Streaming performance",
+              id: "troubleshoot/troubleshoot-streaming-performance"
+            },
+          ]
         },
         {
           type: "doc",
-          label: "Troubleshoot streaming performance",
-          id: "troubleshoot/troubleshoot-streaming-performance"
-        },
-        {
-          type: "doc",
-          label: "Troubleshoot meta",
+          label: "Meta failure",
           id: "troubleshoot/troubleshoot-meta"
         },
         {
           type: "doc",
-          label: "Troubleshoot recovery failure",
+          label: "Recovery failure",
           id: "troubleshoot/troubleshoot-recovery-failure"
+        },
+        {
+          type: "doc",
+          label: "Deployment issues",
+          id: "troubleshoot/troubleshooting-deployment-issues"
         },
       ]
     },
