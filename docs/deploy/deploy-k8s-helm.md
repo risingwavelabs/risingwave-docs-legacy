@@ -67,7 +67,7 @@ Now start a RisingWave cluster with Helm.
     If you want to install a particular version, you can specify the version via the `image-tag` attribute. Remember to replace `<version_number>` with the desired version, for example `v1.7.0`.
 
     ```bash
-    helm install --set wait=true --set image.tag=<version_number> <my-risingwave> risingwavelabs/risingwave
+    helm install -n risingwave --create-namespace --set wait=true --set image.tag=<version_number> <my-risingwave> -f values.yaml risingwavelabs/risingwave
     ```
 
     You may get an output message like this:
