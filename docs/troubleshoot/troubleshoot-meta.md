@@ -13,6 +13,7 @@ If the meta fails to start or suddenly exits in the middle, currently only one i
 If logs as follows found in the meta node:
 
 1. `lease timeout`
+
 2. `ERROR risingwave_meta::rpc::election_client: keep alive failed, stopping main loop`
 
 ### Possible causes
@@ -22,9 +23,12 @@ It is likely to be ETCD going through some fluctuation due to a bad-quality disk
 ### Solutions
 
 1. Check the [notes about disks for etcd](/deploy/hardware-requirements.md#etcd).
-2. Check etcd configures, whether `-auto-compaction-mode` , `-max-request-bytes` are set properly.
-3. If only one meta node is deployed, you can set the parameter `meta_leader_lease_secs` to 86400 to avoid impact on leader election by the disk performance. For multi-node deployment, you can also increase the value of this parameter.
-4. For better performance and stability of the cluster, it is recommended to use higher-performance disks and configure etcd correctly.
+
+1. Check etcd configures, whether `-auto-compaction-mode`, `-max-request-bytes` are set properly.
+
+1. If only one meta node is deployed, you can set the parameter `meta_leader_lease_secs` to 86400 to avoid impact on leader election by the disk performance. For multi-node deployment, you can also increase the value of this parameter.
+
+1. For better performance and stability of the cluster, it is recommended to use higher-performance disks and configure etcd correctly.
 
 ## Further explanation
 

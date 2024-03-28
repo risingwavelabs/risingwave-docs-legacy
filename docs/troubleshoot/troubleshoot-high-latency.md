@@ -31,6 +31,7 @@ With these tools, you can identify the bottleneck fragments (actors) and the mat
 Once you've pinpointed the bottleneck fragment, consider the following actions to resolve the issue:
 
 - Enhance the streaming query performance by removing or rewriting the bottleneck part of the SQL query.
+
 - Increase the parallelism by adding more nodes into the cluster, or check the SQL query to see if there is any room for optimization.
 
 ## Example: High latency caused by high join amplification
