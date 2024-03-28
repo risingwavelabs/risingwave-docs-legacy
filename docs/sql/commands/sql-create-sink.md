@@ -40,7 +40,7 @@ WITH (
 |**FORMAT** and **ENCODE** options | Optional. Specify the data format and the encoding format of the sink data. It is only used for Kafka, Kinesis, Pulsar, and Redis sinks. |
 
 :::note
-Please make a distinction between the parameters set in FORMAT and ENCODE options and that set in the other clauses, like the `WITH` clause. Set them in the right place and do not misuse them.
+Please distinguish between the parameters set in the FORMAT and ENCODE options and those set in the WITH clause. Ensure that you place them correctly and avoid any misuse.
 :::
 
 ## Supported sinks
