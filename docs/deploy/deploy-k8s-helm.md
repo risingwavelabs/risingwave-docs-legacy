@@ -16,6 +16,10 @@ This guide walks you through the process of deploying RisingWave in a single Kub
 - Ensure you have [Kubernetes](https://kubernetes.io/) 1.24 or higher installed in your environment.
 - Ensure you allocate enough resources for the deployment, and use the recommended disks for etcd. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
 
+:::note
+If you want to use the bundled `etcd` and `MinIO`, and any local store backends, ensure that you have implemented the [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
+:::
+
 ## Step 1: Start Kubernetes
 
 Start a Kubernetes cluster. For details about starting a Kubernetes cluster, see Kubernetes' [Getting started guide](https://kubernetes.io/docs/setup/).
