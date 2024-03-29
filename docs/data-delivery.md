@@ -96,6 +96,30 @@ To disable sink decoupling, set `sink_decouple` as `false` or `disable`, regardl
 SET sink_decouple = false;
 ```
 
+Sink decouple is enabled by default for the following sinks if the sink is append-only.
+
+- [Kafka](/guides/create-sink-kafka.md)
+- [Pulsar](/guides/sink-to-pulsar.md)
+- [Kinesis](/guides/sink-to-iceberg.md)
+- [Clickhouse](/guides/sink-to-clickhouse.md)
+- [Nats](/guides/sink-to-nats.md)
+- JDBC
+  - [MySQL](/guides/sink-to-mysql.md)
+  - [PostgreSQL](/guides/sink-to-postgres.md)
+  - [TiDB](/guides/sink-to-tidb.md)
+  - [CockroachDB](/guides/sink-to-cockroach.md)
+
+An internal system table `rw_sink_decouple` is provided to query whether a created sink has enabled sink decouple or not.
+```
+dev=> select sink_id, is_decouple from rw_sink_decouple;
+ sink_id | is_decouple 
+---------+-------------
+       2 | f
+       5 | t
+(2 rows)
+
+```
+
 ## Upsert sinks and primary keys
 
 For each sink, you can specify the data format. All sinks supports the `upsert` and `append-only` formats while Kafka also supports the `debezium` format. When creating an `upsert` sink, note whether or not you need to specify the primary key in the following situations.
