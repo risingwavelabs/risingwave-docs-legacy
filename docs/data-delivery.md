@@ -78,6 +78,10 @@ Currently, RisingWave supports the following sink connectors:
 
 ## Sink decoupling
 
+Typically, sinks in RisingWave operates in a blocking manner. This means that if the downstream target system experiences performance fluctuations or becomes unavailable, it can potentially impact the stability of the RisingWave instance. However, sink decoupling can be implemented to address this issue.
+
+Sink decoupling introduces a buffering queue between a RisingWave sink and the downstream system. This buffering mechanism helps maintain the stability and performance of the RisingWave instance, even when the downstream system is temporarily slow or unavailable.
+
 The `sink_decouple` session variable can be specified to enable or disable sink decoupling. The default value for the session variable is `default`. 
 
 To enable sink decoupling for all sinks created in the sessions, set `sink_decouple` as `true` or `enable`.
@@ -90,6 +94,30 @@ To disable sink decoupling, set `sink_decouple` as `false` or `disable`, regardl
 
 ```sql
 SET sink_decouple = false;
+```
+
+Sink decouple is enabled by default for the following sinks if the sink is append-only.
+
+- [Kafka](/guides/create-sink-kafka.md)
+- [Pulsar](/guides/sink-to-pulsar.md)
+- [Kinesis](/guides/sink-to-iceberg.md)
+- [Clickhouse](/guides/sink-to-clickhouse.md)
+- [Nats](/guides/sink-to-nats.md)
+- JDBC
+  - [MySQL](/guides/sink-to-mysql.md)
+  - [PostgreSQL](/guides/sink-to-postgres.md)
+  - [TiDB](/guides/sink-to-tidb.md)
+  - [CockroachDB](/guides/sink-to-cockroach.md)
+
+An internal system table `rw_sink_decouple` is provided to query whether a created sink has enabled sink decouple or not.
+```
+dev=> select sink_id, is_decouple from rw_sink_decouple;
+ sink_id | is_decouple 
+---------+-------------
+       2 | f
+       5 | t
+(2 rows)
+
 ```
 
 ## Upsert sinks and primary keys

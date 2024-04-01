@@ -30,7 +30,7 @@ WITH (
    connector_parameter = 'value', ...
 )
 FORMAT data_format ENCODE data_encode [ (
-    format_parameter = 'value' ) ]
+    key = 'value' ) ]
 ;
 ```
 
@@ -51,7 +51,11 @@ FORMAT data_format ENCODE data_encode [ (
 |retry_interval |Optional. The time in milliseconds to wait after a failure before retrying to send a batch. The default value is 100ms.|
 |primary_key| Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. Primary keys are optional when creating a `PLAIN` sink but required for `UPSERT` and `DEBEZIUM` sinks.|
 
-## Sink parameters
+## FORMAT and ENCODE options
+
+:::note
+These options should be set in `FORMAT data_format ENCODE data_encode (key = 'value')`, instead of the `WITH` clause
+:::
 
 | Field | Notes |
 | --------------- | ---------------------------------------------------------------------- |
