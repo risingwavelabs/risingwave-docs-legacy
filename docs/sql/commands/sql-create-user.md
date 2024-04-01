@@ -10,15 +10,15 @@ slug: /sql-create-user
 
 Use the `CREATE USER` command to create a new user account in RisingWave.
 
-## Syntax
+## Syntax for creating a new user
 
 ```sql
 CREATE USER user_name [ [ WITH ] system_permission [ ... ]['PASSWORD' { password | NULL }] ];
 ```
 
-If you do not want password authentication for the user, omit the PASSWORD option.
+If you do not want password authentication for the user, omit the PASSWORD option. 
 
-## System permissions
+Below are the options for system permissions.
 
 | Option | Description           |
 | --------- | --------------------- |
@@ -28,6 +28,8 @@ If you do not want password authentication for the user, omit the PASSWORD optio
 | `NOCREATEDB`| Denies the user the permission to create databases. `NOCREATEDB` is the default value.|
 | `CREATEUSER`| Grants the user the permission to create new users and/or alter and drop existing users. `NOCREATEUSER` is the default value. |
 | `NOCREATEUSER` | Denies the user the ability to create new users and/or alter and drop existing users. `NOCREATEUSER` is the default value. |
+
+## Syntax for creating a user with OAuth authentication
 
 In addition, you can create a user with OAuth authentication. The syntax is as follows:
 
@@ -40,6 +42,10 @@ CREATE USER user_name WITH oauth (
 ```
 
 The `jwks_url` and `issuer` parameters are mandatory. On the other hand, `other_params_should_match` is an optional parameter that will be validated against `jwt.claims`. Please ensure that all keys in the options are in **lowercase**.
+
+:::note
+`kid` and `alg` are required in the header of JWT, and `kid` is also required in the JWKs returned by the JWKS server. All parameters set in user creation (except `jwks_url`) will be checked in the claims of JWT. Any mismatch will deny the login process.
+:::
 
 
 ## Examples
@@ -79,18 +85,19 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 Here is an example of creating a new user `test` with OAuth authentication.
 
-```sql title="Log"
+```shell title="Connect and log in with the root account."
 psql -h localhost -p 4566 -d dev -U root
 ```
 
-```
-# In psql
+```sql title="Create a new user test with OAuth authentication in psql."
 CREATE USER test WITH oauth (
   jwks_url = 'xxx.com',  // required
   issuer = 'risingwave',  // required
   other_params_should_match = 'xxx',  // optional, will be checked against jwt.claims
 );
+```
 
-# Password here is actually OAuth token, and would be passed with plaintext
+```sql title="Connect and log in with the new account."
+-- The password here is actually OAuth token, and will be passed with plaintext.
 psql -h localhost -p 4566 -d dev -U test
 ```
