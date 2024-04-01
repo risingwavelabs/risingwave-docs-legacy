@@ -28,7 +28,7 @@ WITH (
    connector_parameter = 'value', ...
 )
 FORMAT data_format ENCODE data_encode [ (
-    format_parameter = 'value'
+    key = 'value'
 ) ]
 ;
 ```
@@ -64,6 +64,7 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |batch.size |properties.batch.size| int|
 |client.id|properties.client.id| string |
 |enable.idempotence |properties.enable.idempotence |bool |
+|enable.ssl.certificate.verification|properties.enable.ssl.certificate.verification|bool|
 |max.in.flight.requests.per.connection| properties.max.in.flight.requests.per.connection| int |
 |message.max.bytes | properties.message.max.bytes | int |
 |message.send.max.retries |properties.message.send.max.retries| int|
@@ -79,7 +80,11 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
 :::
 
-## Sink parameters
+## FORMAT and ENCODE options
+
+:::note
+These options should be set in `FORMAT data_format ENCODE data_encode (key = 'value')`, instead of the `WITH` clause
+:::
 
 |Field|Notes|
 |-----|-----|
