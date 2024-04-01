@@ -24,7 +24,7 @@ Start a Kubernetes cluster. For details about starting a Kubernetes cluster, see
 
 Now start a RisingWave cluster with Helm.
 
-1. Add the Helm repo repository:
+1. Add the RisingWave Helm chart repository:
 
   ```bash
   helm repo add risingwavelabs https://risingwavelabs.github.io/helm-charts/ --force-update
