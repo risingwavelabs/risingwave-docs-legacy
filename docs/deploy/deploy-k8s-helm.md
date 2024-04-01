@@ -60,58 +60,7 @@ Now start a RisingWave cluster with Helm.
   Before using the bundled `etcd` and `MinIO`, and any local stores, ensure that you have implemented the [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
   :::
 
-5. During installation or upgrade, you also need to customize your RisingWave deployment by editing the [`values.yml`](https://github.com/risingwavelabs/helm-charts/blob/main/charts/risingwave/values.yaml) file. You should edit the file before specifying it during installation or upgrade.
-
-  To customize your deployment during installation, run this command instead:
-
-  ```bash
-  helm install -n risingwave --set wait=true -f values.yml <my-risingwave> risingwavelabs/risingwave
-  ```
-
-  To customize your deployment during upgrade, run this command instead:
-
-  ```bash
-  helm upgrade -n risingwave -f values.yml --reuse-values <my-risingwave> risingwavelabs/risingwave
-  ```
-
-  The `--reuse-values` option ensures that the previous configuration will be kept and only the provided configuration will be applied.
-
-  A typical `values.yml` looks like this:
-
-  ```yaml
-  ...
-  compactorComponent:
-    resources:
-      limits:
-        cpu: 1
-        memory: 2Gi
-      requests:
-        cpu: 100m
-        memory: 64Mi
-  ...
-  ```
-
-  To view the user-specified configurations of your RisingWave cluster:
-
-  ```bash
-  helm get values my-risingwave -n risingwave
-  ```
-
-  The output will look like this:
-
-  ```yaml
-  USER-SUPPLIED VALUES:
-  compactorComponent:
-    resources:
-      limits:
-        cpu: 1
-        memory: 2Gi
-      requests:
-        cpu: 100m
-        memory: 64Mi
-  ```
-
-6. Install the latest RisingWave Helm chart:
+5. Install the latest RisingWave Helm chart:
 
     ```bash
     helm install -n risingwave --create-namespace --set wait=true -f values.yaml <my-risingwave> risingwavelabs/risingwave
@@ -136,7 +85,7 @@ Now start a RisingWave cluster with Helm.
     TEST SUITE: None
     ```
 
-7. Use the following command to check the deployment status:
+6. Use the following command to check the deployment status:
 
   ```bash
   kubectl -n risingwave get pods -l app.kubernetes.io/instance=<my-risingwave>
