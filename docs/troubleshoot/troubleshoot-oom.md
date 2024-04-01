@@ -1,6 +1,6 @@
 ---
 id: troubleshoot-oom
-title: Out-of-memory
+title: Out of memory
 slug: /troubleshoot-oom
 ---
 

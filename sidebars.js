@@ -1070,7 +1070,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Out-of-memory",
+          label: "Out of memory",
           id: "troubleshoot/troubleshoot-oom"
         },
         {
