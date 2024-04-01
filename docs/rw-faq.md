@@ -130,3 +130,12 @@ According to Kafka's behavior, "each consumer in a group is assigned one or more
 If you can't find the questions you're looking for on this FAQ page, we recommend visiting [the community-version of FAQ](https://risingwave-community.snowshoe.dev/). It collects questions posed by users and answers provided by our developers in our [Slack channel](https://www.risingwave.com/slack). Please note that the community version is organized by AI and the answers are not manually reviewed. We will regularly select the most frequently asked questions there and add them to this FAQ page, ensuring that valuable information becomes readily available to all users. We appreciate your understanding as we work on improving the community to provide the best user experience possible.
 
 </details>
+
+
+### Why `CREATE MATERIALIZED VIEW` statement takes long time
+
+There are many reasons for this and some common ones are given here.
+
+1. **It takes time to backfill historical data from upstream table/MV**: RisingWave provide consistent snapshots among materialized views. So when a new MV is created, it should backfill all historical data from the upstream MV/tables and calculate them, which takes some time. And the created DDL statement will only end when the backfill ends. You can run `SHOW JOBS;` in sql to check the ddl progress. If you want the create statement to not wait for the process to finish and not block the session, you can execute `SET BACKGROUND_DDL=true;` before running the `CREATE MATERIALIZED VIEW` statement. See details in [`SET BACKGROUND_DDL`](/sql/commands/sql-set-background-ddl.md). But please notice that newly created mvs remain unserviceable until the end of backfill when `BACKGROUND_DDL=true`.
+
+2. **The cluster's latency is high**: when the cluster's latency is high, it need time to apply the changes on the streaming graph. If the `Progress` in the `SHOW JOBS;` result stays at 0.0%, it is likely the case. See details in [Troubleshoot high latency](troubleshoot/troubleshoot-high-latency) 
