@@ -24,7 +24,7 @@ WITH (
    connector_parameter = 'value', ...
 )
 FORMAT data_format ENCODE data_encode [ (
-    format_parameter = 'value'
+    key = 'value'
 ) ]
 ;
 ```
@@ -43,7 +43,11 @@ FORMAT data_format ENCODE data_encode [ (
 |aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources. |
 |primary_key| Required. The primary keys of the sink. Use ',' to delimit the primary key columns. |
 
-## Sink parameters
+## FORMAT and ENCODE options
+
+:::note
+These options should be set in `FORMAT data_format ENCODE data_encode (key = 'value')`, instead of the `WITH` clause
+:::
 
 |Field|Notes|
 |-----|-----|
