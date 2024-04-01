@@ -24,77 +24,93 @@ Start a Kubernetes cluster. For details about starting a Kubernetes cluster, see
 
 Now start a RisingWave cluster with Helm.
 
-1. Add the `risingwave` chart repository:
+1. Add the RisingWave Helm chart repository:
 
-```bash
-helm repo add risingwavelabs https://risingwavelabs.github.io/helm-charts/
-```
+  ```bash
+  helm repo add risingwavelabs https://risingwavelabs.github.io/helm-charts/ --force-update
+  ```
 
 2. Update your Helm chart repositories to ensure that you are using the RisingWave Helm chart:
 
-```bash
-helm repo update
-```
+  ```bash
+  helm repo update
+  ```
 
-If you are using AWS EKS, you also need to set it as the default cluster for Helm:
+  If you are using AWS EKS, you also need to update the local configuration for kubectl and Helm to access your EKS cluster:
 
-```bash
-aws eks update-kubeconfig --name <your_eks_cluster_name>
-```
+  ```bash
+  aws eks update-kubeconfig --name <your_eks_cluster_name>
+  ```
 
-3. Optional: You can customize your configuration for the RisingWave deployment by editing the `values.yml` file.
+3. Create a RisingWave namespace. We recommend creating a dedicated namespace for RisingWave resources.
 
-4. Install the latest RisingWave Helm chart:
+  ```bash
+  kubectl create namespace risingwave
+  ```
 
-```bash
-helm install --set wait=true <my-risingwave> risingwavelabs/risingwave
-```
+4. Customize your configuration for the RisingWave deployment by editing the [`values.yml`](https://github.com/risingwavelabs/helm-charts/blob/main/charts/risingwave/values.yaml) file.
 
-Where `<my-risingwave>` is the release name you choose to use for your RisingWave deployment. This command will install the latest stable version of RisingWave.
+    - **Customize meta store**: The meta store in RisingWave holds metadata for cluster operations. See [Configuration](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#customize-meta-store) for all the available options and [Examples](https://github.com/risingwavelabs/helm-charts/tree/main/examples/meta-stores) for detailed usage of meta stores.
 
-If you want to install a particular version, you can specify the version via the `image-tag` attribute. Remember to replace `<version_number>` with the desired version, for example `v1.7.0`.
+    - **Customize state store**: The state store in RisingWave serves as a fault-tolerant storage system for preserving system state. See [Configuration](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#customize-state-store) for all the available options and [Examples](https://github.com/risingwavelabs/helm-charts/tree/main/examples/state-stores) for detailed usage of state stores.
 
-```bash
-helm install --set wait=true --set image.tag=<version_number> <my-risingwave> risingwavelabs/risingwave
-```
+    - **Bundled etcd and MinIO**: If you want to use `etcd` as the meta store and `MinIO` as the state store, the Helm chart for RisingWave offers the option to bundle them together. This allows for a quick and easy setup of the Helm chart. See [Configuration](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#bundled-etcdminio-as-stores) for more details. To enable this feature, set `tags.bundle=true`.
 
-You may get an output message like this:
+  :::note
+  Before using the bundled `etcd` and `MinIO`, and any local stores, ensure that you have implemented the [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
+  :::
 
-```bash
-NAME: my-risingwave
-LAST DEPLOYED: Wed Aug 16 15:35:19 2023
-NAMESPACE: default
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-```
+5. Install the latest RisingWave Helm chart:
 
-Use the following command to check the deployment status:
+    ```bash
+    helm install -n risingwave --create-namespace --set wait=true -f values.yaml <my-risingwave> risingwavelabs/risingwave
+    ```
 
-```bash
-kubectl get pods -l app.kubernetes.io/instance=<my-risingwave>
-```
+    Where `<my-risingwave>` is the release name you choose to use for your RisingWave deployment. This command will install the latest stable version of RisingWave.
 
-When your status looks like below, it means the RisingWave cluster starts successfully:
+    If you want to install a particular version, you can specify the version via the `image-tag` attribute. Remember to replace `<version_number>` with the desired version, for example `v1.7.0`.
 
-```bash
-NAME                                   READY   STATUS    RESTARTS        AGE
-risingwave-compactor-8dd799db6-hdjjz   1/1     Running   1 (8m33s ago)   11m
-risingwave-compute-0                   2/2     Running   0               11m
-risingwave-etcd-0                      1/1     Running   0               11m
-risingwave-frontend-7bd7b8c856-czdgd   1/1     Running   1 (8m33s ago)   11m
-risingwave-meta-0                      1/1     Running   0               11m
-risingwave-minio-5cfd8f5f64-6msqm      1/1     Running   0               11m
-```
+    ```bash
+    helm install -n risingwave --create-namespace --set wait=true --set image.tag=<version_number> <my-risingwave> -f values.yaml risingwavelabs/risingwave
+    ```
 
-### Step 3: Access RisingWave
+    You may get an output message like this:
+
+    ```bash
+    NAME: my-risingwave
+    LAST DEPLOYED: Wed Aug 16 15:35:19 2023
+    NAMESPACE: default
+    STATUS: deployed
+    REVISION: 1
+    TEST SUITE: None
+    ```
+
+6. Use the following command to check the deployment status:
+
+  ```bash
+  kubectl -n risingwave get pods -l app.kubernetes.io/instance=<my-risingwave>
+  ```
+
+  When your status looks like below, it means the RisingWave cluster starts successfully:
+
+  ```bash
+  NAME                                   READY   STATUS    RESTARTS        AGE
+  risingwave-compactor-8dd799db6-hdjjz   1/1     Running   1 (8m33s ago)   11m
+  risingwave-compute-0                   2/2     Running   0               11m
+  risingwave-etcd-0                      1/1     Running   0               11m
+  risingwave-frontend-7bd7b8c856-czdgd   1/1     Running   1 (8m33s ago)   11m
+  risingwave-meta-0                      1/1     Running   0               11m
+  risingwave-minio-5cfd8f5f64-6msqm      1/1     Running   0               11m
+  ```
+
+## Step 3: Access RisingWave
 
 By default, the RisingWave Helm Chart will deploy a ClusterIP service that enables the cluster-local communication.
 
 Once deployed, you can forward your local machine's port **`4567`** to the service's port via:
 
 ```bash
-kubectl port-forward svc/my-risingwave 4567:svc
+kubectl -n risingwave port-forward svc/my-risingwave 4567:svc
 ```
 
 You can then connect to RisingWave using a PostgreSQL client on port 4567. For example:
@@ -105,62 +121,9 @@ psql -h localhost -p 4567 -d dev -U root
 
 You can monitor the RisingWave cluster using the monitoring stack. For details, see [Monitoring a RisingWave cluster](/manage/monitor-risingwave-cluster.md).
 
-## Optional: Customize your RisingWave deployment
+## Optional: Resize a node
 
-During installation or upgrade, you can customze your RisingWave deployment by providing the configuration file `values.yml`. You should edit the file before specifying it during installation or upgrade.
-
-To customize your deployment during installation, run this command instead:
-
-```bash
-helm install --set wait=true -f values.yml <my-risingwave> risingwavelabs/risingwave
-```
-
-To customize your deployment during upgrade, run this command instead:
-
-```bash
-helm upgrade -f values.yml --reuse-values <my-risingwave> risingwavelabs/risingwave
-```
-
-The `--reuse-values` option ensures that the previous configuration will be kept and only the provided configuration will be applied.
-
-A typical `values.yml` looks like this:
-
-```yaml
-...
-compactorComponent:
-  resources:
-    limits:
-      cpu: 1
-      memory: 2Gi
-    requests:
-      cpu: 100m
-      memory: 64Mi
-...
-```
-
-To view the user-specified configurations of your RisingWave cluster:
-
-```bash
-helm get values my-risingwave
-```
-
-The output will look like this:
-
-```yaml
-USER-SUPPLIED VALUES:
-compactorComponent:
-  resources:
-    limits:
-      cpu: 1
-      memory: 2Gi
-    requests:
-      cpu: 100m
-      memory: 64Mi
-```
-
-### Resize a node
-
-By editing the configurations in `values.yml`, you can resize a worker node. The compactor node configurations are in the `compactorComponent` section. Configurations for the meta node and compute node are in `metaComponent` and `computeComponent` sections respectively.
+By editing the configurations in [`values.yml`](https://github.com/risingwavelabs/helm-charts/blob/main/charts/risingwave/values.yaml), you can resize a worker node. The compactor node configurations are in the `compactorComponent` section. Configurations for the meta node and compute node are in `metaComponent` and `computeComponent` sections respectively. See [Customize pods of different components](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#customize-pods-of-different-components) for details.
 
 ```bash
 # To resize other types of node, please replace the name with 
@@ -179,57 +142,3 @@ compactorComponent:
 ```
 
 Please note that increasing the CPU resource will not automatically increase the parallelism of existing materialized views. When scaling up (adding more CPU cores) a compute node, you should perform the scaling by following the instructions in [Cluster scaling](/deploy/k8s-cluster-scaling.md).
-
-### Customize state backends
-
-By default, the RisingWave Helm chart uses MinIO as the default state backend. You can edit the `values.yml` file to customize the state backend. 
-
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs groupId="state_backend_options">
-
-<TabItem value="aws-s3" label="AWS S3">
-
-```yaml
-tags:
-  minio: false
-
-stateStore:
-  minio:
-    enabled: false
-
-  s3:
-    enabled: true
-    region: <your aws region, e.g, “ap-southeast-1”>
-    bucket: <your bucket name>
-    authentication:
-      useServiceAccount: false
-      accessKey: <your access key>
-      secretAccessKey: <your secret access key>
-```
-</TabItem>
-
-<TabItem value="alibaba-cloud-oss" label="Alibaba Cloud OSS">
-
-```yaml
-tags:
-  minio: false
-
-stateStore:
-  minio:
-    enabled: false
-
-  oss:
-    enabled: true
-    region: <your oss region, e.g, "cn-hangzhou">
-    bucket: <your bucket name>
-    authentication:
-      useServiceAccount: false
-      accessKey: <your access key>
-      secretAccessKey: <your secret access key>
-```
-</TabItem>
-
-</Tabs>
