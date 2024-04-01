@@ -19,7 +19,7 @@ This option uses a pre-defined Docker Compose configuration file to set up a Ris
 The cluster also incorporates these third-party components:
 
 - Grafana
-- Etcd
+- Etcd/PostgreSQL/MySQL
 - MinIO
 - Prometheus
 
@@ -145,6 +145,33 @@ To start the RisingWave cluster with OBS as the storage backend, run the followi
 
 ```shell
 docker compose -f docker-compose-with-obs.yml up
+```
+
+Normally meta uses etcd as default storage backend, now risingwave supports the following sql storage backends:
+- [SQLite](#SQLite)
+- [PostgreSQL or PostgreSQL-compatible storage](#postgresql-or-postgresql-compatible-storage)
+- [MySQL or MySQL-compatible storage](#mysql-or-mysql-compatible-storage)
+
+For each of the options, user only have to change the options of meta:
+- Configure `--backend` to `sql`
+- Configure `--sql-endpoint` to the target sql backend endpoint
+
+### SQLite
+
+For SQLite, we have a Docker Compose configuration file that you can use after the necessary configurations: `docker-compose-with-sqlite.yml`. In this file, meta will mount a volume for SQLite db file, which means the SQLite meta storage backend requires singleton meta component.
+
+### PostgreSQL or PostgreSQL-compatible storage
+
+In `docker-compose-with-sqlite.yml`, specify the storage backend via `postgresql` parameter.
+```bash
+--sql-endpoint postgres://<user>:<password>@<host>:<port>/<db>
+```
+
+### MySQL or MySQL-compatible storage
+
+In `docker-compose-with-sqlite.yml`, specify the storage backend via `mysql` parameter.
+```bash
+--sql-endpoint mysql://<user>:<password>@<host>:<port>/<db>
 ```
 
 ## Connect to RisingWave
