@@ -42,7 +42,7 @@ Now start a RisingWave cluster with Helm.
   aws eks update-kubeconfig --name <your_eks_cluster_name>
   ```
 
-3. Create RisingWave namespace. We recommend creating a dedicated namespace for RisingWave resources.
+3. Create a RisingWave namespace. We recommend creating a dedicated namespace for RisingWave resources.
 
   ```bash
   kubectl create namespace risingwave
