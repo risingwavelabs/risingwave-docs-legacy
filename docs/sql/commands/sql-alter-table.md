@@ -203,7 +203,6 @@ ALTER TABLE table_name
 
 This clause alters the schema registry of table with connectors.
 
-
 ```sql title=Examples
 -- Refresh the schema of the table named "t_user".
 ALTER TABLE t_user REFRESH SCHEMA;
