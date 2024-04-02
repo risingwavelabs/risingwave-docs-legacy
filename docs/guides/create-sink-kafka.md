@@ -28,7 +28,7 @@ WITH (
    connector_parameter = 'value', ...
 )
 FORMAT data_format ENCODE data_encode [ (
-    format_parameter = 'value'
+    key = 'value'
 ) ]
 ;
 ```
@@ -80,7 +80,11 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
 :::
 
-## Sink parameters
+## FORMAT and ENCODE options
+
+:::note
+These options should be set in `FORMAT data_format ENCODE data_encode (key = 'value')`, instead of the `WITH` clause
+:::
 
 |Field|Notes|
 |-----|-----|
@@ -124,7 +128,11 @@ When creating an append-only Protobuf sink, the following options can be used fo
 |Field|Notes|
 |-----|-----|
 |message| Required. Message name of the main Message in the schema definition. . |
-|schema.location| Required. The schema location. This can be in either `file://`, `http://`, or `https://` format. |
+|schema.location| Required if `schema.registry` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The schema location. This can be in either `file://`, `http://`, `https://` format. |
+|schema.registry| Required if `schema.location` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The address of the schema registry. |
+|schema.registry.username| Optional. The user name used to access the schema registry. |
+|schema.registry.password| Optional. The password associated with the user name. |
+|schema.registry.name.strategy| Optional. Accepted options include `topic_name_strategy` (default), `record_name_strategy`, and `topic_record_name_strategy`.|
 
 :::note
 The `file://` format is not recommended for production use. If it is used, it needs to be available for both meta and compute nodes.
