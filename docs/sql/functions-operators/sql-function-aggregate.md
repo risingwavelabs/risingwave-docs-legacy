@@ -222,7 +222,7 @@ SELECT mode() WITHIN GROUP (ORDER BY column1) FROM table1;
 ### `percentile_cont`
 
 :::note
-At present, `percentile_cont` is not supported for streaming queries yet.
+At present, `percentile_cont` is not supported for [streaming queries](/concepts/key-concepts.md#streaming-queries) yet.
 :::
 
 Computes the continuous percentile, which is a value corresponding to the specified fraction within the ordered set of aggregated argument values. It can interpolate between adjacent input items if needed.
