@@ -78,9 +78,9 @@ By spreading these streaming actors across cores, RisingWave achieves parallel c
 
 A streaming database is broadly defined as a data store designed to collect, process, and/or enrich streams of data in real time, typically immediately after the data is created.
 
-### Streaming jobs
+### Streaming queries
 
-A streaming job is a job that creates an index, a materialized view, a table, a sink, or a source with connectors.
+A streaming query, also known as a streaming job, is an SQL query that operates on data that is continuously generated. In RisingWave, the following SQL statements are considered streaming queries: `CREATE SOURCE`, `CREATE TABLE` (with connector settings), `CREATE MATERIALIZED VIEW`, `CREATE INDEX`, and `CREATE SINK`.
 
 ### Views
 
