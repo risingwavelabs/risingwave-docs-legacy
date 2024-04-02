@@ -41,7 +41,11 @@ cd docker
 
 ## Customize your cluster configuration
 
-You can use the following storage options as the storage backend of RisingWave:
+You can customize your RisingWave deployment configuration by changing the options for the state store and meta store.
+
+### Customize state store
+
+For state store, RisingWave supports using these systems or services, and for each of the options, we have a [Docker Compose configuration file](https://github.com/risingwavelabs/risingwave/tree/main/docker) that you can use after the necessary configurations.
 
 - [MinIO](#minio)
 - [S3 or S3-compatible storage](#s3-or-s3-compatible-storage)
@@ -49,11 +53,9 @@ You can use the following storage options as the storage backend of RisingWave:
 - [HDFS](#hdfs)
 - [Huawei Cloud OBS](#huawei-cloud-obs)
 
-For each of the options, we have a Docker Compose configuration file that you can use after the necessary configurations.
+#### MinIO
 
-### MinIO
-
-This is the default option. To start a standalone RisingWave cluster with MinIO as the storage backend, run the following command:
+This is the default option. To start a standalone RisingWave cluster with MinIO as the state store, run the following command:
 
 ```shell
 docker compose up -d
@@ -70,18 +72,18 @@ If you're using Compose V1, use `docker-compose` instead.
 
 You can also start a multi-node cluster where all components of RisingWave, including the compute node, meta node, and compactor node, are started as separate processes.
 
-By default, this mode uses MinIO as the storage backend of RisingWave. 
+By default, this mode uses MinIO as the state store of RisingWave.
 
-To start a multi-node RisingWave cluster with MinIO as the storage backend, run the following command:
+To start a multi-node RisingWave cluster with MinIO as the state store, run the following command:
 
 ```shell
 docker compose -f docker-compose-distributed.yml up
 ```
 </details>
 
-### S3 or S3-compatible storage
+#### S3 or S3-compatible storage
 
-To use S3 as the storage backend, configure your AWS credential information in `/docker/aws.env`.
+To use S3 as the state store, configure your AWS credential information in `/docker/aws.env`.
 
 To use S3-compatible storage options like Tencent Cloud COS, you need to configure the endpoint via the `RW_S3_ENDPOINT` parameter in `/docker/aws.env`. Don't include the bucket name in the endpoint.
 
@@ -91,7 +93,7 @@ In `docker-compose-with-s3.yml`, specify the bucket name via the `hummock+s3` pa
 - "hummock+s3://<bucket-name>"
 ```
 
-### Google Cloud Storage, Alibaba Cloud OSS, or Azure Blob Storage
+#### Google Cloud Storage, Alibaba Cloud OSS, or Azure Blob Storage
 
 Configure the credentials for the cloud service you want to use in `/docker/multiple_object_storage.env`.
 
@@ -101,7 +103,7 @@ In the corresponding `docker-compose-with-service_name.yml` file (for example, `
  - "hummock+<service_name>://<bucket-name>"
 ```
 
-### HDFS
+#### HDFS
 
 Mount your `HADOOP_HOME` in the compactor node, computer node, and meta node volumes.
 
@@ -111,9 +113,9 @@ In `/docker-compose-with-hdfs.yml`, specify the cluster name via the `hummock+hd
 - "hummock+hdfs://<cluster_name>"
 ```
 
-### Huawei Cloud OBS
+#### Huawei Cloud OBS
 
-To use Huawei Cloud OBS as the storage backend, you need to configure your OBS credential information in the `multiple_object_storage.env` file. Uncomment and set the following environment variables: `OBS_ENDPOINT`, `OBS_ACCESS_KEY_ID`, and `OBS_SECRET_ACCESS_KEY`. Don't include the bucket name in the endpoint.
+To use Huawei Cloud OBS as the state store, you need to configure your OBS credential information in the `multiple_object_storage.env` file. Uncomment and set the following environment variables: `OBS_ENDPOINT`, `OBS_ACCESS_KEY_ID`, and `OBS_SECRET_ACCESS_KEY`. Don't include the bucket name in the endpoint.
 
 In the `docker-compose-with-obs.yml` file, specify the bucket name via the `hummock+obs` parameter. Replace `<bucket-name>` with the name of your OBS bucket.
 
@@ -121,20 +123,25 @@ In the `docker-compose-with-obs.yml` file, specify the bucket name via the `humm
 --state-store hummock+obs://<bucket-name>
 ```
 
-Normally meta uses etcd as default storage backend, now RisingWave supports the following sql storage backends:
-- [SQLite](#SQLite)
+### Customize meta store
+
+For meta store, RisingWave uses `etcd` as the default storage backend and also supports the following SQL storage backends:
+
+- [SQLite](#sqlite)
 - [PostgreSQL or PostgreSQL-compatible storage](#postgresql-or-postgresql-compatible-storage)
 - [MySQL or MySQL-compatible storage](#mysql-or-mysql-compatible-storage)
 
-For each of the options, user only have to change the options of meta:
-- Configure `--backend` to `sql`
-- Configure `--sql-endpoint` to the target sql backend endpoint
+For each of the options, you only have to change the options of meta:
 
-### SQLite
+- Configure `--backend` to `sql`.
 
-For SQLite, we have a Docker Compose configuration file that you can use after the necessary configurations: `docker-compose-with-sqlite.yml`. In this file, meta will mount a volume for SQLite db file, which means the SQLite meta storage backend requires singleton meta component.
+- Configure `--sql-endpoint` to the target sql backend endpoint.
 
-### PostgreSQL or PostgreSQL-compatible storage
+#### SQLite
+
+For SQLite, we have a Docker Compose configuration file that you can use after the necessary configurations: [`docker-compose-with-sqlite.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-sqlite.yml). In this file, meta will mount a volume for SQLite db file, which means the SQLite meta storage backend requires singleton meta component.
+
+#### PostgreSQL or PostgreSQL-compatible storage
 
 In `docker-compose-with-sqlite.yml`, specify the storage backend via `postgresql` parameter.
 
@@ -142,7 +149,7 @@ In `docker-compose-with-sqlite.yml`, specify the storage backend via `postgresql
 --sql-endpoint postgres://<user>:<password>@<host>:<port>/<db>
 ```
 
-### MySQL or MySQL-compatible storage
+#### MySQL or MySQL-compatible storage
 
 In `docker-compose-with-sqlite.yml`, specify the storage backend via `mysql` parameter.
 
