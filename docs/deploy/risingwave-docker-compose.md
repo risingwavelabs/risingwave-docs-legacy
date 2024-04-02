@@ -39,9 +39,9 @@ Open the repository in a terminal and run the following command to navigate to t
 cd docker
 ```
 
-## Start a RisingWave cluster
+## Customize your cluster configuration
 
-You can now start a RisingWave cluster. You can use the following storage options as the storage backend of RisingWave:
+You can use the following storage options as the storage backend of RisingWave:
 
 - [MinIO](#minio)
 - [S3 or S3-compatible storage](#s3-or-s3-compatible-storage)
@@ -91,12 +91,6 @@ In `docker-compose-with-s3.yml`, specify the bucket name via the `hummock+s3` pa
 - "hummock+s3://<bucket-name>"
 ```
 
-Run this command to start the RisingWave cluster:
-
-```shell
-docker compose -f docker-compose-with-s3.yml up
-```
-
 ### Google Cloud Storage, Alibaba Cloud OSS, or Azure Blob Storage
 
 Configure the credentials for the cloud service you want to use in `/docker/multiple_object_storage.env`.
@@ -107,14 +101,6 @@ In the corresponding `docker-compose-with-service_name.yml` file (for example, `
  - "hummock+<service_name>://<bucket-name>"
 ```
 
-Run the following command to start the RisingWave cluster with one of the cloud storage services that you choose.
-
-```shell
-docker compose -f docker-compose-with-service_name.yml up
-```
-
-Remember to replace the `docker-compose-with-service_name.yml` with the full file name of the corresponding configuration file.
-
 ### HDFS
 
 Mount your `HADOOP_HOME` in the compactor node, computer node, and meta node volumes.
@@ -123,12 +109,6 @@ In `/docker-compose-with-hdfs.yml`, specify the cluster name via the `hummock+hd
 
 ```bash
 - "hummock+hdfs://<cluster_name>"
-```
-
-Run the following command to start a RisingWave cluster:
-
-```shell
-docker compose -f docker-compose-with-hdfs.yml up
 ```
 
 ### Huawei Cloud OBS
@@ -141,13 +121,7 @@ In the `docker-compose-with-obs.yml` file, specify the bucket name via the `humm
 --state-store hummock+obs://<bucket-name>
 ```
 
-To start the RisingWave cluster with OBS as the storage backend, run the following command:
-
-```shell
-docker compose -f docker-compose-with-obs.yml up
-```
-
-Normally meta uses etcd as default storage backend, now risingwave supports the following sql storage backends:
+Normally meta uses etcd as default storage backend, now RisingWave supports the following sql storage backends:
 - [SQLite](#SQLite)
 - [PostgreSQL or PostgreSQL-compatible storage](#postgresql-or-postgresql-compatible-storage)
 - [MySQL or MySQL-compatible storage](#mysql-or-mysql-compatible-storage)
@@ -163,6 +137,7 @@ For SQLite, we have a Docker Compose configuration file that you can use after t
 ### PostgreSQL or PostgreSQL-compatible storage
 
 In `docker-compose-with-sqlite.yml`, specify the storage backend via `postgresql` parameter.
+
 ```bash
 --sql-endpoint postgres://<user>:<password>@<host>:<port>/<db>
 ```
@@ -170,9 +145,20 @@ In `docker-compose-with-sqlite.yml`, specify the storage backend via `postgresql
 ### MySQL or MySQL-compatible storage
 
 In `docker-compose-with-sqlite.yml`, specify the storage backend via `mysql` parameter.
+
 ```bash
 --sql-endpoint mysql://<user>:<password>@<host>:<port>/<db>
 ```
+
+## Start a RisingWave cluster
+
+You can now run the following command to start a RisingWave cluster:
+
+```shell
+docker compose -f docker-compose-with-storage_backend_name.yml up
+```
+
+Remember to replace the `docker-compose-with-storage_backend_name.yml` with the full file name of the corresponding configuration file.
 
 ## Connect to RisingWave
 
