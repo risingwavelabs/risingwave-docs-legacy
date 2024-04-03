@@ -32,7 +32,7 @@ The adaptive parallelism feature in version 1.7.0 ensures that every streaming j
 
 ### Limit the concurrency of creating stream jobs
 
-If you want to create multiple streaming jobs at once using scripts or tools such as DBT, the [system parameters](../manage/view-configure-system-parameters.md) `max_concurrent_creating_streaming_jobs` is helpful. It controls the maximum number of streaming jobs created concurrently. However, please do not set it too high, as it may introduce excessive pressure on the cluster.
+If you want to create multiple streaming jobs at once using scripts or tools such as DBT, the [system parameter](../manage/view-configure-system-parameters.md) `max_concurrent_creating_streaming_jobs` is helpful. It controls the maximum number of streaming jobs created concurrently. However, please do not set it too high, as it may introduce excessive pressure on the cluster.
 
 ## Tuning an existing cluster
 
