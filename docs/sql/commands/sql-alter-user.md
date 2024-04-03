@@ -37,7 +37,7 @@ ALTER USER user_name WITH oauth (
 | *new_user_name* | The new name of the user. |
 | *system_permission* | See [the options for system permissions of the `CREATE USER` command](/sql/commands/sql-create-user.md#system-permissions).|
 
-For the parameters of altering the user authentication method. The `jwks_url` and `issuer` parameters are mandatory. On the other hand, `other_params_should_match` is an optional parameter that will be validated against `jwt.claims`. Please ensure that all keys in the options are in **lowercase**.
+For the alter user authentication method, the `jwks_url` and `issuer` parameters are mandatory. On the other hand, `other_params_should_match` is an optional parameter that will be validated against `jwt.claims`. Ensure that all keys in the options are in **lowercase**.
 
 :::note
 `kid` and `alg` are required in the header of JWT, and `kid` is also required in the JWKs returned by the JWKS server. All parameters set in user creation (except `jwks_url`) will be checked in the claims of JWT. Any mismatch will deny the login process.
