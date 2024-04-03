@@ -201,7 +201,7 @@ ALTER TABLE table_name
     REFRESH SCHEMA;
 ```
 
-This clause alters the schema registry of the able with connectors.
+This command alters the schema registry of a table created with connectors.
 
 ```sql title=Examples
 -- Refresh the schema of the table named "t_user".
