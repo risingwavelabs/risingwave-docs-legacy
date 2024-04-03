@@ -8,15 +8,15 @@ slug: /best-practices-for-managing-a-large-number-of-streaming-jobs
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/k8s-cluster-scaling/" />
 </head>
 
-By default, RisingWave is configured to utilize the maximum available CPUs across compute nodes for streaming jobs. In RisingWave, a streaming job refers to the creation of a table, source, index, materialized view, or sink. This design aims to achieve high performance by fully utilizing compute resources. However, this default configuration may not be optimal when the number of streaming jobs running in the cluster exceeds 300. In such cases, resource sharing and contention among multiple streaming jobs can arise. Also, due to the high number of tasks scheduled and communicating on the compute node, the default configuration can lead to poor performance and increased risks of Out of Memory (OOM) errors.
+By default, RisingWave is configured to utilize the maximum available CPUs across compute nodes for streaming jobs. In RisingWave, a streaming job refers to the creation of a table, source, index, materialized view, or sink. This design aims to achieve high performance by fully utilizing compute resources.
 
-This guide describes and explains some do’s and don’ts in this case.
+However, this default configuration may not be optimal when the number of streaming jobs running in the cluster exceeds 300. In such cases, resource sharing and contention among multiple streaming jobs can arise. Also, due to the high number of tasks scheduled and communicating on the compute node, the default configuration can lead to poor performance and increased risks of Out of Memory (OOM) errors. This guide describes and explains some do’s and don’ts in this case.
 
 Even with the correct cluster settings in place, RisingWave may still experience overload, leading to performance issues such as high latency and  OOM errors. In such cases, we recommend users to consider increasing resources to address these issues. RisingWave offers the flexibility to scale up, down, in, or out, making it easy and quick to adjust resources as needed. We advise users to adjust resources through a trial and error approach.
 
 ## Recommended cluster settings
 
-For clusters that are expected to create more than 300 materialized views,these configurations can help optimize the performance and resource utilization of the cluster.
+For clusters that are expected to create more than 300 materialized views, these configurations can help optimize the performance and resource utilization of the cluster.
 
 ### Set the default parallelism
 
