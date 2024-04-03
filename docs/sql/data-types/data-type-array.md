@@ -124,10 +124,10 @@ SELECT array[array[1],array[2],array[3]][-21432315:134124523][1:2];
 In RisingWave, assume `arr` is of type T[ ][ ][ ]:
 
 - arr[x] is of type T[ ][ ]
-- arr[x][y] is interpreted as [arr[x]](y), and of type T[ ]
+- arr[x][y] is interpreted as `[arr[x]](y)`, and of type T[ ]
 - arr[x0:x1] is of type T[ ][ ][ ]
-- arr[x0:x1][y0:y1] is interpreted as [arr[x0:x1]](y0:y1), and of type T[ ][ ][ ]
-- arr[x0:x1][y] is interpreted as [arr[x0:x1]](y), and of type T[ ][ ]
+- arr[x0:x1][y0:y1] is interpreted as `[arr[x0:x1]](y0:y1)`, and of type T[ ][ ][ ]
+- arr[x0:x1][y] is interpreted as `[arr[x0:x1]](y)`, and of type T[ ][ ]
 
 In PostgreSQL, a 3-dimensional array `arr` is still of type T[ ]:
 
