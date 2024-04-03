@@ -8,8 +8,8 @@ const config = {
   url: "https://docs.risingwave.com",
   baseUrl: "/",
   trailingSlash: true,
-  onBrokenLinks: "ignore",
-  onBrokenMarkdownLinks: "ignore",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
   presets: [
     [
