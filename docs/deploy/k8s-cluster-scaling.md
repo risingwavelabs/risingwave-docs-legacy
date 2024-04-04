@@ -12,7 +12,7 @@ This article describes adaptive parallelism as the default scaling policy for al
 
 ## Scaling policies
 
-RisingWave supports adaptive parallelism and fixed parallelism for tables, materialized views, and sinks.
+RisingWave supports adaptive parallelism and fixed parallelism for each streaming jobs, including materialized views, sinks and tables.
 
 - Adaptive parallelism (recommended)
 
@@ -41,6 +41,10 @@ RisingWave supports adaptive parallelism and fixed parallelism for tables, mater
 RisingWave distributes its computation across lightweight threads called "streaming actors," which run simultaneously on CPU cores. By spreading these streaming actors across cores, RisingWave achieves parallel computation, resulting in improved performance, scalability, and throughput.
 
 In both scaling modes, streaming actors will redistribute across the cluster to maintain balanced workloads.
+
+## Scale-out
+
+
 
 ## Scale-in
 
