@@ -31,7 +31,7 @@ Open a terminal and run the following `curl` command.
 curl https://risingwave.com/sh | sh
 ```
 
-In another terminal window, run the following command to start a RisingWave instance.
+To start a RisingWave instance, run the following command. 
 
 ```shell
 risingwave
