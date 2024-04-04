@@ -48,31 +48,36 @@ In both scaling modes, streaming actors will redistribute across the cluster to
 
 Scale-out here refers to the process of adding more **compute nodes** to the cluster. For frontend nodes, you can simply scale out/in by adding more frontend nodes to the cluster, because they are stateless and can be automatically discovered by the meta nodes.
 
-First, add more compute nodes with `kubectl`.
+1. First, add more compute nodes with `kubectl`.
 
-```bash
-# If you are using risingwave-operator
-kubectl apply -f <file-with-more-replicas>.yaml # or kubectl edit RisingWave/<name>
+    ```bash
+    # If you are using risingwave-operator
+    kubectl apply -f <file-with-more-replicas>.yaml # or kubectl edit RisingWave/<name>
 
-# If you are not using risingwave-operator
-kubectl scale statefulset/risingwave-compute --replicas=<number-of-replicas>
-```
+    # If you are not using risingwave-operator
+    kubectl scale statefulset/risingwave-compute --replicas=<number-of-replicas>
+    ```
 
-Then wait until new compute nodes starts.
+    Then wait until new compute nodes starts.
 
-If you are using fixed parallelism, you may need to manually adjust the parallelism of the streaming jobs to utilize the new compute nodes. For adaptive parallelism, the system will automatically adjust the parallelism to utilize the new compute nodes.
+2. If you are using fixed parallelism, you may need to manually adjust the parallelism of the streaming jobs to utilize the new compute nodes. For adaptive parallelism, the system will automatically adjust the parallelism to utilize the new compute nodes.
 
 ## Scale-in
 
 Scale-in here refers to the process of decreasing **compute nodes** from the cluster. By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls. To manually trigger immediate scale-in, use the following statement:
 
-1. First unregister the worker node
+1. Run following commands to unregister a compute node
 
     ```bash
+    # Find out an worker id to unregister
+    risingwave ctl meta cluster_info
+
     risingwave ctl meta unregister-worker {id}
     ```
 
-2. Then decrase the number of compute nodes
+    The `risingwave` command can be found at any node of the cluster. Recommend to use `kubectl exec` to login a pod and run the command. 
+
+2. Decrase the number of compute nodes
 
     ```bash
     # If you are using risingwave-operator
@@ -82,7 +87,7 @@ Scale-in here refers to the process of decreasing **compute nodes** from the clu
     kubectl scale statefulset/risingwave-compute --replicas=<number-of-replicas>
     ```
 
-3. If you are using fixed parallelism, you may need to manually adjust the parallelism of the streaming jobs. For adaptive parallelism, the system will automatically adjust the parallelism to utilize the new compute nodes.
+3. If you are using fixed parallelism, you may need to manually adjust the parallelism of the streaming jobs. For adaptive parallelism, the system will automatically adjust the streaming jobs to use less parallelism.
 
 ## Upgrade to v1.7
 
