@@ -18,16 +18,16 @@ This version was released on April 3, 2024.
 #### SQL features
 
 - Query syntax:
-    - Supports `RANGE` frames in window function calls. [#14416](https://github.com/risingwavelabs/risingwave/pull/14416). See [Window functions (OVER clause)](/docs/dev/window-functions/).
+    - Supports `RANGE` frames in window function calls. [#14416](https://github.com/risingwavelabs/risingwave/pull/14416). See [Window functions (OVER clause)](/docs/current/window-functions/).
 - SQL commands:
-    - Adds support for embedded Rust UDFs. [#14903](https://github.com/risingwavelabs/risingwave/pull/14903). See [Use UDFs in Rust](/docs/dev/udf-rust/).
-    - Adds support for embedded Python UDFs. [#15168](https://github.com/risingwavelabs/risingwave/pull/15168). See [Embedded Python UDFs](/docs/dev/udf-python-embedded/).
-    - Supports refreshing the schema of a table created using an external connection to get the latest schema. [#15025](https://github.com/risingwavelabs/risingwave/pull/15025). See [ALTER TABLE](/docs/dev/sql-alter-table/#refresh-schema).
-    - Supports refreshing the schema of a source to get the latest schema. [#15541](https://github.com/risingwavelabs/risingwave/pull/15541). See [ALTER SOURCE](/docs/dev/sql-alter-source/#refresh-schema).
+    - Adds support for embedded Rust UDFs. [#14903](https://github.com/risingwavelabs/risingwave/pull/14903). See [Use UDFs in Rust](/docs/current/udf-rust/).
+    - Adds support for embedded Python UDFs. [#15168](https://github.com/risingwavelabs/risingwave/pull/15168). See [Embedded Python UDFs](/docs/current/udf-python-embedded/).
+    - Supports refreshing the schema of a table created using an external connection to get the latest schema. [#15025](https://github.com/risingwavelabs/risingwave/pull/15025). See [ALTER TABLE](/docs/current/sql-alter-table/#refresh-schema).
+    - Supports refreshing the schema of a source to get the latest schema. [#15541](https://github.com/risingwavelabs/risingwave/pull/15541). See [ALTER SOURCE](/docs/current/sql-alter-source/#refresh-schema).
     - Adds a description column to the system parameters table. [#15113](https://github.com/risingwavelabs/risingwave/pull/15113).
     - Supports authenticating with OAuth token acquired from the Cloud when creating a user. [#13151](https://github.com/risingwavelabs/risingwave/pull/13151).
 - SQL functions & operators:
-    - Supports ruby-pg. [#14859](https://github.com/risingwavelabs/risingwave/pull/14859). See [Use RisingWave in your Ruby application](/docs/dev/ruby-client-libraries/).
+    - Supports ruby-pg. [#14859](https://github.com/risingwavelabs/risingwave/pull/14859). See [Use RisingWave in your Ruby application](/docs/current/ruby-client-libraries/).
     - Supports `VARIADIC` arguments for the functions `format`, `concat_ws`, `jsonb_build_array`, `jsonb_build_object`, `jsonb_extract_path`, `jsonb_extract_path_text`. [#14753](https://github.com/risingwavelabs/risingwave/pull/14753).
     - Supports `concat` function. [#14753](https://github.com/risingwavelabs/risingwave/pull/14753).
 - System catalog:
@@ -40,19 +40,19 @@ This version was released on April 3, 2024.
 #### Connectors
 
 - **Breaking change:** Sinks created from v1.6 and earlier that have `decouple` enabled may cause compatibility issues. Check if you have any sinks with this configuration by using the internal table `rw_sink_decouple` before upgrading to v1.8. [#15613](https://github.com/risingwavelabs/risingwave/pull/15613).
-- Avro tables and sources now require a schema registry during creation. [#15256](https://github.com/risingwavelabs/risingwave/pull/15256). See [Avro](/docs/dev/supported-sources-and-formats/#avro).
-- Supports using Karapace when specifying a schema registry when creating a Kafka source. [#15486](https://github.com/risingwavelabs/risingwave/pull/15486). See [Read schemas from Schema Registry](/docs/dev/ingest-from-kafka/#read-schemas-from-schema-registry).
-- Supports Protobuf data format for NATS JetStream source. [#15378](https://github.com/risingwavelabs/risingwave/pull/15378). See [Ingest data from NATS JetStream](/docs/dev/ingest-from-nats/).
-- Supports `FORMAT PLAIN ENCODE BYTES` for NATS JetStream source. [#15806](https://github.com/risingwavelabs/risingwave/pull/15806). See [Ingest data from NATS JetStream](/docs/dev/ingest-from-nats/).
-- Supports Confluent schema registry for Kafka sinks when using `FORMAT PLAIN ENCODE PROTOBUF`. [#15546](https://github.com/risingwavelabs/risingwave/pull/15546). See [Sink to Kafka](/docs/dev/create-sink-kafka/#protobuf-specific-parameters).
+- Avro tables and sources now require a schema registry during creation. [#15256](https://github.com/risingwavelabs/risingwave/pull/15256). See [Avro](/docs/current/supported-sources-and-formats/#avro).
+- Supports using Karapace when specifying a schema registry when creating a Kafka source. [#15486](https://github.com/risingwavelabs/risingwave/pull/15486). See [Read schemas from Schema Registry](/docs/current/ingest-from-kafka/#read-schemas-from-schema-registry).
+- Supports Protobuf data format for NATS JetStream source. [#15378](https://github.com/risingwavelabs/risingwave/pull/15378). See [Ingest data from NATS JetStream](/docs/current/ingest-from-nats/).
+- Supports `FORMAT PLAIN ENCODE BYTES` for NATS JetStream source. [#15806](https://github.com/risingwavelabs/risingwave/pull/15806). See [Ingest data from NATS JetStream](/docs/current/ingest-from-nats/).
+- Supports Confluent schema registry for Kafka sinks when using `FORMAT PLAIN ENCODE PROTOBUF`. [#15546](https://github.com/risingwavelabs/risingwave/pull/15546). See [Sink to Kafka](/docs/current/create-sink-kafka/#protobuf-specific-parameters).
 - Adds Kafka sink and source parameter `enable.ssl.certificate.verification`. [#15073](https://github.com/risingwavelabs/risingwave/pull/15073).
-- Supports `max_batch_rows` and  `request_timeout` parameters for Cassandra and ScyllaDB sources. [#15516](https://github.com/risingwavelabs/risingwave/pull/15516). See [Sink data from RisingWave to Cassandra or ScyllaDB](/docs/dev/sink-to-cassandra/).
-- Adds built-in MongoDB CDC source connector.  [#14966](https://github.com/risingwavelabs/risingwave/pull/14966). See [Ingest data from MongoDB CDC](/docs/dev/ingest-from-mongodb-cdc/).
-- Adds `ignore_option` parameter for sources created using Debezium format. [#15304](https://github.com/risingwavelabs/risingwave/pull/15304). See [Supported sources and formats](/docs/dev/supported-sources-and-formats/).
-- Supports batch read from Iceberg source. [#15214](https://github.com/risingwavelabs/risingwave/pull/15214). See [Ingest data from Apache Iceberg](/docs/dev/ingest-from-iceberg/).
-- Supports automatically deriving columns from Iceberg source. [#15415](https://github.com/risingwavelabs/risingwave/pull/15415). See [Ingest data from Apache Iceberg](/docs/dev/ingest-from-iceberg/).
-- Supports JDBC catalog for Iceberg sources. [#15551](https://github.com/risingwavelabs/risingwave/pull/15551). See [Ingest data from Apache Iceberg](/docs/dev/ingest-from-iceberg/).
-- Adds JDBC and Hive catalogs for Iceberg sink. [#14885](https://github.com/risingwavelabs/risingwave/pull/14885). See [Sink data from RisingWave to Apache Iceberg](/docs/dev/sink-to-iceberg/).
+- Supports `max_batch_rows` and  `request_timeout` parameters for Cassandra and ScyllaDB sources. [#15516](https://github.com/risingwavelabs/risingwave/pull/15516). See [Sink data from RisingWave to Cassandra or ScyllaDB](/docs/current/sink-to-cassandra/).
+- Adds built-in MongoDB CDC source connector.  [#14966](https://github.com/risingwavelabs/risingwave/pull/14966). See [Ingest data from MongoDB CDC](/docs/current/ingest-from-mongodb-cdc/).
+- Adds `ignore_option` parameter for sources created using Debezium format. [#15304](https://github.com/risingwavelabs/risingwave/pull/15304). See [Supported sources and formats](/docs/current/supported-sources-and-formats/).
+- Supports batch read from Iceberg source. [#15214](https://github.com/risingwavelabs/risingwave/pull/15214). See [Ingest data from Apache Iceberg](/docs/current/ingest-from-iceberg/).
+- Supports automatically deriving columns from Iceberg source. [#15415](https://github.com/risingwavelabs/risingwave/pull/15415). See [Ingest data from Apache Iceberg](/docs/current/ingest-from-iceberg/).
+- Supports JDBC catalog for Iceberg sources. [#15551](https://github.com/risingwavelabs/risingwave/pull/15551). See [Ingest data from Apache Iceberg](/docs/current/ingest-from-iceberg/).
+- Adds JDBC and Hive catalogs for Iceberg sink. [#14885](https://github.com/risingwavelabs/risingwave/pull/14885). See [Sink data from RisingWave to Apache Iceberg](/docs/current/sink-to-iceberg/).
 
 #### Installation and deployment
 
