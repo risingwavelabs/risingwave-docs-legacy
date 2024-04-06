@@ -17,7 +17,7 @@ To detect barrier latency: go to **Grafana dashboard (dev)** > **Streaming** > *
   alt="An example of extremely high latency"
 />
 
-## Diagnosis
+## Diagnosis —— find out the bottleneck streaming job 
 
 Some tools can be helpful in troubleshooting this issue:
 
@@ -25,6 +25,50 @@ Some tools can be helpful in troubleshooting this issue:
 - Check Await Tree Dump: Check the Await Tree Dump of all compute nodes in **RisingWave Dashboard** hosted on `http://meta-node:5691`. If the barrier is stuck, the Await Tree Dump will reveal the barrier waiting for a specific operation to finish. This fragment is likely to be the bottleneck of the streaming job.
 
 With these tools, you can identify the bottleneck fragments (actors) and the materialized views they belong to. Additionally, refer to the RisingWave Dashboard for the detailed information on materialized views, such as the streaming execution graph or the SQL query.
+
+## Diagnosis —— find out the bottleneck resources 
+
+Identifying the resource bottleneck of the streaming tasks is important, as it can help us to more precisely and economically increase nodes and optimize the SQL. The following document summarizes several different resource bottlenecks for reference. They are ranked from easy to difficult according to the difficulty of diagnosis. In troubleshooting, it can be used as a checklist for matching or excluding one by one.
+
+### CPU bottleneck 
+
+  **Grafana dashboard (dev)** > **Cluster Node** > **Node CPU** panel, and find the "cpu usage (avg per core) - compute" time series
+
+### State bottleneck(write & compaction)
+
+  **Grafana dashboard (dev)** > **Compaction** > **SSTable Count** panel
+
+  **Grafana dashboard (dev)** > **Cluster Node** > **Node CPU** panel, and find the "cpu usage (avg per core) - compactor" time series
+
+  **Grafana dashboard (dev)** > **Compaction** > **Compaction Failure Count** panel
+
+  **Grafana dashboard (dev)** > **Object Storage** > **Operation Failure Rate** panel
+
+  **Grafana dashboard (dev)** > **Object Storage** > **Operation Retry Rate** panel
+
+### UDF bottleneck
+
+ **Grafana dashboard (dev)** > **User Defined Function** section
+
+
+### Sink bottleneck
+
+<!--
+https://github.com/risingwavelabs/risingwave/issues/15473
+
+-->
+
+### State bottleneck(read)
+
+  **Grafana dashboard (dev)** > **Actor/Table Id Info** > **State Table Info** panel
+
+  **Grafana dashboard (dev)** > **Streaming Actors** > **Executor Cache Miss Ratio** panel
+
+  **Grafana dashboard (dev)** > **Hummock (Read)** > **Read Duration - Iter** panel
+  **Grafana dashboard (dev)** > **Hummock (Read)** > **Read Duration - Get** panel
+
+
+
 
 ## Solution
 
