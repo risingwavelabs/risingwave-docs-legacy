@@ -73,6 +73,33 @@ Iceberg supports these types of catalogs:
 
 - Jdbc catalog: RisingWave supports the [JDBC catalog](https://iceberg.apache.org/docs/latest/jdbc/#configurations). See the full example in this [configuration file](https://github.com/risingwavelabs/risingwave/blob/main/integration_tests/iceberg-sink2/docker/jdbc/config.ini).
 
+## Time travel
+
+Our Iceberg source provides time travel capabilities, allowing you to query data from a specific point in time or version, rather than just the current state of the data. You can achieve this by specifying a timestamp or a version identifier.
+
+Here is the syntax for specifying a system time. The timestamp here should be in a format like `YYYY-MM-DD HH:MM:SS` or an unix timestamp in seconds.
+
+```sql
+FOR SYSTEM_TIME AS OF [STRING | NUMBER];
+```
+
+Here is the syntax for specifying a system version:
+
+```sql
+FOR SYSTEM_VERSION AS OF [SNAPSHOT_ID];
+```
+
+Here are some examples:
+
+```sql
+-- Querying data using a timestamp
+SELECT * FROM s FOR SYSTEM_TIME AS OF '2100-01-01 00:00:00+00:00';
+SELECT * FROM s FOR SYSTEM_TIME AS OF 4102444800;
+
+-- Querying data using a version identifier
+SELECT * FROM s FOR SYSTEM_VERSION AS OF 3023402865675048688;
+```
+
 ## Examples
 
 Firstly, create an append-only Iceberg table, see [Append-only sink from upsert source](/guides/sink-to-iceberg.md#append-only-sink-from-upsert-source) for details.
