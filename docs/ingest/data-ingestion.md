@@ -100,4 +100,4 @@ The information presented above provides a brief overview of the data ingestion 
   - [Modify source or table schemas](/ingest/modify-schemas.md)
   - [Ingest additional fields with INCLUDE clause](/ingest/include-clause.md)
 
-- To learn about how to ingest data from a particular source, see [Data ingestion guides](/docs/current/sources). 
+- To learn about how to ingest data from a particular source, see [Data ingestion guides](/docs/dev/sources). 

@@ -7,7 +7,7 @@ This topic describes how to modify the schema of a RisingWave source or table.
 
 When the schema of your upstream source changes (i.e. adding or removing columns), you need to modify the schema of the corresponding source or table in RisingWave to ensure they are aligned.
 
-If schema registry is used to create a source or table, you cannot modify the schema of the source or table.
+If the schema registry is used to create a source or table, you cannot modify the schema of the source or table.
 
 ## Add a column
 
@@ -61,7 +61,9 @@ ALTER TABLE table_name DROP COLUMN column_name;
 
 ## Refresh the schema registry
 
-At present, combined with the [`ALTER SOURCE` command](/sql/commands/sql-alter-source.md#format-and-encode-options), you can refresh the schema registry of a source by refilling its [FORMAT and ENCODE options](/sql/commands/sql-create-source.md#parameters). The syntax is:
+### Source
+
+At present, combined with the [`ALTER SOURCE` command](/sql/commands/sql-alter-source.md#format-and-encode-options), you can refresh the schema registry of a source by refilling its [FORMAT and ENCODE options](formats-and-encode-parameters.md). The syntax is:
 
 ```sql title=Syntax
 ALTER SOURCE source_name FORMAT data_format ENCODE data_encode [ (
@@ -93,9 +95,50 @@ ALTER SOURCE src_user FORMAT PLAIN ENCODE PROTOBUF(
 );
 ```
 
-
 :::note
 Currently, it is not supported to modify the `data_format` and `data_encode`. Furthermore, when refreshing the schema registry of a source, it is not allowed to drop columns or change types.
+:::
+
+In addition, when the [FORMAT and ENCODE options](formats-and-encode-parameters.md) are not changed, the `REFRESH SCHEMA` clause of `ALTER SOURCE` can also be used to refresh the schema of a source.
+
+```sql title=Syntax
+ALTER SOURCE source_name REFRESH SCHEMA;
+```
+
+For example, assume we have a source as follows:
+
+```sql title="Create a source"
+CREATE SOURCE src_user WITH (
+    connector = 'kafka',
+    topic = 'sr_pb_test',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
+)
+FORMAT PLAIN ENCODE PROTOBUF(
+    schema.registry = 'http://message_queue:8081',
+    message = 'test.User'
+);
+```
+
+Then we can refresh its schema with the following statement:
+
+```sql title="Refresh schema"
+ALTER SOURCE src_user REFRESH SCHEMA;
+```
+
+For more details about this example, see our [test file](https://github.com/risingwavelabs/risingwave/blob/994a2831088c9befc71721ed6f2f2d2e35c4d0a9/e2e_test/schema_registry/alter_sr.slt).
+
+
+### Table
+
+Similarly, you can use the following statement to refresh the schema of a table with connectors. For more details, see [`ALTER TABLE`](/sql/commands/sql-alter-table.md#refresh-schema).
+
+```sql title="Refresh schema of table"
+ALTER TABLE src_user REFRESH SCHEMA;
+```
+
+:::note
+If a downstream fragment references a column that is either missing or has undergone a type change in the updated schema, the command will be declined.
 :::
 
 ## See also

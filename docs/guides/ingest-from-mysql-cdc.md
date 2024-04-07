@@ -153,20 +153,6 @@ To ensure all data changes are captured, you must create a table and specify pri
 
 ### Syntax
 
-Syntax for creating a CDC table. Note that a primary key is required.
-
-```sql
-CREATE TABLE [ IF NOT EXISTS ] table_name (
-   column_name data_type PRIMARY KEY , ...
-   PRIMARY KEY ( column_name, ... )
-) 
-WITH (
-   connector='mysql-cdc',
-   connector_parameter='value', ...
-)
-[ FORMAT DEBEZIUM ENCODE JSON ];
-```
-
 Syntax for creating a CDC source.
 
 ```sql
@@ -174,6 +160,19 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
    connector='mysql-cdc',
    <field>=<value>, ...
 );
+```
+
+Syntax for creating a CDC table. Note that a primary key is required and must be consistent with the upstream table.
+
+```sql
+CREATE TABLE [ IF NOT EXISTS ] table_name (
+   column_name data_type PRIMARY KEY , ...
+   PRIMARY KEY ( column_name, ... )
+) 
+WITH (
+   snapshot='true' 
+)
+FROM source TABLE table_name;
 ```
 
 ### Connector parameters
@@ -190,6 +189,11 @@ All the fields listed below are required. Note that the value of these parameter
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| Required if creating a shared source. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+
+The following fields are used when creating a CDC table.
+
+|Field|Notes|
+|---|---|
 |snapshot| Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
 
 #### Debezium parameters
@@ -217,35 +221,6 @@ Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based 
 
 ## Examples
 
-### Create a single CDC table 
-
-The following example creates a table in RisingWave that reads CDC data from the `orders` table in MySQL. When connecting to a specific table in MySQL, use the `CREATE TABLE` command.
-
-```sql
-CREATE TABLE orders (
-  order_id int,
-  order_date bigint,
-  customer_name string,
-  price decimal,
-  product_id int,
-  order_status smallint,
-  PRIMARY KEY (order_id)
-) WITH (
-  connector = 'mysql-cdc',
-  hostname = '127.0.0.1',
-  port = '3306',
-  username = 'root',
-  password = '123456',
-  database.name = 'mydb',
-  table.name = 'orders',
-  server.id = '5454'
-);
-```
-
-### Create multiple CDC tables with the same source
-
-RisingWave supports creating a single MySQL source that allows you to read CDC data from multiple tables located in the same database.
-
 Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command and MySQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
 
 ```sql
@@ -272,7 +247,7 @@ CREATE TABLE t1_rw (
 ) FROM mysql_mydb TABLE 'mydb.t1';
 ```
 
-You can create another CDC table in RisingWave that ingests data from table `t3` in the same database `mydb`.
+You can also create another CDC table in RisingWave that ingests data from table `t3` in the same database `mydb`.
 
 ```sql
 CREATE TABLE t3_rw (
