@@ -229,6 +229,10 @@ SELECT mode() WITHIN GROUP (ORDER BY column1) FROM table1;
 
 ### `percentile_cont`
 
+:::note
+At present, `percentile_cont` is not supported for [streaming queries](/concepts/key-concepts.md#streaming-queries) yet.
+:::
+
 Computes the continuous percentile, which is a value corresponding to the specified fraction within the ordered set of aggregated argument values. It can interpolate between adjacent input items if needed.
 
 ```bash title=Syntax
@@ -246,6 +250,10 @@ SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY column1) FROM table1;
 ---  
 
 ### `percentile_disc`
+
+:::note
+At present, `percentile_disc` is not supported for streaming queries yet.
+:::
 
 Computes the discrete percentile, which is the first value within the ordered set of aggregated argument values whose position in the ordering equals or exceeds the specified fraction.
 

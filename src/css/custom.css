@@ -137,7 +137,6 @@ html[data-theme="dark"] {
 
 /* custom nav bar */
 .navbar .navbar__inner {
-  max-width: var(--ifm-docs-page-width-xl);
   display: flex;
   justify-content: space-between;
   flex: 0 0 100%;
@@ -224,7 +223,7 @@ h3 {
   margin-left: 1.5rem;
 }
 
-.theme-doc-markdown >ol >li:not(.tabs__item) > :first-child:not(code, strong)::before {
+.theme-doc-markdown > ol > li:not(.tabs__item) > :first-child:not(code, strong)::before {
   font-size: 0.75rem;
   font-weight: bold;
   counter-increment: circle-counter;

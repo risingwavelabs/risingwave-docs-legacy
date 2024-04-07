@@ -41,7 +41,7 @@ Currently, RisingWave supports the following sink connectors:
 
   With this connector, you can sink data from RisingWave to Elasticsearch. For details about the syntax and parameters, see [Sink data to Elasticsearch](/guides/sink-to-elasticsearch.md).
 
-- Google BigQuery sink connector (`connector = 'biguqery'`)
+- Google BigQuery sink connector (`connector = 'bigquery'`)
 
   With this connector, you can sink data from RisingWave to Google BigQuery. For details about the syntax and parameters, see [Sink data to Google BigQuery](/guides/sink-to-bigquery.md).
 
