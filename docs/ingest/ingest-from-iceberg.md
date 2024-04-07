@@ -77,7 +77,7 @@ Iceberg supports these types of catalogs:
 
 Our Iceberg source provides time travel capabilities, allowing you to query data from a specific point in time or version, rather than just the current state of the data. You can achieve this by specifying a timestamp or a version identifier.
 
-Here is the syntax for specifying a system time. The timestamp here should be in a format like `YYYY-MM-DD HH:MM:SS` or an unix timestamp in seconds.
+Here is the syntax for specifying a system time. The timestamp here should be in a format like `YYYY-MM-DD HH:MM:SS` or a UNIX timestamp in seconds.
 
 ```sql
 FOR SYSTEM_TIME AS OF [STRING | NUMBER];
