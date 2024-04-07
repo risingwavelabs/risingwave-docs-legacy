@@ -36,7 +36,7 @@ CREATE SINK sink_name
 WITH (
   connector = 'elasticsearch',
   primary_key = '<primary key of the sink_from object>',
-  index = '<your Elasticsearch index>',
+  { index = '<your Elasticsearch index>' | index_column = '<your index column>' },
   url = 'http://<ES hostname>:<ES port>',
   username = '<your ES username>', 
   password = '<your password>',
@@ -52,7 +52,8 @@ WITH (
 |sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |`primary_key` |Optional. The primary keys of the sink. If the primary key has multiple columns, set a delimiter in the `delimiter` parameter below to join them. |
-| `index`         |Required. Name of the Elasticsearch index that you want to write data to. |
+| `index`         |Required if `index_column` is not set. Name of the Elasticsearch index that you want to write data to. |
+| `index_column`  |This parameter enables you to create a sink that writes to multiple indexes dynamically. The sink decides which index to write to based on a column. It is mutually exclusive with the parameter `index`. Only one of them **can and must** be set. When `index` is set, the write index of Elasticsearch is `index`. When `index_column` is set, the index of Elasticsearch is the value of this column, which must be the `string` type. Since Elasticsearch sink defaults to the first column as the key, it is not recommended to place this column as the first column.|
 | `url`          | Required. URL of the Elasticsearch REST API endpoint.|
 | `username`        | Optional. `elastic` user name for accessing the Elasticsearch endpoint. It must be used with `password`.|
 | `password`       | Optional. Password for accessing the Elasticseaerch endpoint. It must be used with `username`.|

@@ -31,6 +31,12 @@ Open a terminal and run the following `curl` command.
 curl https://risingwave.com/sh | sh
 ```
 
+To start a RisingWave instance, run the following command. 
+
+```shell
+risingwave
+```
+
 ### Docker
 
 Ensure [Docker Desktop](https://docs.docker.com/get-docker/) is installed and running in your environment.

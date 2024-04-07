@@ -155,21 +155,7 @@ To ensure all data changes are captured, you must create a table or source and s
 
 ### Syntax
 
- Syntax for creating a CDC table. Note that a primary key is required.
-
- ```sql
- CREATE TABLE [ IF NOT EXISTS ] table_name (
-    column_name data_type PRIMARY KEY , ...
-    PRIMARY KEY ( column_name, ... )
- ) 
- WITH (
-    connector='postgres-cdc',
-    connector_parameter='value', ...
- )
- [ FORMAT DEBEZIUM ENCODE JSON ];
- ```
-
- Syntax for creating a CDC source.
+Syntax for creating a CDC source.
 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
@@ -177,6 +163,21 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
    <field>=<value>, ...
 );
 ```
+
+Syntax for creating a CDC table. Note that a primary key is required and must be consistent with the upstream table.
+
+```sql
+CREATE TABLE [ IF NOT EXISTS ] table_name (
+   column_name data_type PRIMARY KEY , ...
+   PRIMARY KEY ( column_name, ... )
+) 
+WITH (
+    snapshot='true' 
+)
+FROM source TABLE table_name;
+```
+
+To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it. 
 
 ### Connector parameters
 
@@ -195,11 +196,17 @@ Unless specified otherwise, the fields listed are required. Note that the value 
 |publication.name| Optional. Name of the publication. By default, the value is `rw_publication`. For more information, see [Multiple CDC source tables](#multiple-cdc-source-tables). |
 |publication.create.enable| Optional. By default, the value is `'true'`. If `publication.name` does not exist and this value is `'true'`, a `publication.name` will be created. If `publication.name` does not exist and this value is `'false'`, an error will be returned. |
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
-|snapshot| Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
 
 :::note
 RisingWave implements CDC via PostgreSQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot). RisingWave does not automatically drop inactive replication slots. You must do this manually to prevent WAL files from accumulating in the upstream PostgreSQL database.
 :::
+
+The following fields are used when creating a CDC table.
+
+|Field|Notes|
+|---|---|
+|snapshot| Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
+
 
 #### Debezium parameters
 
@@ -226,33 +233,6 @@ Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based 
 
 ## Examples
 
-### Create a single CDC table
-
-The following example creates a table in RisingWave that reads CDC data from the `shipments` table in PostgreSQL. The `shipments` table is located in the `public` schema, under the `dev` database. When connecting to a specific table in PostgreSQL, use the `CREATE TABLE` command.
-
-```sql
- CREATE TABLE shipments (
-    shipment_id integer,
-    order_id integer,
-    origin string,
-    destination string,
-    is_arrived boolean,
-    PRIMARY KEY (shipment_id)
-) WITH (
-    connector = 'postgres-cdc',
-    hostname = '127.0.0.1',
-    port = '5432',
-    username = 'postgres',
-    password = 'postgres',
-    database.name = 'dev',
-    schema.name = 'public',
-    table.name = 'shipments'
-);
-```
-### Create multiple CDC tables with the same source
-
-RisingWave supports creating a single PostgreSQL source that allows you to read CDC data from multiple tables located in the same database.
-
 Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command and PostgreSQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
 
 ```sql
@@ -278,7 +258,7 @@ CREATE TABLE tt3 (
 ) FROM pg_mydb TABLE 'public.tt3';
 ```
 
-You can create another CDC table in RisingWave that ingests data from table `tt4` in the schema `ods`.
+You can also create another CDC table in RisingWave that ingests data from table `tt4` in the schema `ods`.
 
 ```sql
 CREATE TABLE tt4 (

@@ -282,10 +282,10 @@ spec:
     
     # Declaration of the S3 compatible state store backend.
     s3:
-      # Endpoint of the S3 compatible object storage. Two variables are supported:
-      # - ${BUCKET}: name of the S3 bucket.
-      # - ${REGION}: name of the region.
-      endpoint: ${BUCKET}.cos.${REGION}.myqcloud.com
+      # Endpoint of the S3 compatible object storage.
+      #
+      # Here we use Tencent Cloud Object Store (COS) in ap-guangzhou as an example.
+      endpoint: cos.ap-guangzhou.myqcloud.com
       
       # Region of the S3 compatible bucket.
       region: ap-guangzhou
