@@ -22,7 +22,7 @@ When an actor or fragment performs slower than others, it back-pressures its pre
   alt="An example of extremely high latency"
 />
 
-To accomplish this, refer to the Grafana dashboard and navigate to the "Streaming - Backpressure" panel. Find the channels with high backpressure and find the frontmost one.
+To accomplish this, refer to the Grafana dashboard and navigate to the "Streaming - Backpressure" panel. In the panel, find the channels with high backpressure and identify the frontmost one.
 
 <img
   src={require('../images/Backpressure-panel.png').default}
@@ -42,6 +42,6 @@ Some performance issues are caused by heavy SQL queries, such as:
 - Union (which needs to deduplicate rows) instead of Union ALL.
 - UDF performance issues.
 
-For these cases, you might consider rewriting your queries to perform better.
+For these scenarios, it would be beneficial to consider rewriting your queries to optimize their performance.
 
-If you have any difficulty with this, or if you encounter other issues that are listed here, please feel free to ask us for help in our Slack channel [**#toubleshooting**](https://www.risingwave.com/slack). 
+If you encounter any difficulties or need assistance with the provided content, please don't hesitate to reach out to us for help. You can join our [Slack channel #troubleshooting](https://www.risingwave.com/slack) and ask your questions there. We are here to support you and address any issues you may have.

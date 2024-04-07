@@ -6,15 +6,15 @@ slug: /troubleshoot-recovery-failure
 
 ## Overview
 
-When there are some problems in the RisingWave cluster, such as node restart and network abnormalities, the cluster will enter recovery processing to ensure data consistency. But some issues might also cause recovery failure, leading the cluster to be in a constant recovering state and unavailable. 
+When there are some problems in the RisingWave cluster, such as node restart and network abnormalities, the cluster will enter recovery processing to ensure data consistency. However, some issues might also cause recovery failure, leading the cluster to be in a constant recovering state and unavailable. This topic aims to provide you with information regarding recovery failure in the RisingWave cluster.
 
 ## Possible causes
 
 It’s important to identify the root cause of the issue. Some common reasons for recovery failures include:
 
-- Continuous OOM of compute nodes
-- Unconventional compute node scaling down situation resulting in insufficient schedulable resources
-- Network connectivity problems
+- Continuous OOM of compute nodes.
+- Unconventional compute node scaling down situation resulting in insufficient schedulable resources.
+- Network connectivity problems.
 
 ### Continuous OOM of compute nodes
 
