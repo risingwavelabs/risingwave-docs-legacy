@@ -9,9 +9,9 @@ slug: /troubleshoot-streaming-performance
 
 ## Overview
 
-Every streaming job (i.e. materialized view) consists of multiple fragments, forming a DAG, and each fragment consists of multiple parallel actors, while every actor contains one or more streaming operators connected together. RisingWave Dashboard visualizes the actor/fragment topology of running jobs in the Actor/Fragment panel.
+Each streaming job, for example, a materialized view, is composed of multiple fragments that form a Directed Acyclic Graph (DAG). Each fragment consists of multiple parallel actors, and each actor is comprised of one or more streaming operators interconnected. The RisingWave Dashboard provides a visualization of the actor/fragment topology for active jobs in the Actor/Fragment panel.
 
-Sometimes a streaming actor or fragments could become the bottleneck of the whole streaming job. This topic helps you to identify the bottleneck and solve the issue.
+Occasionally, a streaming actor or fragment can become a bottleneck within the overall streaming job. This guide aims to assist you in identifying the bottleneck and providing solutions to address this issue.
 
 ## Find out the back-pressured fragments
 
@@ -22,7 +22,7 @@ When an actor or fragment performs slower than others, it back-pressures its pre
   alt="An example of extremely high latency"
 />
 
-Check the Grafana - Streaming - Backpressure panel. Find the channels with high backpressure and find the frontmost one.
+To accomplish this, refer to the Grafana dashboard and navigate to the "Streaming - Backpressure" panel. Find the channels with high backpressure and find the frontmost one.
 
 <img
   src={require('../images/Backpressure-panel.png').default}
@@ -31,7 +31,7 @@ Check the Grafana - Streaming - Backpressure panel. Find the channels with high 
 
 For example, in the image above, both `15002→15001` and `15003→15002` are high. Considering backpressure can be passed to preceding fragments, the root cause is probably `15001`.
 
-To find out the corresponding part in your SQL query, please check the RisingWave Dashboard -  Fragment panel. Additionally, run `EXPLAIN CREATE MATERIALIZED VIEW …` to see the query plan and find out the part corresponding to the problematic fragments.
+To find out the corresponding part in your SQL query, refer to the RisingWave Dashboard and access the "Fragment" panel. Additionally, run `EXPLAIN CREATE MATERIALIZED VIEW …` to see the query plan and find out the part corresponding to the problematic fragments.
 
 ## Improve the performance of streaming query
 
