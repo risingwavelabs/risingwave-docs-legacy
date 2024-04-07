@@ -6,11 +6,11 @@ slug: /troubleshoot-meta
 
 ## Overview
 
-If the meta fails to start or suddenly exits in the middle, currently only one issue has been found that will cause this problem: the meta node failed to stay alive while participating in the campaign.
+If the meta fails to start or abruptly exits during operation, there is currently only one known issue that can cause this problem: the meta node fails to remain active while participating in the campaign.
 
 ## Symptoms
 
-If logs as follows found in the meta node:
+If you come across the following logs in the meta node, it is likely that you are encountering this particular issue.
 
 1. `lease timeout`
 
@@ -18,15 +18,15 @@ If logs as follows found in the meta node:
 
 ## Possible causes
 
-It is likely to be ETCD going through some fluctuation due to a bad-quality disk used for ETCD or too large a request sent to it.
+The observed issue is most likely a result of ETCD experiencing fluctuations, which can be attributed to either using a low-quality disk for ETCD or sending excessively large requests to it.
 
 ## Solutions
 
-1. Check the [notes about disks for etcd](/deploy/hardware-requirements.md#etcd).
+1. Check the [notes about disks for etcd in our documentation](/deploy/hardware-requirements.md#etcd).
 
 1. Check etcd configures, whether `-auto-compaction-mode`, `-max-request-bytes` are set properly.
 
-1. If only one meta node is deployed, you can set the parameter `meta_leader_lease_secs` to 86400 to avoid impact on leader election by the disk performance. For multi-node deployment, you can also increase the value of this parameter.
+1. If only one meta node is deployed, you can set the parameter `meta_leader_lease_secs` to `86400` to avoid impact on leader election by the disk performance. For multi-node deployment, you can also increase the value of this parameter.
 
 1. For better performance and stability of the cluster, it is recommended to use higher-performance disks and configure etcd correctly.
 
