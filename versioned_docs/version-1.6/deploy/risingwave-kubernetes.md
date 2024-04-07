@@ -284,7 +284,7 @@ spec:
     s3:
       # Endpoint of the S3 compatible object storage.
       #
-      # Here we use Tencent Cloud Object Store (COS) in ap-guanzhou as an example.
+      # Here we use Tencent Cloud Object Store (COS) in ap-guangzhou as an example.
       endpoint: cos.ap-guangzhou.myqcloud.com
       
       # Region of the S3 compatible bucket.
