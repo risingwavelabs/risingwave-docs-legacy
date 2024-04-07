@@ -104,7 +104,8 @@ Here we create a table, `additional_columns`, that ingests data from a Kafka bro
 
 ```sql
 CREATE TABLE additional_columns (
-  a int 
+  a int,
+  primary key (key_col)
 )
 INCLUDE key AS key_col
 INCLUDE partition AS partition_col
@@ -115,5 +116,5 @@ WITH (
 	connector = 'kafka',
   properties.bootstrap.server = 'message_queue:29092',
 	topic = 'kafka_additional_columns')
-FORMAT PLAIN ENCODE JSON;
+FORMAT UPSERT ENCODE JSON;
 ```
