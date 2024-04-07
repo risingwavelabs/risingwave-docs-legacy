@@ -1006,6 +1006,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "deploy/best-practices-for-managing-a-large-number-of-streaming-jobs",
+          label: "Best practices for managing a large number of streaming jobs",
+        },
+        {
+          type: "doc",
           id: "deploy/uninstall-risingwave-k8s",
           label: "Uninstall RisingWave from a cluster",
         },
@@ -1088,13 +1093,42 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Troubleshoot out-of-memory",
+          label: "Out of memory",
           id: "troubleshoot/troubleshoot-oom"
         },
         {
+          type: "category",
+          label: "Performance issues",
+          collapsible: true,
+          collapsed: true,
+          items: 
+          [
+            {
+              type: "doc",
+              label: "High latency",
+              id: "troubleshoot/troubleshoot-high-latency"
+            },
+            {
+              type: "doc",
+              label: "Streaming performance",
+              id: "troubleshoot/troubleshoot-streaming-performance"
+            },
+          ]
+        },
+        {
           type: "doc",
-          label: "Troubleshoot high latency",
-          id: "troubleshoot/troubleshoot-high-latency"
+          label: "Meta failure",
+          id: "troubleshoot/troubleshoot-meta"
+        },
+        {
+          type: "doc",
+          label: "Recovery failure",
+          id: "troubleshoot/troubleshoot-recovery-failure"
+        },
+        {
+          type: "doc",
+          label: "Deployment issues",
+          id: "troubleshoot/troubleshooting-deployment-issues"
         },
       ]
     },
