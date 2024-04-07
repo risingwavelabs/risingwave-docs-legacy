@@ -12,7 +12,7 @@ This article describes adaptive parallelism as the default scaling policy for al
 
 ## Scaling policies
 
-RisingWave supports adaptive parallelism and fixed parallelism for each streaming jobs, including materialized views, sinks and tables.
+RisingWave supports adaptive and fixed parallelism for each streaming job, including materialized view, sink, and table.
 
 - Adaptive parallelism
 
@@ -58,7 +58,7 @@ Scale-out here refers to the process of adding more **compute nodes** to the clu
     kubectl scale statefulset/risingwave-compute --replicas=<number-of-replicas>
     ```
 
-    Then wait until new compute nodes starts.
+    Then wait until new compute nodes start.
 
 2. If you are using fixed parallelism, you may need to manually adjust the parallelism of the streaming jobs to utilize the new compute nodes. For adaptive parallelism, the system will automatically adjust the parallelism to utilize the new compute nodes.
 
@@ -66,7 +66,7 @@ Scale-out here refers to the process of adding more **compute nodes** to the clu
 
 Scale-in here refers to the process of decreasing **compute nodes** from the cluster. By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls. To manually trigger immediate scale-in, use the following statement:
 
-1. Run following commands to unregister a compute node
+1. Run following commands to unregister a compute node.
 
     ```bash
     # Find out an worker id to unregister
@@ -77,7 +77,7 @@ Scale-in here refers to the process of decreasing **compute nodes** from the clu
 
     The `risingwave` command can be found at any node of the cluster. Recommend to use `kubectl exec` to login a pod and run the command. 
 
-2. Decrase the number of compute nodes
+2. Decrease the number of compute nodes.
 
     ```bash
     # If you are using risingwave-operator
