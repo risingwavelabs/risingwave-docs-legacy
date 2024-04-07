@@ -25,7 +25,7 @@ This guide focuses on addressing OOM issues on the compute node. If you encounte
 
 ## OOM when creating materialized views
 
-If OOM happens during the creation of a new materialized view, it might be caused by the large amount of existing data in upstream systems like Kafka. In this case, before creating or recreating a materialized view, you can reduce the traffic by specifying the rate limit of each parallelism:
+If OOM happens during the creation of a new materialized view, it might be caused by the large amount of existing data in upstream systems like Kafka. In this case, before creating or recreating a materialized view, you can set `streaming_parallelism` to a smaller number:
 
 ```sql
 CREATE MATERIALIZED VIEW mv WITH ( streaming_rate_limit = 200 ) AS ...
