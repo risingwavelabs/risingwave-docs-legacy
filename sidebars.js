@@ -251,6 +251,11 @@ const sidebars = {
                       id: "ingest/ingest-from-instaclustr-kafka",
                     },
                     {
+                      "type": "doc",
+                      "label": "RedHat AMQ Streams",
+                      "id": "ingest/ingest-from-redhat-amq-streams"
+                    },
+                    {
                       type: "doc",
                       label: "Upstash Kafka",
                       id: "ingest/ingest-from-upstash-kafka",
