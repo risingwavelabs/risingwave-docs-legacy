@@ -57,7 +57,7 @@ This version was released on April 3, 2024.
 #### Installation and deployment
 
 - Supports tab-completion for `SET` and `ALTER SYSTEM SET` commands in `psql` client. [#15123](https://github.com/risingwavelabs/risingwave/pull/15123).
-- Supports SQL meta store.
+- Supports SQL meta store. [#16019](https://github.com/risingwavelabs/risingwave/pull/16019). See [Start RisingWave using Docker Compose](/docs/current/risingwave-docker-compose/#customize-meta-store).
 
 #### Cluster configuration changes
 
