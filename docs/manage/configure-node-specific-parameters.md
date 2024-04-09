@@ -71,8 +71,6 @@ recover_concurrency = 8
 lfu_window_to_cache_size_ratio = 1
 lfu_tiny_lru_capacity_ratio = 0.01
 insert_rate_limit_mb = 0
-reclaim_rate_limit_mb = 0
-ring_buffer_capacity_mb = 256
 catalog_bits = 6
 compression = "none"
 
@@ -88,8 +86,6 @@ recover_concurrency = 8
 lfu_window_to_cache_size_ratio = 1
 lfu_tiny_lru_capacity_ratio = 0.01
 insert_rate_limit_mb = 0
-reclaim_rate_limit_mb = 0
-ring_buffer_capacity_mb = 256
 catalog_bits = 6
 compression = "none"
 
@@ -100,5 +96,5 @@ concurrency = 10
 unit = 64
 threshold = 0.5
 recent_filter_layers = 6
-recent_filter_rotate_interval_ms = 10000`
+recent_filter_rotate_interval_ms = 10000
 ```
