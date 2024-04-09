@@ -121,7 +121,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Cube.js| | Available. See the [documentation of Cube](https://cube.dev/docs/product/configuration/data-sources/postgres) for details.|
 |DBeaver| | Available. See [Connect DBeaver to RisingWave](/guides/dbeaver-integration.md) for details. |
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
-|Jupyter Notebook||Researching <voteNotify note="jupyter" />|
+|Jupyter Notebook||Available. For this integration, you can use the PostgreSQL python driver, such as Psycopg 2, to connect to risingwave. There is no difference from writing a normal python app. See [Use RisingWave in your Python application](/dev/go-client-libraries.md) for details.|
 |Looker||Available. See [Connect Looker to RisingWave](/guides/looker-integration.md) for details. |
 |Metabase ||Available. See [Connect Metabase to RisingWave](/guides/metabase-integration.md) for details.|
 |Redash || Available |
