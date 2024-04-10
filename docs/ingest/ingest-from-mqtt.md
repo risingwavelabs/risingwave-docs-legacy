@@ -12,7 +12,7 @@ You can ingest data from the MQTT server into RisingWave by using the MQTT sourc
 
 The [Message Queuing Telemetry Transport](https://mqtt.org/) (MQTT) protocol is ideal for connecting remote devices with a small code footprint and minimal network bandwidth. MQTT today is used in a wide variety of industries, such as automotive, manufacturing, telecommunications, oil and gas, etc.
 
-## Prerequisites[](https://docs.risingwave.com/docs/current/ingest-from-nats/#prerequisites)
+## Prerequisites
 
 Before ingesting data from MQTT into RisingWave, please ensure the following:
 
@@ -23,9 +23,9 @@ Before ingesting data from MQTT into RisingWave, please ensure the following:
 
 For example, we create a topic named `iot_data` with the data from various IoT devices at a given timestamp, including temperature, humidity readings, and a status field indicating whether the device is in a normal or abnormal state.  For more information to learn about MQTT and get started with it, refer to the [MQTT guide](https://mqtt.org/getting-started/).
 
-## Ingest data into RisingWave[](https://docs.risingwave.com/docs/current/ingest-from-nats/#ingest-data-into-risingwave)
+## Ingest data into RisingWave
 
-We create a table in RisingWave to persist the data by using `CREATE TABLE` and specifying the connection settings and data format. 
+We create a table in RisingWave to persist the data by using `CREATE TABLE` and specifying the connection settings and data format.
 
 ### Syntax
 
@@ -77,7 +77,7 @@ WITH (
   ) FORMAT PLAIN ENCODE JSON;
 ```
 
-### Query the table[](https://docs.risingwave.com/docs/current/ingest-from-warpstream/#query-the-materialized-view)
+### Query the table
 
 Let's retrieve data from the created table:
 

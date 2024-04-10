@@ -350,6 +350,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "MQTT",
+                  id: "ingest/ingest-from-mqtt",
+                },
+                {
+                  type: "doc",
                   label: "NATS JetStream",
                   id: "ingest/ingest-from-nats",
                 },
