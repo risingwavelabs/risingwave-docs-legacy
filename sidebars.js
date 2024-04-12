@@ -561,6 +561,11 @@ const sidebars = {
               label: "Overview",
             },
             {
+              type: "doc",
+              id: "guides/risingwave-as-postgres-fdw",
+              label: "RisingWave as Postgres FDW",
+            },
+            {
               type: "category",
               label: "Sinks",
               collapsible: true,
@@ -1101,19 +1106,19 @@ const sidebars = {
           label: "Performance issues",
           collapsible: true,
           collapsed: true,
-          items: 
-          [
-            {
-              type: "doc",
-              label: "High latency",
-              id: "troubleshoot/troubleshoot-high-latency"
-            },
-            {
-              type: "doc",
-              label: "Streaming performance",
-              id: "troubleshoot/troubleshoot-streaming-performance"
-            },
-          ]
+          items:
+            [
+              {
+                type: "doc",
+                label: "High latency",
+                id: "troubleshoot/troubleshoot-high-latency"
+              },
+              {
+                type: "doc",
+                label: "Streaming performance",
+                id: "troubleshoot/troubleshoot-streaming-performance"
+              },
+            ]
         },
         {
           type: "doc",

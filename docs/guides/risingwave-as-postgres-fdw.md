@@ -1,14 +1,14 @@
 ---
 id: risingwave-as-postgres-fdw
-title: Accessing RisingWave using a PostgreSQL Foreign Data Wrapper
-description: Accessing RisingWave using a PostgreSQL Foreign Data Wrapper
+title: RisingWave as a PostgreSQL foreign data wrapper
+description: A demo on accessing data stored in RisingWave from PostgreSQL
 slug: /risingwave-as-postgres-fdw
 ---
 
-A foreign data wrapper in PostgreSQL allows you to directly virtualize data stored in an external database as a local external table, also known as a foreign table. This tutorial will demonstrate how to interact between PostgreSQL and RisingWave. In this example, RisingWave will use CDC (Change Data Capture) to extract data from PostgreSQL, analyze it using a materialized view, then PostgreSQL will directly retrieve the computation results stored in RisingWave.
+A foreign data wrapper in PostgreSQL allows you to directly virtualize data stored in an external database as a local external table, also known as a foreign table. This tutorial will demonstrate how to interact between PostgreSQL and RisingWave. In this example, RisingWave will use CDC (Change Data Capture) to extract data from PostgreSQL, and analyze it using a materialized view. Then PostgreSQL will directly retrieve the computation results stored in RisingWave.
 
 :::note Beta Feature
-RisingWave serving as a foreigh data wrapper of PostgreSQL is currently in Beta. Please contact us if you encounter any issues or have feedback.
+RisingWave serving as a foreign data wrapper of PostgreSQL is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 ## Prerequisites
