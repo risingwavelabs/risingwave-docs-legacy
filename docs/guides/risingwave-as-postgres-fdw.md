@@ -151,7 +151,7 @@ SELECT * FROM city_population;
 
 ## Differences between sinking to Postgres and using FDW in Postgres
 
-Both sinking data to PostgreSQL and using a foreigh data wrapper of PostgreSQL to access data in RisingWave are ways to interact between RisingWave and PostgreSQL. The following table summarizes the differences between the two methods. The choice between these methods depends on your specific needs, data architecture, and performance considerations.
+There are two main methods to interact between RisingWave and PostgreSQL: sinking data to PostgreSQL and utilizing a foreign data wrapper of PostgreSQL to access data in RisingWave. The table below provides a summary of the differences between these two methods. Your choice between these methods will depend on your specific requirements, data architecture, and performance considerations.
 
 | Aspect            | Sinking to PostgreSQL                     | Using PostgreSQL FDW to access data               |
 |-------------------|-------------------------------------------|---------------------------------------------------|
