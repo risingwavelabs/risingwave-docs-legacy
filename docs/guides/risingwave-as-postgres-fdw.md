@@ -5,11 +5,21 @@ description: Use RisingWave as a Postgres Foreign Data Wrapper
 slug: /risingwave-as-postgres-fdw
 ---
 
-Postgres's FDW (Foreign Data Wrapper) allows you to directly virtualize data stored in an external database as a local external table, also known as a foreign table. This tutorial will demonstrate how to interact between Postgres (PostgreSQL) and RisingWave. In this example, RisingWave will use CDC (Change Data Capture) to extract data from Postgres, analyze it using a Materialized View, then Postgres will directly retrieve the computation results stored in RisingWave.
+A foreign data wrapper in PostgreSQL allows you to directly virtualize data stored in an external database as a local external table, also known as a foreign table. This tutorial will demonstrate how to interact between PostgreSQL and RisingWave. In this example, RisingWave will use CDC (Change Data Capture) to extract data from PostgreSQL, analyze it using a materialized view, then PostgreSQL will directly retrieve the computation results stored in RisingWave.
 
 :::note Beta Feature
-The RisingWave's support as a Postgres' FDW is currently in Beta. Please contact us if you encounter any issues or have feedback.
+RisingWave serving as a foreigh data wrapper of PostgreSQL is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
+
+## Prerequisites
+
+The following demo needs to be completed under two `psql` connections. One connection links to Postgres, providing the source data for analysis and obtaining the analysis results from RisingWave. In our demo, the command to connect to Postgres is `psql -h localhost -p 5432 -d myd -U postgresuser`, with the password being `postgrespw`. The other connection links to RisingWave to establish a job for analyzing the data. In our demo, the command to connect to RisingWave is `psql -h localhost -p 4566 -d dev -U root`, with no password required. You can choose to exit from `psql` and log in to the other database when you need to operate in another database. Alternatively, you can use `tmux` to open two terminals simultaneously, connecting to the respective databases with `psql`.
+
+- The Postgres used supports the `postgres_fdw` extension. 
+
+- Both Postgres and RisingWave are accessible from each other.
+
+- Both of the users in Postgres (`postgresuser` in this demo) and in RisingWave (`root` in this demo) have the necessary permissions to create tables and materialized views.
 
 ## Prepare data in Postgres
 
@@ -55,7 +65,7 @@ CREATE TABLE pg_person (
     PRIMARY KEY ("id")
 ) with (
     connector = 'postgres-cdc',
-    hostname = '127.0.0.1',
+    hostname = 'localhost',
     port = '5432',
     username = 'postgresuser',
     password = 'postgrespw',
@@ -78,7 +88,7 @@ GROUP BY
 
 ## Query result in Postgres using FDW
 
-The following command creates a foreign table in Postgres to connect to RisingWave and query the materialized view.
+The following command creates a foreign table in Postgres to connect to RisingWave and query the materialized view. The first four commands prepare the remote access of `postgres_fdw`. You can check the Postgres' doc [here](https://www.postgresql.org/docs/current/postgres-fdw.html) for more details.
 
 ```sql
 ---Run in Postgres
@@ -88,7 +98,7 @@ CREATE EXTENSION postgres_fdw;
 ---Create a foreign table to connect to RisingWave
 CREATE SERVER risingwave
         FOREIGN DATA WRAPPER postgres_fdw
-        OPTIONS (host 'host.docker.internal', port '4566', dbname 'dev');
+        OPTIONS (host 'localhost', port '4566', dbname 'dev');
 
 ---Create a user mapping for the foreign server, mapping the RisingWave's root `user` to the Postgres' user `postgresuser`
 CREATE USER MAPPING FOR postgresuser
@@ -138,3 +148,14 @@ SELECT * FROM city_population;
  redmond     |          2
  seattle     |          2
 ```
+
+## Difference between Sink and FDW
+
+Both sinking data to Postgres and using Postgres' FDW to access data in RisingWave are ways to interact between RisingWave and Postgres. The following table summarizes the differences between the two methods. The choice between these methods depends on your specific needs, data architecture, and performance considerations.
+
+| Aspect            | Sinking to Postgres                       | Using Postgres' FDW to access data                |
+|-------------------|-------------------------------------------|---------------------------------------------------|
+| Data Access       | Data is physically stored in Postgres     | Data is physically stored in RisingWave           |
+| Performance       | Potential latency for RisingWave writing to Postgres | Potential latency when reading data from RisingWave |
+| Data Consistency  | High; data written to Postgres is immediately transaction-ready | Data in RisingWave doesn't support read-write transactions |
+| Complexity        | Lower; straightforward data pipeline      | Higher; involves managing FDW setup               |
