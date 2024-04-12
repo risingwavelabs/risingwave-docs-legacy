@@ -208,12 +208,12 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "Data ingestion guides",
+              label: "Sources",
               collapsible: true,
               collapsed: true,
               link: {
                 type: "generated-index",
-                title: "Data ingestion guides",
+                title: "Sources",
                 description: "Guides on ingesting data from sources supported by RisingWave.",
                 slug: "/sources",
                 keywords: ["sources"],
@@ -1101,19 +1101,19 @@ const sidebars = {
           label: "Performance issues",
           collapsible: true,
           collapsed: true,
-          items: 
-          [
-            {
-              type: "doc",
-              label: "High latency",
-              id: "troubleshoot/troubleshoot-high-latency"
-            },
-            {
-              type: "doc",
-              label: "Streaming performance",
-              id: "troubleshoot/troubleshoot-streaming-performance"
-            },
-          ]
+          items:
+            [
+              {
+                type: "doc",
+                label: "High latency",
+                id: "troubleshoot/troubleshoot-high-latency"
+              },
+              {
+                type: "doc",
+                label: "Streaming performance",
+                id: "troubleshoot/troubleshoot-streaming-performance"
+              },
+            ]
         },
         {
           type: "doc",
