@@ -74,4 +74,4 @@ Below is an example of the cache refill configuration for your reference.
 | unit = 64                        | The length of continuous data blocks that can be batched and refilled in one request.    |
 | threshold = 0.5                  | Only units whose recently used block ratio exceeds the threshold will be refilled.       |
 | recent_filter_layers = 6         | Number of layers in the recent filter.                                                   |
-| recent_filter_rotate_interval_ms = 10000 | Time interval for rotating recent filter layers (in milliseconds).                       |
+| recent_filter_rotate_interval_ms = 10000 | Time interval for rotating recent filter layers.                       |
