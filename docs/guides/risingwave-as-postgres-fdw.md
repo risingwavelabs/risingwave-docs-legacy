@@ -52,7 +52,7 @@ INSERT INTO person VALUES (1017, 'luke jones', '9641 9352 0248 2749', 'redmond')
 
 ## Analyze data in RisingWave
 
-The following command creates a table in RisingWave. This table will use Native CDC to synchronize the data of the Person table from PostgreSQL, and then create a materialized view to analyze the ingested data.
+The following command creates a table in RisingWave. This table will use the native CDC connector to synchronize the data of the Person table from PostgreSQL, and then create a materialized view to analyze the ingested data.
 
 ```sql
 ---Run in RisingWave
