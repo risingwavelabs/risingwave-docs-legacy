@@ -52,7 +52,7 @@ Any items present in `risingwave.toml` will override the default values in the s
 
 ## Node-specific parameters
 
-See [Node-specific parameters](/manage/node-specific-parameters.md) for a list of node-specific parameters. 
+See [Node-specific parameters](/manage/node-specific-parameters.md) for a list of node-specific parameters.
 
 The parameters can vary between different nodes, depending on the disk configuration of each machine.
 
