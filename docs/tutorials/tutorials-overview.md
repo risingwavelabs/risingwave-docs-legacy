@@ -33,4 +33,4 @@ Try out the following runnable demos:
 
 - [Use RisingWave to monitor RisingWave metrics](/tutorials/monitor-rw-metrics.md)
 
-    Build an end-to-end monitoring and alerting system using Prometheus, Kafka, RisingWave, and Grafan to monitor RisingWave's performance metrics.
+    Build an end-to-end monitoring and alerting system using Prometheus, Kafka, RisingWave, and Grafana to monitor RisingWave's performance metrics.
