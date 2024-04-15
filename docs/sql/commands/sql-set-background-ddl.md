@@ -8,6 +8,8 @@ slug: /sql-set-background-ddl
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-set-background-ddl/" />
 </head>
 
+test
+
 :::note Beta feature
 The `SET BACKGROUND_DDL` command is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
