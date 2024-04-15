@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS table_name
 
 )
 WITH (
-   connector = 'nats',
+   connector = 'mqtt',
    url = '<your MQTT server>:<port>',
    topic = '<topic>',
    qos = '<qos_level>', -- MQTT provides three levels of QoS: At most once, At least once, and Exactly once.
