@@ -149,6 +149,12 @@ SELECT * FROM city_population;
  seattle     |          2
 ```
 
+:::note
+
+Currently, write operations to RisingWave through a foreign data wrapper are not supported. The data in the foreign table is read-only.
+
+:::
+
 ## Differences between sinking to Postgres and using FDW in Postgres
 
 There are two main methods to interact between RisingWave and PostgreSQL: sinking data to PostgreSQL and utilizing a foreign data wrapper of PostgreSQL to access data in RisingWave. The table below provides a summary of the differences between these two methods. Your choice between these methods will depend on your specific requirements, data architecture, and performance considerations.
@@ -156,6 +162,6 @@ There are two main methods to interact between RisingWave and PostgreSQL: sinkin
 | Aspect            | Sinking to PostgreSQL                     | Using PostgreSQL FDW to access data               |
 |-------------------|-------------------------------------------|---------------------------------------------------|
 | Data Access       | Data is physically stored in PostgreSQL   | Data is physically stored in RisingWave           |
-| Performance       | Potential latency for RisingWave writing to PostgreSQL | Potential latency when reading data from RisingWave |
-| Data Consistency  | High; data written to PostgreSQL is immediately transaction-ready | Data in RisingWave doesn't support read-write transactions |
-| Complexity        | Lower; straightforward data pipeline      | Higher; involves managing FDW setup               |
+| Performance       | Potential latency for RisingWave to write to PostgreSQL | Potential latency when reading data from RisingWave |
+| Message Delivery Guarantee | At-least-once while sinking into PostgreSQL tables  | Exactly-once for MVs and the data is not moved |
+| Extra Requirement | None                                      | Requires the `postgres_fdw` extension and involves more setup steps |
