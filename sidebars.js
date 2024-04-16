@@ -1150,6 +1150,11 @@ const sidebars = {
       href: "/release-notes",
       label: "Releases",
     },
+    {
+      type: "link",
+      href: "/release-lifecycle",
+      label: "Release lifecycle",
+    },
   ],
 };
 
