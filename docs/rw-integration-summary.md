@@ -32,13 +32,14 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Broker or streaming service| Source | Sink |
 |---|---|---|
 |Apache Kafka | Available. See [Ingest from Kafka](/ingest/ingest-from-kafka.md) for details. | Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.| |
-| Confluent Cloud | Available. See [Ingest from Confluent Cloud](/guides/confluent-kafka-source.md) for details. | |
 | Amazon MSK | Available. See [Ingest from Amazon MSK](/guides/connector-amazon-msk.md) for details. | |
-|Redpanda | Available. See [Ingest from Redpanda](/ingest/ingest-from-redpanda.md) for details. |Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.|
 |Apache Pulsar|Available. See [Ingest from Pulsar](/ingest/ingest-from-pulsar.md) for details. | Available. See [Sink to Pulsar](/guides/sink-to-pulsar.md) for details.|
+| Confluent Cloud | Available. See [Ingest from Confluent Cloud](/guides/confluent-kafka-source.md) for details. | |
 |DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <voteNotify note="astra_streaming_sink" />|
-|StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
+|Google Pub/Sub|Available. See [Ingest from Google Pub/Sub](/ingest/ingest-from-google-pubsub.md) for details.| Researching <voteNotify note="google_pubsub_sink" /> |
 |Kinesis Data Streams|Available. See [Ingest from Kinesis](/ingest/ingest-from-kinesis.md) for details.|Available. See [Sink to Kinesis](/guides/sink-to-aws-kinesis.md) for details.|
+|Redpanda | Available. See [Ingest from Redpanda](/ingest/ingest-from-redpanda.md) for details. |Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.|
+|StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
 |NATS / NATS JetStream | Available. See [Ingest from NATS JetStream](/ingest/ingest-from-nats.md) for details. | Available. See [Sink to NATS](/guides/sink-to-nats.md) for details.|
 
 ## ETL/ELT and data integration
