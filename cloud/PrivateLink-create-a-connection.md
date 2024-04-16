@@ -1,11 +1,11 @@
 ---
-id: vpc-create-a-connection
-title: Create a VPC connection
-description: Create a VPC connection through PrivateLink or Private Service Connect.
+id: PrivateLink-create-a-connection
+title: Create a PrivateLink connection
+description: Create a PrivateLink connection.
 slug: /create-a-connection
 ---
 
-Follow the steps below to establish a secure connection with your VPC through AWS PrivateLink or GCP Private Service Connect.
+Follow the steps below to establish a secure connection with your private VPC through AWS PrivateLink, GCP Private Service Connect, or Azure Private Link.
 
 ## Prerequisites
 
@@ -19,19 +19,15 @@ Follow the steps below to establish a secure connection with your VPC through AW
   
   - For AWS, see [Share your services through AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html).
   - For GCP, see [Private Service Connect](https://cloud.google.com/vpc/docs/private-service-connect).
+  - For Azure, see [Private Link documentation](https://learn.microsoft.com/en-us/azure/private-link/).
 
 ## Steps
 
-1. Go to the [**Connection**](https://cloud.risingwave.com/connection/) page and click **Create connection**.
-
-    <img
-    src={require('./images/create-connection-page.png').default}
-    alt="Create connection page"
-    />
+1. Go to the [**PrivateLink**](https://cloud.risingwave.com/connection/) page and click **Create PrivateLink**.
 
 2. For **Connection type**, select your cloud service provider. 
    
-   Currently, RisingWave Cloud supports **AWS** PrivateLink and **GCP** Private Service Connect.
+   Currently, RisingWave Cloud supports **AWS** PrivateLink, **GCP** Private Service Connect and **Azure** Private Link.
 
 3. For **Cluster**, select the cluster you want to connect the VPC to.
    
@@ -81,4 +77,3 @@ alt="VPC connection endpoint "
 />
 
 For details on how to use the VPC endpoint to create a source with the VPC connection, see [Create source with VPC connection](/docs/current/ingest-from-kafka/#create-source-with-vpc-connection). For creating a sink, see [Create sink with VPC connection](/docs/current/create-sink-kafka/#create-sink-with-vpc-connection).
-

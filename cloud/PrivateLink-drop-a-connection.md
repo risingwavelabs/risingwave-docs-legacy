@@ -1,7 +1,7 @@
 ---
-id: vpc-drop-a-connection
-title: Drop a VPC connection
-description: If you no longer need to connect to a VPC, you can drop the connection.
+id: PrivateLink-drop-a-connection
+title: Drop a PrivateLink connection
+description: If you no longer need to connect to a PrivateLink, you can drop the connection.
 slug: /drop-a-connection
 ---
 
