@@ -105,7 +105,7 @@ SELECT * FROM s FOR SYSTEM_VERSION AS OF 3023402865675048688;
 We currently support system tables [`rw_iceberg_files` and `rw_iceberg_snapshots`](/sql/system-catalogs/rw_catalog.md#available-risingwave-catalogs). `rw_iceberg_files` contains the current files of the Iceberg source or table. Here is a simple example:
 
 ```sql title="Read Iceberg files"
- select * from rw_iceberg_files;
+ SELECT * FROM rw_iceberg_files;
 ```
 ```
  source_id | schema_name |        source_name         | content |                                                      file_path                                                       | file_format | record_count | file_size_in_bytes | equality_ids | sort_order_id
@@ -123,7 +123,7 @@ We currently support system tables [`rw_iceberg_files` and `rw_iceberg_snapshots
 `rw_iceberg_snapshots` contains all Iceberg snapshots in RisingWave. Based on it, you can read a specific snapshot by a time travel query. For example, you can use the following query to read these snapshots:
 
 ```sql title="Read all Iceberg snapshots"
-select * from rw_iceberg_snapshots;
+SELECT * FROM rw_iceberg_snapshots;
 ```
 ```
  source_id | schema_name |source_name| sequence_number |     snapshot_id     |         timestamp_ms          |                                                        manifest_list                                      |                                                                                                                                                                                                                    summary
@@ -135,8 +135,8 @@ select * from rw_iceberg_snapshots;
 ```
 
 ```sql title="Read a specific snapshot"
-select * from t for system_version as of 4476030648521181855;
-select * from t for system_time as of '2024-04-03 08:54:22.488+00:00';
+SELECT * FROM t FOR SYSTEM_VERSION AS OF 4476030648521181855;
+SELECT * FROM t FOR SYSTEM_TIME AS OF '2024-04-03 08:54:22.488+00:00';
 ```
 
 ## Examples
