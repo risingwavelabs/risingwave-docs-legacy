@@ -8,7 +8,7 @@ slug: /ingest-from-mqtt
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-mqtt/" />
 </head>
 
-You can ingest data from the MQTT server into RisingWave by using the MQTT source connector in RisingWave.
+You can ingest data from a MQTT broker into RisingWave by using the MQTT source connector in RisingWave.
 
 The [Message Queuing Telemetry Transport](https://mqtt.org/) (MQTT) protocol is ideal for connecting remote devices with a small code footprint and minimal network bandwidth. MQTT today is used in a wide variety of industries, such as automotive, manufacturing, telecommunications, oil and gas, etc.
 
