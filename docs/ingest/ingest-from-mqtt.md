@@ -17,7 +17,7 @@ The [Message Queuing Telemetry Transport](https://mqtt.org/) (MQTT) protocol is 
 Before ingesting data from MQTT into RisingWave, please ensure the following:
 
 - The MQTT server is running and accessible from your RisingWave cluster.
-- If authentication is required for the MQTT, make sure you have the client username and password. The client user must have the `subscribe` permission for the topic.
+- If authentication is required for the MQTT broker, make sure you have the client username and password. The client user must have the `subscribe` permission for the topic.
 - Create the MQTT topic from which you want to ingest data.
 - Ensure that your RisingWave cluster is running.
 
