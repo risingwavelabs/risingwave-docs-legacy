@@ -38,7 +38,7 @@ risingwave
 Ensure [Docker Desktop](https://docs.docker.com/get-docker/) is installed and running in your environment.
 
 ```shell
-docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v1.8.0-standalone single_node
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v1.7.0-standalone single_node
 ```
 
 ### Homebrew
@@ -47,7 +47,7 @@ Ensure [Homebrew](https://brew.sh/) is installed, and run the following commands
 
 ```shell
 brew tap risingwavelabs/risingwave
-brew install risingwave@1.8-standalone
+brew install risingwave@1.7-standalone
 risingwave
 ```
 

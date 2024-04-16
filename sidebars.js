@@ -139,6 +139,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          id: "tutorials/tutorials-overview",
+          label: "Overview",
+        },
+        {
+          type: "doc",
           id: "tutorials/real-time-ad-performance-analysis",
           label: "Real-time ad performance analysis",
         },
@@ -208,12 +213,12 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "Data ingestion guides",
+              label: "Sources",
               collapsible: true,
               collapsed: true,
               link: {
                 type: "generated-index",
-                title: "Data ingestion guides",
+                title: "Sources",
                 description: "Guides on ingesting data from sources supported by RisingWave.",
                 slug: "/sources",
                 keywords: ["sources"],
@@ -249,6 +254,11 @@ const sidebars = {
                       type: "doc",
                       label: "Instaclustr Kafka",
                       id: "ingest/ingest-from-instaclustr-kafka",
+                    },
+                    {
+                      "type": "doc",
+                      "label": "RedHat AMQ Streams",
+                      "id": "ingest/ingest-from-redhat-amq-streams"
                     },
                     {
                       type: "doc",
@@ -342,6 +352,11 @@ const sidebars = {
                   type: "doc",
                   label: "Google Cloud Storage",
                   id: "ingest/ingest-from-gcs",
+                },
+                {
+                  type: "doc",
+                  label: "MQTT",
+                  id: "ingest/ingest-from-mqtt",
                 },
                 {
                   type: "doc",
@@ -559,6 +574,11 @@ const sidebars = {
               type: "doc",
               id: "data-delivery",
               label: "Overview",
+            },
+            {
+              type: "doc",
+              id: "guides/risingwave-as-postgres-fdw",
+              label: "RisingWave as Postgres FDW",
             },
             {
               type: "category",
@@ -1027,6 +1047,10 @@ const sidebars = {
           id: "manage/view-statement-progress",
         },
         {
+          type: 'doc',
+          id: 'manage/alter-streaming',
+        },
+        {
           type: "doc",
           id: "manage/view-configure-system-parameters",
         },
@@ -1036,16 +1060,20 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/alter-streaming',
+          id: 'manage/configure-node-specific-parameters',
         },
         {
           type: 'doc',
-          id: 'manage/meta-backup',
+          id: 'manage/node-specific-parameters',
         },
         {
           type: "doc",
           id: "manage/dedicated-compute-node",
           label: "Set up a dedicated compute node",
+        },
+        {
+          type: 'doc',
+          id: 'manage/meta-backup',
         },
         {
           type: "doc",
@@ -1101,19 +1129,19 @@ const sidebars = {
           label: "Performance issues",
           collapsible: true,
           collapsed: true,
-          items: 
-          [
-            {
-              type: "doc",
-              label: "High latency",
-              id: "troubleshoot/troubleshoot-high-latency"
-            },
-            {
-              type: "doc",
-              label: "Streaming performance",
-              id: "troubleshoot/troubleshoot-streaming-performance"
-            },
-          ]
+          items:
+            [
+              {
+                type: "doc",
+                label: "High latency",
+                id: "troubleshoot/troubleshoot-high-latency"
+              },
+              {
+                type: "doc",
+                label: "Streaming performance",
+                id: "troubleshoot/troubleshoot-streaming-performance"
+              },
+            ]
         },
         {
           type: "doc",
