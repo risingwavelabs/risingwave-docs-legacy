@@ -1,7 +1,7 @@
 ---
 id: ingest-from-mqtt
 title: Ingest data from MQTT brokers
-description: Ingest data from MQTT server into RisingWave.
+description: Ingest data from MQTT brokers into RisingWave.
 slug: /ingest-from-mqtt
 ---
 <head>
