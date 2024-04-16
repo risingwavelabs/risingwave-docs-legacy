@@ -224,7 +224,7 @@ const config = {
       async: true,
     },
     {
-      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha46/dist/run-llm-search-widget.es.js",
+      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha51/dist/run-llm-search-widget.es.js",
       id: "runllm-widget-script",
       type: "module",
       "runllm-server-address": "https://api.runllm.com",
@@ -232,12 +232,12 @@ const config = {
       "runllm-position": "TOP_RIGHT",
       "runllm-keyboard-shortcut": "Mod+k",
       "runllm-theme-color": "#005EEC",
-      "runllm-brand-logo": "https://aqueduct-public-assets-bucket.s3.us-east-2.amazonaws.com/runllm/risingwave.svg",
+      "runllm-slack-community-url": "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",
       "runllm-name": "RisingWave",
       async: true,
     },
   ],
-  stylesheets: ["https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha46/dist/main.css"],
+  stylesheets: ["https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha51/dist/main.css"],
   webpack: {
     jsLoader: (isServer) => ({
       loader: require.resolve("swc-loader"),
