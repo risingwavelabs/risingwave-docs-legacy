@@ -1,8 +1,8 @@
 ---
-id: release-lifecycle
-title: Release lifecycle
+id: product-lifecycle
+title: Product lifecycle
 description: RisingWave's product release lifecycle and how RisingWave defines each stage.
-slug: /release-lifecycle
+slug: /product-lifecycle
 ---
 
 This page lists RisingWave's product release lifecycle and how RisingWave defines each stage.

@@ -1146,14 +1146,22 @@ const sidebars = {
       ]
     },
     {
-      type: "link",
-      href: "/release-notes",
+      type: "category",
       label: "Releases",
-    },
-    {
-      type: "link",
-      href: "/release-lifecycle",
-      label: "Release lifecycle",
+      collapsible: true,
+      collapsed: false,
+      items: [
+        {
+          type: "link",
+          href: "/release-notes",
+          label: "Release notes",
+        },
+        {
+          type: "link",
+          href: "/product-lifecycle",
+          label: "Product lifecycle",
+        },
+      ]
     },
   ],
 };
