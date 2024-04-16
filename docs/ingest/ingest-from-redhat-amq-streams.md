@@ -17,7 +17,7 @@ You can ingest data from RedHat AMQ Streams into RisingWave by using the Kafka s
 Before ingesting data from RedHat AMQ Streams into RisingWave, please ensure the following:
 
 - The AMQ Streams cluster is running and accessible from your RisingWave cluster.
-- Allow the AMQ Streams cluster so that RisingWave can ingest data. Ensure you possess the client username and password if authentication is necessary for the cluster.
+-  If authentication is required for the AMQ Streams cluster, ensure you have the client username and password.
 - Create the AMQ Streams topic from which you want to ingest data.
 - Ensure that your RisingWave cluster is running.
 
