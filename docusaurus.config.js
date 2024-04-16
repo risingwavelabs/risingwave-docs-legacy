@@ -224,7 +224,7 @@ const config = {
       async: true,
     },
     {
-      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha51/dist/run-llm-search-widget.es.js",
+      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha57/dist/run-llm-search-widget.es.js",
       id: "runllm-widget-script",
       type: "module",
       "runllm-server-address": "https://api.runllm.com",
@@ -237,7 +237,7 @@ const config = {
       async: true,
     },
   ],
-  stylesheets: ["https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha51/dist/main.css"],
+  stylesheets: ["https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha57/dist/main.css"],
   webpack: {
     jsLoader: (isServer) => ({
       loader: require.resolve("swc-loader"),
