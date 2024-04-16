@@ -25,12 +25,12 @@ For example, we create a topic named `iot_data` with the data from various IoT d
 
 ## Ingest data into RisingWave
 
-We create a table in RisingWave to persist the data by using `CREATE TABLE` and specifying the connection settings and data format.
+When creating a source, we have the option to either persist the data in RisingWave using `CREATE TABLE` or use `CREATE SOURCE` while specifying the connection settings and data format.
 
 ### Syntax
 
 ```sql
-CREATE TABLE IF NOT EXISTS table_name 
+CREATE { TABLE | SOURCE} [ IF NOT EXISTS ] source_name  
 (
    column_name data_type PRIMARY KEY,
    -- Add more columns if needed: column_name2 data_type2, column_name3 data_type3, ...
@@ -43,7 +43,7 @@ WITH (
    connector = 'mqtt',
    url = '<your MQTT server>:<port>',
    topic = '<topic>',
-   qos = '<qos_level>', -- MQTT provides three levels of QoS: At most once, At least once, and Exactly once.
+   qos = '<qos_level>', 
 
    -- Optional connection parameters
    connect_mode = <connect_mode>,
@@ -57,6 +57,22 @@ WITH (
 FORMAT PLAIN ENCODE data_encode; -- Format options: plain (encode BYTES and JSON)
 
 ```
+
+### Parameters
+
+| Field              | Notes                                                                                                                                                       |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `url`              | Required. The URL of the broker to connect to, e.g., `tcp://localhost`. Must be prefixed with `tcp://`, `mqtt://`, `ssl://`, or `mqtts://` to denote the protocol. `mqtts://` and `ssl://` use native certificates if no CA is specified. |
+| `qos`              | Optional. The quality of service for publishing messages. Defaults to `at_most_once`. Options include `at_most_once`, `at_least_once`, or `exactly_once`.   |
+| `username`         | Optional. Username for the MQTT broker.                                                                                                                     |
+| `password`         | Optional. Password for the MQTT broker.                                                                                                                     |
+| `client_prefix`    | Optional. Prefix for the MQTT client ID. Defaults to "risingwave".                                                                                          |
+| `clean_start`      | Optional. Determines if all states from queues are removed when the client disconnects. If true, the broker clears all client states upon disconnect; if false, the broker retains the client state and resumes pending operations upon reconnection. |
+| `inflight_messages`| Optional. Maximum number of inflight messages. Defaults to 100.                                                                                             |
+| `tls.client_cert`  | Optional. Path to the client's certificate file (PEM) or a string with the certificate content. Required for client authentication. Can use `fs://` prefix for file paths.                                          |
+| `tls.client_key`   | Optional. Path to the client's private key file (PEM) or a string with the private key content. Required for client authentication. Can use `fs://` prefix for file paths.                                           |
+| `topic`            | Required. The topic name to subscribe or publish to. Can include wildcard topics, e.g., `/topic/#`.                                                         |
+
 
 This SQL statement creates a table named `iot_sensor_data` with columns for device ID, timestamp, temperature, humidity, and device status. The table is configured to connect to an MQTT broker using the MQTT connector, with specific URL, topic, and quality of service (QoS) settings, the data is encoded as JSON.
 
