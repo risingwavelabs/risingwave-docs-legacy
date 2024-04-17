@@ -326,3 +326,19 @@ RisingWave cannot correctly parse composite types from PostgreSQL as Debezium do
 |CIDR |CHARACTER VARYING* |
 |MACADDR |CHARACTER VARYING* |
 |MACADDR8 |CHARACTER VARYING* |
+
+In certain scenarios, such as in the web3 industry, numbers stored as `numeric/decimal` like hash values might exceed the [range](/sql/sql-data-types.md) of RisingWave's `numeric` type, resulting in data read from CDC being treated as NULL. To address this, we allow `numeric/decimal` type to be mapped to either `rw_int256` or `varchar` when creating a CDC-based table. For instance, if a table in PostgreSQL is defined as `(id num primary key, num numeric)`, you can create the corresponding CDC-based table in RisingWave using the following command:
+
+```sql
+CREATE TABLE t (
+    id int,
+    num rw_int256, -- or num varchar
+    PRIMARY KEY (id)
+) ...
+```
+
+The data in the `num` column will then be converted to and stored as `rw_int256` or `varchar` in the table.
+
+:::note
+When handling the `numeric/decimal` data that mapped to `rw_int256`, numbers with decimal parts will still be treated as NULL.
+:::
