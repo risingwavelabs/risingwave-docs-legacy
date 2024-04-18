@@ -5,39 +5,41 @@ description: Create a PrivateLink connection.
 slug: /create-a-connection
 ---
 
-Follow the steps below to establish a secure connection with your private VPC through AWS PrivateLink, GCP Private Service Connect, or Azure Private Link.
+Follow the steps below to create a PrivateLink connection between RisingWave Cloud and your VPC.
 
 ## Prerequisites
 
-- You have created a cluster in RisingWave Cloud and:
+- You need to create a cluster with the Pro plan or Enterprise plan in RisingWave Cloud:
   
-  - It is created with the Standard plan or Invited plan. Developer clusters do not support VPC connections. See [Choose a cluster plan](/cluster-choose-a-cluster-plan.md) for more information.
+  - See [Choose a cluster plan](/cluster-choose-a-cluster-plan.md) for more information. Please note that Developer clusters do not support PrivateLink connections.
   
-  - The VPC you want to connect to and your cluster must be in the same region. If your preferred region is not available when creating a cluster, contact our support team.
+  - The VPC you want to connect to and your cluster must be in the same region. If your preferred region is not available when creating a cluster, contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com).
   
-- The VPC, source/sink service, and endpoint service or service attachment are set up and running properly. If you are setting up new services, the following links might be helpful:
+- You need to set up a PrivateLink service in your VPC and make sure it runs properly. The following links might be helpful:
   
   - For AWS, see [Share your services through AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html).
-  - For GCP, see [Private Service Connect](https://cloud.google.com/vpc/docs/private-service-connect).
-  - For Azure, see [Private Link documentation](https://learn.microsoft.com/en-us/azure/private-link/).
+  - For GCP, see [GCP Published services](https://cloud.google.com/vpc/docs/about-vpc-hosted-services).
+  - For Azure, see [Azure Private Link services](https://learn.microsoft.com/en-us/azure/private-link/private-link-service-overview).
 
 ## Steps
 
 1. Go to the [**PrivateLink**](https://cloud.risingwave.com/connection/) page and click **Create PrivateLink**.
 
-2. For **Connection type**, select your cloud service provider. 
-   
-   Currently, RisingWave Cloud supports **AWS** PrivateLink, **GCP** Private Service Connect and **Azure** Private Link.
+2. For **Platform**, select your cloud service provider. Currently, RisingWave Cloud supports **AWS** PrivateLink and **GCP** Private Service Connect.
+
+   :::note
+   Azure Private Link integration is currently in development and will be available soon.
+   :::
 
 3. For **Cluster**, select the cluster you want to connect the VPC to.
    
    Ensure that the VPC and the cluster are in the same region.
 
-4. For **Connection name**, enter a descriptive name for the connection.
+4. For **Name name**, enter a descriptive name for the connection.
    
-5. Enter the service identifier.
+5. For **Endpoint service name** or **Service attachment**:
 
-    <details><summary>For AWS, enter the service name of the endpoint service.</summary> 
+    <details><summary>If you choose AWS as the platform, enter the service name of the endpoint service.</summary>
 
     You can find it in the [Amazon VPC console](https://console.aws.amazon.com/vpc/) → **Endpoint services** → **Service name** section.
 
@@ -48,7 +50,7 @@ Follow the steps below to establish a secure connection with your private VPC th
 
     </details>
 
-    <details><summary>For GCP, enter the server target URL of the service attachment.</summary> 
+    <details><summary>If you choose GCP as the platform, enter the server target URL of the service attachment.</summary> 
 
     You can find it in the [Google Cloud Console](https://console.cloud.google.com/) → **Network services** → **Private Service Connect**.
 
@@ -63,17 +65,6 @@ Follow the steps below to establish a secure connection with your private VPC th
 
 ## What's next
 
-Now, you can create a source or sink with the VPC connection using SQL.
+Now, you can create a source or sink with the PrivateLink connection using SQL.
 
-:::note
-Guided setup for creating a source or sink with a VPC connection is coming soon.
-:::
-
-After you created the connection, a VPC connection endpoint is generated for your cluster. You can find it in [**Connection**](https://cloud.risingwave.com/connection/).
-
-<img
-src={require('./images/vpc-connection-endpoint.png').default}
-alt="VPC connection endpoint "
-/>
-
-For details on how to use the VPC endpoint to create a source with the VPC connection, see [Create source with VPC connection](/docs/current/ingest-from-kafka/#create-source-with-vpc-connection). For creating a sink, see [Create sink with VPC connection](/docs/current/create-sink-kafka/#create-sink-with-vpc-connection).
+For details on how to use the VPC endpoint to create a source with the PrivateLink connection, see [Create source with PrivateLink connection](/docs/current/ingest-from-kafka/#create-source-with-privatelink-connection); for creating a sink, see [Create sink with PrivateLink connection](/docs/current/create-sink-kafka/#create-sink-with-privatelink-connection).
