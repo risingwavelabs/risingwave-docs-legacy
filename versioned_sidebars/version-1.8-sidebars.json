@@ -189,12 +189,12 @@
             },
             {
               "type": "category",
-              "label": "Data ingestion guides",
+              "label": "Sources",
               "collapsible": true,
               "collapsed": true,
               "link": {
                 "type": "generated-index",
-                "title": "Data ingestion guides",
+                "title": "Sources",
                 "description": "Guides on ingesting data from sources supported by RisingWave.",
                 "slug": "/sources",
                 "keywords": [
@@ -232,6 +232,11 @@
                       "type": "doc",
                       "label": "Instaclustr Kafka",
                       "id": "ingest/ingest-from-instaclustr-kafka"
+                    },
+                    {
+                      "type": "doc",
+                      "label": "RedHat AMQ Streams",
+                      "id": "ingest/ingest-from-redhat-amq-streams"
                     },
                     {
                       "type": "doc",

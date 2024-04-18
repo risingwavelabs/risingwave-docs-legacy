@@ -108,7 +108,7 @@ conn.close()
 
 ## Use `sqlalchemy` to connect to RisingWave
 
-In this section, we use the [SQLAlchemy](https://www.sqlalchemy.org) driver to connect to RisingWave. SQLAlchemy versions 2.0 and 1.4.x are supported but it is recommended to use version 1.4.x to avoid incompatibility issues. 
+In this section, we use the [SQLAlchemy](https://www.sqlalchemy.org) driver to connect to RisingWave.
 
 ### Run RisingWave
 
@@ -123,7 +123,7 @@ For more information about `sqlalchemy`, see the [SQLAlchemy](https://www.sqlalc
 For information about how to install `psycopg-binary`, see the [official psycopg documentation](https://www.psycopg.org/docs/install.html).
 
 ```terminal
-pip3 install SQLAlchemy==1.4.51 sqlalchemy-risingwave psycopg2-binary
+pip3 install SQLAlchemy sqlalchemy-risingwave psycopg2-binary
 ```
 
 ### Connect to RisingWave
@@ -152,6 +152,3 @@ with engine.connect() as conn:
 
 You can create materialized views and query from materialized views using the same format shown above. 
 
-:::note
-When creating tables using SQLAlchemy 2.0, `BIGINT` types will automatically be converted to `BIGSERIAL` types, which is not supported in RisingWave.
-:::
