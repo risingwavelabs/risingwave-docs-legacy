@@ -21,19 +21,17 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
   - For GCP, see [GCP Published services](https://cloud.google.com/vpc/docs/about-vpc-hosted-services).
   - For Azure, see [Azure Private Link services](https://learn.microsoft.com/en-us/azure/private-link/private-link-service-overview).
 
+  :::note
+   Azure Private Link integration is currently in development and will be available soon.
+  :::
+
 ## Steps
 
 1. Go to the [**PrivateLink**](https://cloud.risingwave.com/connection/) page and click **Create PrivateLink**.
 
 2. For **Platform**, select your cloud service provider. Currently, RisingWave Cloud supports **AWS** PrivateLink and **GCP** Private Service Connect.
 
-   :::note
-   Azure Private Link integration is currently in development and will be available soon.
-   :::
-
-3. For **Cluster**, select the cluster you want to connect the VPC to.
-   
-   Ensure that the VPC and the cluster are in the same region.
+3. For **Cluster**, select the cluster you want to connect the VPC to. Ensure that the VPC and the cluster are in the same region.
 
 4. For **Name name**, enter a descriptive name for the connection.
    
