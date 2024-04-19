@@ -100,6 +100,45 @@ SELECT * FROM s FOR SYSTEM_TIME AS OF 4102444800;
 SELECT * FROM s FOR SYSTEM_VERSION AS OF 3023402865675048688;
 ```
 
+## System tables
+
+We currently support system tables [`rw_iceberg_files` and `rw_iceberg_snapshots`](/sql/system-catalogs/rw_catalog.md#available-risingwave-catalogs). `rw_iceberg_files` contains the current files of the Iceberg source or table. Here is a simple example:
+
+```sql title="Read Iceberg files"
+ SELECT * FROM rw_iceberg_files;
+```
+```
+ source_id | schema_name |        source_name         | content |                                                      file_path                                                       | file_format | record_count | file_size_in_bytes | equality_ids | sort_order_id
+-----------+-------------+----------------------------+---------+----------------------------------------------------------------------------------------------------------------------+-------------+--------------+--------------------+--------------+---------------
+         1 | public      | source_merge_on_read_table |       0 | s3a://hummock001/demo_db/merge_on_read_table/data/00000-1-dcbf00a2-8722-4cd8-9d77-15880e334488-00001.parquet         | parquet     |            1 |                951 |              |             0
+         1 | public      | source_merge_on_read_table |       0 | s3a://hummock001/demo_db/merge_on_read_table/data/00000-0-0d0f5a54-b4b1-431d-8574-e13fc410296f-00001.parquet         | parquet     |            1 |                907 |              |             0
+         1 | public      | source_merge_on_read_table |       0 | s3a://hummock001/demo_db/merge_on_read_table/data/00001-1-0d0f5a54-b4b1-431d-8574-e13fc410296f-00001.parquet         | parquet     |            1 |                935 |              |             0
+         1 | public      | source_merge_on_read_table |       0 | s3a://hummock001/demo_db/merge_on_read_table/data/00000-0-66d3b597-a132-4e04-a40a-02972edcff24-00001.parquet         | parquet     |            1 |                907 |              |             0
+         1 | public      | source_merge_on_read_table |       1 | s3a://hummock001/demo_db/merge_on_read_table/data/00000-1-dcbf00a2-8722-4cd8-9d77-15880e334488-00001-deletes.parquet | parquet     |            1 |               1467 |              |
+         1 | public      | source_merge_on_read_table |       0 | s3a://hummock001/demo_db/merge_on_read_table/data/00000-0-6acaf4d1-512c-42b7-9a76-e81fc8c8ca8f-00004.parquet         | parquet     |            1 |               1690 |              |
+         1 | public      | source_merge_on_read_table |       2 | s3a://hummock001/demo_db/merge_on_read_table/data/00000-0-6e0c500e-6a8f-4252-863c-7c3d6ac20264-00048-eq-del.parquet  | parquet     |            1 |                721 | {1}          |
+(7 rows)
+```
+
+`rw_iceberg_snapshots` contains all Iceberg snapshots in RisingWave. Based on it, you can read a specific snapshot by a time travel query. For example, you can use the following query to read these snapshots:
+
+```sql title="Read all Iceberg snapshots"
+SELECT * FROM rw_iceberg_snapshots;
+```
+```
+ source_id | schema_name |source_name| sequence_number |     snapshot_id     |         timestamp_ms          |                                                        manifest_list                                      |                                                                                                                                                                                                                    summary
+-----------+-------------+-----------------------------+-----------------+---------------------+-------------------------------+-----------------------------------------------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+         1 | public      | t         |               1 | 4476030648521181855 | 2024-04-03 08:54:22.488+00:00 | s3a://hummock001/demo_db/t/metadata/snap-4476030648521181855-1-f06c9623-1ae5-4646-b117-b765d4154221.avro  | {"added-data-files": "2", "added-files-size": "1814", "added-records": "2", "changed-partition-count": "1", "operation": "append", "spark.app.id": "local-1712134455383", "total-data-files": "2", "total-delete-files": "0", "total-equality-deletes": "0", "total-files-size": "1814", "total-position-deletes": "0", "total-records": "2"}
+         1 | public      | t         |               2 | 3368332126703695368 | 2024-04-03 08:54:36.795+00:00 | s3a://hummock001/demo_db/t/metadata/snap-3368332126703695368-1-3de95014-9e9e-4704-8ea3-44449525638a.avro  | {"added-data-files": "2", "added-files-size": "1842", "added-records": "2", "changed-partition-count": "1", "operation": "append", "spark.app.id": "local-1712134465484", "total-data-files": "4", "total-delete-files": "0", "total-equality-deletes": "0", "total-files-size": "3656", "total-position-deletes": "0", "total-records": "4"}
+         1 | public      | t         |               3 | 8015994742063949347 | 2024-04-07 02:46:38.913+00:00 | s3a://hummock001/demo_db/t/metadata/snap-8015994742063949347-1-f31760cb-5df9-452a-938e-01eec7105e94.avro  | {"changed-partition-count": "1", "deleted-data-files": "1", "deleted-records": "1", "operation": "delete", "removed-files-size": "907", "spark.app.id": "local-1712457982197", "total-data-files": "3", "total-delete-files": "0", "total-equality-deletes": "0", "total-files-size": "2749", "total-position-deletes": "0", "total-records": "3"}
+         1 | public      | t         |               4 | 4642583001850518920 | 2024-04-07 02:47:05.171+00:00 | s3a://hummock001/demo_db/t/metadata/snap-4642583001850518920-1-57d9b426-e584-4185-9b7e-eab890f20589.avro  | {"added-data-files": "1", "added-delete-files": "1", "added-files-size": "2418", "added-position-delete-files": "1", "added-position-deletes": "1", "added-records": "1", "changed-partition-count": "1", "operation": "overwrite", "spark.app.id": "local-1712458005806", "total-data-files": "4", "total-delete-files": "1", "total-equality-deletes": "0", "total-files-size": "5167", "total-position-deletes": "1", "total-records": "4"}
+```
+
+```sql title="Read a specific snapshot"
+SELECT * FROM t FOR SYSTEM_VERSION AS OF 4476030648521181855;
+SELECT * FROM t FOR SYSTEM_TIME AS OF '2024-04-03 08:54:22.488+00:00';
+```
+
 ## Examples
 
 Firstly, create an append-only Iceberg table, see [Append-only sink from upsert source](/guides/sink-to-iceberg.md#append-only-sink-from-upsert-source) for details.

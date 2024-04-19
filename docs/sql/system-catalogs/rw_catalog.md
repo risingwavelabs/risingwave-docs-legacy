@@ -101,6 +101,8 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_hummock_pinned_versions          | Contains information about the pinned versions in Hummock (the storage engine in RisingWave), including the worker node ID and the minimum pinned snapshot ID.  |
  rw_hummock_sstables                 | Contains information about the SSTables (Sorted String Tables) used in Hummock (the storage engine in RisingWave). |
  rw_hummock_version_deltas           | Contains information about version deltas in Hummock (the storage engine in RisingWave). A version delta represents the modifications or differences in data between consecutive epochs.|
+ |rw_iceberg_files| Contains the current files of the Iceberg source or table.|
+ |rw_iceberg_snapshots| Contains all Iceberg snapshots in RisingWave. Based on it, you can read a specific snapshot by a time travel query.|
  rw_indexes            | Contains information about indexes in the database, including their IDs, names, schema identifiers, definitions, and more.|
  rw_internal_tables    | Contains information about internal tables in the database. Internal tables are tables that store intermediate results (also known as internal states) of queries. Equivalent to the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command.|
  rw_materialized_views | Contains information about materialized views in the database, including their names, definitions, schema and owner IDs, and access control lists.

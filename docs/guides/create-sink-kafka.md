@@ -214,11 +214,11 @@ FORMAT PLAIN ENCODE JSON;
 
 ```
 
-## Create sink with VPC connection
+## Create sink with PrivateLink connection
 
 If your Kafka sink service is located in a different VPC from RisingWave, use AWS PrivateLink or GCP Private Service Connect to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](/sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
 
-To create a Kafka sink with a VPC connection, in the WITH section of your `CREATE SINK` statement, specify the following parameters.
+To create a Kafka sink with a PrivateLink connection, in the WITH section of your `CREATE SINK` statement, specify the following parameters.
 
 |Parameter| Notes|
 |---|---|
