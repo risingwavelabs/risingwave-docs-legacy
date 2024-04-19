@@ -36,7 +36,7 @@ FORMAT data_format ENCODE data_encode [ (
 
 | Parameter Names | Description |
 | --------------- | ---------------------------------------------------------------------- |
-|redis.url | Required. The address of the Redis database or the Redis cluster.  If the address is a database address, it should in the form of the string, like`redis.url= 'redis://redis-server:6379/'`. If the adress is a cluster address, it should in the form of the string the json array, like `redis.url= '["redis://redis-server:6379/","redis://redis-server:6380/","redis://redis-server:6381/]'`. See examples below for more details.|
+|redis.url | Required. The address of the Redis database or the Redis cluster.  If the address is a database address, it should in the form of a string, like`redis.url= 'redis://redis-server:6379/'`. If it is a cluster address, it should in the form of a JSON array, like `redis.url= '["redis://redis-server:6379/","redis://redis-server:6380/","redis://redis-server:6381/]'`. See examples below for more details.|
 |primary_key| Required. The primary keys of the sink. If necessary, use ',' to delimit the primary key columns. |
 
 ## FORMAT and ENCODE options
