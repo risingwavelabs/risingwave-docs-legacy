@@ -91,3 +91,15 @@ The following table shows the corresponding data type in RisingWave that should 
 | No support | BYTEA |
 | JSON | JSONB |
 | BIGINT | SERIAL |
+
+:::note
+
+Previously, when inserting data into the StarRocks sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". However, we have now made a change to the behavior. If a decimal value is out of bounds or represents "inf", "-inf", or "nan", we will insert null values. Please note this modification to how these special values are handled.
+
+In addition, with the recent updates in StarRocks, we have modified the calibration logic for decimal values. 
+
+Previously, we had to make precision adjustments to match StarRocks' specified precision. For example, if we had a value like `1.123456` and StarRocks had a precision of 3, we would convert it to `1.123`. However, the latest versions of StarRocks can now automatically handle this conversion, eliminating the need for manual adjustments. 
+
+we have also removed the previous logic for checking the maximum number of bits before insertion. There is no longer a need to perform a pre-insertion check on the number of bits and report errors. If a value exceeds the maximum number of supported bits, it cannot be inserted into the downstream system.
+
+:::
