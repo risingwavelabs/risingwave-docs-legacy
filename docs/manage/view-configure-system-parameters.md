@@ -72,6 +72,12 @@ The full syntax of the `ALTER SYSTEM SET` statement is:
 ALTER SYSTEM SET parameter_name { TO | = } { value | 'value' | DEFAULT };
 ```
 
+You can also set a system-wide default value for a session parameter, from which parameters in a new session will be initialized.
+
+```sql
+alter system set session_param_name to session_param_value
+```
+
 Immutable parameters need to be initialized in the CLI of the meta node. `state_store` and `data_directory` need to be initialized before starting a cluster.
 
 To configure parameter settings in the CLI of the meta node, navigate to the directory where RisingWave is installed and run the following command:
