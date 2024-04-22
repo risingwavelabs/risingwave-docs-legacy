@@ -197,3 +197,7 @@ Psycopg
 Datadog
 Hasura
 Liquibase
+EMQX
+HiveMQ
+MQTT
+RabbitMQ
