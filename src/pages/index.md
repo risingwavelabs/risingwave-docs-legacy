@@ -227,7 +227,7 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 
 ---
 
-[Run RisingWave for testing](/docs/current/risingwave-trial/)
+[Run RisingWave for testing](/docs/current/get-started/)
 
 [Deploy with RisingWave Cloud](/docs/current/risingwave-cloud)
 
@@ -241,7 +241,7 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 
 ---
 
-[Release notes](/docs/current/release-notes)
+[Release notes](/docs/release-notes)
 
 [Architecture](/docs/current/architecture)
 
@@ -325,7 +325,7 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 
 [Functions and operators](/docs/current/sql-functions)
 
-[Patterns](/docs/current/sql-patterns)
+[System catalogs](/docs/current/system-catalogs)
 
 [See all →](/docs/current/sql-references)
 
