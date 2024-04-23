@@ -14,7 +14,7 @@ Before sinking data from RisingWave to an MQTT topic, please ensure the followin
 
 - The RisingWave cluster is running.
 - An MQTT broker is running and accessible from your RisingWave cluster.
-- Create a MQTT topic that you want to sink data to.
+- Create an MQTT topic that you want to sink data to.
 - You have permission to publish data to the MQTT topic.
 
 For example, we have an `iot_sensor_data` table in RisingWave that stores data from various IoT devices at a given timestamp, including temperature and humidity readings, along with a status field indicating whether the device is in a normal or abnormal state. For more information to learn about MQTT and get started with it, refer to the [MQTT guide](https://mqtt.org/getting-started/).
