@@ -1,6 +1,6 @@
 ---
 id: sink-to-mqtt
-title: Sink data to MQTT
+title: Sink data from RisingWave to MQTT
 description: Sink data from RisingWave to MQTT.
 slug: /sink-to-mqtt
 ---
