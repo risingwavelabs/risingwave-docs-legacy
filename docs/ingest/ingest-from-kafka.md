@@ -97,6 +97,7 @@ When creating a source in RisingWave, you can specify the following Kafka parame
 | Kafka parameter name | RisingWave parameter name | Type |
 |----------------------|---------------------------|------|
 |enable.auto.commit | properties.enable.auto.commit | boolean |
+|enable.ssl.certificate.verification|properties.enable.ssl.certificate.verification|bool|
 |fetch.max.bytes | properties.fetch.max.bytes | int |
 |fetch.queue.backoff.ms | properties.fetch.queue.backoff.ms | int |
 |fetch.wait.max.ms | properties.fetch.wait.max.ms | int |
@@ -299,7 +300,7 @@ CREATE TABLE table1 (PRIMARY KEY(id))
 
 ## Read schemas from Schema Registry
 
-Confluent Schema Registry provides a serving layer for your metadata. It provides a RESTful interface for storing and retrieving your schemas.
+Confluent and [Karapace](https://aiven.io/docs/products/kafka/karapace) Schema Registry provide a serving layer for your metadata. They provide a RESTful interface for storing and retrieving your schemas.
 
 RisingWave supports reading schemas from a Schema Registry. The latest schema will be retrieved from the specified Schema Registry using the `TopicNameStrategy` strategy when the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
 
@@ -313,6 +314,8 @@ ENCODE data_encode (
 
 To learn more about Confluent Schema Registry and how to set up a Schema Registry, refer to the [Confluent Schema Registry documentation](https://docs.confluent.io/platform/current/schema-registry/index.html).
 
+To learn more about Karapace Schema Registry and how to get started, see [Get started with Karapace](https://aiven.io/docs/products/kafka/karapace/get-started). 
+
 If a primary key also needs to be defined, use the table constraint syntax.
 
 ```sql
@@ -325,16 +328,16 @@ Based on the compatibility type that is configured for the schema registry, some
 
 To learn about compatibility types for Schema Registry and the changes allowed, see [Compatibility Types](https://docs.confluent.io/platform/current/schema-registry/avro.html#compatibility-types).
 
-## Create source with VPC connection
+## Create source with PrivateLink connection
 
 If your Kafka source service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](/sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
 
-To create a Kafka source with a VPC connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters.
+To create a Kafka source with a PrivateLink connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters.
 
 |Parameter| Notes|
 |---|---|
 |`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
-|`privatelink.endpoint`|The DNS name of the VPC endpoint. <br/> If you're using RisingWave Cloud, you can find the auto-generated endpoint after you created a connection. See details in [Create a VPC connection](/cloud/create-a-connection#whats-next).|
+|`privatelink.endpoint`|The DNS name of the VPC endpoint. <br/> If you're using RisingWave Cloud, you can find the auto-generated endpoint after you created a connection. See details in [Create a PrivateLink connection](/cloud/create-a-connection#whats-next).|
 |`connection.name`| The name of the connection. <br/> This parameter should only be included if you are using a connection created with the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) statement. Omit this parameter if you have provisioned a VPC endpoint using `privatelink.endpoint` (recommended).|
 
 Here is an example of creating a Kafka source using a PrivateLink connection. Notice that `{"port": 9094}` corresponds to the broker `broker1-endpoint`, `{"port": 9095}` corresponds to the broker `broker2-endpoint`, and `{"port": 9096}` corresponds to the broker `broker3-endpoint`.

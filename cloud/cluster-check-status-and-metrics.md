@@ -25,10 +25,13 @@ To enter the cluster details page and check the information, such as current act
 The cluster details page includes:
 
 - Current activities
-- Resource metrics — CPU usage, memory usage, throughput, storage usage, and network
-- Cluster configuration
-- [Materialized views](cluster-monitor-materialized-views.md)
+- Configuration details
 - [Database users](cluster-manage-database-users.md)
+- Metrics
+  - Key indicators — CPU usage, memory usage, throughput, storage usage, and network
+  - Streaming — barrier latency, in-flight barrier number, backfilling throughput, backpressure rate
+  - Query — query per second, query average latency
+  - UDF — UDF call count, UDF latency, UDF throughput
 
 <img
   src={require('./images/cluster-details-page.png').default}

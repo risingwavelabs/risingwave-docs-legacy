@@ -32,13 +32,17 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Broker or streaming service| Source | Sink |
 |---|---|---|
 |Apache Kafka | Available. See [Ingest from Kafka](/ingest/ingest-from-kafka.md) for details. | Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.| |
-| Confluent Cloud | Available. See [Ingest from Confluent Cloud](/guides/confluent-kafka-source.md) for details. | |
 | Amazon MSK | Available. See [Ingest from Amazon MSK](/guides/connector-amazon-msk.md) for details. | |
-|Redpanda | Available. See [Ingest from Redpanda](/ingest/ingest-from-redpanda.md) for details. |Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.|
 |Apache Pulsar|Available. See [Ingest from Pulsar](/ingest/ingest-from-pulsar.md) for details. | Available. See [Sink to Pulsar](/guides/sink-to-pulsar.md) for details.|
+| Confluent Cloud | Available. See [Ingest from Confluent Cloud](/guides/confluent-kafka-source.md) for details. | |
 |DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <voteNotify note="astra_streaming_sink" />|
-|StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
+|EMQX|Available. See [Ingest from MQTT brokers](/ingest/ingest-from-mqtt.md) for details.| In progress <voteNotify note="emqx" /> |
+|Google Pub/Sub|Available. See [Ingest from Google Pub/Sub](/ingest/ingest-from-google-pubsub.md) for details.| In progress <voteNotify note="google_pubsub_sink" /> |
+|HiveMQ|Available. See [Ingest from MQTT brokers](/ingest/ingest-from-mqtt.md) for details.| In progress <voteNotify note="hivemq" /> |
 |Kinesis Data Streams|Available. See [Ingest from Kinesis](/ingest/ingest-from-kinesis.md) for details.|Available. See [Sink to Kinesis](/guides/sink-to-aws-kinesis.md) for details.|
+|RabbitMQ|Researching <voteNotify note="rabbitmq_source" />|Researching <voteNotify note="rabbitmq_sink" />|
+|Redpanda | Available. See [Ingest from Redpanda](/ingest/ingest-from-redpanda.md) for details. |Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.|
+|StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
 |NATS / NATS JetStream | Available. See [Ingest from NATS JetStream](/ingest/ingest-from-nats.md) for details. | Available. See [Sink to NATS](/guides/sink-to-nats.md) for details.|
 
 ## ETL/ELT and data integration
@@ -72,6 +76,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |AWS RDS (Postgres)| Available. See [Ingest from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. |Available. See [Sink to PostgreSQL](/guides/sink-to-postgres.md) for details.|
 |AWS Aurora (Postgres)| In progress <voteNotify note="aurora_pg_source" />|Researching <voteNotify note="aurora_pg_sink" />|
 |Citus Data| Available. See [Ingest from Citus CDC](/guides/ingest-from-citus-cdc.md). | Researching <voteNotify note="citus_sink" />|
+|Neon| Available. See [Ingest from Neon CDC](/guides/ingest-from-neon-cdc.md). | Researching <voteNotify note="neon_sink" />|
 
 ### MySQL
 
@@ -118,10 +123,10 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Apache Superset| |Available. See [Visualize RisingWave data in Superset](/guides/superset-integration.md) for details. |
 |Beekeeper Studio| |Available. See [Connect Beekeeper Studio to RisingWave](/guides/beekeeper-integration.md) for details. |
 |Bytebase| | Available. See [Supported databases](https://www.bytebase.com/docs/introduction/supported-databases/) for details. |
-|Cube.js| | Researching <voteNotify note="cubejs" />|
+|Cube.js| | Available. See the [documentation of Cube](https://cube.dev/docs/product/configuration/data-sources/postgres) for details.|
 |DBeaver| | Available. See [Connect DBeaver to RisingWave](/guides/dbeaver-integration.md) for details. |
 |Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
-|Jupyter Notebook||Researching <voteNotify note="jupyter" />|
+|Jupyter Notebook||Available. For this integration, you can use a PostgreSQL Python driver, such as `psycopg2`, to connect to RisingWave. There is no difference from writing a normal python app. See [Use RisingWave in your Python application](/dev/python-client-libraries.md) for details.|
 |Looker||Available. See [Connect Looker to RisingWave](/guides/looker-integration.md) for details. |
 |Metabase ||Available. See [Connect Metabase to RisingWave](/guides/metabase-integration.md) for details.|
 |Redash || Available |
@@ -133,5 +138,8 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |System | |Availability |
 |---|---|---|
 |Alluxio| |Researching <voteNotify note="alluxio" />|
+|Datadog| |Researching <voteNotify note="datadog" />|
 |Google Cloud Storage (GCS)| | Available as source. For details, see [Ingest from Google Cloud Storage](/ingest/ingest-from-gcs.md).|
+|Hasura| |Researching <voteNotify note="hasura" />|
+|Liquibase| |Researching <voteNotify note="liquibase" />|
 |Supabase| |Available. For details, see [Empower Supabase with stream processing capabilities](/guides/supabase-integration.md).|

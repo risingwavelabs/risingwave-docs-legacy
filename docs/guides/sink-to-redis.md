@@ -28,7 +28,7 @@ WITH (
    connector_parameter = 'value', ...
 )
 FORMAT data_format ENCODE data_encode [ (
-    format_parameter = 'value' ) ]
+    key = 'value' ) ]
 ;
 ```
 
@@ -36,10 +36,14 @@ FORMAT data_format ENCODE data_encode [ (
 
 | Parameter Names | Description |
 | --------------- | ---------------------------------------------------------------------- |
-|redis.url | Required. The address of the Redis database. |
+|redis.url | Required. Choose either the Redis cluster address or a non-cluster Redis address. If the address is a cluster address, it should be in the form of a JSON array, like `redis.url= '["redis://redis-server:6379/"]'`. If the address is a non-cluster address, it should be in the form of a string, like `redis.url= 'redis://redis-server:6379/'`.|
 |primary_key| Required. The primary keys of the sink. If necessary, use ',' to delimit the primary key columns. |
 
-## Sink parameters
+## FORMAT and ENCODE options
+
+:::note
+These options should be set in `FORMAT data_format ENCODE data_encode (key = 'value')`, instead of the `WITH` clause
+:::
 
 | Field | Notes |
 | --------------- | ---------------------------------------------------------------------- |

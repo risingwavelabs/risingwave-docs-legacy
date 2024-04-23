@@ -139,6 +139,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          id: "tutorials/tutorials-overview",
+          label: "Overview",
+        },
+        {
+          type: "doc",
           id: "tutorials/real-time-ad-performance-analysis",
           label: "Real-time ad performance analysis",
         },
@@ -208,12 +213,12 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "Data ingestion guides",
+              label: "Sources",
               collapsible: true,
               collapsed: true,
               link: {
                 type: "generated-index",
-                title: "Data ingestion guides",
+                title: "Sources",
                 description: "Guides on ingesting data from sources supported by RisingWave.",
                 slug: "/sources",
                 keywords: ["sources"],
@@ -251,6 +256,11 @@ const sidebars = {
                       id: "ingest/ingest-from-instaclustr-kafka",
                     },
                     {
+                      "type": "doc",
+                      "label": "RedHat AMQ Streams",
+                      "id": "ingest/ingest-from-redhat-amq-streams"
+                    },
+                    {
                       type: "doc",
                       label: "Upstash Kafka",
                       id: "ingest/ingest-from-upstash-kafka",
@@ -281,6 +291,49 @@ const sidebars = {
                   ]
                 },
                 {
+                  type: "category",
+                  label: "CDC",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "CDC via event streaming systems",
+                      id: "ingest/ingest-from-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "Citus CDC",
+                      id: "guides/ingest-from-citus-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "MongoDB CDC",
+                      id: "guides/ingest-from-mongodb-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "MySQL CDC",
+                      id: "guides/ingest-from-mysql-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "Neon CDC",
+                      id: "guides/ingest-from-neon-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "PostgreSQL CDC",
+                      id: "guides/ingest-from-postgres-cdc",
+                    },
+                  ]
+                },
+                {
+                  type: "doc",
+                  label: "Apache Iceberg",
+                  id: "ingest/ingest-from-iceberg",
+                },
+                {
                   type: "doc",
                   label: "AWS Kinesis",
                   id: "ingest/ingest-from-kinesis",
@@ -297,38 +350,18 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  label: "CDC via event streaming systems",
-                  id: "ingest/ingest-from-cdc",
-                },
-                {
-                  type: "doc",
-                  label: "Citus CDC",
-                  id: "guides/ingest-from-citus-cdc",
-                },
-                {
-                  type: "doc",
                   label: "Google Cloud Storage",
                   id: "ingest/ingest-from-gcs",
                 },
                 {
                   type: "doc",
-                  label: "MongoDB CDC",
-                  id: "guides/ingest-from-mongodb-cdc",
-                },
-                {
-                  type: "doc",
-                  label: "MySQL CDC",
-                  id: "guides/ingest-from-mysql-cdc",
+                  label: "MQTT",
+                  id: "ingest/ingest-from-mqtt",
                 },
                 {
                   type: "doc",
                   label: "NATS JetStream",
                   id: "ingest/ingest-from-nats",
-                },
-                {
-                  type: "doc",
-                  label: "PostgreSQL CDC",
-                  id: "guides/ingest-from-postgres-cdc",
                 },
                 {
                   type: "doc",
@@ -541,6 +574,11 @@ const sidebars = {
               type: "doc",
               id: "data-delivery",
               label: "Overview",
+            },
+            {
+              type: "doc",
+              id: "guides/risingwave-as-postgres-fdw",
+              label: "RisingWave as Postgres FDW",
             },
             {
               type: "category",
@@ -988,6 +1026,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "deploy/best-practices-for-managing-a-large-number-of-streaming-jobs",
+          label: "Best practices for managing a large number of streaming jobs",
+        },
+        {
+          type: "doc",
           id: "deploy/uninstall-risingwave-k8s",
           label: "Uninstall RisingWave from a cluster",
         },
@@ -1004,6 +1047,10 @@ const sidebars = {
           id: "manage/view-statement-progress",
         },
         {
+          type: 'doc',
+          id: 'manage/alter-streaming',
+        },
+        {
           type: "doc",
           id: "manage/view-configure-system-parameters",
         },
@@ -1013,16 +1060,20 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/alter-streaming',
+          id: 'manage/configure-node-specific-parameters',
         },
         {
           type: 'doc',
-          id: 'manage/meta-backup',
+          id: 'manage/node-specific-parameters',
         },
         {
           type: "doc",
           id: "manage/dedicated-compute-node",
           label: "Set up a dedicated compute node",
+        },
+        {
+          type: 'doc',
+          id: 'manage/meta-backup',
         },
         {
           type: "doc",
@@ -1070,13 +1121,42 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Troubleshoot out-of-memory",
+          label: "Out of memory",
           id: "troubleshoot/troubleshoot-oom"
         },
         {
+          type: "category",
+          label: "Performance issues",
+          collapsible: true,
+          collapsed: true,
+          items:
+            [
+              {
+                type: "doc",
+                label: "High latency",
+                id: "troubleshoot/troubleshoot-high-latency"
+              },
+              {
+                type: "doc",
+                label: "Streaming performance",
+                id: "troubleshoot/troubleshoot-streaming-performance"
+              },
+            ]
+        },
+        {
           type: "doc",
-          label: "Troubleshoot high latency",
-          id: "troubleshoot/troubleshoot-high-latency"
+          label: "Meta failure",
+          id: "troubleshoot/troubleshoot-meta"
+        },
+        {
+          type: "doc",
+          label: "Recovery failure",
+          id: "troubleshoot/troubleshoot-recovery-failure"
+        },
+        {
+          type: "doc",
+          label: "Deployment issues",
+          id: "troubleshoot/troubleshooting-deployment-issues"
         },
       ]
     },

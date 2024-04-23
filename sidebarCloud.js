@@ -174,23 +174,23 @@ module.exports = {
         },
         {
           type: "category",
-          label: "VPC connection",
+          label: "PrivateLink connection",
           collapsible: true,
           collapsed: true,
-          link: { type: "doc", id: "vpc-overview" },
+          link: { type: "doc", id: "PrivateLink-overview" },
           items: [
             {
               type: "doc",
-              id: "vpc-overview",
+              id: "PrivateLink-overview",
               label: "Overview",
             },
             {
               type: "doc",
-              id: "vpc-create-a-connection",
+              id: "PrivateLink-create-a-connection",
             },
             {
               type: "doc",
-              id: "vpc-drop-a-connection",
+              id: "PrivateLink-drop-a-connection",
             },
           ],
         },
@@ -221,11 +221,11 @@ module.exports = {
           id: "organization-sso",
           label: "Single Sign-On (SSO)",
         },
-        // {
-        //   type: "doc",
-        //   id: "organization-service-account",
-        //   label: "Service account & API key",
-        // },
+        {
+          type: "doc",
+          id: "organization-service-account",
+          label: "Service account & API key",
+        },
       ],
     },
     {

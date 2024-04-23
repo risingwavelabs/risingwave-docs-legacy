@@ -28,7 +28,7 @@ WITH (
    connector_parameter = 'value', ...
 )
 FORMAT data_format ENCODE data_encode [ (
-    format_parameter = 'value'
+    key = 'value'
 ) ]
 ;
 ```
@@ -64,6 +64,7 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |batch.size |properties.batch.size| int|
 |client.id|properties.client.id| string |
 |enable.idempotence |properties.enable.idempotence |bool |
+|enable.ssl.certificate.verification|properties.enable.ssl.certificate.verification|bool|
 |max.in.flight.requests.per.connection| properties.max.in.flight.requests.per.connection| int |
 |message.max.bytes | properties.message.max.bytes | int |
 |message.send.max.retries |properties.message.send.max.retries| int|
@@ -79,7 +80,11 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
 :::
 
-## Sink parameters
+## FORMAT and ENCODE options
+
+:::note
+These options should be set in `FORMAT data_format ENCODE data_encode (key = 'value')`, instead of the `WITH` clause
+:::
 
 |Field|Notes|
 |-----|-----|
@@ -123,7 +128,11 @@ When creating an append-only Protobuf sink, the following options can be used fo
 |Field|Notes|
 |-----|-----|
 |message| Required. Message name of the main Message in the schema definition. . |
-|schema.location| Required. The schema location. This can be in either `file://`, `http://`, or `https://` format. |
+|schema.location| Required if `schema.registry` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The schema location. This can be in either `file://`, `http://`, `https://` format. |
+|schema.registry| Required if `schema.location` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The address of the schema registry. |
+|schema.registry.username| Optional. The user name used to access the schema registry. |
+|schema.registry.password| Optional. The password associated with the user name. |
+|schema.registry.name.strategy| Optional. Accepted options include `topic_name_strategy` (default), `record_name_strategy`, and `topic_record_name_strategy`.|
 
 :::note
 The `file://` format is not recommended for production use. If it is used, it needs to be available for both meta and compute nodes.
@@ -205,11 +214,11 @@ FORMAT PLAIN ENCODE JSON;
 
 ```
 
-## Create sink with VPC connection
+## Create sink with PrivateLink connection
 
 If your Kafka sink service is located in a different VPC from RisingWave, use AWS PrivateLink or GCP Private Service Connect to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](/sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
 
-To create a Kafka sink with a VPC connection, in the WITH section of your `CREATE SINK` statement, specify the following parameters.
+To create a Kafka sink with a PrivateLink connection, in the WITH section of your `CREATE SINK` statement, specify the following parameters.
 
 |Parameter| Notes|
 |---|---|

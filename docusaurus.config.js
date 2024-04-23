@@ -8,8 +8,8 @@ const config = {
   url: "https://docs.risingwave.com",
   baseUrl: "/",
   trailingSlash: true,
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
   presets: [
     [
@@ -34,14 +34,20 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "1.8 (dev)",
+              label: "1.9 (dev)",
               path: "/dev",
               badge: false,
               banner: "unreleased",
             },
-            1.7: {
-              label: "1.7 (current)",
+            1.8: {
+              label: "1.8 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            1.7: {
+              label: "1.7",
+              path: "/1.7",
               badge: false,
               banner: "none",
             },
@@ -224,7 +230,21 @@ const config = {
       src: "https://asvd.github.io/syncscroll/syncscroll.js",
       async: true,
     },
+    {
+      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha61/dist/run-llm-search-widget.es.js",
+      id: "runllm-widget-script",
+      type: "module",
+      "runllm-server-address": "https://api.runllm.com",
+      "runllm-assistant-id": "29",
+      "runllm-position": "TOP_RIGHT",
+      "runllm-keyboard-shortcut": "Mod+k",
+      "runllm-theme-color": "#005EEC",
+      "runllm-slack-community-url": "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",
+      "runllm-name": "RisingWave",
+      async: true,
+    },
   ],
+  stylesheets: ["https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha61/dist/main.css"],
   webpack: {
     jsLoader: (isServer) => ({
       loader: require.resolve("swc-loader"),
