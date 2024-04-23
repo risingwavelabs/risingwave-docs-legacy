@@ -98,3 +98,10 @@ SET parameter_name { TO | = } { value | 'value' | DEFAULT};
 Where `parameter_name` is the name of the parameter, and `value` or `'value'` is the new value of the parameter. `DEFAULT` can be written to specify resetting the parameter to its default value.
 
 For details about the `set_config()` function, see [System administration functions](/sql/functions-operators/sql-function-sys-admin.md#set_config), and for details about the `SET` command, see [`SET`](/sql/commands/sql-set.md).
+
+
+You can also use the [`ALTER SYSTEM SET`](/sql/commands/sql-alter-system.md) command to set a system-wide default value for a session parameter, from which parameters in a new session will be initialized.
+
+```sql title="Syntax"
+ALTER SYSTEM SET session_param_name TO session_param_value;
+```
