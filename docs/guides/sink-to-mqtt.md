@@ -8,7 +8,7 @@ This guide describes how to sink data from RisingWave to the MQTT topic using th
 
 The [Message Queuing Telemetry Transport](https://mqtt.org/) (MQTT) protocol is ideal for connecting remote devices with a small code footprint and minimal network bandwidth. MQTT today is used in a wide variety of industries, such as automotive, manufacturing, telecommunications, oil and gas, etc.
 
-## Prerequisites[](https://docs.risingwave.com/docs/current/sink-to-nats/#prerequisites)
+## Prerequisites
 
 Before sinking data from RisingWave to an MQTT topic, please ensure the following:
 
