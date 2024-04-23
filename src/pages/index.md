@@ -241,7 +241,7 @@ import CloudOutlinedIcon from '@mui/icons-material/CloudOutlined';
 
 ---
 
-[Release notes](/docs/release-notes)
+[Release notes](/release-notes)
 
 [Architecture](/docs/current/architecture)
 
