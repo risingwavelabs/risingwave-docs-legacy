@@ -256,6 +256,11 @@ const sidebars = {
                       id: "ingest/ingest-from-instaclustr-kafka",
                     },
                     {
+                      "type": "doc",
+                      "label": "RedHat AMQ Streams",
+                      "id": "ingest/ingest-from-redhat-amq-streams"
+                    },
+                    {
                       type: "doc",
                       label: "Upstash Kafka",
                       id: "ingest/ingest-from-upstash-kafka",
@@ -347,6 +352,11 @@ const sidebars = {
                   type: "doc",
                   label: "Google Cloud Storage",
                   id: "ingest/ingest-from-gcs",
+                },
+                {
+                  type: "doc",
+                  label: "MQTT",
+                  id: "ingest/ingest-from-mqtt",
                 },
                 {
                   type: "doc",
@@ -566,6 +576,11 @@ const sidebars = {
               label: "Overview",
             },
             {
+              type: "doc",
+              id: "guides/risingwave-as-postgres-fdw",
+              label: "RisingWave as Postgres FDW",
+            },
+            {
               type: "category",
               label: "Sinks",
               collapsible: true,
@@ -625,6 +640,11 @@ const sidebars = {
                   type: "doc",
                   label: "Google BigQuery",
                   id: "guides/sink-to-bigquery",
+                },
+                {
+                  type: "doc",
+                  label: "MQTT",
+                  id: "guides/sink-to-mqtt",
                 },
                 {
                   type: "doc",
