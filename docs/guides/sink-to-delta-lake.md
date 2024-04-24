@@ -38,10 +38,11 @@ WITH (
 | Parameter Names | Description |
 | --------------- | ---------------------------------------------------------------------- |
 | type            | Required. Currently, only `append-only` is supported. |
-| location        | Required. The file path that the Delta Lake table is reading data from, as specified when creating the Delta Lake table. It should start with `s3://`, `s3a://`(s3), `gs://`(gcs), or `file://`(local).|
-| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be <http://${MINIO_HOST}:${MINIO_PORT>}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
+| location        | Required. The file path that the Delta Lake table is reading data from, as specified when creating the Delta Lake table. <ul><li>For AWS, start with `s3://` or `s3a://`;</li><li>For GCS, start with `gs://`; </li><li>For local files, start with `file://`.</li></ul>|
+| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be <http://${MINIO_HOST}:${MINIO_PORT>}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html). </li></ul> |
 | s3.access.key   | Required. Access key of the S3 compatible object store.|
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
+| gcs.service.account   | Required for GCS. Specifies the service account JSON file as a string.|
 
 ## Example
 
