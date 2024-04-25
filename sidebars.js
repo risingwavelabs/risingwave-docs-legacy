@@ -643,6 +643,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "MQTT",
+                  id: "guides/sink-to-mqtt",
+                },
+                {
+                  type: "doc",
                   label: "MySQL",
                   id: "guides/sink-to-mysql-with-jdbc",
                 },

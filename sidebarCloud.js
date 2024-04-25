@@ -221,11 +221,11 @@ module.exports = {
           id: "organization-sso",
           label: "Single Sign-On (SSO)",
         },
-        // {
-        //   type: "doc",
-        //   id: "organization-service-account",
-        //   label: "Service account & API key",
-        // },
+        {
+          type: "doc",
+          id: "organization-service-account",
+          label: "Service account & API key",
+        },
       ],
     },
     {
