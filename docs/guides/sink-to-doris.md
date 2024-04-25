@@ -106,6 +106,6 @@ In regards to `decimal` types, RisingWave will round to the nearest decimal plac
 
 :::note
 
-Previously, when inserting data into the Apache Doris sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". However, we have now made a change to the behavior. If a decimal value is out of bounds or represents "inf", "-inf", or "nan", we will insert null values. Please note this modification to how these special values are handled.
+Previously, when inserting data into an Apache Doris sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". However, we have made a change to the behavior. If a decimal value is out of bounds or represents "inf", "-inf", or "nan", we will insert null values. 
 
 :::
