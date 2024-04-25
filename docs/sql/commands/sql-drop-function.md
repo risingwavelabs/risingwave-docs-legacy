@@ -20,7 +20,7 @@ DROP FUNCTION [ IF EXISTS ] function_name [ ( argument_type [, ...] ) ] ;
 |-------------------------------|-------------------------------------------------------|
 | *function_name*               | Name of the UDF you want to drop.           |
 | ( *argument_type* [ , ... ] ) | Optional: Argument types of the function.<br/>Specify the argument types when the name of the function you want to drop isn't unique within the schema. |
-|IF EXISTS| If the function does not exists, do not throw an error. Instead, a notice is issued. |
+|IF EXISTS| Do not return an error if the specified function does not exist. A notice is issued in this case. |
 
 ## Usage
 
