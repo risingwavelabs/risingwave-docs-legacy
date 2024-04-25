@@ -98,7 +98,7 @@ Previously, when inserting data into a StarRocks sink, an error would be reporte
 
 In addition, with the recent updates in StarRocks, we have modified the calibration logic for decimal values. 
 
-Previously, we had to make precision adjustments to match StarRocks' specified precision. For example, if we had a value like `1.123456` and StarRocks had a precision of 3, we would convert it to `1.123`. However, the latest versions of StarRocks can now automatically handle this conversion, eliminating the need for manual adjustments. 
+Previously, we had to make precision adjustments to match StarRocks' specified precision. For example, if we had a value like `1.123456` and StarRocks had a precision of 3, we would convert it to `1.123`. However, the latest versions of StarRocks now automatically handle this conversion, eliminating the need for manual adjustments. 
 
 we have also removed the previous logic for checking the maximum number of bits before insertion. There is no longer a need to perform a pre-insertion check on the number of bits and report errors. If a value exceeds the maximum number of supported bits, it cannot be inserted into the downstream system.
 
