@@ -23,12 +23,23 @@ You can now proceed to create your own cloud environment using RisingWave's BYOC
 
 2. On the right-side panel, choose **Enterprise** and enter your invitation code. If you do not have an invitation code, please contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com) to obtain one.
 
-3. Once you've redeemed the invitation code, select **BYOC** as the deployment type, and customize your cloud platform, region, and ID as necessary.
+3. Once you've redeemed the invitation code, select **BYOC** as the deployment type, and customize your cloud platform ([AWS](#additional-notes-for-aws) or [GCP](#additional-notes-for-gcp)), region, and ID as necessary.
 
 4. After making these configurations, an additional instruction will appear on the screen. Follow it to prepare your BYOC environment.
 
-5. Click **Next** to continue the configuration of cluster size and nodes. To learn more about the nodes, see [Understanding nodes in RisingWave](#understanding-nodes-in-risingwave).
+5. Click **Next** to continue the configuration of cluster size and nodes. To learn more about the nodes, see the [architecture of RisingWave](/docs/current/architecture).
 
 6. Click **Next**, name your cluster, and run the commands that appear to build a BYOC cluster in the created environment.
+
+## Additional notes for AWS
+
+### Service-linked role
+
+The role `AWSServiceRoleForAutoScaling` needs to be in place. If it hasn't been provisioned yet, you will need to create it manually. See [Create a service-linked role](https://docs.aws.amazon.com/autoscaling/ec2/userguide/autoscaling-service-linked-role.html#create-service-linked-role-manual) for detailed steps.
+
+### Quota Increase
+For optimal performance, the quota for managed node groups per cluster should be increased to 36 or more. See [Service quotas](https://docs.aws.amazon.com/eks/latest/userguide/service-quotas.html#sq-text) for more details.
+
+## Additional notes for GCP
 
 
