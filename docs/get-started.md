@@ -143,18 +143,27 @@ SELECT * FROM average_exam_scores;
 (2 rows)
 ```
 
+
 ## About RisingWave Standalone Mode
 
 RisingWave Standalone Mode is meant to be a simple Deployment Mode of RisingWave, designed to be minimal, easy to install and configure.
 
-In contrast to other deployment modes, for instance [Docker Compose](/deploy/risingwave-docker-compose.md) or [Kubernetes](/deploy/risingwave-kubernetes.md), RisingWave Standalone Mode starts the cluster as a single process.
+In contrast to other deployment modes, for instance [Docker Compose](/deploy/risingwave-docker-compose.md) or [Kubernetes](/deploy/risingwave-kubernetes.md),
+RisingWave Standalone Mode starts the cluster as a single process.
+This means that services like `compactor`, `frontend`, `compute` and `meta` will all be embedded in this process.
 
-The RisingWave Standalone Mode will store its data in the Local File System, in `~/risingwave` by default.
+For the State Store, we will use the embedded `LocalFs` Object Store, so there will be no need for an external service like `minio` or `s3`.
+
+For the Meta Store, we will use the embedded `SQLite` database, so there will be no need for an external service like `etcd`.
+
+The RisingWave Standalone Mode will store its data in `~/risingwave` by default.
 This includes both `Metadata` and `State Data`.
 
 For a batteries-included setup, with `monitoring` tools and external services like `kafka` fully included, you can use [Docker Compose](/deploy/risingwave-docker-compose.md) instead. If you would like to setup these external services manually, you may check out RisingWave's [Docker Compose](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose.yml), and run these services using the same configurations.
 
 ## Configuring RisingWave Standalone Mode
+
+RisingWave Standalone's instance can run without any configuration. However, there are some options available to customize the instance.
 
 The main options which new users may require would be the state store directory (`--state-store-directory`) and in-memory mode (`--in-memory`).
 
