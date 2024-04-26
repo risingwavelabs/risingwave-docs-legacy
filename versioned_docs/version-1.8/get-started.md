@@ -143,6 +143,39 @@ SELECT * FROM average_exam_scores;
 (2 rows)
 ```
 
+## About RisingWave Standalone Mode
+
+RisingWave Standalone Mode is meant to be a simple Deployment Mode of RisingWave, designed to be minimal, easy to install and configure.
+
+In contrast to other deployment modes, for instance via [Docker Compose](/deploy/risingwave-docker-compose.md) or [Kubernetes](/deploy/risingwave-kubernetes.md), RisingWave Standalone Mode starts the cluster as a single process.
+
+The RisingWave Standalone Mode will store its data in the Local File System, in `$HOME/risingwave/` by default.
+This includes both `Metadata` and `State Data`.
+
+For a batteries-included setup, with `monitoring` tools and external services like `kafka` fully included, you can use [Docker Compose](/deploy/risingwave-docker-compose.md) instead. If you would like to setup these external services manually, you may check out RisingWave's [Docker Compose](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose.yml), and run these services using the same configurations.
+
+## Configuring RisingWave Standalone Mode
+
+The main options which new users may require would be the state store directory (`--state-store-directory`) and in-memory mode (`--in-memory`). 
+
+`--state-store-directory` specifies the new directory where the cluster's `Metadata` and `State Data` will reside. The default is to store it in the `~/risingwave/` folder.
+
+```sh
+# Reconfigure RisingWave to be stored under 'projects' folder instead.
+risingwave --state-store-directory ~/projects/risingwave
+```
+
+`--in-memory` will run an in-memory instance of RisingWave, both `Metadata` and `State Data` will not be persisted.
+
+```sh
+risingwave --in-memory
+```
+
+You can view other options with:
+```
+risingwave single --help
+```
+
 ## What's next?
 
 Congratulations! You've successfully started RisingWave and conducted some initial data analysis. To explore further, you may want to: 
