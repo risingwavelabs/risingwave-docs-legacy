@@ -65,6 +65,10 @@ module.exports = {
             },
             {
               type: "doc",
+              id: "cluster-build-your-own-cloud",
+            },
+            {
+              type: "doc",
               id: "cluster-check-status-and-metrics",
               label: "Check status and metrics",
             },
