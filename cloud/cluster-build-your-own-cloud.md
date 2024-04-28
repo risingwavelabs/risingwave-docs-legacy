@@ -25,6 +25,10 @@ Follow the steps below to create your own cloud environment using RisingWave's B
 
 3. Once you've redeemed the invitation code, select **BYOC** as the deployment type, and select your cloud platform as AWS, GCP or Azure (see [Resources and permissions](#resources-and-permissions) for more details), region, and ID as necessary.
 
+   :::note
+   Azure Private Link integration is currently in development and will be available soon.
+   :::
+
 4. After making these configurations, an additional instruction will appear on the screen. Follow it to prepare your BYOC environment.
 
 5. Click **Next** to continue the configuration of cluster size and nodes. To learn more about the nodes, see the [architecture of RisingWave](/docs/current/architecture).
