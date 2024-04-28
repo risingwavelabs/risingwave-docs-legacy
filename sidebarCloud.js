@@ -65,7 +65,7 @@ module.exports = {
             },
             {
               type: "doc",
-              id: "cluster-build-your-own-cloud",
+              id: "cluster-bring-your-own-cloud",
             },
             {
               type: "doc",

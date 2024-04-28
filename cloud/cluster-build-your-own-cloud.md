@@ -1,8 +1,8 @@
 ---
-id: cluster-build-your-own-cloud
-title: Build your own cloud
+id: cluster-bring-your-own-cloud
+title: Bring your own cloud
 description: You can use the BYOC cluster types to create custom clouds.
-slug: /build-your-own-cloud
+slug: /bring-your-own-cloud
 ---
 
 The Bring Your Own Cloud (BYOC) plan offers you the flexibility to tailor your cloud infrastructure instead of depending on a hosted service. It allows you to utilize the advantages of your chosen cloud provider, maintain full control over your environment, and adjust configurations to suit your specific needs. This guide outlines the services that RisingWave deploys in a BYOC environment and walks you through the process of enabling BYOC in a step-by-step manner.
@@ -23,7 +23,7 @@ Follow the steps below to create your own cloud environment using RisingWave's B
 
 2. On the right-side panel, choose **Enterprise** and enter your invitation code. If you do not have an invitation code, please contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com) to obtain one.
 
-3. Once you've redeemed the invitation code, select **BYOC** as the deployment type, and select your cloud platform as AWS ot GCP (see [Resources and permissions](#resources-and-permissions) for more details), region, and ID as necessary.
+3. Once you've redeemed the invitation code, select **BYOC** as the deployment type, and select your cloud platform as AWS or GCP (see [Resources and permissions](#resources-and-permissions) for more details), region, and ID as necessary.
 
    :::note
    Azure integration is currently in development and will be available soon.
@@ -33,7 +33,7 @@ Follow the steps below to create your own cloud environment using RisingWave's B
 
 5. Click **Next** to continue the configuration of cluster size and nodes. To learn more about the nodes, see the [architecture of RisingWave](/docs/current/architecture).
 
-6. Click **Next**, name your cluster, and run the commands that appear to build a BYOC cluster in the created environment.
+6. Click **Next**, name your cluster, and run the commands that appear to create a BYOC cluster in the created environment.
 
 ## Resources and permissions
 
