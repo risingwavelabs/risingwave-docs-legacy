@@ -5,11 +5,11 @@ description: You can use the BYOC cluster types to create custom clouds.
 slug: /build-your-own-cloud
 ---
 
-The Build Your Own Cloud (BYOC) cluster allows you to design and customize your own cloud environment tailored to your specific requirements. This guide will outline the services deployed by RisingWave and the steps to enable BYOC cluster.
+The Bring Your Own Cloud (BYOC) plan offers you the flexibility to tailor your cloud infrastructure instead of depending on a hosted service. It allows you to utilize the advantages of your chosen cloud provider, maintain full control over your environment, and adjust configurations to suit your specific needs. This guide outlines the services that RisingWave deploys in a BYOC environment and walks you through the process of enabling BYOC in a step-by-step manner.
 
 ## Getting started
 
-In the BYOC environment, the entire data plane is deployed in the user's space. To manage the RisingWave clusters within this environment, we deploy two key services for operation delegation:
+Before creating a BYOC deployment, familiarize yourself with the following architecture. In the BYOC environment, the entire data plane is deployed in the user's space. To manage the RisingWave clusters within this environment, we deploy two key services for operation delegation:
 
 - **Agent Service**: This service manages Kubernetes (K8s) and cloud resources. It handles tasks such as managing RisingWave Pods, Google Cloud Storage (GCS) buckets, IAM roles/accounts associated with the RisingWave cluster, network endpoints, etc.
 
@@ -17,16 +17,16 @@ In the BYOC environment, the entire data plane is deployed in the user's space. 
 
 ## Enable BYOC
 
-Follow the steps below to create your own cloud environment using RisingWave's BYOC cluster types.
+Follow the steps below to create your own cloud environment using RisingWave's BYOC plan.
 
 1. Navigate to the [**Clusters**](https://cloud.risingwave.com/clusters/) page and click **Create cluster**.
 
 2. On the right-side panel, choose **Enterprise** and enter your invitation code. If you do not have an invitation code, please contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com) to obtain one.
 
-3. Once you've redeemed the invitation code, select **BYOC** as the deployment type, and select your cloud platform as AWS, GCP or Azure (see [Resources and permissions](#resources-and-permissions) for more details), region, and ID as necessary.
+3. Once you've redeemed the invitation code, select **BYOC** as the deployment type, and select your cloud platform as AWS ot GCP (see [Resources and permissions](#resources-and-permissions) for more details), region, and ID as necessary.
 
    :::note
-   Azure Private Link integration is currently in development and will be available soon.
+   Azure integration is currently in development and will be available soon.
    :::
 
 4. After making these configurations, an additional instruction will appear on the screen. Follow it to prepare your BYOC environment.
@@ -71,14 +71,14 @@ import TabItem from '@theme/TabItem';
 
 - **Required permission for deployed services**
 
-    - EC2: DescribeVpcEndpoints
-    - EC2: DescribeVpcEndpointServices
-    - EC2: DescribeSubnets
-    - S3: *
-    - APS: GetLabels
-    - APS: GetMetricMetadata
-    - APS: GetSeries
-    - APS: QueryMetrics
+    - ec2:DescribeVpcEndpoints
+    - ec2:DescribeVpcEndpointServices
+    - ec2:DescribeSubnets
+    - s3:*
+    - aps:GetLabels
+    - aps:GetMetricMetadata
+    - aps:GetSeries
+    - aps:QueryMetrics
 
 </TabItem>
 
@@ -123,13 +123,13 @@ import TabItem from '@theme/TabItem';
 
     We will provision a Google Service Account for the deployed services. The services require the following permissions:
 
-    - [Storage Admin](https://cloud.google.com/iam/docs/understanding-roles#storage.admin) to manage GCS objects and bucket access for RisingWave clusters
-    - [Compute Network Admin](https://cloud.google.com/iam/docs/understanding-roles#compute.networkAdmin) to manage private links for the source/sink of RisingWave clusters
-    - [Service Account Admin](https://cloud.google.com/iam/docs/understanding-roles#iam.serviceAccountAdmin) to manage the IAM service account RisingWave clusters run as.
+    - [Storage Admin](https://cloud.google.com/iam/docs/understanding-roles#storage.admin) to manage GCS objects and bucket access for RisingWave clusters.
+    - [Compute Network Admin](https://cloud.google.com/iam/docs/understanding-roles#compute.networkAdmin) to manage private links for the source/sink of RisingWave clusters.
+    - [Service Account Admin](https://cloud.google.com/iam/docs/understanding-roles#iam.serviceAccountAdmin) to manage the IAM service account RisingWave clusters.
 
 </TabItem>
 
-<TabItem value="Azure" label="Azure">
+<TabItem value="Azure" label="Azure (coming soon)">
 
 - **Required feature flags**
 
@@ -146,8 +146,8 @@ import TabItem from '@theme/TabItem';
     - 1 VPC: including VPC, its subnets, firewalls, IPs to host all BYOC resources.
     - 1 AKS cluster: to host all service and RisingWave clusters workloads.
     - 2 Azure storage account with on blob container in it: for RisingWave cluster data and infra state data respectively.
-    - 2 Internal network load balancer: to expose Agent Service and RWProxy
-    - 1 External network load balancer (optional): to expose RWProxy to the Internet
+    - 2 Internal network load balancer: to expose Agent Service and RWProxy.
+    - 1 External network load balancer (optional): to expose RWProxy to the Internet.
     - A few user-assigned identities for AKS workloads, and each identity is granted the least privilege it requires.
 
 - **Required permission for deployed services**
