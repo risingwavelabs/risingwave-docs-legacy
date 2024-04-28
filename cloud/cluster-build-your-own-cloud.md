@@ -119,7 +119,7 @@ import TabItem from '@theme/TabItem';
     - 1 External network load balancer (optional): to expose RWProxy to the Internet.
     - A few IAM roles for EKS and K8s workloads, and each role is granted the least privilege it requires.
 
-- **Required Permission for deployed services**
+- **Required permission for deployed services**
 
     We will provision a Google Service Account for the deployed services. The services require the following permissions:
 
