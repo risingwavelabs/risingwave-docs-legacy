@@ -91,3 +91,9 @@ The following table shows the corresponding data type in RisingWave that should 
 | No support | BYTEA |
 | JSON | JSONB |
 | BIGINT | SERIAL |
+
+:::note
+
+Previously, when inserting data into a StarRocks sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". However, we have made a change to the behavior. If a decimal value is out of bounds or represents "inf", "-inf", or "nan", we will insert null values. 
+
+:::

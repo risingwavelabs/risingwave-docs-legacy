@@ -130,7 +130,3 @@ CREATE TABLE orders (
 );
 ```
 After the table is created, you can view and transform the CDC data from Neon based on your needs.
-
-:::note
-RisingWave supports creating a single PostgreSQL source that allows you to read CDC data from multiple tables located in the same database. However, please note that this feature is currently under development for Neon. For further information, refer to the [PostgreSQL CDC](https://docs.risingwave.com/docs/current/ingest-from-postgres-cdc/) in the documentation.
-:::

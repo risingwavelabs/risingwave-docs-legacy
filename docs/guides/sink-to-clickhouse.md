@@ -205,6 +205,12 @@ In ClickHouse, the `Nested` data type doesn't support multiple levels of nesting
 
 :::
 
+:::note
+
+Previously, when inserting data into a ClickHouse sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". However, we have made a change to this behavior. If the ClickHouse column is nullable, we will insert null values in such cases. If the column is not nullable, we will insert `0` instead. 
+
+:::
+
 Please be aware that the range of specific values varies among ClickHouse types and RisingWave types. Refer to the table below for detailed information.
 
 | ClickHouse type | RisingWave type | ClickHouse range | RisingWave range |
