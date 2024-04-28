@@ -14,3 +14,9 @@ Use the `RECOVER` command to trigger an ad-hoc recovery manually. This is helpfu
 ```sql title="Syntax"
 RECOVER;
 ```
+
+```sql title="Syntax"
+RECOVER;
+----RESULT
+RECOVER
+```
