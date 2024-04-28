@@ -100,7 +100,7 @@ Where `parameter_name` is the name of the parameter, and `value` or `'value'` is
 For details about the `set_config()` function, see [System administration functions](/sql/functions-operators/sql-function-sys-admin.md#set_config), and for details about the `SET` command, see [`SET`](/sql/commands/sql-set.md).
 
 
-You can also use the [`ALTER SYSTEM SET`](/sql/commands/sql-alter-system.md) command to set a system-wide default value for a session parameter, from which parameters in a new session will be initialized.
+You can also use the [`ALTER SYSTEM SET`](/sql/commands/sql-alter-system.md) command to set a system-wide default value for a runtime parameter. This configuration will then be applied to every new session.
 
 ```sql title="Syntax"
 ALTER SYSTEM SET session_param_name TO session_param_value;
