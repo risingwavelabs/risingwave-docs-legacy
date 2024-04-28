@@ -163,11 +163,3 @@ import TabItem from '@theme/TabItem';
 </TabItem>
 
 </Tabs>
-
-## Security enhancement
-
-To ensure secure communication between the control plane and the data plane within RisingWave's infrastructure, we have implemented [VPC endpoints](https://docs.aws.amazon.com/whitepapers/latest/aws-privatelink/what-are-vpc-endpoints.html) in AWS, [private service connect](https://cloud.google.com/vpc/docs/private-service-connect) in GCP, and [private endpoints](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview) in Azure. These configurations restrict the access to Agent service and RWProxy exclusively to the RisingWave control plane VPC.
-
-To further enhance security, mutual Transport Layer Security (mTLS) is used for the connection between the control plane and the Agent service, and DB credentials are used for the connection between the control plane and RWProxy.
-
-Moreover, to extend accessibility, RWProxy is configured to interface with the public network. This allows external access to the frontend of RisingWave clusters, enabling users to seamlessly transmit SQL statements to RW clusters from external environments.
