@@ -14,7 +14,7 @@ This guide aims to provide a quick and easy way to get started with RisingWave.
 ## Step 1: Start RisingWave
 
 :::info
-The following options start RisingWave in the standalone mode. In this mode, data is stored in the file system and the metadata is stored in the embedded SQLite database. 
+The following options start RisingWave in the standalone mode. In this mode, data is stored in the file system and the metadata is stored in the embedded SQLite database. See [About RisingWave standalone mode](#about-risingwave-standalone-mode) for more details.
 
 For extensive testing or single-machine deployment, consider [starting RisingWave via Docker Compose](/deploy/risingwave-docker-compose.md). For production environments, consider [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service, or [deployment on Kubernetes using the Operator](/deploy/risingwave-kubernetes.md) or [Helm Chart](/deploy/deploy-k8s-helm.md).
 :::
@@ -143,20 +143,15 @@ SELECT * FROM average_exam_scores;
 (2 rows)
 ```
 
-## About RisingWave Standalone Mode
+## About RisingWave standalone mode
 
-RisingWave Standalone Mode is meant to be a simple Deployment Mode of RisingWave, designed to be minimal, easy to install and configure.
+RisingWave standalone mode is a simplified deployment mode for RisingWave. It is designed to be minimal, easy to install, and configure.
 
-In contrast to other deployment modes, for instance [Docker Compose](/deploy/risingwave-docker-compose.md) or [Kubernetes](/deploy/risingwave-kubernetes.md),
-RisingWave Standalone Mode starts the cluster as a single process.
-This means that services like `compactor`, `frontend`, `compute` and `meta` will all be embedded in this process.
+Unlike other deployment modes, for instance [Docker Compose](/deploy/risingwave-docker-compose.md) or [Kubernetes](/deploy/risingwave-kubernetes.md), RisingWave standalone mode starts the cluster as a single process. This means that services like `compactor`, `frontend`, `compute` and `meta` are all embedded in this process.
 
-For the State Store, we will use the embedded `LocalFs` Object Store, so there will be no need for an external service like `minio` or `s3`.
+For state store, we will use the embedded `LocalFs` Object Store, eliminating the need for an external service like `minio` or `s3`; for meta store, we will use the embedded `SQLite` database, eliminating the need for an external service like `etcd`.
 
-For the Meta Store, we will use the embedded `SQLite` database, so there will be no need for an external service like `etcd`.
-
-The RisingWave Standalone Mode will store its data in `~/risingwave` by default.
-This includes both `Metadata` and `State Data`.
+By default, the RisingWave standalone mode will store its data in `~/risingwave`, which includes both `Metadata` and `State Data`.
 
 For a batteries-included setup, with `monitoring` tools and external services like `kafka` fully included, you can use [Docker Compose](/deploy/risingwave-docker-compose.md) instead. If you would like to setup these external services manually, you may check out RisingWave's [Docker Compose](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose.yml), and run these services using the same configurations.
 
