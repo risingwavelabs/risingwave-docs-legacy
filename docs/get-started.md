@@ -157,7 +157,7 @@ For a batteries-included setup, with `monitoring` tools and external services li
 
 ## Configure RisingWave standalone mode
 
-RisingWave standalone's instance can run without any configuration. However, there are some options available to customize the instance.
+The instance of RisingWave standalone mode can run without any configuration. However, there are some options available to customize the instance.
 
 The main options which new users may require would be the state store directory (`--state-store-directory`) and in-memory mode (`--in-memory`).
 
