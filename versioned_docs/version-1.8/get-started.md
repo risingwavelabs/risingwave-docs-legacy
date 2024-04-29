@@ -153,11 +153,11 @@ For state store, we will use the embedded `LocalFs` Object Store, eliminating th
 
 By default, the RisingWave standalone mode will store its data in `~/risingwave`, which includes both `Metadata` and `State Data`.
 
-For a batteries-included setup, with `monitoring` tools and external services like `kafka` fully included, you can use [Docker Compose](/deploy/risingwave-docker-compose.md) instead. If you would like to setup these external services manually, you may check out RisingWave's [Docker Compose](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose.yml), and run these services using the same configurations.
+For a batteries-included setup, with `monitoring` tools and external services like `kafka` fully included, you can use [Docker Compose](/deploy/risingwave-docker-compose.md) instead. If you would like to set up these external services manually, you may check out RisingWave's [Docker Compose](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose.yml), and run these services using the same configurations.
 
-## Configuring RisingWave Standalone Mode
+## Configure RisingWave standalone mode
 
-RisingWave Standalone's instance can run without any configuration. However, there are some options available to customize the instance.
+RisingWave standalone's instance can run without any configuration. However, there are some options available to customize the instance.
 
 The main options which new users may require would be the state store directory (`--state-store-directory`) and in-memory mode (`--in-memory`). 
 
