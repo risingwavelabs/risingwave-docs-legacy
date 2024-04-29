@@ -673,6 +673,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "Snowflake",
+                  id: "guides/sink-to-snowflake",
+                },
+                {
+                  type: "doc",
                   label: "TiDB",
                   id: "guides/sink-to-tidb",
                 },
