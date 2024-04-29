@@ -146,7 +146,7 @@ SELECT * FROM average_exam_scores;
 
 ## About RisingWave Standalone Mode
 
-RisingWave Standalone Mode is meant to be a simple Deployment Mode of RisingWave, designed to be minimal, easy to install and configure.
+RisingWave Standalone Mode is meant to be a simple deployment mode of RisingWave, designed to be minimal, easy to install and configure.
 
 In contrast to other deployment modes, for instance [Docker Compose](/deploy/risingwave-docker-compose.md) or [Kubernetes](/deploy/risingwave-kubernetes.md),
 RisingWave Standalone Mode starts the cluster as a single process.
