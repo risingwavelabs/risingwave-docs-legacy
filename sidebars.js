@@ -643,6 +643,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "MQTT",
+                  id: "guides/sink-to-mqtt",
+                },
+                {
+                  type: "doc",
                   label: "MySQL",
                   id: "guides/sink-to-mysql-with-jdbc",
                 },
@@ -1161,9 +1166,22 @@ const sidebars = {
       ]
     },
     {
-      type: "link",
-      href: "/release-notes",
+      type: "category",
       label: "Releases",
+      collapsible: true,
+      collapsed: false,
+      items: [
+        {
+          type: "link",
+          href: "/release-notes",
+          label: "Release notes",
+        },
+        {
+          type: "link",
+          href: "/product-lifecycle",
+          label: "Product lifecycle",
+        },
+      ]
     },
   ],
 };
