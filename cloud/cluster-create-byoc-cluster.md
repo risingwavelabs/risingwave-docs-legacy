@@ -19,7 +19,7 @@ Before creating a BYOC deployment, familiarize yourself with the following archi
 
 - **RWProxy**: This is a TCP proxy that routes SQL statements from the control plane to the appropriate RisingWave instances.
 
-## Procedures
+## Procedure
 
 Follow the steps below to create your own cloud environment using RisingWave's BYOC plan.
 
@@ -27,15 +27,21 @@ Follow the steps below to create your own cloud environment using RisingWave's B
 
 2. On the right-side panel, choose **Enterprise** and enter your invitation code. If you do not have an invitation code, please contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com) to obtain one.
 
-3. Once you've redeemed the invitation code, select **BYOC** as the deployment type, and select your cloud platform as AWS or GCP (see [Resources and permissions](#resources-and-permissions) for more details), region, and ID as necessary.
+3. Once you've redeemed the invitation code, select **BYOC** as the deployment type, and select your cloud platform as AWS or GCP (see [Resource and permission](#resource-and-permission) for more details), region, and ID as necessary.
 
-4. After making these configurations, an additional instruction will appear on the screen. Follow it to prepare your BYOC environment.
+4. After configuring these settings, you'll see additional instructions on your screen. Follow these steps to establish your BYOC environment. Please be aware that the final command `rwc byoc apply --name xxx` may take 30 to 40 minutes to complete, and a progress bar will be shown to keep you updated. During this time, it's crucial to ensure a stable internet connection. If the command is interrupted or fails due to network instability, you can safely retry it.
+
+    :::tip
+    If you encounter any issues during this process, please contact our [support team](mailto:cloud-support@risingwave-labs.com).
+    :::
 
 5. Click **Next** to continue the configuration of cluster size and nodes. To learn more about the nodes, see the [architecture of RisingWave](/docs/current/architecture).
 
-6. Click **Next**, name your cluster, and run the commands that appear to create a BYOC cluster in the created environment.
+6. Click **Next**, name your cluster, and execute the command that pops up to establish a BYOC cluster in your environment.
 
-## Resources and permissions
+Once the cluster is successfully created, you can manage it through the portal just like hosted clusters.
+
+## Resource and permission
 
 When you customize your cloud platform, refer to the following notes to see what we've set up for you and the permissions you need to enable.
 
