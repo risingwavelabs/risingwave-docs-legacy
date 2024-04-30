@@ -1,13 +1,17 @@
 ---
-id: cluster-bring-your-own-cloud
+id: cluster-create-byoc-cluster
 title: Bring your own cloud
 description: You can use the BYOC cluster types to create custom clouds.
-slug: /bring-your-own-cloud
+slug: /create-byoc-cluster
 ---
 
 The Bring Your Own Cloud (BYOC) plan offers you the flexibility to tailor your cloud infrastructure instead of depending on a hosted service. It allows you to utilize the advantages of your chosen cloud provider, maintain full control over your environment, and adjust configurations to suit your specific needs. This guide outlines the services that RisingWave deploys in a BYOC environment and walks you through the process of enabling BYOC in a step-by-step manner.
 
-## Getting started
+:::note
+We currently support AWS and GCS as the cloud platform. Azure integration is in development and will be available soon.
+:::
+
+## Architecture overview
 
 Before creating a BYOC deployment, familiarize yourself with the following architecture. In the BYOC environment, the entire data plane is deployed in the user's space. To manage the RisingWave clusters within this environment, we deploy two key services for operation delegation:
 
@@ -15,7 +19,7 @@ Before creating a BYOC deployment, familiarize yourself with the following archi
 
 - **RWProxy**: This is a TCP proxy that routes SQL statements from the control plane to the appropriate RisingWave instances.
 
-## Enable BYOC
+## Procedures
 
 Follow the steps below to create your own cloud environment using RisingWave's BYOC plan.
 
@@ -24,10 +28,6 @@ Follow the steps below to create your own cloud environment using RisingWave's B
 2. On the right-side panel, choose **Enterprise** and enter your invitation code. If you do not have an invitation code, please contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com) to obtain one.
 
 3. Once you've redeemed the invitation code, select **BYOC** as the deployment type, and select your cloud platform as AWS or GCP (see [Resources and permissions](#resources-and-permissions) for more details), region, and ID as necessary.
-
-   :::note
-   Azure integration is currently in development and will be available soon.
-   :::
 
 4. After making these configurations, an additional instruction will appear on the screen. Follow it to prepare your BYOC environment.
 
