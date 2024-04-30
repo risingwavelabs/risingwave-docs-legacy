@@ -31,7 +31,7 @@ If OOM happens during the creation of a new materialized view, it might be cause
 CREATE MATERIALIZED VIEW mv WITH ( streaming_rate_limit = 200 ) AS ...
 ```
 
-The parameter [`streaming_rate_limit`](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters) means the maximum number of records per second for each parallelism on each source, where the default parallelism for streaming jobs is the total number of CPU cores across the cluster. For example, assuming a materialized view has 4 parallelisms and 2 sources joining together, each source's throughput will be throttled to `4 * streaming_rate_limit` records/s.
+The parameter [`streaming_rate_limit`](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters) refers to the maximum number of records per second for each parallelism on each source, where the default parallelism for streaming jobs is the total number of CPU cores across the cluster. For example, assuming a materialized view has four parallelisms and two sources joining together, each source's throughput will be throttled to `4 * streaming_rate_limit` records/s.
 
 Alternatively, you may use `risectl` to alter the streaming rate limit of an existent materialized view, where the `<id>` can be found either from the RisingWave Dashboard or `rw_catalog` schema.
 
