@@ -104,9 +104,9 @@ Here is an example on how you can sink data from RisingWave to Snowflake. For de
 
 This assumes that you have already created your accounts and corresponding databases in Snowflake. For detailed authentication processes, see [Authenticating to the server](https://docs.snowflake.com/en/developer-guide/sql-api/authenticating); for detailed commands, see [Reference](https://docs.snowflake.com/en/reference). You can find an example of Snowflake setup commands in `snowflake_prep.sql`.
 
-### Begin sinking data
+### Sink data
 
-   To start sinking data, launch your RisingWave cluster and execute the following SQL commands in order:
+   Now you can start sinking data. Launch your RisingWave cluster and execute the following SQL commands in order:
 
    - create_source.sql
    - create_mv.sql
