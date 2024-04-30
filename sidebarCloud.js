@@ -65,7 +65,7 @@ module.exports = {
             },
             {
               type: "doc",
-              id: "cluster-bring-your-own-cloud",
+              id: "cluster-create-byoc-cluster",
             },
             {
               type: "doc",
