@@ -20,10 +20,3 @@ RECOVER;
 ----RESULT
 RECOVER
 ```
-
-Sometimes in testing, you may hope to test the recovery path beside the normal path. For example, when creating a streaming job:
-
-+ The normal path uses a mutation barrier to update the streaming actors and their topology.
-+ The recovery path updates the persisted metadata, which would be used to construct the graph upon any recovery.
-
-With the `RECOVER` command to trigger recovery manually, you may cover such cases better.
