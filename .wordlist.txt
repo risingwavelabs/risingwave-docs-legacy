@@ -201,3 +201,4 @@ EMQX
 HiveMQ
 MQTT
 RabbitMQ
+Standalone's
