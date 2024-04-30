@@ -668,13 +668,13 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  label: "StarRocks",
-                  id: "guides/sink-to-starrocks",
+                  label: "Snowflake",
+                  id: "guides/sink-to-snowflake",
                 },
                 {
                   type: "doc",
-                  label: "Snowflake",
-                  id: "guides/sink-to-snowflake",
+                  label: "StarRocks",
+                  id: "guides/sink-to-starrocks",
                 },
                 {
                   type: "doc",
