@@ -54,7 +54,7 @@ The NATS sink connector in RisingWave provides at-least-once delivery semantics.
 
 :::note
 
-According to the [NATS documentation](https://docs.nats.io/running-a-nats-service/nats_admin/jetstream_admin/naming), stream names must adhere to subject naming rules as well as being friendly to the file system. Here are the recommended guidelines for stream names:
+According to the [NATS documentation](https://docs.nats.io/running-a-nats-service/nats_admin/jetstream_admin/naming), stream names must adhere to subject naming rules as well as be friendly to the file system. Here are the recommended guidelines for stream names:
 
 - Use alphanumeric values.
 - Avoid spaces, tabs, periods (`.`), greater than (`>`) or asterisks (`*`).
