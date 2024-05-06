@@ -5,6 +5,10 @@ description: Sink data from RisingWave to Snowflake
 slug: /sink-to-snowflake
 ---
 
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-snowflake/" />
+</head>
+
 This guide describes how to sink data from RisingWave to Snowflake using the Snowflake sink connector in RisingWave.
 
 Snowflake is a cloud-based data warehousing platform that allows for scalable and efficient data storage and analysis. For more information about Snowflake, see [Snowflake official website](https://www.snowflake.com/en/).
@@ -36,7 +40,7 @@ WITH (
 );
 ```
 
-## Parameters
+## Parameter
 
 All parameters are required unless specified otherwise.
 
@@ -106,12 +110,39 @@ This assumes that you have already created your accounts and corresponding datab
 
 ### Sink data
 
-   Now you can start sinking data. Launch your RisingWave cluster and execute the following SQL commands in order:
+Now you can start sinking data. Launch your RisingWave cluster and execute the following SQL queries to create source and sink. See the examples below:
 
-   - create_source.sql
-   - create_mv.sql
-   - create_sink.sql
+```sql title="Create source"
+CREATE SOURCE s1_source (id int, name varchar)
+WITH (
+     connector = 'datagen',
+     fields.id.kind = 'sequence',
+     fields.id.start = '1',
+     fields.id.end = '10000',
+     fields.name.kind = 'random',
+     fields.name.length = '10',
+     datagen.rows.per.second = '200'
+ ) FORMAT PLAIN ENCODE JSON;
+ ```
 
-:::note
-The column names in your materialized view should exactly match those in your pre-defined Snowflake table, as specified in `snowflake_prep.sql`.
-:::
+```sql title="Create sink"
+CREATE SINK snowflake_sink FROM s1_source WITH (
+    connector = 'snowflake',
+    type = 'append-only',
+    snowflake.database = 'EXAMPLE_DB',
+    snowflake.schema = 'EXAMPLE_SCHEMA',
+    snowflake.pipe = 'EXAMPLE_SNOWFLAKE_PIPE',
+    snowflake.account_identifier = '<ORG_NAME>-<ACCOUNT_NAME>',
+    snowflake.user = 'EXAMPLE_USER',
+    snowflake.rsa_public_key_fp = 'EXAMPLE_FP',
+    snowflake.private_key = 'EXAMPLE_PK',
+    snowflake.s3_bucket = 'EXAMPLE_S3_BUCKET',
+    snowflake.aws_access_key_id = 'EXAMPLE_AWS_ID',
+    snowflake.aws_secret_access_key = 'EXAMPLE_SECRET_KEY',
+    snowflake.aws_region = 'EXAMPLE_REGION',
+    snowflake.s3_path = 'EXAMPLE_S3_PATH',
+    -- depends on your mv setup, note that snowflake sink *only* supports
+    -- `append-only` mode at present.
+    force_append_only = 'true'
+);
+ ```
