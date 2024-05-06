@@ -2,14 +2,14 @@
 id: sink-to-starrocks
 title: Sink data from RisingWave to StarRocks
 description: Sink data from RisingWave to StarRocks.
-slug: /sink-to-starrocks 
+slug: /sink-to-starrocks
 ---
 
 This guide describes how to sink data from RisingWave to StarRocks.
 
 StarRocks is an open-source, massively parallel processing (MPP) database. For details on how to get started with StarRocks, see the [Quick start](https://docs.starrocks.io/docs/quick_start/) guide.
 
-The StarRocks stream load does not support sinking `struct` and `json` types.
+The StarRocks stream load does not support sinking `struct` type.
 
 ## Prerequisites
 
@@ -86,7 +86,7 @@ The following table shows the corresponding data type in RisingWave that should 
 | DATETIME | TIMESTAMP WITHOUT TIME ZONE |
 | No support | TIMESTAMP WITH TIME ZONE（Can be converted to timestamp in RisingWave then sinked into StarRocks ）|
 | No support | INTERVAL |
-| JSON | STRUCT |
+| No support | STRUCT |
 | ARRAY | ARRAY |
 | No support | BYTEA |
 | JSON | JSONB |

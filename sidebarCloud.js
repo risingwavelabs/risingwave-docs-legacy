@@ -65,6 +65,10 @@ module.exports = {
             },
             {
               type: "doc",
+              id: "cluster-create-byoc-cluster",
+            },
+            {
+              type: "doc",
               id: "cluster-check-status-and-metrics",
               label: "Check status and metrics",
             },
