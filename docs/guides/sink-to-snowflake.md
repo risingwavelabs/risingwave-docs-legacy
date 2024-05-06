@@ -58,7 +58,7 @@ All parameters are required unless specified otherwise.
 
 ## Data type mapping
 
-The following table shows the corresponding data types between RisingWave and Snowflake. For details on native RisingWave data types, see [Overview of data types](../sql/sql-data-types.md).
+The following table shows the corresponding data types between RisingWave and Snowflake. For details on native RisingWave data types, see [Overview of data types](/sql/sql-data-types.md).
 
 | RisingWave type | Snowflake type |
 |-----------------|---------------|
