@@ -179,6 +179,41 @@ You can view other options with:
 risingwave single --help
 ```
 
+## Monitoring RisingWave Standalone Mode with Grafana and Prometheus
+
+To Monitor your standalone cluster,
+you may wish to integrate metrics monitoring with Grafana and Prometheus.
+
+First install [Grafana]() and [Prometheus]().
+
+Next, clone the [RisingWave]() repository, it contains the various configuration files.
+
+Start the RisingWave standalone cluster.
+
+Make sure you're in the `RisingWave` directory.
+
+Start your prometheus instance:
+```shell
+prometheus --config.file=./standalone/prometheus.yaml --web.listen-address=0.0.0.0:9500
+```
+
+Then start the Grafana instance:
+```sh
+grafana server --config ./standalone/grafana.ini
+```
+
+Next, add the Prometheus Data Source on the Grafana Dashboard: http://localhost:3001/connections/datasources/prometheus.
+```shell
+name: risedev-prometheus
+Prometheus Server URL: http://localhost:9500
+```
+
+Finally, add the User and Dev Dashboard: http://localhost:3001/dashboard/import.
+The file paths are `grafana/risingwave-dev-dashboard.json`, `grafana/risingwave-user-dashboard.json`.
+
+With that you can now monitor your standalone cluster with Grafana and Prometheus.
+
+
 ## What's next?
 
 Congratulations! You've successfully started RisingWave and conducted some initial data analysis. To explore further, you may want to: 
