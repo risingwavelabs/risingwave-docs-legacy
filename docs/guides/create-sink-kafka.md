@@ -72,6 +72,7 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |queue.buffering.max.kbytes |properties.queue.buffering.max.kbytes| int|
 |queue.buffering.max.messages |properties.queue.buffering.max.messages |int|
 |queue.buffering.max.ms |properties.queue.buffering.max.ms |float|
+|request.required.acks| properties.request.required.acks| int |
 |retry.backoff.ms |properties.retry.backoff.ms| int|
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
 |ssl.endpoint.identification.algorithm | properties.ssl.endpoint.identification.algorithm | str |

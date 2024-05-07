@@ -224,11 +224,12 @@ const config = {
       async: true,
     },
     {
-      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha61/dist/run-llm-search-widget.es.js",
+      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@stable/dist/run-llm-search-widget.es.js",
       id: "runllm-widget-script",
       type: "module",
       "runllm-server-address": "https://api.runllm.com",
       "runllm-assistant-id": "29",
+      "version": "stable",
       "runllm-position": "TOP_RIGHT",
       "runllm-keyboard-shortcut": "Mod+l",
       "runllm-theme-color": "#005EEC",
@@ -237,7 +238,6 @@ const config = {
       async: true,
     },
   ],
-  stylesheets: ["https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.1-alpha61/dist/main.css"],
   webpack: {
     jsLoader: (isServer) => ({
       loader: require.resolve("swc-loader"),

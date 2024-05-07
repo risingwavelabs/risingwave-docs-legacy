@@ -37,8 +37,9 @@ WITH (
    connect_mode=<connect_mode>
    username='<your user name>',
    password='<your password>'
-   jwt=`<your jwt>`,
-   nkey=`<your nkey>`
+   jwt='<your jwt>',
+   nkey='<your nkey>',
+   type='<sink data type>'
 );
 ```
 
@@ -52,7 +53,7 @@ The NATS sink connector in RisingWave provides at-least-once delivery semantics.
 
 :::note
 
-According to the [NATS documentation](https://docs.nats.io/running-a-nats-service/nats_admin/jetstream_admin/naming), stream names must adhere to subject naming rules as well as being friendly to the file system. Here are the recommended guidelines for stream names:
+According to the [NATS documentation](https://docs.nats.io/running-a-nats-service/nats_admin/jetstream_admin/naming), stream names must adhere to subject naming rules as well as be friendly to the file system. Here are the recommended guidelines for stream names:
 
 - Use alphanumeric values.
 - Avoid spaces, tabs, periods (`.`), greater than (`>`) or asterisks (`*`).
@@ -72,3 +73,4 @@ According to the [NATS documentation](https://docs.nats.io/running-a-nats-servic
 |`connect_mode`|Required. Authentication mode for the connection. Allowed values: `plain`: No authentication; `user_and_password`: Use user name and password for authentication. For this option, `username` and `password` must be specified; `credential`: Use JSON Web Token (JWT) and NKeys for authentication. For this option, `jwt` and `nkey` must be specified.  |
 |`jwt` and `nkey`|JWT and NKEY for authentication. For details, see [JWT](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/jwt) and [NKeys](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/nkey_auth).|
 |`username` and `password`| Conditional. The client user name and pasword. Required when `connect_mode` is `user_and_password`.|
+|`type`|Required. Sink data type. Its value should be `append-only`.|
