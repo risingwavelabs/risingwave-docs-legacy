@@ -25,7 +25,7 @@ To successfully sink data into Snowflake, the user account must have the appropr
 
 - For the table: The user must have either `OWNERSHIP` permission, or at the very least `INSERT` permission.
 - For the Database: The user must have `USAGE` permission.
-- For the Schema: The user must have `USAGE` permission.
+- For the schema: The user must have `USAGE` permission.
 
 ## Syntax
 
