@@ -58,7 +58,7 @@ All parameters are required unless specified otherwise.
 | snowflake.aws_access_key_id   | S3 credentials.                                                                                                                                   |
 | snowflake.aws_secret_access_key | S3 credentials.                                                                                                                                  |
 | snowflake.aws_region          | The S3 region, e.g., `us-east-2`.                                                                                                                   |
-| snowflake.max_batch_row_num   | The configurable max row(s) to batch, which should be **explicitly** specified by user(s).                                                          |
+| snowflake.max_batch_row_num   | The configurable max row(s) to batch, which should be **explicitly** specified.                                                          |
 
 ## Data type mapping
 
