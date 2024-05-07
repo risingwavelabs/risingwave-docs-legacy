@@ -8,7 +8,7 @@ slug: /sql-create-sink
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-sink/" />
 </head>
 
-Use the `CREATE SINK` command to create a sink. A sink is an external target where you can send data processed in RisingWave. You can create a sink from a table or source, or a materialized view.
+Use the `CREATE SINK` command to create a sink. A sink is an external target where you can send data processed in RisingWave. You can create a sink from a table or a materialized view.
 
 If your goal is to create an append-only sink, you can use the emit-on-window-close policy when creating the materialized view that you want to sink data from. For details about the policy, see [Emit on window close](/transform/emit-on-window-close.md).
 
