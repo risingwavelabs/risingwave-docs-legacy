@@ -89,7 +89,7 @@ Here is an example on how you can sink data from RisingWave to Snowflake. For de
 
 ### Set up S3
 
-   You need to set up an external S3 bucket and ensure you have the corresponding credentials. Both Snowflake stage and RisingWave sink creation require these credentials:
+Set up an external S3 bucket and ensure you have the corresponding credentials. Both Snowflake stage and RisingWave sink creation require these credentials:
 
    - `snowflake.s3_bucket`: URL in Snowflake stage.
    - `snowflake.aws_access_key_id`: AWS_KEY_ID in Snowflake stage.
