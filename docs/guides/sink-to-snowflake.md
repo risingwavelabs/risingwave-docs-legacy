@@ -54,7 +54,7 @@ All parameters are required unless specified otherwise.
 | snowflake.rsa_public_key_fp   | The public key fingerprint used when generating custom `jwt_token`. See [Authenticating to the server](https://docs.snowflake.com/en/developer-guide/sql-api/authenticating) for more details. |
 | snowflake.private_key         | The rsa pem key **without** encryption.                                                                                                             |
 | snowflake.s3_bucket           | The S3 bucket where intermediate sink files will be stored.                                                                                       |
-| snowflake.s3_path             | Optional. The S3 path to be specified. If this field is specified by user(s), the actual file location would be `<s3_bucket>://<s3_path>/<rw_auto_gen_file_name>`, otherwise it would be `<s3_bucket>://<rw_auto_gen_file_name>`. |
+| snowflake.s3_path             | Optional. The S3 path to be specified. If this field is specified, the actual file location would be `<s3_bucket>://<s3_path>/<rw_auto_gen_file_name>`. Otherwise, it would be `<s3_bucket>://<rw_auto_gen_file_name>`. |
 | snowflake.aws_access_key_id   | S3 credentials.                                                                                                                                   |
 | snowflake.aws_secret_access_key | S3 credentials.                                                                                                                                  |
 | snowflake.aws_region          | The S3 region, e.g., `us-east-2`.                                                                                                                   |
