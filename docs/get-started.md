@@ -179,7 +179,7 @@ You can view other options with:
 risingwave single --help
 ```
 
-## Monitoring RisingWave Standalone Mode with Grafana and Prometheus
+## Monitoring RisingWave standalone mode with Grafana and Prometheus
 
 To monitor your standalone cluster,
 you may wish to integrate metrics monitoring with Grafana and Prometheus.
