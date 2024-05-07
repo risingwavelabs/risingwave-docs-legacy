@@ -203,3 +203,4 @@ MQTT
 RabbitMQ
 Standalone's
 localhost
+prometheus
