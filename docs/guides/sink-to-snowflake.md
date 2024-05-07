@@ -24,7 +24,7 @@ Snowflake is a cloud-based data warehousing platform that allows for scalable an
 To successfully sink data into Snowflake, the user account must have the appropriate permissions. These permissions include:
 
 - For the table: The user must have either `OWNERSHIP` permission, or at the very least `INSERT` permission.
-- For the Database: The user must have `USAGE` permission.
+- For the database: The user must have `USAGE` permission.
 - For the schema: The user must have `USAGE` permission.
 
 ## Syntax
