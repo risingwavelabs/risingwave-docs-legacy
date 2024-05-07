@@ -112,7 +112,7 @@ ON s1.id = s2.id and s1.window_start = s2.window_start;
 
 ## Interval joins
 
-Window joins require that the two sources have the same window type and window size. This requirement can be too strict in some scenarios. If you want to join two sources that have some time offset, you can create an interval join by specifying an accepted internval range based on watermarks.
+Window joins require that the two sources have the same window type and window size. This requirement can be too strict in some scenarios. If you want to join two sources that have some time offset, you can create an interval join by specifying an accepted interval range based on watermarks.
 
 The syntax of an interval join is:
 
@@ -136,15 +136,19 @@ ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1' MINUTE;
 
 ## Process-time temporal joins
 
-A temporal join is often used to widen a fact table. Its advantage is that it does not require RisingWave to maintain the join state, making it suitable for scenarios where the dimension table is not updated, or where updates to the dimension table do not affect the previously joined results. To further improve performance, you can use the index of a dimension table to form a join with the fact table.
+Process-time temporal joins are divided into two categories: append-only process-time temporal join and non-append-only process-time temporal join. Check the following instructions for their differences.
 
-### Syntax
+### Append-only process-time temporal join
+
+An append-only temporal join is often used to widen a fact table. Its advantage is that it does not require RisingWave to maintain the join state, making it suitable for scenarios where the dimension table is not updated, or where updates to the dimension table do not affect the previously joined results. To further improve performance, you can use the index of a dimension table to form a join with the fact table.
+
+#### Syntax
 
 ```sql
 <table_expression> [ LEFT | INNER ] JOIN <table_expression> FOR SYSTEM_TIME AS OF PROCTIME() ON <join_conditions>;
 ```
 
-### Notes
+#### Notes
 
 - The left table expression is an append-only table or source.
 - The right table expression is a table, index or materialized view.
@@ -152,7 +156,7 @@ A temporal join is often used to widen a fact table. Its advantage is that it do
 - The join type is INNER JOIN or LEFT JOIN.
 - The Join condition includes the primary key of the right table expression.
 
-### Example
+#### Example
 
 If you have an append-only stream that includes messages like below:
 
@@ -187,3 +191,35 @@ ON product_id = id
 | 1              | 101        | 3        | 2023-06-18 | Product A    | 25    |
 | 2              | 102        | 2        | 2023-06-19 | Product B    | 15    |
 | 3              | 101        | 1        | 2023-06-20 | Product A    | 22    |
+
+### Non-append-only process-time temporal join
+
+Compared to the append-only temporal join, the non-append-only temporal join can accommodate non-append-only input for the left table. However, it introduces an internal state to materialize the lookup result for each left-hand side (LHS) insertion. This allows the temporal join operator to retract the join result it sends downstream when update or delete messages arrive.
+
+#### Syntax
+
+The non-append-only temporal join shares the same syntax as the append-only temporal join.
+
+```sql
+<table_expression> [ LEFT | INNER ] JOIN <table_expression> FOR SYSTEM_TIME AS OF PROCTIME() ON <join_conditions>;
+```
+
+#### Example
+
+Now if you update the table `sales`:
+
+```sql
+UPDATE sales SET quantity = quantity + 1;
+```
+
+You will get these results:
+
+| transaction_id | product_id | quantity | sale_date | product_name | price |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 101 | 4 | 2023-06-18 | Product A | 25 |
+| 2 | 102 | 3 | 2023-06-19 | Product B | 15 |
+| 3 | 101 | 2 | 2023-06-20 | Product A | 22 |
+
+:::note
+Every time you update the left-hand side table, it will look up the latest data from the right-hand side table.
+:::
