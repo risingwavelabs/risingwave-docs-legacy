@@ -9,13 +9,19 @@ title: Generated columns
 
 A generated column is a special column that is always computed from other columns. In RisingWave, you can create a generated column when creating a table or source.
 
-To create a generated column, use the `AS <generation_expression>` clause in `CREATE TABLE` or `CREATE SOURCE` statements, for example:
+To create a generated column, use the `AS <generation_expression>` clause in [`CREATE TABLE`](/sql/commands/sql-create-table.md) or [`CREATE SOURCE`](/sql/commands/sql-create-source.md) statements, for example:
 
 ```sql
 CREATE TABLE t1 (v1 int AS v2-1, v2 int, v3 int AS v2+1);
 ```
 
-Note that a generation expression cannot reference another generated column.
+:::note
+
++ A generation expression cannot reference another generated column.
+
++ The generated column is created in RisingWave and will not be accessed through the external connector. Therefore, do not validate RisingWave's generated columns on the source.
+
+:::
 
 A generated column in a table is slightly different from one in a source.
 

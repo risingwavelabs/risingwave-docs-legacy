@@ -58,6 +58,12 @@ FORMAT upsert ENCODE AVRO (
 );
 ```
 
+:::note
+
+The generated column is created in RisingWave and will not be accessed through the external connector. Therefore, do not validate RisingWave's generated columns on the source.
+
+:::
+
 ## Parameters
 
 | Parameter| Description|
