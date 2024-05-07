@@ -4,6 +4,9 @@ title: ALTER SOURCE
 description: Modify existing source name.
 slug: /sql-alter-source
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-source/" />
+</head>
 
 Use the `ALTER SOURCE` command along with `RENAME TO` to modify the existing source name.
 

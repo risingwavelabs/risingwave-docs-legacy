@@ -4,6 +4,9 @@ title: SHOW CREATE TABLE
 description: Show the query used to create the specified table. 
 slug: /sql-show-create-table
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-create-table/" />
+</head>
 
 Use the `SHOW CREATE TABLE` command to see what query was used to create the specified table. 
 

@@ -4,6 +4,9 @@ title: CREATE TABLE
 description: Create a table.
 slug: /sql-create-table
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-table/" />
+</head>
 
 Use the `CREATE TABLE` command to create a new table. Tables consist of fixed columns and insertable rows. Rows can be added using the [`INSERT`](sql-insert.md) command.
 

@@ -4,6 +4,9 @@ title: CREATE SOURCE
 description: Supported data sources and how to connect RisingWave to the sources.
 slug: /sql-create-source
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-source/" />
+</head>
 
 Sources are resources that RisingWave can read data from. Use `CREATE SOURCE` to establish the connection to a source. After a connection is established, RisingWave will be able to read data from the source.
 

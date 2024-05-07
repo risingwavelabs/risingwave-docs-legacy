@@ -1,3 +1,9 @@
 {
-    "svg.preview.background": "transparent"
+    "svg.preview.background": "transparent",
+    "grammarly.selectors": [
+        {
+            "language": "markdown",
+            "scheme": "file"
+        }
+    ]
 }

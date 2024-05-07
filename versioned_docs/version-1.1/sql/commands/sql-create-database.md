@@ -4,6 +4,9 @@ title: CREATE DATABASE
 description: Create a new database.
 slug: /sql-create-database
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-database/" />
+</head>
 
 Use the `CREATE DATABASE` command to create a new database.
 

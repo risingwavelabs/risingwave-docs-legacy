@@ -5,11 +5,11 @@
 const config = {
   title: "RisingWave",
   tagline: "Get started with RisingWave",
-  url: "https://www.risingwave-labs.com",
+  url: "https://docs.risingwave.com",
   baseUrl: "/",
   trailingSlash: true,
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
   presets: [
     [
@@ -19,6 +19,9 @@ const config = {
         gtag: {
           trackingID: "G-VG98SVDEYE",
           anonymizeIP: true,
+        },
+        googleTagManager: {
+          containerId: 'GTM-KJRVWHT7',
         },
         docs: {
           admonitions: {
@@ -31,56 +34,62 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "1.2 (dev)",
+              label: "1.9 (dev)",
               path: "/dev",
               badge: false,
               banner: "unreleased",
             },
-            1.1: {
-              label: "1.1 (current)",
+            1.8: {
+              label: "1.8 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            1.7: {
+              label: "1.7",
+              path: "/1.7",
+              badge: false,
+              banner: "none",
+            },
+            1.6: {
+              label: "1.6",
+              path: "/1.6",
+              badge: false,
+              banner: "none",
+            },
+            1.5: {
+              label: "1.5",
+              path: "/1.5",
+              badge: false,
+              banner: "none",
+            },
+            1.4: {
+              label: "1.4",
+              path: "/1.4",
+              badge: false,
+              banner: "none",
+            },
+            1.3: {
+              label: "1.3",
+              path: "/1.3",
+              badge: false,
+              banner: "none",
+            },
+            1.2: {
+              label: "1.2",
+              path: "/1.2",
+              badge: false,
+              banner: "none",
+            },
+            1.1: {
+              label: "1.1",
+              path: "/1.1",
               badge: false,
               banner: "none",
             },
             "1.0.0": {
               label: "1.0",
               path: "/1.0",
-              badge: false,
-              banner: "none",
-            },
-            "0.19.0": {
-              label: "0.19.0",
-              path: "/0.19.0",
-              badge: false,
-              banner: "none",
-            },
-            "0.18.0": {
-              label: "0.18.0",
-              path: "/0.18.0",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.17": {
-              label: "0.1.17",
-              path: "/0.1.17",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.16": {
-              label: "0.1.16",
-              path: "/0.1.16",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.15": {
-              label: "0.1.15",
-              path: "/0.1.15",
-              badge: false,
-              banner: "none",
-            },
-            "0.1.14": {
-              label: "0.1.14",
-              path: "/0.1.14",
               badge: false,
               banner: "none",
             },
@@ -142,6 +151,7 @@ const config = {
         logo: {
           alt: "RisingWave Logo",
           src: "img/logo-title.png",
+          href: "https://www.risingwave.com/",
         },
         items: [
           {
@@ -154,7 +164,17 @@ const config = {
             to: "/cloud/intro",
             label: "RisingWave Cloud",
             position: "left",
-            activeBaseRegex: `/cloud/`,
+          },
+          {
+            to: "https://tutorials.risingwave.com/",
+            position: "right",
+            html: `
+            <img
+  src="/img/tutorial/entrance.svg"
+  alt="RisingWave Tutorials"
+  style="height:30px;margin-top:7px;"
+/>
+          `,
           },
           {
             type: "docsVersionDropdown",
@@ -165,7 +185,7 @@ const config = {
             href: "https://github.com/risingwavelabs/risingwave",
             label: "GitHub",
             position: "right",
-          },
+          }
         ],
       },
       footer: {
@@ -193,7 +213,7 @@ const config = {
       items: [{ label: "Latest", to: "docs/latest/intro" }],
     }),
   customFields: {
-    docsUrl: "https://www.risingwave.dev",
+    docsUrl: "https://docs.risingwave.com",
     requestUrl: "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
     bugReportUrl:
       "https://github.com/risingwavelabs/risingwave-docs/issues/new?assignees=CharlieSYH%2C+hengm3467&labels=bug&template=bug_report.yml&title=Bug%3A+&link=",
@@ -201,6 +221,20 @@ const config = {
   scripts: [
     {
       src: "https://asvd.github.io/syncscroll/syncscroll.js",
+      async: true,
+    },
+    {
+      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@stable/dist/run-llm-search-widget.es.js",
+      id: "runllm-widget-script",
+      type: "module",
+      "runllm-server-address": "https://api.runllm.com",
+      "runllm-assistant-id": "29",
+      "version": "stable",
+      "runllm-position": "TOP_RIGHT",
+      "runllm-keyboard-shortcut": "Mod+l",
+      "runllm-theme-color": "#005EEC",
+      "runllm-slack-community-url": "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",
+      "runllm-name": "RisingWave",
       async: true,
     },
   ],

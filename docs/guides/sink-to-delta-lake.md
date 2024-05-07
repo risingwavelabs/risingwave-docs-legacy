@@ -4,16 +4,25 @@ title: Sink data from RisingWave to Delta Lake
 description: Sink data from RisingWave to Delta Lake.
 slug: /sink-to-delta-lake
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-delta-lake/" />
+</head>
 
-This guide describes how to sink data from RisingWave to Delta Lake. Delta Lake is an open-source storage framework designed to allow you to build a Lakehouse architecture with another compute engine. For more information, see [Delta Lake](https://delta.io).
+This guide describes how to sink data from RisingWave to Delta Lake. Delta Lake is an open-source storage framework designed to allow you to build a lakehouse architecture with another compute engine. For more information, see [Delta Lake](https://delta.io).
 
-## Prerequisites 
+## Prerequisites
 
-- Ensure you already have an Delta Lake table that you can sink data to. For additional guidance on creating a table and setting up Delta Lake, refer to this [quickstart guide](https://docs.delta.io/latest/quick-start.html#create-a-table).
+- Ensure you already have a Delta Lake table that you can sink data to. For additional guidance on creating a table and setting up Delta Lake, refer to this [quickstart guide](https://docs.delta.io/latest/quick-start.html#create-a-table).
 
 - Ensure you have an upstream materialized view or source that you can sink data from.
 
-## Syntax 
+## Spark compatibility
+
+Version 2.4 of Delta Lake is compatible with version 3.4 of Spark.
+
+Versions 2.3, 2.2, and 2.1 of Delta Lake are compatible with version 3.3 of Spark.
+
+## Syntax
 
 ```sql
 CREATE SINK [ IF NOT EXISTS ] sink_name
@@ -28,11 +37,12 @@ WITH (
 
 | Parameter Names | Description |
 | --------------- | ---------------------------------------------------------------------- |
-| type            | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key.|
-| location        | Required. The file path that the Delta Lake table is reading data from, as specified when creating the Delta Lake table. |
-| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be <http://${MINIO_HOST}:${MINIO_PORT>}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
+| type            | Required. Currently, only `append-only` is supported. |
+| location        | Required. The file path that the Delta Lake table is reading data from, as specified when creating the Delta Lake table. <ul><li>For AWS, start with `s3://` or `s3a://`;</li><li>For GCS, start with `gs://`; </li><li>For local files, start with `file://`.</li></ul>|
+| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be <http://${MINIO_HOST}:${MINIO_PORT>}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html). </li></ul> |
 | s3.access.key   | Required. Access key of the S3 compatible object store.|
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
+| gcs.service.account   | Required for GCS. Specifies the service account JSON file as a string.|
 
 ## Example
 
@@ -59,7 +69,7 @@ spark-sql --packages io.delta:delta-core_2.12:2.2.0,org.apache.hadoop:hadoop-aws
 
 ### Create an upstream materialized view or source
 
-The following query creates a source using the built-in load generator, which creates mock data. For more details, see [CREATE SOURCE](/sql/commands/sql-create-source.md) and [Generate test data](/create-source/create-source-datagen.md). You can transform the data using additional SQL queries if needed.
+The following query creates a source using the built-in load generator, which creates mock data. For more details, see [CREATE SOURCE](/sql/commands/sql-create-source.md) and [Generate test data](/ingest/ingest-from-datagen.md). You can transform the data using additional SQL queries if needed.
 
 ```sql
 CREATE SOURCE s1_source (id int, name varchar)
@@ -93,7 +103,7 @@ WITH (
 
 #### Append-only sink from append-only source
 
-If you have an `append-only` source and want to create an `append-only` sink, set `type = append-only` in the `CREATE SINK` query. 
+If you have an `append-only` source and want to create an `append-only` sink, set `type = append-only` in the `CREATE SINK` query.
 
 ```sql
 CREATE SINK s1_sink FROM s1_source

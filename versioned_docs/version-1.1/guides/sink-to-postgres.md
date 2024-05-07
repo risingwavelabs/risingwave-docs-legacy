@@ -4,6 +4,9 @@
  description: Sink data from RisingWave to PostgreSQL with the JDBC connector.
  slug: /sink-to-postgres
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-postgres/" />
+</head>
 
 This guide will show you how to sink data from RisingWave to PostgreSQL using the JDBC connector. The sink parameters are similar to those for other JDBC-available databases, such as MySQL. However, we will cover the configurations specific to PostgreSQL and how to verify that data is successfully sunk.
 
@@ -121,7 +124,8 @@ All `WITH` options are required unless noted.
 |jdbc.url | The JDBC URL of the destination database necessary for the driver to recognize and connect to the database. |
 |table.name | The table in the destination database you want to sink to. |
 |schema.name | Optional. The schema in the destination database you want to sink to. The default value is `public`. |
-|type| Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a changelog stream. </li></ul> If creating an `upsert` sink, see the [Overview](/data-delivery.md) on when to define the primary key.|
+|type| Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li></ul> `upsert`: Output data as a changelog stream. |
+|primary_key| Required if `type` is `upsert`. The primary key of the sink, which should match the primary key of the downstream table. |
 
 ## Sink data from RisingWave to PostgreSQL
 
@@ -172,7 +176,8 @@ CREATE SINK target_count_postgres_sink FROM target_count WITH (
     connector = 'jdbc',
     jdbc.url = 'jdbc:postgresql://postgres:5432/mydb?user=myuser&password=123456',
     table.name = 'target_count',
-    type = 'upsert'
+    type = 'upsert',
+    primary_key = 'target_id'
 );
 ```
 
@@ -184,3 +189,9 @@ To ensure that the target table has been updated, query from `target_count` in P
 SELECT * FROM target_count
 LIMIT 10;
 ```
+
+## Data type mapping
+
+For the PostgreSQL data type mapping table, see the [Data type mapping table](/guides/ingest-from-postgres-cdc.md#data-type-mapping) under the Ingest data from PostgreSQL CDC topic.
+
+Note that only one-dimensional arrays can be sinked to PostgreSQL.

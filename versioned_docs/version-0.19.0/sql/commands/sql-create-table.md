@@ -4,6 +4,9 @@ title: CREATE TABLE
 description: Create a table.
 slug: /sql-create-table
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-table/" />
+</head>
 
 Use the `CREATE TABLE` command to create a new table or a materialized source. Tables consist of fixed columns and insertable rows. Rows can be added using the [`INSERT`](sql-insert.md) command. If creating a materialized source, be sure to include the connector settings and data format.
 
@@ -123,7 +126,7 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 If creating a materialized source, remember to include the connector settings with the `WITH` clause and to specify the data format with the `ROW FORMAT` clause. See [`CREATE SOURCE`](sql-create-source.md) for a full list of supported connectors and data formats.
 
-To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
+To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestamptz AS proctime()`) when creating the table or source.
 
 ## Parameters
 

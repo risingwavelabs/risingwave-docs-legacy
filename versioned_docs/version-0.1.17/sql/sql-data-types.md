@@ -3,6 +3,9 @@ id: sql-data-types
 slug: /sql-data-types
 title: Overview of data types
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-data-types/" />
+</head>
 
 RisingWave supports the following data types:
 

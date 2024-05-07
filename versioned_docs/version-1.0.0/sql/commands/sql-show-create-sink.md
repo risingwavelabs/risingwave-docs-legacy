@@ -4,6 +4,9 @@ title: SHOW CREATE SINK
 description: Show the query used to create the specified sink. 
 slug: /sql-show-create-sink
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-create-sink/" />
+</head>
 
 Use the `SHOW CREATE SINK` command to see the SQL statement used to create the specified sink. By
 using this command, you can verify the sink's settings and troubleshoot any issues.

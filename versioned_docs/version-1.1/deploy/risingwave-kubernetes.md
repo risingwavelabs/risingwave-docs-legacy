@@ -4,6 +4,9 @@ title: Set up a RisingWave cluster in Kubernetes
 description: Deploy RisingWave in a Kubernetes cluster with the Kubernetes Operator for RisingWave.
 slug: /risingwave-kubernetes
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-kubernetes/" />
+</head>
 
 This article will help you use the [Kubernetes Operator for RisingWave](https://github.com/risingwavelabs/risingwave-operator) (hereinafter ‘the Operator’) to deploy a RisingWave cluster in Kubernetes.
 

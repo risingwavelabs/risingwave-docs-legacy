@@ -4,6 +4,9 @@ title: CREATE MATERIALIZED VIEW
 description: Create a materialized view.
 slug: /sql-create-mv
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-mv/" />
+</head>
 
 Use the `CREATE MATERIALIZED VIEW` command to create a materialized view. A materialized view can be created based on sources, tables, materialized views, or indexes.
 

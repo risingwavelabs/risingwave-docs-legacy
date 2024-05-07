@@ -4,6 +4,9 @@ title: SELECT
 description: Retrieve data from a table or a materialized view. 
 slug: /sql-select
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-select/" />
+</head>
 
 Use the `SELECT` command to retrieve rows from a table or materialized view. It returns the rows that satisfy the creteria that you specify with the clauses and conditions in your query.
 

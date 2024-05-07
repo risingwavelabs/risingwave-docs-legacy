@@ -4,6 +4,9 @@ title: CDC via Kafka
 description: Ingest CDC data via Kafka.
 slug: /create-source-cdc
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-cdc/" />
+</head>
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time. 
 

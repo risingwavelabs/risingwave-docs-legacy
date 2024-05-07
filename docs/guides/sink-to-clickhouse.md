@@ -2,15 +2,18 @@
 id: sink-to-clickhouse
 title: Sink data from RisingWave to ClickHouse
 description: Sink data from RisingWave to ClickHouse.
-slug: /sink-to-clickhouse 
+slug: /sink-to-clickhouse
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-clickhouse/" />
+</head>
 
 This guide describes how to sink data from RisingWave to ClickHouse using the ClickHouse sink connector in RisingWave.
 
 ClickHouse® is a high-performance, column-oriented SQL database management system (DBMS) for online analytical processing (OLAP). For more information about ClickHouse, see [ClickHouse official website](https://clickhouse.com).
 
-:::caution Experimental feature
-The ClickHouse sink connector in RisingWave is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+The ClickHouse sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 ## Prerequisites
@@ -39,13 +42,13 @@ WITH (
 
 | Parameter Names       | Description |
 | --------------------- | ---------------------------------------------------------------------- |
-| `type`                | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key.|
+| `type`                | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key and [Upsert sinks](#upsert-sinks) on limitations.|
 | `primary_key`          | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the ClickHouse sink.|
-| `clickhouse.url`        | Required. Address of the ClickHouse server that you want to sink data to. Format: `ip:port`.|
+| `clickhouse.url`        | Required. Address of the ClickHouse server that you want to sink data to. Format: `http://ip:port`. The default port is `8123`.|
 | `clickhouse.user`       | Required. User name for accessing the ClickHouse server. |
 | `clickhouse.password`   | Required. Password for accessing the ClickHouse server.|
 | `clickhouse.database`  | Required. Name of the ClickHouse database that you want to sink data to.|
-| `clickhouse.table`      | Required. Name of the ClickHouse table that you want to sink dat to.|
+| `clickhouse.table`      | Required. Name of the ClickHouse table that you want to sink data to.|
 
 :::note
 
@@ -53,11 +56,17 @@ ClickHouse does not recommend using the `upsert`(`update` and `delete`) feature 
 
 :::
 
+### Upsert sinks
+
+While RisingWave supports `append-only` sinks for all ClickHouse engines, support for `upsert` sinks is limited. Additionally, for ReplacingMergeTree engines, an `append-only` sink will not insert duplicate data.
+
+We support creating `upsert` sinks for CollapsingMergeTree and VersionedCollapsingMergeTree engines. RisingWave will transform `DELETE` into `INSERT SIGN = 1`.
+
 ## Examples
 
 This section includes several examples that you can use if you want to quickly experiment with sinking data to ClickHouse.
 
-### Create an ClickHouse table (if you do not already have one)
+### Create a ClickHouse table (if you do not already have one)
 
 For example, let's consider creating a basic ClickHouse table with the primary key as `seq_id` and the ENGINE set to `ReplacingMergeTree`. It's important to emphasize that without using `ReplacingMergeTree` or other deduplication techniques, there is a significant risk of duplicate writes to ClickHouse.
 
@@ -66,15 +75,15 @@ Note that only S3-compatible object store is supported, such as AWS S3 or MinIO.
 ```sql
 CREATE TABLE demo_test(
     seq_id Int32,
-    seq_id Int32,
-    user_name String,
+    user_id Int32,
+    user_name String
 ) ENGINE = ReplacingMergeTree
-PRIMARY KEY (user_id);
+PRIMARY KEY (seq_id);
 ```
 
 ### Create an upstream materialized view or source
 
-The following query creates an append-only source. For more details on creating a source, see [`CREATE SOURCE`](/sql/commands/sql-create-source.md) .
+The following query creates an append-only source. For more details on creating a source, see [`CREATE SOURCE`](/sql/commands/sql-create-source.md).
 
 ```sql
 CREATE SOURCE s1_source (
@@ -135,7 +144,7 @@ WITH (
 
 ### Append-only sink from upsert source
 
-If you have an upsert source and want to create an append-only sink, set `type = append-only` and `force_append_only = true`. This will ignore delete messages in the upstream, and to turn upstream update messages into insert messages.
+If you have an upsert source and want to create an append-only sink, set `type = append-only` and `force_append_only = true`. This will ignore delete messages in the upstream, and turn upstream update messages into insert messages.
 
 ```sql
 CREATE SINKs1_sink FROM s1_source
@@ -167,3 +176,44 @@ WITH (
     clickhouse.table='demo_test'
 );
 ```
+
+## Data type mapping
+
+|RisingWave Data Type  | ClickHouse Data Type |
+|--------------------- |--------------------- |
+|boolean               | Bool                 |
+|smallint              | Int16 or UInt16      |
+|integer               | Int32 or UInt32      |
+|bigint                | Int64 or UInt64      |
+|real                  | Float32              |
+|double precision      | Float64              |
+|decimal               | Decimal              |
+|character varying     | String               |
+|bytea                 | Not supported        |
+|date                  | Date32               |
+|time without time zone| Not supported        |
+|timestamp             | Not supported. You need to convert `timestamp` to `timestamptz` within RisingWave before sinking.                    |
+|timestamptz           | DateTime64           |
+|interval              | Not supported        |
+|struct                | Nested               |
+|array                 | Array                |
+|JSONB                 | Not supported        |
+
+:::note
+
+In ClickHouse, the `Nested` data type doesn't support multiple levels of nesting. Therefore, when sinking RisingWave's `struct` data to ClickHouse, you need to flatten or restructure the nested data to align with ClickHouse's requirement.
+
+:::
+
+:::note
+
+Previously, when inserting data into a ClickHouse sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". However, we have made a change to this behavior. If the ClickHouse column is nullable, we will insert null values in such cases. If the column is not nullable, we will insert `0` instead. 
+
+:::
+
+Please be aware that the range of specific values varies among ClickHouse types and RisingWave types. Refer to the table below for detailed information.
+
+| ClickHouse type | RisingWave type | ClickHouse range | RisingWave range |
+| --- | --- | --- | --- |
+| Date32 | DATE | `1900-01-01` to `2299-12-31` | `0001-01-01` to `9999-12-31` |
+| DateTime64 | TIMESTAMPTZ | `1900-01-01 00:00:00` to `2299-12-31 23:59:59.99999999` | `0001-01-01 00:00:00` to `9999-12-31 23:59:59` |

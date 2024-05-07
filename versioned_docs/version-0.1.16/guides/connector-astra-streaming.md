@@ -4,6 +4,9 @@ title: Ingest data from DataStax Astra Streaming
 description: Ingest data from DataStax Astra Streaming.
 slug: /connector-astra-streaming
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/connector-astra-streaming/" />
+</head>
 
 
 Astra Streaming is a multi-cloud streaming-as-a-service product built on Apache Pulsar by DataStax. Pulsar is a cloud-native, multi-tenant, high-performance solution for server-to-server messaging and queuing built on the publisher-subscribe (pub-sub) pattern. Pulsar combines the best features of a traditional messaging system like RabbitMQ with those of a pub-sub system like Apache Kafka, scaling up or down dynamically without downtime.

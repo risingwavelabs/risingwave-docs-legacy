@@ -14,7 +14,7 @@ You can drop a sink with one of the following methods:
 
 ## Deleting a sink on the **Sink** page
 
-1. Go to [**Sink**](https://risingwave.cloud/sink/).
+1. Go to [**Sink**](https://cloud.risingwave.com/sink/).
 
 2. Specify the cluster and database, and log in as a database user.
 
@@ -32,4 +32,4 @@ You can drop a sink with one of the following methods:
 
 ## Using SQL command
 
-Refer to [`DROP SINK`](https://www.risingwave.dev/docs/current/sql-drop-sink) in the RisngWave Database documentation.
+Refer to [`DROP SINK`](/docs/current/sql-drop-sink) in the RisngWave Database documentation.

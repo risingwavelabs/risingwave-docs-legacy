@@ -16,9 +16,9 @@ import TabItem from '@theme/TabItem';
 
 #### You can use your company email to create an account.
 
-1. [Sign up](https://www.risingwave.cloud/auth/signup/) for RisingWave Cloud.
+1. [Sign up](https://cloud.risingwave.com/auth/signup/) for RisingWave Cloud.
 
-2. [Log in](https://www.risingwave.cloud/auth/signin/) to your account.
+2. [Log in](https://cloud.risingwave.com/auth/signin/) to your account.
 
 <img
   src={require('./images/login.png').default}
@@ -47,7 +47,7 @@ import TabItem from '@theme/TabItem';
 
 A cluster in RisingWave Cloud provides the necessary resources for hosting independent data repositories and streaming pipelines. Within a cluster, you can create and manage database users and databases.
 
-You can find the **Create cluster** button on the [home page](https://risingwave.cloud/dashboard/) or the [**Clusters**](https://risingwave.cloud/clusters/) tab after your first login.
+You can find the **Create cluster** button on the [home page](https://cloud.risingwave.com/dashboard/) or the [**Clusters**](https://cloud.risingwave.com/clusters/) tab after your first login.
 <p></p>
 
 <img
@@ -82,7 +82,7 @@ The query console is the most intuitive and easy way to connect to and interact 
 #### To connect via the console:
 
 
-1. Go to [**Query**](https://risingwave.cloud/console/).  
+1. Go to [**Query**](https://cloud.risingwave.com/console/).  
 
 2. Create a new database user.
 
@@ -108,11 +108,11 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 #### To connect via `psql` client:
 
-1. [Install `psql`](https://www.risingwave.dev/docs/current/install-psql-without-postgresql/) in your environment.
+1. [Install `psql`](/docs/current/install-psql-without-postgresql/) in your environment.
 
     `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
 
-2. In RisingWave Cloud, go to [**Clusters**](https://risingwave.cloud/clusters/).
+2. In RisingWave Cloud, go to [**Clusters**](https://cloud.risingwave.com/clusters/).
     
 3. Click **Connect** of your cluster.
     
@@ -175,7 +175,7 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 ## Explore RisingWave with examples
 
-You can kickstart your journey with RisingWave by exploring the sample queries in the [**Query**](https://risingwave.cloud/console/) console.
+You can kickstart your journey with RisingWave by exploring the sample queries in the [**Query**](https://cloud.risingwave.com/console/) console.
 
 These demos cover the most common steps in using RisingWave, such as establishing a connection with a data source, processing data by defining materialized views, and querying the results.
 

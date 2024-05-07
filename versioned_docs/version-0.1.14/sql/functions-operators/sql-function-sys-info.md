@@ -3,6 +3,9 @@ id: sql-function-sys-info
 slug: /sql-function-sys-info
 title: System information functions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-sys-info/" />
+</head>
 
 |Function|Description|Example|
 |---|---|---|

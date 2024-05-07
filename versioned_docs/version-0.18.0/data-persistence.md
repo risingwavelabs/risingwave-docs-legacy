@@ -4,6 +4,9 @@ title: Data persistence
 slug: /data-persistence
 description: Describes how data is persisted in RisingWave.
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-persistence/" />
+</head>
 
 RisingWave adopts the [Chandy–Lamport algorithm](https://en.wikipedia.org/wiki/Chandy%E2%80%93Lamport_algorithm) to create checkpoints. A checkpoint is a global snapshot that represents a consistent state of the entire system at a particular point in time.
 

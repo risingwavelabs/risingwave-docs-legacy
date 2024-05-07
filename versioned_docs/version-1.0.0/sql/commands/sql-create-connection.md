@@ -4,9 +4,11 @@ title: CREATE CONNECTION
 description: Create a connection between VPCs.
 slug: /sql-create-connection
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-connection/" />
+</head>
 
 Use the `CREATE CONNECTION` command to create an AWS PrivateLink connection for a Kafka source connector. This is necessary in order to be able to consume messages from a Kafka service located in a different VPC from the RisingWave cluster in the cloud.
-
 
 ## Syntax
 
@@ -16,7 +18,6 @@ WITH (
     connection_parameter = 'value'
 );
 ```
-
 
 import rr from '@theme/RailroadDiagram'
 
@@ -43,7 +44,6 @@ export const svg = rr.Diagram(
 
 <drawer SVG={svg} />
 
-
 ## Parameters
 
 |Parameter or clause            | Description           |
@@ -69,7 +69,7 @@ CREATE CONNECTION connection_name with (
 
 If you are using a cloud-hosted source or sink, such as AWS MSK, there might be connectivity issues when your service is located in a different VPC from where you have deployed RisingWave. To establish a secure, direct connection between these two different VPCs and allow RisingWave to read consumer messages from the broker or send messages to the broker, use the [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html) service.
 
-:::caution Experimental feature
+:::note Beta Feature
 The support for AWS PrivateLink connection is a beta feature and the syntax for `CREATE CONNECTION` is subject to change in future versions.
 :::
 
@@ -83,7 +83,7 @@ Follow the steps below to create an AWS PrivateLink connection.
 
 4. Complete the [health check](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/target-group-health-checks.html) for each target group.
 
-5. Create a [VPC endpoint service](https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html) associated with the Networkd Load Balancer created. Be sure to add the AWS principal of the account that will access the endpoint service to allow the service consumer to connect. See [Manage permissions](https://docs.aws.amazon.com/vpc/latest/privatelink/configure-endpoint-service.html#add-remove-permissions) for more details.
+5. Create a [VPC endpoint service](https://docs.aws.amazon.com/vpc/latest/privatelink/create-endpoint-service.html) associated with the Network Load Balancer created. Be sure to add the AWS principal of the account that will access the endpoint service to allow the service consumer to connect. See [Manage permissions](https://docs.aws.amazon.com/vpc/latest/privatelink/configure-endpoint-service.html#add-remove-permissions) for more details.
 
 6. Use the `CREATE CONNECTION` command in RisingWave to create an AWS PrivateLink connection referencing the endpoint service created. Here is an example of creating an AWS PrivateLink connection.
 

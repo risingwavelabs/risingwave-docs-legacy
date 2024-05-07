@@ -4,6 +4,9 @@ title: SHOW SOURCES
 description: Show existing sources.
 slug: /sql-show-sources
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-sources/" />
+</head>
 
 Use the `SHOW SOURCES` command to show existing sources. 
 

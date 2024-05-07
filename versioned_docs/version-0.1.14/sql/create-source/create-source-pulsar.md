@@ -4,6 +4,9 @@ title: Pulsar
 description: Connect RisingWave to a Pulsa broker.
 slug: /create-source-pulsar
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-pulsar/" />
+</head>
 
 
 Use the SQL statement below to connect RisingWave to a Pulsa broker.

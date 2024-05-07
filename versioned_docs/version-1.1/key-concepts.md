@@ -3,6 +3,9 @@ id: key-concepts
 title: Key concepts and terms
 slug: /key-concepts
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/key-concepts/" />
+</head>
 
 This page explains key concepts and terms that are used throughout the documentation.
 

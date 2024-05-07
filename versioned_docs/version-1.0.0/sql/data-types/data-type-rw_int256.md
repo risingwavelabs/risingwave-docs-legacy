@@ -4,9 +4,12 @@ slug: /data-type-rw_int256
 title: rw_int256
 description: rw_int256 is a custom data type that represents a signed 256-bit integer with a storage size of 32 bytes.
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-type-rw_int256/" />
+</head>
 
-:::caution Experimental feature
-`rw_int256` data type is currently an experimental feature. Its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
+:::note Beta Feature
+`rw_int256` data type is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
 :::note

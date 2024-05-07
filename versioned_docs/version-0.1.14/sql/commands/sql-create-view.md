@@ -4,6 +4,9 @@ title: CREATE VIEW
 description: Create a non-materialized view.
 slug: /sql-create-view
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-view/" />
+</head>
 
 Use the `CREATE VIEW` command to create a non-materialized view, which runs every time the view is referenced in a query. A non-materialized view can be created based on sources, tables, views, or indexes.
 

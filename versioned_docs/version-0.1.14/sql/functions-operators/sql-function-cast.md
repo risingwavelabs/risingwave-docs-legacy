@@ -3,8 +3,11 @@ id: sql-function-cast
 slug: /sql-function-cast
 title: Cast functions and operators
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-cast/" />
+</head>
 
-Use the `cast` function and operator to convert a value to a specifc type.
+Use the `cast` function and operator to convert a value to a specific type.
 
 ## Syntax
 

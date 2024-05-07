@@ -4,6 +4,9 @@ title: CREATE SOURCE
 description: Supported data sources and how to connect RisingWave to the sources.
 slug: /sql-create-source
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-source/" />
+</head>
 
 A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command.
 If you  choose to persist the data from the source in RisingWave, use the `CREATE TABLE` command with connector settings. See [CREATE TABLE](sql-create-table.md) for more details.
@@ -27,7 +30,7 @@ ROW FORMAT data_format
 For the syntax of `schema_definition`, see [Parameters](sql-create-table.md#parameters) in `CREATE TABLE`.
 
 :::note
-To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestampz AS proctime()`) when creating the table or source.
+To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestamptz AS proctime()`) when creating the table or source.
 :::
 
 import rr from '@theme/RailroadDiagram'

@@ -4,6 +4,9 @@ title: CREATE SINK
 description: Create a sink.
 slug: /sql-create-sink
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-sink/" />
+</head>
 
 Use the `CREATE SINK` command to create a sink. A sink is an external target where you can send data processed in RisingWave. You can create a sink from a materialized source, a materialized view, or a table.
 
@@ -89,6 +92,6 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 
 Timestamptz values are stored in UTC.
 
-When sinking downstream, timestamptz is represented in i64 with a resolution of microseconds.
+When sinking downstream, timestamptz is represented as a string in the format `2023-11-11 18:30:09.453000`.
 
 :::

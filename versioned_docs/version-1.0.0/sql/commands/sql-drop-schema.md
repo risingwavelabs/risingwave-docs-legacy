@@ -4,6 +4,9 @@ title: DROP SCHEMA
 description: Remove a schema.
 slug: /sql-drop-schema
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-schema/" />
+</head>
 
 Use the `DROP SCHEMA` command to remove a schema from a database.
 

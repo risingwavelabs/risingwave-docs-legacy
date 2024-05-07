@@ -4,6 +4,9 @@ title: Load generator
 description: Connect RisingWave to a built-in load generator.
 slug: /create-source-datagen
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-datagen/" />
+</head>
 
 The built-in load generator can generate mock data, which can be used in demos and tests. It provides an easy way to simulate the data stream without connecting to an actual external data source.
 

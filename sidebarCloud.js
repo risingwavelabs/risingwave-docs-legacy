@@ -33,7 +33,7 @@ module.exports = {
         },
         {
           type: "link",
-          href: "https://www.risingwave.cloud/auth/signup/",
+          href: "https://cloud.risingwave.com/auth/signup/",
           label: "Sign up and log in",
         },
       ],
@@ -65,8 +65,16 @@ module.exports = {
             },
             {
               type: "doc",
+              id: "cluster-create-byoc-cluster",
+            },
+            {
+              type: "doc",
               id: "cluster-check-status-and-metrics",
               label: "Check status and metrics",
+            },
+            {
+              type: "doc",
+              id: "cluster-scale-a-cluster-manually"
             },
             {
               type: "doc",
@@ -169,6 +177,28 @@ module.exports = {
           ],
         },
         {
+          type: "category",
+          label: "PrivateLink connection",
+          collapsible: true,
+          collapsed: true,
+          link: { type: "doc", id: "PrivateLink-overview" },
+          items: [
+            {
+              type: "doc",
+              id: "PrivateLink-overview",
+              label: "Overview",
+            },
+            {
+              type: "doc",
+              id: "PrivateLink-create-a-connection",
+            },
+            {
+              type: "doc",
+              id: "PrivateLink-drop-a-connection",
+            },
+          ],
+        },
+        {
           type: "doc",
           id: "console-overview",
         },
@@ -176,9 +206,66 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Organization",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "organization-overview",
+          label: "Overview",
+        },
+        {
+          type: "doc",
+          id: "organization-manage-users",
+          label: "Invite and manage users",
+        },
+        {
+          type: "doc",
+          id: "organization-sso",
+          label: "Single Sign-On (SSO)",
+        },
+        {
+          type: "doc",
+          id: "organization-service-account",
+          label: "Service account & API key",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Billing",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "billing-overview",
+          label: "Overview",
+        },
+        {
+          type: "doc",
+          id: "billing-pricing",
+        },
+        {
+          type: "doc",
+          id: "billing-check-spending-details",
+        },
+        {
+          type: "doc",
+          id: "billing-review-and-pay-invoices",
+        },
+        {
+          type: "doc",
+          id: "billing-manage-payment-methods",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Account",
-      collapsible: false,
-      collapsed: false,
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: "category",

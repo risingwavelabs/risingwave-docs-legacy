@@ -4,6 +4,9 @@ title: Monitor a RisingWave cluster
 description: Set up a Grafana and Prometheus stack to monitor a RisingWave cluster.
 slug: /monitor-risingwave-cluster
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/monitor-risingwave-cluster/" />
+</head>
 
 If you run RisingWave in a Kubernetes cluster, you can monitor its performance, including the usage of resources like CPU, memory, and network, and the status of different nodes.
 
@@ -17,7 +20,7 @@ Clone or download the `RisingWave-Operator` repository to your environment.
 git clone https://github.com/risingwavelabs/risingwave-operator.git
 ```
 
-Run the script to install the mmonitoring stack. It will create the `monitoring` namespace and deploy all monitoring services in the namespace.
+Run the script to install the monitoring stack. It will create the `monitoring` namespace and deploy all monitoring services in the namespace.
 
 ```bash
 ./monitoring/install.sh

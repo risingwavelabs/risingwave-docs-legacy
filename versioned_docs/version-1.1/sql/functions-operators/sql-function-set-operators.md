@@ -3,6 +3,9 @@ id: sql-function-set-operators
 slug: /sql-function-set-operators
 title: Set operators
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-set-operators/" />
+</head>
 
 ## UNION and UNION ALL
 

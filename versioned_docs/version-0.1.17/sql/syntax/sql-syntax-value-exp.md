@@ -19,7 +19,7 @@ aggregate_name (DISTINCT expression [ , ... ]) [ FILTER ( WHERE filter_clause ) 
 aggregate_name ( * ) [ FILTER ( WHERE filter_clause ) ]
 ```
 
-where *aggregate_name* is one of the aggregation functions listed on [Aggregate functions](https://www.risingwave.dev/docs/latest/sql-function-aggregate/), and *expression* is a value expression that does not contain an aggregate expression or a window function call.
+where *aggregate_name* is one of the aggregation functions listed on [Aggregate functions](/sql/functions-operators/sql-function-aggregate.md), and *expression* is a value expression that does not contain an aggregate expression or a window function call.
 
 `DISTINCT` cannot be used with an `ORDER BY` clause in RisingWave.
 

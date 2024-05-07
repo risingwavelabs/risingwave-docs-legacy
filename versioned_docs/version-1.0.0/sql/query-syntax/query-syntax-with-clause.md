@@ -3,6 +3,9 @@ id: query-syntax-with-clause
 slug: /query-syntax-with-clause
 title: WITH clause
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-with-clause/" />
+</head>
 
 The `WITH` clause provides a way to write supplemental statements for a larger query. These statements, also known as Common Table Expressions or CTEs, can be viewed as defining temporary tables that exist just for one query.
 

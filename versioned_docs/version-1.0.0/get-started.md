@@ -5,6 +5,9 @@ description: Get started with RisingWave.
 slug: /get-started
 toc_max_heading_level: 2
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/get-started/" />
+</head>
 
 This guide is designed to help you get up and running with RisingWave quickly and easily. In this guide, we will walk you through the common tasks of using RisingWave.
 
@@ -13,9 +16,9 @@ This guide is designed to help you get up and running with RisingWave quickly an
 Ensure you have [Homebrew](https://brew.sh/) installed and then run the following commands:
 
 ```shell
-brew tap risingwavelabs/risingwave # Tap the repository
-brew install risingwave # Install the latest release of RisingWave.
-risingwave playground # Start RisingWave in playground mode
+brew tap risingwavelabs/risingwave
+brew install risingwave
+risingwave playground
 ```
 
 :::info
@@ -74,7 +77,7 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
 
 ## Connect to a source
 
-The most common way for getting streaming data into RisingWave is through upstream sources such as message queues or Change Data Capture streams. For streaming data ingestion, you need use the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command to connect to a source first.
+The most common way for getting streaming data into RisingWave is through upstream sources such as message queues or Change Data Capture streams. For streaming data ingestion, you need to use the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command to connect to a source first.
 
 Let's assume that you have entered five rows of data in the same schema as table `website_visits` into the `test` topic in Kafka:
 
@@ -175,7 +178,7 @@ SELECT * FROM visits_stream_mv;
 
 Data in tables and materialized views are stored in RisingWave. You can sink data out of RisingWave and into Kafka topics or databases.
 
-To sink data out of RisingWave, you need to create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md). A sink can be created from an existing table, source, or materialized view, or an ad-hoc `SELECT` query.
+To sink data out of RisingWave, you need to create a sink using the [`CREATE SINK`](/sql/commands/sql-create-sink.md) command. A sink can be created from an existing table, source, or materialized view, or an ad-hoc `SELECT` query.
 
 Let's sink all data from `visits_stream_mv` to a Kafka topic:
 

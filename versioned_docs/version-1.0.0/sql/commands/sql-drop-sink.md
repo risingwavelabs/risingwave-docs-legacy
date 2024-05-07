@@ -4,6 +4,9 @@ title: DROP SINK
 description: Remove a sink.
 slug: /sql-drop-sink
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-sink/" />
+</head>
 
 Use the `DROP SINK` command to remove a [sink](sql-create-sink.md) if you no longer need to deliver data to the sink.
 

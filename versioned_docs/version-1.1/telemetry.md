@@ -3,6 +3,9 @@ id: telemetry
 title: Telemetry
 slug: /telemetry
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/telemetry/" />
+</head>
 
 RisingWave collects anonymous usage statistics to better understand how the community is using RisingWave. The sole intention of this exercise is to help improve the product. These statistics are related to system resource usage, OS versions and system uptime. RisingWave doesn't have access to any user data or metadata running on RisingWave clusters including source and sink connection parameters, sources, sinks, materialized views, and tables.
 

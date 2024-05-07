@@ -4,6 +4,9 @@ title: CDC
 description: Connect RisingWave to a CDC source.
 slug: /create-source-cdc
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-cdc/" />
+</head>
 
 > Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time. <br/> CDC tools and platforms can record row-level changes (INSERT, UPDATE, and DELETE activities) that apply to tables in a upstream database and stream the data change event records to event streaming platforms such as Kafka. You can connect RisingWave to the Kafka topics to receive the data changes.
 

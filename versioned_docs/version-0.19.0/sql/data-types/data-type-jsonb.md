@@ -3,6 +3,9 @@ id: data-type-jsonb
 slug: /data-type-jsonb
 title: JSONB
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-type-jsonb/" />
+</head>
 
 Use the `JSONB` data type to create a column that can store JSON data.
 

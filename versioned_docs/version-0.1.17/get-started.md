@@ -4,6 +4,9 @@ title: Get started
 description: Get started with RisingWave.
 slug: /get-started
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/get-started/" />
+</head>
 
 This guide will help you get started with RisingWave.
 

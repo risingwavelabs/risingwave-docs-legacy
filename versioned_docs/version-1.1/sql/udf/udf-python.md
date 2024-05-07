@@ -4,6 +4,9 @@ slug: /udf-python
 title: Use UDFs in Python
 description: Define your own functions with the help of the RisingWave UDF API for Python.
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/udf-python/" />
+</head>
 
 This article provides a step-by-step guide for installing the RisingWave UDF API, defining functions in a Python file, starting the UDF server, and declaring and using UDFs in RisingWave.
 

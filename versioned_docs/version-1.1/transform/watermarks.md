@@ -3,6 +3,9 @@ id: watermarks
 slug: /watermarks
 title: Watermarks
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/watermarks/" />
+</head>
 
 In stream processing, watermarks are integral when using event time processing logic with event time based operations. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. A watermark is an estimate of the maximum event time observed so far, or a threshold indicating that events received so far have a timestamp later than or equal to the current watermark. Events that arrive with a timestamp earlier than the current watermark are considered late and are not processed within its time window.
 

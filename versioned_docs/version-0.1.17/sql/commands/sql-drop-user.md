@@ -4,6 +4,9 @@ title: DROP USER
 description: Remove a user.
 slug: /sql-drop-user
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-user/" />
+</head>
 
 Use the `DROP USER` command to remove a user from RisingWave.
 

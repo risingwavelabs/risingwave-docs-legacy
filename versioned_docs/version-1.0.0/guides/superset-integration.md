@@ -4,6 +4,9 @@ title: Configure Superset to read data from RisingWave
 description: Configure Superset to read data from RisingWave.
 slug: /superset-integration
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/superset-integration/" />
+</head>
 
 Apache Superset is an open-source data exploration and data visualization software application. As a database, RisingWave can act as a data source for Business Intelligence tools like Apache Superset.
 

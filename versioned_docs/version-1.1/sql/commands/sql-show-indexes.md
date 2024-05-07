@@ -1,9 +1,12 @@
 ---
-id: sql-show-index
+id: sql-show-indexes
 title: SHOW INDEXES
 description: Show existing indexes from a particular table.
 slug: /sql-show-indexes
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-indexes/" />
+</head>
 
 Use the `SHOW INDEXES` command to view indexes from a particular table.
 

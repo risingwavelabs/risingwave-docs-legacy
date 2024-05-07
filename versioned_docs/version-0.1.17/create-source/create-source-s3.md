@@ -4,6 +4,10 @@ title: Ingest data from S3 buckets
 description: Ingest data from S3 buckets
 slug: /create-source-s3
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-s3/" />
+</head>
+
 Use the SQL statement below to connect RisingWave to an Amazon S3 source.
 
 ## Syntax

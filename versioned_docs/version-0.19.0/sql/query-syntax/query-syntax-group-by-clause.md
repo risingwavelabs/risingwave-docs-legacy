@@ -3,6 +3,9 @@ id: query-syntax-group-by-clause
 slug: /query-syntax-group-by-clause
 title: GROUP BY clause
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-group-by-clause/" />
+</head>
 
 The `GROUP BY` clause groups rows in a table with identical data, thus eliminating redundancy in the output and aggregates that apply to these groups.
 

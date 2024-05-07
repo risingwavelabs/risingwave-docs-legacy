@@ -4,6 +4,9 @@ title: Get started
 description: Get started with RisingWave.
 slug: /get-started
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/get-started/" />
+</head>
 
 This guide will help you get started with RisingWave.
 
@@ -45,7 +48,7 @@ If you intend to deploy RisingWave in production environments, please use Kubern
 
 Experience intuitive and effortless stream processing with RisingWave Cloud. Sign up now and get a free, fully managed cluster up and running with a few clicks.
 
-<defaultButton text="Sign up for RisingWave Cloud" url="https://risingwave.cloud/auth/signup/"/><lightButton text="Learn more" cloud="intro"/><lightButton text="FAQ" cloud="faq"/>
+<defaultButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/"/><lightButton text="Learn more" cloud="intro"/><lightButton text="FAQ" cloud="faq"/>
 
 <br/>
 <br/>

@@ -4,6 +4,9 @@ slug: /real-time-ad-performance-analysis
 title: Real-time ad performance analysis
 description: RisingWave makes it possible to do real-time ad performance analysis in a low code manner.
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/real-time-ad-performance-analysis/" />
+</head>
 
 RisingWave makes it possible to do real-time ad performance analysis in a low code manner.
 

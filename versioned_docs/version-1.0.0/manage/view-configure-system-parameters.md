@@ -4,6 +4,9 @@ title: View and configure system parameters
 description: View the system parameters and configure their values if needed.
 slug: /view-configure-system-parameters
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/view-configure-system-parameters/" />
+</head>
 
 ## What are system parameters?
 

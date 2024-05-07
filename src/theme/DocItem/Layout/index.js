@@ -50,7 +50,7 @@ export default function DocItemLayout({ children }) {
             <DocItemFooter />
           </article>
           <DocItemPaginator />
-          <div className={styles["giscus-container"]}>
+          {/* <div className={styles["giscus-container"]}>
             <Giscus
               id="comments"
               repo="risingwavelabs/risingwave-docs"
@@ -67,7 +67,7 @@ export default function DocItemLayout({ children }) {
               loading="lazy"
               crossorigin="anonymous"
             />
-          </div>
+          </div> */}
         </div>
       </div>
       {docTOC.desktop && <div className="col col--3">{docTOC.desktop}</div>}

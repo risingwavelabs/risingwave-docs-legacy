@@ -3,6 +3,9 @@ id: fault-tolerance
 title: Fault tolerance
 slug: /fault-tolerance
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/fault-tolerance/" />
+</head>
 
 RisingWave is a fault-tolerant distributed stream processing system. This article provides a high-level overview of how RisingWave handles failures by answering the following questions:
 

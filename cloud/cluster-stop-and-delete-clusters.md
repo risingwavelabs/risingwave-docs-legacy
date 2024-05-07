@@ -7,7 +7,7 @@ slug: /stop-and-delete-clusters
 
 You can manually control the running state of your clusters or delete them.
 
-You can go to [**Clusters**](https://risingwave.cloud/clusters/) to control your clusters.
+You can go to [**Clusters**](https://cloud.risingwave.com/clusters/) to control your clusters.
 
 
 ## Stop a cluster

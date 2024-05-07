@@ -4,6 +4,9 @@ title: DROP VIEW
 description: Drop a view.
 slug: /sql-drop-view
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-user/" />
+</head>
 
 Use the `DROP VIEW` command to remove an existing view from a particular schema.
 

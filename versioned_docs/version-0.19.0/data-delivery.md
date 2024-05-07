@@ -3,6 +3,9 @@ id: data-delivery
 title: Overview of data delivery
 slug: /data-delivery
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-delivery/" />
+</head>
 
 RisingWave supports delivering data to downstream systems via its sink connectors.
 

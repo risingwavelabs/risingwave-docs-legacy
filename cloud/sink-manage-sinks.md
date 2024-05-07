@@ -7,7 +7,7 @@ slug: /manage-sinks
 
 To stream data out of RisingWave, you must create a sink. A sink refers to an external target that you can send data to. You can deliver data to downstream systems via our sink connectors.
 
-You can manage your data sinks in [**Sink**](https://risingwave.cloud/sink/).
+You can manage your data sinks in [**Sink**](https://cloud.risingwave.com/sink/).
 
 <img
   src={require('./images/sinks.png').default}

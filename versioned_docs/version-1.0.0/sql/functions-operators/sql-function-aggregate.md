@@ -3,6 +3,9 @@ id: sql-function-aggregate
 slug: /sql-function-aggregate
 title: Aggregate functions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-aggregate/" />
+</head>
 
 Aggregate functions compute a single result from a set of input values.
 
@@ -238,6 +241,10 @@ SELECT mode() WITHIN GROUP (ORDER BY column1) FROM table1;
 
 ### `percentile_cont`
 
+:::note
+At present, `percentile_cont` is not supported for streaming queries yet.
+:::
+
 Computes the continuous percentile, which is a value corresponding to the specified fraction within the ordered set of aggregated argument values. It can interpolate between adjacent input items if needed.
 
 #### Syntax
@@ -259,6 +266,10 @@ SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY column1) FROM table1;
 ---  
 
 ### `percentile_disc`
+
+:::note
+At present, `percentile_disc` is not supported for streaming queries yet.
+:::
 
 Computes the discrete percentile, which is the first value within the ordered set of aggregated argument values whose position in the ordering equals or exceeds the specified fraction.
 

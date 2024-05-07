@@ -4,6 +4,9 @@ title: DROP TABLE
 description: Remove a table.
 slug: /sql-drop-table
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-table/" />
+</head>
 
 Use the `DROP TABLE` command to remove a table from the database.
 

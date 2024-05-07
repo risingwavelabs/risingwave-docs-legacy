@@ -4,6 +4,9 @@ title: DROP MATERIALIZED VIEW
 description: Remove a materialized view.
 slug: /sql-drop-mv
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-mv/" />
+</head>
 
 Use the `DROP MATERIALIZED VIEW` command to remove a materialized view from the database.
 

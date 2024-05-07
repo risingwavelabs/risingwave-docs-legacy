@@ -4,6 +4,9 @@ slug: /live-stream-metrics-analysis
 title: Live stream metrics analysis
 description: RisingWave makes it possible to analyze live stream metrics in a low code manner.
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/live-stream-metrics-analysis/" />
+</head>
 
 ## Overview
 

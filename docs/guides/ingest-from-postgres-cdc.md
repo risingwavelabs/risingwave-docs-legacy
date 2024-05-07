@@ -4,10 +4,13 @@
  description: Describes how to ingest data from PostgreSQL CDC.
  slug: /ingest-from-postgres-cdc
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-postgres-cdc/" />
+</head>
 
-Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
+Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, and then delivering the changes to a downstream service in real time.
 
-RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, and 14 of PostgreSQL are supported.
+RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, 14, and 15 of PostgreSQL are supported.
 
 You can ingest CDC data from PostgreSQL into RisingWave in two ways:
 
@@ -15,13 +18,9 @@ You can ingest CDC data from PostgreSQL into RisingWave in two ways:
 
   With this connector, RisingWave can connect to PostgreSQL databases directly to obtain data from the binlog without starting additional services.
 
-  :::caution Beta feature
-  The built-in PostgreSQL CDC connector in RisingWave is currently in Beta. Please use with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.
-  :::
-
 - Using a CDC tool and a message broker
   
-  You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/create-source/create-source-cdc.md) topic.
+  You can use a CDC tool and then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/ingest/ingest-from-cdc.md) topic.
 
 ## Set up PostgreSQL
 
@@ -45,7 +44,11 @@ import TabItem from '@theme/TabItem';
 
     Keep in mind that changing the `wal_level` requires a restart of the PostgreSQL instance and can affect database performance.
 
-2. Assign `REPLICATION`, `LOGIN` and `CREATEDB` role attributes to the user.
+    :::note
+    If you choose to create multiple CDC tables without using a shared source, be sure to set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 10. 
+    :::
+
+2. Assign `REPLICATION`, `LOGIN`，and `CREATEDB` role attributes to the user.
 
     For an existing user, run the following statement to assign the attributes:
 
@@ -102,11 +105,17 @@ import TabItem from '@theme/TabItem';
     ```
 
 </TabItem>
-<TabItem value="AWS_rds_pg" label="AWS RDS">
+<TabItem value="AWS_rds_pg" label="AWS RDS PostgreSQL and Aurora (PostgreSQL-Compatible)">
 
-Here we will use a standard class instance without Multi-AZ deployment as an example.
+Here we will use a standard class AWS RDS PostgreSQL instance without Multi-AZ deployment for illustration, but the process will be similar for Aurora.
 
-1. Check whether the `wal_level` parameter is set to `logical`. If it is `logical` then we are done. Otherwise, create a parameter group for your Postgres instance. We created a parameter group named **pg-cdc** for the instance that is running Postgres 12. Next, click the **pg-cdc** parameter group to edit the value of `rds.logical_replication` to 1.
+1. Check whether the `wal_level` parameter is set to `logical`. If it is `logical` then we are done. Otherwise, create a parameter group for your   Postgres instance. We created a parameter group named **pg-cdc** for the instance that is running Postgres 12. Next, click the **pg-cdc** parameter group to edit the value of `rds.logical_replication` to 1.
+
+    If you choose to create multiple CDC tables without using a shared source, set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 20 for versions 13 and later. 
+
+    :::note
+    There is a known issue regarding the WAL write-through cache of AWS Aurora PostgreSQL, which leads to data loss. This affects Aurora PostgreSQL versions 14.5, 13.8, 12.12, and 11.17. To avoid this, set the `rds.logical_wal_cache` parameter to 0.
+    :::
 
     <img
     src={require('../images/wal-level.png').default}
@@ -136,111 +145,43 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 </TabItem>
 </Tabs>
 
-## Enable the connector node in RisingWave
+## Notes about running RisingWave from binaries
 
-The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
-
-The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose).
-
-If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+If you are running RisingWave locally from binaries and intend to use the native CDC source connectors or the JDBC sink connector, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or a later version installed in your environment.
 
 ## Create a table using the native CDC connector
 
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details. The data format must be Debezium JSON.
+To ensure all data changes are captured, you must create a table or source and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details.
 
 ### Syntax
 
- ```sql
- CREATE TABLE [ IF NOT EXISTS ] source_name (
-    column_name data_type PRIMARY KEY , ...
-    PRIMARY KEY ( column_name, ... )
- ) 
- WITH (
-    connector='postgres-cdc',
-    <field>=<value>, ...
- );
- ```
+Syntax for creating a CDC source.
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE TABLE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('source_name', 'wrap')
-        ),
-        rr.Terminal('('),
-        rr.Stack(
-            rr.Sequence(
-                rr.NonTerminal('column_name', 'skip'),
-                rr.NonTerminal('data_type', 'skip'),
-                rr.Terminal('PRIMARY KEY'),
-                rr.Optional(rr.Terminal(',')),
-            ),
-            rr.ZeroOrMore(
-                rr.Sequence(
-                    rr.Terminal(','),
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.NonTerminal('data_type', 'skip'),
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Optional(rr.Terminal(',')),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Terminal('('),
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.Optional(rr.Terminal(',')),
-                    rr.ZeroOrMore(
-                        rr.Sequence(
-                            rr.Terminal(','),
-                            rr.NonTerminal('column_name', 'skip'),
-                            rr.Optional(rr.Terminal(',')),
-                        ),
-                    ),
-                    rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Terminal(')'),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.Choice(1,
-                            rr.Terminal('mysql-cdc'),
-                            rr.Terminal('postgres-cdc'),
-                        ),
-                        rr.Terminal(','),
-                    ),
-                    rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('field', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                    ),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-    )
+```sql
+CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
+   connector='postgres-cdc',
+   <field>=<value>, ...
 );
+```
 
-<drawer SVG={svg} />
+Syntax for creating a CDC table. Note that a primary key is required and must be consistent with the upstream table.
 
-Note that a primary key is required.
+```sql
+CREATE TABLE [ IF NOT EXISTS ] table_name (
+   column_name data_type PRIMARY KEY , ...
+   PRIMARY KEY ( column_name, ... )
+) 
+WITH (
+    snapshot='true' 
+)
+FROM source TABLE table_name;
+```
 
-### WITH parameters
+To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it. 
 
-Unless specified otherwise, the fields listed are required.
+### Connector parameters
+
+Unless specified otherwise, the fields listed are required. Note that the value of these parameters should be enclosed in single quotation marks.
 
 |Field|Notes|
 |---|---|
@@ -252,48 +193,93 @@ Unless specified otherwise, the fields listed are required.
 |schema.name| Optional. Name of the schema. By default, the value is `public`. |
 |table.name| Name of the table that you want to ingest data from. |
 |slot.name| Optional. The [replication slot](https://www.postgresql.org/docs/14/logicaldecoding-explanation.html#LOGICALDECODING-REPLICATION-SLOTS) for this PostgreSQL source. By default, a unique slot name will be randomly generated. Each source should have a unique slot name.|
+|ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with Postgres. It accepts three values: `disable`, `prefer`, and `require`. The default value is `prefer`. When set to `require`, it enforces TLS for establishing a connection.
 |publication.name| Optional. Name of the publication. By default, the value is `rw_publication`. For more information, see [Multiple CDC source tables](#multiple-cdc-source-tables). |
-|publication.create.enable| Optional. By default, the value is `true`. If `publication.name` does not exist and this value is `true`, a `publication.name` will be created. If `publication.name` does not exist and this value is `false`, an error will be returned. |
+|publication.create.enable| Optional. By default, the value is `'true'`. If `publication.name` does not exist and this value is `'true'`, a `publication.name` will be created. If `publication.name` does not exist and this value is `'false'`, an error will be returned. |
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 :::note
-RisingWave implements CDC via PostgresQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot).
+RisingWave implements CDC via PostgreSQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot). RisingWave does not automatically drop inactive replication slots. You must do this manually to prevent WAL files from accumulating in the upstream PostgreSQL database.
 :::
 
-### Multiple CDC source tables
+The following fields are used when creating a CDC table.
 
-If you are creating multiple PostgreSQL CDC source tables, we recommend you to create a publication in the PostgreSQL database in advance. Specify the publication name with the `publication.name` parameter. Otherwise, some tables may not function as expected.
+|Field|Notes|
+|---|---|
+|snapshot| Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
+
+
+#### Debezium parameters
+
+[Debezium v2.4 connector configuration properties](https://debezium.io/documentation/reference/2.4/connectors/postgresql.html#postgresql-advanced-configuration-properties) can also be specified under the `WITH` clause when creating a table or shared source. Add the prefix `debezium.` to the connector property you want to include.
+
+For instance, to skip unknown DDL statements, specify the `schema.history.internal.skip.unparseable.ddl` parameter as `debezium.schema.history.internal.skip.unparseable.ddl`.
+
+```sql
+CREATE SOURCE pg_mydb WITH (
+    connector = 'postgres-cdc',
+    hostname = '127.0.0.1',
+    port = '8306',
+    username = 'root',
+    password = '123456',
+    database.name = 'mydb',
+    slot.name = 'mydb_slot',
+    debezium.schema.history.internal.skip.unparseable.ddl = 'true'
+);
+```
 
 ### Data format
 
 Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
 
-### Example
+## Examples
+
+Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command and PostgreSQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
 
 ```sql
- CREATE TABLE shipments (
-    shipment_id integer,
-    order_id integer,
-    origin string,
-    destination string,
-    is_arrived boolean,
-    PRIMARY KEY (shipment_id)
-) WITH (
- connector = 'postgres-cdc',
- hostname = '127.0.0.1',
- port = '5432',
- username = 'postgres',
- password = 'postgres',
- database.name = 'dev',
- schema.name = 'public',
- table.name = 'shipments'
+CREATE SOURCE pg_mydb WITH (
+    connector = 'postgres-cdc',
+    hostname = '127.0.0.1',
+    port = '8306',
+    username = 'root',
+    password = '123456',
+    database.name = 'mydb',
+    slot.name = 'mydb_slot'
 );
 ```
+
+With the source created, you can create multiple CDC tables that ingest data from different tables and schemas in the upstream database without needing to specify the database connection parameters again. 
+
+For instance, the following CDC table in RisingWave ingests data from table `tt3` in the schema `public`. When specifying the PostgreSQL table name in the `FROM` clause after the keyword `TABLE`, the schema name must also be specified. 
+
+```sql
+CREATE TABLE tt3 (
+    v1 integer primary key,
+    v2 timestamp with time zone
+) FROM pg_mydb TABLE 'public.tt3';
+```
+
+You can also create another CDC table in RisingWave that ingests data from table `tt4` in the schema `ods`.
+
+```sql
+CREATE TABLE tt4 (
+  v1 integer primary key,
+  v2 varchar,
+  PRIMARY KEY (v1)
+) FROM pg_mydb TABLE 'ods.tt4';
+```
+
+To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it.
 
 ## Data type mapping
 
 The following table shows the corresponding data type in RisingWave that should be specified when creating a source. For details on native RisingWave data types, see [Overview of data types](/sql/sql-data-types.md).
 
-RisingWave data types marked with an asterisk indicates that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
+RisingWave data types marked with an asterisk indicate that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
+
+:::note
+RisingWave cannot correctly parse composite types from PostgreSQL as Debezium does not support composite types in PostgreSQL.
+:::
 
 | PostgreSQL type | RisingWave type |
 |------------|-----------------|

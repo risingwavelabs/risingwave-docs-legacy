@@ -5,7 +5,9 @@ title: Architecture
 slug: /architecture
 
 ---
-
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/architecture/" />
+</head>
 
 RisingWave includes these key components:
 

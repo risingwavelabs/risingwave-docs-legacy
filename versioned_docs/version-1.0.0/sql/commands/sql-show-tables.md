@@ -4,6 +4,9 @@ title: SHOW TABLES
 description: Show existing tables.
 slug: /sql-show-tables
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-tables/" />
+</head>
 
 Use the `SHOW TABLES` command to view tables in a particular schema.
 

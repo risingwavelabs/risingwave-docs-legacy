@@ -3,6 +3,9 @@ id: sql-function-datetime
 slug: /sql-function-datetime
 title: Date and time functions and operators
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-datetime/" />
+</head>
 
 
 

@@ -4,6 +4,9 @@ title: CDC via event streaming systems
 description: Ingest CDC data via event streaming systems.
 slug: /create-source-cdc
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-cdc/" />
+</head>
 
 Change data capture (CDC) refers to the process of identifying and capturing data changes in a database, then delivering the changes to a downstream service in real time.
 

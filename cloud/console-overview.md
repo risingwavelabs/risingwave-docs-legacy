@@ -12,7 +12,7 @@ src={require('./images/console.png').default}
 alt="Console"
 />
 
-<defaultButton text="Go to query console" url="https://risingwave.cloud/console/" block/>
+<defaultButton text="Go to query console" url="https://cloud.risingwave.com/console/" block/>
 
 ## Sections
 
@@ -68,7 +68,7 @@ width="270px"
 
 The sample queries cover the most common steps in RisingWave, such as establishing a connection with a data source, processing data by defining materialized views and querying the results.
 
-See [Explore RisingWave with examples](/cloud/quickstart.md/?step=4) for details.
+See [Explore RisingWave with examples](/quickstart.md/?step=4) for details.
 
 #### Switch clusters or users
 

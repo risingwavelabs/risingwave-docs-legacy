@@ -3,6 +3,10 @@ id: sql-function-sys-info
 slug: /sql-function-sys-info
 title: System information functions
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-sys-info/" />
+</head>
+
 RisingWave provides functions to help you get system information, including databse, schema, user, role, session, and more.
 
 ## `current_database()`

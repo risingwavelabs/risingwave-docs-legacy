@@ -3,6 +3,9 @@ id: data-ingestion
 title: Overview of data ingestion
 slug: /data-ingestion
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-ingestion/" />
+</head>
 
 You can ingest data into RisingWave in two ways:
 

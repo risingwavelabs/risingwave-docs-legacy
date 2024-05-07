@@ -4,6 +4,9 @@ title: DROP SOURCE
 description: Remove a source.
 slug: /sql-drop-source
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-source/" />
+</head>
 
 Use the `DROP SOURCE` command to remove a [source](sql-create-source.md) if you no longer need the data inflow from the source.
 

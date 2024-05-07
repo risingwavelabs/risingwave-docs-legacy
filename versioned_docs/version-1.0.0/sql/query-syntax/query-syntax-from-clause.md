@@ -3,6 +3,9 @@ id: query-syntax-from-clause
 slug: /query-syntax-from-clause
 title: FROM clause
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-from-clause/" />
+</head>
 
 The `FROM` clause specifies the source of the data on which the query should operate. Logically, the `FROM` clause is where the query starts execution. It can contain a single table, a combination of multiple joined tables, or another SELECT query inside a subquery node.
 

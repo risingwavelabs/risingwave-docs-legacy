@@ -3,6 +3,9 @@ id: sql-pattern-temporal-filters
 slug: /sql-pattern-temporal-filters
 title: Temporal filters
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-pattern-temporal-filters/" />
+</head>
 
 Temporal filters allow you to filter data based on time intervals, which are used to retrieve data within a specific time range. Temporal filters will enable you to filter data based on a particular time, such as the current time, a specific date, or a range of dates. By using temporal filters, you can ensure that your queries only return data relevant to the period you are interested in, making your data analysis more accurate and efficient.
 

@@ -4,6 +4,9 @@ title: Kinesis
 description: Connect RisingWave to Kinesis Data Streams
 slug: /create-source-kinesis
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-kinesis/" />
+</head>
 
 Use the SQL statement below to connect RisingWave to Kinesis Data Streams.
 

@@ -3,6 +3,9 @@ id: data-type-struct
 slug: /data-type-struct
 title: Struct
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-type-struct/" />
+</head>
 
 Use the struct data type to create a column that contains nested columns. The nested columns can be of different data types, including the struct type.
 

@@ -4,6 +4,9 @@ title: DROP INDEX
 description: Remove an index.
 slug: /sql-drop-index
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-index/" />
+</head>
 
 Use the `DROP INDEX` command to remove an index from a table or a materialized view.
 

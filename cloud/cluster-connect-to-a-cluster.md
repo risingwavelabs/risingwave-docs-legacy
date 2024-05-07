@@ -21,7 +21,7 @@ The query console is the most intuitive and easy way to connect to and interact 
 #### To connect via the console:
 
  
-1. Go to [**Query**](https://risingwave.cloud/console/).  
+1. Go to [**Query**](https://cloud.risingwave.com/console/).  
 
 2. Select the cluster you want to connect to and then select an existing database user or create a new one.
     
@@ -54,11 +54,11 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
 
 #### To connect via `psql` client:
 
-1. [Install `psql`](https://www.risingwave.dev/docs/current/install-psql-without-postgresql/) in your environment.
+1. [Install `psql`](/docs/current/install-psql-without-postgresql/) in your environment.
 
     > `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
 
-2. In RisingWave Cloud, go to [**Clusters**](https://risingwave.cloud/clusters/).
+2. In RisingWave Cloud, go to [**Clusters**](https://cloud.risingwave.com/clusters/).
     
 3. Click **Connect** of the cluster you want to connect.
     
@@ -86,14 +86,12 @@ For terminal enthusiasts, you can still connect to your cluster through a local 
     <img
     src={require('./images/psql-login.png').default}
     alt="Connect via psql"
-    width="47%"
-    class="icon"
+    width="46%"
     />
     <img
     src={require('./images/psql-connected.png').default}
     alt="Connect via psql"
-    width="47%"
-    class="icon"
+    width="46%"
     />
 
 </TabItem>

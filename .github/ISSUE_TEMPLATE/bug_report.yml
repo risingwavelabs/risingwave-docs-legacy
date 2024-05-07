@@ -2,7 +2,7 @@ name: Bug Report
 description: Noticed any typos, misused terms, inconsistencies, or ambiguities in the docs? Let us know!
 title: "Bug: "
 labels: ["bug"]
-assignees: [CharlieSYH, hengm3467]
+assignees: [WanYixian, ShanlanLi]
 body:
   - type: markdown
     attributes:
@@ -13,7 +13,7 @@ body:
     attributes:
       label: Where's the bug?
       description: Where do you see the bug? A link to the doc page or the source file will do.
-      placeholder: e.g. https://www.risingwave.dev/docs/latest/intro/
+      placeholder: e.g. https://docs.risingwave.com/docs/current/intro/
     validations:
       required: true
   - type: textarea

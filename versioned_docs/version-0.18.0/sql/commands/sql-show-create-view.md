@@ -4,6 +4,9 @@ title: SHOW CREATE VIEW
 description: Show the query used to create the specified view. 
 slug: /sql-show-create-view
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-create-view/" />
+</head>
 
 Use the `SHOW CREATE VIEW` command to see what query was used to create the specified view. 
 

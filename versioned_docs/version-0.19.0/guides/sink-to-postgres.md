@@ -4,6 +4,9 @@
  description: Sink data from RisingWave to PostgreSQL with the JDBC connector.
  slug: /sink-to-postgres
 ---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-postgres/" />
+</head>
 
 This guide will show you how to sink data from RisingWave to PostgreSQL using the JDBC connector. The sink parameters are similar to those for other JDBC-available databases, such as MySQL. However, we will cover the configurations specific to PostgreSQL and how to verify that data is successfully sunk.
 
