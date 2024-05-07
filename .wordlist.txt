@@ -204,3 +204,4 @@ RabbitMQ
 Standalone's
 localhost
 prometheus
+datasources
