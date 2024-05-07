@@ -186,7 +186,7 @@ you may wish to integrate metrics monitoring with Grafana and Prometheus.
 
 First install [Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/) and [Prometheus](https://prometheus.io/docs/prometheus/latest/installation/).
 
-Next, clone the [RisingWave]() repository, it contains the various configuration files.
+Next, clone the [RisingWave](https://github.com/risingwavelabs/risingwave) repository, it contains various configuration files.
 
 Start the RisingWave standalone cluster.
 
