@@ -181,7 +181,7 @@ risingwave single --help
 
 ## Monitoring RisingWave Standalone Mode with Grafana and Prometheus
 
-To Monitor your standalone cluster,
+To monitor your standalone cluster,
 you may wish to integrate metrics monitoring with Grafana and Prometheus.
 
 First install [Grafana](https://grafana.com/docs/grafana/latest/setup-grafana/installation/) and [Prometheus](https://prometheus.io/docs/prometheus/latest/installation/).
