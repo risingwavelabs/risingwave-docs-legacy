@@ -55,12 +55,6 @@ AS gcd
 USING LINK 'http://localhost:8815';
 ```
 
-Use `CREATE FUNCTION` to declare a UDF defined by Rust. For more details, see [Use UDFs in Rust](/sql/udf/udf-rust.md).
-
-```sql
-CREATE FUNCTION gcd(int, int) RETURNS int
-LANGUAGE wasm USING BASE64 'encoded-wasm-binary';
-```
 
 ## Embedded UDFs
 
