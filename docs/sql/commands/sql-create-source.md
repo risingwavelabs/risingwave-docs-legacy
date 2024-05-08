@@ -60,7 +60,7 @@ FORMAT upsert ENCODE AVRO (
 
 :::note
 
-The generated column is created in RisingWave and will not be accessed through the external connector. Therefore, If the external upstream system has a schema, it does not need to include the generated column within the table's schema in the external system.
+The generated column is created in RisingWave and will not be accessed through the external connector. Therefore, if the external upstream system has a schema, it does not need to include the generated column within the table's schema in the external system.
 
 :::
 
