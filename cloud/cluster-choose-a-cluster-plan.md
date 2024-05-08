@@ -14,7 +14,7 @@ Currently, RisingWave Cloud offers three types of clusters: **Developer**, **Pro
 | Deployment type | Multi-tenancy deployment, single-node cluster | Multi-tenancy deployment, multi-node cluster | Multi-tenancy deployment, multi-node cluster |
 | Description | Standalone deployment with 2-RWU resources.  | Deployed on shared Kubernetes service with customized resources.  | Customized cluster deployment based on requests |
 | Pricing | Free | Pay-as-you-go | Customized, contact sales |
-| Payment | Credit card | Credit card | Credit card, bank transfer, marketplace |
+| Payment | / | Credit card | Credit card, bank transfer, marketplace |
 | Compute resource | 2 RWUs | Customized, up to 160 RWUs | Customized and unlimited resources |
 | Cluster number | 3 | Unlimited | Unlimited |
 | Monitoring | Yes | Yes | Yes |

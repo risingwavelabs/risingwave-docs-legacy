@@ -13,33 +13,13 @@ RisingWave Cloud charges the cost of each cluster individually. The pricing mode
 
 | Plan | Pricing model | Pricing precision |
 | --- | --- | --- |
-| [Developer](#developer-plan) | Fixed price | Daily basis |
+| [Developer](#developer-plan) | Free | / |
 | [Pro](#pro-plan) | Pay-as-you-go | 30-second basis |
 | [Enterprise](#enterprise-plan) | Contact sales | Contact sales |
 
 ### Developer plan
 
-The Developer plan offers a fixed-price model. After a 7-day trial period, each developer cluster is charged at a flat rate of $99 per month, with no storage or other costs, irrespective of your region.
-
-#### Pro-rated daily charges
-
-If you initiate, stop, or delete a Developer cluster mid-month, daily charges apply. The Developer plan would incur a daily charge of $3.3 in a 30-day month. Daily charges are calculated by dividing the monthly fee by the number of days in the month:
-
-| Month | Price |
-| --- | --- |
-| January | $3.19/day |
-| February (non-leap year) | $3.54/day |
-| February (leap year) | $3.41/day |
-| March | $3.19/day |
-| April | $3.3/day |
-| May | $3.19/day |
-| June | $3.3/day |
-| July | $3.19/day |
-| August | $3.19/day |
-| September | $3.3/day |
-| October | $3.19/day |
-| November | $3.3/day |
-| December | $3.19/day |
+The Developer plan is now offered for free. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave.
 
 ### Pro plan
 
