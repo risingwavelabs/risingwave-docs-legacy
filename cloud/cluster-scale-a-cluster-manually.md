@@ -8,7 +8,7 @@ slug: /scale-a-cluster-manually
 After creating a cluster, you have the flexibility to scale its resources and capacity to meet your specific data processing and analysis needs. This can be achieved through two methods: increasing or decreasing the number of worker nodes (horizontal scaling) or adjusting the resource capacity of each node in the cluster (vertical scaling).
 
 :::note
-You can scale the clusters created in the Standard plan and the Invited plan. The Developer plan has a fixed number of nodes and resources.
+You can scale the clusters created in the Pro plan and the Enterprise plan. The Developer plan has a fixed number of nodes and resources.
 :::
 
 ## Scale your cluster

@@ -7,9 +7,9 @@ slug: /choose-a-cluster-plan
 
 RisingWave Cloud offers different types of RisingWave clusters. Each cluster type is associated with the corresponding features, capabilities, restrictions, and pricing models. Please choose a cluster plan and configure cluster resources according to your needs when creating a cluster. 
 
-Currently, RisingWave Cloud offers three types of clusters: **Developer**, **Standard**, and **Invited**. The table below describes a high-level comparison of features and restrictions across three cluster types.
+Currently, RisingWave Cloud offers three types of clusters: **Developer**, **Pro**, and **Enterprise**. The table below describes a high-level comparison of features and restrictions across three cluster types.
 
-| Service type | Developer | Standard | Invited |
+| Service type | Developer | Pro | Enterprise |
 | --- | --- | --- | --- |
 | Deployment type | Multi-tenancy deployment, single-node cluster | Multi-tenancy deployment, multi-node cluster | Multi-tenancy deployment, multi-node cluster |
 | Description | Standalone deployment with 2-RWU resources.  | Deployed on shared Kubernetes service with customized resources.  | Customized cluster deployment based on requests |
@@ -54,11 +54,11 @@ You can create up to three clusters with the Developer plan in your account. You
 
 </TabItem>
 
-<TabItem value="standard" label="Standard plan">
+<TabItem value="pro" label="Pro plan">
 
-The **Standard** plan offers a customizable and scalable cluster suitable for larger teams and more complex projects. You can tailor your cluster's resources to align with your project's specific needs, with the flexibility to adjust configurations as your project evolves. In the Standard plan, you can customize the resources of each component in the RisingWave cluster.
+The **Pro** plan offers a customizable and scalable cluster suitable for larger teams and more complex projects. You can tailor your cluster's resources to align with your project's specific needs, with the flexibility to adjust configurations as your project evolves. In the Pro plan, you can customize the resources of each component in the RisingWave cluster.
 
-You have to [add a payment method](/billing-manage-payment-methods.md) before you can access the **Standard** plan.
+You have to [add a payment method](/billing-manage-payment-methods.md) before you can access the **Pro** plan.
 
 #### **Configuration**
 
@@ -82,11 +82,11 @@ You have to [add a payment method](/billing-manage-payment-methods.md) before yo
 
 </TabItem>
 
-<TabItem value="invited" label="Invited plan">
+<TabItem value="enterprise" label="Enterprise plan">
 
-The **Invited** plan is specifically designed for our enterprise customers. This plan provides unparalleled flexibility, allowing you to customize everything from the underlying infrastructure and cluster configurations to the pricing plan, which includes exclusive discounts.
+The **Enterprise** plan is specifically designed for our enterprise customers. This plan provides unparalleled flexibility, allowing you to customize everything from the underlying infrastructure and cluster configurations to the pricing plan, which includes exclusive discounts.
 
-To access the Invited plan, please contact our sales team. We will provide you with an invitation code. Once you receive this code, you can redeem it to activate the Invited plan across your entire organization.
+To access the Enterprise plan, please contact our sales team. We will provide you with an invitation code. Once you receive this code, you can redeem it to activate the Enterprise plan across your entire organization.
 
 
 #### **Configuration**

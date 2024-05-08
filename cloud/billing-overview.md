@@ -30,7 +30,7 @@ RisingWave Cloud offers two types of cluster plans to cater to your specific nee
 
     You pay a flat monthly fee or pro-rated daily charges for using a cluster regardless of the computational resources and storage you use.
 
-- **Pay-as-you-go** (Standard plan)
+- **Pay-as-you-go** (Pro plan)
 
     You only pay for your actual usage of computational resources and storage. To help you keep track of your expenditures, RisingWave Cloud employs the RisingWave Unit (RWU), a virtual unit of resources, and the hours of usage to calculate your charges.
 
