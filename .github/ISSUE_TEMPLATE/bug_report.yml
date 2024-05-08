@@ -2,7 +2,7 @@ name: Bug Report
 description: Noticed any typos, misused terms, inconsistencies, or ambiguities in the docs? Let us know!
 title: "Bug: "
 labels: ["bug"]
-assignees: [CharlieSYH, hengm3467]
+assignees: [WanYixian, ShanlanLi]
 body:
   - type: markdown
     attributes:

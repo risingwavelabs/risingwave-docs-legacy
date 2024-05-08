@@ -20,9 +20,9 @@ Use the `SET BACKGROUND_DDL` command to run Data Definition Language (DDL) opera
 SET BACKGROUND_DDL = { true | false };
 ```
 
-- When `BACKGROUND_DDL` is set to true, any subsequent DDL operations will be executed in the background, allowing you to proceed with other tasks.
+- By default, `BACKGROUND_DDL` is set as `false` to disable it, meaning that DDL operations will execute in the foreground. The commands `CREATE MATERIALIZED VIEW ON TABLE`, `CREATE MATERIALIZED VIEW ON MATERIALIZED VIEW`, `CREATE MATERIALIZED VIEW ON SOURCE` and `CREATE SINK` will only be executed once the backfilling process is completed.
 
-- When `BACKGROUND_DDL` is set to false (or not set at all), the DDL operations will execute in the foreground.
+- When `BACKGROUND_DDL` is set to `true`, any subsequent DDL operations will be executed in the background, allowing you to proceed with other tasks.
 
 ## Supported DDL operations
 
