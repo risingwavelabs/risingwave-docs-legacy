@@ -183,7 +183,7 @@ You can use a temporal join to fetch the latest product name and price from the 
 SELECT transaction_id, product_id, quantity, sale_date, product_name, price 
 FROM sales
 JOIN products FOR SYSTEM_TIME AS OF PROCTIME()
-ON product_id = id
+ON product_id = id WHERE process_time BETWEEN valid_from AND valid_to;
 ```
 
 | transaction_id | product_id | quantity | sale_date  | product_name | price |
