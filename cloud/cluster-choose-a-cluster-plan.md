@@ -13,7 +13,7 @@ Currently, RisingWave Cloud offers three types of clusters: **Developer**, **Pro
 | --- | --- | --- | --- |
 | Deployment type | Multi-tenancy deployment, single-node cluster | Multi-tenancy deployment, multi-node cluster | Multi-tenancy deployment, multi-node cluster |
 | Description | Standalone deployment with 2-RWU resources.  | Deployed on shared Kubernetes service with customized resources.  | Customized cluster deployment based on requests |
-| Pricing | $99/month after a 7-day trial | Pay-as-you-go | Customized, contact sales |
+| Pricing | Free | Pay-as-you-go | Customized, contact sales |
 | Payment | Credit card | Credit card | Credit card, bank transfer, marketplace |
 | Compute resource | 2 RWUs | Customized, up to 160 RWUs | Customized and unlimited resources |
 | Cluster number | 3 | Unlimited | Unlimited |
@@ -32,9 +32,7 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="developer" label="Developer plan">
 
-The **Developer** plan is designed for individual developers or small teams looking to explore and develop on the RisingWave platform. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave at a cheap and affordable price. 
-
-Each RisingWave cluster is given a 7-day free trial. You must [add a payment method](/billing-manage-payment-methods.md) to continue your use after the free trial. 
+The **Developer** plan is designed for individual developers or small teams looking to explore and develop on the RisingWave platform. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave for free.
 
 You can create up to three clusters with the Developer plan in your account. Your cluster will be allocated with 2 RWUs with standalone deployment.
 
@@ -84,7 +82,7 @@ You have to [add a payment method](/billing-manage-payment-methods.md) before yo
 
 <TabItem value="enterprise" label="Enterprise plan">
 
-The **Enterprise** plan is specifically designed for our enterprise customers. This plan provides unparalleled flexibility, allowing you to customize everything from the underlying infrastructure and cluster configurations to the pricing plan, which includes exclusive discounts.
+The **Enterprise** plan is specifically designed for our enterprise customers. You can either utilize our hosted service or [Bring Your Own Cloud](cluster-create-byoc-cluster.md). This plan provides unparalleled flexibility, allowing you to customize everything from the underlying infrastructure and cluster configurations to the pricing plan, which includes exclusive discounts.
 
 To access the Enterprise plan, please contact our sales team. We will provide you with an invitation code. Once you receive this code, you can redeem it to activate the Enterprise plan across your entire organization.
 
