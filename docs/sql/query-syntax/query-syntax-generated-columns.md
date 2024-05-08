@@ -19,7 +19,7 @@ CREATE TABLE t1 (v1 int AS v2-1, v2 int, v3 int AS v2+1);
 
 + A generation expression cannot reference another generated column.
 
-+ The generated column is created in RisingWave and will not be accessed through the external connector. Therefore, do not validate RisingWave's generated columns on the source.
++ The generated column is created in RisingWave and will not be accessed through the external connector. Therefore, if the external upstream system has a schema, it does not need to include the generated column within the table's schema in the external system.
 
 :::
 
