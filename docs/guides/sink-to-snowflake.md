@@ -45,9 +45,9 @@ WITH (
 All parameters are required unless specified otherwise.
 
 | Parameter                      | Description                                                                                                                                      |
-|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
 | snowflake.database            | The Snowflake database used for sinking.                                                                                                          |
-| snowflake.schema              | The corresponding schema where sink table exists.                                                                                                  |
+| snowflake.schema              | The name of the corresponding schema where sink table exists.                                                                                                  |
 | snowflake.pipe                | The created pipe object, will be used as `insertFiles` target.                                                                                    |
 | snowflake.account_identifier  | The unique `account_identifier` provided by Snowflake. Please use the form `<orgname>-<account_name>`. See [Account identifiers](https://docs.snowflake.com/en/user-guide/admin-account-identifier) for more details.|
 | snowflake.user                | The user that owns the table to be sinked. The user should have been granted corresponding *role*. See [Grant role](https://docs.snowflake.com/en/sql-reference/sql/grant-role) for more details. |
@@ -58,7 +58,9 @@ All parameters are required unless specified otherwise.
 | snowflake.aws_access_key_id   | S3 credentials.                                                                                                                                   |
 | snowflake.aws_secret_access_key | S3 credentials.                                                                                                                                  |
 | snowflake.aws_region          | The S3 region, e.g., `us-east-2`.                                                                                                                   |
-| snowflake.max_batch_row_num   | The configurable max row(s) to batch, which should be **explicitly** specified.                                                          |
+| snowflake.max_batch_row_num   | The configurable max row(s) to batch, which should be **explicitly** specified.                                                                    |
+| force_append_only             | Forces the sink to be `append-only`. Currently Snowflake sink only supports `append-only` mode.                                                   |
+
 
 ## Data type mapping
 
@@ -126,7 +128,7 @@ WITH (
  ```
 
 ```sql title="Create sink"
-CREATE SINK snowflake_sink FROM s1_source WITH (
+CREATE SINK snowflake_sink FROM ss_mv WITH (
     connector = 'snowflake',
     type = 'append-only',
     snowflake.database = 'EXAMPLE_DB',
@@ -140,9 +142,8 @@ CREATE SINK snowflake_sink FROM s1_source WITH (
     snowflake.aws_access_key_id = 'EXAMPLE_AWS_ID',
     snowflake.aws_secret_access_key = 'EXAMPLE_SECRET_KEY',
     snowflake.aws_region = 'EXAMPLE_REGION',
+    snowflake.max_batch_row_num = '1030',
     snowflake.s3_path = 'EXAMPLE_S3_PATH',
-    -- depends on your mv setup, note that snowflake sink *only* supports
-    -- `append-only` mode at present.
     force_append_only = 'true'
 );
  ```
