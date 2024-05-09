@@ -26,9 +26,9 @@ RisingWave Cloud employs a detailed billing cycle that ensures accuracy and tran
 
 RisingWave Cloud offers two types of cluster plans to cater to your specific needs:
 
-- **Fixed price** (Developer plan)
+- **Free** (Developer plan)
 
-    You pay a flat monthly fee or pro-rated daily charges for using a cluster regardless of the computational resources and storage you use.
+    The Developer plan is free and provides you with all the essential resources needed to test and experience the features offered by RisingWave.
 
 - **Pay-as-you-go** (Pro plan)
 
