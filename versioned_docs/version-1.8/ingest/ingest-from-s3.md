@@ -65,7 +65,7 @@ export const svg = rr.Diagram(
                     rr.Sequence(
                         rr.Terminal('connector'),
                         rr.Terminal('='),
-                        rr.Terminal('\'s3_v2\'')
+                        rr.Terminal('\'s3_v2\''),
                         rr.Terminal(','),
                     ),
                     rr.OneOrMore(
