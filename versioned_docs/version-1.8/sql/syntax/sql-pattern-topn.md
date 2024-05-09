@@ -69,12 +69,12 @@ INSERT INTO t (x, y, z) VALUES
 ```
 
 ```sql title="Run a top-N query"
-SELECT r1
+SELECT r
   FROM (
     SELECT
       *,
       row_number() OVER (PARTITION BY x ORDER BY y) r
     FROM t
   ) Q
-WHERE Q.r1 < 10;
+WHERE Q.r < 10;
 ```
