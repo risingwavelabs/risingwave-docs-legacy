@@ -52,13 +52,3 @@ meta_cache_capacity_mb = 1600
 The remaining memory (16GB - 4.8GB - 1.6GB - reserved memory 16GB * 0.2) is used for executing serving queries. We call it "compute memory". If a batch query is resource-intensive and its runtime memory consumption exceeds the available compute memory, it will terminate itself automatically before triggering an out-of-memory (OOM) error.
 
 While we don't recommend executing OLAP-style batch queries that require a large amount of input data, you can adjust the configuration if such a query is needed and the default configuration leaves too little compute memory. Feel free to allocate less memory for the block cache and meta cache to increase the compute memory.
-
-## Configure reserved memory for compute nodes
-
-In previous versions before 1.9, the amount of reserved memory for compute nodes is fixed at 30% of the total available memory. However, this may not be suitable for all workloads and machine setups. To address this, we introduce a new option that allows you to explicitly configure the amount of reserved memory for compute nodes.
-
-You can use the startup option `reserved_memory_bytes` and the environment variable `RW_RESERVED_MEMORY_BYTES` to override the reserved memory configuration for compute nodes. Note that the memory reserved should be at least 512MB.
-
-If you prefer to keep the reserved memory configuration unchanged, you don't need to make any modifications. The default setup remains the same as before, where compute nodes will use 30% of their total memory as reserved memory.
-
-For example, let's assume you're deploying a compute node on a 64GB machine or pod. By default, the node will reserve 30% of the memory, which amounts to 19.2GB. However, if you find this excessive for your specific use case, you have the option to specify a different value. You can set either `RW_RESERVED_MEMORY_BYTES=8589934592` or `--reserved_memory_bytes=8589934592` when starting up the compute node. This will allocate 8GB as the reserved memory instead.
