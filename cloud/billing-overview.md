@@ -28,7 +28,7 @@ RisingWave Cloud offers two types of cluster plans to cater to your specific nee
 
 - **Free** (Developer plan)
 
-    The Developer plan is free and provides you with all the essential resources needed to test and experience the features offered by RisingWave.
+    The Developer plan is offered for free. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave.
 
 - **Pay-as-you-go** (Pro plan)
 

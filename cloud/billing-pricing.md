@@ -19,7 +19,7 @@ RisingWave Cloud charges the cost of each cluster individually. The pricing mode
 
 ### Developer plan
 
-The Developer plan is now offered for free. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave.
+The Developer plan is offered for free. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave.
 
 ### Pro plan
 
