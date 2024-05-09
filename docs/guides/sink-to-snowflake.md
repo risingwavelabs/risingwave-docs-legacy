@@ -21,7 +21,7 @@ Snowflake is a cloud-based data warehousing platform that allows for scalable an
 
 ## Required permission
 
-To successfully sink data into Snowflake, the user account must have the appropriate permissions. These permissions include:
+To successfully sink data into Snowflake, the Snowflake user account must have the appropriate permissions. These permissions include:
 
 - For the table: The user must have either `OWNERSHIP` permission, or at the very least `INSERT` permission.
 - For the database: The user must have `USAGE` permission.
@@ -59,7 +59,7 @@ All parameters are required unless specified otherwise.
 | snowflake.aws_secret_access_key | S3 credentials.                                                                                                                                  |
 | snowflake.aws_region          | The S3 region, e.g., `us-east-2`.                                                                                                                   |
 | snowflake.max_batch_row_num   | The configurable max row(s) to batch, which should be **explicitly** specified.                                                                    |
-| force_append_only             | Forces the sink to be `append-only`. Currently Snowflake sink only supports `append-only` mode.                                                   |
+| force_append_only             | Optional. If `true`, forces the sink to be append-only, even if it cannot be.                                                   |
 
 
 ## Data type mapping
@@ -144,6 +144,5 @@ CREATE SINK snowflake_sink FROM ss_mv WITH (
     snowflake.aws_region = 'EXAMPLE_REGION',
     snowflake.max_batch_row_num = '1030',
     snowflake.s3_path = 'EXAMPLE_S3_PATH',
-    force_append_only = 'true'
 );
  ```
