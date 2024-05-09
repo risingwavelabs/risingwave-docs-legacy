@@ -318,8 +318,7 @@ RisingWave cannot correctly parse composite types from PostgreSQL as Debezium do
 |TIME(1), TIME(2), TIME(3), TIME(4), TIME(5), TIME(6) |TIME WITHOUT TIME ZONE (limited to `[1973-03-03 09:46:40, 5138-11-16 09:46:40)`)|
 |TIMESTAMP(1), TIMESTAMP(2), TIMESTAMP(3) |TIMESTAMP WITHOUT TIME ZONE (limited to `[1973-03-03 09:46:40, 5138-11-16 09:46:40)`) |
 |TIMESTAMP(4), TIMESTAMP(5), TIMESTAMP(6), TIMESTAMP| TIMESTAMP WITHOUT TIME ZONE|
-|NUMERIC[(M[,D])] |[`rw_int256`](/sql/data-types/data-type-rw_int256.md) or `varchar`. When creating table, you need to mark the data type of the column corresponding to numeric as `rw_int256` or `varchar`. Note that `rw_int256` here will consider `inf`, `-inf`  `nan` or numeric with decimal parts as `NULL`. |
-|DECIMAL[(M[,D])] |NUMERIC |
+|NUMERIC[(M[,D])], DECIMAL[(M[,D])] |`numeric`, [`rw_int256`](/sql/data-types/data-type-rw_int256.md), or `varchar`. `numeric` supports values with a precision of up to 28 digits, and any values beyond this precision will be treated as `NULL`. To process values exceeding 28 digits, use `rw_int256` or `varchar` instead. When creating a table, make sure to specify the data type of the column corresponding to numeric as `rw_int256` or `varchar`. Note that `rw_int256` treats `inf`, `-inf`, `nan`, or numeric with decimal parts as `NULL`.|
 |MONEY[(M[,D])] |NUMERIC |
 |HSTORE |No support |
 |HSTORE |No support |
