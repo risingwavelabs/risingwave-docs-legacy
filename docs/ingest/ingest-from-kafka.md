@@ -379,6 +379,8 @@ RisingWave supports these SASL authentication mechanisms:
 
 - `SASL/PLAIN`
 - `SASL/SCRAM`
+- `SASL/GSSAPI`
+- `SASL/OAUTHBEARER`
 
 SSL encryption can be used concurrently with SASL authentication mechanisms.
 
@@ -386,7 +388,9 @@ To learn about how to enable SSL encryption and SASL authentication in Kafka, in
 
 You need to specify encryption and authentication parameters in the WITH section of a `CREATE SOURCE` statement.
 
-### SSL without SASL
+<Tabs queryString="method">
+
+<TabItem value="SSL without SASL" label="SSL without SASL">
 
 To read data encrypted with SSL without SASL authentication, specify these parameters in the WITH section of your `CREATE SOURCE` statement.
 
@@ -423,8 +427,9 @@ WITH (
    properties.ssl.key.password='abcdefgh'
 ) FORMAT PLAIN ENCODE JSON;
 ```
+</TabItem>
 
-### `SASL/PLAIN`
+<TabItem value="SASL/PLAIN" label="SASL/PLAIN">
 
 |Parameter| Notes|
 |---|---|
@@ -488,7 +493,10 @@ WITH (
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
-### `SASL/SCRAM`
+</TabItem>
+
+<TabItem value="SASL/SCRAM" label="SASL/SCRAM">
+
 
 |Parameter| Notes|
 |---|---|
@@ -529,5 +537,95 @@ WITH (
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
+</TabItem>
+
+<TabItem value="SASL/GSSAPI" label="SASL/GSSAPI">
+
+|Parameter| Notes|
+|---|---|
+|`properties.security.protocol`| Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSAPI with SSL.|
+|`properties.sasl.mechanism`| Set to `GSSAPI`.|
+|`properties.sasl.kerberos.service.name`| |
+|`properties.sasl.kerberos.keytab`| |
+|`properties.sasl.kerberos.principal`| |
+|`properties.sasl.kerberos.kinit.cmd`| |
+|`properties.sasl.kerberos.min.time.before.relogin`| |
+
+:::note
+For the definitions of the parameters, see the [librdkafka properties list](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md). Note that the parameters in the list assumes all parameters start with `properties.` and therefore do not include this prefix.
+:::
+
+Here is an example of creating a source authenticated with SASL/GSSAPI without SSL encryption.
+
+```sql
+CREATE SOURCE IF NOT EXISTS source_5 (
+   column1 varchar,
+   column2 integer,
+)                  
+WITH (
+   connector='kafka',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
+   properties.sasl.mechanism='GSSAPI',
+   properties.security.protocol='SASL_PLAINTEXT',
+   properties.sasl.kerberos.service.name='kafka',
+   properties.sasl.kerberos.keytab='/etc/krb5kdc/kafka.client.keytab',
+   properties.sasl.kerberos.principal='kafkaclient4@AP-SOUTHEAST-1.COMPUTE.INTERNAL',
+   properties.sasl.kerberos.kinit.cmd='sudo kinit -R -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal} || sudo kinit -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal}',
+   properties.sasl.kerberos.min.time.before.relogin='10000'
+)                                                       
+ROW FORMAT JSON;
+```
+
+</TabItem>
+
+<TabItem value="SASL/OAUTHBEARER" label="SASL/OAUTHBEARER">
+
+:::caution
+ The implementation of SASL/OAUTHBEARER in RisingWave validates only [unsecured client side tokens](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_oauth.html#unsecured-client-side-token-creation-options-for-sasl-oauthbearer), and does not support OpenID Connect (OIDC) authentication. Therefore, it should not be used in production environments.
+:::
+
+|Parameter| Notes|
+|---|---|
+|`properties.security.protocol`| For SASL/OAUTHBEARER without SSL, set to `SASL_PLAINTEXT`. For SASL/OAUTHBEARER with SSL, set to `SASL_SSL`.|
+|`properties.sasl.mechanism`|Set to `OAUTHBEARER`.|
+|`properties.sasl.oauthbearer.config`| |
+
+:::note
+For the definitions of the parameters, see the [librdkafka properties list](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md). Note that the parameters in the list assumes all parameters start with `properties.` and therefore do not include this prefix. Also, due to the limitation of the SASL/OAUTHBEARER implementation, you only need to specify one OAUTHBEARER parameter: `properties.sasl.oauthbearer.config`. Other OAUTHBEARER parameters are not applicable.
+:::
+
+For SASL/OAUTHBEARER with SSL, you also need to include these SSL parameters:
+
+- `properties.ssl.ca.location`
+- `properties.ssl.certificate.location`
+- `properties.ssl.key.location`
+- `properties.ssl.key.password`
+
+This is an example of creating a materialized source authenticated with SASL/OAUTHBEARER without SSL encryption.
+
+```sql
+CREATE TABLE IF NOT EXISTS source_6 (
+   column1 varchar,
+   column2 integer,
+)                  
+WITH (
+   connector='kafka',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   scan.startup.mode='earliest',
+   properties.sasl.mechanism='OAUTHBEARER',
+   properties.security.protocol='SASL_PLAINTEXT',
+   properties.sasl.oauthbearer.config='principal=bob'
+)                                                       
+ROW FORMAT JSON;
+```
+
+</TabItem>
+
+</Tabs>
+
 ## Related topics
+
 [Why does RisingWave not accept Kafka consumer group ID](/rw-faq.md#why-risingwave-does-not-accept-kafka-consumer-group-ids)
