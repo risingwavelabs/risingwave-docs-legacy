@@ -32,7 +32,7 @@ ALTER SOURCE source_name
 |---------------------------|-----------------------|
 |**ADD COLUMN** |This clause adds a column to the specified source.|
 |*col_name* | The name of the new column you want to add to the source.|
-|*data_type* | The data type of the newly added column. With the struct data type, you can create a nested source. Elements in a nested source need to be enclosed with angle brackets ("<\>").|
+|*data_type* | The data type of the newly added column. With the struct data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>").|
 
 ```sql title=Example
 -- Add a column named "v3" to a source named "src1" 
@@ -44,7 +44,7 @@ ALTER SOURCE src1
 
 + To alter columns in a source created with a schema registry, see [FORMAT and ENCODE options](sql-alter-source.md#format-and-encode-options).
 
-+ You cannot add a primary key column to a source or source in RisingWave. To modify the primary key of a source or source, you need to recreate the source.
++ You cannot add a primary key column to a source or table in RisingWave. To modify the primary key of a source or table, you need to recreate the table.
 
 + You cannot remove a column from a source in RisingWave. If you intend to remove a column from a source, you'll need to drop the source and create the source again.
 
