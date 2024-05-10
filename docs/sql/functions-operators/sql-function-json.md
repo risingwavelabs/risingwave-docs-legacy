@@ -338,7 +338,7 @@ SELECT jsonb_path_query_first('{
 
 ### `jsonb_populate_record`
 
-Expands the top-level JSON object to a row having the **inline struct type** of the base argument.
+Expands the top-level JSON object to a row having the **struct type** of the base argument.
 
 ```bash title=Syntax
 jsonb_populate_record ( base anyelement, from_json jsonb ) → anyelement
@@ -377,7 +377,7 @@ The `jsonb_populate_record` function in RisingWave differs from the function in 
 
 ### `jsonb_populate_recordset`
 
-Expands the top-level JSON array of objects to a set of rows having the **inline struct type** of the base argument. Each element of the JSON array is processed as described above for [`jsonb_populate_record`](#jsonb_populate_record).
+Expands the top-level JSON array of objects to a set of rows having the **struct type** of the base argument. Each element of the JSON array is processed as described above for [`jsonb_populate_record`](#jsonb_populate_record).
 
 ```bash title=Syntax
 jsonb_populate_recordset ( base anyelement, from_json jsonb ) → setof anyelement
