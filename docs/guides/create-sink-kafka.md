@@ -410,7 +410,7 @@ FORMAT PLAIN ENCODE JSON;
 
 |Parameter| Notes|
 |---|---|
-|`properties.security.protocol`| Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSPI with SSL.|
+|`properties.security.protocol`| Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSAPI with SSL.|
 |`properties.sasl.mechanism`| Set to `GSSAPI`.|
 |`properties.sasl.kerberos.service.name`| |
 |`properties.sasl.kerberos.keytab`| |

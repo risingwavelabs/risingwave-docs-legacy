@@ -561,7 +561,7 @@ Here is an example of creating a source authenticated with SASL/GSSAPI without S
 CREATE SOURCE IF NOT EXISTS source_5 (
    column1 varchar,
    column2 integer,
-)                  
+)
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -574,8 +574,7 @@ WITH (
    properties.sasl.kerberos.principal='kafkaclient4@AP-SOUTHEAST-1.COMPUTE.INTERNAL',
    properties.sasl.kerberos.kinit.cmd='sudo kinit -R -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal} || sudo kinit -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal}',
    properties.sasl.kerberos.min.time.before.relogin='10000'
-)                                                       
-ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 </TabItem>
@@ -618,8 +617,7 @@ WITH (
    properties.sasl.mechanism='OAUTHBEARER',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.oauthbearer.config='principal=bob'
-)                                                       
-ROW FORMAT JSON;
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 </TabItem>
