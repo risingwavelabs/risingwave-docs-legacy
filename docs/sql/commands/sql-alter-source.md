@@ -181,7 +181,7 @@ ALTER SOURCE source_name
     SET STREAMING_RATE_LIMIT { TO | = } { default | rate_limit_number };
 ```
 
-You can use this statement to modify the rate limit of a source. For the specific value of `STREAMING_RATE_LIMI`, refer to the [explanation provided in our documentation on runtime parameter sources](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
+You can use this statement to modify the rate limit of a source. For the specific value of `STREAMING_RATE_LIMIT`, refer to the [explanation provided in our documentation on runtime parameter sources](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
 
 ```sql title="Example"
 -- Alter the rate limit of a source to default
