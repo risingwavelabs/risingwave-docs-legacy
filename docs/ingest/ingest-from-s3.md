@@ -19,7 +19,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name
 schema_definition
 [INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 WITH (
-   connector={ 's3' | 's3_v2' },
+   connector='s3_v2',
    connector_parameter='value', ...
 )
 FORMAT data_format ENCODE data_encode (
@@ -65,10 +65,7 @@ export const svg = rr.Diagram(
                     rr.Sequence(
                         rr.Terminal('connector'),
                         rr.Terminal('='),
-                        rr.Choice(1,
-                            rr.Terminal('\'s3\''),
-                            rr.Terminal('\'s3_v2\'')
-                        ),
+                        rr.Terminal('\'s3_v2\''),
                         rr.Terminal(','),
                     ),
                     rr.OneOrMore(
@@ -104,7 +101,7 @@ export const svg = rr.Diagram(
 
 |Field|Notes|
 |---|---|
-|connector|Required. Select between the `s3` and `s3_v2` (recommended) connector. [Learn more about `s3_v2`](#s3_v2-connector).|
+|connector|Required. Support the `s3_v2` (recommended) connector only. [Learn more about `s3_v2`](#s3_v2-connector).|
 |s3.region_name |Required. The service region.|
 |s3.bucket_name |Required. The name of the bucket the data source is stored in. |
 |s3.credentials.access|Required. This field indicates the access key ID of AWS. |
@@ -131,7 +128,12 @@ The `s3_v2` connector is currently in Beta. Please contact us if you encounter a
 
 :::
 
-The `s3` connector treats files as splits, resulting in poor scalability and potential timeouts when dealing with a large number of files.
+:::note DEPRECATED S3 Connector
+
+We have deprecated the legacy S3 Connector due to poor scalability and potential timeouts when dealing with a large number of files.
+While this decision forbids the creation of new stream jobs using the deprecate connector, existing streaming jobs will not be impacted and can continue to run as usual.
+
+:::
 
 The `s3_v2` connector is designed to address the scalability and performance limitations of the `s3` connector by implementing a more efficient listing and fetching mechanism. If you want to explore the technical details of this new approach, refer to [the design document](https://github.com/risingwavelabs/rfcs/blob/main/rfcs/0076-refined-s3-source.md).
 
