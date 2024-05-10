@@ -82,7 +82,7 @@ You have to [add a payment method](/billing-manage-payment-methods.md) before yo
 
 <TabItem value="enterprise" label="Enterprise plan">
 
-The **Enterprise** plan is specifically designed for our enterprise customers. You can either utilize our hosted service or [Bring Your Own Cloud](cluster-create-byoc-cluster.md). This plan provides unparalleled flexibility, allowing you to customize everything from the underlying infrastructure and cluster configurations to the pricing plan, which includes exclusive discounts.
+The **Enterprise** plan is specifically designed for our enterprise customers. You can either utilize our hosted service or [Bring Your Own Cloud](cluster-create-byoc-cluster.md). This plan provides unparalleled flexibility, allowing you to customize everything from the underlying infrastructure and cluster configurations to the pricing plan, which may include exclusive discounts.
 
 To access the Enterprise plan, please contact our sales team. We will provide you with an invitation code. Once you receive this code, you can redeem it to activate the Enterprise plan across your entire organization.
 
