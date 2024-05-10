@@ -440,7 +440,7 @@ WITH (
    properties.sasl.kerberos.principal='kafkaclient4@AP-SOUTHEAST-1.COMPUTE.INTERNAL',
    properties.sasl.kerberos.kinit.cmd='sudo kinit -R -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal} || sudo kinit -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal}',
    properties.sasl.kerberos.min.time.before.relogin='10000'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 </TabItem>
 
@@ -483,7 +483,7 @@ WITH (
    properties.sasl.mechanism='OAUTHBEARER',
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.oauthbearer.config='principal=bob'
-);
+) FORMAT PLAIN ENCODE JSON;
 ```
 
 </TabItem>
