@@ -336,6 +336,69 @@ SELECT jsonb_path_query_first('{
  {"age": 30, "name": "John"}
 ```
 
+### `jsonb_populate_record`
+
+Expands the top-level JSON object to a row having the **inline struct type** of the base argument.
+
+```bash title=Syntax
+jsonb_populate_record ( base anyelement, from_json jsonb ) → anyelement
+```
+
+The JSON object is scanned for fields whose names match column names of the output row type, and their values are inserted into those columns of the output. (Fields that do not correspond to any output column name are ignored.) In typical use, the value of base is just NULL, which means that any output columns that do not match any object field will be filled with nulls. However, if base isn't NULL then the values it contains will be used for unmatched columns.
+
+To convert a JSON value to the SQL type of an output column, the following rules are applied in sequence:
+
+- A JSON null value is converted to an SQL null in all cases.
+
+- If the output column is of type json or jsonb, the JSON value is just reproduced exactly.
+
+- If the output column is a composite (row) type, and the JSON value is a JSON object, the fields of the object are converted to columns of the output row type by recursive application of these rules.
+
+- Likewise, if the output column is an array type and the JSON value is a JSON array, the elements of the JSON array are converted to elements of the output array by recursive application of these rules.
+
+- Otherwise, if the JSON value is a string, the contents of the string are fed to the input conversion function for the column's data type.
+
+- Otherwise, the ordinary text representation of the JSON value is fed to the input conversion function for the column's data type.
+
+```sql title=Example
+SELECT (jsonb_populate_record(
+    null::struct<a int, b text[], c struct<d int, e text>>,
+    '{"a": 1, "b": ["2", "a b"], "c": {"d": 4, "e": "a b c"}, "x": "foo"}'
+)).*;
+----RESULT
+1 {2,"a b"} (4,"a b c")
+```
+
+:::note
+
+The `jsonb_populate_record` function in RisingWave differs from the function in PostgreSQL. In PostgreSQL, users are required to define a **composite type** using the `CREATE TYPE` statement before using these functions. However, in RisingWave, you should use the **inline struct type** instead.
+
+:::
+
+### `jsonb_populate_recordset`
+
+Expands the top-level JSON array of objects to a set of rows having the **inline struct type** of the base argument. Each element of the JSON array is processed as described above for [`jsonb_populate_record`](#jsonb_populate_record).
+
+```bash title=Syntax
+jsonb_populate_recordset ( base anyelement, from_json jsonb ) → setof anyelement
+```
+
+```sql title="Example"
+select * from jsonb_populate_recordset(
+    null::struct<a int, b int>,
+    '[{"a":1,"b":2}, {"a":3,"b":4}]'::jsonb
+);
+----RESULT
+1 2
+3 4
+```
+
+:::note
+
+The `jsonb_populate_recordset` function in RisingWave differs from the function in PostgreSQL. In PostgreSQL, users are required to define a **composite type** using the `CREATE TYPE` statement before using these functions. However, in RisingWave, you should use the **inline struct type** instead.
+
+:::
+
 ### `jsonb_typeof`
 
 Returns the type of the top-level JSON value as a text string.
