@@ -102,6 +102,24 @@ Don't worry, this is by design. RisingWave uses memory for in-memory cache of st
 
 During the instance running, RisingWave will keep memory usage below this limit. If you encounter unexpected issues like OOM (Out-of-memory), please refer to [Troubleshoot out-of-memory](/troubleshoot/troubleshoot-oom.md) for assistance.
 
+### Why is the memory for compute nodes not fully utilized?
+
+As part of its design, RisingWave allocates 30% of the total memory in the compute node as reserved memory. This reserved memory is specifically set aside for system usage, such as the stack and code segment of processes, allocation overhead, and network buffer.
+
+However, this may not be suitable for all workloads and machine setups. To address this, we introduce a new option in version 1.9 and above, which allows you to explicitly configure the amount of reserved memory for compute nodes. You can use the startup option `--reserved-memory-bytes` and the environment variable `RW_RESERVED_MEMORY_BYTES` to override the reserved memory configuration for compute nodes. Note that the memory reserved should be at least 512MB.
+
+If you prefer to keep the reserved memory configuration unchanged, you don't need to make any modifications. The default setup remains the same as before, where compute nodes will use 30% of their total memory as reserved memory.
+
+For example, let's assume you're deploying a compute node on a 64GB machine or pod. By default, the node will reserve 30% of the memory, which amounts to 19.2GB. However, if you find this excessive for your specific use case, you have the option to specify a different value. You can set either `RW_RESERVED_MEMORY_BYTES=8589934592` or `--reserved-memory-bytes=8589934592` when starting up the compute node. This will allocate 8GB as the reserved memory instead.
+
+### Why does the `CREATE MATERIALIZED VIEW` statement take a long time to execute?
+
+The execution time for the `CREATE MATERIALIZED VIEW` statement can vary based on several factors. Here are two common reasons:
+
+1. **Backfilling of historical data**: RisingWave ensures consistent snapshots across materialized views (MVs). So when a new MV is created, it backfills all historical data from the upstream MV or tables and calculate them, which takes some time. And the created DDL statement will only end when the backfill ends. You can run `SHOW JOBS;` in SQL to check the DDL progress. If you want the create statement to not wait for the process to finish and not block the session, you can execute `SET BACKGROUND_DDL=true;` before running the `CREATE MATERIALIZED VIEW` statement. See details in [`SET BACKGROUND_DDL`](/sql/commands/sql-set-background-ddl.md). But please notice that the newly created MV is still invisible in the catalog until the end of backfill when `BACKGROUND_DDL=true`.
+
+2. **High cluster latency**: If the cluster experiences high latency, it may take longer to apply changes to the streaming graph. If the `Progress` in the `SHOW JOBS;` result stays at 0.0%, high latency could be the cause. See details in [Troubleshoot high latency](/troubleshoot/troubleshoot-high-latency.md) 
+
 <details>
 <summary>I'd like to explore more questions.</summary>
 

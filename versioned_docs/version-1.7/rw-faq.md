@@ -8,4 +8,4 @@ slug: /rw-faq
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw-faq/" />
 </head>
 
-This topic lists frequently asked questions to provide the information you need and streamline your experience when using RisingWave.
+<a href="https://docs.risingwave.com/docs/current/rw-faq/"> Please refer to the current version of the doc.</a>
