@@ -352,7 +352,7 @@ To convert a JSON value to the SQL type of an output column, the following rules
 
 - If the output column is of type json or jsonb, the JSON value is just reproduced exactly.
 
-- If the output column is a composite (row) type, and the JSON value is a JSON object, the fields of the object are converted to columns of the output row type by recursive application of these rules.
+- If the output column is a struct (row) type, and the JSON value is a JSON object, the fields of the object are converted to columns of the output row type by recursive application of these rules.
 
 - Likewise, if the output column is an array type and the JSON value is a JSON array, the elements of the JSON array are converted to elements of the output array by recursive application of these rules.
 
