@@ -31,13 +31,15 @@ UDF is currently in Beta. Please contact us if you encounter any issues or have 
 
 ### UDFs as external functions
 
-RisingWave supports creating UDFs with the following programming languages:
+RisingWave supports creating external UDFs with the following programming languages:
 
 - [Python](/sql/udf/udf-python.md)
 
 - [Java](/sql/udf/udf-java.md)
 
 ### Embedded UDFs
+
+RisingWave supports creating embedded UDFs with the following programming languages:
 
 - [Python](/sql/udf/udf-python-embedded.md)
 
