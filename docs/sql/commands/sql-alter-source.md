@@ -32,7 +32,7 @@ ALTER SOURCE source_name
 |---------------------------|-----------------------|
 |**ADD COLUMN** |This clause adds a column to the specified source.|
 |*col_name* | The name of the new column you want to add to the source.|
-|*data_type* | The data type of the newly added column. With the struct data type, you can create a nested source. Elements in a nested source need to be enclosed with angle brackets ("<\>").|
+|*data_type* | The data type of the newly added column. With the struct data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>").|
 
 ```sql title=Example
 -- Add a column named "v3" to a source named "src1" 
@@ -44,7 +44,7 @@ ALTER SOURCE src1
 
 + To alter columns in a source created with a schema registry, see [FORMAT and ENCODE options](sql-alter-source.md#format-and-encode-options).
 
-+ You cannot add a primary key column to a source or source in RisingWave. To modify the primary key of a source or source, you need to recreate the source.
++ You cannot add a primary key column to a source or table in RisingWave. To modify the primary key of a source or table, you need to recreate the table.
 
 + You cannot remove a column from a source in RisingWave. If you intend to remove a column from a source, you'll need to drop the source and create the source again.
 
@@ -172,23 +172,3 @@ ALTER SOURCE src_user REFRESH SCHEMA;
 ```
 
 For more details about this example, see our [test file](https://github.com/risingwavelabs/risingwave/blob/994a2831088c9befc71721ed6f2f2d2e35c4d0a9/e2e_test/schema_registry/alter_sr.slt).
-
-
-### `SET STREAMING_RATE_LIMIT`
-
-```sql title=Syntax
-ALTER SOURCE source_name
-    SET STREAMING_RATE_LIMIT { TO | = } { default | rate_limit_number };
-```
-
-You can use this statement to modify the rate limit of a source. For the specific value of `STREAMING_RATE_LIMI`, refer to the [explanation provided in our documentation on runtime parameter sources](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
-
-```sql title="Example"
--- Alter the rate limit of a source to default
-ALTER SOURCE kafka_source SET streaming_rate_limit TO default;
-```
-
-```sql title="Example"
--- Alter the rate limit of a source to 1000
-ALTER SOURCE kafka_source SET streaming_rate_limit TO 1000;
-```

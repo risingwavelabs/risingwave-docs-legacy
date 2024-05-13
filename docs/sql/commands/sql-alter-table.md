@@ -212,32 +212,3 @@ ALTER TABLE t_user REFRESH SCHEMA;
 If a downstream fragment references a column that is either missing or has undergone a type change in the updated schema, the command will be declined.
 :::
 
-### `SET STREAMING_RATE_LIMIT`
-
-```sql title=Syntax
-ALTER TABLE table_name
-    SET STREAMING_RATE_LIMIT { TO | = } { default | rate_limit_number };
-```
-
-You can use this statement to modify the rate limit of tables that have a source. For the specific value of `STREAMING_RATE_LIMI`, refer to the [explanation provided in our documentation on runtime parameter tables](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
-
-```sql title="Example"
--- Create a table with source
-CREATE TABLE kafka_source (v1 int) WITH (
-  connector = 'kafka',
-  topic = 'kafka_source',
-  properties.bootstrap.server = 'localhost:29092',
-  scan.startup.mode = 'earliest',
-  streaming_rate_limit = 0
-) FORMAT PLAIN ENCODE JSON
-```
-
-```sql title="Example"
--- Alter the rate limit of this table
-ALTER TABLE kafka_source SET streaming_rate_limit TO default;
-```
-
-```sql title="Example"
--- Alter the rate limit of this table
-ALTER TABLE kafka_source SET streaming_rate_limit TO 1000;
-```
