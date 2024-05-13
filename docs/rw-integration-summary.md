@@ -55,6 +55,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Fivetran| |Researching <voteNotify note="fivetran" /> |
 |Hightouch| |Researching <voteNotify note="hightouch" />|
 |Vector| |Available. |
+|migrate| |Available. `migrate` is a powerful tool written in Go for managing database migrations. For details, see [its introduction and tutorial](https://github.com/risingwavelabs/migrate?tab=readme-ov-file).|
 
 ## Query engines
 
