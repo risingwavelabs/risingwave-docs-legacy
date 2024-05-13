@@ -233,7 +233,7 @@ CREATE TABLE kafka_source (v1 int) WITH (
 ```
 
 ```sql title="Example"
--- Disable rate limit
+-- Pause the source
 ALTER TABLE kafka_source SET streaming_rate_limit TO default;
 ```
 
