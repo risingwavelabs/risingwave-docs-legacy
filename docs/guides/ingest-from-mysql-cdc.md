@@ -195,6 +195,8 @@ The following fields are used when creating a CDC table.
 |Field|Notes|
 |---|---|
 |snapshot| Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
+|snapshot.interval| Optional. Specifies the barrier interval for buffering upstream events. The default value is `1`. |
+|snapshot.batch_size| Optional. Specifies the batch size of a snapshot read query from the upstream table. The default value is `1000`. |
 
 #### Debezium parameters
 
