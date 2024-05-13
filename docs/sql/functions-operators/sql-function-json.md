@@ -361,12 +361,14 @@ To convert a JSON value to the SQL type of an output column, the following rules
 - Otherwise, the ordinary text representation of the JSON value is fed to the input conversion function for the column's data type.
 
 ```sql title=Example
-SELECT (jsonb_populate_record(
+SELECT * FROM jsonb_populate_record(
     null::struct<a int, b text[], c struct<d int, e text>>,
     '{"a": 1, "b": ["2", "a b"], "c": {"d": 4, "e": "a b c"}, "x": "foo"}'
-)).*;
+);
 ----RESULT
-1 {2,"a b"} (4,"a b c")
+ a |     b     |      c      
+---+-----------+-------------
+ 1 | {2,"a b"} | (4,"a b c")
 ```
 
 :::note
