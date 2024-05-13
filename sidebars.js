@@ -978,6 +978,10 @@ const sidebars = {
           label: "Client libraries",
           collapsible: true,
           collapsed: true,
+          link: {
+            type: "doc",
+            id: "dev/client-libraries-overview",
+          },
           items: [
             {
               type: "doc",
