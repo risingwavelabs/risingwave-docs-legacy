@@ -32,7 +32,7 @@ Follow the steps below to create your own cloud environment using RisingWave's B
 4. After configuring these settings, you'll see additional instructions on your screen. Follow these steps to establish your BYOC environment. Please be aware that the final command `rwc byoc apply --name xxx` may take 30 to 40 minutes to complete, and a progress bar will be shown to keep you updated. During this time, it's crucial to ensure a stable internet connection. If the command is interrupted or fails due to network instability, you can safely retry it.
 
     :::tip
-    If you encounter any issues during this process, please contact our [support team](mailto:cloud-support@risingwave-labs.com).
+    When you run the command `rwc byoc apply --name xxx`, it will deploy some resources in your AWS/GCP environment, such as S3/GCS buckets and EKS/GKE clusters. Please do not modify the configuration of these resources. If you encounter any issues during this process, please contact our [support team](mailto:cloud-support@risingwave-labs.com).
     :::
 
 5. Click **Next** to continue the configuration of cluster size and nodes. To learn more about the nodes, see the [architecture of RisingWave](/docs/current/architecture).
@@ -182,4 +182,3 @@ Follow the steps below to delete your own cloud environment as needed.
     $ rwc byoc terminate --name default-byoc-environment
     $ rwc byoc delete --name default-byoc-environment
     ```
-
