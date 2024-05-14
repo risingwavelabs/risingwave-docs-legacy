@@ -344,7 +344,7 @@ Expands the top-level JSON object to a row having the **struct type** of the bas
 jsonb_populate_record ( base anyelement, from_json jsonb ) → anyelement
 ```
 
-The JSON object is scanned for fields whose names match column names of the output row type, and their values are inserted into those columns of the output. (Fields that do not correspond to any output column name are ignored.) In typical use, the value of base is just NULL, which means that any output columns that do not match any object field will be filled with nulls. However, if base isn't NULL then the values it contains will be used for unmatched columns.
+It scans the JSON object for fields matching the output row's column names, inserting their values into the corresponding output columns. Any fields not matching column names are ignored. Typically the base is `NULL`, meaning that any output columns that do not match any object field will be `NULL`. Otherwise, values in the base are used for unmatched columns.
 
 The coversion of JSON values to SQL types of the output column applies these rules in sequence:
 
