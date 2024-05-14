@@ -219,7 +219,7 @@ ALTER TABLE table_name
     SET STREAMING_RATE_LIMIT { TO | = } { default | rate_limit_number };
 ```
 
-You can use this statement to modify the rate limit of tables that have a source. For the specific value of `STREAMING_RATE_LIMIT`, refer to the [explanation provided in our documentation on runtime parameter tables](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
+Use this statement to modify the rate limit of tables that have a source. For the specific value of `STREAMING_RATE_LIMIT`, refer to [How to view runtime parameters](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
 
 ```sql title="Example"
 -- Create a table with source
