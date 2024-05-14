@@ -172,3 +172,23 @@ ALTER SOURCE src_user REFRESH SCHEMA;
 ```
 
 For more details about this example, see our [test file](https://github.com/risingwavelabs/risingwave/blob/994a2831088c9befc71721ed6f2f2d2e35c4d0a9/e2e_test/schema_registry/alter_sr.slt).
+
+
+### `SET STREAMING_RATE_LIMIT`
+
+```sql title=Syntax
+ALTER SOURCE source_name
+    SET STREAMING_RATE_LIMIT { TO | = } { default | rate_limit_number };
+```
+
+Use this statement to modify the rate limit of a source. For the specific value of `STREAMING_RATE_LIMIT`, refer to [How to view runtime parameters](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
+
+```sql title="Example"
+-- Alter the rate limit of a source to default
+ALTER SOURCE kafka_source SET streaming_rate_limit TO default;
+```
+
+```sql title="Example"
+-- Alter the rate limit of a source to 1000
+ALTER SOURCE kafka_source SET streaming_rate_limit TO 1000;
+```
