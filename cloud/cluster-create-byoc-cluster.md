@@ -19,7 +19,7 @@ Before creating a BYOC deployment, familiarize yourself with the following archi
 
 - **RWProxy**: This is a TCP proxy that routes SQL statements from the control plane to the appropriate RisingWave instances.
 
-## Procedure
+## Create the BYOC environment
 
 Follow the steps below to create your own cloud environment using RisingWave's BYOC plan.
 
@@ -169,3 +169,17 @@ import TabItem from '@theme/TabItem';
 </TabItem>
 
 </Tabs>
+
+## Delete the BYOC environment
+
+Follow the steps below to delete your own cloud environment as needed.
+
+1. Navigate to the [**Clusters**](https://cloud.risingwave.com/clusters/) page, click the delete icon to delete all of your BYOC clusters.
+
+2. Open the terminal and execute the following commands:
+
+    ```shell
+    $ rwc byoc terminate --name default-byoc-environment
+    $ rwc byoc delete --name default-byoc-environment
+    ```
+
