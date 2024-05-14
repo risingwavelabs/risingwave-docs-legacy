@@ -15,7 +15,7 @@ We currently support AWS and GCS as the cloud platform. Azure integration is in 
 
 Before creating a BYOC deployment, familiarize yourself with the following architecture. In the BYOC environment, the entire data plane is deployed in the user's space. To manage the RisingWave clusters within this environment, we deploy two key services for operation delegation:
 
-- **Agent Service**: This service manages Kubernetes (K8s) and cloud resources. It handles tasks such as managing RisingWave Pods, Google Cloud Storage (GCS) buckets, IAM roles/accounts associated with the RisingWave cluster, network endpoints, etc.
+- **Agent Service**: This service manages Kubernetes (K8s) and cloud resources. It handles tasks such as managing RisingWave Pods, AWS S3 buckets, GCS buckets, Azure Blob Storage, IAM roles/accounts associated with the RisingWave cluster, network endpoints, etc.
 
 - **RWProxy**: This is a TCP proxy that routes SQL statements from the control plane to the appropriate RisingWave instances.
 
@@ -32,7 +32,7 @@ Follow the steps below to create your own cloud environment using RisingWave's B
 4. After configuring these settings, you'll see additional instructions on your screen. Follow these steps to establish your BYOC environment. Please be aware that the final command `rwc byoc apply --name xxx` may take 30 to 40 minutes to complete, and a progress bar will be shown to keep you updated. During this time, it's crucial to ensure a stable internet connection. If the command is interrupted or fails due to network instability, you can safely retry it.
 
     :::tip
-    When you run the command `rwc byoc apply --name xxx`, it will deploy some resources in your AWS/GCP environment, such as S3/GCS buckets and EKS/GKE clusters. Please do not modify the configuration of these resources. If you encounter any issues during this process, please contact our [support team](mailto:cloud-support@risingwave-labs.com).
+    When you run the command `rwc byoc apply --name xxx`, it will deploy some resources in your AWS/GCP/Azure environment, such as AWS S3/Google Cloud Storage/Azure Blob Storage and EKS/GKE/AKS clusters. Please do not modify the configuration of these resources. If you encounter any issues during this process, please contact our [support team](mailto:cloud-support@risingwave-labs.com).
     :::
 
 5. Click **Next** to continue the configuration of cluster size and nodes. To learn more about the nodes, see the [architecture of RisingWave](/docs/current/architecture).
