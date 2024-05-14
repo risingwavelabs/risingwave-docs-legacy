@@ -179,6 +179,6 @@ Follow the steps below to delete your own cloud environment as needed.
 2. Open the terminal and execute the following commands:
 
     ```shell
-    $ rwc byoc terminate --name default-byoc-environment
-    $ rwc byoc delete --name default-byoc-environment
+    $ rwc byoc terminate --name default-byoc-environment # This may take 2-3 minutes.
+    $ rwc byoc delete --name default-byoc-environment # This may take 30-40 minutes.
     ```
