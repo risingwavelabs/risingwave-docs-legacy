@@ -983,32 +983,36 @@ const sidebars = {
           label: "Client libraries",
           collapsible: true,
           collapsed: true,
+          link: {
+            type: "doc",
+            id: "dev/client-libraries-overview",
+          },
           items: [
-            {
-              type: "doc",
-              id: "dev/java-client-libraries",
-              label: "Java",
-            },
-            {
-              type: "doc",
-              id: "dev/nodejs-client-libraries",
-              label: "Node.js",
-            },
-            {
-              type: "doc",
-              id: "dev/python-client-libraries",
-              label: "Python",
-            },
-            {
-              type: "doc",
-              id: "dev/go-client-libraries",
-              label: "Go",
-            },
-            {
-              type: "doc",
-              id: "dev/ruby-client-libraries",
-              label: "Ruby",
-            },
+            // {
+            //   type: "doc",
+            //   id: "dev/java-client-libraries",
+            //   label: "Java",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/nodejs-client-libraries",
+            //   label: "Node.js",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/python-client-libraries",
+            //   label: "Python",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/go-client-libraries",
+            //   label: "Go",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/ruby-client-libraries",
+            //   label: "Ruby",
+            // },
           ],
         },
       ],
