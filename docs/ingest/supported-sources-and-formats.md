@@ -254,4 +254,18 @@ FORMAT PLAIN
 ENCODE BYTES
 ```
 
+## General parameters for supported formats
 
+Here are some notes regarding parameters that can be applied to multiple formats supported by our systems.
+
+### `timestamptz.handling.mode`
+
+The `timestamptz.handling.mode` parameter controls the output format for timestamptz values. It accepts the following values:
+
+- `micro`: Specifies the output format for timestamptz values with microsecond precision.
+- `milli`: Specifies the output format for timestamptz values with millisecond precision.
+- `guess_number_unit`: This has been the default setting and restricts the range of timestamptz values to [1973-03-03 09:46:40, 5138-11-16 09:46:40).
+- `utc_string`: This format is the least ambiguous and can usually be correctly inferred without needing explicit specification.
+- `utc_without_suffix`: Allows the user to indicate that a naive timestamp is in UTC, rather than local time.
+
+You can set this parameter when using the `format plain | upsert | debezium encode json` command, but not when using `format debezium_mongo | canal | maxwell encode json`.
