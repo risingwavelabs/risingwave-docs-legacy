@@ -7,7 +7,7 @@ title: Temporal filters
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-pattern-temporal-filters/" />
 </head>
 
-Temporal filters allow you to filter data based on time intervals, which are used to retrieve data within a specific time range. Temporal filters will enable you to filter data based on a particular time, such as the current time, a specific date, or a range of dates. By using temporal filters, you can ensure that your queries only return data relevant to the period you are interested in, making your data analysis more accurate and efficient.
+Temporal filters allow you to filter data based on time intervals, which are used to retrieve data within a specific time range. Temporal filters will enable you to filter data based on a particular time, such as the current time, a specific date, or a range of dates. By using temporal filters, you can ensure that your queries only return data relevant to the period you are interested in, making your data analysis more accurate and efficient. The records that become out of the time range defined by the temporal filter will be deleted from the storage and the storage space will be reclaimed.
 
 ## Syntax
 
@@ -49,13 +49,16 @@ AND (t < NOW() - INTERVAL '1 hour' OR a < 1)
 
 ## Usage 1: Delete and clean expired data
 
-When the time expression with `NOW()` is the lower bound condition of the base relation, such as `t > NOW() - INTERVAL '1 hour'`, it can filter records with event times that are too old.
+When the time expression with `NOW()` is the lower bound condition of the base relation, such as `t > NOW() - INTERVAL '1 hour'`, it can filter records with event times that are too old. In RisingWave, the source will pull data from upstream only after some MVs are created and their definitions include this source. The source itself does not store any records. So with the temporal filter, we can easily limit the total space of the storage.
 
-The following query returns all rows from the `sales` table where the `sale_date` column plus one week is greater than the current date and time. In other words, it will return all sales records within the past week.
+The following query returns all rows from the `sales_source` sources where the `sale_date` column plus one week is greater than the current date and time. In other words, it will return all sales records within the past week.
 
 ```sql
+CREATE SOURCE sales_source(...) with (connector = 'kafka', ...) FORMAT PLAIN ENCODE JSON;
+
+CREATE MATERIALIZED VIEW sales AS
 SELECT * 
-FROM sales 
+FROM sales_source 
 WHERE sale_date > NOW() - INTERVAL '1 week';
 ```
 
@@ -64,8 +67,11 @@ The temporal filter in this query is `sale_date > NOW() - INTERVAL '1 week'`. It
 The following query returns all rows from the `user_sessions` table where the sum of the `last_active` timestamp and double the `session_timeout` duration is greater than the current timestamp, indicating active user sessions. This query could be used to clean up old user sessions from the database by deleting any rows that no longer satisfy the condition.
 
 ```sql
+CREATE SOURCE user_sessions_source(...) with (connector = 'kafka', ...) FORMAT PLAIN ENCODE JSON;
+
+CREATE MATERIALIZED VIEW user_sessions AS
 SELECT * 
-FROM user_sessions 
+FROM user_sessions_source
 WHERE last_active + session_timeout * 2 > NOW();
 ```
 
