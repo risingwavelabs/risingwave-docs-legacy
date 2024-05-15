@@ -260,7 +260,7 @@ Here are some notes regarding parameters that can be applied to multiple formats
 
 ### `timestamptz.handling.mode`
 
-The `timestamptz.handling.mode` parameter controls the output format for timestamptz values. It accepts the following values:
+The `timestamptz.handling.mode` parameter controls the input format for timestamptz values. It accepts the following values:
 
 - `micro`: The input number will be interpreted as the number of microseconds since 1970-01-01T00:00:00Z in UTC.
 - `milli`: The input number will be interpreted as the number of milliseconds since 1970-01-01T00:00:00Z in UTC.
