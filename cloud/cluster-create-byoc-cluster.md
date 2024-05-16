@@ -15,13 +15,13 @@ We currently support AWS and GCS as the cloud platform. Azure integration is in 
 
 Before creating a BYOC deployment, familiarize yourself with the following architecture. In the BYOC environment, the entire data plane is deployed in the user's space. To manage the RisingWave clusters within this environment, we deploy two key services for operation delegation:
 
-- **Agent Service**: This service manages Kubernetes (K8s) and cloud resources. It handles tasks such as managing RisingWave Pods, AWS S3 buckets, GCS buckets, Azure Blob Storage, IAM roles/accounts associated with the RisingWave cluster, network endpoints, etc.
+- **Agent Service**: This service manages Kubernetes (K8s) and cloud resources. It handles tasks such as managing RisingWave Pods, storage services (including AWS S3, GCS, and Azure Blob Storage), IAM roles/accounts associated with the RisingWave cluster, network endpoints, etc.
 
 - **RWProxy**: This is a TCP proxy that routes SQL statements from the control plane to the appropriate RisingWave instances.
 
-## Create the BYOC environment
+## Create a BYOC environment
 
-Follow the steps below to create your own cloud environment using RisingWave's BYOC plan.
+Follow the steps below to create your own cloud environment.
 
 1. Navigate to the [**Clusters**](https://cloud.risingwave.com/clusters/) page and click **Create cluster**.
 
@@ -170,13 +170,15 @@ import TabItem from '@theme/TabItem';
 
 </Tabs>
 
-## Delete the BYOC environment
+## Delete a BYOC environment
 
-Follow the steps below to delete your own cloud environment as needed.
+Follow the steps below to delete a BYOC environment deployed in your cloud.
 
-1. Navigate to the [**Clusters**](https://cloud.risingwave.com/clusters/) page, click the delete icon to delete all of your BYOC clusters.
+1. Delete all BYOC clusters running in the environment. Navigate to the [**Clusters**](https://cloud.risingwave.com/clusters/) page, click the delete icon to delete all of your BYOC clusters.
 
-2. Open the terminal and execute the following commands:
+2. Delete resources you created that are not managed by RisingWave, such as VPC Peerings, GCP Firewalls, and other common resources you might have used.
+
+3. Open the terminal and execute the following commands:
 
     ```shell
     $ rwc byoc terminate --name default-byoc-environment # This may take 2-3 minutes.
