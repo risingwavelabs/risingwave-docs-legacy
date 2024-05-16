@@ -679,7 +679,7 @@ To match a literal underscore or percent sign without matching other characters,
 
 Or you can use `ESCAPE ''` to disable the escape mechanism, and you can also customize an escape character using the `ESCAPE` clause. 
 
-Below are the characters supported to be specified as the escape character:
+Below are the characters supported to be specified as the 'escape_char':
 
 - The underscore character `'_'`.
 - An empty string `''`.
