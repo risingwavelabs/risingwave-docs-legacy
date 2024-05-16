@@ -131,6 +131,12 @@ For meta store, RisingWave uses `postgresql` as the default meta store backend a
 - [MySQL or MySQL-compatible storage](#mysql-or-mysql-compatible-storage)
 - [etcd](#etcd)
 
+For options except for `etcd`, you only have to change the options of meta.
+
+- Configure `--backend` to `sql`.
+
+- Configure `--sql-endpoint` to the target sql backend endpoint.
+
 :::note
 In future releases, we may no longer support `etcd` as the meta store backend, so please consider using alternative options to ensure compatibility and continued support.
 :::
