@@ -163,7 +163,7 @@ Returns the first value in an ordered set of values.
 first_value ( expression ORDER BY order_key ) -> same as input type
 ```
 
-`order_key` is the column or expression used to determine the order of the values. 
+`order_key` is the column or expression used to determine the order of the values. It is required to make the result deterministic.
 
 ### `last_value`
 
