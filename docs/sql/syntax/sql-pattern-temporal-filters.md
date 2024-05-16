@@ -49,7 +49,7 @@ AND (t < NOW() - INTERVAL '1 hour' OR a < 1)
 
 ## Usage 1: Delete and clean expired data
 
-When the time expression with `NOW()` is the lower bound condition of the base relation, such as `t > NOW() - INTERVAL '1 hour'`, it can filter records with event times that are too old. In RisingWave, the source will pull data from upstream only after some MVs are created and their definitions include this source. The source itself does not store any records. So with the temporal filter, we can easily limit the total space of the storage.
+When the time expression with `NOW()` is the lower bound condition of the base relation, such as `t > NOW() - INTERVAL '1 hour'`, it can filter records with event times that are too old. In RisingWave, the source will pull data from upstream only after some materialized views (MVs) are created and their definitions include this source. The source itself does not store any records. Therefore, with the temporal filter, we can easily limit the total storage space.
 
 The following query returns all rows from the `sales_source` sources where the `sale_date` column plus one week is greater than the current date and time. In other words, it will return all sales records within the past week.
 
