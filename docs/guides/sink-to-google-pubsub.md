@@ -35,17 +35,16 @@ FORMAT data_format ENCODE data_encode [ (
 | pubsub.emulator_host| Optional. The Pub/Sub emulator, see [Testing locally with Pub/Sub emulator](https://cloud.google.com/pubsub/docs/emulator).                                                                      |
 | pubsub.credentials | Optional. A JSON string containing the service account credentials for authorization,see [Create credentials for a service account](https://developers.google.com/workspace/guides/create-credentials#create_credentials_for_a_service_account). The provided account credential must have the `pubsub.publisher` [role](https://cloud.google.com/pubsub/docs/access-control#roles). |
 
-
 ## FORMAT and ENCODE option
 
 :::note
 These options should be set in `FORMAT data_format ENCODE data_encode (key = 'value')`, instead of the `WITH` clause.
 :::
 
-|Field|Notes|
+|Field|Note|
 |-----|-----|
 |data_format| Data format. Allowed format: `PLAIN`.|
-|data_encode| Data encode. Supported encode: `JSON`|
+|data_encode| Data encode. Supported encode: `JSON`.|
 |force_append_only| Required by default and must be `true`, which forces the sink to be `PLAIN` (also known as append-only).|
 
 ## Example
