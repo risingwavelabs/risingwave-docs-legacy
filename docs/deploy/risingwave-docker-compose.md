@@ -125,29 +125,25 @@ In the `docker-compose-with-obs.yml` file, specify the bucket name via the `humm
 
 ### Customize meta store
 
-For meta store, RisingWave uses `etcd` as the default storage backend and also supports the following SQL storage backends:
+For meta store, RisingWave uses `postgresql` as the default meta store backend and also supports the following meta store backends:
 
 - [SQLite](#sqlite)
-- [PostgreSQL or PostgreSQL-compatible storage](#postgresql-or-postgresql-compatible-storage)
 - [MySQL or MySQL-compatible storage](#mysql-or-mysql-compatible-storage)
+- [etcd](#etcd)
 
-For each of the options, you only have to change the options of meta:
+For options except for `etcd`, you only have to change the options of meta.
 
 - Configure `--backend` to `sql`.
 
 - Configure `--sql-endpoint` to the target sql backend endpoint.
 
+:::note
+In future releases, we may no longer support `etcd` as the meta store backend, so please consider using alternative options to ensure compatibility and continued support.
+:::
+
 #### SQLite
 
 For SQLite, we have a Docker Compose configuration file that you can use after the necessary configurations: [`docker-compose-with-sqlite.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-sqlite.yml). In this file, meta will mount a volume for SQLite db file, which means the SQLite meta storage backend requires singleton meta component.
-
-#### PostgreSQL or PostgreSQL-compatible storage
-
-In `docker-compose-with-sqlite.yml`, specify the storage backend via `postgresql` parameter.
-
-```bash
---sql-endpoint postgres://<user>:<password>@<host>:<port>/<db>
-```
 
 #### MySQL or MySQL-compatible storage
 
@@ -155,6 +151,14 @@ In `docker-compose-with-sqlite.yml`, specify the storage backend via `mysql` par
 
 ```bash
 --sql-endpoint mysql://<user>:<password>@<host>:<port>/<db>
+```
+
+#### etcd
+
+In [`docker-compose-etcd.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-etcd.yml), specify the storage backend via `etcd` parameter.
+
+```bash
+--etcd-endpoints etcd://<user>:<password>@<host>:<port>/<db>
 ```
 
 ## Start a RisingWave cluster

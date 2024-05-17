@@ -15,13 +15,13 @@ We currently support AWS and GCS as the cloud platform. Azure integration is in 
 
 Before creating a BYOC deployment, familiarize yourself with the following architecture. In the BYOC environment, the entire data plane is deployed in the user's space. To manage the RisingWave clusters within this environment, we deploy two key services for operation delegation:
 
-- **Agent Service**: This service manages Kubernetes (K8s) and cloud resources. It handles tasks such as managing RisingWave Pods, Google Cloud Storage (GCS) buckets, IAM roles/accounts associated with the RisingWave cluster, network endpoints, etc.
+- **Agent Service**: This service manages Kubernetes (K8s) and cloud resources. It handles tasks such as managing RisingWave Pods, storage services (including AWS S3, GCS, and Azure Blob Storage), IAM roles/accounts associated with the RisingWave cluster, network endpoints, etc.
 
 - **RWProxy**: This is a TCP proxy that routes SQL statements from the control plane to the appropriate RisingWave instances.
 
-## Procedure
+## Create a BYOC environment
 
-Follow the steps below to create your own cloud environment using RisingWave's BYOC plan.
+Follow the steps below to create your own cloud environment.
 
 1. Navigate to the [**Clusters**](https://cloud.risingwave.com/clusters/) page and click **Create cluster**.
 
@@ -32,7 +32,7 @@ Follow the steps below to create your own cloud environment using RisingWave's B
 4. After configuring these settings, you'll see additional instructions on your screen. Follow these steps to establish your BYOC environment. Please be aware that the final command `rwc byoc apply --name xxx` may take 30 to 40 minutes to complete, and a progress bar will be shown to keep you updated. During this time, it's crucial to ensure a stable internet connection. If the command is interrupted or fails due to network instability, you can safely retry it.
 
     :::tip
-    If you encounter any issues during this process, please contact our [support team](mailto:cloud-support@risingwave-labs.com).
+    When you run the command `rwc byoc apply --name xxx`, it will deploy some resources in your AWS/GCP/Azure environment, such as AWS S3/Google Cloud Storage/Azure Blob Storage and EKS/GKE/AKS clusters. Please do not modify the configuration of these resources. If you encounter any issues during this process, please contact our [support team](mailto:cloud-support@risingwave-labs.com).
     :::
 
 5. Click **Next** to continue the configuration of cluster size and nodes. To learn more about the nodes, see the [architecture of RisingWave](/docs/current/architecture).
@@ -169,3 +169,18 @@ import TabItem from '@theme/TabItem';
 </TabItem>
 
 </Tabs>
+
+## Delete a BYOC environment
+
+Follow the steps below to delete a BYOC environment deployed in your cloud.
+
+1. Delete all BYOC clusters running in the environment. Navigate to the [**Clusters**](https://cloud.risingwave.com/clusters/) page, click the delete icon to delete all of your BYOC clusters.
+
+2. Delete resources you created that are not managed by RisingWave, such as VPC Peerings, GCP Firewalls, and other common resources you might have used.
+
+3. Open the terminal and execute the following commands:
+
+    ```shell
+    $ rwc byoc terminate --name default-byoc-environment # This may take 2-3 minutes.
+    $ rwc byoc delete --name default-byoc-environment # This may take 30-40 minutes.
+    ```
