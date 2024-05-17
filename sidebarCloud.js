@@ -120,6 +120,10 @@ module.exports = {
           type: "doc",
           id: "cluster-monitor-materialized-views",
         },
+        {
+          type: "doc",
+          id: "cluster-export-your-metrics",
+        },
       ],
     },
     {
