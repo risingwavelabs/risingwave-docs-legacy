@@ -155,6 +155,24 @@ Input types include smallint, int, bigint, numeric, real, and double precision.
 
 Return type is bigint for smallint or int inputs, numeric for bigint inputs, otherwise the same as the input data type.
 
+### `first_value`
+
+Returns the first value in an ordered set of values.
+
+```bash title=Syntax
+first_value ( expression ORDER BY order_key ) -> same as input type
+```
+
+`order_key` is the column or expression used to determine the order of the values. It is required to make the result deterministic.
+
+### `last_value`
+
+Returns the last value in an ordered set of values.
+
+```bash title=Syntax
+last_value ( expression ORDER BY order_key ) -> same as input type
+```
+
 ## Aggregate functions for statistics
 
 ### `stddev_pop`
