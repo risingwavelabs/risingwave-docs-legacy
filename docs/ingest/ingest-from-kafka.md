@@ -622,6 +622,40 @@ WITH (
 
 </TabItem>
 
+<TabItem value="AWS_MSK_IAM" label="AWS_MSK_IAM">
+
+To access [Amazon Managed Streaming for Apache Kafka (MSK)](https://aws.amazon.com/msk/) using IAM, you need to use the `AWS_MSK_IAM` SASL mechanism. You also need to specify the following parameters.
+
+|Parameter| Notes|
+|---|---|
+|`aws.region`| 	Required. AWS service region. For example, US East (N. Virginia).
+|`aws.endpoint`|	Optional. URL of the entry point for the AWS Kinesis service.
+|`aws.credentials.access_key_id`|	Required. This field indicates the access key ID of AWS.
+|`aws.credentials.secret_access_key`|	Required. This field indicates the secret access key of AWS.
+|`aws.credentials.session_token`|	Optional. The session token associated with the temporary security credentials. Using this field is not recommended as RisingWave contains long-running jobs and the token may expire. Creating a new role is preferred.
+|`aws.credentials.role.arn`|	Optional. The Amazon Resource Name (ARN) of the role to assume.
+|`aws.credentials.role.external_id`| Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources. |
+
+This is an example of creating a materialized source authenticated with `AWS_MSK_IAM`.
+
+```sql
+CREATE TABLE IF NOT EXISTS source_7 (
+   column1 varchar,
+   column2 integer,
+)                  
+WITH (
+   connector='kafka',
+   topic='quickstart-events',
+   properties.bootstrap.server='msk-broker-addr:9093',
+   properties.sasl.mechanism='AWS_MSK_IAM',
+   aws.region = 'us-east-1',
+   aws.credentials.access_key_id = 'your_access_key',
+   aws.credentials.secret_access_key = 'your_secret_key'
+) FORMAT PLAIN ENCODE JSON;
+```
+
+</TabItem>
+
 </Tabs>
 
 ## Related topics
