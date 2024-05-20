@@ -122,7 +122,7 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "cluster-export-your-metrics",
+          id: "cluster-export-metrics",
         },
       ],
     },
