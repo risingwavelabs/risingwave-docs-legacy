@@ -7,7 +7,7 @@
 
 This guide describes how to sink data from RisingWave to Apache Pulsar.
 
-[Apache Pulsar](https://pulsar.apache.org) is an open-source distributed pub-sub messaging system and event streaming platform that is scaleable and designed to support geo-replication.
+[Apache Pulsar](https://pulsar.apache.org) is an open-source distributed pub-sub messaging system and event streaming platform that is scalable and designed to support geo-replication.
 
 :::note Beta feature
 The Pulsar sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
@@ -45,8 +45,8 @@ FORMAT data_format ENCODE data_encode [ (
 |oauth.credentials.url |Conditional. The path for credential files, which starts with `file://`. This field must be filled if other `oauth` fields are specified.|
 |oauth.audience |Conditional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.|
 |oauth.scope |Optional. The scope for OAuth2.|
-|access_key |Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
-|secret_access |Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
+|aws.credentials.access_key_id |Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
+|aws.credentials.secret_access_key |Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
 |max_retry_num |Optional. The maximum number of times to retry sending a batch to Pulsar. This allows retrying in case of transient errors. The default value is 3. |
 |retry_interval |Optional. The time in milliseconds to wait after a failure before retrying to send a batch. The default value is 100ms.|
 |primary_key| Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. Primary keys are optional when creating a `PLAIN` sink but required for `UPSERT` and `DEBEZIUM` sinks.|
@@ -83,8 +83,8 @@ WITH (
   oauth.scope = 'consume',
   
   -- S3 credential for oauth file 
-  access_key = 'xxx',
-  secret_access = 'xxx' 
+  aws.credentials.access_key_id = 'xxx',
+  aws.credentials.secret_access_key = 'xxx'
 )
 FORMAT DEBEZIUM ENCODE JSON;
 ```
