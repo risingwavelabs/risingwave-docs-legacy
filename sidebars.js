@@ -643,6 +643,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "Google Pub/Sub",
+                  id: "guides/sink-to-google-pubsub",
+                },
+                {
+                  type: "doc",
                   label: "MQTT",
                   id: "guides/sink-to-mqtt",
                 },
