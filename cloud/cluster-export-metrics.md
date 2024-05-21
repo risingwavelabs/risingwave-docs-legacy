@@ -100,6 +100,6 @@ In the Telegraf configuration, you need to fill in the Prometheus input section,
 
 </Tabs>
 
-## Step 4: Set up dashboard
+## Step 4: Set up dashboards
 
 To set up dashboards based on key metrics, see [RisingWave open source user-dashboard](https://github.com/risingwavelabs/risingwave/blob/main/grafana/risingwave-user-dashboard.dashboard.py).
