@@ -133,6 +133,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Redash || Available |
 |DataGrip | |Researching <voteNotify note="datagrip" /> |
 |PgAdmin | |Researching <voteNotify note="pgadmin" /> |
+|Hex | |Available. For this integration, you can directly use the [PostgreSQL data connection of Hex](https://learn.hex.tech/docs/connect-to-data/data-connections/data-connections-introduction).|
 
 ## Other systems
 
