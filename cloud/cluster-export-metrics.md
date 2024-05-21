@@ -5,17 +5,13 @@ description: Export metrics from a RisingWave cloud cluster.
 slug: /export-metrics
 ---
 
-The article describes how to use metrics API to export metrics from a RisingWave cloud cluster to various monitoring systems, including Prometheus, DataDog, and InfluxDB. The metrics include all major components such as `etcd`, `frontend`, `compute`, `compactor`, and `meta`, except for those starting with `go.*`.
+This article describes how to use metrics API to export metrics from a RisingWave cloud cluster to various monitoring systems like Prometheus, DataDog, and InfluxDB. The metrics include all major components such as `etcd`, `frontend`, `compute`, `compactor`, and `meta`, except for those starting with `go.*`.
 
-:::note
-The metrics are formatted according to [Prometheus](https://prometheus.io/docs/concepts/metric_types/) standards. If your monitoring collection mode is compatible with the Prometheus format, refer to the Prometheus section configure the collection.
-:::
+## Step 1: Generate API key
 
-## Generate API key
+Generate the API key ID and API key secret in the Cloud Portal. See [Generate an API key](organization-service-account.md#generate-an-api-key) for details.
 
-Generate the API key ID and API key secret in Cloud Portal. See [Generate an API key](organization-service-account.md#generate-an-api-key) for details.
-
-## Get Cloud_HOST
+## Step 2: Get Cloud_HOST
 
 Get the corresponding `CLOUD_HOST` for your region and Cloud provider from the table below:
 
@@ -29,9 +25,13 @@ Get the corresponding `CLOUD_HOST` for your region and Cloud provider from the t
     | us-central1/gcp | prod-gcp-usce1-mgmt.risingwave.cloud |
     | europe-west3/gcp | prod-gcp-euwe3-mgmt.risingwave.cloud |
 
-## Integration method
+## Step 3: Configure metric exporters
 
-Now you can choose one of the following integration methods to export metrics data from RisingWave environment to external monitoring and analysis tools.
+Choose one of the following methods to export metrics data from RisingWave environment to external monitoring systems.
+
+:::note
+The metrics are formatted according to [Prometheus](https://prometheus.io/docs/concepts/metric_types/) standards. If your monitoring collection mode is compatible with the Prometheus format, refer to the Prometheus section below to configure the collection.
+:::
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -40,7 +40,7 @@ import TabItem from '@theme/TabItem';
 
 <TabItem value="Prometheus" label="Prometheus">
 
-To import the metrics to Prometheus, edit the `scrape_configs` section in the prometheus.yaml file like the following:
+To import the metrics to Prometheus, edit the `scrape_configs` section in the prometheus.yaml file as follows:
 
 ```yaml
 scrape_configs:
@@ -69,7 +69,7 @@ scrape_configs:
 
 To import the metrics to DataDog, use DataDog Agent and [DataDog integration](https://app.datadoghq.com/integrations?integrationId=openmetrics). If you have not installed the DataDog agent, see [installation guide](https://app.datadoghq.com/account/settings/agent/latest?platform=overview).  
 
-Then, edit the `openmetrics.d/conf.yaml` file at the root of your [Agent configuration directory](https://docs.datadoghq.com/agent/guide/agent-configuration-files/#agent-configuration-directory) like the following:
+Next, edit the `openmetrics.d/conf.yaml` file at the root of your [Agent configuration directory](https://docs.datadoghq.com/agent/guide/agent-configuration-files/#agent-configuration-directory) as follows, and then restart your agents.
 
 ```yaml
 instances:
@@ -92,14 +92,15 @@ instances:
 
 <TabItem value="InfluxDB" label="InfluxDB">
 
-To import the metrics to InfluxDB, configure Telegraf first, see instructions on how to [use Telegraf to scrape Prometheus metrics](https://docs.influxdata.com/influxdb/v2/write-data/developer-tools/scrape-prometheus-metrics/#use-telegraf) and the [Prometheus input plugin](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/prometheus/README.md).
+To import the metrics to InfluxDB, you need to configure Telegraf first. See instructions on how to [use Telegraf to scrape Prometheus metrics](https://docs.influxdata.com/influxdb/v2/write-data/developer-tools/scrape-prometheus-metrics/#use-telegraf) and the [Prometheus input plugin](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/prometheus/README.md).
 
-Then, fill in the Prometheus input section in the Telegraf configuration, see **Prometheus** under the [Integration method](#integration-method) section.
+In the Telegraf configuration, you need to fill in the Prometheus input section, see [Prometheus](cluster-export-metrics.md?method=Prometheus#step-3-configure-metric-exporters) for details.
+
 
 </TabItem>
 
 </Tabs>
 
-## Key metrics dashboard
+## Step 4: Set up dashboard
 
-Please refer to [RisingWave open source user-dashboard](https://github.com/risingwavelabs/risingwave/blob/main/grafana/risingwave-user-dashboard.dashboard.py) to set up dashboards based on key metrics.
+To set up dashboards based on key metrics, see [RisingWave open source user-dashboard](https://github.com/risingwavelabs/risingwave/blob/main/grafana/risingwave-user-dashboard.dashboard.py).
