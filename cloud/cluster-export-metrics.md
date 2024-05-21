@@ -5,7 +5,7 @@ description: Export metrics from a RisingWave cloud cluster.
 slug: /export-metrics
 ---
 
-This article describes how to use metrics API to export metrics from a RisingWave cloud cluster to various monitoring systems like Prometheus, DataDog, and InfluxDB. The metrics include all major components such as `etcd`, `frontend`, `compute`, `compactor`, and `meta`, except for those starting with `go.*`.
+This article describes how to use metrics API to export metrics from a RisingWave Cloud cluster to various monitoring systems like Prometheus, DataDog, and InfluxDB. The metrics include all major components such as `etcd`, `frontend`, `compute`, `compactor`, and `meta`, except for those starting with `go.*`.
 
 ## Step 1: Generate API key
 
@@ -61,7 +61,7 @@ scrape_configs:
 
 - Update the `Cloud_HOST` according to the region and Cloud provider of your RisingWave cluster.
 
-- Update the `TENANT_CLUSTER_ID` with the specific cluster ID in your RisingWave environment. For example, if your cluster URL is `rls.risingwave-cloud.com/cluster/168/us-central1/overview/`, replace `TENANT_CLUSTER_ID` with the value `168`.
+- Update the `TENANT_CLUSTER_ID` with the specific cluster ID in your RisingWave environment. For example, if your cluster URL is `risingwave-cloud.com/cluster/168/us-central1/overview/`, replace `TENANT_CLUSTER_ID` with the value `168`.
 
 </TabItem>
 
@@ -85,7 +85,7 @@ instances:
 #### Notes
 
 - Update the `Cloud_HOST` according to the region and Cloud provider of your RisingWave cluster.
-- Update the `TENANT_CLUSTER_ID` with the specific cluster ID in your RisingWave environment. For example, if your cluster URL is `rls.risingwave-cloud.com/cluster/168/us-central1/overview/`, replace `TENANT_CLUSTER_ID` with the value `168`.
+- Update the `TENANT_CLUSTER_ID` with the specific cluster ID in your RisingWave environment. For example, if your cluster URL is `risingwave-cloud.com/cluster/168/us-central1/overview/`, replace `TENANT_CLUSTER_ID` with the value `168`.
 - The limit for the agent is **2000 metrics per instance**. To increase the limit, please contact [DataDog support](https://docs.datadoghq.com/help/).
 
 </TabItem>
@@ -95,7 +95,6 @@ instances:
 To import the metrics to InfluxDB, you need to configure Telegraf first. See instructions on how to [use Telegraf to scrape Prometheus metrics](https://docs.influxdata.com/influxdb/v2/write-data/developer-tools/scrape-prometheus-metrics/#use-telegraf) and the [Prometheus input plugin](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/prometheus/README.md).
 
 In the Telegraf configuration, you need to fill in the Prometheus input section, see [Prometheus](cluster-export-metrics.md?method=Prometheus#step-3-configure-metric-exporters) for details.
-
 
 </TabItem>
 
