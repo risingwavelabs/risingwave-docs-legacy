@@ -1163,10 +1163,25 @@ const sidebars = {
             ]
         },
         {
-          type: "doc",
-          label: "Meta failure",
-          id: "troubleshoot/troubleshoot-meta"
+          type: "category",
+          label: "Node failure",
+          collapsible: true,
+          collapsed: true,
+          items:
+            [
+              {
+                type: "doc",
+                label: "Overview",
+                id: "troubleshoot/troubleshoot-node-failure"
+              },
+              {
+                type: "doc",
+                label: "Meta failure",
+                id: "troubleshoot/troubleshoot-meta"
+              },
+            ]
         },
+        
         {
           type: "doc",
           label: "Recovery failure",
