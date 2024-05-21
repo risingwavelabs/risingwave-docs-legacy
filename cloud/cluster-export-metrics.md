@@ -15,15 +15,15 @@ Generate the API key ID and API key secret in the Cloud Portal. See [Generate an
 
 Get the corresponding `CLOUD_HOST` for your region and Cloud provider from the table below:
 
-    | Region/CloudProvider | CLOUD_HOST |
-    | --- | --- |
-    | useast2/aws | canary-useast2-mgmt.risingwave.cloud |
-    | us-east-1/aws | prod-aws-usea1-mgmt.risingwave.cloud |
-    | us-west-2/aws | prod-aws-uswe2-mgmt.risingwave.cloud |
-    | eu-west-2/aws | prod-aws-euwe2-mgmt.risingwave.cloud |
-    | eu-north-1/aws | prod-aws-euno1-mgmt.risingwave.cloud |
-    | us-central1/gcp | prod-gcp-usce1-mgmt.risingwave.cloud |
-    | europe-west3/gcp | prod-gcp-euwe3-mgmt.risingwave.cloud |
+| Region/CloudProvider | CLOUD_HOST |
+| --- | --- |
+| useast2/aws | canary-useast2-mgmt.risingwave.cloud |
+| us-east-1/aws | prod-aws-usea1-mgmt.risingwave.cloud |
+| us-west-2/aws | prod-aws-uswe2-mgmt.risingwave.cloud |
+| eu-west-2/aws | prod-aws-euwe2-mgmt.risingwave.cloud |
+| eu-north-1/aws | prod-aws-euno1-mgmt.risingwave.cloud |
+| us-central1/gcp | prod-gcp-usce1-mgmt.risingwave.cloud |
+| europe-west3/gcp | prod-gcp-euwe3-mgmt.risingwave.cloud |
 
 ## Step 3: Configure metric exporters
 
