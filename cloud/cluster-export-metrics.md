@@ -25,9 +25,9 @@ Get the corresponding `CLOUD_HOST` for your region and Cloud provider from the t
 | us-central1/gcp | prod-gcp-usce1-mgmt.risingwave.cloud |
 | europe-west3/gcp | prod-gcp-euwe3-mgmt.risingwave.cloud |
 
-## Step 3: Configure metric exporters
+## Step 3: Configure monitoring systems
 
-Choose one of the following methods to export metrics data from RisingWave environment to external monitoring systems.
+Choose one of the following methods to configure monitoring systems.
 
 :::note
 The metrics are formatted according to [Prometheus](https://prometheus.io/docs/concepts/metric_types/) standards. If your monitoring collection mode is compatible with the Prometheus format, refer to the Prometheus section below to configure the collection.
