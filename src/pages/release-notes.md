@@ -59,7 +59,7 @@ This version was released on May 20, 2024.
 #### Cluster configuration changes
 
 - Supports using `ALTER SYSTEM` to set a system-wide default value for a session parameter. [#16062](https://github.com/risingwavelabs/risingwave/pull/16062). See [`ALTER SYSTEM`](docs/current/sql-alter-system/).
-- Supports setting `streaming_rate_limit` to zero. [#16333](https://github.com/risingwavelabs/risingwave/pull/16333). See [View and configure runtime parameters](/docs/current/view-configure-runtime-parameters/).
+- Modifies the meaning of `streaming_rate_limit=0`, which now means pausing the snapshot read stream for backfill, and pausing source read for sources. This statement previously disabled the rate limit within the session. [#16333](https://github.com/risingwavelabs/risingwave/pull/16333). See [View and configure runtime parameters](/docs/current/view-configure-runtime-parameters/).
 - Supports configuring the reserved memory bytes of the compute node by using `RW_RESERVED_MEMORY_BYTES` runtime parameter and `reserved-memory-bytes` startup option.  [#16433](https://github.com/risingwavelabs/risingwave/pull/16433). See [View and configure runtime parameters](/docs/current/view-configure-runtime-parameters/).
 - Introduce new timeout and retry configurations for ObjectStore and deprecate ambiguous timeout configurations. [#16231](https://github.com/risingwavelabs/risingwave/pull/16231).
 
