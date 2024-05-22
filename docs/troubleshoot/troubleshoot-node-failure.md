@@ -15,7 +15,7 @@ When it comes to crafting downtime-sensitive applications, users often have some
 
 3. How can we mitigate the impact of downtime?
 
-In this topic, we will provide answers to these questions.  However, before you continue reading, we suggest that you first explore our [fault tolerance mechanism](/fault-tolerance.md) to gain a better understanding.
+In this topic, we will provide answers to these questions. However, before you continue reading, we suggest that you first explore our [fault tolerance mechanism](/fault-tolerance.md) to gain a better understanding.
 
 ---
 
@@ -58,11 +58,11 @@ Since compaction is an append-only operation and does not modify files in place,
 
 ## Highly-available metadata storage backends
 
-RisingWave supports two types of metadata storage backends: ETCD and relational databases (Postgres by default).
+RisingWave supports two types of metadata storage backends: etcd and relational databases (Postgres by default).
 
-ETCD is designed to be a highly available and consistent key-value storage solution. However, after equipping ETCD in the production environment for a while, we learned that ETCD can be quite demanding for the quality of the disk it operates on. You can find more details about [ETCD's hardware requirements](/deploy/hardware-requirements.md#etcd) in our documentation.
+etcd is designed to be a highly available and consistent key-value storage solution. However, after equipping etcd in the production environment for a while, we learned that etcd can be quite demanding for the quality of the disk it operates on. You can find more details about [etcd's hardware requirements](/deploy/hardware-requirements.md#etcd) in our documentation.
 
-Therefore, we have decided to make RDS the default metadata storage backend starting from version v1.9.0 of RisingWave. Over time, we will gradually deprecate the support for ETCD. This decision is based on the following factors:
+Therefore, we have decided to make RDS the default metadata storage backend starting from version v1.9.0 of RisingWave. Over time, we will gradually deprecate the support for etcd. This decision is based on the following factors:
 
 - RDS (Postgres in particular) is more mature regarding its performance, reliability, and transaction support.
 
