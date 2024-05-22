@@ -9,6 +9,80 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
 
+## v1.9.0
+
+This version was released on May 20, 2024.
+
+### Main changes
+
+#### SQL features
+
+- Query syntax:
+    - Supports non-append-only temporal joins, where the outer side is not required to be append-only. [#16286](https://github.com/risingwavelabs/risingwave/pull/16286). See [Process-time temporal joins](/docs/current/query-syntax-join-clause/#process-time-temporal-joins).
+- SQL commands:
+    - Supports `DISCARD ALL` command for Npgsql compatibility. [#16432](https://github.com/risingwavelabs/risingwave/pull/16432).
+    - Supports creating, dropping, altering, and showing subscriptions. [#14831](https://github.com/risingwavelabs/risingwave/pull/14831).
+    - Supports cursors for subscription queues. [#15180](https://github.com/risingwavelabs/risingwave/pull/15180).
+    - Supports altering stream rate limit for sources and tables with a source. [#16399](https://github.com/risingwavelabs/risingwave/pull/16399). See [`ALTER SOURCE`](/docs/current/sql-alter-source/#set-streaming_rate_limit) and [`ALTER TABLE`](/docs/current/sql-alter-table/#set-streaming_rate_limit).
+    - Supports `RECOVER` command to trigger an ad-hoc recovery. [#16259](https://github.com/risingwavelabs/risingwave/pull/16259). See [`RECOVER`](/docs/current/sql-recover/).
+- SQL functions & operators:
+    - Supports using a single ASCII character as an escape character with the `LIKE` clause. [#16057](https://github.com/risingwavelabs/risingwave/pull/16057).
+    - Supports `jsonb_populate_record()` and `jsonb_populate_recordset()`. [#13421](https://github.com/risingwavelabs/risingwave/pull/13421). See [JSON functions and operators](/docs/current/sql-function-json/).
+- System catalog:
+    - Supports system table `rw_iceberg_files` for displaying the files of an Iceberg source or table. [#16180](https://github.com/risingwavelabs/risingwave/pull/16180). See [RisingWave catalogs](/docs/current/rw_catalog/).
+    - Supports system table `rw_iceberg_snapshot` for listing all snapshots. [#16175](https://github.com/risingwavelabs/risingwave/pull/16175). See [RisingWave catalogs](/docs/current/rw_catalog/).
+
+#### Connectors
+
+- Provides stable support for SQLAlchemy 2.0. [#29](https://github.com/risingwavelabs/sqlalchemy-risingwave/pull/29).
+- Deprecates `s3` connector. [#16337](https://github.com/risingwavelabs/risingwave/pull/16337). See [Ingest data from S3 buckets](/docs/current/ingest-from-s3).
+- Supports generated columns for non-shared CDC tables. [#16522](https://github.com/risingwavelabs/risingwave/pull/16522). See [Generated columns](/docs/current/query-syntax-generated-columns/).
+- Supports time travel for Iceberg sources. [#15866](https://github.com/risingwavelabs/risingwave/pull/15866). See [Ingest data from Apache Iceberg](/docs/current/ingest-from-iceberg/).
+- Blocks sink creation until backfill is completed by default. [#16249](https://github.com/risingwavelabs/risingwave/pull/16249).
+- Supports Kafka connector parameter `properties.request.required.acks`. [#16482](https://github.com/risingwavelabs/risingwave/pull/16482). See [Ingest data from Kafka](/docs/current/ingest-from-kafka/) and [Sink to Kafka](/docs/current/create-sink-kafka/).
+- Adds connector parameter `ssl.mode` for PostgreSQL and Neon source connector. [#15690](https://github.com/risingwavelabs/risingwave/pull/15690). See [Ingest data from PostgreSQL CDC](/docs/current/ingest-from-postgres-cdc/).
+- Adds connector parameter `ssl.mode` for MySQL source connector. [#16579](https://github.com/risingwavelabs/risingwave/pull/16579). See [Ingest data from MySQL CDC](/docs/current/ingest-from-mysql-cdc/).
+- Supports parameters `snapshot.interval` and `snapshot.batch_size` under `WITH` options when creating a table from a CDC source. [#16426](https://github.com/risingwavelabs/risingwave/pull/16426). See [Ingest data from PostgreSQL CDC](/docs/current/ingest-from-postgres-cdc/) and [Ingest data from MySQL CDC](/docs/current/ingest-from-mysql-cdc/).
+- Supports implicitly converting `numeric` types from PostgreSQL sources into `rw_int256` or `varchar`. [#16346](https://github.com/risingwavelabs/risingwave/pull/16346).
+- Supports configuring the timeout of CDC sources. [#16598](https://github.com/risingwavelabs/risingwave/pull/16598). See [Ingest data from PostgreSQL CDC](/docs/current/ingest-from-postgres-cdc/) and [Ingest data from MySQL CDC](/docs/current/ingest-from-mysql-cdc/).
+- Supports `timestamptz.handling.mode` formatting option when creating a source with `PLAIN`, `UPSERT`, or `DEBEZIUM JSON` formats.  [#16265](https://github.com/risingwavelabs/risingwave/pull/16265).
+- Only uses fragment ID as group ID for Kafka sources. [#16111](https://github.com/risingwavelabs/risingwave/pull/16111). See [Ingest data from Kafka](/docs/current/ingest-from-kafka/).
+- Supports cluster URLs for Redis sink connector.  [#16034](https://github.com/risingwavelabs/risingwave/pull/16034). See [Sink to Redis](/docs/current/sink-to-redis).
+- Supports creating Delta sinks with GCS. [#16182](https://github.com/risingwavelabs/risingwave/pull/16182). See [Sink data from RisingWave to Delta Lake](/docs/current/sink-to-delta-lake/).
+- Supports Snowflake sink connector. [#15429](https://github.com/risingwavelabs/risingwave/pull/15429). See [Sink data from RisingWave to Snowflake](/docs/current/sink-to-snowflake/).
+- Supports creating `upsert` type BigQuery sinks. [#15780](https://github.com/risingwavelabs/risingwave/pull/15780). See [Sink to Google BigQuery](/docs/current/sink-to-bigquery).
+
+#### Installation and deployment
+
+- Sets PostgreSQL as the default meta store when deploying with Docker Compose. [#16724](https://github.com/risingwavelabs/risingwave/pull/16724). See [Start RisingWave using Docker Compose](/docs/current/risingwave-docker-compose/#customize-meta-store).
+
+#### Cluster configuration changes
+
+- Supports using `ALTER SYSTEM` to set a system-wide default value for a session parameter. [#16062](https://github.com/risingwavelabs/risingwave/pull/16062). See [`ALTER SYSTEM`](docs/current/sql-alter-system/).
+- Supports setting `streaming_rate_limit` to zero. [#16333](https://github.com/risingwavelabs/risingwave/pull/16333). See [View and configure runtime parameters](/docs/current/view-configure-runtime-parameters/).
+- Supports configuring the reserved memory bytes of the compute node by using `RW_RESERVED_MEMORY_BYTES` runtime parameter and `reserved-memory-bytes` startup option.  [#16433](https://github.com/risingwavelabs/risingwave/pull/16433). See [View and configure runtime parameters](/docs/current/view-configure-runtime-parameters/).
+- Introduce new timeout and retry configurations for ObjectStore and deprecate ambiguous timeout configurations. [#16231](https://github.com/risingwavelabs/risingwave/pull/16231).
+
+#### Fixes
+
+- Properly convert `-inf`, `+inf`, and `nan` types to `null` for JDBC sinks.  [#16230](https://github.com/risingwavelabs/risingwave/pull/16230).
+- Handles sinking `-inf`, `+inf`, and `nan` types for ClickHouse, Doris, and StarRocks sink connectors.  [#15664](https://github.com/risingwavelabs/risingwave/pull/15664).
+- Fixes an issue where `DELETE` events could not be sinked if the primary key is `uuid` type for JDBC sinks.[#16447](https://github.com/risingwavelabs/risingwave/pull/16447).
+- Fixes an issue where `enum` types from PostgreSQL could not be ingested as `varchar` types. [#16423](https://github.com/risingwavelabs/risingwave/pull/16423).
+- Fixes sources with `encode avro` on decimal ingesting. [#16202](https://github.com/risingwavelabs/risingwave/pull/16202).
+- Fixes sources with `encode avro` on bytes/fixed/decimal default value. [#16414](https://github.com/risingwavelabs/risingwave/pull/16414).
+
+#### Assets
+
+- Run this version from Docker:<br/>
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v1.9.0-standalone single_node`
+- [Prebuilt all-in-one library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v1.9.0/risingwave-v1.9.0-x86_64-unknown-linux-all-in-one.tar.gz)
+- [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.9.0.zip)
+- [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.9.0.tar.gz)
+- [risectl - a CLI tool for managing and accessing RisingWave clusters](https://github.com/risingwavelabs/risingwave/releases/download/v1.9.0/risectl-v1.9.0-x86_64-unknown-linux.tar.gz)
+
+See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/release-1.8...release-1.9).
+
 ## v1.8.0
 
 This version was released on April 3, 2024.
@@ -18,48 +92,46 @@ This version was released on April 3, 2024.
 #### SQL features
 
 - Query syntax:
-    - Supports `RANGE` frames in window function calls. [#14416](https://github.com/risingwavelabs/risingwave/pull/14416). See [Window functions (OVER clause)](/docs/current/window-functions/).
+    - Supports `RANGE` frames in window function calls. [#14416](https://github.com/risingwavelabs/risingwave/pull/14416). See [Window functions (OVER clause)](/docs/1.8/window-functions/).
 - SQL commands:
-    - Adds support for embedded Rust UDFs. [#14903](https://github.com/risingwavelabs/risingwave/pull/14903). See [Use UDFs in Rust](/docs/current/udf-rust/).
-    - Adds support for embedded Python UDFs. [#15168](https://github.com/risingwavelabs/risingwave/pull/15168). See [Embedded Python UDFs](/docs/current/udf-python-embedded/).
-    - Supports refreshing the schema of a table created using an external connection to get the latest schema. [#15025](https://github.com/risingwavelabs/risingwave/pull/15025). See [ALTER TABLE](/docs/current/sql-alter-table/#refresh-schema).
-    - Supports refreshing the schema of a source to get the latest schema. [#15541](https://github.com/risingwavelabs/risingwave/pull/15541). See [ALTER SOURCE](/docs/current/sql-alter-source/#refresh-schema).
+    - Adds support for embedded Rust UDFs. [#14903](https://github.com/risingwavelabs/risingwave/pull/14903). See [Use UDFs in Rust](/docs/1.8/udf-rust/).
+    - Adds support for embedded Python UDFs. [#15168](https://github.com/risingwavelabs/risingwave/pull/15168). See [Embedded Python UDFs](/docs/1.8/udf-python-embedded/).
+    - Supports refreshing the schema of a table created using an external connection to get the latest schema. [#15025](https://github.com/risingwavelabs/risingwave/pull/15025). See [ALTER TABLE](/docs/1.8/sql-alter-table/#refresh-schema).
+    - Supports refreshing the schema of a source to get the latest schema. [#15541](https://github.com/risingwavelabs/risingwave/pull/15541). See [ALTER SOURCE](/docs/1.8/sql-alter-source/#refresh-schema).
     - Adds a description column to the system parameters table. [#15113](https://github.com/risingwavelabs/risingwave/pull/15113).
-    - Supports authenticating with OAuth token acquired from the Cloud when creating a user. [#13151](https://github.com/risingwavelabs/risingwave/pull/13151). See [CREATE USER](/docs/current/sql-create-user/) and [ALTER USER](/docs/current/sql-alter-user/).
+    - Supports authenticating with OAuth token acquired from the Cloud when creating a user. [#13151](https://github.com/risingwavelabs/risingwave/pull/13151). See [CREATE USER](/docs/1.8/sql-create-user/) and [ALTER USER](/docs/1.8/sql-alter-user/).
 - SQL functions & operators:
-    - Supports ruby-pg. [#14859](https://github.com/risingwavelabs/risingwave/pull/14859). See [Use RisingWave in your Ruby application](/docs/current/ruby-client-libraries/).
+    - Supports ruby-pg. [#14859](https://github.com/risingwavelabs/risingwave/pull/14859). See [Use RisingWave in your Ruby application](/docs/1.8/ruby-client-libraries/).
     - Supports `VARIADIC` arguments for the functions `format`, `concat_ws`, `jsonb_build_array`, `jsonb_build_object`, `jsonb_extract_path`, `jsonb_extract_path_text`. [#14753](https://github.com/risingwavelabs/risingwave/pull/14753).
     - Supports `concat` function. [#14753](https://github.com/risingwavelabs/risingwave/pull/14753).
 - System catalog:
     - Adds missing columns for  `pg_catalog.pg_index`, `rw_catalog.rw_columns` and `information_schema.columns`, and system view `pg_catalog.pg_partitioned_table`. [#15151](https://github.com/risingwavelabs/risingwave/pull/15151).
     - Supports `pg_catalog.pg_constraint` for DBeaver compatibility. [#15227](https://github.com/risingwavelabs/risingwave/pull/15227).
     - Supports `pg_catalog.pg_stat_get_numscans` for DBeaver. [#15642](https://github.com/risingwavelabs/risingwave/pull/15642).
-    - Supports system table `rw_depend`. [#15385](https://github.com/risingwavelabs/risingwave/pull/15385). See [RisingWave catalogs](/docs/current/rw_catalog/).
-    - Supports `pg_settings` catalog. [#15108](https://github.com/risingwavelabs/risingwave/pull/15108). See [PostgreSQL catalogs](/docs/current/pg-catalogs/).
+    - Supports system table `rw_depend`. [#15385](https://github.com/risingwavelabs/risingwave/pull/15385). See [RisingWave catalogs](/docs/1.8/rw_catalog/).
+    - Supports `pg_settings` catalog. [#15108](https://github.com/risingwavelabs/risingwave/pull/15108). See [PostgreSQL catalogs](/docs/1.8/pg-catalogs/).
 
 #### Connectors
 
 - **Breaking change:** Sinks created from v1.6 and earlier that have `decouple` enabled may cause compatibility issues. Check if you have any sinks with this configuration by using the internal table `rw_sink_decouple` before upgrading to v1.8. [#15613](https://github.com/risingwavelabs/risingwave/pull/15613).
-- Avro tables and sources now require a schema registry during creation. [#15256](https://github.com/risingwavelabs/risingwave/pull/15256). See [Avro](/docs/current/supported-sources-and-formats/#avro).
-- Supports using Karapace when specifying a schema registry when creating a Kafka source. [#15486](https://github.com/risingwavelabs/risingwave/pull/15486). See [Read schemas from Schema Registry](/docs/current/ingest-from-kafka/#read-schemas-from-schema-registry).
-- Supports Protobuf data format for NATS JetStream source. [#15378](https://github.com/risingwavelabs/risingwave/pull/15378). See [Ingest data from NATS JetStream](/docs/current/ingest-from-nats/).
-- Supports `FORMAT PLAIN ENCODE BYTES` for NATS JetStream source. [#15806](https://github.com/risingwavelabs/risingwave/pull/15806). See [Ingest data from NATS JetStream](/docs/current/ingest-from-nats/).
-- Supports Confluent schema registry for Kafka sinks when using `FORMAT PLAIN ENCODE PROTOBUF`. [#15546](https://github.com/risingwavelabs/risingwave/pull/15546). See [Sink to Kafka](/docs/current/create-sink-kafka/#protobuf-specific-parameters).
+- Avro tables and sources now require a schema registry during creation. [#15256](https://github.com/risingwavelabs/risingwave/pull/15256). See [Avro](/docs/1.8/supported-sources-and-formats/#avro).
+- Supports using Karapace when specifying a schema registry when creating a Kafka source. [#15486](https://github.com/risingwavelabs/risingwave/pull/15486). See [Read schemas from Schema Registry](/docs/1.8/ingest-from-kafka/#read-schemas-from-schema-registry).
+- Supports Protobuf data format for NATS JetStream source. [#15378](https://github.com/risingwavelabs/risingwave/pull/15378). See [Ingest data from NATS JetStream](/docs/1.8/ingest-from-nats/).
+- Supports `FORMAT PLAIN ENCODE BYTES` for NATS JetStream source. [#15806](https://github.com/risingwavelabs/risingwave/pull/15806). See [Ingest data from NATS JetStream](/docs/1.8/ingest-from-nats/).
+- Supports Confluent schema registry for Kafka sinks when using `FORMAT PLAIN ENCODE PROTOBUF`. [#15546](https://github.com/risingwavelabs/risingwave/pull/15546). See [Sink to Kafka](/docs/1.8/create-sink-kafka/#protobuf-specific-parameters).
 - Adds Kafka sink and source parameter `enable.ssl.certificate.verification`. [#15073](https://github.com/risingwavelabs/risingwave/pull/15073).
-- Supports `max_batch_rows` and  `request_timeout` parameters for Cassandra and ScyllaDB sources. [#15516](https://github.com/risingwavelabs/risingwave/pull/15516). See [Sink data from RisingWave to Cassandra or ScyllaDB](/docs/current/sink-to-cassandra/).
-- Adds built-in MongoDB CDC source connector.  [#14966](https://github.com/risingwavelabs/risingwave/pull/14966). See [Ingest data from MongoDB CDC](/docs/current/ingest-from-mongodb-cdc/).
-- Adds `ignore_option` parameter for sources created using Debezium format. [#15304](https://github.com/risingwavelabs/risingwave/pull/15304). See [Supported sources and formats](/docs/current/supported-sources-and-formats/).
-- Supports batch read from Iceberg source. [#15214](https://github.com/risingwavelabs/risingwave/pull/15214). See [Ingest data from Apache Iceberg](/docs/current/ingest-from-iceberg/).
-- Supports automatically deriving columns from Iceberg source. [#15415](https://github.com/risingwavelabs/risingwave/pull/15415). See [Ingest data from Apache Iceberg](/docs/current/ingest-from-iceberg/).
-- Supports JDBC catalog for Iceberg sources. [#15551](https://github.com/risingwavelabs/risingwave/pull/15551). See [Ingest data from Apache Iceberg](/docs/current/ingest-from-iceberg/).
-- Adds JDBC and Hive catalogs for Iceberg sink. [#14885](https://github.com/risingwavelabs/risingwave/pull/14885). See [Sink data from RisingWave to Apache Iceberg](/docs/current/sink-to-iceberg/).
+- Supports `max_batch_rows` and  `request_timeout` parameters for Cassandra and ScyllaDB sources. [#15516](https://github.com/risingwavelabs/risingwave/pull/15516). See [Sink data from RisingWave to Cassandra or ScyllaDB](/docs/1.8/sink-to-cassandra/).
+- Adds built-in MongoDB CDC source connector.  [#14966](https://github.com/risingwavelabs/risingwave/pull/14966). See [Ingest data from MongoDB CDC](/docs/1.8/ingest-from-mongodb-cdc/).
+- Adds `ignore_option` parameter for sources created using Debezium format. [#15304](https://github.com/risingwavelabs/risingwave/pull/15304). See [Supported sources and formats](/docs/1.8/supported-sources-and-formats/).
+- Supports batch read from Iceberg source. [#15214](https://github.com/risingwavelabs/risingwave/pull/15214). See [Ingest data from Apache Iceberg](/docs/1.8/ingest-from-iceberg/).
+- Supports automatically deriving columns from Iceberg source. [#15415](https://github.com/risingwavelabs/risingwave/pull/15415). See [Ingest data from Apache Iceberg](/docs/1.8/ingest-from-iceberg/).
+- Supports JDBC catalog for Iceberg sources. [#15551](https://github.com/risingwavelabs/risingwave/pull/15551). See [Ingest data from Apache Iceberg](/docs/1.8/ingest-from-iceberg/).
+- Adds JDBC and Hive catalogs for Iceberg sink. [#14885](https://github.com/risingwavelabs/risingwave/pull/14885). See [Sink data from RisingWave to Apache Iceberg](/docs/1.8/sink-to-iceberg/).
 
 #### Installation and deployment
 
 - Supports tab-completion for `SET` and `ALTER SYSTEM SET` commands in `psql` client. [#15123](https://github.com/risingwavelabs/risingwave/pull/15123).
-- Supports SQL meta store. [#16019](https://github.com/risingwavelabs/risingwave/pull/16019). See [Start RisingWave using Docker Compose](/docs/current/risingwave-docker-compose/#customize-meta-store).
-
-#### Cluster configuration changes
+- Supports SQL meta store. [#16019](https://github.com/risingwavelabs/risingwave/pull/16019). See [Start RisingWave using Docker Compose](/docs/1.8/risingwave-docker-compose/#customize-meta-store).
 
 #### Bug fixes
 
