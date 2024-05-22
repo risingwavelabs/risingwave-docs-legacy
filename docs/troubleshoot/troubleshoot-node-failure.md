@@ -32,7 +32,7 @@ If RisingWave operates on Kubernetes (which we recommend for production), and a 
 
 2. The time for the new compute node to reconnect to the meta node and resume paused jobs.
 
-It's important to mention that the duration of phase one is not under RisingWave's control and may vary based on users' Kubernetes instances, including their configuration and resource allocation. These are areas that are optimized by our RisingWave Cloud service.
+It's important to mention that the duration of phase one is not under RisingWave's control and may vary based on your Kubernetes instances, including your configuration and resource allocation. These are optimized by our RisingWave Cloud service.
 
 On the other hand, phase two is expected to be relatively short, typically lasting only a few seconds. This is due to RisingWave's storage-decoupled architecture, which eliminates the need for data movement between the old and new compute nodes. Only lightweight metadata-level operations take place during this phase.
 
