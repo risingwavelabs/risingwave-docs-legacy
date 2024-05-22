@@ -5,7 +5,7 @@ description: Export metrics from a RisingWave cloud cluster.
 slug: /export-metrics
 ---
 
-This article describes how to use metrics API to export metrics from a RisingWave Cloud cluster to various monitoring systems like Prometheus, DataDog, and InfluxDB. The metrics include all major components such as `etcd`, `frontend`, `compute`, `compactor`, and `meta`, except for those starting with `go.*`.
+This article describes how to use metrics API to export metrics from a RisingWave Cloud cluster to various monitoring systems like Prometheus, DataDog, and InfluxDB. The metrics include all major components such as `etcd`, `frontend`, `compute`, `compactor`, and `meta`.
 
 ## Step 1: Generate API key
 
@@ -48,7 +48,7 @@ scrape_configs:
   static_configs:
   - targets: 
     - {CLOUD_HOST}
-  metrics_path: /api/v1/tenant/{TENANTE_CLUSTER_ID}/metrics
+  metrics_path: /api/v1/tenant/{CLUSTER_ID}/metrics
   basic_auth:
     username: {API_KEY}
     password: {API_SECRET}
@@ -61,7 +61,7 @@ scrape_configs:
 
 - Update the `Cloud_HOST` according to the region and Cloud provider of your RisingWave cluster.
 
-- Update the `TENANT_CLUSTER_ID` with the specific cluster ID in your RisingWave environment. For example, if your cluster URL is `risingwave-cloud.com/cluster/168/us-central1/overview/`, replace `TENANT_CLUSTER_ID` with the value `168`.
+- Update the `CLUSTER_ID` with the specific cluster ID in your RisingWave environment. For example, if your cluster URL is `risingwave-cloud.com/cluster/168/us-central1/overview/`, replace `CLUSTER_ID` with the value `168`.
 
 </TabItem>
 
@@ -73,7 +73,7 @@ Next, edit the `openmetrics.d/conf.yaml` file at the root of your [Agent conf
 
 ```yaml
 instances:
-- openmetrics_endpoint: http://{CLOUD_HOST}/api/v1/tenant/{TENANTE_CLUSTER_ID}/metrics
+- openmetrics_endpoint: http://{CLOUD_HOST}/api/v1/tenant/{CLUSTER_ID}/metrics
   namespace: risingwave
   metrics:
   - .*
@@ -85,7 +85,7 @@ instances:
 #### Notes
 
 - Update the `Cloud_HOST` according to the region and Cloud provider of your RisingWave cluster.
-- Update the `TENANT_CLUSTER_ID` with the specific cluster ID in your RisingWave environment. For example, if your cluster URL is `risingwave-cloud.com/cluster/168/us-central1/overview/`, replace `TENANT_CLUSTER_ID` with the value `168`.
+- Update the `CLUSTER_ID` with the specific cluster ID in your RisingWave environment. For example, if your cluster URL is `risingwave-cloud.com/cluster/168/us-central1/overview/`, replace `CLUSTER_ID` with the value `168`.
 - The limit for the agent is **2000 metrics per instance**. To increase the limit, please contact [DataDog support](https://docs.datadoghq.com/help/).
 
 </TabItem>
