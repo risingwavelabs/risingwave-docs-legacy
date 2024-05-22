@@ -1,18 +1,18 @@
 ---
-id: sql-subscription
-title: SUBSCRIPTION
-description: Introduce subscriptions and subscription cursors.
-slug: /sql-subscription
+id: subscription
+title: Subscription
+description: Introduce subscription and subscription cursors.
+slug: /subscription
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-subscription/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/subscription/" />
 </head>
 
 Subscription is used to pull data change records for a specific table or materialized view (MV). The data from a subscription includes both the existing data in the table at the time of subscription creation and the incremental change records in the table after the subscription is created. You can use the method of creating a subscription cursor to retrieve the full data set or the incremental data set after a specified starting point.
 
 ## Create subscription
 
-Use the syntax to create subscription.
+Use the syntax below to create subscription.
 
 ```sql
 CREATE SUBSCRIPTION <subscription_name> FROM <table_or_mv_name> WITH (

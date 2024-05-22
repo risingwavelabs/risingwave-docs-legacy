@@ -506,6 +506,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              id: "transform/subscription",
+              label: "Subscription",
+            },
+            {
+              type: "doc",
               id: "transform/ad-hoc-queries",
               label: "Ad-hoc queries",
             },
