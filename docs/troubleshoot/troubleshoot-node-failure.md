@@ -74,4 +74,4 @@ Therefore, we have decided to make RDS the default metadata storage backend star
 
 We understand that terms like "zero downtime" and "high availability" are commonly used by various cloud service vendors. However, their actual meanings can differ significantly based on different assumptions and approaches.
 
-To ensure that your specific requirements for "zero downtime" and "high availability" are met, we encourage you to join our Slack channel and reach out to our support team. By discussing your needs in detail, we can customize the RisingWave Cloud service to suit your specific requirements.
+To ensure that your specific requirements for "zero downtime" and "high availability" are met, we encourage you to join our [Slack channel](https://www.risingwave.com/slack) and reach out to our [support team](mailto:cloud-support@risingwave-labs.com). By discussing your needs in detail, we can customize the RisingWave Cloud service to suit your specific requirements.
