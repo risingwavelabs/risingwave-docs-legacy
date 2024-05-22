@@ -26,7 +26,6 @@ This version was released on May 20, 2024.
     - Supports altering stream rate limit for sources and tables with a source. [#16399](https://github.com/risingwavelabs/risingwave/pull/16399). See [`ALTER SOURCE`](/docs/current/sql-alter-source/#set-streaming_rate_limit) and [`ALTER TABLE`](/docs/current/sql-alter-table/#set-streaming_rate_limit).
     - Supports `RECOVER` command to trigger an ad-hoc recovery. [#16259](https://github.com/risingwavelabs/risingwave/pull/16259). See [`RECOVER`](/docs/current/sql-recover/).
 - SQL functions & operators:
-    - Supports using a single ASCII character as an escape character with the `LIKE` clause. [#16057](https://github.com/risingwavelabs/risingwave/pull/16057).
     - Supports `jsonb_populate_record()` and `jsonb_populate_recordset()`. [#13421](https://github.com/risingwavelabs/risingwave/pull/13421). See [JSON functions and operators](/docs/current/sql-function-json/).
 - System catalog:
     - Supports system table `rw_iceberg_files` for displaying the files of an Iceberg source or table. [#16180](https://github.com/risingwavelabs/risingwave/pull/16180). See [RisingWave catalogs](/docs/current/rw_catalog/).
