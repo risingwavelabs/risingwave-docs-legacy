@@ -1,7 +1,7 @@
 ---
 id: sql-subscription
 title: SUBSCRIPTION
-description: Subscription.
+description: Introduce subscriptions and subscription cursors.
 slug: /sql-subscription
 ---
 <head>
