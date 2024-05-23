@@ -10,7 +10,7 @@ slug: /subscription
 
 Subscription is used to pull data change records for a specific table or materialized view (MV). The data from a subscription includes both the existing data in the table at the time of subscription creation and the incremental change records in the table after the subscription is created. You can use the method of creating a subscription cursor to retrieve the full data set or the incremental data set after a specified starting point.
 
-This feature aims to offer users with the flexibility to monitor all data changes without relying on external event stores like Kafka. Compared to the Kafka sink or other event store sinks, subscription requires fewer component and thus, less maintenance.
+This feature allows you to monitor all data changes without relying on external event stores like Kafka. Compared to the Kafka sink or other event store sinks, subscription requires fewer component and thus, less maintenance.
 
 ## Create subscription
 
@@ -140,9 +140,9 @@ fetch next from cur2;
 (1 row)
 ```
 
-## Subscribing via Postgres Drivers
+## Subscribing via Postgres driver
 
-No extra dependencies other than [the Postgres driver](https://docs.risingwave.com/docs/dev/client-libraries-overview/) is required to use this feature.
+For this feature, you only need to use [the Postgres driver](https://docs.risingwave.com/docs/dev/client-libraries-overview/), and no extra dependencies are required.
 
 Here’s an example using Python and [psycopg2](https://pypi.org/project/psycopg2/).
 
@@ -204,7 +204,9 @@ The persistent nature of subscriptions allows the subscriber to resume from a sp
 
 ### Persisting the consumption progress
 
-In order to achieve exactly-once delivery, it’s required to periodically persist the timestamp in storage. Using RisingWave as the store is recommended, as no extra component is needed. First, we need to create a table for storing the progress.
+To achieve exactly-once delivery, it’s required to periodically persist the timestamp in storage. We recommend using RisingWave as the store, as no extra component is needed.
+
+First, we need to create a table for storing the progress.
 
 ```sql
 CREATE TABLE IF NOT EXISTS subscription_progress (
@@ -258,11 +260,9 @@ with conn.cursor() as cur:
             update_progress(conn, sub_name, last_progress)
 ```
 
-## Use cases
+## Use case
 
-Potential use cases for subscriptions include:
+Potential use cases for subscriptions are as follows. If you have explored more use cases, feel free to share them with us in our [Slack channel](https://www.risingwave.com/slack).
 
 - **Real-time alerting/notification:** Subscribers can employ sophisticated alerting rules to detect abnormal events and notify downstream applications.
-- **Event-Driven Architectures:** Develop event-driven systems that react to changes based on specific business logic, such as synchronizing data to microservices.
-
-We welcome you to share more use cases with us in our Slack community!
+- **Event-driven architectures:** Develop event-driven systems that react to changes based on specific business logic, such as synchronizing data to microservices.
