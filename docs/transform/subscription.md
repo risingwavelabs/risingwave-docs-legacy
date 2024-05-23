@@ -10,6 +10,8 @@ slug: /subscription
 
 Subscription is used to pull data change records for a specific table or materialized view (MV). The data from a subscription includes both the existing data in the table at the time of subscription creation and the incremental change records in the table after the subscription is created. You can use the method of creating a subscription cursor to retrieve the full data set or the incremental data set after a specified starting point.
 
+This feature aims to offer users with the flexibility to monitor all data changes without relying on external event stores like Kafka. Compared to the Kafka sink or other event store sinks, subscription requires fewer component and thus, less maintenance.
+
 ## Create subscription
 
 Use the syntax below to create subscription.
@@ -137,3 +139,130 @@ fetch next from cur2;
      1 |     1 |    10 |     3 | 1715669376304
 (1 row)
 ```
+
+## Subscribing via Postgres Drivers
+
+No extra dependencies other than [the Postgres driver](https://docs.risingwave.com/docs/dev/client-libraries-overview/) is required to use this feature.
+
+Here’s an example using Python and [psycopg2](https://pypi.org/project/psycopg2/).
+
+```python
+import psycopg2
+import time
+
+def main():
+    # Connect to the PostgreSQL database
+    conn = psycopg2.connect(
+        host="localhost",
+        port="4566",
+        user="root",
+        database="dev"
+    )
+
+    try:
+        # Create a cursor object
+        cur = conn.cursor()
+
+        # Declare a cursor for the subscription
+        cur.execute("DECLARE cur SUBSCRIPTION CURSOR FOR sub_users;")
+
+        while True:
+            # Fetch the next row from the cursor
+            cur.execute("FETCH NEXT FROM cur;")
+            row = cur.fetchone()
+
+            if row is None:
+                # Sleep for 1 second if no row is fetched
+                time.sleep(1)
+                continue
+
+						# Replace with your event handling logic
+            print("Row fetched:", row)
+
+    finally:
+        # Close the cursor and connection
+        print("Terminated")
+        cur.close()
+        conn.close()
+
+if __name__ == "__main__":
+    main()
+```
+
+Example output:
+
+```python
+Row fetched: (1, 'Alice', 30, 1, 1716434906890)
+Row fetched: (2, 'Bob', 25, 1, 1716434909889)
+Row fetched: (3, 'Charlie', 35, 1, 1716434912889)
+Row fetched: (4, 'Diana', 28, 1, 1716434920889)
+```
+
+## Exactly-once delivery
+
+The persistent nature of subscriptions allows the subscriber to resume from a specific point in time (`rw_timestamp`) without data loss after a failure recovery. We also guarantee no duplicates in subscriptions, thus ensuring exactly-once delivery.
+
+### Persisting the consumption progress
+
+In order to achieve exactly-once delivery, it’s required to periodically persist the timestamp in storage. Using RisingWave as the store is recommended, as no extra component is needed. First, we need to create a table for storing the progress.
+
+```sql
+CREATE TABLE IF NOT EXISTS subscription_progress (
+    sub_name VARCHAR PRIMARY KEY,
+    progress BIGINT
+);
+```
+
+Here's an example python code for retrieving and updating the consumption progress:
+
+```python
+def get_last_progress(conn, sub_name):
+    with conn.cursor() as cur:
+        cur.execute("SELECT progress FROM subscription_progress WHERE sub_name = %s", (sub_name,))
+        result = cur.fetchone()
+        return result[0] if result else None
+
+def update_progress(conn, sub_name, progress):
+    with conn.cursor() as cur:
+        cur.execute("""
+            INSERT INTO subscription_progress (sub_name, progress)
+            VALUES (%s, %s)
+            ON CONFLICT (sub_name) DO UPDATE SET progress = %s
+        """, (sub_name, progress, progress))
+        cur.execute("FLUSH")
+        conn.commit()
+```
+
+The client needs to retrieve the last progress during bootstrapping and periodically store the progress.
+
+```python
+# Fetch the last progress from subscription_progress table
+last_progress = get_last_progress(conn, sub_name)
+
+with conn.cursor() as cur:
+    if last_progress is not None:
+        cur.execute(
+            "DECLARE cur SUBSCRIPTION CURSOR FOR {} SINCE {}".format(sub_name, last_progress))
+    else:
+        cur.execute(
+            "DECLARE cur SUBSCRIPTION CURSOR FOR {};".format(sub_name))
+
+    while True:
+        cur.execute("FETCH NEXT FROM cur")
+        row = cur.fetchone()
+        last_progress = row[0]  # 'rw_timestamp' is the progress indicator
+
+        ...
+        
+        if trigger_update():
+            update_progress(conn, sub_name, last_progress)
+```
+
+## Use cases
+
+Potential use cases for subscriptions include:
+
+- **Real-time alerting/notification:** Subscribers can employ sophisticated alerting rules to detect abnormal events and notify downstream applications.
+- **Event-Driven Architectures:** Develop event-driven systems that react to changes based on specific business logic, such as synchronizing data to microservices.
+
+We welcome you to share more use cases with us in our Slack community!
