@@ -43,9 +43,9 @@ WITH (
 | bigquery.project | Required. The BigQuery project ID. |
 | bigquery.dataset | Required. The BigQuery dataset ID. |
 | bigquery.table | Required. The BigQuery table you want to sink to. |
-| aws.credentials.access_key_id | Conditional. The access key of the S3 file. This must be specified if sinking to an S3 file. |
-| aws.credentials.secret_access_key | Conditional. The secret access key of the S3 file. This must be specified if sinking to an S3 file.|
-| region | Conditional. The service region of the S3 file. This must be specified if sinking to an S3 file. |
+| aws.credentials.access_key_id | Optional. The access key of the S3 file. This must be specified if sinking to an S3 file. |
+| aws.credentials.secret_access_key | Optional. The secret access key of the S3 file. This must be specified if sinking to an S3 file.|
+| region | Optional. The service region of the S3 file. This must be specified if sinking to an S3 file. |
 
 ## Examples
 
