@@ -62,9 +62,9 @@ For a table with primary key constraints, if a new data record with an existing 
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp.millis.| Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
 |auth.token | Optional. A token for auth. If both `auth.token` and `oauth` are set, only `oauth` authorization is effective.|
-|oauth.issuer.url | Conditional. The issuer url for OAuth2. This field must be filled if other `oauth` fields are specified. |
-|oauth.credentials.url | Conditional. The path for credential files, starts with `file://`. This field must be filled if other `oauth` fields are specified.|
-|oauth.audience | Conditional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.|
+|oauth.issuer.url | Optional. The issuer url for OAuth2. This field must be filled if other `oauth` fields are specified. |
+|oauth.credentials.url | Optional. The path for credential files, starts with `file://`. This field must be filled if other `oauth` fields are specified.|
+|oauth.audience | Optional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.|
 |oauth.scope | Optional. The scope for OAuth2. |
 
 ### Other parameters
