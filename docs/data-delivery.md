@@ -122,7 +122,9 @@ dev=> select sink_id, is_decouple from rw_sink_decouple;
 
 ## Upsert sinks and primary keys
 
-For each sink, you can specify the data format. All sinks supports the `upsert` and `append-only` formats while Kafka also supports the `debezium` format. When creating an `upsert` sink, note whether or not you need to specify the primary key in the following situations.
+For each sink, you can specify the data format. All sinks support the `upsert` and `append-only` formats while Kafka also supports the `debezium` format. In the `upsert` sink, a non-null value updates the last value for the same key or inserts a new value if the key doesn't exist. A NULL value indicates the deletion of the corresponding key.
+
+When creating an `upsert` sink, note whether or not you need to specify the primary key in the following situations.
 
 - If the downstream system supports primary keys and the table in the downstream system has a primary key, you must specify the primary key with the `primary_key` field when creating an upsert JDBC sink.
 
