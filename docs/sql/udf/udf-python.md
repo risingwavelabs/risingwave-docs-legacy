@@ -11,7 +11,7 @@ description: Define your own functions with the help of the RisingWave UDF API f
 This article provides a step-by-step guide for installing the RisingWave UDF API, defining functions in a Python file, starting the UDF server, and declaring and using UDFs in RisingWave.
 
 :::note
-The Python UDF SDK has been updated since version 1.9. If you're currently using RisingWave 1.1.0, we strongly encourage you to update to the latest version. We'll soon be adding a migration guide to help you with the update process. While older versions are still supported, please note that they may be deprecated in future versions. 
+The Python UDF SDK has been updated since version 1.9. If you're currently using RisingWave 1.10, we strongly encourage you to update to the latest version. Older versions are still supported.
 :::
 
 ## Prerequisites
