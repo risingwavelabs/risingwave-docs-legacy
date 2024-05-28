@@ -14,7 +14,7 @@ src={require('./images/sources.png').default}
 alt="Sources page"
 />
 
-<grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -22,29 +22,29 @@ alt="Sources page"
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
-<card
+<OutlinedCard
 title="Create a source"
 content="Create a source in the database to read external data."
 cloud="create-a-source"
 style={{height: "80%"}}
 />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
-<card
+<OutlinedCard
 title="Drop a source"
 content="If you no longer require data from a source, drop the source connection to stop data consumption."
 cloud="drop-a-source"
 style={{height: "80%"}}
 />
 
-</grid>
+</ResponsiveGrid>
 
-</grid>
+</ResponsiveGrid>
 
 ## Check source details
 

@@ -4,6 +4,7 @@ title: Sink to Kafka
 description: Sink data from RisingWave to Kafka topics.
 slug: /create-sink-kafka
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-sink-kafka/" />
 </head>
@@ -15,7 +16,7 @@ A sink is an external target that you can send data to. To stream data out of Ri
 :::tip Guided setup
 RisingWave Cloud provides an intuitive guided setup for creating a Kafka sink. For more information, see [Create a sink using guided setup](/cloud/create-a-sink/#using-guided-setup) in the RisingWave Cloud documentation.
 
-<lightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
+<LightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
 :::
 
 ## Syntax
@@ -43,39 +44,39 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 All `WITH` options are required unless explicitly mentioned as optional.
 
-|Parameter or clause|Description|
-|---|---|
-|sink_name| Name of the sink to be created.|
-|sink_from| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or a SELECT query must be specified.|
-|AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
-|`connector`| Sink connector type must be `'kafka'` for Kafka sink. |
-|`properties.bootstrap.server`|Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas. |
-|`topic`|Address of the Kafka topic. One sink can only correspond to one topic.|
-|`primary_key`| Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. This field is optional if creating a `PLAIN` sink, but required if creating a `DEBEZIUM` or `UPSERT` sink.|
+| Parameter or clause           | Description                                                                                                                                                                                                         |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| sink_name                     | Name of the sink to be created.                                                                                                                                                                                     |
+| sink_from                     | A clause that specifies the direct source from which data will be output. _sink_from_ can be a materialized view or a table. Either this clause or a SELECT query must be specified.                                |
+| AS select_query               | A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command. |
+| `connector`                   | Sink connector type must be `'kafka'` for Kafka sink.                                                                                                                                                               |
+| `properties.bootstrap.server` | Address of the Kafka broker. Format: `‘ip:port’`. If there are multiple brokers, separate them with commas.                                                                                                         |
+| `topic`                       | Address of the Kafka topic. One sink can only correspond to one topic.                                                                                                                                              |
+| `primary_key`                 | Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. This field is optional if creating a `PLAIN` sink, but required if creating a `DEBEZIUM` or `UPSERT` sink.                   |
 
 ## Additional Kafka parameters
 
 When creating a Kafka sink in RisingWave, you can specify the following Kafka-specific parameters. To set the parameter, add the RisingWave equivalent of the Kafka parameter as a `WITH` option. For additional details on these parameters, see the [Configuration properties](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md).
 
-| Kafka parameter name | RisingWave parameter name | Type |
-|----------------------|---------------------------|------|
-|allow.auto.create.topics|properties.allow.auto.create.topics|bool|
-|batch.num.messages |properties.batch.num.messages|int|
-|batch.size |properties.batch.size| int|
-|client.id|properties.client.id| string |
-|enable.idempotence |properties.enable.idempotence |bool |
-|enable.ssl.certificate.verification|properties.enable.ssl.certificate.verification|bool|
-|max.in.flight.requests.per.connection| properties.max.in.flight.requests.per.connection| int |
-|message.max.bytes | properties.message.max.bytes | int |
-|message.send.max.retries |properties.message.send.max.retries| int|
-|message.timeout.ms| properties.message.timeout.ms| int |
-|queue.buffering.max.kbytes |properties.queue.buffering.max.kbytes| int|
-|queue.buffering.max.messages |properties.queue.buffering.max.messages |int|
-|queue.buffering.max.ms |properties.queue.buffering.max.ms |float|
-|request.required.acks| properties.request.required.acks| int |
-|retry.backoff.ms |properties.retry.backoff.ms| int|
-|receive.message.max.bytes | properties.receive.message.max.bytes | int |
-|ssl.endpoint.identification.algorithm | properties.ssl.endpoint.identification.algorithm | str |
+| Kafka parameter name                  | RisingWave parameter name                        | Type   |
+| ------------------------------------- | ------------------------------------------------ | ------ |
+| allow.auto.create.topics              | properties.allow.auto.create.topics              | bool   |
+| batch.num.messages                    | properties.batch.num.messages                    | int    |
+| batch.size                            | properties.batch.size                            | int    |
+| client.id                             | properties.client.id                             | string |
+| enable.idempotence                    | properties.enable.idempotence                    | bool   |
+| enable.ssl.certificate.verification   | properties.enable.ssl.certificate.verification   | bool   |
+| max.in.flight.requests.per.connection | properties.max.in.flight.requests.per.connection | int    |
+| message.max.bytes                     | properties.message.max.bytes                     | int    |
+| message.send.max.retries              | properties.message.send.max.retries              | int    |
+| message.timeout.ms                    | properties.message.timeout.ms                    | int    |
+| queue.buffering.max.kbytes            | properties.queue.buffering.max.kbytes            | int    |
+| queue.buffering.max.messages          | properties.queue.buffering.max.messages          | int    |
+| queue.buffering.max.ms                | properties.queue.buffering.max.ms                | float  |
+| request.required.acks                 | properties.request.required.acks                 | int    |
+| retry.backoff.ms                      | properties.retry.backoff.ms                      | int    |
+| receive.message.max.bytes             | properties.receive.message.max.bytes             | int    |
+| ssl.endpoint.identification.algorithm | properties.ssl.endpoint.identification.algorithm | str    |
 
 :::note
 Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
@@ -87,26 +88,26 @@ Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the v
 These options should be set in `FORMAT data_format ENCODE data_encode (key = 'value')`, instead of the `WITH` clause
 :::
 
-|Field|Notes|
-|-----|-----|
-|data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
-|data_encode| Data encode. Supported encodes: `JSON`, `AVRO`, and `PROTOBUF`. For `AVRO` encode, only `UPSERT AVRO` sinks are supported. For `PROTOBUF` encode, only `PLAIN PROTOBUF` sinks are supported.|
-|force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
-|timestamptz.handling.mode|Controls the timestamptz output format. This parameter specifically applies to append-only or upsert sinks using JSON encoding. <br/> - If omitted, the output format of timestamptz is `2023-11-11T18:30:09.453000Z` which includes the UTC suffix `Z`. <br/> - When `utc_without_suffix` is specified, the format is changed to `2023-11-11 18:30:09.453000`.|
-|schemas.enable| Only configurable for upsert JSON sinks. By default, this value is `false` for upsert JSON sinks and `true` for debezium `JSON` sinks. If `true`, RisingWave will sink the data with the schema to the Kafka sink. Note that this is not referring to a schema registry containing a JSON schema, but rather schema formats defined using [Kafka Connect](https://www.confluent.io/blog/kafka-connect-deep-dive-converters-serialization-explained/#json-schemas).|
+| Field                     | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| data_format               | Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).                                                                 |
+| data_encode               | Data encode. Supported encodes: `JSON`, `AVRO`, and `PROTOBUF`. For `AVRO` encode, only `UPSERT AVRO` sinks are supported. For `PROTOBUF` encode, only `PLAIN PROTOBUF` sinks are supported.                                                                                                                                                                                                                                                                       |
+| force_append_only         | If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.                                                                                                                                                                                                                                                                                                                                                                      |
+| timestamptz.handling.mode | Controls the timestamptz output format. This parameter specifically applies to append-only or upsert sinks using JSON encoding. <br/> - If omitted, the output format of timestamptz is `2023-11-11T18:30:09.453000Z` which includes the UTC suffix `Z`. <br/> - When `utc_without_suffix` is specified, the format is changed to `2023-11-11 18:30:09.453000`.                                                                                                    |
+| schemas.enable            | Only configurable for upsert JSON sinks. By default, this value is `false` for upsert JSON sinks and `true` for debezium `JSON` sinks. If `true`, RisingWave will sink the data with the schema to the Kafka sink. Note that this is not referring to a schema registry containing a JSON schema, but rather schema formats defined using [Kafka Connect](https://www.confluent.io/blog/kafka-connect-deep-dive-converters-serialization-explained/#json-schemas). |
 
 ### Avro specific parameters
 
 When creating an upsert Avro sink, the following options can be used following `FORMAT UPSERT ENCODE AVRO`.
 
-|Field|Notes|
-|-----|-----|
-|schema.registry| Required. The address of the schema registry. |
-|schema.registry.username| Optional. The user name used to access the schema registry. |
-|schema.registry.password| Optional. The password associated with the user name. |
-|schema.registry.name.strategy| Optional. Accepted options include `topic_name_strategy` (default), `record_name_strategy`, and `topic_record_name_strategy`.|
-|key.message| Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`. |
-|message| Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`.|
+| Field                         | Notes                                                                                                                         |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| schema.registry               | Required. The address of the schema registry.                                                                                 |
+| schema.registry.username      | Optional. The user name used to access the schema registry.                                                                   |
+| schema.registry.password      | Optional. The password associated with the user name.                                                                         |
+| schema.registry.name.strategy | Optional. Accepted options include `topic_name_strategy` (default), `record_name_strategy`, and `topic_record_name_strategy`. |
+| key.message                   | Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`.                 |
+| message                       | Required if `schema.registry.name.strategy` is set to `record_name_strategy` or `topic_record_name_strategy`.                 |
 
 Syntax:
 
@@ -126,14 +127,14 @@ ENCODE AVRO (
 
 When creating an append-only Protobuf sink, the following options can be used following `FORMAT PLAIN ENCODE PROTOBUF`.
 
-|Field|Notes|
-|-----|-----|
-|message| Required. Message name of the main Message in the schema definition. . |
-|schema.location| Required if `schema.registry` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The schema location. This can be in either `file://`, `http://`, `https://` format. |
-|schema.registry| Required if `schema.location` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The address of the schema registry. |
-|schema.registry.username| Optional. The user name used to access the schema registry. |
-|schema.registry.password| Optional. The password associated with the user name. |
-|schema.registry.name.strategy| Optional. Accepted options include `topic_name_strategy` (default), `record_name_strategy`, and `topic_record_name_strategy`.|
+| Field                         | Notes                                                                                                                                                                                                  |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| message                       | Required. Message name of the main Message in the schema definition. .                                                                                                                                 |
+| schema.location               | Required if `schema.registry` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The schema location. This can be in either `file://`, `http://`, `https://` format. |
+| schema.registry               | Required if `schema.location` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The address of the schema registry.                                                 |
+| schema.registry.username      | Optional. The user name used to access the schema registry.                                                                                                                                            |
+| schema.registry.password      | Optional. The password associated with the user name.                                                                                                                                                  |
+| schema.registry.name.strategy | Optional. Accepted options include `topic_name_strategy` (default), `record_name_strategy`, and `topic_record_name_strategy`.                                                                          |
 
 :::note
 The `file://` format is not recommended for production use. If it is used, it needs to be available for both meta and compute nodes.
@@ -221,11 +222,11 @@ If your Kafka sink service is located in a different VPC from RisingWave, use AW
 
 To create a Kafka sink with a PrivateLink connection, in the WITH section of your `CREATE SINK` statement, specify the following parameters.
 
-|Parameter| Notes|
-|---|---|
-|`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
-|`privatelink.endpoint`|The DNS name of the VPC endpoint.<br/> If you're using RisingWave Cloud, you can find the auto-generated endpoint after you created a connection. See details in [Create a VPC connection](/cloud/create-a-connection#whats-next).|
-|`connection.name`| The name of the connection, which comes from the connection created using the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) statement. Omit this parameter if you have provisioned a VPC endpoint using `privatelink.endpoint` (recommended).|
+| Parameter              | Notes                                                                                                                                                                                                                                                                           |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `privatelink.targets`  | The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
+| `privatelink.endpoint` | The DNS name of the VPC endpoint.<br/> If you're using RisingWave Cloud, you can find the auto-generated endpoint after you created a connection. See details in [Create a VPC connection](/cloud/create-a-connection#whats-next).                                              |
+| `connection.name`      | The name of the connection, which comes from the connection created using the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) statement. Omit this parameter if you have provisioned a VPC endpoint using `privatelink.endpoint` (recommended).                   |
 
 Here is an example of creating a Kafka sink using a PrivateLink connection. Notice that `{"port": 8001}` corresponds to the broker `ip1:9092`, and `{"port": 8002}` corresponds to the broker `ip2:9092`.
 
@@ -273,13 +274,13 @@ import TabItem from '@theme/TabItem';
 
 To sink data encrypted with SSL without SASL authentication, specify these parameters in the WITH section of your `CREATE SINK` statement.
 
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`|Set to `SSL`.|
-|`properties.ssl.ca.location`| |
-|`properties.ssl.certificate.location`| |
-|`properties.ssl.key.location`| |
-|`properties.ssl.key.password`| |
+| Parameter                             | Notes         |
+| ------------------------------------- | ------------- |
+| `properties.security.protocol`        | Set to `SSL`. |
+| `properties.ssl.ca.location`          |               |
+| `properties.ssl.certificate.location` |               |
+| `properties.ssl.key.location`         |               |
+| `properties.ssl.key.password`         |               |
 
 :::note
 
@@ -308,12 +309,12 @@ FORMAT PLAIN ENCODE JSON;
 
 <TabItem value="SASL/PLAIN" label="SASL/PLAIN">
 
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| For SASL/PLAIN without SSL, set to `SASL_PLAINTEXT`. For SASL/PLAIN with SSL, set to `SASL_SSL`.|
-|`properties.sasl.mechanism`|Set to `PLAIN`.|
-|`properties.sasl.username`| |
-|`properties.sasl.password`| |
+| Parameter                      | Notes                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `properties.security.protocol` | For SASL/PLAIN without SSL, set to `SASL_PLAINTEXT`. For SASL/PLAIN with SSL, set to `SASL_SSL`. |
+| `properties.sasl.mechanism`    | Set to `PLAIN`.                                                                                  |
+| `properties.sasl.username`     |                                                                                                  |
+| `properties.sasl.password`     |                                                                                                  |
 
 :::note
 
@@ -363,16 +364,17 @@ WITH (
 )
 FORMAT PLAIN ENCODE JSON;
 ```
+
 </TabItem>
 
 <TabItem value="SASL/SCRAM" label="SASL/SCRAM">
 
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| For SASL/SCRAM without SSL, set to `SASL_PLAINTEXT`. For SASL/SCRAM with SSL, set to `SASL_SSL`.|
-|`properties.sasl.mechanism`|Set to `SCRAM-SHA-256` or `SCRAM-SHA-512` depending on the encryption method used.|
-|`properties.sasl.username`| |
-|`properties.sasl.password`| |
+| Parameter                      | Notes                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `properties.security.protocol` | For SASL/SCRAM without SSL, set to `SASL_PLAINTEXT`. For SASL/SCRAM with SSL, set to `SASL_SSL`. |
+| `properties.sasl.mechanism`    | Set to `SCRAM-SHA-256` or `SCRAM-SHA-512` depending on the encryption method used.               |
+| `properties.sasl.username`     |                                                                                                  |
+| `properties.sasl.password`     |                                                                                                  |
 
 :::note
 
@@ -407,16 +409,15 @@ FORMAT PLAIN ENCODE JSON;
 
 <TabItem value="SASL/GSSAPI" label="SASL/GSSAPI">
 
-
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSAPI with SSL.|
-|`properties.sasl.mechanism`| Set to `GSSAPI`.|
-|`properties.sasl.kerberos.service.name`| |
-|`properties.sasl.kerberos.keytab`| |
-|`properties.sasl.kerberos.principal`| |
-|`properties.sasl.kerberos.kinit.cmd`| |
-|`properties.sasl.kerberos.min.time.before.relogin`| |
+| Parameter                                          | Notes                                                                               |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `properties.security.protocol`                     | Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSAPI with SSL. |
+| `properties.sasl.mechanism`                        | Set to `GSSAPI`.                                                                    |
+| `properties.sasl.kerberos.service.name`            |                                                                                     |
+| `properties.sasl.kerberos.keytab`                  |                                                                                     |
+| `properties.sasl.kerberos.principal`               |                                                                                     |
+| `properties.sasl.kerberos.kinit.cmd`               |                                                                                     |
+| `properties.sasl.kerberos.min.time.before.relogin` |                                                                                     |
 
 :::note
 
@@ -427,7 +428,7 @@ For the definitions of the parameters, see the [librdkafka properties list](http
 Here is an example of creating a sink authenticated with SASL/GSSAPI without SSL encryption.
 
 ```sql
-CREATE SINK sink1 FROM mv1                 
+CREATE SINK sink1 FROM mv1
 WITH (
    connector='kafka',
    type = 'append-only',
@@ -442,21 +443,22 @@ WITH (
    properties.sasl.kerberos.min.time.before.relogin='10000'
 ) FORMAT PLAIN ENCODE JSON;
 ```
+
 </TabItem>
 
 <TabItem value="SASL/OAUTHBEARER" label="SASL/OAUTHBEARER">
 
 :::caution
 
- The implementation of SASL/OAUTHBEARER in RisingWave validates only [unsecured client side tokens](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_oauth.html#unsecured-client-side-token-creation-options-for-sasl-oauthbearer), and does not support OpenID Connect (OIDC) authentication. Therefore, it should not be used in production environments.
+The implementation of SASL/OAUTHBEARER in RisingWave validates only [unsecured client side tokens](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_oauth.html#unsecured-client-side-token-creation-options-for-sasl-oauthbearer), and does not support OpenID Connect (OIDC) authentication. Therefore, it should not be used in production environments.
 
 :::
 
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| For SASL/OAUTHBEARER without SSL, set to `SASL_PLAINTEXT`. For SASL/OAUTHBEARER with SSL, set to `SASL_SSL`.|
-|`properties.sasl.mechanism`|Set to `OAUTHBEARER`.|
-|`properties.sasl.oauthbearer.config`| |
+| Parameter                            | Notes                                                                                                        |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `properties.security.protocol`       | For SASL/OAUTHBEARER without SSL, set to `SASL_PLAINTEXT`. For SASL/OAUTHBEARER with SSL, set to `SASL_SSL`. |
+| `properties.sasl.mechanism`          | Set to `OAUTHBEARER`.                                                                                        |
+| `properties.sasl.oauthbearer.config` |                                                                                                              |
 
 :::note
 
@@ -474,7 +476,7 @@ For SASL/OAUTHBEARER with SSL, you also need to include these SSL parameters:
 This is an example of creating a sink authenticated with SASL/OAUTHBEARER without SSL encryption.
 
 ```sql
-CREATE SINK sink1 FROM mv1                 
+CREATE SINK sink1 FROM mv1
 WITH (
    connector='kafka',
    type = 'append-only',
@@ -492,22 +494,22 @@ WITH (
 
 ## Data type mapping - RisingWave and Debezium JSON
 
-|RisingWave Data Type | Schema Type in JSON | Schema Name in JSON|
-|-----|-----|-----|
-|boolean | boolean | n/a|
-|smallint | int16 | n/a|
-|integer | int32 | n/a|
-|bigint | int64 | n/a|
-|real| float| n/a|
-|double precision|double| n/a|
-|character varying|string| n/a|
-|bytea | bytes | n/a|
-|numeric|string| n/a|
-|date | int32 | org.apache.kafka.connect.data.Date|
-|time without time zone| int64|org.apache.kafka.connect.data.Time|
-|timestamp| int64|org.apache.kafka.connect.data.Timestamp|
-|timestamptz|string |io.debezium.time.ZonedTimestamp|
-|interval|string|io.debezium.time.Interval|
-|JSONB | string|io.debezium.data.Json|
-|struct| string| n/a|
-|array | string| n/a|
+| RisingWave Data Type   | Schema Type in JSON | Schema Name in JSON                     |
+| ---------------------- | ------------------- | --------------------------------------- |
+| boolean                | boolean             | n/a                                     |
+| smallint               | int16               | n/a                                     |
+| integer                | int32               | n/a                                     |
+| bigint                 | int64               | n/a                                     |
+| real                   | float               | n/a                                     |
+| double precision       | double              | n/a                                     |
+| character varying      | string              | n/a                                     |
+| bytea                  | bytes               | n/a                                     |
+| numeric                | string              | n/a                                     |
+| date                   | int32               | org.apache.kafka.connect.data.Date      |
+| time without time zone | int64               | org.apache.kafka.connect.data.Time      |
+| timestamp              | int64               | org.apache.kafka.connect.data.Timestamp |
+| timestamptz            | string              | io.debezium.time.ZonedTimestamp         |
+| interval               | string              | io.debezium.time.Interval               |
+| JSONB                  | string              | io.debezium.data.Json                   |
+| struct                 | string              | n/a                                     |
+| array                  | string              | n/a                                     |

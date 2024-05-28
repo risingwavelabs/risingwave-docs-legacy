@@ -4,6 +4,7 @@ title: CDC via Kafka
 description: Ingest CDC data via Kafka.
 slug: /create-source-cdc
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-cdc/" />
 </head>
@@ -22,7 +23,7 @@ The Kafka connector in RisingWave accepts these data formats:
 
 - Debezium JSON (for both MySQL and PostgreSQL)
 
-   For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka topics.
+  For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka topics.
 
 - Maxwell JSON (for MySQL only)
 
@@ -38,82 +39,82 @@ The Kafka connector in RisingWave accepts these data formats:
 CREATE TABLE [ IF NOT EXISTS ] source_name (
    column_name data_type [ PRIMARY KEY ], ...
    PRIMARY KEY ( column_name, ... )
-) 
+)
 WITH (
    connector='kafka',
    connector_parameter='value', ...
-) 
+)
 ROW FORMAT { DEBEZIUM_JSON | MAXWELL | CANAL_JSON };
 ```
 
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE TABLE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('table_name', 'wrap')
-        ),
-        rr.Sequence(
-            rr.Terminal('('),
-            rr.ZeroOrMore(
-                rr.Sequence(
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.NonTerminal('data_type', 'skip'),
-                    rr.Optional(rr.Terminal('column_constraint')),
-                ),
-                ','
-            ),
-            rr.Terminal(')'),
-        ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.NonTerminal('kafka', 'skip'),
-                        rr.Terminal(','),
-                    ),
-                    rr.Sequence(
-                       rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('connector_parameter', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                        ),
-                        ',',
-                    ),
-                        rr.Terminal(')'),
-                    ),
-                ),
-            ),
-        ),
-            rr.Sequence(
-                rr.Terminal('ROW FORMAT'),
-                rr.Choice(1,
-                    rr.Terminal('DEBEZIUM_JSON'),
-                    rr.Terminal('MAXWELL'),
-                    rr.Terminal('CANAL_JSON'),
-                ),
-                rr.Terminal(';'),
-            ),
-    )
+rr.Stack(
+rr.Sequence(
+rr.Terminal('CREATE TABLE'),
+rr.Optional(rr.Terminal('IF NOT EXISTS')),
+rr.NonTerminal('table_name', 'wrap')
+),
+rr.Sequence(
+rr.Terminal('('),
+rr.ZeroOrMore(
+rr.Sequence(
+rr.NonTerminal('column_name', 'skip'),
+rr.NonTerminal('data_type', 'skip'),
+rr.Optional(rr.Terminal('column_constraint')),
+),
+','
+),
+rr.Terminal(')'),
+),
+rr.Sequence(
+rr.Terminal('WITH'),
+rr.Terminal('('),
+rr.Stack(
+rr.Stack(
+rr.Sequence(
+rr.Terminal('connector'),
+rr.Terminal('='),
+rr.NonTerminal('kafka', 'skip'),
+rr.Terminal(','),
+),
+rr.Sequence(
+rr.OneOrMore(
+rr.Sequence(
+rr.NonTerminal('connector_parameter', 'skip'),
+rr.Terminal('='),
+rr.NonTerminal('value', 'skip'),
+),
+',',
+),
+rr.Terminal(')'),
+),
+),
+),
+),
+rr.Sequence(
+rr.Terminal('ROW FORMAT'),
+rr.Choice(1,
+rr.Terminal('DEBEZIUM_JSON'),
+rr.Terminal('MAXWELL'),
+rr.Terminal('CANAL_JSON'),
+),
+rr.Terminal(';'),
+),
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 ### Connector Parameters
 
-|Field|Notes|
-|---|---|
-|topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
-|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
-|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+| Field                         | Notes                                                                                                                                                                                                                   |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| topic                         | Required. Address of the Kafka topic. One source can only correspond to one topic.                                                                                                                                      |
+| properties.bootstrap.server   | Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.                                                                                                                                                     |
+| scan.startup.mode             | Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used. |
+| scan.startup.timestamp_millis | Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.                                        |
 
 ## Example
 
@@ -124,12 +125,12 @@ CREATE TABLE [IF NOT EXISTS] source_name (
    column1 varchar,
    column2 integer,
    PRIMARY KEY (column1)
-) 
+)
 WITH (
    connector='kafka',
    topic='user_test_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='earliest'
-) 
+)
 ROW FORMAT DEBEZIUM_JSON;
 ```

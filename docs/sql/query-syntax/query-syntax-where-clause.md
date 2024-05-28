@@ -3,6 +3,7 @@ id: query-syntax-where-clause
 slug: /query-syntax-where-clause
 title: WHERE clause
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-where-clause/" />
 </head>
@@ -43,8 +44,8 @@ rr.Stack(
    rr.Sequence(
       rr.Terminal('WHERE'),
       rr.NonTerminal('expression')
-   ),      
+   ),
 )
 );
 
-<drawer SVG={svg} /> -->
+<Drawer SVG={svg} /> -->

@@ -4,6 +4,7 @@ title: DROP MATERIALIZED VIEW
 description: Remove a materialized view.
 slug: /sql-drop-mv
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-mv/" />
 </head>
@@ -18,40 +19,34 @@ Before you can remove a materialzied view, you must remove all its dependent mat
 DROP MATERIALIZED VIEW [ IF EXISTS ] [schema_name.]mv_name;
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('DROP MATERIALIZED VIEW'),
-            rr.Optional(
-                rr.Terminal('IF EXISTS')),
-            rr.Optional(
-                rr.Sequence(
-                    rr.NonTerminal('schema_name'),
-                    rr.Terminal('.')
-                ),
-            ),
-            rr.NonTerminal('mv_name')
-        ),
-        rr.Terminal(';')
-    )
+rr.Stack(
+rr.Sequence(
+rr.Terminal('DROP MATERIALIZED VIEW'),
+rr.Optional(
+rr.Terminal('IF EXISTS')),
+rr.Optional(
+rr.Sequence(
+rr.NonTerminal('schema_name'),
+rr.Terminal('.')
+),
+),
+rr.NonTerminal('mv_name')
+),
+rr.Terminal(';')
+)
 );
 
-<drawer SVG={svg} />
-
-
-
+<Drawer SVG={svg} />
 
 ## Parameters
 
-|Parameter                  | Description           |
-|---------------------------|-----------------------|
-|*schema_name*                   |Specify the name of a schema to remove the materialized view in that schema. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified materialized view in the default schema `public` will be removed.|
-|*mv_name*                       |The name of the materialized view to remove. You can use [`SHOW MATERIALIZED VIEWS`](sql-show-mv.md) to get a list of all available materialized views.|
-
-
+| Parameter     | Description                                                                                                                                                                                                                                                                           |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _schema_name_ | Specify the name of a schema to remove the materialized view in that schema. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified materialized view in the default schema `public` will be removed. |
+| _mv_name_     | The name of the materialized view to remove. You can use [`SHOW MATERIALIZED VIEWS`](sql-show-mv.md) to get a list of all available materialized views.                                                                                                                               |
 
 ## Examples
 

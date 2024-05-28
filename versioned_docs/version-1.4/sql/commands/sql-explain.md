@@ -4,13 +4,14 @@ title: EXPLAIN
 description: Show the execution plan of a statement.
 slug: /sql-explain
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-explain/" />
 </head>
 
 <!--Track the implementation progress of EXPALIN here: https://github.com/risingwavelabs/risingwave/issues/4856-->
 
-Use the `EXPLAIN` command to show the execution plan of a statement. 
+Use the `EXPLAIN` command to show the execution plan of a statement.
 
 ## Syntax
 
@@ -18,55 +19,51 @@ Use the `EXPLAIN` command to show the execution plan of a statement.
 EXPLAIN [ ( option [ , ... ] ) ] statement;
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('EXPLAIN'),
-        rr.Optional(
-            rr.Sequence(
-                rr.Terminal('('),
-                rr.Sequence(
-                   rr.OneOrMore(
-                      rr.NonTerminal('option'),
-                      rr.Comment('space as delimiter'),
-                   ),
-                ),
-                rr.Terminal(')'),
-            ),
-            'skip'
-        ),
-        rr.NonTerminal('statement'),
-        rr.Terminal(';'),
-    )
+rr.Sequence(
+rr.Terminal('EXPLAIN'),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('('),
+rr.Sequence(
+rr.OneOrMore(
+rr.NonTerminal('option'),
+rr.Comment('space as delimiter'),
+),
+),
+rr.Terminal(')'),
+),
+'skip'
+),
+rr.NonTerminal('statement'),
+rr.Terminal(';'),
+)
 );
 
-<drawer SVG={svg} />
-
-
+<Drawer SVG={svg} />
 
 ## Parameters
 
-|Parameter      | Description|
-|---------------|------------|
-|*statement*    | A statement that is executable in RisingWave.|
-|**EXPLAIN** *option*    | See the table below.|
+| Parameter            | Description                                   |
+| -------------------- | --------------------------------------------- |
+| _statement_          | A statement that is executable in RisingWave. |
+| **EXPLAIN** _option_ | See the table below.                          |
 
 #### `EXPLAIN` options
 
-|Option         | Description|
-|---------------|------------|
-|**VERBOSE** [ TRUE \| FALSE ]|Show additional information regarding the execution plan such as the table catalog of the state table and the schema of each operator.|
-|**TRACE** [ TRUE \| FALSE ]|Show the trace of each optimization stage, not only the final plan.|
-|**TYPE** [ PHYSICAL \| LOGICAL \| DISTSQL ]|Show the execution plan of a specific phase.<ul><li>PHYSICAL — Show the batch plan or stream plan.</li><li>LOGICAL — Show the optimized logical plan.</li><li>DISTSQL — Show the distributed query plan for batch or stream.</li></ul>|
+| Option                                      | Description                                                                                                                                                                                                                            |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **VERBOSE** [ TRUE \| FALSE ]               | Show additional information regarding the execution plan such as the table catalog of the state table and the schema of each operator.                                                                                                 |
+| **TRACE** [ TRUE \| FALSE ]                 | Show the trace of each optimization stage, not only the final plan.                                                                                                                                                                    |
+| **TYPE** [ PHYSICAL \| LOGICAL \| DISTSQL ] | Show the execution plan of a specific phase.<ul><li>PHYSICAL — Show the batch plan or stream plan.</li><li>LOGICAL — Show the optimized logical plan.</li><li>DISTSQL — Show the distributed query plan for batch or stream.</li></ul> |
 
 <!-- |**FORMAT** { TREE \| JSON }|Specify the output format.<ul><li>TREE — </li><li>JSON — </li></ul>| is currently not supported. Track the progress: https://github.com/risingwavelabs/risingwave/issues/4856. See the explanation for the option: https://singularity-data.quip.com/fek1AUiMz5lz/RFC-Option-based-Explain-Syntax. See reference here: https://dev.mysql.com/doc/refman/8.0/en/explain.html-->
 
 :::note
 The boolean parameter `[ TRUE | FALSE ]` specifies whether the specified option should be enabled or disabled. Use `TRUE` to enable the option, and `FALSE` to disable it. It defaults to `TRUE` if the parameter is not specified.
 :::
-
 
 ## Examples
 
@@ -115,7 +112,7 @@ The execution plan looks like this:
 (13 rows)
 ```
 
-<!-- Previous example. Before this change: https://github.com/singularity-data/risingwave/pull/4253 
+<!-- Previous example. Before this change: https://github.com/singularity-data/risingwave/pull/4253
 
 ```sql
 EXPLAIN SELECT P.name, P.city, P.state, A.id
@@ -149,7 +146,7 @@ EXPLAIN CREATE MATERIALIZED VIEW nexmark_q3 AS
      SELECT P.name, P.city, P.state, A.id
      FROM auction AS A INNER JOIN person AS P on A.seller = P.id
      WHERE A.category = 10 and (P.state = 'OR' OR P.state = 'ID' OR P.state = 'CA');
-                                                          
+
 ```
 
 The execution plan of the statement above looks like this:

@@ -5,6 +5,7 @@ slug: /intro
 sidebar_position: 1
 keywords: [streaming database, risingwave, introduction]
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/intro/" />
 </head>
@@ -15,12 +16,12 @@ RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Ki
 
 Data in RisingWave can be output to external targets such as message brokers, data warehouses, and data lakes for storage or additional processing.
 
-<rollButton text="&nbsp;&nbsp;Get Started" doc="get-started" block />
+<RollButton text="&nbsp;&nbsp;Get Started" doc="get-started" block />
 <br/>
 
 <img
-  src={require('./images/archi_simple.png').default}
-  alt="RisingWave Architecture"
+src={require('./images/archi_simple.png').default}
+alt="RisingWave Architecture"
 />
 
 ## Is RisingWave a modern alternative to Flink?
@@ -65,6 +66,6 @@ When data is processed in batches, if a job goes wrong, you can do some troubles
 
 In RisingWave, data correctness is ensured by a checkpoint-based mechanism. Every time a checkpoint is triggered, the internal states of each operator will be flushed to the cloud storage. When a failover occurs, the operator recovers from the latest checkpoint on the cloud storage.
 
-<lightButton text="See the architecture" doc="architecture"/>
-<lightButton text="Access the source code" url="https://github.com/risingwavelabs/risingwave"/>
+<LightButton text="See the architecture" doc="architecture"/>
+<LightButton text="Access the source code" url="https://github.com/risingwavelabs/risingwave"/>
 <br/>

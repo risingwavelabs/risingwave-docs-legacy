@@ -4,12 +4,12 @@ title: SHOW FUNCTIONS
 description: Show all user-defined functions.
 slug: /sql-show-functions
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-functions/" />
 </head>
 
 Run `SHOW FUNCTIONS` to get a list of existing [user-defined functions](/sql/udf/user-defined-functions.md). The returned information includes the name, argument types, return type, language, and server address of each function.
-
 
 ## Syntax
 
@@ -17,20 +17,16 @@ Run `SHOW FUNCTIONS` to get a list of existing [user-defined functions](/sql/udf
 SHOW FUNCTIONS;
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW FUNCTIONS'),
-        rr.Terminal(';')
-    )
+rr.Sequence(
+rr.Terminal('SHOW FUNCTIONS'),
+rr.Terminal(';')
+)
 );
 
-<drawer SVG={svg} />
-
-
-
+<Drawer SVG={svg} />
 
 ## Example
 

@@ -1,14 +1,15 @@
 ---
 id: sql-show-create-view
 title: SHOW CREATE VIEW
-description: Show the query used to create the specified view. 
+description: Show the query used to create the specified view.
 slug: /sql-show-create-view
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-create-view/" />
 </head>
 
-Use the `SHOW CREATE VIEW` command to see what query was used to create the specified view. 
+Use the `SHOW CREATE VIEW` command to see what query was used to create the specified view.
 
 ## Syntax
 
@@ -19,20 +20,20 @@ SHOW CREATE VIEW view_name;
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW CREATE VIEW'),
-        rr.NonTerminal('view_name', 'skip'),
-        rr.Terminal(';')
-    )
+rr.Sequence(
+rr.Terminal('SHOW CREATE VIEW'),
+rr.NonTerminal('view_name', 'skip'),
+rr.Terminal(';')
+)
 );
 
-<drawer SVG={svg} />
-
+<Drawer SVG={svg} />
 
 ## Parameters
- |Parameter    | Description|
-|---------------|------------|
-|*view_name* |The view to show the query of.|
+
+| Parameter   | Description                    |
+| ----------- | ------------------------------ |
+| _view_name_ | The view to show the query of. |
 
 ## Example
 
@@ -42,8 +43,9 @@ SHOW CREATE VIEW v1;
 ```
 
 Here is the result.
+
 ```
-   Name    |                 Create Sql                  
+   Name    |                 Create Sql
 -----------+---------------------------------------------
  public.v1 | CREATE VIEW v1 AS SELECT id FROM taxi_trips
 (1 row)

@@ -4,6 +4,7 @@ title: COMMIT
 description: Commit the current transaction.
 slug: /sql-commit
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-commit/" />
 </head>
@@ -21,13 +22,13 @@ COMMIT;
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('COMMIT'),
-        rr.Terminal(';')
-    )
+rr.Sequence(
+rr.Terminal('COMMIT'),
+rr.Terminal(';')
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 ## Example
 

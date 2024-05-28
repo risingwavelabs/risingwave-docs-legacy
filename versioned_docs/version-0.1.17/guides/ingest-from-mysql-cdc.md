@@ -256,7 +256,7 @@ rr.Terminal(';'),
 )
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 Note that a primary key is required.
 

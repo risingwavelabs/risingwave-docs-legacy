@@ -1,9 +1,10 @@
 ---
 id: sql-show-create-source
 title: SHOW CREATE SOURCE
-description: Show the query used to create the specified source. 
+description: Show the query used to create the specified source.
 slug: /sql-show-create-source
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-create-source/" />
 </head>
@@ -17,25 +18,23 @@ using this command, you can verify the source's settings and troubleshoot any is
 SHOW CREATE SOURCE source_name;
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW CREATE SOURCE'),
-        rr.NonTerminal('source_name', 'skip'),
-        rr.Terminal(';')
-    )
+rr.Sequence(
+rr.Terminal('SHOW CREATE SOURCE'),
+rr.NonTerminal('source_name', 'skip'),
+rr.Terminal(';')
+)
 );
 
-<drawer SVG={svg} />
-
+<Drawer SVG={svg} />
 
 ## Parameters
- |Parameter    | Description|
-|---------------|------------|
-|*source_name* |The source for which you want to show the corresponding SQL statement.|
 
+| Parameter     | Description                                                            |
+| ------------- | ---------------------------------------------------------------------- |
+| _source_name_ | The source for which you want to show the corresponding SQL statement. |
 
 ## See also
 

@@ -4,6 +4,7 @@ title: BEGIN
 description: Start a transaction.
 slug: /sql-begin
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-begin/" />
 </head>
@@ -27,13 +28,13 @@ BEGIN
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('BEGIN READ ONLY'),
-        rr.Terminal(';')
-    )
+rr.Sequence(
+rr.Terminal('BEGIN READ ONLY'),
+rr.Terminal(';')
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 ## Related topics
 

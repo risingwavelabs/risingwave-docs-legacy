@@ -12,7 +12,7 @@ src={require('./images/console.png').default}
 alt="Console"
 />
 
-<defaultButton text="Go to query console" url="https://cloud.risingwave.com/console/" block/>
+<DefaultButton text="Go to query console" url="https://cloud.risingwave.com/console/" block/>
 
 ## Sections
 
@@ -128,7 +128,7 @@ width="800px"
 
 ## Start developing
 
-<card
+<OutlinedCard
 title="Develop with RisingWave Cloud"
 content="RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave using the console."
 cloud="develop-overview"

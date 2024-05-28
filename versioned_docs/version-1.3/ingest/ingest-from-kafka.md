@@ -4,6 +4,7 @@ title: Ingest data from Kafka
 description: Connect RisingWave to a Kafka broker.
 slug: /ingest-from-kafka
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-kafka/" />
 </head>
@@ -19,13 +20,13 @@ RisingWave supports exactly-once semantics by reading transactional messages onl
 :::tip Guided setup
 RisingWave Cloud provides an intuitive guided setup for creating a Kafka source. For more information, see [Create a source using guided setup](/cloud/create-a-source/#using-guided-setup) in the RisingWave Cloud documentation.
 
-<lightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
+<LightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
 :::
 
 ## Syntax
 
 ```sql
-CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
+CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [ schema_definition ]
 WITH (
    connector='kafka',
@@ -40,61 +41,61 @@ FORMAT data_format ENCODE data_encode (
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-   rr.Stack(
-      rr.Sequence(
-         rr.Choice(1,
-            rr.Terminal('CREATE TABLE'),
-            rr.Terminal('CREATE SOURCE')
-         ),
-         rr.Optional(rr.Terminal('IF NOT EXISTS')),
-         rr.NonTerminal('source_name', 'skip'),
-      ),
-      rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
-      rr.Sequence(
-         rr.Terminal('FORMAT'),
-         rr.NonTerminal('format', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('ENCODE'),
-         rr.NonTerminal('encode', 'skip'),
-         rr.Optional(
-            rr.Sequence(
-               rr.Terminal('('),
-               rr.NonTerminal('encode_parameter', 'skip'),
-               rr.Terminal(')'),
-            ),
-         ),
-      ),
-      rr.Sequence(
-         rr.Terminal('WITH'),
-         rr.Terminal('('),
-         rr.Stack(
-            rr.Stack(
-               rr.Sequence(
-                  rr.Terminal('connector'),
-                  rr.Terminal('='),
-                  rr.NonTerminal('kafka', 'skip'),
-                  rr.Terminal(','),
-               ),
-               rr.OneOrMore(
-                  rr.Sequence(
-                     rr.NonTerminal('connector_parameter', 'skip'),
-                     rr.Terminal('='),
-                     rr.NonTerminal('value', 'skip'),
-                     rr.Terminal(','),
-                  ),
-               ),
-            ),
-            rr.Terminal(')'),
-         ),
-      ),
-      rr.Stack(
-         rr.Terminal(';')
-      ),
-   )
+rr.Stack(
+rr.Sequence(
+rr.Choice(1,
+rr.Terminal('CREATE TABLE'),
+rr.Terminal('CREATE SOURCE')
+),
+rr.Optional(rr.Terminal('IF NOT EXISTS')),
+rr.NonTerminal('source_name', 'skip'),
+),
+rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
+rr.Sequence(
+rr.Terminal('FORMAT'),
+rr.NonTerminal('format', 'skip')
+),
+rr.Sequence(
+rr.Terminal('ENCODE'),
+rr.NonTerminal('encode', 'skip'),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('('),
+rr.NonTerminal('encode_parameter', 'skip'),
+rr.Terminal(')'),
+),
+),
+),
+rr.Sequence(
+rr.Terminal('WITH'),
+rr.Terminal('('),
+rr.Stack(
+rr.Stack(
+rr.Sequence(
+rr.Terminal('connector'),
+rr.Terminal('='),
+rr.NonTerminal('kafka', 'skip'),
+rr.Terminal(','),
+),
+rr.OneOrMore(
+rr.Sequence(
+rr.NonTerminal('connector_parameter', 'skip'),
+rr.Terminal('='),
+rr.NonTerminal('value', 'skip'),
+rr.Terminal(','),
+),
+),
+),
+rr.Terminal(')'),
+),
+),
+rr.Stack(
+rr.Terminal(';')
+),
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 **schema_definition**:
 
@@ -121,39 +122,39 @@ For tables with primary key constraints, if a new data record with an existing k
 
 ### Connector parameters
 
-|Field|Notes|
-|---|---|
-|topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
-|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
-|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
-|properties.sync.call.timeout | Optional. Specify the timeout. By default, the timeout is 5 seconds.  |
-|schema.registry.username|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
-|schema.registry.password|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
-|properties.client.id|Optional. Client ID associated with the Kafka client. |
+| Field                         | Notes                                                                                                                                                                                                                   |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| topic                         | Required. Address of the Kafka topic. One source can only correspond to one topic.                                                                                                                                      |
+| properties.bootstrap.server   | Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.                                                                                                                                                     |
+| scan.startup.mode             | Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used. |
+| scan.startup.timestamp_millis | Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.                                        |
+| properties.sync.call.timeout  | Optional. Specify the timeout. By default, the timeout is 5 seconds.                                                                                                                                                    |
+| schema.registry.username      | Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.                                                                                                                   |
+| schema.registry.password      | Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.                                                                                                                    |
+| properties.client.id          | Optional. Client ID associated with the Kafka client.                                                                                                                                                                   |
 
 ### Other parameters
 
-|Field|Notes|
-|---|---|
-|*data_format*| Data format. Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`. |
-|*data_encode*| Data encode. Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
-|*message* | Message name of the main Message in schema definition. Required for Protobuf. |
-|*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
-|*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
+| Field                 | Notes                                                                                                                                                                                          |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _data_format_         | Data format. Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`, `UPSERT`, `PLAIN`.                                                                                                             |
+| _data_encode_         | Data encode. Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`.                                                                                                                             |
+| _message_             | Message name of the main Message in schema definition. Required for Protobuf.                                                                                                                  |
+| _location_            | Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both. |
+| _schema_registry_url_ | Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.             |
 
 ## Additional Kafka parameters
 
 When creating a source in RisingWave, you can specify the following Kafka parameters. To set the parameter, add the RisingWave equivalent of the Kafka parameter under the `WITH options`. For an example of the usage of these parameters, see the JSON example. For additional details on these parameters, see the [Configuration properties](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md).
 
-| Kafka parameter name | RisingWave parameter name | Type |
-|----------------------|---------------------------|------|
-|fetch.max.bytes | properties.fetch.max.bytes | int |
-|fetch.wait.max.ms | properties.fetch.wait.max.ms | int |
-|message.max.bytes | properties.message.max.bytes | int |
-|queued.max.messages.kbytes| properties.queued.max.messages.kbytes | int |
-|queued.min.messages | properties.queued.min.messages | int |
-|receive.message.max.bytes | properties.receive.message.max.bytes | int |
+| Kafka parameter name       | RisingWave parameter name             | Type |
+| -------------------------- | ------------------------------------- | ---- |
+| fetch.max.bytes            | properties.fetch.max.bytes            | int  |
+| fetch.wait.max.ms          | properties.fetch.wait.max.ms          | int  |
+| message.max.bytes          | properties.message.max.bytes          | int  |
+| queued.max.messages.kbytes | properties.queued.max.messages.kbytes | int  |
+| queued.min.messages        | properties.queued.min.messages        | int  |
+| receive.message.max.bytes  | properties.receive.message.max.bytes  | int  |
 
 ## Examples
 
@@ -170,7 +171,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="avro" label="Avro">
 
 ```sql
-CREATE SOURCE IF NOT EXISTS source_abc 
+CREATE SOURCE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    topic='demo_topic',
@@ -186,7 +187,7 @@ WITH (
 <TabItem value="upsert avro" label="Upsert Avro">
 
 ```sql
-CREATE TABLE IF NOT EXISTS source_abc 
+CREATE TABLE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
@@ -248,7 +249,7 @@ WITH (
 <TabItem value="pb" label="Protobuf">
 
 ```sql
-CREATE SOURCE IF NOT EXISTS source_abc 
+CREATE SOURCE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    topic='demo_topic',
@@ -336,7 +337,7 @@ ENCODE data_encode (
 If a primary key also needs to be defined, use the table constraint syntax.
 
 ```sql
-CREATE TABLE table1 (PRIMARY KEY(id)) 
+CREATE TABLE table1 (PRIMARY KEY(id))
 ```
 
 ## Read schemas from Schema Registry
@@ -358,7 +359,7 @@ To learn more about Confluent Schema Registry and how to set up a Schema Registr
 If a primary key also needs to be defined, use the table constraint syntax.
 
 ```sql
-CREATE TABLE table1 (PRIMARY KEY(id)) 
+CREATE TABLE table1 (PRIMARY KEY(id))
 ```
 
 ### Schema evolution
@@ -373,11 +374,11 @@ If your Kafka source service is located in a different VPC from RisingWave, use 
 
 To create a Kafka source with a PrivateLink connection, in the WITH section of your `CREATE SOURCE` or `CREATE TABLE` statement, specify the following parameters.
 
-|Parameter| Notes|
-|---|---|
-|`privatelink.targets`| The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues. |
-|`privatelink.endpoint`|The DNS name of the AWS VPC endpoint or the GCP Private Service Connect endpoint. <br/> Using `privatelink.endpoint` is the recommended way to use PrivateLink. With a provisioned PrivateLink endpoint, you don't need to create a connection in RisingWave.|
-|`connection.name`| The name of the connection. <br/> This parameter should only be included if you are using a AWS PrivateLink connection created with the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) statement. Omit this parameter if you have provisioned an AWS VPC endpoint or the GCP Private Service Connect endpoint using `privatelink.endpoint` (recommended).|
+| Parameter              | Notes                                                                                                                                                                                                                                                                                                                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `privatelink.targets`  | The PrivateLink targets that correspond to the Kafka brokers. The targets should be in JSON format. Note that each target listed corresponds to each broker specified in the `properties.bootstrap.server` field. If the order is incorrect, there will be connectivity issues.                                                                                          |
+| `privatelink.endpoint` | The DNS name of the AWS VPC endpoint or the GCP Private Service Connect endpoint. <br/> Using `privatelink.endpoint` is the recommended way to use PrivateLink. With a provisioned PrivateLink endpoint, you don't need to create a connection in RisingWave.                                                                                                            |
+| `connection.name`      | The name of the connection. <br/> This parameter should only be included if you are using a AWS PrivateLink connection created with the [`CREATE CONNECTION`](/sql/commands/sql-create-connection.md) statement. Omit this parameter if you have provisioned an AWS VPC endpoint or the GCP Private Service Connect endpoint using `privatelink.endpoint` (recommended). |
 
 Here is an example of creating a Kafka source using a PrivateLink connection. Notice that `{"port": 9094}` corresponds to the broker `broker1-endpoint`, `{"port": 9095}` corresponds to the broker `broker2-endpoint`, and `{"port": 9096}` corresponds to the broker `broker3-endpoint`.
 
@@ -429,13 +430,13 @@ You need to specify encryption and authentication parameters in the WITH section
 
 To read data encrypted with SSL without SASL authentication, specify these parameters in the WITH section of your `CREATE SOURCE` statement.
 
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`|Set to `SSL`.|
-|`properties.ssl.ca.location`| |
-|`properties.ssl.certificate.location`| |
-|`properties.ssl.key.location`| |
-|`properties.ssl.key.password`| |
+| Parameter                             | Notes         |
+| ------------------------------------- | ------------- |
+| `properties.security.protocol`        | Set to `SSL`. |
+| `properties.ssl.ca.location`          |               |
+| `properties.ssl.certificate.location` |               |
+| `properties.ssl.key.location`         |               |
+| `properties.ssl.key.password`         |               |
 
 :::note
 
@@ -465,12 +466,12 @@ WITH (
 
 ### `SASL/PLAIN`
 
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| For SASL/PLAIN without SSL, set to `SASL_PLAINTEXT`. For SASL/PLAIN with SSL, set to `SASL_SSL`.|
-|`properties.sasl.mechanism`|Set to `PLAIN`.|
-|`properties.sasl.username`| |
-|`properties.sasl.password`| |
+| Parameter                      | Notes                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `properties.security.protocol` | For SASL/PLAIN without SSL, set to `SASL_PLAINTEXT`. For SASL/PLAIN with SSL, set to `SASL_SSL`. |
+| `properties.sasl.mechanism`    | Set to `PLAIN`.                                                                                  |
+| `properties.sasl.username`     |                                                                                                  |
+| `properties.sasl.password`     |                                                                                                  |
 
 :::note
 
@@ -529,12 +530,12 @@ WITH (
 
 ### `SASL/SCRAM`
 
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| For SASL/SCRAM without SSL, set to `SASL_PLAINTEXT`. For SASL/SCRAM with SSL, set to `SASL_SSL`.|
-|`properties.sasl.mechanism`|Set to `SCRAM-SHA-256` or `SCRAM-SHA-512` depending on the encryption method used.|
-|`properties.sasl.username`| |
-|`properties.sasl.password`| |
+| Parameter                      | Notes                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `properties.security.protocol` | For SASL/SCRAM without SSL, set to `SASL_PLAINTEXT`. For SASL/SCRAM with SSL, set to `SASL_SSL`. |
+| `properties.sasl.mechanism`    | Set to `SCRAM-SHA-256` or `SCRAM-SHA-512` depending on the encryption method used.               |
+| `properties.sasl.username`     |                                                                                                  |
+| `properties.sasl.password`     |                                                                                                  |
 
 :::note
 

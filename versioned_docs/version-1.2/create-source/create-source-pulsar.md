@@ -4,6 +4,7 @@ title: Ingest data from Pulsar
 description: Connect RisingWave to a Pulsar broker.
 slug: /create-source-pulsar
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-pulsar/" />
 </head>
@@ -19,7 +20,7 @@ When creating a source, you can choose to persist the data from the source in Ri
 ## Syntax
 
 ```sql
-CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
+CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [ schema_definition ]
 WITH (
    connector='pulsar',
@@ -34,61 +35,61 @@ FORMAT data_format ENCODE data_encode (
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Choice(1,
-                rr.Terminal('CREATE TABLE'),
-                rr.Terminal('CREATE SOURCE')
-            ),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('source_name', 'wrap')
-        ),
-        rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
-        rr.Sequence(
-            rr.Terminal('FORMAT'),
-            rr.NonTerminal('format', 'skip')
-        ),
-        rr.Sequence(
-            rr.Terminal('ENCODE'),
-            rr.NonTerminal('encode', 'skip'),
-            rr.Optional(
-                rr.Sequence(
-                rr.Terminal('('),
-                rr.NonTerminal('encode_parameter', 'skip'),
-                rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.NonTerminal('pulsar', 'skip'),
-                        rr.Terminal(','),
-                    ),
-                    rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('connector_parameter', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                    ),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Stack(
-            rr.Terminal(';'),
-        ),
-    )
+rr.Stack(
+rr.Sequence(
+rr.Choice(1,
+rr.Terminal('CREATE TABLE'),
+rr.Terminal('CREATE SOURCE')
+),
+rr.Optional(rr.Terminal('IF NOT EXISTS')),
+rr.NonTerminal('source_name', 'wrap')
+),
+rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
+rr.Sequence(
+rr.Terminal('FORMAT'),
+rr.NonTerminal('format', 'skip')
+),
+rr.Sequence(
+rr.Terminal('ENCODE'),
+rr.NonTerminal('encode', 'skip'),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('('),
+rr.NonTerminal('encode_parameter', 'skip'),
+rr.Terminal(')'),
+),
+),
+),
+rr.Sequence(
+rr.Terminal('WITH'),
+rr.Terminal('('),
+rr.Stack(
+rr.Stack(
+rr.Sequence(
+rr.Terminal('connector'),
+rr.Terminal('='),
+rr.NonTerminal('pulsar', 'skip'),
+rr.Terminal(','),
+),
+rr.OneOrMore(
+rr.Sequence(
+rr.NonTerminal('connector_parameter', 'skip'),
+rr.Terminal('='),
+rr.NonTerminal('value', 'skip'),
+rr.Terminal(','),
+),
+),
+),
+rr.Terminal(')'),
+),
+),
+rr.Stack(
+rr.Terminal(';'),
+),
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 **schema_definition**:
 
@@ -111,26 +112,26 @@ RisingWave performs primary key constraint checks on tables with connector setti
 For a table with primary key constraints, if a new data record with an existing key comes in, the new record will overwrite the existing record.
 :::
 
-|Field|Notes|
-|---|---|
-|topic |Required. Address of the Pulsar topic. One source can only correspond to one topic.|
-|service.url| Required. Address of the Pulsar service. |
-|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis.| Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
-|auth.token | Optional. A token for auth. If both `auth.token` and `oauth` are set, only `oauth` authorization is effective.|
-|oauth.issuer.url | Conditional. The issuer url for OAuth2. This field must be filled if other `oauth` fields are specified. |
-|oauth.credentials.url | Conditional. The path for credential files, starts with `file://`. This field must be filled if other `oauth` fields are specified.|
-|oauth.audience | Conditional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.|
-|oauth.scope | Optional. The scope for OAuth2. |
-|access_key | Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
-|secret_access | Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path. |
+| Field                          | Notes                                                                                                                                                                                                                   |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| topic                          | Required. Address of the Pulsar topic. One source can only correspond to one topic.                                                                                                                                     |
+| service.url                    | Required. Address of the Pulsar service.                                                                                                                                                                                |
+| scan.startup.mode              | Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used. |
+| scan.startup.timestamp_millis. | Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).                                                                                                                       |
+| auth.token                     | Optional. A token for auth. If both `auth.token` and `oauth` are set, only `oauth` authorization is effective.                                                                                                          |
+| oauth.issuer.url               | Conditional. The issuer url for OAuth2. This field must be filled if other `oauth` fields are specified.                                                                                                                |
+| oauth.credentials.url          | Conditional. The path for credential files, starts with `file://`. This field must be filled if other `oauth` fields are specified.                                                                                     |
+| oauth.audience                 | Conditional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.                                                                                                                  |
+| oauth.scope                    | Optional. The scope for OAuth2.                                                                                                                                                                                         |
+| access_key                     | Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.                                                                        |
+| secret_access                  | Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.                                                                 |
 
-|Field|Notes|
-|---|---|
-|*data_format*| Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`.|
-|*data_encode*| Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
-|*message* |Message name of the main Message in schema definition. Required when `data_encode` is `PROTOBUF`.|
-|*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when `data_encode` is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
+| Field         | Notes                                                                                                                                                                                                                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _data_format_ | Supported formats: `DEBEZIUM`, `MAXWELL`, `CANAL`.                                                                                                                                                                                                                |
+| _data_encode_ | Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`.                                                                                                                                                                                                             |
+| _message_     | Message name of the main Message in schema definition. Required when `data_encode` is `PROTOBUF`.                                                                                                                                                                 |
+| _location_    | Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. Required when `data_encode` is `AVRO` or `PROTOBUF`. Examples:<br/>`https://<example_host>/risingwave/proto-simple-schema.proto`<br/>`s3://risingwave-demo/schema-location` |
 
 ## Read schemas from locations
 
@@ -151,7 +152,7 @@ ROW SCHEMA LOCATION 'location'
 If a primary key also needs to be defined, use the table constraint syntax.
 
 ```sql
-CREATE TABLE table1 (PRIMARY KEY(id)) 
+CREATE TABLE table1 (PRIMARY KEY(id))
 ```
 
 ## Example
@@ -165,7 +166,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="avro" label="Avro" default>
 
 ```sql
-CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc 
+CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc
 WITH (
    connector='pulsar',
    topic='demo_topic',

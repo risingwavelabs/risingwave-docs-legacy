@@ -4,6 +4,7 @@ title: Run RisingWave for testing purposes
 description: Install, run, and connect to RisingWave for testing purposes
 slug: /risingwave-trial
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-trial/" />
 </head>
@@ -27,10 +28,10 @@ RisingWave will be started as a single-node instance. Data is stored solely in m
 
 These options are available:
 
-<lightButton text="Playground in a Web browser" doc="risingwave-trial?method=playground" />
-<lightButton text="Homebrew" doc="risingwave-trial?method=homebrew" />
-<lightButton text="Binaries" doc="risingwave-trial?method=binaries" />
-<lightButton text="Docker image" doc="risingwave-trial?method=docker" />
+<LightButton text="Playground in a Web browser" doc="risingwave-trial?method=playground" />
+<LightButton text="Homebrew" doc="risingwave-trial?method=homebrew" />
+<LightButton text="Binaries" doc="risingwave-trial?method=binaries" />
+<LightButton text="Docker image" doc="risingwave-trial?method=docker" />
 
 <br/>
 <br/>
@@ -39,7 +40,7 @@ These options are available:
 
 For advanced tests, we recommend using Docker Compose to start RisingWave as a multi-node cluster. With this option, data is persisted in storage. However, please be aware that certain critical features such as failover and resource management are not implemented in this mode. Therefore, this option is not recommended for production deployments.
 
-<lightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" />
+<LightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" />
 
 </TabItem>
 
@@ -53,14 +54,14 @@ Try out RisingWave without the need for any installation or setup with RisingWav
 RisingWave Playground is intended for quick tests only. Your data will not be persisted after a session expires. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may lead to out-of-memory (OOM) errors. Some functionality may be limited.
 :::
 
-<defaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
+<DefaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
 
 <br/>
 
 <img
-  src={require('../images/playground-overview.png').default}
-  alt="RisingWave Playground Overview"
-  width="800px"
+src={require('../images/playground-overview.png').default}
+alt="RisingWave Playground Overview"
+width="800px"
 />
 
 </TabItem>
@@ -79,23 +80,23 @@ To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwav
 
 1. ### Install and start RisingWave
 
-  Install [Homebrew](https://brew.sh/) and run the following commands.
+Install [Homebrew](https://brew.sh/) and run the following commands.
 
-  ```shell
-  brew tap risingwavelabs/risingwave # Tap the repository
-  brew install risingwave # Install the latest release of RisingWave. Replace with `brew install risingwave --HEAD` if you want to install the latest development version of RisingWave.
-  risingwave playground # Start RisingWave in playground mode
-  ```
+```shell
+brew tap risingwavelabs/risingwave # Tap the repository
+brew install risingwave # Install the latest release of RisingWave. Replace with `brew install risingwave --HEAD` if you want to install the latest development version of RisingWave.
+risingwave playground # Start RisingWave in playground mode
+```
 
 1. ### Connect to RisingWave
 
-  After RisingWave is up and running, you need to connect to it via the Postgres interactive terminal `psql` so that you can issue queries to RisingWave and see the query results. If you don't have `psql` installed, [Install `psql`](/guides/install-psql-without-full-postgres.md) first.
+After RisingWave is up and running, you need to connect to it via the Postgres interactive terminal `psql` so that you can issue queries to RisingWave and see the query results. If you don't have `psql` installed, [Install `psql`](/guides/install-psql-without-full-postgres.md) first.
 
-  Open a new terminal window and run:
+Open a new terminal window and run:
 
-  ```shell
-  psql -h localhost -p 4566 -d dev -U root
-  ```
+```shell
+psql -h localhost -p 4566 -d dev -U root
+```
 
 Notes about the `psql` options:
 
@@ -121,17 +122,17 @@ To persist your data, deploy RisingWave to K8s with [the RisingWave Operator](/d
 
 1. ### Download the binaries
 
-  ```shell
-  wget https://github.com/risingwavelabs/risingwave/releases/download/v1.3.0/risingwave-v1.3.0-x86_64-unknown-linux-all-in-one.tar.gz
-  ```
+```shell
+wget https://github.com/risingwavelabs/risingwave/releases/download/v1.3.0/risingwave-v1.3.0-x86_64-unknown-linux-all-in-one.tar.gz
+```
 
-  > You can find previous binary releases in [Release notes](/release-notes).
+> You can find previous binary releases in [Release notes](/release-notes).
 
 1. ### Extract the tarball
 
-  ```shell
-  tar xvf risingwave-v1.3.0-x86_64-unknown-linux-all-in-one.tar.gz
-  ```
+```shell
+tar xvf risingwave-v1.3.0-x86_64-unknown-linux-all-in-one.tar.gz
+```
 
 :::note
 
@@ -141,29 +142,29 @@ Do not move the extracted files or folders. This could cause issues when startin
 
 1. ### Start RisingWave
 
-  ```shell
-  CONNECTOR_LIBS_PATH=./libs ./risingwave playground
-  ```
+```shell
+CONNECTOR_LIBS_PATH=./libs ./risingwave playground
+```
 
-  If you see the logs, you have successfully started RisingWave.
+If you see the logs, you have successfully started RisingWave.
 
-  <img
-    src={require('../images/risedev_playground_logs.png').default}
-    alt="RisingWave Playground Logs"
-    width="800px"
-  />
+<img
+src={require('../images/risedev_playground_logs.png').default}
+alt="RisingWave Playground Logs"
+width="800px"
+/>
 
 1. ### Connect to RisingWave
 
-  After RisingWave is up and running, you need to connect to it via the Postgres interactive terminal `psql` so that you can issue queries to RisingWave and see the query results. If you don't have `psql` installed, [Install `psql`](/guides/install-psql-without-full-postgres.md) first.
+After RisingWave is up and running, you need to connect to it via the Postgres interactive terminal `psql` so that you can issue queries to RisingWave and see the query results. If you don't have `psql` installed, [Install `psql`](/guides/install-psql-without-full-postgres.md) first.
 
-  Open a new terminal window and run:
+Open a new terminal window and run:
 
-  ```shell
-  psql -h localhost -p 4566 -d dev -U root
-  ```
+```shell
+psql -h localhost -p 4566 -d dev -U root
+```
 
-  Notes about the `psql` options:
+Notes about the `psql` options:
 
 - The `-h` option is used to specify the host name or IP address of the PostgreSQL server to connect to.
 - The `-p` option is used to specify the port number that the server is listening on.
@@ -173,9 +174,9 @@ Do not move the extracted files or folders. This could cause issues when startin
 
 1. ### Optional: Enable the connector node
 
-  The RisingWave connector node is a separate Java component that allows RisingWave to be integrated with external systems. It can be used to consume CDC events and sink data to downstream databases.
+The RisingWave connector node is a separate Java component that allows RisingWave to be integrated with external systems. It can be used to consume CDC events and sink data to downstream databases.
 
-  To enable the connector node:
+To enable the connector node:
 
     1. Navigate to where your `risingwave` directory is located and run `./risedev configure`.
 
@@ -188,7 +189,7 @@ Do not move the extracted files or folders. This could cause issues when startin
     alt="Edit risedev.yml file for connector node"
     />
 
-  The connector node will now be enabled when you run RisingWave.
+The connector node will now be enabled when you run RisingWave.
 
 </TabItem>
 
@@ -206,35 +207,35 @@ To persist your data, use the [RisingWave Kubernetes Operator](/deploy/risingwav
 
 1. ### Pull and run RisingWave
 
-  As prerequisites, you need to install and run [Docker Desktop](https://docs.docker.com/get-docker/) in your environment.
+As prerequisites, you need to install and run [Docker Desktop](https://docs.docker.com/get-docker/) in your environment.
 
-  Run the following command to pull and start the latest release of RisingWave in single-binary playground mode.
+Run the following command to pull and start the latest release of RisingWave in single-binary playground mode.
 
-  ```shell
-  docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:latest playground
-  ```
+```shell
+docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:latest playground
+```
 
-  :::tip
-  You can find the previous releases and nightly builds on [Docker Hub](https://hub.docker.com/r/risingwavelabs/risingwave/tags).<br/>If you want to run a particular version, replace `latest` with the actual version name (for example, `v1.3.0`)
-  :::
+:::tip
+You can find the previous releases and nightly builds on [Docker Hub](https://hub.docker.com/r/risingwavelabs/risingwave/tags).<br/>If you want to run a particular version, replace `latest` with the actual version name (for example, `v1.3.0`)
+:::
 
-  If you see the logs, you have successfully started RisingWave.
+If you see the logs, you have successfully started RisingWave.
 
-  <img
-    src={require('../images/risedev_docker_image_logs.png').default}
-    alt="RisingWave Docker Logs"
-    width="800px"
-  />
+<img
+src={require('../images/risedev_docker_image_logs.png').default}
+alt="RisingWave Docker Logs"
+width="800px"
+/>
 
 1. ### Connect to RisingWave
 
-  After RisingWave is up and running, you need to connect to it via the Postgres interactive terminal `psql` so that you can issue queries to RisingWave and see the query results. If you don't have `psql` installed, [Install `psql`](/guides/install-psql-without-full-postgres.md) first.
+After RisingWave is up and running, you need to connect to it via the Postgres interactive terminal `psql` so that you can issue queries to RisingWave and see the query results. If you don't have `psql` installed, [Install `psql`](/guides/install-psql-without-full-postgres.md) first.
 
-  Open a new terminal window and run:
+Open a new terminal window and run:
 
-  ```shell
-  psql -h localhost -p 4566 -d dev -U root
-  ```
+```shell
+psql -h localhost -p 4566 -d dev -U root
+```
 
 Notes about the `psql` options:
 
@@ -277,21 +278,21 @@ RisingWave also incorporates these third-party components:
 
 1. ### Download the source file and start a cluster
 
-  As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment. Ensure that it is running before launching the cluster.
+As prerequisites, you need to install [Docker Desktop](https://docs.docker.com/get-docker/) in your environment. Ensure that it is running before launching the cluster.
 
-  Then, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
+Then, clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository.
 
-  ```shell
-  git clone https://github.com/risingwavelabs/risingwave.git
-  ```
+```shell
+git clone https://github.com/risingwavelabs/risingwave.git
+```
 
-  Now run the following commands to navigate to the `docker` directory.
-  
-  ```shell
-  cd docker
-  ```
+Now run the following commands to navigate to the `docker` directory.
 
-  You can now start a RisingWave cluster. You can use the following storage options as the storage backend of RisingWave:
+```shell
+cd docker
+```
+
+You can now start a RisingWave cluster. You can use the following storage options as the storage backend of RisingWave:
 
 - MinIO
 - S3 or S3-compatible storage
@@ -364,13 +365,13 @@ docker-compose -f docker-compose-with-hdfs.yml up
 
 1. ### Connect to RisingWave
 
-  After RisingWave is up and running, you need to connect to it via the Postgres interactive terminal `psql` so that you can issue queries to RisingWave and see the query results. If you don't have `psql` installed, [Install `psql`](/guides/install-psql-without-full-postgres.md) first.
+After RisingWave is up and running, you need to connect to it via the Postgres interactive terminal `psql` so that you can issue queries to RisingWave and see the query results. If you don't have `psql` installed, [Install `psql`](/guides/install-psql-without-full-postgres.md) first.
 
-  ```shell
-  psql -h localhost -p 4566 -d dev -U root
-  ```
+```shell
+psql -h localhost -p 4566 -d dev -U root
+```
 
-  Notes about the `psql` options:
+Notes about the `psql` options:
 
 - The `-h` option is used to specify the host name or IP address of the PostgreSQL server to connect to.
 - The `-p` option is used to specify the port number that the server is listening on.
@@ -380,19 +381,19 @@ docker-compose -f docker-compose-with-hdfs.yml up
 
 1. ### Manage your RisingWave cluster
 
-  When the cluster is running, you can monitor the status of RisingWave and the additional components and make adjustments when necessary.
+When the cluster is running, you can monitor the status of RisingWave and the additional components and make adjustments when necessary.
 
 - **RisingWave Dashboard**
 
- Access the RisingWave Dashboard at [http://127.0.0.1:5691/](http://127.0.0.1:5691/). RisingWave Dashboard displays an overview of the cluster, as well as sources, sinks, tables, materialized views, and indexes available on the cluster.
+Access the RisingWave Dashboard at [http://127.0.0.1:5691/](http://127.0.0.1:5691/). RisingWave Dashboard displays an overview of the cluster, as well as sources, sinks, tables, materialized views, and indexes available on the cluster.
 
 - **Grafana**
 
- Access Grafana at [http://127.0.0.1:3001/](http://127.0.0.1:3001/), and search for `risingwave_dashboard`. In this dashboard, you can view the internal metrics such as node count, memory consumption, thoroughputs, and latencies. You can use these metrics to troubleshoot and optimize the cluster performance.
+Access Grafana at [http://127.0.0.1:3001/](http://127.0.0.1:3001/), and search for `risingwave_dashboard`. In this dashboard, you can view the internal metrics such as node count, memory consumption, thoroughputs, and latencies. You can use these metrics to troubleshoot and optimize the cluster performance.
 
 - **MinIO**
 
- Access the MinIO instance at [http://127.0.0.1:9400/](http://127.0.0.1:9400/). Use the following credentials to log in.
+Access the MinIO instance at [http://127.0.0.1:9400/](http://127.0.0.1:9400/). Use the following credentials to log in.
 
 - User name: `hummockadmin`
 
@@ -400,7 +401,7 @@ docker-compose -f docker-compose-with-hdfs.yml up
 
 - **Prometheus**
 
- Access Prometheus at [http://127.0.0.1:9500/](http://127.0.0.1:9500/). No credentials are needed. You can use Prometheus for real-time alerting.
+Access Prometheus at [http://127.0.0.1:9500/](http://127.0.0.1:9500/). No credentials are needed. You can use Prometheus for real-time alerting.
 
 ### Optional: Remove containers and data
 

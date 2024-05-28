@@ -4,6 +4,7 @@ title: DROP FUNCTION
 description: Drop a user-defined function.
 slug: /sql-drop-function
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-function/" />
 </head>
@@ -19,29 +20,29 @@ DROP FUNCTION function_name [ ( argument_type [, ...] ) ] ;
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP FUNCTION'),
-        rr.NonTerminal('function_name'),
-        rr.Optional(
-            rr.Sequence(
-                rr.Terminal('('),
-                rr.OneOrMore(
-                    rr.NonTerminal('argument_type', 'skip'),
-                    ','
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Terminal(';'),
-    )
+rr.Sequence(
+rr.Terminal('DROP FUNCTION'),
+rr.NonTerminal('function_name'),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('('),
+rr.OneOrMore(
+rr.NonTerminal('argument_type', 'skip'),
+','
+),
+rr.Terminal(')'),
+),
+),
+rr.Terminal(';'),
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
-| Parameter or clause           | Description                                           |
-|-------------------------------|-------------------------------------------------------|
-| *function_name*               | Name of the UDF you want to drop.           |
-| ( *argument_type* [ , ... ] ) | Optional: Argument types of the function.<br/>Specify the argument types when the name of the function you want to drop isn't unique within the schema. |
+| Parameter or clause           | Description                                                                                                                                             |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _function_name_               | Name of the UDF you want to drop.                                                                                                                       |
+| ( _argument_type_ [ , ... ] ) | Optional: Argument types of the function.<br/>Specify the argument types when the name of the function you want to drop isn't unique within the schema. |
 
 ## Usage
 
@@ -49,17 +50,17 @@ A function can be dropped using one of the following methods:
 
 - Full function signature:
 
-    ```sql
-    DROP FUNCTION function_name ( argument_type [, ...] ); 
-    ```
+  ```sql
+  DROP FUNCTION function_name ( argument_type [, ...] );
+  ```
 
 - Function name only, if it's unique in its schema:
 
-    ```sql
-    DROP FUNCTION function_name;
-    ```
+  ```sql
+  DROP FUNCTION function_name;
+  ```
 
-    You can run [`SHOW FUNCTIONS;`](/sql/commands/sql-show-functions.md) to list all existing UDFs to see if a function name is unique.
+  You can run [`SHOW FUNCTIONS;`](/sql/commands/sql-show-functions.md) to list all existing UDFs to see if a function name is unique.
 
 :::tip
 `DROP FUNCTION function_name();` drops a function with zero arguments.
@@ -89,6 +90,7 @@ You cannot drop a function by name when its name is not unique:
 ```sql
 DROP FUNCTION f1;
 ```
+
 ```
 ERROR:  QueryError: Catalog error: function name "f1" is not unique
 HINT: Specify the argument list to select the function unambiguously.
@@ -104,7 +106,7 @@ DROP FUNCTION f1(int);
 Now, `f1(int,int)` is the only function named `f1`, you can drop it by name or full signature:
 
 ```sql
-DROP FUNCTION f1; 
+DROP FUNCTION f1;
 -- Or DROP FUNCTION f1(int,int);
 ```
 

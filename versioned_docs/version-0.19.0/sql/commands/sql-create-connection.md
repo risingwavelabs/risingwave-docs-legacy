@@ -4,6 +4,7 @@ title: CREATE CONNECTION
 description: Create a connection between VPCs.
 slug: /sql-create-connection
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-connection/" />
 </head>
@@ -22,36 +23,36 @@ WITH (
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE CONNECTION'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('connection_name'),
-        ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Sequence(
-                rr.NonTerminal('connection_parameter'),
-                rr.Terminal('='),
-                rr.NonTerminal('value'),
-            ),
-            rr.Terminal(')'),
-        ),
-        rr.Terminal(';'),
-    )
+rr.Stack(
+rr.Sequence(
+rr.Terminal('CREATE CONNECTION'),
+rr.Optional(rr.Terminal('IF NOT EXISTS')),
+rr.NonTerminal('connection_name'),
+),
+rr.Sequence(
+rr.Terminal('WITH'),
+rr.Terminal('('),
+rr.Sequence(
+rr.NonTerminal('connection_parameter'),
+rr.Terminal('='),
+rr.NonTerminal('value'),
+),
+rr.Terminal(')'),
+),
+rr.Terminal(';'),
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 ## Parameters
 
-|Parameter or clause            | Description           |
-|-------------------------------|-----------------------|
-|*connection_name*              |The name of the connection to be created.|
-|type                           |The type of connection.|
-|provider                       |The provider of the connection.|
-|service.name                   |The service name of the endpoint service.|
+| Parameter or clause | Description                               |
+| ------------------- | ----------------------------------------- |
+| _connection_name_   | The name of the connection to be created. |
+| type                | The type of connection.                   |
+| provider            | The provider of the connection.           |
+| service.name        | The service name of the endpoint service. |
 
 ## Example
 
@@ -87,44 +88,45 @@ Follow the steps below to create an AWS PrivateLink connection.
 
 6. Use the `CREATE CONNECTION` command in RisingWave to create an AWS PrivateLink connection referencing the endpoint service created. Here is an example of creating an AWS PrivateLink connection.
 
-    ```sql
-    CREATE CONNECTION connection_name WITH (
-        type = 'privatelink',
-        provider = 'aws',
-        service.name = 'com.amazonaws.xyz.us-east-1.abc-xyz-0000'
-    );
-    ```
+   ```sql
+   CREATE CONNECTION connection_name WITH (
+       type = 'privatelink',
+       provider = 'aws',
+       service.name = 'com.amazonaws.xyz.us-east-1.abc-xyz-0000'
+   );
+   ```
 
 7. Create a source or sink with AWS PrivateLink connection.
-    - Use the `CREATE SOURCE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see the [Ingest data from Kafka](/create-source/create-source-kafka.md) topic. Here is an example of connecting to a Kafka source through AWS PrivateLink.
 
-    ```sql
-    CREATE SOURCE tcp_metrics_rw (
-    device_id VARCHAR,
-    metric_name VARCHAR,
-    report_time TIMESTAMP,
-    metric_value DOUBLE PRECISION
-    ) WITH (
-    connector = 'kafka',
-    topic = 'tcp_metrics',
-    properties.bootstrap.server = 'ip1:9092, ip2:9092',
-    connection.name = 'my_connection',
-    privatelink.targets = '[{"port": 8001}, {"port": 8002}]',
-    scan.startup.mode = 'earliest'
-    ) ROW FORMAT JSON;
-    ```
+   - Use the `CREATE SOURCE` command to create a Kafka source with PrivateLink connection. For more details on the syntax, see the [Ingest data from Kafka](/create-source/create-source-kafka.md) topic. Here is an example of connecting to a Kafka source through AWS PrivateLink.
 
-     - Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details on the syntax, see the [Sink to Kafka](/guides/create-sink-kafka.md) topic. Here is an example of sinking to Kafka with an AWS PrivateLink.
+   ```sql
+   CREATE SOURCE tcp_metrics_rw (
+   device_id VARCHAR,
+   metric_name VARCHAR,
+   report_time TIMESTAMP,
+   metric_value DOUBLE PRECISION
+   ) WITH (
+   connector = 'kafka',
+   topic = 'tcp_metrics',
+   properties.bootstrap.server = 'ip1:9092, ip2:9092',
+   connection.name = 'my_connection',
+   privatelink.targets = '[{"port": 8001}, {"port": 8002}]',
+   scan.startup.mode = 'earliest'
+   ) ROW FORMAT JSON;
+   ```
 
-    ```sql
-    CREATE SINK sink2 FROM mv2
-    WITH (
-    connector='kafka',
-    type='append-only',
-    properties.bootstrap.server='b-1.xxx.amazonaws.com:9092,b-2.test.xxx.amazonaws.com:9092',
-    topic='msk_topic',
-    force_append_only='true',
-    connection.name = 'connection1',
-    privatelink.targets = '[{"port": 8001}, {"port": 8002}]'
-    );
-    ```
+   - Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details on the syntax, see the [Sink to Kafka](/guides/create-sink-kafka.md) topic. Here is an example of sinking to Kafka with an AWS PrivateLink.
+
+   ```sql
+   CREATE SINK sink2 FROM mv2
+   WITH (
+   connector='kafka',
+   type='append-only',
+   properties.bootstrap.server='b-1.xxx.amazonaws.com:9092,b-2.test.xxx.amazonaws.com:9092',
+   topic='msk_topic',
+   force_append_only='true',
+   connection.name = 'connection1',
+   privatelink.targets = '[{"port": 8001}, {"port": 8002}]'
+   );
+   ```

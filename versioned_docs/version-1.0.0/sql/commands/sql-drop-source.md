@@ -4,6 +4,7 @@ title: DROP SOURCE
 description: Remove a source.
 slug: /sql-drop-source
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-source/" />
 </head>
@@ -18,38 +19,33 @@ Before you can remove a source, you must use [DROP MATERIALIZED VIEW](sql-drop-m
 DROP SOURCE [ IF EXISTS ] [schema_name.]source_name;
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP SOURCE'),
-        rr.Optional(
-            rr.Terminal('IF EXISTS')
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.NonTerminal('schema_name'),
-                rr.Terminal('.')
-            ),
-        ),
-        rr.NonTerminal('source_name'),
-        rr.Terminal(';'),
-    )
+rr.Sequence(
+rr.Terminal('DROP SOURCE'),
+rr.Optional(
+rr.Terminal('IF EXISTS')
+),
+rr.Optional(
+rr.Sequence(
+rr.NonTerminal('schema_name'),
+rr.Terminal('.')
+),
+),
+rr.NonTerminal('source_name'),
+rr.Terminal(';'),
+)
 );
 
-<drawer SVG={svg} />
-
-
+<Drawer SVG={svg} />
 
 ## Parameters
 
-|Parameter                  | Description           |
-|---------------------------|-----------------------|
-|*schema_name*                   |The schema of the source that you want to remove. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified source in the default schema `public` will be removed.|
-|*source_name*                   |The name of the source to remove.|
-
-
+| Parameter     | Description                                                                                                                                                                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _schema_name_ | The schema of the source that you want to remove. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified source in the default schema `public` will be removed. |
+| _source_name_ | The name of the source to remove.                                                                                                                                                                                                               |
 
 ## Examples
 
@@ -58,7 +54,6 @@ This statement removes the `rw_source` source in the default schema (`public`) f
 ```sql
 DROP SOURCE rw_source;
 ```
-
 
 This statement removes the `rw_source` source in the `rw_schema` schema from the database:
 

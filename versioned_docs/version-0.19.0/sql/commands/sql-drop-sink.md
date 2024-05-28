@@ -4,6 +4,7 @@ title: DROP SINK
 description: Remove a sink.
 slug: /sql-drop-sink
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-sink/" />
 </head>
@@ -16,38 +17,33 @@ Use the `DROP SINK` command to remove a [sink](sql-create-sink.md) if you no lon
 DROP SINK [ IF EXISTS ] [schema_name.]sink_name;
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP SINK'),
-        rr.Optional(
-            rr.Terminal('IF EXISTS')
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.NonTerminal('schema_name'),
-                rr.Terminal('.')
-            ),
-        ),
-        rr.NonTerminal('sink_name'),
-        rr.Terminal(';'),
-    )
+rr.Sequence(
+rr.Terminal('DROP SINK'),
+rr.Optional(
+rr.Terminal('IF EXISTS')
+),
+rr.Optional(
+rr.Sequence(
+rr.NonTerminal('schema_name'),
+rr.Terminal('.')
+),
+),
+rr.NonTerminal('sink_name'),
+rr.Terminal(';'),
+)
 );
 
-<drawer SVG={svg} />
-
-
+<Drawer SVG={svg} />
 
 ## Parameters
 
-|Parameter                  | Description           |
-|---------------------------|-----------------------|
-|*schema_name*                   |The schema of the sink that you want to remove. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified sink in the default schema `public` will be removed.|
-|*sink_name*                   |The name of the sink to remove.|
-
-
+| Parameter     | Description                                                                                                                                                                                                                                 |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _schema_name_ | The schema of the sink that you want to remove. You can use [`SHOW SCHEMAS`](sql-show-schemas.md) to get a list of all available schemas. If you don't specify a schema, the specified sink in the default schema `public` will be removed. |
+| _sink_name_   | The name of the sink to remove.                                                                                                                                                                                                             |
 
 ## Examples
 
@@ -56,7 +52,6 @@ This statement removes the sink `rw_sink` in the default schema `public` from th
 ```sql
 DROP SINK rw_sink;
 ```
-
 
 This statement removes the sink `rw_sink` in the schema `rw_schema` from the database:
 

@@ -4,6 +4,7 @@ title: CREATE CONNECTION
 description: Create a connection between VPCs.
 slug: /sql-create-connection
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-connection/" />
 </head>
@@ -22,39 +23,39 @@ WITH (
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE CONNECTION'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('connection_name'),
-        ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Sequence(
-                rr.NonTerminal('connection_parameter'),
-                rr.Terminal('='),
-                rr.NonTerminal('value'),
-            ),
-            rr.Terminal(')'),
-        ),
-        rr.Terminal(';'),
-    )
+rr.Stack(
+rr.Sequence(
+rr.Terminal('CREATE CONNECTION'),
+rr.Optional(rr.Terminal('IF NOT EXISTS')),
+rr.NonTerminal('connection_name'),
+),
+rr.Sequence(
+rr.Terminal('WITH'),
+rr.Terminal('('),
+rr.Sequence(
+rr.NonTerminal('connection_parameter'),
+rr.Terminal('='),
+rr.NonTerminal('value'),
+),
+rr.Terminal(')'),
+),
+rr.Terminal(';'),
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 ## Parameters
 
 All WITH options are required unless stated otherwise.
 
-|Parameter or clause            | Description           |
-|-------------------------------|-----------------------|
-|*connection_name*              |The name of the connection to be created.|
-|type                           |The type of connection.|
-|provider                       |The provider of the connection.|
-|service.name                   |The service name of the endpoint service.|
-|tags                           |Optional. The AWS tags used to check for resource leakage. This parameter should have the format: `key1=value1, key2=value2, ...`.|
+| Parameter or clause | Description                                                                                                                        |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| _connection_name_   | The name of the connection to be created.                                                                                          |
+| type                | The type of connection.                                                                                                            |
+| provider            | The provider of the connection.                                                                                                    |
+| service.name        | The service name of the endpoint service.                                                                                          |
+| tags                | Optional. The AWS tags used to check for resource leakage. This parameter should have the format: `key1=value1, key2=value2, ...`. |
 
 :::note
 You can either tag the VPC endpoints by specifying the `tags` parameter when using the `CREATE CONNECTION` command or by specifying the environment variable `RW_PRIVATELINK_ENDPOINT_DEFAULT_TAGS`. When specifying the tags, follow the format of `key1=value1, key2=value2, ...`. If both are specified, the tags specified in the environment variable will be appended to the ones specified by the `tags` parameter.
@@ -94,15 +95,15 @@ Follow the steps below to create an AWS PrivateLink connection.
 
 6. Use the `CREATE CONNECTION` command in RisingWave to create an AWS PrivateLink connection referencing the endpoint service created. Here is an example of creating an AWS PrivateLink connection.
 
-    ```sql
-    CREATE CONNECTION connection_name WITH (
-        type = 'privatelink',
-        provider = 'aws',
-        service.name = 'com.amazonaws.xyz.us-east-1.abc-xyz-0000'
-    );
-    ```
+   ```sql
+   CREATE CONNECTION connection_name WITH (
+       type = 'privatelink',
+       provider = 'aws',
+       service.name = 'com.amazonaws.xyz.us-east-1.abc-xyz-0000'
+   );
+   ```
 
 7. Create a source or sink with VPC connection.
 
-   * Use the `CREATE SOURCE/TABLE` command to create a Kafka source with PrivateLink connection. For more details, see [Create source with AWS PrivateLink connection](/ingest/ingest-from-kafka.md#create-source-with-vpc-connection).
-   * Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details, see [Create sink with AWS PrivateLink connection](/guides/create-sink-kafka.md#create-sink-with-vpc-connection).
+   - Use the `CREATE SOURCE/TABLE` command to create a Kafka source with PrivateLink connection. For more details, see [Create source with AWS PrivateLink connection](/ingest/ingest-from-kafka.md#create-source-with-vpc-connection).
+   - Use the `CREATE SINK` command to create a Kafka sink with PrivateLink connection. For more details, see [Create sink with AWS PrivateLink connection](/guides/create-sink-kafka.md#create-sink-with-vpc-connection).

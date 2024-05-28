@@ -4,6 +4,7 @@ slug: /user-defined-functions
 title: User-defined functions
 description: Define your own functions with the help of the RisingWave UDF API for Python.
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/user-defined-functions/" />
 </head>
@@ -128,9 +129,9 @@ The code defines two scalar functions and one table function:
 - The scalar function `gcd`, decorated with `@udf`, takes two integer inputs and returns the greatest common divisor of the two integers.
 - The scalar function `extract_tcp_info`, decorated with `@udf`, takes a single binary input and returns a structured output.
 
-    The function takes a single argument `tcp_packet` of type bytes and uses the struct module to unpack the source and destination addresses and port numbers from `tcp_packet`, and then converts the binary IP addresses to strings using `socket.inet_ntoa`.
+  The function takes a single argument `tcp_packet` of type bytes and uses the struct module to unpack the source and destination addresses and port numbers from `tcp_packet`, and then converts the binary IP addresses to strings using `socket.inet_ntoa`.
 
-    The function returns a tuple containing the source IP address, destination IP address, source port number, and destination port number, all converted to their respective types. The return type is specified as a struct with four fields using the `result_type` argument.
+  The function returns a tuple containing the source IP address, destination IP address, source port number, and destination port number, all converted to their respective types. The return type is specified as a struct with four fields using the `result_type` argument.
 
 - The table function `series`, decorated by `@udtf`, takes an integer input and yields a sequence of integers from 0 to n-1.
 
@@ -150,9 +151,9 @@ Some of the sample functions are still being tested and may not be fully functio
 
 1. Run this command to execute `udf.py`.
 
-    ```shell
-    python3 udf.py
-    ```
+   ```shell
+   python3 udf.py
+   ```
 
 The UDF server will start running, allowing you to call the defined UDFs from RisingWave.
 
@@ -168,44 +169,44 @@ In RisingWave, use the `CREATE FUNCTION` command to declare the functions define
 import rr from '@theme/RailroadDiagram';
 
 export const svg = rr.Diagram(
-  rr.Stack(
-    rr.Sequence(
-      rr.Terminal('CREATE FUNCTION'),
-      rr.NonTerminal('function_name', 'skip'),
-      rr.Terminal('('),
-      rr.OneOrMore(rr.NonTerminal('argument_type', 'skip'), ','),
-      rr.Terminal(')')
-    ),
-    rr.Optional(
-      rr.Choice(1,
-        rr.Sequence(
-          rr.Terminal('RETURNS'),
-          rr.NonTerminal('return_type', 'skip')
-        ),
-        rr.Sequence(
-          rr.Terminal('RETURNS TABLE'),
-          rr.Terminal('('),
-          rr.OneOrMore(rr.Sequence(rr.NonTerminal('column_name', 'skip'), rr.NonTerminal('column_type', 'skip')), ','),
-          rr.Terminal(')')
-        )
-      )
-    ),
-    rr.Sequence(
-      rr.Terminal('LANGUAGE python'),
-      rr.Terminal('AS'),
-      rr.NonTerminal('function_name_defined_in_server', 'skip')
-    ),
-    rr.Sequence(
-      rr.Terminal('USING LINK'),
-      rr.Terminal('\''),
-      rr.NonTerminal('udf_server_address', 'skip'),
-      rr.Terminal('\''),
-      rr.Terminal(';')
-    )
-  )
+rr.Stack(
+rr.Sequence(
+rr.Terminal('CREATE FUNCTION'),
+rr.NonTerminal('function_name', 'skip'),
+rr.Terminal('('),
+rr.OneOrMore(rr.NonTerminal('argument_type', 'skip'), ','),
+rr.Terminal(')')
+),
+rr.Optional(
+rr.Choice(1,
+rr.Sequence(
+rr.Terminal('RETURNS'),
+rr.NonTerminal('return_type', 'skip')
+),
+rr.Sequence(
+rr.Terminal('RETURNS TABLE'),
+rr.Terminal('('),
+rr.OneOrMore(rr.Sequence(rr.NonTerminal('column_name', 'skip'), rr.NonTerminal('column_type', 'skip')), ','),
+rr.Terminal(')')
+)
+)
+),
+rr.Sequence(
+rr.Terminal('LANGUAGE python'),
+rr.Terminal('AS'),
+rr.NonTerminal('function_name_defined_in_server', 'skip')
+),
+rr.Sequence(
+rr.Terminal('USING LINK'),
+rr.Terminal('\''),
+rr.NonTerminal('udf_server_address', 'skip'),
+rr.Terminal('\''),
+rr.Terminal(';')
+)
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 </TabItem>
 
@@ -222,15 +223,15 @@ CREATE FUNCTION function_name ( argument_type [, ...] )
 
 </Tabs>
 
-| Parameter or clause | Description |
-| --- | --- |
-| *function_name* | The name of the UDF that you want to declare in RisingWave. |
-| *argument_type* | The data type of the input parameter(s) that the UDF expects to receive.|
-| **RETURNS** *return_type* | Use this if the function returns a single value (i.e., scalar). It specifies the data type of the return value from the UDF.<br />The struct type, which can contain multiple values, is supported. But the field names must be consistent between Python and SQL definitions, or it will be considered a type mismatch.<br/>The array and JSONB types are not supported in this version. |
-| **RETURNS TABLE** | Use this if the function is a table-valued function (TVF). It specifies the structure of the table that the UDF returns. |
-| **LANGUAGE** | Specifies the programming language used to implement the UDF. <br/> Currently, only `python` is supported.|
-| **AS** *function_name_defined_in_server* | Specifies the function name defined in the UDF server.|
-| **USING LINK** '*udf_server_address*' | Specifies the UDF server address. <br/>If you are running RisingWave in your local environment, the address is `http://localhost:<port>` <br/> If you are running RisingWave using Docker, the address is `http://host.docker.internal:<port>/`|
+| Parameter or clause                      | Description                                                                                                                                                                                                                                                                                                                                                                               |
+| ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _function_name_                          | The name of the UDF that you want to declare in RisingWave.                                                                                                                                                                                                                                                                                                                               |
+| _argument_type_                          | The data type of the input parameter(s) that the UDF expects to receive.                                                                                                                                                                                                                                                                                                                  |
+| **RETURNS** _return_type_                | Use this if the function returns a single value (i.e., scalar). It specifies the data type of the return value from the UDF.<br />The struct type, which can contain multiple values, is supported. But the field names must be consistent between Python and SQL definitions, or it will be considered a type mismatch.<br/>The array and JSONB types are not supported in this version. |
+| **RETURNS TABLE**                        | Use this if the function is a table-valued function (TVF). It specifies the structure of the table that the UDF returns.                                                                                                                                                                                                                                                                  |
+| **LANGUAGE**                             | Specifies the programming language used to implement the UDF. <br/> Currently, only `python` is supported.                                                                                                                                                                                                                                                                                |
+| **AS** _function_name_defined_in_server_ | Specifies the function name defined in the UDF server.                                                                                                                                                                                                                                                                                                                                    |
+| **USING LINK** '_udf_server_address_'    | Specifies the UDF server address. <br/>If you are running RisingWave in your local environment, the address is `http://localhost:<port>` <br/> If you are running RisingWave using Docker, the address is `http://host.docker.internal:<port>/`                                                                                                                                           |
 
 #### Example
 

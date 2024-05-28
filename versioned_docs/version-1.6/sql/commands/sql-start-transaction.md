@@ -4,6 +4,7 @@ title: START TRANSACTION
 description: Start a transaction.
 slug: /sql-start-transaction
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-start-transaction/" />
 </head>
@@ -31,13 +32,13 @@ START TRANSACTION;
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('START TRANSACTION READ ONLY'),
-        rr.Terminal(';')
-    )
+rr.Sequence(
+rr.Terminal('START TRANSACTION READ ONLY'),
+rr.Terminal(';')
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 ## Example
 

@@ -1,9 +1,10 @@
 ---
 id: sql-show-create-sink
 title: SHOW CREATE SINK
-description: Show the query used to create the specified sink. 
+description: Show the query used to create the specified sink.
 slug: /sql-show-create-sink
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-create-sink/" />
 </head>
@@ -17,26 +18,23 @@ using this command, you can verify the sink's settings and troubleshoot any issu
 SHOW CREATE SINK sink_name;
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW CREATE SINK'),
-        rr.NonTerminal('sink_name', 'skip'),
-        rr.Terminal(';')
-    )
+rr.Sequence(
+rr.Terminal('SHOW CREATE SINK'),
+rr.NonTerminal('sink_name', 'skip'),
+rr.Terminal(';')
+)
 );
 
-<drawer SVG={svg} />
-
+<Drawer SVG={svg} />
 
 ## Parameters
 
-|Parameter    | Description|
-|---------------|------------|
-|*sink_name* |The sink for which you want to show the corresponding SQL statement.|
-
+| Parameter   | Description                                                          |
+| ----------- | -------------------------------------------------------------------- |
+| _sink_name_ | The sink for which you want to show the corresponding SQL statement. |
 
 ## See also
 

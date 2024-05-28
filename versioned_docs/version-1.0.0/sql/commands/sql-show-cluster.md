@@ -4,6 +4,7 @@ title: SHOW CLUSTERS
 description: Show the details of your RisingWave cluster.
 slug: /sql-show-cluster
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-cluster/" />
 </head>
@@ -19,13 +20,13 @@ SHOW CLUSTERS;
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW CLUSTERS'),
-        rr.Terminal(';')
-    )
+rr.Sequence(
+rr.Terminal('SHOW CLUSTERS'),
+rr.Terminal(';')
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 ## Example
 

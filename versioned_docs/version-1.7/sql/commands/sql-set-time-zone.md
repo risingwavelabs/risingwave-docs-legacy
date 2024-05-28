@@ -4,6 +4,7 @@ title: SET TIME ZONE
 description: Set time zone.
 slug: /sql-set-time-zone
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-set-time-zone/" />
 </head>
@@ -16,34 +17,29 @@ Use the `SET TIME ZONE` command to specify the time zone that should be used to 
 SET TIME ZONE { time_zone | LOCAL | DEFAULT };
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SET TIME ZONE'),
-        rr.Choice(1,
-            rr.NonTerminal('time_zone'),
-            rr.Terminal('LOCAL'),
-            rr.Terminal('DEFAULT'),
-        ),
-        rr.Terminal(';'),
-    )
+rr.Sequence(
+rr.Terminal('SET TIME ZONE'),
+rr.Choice(1,
+rr.NonTerminal('time_zone'),
+rr.Terminal('LOCAL'),
+rr.Terminal('DEFAULT'),
+),
+rr.Terminal(';'),
+)
 );
 
-<drawer SVG={svg} />
-
-
+<Drawer SVG={svg} />
 
 ## Parameters
 
-| Parameter                 | Description           |
-| ------------------------- | --------------------- |
-| *time_zone*             | Specifies the time zone using a valid time zone name, such as "America/New_York" or "Asia/Shanghai". You can find a list of all possible *time_zone* values [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) |
-| **LOCAL** | Sets the time zone to the system's local time zone. |
-| **DEFAULT** | Sets the time zone to the server's default time zone. |
-
-
+| Parameter   | Description                                                                                                                                                                                                                      |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _time_zone_ | Specifies the time zone using a valid time zone name, such as "America/New_York" or "Asia/Shanghai". You can find a list of all possible _time_zone_ values [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) |
+| **LOCAL**   | Sets the time zone to the system's local time zone.                                                                                                                                                                              |
+| **DEFAULT** | Sets the time zone to the server's default time zone.                                                                                                                                                                            |
 
 ## Examples
 

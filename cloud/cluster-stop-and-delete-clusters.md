@@ -9,11 +9,9 @@ You can manually control the running state of your clusters or delete them.
 
 You can go to [**Clusters**](https://cloud.risingwave.com/clusters/) to control your clusters.
 
-
 ## Stop a cluster
 
-
-<grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="20"
@@ -21,29 +19,29 @@ You can go to [**Clusters**](https://cloud.risingwave.com/clusters/) to control 
  justifyItems="stretch"
  alignItems="baseline">
 
-<grid item xs={6} md={6}>
+<ResponsiveGrid item xs={6} md={6}>
 
 <img
-  src={require('./images/cluster-stop.png').default}
-  alt="Stop a cluster"
+src={require('./images/cluster-stop.png').default}
+alt="Stop a cluster"
 />
 
 You can click **Stop** to stop running a cluster when needed. A stopped cluster will keep all existing data but pause any activities.
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={6} md={6}>
+<ResponsiveGrid item xs={6} md={6}>
 
 <img
-  src={require('./images/cluster-restart.png').default}
-  alt="Restart a stopped cluster"
+src={require('./images/cluster-restart.png').default}
+alt="Restart a stopped cluster"
 />
 
 To restart a stopped cluster, click **Start**.
-  
-</grid>
 
-</grid>
+</ResponsiveGrid>
+
+</ResponsiveGrid>
 
 ## Delete a cluster
 
@@ -54,6 +52,6 @@ You must delete all clusters before [deleting your account](account-manage-your-
 :::
 
 <img
-  src={require('./images/cluster-delete.gif').default}
-  alt="Delete a cluster"
+src={require('./images/cluster-delete.gif').default}
+alt="Delete a cluster"
 />

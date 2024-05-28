@@ -4,6 +4,7 @@ title: DROP VIEW
 description: Drop a view.
 slug: /sql-drop-view
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-user/" />
 </head>
@@ -16,33 +17,25 @@ Use the `DROP VIEW` command to remove an existing view from a particular schema.
 DROP VIEW [IF EXISTS] view_name;
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP VIEW'),
-        rr.Optional(rr.Terminal('IF EXISTS')),
-        rr.NonTerminal('view_name'),
-        rr.Terminal(';')
-    )
+rr.Sequence(
+rr.Terminal('DROP VIEW'),
+rr.Optional(rr.Terminal('IF EXISTS')),
+rr.NonTerminal('view_name'),
+rr.Terminal(';')
+)
 );
 
-
-<drawer SVG={svg} />
-
-
-
+<Drawer SVG={svg} />
 
 ## Parameters
 
-|Parameter                  | Description           |
-|---------------------------|-----------------------|
-|**IF EXISTS** clause       |Do not return an error if the specified view does not exist.|
-|*view_name*                |Name of the view to be dropped.|
-
-
-
+| Parameter            | Description                                                  |
+| -------------------- | ------------------------------------------------------------ |
+| **IF EXISTS** clause | Do not return an error if the specified view does not exist. |
+| _view_name_          | Name of the view to be dropped.                              |
 
 ## Example
 
@@ -51,7 +44,6 @@ This statement removes the `sales_report` view if it exists.
 ```sql
 DROP VIEW IF EXISTS sales_report;
 ```
-
 
 ## Related topics
 

@@ -4,6 +4,7 @@ title: DROP DATABASE
 description: Remove a database.
 slug: /sql-drop-database
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-drop-database/" />
 </head>
@@ -25,26 +26,22 @@ DROP DATABASE [ IF EXISTS ] database_name;
 import rr from '@theme/RailroadDiagram'
 
 export const svgtwo = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP DATABASE'),
-        rr.Optional(rr.Terminal('IF EXISTS')),
-        rr.NonTerminal('database_name', 'skip'),
-        rr.Terminal(';'),
-    )
+rr.Sequence(
+rr.Terminal('DROP DATABASE'),
+rr.Optional(rr.Terminal('IF EXISTS')),
+rr.NonTerminal('database_name', 'skip'),
+rr.Terminal(';'),
+)
 );
 
-<drawer SVG={svgtwo} />
-
+<Drawer SVG={svgtwo} />
 
 ## Parameters
 
-
-|Parameter or clause        | Description           |
-|---------------------------|-----------------------|
-|**IF EXISTS** clause       |Do not return an error if the specified database does not exist.|
-|*database_name*                 |The name of the database you want to remove. You can use [`SHOW DATABASES`](sql-show-databases.md) to get a list of all available databases.|
-
-
+| Parameter or clause  | Description                                                                                                                                  |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| **IF EXISTS** clause | Do not return an error if the specified database does not exist.                                                                             |
+| _database_name_      | The name of the database you want to remove. You can use [`SHOW DATABASES`](sql-show-databases.md) to get a list of all available databases. |
 
 ## Examples
 

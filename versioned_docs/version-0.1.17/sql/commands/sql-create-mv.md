@@ -4,6 +4,7 @@ title: CREATE MATERIALIZED VIEW
 description: Create a materialized view.
 slug: /sql-create-mv
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-mv/" />
 </head>
@@ -20,24 +21,24 @@ import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
 rr.Stack(
-   rr.Sequence(
-      rr.Terminal("CREATE MATERIALIZED VIEW"),
-      rr.NonTerminal("mv_name", "skip"),
-      rr.Terminal("AS"),
-      rr.NonTerminal("select_query", "skip"),
-      rr.Terminal(";")
-   )
+rr.Sequence(
+rr.Terminal("CREATE MATERIALIZED VIEW"),
+rr.NonTerminal("mv_name", "skip"),
+rr.Terminal("AS"),
+rr.NonTerminal("select_query", "skip"),
+rr.Terminal(";")
+)
 )
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 ## Parameters
 
-|Parameter or clause        | Description           |
-|---------------------------|-----------------------|
-|*mv_name*                       |The name of the materialized view to be created.|
-|*select_query*             |A SELECT query that retrieves data for the materialized view. See [SELECT](sql-select.md) for the syntax and examples of the `SELECT` command.|
+| Parameter or clause | Description                                                                                                                                    |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| _mv_name_           | The name of the materialized view to be created.                                                                                               |
+| _select_query_      | A SELECT query that retrieves data for the materialized view. See [SELECT](sql-select.md) for the syntax and examples of the `SELECT` command. |
 
 :::note
 
@@ -52,6 +53,5 @@ The `ORDER BY` clause in the `CREATE MATERIALIZED VIEW` statement is allowed but
 :::
 
 ## Examples
+
 Refer to this [tutorial](/tutorials/server-performance-anomaly-detection.md) for examples of creating materialized views based on external sources or existing materialized views.
-
-

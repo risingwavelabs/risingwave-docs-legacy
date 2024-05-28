@@ -11,14 +11,13 @@ RisingWave Cloud leverages the superpower of RisingWave, an open-source distribu
 
 Developers can refer to the user documentation for RisingWave to develop streaming applications with RisingWave Cloud. The documentation covers essential topics such as data ingestion, SQL references, data delivery, client libraries, and ecosystem, providing comprehensive information on how to utilize the capabilities of RisingWave to build and manage data workflows that consume streaming data, perform incremental computations, and update results dynamically.
 
-<defaultButton text="RisingWave user docs" url="/docs/current/intro/"/> <lightButton text="See recommended topics" cloud="develop-overview#top-read-topics-for-developers"/>
+<DefaultButton text="RisingWave user docs" url="/docs/current/intro/"/> <LightButton text="See recommended topics" cloud="develop-overview#top-read-topics-for-developers"/>
 
 ## How to use the docs
 
 RisingWave is a rapidly evolving system, with [new features](/release-notes/) added with each release. However, this also means some features may not function properly in older versions. Therefore, when using the RisingWave user docs, it's important to select the corresponding documentation version based on your RisingWave cluster's version.
 
-
-<grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -26,40 +25,40 @@ RisingWave is a rapidly evolving system, with [new features](/release-notes/) ad
  justifyItems="stretch"
  alignItems="baseline">
 
-<grid item xs={6} md={6}>
+<ResponsiveGrid item xs={6} md={6}>
 
 ### Check RisingWave version
 
 To check your current version, go to [**Clusters**](https://cloud.risingwave.com/clusters/).
 
 <img
-  src={require('./images/cluster-rwversion.png').default}
-  alt="Check RisingWave verison of clusters"
-  width="95%"
+src={require('./images/cluster-rwversion.png').default}
+alt="Check RisingWave verison of clusters"
+width="95%"
 />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={6} md={6}>
+<ResponsiveGrid item xs={6} md={6}>
 
 ### Select docs version
 
 Select the version of the corresponding docs when using the RisingWave user docs.
 
 <img
-  src={require('./images/select-docs-version.gif').default}
-  alt="Select docs version"
+src={require('./images/select-docs-version.gif').default}
+alt="Select docs version"
 />
-  
-</grid>
 
-</grid>
+</ResponsiveGrid>
+
+</ResponsiveGrid>
 
 ## Top read topics for developers
 
 ### Ecosystem
 
-<grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -67,44 +66,44 @@ Select the version of the corresponding docs when using the RisingWave user docs
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={4}>
+<ResponsiveGrid item xs={12} sm={6} md={4}>
 
- <card
- style={{height: "87%"}}
- title="Integrations"
- content="See how RisingWave can integrate with your existing data stack. Vote for your favorite data tools and streaming services to help us prioritize the integration development."
- url="/docs/current/rw-integration-summary/"
- />
+<OutlinedCard
+style={{height: "87%"}}
+title="Integrations"
+content="See how RisingWave can integrate with your existing data stack. Vote for your favorite data tools and streaming services to help us prioritize the integration development."
+url="/docs/current/rw-integration-summary/"
+/>
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={4}>
+<ResponsiveGrid item xs={12} sm={6} md={4}>
 
- <card
- style={{height: "87%"}}
- title="Sources"
- content="Connect to and ingest data from external sources such as databases and message brokers. See supported data sources."
- url="/docs/current/data-ingestion/"
- />
-  
-</grid>
+<OutlinedCard
+style={{height: "87%"}}
+title="Sources"
+content="Connect to and ingest data from external sources such as databases and message brokers. See supported data sources."
+url="/docs/current/data-ingestion/"
+/>
 
-<grid item xs={12} sm={6} md={4}>
+</ResponsiveGrid>
 
-<card
- style={{height: "87%"}}
- title="Sinks"
- content="Stream processed data out of RisingWave to message brokers and databases. See supported data destinations."
- url="/docs/current/data-delivery/"
- />
-  
-</grid>
+<ResponsiveGrid item xs={12} sm={6} md={4}>
 
-</grid>
+<OutlinedCard
+style={{height: "87%"}}
+title="Sinks"
+content="Stream processed data out of RisingWave to message brokers and databases. See supported data destinations."
+url="/docs/current/data-delivery/"
+/>
+
+</ResponsiveGrid>
+
+</ResponsiveGrid>
 
 ### Process data with RisingWave
 
-<card
+<OutlinedCard
 title="SQL references"
 content="SQL syntax and functionality supported by RisingWave. While RisingWave is wire-compatible with PostgreSQL, it has some unique features and notable differences."
 links={[
@@ -119,7 +118,7 @@ links={[
 
 ### Use RisingWave in your applications
 
-<card
+<OutlinedCard
 title="Client libraries"
 content="RisingWave offers support for popular PostgreSQL drivers, enabling seamless integration with your applications for interacting with it."
 links={[
@@ -132,7 +131,7 @@ links={[
 
 ### More to read
 
- <grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -140,34 +139,34 @@ links={[
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
- <card
- style={{height: "90%"}}
- title="About RisingWave"
- content="Continue to learn about RisingWave."
- links={[
- {text:"Key concepts", url:"/docs/current/key-concepts/"},
- {text:"Architechture", url:"/docs/current/architecture/"},
- {text:"RisingWave vs. Apache Flink", url:"/docs/current/risingwave-flink-comparison/"},
- {text:"Release notes", url:"/release-notes/"}
- ]}
- />
+<OutlinedCard
+style={{height: "90%"}}
+title="About RisingWave"
+content="Continue to learn about RisingWave."
+links={[
+{text:"Key concepts", url:"/docs/current/key-concepts/"},
+{text:"Architechture", url:"/docs/current/architecture/"},
+{text:"RisingWave vs. Apache Flink", url:"/docs/current/risingwave-flink-comparison/"},
+{text:"Release notes", url:"/release-notes/"}
+]}
+/>
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
-<card
- style={{height: "90%"}}
- title="Blog"
- content="Product insights, engineering deep-dives, community events, industry highlights, and company news posted regularly by our CEO, engineers, product experts, community runners, communication specialists, and community contributors."
- url="https://www.risingwave-labs.com/blog/"
- links={[
- {text:"Blog", url:"https://www.risingwave.com/resources/?filter=blogs"}
- ]}
- />
-  
-</grid>
+<OutlinedCard
+style={{height: "90%"}}
+title="Blog"
+content="Product insights, engineering deep-dives, community events, industry highlights, and company news posted regularly by our CEO, engineers, product experts, community runners, communication specialists, and community contributors."
+url="https://www.risingwave-labs.com/blog/"
+links={[
+{text:"Blog", url:"https://www.risingwave.com/resources/?filter=blogs"}
+]}
+/>
 
-</grid>
+</ResponsiveGrid>
+
+</ResponsiveGrid>

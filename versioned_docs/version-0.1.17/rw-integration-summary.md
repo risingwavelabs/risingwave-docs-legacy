@@ -4,6 +4,7 @@ title: Integrations
 description: Summary of integrations
 slug: /rw-integration-summary
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw-integration-summary/" />
 </head>
@@ -18,93 +19,93 @@ For tools or integrations that you would like to use but are not listed in the t
 
 ## Message brokers or streaming services
 
-|Broker or streaming service| Source | Sink |
-|---|---|---|
-|Kafka | Available. See [Ingest data from Kafka](/create-source/create-source-kafka.md) for details. | Available. See [CREATE SINK](/sql/commands/sql-create-sink.md) for details.| |
-|Redpanda | Available. See [Ingest data from Redpanda](/create-source/create-source-redpanda.md) for details. |Available. See [CREATE SINK](/sql/commands/sql-create-sink.md) for details.|
-|Apache Pulsar|Available. See [Ingest data from Pulsar](/create-source/create-source-pulsar.md) for details. | Researching <voteNotify note="pulsar_sink" />|
-|DataStax Astra Streaming| Available | Researching <voteNotify note="astra_streaming_sink" />|
-|StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
-|Kinesis Data Streams|Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.|Researching <voteNotify note="kinesis_sink" />|
+| Broker or streaming service | Source                                                                                            | Sink                                                                        |
+| --------------------------- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --- |
+| Kafka                       | Available. See [Ingest data from Kafka](/create-source/create-source-kafka.md) for details.       | Available. See [CREATE SINK](/sql/commands/sql-create-sink.md) for details. |     |
+| Redpanda                    | Available. See [Ingest data from Redpanda](/create-source/create-source-redpanda.md) for details. | Available. See [CREATE SINK](/sql/commands/sql-create-sink.md) for details. |
+| Apache Pulsar               | Available. See [Ingest data from Pulsar](/create-source/create-source-pulsar.md) for details.     | Researching <Capsule note="pulsar_sink" />                                  |
+| DataStax Astra Streaming    | Available                                                                                         | Researching <Capsule note="astra_streaming_sink" />                         |
+| StreamNative Cloud          | Available                                                                                         | Researching <Capsule note="streamnative_cloud_sink" />                      |
+| Kinesis Data Streams        | Available. See [Ingest data from Kinesis](/create-source/create-source-kinesis.md) for details.   | Researching <Capsule note="kinesis_sink" />                                 |
 
 ## ETL/ELT and data integration
 
-|System | |Availability |
-|---|---|---|
-|Fivetran| |Researching <voteNotify note="fivetran" /> |
-|Airbyte | |Researching  <voteNotify note="airbyte" /> |
-|dbt| |Researching <voteNotify note="dbt" />|
-|Hightouch| |Researching <voteNotify note="hightouch" />|
+| System    |     | Availability                             |
+| --------- | --- | ---------------------------------------- |
+| Fivetran  |     | Researching <Capsule note="fivetran" />  |
+| Airbyte   |     | Researching <Capsule note="airbyte" />   |
+| dbt       |     | Researching <Capsule note="dbt" />       |
+| Hightouch |     | Researching <Capsule note="hightouch" /> |
 
 ## Query engines
 
-|System | |Availability |
-|---|---|---|
-|Apache Spark| |Researching <voteNotify note="spark" />|
-|AWS Athena| |Researching <voteNotify note="athena" />|
-|Presto| |Researching <voteNotify note="presto" />|
-|Trino| |Researching <voteNotify note="trino" />|
+| System       |     | Availability                          |
+| ------------ | --- | ------------------------------------- |
+| Apache Spark |     | Researching <Capsule note="spark" />  |
+| AWS Athena   |     | Researching <Capsule note="athena" /> |
+| Presto       |     | Researching <Capsule note="presto" /> |
+| Trino        |     | Researching <Capsule note="trino" />  |
 
 ## Databases
 
 ### PostgreSQL
 
-|System | Source | Sink |
-|---|---|----|
-|Postgres| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details.| In progress <voteNotify note="pg_sink" />|
-|AWS RDS (Postgres)| Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. |In progress <voteNotify note="aurora_pg_sink" />|
-|AWS Aurora (Postgres)| In progress <voteNotify note="aurora_pg_source" />|Researching <voteNotify note="aurora_pg_sink" />|
+| System                | Source                                                                                             | Sink                                          |
+| --------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| Postgres              | Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. | In progress <Capsule note="pg_sink" />        |
+| AWS RDS (Postgres)    | Available. See [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. | In progress <Capsule note="aurora_pg_sink" /> |
+| AWS Aurora (Postgres) | In progress <Capsule note="aurora_pg_source" />                                                    | Researching <Capsule note="aurora_pg_sink" /> |
 
 ### MySQL
 
-|System | Source | Sink |
-|---|---|----|
-|MySQL | Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md).|
-|AWS RDS (MySQL)|Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md).|
-|AWS Aurora (MySQL)|In progress <voteNotify note="aurora_mysql_source" />| Researching <voteNotify note="aurora_mysql_sink" /> |
+| System             | Source                                                                                     | Sink                                                                            |
+| ------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------- |
+| MySQL              | Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details. | Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md). |
+| AWS RDS (MySQL)    | Available. See [Ingest data from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details. | Available. See [Sink data from RisingWave to MySQL](./guides/sink-to-mysql.md). |
+| AWS Aurora (MySQL) | In progress <Capsule note="aurora_mysql_source" />                                         | Researching <Capsule note="aurora_mysql_sink" />                                |
 
 ### Other databases
 
-|System | Source |Sink |
-|---|---|---|
-|Apache Druid| No plan| Researching <voteNotify note="druid_sink" /> |
-|Apache Pinot| No plan|Researching <voteNotify note="pinot_sink" />|
-|AWS Redshift| No plan|Researching <voteNotify note="redshift_sink" />|
-|ClickHouse|No plan |Researching <voteNotify note="clickhouse_sink" />|
-|Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
-|Google BigQuery| No plan |Researching <voteNotify note="bigquery_sink" />|
-|DataStax Astra DB & Apache Cassandra| Researching <voteNotify note="cassandra_source" /> |In progress <voteNotify note="cassandra_sink" />|
-|CockroachDB| Researching <voteNotify note="cockroachdb_source" />|Researching <voteNotify note="cockroachdb_sink" /> |
-|Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
-|MongoDB| Researching <voteNotify note="mongodb_source" />|Researching <voteNotify note="mongodb_sink" /> |
-|Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
-|SQL Server| Researching <voteNotify note="sql_server_source" />|Researching <voteNotify note="sql_server_sink" /> |
-|TiDB| Researching <voteNotify note="tidb_source" />|Researching <voteNotify note="tidb_sink" /> |
-|Redis|Researching <voteNotify note="redis_source" />|In progress <voteNotify note="redis_sink" />|
+| System                               | Source                                            | Sink                                            |
+| ------------------------------------ | ------------------------------------------------- | ----------------------------------------------- |
+| Apache Druid                         | No plan                                           | Researching <Capsule note="druid_sink" />       |
+| Apache Pinot                         | No plan                                           | Researching <Capsule note="pinot_sink" />       |
+| AWS Redshift                         | No plan                                           | Researching <Capsule note="redshift_sink" />    |
+| ClickHouse                           | No plan                                           | Researching <Capsule note="clickhouse_sink" />  |
+| Snowflake                            | No plan                                           | Researching <Capsule note="snowflake_sink" />   |
+| Google BigQuery                      | No plan                                           | Researching <Capsule note="bigquery_sink" />    |
+| DataStax Astra DB & Apache Cassandra | Researching <Capsule note="cassandra_source" />   | In progress <Capsule note="cassandra_sink" />   |
+| CockroachDB                          | Researching <Capsule note="cockroachdb_source" /> | Researching <Capsule note="cockroachdb_sink" /> |
+| Db2                                  | Researching <Capsule note="db2_source" />         | Researching <Capsule note="db2_sink" />         |
+| MongoDB                              | Researching <Capsule note="mongodb_source" />     | Researching <Capsule note="mongodb_sink" />     |
+| Oracle Database                      | Researching <Capsule note="oracle_source" />      | Researching <Capsule note="oracle_sink" />      |
+| SQL Server                           | Researching <Capsule note="sql_server_source" />  | Researching <Capsule note="sql_server_sink" />  |
+| TiDB                                 | Researching <Capsule note="tidb_source" />        | Researching <Capsule note="tidb_sink" />        |
+| Redis                                | Researching <Capsule note="redis_source" />       | In progress <Capsule note="redis_sink" />       |
 
 ## Data lakes
 
-|System | |Availability |
-|---|---|---|
-|Delta Lake| |Researching <voteNotify note="deltalake" />|
-|Apache Hudi| |Researching <voteNotify note="hudi" />|
-|Apache Iceberg| |Researching <voteNotify note="iceberg" />|
+| System         |     | Availability                             |
+| -------------- | --- | ---------------------------------------- |
+| Delta Lake     |     | Researching <Capsule note="deltalake" /> |
+| Apache Hudi    |     | Researching <Capsule note="hudi" />      |
+| Apache Iceberg |     | Researching <Capsule note="iceberg" />   |
 
 ## BI and data analytic platforms
 
-|System ||Availability |
-|---|-|--|
-|Apache Superset| |Available. See [Visualize RisingWave data in Superset](/guides/superset-integration.md) for details. |
-|Cube.js| | Researching <voteNotify note="cubejs" />|
-|DBeaver| |In progress <voteNotify note="dbeaver" />|
-|Grafana| |Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.|
-|Jupyter Notebook||Researching <voteNotify note="jupyter" />|
-|Looker||Researching <voteNotify note="looker" /> |
-|Metabase ||In progress <voteNotify note="metabase" />|
-|Redash || Available |
+| System           |     | Availability                                                                                         |
+| ---------------- | --- | ---------------------------------------------------------------------------------------------------- |
+| Apache Superset  |     | Available. See [Visualize RisingWave data in Superset](/guides/superset-integration.md) for details. |
+| Cube.js          |     | Researching <Capsule note="cubejs" />                                                                |
+| DBeaver          |     | In progress <Capsule note="dbeaver" />                                                               |
+| Grafana          |     | Available. See [Visualize RisingWave data in Grafana](/guides/grafana-integration.md) for details.   |
+| Jupyter Notebook |     | Researching <Capsule note="jupyter" />                                                               |
+| Looker           |     | Researching <Capsule note="looker" />                                                                |
+| Metabase         |     | In progress <Capsule note="metabase" />                                                              |
+| Redash           |     | Available                                                                                            |
 
 ## Other systems
 
-|System | |Availability |
-|---|---|---|
-|Alluxio| |Researching <voteNotify note="alluxio" />|
+| System  |     | Availability                           |
+| ------- | --- | -------------------------------------- |
+| Alluxio |     | Researching <Capsule note="alluxio" /> |

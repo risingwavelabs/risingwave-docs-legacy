@@ -4,6 +4,7 @@ title: DESCRIBE
 description: Get information about the columns in a table, source, or materialized view.
 slug: /sql-describe
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-describe/" />
 </head>
@@ -27,26 +28,26 @@ DESCRIBE relation_name;
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DESCRIBE'),
-        rr.NonTerminal('relation_name', 'skip'),
-        rr.Terminal(';')
-    )
+rr.Sequence(
+rr.Terminal('DESCRIBE'),
+rr.NonTerminal('relation_name', 'skip'),
+rr.Terminal(';')
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 ## Parameters
 
 | Parameter or clause | Description                                                           |
 | ------------------- | --------------------------------------------------------------------- |
-| *relation_name*        | The table, source, or materialized view whose columns will be listed. |
+| _relation_name_     | The table, source, or materialized view whose columns will be listed. |
 
 ## Example
 
 ```sql title=Preparation
 CREATE TABLE customers (
-  customer_id BIGINT PRIMARY KEY,  
+  customer_id BIGINT PRIMARY KEY,
   name VARCHAR,
   email VARCHAR
 );

@@ -4,6 +4,7 @@ title: CDC via event streaming systems
 description: Ingest CDC data via event streaming systems.
 slug: /create-source-cdc
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-cdc/" />
 </head>
@@ -20,27 +21,27 @@ RisingWave accepts these data formats:
 
 - Debezium JSON (for MySQL and PostgreSQL)
 
-    For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
+  For Debezium JSON, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka or Pulsar topics, or Kinesis data streams.
 
 - Debezium Mongo JSON (for MongoDB)
 
-    For Debezium Mongo JSON, you can use the [Debezium connector for MongoDB](https://debezium.io/documentation/reference/stable/connectors/mongodb.html) to convert CDC data to Kafka topics.
+  For Debezium Mongo JSON, you can use the [Debezium connector for MongoDB](https://debezium.io/documentation/reference/stable/connectors/mongodb.html) to convert CDC data to Kafka topics.
 
 - Debezium AVRO (for MySQL and PostgreSQL)
 
-   For Debezium AVRO, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka topics.
+  For Debezium AVRO, you can use the [Debezium connector for MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html) or [Debezium connector for PostgreSQL](https://debezium.io/documentation/reference/stable/connectors/postgresql.html) to convert CDC data to Kafka topics.
 
 - Maxwell JSON (for MySQL only)
 
-    For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
+  For Maxwell JSON (`ROW FORMAT MAXWELL`), you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
 
 - The TiCDC dialect of Canal JSON (for TiDB only)
 
-    For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`ROW FORMAT CANAL_JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. You might need to define the topic name in a TiCDC configuration file. Note that only new changes will be captured from TiDB. Data that already exists within the target table will not be captured by TiCDC. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc). 
+  For the TiCDC dialect of [Canal](https://github.com/alibaba/canal) JSON (`ROW FORMAT CANAL_JSON`), you can add TiCDC to an existing TiDB cluster to convert TiDB data changes to Kafka topics. You might need to define the topic name in a TiCDC configuration file. Note that only new changes will be captured from TiDB. Data that already exists within the target table will not be captured by TiCDC. For details, see [Deploy and Maintain TiCDC](https://docs.pingcap.com/tidb/dev/deploy-ticdc).
 
 - Canal JSON (for MySQL only)
 
-    For Canal JSON (`ROW FORMAT CANAL_JSON`), you need to use the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to convert MySQL change data to Pulsar topics.
+  For Canal JSON (`ROW FORMAT CANAL_JSON`), you need to use the [Canal source connector](https://pulsar.apache.org/docs/2.11.x/io-canal-source/) to convert MySQL change data to Pulsar topics.
 
 ## Syntax
 
@@ -48,74 +49,74 @@ RisingWave accepts these data formats:
 CREATE TABLE [ IF NOT EXISTS ] source_name (
    column_name data_type [ PRIMARY KEY ], ...
    PRIMARY KEY ( column_name, ... )
-) 
+)
 WITH (
    connector='connector',
    connector_parameter='value', ...
-) 
+)
 ROW FORMAT { DEBEZIUM_JSON | DEBEZIUM_MONGO_JSON | MAXWELL | CANAL_JSON  | DEBEZIUM_AVRO };
 ```
 
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE TABLE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('table_name', 'wrap')
-        ),
-        rr.Sequence(
-            rr.Terminal('('),
-            rr.ZeroOrMore(
-                rr.Sequence(
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.NonTerminal('data_type', 'skip'),
-                    rr.Optional(rr.Terminal('column_constraint')),
-                ),
-                ','
-            ),
-            rr.Terminal(')'),
-        ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.NonTerminal('kafka', 'skip'),
-                        rr.Terminal(','),
-                    ),
-                    rr.Sequence(
-                       rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('connector_parameter', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                        ),
-                        ',',
-                    ),
-                        rr.Terminal(')'),
-                    ),
-                ),
-            ),
-        ),
-            rr.Sequence(
-                rr.Terminal('ROW FORMAT'),
-                rr.Choice(1,
-                    rr.Terminal('DEBEZIUM_JSON'),
-                    rr.Terminal('MAXWELL'),
-                    rr.Terminal('CANAL_JSON'),
-                    rr.Terminal('DEBEZIUM_AVRO'),
-                ),
-                rr.Terminal(';'),
-            ),
-    )
+rr.Stack(
+rr.Sequence(
+rr.Terminal('CREATE TABLE'),
+rr.Optional(rr.Terminal('IF NOT EXISTS')),
+rr.NonTerminal('table_name', 'wrap')
+),
+rr.Sequence(
+rr.Terminal('('),
+rr.ZeroOrMore(
+rr.Sequence(
+rr.NonTerminal('column_name', 'skip'),
+rr.NonTerminal('data_type', 'skip'),
+rr.Optional(rr.Terminal('column_constraint')),
+),
+','
+),
+rr.Terminal(')'),
+),
+rr.Sequence(
+rr.Terminal('WITH'),
+rr.Terminal('('),
+rr.Stack(
+rr.Stack(
+rr.Sequence(
+rr.Terminal('connector'),
+rr.Terminal('='),
+rr.NonTerminal('kafka', 'skip'),
+rr.Terminal(','),
+),
+rr.Sequence(
+rr.OneOrMore(
+rr.Sequence(
+rr.NonTerminal('connector_parameter', 'skip'),
+rr.Terminal('='),
+rr.NonTerminal('value', 'skip'),
+),
+',',
+),
+rr.Terminal(')'),
+),
+),
+),
+),
+rr.Sequence(
+rr.Terminal('ROW FORMAT'),
+rr.Choice(1,
+rr.Terminal('DEBEZIUM_JSON'),
+rr.Terminal('MAXWELL'),
+rr.Terminal('CANAL_JSON'),
+rr.Terminal('DEBEZIUM_AVRO'),
+),
+rr.Terminal(';'),
+),
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 ### Connector Parameters
 
@@ -144,13 +145,13 @@ CREATE TABLE [IF NOT EXISTS] source_name (
    column1 varchar,
    column2 integer,
    PRIMARY KEY (column1)
-) 
+)
 WITH (
    connector='kafka',
    topic='user_test_topic',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
    scan.startup.mode='earliest'
-) 
+)
 ROW FORMAT DEBEZIUM_JSON;
 ```
 
@@ -163,12 +164,12 @@ For more details on this row format, see [Debezium Mongo JSON](../sql/commands/s
 CREATE TABLE [IF NOT EXISTS] source_name (
    _id BIGINT PRIMARY KEY
    payload jsonb
-) 
+)
 WITH (
    connector='kafka',
    topic='debezium_mongo_json_customers',
    properties.bootstrap.server='172.10.1.1:9090,172.10.1.2:9090',
-) 
+)
 ROW FORMAT DEBEZIUM_MONGO_JSON;
 ```
 
@@ -184,7 +185,7 @@ WITH (
     topic = 'mysql.mydb.orders',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
-) 
+)
 ROW FORMAT DEBEZIUM_AVRO ROW SCHEMA LOCATION CONFLUENT SCHEMA REGISTRY 'http://message_queue:8081';
 ```
 
@@ -202,7 +203,7 @@ CREATE TABLE source_name (
    column1 varchar,
    column2 integer,
    PRIMARY KEY (column1)
-) 
+)
 WITH (
    connector='pulsar',
    topic='demo_topic',
@@ -210,7 +211,7 @@ WITH (
    admin.url='http://localhost:8080',
    scan.startup.mode='latest',
    scan.startup.timestamp_millis='140000000'
-) 
+)
 ROW FORMAT DEBEZIUM_JSON;
 ```
 
@@ -223,7 +224,7 @@ CREATE TABLE source_name (
     column1 varchar,
     column2 integer,
     PRIMARY KEY (column1)
-) 
+)
 WITH (
     connector='kinesis',
     stream='kafka',

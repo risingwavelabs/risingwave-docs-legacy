@@ -4,6 +4,7 @@ title: CREATE INDEX
 description: Create an index on a column of a table or a materialized view to speed up data retrieval.
 slug: /sql-create-index
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-index/" />
 </head>
@@ -32,39 +33,38 @@ CREATE INDEX index_name ON object_name ( index_column [ ASC | DESC ], [, ...] )
 [ DISTRIBUTED BY ( distributed_column [, ...] ) ];
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE INDEX'),
-            rr.NonTerminal('index_name'),
-            rr.Terminal('ON'),
-            rr.NonTerminal('object_name'),
-            rr.Terminal('('),
-            rr.OneOrMore(
-                rr.Sequence(
-                    rr.NonTerminal('index_column'),
-                    rr.Optional(
-                        rr.Choice(0,
-                            rr.Terminal('ASC'),
-                            rr.Terminal('DESC'),
-                        )
-                    ),
-                    rr.Optional(rr.Terminal(',')),
-                ),
-            ),
-            rr.Terminal(')'),
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.Terminal('INCLUDE'),
-                rr.Terminal('('),
-                rr.OneOrMore(
-                    rr.Sequence(
-                        rr.NonTerminal('include_column'),
-                        
+rr.Stack(
+rr.Sequence(
+rr.Terminal('CREATE INDEX'),
+rr.NonTerminal('index_name'),
+rr.Terminal('ON'),
+rr.NonTerminal('object_name'),
+rr.Terminal('('),
+rr.OneOrMore(
+rr.Sequence(
+rr.NonTerminal('index_column'),
+rr.Optional(
+rr.Choice(0,
+rr.Terminal('ASC'),
+rr.Terminal('DESC'),
+)
+),
+rr.Optional(rr.Terminal(',')),
+),
+),
+rr.Terminal(')'),
+),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('INCLUDE'),
+rr.Terminal('('),
+rr.OneOrMore(
+rr.Sequence(
+rr.NonTerminal('include_column'),
+
                     ),
                     rr.Terminal(','),
                 ),
@@ -86,23 +86,21 @@ export const svg = rr.Diagram(
         ),
         rr.Terminal(';'),
     )
+
 );
 
-<drawer SVG={svg} />
-
-
-
+<Drawer SVG={svg} />
 
 ### Parameters
 
-| Parameter or clause| Description|
-|-----------|-------------|
-|*index_name*    |The name of the index to be created.|
-|*object_name*    |The name of the table or materialized view where the index is created.|
-|*index_column*   |The name of the column on which the index is created.|
-|**DESC**   |Sort the data returned in descending order.|
-|**INCLUDE** clause|Specify the columns to include in the index as non-key columns.<ul><li>An index-only query can return the values of non-key columns without having to visit the indexed table thus improving the performance.</li><li>If you omit the `INCLUDE` clause, all columns of the table or materialized view will be indexed. This is recommended in RisingWave.</li><li>If you only want to include the `index_column`, use `CREATE INDEX ON object_name(index_column) INCLUDE(index_column);`.</li><li>See [How to decide which columns to include](#how-to-decide-which-columns-to-include) for more information.</li></ul>|
-|**DISTRIBUTED BY** clause|Specify the index distribution key.<ul><li>As a distributed database, RisingWave distributes the data across multiple nodes. When an index is created, the distribution key is used to determine how the data should be distributed across these nodes.</li><li>If you omit the `DISTRIBUTED BY` clause, `index_column` will be be used as the default distribution key.</li><li>`distributed_column` has to be the prefix of `index_column`.</li><li>See [How to decide the index distribution key](#how-to-decide-the-index-distribution-key) for more information.</li></ul>|
+| Parameter or clause       | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _index_name_              | The name of the index to be created.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| _object_name_             | The name of the table or materialized view where the index is created.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| _index_column_            | The name of the column on which the index is created.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **DESC**                  | Sort the data returned in descending order.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **INCLUDE** clause        | Specify the columns to include in the index as non-key columns.<ul><li>An index-only query can return the values of non-key columns without having to visit the indexed table thus improving the performance.</li><li>If you omit the `INCLUDE` clause, all columns of the table or materialized view will be indexed. This is recommended in RisingWave.</li><li>If you only want to include the `index_column`, use `CREATE INDEX ON object_name(index_column) INCLUDE(index_column);`.</li><li>See [How to decide which columns to include](#how-to-decide-which-columns-to-include) for more information.</li></ul> |
+| **DISTRIBUTED BY** clause | Specify the index distribution key.<ul><li>As a distributed database, RisingWave distributes the data across multiple nodes. When an index is created, the distribution key is used to determine how the data should be distributed across these nodes.</li><li>If you omit the `DISTRIBUTED BY` clause, `index_column` will be be used as the default distribution key.</li><li>`distributed_column` has to be the prefix of `index_column`.</li><li>See [How to decide the index distribution key](#how-to-decide-the-index-distribution-key) for more information.</li></ul>                                         |
 
 ## Examples
 
@@ -150,7 +148,7 @@ If you want to speed up the query of fetching all the orders of a customer by th
 ```sql
 CREATE INDEX idx_o_custkey ON orders(o_custkey);
 
-SELECT * FROM customers JOIN orders ON c_custkey = o_custkey 
+SELECT * FROM customers JOIN orders ON c_custkey = o_custkey
 WHERE c_phone = '123456789';
 ```
 
@@ -200,7 +198,7 @@ To see the indexes of a table, run the `DESCRIBE` statement. For example:
 DESCRIBE taxi_trips;
 ```
 ```
-   Name   |               Type                
+   Name   |               Type
 ----------+-----------------------------------
  id       | Int32
  distance | Float64
@@ -216,11 +214,12 @@ CREATE INDEX ad_id_index ON ad_ctr_5min(ad_id);
 
 Alternatively, you can create a materialized view to improve query performance:
 ```sql
-CREATE MATERIALIZED VIEW ad_id_index_mv AS 
+CREATE MATERIALIZED VIEW ad_id_index_mv AS
     SELECT ad_id FROM ad_ctr_5min
     ORDER BY ad_id;
 ```
 -->
+
 ## Indexes on expressions
 
 RisingWave supports creating indexes on expressions. Indexes on expressions are normally used to improve the performance of queries for frequently used expressions. To create an index on an expression, use the syntax:

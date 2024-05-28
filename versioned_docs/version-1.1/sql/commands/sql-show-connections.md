@@ -4,6 +4,7 @@ title: SHOW CONNECTIONS
 description: Show existing connections.
 slug: /sql-show-connections
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-connections/" />
 </head>
@@ -16,18 +17,16 @@ Use the `SHOW CONNECTIONS` command to see connections that have been created.
 SHOW CONNECTIONS;
 ```
 
-
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW CONNECTIONS'),
-        rr.Terminal(';')
-    )
+rr.Sequence(
+rr.Terminal('SHOW CONNECTIONS'),
+rr.Terminal(';')
+)
 );
 
-<drawer SVG={svg} />
-
+<Drawer SVG={svg} />
 
 ## Example
 

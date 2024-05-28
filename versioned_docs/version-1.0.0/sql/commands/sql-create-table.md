@@ -4,6 +4,7 @@ title: CREATE TABLE
 description: Create a table.
 slug: /sql-create-table
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-table/" />
 </head>
@@ -34,88 +35,88 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE TABLE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('table_name', 'wrap'),
-            rr.Terminal('('),
-        ),
-        rr.Stack(
-            rr.OneOrMore(
-                rr.Sequence(
-                    rr.NonTerminal('col_name', 'skip'),
-                    rr.NonTerminal('data_type', 'skip'),
-                    rr.Optional(rr.Terminal('PRIMARY KEY')),
-                    rr.Optional(rr.Terminal('AS generation_expression')),
-                    rr.Optional(rr.Terminal(',')),
-                ),
-                rr.Comment('Alternative format: PRIMARY KEY (col_name, ... )'),
-            ),
-        ),
-        rr.Sequence(
-            rr.Terminal(')'),
-        rr.Optional(
-            rr.Stack(
-                rr.Sequence(
-                    rr.Terminal('WITH clause'),
-            ),
-        ),
-        ), rr.Terminal(';'),
-        ),
-    )
+rr.Stack(
+rr.Sequence(
+rr.Terminal('CREATE TABLE'),
+rr.Optional(rr.Terminal('IF NOT EXISTS')),
+rr.NonTerminal('table_name', 'wrap'),
+rr.Terminal('('),
+),
+rr.Stack(
+rr.OneOrMore(
+rr.Sequence(
+rr.NonTerminal('col_name', 'skip'),
+rr.NonTerminal('data_type', 'skip'),
+rr.Optional(rr.Terminal('PRIMARY KEY')),
+rr.Optional(rr.Terminal('AS generation_expression')),
+rr.Optional(rr.Terminal(',')),
+),
+rr.Comment('Alternative format: PRIMARY KEY (col_name, ... )'),
+),
+),
+rr.Sequence(
+rr.Terminal(')'),
+rr.Optional(
+rr.Stack(
+rr.Sequence(
+rr.Terminal('WITH clause'),
+),
+),
+), rr.Terminal(';'),
+),
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 This is the WITH clause and the rest of the source parameters:
 
 export const svgTwo = rr.Diagram(
-     rr.Stack(
-        rr.Optional(
-            rr.Stack(
-                rr.Sequence(
-                    rr.Terminal('WITH'),
-                    rr.Terminal('('),
-                        rr.Sequence(
-                            rr.Terminal('connector'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('connector_name', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                        rr.OneOrMore(
-                            rr.Sequence(
-                                rr.NonTerminal('connector_parameter', 'skip'),
-                                rr.Terminal('='),
-                                rr.NonTerminal('value', 'skip'),
-                                rr.Terminal(','),
-                            ),
-                        ),
-                    rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Stack(
-            rr.Sequence(
-                rr.Terminal('FORMAT'),
-                rr.NonTerminal('format', 'skip')
-            ),
-            rr.Sequence(
-                rr.Terminal('ENCODE'),
-                rr.NonTerminal('encode', 'skip'),
-                rr.Optional(
-                    rr.Sequence(
-                    rr.Terminal('('),
-                    rr.NonTerminal('encode_parameter', 'skip'),
-                    rr.Terminal(')'),
-                    ),
-                ),
-            ),
-        ),
-    )
+rr.Stack(
+rr.Optional(
+rr.Stack(
+rr.Sequence(
+rr.Terminal('WITH'),
+rr.Terminal('('),
+rr.Sequence(
+rr.Terminal('connector'),
+rr.Terminal('='),
+rr.NonTerminal('connector_name', 'skip'),
+rr.Terminal(','),
+),
+rr.OneOrMore(
+rr.Sequence(
+rr.NonTerminal('connector_parameter', 'skip'),
+rr.Terminal('='),
+rr.NonTerminal('value', 'skip'),
+rr.Terminal(','),
+),
+),
+rr.Terminal(')'),
+),
+),
+),
+rr.Stack(
+rr.Sequence(
+rr.Terminal('FORMAT'),
+rr.NonTerminal('format', 'skip')
+),
+rr.Sequence(
+rr.Terminal('ENCODE'),
+rr.NonTerminal('encode', 'skip'),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('('),
+rr.NonTerminal('encode_parameter', 'skip'),
+rr.Terminal(')'),
+),
+),
+),
+),
+)
 );
 
-<drawer SVG={svgTwo} />
+<Drawer SVG={svgTwo} />
 
 ## Notes
 
@@ -129,14 +130,14 @@ To know when a data record is loaded to RisingWave, you can define a column that
 
 ## Parameters
 
-| Parameter| Description|
-|-----------|-------------|
-|*table_name*    |The name of the table. If a schema name is given (for example, `CREATE TABLE <schema>.<table> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
-|*col_name*      |The name of a column.|
-|*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("\<\>"). |
-|*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
-|**WITH** clause |Specify the connector settings here if trying to create a materialized source. See the [Data ingestion](/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
-|Format and encode options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
+| Parameter                 | Description                                                                                                                                                                                                                                               |
+| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _table_name_              | The name of the table. If a schema name is given (for example, `CREATE TABLE <schema>.<table> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.                                                    |
+| _col_name_                | The name of a column.                                                                                                                                                                                                                                     |
+| _data_type_               | The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("\<\>").                                                                                       |
+| _generation_expression_   | The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).                                                                                               |
+| **WITH** clause           | Specify the connector settings here if trying to create a materialized source. See the [Data ingestion](/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
+| Format and encode options | Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats).                                                                                |
 
 ## Examples
 
@@ -158,9 +159,9 @@ CREATE TABLE IF NOT EXISTS taxi_trips(
     distance DOUBLE PRECISION,
     duration DOUBLE PRECISION,
     fare STRUCT<
-      initial_charge DOUBLE PRECISION, 
-      subsequent_charge DOUBLE PRECISION, 
-      surcharge DOUBLE PRECISION, 
+      initial_charge DOUBLE PRECISION,
+      subsequent_charge DOUBLE PRECISION,
+      surcharge DOUBLE PRECISION,
       tolls DOUBLE PRECISION>);
 ```
 

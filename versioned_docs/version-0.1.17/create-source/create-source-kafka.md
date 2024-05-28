@@ -4,6 +4,7 @@ title: Ingest data from Kafka
 description: Connect RisingWave to a Kafka broker.
 slug: /create-source-kafka
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-kafka/" />
 </head>
@@ -17,13 +18,13 @@ Regardless of whether the data is persisted in RisingWave, you can create materi
 ## Syntax
 
 ```sql
-CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
+CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [ schema_definition ]
 WITH (
    connector='kafka',
    connector_parameter='value', ...
 )
-ROW FORMAT data_format 
+ROW FORMAT data_format
 [ MESSAGE 'message' ]
 [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
 ```
@@ -31,68 +32,68 @@ ROW FORMAT data_format
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-   rr.Stack(
-      rr.Sequence(
-         rr.Choice(1,
-            rr.Terminal('CREATE TABLE'),
-            rr.Terminal('CREATE SOURCE')
-         ),
-         rr.Optional(rr.Terminal('IF NOT EXISTS')),
-         rr.NonTerminal('source_name', 'skip'),
-      ),
-      rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
-      rr.Sequence(
-         rr.Terminal('WITH'),
-         rr.Terminal('('),
-         rr.Stack(
-            rr.Stack(
-               rr.Sequence(
-                  rr.Terminal('connector'),
-                  rr.Terminal('='),
-                  rr.NonTerminal('kafka', 'skip'),
-                  rr.Terminal(','),
-               ),
-               rr.OneOrMore(
-                  rr.Sequence(
-                     rr.NonTerminal('connector_parameter', 'skip'),
-                     rr.Terminal('='),
-                     rr.NonTerminal('value', 'skip'),
-                     rr.Terminal(','),
-                  ),
-               ),
-            ),
-            rr.Terminal(')'),
-         ),
-      ),
-      rr.Stack(
-         rr.Sequence(
-            rr.Terminal('ROW FORMAT'),
-            rr.NonTerminal('data_format', 'skip'),
-         ),
-         rr.Optional(
-            rr.Sequence(
-               rr.Terminal('MESSAGE'),
-               rr.NonTerminal('message', 'skip'),
-            ),
-         ),
-         rr.Optional(
-            rr.Sequence(
-               rr.Terminal('ROW SCHEMA LOCATION'),
-               rr.Choice(1,
-                  rr.Terminal('location'),
-                  rr.Sequence(
-                     rr.Terminal('CONFLUENT SCHEMA REGISTRY'),
-                     rr.NonTerminal('schema_registry_url', 'skip'),
-                  ),
-               ),
-            ),
-         ),
-         rr.Terminal(';'),
-      ),
-   )
+rr.Stack(
+rr.Sequence(
+rr.Choice(1,
+rr.Terminal('CREATE TABLE'),
+rr.Terminal('CREATE SOURCE')
+),
+rr.Optional(rr.Terminal('IF NOT EXISTS')),
+rr.NonTerminal('source_name', 'skip'),
+),
+rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
+rr.Sequence(
+rr.Terminal('WITH'),
+rr.Terminal('('),
+rr.Stack(
+rr.Stack(
+rr.Sequence(
+rr.Terminal('connector'),
+rr.Terminal('='),
+rr.NonTerminal('kafka', 'skip'),
+rr.Terminal(','),
+),
+rr.OneOrMore(
+rr.Sequence(
+rr.NonTerminal('connector_parameter', 'skip'),
+rr.Terminal('='),
+rr.NonTerminal('value', 'skip'),
+rr.Terminal(','),
+),
+),
+),
+rr.Terminal(')'),
+),
+),
+rr.Stack(
+rr.Sequence(
+rr.Terminal('ROW FORMAT'),
+rr.NonTerminal('data_format', 'skip'),
+),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('MESSAGE'),
+rr.NonTerminal('message', 'skip'),
+),
+),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('ROW SCHEMA LOCATION'),
+rr.Choice(1,
+rr.Terminal('location'),
+rr.Sequence(
+rr.Terminal('CONFLUENT SCHEMA REGISTRY'),
+rr.NonTerminal('schema_registry_url', 'skip'),
+),
+),
+),
+),
+rr.Terminal(';'),
+),
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 **schema_definition**:
 
@@ -121,21 +122,21 @@ For materialized sources with primary key constraints, if a new data record with
 
 ### Connector parameters
 
-|Field|Notes|
-|---|---|
-|topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
-|properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
-|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
-|scan.startup.timestamp_millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+| Field                         | Notes                                                                                                                                                                                                                   |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| topic                         | Required. Address of the Kafka topic. One source can only correspond to one topic.                                                                                                                                      |
+| properties.bootstrap.server   | Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`.                                                                                                                                                     |
+| scan.startup.mode             | Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used. |
+| scan.startup.timestamp_millis | Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.                                        |
 
 ### Other parameters
 
-|Field|Notes|
-|---|---|
-|*data_format*| Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`|
-|*message* | Message for the format. Required for Avro and Protobuf.|
-|*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both.|
-|*schema_registry_url*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
+| Field                 | Notes                                                                                                                                                                                          |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| _data_format_         | Data format. Supported formats: `JSON`, `AVRO`, `PROTOBUF`                                                                                                                                     |
+| _message_             | Message for the format. Required for Avro and Protobuf.                                                                                                                                        |
+| _location_            | Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. For Avro and Protobuf data, you must specify either a schema location or a schema registry but not both. |
+| _schema_registry_url_ | Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro or Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.             |
 
 ## Example
 
@@ -148,7 +149,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="avro" label="Avro" default>
 
 ```sql
-CREATE SOURCE IF NOT EXISTS source_abc 
+CREATE SOURCE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    topic='demo_topic',
@@ -182,7 +183,7 @@ ROW FORMAT JSON;
 <TabItem value="pb" label="Protobuf" default>
 
 ```sql
-CREATE SOURCE IF NOT EXISTS source_abc 
+CREATE SOURCE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    topic='demo_topic',
@@ -275,13 +276,13 @@ You need to specify encryption and authentication parameters in the WITH section
 
 To read data encrypted with SSL without SASL authentication, specify these parameters in the WITH section of your `CREATE SOURCE` statement.
 
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`|Set to `SSL`.|
-|`properties.ssl.ca.location`| |
-|`properties.ssl.certificate.location`| |
-|`properties.ssl.key.location`| |
-|`properties.ssl.key.password`| |
+| Parameter                             | Notes         |
+| ------------------------------------- | ------------- |
+| `properties.security.protocol`        | Set to `SSL`. |
+| `properties.ssl.ca.location`          |               |
+| `properties.ssl.certificate.location` |               |
+| `properties.ssl.key.location`         |               |
+| `properties.ssl.key.password`         |               |
 
 :::note
 
@@ -295,7 +296,7 @@ Here is an example of creating a materialized source encrypted with SSL without 
 CREATE TABLE IF NOT EXISTS source_1 (
    column1 varchar,
    column2 integer,
-)                  
+)
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -306,18 +307,18 @@ WITH (
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
    properties.ssl.key.location='/home/ubuntu/kafka/secrets/client_risingwave_client.key',
    properties.ssl.key.password='abcdefgh'
-)                                                       
+)
 ROW FORMAT JSON;
 ```
 
 ### `SASL/PLAIN`
 
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| For SASL/PLAIN without SSL, set to `SASL_PLAINTEXT`. For SASL/PLAIN with SSL, set to `SASL_SSL`.|
-|`properties.sasl.mechanism`|Set to `PLAIN`.|
-|`properties.sasl.username`| |
-|`properties.sasl.password`| |
+| Parameter                      | Notes                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `properties.security.protocol` | For SASL/PLAIN without SSL, set to `SASL_PLAINTEXT`. For SASL/PLAIN with SSL, set to `SASL_SSL`. |
+| `properties.sasl.mechanism`    | Set to `PLAIN`.                                                                                  |
+| `properties.sasl.username`     |                                                                                                  |
+| `properties.sasl.password`     |                                                                                                  |
 
 :::note
 
@@ -338,7 +339,7 @@ Here is an example of creating a source authenticated with SASL/PLAIN without SS
 CREATE SOURCE IF NOT EXISTS source_2 (
    column1 varchar,
    column2 integer,
-)                  
+)
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -348,7 +349,7 @@ WITH (
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
    properties.sasl.password='admin-secret'
-)                                                           
+)
 ROW FORMAT JSON;
 ```
 
@@ -358,7 +359,7 @@ This is an example of creating a source authenticated with SASL/PLAIN with SSL e
 CREATE SOURCE IF NOT EXISTS source_3 (
    column1 varchar,
    column2 integer,
-)                  
+)
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -372,18 +373,18 @@ WITH (
    properties.ssl.certificate.location='/home/ubuntu/kafka/secrets/client_risingwave_client.pem',
    properties.ssl.key.location='/home/ubuntu/kafka/secrets/client_risingwave_client.key',
    properties.ssl.key.password='abcdefgh'
-)                                                           
+)
 ROW FORMAT JSON;
 ```
 
 ### `SASL/SCRAM`
 
-|Parameter| Notes|
-|---|---|
-|`properties.security.protocol`| For SASL/SCRAM without SSL, set to `SASL_PLAINTEXT`. For SASL/SCRAM with SSL, set to `SASL_SSL`.|
-|`properties.sasl.mechanism`|Set to `SCRAM-SHA-256` or `SCRAM-SHA-512` depending on the encryption method used.|
-|`properties.sasl.username`| |
-|`properties.sasl.password`| |
+| Parameter                      | Notes                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `properties.security.protocol` | For SASL/SCRAM without SSL, set to `SASL_PLAINTEXT`. For SASL/SCRAM with SSL, set to `SASL_SSL`. |
+| `properties.sasl.mechanism`    | Set to `SCRAM-SHA-256` or `SCRAM-SHA-512` depending on the encryption method used.               |
+| `properties.sasl.username`     |                                                                                                  |
+| `properties.sasl.password`     |                                                                                                  |
 
 :::note
 
@@ -404,7 +405,7 @@ Here is an example of creating a materialized source authenticated with SASL/SCR
 CREATE TABLE IF NOT EXISTS source_4 (
    column1 varchar,
    column2 integer,
-)                  
+)
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -414,6 +415,6 @@ WITH (
    properties.security.protocol='SASL_PLAINTEXT',
    properties.sasl.username='admin',
    properties.sasl.password='admin-secret'
-)                                                       
+)
 ROW FORMAT JSON;
 ```

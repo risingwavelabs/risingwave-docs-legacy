@@ -4,6 +4,7 @@ title: What is RisingWave?
 slug: /intro
 sidebar_position: 1
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/intro/" />
 </head>
@@ -11,27 +12,26 @@ RisingWave is an open-source cloud-native streaming database that uses SQL as th
 
 RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Kinesis, Redpanda, and materialized CDC sources. It supports outputting data to Kafka streams.
 
-<rollButton text="&nbsp;&nbsp;Get Started" doc="get-started" block />
+<RollButton text="&nbsp;&nbsp;Get Started" doc="get-started" block />
 <br/>
 
 <img
-  src={require('./images/archi_simple.png').default}
-  alt="RisingWave Architecture"
+src={require('./images/archi_simple.png').default}
+alt="RisingWave Architecture"
 />
-
 
 ## What can you do with RisingWave?
 
 Everything you do in RisingWave is via Postgres-compatible SQL. You can:
 
-* Collect and transform data from streams.
-* Create materialized views for the data that needs to be incrementally aggregated.
-* Query data in RisingWave, including persisted data and data you add or import to RisingWave.
-* Output data to external streams for storage or additional processing.
+- Collect and transform data from streams.
+- Create materialized views for the data that needs to be incrementally aggregated.
+- Query data in RisingWave, including persisted data and data you add or import to RisingWave.
+- Output data to external streams for storage or additional processing.
 
-<defaultButton text="Try it out" doc="get-started"/>
-<lightButton text="Supported sources" doc="sql-create-source#supported-sources"/>
-<lightButton text="Supported sinks" doc="sql-create-sink"/>
+<DefaultButton text="Try it out" doc="get-started"/>
+<LightButton text="Supported sources" doc="sql-create-source#supported-sources"/>
+<LightButton text="Supported sinks" doc="sql-create-sink"/>
 
 ## How does RisingWave work?
 
@@ -55,8 +55,8 @@ RisingWave is cost-effective. You pay for what you use as you scale. As compute 
 
 When data is processed in batches, if a job goes wrong, you can do some troubleshooting and rerun the job. However, it's not practical to rerun a stream processing job, because the stream never ends. In stream processing, it is crucial that data is calculated correctly and events are not missed or calculated twice. Otherwise, the data will not match the data in upstream or downstream systems.
 
-In RisingWave, data correctness is ensured by a checkpoint-based mechanism. Every time a checkpoint is triggered, the internal states of each operator will be flushed to the cloud storage. Upon failovers, the operator recovers from the latest checkpoint on the cloud storage. 
+In RisingWave, data correctness is ensured by a checkpoint-based mechanism. Every time a checkpoint is triggered, the internal states of each operator will be flushed to the cloud storage. Upon failovers, the operator recovers from the latest checkpoint on the cloud storage.
 
-<lightButton text="See the architecture" doc="architecture"/>
-<lightButton text="Access the source code ⧉" url="https://github.com/risingwavelabs/risingwave"/>
+<LightButton text="See the architecture" doc="architecture"/>
+<LightButton text="Access the source code ⧉" url="https://github.com/risingwavelabs/risingwave"/>
 <br/>

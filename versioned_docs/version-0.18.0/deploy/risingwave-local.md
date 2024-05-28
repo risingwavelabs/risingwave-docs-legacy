@@ -23,81 +23,81 @@ import TabItem from '@theme/TabItem';
 
 1. Download the pre-built binary.
 
-    ```shell
-    wget https://github.com/risingwavelabs/risingwave/releases/download/v0.18.0/risingwave-v0.18.0-x86_64-unknown-linux.tar.gz
-    ```
+   ```shell
+   wget https://github.com/risingwavelabs/risingwave/releases/download/v0.18.0/risingwave-v0.18.0-x86_64-unknown-linux.tar.gz
+   ```
 
-    > You can find previous binary releases in [Release notes](/release-notes.md).
+   > You can find previous binary releases in [Release notes](/release-notes.md).
 
 2. Unzip the binary.
 
-    ```shell
-    tar xvf risingwave-v0.18.0-x86_64-unknown-linux.tar.gz
-    ```
+   ```shell
+   tar xvf risingwave-v0.18.0-x86_64-unknown-linux.tar.gz
+   ```
 
 3. Start RisingWave in playground mode.
 
-    ```shell
-    ./risingwave playground
-    ```
+   ```shell
+   ./risingwave playground
+   ```
 
 </TabItem>
 <TabItem value="source" label="Build from source (Linux & macOS)">
 
 1. Clone the [risingwave](https://github.com/risingwavelabs/risingwave) repository and enter the directory.
 
-    ```shell
-    git clone https://github.com/risingwavelabs/risingwave.git && cd risingwave
-    ```
+   ```shell
+   git clone https://github.com/risingwavelabs/risingwave.git && cd risingwave
+   ```
 
 2. Install dependencies.
 
-    RisingWave has the following dependencies. Please ensure all the dependencies have been installed before running RisingWave.
+   RisingWave has the following dependencies. Please ensure all the dependencies have been installed before running RisingWave.
 
-    * Rust
-    * CMake
-    * Protocol Buffers
-    * OpenSSL
-    * psql (14.1 or higher)
-    * Tmux
+   - Rust
+   - CMake
+   - Protocol Buffers
+   - OpenSSL
+   - psql (14.1 or higher)
+   - Tmux
 
-    Select your operating system and run the following commands to install the dependencies.
+   Select your operating system and run the following commands to install the dependencies.
 
-    <platformDetector queryString="current-os" />
-    <Tabs groupId="current-os" queryString>
-    <TabItem value="macos" label="macOS" default>
+   <PlatformDetector queryString="current-os" />
+   <Tabs groupId="current-os" queryString>
+   <TabItem value="macos" label="macOS" default>
 
-    ```shell
-    brew update
-    brew install libpq cmake protobuf openssl tmux cyrus-sasl
-    brew link --force libpq
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    ```
+   ```shell
+   brew update
+   brew install libpq cmake protobuf openssl tmux cyrus-sasl
+   brew link --force libpq
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   ```
 
-    :::note
-    If you are using a Mac with Apple silicon (such as the M1 / M2 chip), you need to install `LLVM` by running `brew install llvm`.
-    :::
+   :::note
+   If you are using a Mac with Apple silicon (such as the M1 / M2 chip), you need to install `LLVM` by running `brew install llvm`.
+   :::
 
-    </TabItem>
-    <TabItem value="linux" label="Linux">
+   </TabItem>
+   <TabItem value="linux" label="Linux">
 
-    ```shell
-    sudo apt update
-    sudo apt upgrade
-    sudo apt install make build-essential cmake protobuf-compiler curl openssl libssl-dev libsasl2-dev libcurl4-openssl-dev pkg-config postgresql-client tmux lld
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-    ```
+   ```shell
+   sudo apt update
+   sudo apt upgrade
+   sudo apt install make build-essential cmake protobuf-compiler curl openssl libssl-dev libsasl2-dev libcurl4-openssl-dev pkg-config postgresql-client tmux lld
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   ```
 
-    </TabItem>
-    </Tabs>
+   </TabItem>
+   </Tabs>
 
-1. Start RisingWave.
+3. Start RisingWave.
 
-    To compile and start RisingWave, you can use [RiseDev](https://github.com/risingwavelabs/risingwave/blob/main/docs/developer-guide.md#set-up-the-development-environment), the developer's tool for RisingWave.
-  
-    ```shell
-    ./risedev playground    #Or ./risedev p
-    ```
+   To compile and start RisingWave, you can use [RiseDev](https://github.com/risingwavelabs/risingwave/blob/main/docs/developer-guide.md#set-up-the-development-environment), the developer's tool for RisingWave.
+
+   ```shell
+   ./risedev playground    #Or ./risedev p
+   ```
 
 </TabItem>
 </Tabs>

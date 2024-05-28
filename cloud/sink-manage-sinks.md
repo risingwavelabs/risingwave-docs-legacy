@@ -10,11 +10,11 @@ To stream data out of RisingWave, you must create a sink. A sink refers to an ex
 You can manage your data sinks in [**Sink**](https://cloud.risingwave.com/sink/).
 
 <img
-  src={require('./images/sinks.png').default}
-  alt="Sinks page"
+src={require('./images/sinks.png').default}
+alt="Sinks page"
 />
 
-<grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -22,26 +22,26 @@ You can manage your data sinks in [**Sink**](https://cloud.risingwave.com/sink/)
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
-<card
+<OutlinedCard
 title="Create a sink"
 content="Create a sink in the database to export data."
 cloud="create-a-sink"
 style={{height: "80%"}}
 />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
-<card
+<OutlinedCard
 title="Drop a sink"
 content="If you no longer need to deliver data to a sink, you can drop the sink."
 cloud="drop-a-sink"
 style={{height: "80%"}}
 />
-  
-</grid>
 
-</grid>
+</ResponsiveGrid>
+
+</ResponsiveGrid>

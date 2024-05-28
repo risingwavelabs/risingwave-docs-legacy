@@ -4,6 +4,7 @@ title: SHOW INTERNAL TABLES
 description: Show internal tables to learn about the existing internal states.
 slug: /sql-show-internal-tables
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-internal-tables/" />
 </head>
@@ -19,35 +20,34 @@ SHOW INTERNAL TABLES [ FROM schema_name ] [ LIKE_expression ];
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('SHOW INTERNAL TABLES'),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('FROM'),
-                    rr.NonTerminal('schema_name', 'skip')
-                ),
-            ),
-            rr.Optional(
-            rr.NonTerminal('LIKE_expression'),
-            ),
-            rr.Terminal(';'),
-        ),
-    )
+rr.Stack(
+rr.Sequence(
+rr.Terminal('SHOW INTERNAL TABLES'),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('FROM'),
+rr.NonTerminal('schema_name', 'skip')
+),
+),
+rr.Optional(
+rr.NonTerminal('LIKE_expression'),
+),
+rr.Terminal(';'),
+),
+)
 );
 
-<drawer SVG={svg} />
-
-
+<Drawer SVG={svg} />
 
 ## Parameters
-|Parameter   | Description           |
-|---------------------------|-----------------------|
-|*schema_name*                   |The schema in which tables will be listed. If not given, tables from the default schema, `public`, will be listed.|
-|LIKE_expression| Filters the output based on names by applying pattern matching. See details in [LIKE pattern matching expressions](/sql/functions-operators/sql-function-string.md#like-pattern-matching-expressions).|
 
+| Parameter       | Description                                                                                                                                                                                            |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| _schema_name_   | The schema in which tables will be listed. If not given, tables from the default schema, `public`, will be listed.                                                                                     |
+| LIKE_expression | Filters the output based on names by applying pattern matching. See details in [LIKE pattern matching expressions](/sql/functions-operators/sql-function-string.md#like-pattern-matching-expressions). |
 
 ## Example
+
 ```sql
 SHOW INTERNAL TABLES;
                    Name
@@ -67,6 +67,7 @@ SHOW INTERNAL TABLES;
 ```
 
 You can view the data in an internal table:
+
 ```sql
 SELECT * FROM __internal_v_19_hashjoinleft_1013 LIMIT 5;
 

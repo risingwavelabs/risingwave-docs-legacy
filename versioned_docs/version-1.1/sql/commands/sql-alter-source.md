@@ -4,6 +4,7 @@ title: ALTER SOURCE
 description: Modify existing source name.
 slug: /sql-alter-source
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-source/" />
 </head>
@@ -20,32 +21,32 @@ ALTER SOURCE current_source_name
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('ALTER SOURCE'),
-            rr.NonTerminal('current_source_name'),
-        ),
-        rr.Sequence(
-            rr.Terminal('RENAME TO'),
-            rr.NonTerminal('new_source_name'),
-        ),
-        rr.Terminal(';'),
-    )
+rr.Stack(
+rr.Sequence(
+rr.Terminal('ALTER SOURCE'),
+rr.NonTerminal('current_source_name'),
+),
+rr.Sequence(
+rr.Terminal('RENAME TO'),
+rr.NonTerminal('new_source_name'),
+),
+rr.Terminal(';'),
+)
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 ## Parameters
 
-|Parameter or clause        | Description           |
-|---------------------------|-----------------------|
-|*current_source_name*               |The current name of the source you want to modify.|
-|**RENAME TO**  |Indicates the intention to rename the specified source.|
-|*new_source_name*      |The new name you want to assign to the source object.|
+| Parameter or clause   | Description                                             |
+| --------------------- | ------------------------------------------------------- |
+| _current_source_name_ | The current name of the source you want to modify.      |
+| **RENAME TO**         | Indicates the intention to rename the specified source. |
+| _new_source_name_     | The new name you want to assign to the source object.   |
 
 ## Example
 
 ```sql
-ALTER SOURCE src 
+ALTER SOURCE src
    RENAME TO src1;
 ```

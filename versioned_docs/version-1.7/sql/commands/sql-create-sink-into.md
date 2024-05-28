@@ -4,6 +4,7 @@ title: CREATE SINK INTO
 description: Create a sink into RisingWave's table.
 slug: /sql-create-sink-into
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-sink-into/" />
 </head>
@@ -21,28 +22,28 @@ import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
 rr.Stack(
-   rr.Sequence(
-      rr.Terminal('CREATE SINK'),
-      rr.Optional(rr.Terminal('IF NOT EXISTS')),
-      rr.NonTerminal('sink_name', 'skip'),
-      rr.Terminal('INTO'),
-      rr.NonTerminal('table_name'),
-      rr.ZeroOrMore(
-      rr.Sequence(
-         rr.Terminal('FROM'),
-         rr.NonTerminal('sink_from', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('AS'),
-         rr.NonTerminal('select_query', 'skip')
-      ),
-   ),
-   ),
-   rr.Terminal(';'),
+rr.Sequence(
+rr.Terminal('CREATE SINK'),
+rr.Optional(rr.Terminal('IF NOT EXISTS')),
+rr.NonTerminal('sink_name', 'skip'),
+rr.Terminal('INTO'),
+rr.NonTerminal('table_name'),
+rr.ZeroOrMore(
+rr.Sequence(
+rr.Terminal('FROM'),
+rr.NonTerminal('sink_from', 'skip')
+),
+rr.Sequence(
+rr.Terminal('AS'),
+rr.NonTerminal('select_query', 'skip')
+),
+),
+),
+rr.Terminal(';'),
 )
 );
 
-<drawer SVG={svg} />
+<Drawer SVG={svg} />
 
 :::note
 
@@ -73,7 +74,7 @@ CREATE source orders_s0 (
     price int,
     item_id int,
     customer_id int
-) WITH ( 
+) WITH (
     connector = 'kafka',
     topic = 'topic_0',
     ...
@@ -84,7 +85,7 @@ CREATE source orders_s1 (
     price int,
     item_id int,
     customer_id int
-) WITH ( 
+) WITH (
     connector = 'kafka',
     topic = 'topic_1',
     ...

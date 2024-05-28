@@ -3,6 +3,7 @@ id: query-syntax-where-clause
 slug: /query-syntax-where-clause
 title: WHERE clause
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-where-clause/" />
 </head>
@@ -34,9 +35,6 @@ This query results in a table with columns for department, job title, and averag
 
 Notice that the `WHERE` clause comes before the `GROUP BY` clause in this example because the `WHERE` clause is used to filter the rows in a table before any aggregations are performed. In contrast, the `HAVING` clause filters data after aggregations are performed.
 
-
-
-
 <!-- Syntax diagram:
 
 import rr from '@theme/RailroadDiagram'
@@ -47,8 +45,8 @@ rr.Stack(
    rr.Sequence(
       rr.Terminal('WHERE'),
       rr.NonTerminal('expression')
-   ),      
+   ),
 )
 );
 
-<drawer SVG={svg} /> -->
+<Drawer SVG={svg} /> -->
