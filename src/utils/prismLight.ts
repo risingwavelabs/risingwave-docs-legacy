@@ -1,4 +1,4 @@
-import {themes, type PrismTheme} from 'prism-react-renderer';
+import { themes, type PrismTheme } from "prism-react-renderer";
 const baseTheme = themes.github;
 
 export default {
@@ -20,7 +20,7 @@ export default {
     },
     {
       types: ["boolean", "rule", "color", "number", "constant", "property"],
-    style: {
+      style: {
         color: "#8665b6",
       },
     },
