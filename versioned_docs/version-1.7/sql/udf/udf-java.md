@@ -4,6 +4,7 @@ slug: /udf-java
 title: Use UDFs in Java
 description: Define your own functions with the help of the RisingWave Java UDF SDK.
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/udf-java/" />
 </head>
@@ -27,55 +28,55 @@ git clone https://github.com/risingwavelabs/risingwave-java-udf-template.git
 <details>
   <summary>I'd like to start from scratch</summary>
 
-  To create a new project using the RisingWave Java UDF SDK, follow these steps:
+To create a new project using the RisingWave Java UDF SDK, follow these steps:
 
-  Generate a new Maven project:
+Generate a new Maven project:
 
-  ```sh
-  mvn archetype:generate -DgroupId=com.example -DartifactId=udf-example -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
-  ```
+```sh
+mvn archetype:generate -DgroupId=com.example -DartifactId=udf-example -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+```
 
-  Configure your `pom.xml` file as follows:
+Configure your `pom.xml` file as follows:
 
-  ```xml
-  <?xml version="1.0" encoding="UTF-8"?>
-  <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-      <modelVersion>4.0.0</modelVersion>
-      <groupId>com.example</groupId>
-      <artifactId>udf-example</artifactId>
-      <version>1.0-SNAPSHOT</version>
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>udf-example</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-      <dependencies>
-          <dependency>
-              <groupId>com.risingwave.java</groupId>
-              <artifactId>risingwave-udf</artifactId>
-              <version>0.1.1</version>
-          </dependency>
-      </dependencies>
-  </project>
-  ```
+    <dependencies>
+        <dependency>
+            <groupId>com.risingwave.java</groupId>
+            <artifactId>risingwave-udf</artifactId>
+            <version>0.1.1</version>
+        </dependency>
+    </dependencies>
+</project>
+```
 
-  The `--add-opens` flag must be added when running unit tests through Maven:
+The `--add-opens` flag must be added when running unit tests through Maven:
 
-  ```xml
-  <build>
-      <plugins>
-          <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-surefire-plugin</artifactId>
-              <version>3.0.0-M7</version>
-              <configuration>
-                  <argLine>--add-opens=java.base/java.nio=ALL-UNNAMED</argLine>
-              </configuration>
-          </plugin>
-      </plugins>
-  </build>
-  ```
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M7</version>
+            <configuration>
+                <argLine>--add-opens=java.base/java.nio=ALL-UNNAMED</argLine>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
 
 </details>
 
-## 2. Define your functions in Java  
+## 2. Define your functions in Java
 
 ### Scalar functions
 
@@ -107,9 +108,7 @@ public class Gcd implements ScalarFunction {
 :::note Differences with Flink
 
 - The `ScalarFunction` is an interface instead of an abstract class.
-   
 - Multiple overloaded `eval` methods are not supported.
-   
 - Variable arguments such as `eval(Integer...)` are not supported.
 
 :::
@@ -188,11 +187,11 @@ In RisingWave, use the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md)
 Here are the SQL statements for declaring the two UDFs defined in [step 3](#3-define-your-functions-in-java).
 
 ```sql
-CREATE FUNCTION gcd(int, int) RETURNS int  
-AS gcd  
+CREATE FUNCTION gcd(int, int) RETURNS int
+AS gcd
 USING LINK 'http://localhost:8815';
 
-CREATE FUNCTION series(int) RETURNS TABLE (x int)  
+CREATE FUNCTION series(int) RETURNS TABLE (x int)
 AS series
 USING LINK 'http://localhost:8815';
 ```
@@ -203,32 +202,31 @@ Once the UDFs are created in RisingWave, you can use them in SQL queries just li
 
 ```sql
 SELECT gcd(25, 15);
-SELECT * FROM series(10); 
+SELECT * FROM series(10);
 ```
-
 
 ## Data type mapping
 
 The RisingWave Java UDF SDK supports the following data types:
 
-| SQL Type         | Java Type                               | Notes              |
-| ---------------- | --------------------------------------- | ------------------ |
-| BOOLEAN          | boolean, Boolean                        |                    |
-| SMALLINT         | short, Short                            |                    |
-| INT              | int, Integer                            |                    |
-| BIGINT           | long, Long                              |                    |
-| REAL             | float, Float                            |                    |
-| DOUBLE PRECISION | double, Double                          |                    |
-| DECIMAL          | BigDecimal                              |                    |
-| DATE             | java.time.LocalDate                     |                    |
-| TIME             | java.time.LocalTime                     |                    |
-| TIMESTAMP        | java.time.LocalDateTime                 |                    |
-| INTERVAL         | com.risingwave.functions.PeriodDuration |                    |
-| VARCHAR          | String                                  |                    |
-| BYTEA            | byte[]                                  |                    |
-| JSONB            | String                                  | Use `@DataTypeHint("JSONB") String` as the type. See [example](#example---jsonb).           |
-| T[]              | T'[]                                    | `T` can be any of the above SQL types. `T'` should be the corresponding Java type.|
-| STRUCT<\>         | user-defined class                      | Define a data class as the type. See [example](#example---struct-type).                     |
+| SQL Type         | Java Type                               | Notes                                                                              |
+| ---------------- | --------------------------------------- | ---------------------------------------------------------------------------------- |
+| BOOLEAN          | boolean, Boolean                        |                                                                                    |
+| SMALLINT         | short, Short                            |                                                                                    |
+| INT              | int, Integer                            |                                                                                    |
+| BIGINT           | long, Long                              |                                                                                    |
+| REAL             | float, Float                            |                                                                                    |
+| DOUBLE PRECISION | double, Double                          |                                                                                    |
+| DECIMAL          | BigDecimal                              |                                                                                    |
+| DATE             | java.time.LocalDate                     |                                                                                    |
+| TIME             | java.time.LocalTime                     |                                                                                    |
+| TIMESTAMP        | java.time.LocalDateTime                 |                                                                                    |
+| INTERVAL         | com.risingwave.functions.PeriodDuration |                                                                                    |
+| VARCHAR          | String                                  |                                                                                    |
+| BYTEA            | byte[]                                  |                                                                                    |
+| JSONB            | String                                  | Use `@DataTypeHint("JSONB") String` as the type. See [example](#example---jsonb).  |
+| T[]              | T'[]                                    | `T` can be any of the above SQL types. `T'` should be the corresponding Java type. |
+| STRUCT\<\>       | user-defined class                      | Define a data class as the type. See [example](#example---struct-type).            |
 
 #### Example - JSONB
 

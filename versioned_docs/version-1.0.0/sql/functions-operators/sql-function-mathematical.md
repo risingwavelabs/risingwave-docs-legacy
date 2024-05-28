@@ -24,8 +24,8 @@ title: Mathematical functions and operators
 | \| | <code>operand1 \| operand2</code> <br /> Bitwise OR | 32 \| 3 → 35|
 | # | `operand1 # operand2` <br /> Bitwise exclusive OR | 17 # 5 → 20 |
 | ~ | `~ operand` <br /> Bitwise NOT| ~1 → -2 |
-| << | `operand1 << operand2` <br /> Bitwise shift left | 1 << 4 → 16 |
-| >> | `operand1 >> operand2` <br /> Bitwise shift right | 8 >> 2 → 2 |
+| \<\< | `operand1 << operand2` <br /> Bitwise shift left | 1 \<\< 4 → 16 |
+| \>\> | `operand1 >> operand2` <br /> Bitwise shift right | 8 \>\> 2 → 2 |
 
 ## Mathematical functions
 

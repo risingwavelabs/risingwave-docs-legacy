@@ -38,7 +38,7 @@ WITH (
 | --------------- | ---------------------------------------------------------------------- |
 | type            | Required. Allowed values: `appendonly` and `upsert`. |
 | force_append_only| Optional. If `true`, forces the sink to be `append-only`, even if it cannot be. |
-| s3.endpoint     | Optional. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be `<http://${MINIO_HOST}:${MINIO_PORT}>`. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
+| s3.endpoint     | Optional. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be `http://${MINIO_HOST}:${MINIO_PORT}`. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
 | s3.region       | Optional. The region where the S3 bucket is hosted. Either `s3.endpoint` or `s3.region` must be specified.|
 | s3.access.key   | Required. Access key of the S3 compatible object store.|
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|

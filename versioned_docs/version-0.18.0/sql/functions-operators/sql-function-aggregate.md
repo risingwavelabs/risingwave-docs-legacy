@@ -14,7 +14,7 @@ The DISTINCT option, ORDER BY clauses, and FILTER clauses can be used in aggrega
 
 |Function|Description|
 |---|---|
-|array_agg( *expression* [ ORDER BY [ sort_expression {ASC \| DESC} ] ] ) → *output_array*| Returns an array from input values in which each value in the set is assigned to an array element. The `ORDER BY` clause is optional and specifies the order of rows processed in the aggregation, which determines the order of the elements in the result array.|
+|array_agg( *expression* [ ORDER BY [ sort_expression \{ASC \| DESC\} ] ] ) → *output_array*| Returns an array from input values in which each value in the set is assigned to an array element. The `ORDER BY` clause is optional and specifies the order of rows processed in the aggregation, which determines the order of the elements in the result array.|
 |avg( *expression* ) → see description| Returns the average (arithmetic mean) of the selected values. Input types include smallint, int, bigint, numeric, real, and double precision. Return type is numeric for integer inputs and double precision for float point inputs.|
 |count( *expression* ) → bigint|Returns the number of non-null rows. Input types include bool, smallint, int, bigint, numeric, real, double precision, and string.|
 |max( *expression* ) → same as input type|Returns the maximum value in a set of values. Input types include smallint, int, bigint, numeric, real, double precision, and string.|

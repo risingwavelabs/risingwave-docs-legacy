@@ -4,6 +4,7 @@ title: Sink data from RisingWave to Apache Iceberg
 description: Sink data from RisingWave to Apache Iceberg with the JDBC connector.
 slug: /sink-to-iceberg
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-iceberg/" />
 </head>
@@ -34,16 +35,16 @@ WITH (
 
 ## Parameters
 
-| Parameter Names | Description |
-| --------------- | ---------------------------------------------------------------------- |
-| type            | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key.|
-| primary_key     | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the Iceberg sink.|
-| warehouse.path  | Required. The path of the Iceberg warehouse. Currently, only S3-compatible object store is supported, such as AWS S3, or MinIO.|
-| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be http://${MINIO_HOST}:${MINIO_PORT}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
-| s3.access.key   | Access key of the S3 compatible object store.|
-| s3.secret.key   | Secret key of the S3 compatible object store.|
-| database.name   | The database of the target Iceberg table.|
-| table.name      | The name of the target Iceberg table.|
+| Parameter Names | Description                                                                                                                                                                                                                   |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type            | Required. Specify if the sink should be `upsert` or `append-only`. If creating an `upsert` sink, see the [Overview](data-delivery.md) on when to define the primary key.                                                      |
+| primary_key     | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the Iceberg sink.                                                                                                        |
+| warehouse.path  | Required. The path of the Iceberg warehouse. Currently, only S3-compatible object store is supported, such as AWS S3, or MinIO.                                                                                               |
+| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be `http://${MINIO_HOST}:${MINIO_PORT}`. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
+| s3.access.key   | Access key of the S3 compatible object store.                                                                                                                                                                                 |
+| s3.secret.key   | Secret key of the S3 compatible object store.                                                                                                                                                                                 |
+| database.name   | The database of the target Iceberg table.                                                                                                                                                                                     |
+| table.name      | The name of the target Iceberg table.                                                                                                                                                                                         |
 
 :::note
 Iceberg sinks with `upsert` type is slower than `append-only`.
@@ -72,7 +73,7 @@ spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.1.0,org
     --e "drop table if exists demo.dev.`table`;
 CREATE TABLE demo.dev.`table`
 (
-  seq_id bigint, 
+  seq_id bigint,
   user_id bigint,
   user_name string
 ) TBLPROPERTIES ('format-version'='2')";
@@ -84,10 +85,10 @@ The following query creates an append-only source. For more details on creating 
 
 ```sql
 CREATE SOURCE s1_source (
-     seq_id bigint, 
+     seq_id bigint,
      user_id bigint,
      user_name varchar)
-WITH (                    
+WITH (
      connector = 'datagen',
      fields.seq_id.kind = 'sequence',
      fields.seq_id.start = '1',
@@ -105,10 +106,10 @@ Another option is to create an upsert table, which supports in-place updates. Fo
 
 ```sql
 CREATE TABLE s1_table (
-     seq_id bigint, 
+     seq_id bigint,
      user_id bigint,
      user_name varchar)
-WITH (                    
+WITH (
      connector = 'datagen',
      fields.seq_id.kind = 'sequence',
      fields.seq_id.start = '1',

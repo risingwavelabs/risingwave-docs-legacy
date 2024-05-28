@@ -4,6 +4,7 @@ title: Ingest CDC data from MySQL
 description: Ingest CDC data from MySQL.
 slug: /ingest-from-mysql-cdc
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-mysql-cdc/" />
 </head>
@@ -17,7 +18,6 @@ You can ingest CDC data from MySQL in two ways:
 - Using the native MySQL CDC connector in RisingWave
 
   With this connector, RisingWave can connect to MySQL databases directly to obtain data from the binlog without starting additional services.
-
 
 - Using a CDC tool and a message broker
 
@@ -101,42 +101,42 @@ See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connec
 The configuration process is different for AWS RDS MySQL or Aurora (MySQL-Compatible) compared to the self-hosted version. We will use a standard class AWS RDS MySQL instance without Multi-AZ deployment for illustration, but the process will be similar for Aurora.
 
 1. Turn on binary logging and choose a non-zero value for the **Retention period**.
-<img
-  src={require('../images/ret-period.png').default}
-  alt="Set retention period to a nonzero value"
-/>
+   <img
+   src={require('../images/ret-period.png').default}
+   alt="Set retention period to a nonzero value"
+   />
 
 2. Create a parameter group for MySQL instances. We created a parameter group named MySQL-CDC for the instance that runs MySQL 5.7.x.
-<img
-  src={require('../images/parameter-group.png').default}
-  alt="Create a parameter group"
-/>
+   <img
+   src={require('../images/parameter-group.png').default}
+   alt="Create a parameter group"
+   />
 
 3. Click the MySQL-CDC parameter group to edit the values of **binlog_format** to **ROW** and **binlog_row_image** to **full**.
-<img
-  src={require('../images/binlog-format.png').default}
-  alt="Set binlog_format to row"
-/>
-<img
-  src={require('../images/binlog-row.png').default}
-  alt="Set binlog_row_image to full"
-/>
+   <img
+   src={require('../images/binlog-format.png').default}
+   alt="Set binlog_format to row"
+   />
+   <img
+   src={require('../images/binlog-row.png').default}
+   alt="Set binlog_row_image to full"
+   />
 
 4. Modify your RDS instance and apply the modified parameter group to your database.
-<img
-  src={require('../images/modify-RDS.png').default}
-  alt="Select modify"
-/>
-<img
-  src={require('../images/apply-to-database.png').default}
-  alt="Apply changes to database"
-/>
+   <img
+   src={require('../images/modify-RDS.png').default}
+   alt="Select modify"
+   />
+   <img
+   src={require('../images/apply-to-database.png').default}
+   alt="Apply changes to database"
+   />
 
 5. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save the changes. Remember to reboot your MySQL instance.
-<img
-  src={require('../images/save-changes.png').default}
-  alt="Save changes made to MySQL RDS instance"
-/>
+   <img
+   src={require('../images/save-changes.png').default}
+   alt="Save changes made to MySQL RDS instance"
+   />
 
 6. Ensure your MySQL users can access the tables and replications.
 
@@ -168,9 +168,9 @@ Syntax for creating a CDC table. Note that a primary key is required and must be
 CREATE TABLE [ IF NOT EXISTS ] table_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
-) 
+)
 WITH (
-   snapshot='true' 
+   snapshot='true'
 )
 FROM source TABLE table_name;
 ```
@@ -179,25 +179,25 @@ FROM source TABLE table_name;
 
 All the fields listed below are required. Note that the value of these parameters should be enclosed in single quotation marks.
 
-|Field|Notes|
-|---|---|
-|hostname| Hostname of the database. |
-|port| Port number of the database.|
-|username| Username of the database.|
-|password| Password of the database. |
-|database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
-|table.name| Name of the table that you want to ingest data from. |
-|server.id| Required if creating a shared source. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
-|ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with MySQL. It accepts three values: `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.|
-|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+| Field         | Notes                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| hostname      | Hostname of the database.                                                                                                                                                                                                                                                                                                                                                                  |
+| port          | Port number of the database.                                                                                                                                                                                                                                                                                                                                                               |
+| username      | Username of the database.                                                                                                                                                                                                                                                                                                                                                                  |
+| password      | Password of the database.                                                                                                                                                                                                                                                                                                                                                                  |
+| database.name | Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.                                                                                                                                                                                                                                                                   |
+| table.name    | Name of the table that you want to ingest data from.                                                                                                                                                                                                                                                                                                                                       |
+| server.id     | Required if creating a shared source. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.                                                                                                                                                                  |
+| ssl.mode      | Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with MySQL. It accepts three values: `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.                                                                                               |
+| transactional | Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table). |
 
 The following fields are used when creating a CDC table.
 
-|Field|Notes|
-|---|---|
-|snapshot| Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
-|snapshot.interval| Optional. Specifies the barrier interval for buffering upstream events. The default value is `1`. |
-|snapshot.batch_size| Optional. Specifies the batch size of a snapshot read query from the upstream table. The default value is `1000`. |
+| Field               | Notes                                                                                                                                                                                                                      |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| snapshot            | Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
+| snapshot.interval   | Optional. Specifies the barrier interval for buffering upstream events. The default value is `1`.                                                                                                                          |
+| snapshot.batch_size | Optional. Specifies the batch size of a snapshot read query from the upstream table. The default value is `1000`.                                                                                                          |
 
 #### Debezium parameters
 
@@ -238,9 +238,9 @@ CREATE SOURCE mysql_mydb WITH (
 );
 ```
 
-With the source created, you can create multiple CDC tables that ingest data from different tables in the upstream database without needing to specify the database connection parameters again. 
+With the source created, you can create multiple CDC tables that ingest data from different tables in the upstream database without needing to specify the database connection parameters again.
 
-For instance, the following CDC table in RisingWave ingests data from table `t1` in the database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be specified. 
+For instance, the following CDC table in RisingWave ingests data from table `t1` in the database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be specified.
 
 ```sql
 CREATE TABLE t1_rw (
@@ -279,49 +279,49 @@ The following table shows the corresponding data type in RisingWave that should 
 
 RisingWave data types marked with an asterisk indicate that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
 
-| MySQL type | RisingWave type |
-|------------|-----------------|
-| BOOLEAN, BOOL | BOOLEAN |
-| BIT(1) | BOOLEAN* |
-| BIT(>1) | No support |
-| TINYINT | SMALLINT |
-| SMALLINT[(M)] | SMALLINT |
-| MEDIUMINT[(M)] |INTEGER |
-| INT, INTEGER[(M)] | INTEGER |
-| BIGINT[(M)] | BIGINT |
-| REAL[(M,D)]| REAL |
-| FLOAT[(P)] | REAL |
-| FLOAT(M,D) | DOUBLE PRECISION |
-| DOUBLE[(M,D)] | DOUBLE PRECISION |
-| CHAR[(M)] | CHARACTER VARYING |
-| VARCHAR[(M)] | CHARACTER VARYING |
-| BINARY[(M)] | BYTEA |
-| VARBINARY[(M)] | BYTEA |
-| TINYBLOB | BYTEA |
-| TINYTEXT | CHARACTER VARYING |
-| BLOB | BYTEA |
-| TEXT | CHARACTER VARYING |
-| MEDIUMBLOB | BYTEA |
-| MEDIUMTEXT| CHARACTER VARYING |
-|LONGBLOB| BYTEA |
-| LONGTEXT | BYTEA or CHARACTER VARYING |
-| JSON | JSONB |
-| ENUM | CHARACTER VARYING* |
-| SET | No support |
-| YEAR[(2\|4)] | INTEGER |
-| TIMESTAMP[(M)] | TIMESTAMPTZ |
-| DATE | DATE |
-| TIME[(M)] | TIME |
-| DATETIME[(fsp)] <br /> Optional fractional seconds precision (fsp: 0-6). If omitted, the default precision is 0.| TIMESTAMP |
-| NUMERIC[(M[,D])] | NUMERIC |
-| DECIMAL[(M[,D])] | NUMERIC |
-| GEOMETRY, LINESTRING, POLYGON, <br />MULTIPOINT, MULTILINESTRING, <br />MULTIPOLYGON, GEOMETRYCOLLECTION | STRUCT |
+| MySQL type                                                                                                       | RisingWave type            |
+| ---------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| BOOLEAN, BOOL                                                                                                    | BOOLEAN                    |
+| BIT(1)                                                                                                           | BOOLEAN\*                  |
+| BIT(>1)                                                                                                          | No support                 |
+| TINYINT                                                                                                          | SMALLINT                   |
+| SMALLINT[(M)]                                                                                                    | SMALLINT                   |
+| MEDIUMINT[(M)]                                                                                                   | INTEGER                    |
+| INT, INTEGER[(M)]                                                                                                | INTEGER                    |
+| BIGINT[(M)]                                                                                                      | BIGINT                     |
+| REAL[(M,D)]                                                                                                      | REAL                       |
+| FLOAT[(P)]                                                                                                       | REAL                       |
+| FLOAT(M,D)                                                                                                       | DOUBLE PRECISION           |
+| DOUBLE[(M,D)]                                                                                                    | DOUBLE PRECISION           |
+| CHAR[(M)]                                                                                                        | CHARACTER VARYING          |
+| VARCHAR[(M)]                                                                                                     | CHARACTER VARYING          |
+| BINARY[(M)]                                                                                                      | BYTEA                      |
+| VARBINARY[(M)]                                                                                                   | BYTEA                      |
+| TINYBLOB                                                                                                         | BYTEA                      |
+| TINYTEXT                                                                                                         | CHARACTER VARYING          |
+| BLOB                                                                                                             | BYTEA                      |
+| TEXT                                                                                                             | CHARACTER VARYING          |
+| MEDIUMBLOB                                                                                                       | BYTEA                      |
+| MEDIUMTEXT                                                                                                       | CHARACTER VARYING          |
+| LONGBLOB                                                                                                         | BYTEA                      |
+| LONGTEXT                                                                                                         | BYTEA or CHARACTER VARYING |
+| JSON                                                                                                             | JSONB                      |
+| ENUM                                                                                                             | CHARACTER VARYING\*        |
+| SET                                                                                                              | No support                 |
+| YEAR[(2\|4)]                                                                                                     | INTEGER                    |
+| TIMESTAMP[(M)]                                                                                                   | TIMESTAMPTZ                |
+| DATE                                                                                                             | DATE                       |
+| TIME[(M)]                                                                                                        | TIME                       |
+| DATETIME[(fsp)] <br /> Optional fractional seconds precision (fsp: 0-6). If omitted, the default precision is 0. | TIMESTAMP                  |
+| NUMERIC[(M[,D])]                                                                                                 | NUMERIC                    |
+| DECIMAL[(M[,D])]                                                                                                 | NUMERIC                    |
+| GEOMETRY, LINESTRING, POLYGON, <br />MULTIPOINT, MULTILINESTRING, <br />MULTIPOLYGON, GEOMETRYCOLLECTION         | STRUCT                     |
 
 Please be aware that the range of specific values varies among MySQL types and RisingWave types. Refer to the table below for detailed information.
 
-| MySQL type | RisingWave type | MySQL range | RisingWave range |
-| --- | --- | --- | --- |
-| TIME | TIME | `-838:59:59.000000` to `838:59:59.000000` | `00:00:00` to `23:59:59` |
-| DATE | DATE | `1000-01-01` to `9999-12-31` | `0001-01-01` to `9999-12-31` |
-| DATETIME | TIMESTAMP | `1000-01-01 00:00:00.000000` to `9999-12-31 23:59:59.49999` | `1973-03-03 09:46:40` to `5138-11-16 09:46:40` |
-| TIMESTAMP | TIMESTAMPTZ | `1970-01-01 00:00:01.000000` to `2038-01-19 03:14:07.499999` | `0001-01-01 00:00:00` to `9999-12-31 23:59:59` |
+| MySQL type | RisingWave type | MySQL range                                                  | RisingWave range                               |
+| ---------- | --------------- | ------------------------------------------------------------ | ---------------------------------------------- |
+| TIME       | TIME            | `-838:59:59.000000` to `838:59:59.000000`                    | `00:00:00` to `23:59:59`                       |
+| DATE       | DATE            | `1000-01-01` to `9999-12-31`                                 | `0001-01-01` to `9999-12-31`                   |
+| DATETIME   | TIMESTAMP       | `1000-01-01 00:00:00.000000` to `9999-12-31 23:59:59.49999`  | `1973-03-03 09:46:40` to `5138-11-16 09:46:40` |
+| TIMESTAMP  | TIMESTAMPTZ     | `1970-01-01 00:00:01.000000` to `2038-01-19 03:14:07.499999` | `0001-01-01 00:00:00` to `9999-12-31 23:59:59` |

@@ -49,7 +49,7 @@ If creating a materialized source, remember to include the connector settings wi
 |-----------|-------------|
 |*table_name*    |The name of the table. If a schema name is given (for example, `CREATE TABLE <schema>.<table> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
 |*col_name*      |The name of a column.|
-|*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
+|*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("\<\>"). |
 |**WITH** clause |Specify the connector settings here if trying to create a materialized source. See the [Data ingestion](/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
 |**ROW FORMAT** clause |Specify the data format of the source data here if trying to create a materialized source. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
 

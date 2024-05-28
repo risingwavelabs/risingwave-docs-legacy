@@ -4,6 +4,7 @@ title: Configure Superset to read data from RisingWave
 description: Configure Superset to read data from RisingWave.
 slug: /superset-integration
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/superset-integration/" />
 </head>
@@ -12,8 +13,8 @@ Apache Superset is an open-source data exploration and data visualization softwa
 
 This guide will go over how to:
 
-* Connect RisingWave to Superset.
-* Create a dashboard.
+- Connect RisingWave to Superset.
+- Create a dashboard.
 
 ## Prerequisites
 
@@ -31,7 +32,7 @@ To install Apache Superset, follow the instructions in [Installing locally using
 
 ### Start Apache Superset
 
-Launch an instance of Apache Superset by following the instructions in [Launch Superset through Docker Compose](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose#3-launch-superset-through-docker-compose). To start Superset, enter <http://localhost:8088> into your web browser.
+Launch an instance of Apache Superset by following the instructions in [Launch Superset through Docker Compose](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose#3-launch-superset-through-docker-compose). To start Superset, enter http://localhost:8088 into your web browser.
 
 If it is your first time starting Superset and the webpage asks for a username and password, use `admin` for both.
 
@@ -57,11 +58,12 @@ alt="Superset UI"
 3. In the window that pops up, under **Select a database to connect**, select the **PostgresSQL** card.
 
 4. Fill in the following fields:
-    - HOST: `host.docker.internal`
-    - PORT: `4566`
-    - DATABASE NAME: `dev`
-    - USERNAME: `root`
-    - DISPLAY NAME: `RW` (optional)
+
+   - HOST: `host.docker.internal`
+   - PORT: `4566`
+   - DATABASE NAME: `dev`
+   - USERNAME: `root`
+   - DISPLAY NAME: `RW` (optional)
 
 5. Click **Connect**.
 

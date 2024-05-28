@@ -242,7 +242,7 @@ The RisingWave Java UDF SDK supports the following data types:
 | BYTEA            | byte[]                                  |                    |
 | JSONB            | String                                  | Use `@DataTypeHint("JSONB") String` as the type. See [example](#example---jsonb).           |
 | T[]              | T'[]                                    | `T` can be any of the above SQL types. `T'` should be the corresponding Java type.|
-| STRUCT<\>         | user-defined class                      | Define a data class as the type. See [example](#example---struct-type).                     |
+| STRUCT\<\>         | user-defined class                      | Define a data class as the type. See [example](#example---struct-type).                     |
 
 #### Example - JSONB
 

@@ -4,6 +4,7 @@ title: CREATE SOURCE
 description: Supported data sources and how to connect RisingWave to the sources.
 slug: /sql-create-source
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-source/" />
 </head>
@@ -61,16 +62,16 @@ FORMAT upsert ENCODE AVRO (
 
 ## Parameters
 
-| Parameter| Description|
-|-----------|-------------|
-|*source_name*    |The name of the source. If a schema name is given (for example, `CREATE SOURCE <schema>.<source> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
-|*col_name*      |The name of a column.|
-|*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
-|*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
-|*watermark_clause*| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
-|**INCLUDE** clause | Extract fields not included in the payload as separate columns. For more details on its usage, see [`INCLUDE` clause](/ingest/include-clause.md). |
-|**WITH** clause |Specify the connector settings here if trying to store all the source data. See [Supported sources](#supported-sources) for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
-|**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Supported formats](#supported-formats). |
+| Parameter                         | Description                                                                                                                                                                                                                                      |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| _source_name_                     | The name of the source. If a schema name is given (for example, `CREATE SOURCE <schema>.<source> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.                                        |
+| _col_name_                        | The name of a column.                                                                                                                                                                                                                            |
+| _data_type_                       | The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("\<\>").                                                                              |
+| _generation_expression_           | The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).                                                                                      |
+| _watermark_clause_                | A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).                                                    |
+| **INCLUDE** clause                | Extract fields not included in the payload as separate columns. For more details on its usage, see [`INCLUDE` clause](/ingest/include-clause.md).                                                                                                |
+| **WITH** clause                   | Specify the connector settings here if trying to store all the source data. See [Supported sources](#supported-sources) for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
+| **FORMAT** and **ENCODE** options | Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Supported formats](#supported-formats).                                                                                      |
 
 ## Supported sources
 
@@ -82,20 +83,20 @@ To ingest data in formats marked with "T", you need to create tables (with conne
 
 :::
 
-| Connector | Version | Format |
-|---------|---------|---------|
-|[Kafka](/ingest/ingest-from-kafka.md)|3.1.0 or later versions |[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Debezium AVRO](#debezium-avro) (T), [DEBEZIUM_MONGO_JSON](#debezium-mongo-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T), [Upsert JSON](#upsert-json) (T), [Upsert AVRO](#upsert-avro) (T), [Bytes](#bytes)|
-|[Redpanda](/ingest/ingest-from-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf) |
-|[Pulsar](/ingest/ingest-from-pulsar.md)| 2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T)|
-|[Astra Streaming](/guides/connector-astra-streaming.md)|Latest |[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|  
-|[Kinesis](/ingest/ingest-from-kinesis.md)| Latest| [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T)|
-|[PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md)| 10, 11, 12, 13, 14|[Debezium JSON](#debezium-json) (T)|
-|[MySQL CDC](/guides/ingest-from-mysql-cdc.md)| 5.7, 8.0|[Debezium JSON](#debezium-json) (T)|
-|[CDC via Kafka](/ingest/ingest-from-cdc.md)||[Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T)|
-|[Amazon S3](/ingest/ingest-from-s3.md)| Latest |[JSON](#json), CSV| |
-|[Load generator](/ingest/ingest-from-datagen.md)|Built-in|[JSON](#json)|
-|[Google Pub/Sub](/ingest/ingest-from-google-pubsub.md) | | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T) |
-|[Google Cloud Storage](/ingest/ingest-from-gcs.md) | [JSON](#json)|
+| Connector                                               | Version                 | Format                                                                                                                                                                                                                                                                                                                              |
+| ------------------------------------------------------- | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| [Kafka](/ingest/ingest-from-kafka.md)                   | 3.1.0 or later versions | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Debezium AVRO](#debezium-avro) (T), [DEBEZIUM_MONGO_JSON](#debezium-mongo-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T), [Upsert JSON](#upsert-json) (T), [Upsert AVRO](#upsert-avro) (T), [Bytes](#bytes) |
+| [Redpanda](/ingest/ingest-from-redpanda.md)             | Latest                  | [Avro](#avro), [JSON](#json), [protobuf](#protobuf)                                                                                                                                                                                                                                                                                 |
+| [Pulsar](/ingest/ingest-from-pulsar.md)                 | 2.8.0 or later versions | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T)                                                                                                                                                                          |
+| [Astra Streaming](/guides/connector-astra-streaming.md) | Latest                  | [Avro](#avro), [JSON](#json), [protobuf](#protobuf)                                                                                                                                                                                                                                                                                 |
+| [Kinesis](/ingest/ingest-from-kinesis.md)               | Latest                  | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T)                                                                                                                                                                          |
+| [PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md)   | 10, 11, 12, 13, 14      | [Debezium JSON](#debezium-json) (T)                                                                                                                                                                                                                                                                                                 |
+| [MySQL CDC](/guides/ingest-from-mysql-cdc.md)           | 5.7, 8.0                | [Debezium JSON](#debezium-json) (T)                                                                                                                                                                                                                                                                                                 |
+| [CDC via Kafka](/ingest/ingest-from-cdc.md)             |                         | [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T)                                                                                                                                                                                                                               |
+| [Amazon S3](/ingest/ingest-from-s3.md)                  | Latest                  | [JSON](#json), CSV                                                                                                                                                                                                                                                                                                                  |     |
+| [Load generator](/ingest/ingest-from-datagen.md)        | Built-in                | [JSON](#json)                                                                                                                                                                                                                                                                                                                       |
+| [Google Pub/Sub](/ingest/ingest-from-google-pubsub.md)  |                         | [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json) (T), [Maxwell JSON](#maxwell-json) (T), [Canal JSON](#canal-json) (T)                                                                                                                                                                          |
+| [Google Cloud Storage](/ingest/ingest-from-gcs.md)      | [JSON](#json)           |
 
 :::note
 When a source is created, RisingWave does not ingest data immediately. RisingWave starts to process data when a materialized view is created based on the source.
@@ -208,7 +209,7 @@ RisingWave decodes JSON directly from external sources. When creating a source f
 Syntax:
 
 ```sql
-FORMAT PLAIN 
+FORMAT PLAIN
 ENCODE JSON [ (
    schema.registry = 'schema_registry_url [, ...]',
    [schema.registry.username = 'username'],

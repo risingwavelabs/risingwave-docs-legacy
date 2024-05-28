@@ -4,6 +4,7 @@ title: Monitor a RisingWave cluster
 description: Set up a Grafana and Prometheus stack to monitor a RisingWave cluster.
 slug: /monitor-risingwave-cluster
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/monitor-risingwave-cluster/" />
 </head>
@@ -55,7 +56,7 @@ The command above allows you to access Grafana from the local machine only. If y
 kubectl port-forward -n monitoring svc/prometheus-grafana 3000:http-web --address 0.0.0.0
 ```
 
-1. Go to [http://localhost:3000](http://localhost:3000) if you access Grafana from a local machine, or [http://<client_address>:3000] if you access Grafana from a different host, where `<client_address>` is the IP address of the machine running the Grafana service. When prompted, enter the default credentials (username: `admin`; password: `prom-operator`).
+1. Go to [http://localhost:3000](http://localhost:3000) if you access Grafana from a local machine, or [http://\<client_address\>:3000] if you access Grafana from a different host, where `<client_address>` is the IP address of the machine running the Grafana service. When prompted, enter the default credentials (username: `admin`; password: `prom-operator`).
 
 1. From **Dashboards**, select **RisingWave** -> **RisingWave Dashboard**. You can edit metrics in the dashboard and add new metrics.
 

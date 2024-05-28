@@ -1,4 +1,3 @@
-import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
@@ -203,7 +202,6 @@ const config: Config = {
     footer: {
       copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community`,
     },
-
     algolia: {
       appId: "AL59AMDUO6",
       apiKey: "d5690baa848d0d137a4084a46f757d8a",
@@ -212,7 +210,6 @@ const config: Config = {
       externalUrlRegex: "external\\.com|domain\\.com",
       searchParameters: {},
       searchPagePath: "search",
-      debug: false,
     },
     metadata: [
       {
@@ -221,7 +218,7 @@ const config: Config = {
       },
     ],
     items: [{ label: "Latest", to: "docs/latest/intro" }],
-  },
+  } satisfies Preset.ThemeConfig,
   customFields: {
     docsUrl: "https://docs.risingwave.com",
     requestUrl: "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",

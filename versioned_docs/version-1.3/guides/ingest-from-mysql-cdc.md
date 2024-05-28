@@ -4,6 +4,7 @@ title: Ingest data from MySQL CDC
 description: Ingest data from MySQL CDC.
 slug: /ingest-from-mysql-cdc
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-mysql-cdc/" />
 </head>
@@ -104,42 +105,42 @@ See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connec
 If your MySQL is hosted on AWS RDS, the configuration process is different. We will use a standard class MySQL instance without Multi-AZ deployment for illustration.
 
 1. Turn on binary logging and choose a non-zero value for the **Retention period**.
-<img
-  src={require('../images/ret-period.png').default}
-  alt="Set retention period to a nonzero value"
-/>
+   <img
+   src={require('../images/ret-period.png').default}
+   alt="Set retention period to a nonzero value"
+   />
 
 2. Create a parameter group for MySQL instances. We created a parameter group named MySQL-CDC for the instance that runs MySQL 5.7.x.
-<img
-  src={require('../images/parameter-group.png').default}
-  alt="Create a parameter group"
-/>
+   <img
+   src={require('../images/parameter-group.png').default}
+   alt="Create a parameter group"
+   />
 
 3. Click the MySQL-CDC parameter group to edit the values of **binlog_format** to **ROW** and **binlog_row_image** to **full**.
-<img
-  src={require('../images/binlog-format.png').default}
-  alt="Set binlog_format to row"
-/>
-<img
-  src={require('../images/binlog-row.png').default}
-  alt="Set binlog_row_image to full"
-/>
+   <img
+   src={require('../images/binlog-format.png').default}
+   alt="Set binlog_format to row"
+   />
+   <img
+   src={require('../images/binlog-row.png').default}
+   alt="Set binlog_row_image to full"
+   />
 
 4. Modify your RDS instance and apply the modified parameter group to your database.
-<img
-  src={require('../images/modify-RDS.png').default}
-  alt="Select modify"
-/>
-<img
-  src={require('../images/apply-to-database.png').default}
-  alt="Apply changes to database"
-/>
+   <img
+   src={require('../images/modify-RDS.png').default}
+   alt="Select modify"
+   />
+   <img
+   src={require('../images/apply-to-database.png').default}
+   alt="Apply changes to database"
+   />
 
 5. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save the changes. Remember to reboot your MySQL instance.
-<img
-  src={require('../images/save-changes.png').default}
-  alt="Save changes made to MySQL RDS instance"
-/>
+   <img
+   src={require('../images/save-changes.png').default}
+   alt="Save changes made to MySQL RDS instance"
+   />
 
 </TabItem>
 </Tabs>
@@ -172,7 +173,7 @@ To ensure all data changes are captured, you must create a table and specify pri
 CREATE TABLE [ IF NOT EXISTS ] source_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
-) 
+)
 WITH (
    connector='mysql-cdc',
    <field>=<value>, ...
@@ -186,16 +187,16 @@ Note that a primary key is required.
 
 All the fields listed below are required.
 
-|Field|Notes|
-|---|---|
-|hostname| Hostname of the database. |
-|port| Port number of the database.|
-|username| Username of the database.|
-|password| Password of the database. |
-|database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
-|table.name| Name of the table that you want to ingest data from. |
-|server.id| A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster.|
-|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table are currently in Beta. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+| Field         | Notes                                                                                                                                                                                                                                                                          |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| hostname      | Hostname of the database.                                                                                                                                                                                                                                                      |
+| port          | Port number of the database.                                                                                                                                                                                                                                                   |
+| username      | Username of the database.                                                                                                                                                                                                                                                      |
+| password      | Password of the database.                                                                                                                                                                                                                                                      |
+| database.name | Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.                                                                                                                                                       |
+| table.name    | Name of the table that you want to ingest data from.                                                                                                                                                                                                                           |
+| server.id     | A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster.                                                                                                                                                    |
+| transactional | Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. Transactions within a CDC table are currently in Beta. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table). |
 
 ### Data format
 
@@ -230,41 +231,41 @@ The following table shows the corresponding data type in RisingWave that should 
 
 RisingWave data types marked with an asterisk indicates that while there is no corresponding RisingWave data type, the ingested data can still be consumed as the listed type.
 
-| MySQL type | RisingWave type |
-|------------|-----------------|
-| BOOLEAN, BOOL | BOOLEAN |
-| BIT(1) | BOOLEAN* |
-| BIT(>1) | No support |
-| TINYINT | SMALLINT |
-| SMALLINT[(M)] | SMALLINT |
-| MEDIUMINT[(M)] |INTEGER |
-| INT, INTEGER[(M)] | INTEGER |
-| BIGINT[(M)] | BIGINT |
-| REAL[(M,D)]| REAL |
-| FLOAT[(P)] | REAL |
-| FLOAT(M,D) | DOUBLE PRECISION |
-| DOUBLE[(M,D)] | DOUBLE PRECISION |
-| CHAR[(M)] | CHARACTER VARYING |
-| VARCHAR[(M)] | CHARACTER VARYING |
-| BINARY[(M)] | BYTEA |
-| VARBINARY[(M)] | BYTEA |
-| TINYBLOB | BYTEA |
-| TINYTEXT | CHARACTER VARYING |
-| BLOB | BYTEA |
-| TEXT | CHARACTER VARYING |
-| MEDIUMBLOB | BYTEA |
-| MEDIUMTEXT| CHARACTER VARYING |
-|LONGBLOB| BYTEA |
-| LONGTEXT | BYTEA or CHARACTER VARYING |
-| JSON | JSONB |
-| ENUM | CHARACTER VARYING* |
-| SET | No support |
-| YEAR[(2\|4)] | INTEGER |
-| TIMESTAMP[(M)] | TIMESTAMP WITH TIME ZONE |
-| DATE | DATE |
-| TIME[(M)] | TIME WITHOUT TIME ZONE |
-| DATETIME, DATETIME(0), DATETIME(1), DATETIME(2), DATETIME(3) | TIMESTAMP WITHOUT TIME ZONE |
-| DATETIME(4), DATETIME(5), DATETIME(6) | TIMESTAMP WITHOUT TIME ZONE |
-| NUMERIC[(M[,D])] | NUMERIC |
-| DECIMAL[(M[,D])] | NUMERIC |
-| GEOMETRY, LINESTRING, POLYGON, <br />MULTIPOINT, MULTILINESTRING, <br />MULTIPOLYGON, GEOMETRYCOLLECTION | STRUCT |
+| MySQL type                                                                                               | RisingWave type             |
+| -------------------------------------------------------------------------------------------------------- | --------------------------- |
+| BOOLEAN, BOOL                                                                                            | BOOLEAN                     |
+| BIT(1)                                                                                                   | BOOLEAN\*                   |
+| BIT(>1)                                                                                                  | No support                  |
+| TINYINT                                                                                                  | SMALLINT                    |
+| SMALLINT[(M)]                                                                                            | SMALLINT                    |
+| MEDIUMINT[(M)]                                                                                           | INTEGER                     |
+| INT, INTEGER[(M)]                                                                                        | INTEGER                     |
+| BIGINT[(M)]                                                                                              | BIGINT                      |
+| REAL[(M,D)]                                                                                              | REAL                        |
+| FLOAT[(P)]                                                                                               | REAL                        |
+| FLOAT(M,D)                                                                                               | DOUBLE PRECISION            |
+| DOUBLE[(M,D)]                                                                                            | DOUBLE PRECISION            |
+| CHAR[(M)]                                                                                                | CHARACTER VARYING           |
+| VARCHAR[(M)]                                                                                             | CHARACTER VARYING           |
+| BINARY[(M)]                                                                                              | BYTEA                       |
+| VARBINARY[(M)]                                                                                           | BYTEA                       |
+| TINYBLOB                                                                                                 | BYTEA                       |
+| TINYTEXT                                                                                                 | CHARACTER VARYING           |
+| BLOB                                                                                                     | BYTEA                       |
+| TEXT                                                                                                     | CHARACTER VARYING           |
+| MEDIUMBLOB                                                                                               | BYTEA                       |
+| MEDIUMTEXT                                                                                               | CHARACTER VARYING           |
+| LONGBLOB                                                                                                 | BYTEA                       |
+| LONGTEXT                                                                                                 | BYTEA or CHARACTER VARYING  |
+| JSON                                                                                                     | JSONB                       |
+| ENUM                                                                                                     | CHARACTER VARYING\*         |
+| SET                                                                                                      | No support                  |
+| YEAR[(2\|4)]                                                                                             | INTEGER                     |
+| TIMESTAMP[(M)]                                                                                           | TIMESTAMP WITH TIME ZONE    |
+| DATE                                                                                                     | DATE                        |
+| TIME[(M)]                                                                                                | TIME WITHOUT TIME ZONE      |
+| DATETIME, DATETIME(0), DATETIME(1), DATETIME(2), DATETIME(3)                                             | TIMESTAMP WITHOUT TIME ZONE |
+| DATETIME(4), DATETIME(5), DATETIME(6)                                                                    | TIMESTAMP WITHOUT TIME ZONE |
+| NUMERIC[(M[,D])]                                                                                         | NUMERIC                     |
+| DECIMAL[(M[,D])]                                                                                         | NUMERIC                     |
+| GEOMETRY, LINESTRING, POLYGON, <br />MULTIPOINT, MULTILINESTRING, <br />MULTIPOLYGON, GEOMETRYCOLLECTION | STRUCT                      |

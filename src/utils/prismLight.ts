@@ -20,7 +20,7 @@ export default {
     },
     {
       types: ["boolean", "rule", "color", "number", "constant", "property"],
-      style: {
+    style: {
         color: "#8665b6",
       },
     },
@@ -123,4 +123,4 @@ export default {
       },
     },
   ],
-};
+} satisfies PrismTheme;

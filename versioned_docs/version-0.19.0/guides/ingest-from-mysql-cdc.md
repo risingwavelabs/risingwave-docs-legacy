@@ -4,6 +4,7 @@ title: Ingest data from MySQL CDC
 description: Ingest data from MySQL CDC.
 slug: /ingest-from-mysql-cdc
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-mysql-cdc/" />
 </head>
@@ -108,42 +109,42 @@ See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connec
 If your MySQL is hosted on AWS RDS, the configuration process is different. We will use a standard class MySQL instance without Multi-AZ deployment for illustration.
 
 1. Turn on binary logging and choose a non-zero value for the **Retention period**.
-<img
-  src={require('../images/ret-period.png').default}
-  alt="Set retention period to a nonzero value"
-/>
+   <img
+   src={require('../images/ret-period.png').default}
+   alt="Set retention period to a nonzero value"
+   />
 
 2. Create a parameter group for MySQL instances. We created a parameter group named MySQL-CDC for the instance that runs MySQL 5.7.x.
-<img
-  src={require('../images/parameter-group.png').default}
-  alt="Create a parameter group"
-/>
+   <img
+   src={require('../images/parameter-group.png').default}
+   alt="Create a parameter group"
+   />
 
 3. Click the MySQL-CDC parameter group to edit the values of **binlog_format** to **ROW** and **binlog_row_image** to **full**.
-<img
-  src={require('../images/binlog-format.png').default}
-  alt="Set binlog_format to row"
-/>
-<img
-  src={require('../images/binlog-row.png').default}
-  alt="Set binlog_row_image to full"
-/>
+   <img
+   src={require('../images/binlog-format.png').default}
+   alt="Set binlog_format to row"
+   />
+   <img
+   src={require('../images/binlog-row.png').default}
+   alt="Set binlog_row_image to full"
+   />
 
 4. Modify your RDS instance and apply the modified parameter group to your database.
-<img
-  src={require('../images/modify-RDS.png').default}
-  alt="Select modify"
-/>
-<img
-  src={require('../images/apply-to-database.png').default}
-  alt="Apply changes to database"
-/>
+   <img
+   src={require('../images/modify-RDS.png').default}
+   alt="Select modify"
+   />
+   <img
+   src={require('../images/apply-to-database.png').default}
+   alt="Apply changes to database"
+   />
 
 5. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save the changes. Remember to reboot your MySQL instance.
-<img
-  src={require('../images/save-changes.png').default}
-  alt="Save changes made to MySQL RDS instance"
-/>
+   <img
+   src={require('../images/save-changes.png').default}
+   alt="Save changes made to MySQL RDS instance"
+   />
 
 </TabItem>
 </Tabs>
@@ -166,7 +167,7 @@ To ensure all data changes are captured, you must create a table and specify pri
 CREATE TABLE [ IF NOT EXISTS ] source_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
-) 
+)
 WITH (
    connector='mysql-cdc',
    <field>=<value>, ...
@@ -176,89 +177,89 @@ WITH (
 import rr from '@theme/RailroadDiagram'
 
 export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE TABLE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('source_name', 'wrap')
-        ),
-        rr.Terminal('('),
-        rr.Stack(
-            rr.Sequence(
-                rr.NonTerminal('column_name', 'skip'),
-                rr.NonTerminal('data_type', 'skip'),
-                rr.Terminal('PRIMARY KEY'),
-                rr.Terminal(','),
-            ),
-            rr.ZeroOrMore(
-                rr.Sequence(
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.NonTerminal('data_type', 'skip'),
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Terminal(','),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Terminal('('),
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.Optional(rr.Terminal(',')),
-                    rr.ZeroOrMore(
-                        rr.Sequence(
-                            rr.Terminal(','),
-                            rr.NonTerminal('column_name', 'skip'),
-                            rr.Optional(rr.Terminal(',')),
-                        ),
-                    ),
-                    rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Terminal(')'),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.NonTerminal('mysql-cdc', 'skip'),
-                        rr.Terminal(','),
-                    ),
-                    rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('field', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                    ),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Stack(
-            rr.Sequence(
-                rr.Terminal('ROW FORMAT'),
-                rr.NonTerminal('data_format', 'skip'),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('MESSAGE'),
-                    rr.NonTerminal('message', 'skip'),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('ROW SCHEMA LOCATION'),
-                    rr.NonTerminal('location', 'skip'),
-                    rr.Terminal(';'),
-                ),
-            ),
-        ),
-    )
+rr.Stack(
+rr.Sequence(
+rr.Terminal('CREATE TABLE'),
+rr.Optional(rr.Terminal('IF NOT EXISTS')),
+rr.NonTerminal('source_name', 'wrap')
+),
+rr.Terminal('('),
+rr.Stack(
+rr.Sequence(
+rr.NonTerminal('column_name', 'skip'),
+rr.NonTerminal('data_type', 'skip'),
+rr.Terminal('PRIMARY KEY'),
+rr.Terminal(','),
+),
+rr.ZeroOrMore(
+rr.Sequence(
+rr.NonTerminal('column_name', 'skip'),
+rr.NonTerminal('data_type', 'skip'),
+rr.Terminal('PRIMARY KEY'),
+rr.Terminal(','),
+),
+),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('PRIMARY KEY'),
+rr.Terminal('('),
+rr.NonTerminal('column_name', 'skip'),
+rr.Optional(rr.Terminal(',')),
+rr.ZeroOrMore(
+rr.Sequence(
+rr.Terminal(','),
+rr.NonTerminal('column_name', 'skip'),
+rr.Optional(rr.Terminal(',')),
+),
+),
+rr.Terminal(')'),
+),
+),
+),
+rr.Terminal(')'),
+rr.Sequence(
+rr.Terminal('WITH'),
+rr.Terminal('('),
+rr.Stack(
+rr.Stack(
+rr.Sequence(
+rr.Terminal('connector'),
+rr.Terminal('='),
+rr.NonTerminal('mysql-cdc', 'skip'),
+rr.Terminal(','),
+),
+rr.OneOrMore(
+rr.Sequence(
+rr.NonTerminal('field', 'skip'),
+rr.Terminal('='),
+rr.NonTerminal('value', 'skip'),
+rr.Terminal(','),
+),
+),
+),
+rr.Terminal(')'),
+),
+),
+rr.Stack(
+rr.Sequence(
+rr.Terminal('ROW FORMAT'),
+rr.NonTerminal('data_format', 'skip'),
+),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('MESSAGE'),
+rr.NonTerminal('message', 'skip'),
+),
+),
+rr.Optional(
+rr.Sequence(
+rr.Terminal('ROW SCHEMA LOCATION'),
+rr.NonTerminal('location', 'skip'),
+rr.Terminal(';'),
+),
+),
+),
+)
 );
 
 <drawer SVG={svg} />
@@ -269,15 +270,15 @@ Note that a primary key is required.
 
 All the fields listed below are required.
 
-|Field|Notes|
-|---|---|
-|hostname| Hostname of the database. |
-|port| Port number of the database.|
-|username| Username of the database.|
-|password| Password of the database. |
-|database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
-|table.name| Name of the table that you want to ingest data from. |
-|server.id| A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster.|
+| Field         | Notes                                                                                                                       |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| hostname      | Hostname of the database.                                                                                                   |
+| port          | Port number of the database.                                                                                                |
+| username      | Username of the database.                                                                                                   |
+| password      | Password of the database.                                                                                                   |
+| database.name | Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.    |
+| table.name    | Name of the table that you want to ingest data from.                                                                        |
+| server.id     | A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. |
 
 ### Data format
 

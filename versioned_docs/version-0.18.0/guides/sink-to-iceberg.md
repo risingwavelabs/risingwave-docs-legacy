@@ -4,6 +4,7 @@ title: Sink data from RisingWave to Apache Iceberg
 description: Sink data from RisingWave to Apache Iceberg with the JDBC connector.
 slug: /sink-to-iceberg
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-iceberg/" />
 </head>
@@ -12,8 +13,8 @@ This guide describes how to sink data from RisingWave to Apache Iceberg. Apache 
 
 ## Prerequisites
 
-- Ensure you already have an Iceberg table that you can sink data to. 
-  For additional guidance on creating a table and setting up Iceberg, refer to this [quickstart guide](https://iceberg.apache.org/spark-quickstart/) on creating an Iceberg table. 
+- Ensure you already have an Iceberg table that you can sink data to.
+  For additional guidance on creating a table and setting up Iceberg, refer to this [quickstart guide](https://iceberg.apache.org/spark-quickstart/) on creating an Iceberg table.
 
 - Ensure you have an upstream materialized view or source that you can sink data from.
 
@@ -30,31 +31,28 @@ WITH (
 
 ## Parameters
 
-
 | Parameter Names | Description                                                                                                                                                                                                                 |
 | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | type            | Required. Specify if the sink should be `upsert` or `append-only`.                                                                                                                                                          |
 | primary_key     | Optional. A string of a list of column names, separated by commas, that specifies the primary key of the Iceberg sink.                                                                                                      |
 | warehouse.path  | Required. The path of the Iceberg warehouse. Currently, only S3-compatible object store is supported, such as AWS S3, or MinIO.                                                                                             |
-| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be http://${MINIO_HOST}:${MINIO_PORT}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
+| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be `http://${MINIO_HOST}:${MINIO_PORT}`. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
 | s3.access.key   | Access key of the S3 compatible object store.                                                                                                                                                                               |
 | s3.secret.key   | Secret key of the S3 compatible object store.                                                                                                                                                                               |
 | database.name   | The database of the target Iceberg table.                                                                                                                                                                                   |
 | table.name      | The name of the target Iceberg table.                                                                                                                                                                                       |
 
-
 :::note
 Iceberg sinks with `upsert` type is slower than `append-only`.
 :::
 
-
 ## Examples
 
-This section includes several examples that you can use if you want to quickly experiment with sinking data to Iceberg. 
+This section includes several examples that you can use if you want to quickly experiment with sinking data to Iceberg.
 
 ### Create an Iceberg table (if you do not already have one)
 
-For example, the following `spark-sql` command creates an Iceberg table named `table` under the database `dev` in AWS S3. The table is in an S3 bucket named `my-iceberg-bucket` in region `ap-southeast-1` and under the path `path/to/warehouse`. The table has the property `format-version=2`, so it supports the upsert option. There should be a folder named `s3://my-iceberg-bucket/path/to/warehouse/dev/table/metadata`. 
+For example, the following `spark-sql` command creates an Iceberg table named `table` under the database `dev` in AWS S3. The table is in an S3 bucket named `my-iceberg-bucket` in region `ap-southeast-1` and under the path `path/to/warehouse`. The table has the property `format-version=2`, so it supports the upsert option. There should be a folder named `s3://my-iceberg-bucket/path/to/warehouse/dev/table/metadata`.
 
 Note that only S3-compatible object store is supported, such as AWS S3 or MinIO.
 
@@ -71,7 +69,7 @@ spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.2_2.12:1.1.0,org
     --e "drop table if exists demo.dev.`table`;
 CREATE TABLE demo.dev.`table`
 (
-  seq_id bigint, 
+  seq_id bigint,
   user_id bigint,
   user_name string
 ) TBLPROPERTIES ('format-version'='2')";
@@ -79,15 +77,14 @@ CREATE TABLE demo.dev.`table`
 
 ### Create an upstream materialized view or source
 
-
 The following query creates an append-only source. For more details on creating a source, see [`CREATE SOURCE`](/sql/commands/sql-create-source.md) .
 
 ```sql
 CREATE SOURCE s1_source (
-     seq_id bigint, 
+     seq_id bigint,
      user_id bigint,
      user_name varchar)
-WITH (                    
+WITH (
      connector = 'datagen',
      fields.seq_id.kind = 'sequence',
      fields.seq_id.start = '1',
@@ -105,10 +102,10 @@ Another option is to create an upsert table, which supports in-place updates. Fo
 
 ```sql
 CREATE TABLE s1_table (
-     seq_id bigint, 
+     seq_id bigint,
      user_id bigint,
      user_name varchar)
-WITH (                    
+WITH (
      connector = 'datagen',
      fields.seq_id.kind = 'sequence',
      fields.seq_id.start = '1',
@@ -177,4 +174,3 @@ WITH (
     table.name='table'
 );
 ```
-

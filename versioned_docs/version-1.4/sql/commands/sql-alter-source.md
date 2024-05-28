@@ -23,7 +23,7 @@ ALTER SOURCE current_source_name
 |---------------------------|-----------------------|
 |*current_source_name*               |The current name of the source you want to modify.|
 |*col_name* | The name of the new column you want to add to the source.|
-|*data_type* | The data type of the newly added column. With the struct data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>").|
+|*data_type* | The data type of the newly added column. With the struct data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("\<\>").|
 |**ADD COLUMN** |Indicates the intention to add a column to the specified source.|
 |**RENAME TO**  |Indicates the intention to rename the specified source.|
 |*new_source_name*      |The new name you want to assign to the source object.|
