@@ -1,8 +1,8 @@
-// @ts-check
-// Note: type annotations allow type checking and IDEs autocompletion
+import { themes as prismThemes } from "prism-react-renderer";
+import type { Config } from "@docusaurus/types";
+import type * as Preset from "@docusaurus/preset-classic";
 
-/** @type {import('@docusaurus/types').Config} */
-const config = {
+const config: Config = {
   title: "RisingWave",
   tagline: "Get started with RisingWave",
   url: "https://docs.risingwave.com",
@@ -10,25 +10,25 @@ const config = {
   trailingSlash: true,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
+  onBrokenAnchors: "throw",
   favicon: "img/favicon.ico",
   presets: [
     [
-      "@docusaurus/preset-classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      "classic",
+      {
         gtag: {
           trackingID: "G-VG98SVDEYE",
           anonymizeIP: true,
         },
         googleTagManager: {
-          containerId: 'GTM-KJRVWHT7',
+          containerId: "GTM-KJRVWHT7",
         },
         docs: {
           admonitions: {
-            tag: ":::",
+            // tag: ":::",
             keywords: ["note", "tip", "info", "caution", "danger"],
           },
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: "./sidebars.js",
           sidebarCollapsible: false,
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
@@ -101,117 +101,111 @@ const config = {
           editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
         theme: {
-          customCss: [
-            require.resolve("./src/css/fonts.css"),
-            require.resolve("./src/css/custom.css"),
-            require.resolve("./src/css/buttons.css"),
-          ],
+          customCss: ["./src/css/fonts.css", "./src/css/custom.css", "./src/css/buttons.css"],
         },
-      }),
+      } satisfies Preset.Options,
     ],
   ],
   plugins: [
     [
-      "@docusaurus/plugin-content-docs",
-      /** @type {import('@docusaurus/plugin-content-docs').Options} */
+      '@docusaurus/plugin-content-docs',
       {
         id: "cloud",
         path: "cloud",
         routeBasePath: "cloud",
-        sidebarPath: require.resolve("./sidebarCloud.js"),
+        sidebarPath: "./sidebarCloud.js",
       },
     ],
     require.resolve("docusaurus-plugin-image-zoom"),
   ],
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      zoom: {
-        selector: ".markdown img:not(.disabled-zoom, .icon)",
-        background: {
-          light: "#ffffff",
-          dark: "#0a1721",
-        },
-        config: {
-          // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
-        },
+  themeConfig: {
+    prism: {
+      additionalLanguages: ["bash", "diff", "json", "sql", "java", "kotlin", "groovy", "xml", "yaml"],
+    },
+    zoom: {
+      selector: ".markdown img:not(.disabled-zoom, .icon)",
+      background: {
+        light: "#ffffff",
+        dark: "#0a1721",
       },
-      colorMode: {
-        disableSwitch: false,
-        respectPrefersColorScheme: true,
+      config: {
+        // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
       },
-      docs: {
-        sidebar: {
-          hideable: true,
-          autoCollapseCategories: false,
-        },
+    },
+    colorMode: {
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
+    docs: {
+      sidebar: {
+        hideable: true,
+        autoCollapseCategories: false,
       },
-      navbar: {
-        title: "",
-        logo: {
-          alt: "RisingWave Logo",
-          src: "img/logo-title.png",
-          href: "https://www.risingwave.com/",
+    },
+    navbar: {
+      title: "",
+      logo: {
+        alt: "RisingWave Logo",
+        src: "img/logo-title.png",
+        href: "https://www.risingwave.com/",
+      },
+      items: [
+        {
+          type: "doc",
+          docId: "intro",
+          position: "left",
+          label: "RisingWave",
         },
-        items: [
-          {
-            type: "doc",
-            docId: "intro",
-            position: "left",
-            label: "RisingWave",
-          },
-          {
-            to: "/cloud/intro",
-            label: "RisingWave Cloud",
-            position: "left",
-          },
-          {
-            to: "https://tutorials.risingwave.com/",
-            position: "right",
-            html: `
+        {
+          to: "/cloud/intro",
+          label: "RisingWave Cloud",
+          position: "left",
+        },
+        {
+          to: "https://tutorials.risingwave.com/",
+          position: "right",
+          html: `
             <img
   src="/img/tutorial/entrance.svg"
   alt="RisingWave Tutorials"
   style="height:30px;margin-top:7px;"
 />
           `,
-          },
-          {
-            type: "docsVersionDropdown",
-            docsPluginId: "default",
-            position: "right",
-          },
-          {
-            href: "https://github.com/risingwavelabs/risingwave",
-            label: "GitHub",
-            position: "right",
-          }
-        ],
-      },
-      footer: {
-        copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community`,
-      },
-      prism: {
-        additionalLanguages: ["sql", "java"],
-      },
-      algolia: {
-        appId: "AL59AMDUO6",
-        apiKey: "d5690baa848d0d137a4084a46f757d8a",
-        indexName: "risingwave",
-        contextualSearch: true,
-        externalUrlRegex: "external\\.com|domain\\.com",
-        searchParameters: {},
-        searchPagePath: "search",
-        debug: false,
-      },
-      metadata: [
+        },
         {
-          name: "keywords",
-          content: "streaming database, documentation, risingwave",
+          type: "docsVersionDropdown",
+          docsPluginId: "default",
+          position: "right",
+        },
+        {
+          href: "https://github.com/risingwavelabs/risingwave",
+          label: "GitHub",
+          position: "right",
         },
       ],
-      items: [{ label: "Latest", to: "docs/latest/intro" }],
-    }),
+    },
+    footer: {
+      copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community`,
+    },
+
+    algolia: {
+      appId: "AL59AMDUO6",
+      apiKey: "d5690baa848d0d137a4084a46f757d8a",
+      indexName: "risingwave",
+      contextualSearch: true,
+      externalUrlRegex: "external\\.com|domain\\.com",
+      searchParameters: {},
+      searchPagePath: "search",
+      debug: false,
+    },
+    metadata: [
+      {
+        name: "keywords",
+        content: "streaming database, documentation, risingwave",
+      },
+    ],
+    items: [{ label: "Latest", to: "docs/latest/intro" }],
+  },
   customFields: {
     docsUrl: "https://docs.risingwave.com",
     requestUrl: "https://github.com/risingwavelabs/risingwave-docs/issues/new?body=",
@@ -229,11 +223,12 @@ const config = {
       type: "module",
       "runllm-server-address": "https://api.runllm.com",
       "runllm-assistant-id": "29",
-      "version": "0.0.4-image-demo",
+      version: "0.0.4-image-demo",
       "runllm-position": "TOP_RIGHT",
       "runllm-keyboard-shortcut": "Mod+l",
       "runllm-theme-color": "#005EEC",
-      "runllm-slack-community-url": "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",
+      "runllm-slack-community-url":
+        "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",
       "runllm-name": "RisingWave",
       async: true,
     },
@@ -258,12 +253,6 @@ const config = {
 };
 
 async function createConfig() {
-  const customLight = (await import("./src/utils/prismLight.mjs")).default;
-  const customDark = (await import("./src/utils/prismDark.mjs")).default;
-  // @ts-expect-error: we know it exists, right
-  config.themeConfig.prism.theme = customLight;
-  // @ts-expect-error: we know it exists, right
-  config.themeConfig.prism.darkTheme = customDark;
   return config;
 }
 

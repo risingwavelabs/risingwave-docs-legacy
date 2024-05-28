@@ -3,6 +3,7 @@ id: troubleshooting
 title: Troubleshooting
 slug: /troubleshooting
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/troubleshooting/" />
 </head>
@@ -18,8 +19,8 @@ RisingWave Dashboard is the built-in dashboard of RisingWave. From RisingWave Da
 You can access RisingWave Dashboard at `http://localhost:5692` by default.
 
 <img
-  src={require('../images/risingwave-dashboard.png').default}
-  alt="RisingWave Dashboard"
+src={require('../images/risingwave-dashboard.png').default}
+alt="RisingWave Dashboard"
 />
 
 ### View performance metrics
@@ -28,7 +29,7 @@ You can monitor the performance metrics of a RisingWave cluster, including the u
 
 RisingWave uses Prometheus for collecting data, and Grafana for visualization and alerting. This monitoring stack requires configuration. To configure the monitoring stack, follow the steps detailed in [Monitor a RisingWave cluster](../manage/monitor-risingwave-cluster.md).
 
-After you complete the configuration, go to <http://localhost:3000> to access Grafana from a local machine, or [http://<client_address>:3000] to access Grafana from a different host, where <client_address> is the IP address of the machine running the Grafana service. When prompted, enter the default credentials (username: `admin`; password: `prom-operator`).
+After you complete the configuration, go to `http://localhost:3000` to access Grafana from a local machine, or `http://<client_address>:3000` to access Grafana from a different host, where `<client_address>` is the IP address of the machine running the Grafana service. When prompted, enter the default credentials (username: `admin`; password: `prom-operator`).
 
 There are 2 built-in dashboards in the official release.
 
@@ -36,8 +37,8 @@ There are 2 built-in dashboards in the official release.
 - **risingwave_dev_dashboard** contains more low-level metrics for RisingWave developers.
 
 <img
-  src={require('../images/dev-dashboard.png').default}
-  alt="Developer Dashboard"
+src={require('../images/dev-dashboard.png').default}
+alt="Developer Dashboard"
 />
 
 ## Review error messages and logs

@@ -32,7 +32,7 @@ ALTER SOURCE source_name
 |---------------------------|-----------------------|
 |**ADD COLUMN** |This clause adds a column to the specified source.|
 |*col_name* | The name of the new column you want to add to the source.|
-|*data_type* | The data type of the newly added column. With the struct data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>").|
+|*data_type* | The data type of the newly added column. With the struct data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("\<\>").|
 
 ```sql title=Example
 -- Add a column named "v3" to a source named "src1" 

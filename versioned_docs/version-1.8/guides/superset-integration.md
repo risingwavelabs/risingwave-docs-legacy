@@ -31,7 +31,7 @@ To install Apache Superset, follow the instructions in [Installing locally using
 
 ### Start Apache Superset
 
-Launch an instance of Apache Superset by following the instructions in [Launch Superset through Docker Compose](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose#3-launch-superset-through-docker-compose). To start Superset, enter <http://localhost:8088> into your web browser.
+Launch an instance of Apache Superset by following the instructions in [Launch Superset through Docker Compose](https://superset.apache.org/docs/installation/installing-superset-using-docker-compose#3-launch-superset-through-docker-compose). To start Superset, enter http://localhost:8088 into your web browser.
 
 If it is your first time starting Superset and the webpage asks for a username and password, use `admin` for both.
 

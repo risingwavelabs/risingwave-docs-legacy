@@ -87,6 +87,6 @@ The following table shows the data type mapping between SQL and JavaScript:
 | real[]                | Float32Array  |                       |
 | double precision[]    | Float64Array  |                       |
 | others[]              | array         |                       |
-| struct<..>            | object        |                       |
+| struct\<..\>            | object        |                       |
 
 [BigDecimal]: https://github.com/tc39/proposal-decimal/blob/b958a7206774e86b1d443bd6b4926ec9342a9181/bigdecimal-reference.md
