@@ -10,10 +10,22 @@ import MDXLi from "@theme/MDXComponents/Li";
 import MDXImg from "@theme/MDXComponents/Img";
 import Admonition from "@theme/Admonition";
 import Mermaid from "@theme/Mermaid";
+import type { MDXComponentsObject } from "@theme/MDXComponents";
+
 import LightButton from "../LightButton";
 import RollButton from "../RollButton";
-
-import type { MDXComponentsObject } from "@theme/MDXComponents";
+import OutlinedCard from "../OutlinedCard";
+import ResponsiveGrid from "../ResponsiveGrid";
+import DefaultButton from "../DefaultButton";
+import PlatformDetector from "../PlatformDetector";
+import NotifyButton from "../NotifyButton";
+import DefaultNotify from "../DefaultNotify";
+import LightNotify from "../LightNotify";
+import Drawer from "../Drawer";
+import Capsule from "../Capsule";
+import Stepper from "../Stepper";
+import VerticalStepper from "../VerticalStepper";
+import SectionGrid from "../SectionGrid";
 
 const MDXComponents: MDXComponentsObject = {
   Head,
@@ -35,6 +47,18 @@ const MDXComponents: MDXComponentsObject = {
   mermaid: Mermaid,
   LightButton,
   RollButton,
+  OutlinedCard,
+  ResponsiveGrid,
+  DefaultButton,
+  PlatformDetector,
+  NotifyButton,
+  DefaultNotify,
+  LightNotify,
+  Drawer,
+  Capsule,
+  Stepper,
+  VerticalStepper,
+  SectionGrid,
 };
 
 export default MDXComponents;
