@@ -2,6 +2,9 @@ import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
+import PrismLight from './src/utils/prismLight';
+import PrismDark from './src/utils/prismDark';
+
 const config: Config = {
   title: "RisingWave",
   tagline: "Get started with RisingWave",
@@ -120,7 +123,20 @@ const config: Config = {
   ],
   themeConfig: {
     prism: {
-      additionalLanguages: ["bash", "diff", "json", "sql", "java", "kotlin", "groovy", "xml", "yaml"],
+      additionalLanguages: [
+        'java',
+        'latex',
+        'haskell',
+        'matlab',
+        'PHp',
+        'powershell',
+        'bash',
+        'diff',
+        'json',
+        'scss',
+      ],
+      theme: PrismLight,
+      darkTheme: PrismDark,
     },
     zoom: {
       selector: ".markdown img:not(.disabled-zoom, .icon)",

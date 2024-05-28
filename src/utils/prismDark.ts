@@ -1,9 +1,14 @@
-import lightTheme from "prism-react-renderer/themes/github/index.cjs.js";
+import {themes, type PrismTheme} from 'prism-react-renderer';
+
+const baseTheme = themes.github;
 
 export default {
-  ...lightTheme,
+  ...baseTheme,
+  plain: {
+    backgroundColor: "#001017",
+  },
   styles: [
-    ...lightTheme.styles,
+    ...baseTheme.styles,
     {
       types: ["title"],
       style: {
@@ -38,7 +43,7 @@ export default {
     {
       types: ["operator", "unit", "rule"],
       style: {
-        color: "#393a34",
+        color: "#ebebeb",
       },
     },
     {
@@ -68,7 +73,8 @@ export default {
     {
       types: ["keyword"],
       style: {
-        color: "#508fd2",
+        color: "#6db7ff",
+        fontStyle: "normal",
       },
     },
     {
@@ -104,7 +110,7 @@ export default {
     {
       types: ["custom"],
       style: {
-        color: "#393a34",
+        color: "#ebebeb",
         fontStyle: "italic",
       },
     },
@@ -117,7 +123,7 @@ export default {
     {
       types: ["string"],
       style: {
-        color: "#393a34",
+        color: "#ebebeb",
         fontStyle: "italic",
       },
     },
