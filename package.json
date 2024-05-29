@@ -20,6 +20,7 @@
     "@docusaurus/plugin-content-blog": "^3.3.2",
     "@docusaurus/plugin-content-docs": "^3.3.2",
     "@docusaurus/plugin-google-analytics": "^3.3.2",
+    "@docusaurus/plugin-google-gtag": "^3.3.2",
     "@docusaurus/preset-classic": "^3.3.2",
     "@docusaurus/theme-classic": "^3.3.2",
     "@docusaurus/theme-search-algolia": "^3.3.2",

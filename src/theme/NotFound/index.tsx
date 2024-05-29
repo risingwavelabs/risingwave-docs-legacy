@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 import NotFound from "@theme-original/NotFound";
+import type NotFoundType from "@theme/NotFound";
+import type { WrapperProps } from "@docusaurus/types";
 import { useHistory, useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-export default function NotFoundWrapper(props) {
+type Props = WrapperProps<typeof NotFoundType>;
+
+export default function NotFoundWrapper(props: Props): JSX.Element {
   const { globalData } = useDocusaurusContext();
   const location = useLocation();
   const history = useHistory();
   const [show, setShow] = useState(false);
-
+  console.log('location 1', location.pathname); 
+  
   useEffect(() => {
+    console.log("location", location.pathname);
+    console.log("globalData", globalData["docusaurus-plugin-content-docs"]);
+    
+    
     const paths = location.pathname.split("/");
     const version = paths[2];
     const slug = paths[3];
@@ -48,5 +57,5 @@ export default function NotFoundWrapper(props) {
     }
   }, []);
 
-  return <>{show && <NotFound {...props} />}</>;
+  return <>{show && <NotFound {...props} />}</>;  
 }
