@@ -12,12 +12,12 @@ export default function NotFoundWrapper(props: Props): JSX.Element {
   const location = useLocation();
   const history = useHistory();
   const [show, setShow] = useState(false);
-  console.log('location 1', location.pathname); 
   
   useEffect(() => {
-    console.log("location", location.pathname);
-    console.log("globalData", globalData["docusaurus-plugin-content-docs"]);
-    
+    if (location.pathname === "/project/home/") {
+      history.push("/docs/current/intro");
+      return;
+    }
     
     const paths = location.pathname.split("/");
     const version = paths[2];
