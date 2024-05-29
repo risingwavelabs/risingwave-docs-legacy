@@ -9,7 +9,7 @@ title: Aggregate functions
 
 Aggregate functions compute a single result from a set of input values.
 
-The DISTINCT option, ORDER BY clauses, and FILTER clauses can be used in aggregate expressions. The DISTINCT option cannot be used with an ORDER BY clause. For details about the supported syntax, see [Aggregate expressions](/sql/query-syntax/query-syntax-value-exp.md/#aggregate-expressions).
+The DISTINCT option, ORDER BY clauses, and FILTER clauses can be used in aggregate expressions. The DISTINCT option cannot be used with an ORDER BY clause. For details about the supported syntax, see [Aggregate expressions](/sql/query-syntax/query-syntax-value-exp.md#aggregate-expressions).
 
 ---  
 
