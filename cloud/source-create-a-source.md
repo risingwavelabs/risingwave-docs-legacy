@@ -7,7 +7,7 @@ slug: /create-a-source
 
 You need to create a source in the database to read external data. After a source is connected, you can create materialized views to perform analysis or sinks for data transformations.
 
-For the complete list of supported sources and formats, see [Supported sources and formats](/docs/current/sql-create-source/#supported-sources).
+For the complete list of supported sources and formats, see [Supported sources and formats](/docs/current/sql-create-source#supported-sources).
 
 You can create a source with one of the following methods:
 
@@ -44,4 +44,4 @@ You can create a source with one of the following methods:
 
 ## Using SQL command
 
-Refer to [`CREARE SOURCE`](/docs/current/sql-create-source/#supported-sources) in the RisngWave documentation. Select a connector to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
+Refer to [`CREARE SOURCE`](/docs/current/sql-create-source#supported-sources) in the RisngWave documentation. Select a connector to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
