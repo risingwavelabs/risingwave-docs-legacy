@@ -625,6 +625,9 @@ WITH (
 
 </Tabs>
 
-## Related topics
 
-[Why does RisingWave not accept Kafka consumer group ID](/rw-faq.md#why-risingwave-does-not-accept-kafka-consumer-group-ids)
+---
+
+:::note
+We have noticed that there is a frequently asked question about the Kafka source: why doesn't RisingWave accept the Kafka consumer group ID? We want to inform you that we are actively working on supporting this feature. You can look forward to using the Kafka consumer group ID with RisingWave soon.
+:::

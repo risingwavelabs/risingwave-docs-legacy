@@ -9,7 +9,7 @@ slug: /sql-show-cluster
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-cluster/" />
 </head>
 
-Use the `SHOW CLUSTER` command to show the details of your RisingWave cluster, including the address of the cluster, its state, the parallel units it is using, and whether it's streaming data, serving data or unschedulable.
+Use the `SHOW CLUSTER` command to display various details of your cluster, such as the cluster's address, type, state, and starting time. It will also indicate the number of parallel units the cluster is utilizing and whether it is currently streaming data, serving data, or unschedulable.
 
 ## Syntax
 
@@ -17,24 +17,17 @@ Use the `SHOW CLUSTER` command to show the details of your RisingWave cluster, i
 SHOW CLUSTER;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Sequence(
-rr.Terminal('SHOW CLUSTER'),
-rr.Terminal(';')
-)
-);
-
-<Drawer SVG={svg} />
-
-## Example
+## Examples
 
 ```sql
 SHOW CLUSTER;
+
 ------RESULT
-Addr            |  State  |     Parallel Units     | Is Streaming | Is Serving | Is Unschedulable
-----------------+---------+------------------------+--------------+------------+------------------
- 127.0.0.1:5688 | RUNNING | 3000, 3001, 3002, 3003 | true         | true       | false
-(1 row)
+ Id |      Addr      |           Type           |  State  | Parallel Units | Is Streaming | Is Serving | Is Unschedulable |        Started At
+----+----------------+--------------------------+---------+----------------+--------------+------------+------------------+---------------------------
+  0 | 127.0.0.1:5690 | WORKER_TYPE_META         | RUNNING |                |              |            |                  | 2024-05-07 07:57:18+00:00
+  1 | 127.0.0.1:5688 | WORKER_TYPE_COMPUTE_NODE | RUNNING | 0, 1, 2, 3     | t            | t          | f                | 2024-05-07 07:57:21+00:00
+  2 | 127.0.0.1:4566 | WORKER_TYPE_FRONTEND     | RUNNING |                |              |            |                  | 2024-05-07 07:57:24+00:00
+  3 | 127.0.0.1:6660 | WORKER_TYPE_COMPACTOR    | RUNNING |                |              |            |                  | 2024-05-07 07:57:24+00:00
+(4 rows)
 ```
