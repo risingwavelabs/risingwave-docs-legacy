@@ -24,7 +24,7 @@ The Elasticsearch sink connector in RisingWave provides at-least-once delivery s
 
 - Ensure the Elasticsearch cluster (version 7.x or 8.x) is accessible from RisingWave.
 
-- The Elastic sink connector in RisingWave relies on the connector node to work. Please ensure the connector node is enabled in RisingWave. For details, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+- The Elastic sink connector in RisingWave relies on the connector node to work. Please ensure the connector node is enabled in RisingWave. For details, see [Enable the connector node](/deploy/risingwave-trial.md?method=binaries#optional-enable-the-connector-node).
 
 ## Create a Elasticsearch sink
 

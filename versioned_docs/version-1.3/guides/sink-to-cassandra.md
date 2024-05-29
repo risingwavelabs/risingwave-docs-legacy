@@ -16,7 +16,7 @@ The Cassandra sink connector in RisingWave is currently in Beta. Please contact 
 
 - Ensure your Cassandra or ScyllaDB cluster is accessible from RisingWave.
 
-- The Cassandra sink connector in RisingWave relies on the connector node to work. Please ensure the connector node is enabled in RisingWave. For details, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+- The Cassandra sink connector in RisingWave relies on the connector node to work. Please ensure the connector node is enabled in RisingWave. For details, see [Enable the connector node](/deploy/risingwave-trial.md?method=binaries#optional-enable-the-connector-node).
 
 ## Syntax
 
