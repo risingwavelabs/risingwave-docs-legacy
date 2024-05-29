@@ -22,6 +22,7 @@ WITH (
 FORMAT data_format ENCODE data_encode [ (
     key = 'value'
 ) ]
+[KEY ENCODE key_encode [(...)]]
 ;
 ```
 
@@ -46,6 +47,7 @@ These options should be set in `FORMAT data_format ENCODE data_encode (key = 'va
 |data_format| Data format. Allowed format: `PLAIN`.|
 |data_encode| Data encode. Supported encode: `JSON`.|
 |force_append_only| Required by default and must be `true`, which forces the sink to be `PLAIN` (also known as append-only).|
+|key_encode| Currently, the key encode can only be `TEXT`, and the primary key should be one of the following types: `varchar`, `bool`, `smallint`, `int`, and `bigint`.|
 
 ## Example
 
