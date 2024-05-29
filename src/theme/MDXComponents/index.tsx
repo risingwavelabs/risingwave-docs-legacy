@@ -12,6 +12,8 @@ import Admonition from "@theme/Admonition";
 import Mermaid from "@theme/Mermaid";
 import type { MDXComponentsObject } from "@theme/MDXComponents";
 
+import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
 import LightButton from "../LightButton";
 import RollButton from "../RollButton";
 import OutlinedCard from "../OutlinedCard";
@@ -59,6 +61,8 @@ const MDXComponents: MDXComponentsObject = {
   Stepper,
   VerticalStepper,
   SectionGrid,
+  TabItem,
+  Tabs,
 };
 
 export default MDXComponents;

@@ -23,46 +23,46 @@ Use the `CREATE FUNCTION` command to declare the UDFs before you can use them in
 import rr from '@theme/RailroadDiagram';
 
 export const svg = rr.Diagram(
-rr.Stack(
-rr.Sequence(
-rr.Terminal('CREATE FUNCTION'),
-rr.NonTerminal('function_name', 'skip'),
-rr.Terminal('('),
-rr.OneOrMore(rr.NonTerminal('argument_type', 'skip'), ','),
-rr.Terminal(')')
-),
-rr.Optional(
-rr.Choice(1,
-rr.Sequence(
-rr.Terminal('RETURNS'),
-rr.NonTerminal('return_type', 'skip')
-),
-rr.Sequence(
-rr.Terminal('RETURNS TABLE'),
-rr.Terminal('('),
-rr.OneOrMore(rr.Sequence(rr.NonTerminal('column_name', 'skip'), rr.NonTerminal('column_type', 'skip')), ','),
-rr.Terminal(')')
-)
-)
-),
-rr.Optional(
-rr.Sequence(
-rr.Terminal('LANGUAGE'),
-rr.NonTerminal('language_name'),
-),'skip'
-),
-rr.Sequence(
-rr.Terminal('AS'),
-rr.NonTerminal('function_name_defined_in_server', 'skip')
-),
-rr.Sequence(
-rr.Terminal('USING LINK'),
-rr.Terminal('\''),
-rr.NonTerminal('udf_server_address', 'skip'),
-rr.Terminal('\''),
-rr.Terminal(';')
-)
-)
+  rr.Stack(
+    rr.Sequence(
+      rr.Terminal('CREATE FUNCTION'),
+      rr.NonTerminal('function_name', 'skip'),
+      rr.Terminal('('),
+      rr.OneOrMore(rr.NonTerminal('argument_type', 'skip'), ','),
+      rr.Terminal(')')
+    ),
+    rr.Optional(
+      rr.Choice(1,
+        rr.Sequence(
+          rr.Terminal('RETURNS'),
+          rr.NonTerminal('return_type', 'skip')
+        ),
+        rr.Sequence(
+          rr.Terminal('RETURNS TABLE'),
+          rr.Terminal('('),
+          rr.OneOrMore(rr.Sequence(rr.NonTerminal('column_name', 'skip'), rr.NonTerminal('column_type', 'skip')), ','),
+          rr.Terminal(')')
+        )
+      )
+    ),
+    rr.Optional(
+      rr.Sequence(
+      rr.Terminal('LANGUAGE'),
+      rr.NonTerminal('language_name'),
+      ),'skip'
+    ),
+    rr.Sequence(
+      rr.Terminal('AS'),
+      rr.NonTerminal('function_name_defined_in_server', 'skip')
+      ),
+    rr.Sequence(
+      rr.Terminal('USING LINK'),
+      rr.Terminal('\''),
+      rr.NonTerminal('udf_server_address', 'skip'),
+      rr.Terminal('\''),
+      rr.Terminal(';')
+    )
+  )
 );
 
 <Drawer SVG={svg} />
