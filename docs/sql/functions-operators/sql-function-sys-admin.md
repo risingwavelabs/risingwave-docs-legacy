@@ -24,7 +24,7 @@ SELECT current_setting ('server_version');
 
 You can use the `SHOW ALL` command to get the complete list of runtime parameters and corresponding descriptions.
 
-## `has_table_privilege`
+## `has_table_privilege()`
 
 Checks if a user has access to a table in a specific way. You can identify the user by their name, their OID (pg_authid.oid), or by using `public` to refer to the PUBLIC pseudo-role. If no argument is provided, it assumes the current user.
 
@@ -42,7 +42,7 @@ SELECT has_table_privilege('test_user', 'foo', 'SELECT');
 t
 ```
 
-## `has_schema_privilege`
+## `has_schema_privilege()`
 
 Checks if a user has access to a schema in a specific way. It has similar argument possibilities as the `has_table_privilege` function.
 
@@ -58,7 +58,7 @@ SELECT has_schema_privilege('test_user', 'test_schema', 'CREATE');
 t
 ```
 
-## `has_any_column_privilege`
+## `has_any_column_privilege()`
 
 Checks if a user has access to any column of a table in a specific way. It has similar argument possibilities as the `has_table_privilege` function, but with a few differences.
 
