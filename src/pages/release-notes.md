@@ -74,11 +74,11 @@ This version was released on May 20, 2024.
 #### Assets
 
 - Run this version from Docker:<br/>
-    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v1.9.1-rc.1-standalone single_node`
-- [Prebuilt all-in-one library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v1.9.1-rc.1/risingwave-v1.9.1-rc.1-x86_64-unknown-linux-all-in-one.tar.gz)
-- [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.9.1-rc.1.zip)
-- [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.9.1-rc.1.tar.gz)
-- [risectl - a CLI tool for managing and accessing RisingWave clusters](https://github.com/risingwavelabs/risingwave/releases/download/v1.9.1-rc.1/risectl-v1.9.1-rc.1-x86_64-unknown-linux.tar.gz)
+    `docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v1.9.0-standalone single_node`
+- [Prebuilt all-in-one library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v1.9.0/risingwave-v1.9.0-x86_64-unknown-linux-all-in-one.tar.gz)
+- [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.9.0.zip)
+- [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.9.0.tar.gz)
+- [risectl - a CLI tool for managing and accessing RisingWave clusters](https://github.com/risingwavelabs/risingwave/releases/download/v1.9.0/risectl-v1.9.0-x86_64-unknown-linux.tar.gz)
 
 See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/release-1.8...release-1.9).
 
