@@ -8,7 +8,7 @@ slug: /sql-create-source
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-source/" />
 </head>
 
-A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. For the full list of the sources we support, see [Supported sources](/ingest/supported-sources-and-formats.md#supported-sources).
+A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. For the full list of the sources we support, see [Supported sources](/docs/current/supported-sources-and-formats).
 
 If you choose to persist the data from the source in RisingWave, use the `CREATE TABLE` command with connector settings. Or if you need to create the primary key (which is required by some formats like FORMAT UPSERT/DEBEZIUM), you have to use `CREATE TABLE` too. For more details, see [CREATE TABLE](sql-create-table.md).
 
@@ -74,8 +74,8 @@ The generated column is created in RisingWave and will not be accessed through t
 |*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |*watermark_clause*| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
 |**INCLUDE** clause | Extract fields not included in the payload as separate columns. For more details on its usage, see [`INCLUDE` clause](/ingest/include-clause.md). |
-|**WITH** clause |Specify the connector settings here if trying to store all the source data. See [Supported sources](/ingest/supported-sources-and-formats.md#supported-sources) for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
-|**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Supported formats](/ingest/supported-sources-and-formats.md#supported-formats). |
+|**WITH** clause |Specify the connector settings here if trying to store all the source data. See [Supported sources](/docs/current/supported-sources-and-formats) for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
+|**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Supported formats](/docs/current/supported-sources-and-formats). |
 
 :::note
 Please distinguish between the parameters set in the FORMAT and ENCODE options and those set in the WITH clause. Ensure that you place them correctly and avoid any misuse.
