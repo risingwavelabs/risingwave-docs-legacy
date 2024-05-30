@@ -11,7 +11,7 @@ In this guide, we will walk you through some of the most used SQL commands in Ri
 
 ## Before we start
 
-Ensure that you have [started and connected to RisingWave](get-started.md/#run-risingwave).
+Ensure that you have [started and connected to RisingWave](/get-started.md).
 
 ## Create a table
 
