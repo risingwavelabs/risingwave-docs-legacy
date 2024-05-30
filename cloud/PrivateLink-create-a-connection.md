@@ -65,4 +65,5 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
 Now, you can create a source or sink with the PrivateLink connection using SQL.
 
-For details on how to use the VPC endpoint to create a source with the PrivateLink connection, see [Create source with PrivateLink connection](/docs/current/ingest-from-kafka#create-an-aws-privatelink-connection); for creating a sink, see [Create sink with PrivateLink connection](/docs/current/create-sink-kafka#create-an-aws-privatelink-connection).
+For details on how to use the VPC endpoint to create a source or sink with the PrivateLink connection, see [Create an AWS PrivateLink connection](/docs/current/sql-create-connection/#create-an-aws-privatelink-connection).
+

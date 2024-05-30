@@ -48,7 +48,7 @@ To restart a stopped cluster, click **Start**.
 If you no longer need a cluster and its associated data, you can delete it to free up resources.
 
 :::info
-You must delete all clusters before [deleting your account](account-manage-your-account.md).
+You must delete all clusters before [deleting your account](account-manage-your-account.md?task=delete-account).
 :::
 
 <img
