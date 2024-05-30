@@ -10,7 +10,7 @@ slug: /risingwave-homebrew
 This article will help you start a RisingWave standalone instance in your environment with Homebrew.
 
 :::caution
-This method starts RisingWave in playground mode, where data is not persisted after the service is terminated.<br/>Start RisingWave in full-featured mode for data persistence and stable performance. <br/>[→ See the comparison](/get-started.md#run-risingwave)
+This method starts RisingWave in playground mode, where data is not persisted after the service is terminated.<br/>Start RisingWave in full-featured mode for data persistence and stable performance. <br/>[→ See the comparison](/get-started.md)
 :::
 
 ## Install and start RisingWave
