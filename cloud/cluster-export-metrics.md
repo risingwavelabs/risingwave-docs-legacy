@@ -94,8 +94,7 @@ instances:
 
 To import the metrics to InfluxDB, you need to configure Telegraf first. See instructions on how to [use Telegraf to scrape Prometheus metrics](https://docs.influxdata.com/influxdb/v2/write-data/developer-tools/scrape-prometheus-metrics/#use-telegraf) and the [Prometheus input plugin](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/prometheus/README.md).
 
-In the Telegraf configuration, you need to fill in the Prometheus input section, see [Prometheus](cluster-export-metrics.md?method=Prometheus#step-3-configure-metric-exporters) for details.
-
+In the Telegraf configuration, you need to fill in the Prometheus input section, see [Prometheus](cluster-export-metrics.md?method=Prometheus#step-3-configure-monitoring-systems) for details.
 </TabItem>
 
 </Tabs>

@@ -19,7 +19,7 @@ At the start of each month, you'll receive an invoice that consolidates the usag
 Your invoices provide a record of your usage and payments. It includes:
 
 - **Invoice ID**: Unique identifiers for each invoice. You can click on the invoice ID to view the detailed breakdown of the invoice. See details in [Check spending details](/billing-check-spending-details.md).
-- **Status**: The payment status of each invoice. See [Invoice statuses](#invoice-statuses) below for detailed descriptions.
+- **Status**: The payment status of each invoice. See [Invoice statuses](#invoice-status) below for detailed descriptions.
 - **Billing period**: The start and end dates of the billing period.
 - **Payment time**: The date and time each payment was made.
 - **Payment amount**: The total amount charged for each invoice.
