@@ -17,8 +17,7 @@ In this section, we use the [`psycopg2`](https://pypi.org/project/psycopg2/) dri
 
 ### Run RisingWave
 
-To learn about how to run RisingWave, see [Run RisingWave](/get-started.md#run-risingwave).
-
+To learn about how to run RisingWave, see [Get started](/get-started.md).
 
 ### Install the `psgcopg2` driver
 
@@ -112,8 +111,7 @@ In this section, we use the [SQLAlchemy](https://www.sqlalchemy.org) driver to c
 
 ### Run RisingWave
 
-To learn about how to run RisingWave, see [Run RisingWave](/get-started.md#run-risingwave).
-
+To learn about how to run RisingWave, see [Get started](/get-started.md).
 ### Install necessary Python packages
 
 Ensure you have Python3 installed.

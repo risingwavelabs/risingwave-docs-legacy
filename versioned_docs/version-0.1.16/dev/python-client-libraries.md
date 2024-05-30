@@ -16,8 +16,7 @@ In this guide, we use the [`psycopg2`](https://pypi.org/project/psycopg2/) drive
 
 ## Run RisingWave
 
-To learn about how to run RisingWave, see [Run RisingWave](/get-started.md#run-risingwave).
-
+To learn about how to run RisingWave, see [Get started](/get-started.md).
 
 ## Install the `psgcopg2` driver
 

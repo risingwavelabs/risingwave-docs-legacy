@@ -14,8 +14,7 @@ In this guide, we use the [`pgx` driver](https://github.com/jackc/pgx) to connec
 
 ## Run RisingWave
 
-To learn about how to run RisingWave, see [Run RisingWave](/get-started.md#run-risingwave).
-
+To learn about how to run RisingWave, see [Get started](/get-started.md).
 ## Install the `pgx` driver
 
 Run the following command to install the `pgx` driver:

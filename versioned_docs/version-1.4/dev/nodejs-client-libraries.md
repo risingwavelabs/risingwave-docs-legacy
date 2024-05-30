@@ -14,8 +14,7 @@ In this guide, we use the [Node.js pg driver](https://www.npmjs.com/package/pg) 
 
 ## Run RisingWave
 
-To learn about how to run RisingWave, see [Run RisingWave](/get-started.md#run-risingwave).
-
+To learn about how to run RisingWave, see [Get started](/get-started.md).
 ## Install npm
 
 ```shell

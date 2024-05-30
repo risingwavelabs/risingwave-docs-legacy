@@ -11,8 +11,7 @@ In this guide, we use the [`ruby-pg`](https://github.com/ged/ruby-pg) driver to 
 
 ## Run RisingWave
 
-To learn about how to run RisingWave, see [Run RisingWave](/get-started.md#run-risingwave).
-
+To learn about how to run RisingWave, see [Get started](/get-started.md).
 
 ## Install the `ruby-pg` driver
 
