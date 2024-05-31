@@ -14,7 +14,7 @@ In this guide, we use the [PostgreSQL JDBC](https://jdbc.postgresql.org/) driver
 
 ## Run RisingWave
 
-To learn about how to run RisingWave, see [Run RisingWave](/get-started.md#run-risingwave).
+To learn about how to run RisingWave, see [Run RisingWave](/get-started.md).
 > You do not need to connect to RisingWave at this stage.
 
 ## Download the PostgreSQL JDBC driver

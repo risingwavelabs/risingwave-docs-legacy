@@ -14,7 +14,7 @@ This article provides a step-by-step guide for installing the RisingWave UDF API
 
 - Ensure that you have [Python](https://www.python.org/downloads/) (3.8 or later) installed on your computer.
 
-- Ensure that you have [started and connected to RisingWave](get-started.md#run-risingwave).
+- Ensure that you have [started and connected to RisingWave](/get-started.md).
 
 ## 1. Install the RisingWave UDF API for Python
 

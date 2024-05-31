@@ -27,7 +27,7 @@ Querying foreign data is not efficient, since RisingWave will call a UDF server,
 
 - Ensure that you have the [psql cli](https://www.postgresql.org/docs/current/app-psql.html) available. 
 
-- Ensure that you have [started and connected to RisingWave](get-started.md#run-risingwave).
+- Ensure that you have [started and connected to RisingWave](get-started.md).
 
 
 ## 1. UDF setup
