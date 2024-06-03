@@ -66,6 +66,38 @@ SELECT current_user(); → `root`
 Returns the file system location of a tablespace. To use this function, you need to provide the OID of the tablespace you want to get the location for as an argument.
 -->
 
+## `pg_get_keywords()`
+
+Returns a collection of records that provide information about the SQL keywords recognized by the server. Each record has three columns: `word`, `catcode`, and `catdesc`. 
+
+The `word` column contains the actual keyword, while the `catcode` column indicates the category code of the keyword.
+
+Here are the possible category codes and their meanings:
+
+- `U`: Indicates an unreserved keyword.
+
+- `C`: Indicates a keyword that can be used as a column name.
+
+- `T`: Indicates a keyword that can be used as a type or function name.
+
+- `R`: Indicates a fully reserved keyword.
+
+The `catdesc` column contains a string that describes the category of the keyword. This description may be localized, depending on the language settings of the server.
+
+```sql title="Syntax"
+pg_get_keywords () → setof record ( word text, catcode "char", catdesc text)
+```
+
+```sql title=Examples
+SELECT * FROM pg_get_keywords();
+
+----RESULT
+ word    | catcode | catdesc 
+---------+---------+---------
+ABSOLUTE | R       | Reserved
+(1 rows)
+```
+
 
 ## `pg_get_viewdef()`
 
