@@ -22,7 +22,7 @@ This version was released on May 20, 2024.
 - SQL commands:
     - Supports `DISCARD ALL` command for Npgsql compatibility. [#16432](https://github.com/risingwavelabs/risingwave/pull/16432).
     - Supports creating, dropping, altering, and showing subscriptions. [#14831](https://github.com/risingwavelabs/risingwave/pull/14831).
-    - Supports cursors for subscription queues. [#15180](https://github.com/risingwavelabs/risingwave/pull/15180).
+    - Supports cursors for subscription queues. [#15180](https://github.com/risingwavelabs/risingwave/pull/15180). See [Subscription](/docs/current/subscription/).
     - Supports altering stream rate limit for sources and tables with a source. [#16399](https://github.com/risingwavelabs/risingwave/pull/16399). See [`ALTER SOURCE`](/docs/current/sql-alter-source/#set-streaming_rate_limit) and [`ALTER TABLE`](/docs/current/sql-alter-table/#set-streaming_rate_limit).
     - Supports `RECOVER` command to trigger an ad-hoc recovery. [#16259](https://github.com/risingwavelabs/risingwave/pull/16259). See [`RECOVER`](/docs/current/sql-recover/).
 - SQL functions & operators:
