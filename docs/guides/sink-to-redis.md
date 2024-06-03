@@ -29,6 +29,7 @@ WITH (
 )
 FORMAT data_format ENCODE data_encode [ (
     key = 'value' ) ]
+[KEY ENCODE key_encode [(...)]]
 ;
 ```
 
@@ -52,6 +53,8 @@ These options should be set in `FORMAT data_format ENCODE data_encode (key = 'va
 |force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
 |key_format| Required if `data_encode` is `TEMPLATE`. Specify the format for the key as a string. |
 |value_format| Required if `data_encode` is `TEMPLATE`. Specify the format for the value as a string. |
+|key_encode| Optional. When specified, the key encode can only be `TEXT`, and the primary key should be one and only one of the following types: `varchar`, `bool`, `smallint`, `int`, and `bigint`; When absent, both key and value will use the same setting of `ENCODE data_encode ( ... )`. |
+
 
 ## Example
 

@@ -30,7 +30,7 @@ export default function FeedbackForm(props) {
       </div>
 
       <form>
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row" spacing={2} className={styles.rightGroupContainer}>
           <Stack spacing={2} className={styles.rightGroup} direction="row" alignItems="baseline">
             <Typography className={styles.rightText}>Help us make this doc better!</Typography>
             <Stack direction="row" spacing={2} className={styles.rightGroupButtonGroup}>
