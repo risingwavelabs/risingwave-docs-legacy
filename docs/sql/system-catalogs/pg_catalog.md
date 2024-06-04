@@ -31,7 +31,6 @@ RisingWave does not fully support all PostgreSQL system catalog columns.
 | [`pg_index`](https://www.postgresql.org/docs/current/catalog-pg-index.html) | Contains part of the information about indexes. The rest is mostly in `pg_class`. |
 | [`pg_indexes`](https://www.postgresql.org/docs/current/view-pg-indexes.html) | Contains information about each index in the database.|
 | [`pg_inherits`](https://www.postgresql.org/docs/current/catalog-pg-inherits.html)|Contains information about table inheritance relationships. In PostgreSQL, table inheritance is a feature that allows you to create a new table that inherits all the columns and constraints of an existing table. |
-|[`pg_keywords`](/sql/functions-operators/sql-function-sys-info.md#pg_get_keywords)|Contains information about the SQL keywords recognized by the server.|
 | [`pg_matviews`](https://www.postgresql.org/docs/current/view-pg-matviews.html) | Contains information about about each materialized view in the database. |
 | [`pg_namespace`](https://www.postgresql.org/docs/current/catalog-pg-namespace.html) | Contains information about namespaces.|
 | [`pg_opclass`](https://www.postgresql.org/docs/current/catalog-pg-opclass.html) | Contains information about index access method operator classes. |
