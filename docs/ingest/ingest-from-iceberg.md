@@ -165,7 +165,7 @@ Then, you can query the Iceberg source by using a batch query:
 SELECT * FROM iceberg_source;
 ```
 
-Typically, you can use CTAS(create table as select) to load a iceberg table historical data into a risingwave table:
+Typically, you can use CTAS (CREATE TABLE AS SELECT) to load historical Iceberg table data into a RisingWave table:
 
 ```sql
 CREATE TABLE t AS SELECT * FROM iceberg_source;
