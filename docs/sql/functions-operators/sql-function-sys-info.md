@@ -85,7 +85,7 @@ Here are the possible category codes and their meanings:
 The `catdesc` column contains a string that describes the category of the keyword. This description may be localized, depending on the language settings of the server.
 
 ```sql title="Syntax"
-pg_get_keywords () → setof record ( word text, catcode "char", catdesc text)
+pg_get_keywords () → setof record ( word text, catcode text, catdesc text)
 ```
 
 ```sql title=Examples
