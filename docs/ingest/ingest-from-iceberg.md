@@ -171,7 +171,7 @@ Typically, you can use CTAS (CREATE TABLE AS SELECT) to load historical Iceberg 
 CREATE TABLE t AS SELECT * FROM iceberg_source;
 ```
 
-Furthermore, if you have a kafka upstream on the iceberg table, you can use `sink into table` to ingest data from kafka to the risingwave table:
+Furthermore, if you have a Kafka upstream on the Iceberg table, you can use `SINK INTO TABLE` to ingest data from Kafka to the RisingWave table:
 
 ```sql
 CREATE SINK s INTO TABLE t AS SELECT * FROM kafka_source;
