@@ -174,5 +174,5 @@ CREATE TABLE t AS SELECT * FROM iceberg_source;
 Furthermore, if you have a kafka upstream on the iceberg table, you can use `sink into table` to ingest data from kafka to the risingwave table:
 
 ```sql
-create sink s into table t as select * from kafka_source;
+CREATE SINK s INTO TABLE t AS SELECT * FROM kafka_source;
 ```
