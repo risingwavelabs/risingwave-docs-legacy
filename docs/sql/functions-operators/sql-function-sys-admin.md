@@ -60,11 +60,7 @@ t
 
 ## `has_any_column_privilege()`
 
-Checks if a user has access to any column of a table in a specific way. It has similar argument possibilities as the `has_table_privilege` function, but with a few differences.
-
-The desired access privilege type should evaluate to a combination of SELECT, INSERT, UPDATE, or REFERENCES. This means that the privilege type can be a combination of these four, such as "SELECT, INSERT", or just a single privilege type like "UPDATE".
-
-It's important to note that when a user has any of these privileges at the table level, it automatically grants them for each column of the table. Therefore, if the "has_table_privilege" function returns true for the same arguments, the "has_any_column_privilege" function will also return true. However, the "has_any_column_privilege" function will also succeed if there is a column-level grant of the privilege for at least one column.
+Checks if a user has access to any column of a table in a specific way. Currently, this function is identical to the `has_table_privilege` function.
 
 ```sql title="Syntax"
 has_any_column_privilege([user,] table, privilege) -> boolean
