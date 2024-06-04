@@ -144,4 +144,4 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Google Cloud Storage (GCS)| | Available as source. For details, see [Ingest from Google Cloud Storage](/ingest/ingest-from-gcs.md).|
 |Hasura| |Researching <voteNotify note="hasura" />|
 |Liquibase| |Researching <voteNotify note="liquibase" />|
-|Supabase| |Available. For details, see [Empower Supabase with stream processing capabilities](/guides/supabase-integration.md).|
+|Supabase| |Available. For details, see [Ingest data from Supabase CDC](/ingest/ingest-from-supabase-cdc.md) and [Sink data to Supabase](/guides/sink-to-supabase.md).|

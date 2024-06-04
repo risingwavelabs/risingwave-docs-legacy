@@ -20,7 +20,7 @@ Before creating a sink in RisingWave, create a project and target table to sink 
 
 As Supabase is compatible with PostgreSQL, you can sink data to Supabase the same way you would sink data to PostgreSQL with the JDBC connector. 
 
-For the syntax, parameters, and examples, see [Sink data from RisingWave to PostgreSQL](/docs/guides/sink-to-postgres.md).
+For the syntax, parameters, and examples, see [Sink data from RisingWave to PostgreSQL](/guides/sink-to-postgres.md).
 
 The following SQL command creates a sink, `promotion_update`, that sinks data from the materialized view, `product_calc_mv`, in RisingWave, to the `promotions` table in Supabase. The columns of the materialized view must match the columns of the table in Supabase.
 

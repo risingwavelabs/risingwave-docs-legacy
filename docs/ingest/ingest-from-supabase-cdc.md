@@ -18,7 +18,7 @@ Create a Supabase project and a source table. Enable real-time when creating the
 
 ## Ingest CDC data into RisingWave
 
-Since every Supabase project is a dedicated PostgreSQL database, use the PostgreSQL source connector to ingest CDC data from RisingWave. For the syntax, parameters, and examples, see [Ingest data from PostgreSQL CDC](/docs/guides/ingest-from-postgres-cdc.md#create-a-table-using-the-native-cdc-connector).
+Since every Supabase project is a dedicated PostgreSQL database, use the PostgreSQL source connector to ingest CDC data from RisingWave. For the syntax, parameters, and examples, see [Ingest data from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md#create-a-table-using-the-native-cdc-connector).
 
 To start ingesting data from Supabase, a connection with the database must be established first by using the `CREATE SOURCE` command.
 
