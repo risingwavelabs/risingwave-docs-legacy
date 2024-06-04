@@ -171,3 +171,8 @@ Typically, you can use CTAS(create table as select) to load a iceberg table hist
 CREATE table t as select * from iceberg_source;
 ```
 
+Furthermore, if you have a kafka upstream on the iceberg table, you can use `sink into table` to ingest data from kafka to the risingwave table:
+
+```sql
+create sink s into table t as select * from kafka_source;
+```
