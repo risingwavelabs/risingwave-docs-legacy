@@ -89,7 +89,7 @@ pg_get_keywords () → setof record ( word text, catcode text, catdesc text)
 ```
 
 ```sql title=Examples
-SELECT * FROM pg_get_keywords();
+SELECT * FROM pg_get_keywords() LIMIT 1;
 
 ----RESULT
  word    | catcode | catdesc 
