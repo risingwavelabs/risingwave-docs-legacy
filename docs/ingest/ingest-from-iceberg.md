@@ -168,7 +168,7 @@ SELECT * FROM iceberg_source;
 Typically, you can use CTAS(create table as select) to load a iceberg table historical data into a risingwave table:
 
 ```sql
-CREATE table t as select * from iceberg_source;
+CREATE TABLE t AS SELECT * FROM iceberg_source;
 ```
 
 Furthermore, if you have a kafka upstream on the iceberg table, you can use `sink into table` to ingest data from kafka to the risingwave table:
