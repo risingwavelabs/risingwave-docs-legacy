@@ -159,8 +159,15 @@ WITH (
 );
 ```
 
-Then, you can query the Iceberg source:
+Then, you can query the Iceberg source by using a batch query:
 
 ```sql
 SELECT * FROM iceberg_source;
 ```
+
+Typically, you can use CTAS(create table as select) to load a iceberg table historical data into a risingwave table:
+
+```sql
+CREATE table t as select * from iceberg_source;
+```
+
