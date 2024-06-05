@@ -46,7 +46,7 @@ t
 
 Checks if a user has access to a schema in a specific way. It has similar argument possibilities as the `has_table_privilege` function.
 
-The desired access privilege type should be a combination of CREATE and/or USAGE, such as "CREATE, USAGE", or just a single privilege type like "CREATE" or "USAGE".
+The desired access privilege type should be a combination of `CREATE` and/or `USAGE`, such as "CREATE, USAGE", or just a single privilege type like "CREATE" or "USAGE".
 
 ```sql title="Syntax"
 has_schema_privilege([user,] schema, privilege) -> boolean
