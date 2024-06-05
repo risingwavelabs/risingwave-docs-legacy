@@ -26,7 +26,7 @@ CREATE SCHEMA [ IF NOT EXISTS ] AUTHORIZATION user_name;
 |*schema_name*                   |The name of the schema to be created.|
 |<b>IF NOT EXISTS</b> clause      |Creates a schema if the schema name has not already been used. Otherwise throws an error.|
 |*database_name*                 |The name of the database for the schema to be created in. If not specified, the schema will be created in the default database `dev`.|
-|<b>AUTHORIZATION</b> clause|Specifies the owner or authorized user of the schema. If the *schema_name* is omitted, the *user_name* is used as the schema name. See the examples below for more details.|
+|<b>AUTHORIZATION</b> clause|Specifies the owner or authorized user of the schema. If the *schema_name* is omitted, the *user_name* is used as the schema name.|
 |*user_name*|Specifies the username of the owner or authorized user of the schema.|
 
 ## Examples
