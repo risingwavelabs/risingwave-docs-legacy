@@ -30,7 +30,7 @@ Checks if a user has access to a table in a specific way. You can identify the u
 
 To specify the table, you can use its name or OID. If needed, you can schema-qualify the table name.
 
-The desired access privilege type is specified as a text string. It must be one of the following values: SELECT, INSERT, UPDATE, DELETE, TRUNCATE, REFERENCES, or TRIGGER. You can also add WITH GRANT OPTION to test if the privilege is held with the grant option. If you want to check for multiple privilege types, you can list them separated by commas. The result will be true if any of the listed privileges is held. The case of the privilege string is not important, and you can have extra whitespace between privilege names, but not within them.
+The desired access privilege type is specified as a text string. It must be one of the following values: `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `TRUNCATE`, `REFERENCES`, or `TRIGGER`. You can also add `WITH GRANT OPTION` to test if the privilege is held with the grant option. If you want to check for multiple privilege types, you can list them separated by commas. The result will be true if any of the listed privileges is held. The case of the privilege string is not important, and you can have extra whitespace between privilege names, but not within them.
 
 ```sql title="Syntax"
 has_table_privilege([user,] table, privilege) -> boolean
