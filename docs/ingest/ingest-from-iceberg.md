@@ -159,8 +159,20 @@ WITH (
 );
 ```
 
-Then, you can query the Iceberg source:
+Then, you can query the Iceberg source by using a batch query:
 
 ```sql
 SELECT * FROM iceberg_source;
+```
+
+Typically, you can use CTAS (CREATE TABLE AS SELECT) to load historical Iceberg table data into a RisingWave table:
+
+```sql
+CREATE TABLE t AS SELECT * FROM iceberg_source;
+```
+
+Furthermore, if you have a Kafka upstream on the Iceberg table, you can use `SINK INTO TABLE` to ingest data from Kafka to the RisingWave table:
+
+```sql
+CREATE SINK s INTO TABLE t AS SELECT * FROM kafka_source;
 ```
