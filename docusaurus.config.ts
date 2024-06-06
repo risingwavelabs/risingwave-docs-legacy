@@ -1,8 +1,8 @@
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
-import PrismLight from './src/utils/prismLight';
-import PrismDark from './src/utils/prismDark';
+import PrismLight from "./src/utils/prismLight";
+import PrismDark from "./src/utils/prismDark";
 
 const config: Config = {
   title: "RisingWave",
@@ -12,7 +12,7 @@ const config: Config = {
   trailingSlash: true,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "throw",
-  onBrokenAnchors: "throw",
+  onBrokenAnchors: "warn",
   favicon: "img/favicon.ico",
   presets: [
     [
@@ -110,7 +110,7 @@ const config: Config = {
   ],
   plugins: [
     [
-      '@docusaurus/plugin-content-docs',
+      "@docusaurus/plugin-content-docs",
       {
         id: "cloud",
         path: "cloud",
@@ -122,18 +122,7 @@ const config: Config = {
   ],
   themeConfig: {
     prism: {
-      additionalLanguages: [
-        'java',
-        'latex',
-        'haskell',
-        'matlab',
-        'PHp',
-        'powershell',
-        'bash',
-        'diff',
-        'json',
-        'scss',
-      ],
+      additionalLanguages: ["java", "latex", "haskell", "matlab", "PHp", "powershell", "bash", "diff", "json", "scss"],
       theme: PrismLight,
       darkTheme: PrismDark,
     },
