@@ -122,7 +122,7 @@ const config: Config = {
   ],
   themeConfig: {
     prism: {
-      additionalLanguages: ["java", "latex", "haskell", "matlab", "PHp", "powershell", "bash", "diff", "json", "scss"],
+      additionalLanguages: ["java", "sql", "shell"],
       theme: PrismLight,
       darkTheme: PrismDark,
     },
