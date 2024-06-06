@@ -1,11 +1,11 @@
 ---
 id: console-overview
-title: Query console
-description: The query console is the most intuitive and easy way to connect to and interact with RisingWave, offering graphical tools for managing data and visualizing results.
+title: Workspace
+description: The most intuitive and easy way to connect to and interact with RisingWave.
 slug: /console-overview
 ---
 
-The query console is the most intuitive and easy way to interact with RisingWave, offering graphical tools for managing data and visualizing results.
+It is the most intuitive and easy way to interact with RisingWave via workspace. It offers graphical tools for managing data and visualizing results.
 
 <img
 src={require('./images/console.png').default}

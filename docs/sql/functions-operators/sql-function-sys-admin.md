@@ -24,6 +24,54 @@ SELECT current_setting ('server_version');
 
 You can use the `SHOW ALL` command to get the complete list of runtime parameters and corresponding descriptions.
 
+## `has_table_privilege()`
+
+Checks if a user has access to a table in a specific way. You can identify the user by their name, their OID (pg_authid.oid), or by using `public` to refer to the PUBLIC pseudo-role. If no argument is provided, it assumes the current user.
+
+To specify the table, you can use its name or OID. If needed, you can schema-qualify the table name.
+
+The desired access privilege type is specified as a text string. It must be one of the following values: `SELECT`, `INSERT`, `UPDATE`, `DELETE`, `TRUNCATE`, `REFERENCES`, or `TRIGGER`. You can also add `WITH GRANT OPTION` to test if the privilege is held with the grant option. If you want to check for multiple privilege types, you can list them separated by commas. The result will be true if any of the listed privileges is held. The case of the privilege string is not important, and you can have extra whitespace between privilege names, but not within them.
+
+```sql title="Syntax"
+has_table_privilege([user,] table, privilege) -> boolean
+```
+
+```sql title="Example"
+SELECT has_table_privilege('test_user', 'foo', 'SELECT');
+----RESULT
+t
+```
+
+## `has_schema_privilege()`
+
+Checks if a user has access to a schema in a specific way. It has similar argument possibilities as the `has_table_privilege` function.
+
+The desired access privilege type should be a combination of `CREATE` and/or `USAGE`, such as "CREATE, USAGE", or just a single privilege type like "CREATE" or "USAGE".
+
+```sql title="Syntax"
+has_schema_privilege([user,] schema, privilege) -> boolean
+```
+
+```sql title="Example"
+SELECT has_schema_privilege('test_user', 'test_schema', 'CREATE');
+----RESULT
+t
+```
+
+## `has_any_column_privilege()`
+
+Checks if a user has access to any column of a table in a specific way. Currently, this function is identical to the `has_table_privilege` function.
+
+```sql title="Syntax"
+has_any_column_privilege([user,] table, privilege) -> boolean
+```
+
+```sql title="Example"
+SELECT has_any_column_privilege('test_user', 'foo_view'::regclass, 'INSERT');
+----RESULT
+f
+```
+
 ## `set_config()`
 
 ```sql title="Syntax"
