@@ -47,7 +47,7 @@ To connect with any local clients, follow the steps below:
 
 4. Copy the command and run it in a terminal window.
 
-5. Log in with the password of the database user. This password is only valid for 2 hours.
+5. Log in with the password of the database user. For default users, the password is valid for 2 hours; for newly created users, the password won't expire.
 
     <img
     src={require('./images/psql-login.png').default}
