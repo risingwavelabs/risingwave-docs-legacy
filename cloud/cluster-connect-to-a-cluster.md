@@ -35,7 +35,7 @@ To connect with any local clients, follow the steps below:
 
 2. Click **Switch** in the top right corner to switch users, and then choose a startup mode.
 
-    - RisingWave Cloud creates a default user for every provisioned cluster. The default user is authenticated with a temporary token under the OAuth 2.0 protocol to ease the burden on developers. For default users, RisingWave Cloud offers the `psql` command and a general `Connection String` for a quick connection.
+    - RisingWave Cloud creates a default user for every provisioned cluster since v1.7.1. The default user is authenticated with a temporary token under the OAuth 2.0 protocol to ease the burden on developers. For default users, RisingWave Cloud offers the `psql` command and a general `Connection String` for a quick connection.
 
     - Alternatively, you can create a new user, RisingWave Cloud offers `psql`, `Connection String`, `Parameters Only`, `Java`, `Node.js`, `Python`, and `Golang` as connection options.
 
@@ -47,7 +47,7 @@ To connect with any local clients, follow the steps below:
 
 4. Copy the command and run it in a terminal window.
 
-5. Log in with the password of the database user.
+5. Log in with the password of the database user. This password is only valid for 2 hours.
 
     <img
     src={require('./images/psql-login.png').default}
