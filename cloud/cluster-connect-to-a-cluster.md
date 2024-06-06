@@ -9,7 +9,7 @@ After [getting a cluster up and running](cluster-manage-clusters.md#create-a-clu
 
 You can choose one of the following ways to connect to your cluster.
 
-## Query console
+## Workspace
 
 It is the most intuitive and easy way to connect to and interact with RisingWave via workspace. It offers graphical tools for managing data and visualizing results.
 
