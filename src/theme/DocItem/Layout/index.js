@@ -11,7 +11,7 @@ import DocItemTOCDesktop from "@theme/DocItem/TOC/Desktop";
 import DocItemContent from "@theme/DocItem/Content";
 import DocBreadcrumbs from "@theme/DocBreadcrumbs";
 import styles from "./styles.module.css";
-import Giscus from "@giscus/react";
+// import Giscus from "@giscus/react";
 import { useColorMode } from "@docusaurus/theme-common";
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
@@ -22,10 +22,7 @@ function useDocTOC() {
   const hidden = frontMatter.hide_table_of_contents;
   const canRender = !hidden && toc.length > 0;
   const mobile = canRender ? <DocItemTOCMobile /> : undefined;
-  const desktop =
-    canRender && (windowSize === "desktop" || windowSize === "ssr") ? (
-      <DocItemTOCDesktop />
-    ) : undefined;
+  const desktop = canRender && (windowSize === "desktop" || windowSize === "ssr") ? <DocItemTOCDesktop /> : undefined;
   return {
     hidden,
     mobile,
