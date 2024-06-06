@@ -27,7 +27,7 @@ For detailed instructions on using the workspace, see [Workspace](console-overvi
 
 ## Local client
 
-If you need to connect to the RisingWave cluster programmatically or via local clients, you can configure the connection in multiple ways.
+If you need to connect to the RisingWave cluster via local clients, you can configure the connection in multiple ways.
 
 To connect with any local clients, follow the steps below:
 
