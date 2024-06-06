@@ -185,7 +185,7 @@ The UDF server will start running, allowing you to call the defined UDFs from Ri
 
 In RisingWave, use the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md) command to declare the functions you defined.
 
-Here are the SQL statements for declaring the two UDFs defined in [step 3](#3-define-your-functions-in-java).
+Here are the SQL statements for declaring the UDFs you defined.
 
 ```sql
 CREATE FUNCTION gcd(int, int) RETURNS int  
