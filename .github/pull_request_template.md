@@ -36,4 +36,4 @@
 
 - [ ] I have checked the doc site preview, and the updated parts look good.
 
-- [ ] I have acquired the approval from the owner (and optionally the reviewers) of the code PR and at least one tech writer (`CharlieSYH`, `emile-00`, & `hengm3467`).
+- [ ] I have acquired the approval from the owner (and optionally the reviewers) of the code PR and at least one tech writer (`emile-00`, `hengm3467`, & `WanYixian`).
