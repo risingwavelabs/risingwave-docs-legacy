@@ -233,9 +233,9 @@ SELECT * FROM s;
 
 ### Create cluster and set IAM role
 
-You can follow the documentation to create a cluster and set up an IAM role for the cluster. For more information, see [Getting started using Amazon MSK](https://docs.aws.amazon.com/msk/latest/developerguide/getting-started.html).
+To create a cluster and set up an IAM role for the cluster, see [Getting started using Amazon MSK](https://docs.aws.amazon.com/msk/latest/developerguide/getting-started.html).
 
-### access MSK in RisingWave
+### Access MSK in RisingWave
 
 To access MSK using IAM, you need to use the `AWS_MSK_IAM` SASL mechanism. You also need to specify the following parameters.
 
