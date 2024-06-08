@@ -18,7 +18,7 @@ Currently, RisingWave Cloud offers three types of clusters: **Developer**, **Pro
 | Compute resource | 2 RWUs | Customized, up to 160 RWUs | Customized and unlimited resources |
 | Cluster number | 3 | Unlimited | Unlimited |
 | Monitoring | Yes | Yes | Yes |
-| Query console | Yes | Yes | Yes |
+| Workspace | Yes | Yes | Yes |
 | Source management | Yes | Yes | Yes |
 | Sink management | Yes | Yes | Yes |
 | VPC PrivateLink | No | Yes | Yes |

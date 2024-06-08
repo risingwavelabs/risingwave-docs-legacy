@@ -38,7 +38,7 @@ Unless specified otherwise, the fields listed are required. Note that the value 
 
 |Field|Notes|
 |---|---|
-|mongodb.url| The URL of MongoDB. |
+|mongodb.url| The [connection string](https://www.mongodb.com/docs/manual/reference/connection-string/) of MongoDB. |
 |collection.name| The collection or collections you want to ingest data from. Use the format `db_name.collection_name` to specify which database the collection is in. To ingest data from collections in different database, use a comma-separated list of regular expressions. |
 
 
