@@ -43,6 +43,7 @@ WITH (
 | s3.access.key   | Required. Access key of the S3 compatible object store.|
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
 | gcs.service.account   | Required for GCS. Specifies the service account JSON file as a string.|
+| commit_checkpoint_interval | Optional. This parameter enables the RisingWave sink component to commit data to Delta Lake periodically instead of committing each data item individually. For instance, setting `commit_checkpoint_interval = 10` will synchronize downstream every ten barriers.|
 
 ## Example
 
