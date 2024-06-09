@@ -348,6 +348,67 @@ position('ing' in 'rising') → 4
 
 ---
 
+### `quote_literal(string text)`
+
+Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. This involves doubling any embedded single-quotes and backslashes. Note that if the input string is null, the function "quote_literal" will return null. In such cases, the function "[quote_nullable](#quote_nullablestring-text)" is often a better choice. Note that the quotes are part of the output string.
+
+```bash title="Syntax"
+quote_literal(string text) → text
+```
+
+```sql title="Examples"
+
+SELECT quote_literal(E'O\'Reilly');
+----RESULT
+'O''Reilly'
+
+SELECT quote_literal(E'C:\\Windows\\');
+----RESULT
+E'C:\\Windows\\'
+```
+
+---
+### `quote_literal(value anyelement)`
+
+Converts the given value to text and then quotes it as a literal to be safely used in an SQL statement, similar to [`quote_literal(string text)`](#quote_literalstring-text). This involves doubling any embedded single-quotes and backslashes to ensure their proper representation.
+
+```bash title="Syntax"
+quote_literal(value anyelement) → text
+```
+
+```sql title="Examples"
+SELECT quote_literal(42.5);
+----RESULT
+'42.5'
+
+SELECT quote_literal('hello'::bytea);
+----RESULT
+E'\\x68656c6c6f'
+
+SELECT quote_literal('{"hello":"world","foo":233}'::jsonb);
+----RESULT
+'{"foo": 233, "hello": "world"}'
+```
+
+---
+
+### `quote_nullable(string text)`
+
+Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. Returns NULL if the input string is null. This involves doubling any embedded single-quotes and backslashes. When the argument is null, this function is also more suitable than the `quote_literal` function.
+
+```bash title="Syntax"
+quote_nullable(string text) → text
+```
+
+```sql title="Examples"
+
+SELECT quote_nullable(NULL);
+----RESULT
+NULL
+```
+
+---
+
 ### `regexp_count`
 
 Returns the number of times a POSIX regular expressions pattern appears in *input_string*. Back reference, positive, negative lookahead, and positive, negative lookbehind are supported. Optional flags include `i`, which stands for case-insensitive matching, and `c`, which represents case-sensitive matching.
