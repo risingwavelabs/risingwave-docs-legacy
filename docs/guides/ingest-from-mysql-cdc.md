@@ -169,7 +169,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
 ) 
-[INCLUDE timestamp AS column_name]
+[ INCLUDE timestamp AS column_name ]
 WITH (
    snapshot='true' 
 )
@@ -205,9 +205,11 @@ Regarding the `INCLUDE timestamp AS column_name` clause, it allows you to ingest
 ```sql
 CREATE TABLE mytable (v1 int PRIMARY KEY, v2 varchar)
 INCLUDE timestamp AS commit_ts
-FROM pg_source table 'public.mytable';
+FROM pg_source TABLE 'public.mytable';
 
-dev=> select * from t2 order by v1;
+SELECT * FROM t2 ORDER BY v1;
+
+----RESULT
  v1 | v2 |         commit_ts
 ----+----+---------------------------
   1 | aa | 1970-01-01 00:00:00+00:00
@@ -216,7 +218,7 @@ dev=> select * from t2 order by v1;
   4 | dd | 2024-05-20 09:01:08+00:00
 ```
 
-See [INCLUDE clause](/ingest/include-clause.md) for more details.
+You can see the [INCLUDE clause](/ingest/include-clause.md) for more details.
 
 #### Debezium parameters
 
