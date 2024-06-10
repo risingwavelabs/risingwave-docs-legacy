@@ -169,6 +169,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
 ) 
+[INCLUDE timestamp AS column_name]
 WITH (
    snapshot='true' 
 )
@@ -198,6 +199,24 @@ The following fields are used when creating a CDC table.
 |snapshot| Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
 |snapshot.interval| Optional. Specifies the barrier interval for buffering upstream events. The default value is `1`. |
 |snapshot.batch_size| Optional. Specifies the batch size of a snapshot read query from the upstream table. The default value is `1000`. |
+
+Regarding the `INCLUDE timestamp AS column_name` clause, it allows you to ingest the upstream commit timestamp. For historical data, the commit timestamp will be set to `1970-01-01 00:00:00+00:00`. Here is an example:
+
+```sql
+CREATE TABLE mytable (v1 int PRIMARY KEY, v2 varchar)
+INCLUDE timestamp AS commit_ts
+FROM pg_source table 'public.mytable';
+
+dev=> select * from t2 order by v1;
+ v1 | v2 |         commit_ts
+----+----+---------------------------
+  1 | aa | 1970-01-01 00:00:00+00:00
+  2 | bb | 1970-01-01 00:00:00+00:00
+  3 | cc | 2024-05-20 09:01:08+00:00
+  4 | dd | 2024-05-20 09:01:08+00:00
+```
+
+See [INCLUDE clause](/ingest/include-clause.md) for more details.
 
 #### Debezium parameters
 
