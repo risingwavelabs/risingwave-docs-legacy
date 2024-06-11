@@ -350,7 +350,7 @@ position('ing' in 'rising') → 4
 
 ### `quote_literal(string text)`
 
-Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. This involves doubling any embedded single-quotes and backslashes. Note that if the input string is null, the function "quote_literal" will return null. In such cases, the function "[quote_nullable](#quote_nullablestring-text)" is often a better choice. Note that the quotes are part of the output string.
+Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. This involves doubling any embedded single-quotes and backslashes. Note that if the input string is null, the function "quote_literal" will return null. In such cases, the function [`quote_nullable`](#quote_nullablestring-text) is often a better choice. Note that the quotes are part of the output string.
 
 ```bash title="Syntax"
 quote_literal(string text) → text
@@ -394,7 +394,7 @@ SELECT quote_literal('{"hello":"world","foo":233}'::jsonb);
 
 ### `quote_nullable(string text)`
 
-Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. Returns NULL if the input string is null. This involves doubling any embedded single-quotes and backslashes. When the argument is null, this function is also more suitable than the `quote_literal` function.
+Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. Returns NULL if the input string is null. This involves doubling any embedded single-quotes and backslashes. When the argument is null, this function is usually more suitable than the `quote_literal` function.
 
 ```bash title="Syntax"
 quote_nullable(string text) → text
