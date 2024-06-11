@@ -9,9 +9,11 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
 
-## v1.9.0
+## v1.9.1
 
 This version was released on June 6, 2024.
+
+v1.9.0 was skipped due to some critical bugs.
 
 ### Main changes
 
