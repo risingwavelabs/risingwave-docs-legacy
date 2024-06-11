@@ -72,6 +72,16 @@ ENCODE AVRO (
 )
 ```
 
+In addition, you can use the option `map.handling.mode` to ingest AVRO map type into JSONB. For example:
+
+```sql
+FORMAT [ DEBEZIUM | UPSERT | PLAIN [, ...] ] ENCODE AVRO (
+	map.handling.mode = 'jsonb'
+)
+```
+
+Note that the value types can only be: `null`, `boolean`, `int`, `string`, or `map`/`record`/`array` with these types.
+
 ### Debezium AVRO
 
 When creating a source from streams in with Debezium AVRO, the schema of the source does not need to be defined in the `CREATE TABLE` statement as it can be inferred from the `SCHEMA REGISTRY`. This means that the schema file location must be specified. The schema file location can be an actual Web location, which is in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/ingest/ingest-from-kafka.md#read-schemas-from-schema-registry).
@@ -269,3 +279,15 @@ The `timestamptz.handling.mode` parameter controls the input format for timestam
 - `utc_without_suffix`: Allows the user to indicate that a naive timestamp is in UTC, rather than local time.
 
 You can set this parameter when using the `format plain | upsert | debezium encode json` command, but not when using `format debezium_mongo | canal | maxwell encode json`.
+
+### `map.handling.mode`
+
+For the AVRO format, you can use the option `map.handling.mode` to ingest AVRO map type into JSONB. For example:
+
+```sql
+FORMAT [ DEBEZIUM | UPSERT | PLAIN [, ...] ] ENCODE AVRO (
+	map.handling.mode = 'jsonb'
+)
+```
+
+Note that the value types can only be: `null`, `boolean`, `int`, `string`, or `map`/`record`/`array` with these types.
