@@ -58,8 +58,8 @@ SELECT * FROM test;
 ----RESULT
                  _id                  |                                      payload                                      |         commit_ts
 --------------------------------------+-----------------------------------------------------------------------------------+---------------------------
- {"$oid": "664c48e87d2c84adfabfc03f"} | {"_id": {"$oid": "664c48e87d2c84adfabfc03f"}, "data": "mydata", "name": "ssssss"} | 2024-05-21 08:18:25+00:00
- {"$oid": "660125a80f048c7c7eff4a6a"} | {"_id": {"$oid": "660125a80f048c7c7eff4a6a"}, "name": "aa"}                       | 1970-01-01 00:00:00+00:00
+ {"$oid": "664c48e87d2c84adfabfc03f"} | {"_id": {"$oid": "664c48e87d2c84adfabfc03f"}, "data": "mydata", "name": "Ada"} | 2024-05-21 08:18:25+00:00
+ {"$oid": "660125a80f048c7c7eff4a6a"} | {"_id": {"$oid": "660125a80f048c7c7eff4a6a"}, "name": "Tom"}                       | 1970-01-01 00:00:00+00:00
 ```
 
 You can see the [INCLUDE clause](/ingest/include-clause.md) for more details.
