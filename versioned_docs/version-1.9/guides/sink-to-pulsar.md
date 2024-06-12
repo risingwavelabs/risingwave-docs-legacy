@@ -46,8 +46,8 @@ FORMAT data_format ENCODE data_encode [ (
 |oauth.credentials.url |Optional. The path for credential files, which starts with `file://`. This field must be filled if other `oauth` fields are specified.|
 |oauth.audience |Optional. The audience for OAuth2. This field must be filled if other `oauth` fields are specified.|
 |oauth.scope |Optional. The scope for OAuth2.|
-|aws.credentials.access_key_id |Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
-|aws.credentials.secret_access_key |Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
+|access_key |Optional. The AWS access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
+|secret_access |Optional. The AWS secret access key for loading from S3. This field does not need to be filled if `oauth.credentials.url` is specified to a local path.|
 |max_retry_num |Optional. The maximum number of times to retry sending a batch to Pulsar. This allows retrying in case of transient errors. The default value is 3. |
 |retry_interval |Optional. The time in milliseconds to wait after a failure before retrying to send a batch. The default value is 100ms.|
 |primary_key| Optional. The primary keys of the sink. Use ',' to delimit the primary key columns. Primary keys are optional when creating a `PLAIN` sink but required for `UPSERT` and `DEBEZIUM` sinks.|
@@ -85,8 +85,8 @@ WITH (
   oauth.scope = 'consume',
   
   -- S3 credential for oauth file 
-  aws.credentials.access_key_id = 'xxx',
-  aws.credentials.secret_access_key = 'xxx'
+  access_key = 'xxx',
+  secret_access = 'xxx'
 )
 FORMAT DEBEZIUM ENCODE JSON;
 ```
