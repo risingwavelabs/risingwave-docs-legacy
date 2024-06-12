@@ -52,10 +52,6 @@ Currently, RisingWave supports the following sink connectors:
 
   With this connector, you can sink data from RisingWave to Google BigQuery. For details about the syntax and parameters, see [Sink data to Google BigQuery](/guides/sink-to-bigquery.md).
 
-- Google Pub/Sub sink connector (`connector = 'google_pubsub'`)
-
-  With this connector, you can sink data from RisingWave to Google Pub/Sub. For details about the syntax and parameters, see [Sink data to Google Pub/Sub](/guides/sink-to-google-pubsub.md).
-
 - JDBC sink connector for MySQL, PostgreSQL, or TiDB (`connector = 'jdbc'`)
 
   With this connector, you can sink data from RisingWave to JDBC-available databases, such as MySQL, PostgreSQL, or TiDB. When sinking to a database with a JDBC driver, ensure that the corresponding table created in RisingWave has the same schema as the table in the database you are sinking to. For details about the syntax and parameters, see [Sink to MySQL](/guides/sink-to-mysql.md), [Sink to PostgreSQL](/guides/sink-to-postgres.md), or [Sink to TiDB](/guides/sink-to-tidb.md).
