@@ -1,19 +1,16 @@
 ---
-id: cluster-connection
-title: Connection Errors
+id: cluster-connection-errors
+title: Connection errors
 description: Troubleshoot connection errors in RisingWave Cloud.
 slug: /connection-errors
 ---
-
-# Troubleshoot Connection Errors
+This topic summarizes the connection errors that you may encounter when using RisingWave Cloud and their corresponding solutions.
 
 ## Failed to get tenant identifier
 
-To connect to a cluster, you need to provide the tenant identifier. 
-The tenant identifier is a global unique identifier for each cluster. 
-The format of the tenant identifier is like  `rwc-g1huxxxxxx-mycluster`. 
-You can find the tenant identifier in the RisingWave Cloud console. 
-There are two ways to put the tenant identifier in the connection string. 
+To connect to a cluster, you need to provide the tenant identifier. The tenant identifier is a global unique identifier for each cluster. and the format of the tenant identifier is `rwc-g1huxxxxxx-mycluster`. You can find the tenant identifier in the RisingWave Cloud console.
+
+Below are two ways to put the tenant identifier in the connection string.
 
 ### Solution 1: Put the tenant identifier in the `options` field
 
