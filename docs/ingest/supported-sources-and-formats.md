@@ -75,7 +75,7 @@ ENCODE AVRO (
 In addition, you can use the option `map.handling.mode` to ingest AVRO map type into JSONB. For example:
 
 ```sql
-FORMAT [ DEBEZIUM | UPSERT | PLAIN [, ...] ] ENCODE AVRO (
+FORMAT [ DEBEZIUM | UPSERT | PLAIN ] ENCODE AVRO (
 	map.handling.mode = 'jsonb'
 )
 ```
