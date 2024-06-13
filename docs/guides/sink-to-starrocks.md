@@ -46,6 +46,7 @@ All parameters are required unless specified otherwise.
 | type | Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a chagelog stream. In StarRocks, Primary Key table must be selected. </li></ul> |
 | force_append_only | If `true`, forces the sink to be `append-only`, even if it cannot be. |
 | primary_key | Required if `type` is `upsert`. The primary key of the downstream table. |
+| commit_checkpoint_interval | Optional. This parameter enables the RisingWave sink component to commit data to StarRocks periodically instead of committing each data item individually. For instance, setting `commit_checkpoint_interval = 10` will synchronize downstream every ten barriers.|
 
 ## Examples
 
