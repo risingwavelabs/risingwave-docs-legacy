@@ -8,7 +8,7 @@ This topic summarizes the connection errors that you may encounter when using Ri
 
 ## Failed to get tenant identifier
 
-To connect to a cluster, you need to provide the tenant identifier. The tenant identifier is a global unique identifier for each cluster. and the format of the tenant identifier is `rwc-g1huxxxxxx-mycluster`. You can find the tenant identifier in the RisingWave Cloud console.
+To connect to a cluster, you need to provide the tenant identifier. The tenant identifier is a global unique identifier for each cluster, and the format of the tenant identifier is `rwc-g1huxxxxxx-mycluster`. You can find the tenant identifier in the RisingWave Cloud console.
 
 Below are two ways to put the tenant identifier in the connection string.
 
@@ -36,7 +36,6 @@ psql "postgresql://<username>:@<tenant identifier>.<hostname>:<port>/<database?s
 Not all clients support SNI routing. If your client does not support SNI routing, you can use solution 1.
 :::
 
-
 ## SSL error: certificate verify failed
 
 When you see the error `SSL error: certificate verify failed`, it means the client cannot verify the certificate of the server. To fix this error, you need to download the root certificate of RisingWave Cloud and put it in the correct location.
@@ -52,7 +51,6 @@ curl -L --create-dirs -o $HOME/.postgresql/root.crt 'https://risingwave.cloud/ro
 ```shell
 mkdir -p $env:appdata\postgresql\; Invoke-WebRequest -Uri https://risingwave.cloud/rootca/root.crt
 ```
-
 
 ## Instance is currently unavailable
 
