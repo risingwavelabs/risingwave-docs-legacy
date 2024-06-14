@@ -350,7 +350,7 @@ position('ing' in 'rising') → 4
 
 ### `quote_literal(string text)`
 
-Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. This involves doubling any embedded single-quotes and backslashes. Note that if the input string is null, the function "quote_literal" will return null. In such cases, the function [`quote_nullable`](#quote_nullablestring-text) is often a better choice. Note that the quotes are part of the output string.
+Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. This involves doubling any embedded single-quotes and backslashes. Note that if the input string is null, the function `quote_literal` returns null. In such cases, the function [`quote_nullable`](#quote_nullablestring-text) is often a better choice. Note that the quotes are part of the output string.
 
 ```bash title="Syntax"
 quote_literal(string text) → text
