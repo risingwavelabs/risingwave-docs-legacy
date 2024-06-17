@@ -104,13 +104,36 @@ During the instance running, RisingWave will keep memory usage below this limit.
 
 ### Why is the memory for compute nodes not fully utilized?
 
-As part of its design, RisingWave allocates 30% of the total memory in the compute node as reserved memory. This reserved memory is specifically set aside for system usage, such as the stack and code segment of processes, allocation overhead, and network buffer.
+As part of its design, RisingWave allocates part of the total memory in the compute node as reserved memory. This reserved memory is specifically set aside for system usage, such as the stack and code segment of processes, allocation overhead, and network buffer.
 
-However, this may not be suitable for all workloads and machine setups. To address this, we introduce a new option in version 1.9 and above, which allows you to explicitly configure the amount of reserved memory for compute nodes. You can use the startup option `--reserved-memory-bytes` and the environment variable `RW_RESERVED_MEMORY_BYTES` to override the reserved memory configuration for compute nodes. Note that the memory reserved should be at least 512MB.
+Starting from version 1.10, RisingWave calculates the reserved memory based on the following gradient:
 
-If you prefer to keep the reserved memory configuration unchanged, you don't need to make any modifications. The default setup remains the same as before, where compute nodes will use 30% of their total memory as reserved memory.
+- 30% of the first 16GB
+- Plus 20% of the remaining memory
 
-For example, let's assume you're deploying a compute node on a 64GB machine or pod. By default, the node will reserve 30% of the memory, which amounts to 19.2GB. However, if you find this excessive for your specific use case, you have the option to specify a different value. You can set either `RW_RESERVED_MEMORY_BYTES=8589934592` or `--reserved-memory-bytes=8589934592` when starting up the compute node. This will allocate 8GB as the reserved memory instead.
+For example, let's consider a compute node with 32GB of memory. The reserved memory would be calculated as follows:
+
+- 30% of the first 16GB is 4.8GB
+
+- 20% of the remaining 16GB is 3.2GB
+
+- The total reserved memory is 4.8GB + 3.2GB = 8GB
+
+This progressive calculation method ensures that in scenarios with smaller memory, the system reserves more memory for critical tasks. On the other hand, in scenarios with larger memory, it reserves less memory, thus achieving a better balance between system performance and memory utilization.
+
+However, this may not be suitable for all workloads and machine setups. To address this, we introduce a new option in version 1.9 and above, which allows you to explicitly configure the amount of reserved memory for compute nodes. You can use the startup option `--reserved-memory-bytes` and the environment variable `RW_RESERVED_MEMORY_BYTES` to override the reserved memory configuration for compute nodes. **Note that the memory reserved should be at least 512MB.**
+
+If you prefer to keep the reserved memory configuration unchanged, you don't need to make any modifications. The reserved memory is still calculated based on the gradient mentioned above.
+
+For instance, suppose you are deploying a compute node on a machine or pod with 64GB of memory. By default, the reserved memory would be calculated as follows:
+
+- 30% of the first 16GB is 4.8GB
+
+- 20% of the remaining 48GB (64GB - 16GB) is 9.6GB
+
+- The total reserved memory would be 4.8GB + 9.6GB, which equals 14.4GB.
+
+However, if you find this excessive for your specific use case, you have the option to specify a different value. You can set either `RW_RESERVED_MEMORY_BYTES=8589934592` or `--reserved-memory-bytes=8589934592` when starting up the compute node. This will allocate 8GB as the reserved memory instead.
 
 ### Why does the `CREATE MATERIALIZED VIEW` statement take a long time to execute?
 
