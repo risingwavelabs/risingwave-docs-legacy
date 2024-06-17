@@ -30,6 +30,8 @@ When building a materialized view (MV), it is possible to build more MVs on top 
 
 Users may have concerns if decomposing a complex pipeline into multiple MVs introduces additional performance overhead. We remark that more decomposition does not lead to more computation overhead but only more storage space. Since RisingWave is typically deployed with cheap object store on the public cloud to store large amounts of data, we generally consider it a less crucial factor in most cases. We are planning to introduce a new feature that allows users to remove an intermediate MV if it's considered unnecessary and poses a significant storage space concern.
 
+Please be aware that when the MV on MV is backfilling, the data from the upstream MV may not have good locality. To optimize this, we recommend modifying the SQL query so that the order key of the upstream table aligns with the group key of the downstream MV. This alignment improves the performance of the backfilling process and ensures better efficiency.
+
 ## When to scale up or scale out computation and compaction resources?
 
 The discussion is limited to compute nodes and compactor nodes as other components are not involved in processing in most cases.
