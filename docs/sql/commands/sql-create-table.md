@@ -94,10 +94,10 @@ RisingWave supports generating watermarks when creating an append-only streaming
 ## PK Conflict Behavior
 The record with "insert" operation could introduce duplicate records with the same primary key in the table. In that case, an alternative action Specified by the `ON CONFLICT` clause will be adopted. The record can come from Insert DML statement, table's external connectors or sinks into the table([`CREATE SINK INTO`](sql-create-sink-into.md)). 
 
-The option could one of the belows, a column not in primary key can be specified as the version column for `DO UPDATE FULL` and `DO UPDATE IF NOT NULL`. When version column is specified, the insert operation will take effect only when the newly inserted value is greater or equal than the exist data record in the table's specified column.
+The option could one of the belows 
 - `DO NOTHING`: ignore the newly inserted record.
-- `DO UPDATE FULL [WITH VERSION COLUMN(col_name)]`: replace the exist row in the table. When version column is specified, the exist row will be replaced only when the newly inserted value is greater or equal than the exist data record in the table's specified column.
-- `DO UPDATE IF NOT NULL [WITH VERSION COLUMN(col_name)]`: only replace those fields which is not NULL in the inserted row. If version column is specified but the inserted row's version field is NULL, the version column will not take effect.
+- `DO UPDATE FULL`: replace the exist row in the table. 
+- `DO UPDATE IF NOT NULL`: only replace those fields which is not NULL in the inserted row
 
 :::note
 The "delete" and "update" operation on the table can not break the primary key constraint on the table. So the option will not take effect for those cases.
