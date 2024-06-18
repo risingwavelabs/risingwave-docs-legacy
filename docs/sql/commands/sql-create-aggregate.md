@@ -4,6 +4,7 @@ title: CREATE AGGREGATE
 description: Create a user-defined aggregate function.
 slug: /sql-create-aggregate
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-create-aggregate/" />
 </head>
@@ -21,15 +22,15 @@ CREATE AGGREGATE function_name ( argument_type [, ...] )
 
 ### Parameters
 
-| Parameter or clause | Description |
-| --- | --- |
-| *function_name* | The name of the aggregate function that you want to declare in RisingWave. |
-| *argument_type* | The data type of the input parameter(s) that the function expects to receive. |
-| **RETURNS** *return_type* | The data type of the return value from the aggregate function. |
-| **LANGUAGE** | The programming language used to implement the UDAF. <br/> Currently, `Python` and `JavaScript` are supported. |
-| **AS** *function_body* | The source code of the UDAF. |
+| Parameter or clause       | Description                                                                                                    |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| _function_name_           | The name of the aggregate function that you want to declare in RisingWave.                                     |
+| _argument_type_           | The data type of the input parameter(s) that the function expects to receive.                                  |
+| **RETURNS** _return_type_ | The data type of the return value from the aggregate function.                                                 |
+| **LANGUAGE**              | The programming language used to implement the UDAF. <br/> Currently, `Python` and `JavaScript` are supported. |
+| **AS** _function_body_    | The source code of the UDAF.                                                                                   |
 
-In the *function_body*, the code should define several functions to implement the aggregate function.
+In the _function_body_, the code should define several functions to implement the aggregate function.
 
 Required functions:
 
@@ -143,4 +144,4 @@ select * from mv;
 
 [DROP AGGREGATE](/sql/commands/sql-drop-aggregate.md) — Drop a user-defined aggregate function.
 
-[CREATE FUNCTION](/sql/commands/sql-create-functions.md) — Create a user-defined scalar or table function.
+[CREATE FUNCTION](/sql/commands/sql-create-function.md) — Create a user-defined scalar or table function.
