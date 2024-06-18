@@ -52,9 +52,11 @@ For details about how to create a SQL UDF and its use cases, see:
 
 - [`CREATE FUNCTION`](/sql/commands/sql-create-function.md)
 
-:::info Other ways to categorize UDFs
+<details>
 
-UDFs can be categorized based on three dimensions. In the documentation provided, we categorize them according to the execution method of functions, which has an impact on their performance and capabilities.
+<summary>Click here to know other ways to categorize UDFs</summary>
+
+UDFs can be categorized based on three dimensions. In the documentation provided above, we categorize them according to the execution method of functions, which has an impact on their performance and capabilities.
 
 The other two dimensions are:
 
@@ -69,8 +71,8 @@ The other two dimensions are:
   RisingWave currently supports using SQL, Python, Java, JavaScript, and Rust to write UDFs.
 
 You can read this blog to know more design and implementation details about our user-oriented UDF features: [RisingWave user-defined functions: Overview](https://risingwave.com/blog/simplifying-sql-function-implementation-with-rust-procedural-macro/).
+</details>
 
-:::
 
 ## See also
 
