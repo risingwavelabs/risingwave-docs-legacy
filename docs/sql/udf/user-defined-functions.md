@@ -69,8 +69,6 @@ The other two dimensions are:
 - the language used to write the function
 
   RisingWave currently supports using SQL, Python, Java, JavaScript, and Rust to write UDFs.
-
-You can read this blog to know more design and implementation details about our user-oriented UDF features: [RisingWave user-defined functions: Overview](https://risingwave.com/blog/simplifying-sql-function-implementation-with-rust-procedural-macro/).
 </details>
 
 
