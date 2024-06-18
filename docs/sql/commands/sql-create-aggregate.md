@@ -117,6 +117,28 @@ $$;
 
 For more details, see [Use UDFs in JavaScript](/sql/udf/udf-javascript.md).
 
+### Using UDAFs
+
+After creating aggregate functions, you can use them in SQL queries like any built-in aggregate functions.
+
+```sql title="Use UDAF"
+-- call UDAF in a batch query
+select weighted_avg(value, weight) from (values (1, 1), (null, 2), (3, 3)) as t(value, weight);
+-----RESULT
+2.5
+
+-- call UDAF in a materialized view
+create table t(value int, weight int);
+create materialized view mv as select weighted_avg(value, weight) from t;
+
+insert into t values (1, 1), (null, 2), (3, 3);
+flush;
+
+select * from mv;
+-----RESULT
+2.5
+```
+
 ## See also
 
 [DROP AGGREGATE](/sql/commands/sql-drop-aggregate.md) — Drop a user-defined aggregate function.
