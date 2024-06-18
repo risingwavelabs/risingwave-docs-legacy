@@ -65,6 +65,10 @@ module.exports = {
             },
             {
               type: "doc",
+              id: "cluster-connection-errors",
+            },
+            {
+              type: "doc",
               id: "cluster-create-byoc-cluster",
             },
             {

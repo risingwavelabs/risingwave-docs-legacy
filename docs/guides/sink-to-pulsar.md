@@ -31,6 +31,7 @@ WITH (
 )
 FORMAT data_format ENCODE data_encode [ (
     key = 'value' ) ]
+[KEY ENCODE key_encode [(...)]]
 ;
 ```
 
@@ -63,6 +64,7 @@ These options should be set in `FORMAT data_format ENCODE data_encode (key = 'va
 |data_encode| Data encode. Supported encode: `JSON`. |
 |force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
 |timestamptz.handling.mode|Controls the timestamptz output format. This parameter specifically applies to append-only or upsert sinks using JSON encoding. <br/> - If omitted, the output format of timestamptz is `2023-11-11T18:30:09.453000Z` which includes the UTC suffix `Z`. <br/> - When `utc_without_suffix` is specified, the format is changed to `2023-11-11 18:30:09.453000`.|
+|key_encode| Optional. When specified, the key encode can only be `TEXT`, and the primary key should be one and only one of the following types: `varchar`, `bool`, `smallint`, `int`, and `bigint`; When absent, both key and value will use the same setting of `ENCODE data_encode ( ... )`. |
 
 ## Example
 

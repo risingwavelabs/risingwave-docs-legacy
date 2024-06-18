@@ -103,12 +103,14 @@ import TabItem from '@theme/TabItem';
 
     Before running the command-line interface to create or delete a BYOC environment, you need to have a Google IAM (IAM user/Service account) with the following roles.
 
-    - [Kubernetes Engine Admin](https://cloud.google.com/iam/docs/understanding-roles#container.admin)
     - [Compute Network Admin](https://cloud.google.com/iam/docs/understanding-roles#compute.networkAdmin)
     - [Compute Security Admin](https://cloud.google.com/iam/docs/understanding-roles#compute.securityAdmin)
-    - [Storage Admin](https://cloud.google.com/iam/docs/understanding-roles#storage.admin)
+    - [DNS Administrator](https://cloud.google.com/iam/docs/understanding-roles#dns.admin)
+    - [Kubernetes Engine Admin](https://cloud.google.com/iam/docs/understanding-roles#container.admin)
     - [Security Admin](https://cloud.google.com/iam/docs/understanding-roles#iam.securityAdmin)
     - [Service Account Admin](https://cloud.google.com/iam/docs/understanding-roles#iam.serviceAccountAdmin)
+    - [Service Account User](https://cloud.google.com/iam/docs/understanding-roles#iam.serviceAccountUser)
+    - [Storage Admin](https://cloud.google.com/iam/docs/understanding-roles#storage.admin)
 
     :::note
     These permissions are only required for creating or deleting a BYOC environment. Once the environment is up and running, limited permissions are needed to operate the services.

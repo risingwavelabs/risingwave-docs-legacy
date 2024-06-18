@@ -326,6 +326,11 @@ const sidebars = {
                       label: "PostgreSQL CDC",
                       id: "guides/ingest-from-postgres-cdc",
                     },
+                    {
+                      type: "doc",
+                      label: "Supabase CDC",
+                      id: "ingest/ingest-from-supabase-cdc",
+                    },
                   ]
                 },
                 {
@@ -559,11 +564,6 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "Supabase",
-              id: "guides/supabase-integration",
-            },
-            {
-              type: "doc",
               label: "Superset",
               id: "guides/superset-integration",
             },
@@ -685,6 +685,11 @@ const sidebars = {
                   type: "doc",
                   label: "StarRocks",
                   id: "guides/sink-to-starrocks",
+                },
+                {
+                  type: "doc",
+                  label: "Supabase",
+                  id: "guides/sink-to-supabase",
                 },
                 {
                   type: "doc",
