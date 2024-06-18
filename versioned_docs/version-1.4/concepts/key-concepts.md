@@ -54,6 +54,10 @@ A streaming database is broadly defined as a data store designed to collect, pr
 Stream processing is the processing of data in motion, or in other words, computing on data directly as it is produced or received.
 The majority of data are born as continuous streams: sensor events, user activity on a website, financial trades, and so on – all these data are created as a series of events over time.
 
+### Streaming queries
+
+A streaming query, also known as a streaming job, is an SQL query that operates on data that is continuously generated. In RisingWave, the following SQL statements are considered streaming queries: `CREATE SOURCE`, `CREATE TABLE` (with connector settings), `CREATE MATERIALIZED VIEW`, `CREATE INDEX`, and `CREATE SINK`.
+
 ## RisingWave architecture terms
 
 ### Clusters

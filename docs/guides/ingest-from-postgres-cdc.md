@@ -18,10 +18,6 @@ You can ingest CDC data from PostgreSQL into RisingWave in two ways:
 
   With this connector, RisingWave can connect to PostgreSQL databases directly to obtain data from the binlog without starting additional services.
 
-  :::note Beta feature
-  The built-in PostgreSQL CDC connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
-  :::
-
 - Using a CDC tool and a message broker
   
   You can use a CDC tool and then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/ingest/ingest-from-cdc.md) topic.
@@ -109,9 +105,9 @@ import TabItem from '@theme/TabItem';
     ```
 
 </TabItem>
-<TabItem value="AWS_rds_pg" label="AWS RDS">
+<TabItem value="AWS_rds_pg" label="AWS RDS PostgreSQL and Aurora (PostgreSQL-Compatible)">
 
-Here we will use a standard class instance without Multi-AZ deployment as an example.
+Here we will use a standard class AWS RDS PostgreSQL instance without Multi-AZ deployment for illustration, but the process will be similar for Aurora.
 
 1. Check whether the `wal_level` parameter is set to `logical`. If it is `logical` then we are done. Otherwise, create a parameter group for your   Postgres instance. We created a parameter group named **pg-cdc** for the instance that is running Postgres 12. Next, click the **pg-cdc** parameter group to edit the value of `rds.logical_replication` to 1.
 
@@ -159,21 +155,7 @@ To ensure all data changes are captured, you must create a table or source and s
 
 ### Syntax
 
- Syntax for creating a CDC table. Note that a primary key is required.
-
- ```sql
- CREATE TABLE [ IF NOT EXISTS ] table_name (
-    column_name data_type PRIMARY KEY , ...
-    PRIMARY KEY ( column_name, ... )
- ) 
- WITH (
-    connector='postgres-cdc',
-    connector_parameter='value', ...
- )
- [ FORMAT DEBEZIUM ENCODE JSON ];
- ```
-
- Syntax for creating a CDC source.
+Syntax for creating a CDC source.
 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
@@ -181,6 +163,22 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
    <field>=<value>, ...
 );
 ```
+
+Syntax for creating a CDC table. Note that a primary key is required and must be consistent with the upstream table.
+
+```sql
+CREATE TABLE [ IF NOT EXISTS ] table_name (
+   column_name data_type PRIMARY KEY , ...
+   PRIMARY KEY ( column_name, ... )
+) 
+[ INCLUDE timestamp AS column_name ]
+WITH (
+    snapshot='true' 
+)
+FROM source TABLE table_name;
+```
+
+To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it. 
 
 ### Connector parameters
 
@@ -196,14 +194,42 @@ Unless specified otherwise, the fields listed are required. Note that the value 
 |schema.name| Optional. Name of the schema. By default, the value is `public`. |
 |table.name| Name of the table that you want to ingest data from. |
 |slot.name| Optional. The [replication slot](https://www.postgresql.org/docs/14/logicaldecoding-explanation.html#LOGICALDECODING-REPLICATION-SLOTS) for this PostgreSQL source. By default, a unique slot name will be randomly generated. Each source should have a unique slot name.|
+|ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with Postgres. It accepts three values: `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.|
 |publication.name| Optional. Name of the publication. By default, the value is `rw_publication`. For more information, see [Multiple CDC source tables](#multiple-cdc-source-tables). |
 |publication.create.enable| Optional. By default, the value is `'true'`. If `publication.name` does not exist and this value is `'true'`, a `publication.name` will be created. If `publication.name` does not exist and this value is `'false'`, an error will be returned. |
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
-|snapshot| Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
 
 :::note
 RisingWave implements CDC via PostgreSQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot). RisingWave does not automatically drop inactive replication slots. You must do this manually to prevent WAL files from accumulating in the upstream PostgreSQL database.
 :::
+
+The following fields are used when creating a CDC table.
+
+|Field|Notes|
+|---|---|
+|snapshot| Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
+|snapshot.interval| Optional. Specifies the barrier interval for buffering upstream events. The default value is `1`. |
+|snapshot.batch_size| Optional. Specifies the batch size of a snapshot read query from the upstream table. The default value is `1000`. |
+
+Regarding the `INCLUDE timestamp AS column_name` clause, it allows you to ingest the upstream commit timestamp. For historical data, the commit timestamp will be set to `1970-01-01 00:00:00+00:00`. Here is an example:
+
+```sql
+CREATE TABLE mytable (v1 int PRIMARY KEY, v2 varchar)
+INCLUDE timestamp AS commit_ts
+FROM pg_source TABLE 'public.mytable';
+
+SELECT * FROM t2 ORDER BY v1;
+
+----RESULT
+ v1 | v2 |         commit_ts
+----+----+---------------------------
+  1 | aa | 1970-01-01 00:00:00+00:00
+  2 | bb | 1970-01-01 00:00:00+00:00
+  3 | cc | 2024-05-20 09:01:08+00:00
+  4 | dd | 2024-05-20 09:01:08+00:00
+```
+
+You can see the [INCLUDE clause](/ingest/include-clause.md) for more details.
 
 #### Debezium parameters
 
@@ -230,33 +256,6 @@ Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based 
 
 ## Examples
 
-### Create a single CDC table
-
-The following example creates a table in RisingWave that reads CDC data from the `shipments` table in PostgreSQL. The `shipments` table is located in the `public` schema, under the `dev` database. When connecting to a specific table in PostgreSQL, use the `CREATE TABLE` command.
-
-```sql
- CREATE TABLE shipments (
-    shipment_id integer,
-    order_id integer,
-    origin string,
-    destination string,
-    is_arrived boolean,
-    PRIMARY KEY (shipment_id)
-) WITH (
-    connector = 'postgres-cdc',
-    hostname = '127.0.0.1',
-    port = '5432',
-    username = 'postgres',
-    password = 'postgres',
-    database.name = 'dev',
-    schema.name = 'public',
-    table.name = 'shipments'
-);
-```
-### Create multiple CDC tables with the same source
-
-RisingWave supports creating a single PostgreSQL source that allows you to read CDC data from multiple tables located in the same database.
-
 Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command and PostgreSQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
 
 ```sql
@@ -282,7 +281,7 @@ CREATE TABLE tt3 (
 ) FROM pg_mydb TABLE 'public.tt3';
 ```
 
-You can create another CDC table in RisingWave that ingests data from table `tt4` in the schema `ods`.
+You can also create another CDC table in RisingWave that ingests data from table `tt4` in the schema `ods`.
 
 ```sql
 CREATE TABLE tt4 (
@@ -341,8 +340,7 @@ RisingWave cannot correctly parse composite types from PostgreSQL as Debezium do
 |TIME(1), TIME(2), TIME(3), TIME(4), TIME(5), TIME(6) |TIME WITHOUT TIME ZONE (limited to `[1973-03-03 09:46:40, 5138-11-16 09:46:40)`)|
 |TIMESTAMP(1), TIMESTAMP(2), TIMESTAMP(3) |TIMESTAMP WITHOUT TIME ZONE (limited to `[1973-03-03 09:46:40, 5138-11-16 09:46:40)`) |
 |TIMESTAMP(4), TIMESTAMP(5), TIMESTAMP(6), TIMESTAMP| TIMESTAMP WITHOUT TIME ZONE|
-|NUMERIC[(M[,D])] |NUMERIC |
-|DECIMAL[(M[,D])] |NUMERIC |
+|NUMERIC[(M[,D])], DECIMAL[(M[,D])] |`numeric`, [`rw_int256`](/sql/data-types/data-type-rw_int256.md), or `varchar`. `numeric` supports values with a precision of up to 28 digits, and any values beyond this precision will be treated as `NULL`. To process values exceeding 28 digits, use `rw_int256` or `varchar` instead. When creating a table, make sure to specify the data type of the column corresponding to numeric as `rw_int256` or `varchar`. Note that `rw_int256` treats `inf`, `-inf`, `nan`, or numeric with decimal parts as `NULL`.|
 |MONEY[(M[,D])] |NUMERIC |
 |HSTORE |No support |
 |HSTORE |No support |

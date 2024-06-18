@@ -139,6 +139,11 @@ const sidebars = {
       items: [
         {
           type: "doc",
+          id: "tutorials/tutorials-overview",
+          label: "Overview",
+        },
+        {
+          type: "doc",
           id: "tutorials/real-time-ad-performance-analysis",
           label: "Real-time ad performance analysis",
         },
@@ -171,369 +176,535 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Ingest data",
+      label: "Manage data",
       collapsible: true,
-      collapsed: true,
+      collapsed: false,
       items: [
         {
-          type: "doc",
-          label: "Overview",
-          id: "ingest/data-ingestion",
-        },
-        {
-          type: "doc",
-          label: "Modify source or table schemas",
-          id: "ingest/modify-schemas",
-        },
-        {
           type: "category",
-          label: "Sources",
+          label: "Ingest data",
           collapsible: true,
           collapsed: true,
           items: [
             {
-              type: "category",
-              label: "Kafka",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: "doc",
-                  label: "Apache Kafka",
-                  id: "ingest/ingest-from-kafka",
-                },
-                {
-                  type: "doc",
-                  label: "Confluent Cloud",
-                  id: "guides/confluent-kafka-source",
-                },
-                {
-                  type: "doc",
-                  label: "Amazon MSK",
-                  id: "guides/connector-amazon-msk",
-                },
-                {
-                  type: "doc",
-                  label: "AutoMQ Kafka",
-                  id: "ingest/ingest-from-automq-kafka",
-                },
-                {
-                  type: "doc",
-                  label: "Instaclustr Kafka",
-                  id: "ingest/ingest-from-instaclustr-kafka",
-                },
-                {
-                  type: "doc",
-                  label: "Upstash Kafka",
-                  id: "ingest/ingest-from-upstash-kafka",
-                },
-              ]
+              type: "doc",
+              label: "Overview",
+              id: "ingest/data-ingestion",
+            },
+            {
+              type: "doc",
+              label: "Formats and encoding",
+              id: "ingest/format-and-encode-parameters",
+            },
+            {
+              type: "doc",
+              label: "Supported sources and formats",
+              id: "ingest/supported-sources-and-formats",
+            },
+            {
+              type: "doc",
+              label: "Modify source or table schemas",
+              id: "ingest/modify-schemas",
+            },
+            {
+              type: "doc",
+              label: "Ingest additional source fields",
+              id: "ingest/include-clause",
             },
             {
               type: "category",
-              label: "Pulsar",
+              label: "Sources",
               collapsible: true,
               collapsed: true,
+              link: {
+                type: "generated-index",
+                title: "Sources",
+                description: "Guides on ingesting data from sources supported by RisingWave.",
+                slug: "/sources",
+                keywords: ["sources"],
+              },
               items: [
                 {
-                  type: "doc",
-                  label: "Apache Pulsar",
-                  id: "ingest/ingest-from-pulsar",
+                  type: "category",
+                  label: "Kafka",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "Apache Kafka",
+                      id: "ingest/ingest-from-kafka",
+                    },
+                    {
+                      type: "doc",
+                      label: "Confluent Cloud",
+                      id: "guides/confluent-kafka-source",
+                    },
+                    {
+                      type: "doc",
+                      label: "Amazon MSK",
+                      id: "guides/connector-amazon-msk",
+                    },
+                    {
+                      type: "doc",
+                      label: "AutoMQ Kafka",
+                      id: "ingest/ingest-from-automq-kafka",
+                    },
+                    {
+                      type: "doc",
+                      label: "Instaclustr Kafka",
+                      id: "ingest/ingest-from-instaclustr-kafka",
+                    },
+                    {
+                      "type": "doc",
+                      "label": "RedHat AMQ Streams",
+                      "id": "ingest/ingest-from-redhat-amq-streams"
+                    },
+                    {
+                      type: "doc",
+                      label: "Upstash Kafka",
+                      id: "ingest/ingest-from-upstash-kafka",
+                    },
+                    {
+                      type: "doc",
+                      label: "WarpStream",
+                      id: "ingest/ingest-from-warpstream",
+                    },
+                  ]
+                },
+                {
+                  type: "category",
+                  label: "Pulsar",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "Apache Pulsar",
+                      id: "ingest/ingest-from-pulsar",
+                    },
+                    {
+                      type: "doc",
+                      label: "DataStax Astra Streaming",
+                      id: "guides/connector-astra-streaming",
+                    },
+                  ]
+                },
+                {
+                  type: "category",
+                  label: "CDC",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "CDC via event streaming systems",
+                      id: "ingest/ingest-from-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "Citus CDC",
+                      id: "guides/ingest-from-citus-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "MongoDB CDC",
+                      id: "guides/ingest-from-mongodb-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "MySQL CDC",
+                      id: "guides/ingest-from-mysql-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "Neon CDC",
+                      id: "guides/ingest-from-neon-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "PostgreSQL CDC",
+                      id: "guides/ingest-from-postgres-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "Supabase CDC",
+                      id: "ingest/ingest-from-supabase-cdc",
+                    },
+                  ]
                 },
                 {
                   type: "doc",
-                  label: "DataStax Astra Streaming",
-                  id: "guides/connector-astra-streaming",
+                  label: "Apache Iceberg",
+                  id: "ingest/ingest-from-iceberg",
+                },
+                {
+                  type: "doc",
+                  label: "AWS Kinesis",
+                  id: "ingest/ingest-from-kinesis",
+                },
+                {
+                  type: "doc",
+                  label: "AWS S3",
+                  id: "ingest/ingest-from-s3",
+                },
+                {
+                  type: "doc",
+                  label: "Google Pub/Sub",
+                  id: "ingest/ingest-from-google-pubsub",
+                },
+                {
+                  type: "doc",
+                  label: "Google Cloud Storage",
+                  id: "ingest/ingest-from-gcs",
+                },
+                {
+                  type: "doc",
+                  label: "MQTT",
+                  id: "ingest/ingest-from-mqtt",
+                },
+                {
+                  type: "doc",
+                  label: "NATS JetStream",
+                  id: "ingest/ingest-from-nats",
+                },
+                {
+                  type: "doc",
+                  label: "Redpanda",
+                  id: "ingest/ingest-from-redpanda",
+                },
+                {
+                  type: "doc",
+                  label: "Load generator",
+                  id: "ingest/ingest-from-datagen",
                 },
               ]
-            },
-            {
-              type: "doc",
-              label: "AWS Kinesis",
-              id: "ingest/ingest-from-kinesis",
-            },
-            {
-              type: "doc",
-              label: "AWS S3",
-              id: "ingest/ingest-from-s3",
-            },
-            {
-              type: "doc",
-              label: "Google Pub/Sub",
-              id: "ingest/ingest-from-google-pubsub",
-            },
-            {
-              type: "doc",
-              label: "CDC via event streaming systems",
-              id: "ingest/ingest-from-cdc",
-            },
-            {
-              type: "doc",
-              label: "Citus CDC",
-              id: "guides/ingest-from-citus-cdc",
-            },
-            {
-              type: "doc",
-              label: "Google Cloud Storage",
-              id: "ingest/ingest-from-gcs",
-            },
-            {
-              type: "doc",
-              label: "MongoDB CDC",
-              id: "guides/ingest-from-mongodb-cdc",
-            },
-            {
-              type: "doc",
-              label: "MySQL CDC",
-              id: "guides/ingest-from-mysql-cdc",
-            },
-            {
-              type: "doc",
-              label: "NATS JetStream",
-              id: "ingest/ingest-from-nats",
-            },
-            {
-              type: "doc",
-              label: "PostgreSQL CDC",
-              id: "guides/ingest-from-postgres-cdc",
-            },
-            {
-              type: "doc",
-              label: "Redpanda",
-              id: "ingest/ingest-from-redpanda",
-            },
-            {
-              type: "doc",
-              label: "WrapStream",
-              id: "ingest/ingest-from-warpstream",
-            },
-            {
-              type: "doc",
-              label: "Load generator",
-              id: "ingest/ingest-from-datagen",
-            },
-          ]
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Transform data",
-      collapsible: true,
-      collapsed: true,
-      items: [
-        {
-          type: "doc",
-          id: "sql/syntax/sql-pattern-dynamic-filters",
-          label: "Dynamic filters",
-        },
-        {
-          type: "doc",
-          id: "sql/syntax/sql-pattern-temporal-filters",
-          label: "Temporal filters",
-        },
-        {
-          type: "doc",
-          id: "sql/query-syntax/query-syntax-join-clause",
-          label: "Joins",
-        },
-        {
-          type: "doc",
-          id: "sql/syntax/sql-pattern-topn",
-          label: "Top-N by group",
-        },
-        {
-          type: "doc",
-          id: "sql/functions-operators/sql-function-time-window",
-          label: "Time window functions",
-        },
-        {
-          type: "doc",
-          id: "sql/udf/user-defined-functions",
-          label: "User-defined functions",
-        },
-        {
-          type: "doc",
-          id: "transform/window-functions",
-          label: "Window functions",
-        },
-        {
-          type: "category",
-          label: "Emit on window close",
-          collapsible: true,
-          collapsed: true,
-          link: {
-            type: "doc",
-            id: "transform/emit-on-window-close",
-          },
-          items: [
-            {
-              type: "doc",
-              id: "transform/watermarks",
-              label: "Watermarks",
-            },
-          ]
-        },
-        {
-          type: "doc",
-          id: "transform/use-dbt",
-          label: "Use dbt for data transformations",
-        },
-        {
-          type: "doc",
-          id: "transform/multiple-table-sink",
-          label: "Maintain wide table with table sinks",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Query & visualize data",
-      collapsible: true,
-      collapsed: true,
-      items: [
-        {
-          type: "doc",
-          label: "Beekeeper Studio",
-          id: "guides/beekeeper-integration",
-        },
-        {
-          type: "doc",
-          label: "DBeaver",
-          id: "guides/dbeaver-integration",
-        },
-        {
-          type: "doc",
-          label: "Grafana",
-          id: "guides/grafana-integration",
-        },
-        {
-          type: "doc",
-          label: "Looker",
-          id: "guides/looker-integration",
-        },
-        {
-          type: "doc",
-          label: "Metabase",
-          id: "guides/metabase-integration",
-        },
-        {
-          type: "doc",
-          label: "Supabase",
-          id: "guides/supabase-integration",
-        },
-        {
-          type: "doc",
-          label: "Superset",
-          id: "guides/superset-integration",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Deliver data",
-      collapsible: true,
-      collapsed: true,
-      items: [
-        {
-          type: "doc",
-          id: "data-delivery",
-          label: "Overview",
-        },
-        {
-          type: "category",
-          label: "Sinks",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              label: "Apache Doris",
-              id: "guides/sink-to-doris",
-            },
-            {
-              type: "doc",
-              label: "Apache Kafka",
-              id: "guides/create-sink-kafka",
-            },
-            {
-              type: "doc",
-              label: "Apache Iceberg",
-              id: "guides/sink-to-iceberg",
-            },
-            {
-              type: "doc",
-              label: "Apache Pulsar",
-              id: "guides/sink-to-pulsar",
-            },
-            {
-              type: "doc",
-              label: "AWS Kinesis",
-              id: "guides/sink-to-aws-kinesis",
-            },
-            {
-              type: "doc",
-              label: "Cassandra",
-              id: "guides/sink-to-cassandra",
-            },
-            {
-              type: "doc",
-              label: "ClickHouse",
-              id: "guides/sink-to-clickhouse",
-            },
-            {
-              type: "doc",
-              label: "CockroachDB",
-              id: "guides/sink-to-cockroach",
-            },
-            {
-              type: "doc",
-              label: "Delta Lake",
-              id: "guides/sink-to-delta-lake",
-            },
-            {
-              type: "doc",
-              label: "Elasticsearch",
-              id: "guides/sink-to-elasticsearch",
-            },
-            {
-              type: "doc",
-              label: "Google BigQuery",
-              id: "guides/sink-to-bigquery",
-            },
-            {
-              type: "doc",
-              label: "MySQL",
-              id: "guides/sink-to-mysql-with-jdbc",
-            },
-            {
-              type: "doc",
-              label: "NATS",
-              id: "guides/sink-to-nats",
-            },
-            {
-              type: "doc",
-              label: "PostgreSQL",
-              id: "guides/sink-to-postgres",
-            },
-            {
-              type: "doc",
-              label: "Redis",
-              id: "guides/sink-to-redis",
-            },
-            {
-              type: "doc",
-              label: "StarRocks",
-              id: "guides/sink-to-starrocks",
-            },
-            {
-              type: "doc",
-              label: "TiDB",
-              id: "guides/sink-to-tidb",
             },
           ],
         },
-      ],
+        {
+          type: "category",
+          label: "Transform & query data",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Overview",
+              id: "transform/transform-overview",
+            },
+            {
+              type: "doc",
+              id: "sql/syntax/sql-pattern-dynamic-filters",
+              label: "Dynamic filters",
+            },
+            {
+              type: "doc",
+              id: "transform/indexes",
+              label: "Indexes",
+            },
+            {
+              type: "doc",
+              id: "sql/syntax/sql-pattern-temporal-filters",
+              label: "Temporal filters",
+            },
+            {
+              type: "doc",
+              id: "sql/query-syntax/query-syntax-join-clause",
+              label: "Joins",
+            },
+            {
+              type: "doc",
+              id: "sql/syntax/sql-pattern-topn",
+              label: "Top-N by group",
+            },
+            {
+              type: "doc",
+              id: "sql/functions-operators/sql-function-time-window",
+              label: "Time window functions",
+            },
+            {
+              type: "category",
+              label: "User-defined functions",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "sql/udf/user-defined-functions",
+                  label: "Overview",
+                },
+                {
+                  type: "category",
+                  label: "External UDFs",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      id: "sql/udf/udf-python",
+                      label: "Python",
+                    },
+                    {
+                      type: "doc",
+                      id: "sql/udf/udf-java",
+                      label: "Java",
+                    },
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Embedded UDFs",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      id: "sql/udf/udf-python-embedded",
+                      label: "Python",
+                    },
+                    {
+                      type: "doc",
+                      id: "sql/udf/udf-javascript",
+                      label: "JavaScript",
+                    },
+                    {
+                      type: "doc",
+                      id: "sql/udf/udf-rust",
+                      label: "Rust",
+                    }
+                  ],
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-foreign-data",
+                  label: "Foreign data",
+                },
+              ],
+            },
+            {
+              type: "doc",
+              id: "transform/window-functions",
+              label: "Window functions",
+            },
+            {
+              type: "category",
+              label: "Emit on window close",
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: "doc",
+                id: "transform/emit-on-window-close",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "transform/watermarks",
+                  label: "Watermarks",
+                },
+              ]
+            },
+            {
+              type: "doc",
+              id: "transform/use-dbt",
+              label: "Use dbt for data transformations",
+            },
+            {
+              type: "doc",
+              id: "transform/multiple-table-sink",
+              label: "Maintain wide table with table sinks",
+            },    
+            {
+              type: "doc",
+              id: "transform/subscription",
+              label: "Subscription",
+            },
+            {
+              type: "doc",
+              id: "transform/ad-hoc-queries",
+              label: "Ad-hoc queries",
+            },
+            {
+              type: "doc",
+              id: "transform/deletes-and-updates",
+              label: "Deletes and updates",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Visualize data",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Overview",
+              id: "guides/visualize-overview",
+            },
+            {
+              type: "doc",
+              label: "Beekeeper Studio",
+              id: "guides/beekeeper-integration",
+            },
+            {
+              type: "doc",
+              label: "DBeaver",
+              id: "guides/dbeaver-integration",
+            },
+            {
+              type: "doc",
+              label: "Grafana",
+              id: "guides/grafana-integration",
+            },
+            {
+              type: "doc",
+              label: "Looker",
+              id: "guides/looker-integration",
+            },
+            {
+              type: "doc",
+              label: "Metabase",
+              id: "guides/metabase-integration",
+            },
+            {
+              type: "doc",
+              label: "Superset",
+              id: "guides/superset-integration",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Deliver data",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              id: "data-delivery",
+              label: "Overview",
+            },
+            {
+              type: "doc",
+              id: "guides/risingwave-as-postgres-fdw",
+              label: "RisingWave as Postgres FDW",
+            },
+            {
+              type: "category",
+              label: "Sinks",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  label: "Apache Doris",
+                  id: "guides/sink-to-doris",
+                },
+                {
+                  type: "doc",
+                  label: "Apache Kafka",
+                  id: "guides/create-sink-kafka",
+                },
+                {
+                  type: "doc",
+                  label: "Apache Iceberg",
+                  id: "guides/sink-to-iceberg",
+                },
+                {
+                  type: "doc",
+                  label: "Apache Pulsar",
+                  id: "guides/sink-to-pulsar",
+                },
+                {
+                  type: "doc",
+                  label: "AWS Kinesis",
+                  id: "guides/sink-to-aws-kinesis",
+                },
+                {
+                  type: "doc",
+                  label: "Cassandra",
+                  id: "guides/sink-to-cassandra",
+                },
+                {
+                  type: "doc",
+                  label: "ClickHouse",
+                  id: "guides/sink-to-clickhouse",
+                },
+                {
+                  type: "doc",
+                  label: "CockroachDB",
+                  id: "guides/sink-to-cockroach",
+                },
+                {
+                  type: "doc",
+                  label: "Delta Lake",
+                  id: "guides/sink-to-delta-lake",
+                },
+                {
+                  type: "doc",
+                  label: "Elasticsearch",
+                  id: "guides/sink-to-elasticsearch",
+                },
+                {
+                  type: "doc",
+                  label: "Google BigQuery",
+                  id: "guides/sink-to-bigquery",
+                },
+                {
+                  type: "doc",
+                  label: "Google Pub/Sub",
+                  id: "guides/sink-to-google-pubsub",
+                },
+                {
+                  type: "doc",
+                  label: "MQTT",
+                  id: "guides/sink-to-mqtt",
+                },
+                {
+                  type: "doc",
+                  label: "MySQL",
+                  id: "guides/sink-to-mysql-with-jdbc",
+                },
+                {
+                  type: "doc",
+                  label: "NATS",
+                  id: "guides/sink-to-nats",
+                },
+                {
+                  type: "doc",
+                  label: "PostgreSQL",
+                  id: "guides/sink-to-postgres",
+                },
+                {
+                  type: "doc",
+                  label: "Redis",
+                  id: "guides/sink-to-redis",
+                },
+                {
+                  type: "doc",
+                  label: "Snowflake",
+                  id: "guides/sink-to-snowflake",
+                },
+                {
+                  type: "doc",
+                  label: "StarRocks",
+                  id: "guides/sink-to-starrocks",
+                },
+                {
+                  type: "doc",
+                  label: "Supabase",
+                  id: "guides/sink-to-supabase",
+                },
+                {
+                  type: "doc",
+                  label: "TiDB",
+                  id: "guides/sink-to-tidb",
+                },
+              ],
+            },
+          ],
+        }]
     },
     {
       type: "category",
@@ -609,6 +780,11 @@ const sidebars = {
                   type: "doc",
                   id: "sql/query-syntax/query-syntax-group-by-clause",
                   label: "GROUP BY clause",
+                },
+                {
+                  type: "doc",
+                  id: "sql/query-syntax/query-syntax-order-by-clause",
+                  label: "ORDER BY clause",
                 },
                 {
                   type: "doc",
@@ -730,6 +906,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/functions-operators/sql-function-cryptographic-functions",
+                  label: "Cryptographic",
+                },
+                {
+                  type: "doc",
                   id: "sql/functions-operators/sql-function-datetime",
                   label: "Date & time",
                 },
@@ -773,44 +954,6 @@ const sidebars = {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-sys-info",
                   label: "System information",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "User-defined functions",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: "doc",
-                  id: "sql/udf/user-defined-functions",
-                  label: "Overview",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-python",
-                  label: "Python",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-java",
-                  label: "Java",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-rust",
-                  label: "Rust",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-javascript",
-                  label: "JavaScript",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-foreign-data",
-                  label: "Foreign data",
                 },
               ],
             },
@@ -860,27 +1003,36 @@ const sidebars = {
           label: "Client libraries",
           collapsible: true,
           collapsed: true,
+          link: {
+            type: "doc",
+            id: "dev/client-libraries-overview",
+          },
           items: [
-            {
-              type: "doc",
-              id: "dev/java-client-libraries",
-              label: "Java",
-            },
-            {
-              type: "doc",
-              id: "dev/nodejs-client-libraries",
-              label: "Node.js",
-            },
-            {
-              type: "doc",
-              id: "dev/python-client-libraries",
-              label: "Python",
-            },
-            {
-              type: "doc",
-              id: "dev/go-client-libraries",
-              label: "Go",
-            },
+            // {
+            //   type: "doc",
+            //   id: "dev/java-client-libraries",
+            //   label: "Java",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/nodejs-client-libraries",
+            //   label: "Node.js",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/python-client-libraries",
+            //   label: "Python",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/go-client-libraries",
+            //   label: "Go",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/ruby-client-libraries",
+            //   label: "Ruby",
+            // },
           ],
         },
       ],
@@ -908,6 +1060,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "deploy/best-practices-for-managing-a-large-number-of-streaming-jobs",
+          label: "Best practices for managing a large number of streaming jobs",
+        },
+        {
+          type: "doc",
           id: "deploy/uninstall-risingwave-k8s",
           label: "Uninstall RisingWave from a cluster",
         },
@@ -924,6 +1081,10 @@ const sidebars = {
           id: "manage/view-statement-progress",
         },
         {
+          type: 'doc',
+          id: 'manage/alter-streaming',
+        },
+        {
           type: "doc",
           id: "manage/view-configure-system-parameters",
         },
@@ -933,16 +1094,20 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/alter-streaming',
+          id: 'manage/configure-node-specific-parameters',
         },
         {
           type: 'doc',
-          id: 'manage/meta-backup',
+          id: 'manage/node-specific-parameters',
         },
         {
           type: "doc",
           id: "manage/dedicated-compute-node",
           label: "Set up a dedicated compute node",
+        },
+        {
+          type: 'doc',
+          id: 'manage/meta-backup',
         },
         {
           type: "doc",
@@ -990,20 +1155,77 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Troubleshoot out-of-memory",
+          label: "Out of memory",
           id: "troubleshoot/troubleshoot-oom"
         },
         {
+          type: "category",
+          label: "Performance issues",
+          collapsible: true,
+          collapsed: true,
+          items:
+            [
+              {
+                type: "doc",
+                label: "High latency",
+                id: "troubleshoot/troubleshoot-high-latency"
+              },
+              {
+                type: "doc",
+                label: "Streaming performance",
+                id: "troubleshoot/troubleshoot-streaming-performance"
+              },
+            ]
+        },
+        {
+          type: "category",
+          label: "Node failure",
+          collapsible: true,
+          collapsed: true,
+          items:
+            [
+              {
+                type: "doc",
+                label: "Overview",
+                id: "troubleshoot/troubleshoot-node-failure"
+              },
+              {
+                type: "doc",
+                label: "Meta failure",
+                id: "troubleshoot/troubleshoot-meta"
+              },
+            ]
+        },
+        
+        {
           type: "doc",
-          label: "Troubleshoot high latency",
-          id: "troubleshoot/troubleshoot-high-latency"
+          label: "Recovery failure",
+          id: "troubleshoot/troubleshoot-recovery-failure"
+        },
+        {
+          type: "doc",
+          label: "Deployment issues",
+          id: "troubleshoot/troubleshooting-deployment-issues"
         },
       ]
     },
     {
-      type: "link",
-      href: "/release-notes",
+      type: "category",
       label: "Releases",
+      collapsible: true,
+      collapsed: false,
+      items: [
+        {
+          type: "link",
+          href: "/release-notes",
+          label: "Release notes",
+        },
+        {
+          type: "link",
+          href: "/product-lifecycle",
+          label: "Product lifecycle",
+        },
+      ]
     },
   ],
 };

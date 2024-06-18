@@ -28,7 +28,7 @@ export default function DocItem(props) {
           <MDXComponent />
         </DocItemLayout>
       </HtmlClassNameProvider>
-      <ChatbotItem />
+      {/* <ChatbotItem /> */}
       {metadata.editUrl && (
         <div className="row">
           <FeedbackForm

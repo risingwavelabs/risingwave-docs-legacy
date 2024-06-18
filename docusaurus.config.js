@@ -8,8 +8,8 @@ const config = {
   url: "https://docs.risingwave.com",
   baseUrl: "/",
   trailingSlash: true,
-  onBrokenLinks: "warn",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
   presets: [
     [
@@ -19,6 +19,9 @@ const config = {
         gtag: {
           trackingID: "G-VG98SVDEYE",
           anonymizeIP: true,
+        },
+        googleTagManager: {
+          containerId: 'GTM-KJRVWHT7',
         },
         docs: {
           admonitions: {
@@ -31,14 +34,32 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "1.7 (dev)",
+              label: "1.10 (dev)",
               path: "/dev",
               badge: false,
               banner: "unreleased",
             },
-            1.6: {
-              label: "1.6 (current)",
+            1.9: {
+              label: "1.9 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            1.8: {
+              label: "1.8",
+              path: "/1.8",
+              badge: false,
+              banner: "none",
+            },
+            1.7: {
+              label: "1.7",
+              path: "/1.7",
+              badge: false,
+              banner: "none",
+            },
+            1.6: {
+              label: "1.6",
+              path: "/1.6",
               badge: false,
               banner: "none",
             },
@@ -206,6 +227,20 @@ const config = {
   scripts: [
     {
       src: "https://asvd.github.io/syncscroll/syncscroll.js",
+      async: true,
+    },
+    {
+      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@stable/dist/run-llm-search-widget.es.js",
+      id: "runllm-widget-script",
+      type: "module",
+      "runllm-server-address": "https://api.runllm.com",
+      "runllm-assistant-id": "29",
+      "version": "stable",
+      "runllm-position": "TOP_RIGHT",
+      "runllm-keyboard-shortcut": "Mod+l",
+      "runllm-theme-color": "#005EEC",
+      "runllm-slack-community-url": "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",
+      "runllm-name": "RisingWave",
       async: true,
     },
   ],

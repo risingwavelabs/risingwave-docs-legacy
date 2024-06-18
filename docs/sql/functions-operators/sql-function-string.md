@@ -100,6 +100,7 @@ concat ( any_input-value_1 [, any_input-value_2 [, ...] ]) → output_string
 
 ```bash title=Examples
 concat('Abcde', 2, NULL, 22) → 'Abcde222'
+concat(variadic array['abcde', '2', NULL, '22']); -> "abcde222"
 ```
 
 ---
@@ -114,6 +115,7 @@ concat_ws ( separator_string, any_input-value_1 [, any_input-value_2 [, ...] ]) 
 
 ```bash title=Examples
 concat_ws(',', 'Abcde', 2, NULL, 22) → 'Abcde,2,22'
+concat_ws(',', variadic array['abcde', 2, NULL, 22] :: varchar[]); -> "abcde,2,22"
 ```
 
 ---
@@ -202,7 +204,7 @@ The syntax of the format specifier:
 The allowed values for *type* are:
 
 - `s`: Formats the argument value as a string. NULL is treated as an empty string.
-- `I`: Treats the argument value as an SQL identifer.
+- `I`: Treats the argument value as an SQL identifier.
 <!-- `L` is not supported yet - `L`: Quotes the argument value as an SQL literal. -->
 
 Please note that *format_string* and *format_arg* can be variables.
@@ -219,6 +221,10 @@ SELECT format(f, a, b) from (values
 Hello World
 Hello
 NULL
+```
+
+```sql title="More examples"
+format('%s %s', variadic array['Hello', 'World']); -> "Hello World"
 ```
 
 ---
@@ -338,6 +344,67 @@ position ( substring in input_string ) → integer_output
 
 ```bash title=Examples
 position('ing' in 'rising') → 4
+```
+
+---
+
+### `quote_literal(string text)`
+
+Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. This involves doubling any embedded single-quotes and backslashes. Note that if the input string is null, the function `quote_literal` returns null. In such cases, the function [`quote_nullable`](#quote_nullablestring-text) is often a better choice. Note that the quotes are part of the output string.
+
+```bash title="Syntax"
+quote_literal(string text) → text
+```
+
+```sql title="Examples"
+
+SELECT quote_literal(E'O\'Reilly');
+----RESULT
+'O''Reilly'
+
+SELECT quote_literal(E'C:\\Windows\\');
+----RESULT
+E'C:\\Windows\\'
+```
+
+---
+### `quote_literal(value anyelement)`
+
+Converts the given value to text and then quotes it as a literal to be safely used in an SQL statement, similar to [`quote_literal(string text)`](#quote_literalstring-text). This involves doubling any embedded single-quotes and backslashes to ensure their proper representation.
+
+```bash title="Syntax"
+quote_literal(value anyelement) → text
+```
+
+```sql title="Examples"
+SELECT quote_literal(42.5);
+----RESULT
+'42.5'
+
+SELECT quote_literal('hello'::bytea);
+----RESULT
+E'\\x68656c6c6f'
+
+SELECT quote_literal('{"hello":"world","foo":233}'::jsonb);
+----RESULT
+'{"foo": 233, "hello": "world"}'
+```
+
+---
+
+### `quote_nullable(string text)`
+
+Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. Returns NULL if the input string is null. This involves doubling any embedded single-quotes and backslashes. When the argument is null, this function is usually more suitable than the `quote_literal` function.
+
+```bash title="Syntax"
+quote_nullable(string text) → text
+```
+
+```sql title="Examples"
+
+SELECT quote_nullable(NULL);
+----RESULT
+NULL
 ```
 
 ---

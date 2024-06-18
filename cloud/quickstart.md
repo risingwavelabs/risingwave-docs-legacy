@@ -70,96 +70,66 @@ See [Choose a cluster plan](cluster-choose-a-cluster-plan.md) for details on how
 
 After getting a cluster up and running, you need to connect to it so that you can interact with RisingWave.
 
-You can choose from the following two ways to connect to your cluster.
+You can choose from the following ways to connect to your cluster.
 
 <Tabs>
 
-<TabItem value="console" label="Query console">
+<TabItem value="Workspace" label="Workspace">
 
-The query console is the most intuitive and easy way to connect to and interact with RisingWave, offering graphical tools for managing data and visualizing results.
+It is the most intuitive and easy way to connect to and interact with RisingWave via workspace. It offers graphical tools for managing data and visualizing results.
 
+#### To connect via workspace, follow the steps below:
 
-#### To connect via the console:
+1. In RisingWave Cloud, go to [**Clusters**](https://cloud.risingwave.com/clusters/), and click **Workspace** for the cluster you want to connect to.
 
+2. A workspace login window will pop up. You can choose **Default user** or **Create a new user**, then log in to the cluster.
 
-1. Go to [**Query**](https://cloud.risingwave.com/console/).  
+3. Click **Switch** in the top right corner to switch the user if needed.
 
-2. Create a new database user.
-
-    > You must log in to the cluster as a database user. Since this is a new cluster, you need to create a user in it first.
-
-    <img
-    src={require('./images/cluster-console-createuser.gif').default}
-    alt="Create a database user"
-    />
-
-3. Enter the password of the user you created to log in to the cluster.
-
-    <img
-    src={require('./images/cluster-console-login.gif').default}
-    alt="First login to the console"
-    />
+:::tip
+For detailed instructions on using the workspace, see [Workspace](console-overview.md).
+:::
 
 </TabItem>
  
 <TabItem value="local" label="Local client">
 
-For terminal enthusiasts, you can still connect to your cluster through a local terminal with the help of `psql`.
+If you need to connect to the RisingWave cluster via local clients, you can configure the connection in multiple ways.
 
-#### To connect via `psql` client:
+#### To connect with any local clients, follow the steps below:
 
-1. [Install `psql`](https://docs.risingwave.com/docs/current/install-psql-without-postgresql/) in your environment.
+1. In RisingWave Cloud, go to [**Clusters**](https://cloud.risingwave.com/clusters/), and click **Connect** for the cluster you want to connect to.
 
-    `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
+2. Click **Switch** in the top right corner to switch users, and then choose a startup mode.
 
-2. In RisingWave Cloud, go to [**Clusters**](https://cloud.risingwave.com/clusters/).
-    
-3. Click **Connect** of your cluster.
-    
-    <img
-    src={require('./images/cluster-local-connect-1.png').default}
-    alt="Connect to a cluster from a local client"
-    />
-    
-4. Create a new database user.
-    
-    > You must connect and log in to the cluster as a database user. Since this is a new cluster, you need to create a user in it first.
+    - RisingWave Cloud creates a default user for every provisioned cluster. The default user is authenticated with a temporary token under the OAuth 2.0 protocol to ease the burden on developers. For default users, RisingWave Cloud offers the `psql` command and a general `Connection String` for a quick connection.
 
-    <img
-    src={require('./images/cluster-local-createuser.gif').default}
-    alt="Create a database user in a cluster"
-    />
-    
-5. Copy the connection string and run it in a terminal window.
-    
-6. Log in with the password of the database user.
+    - Alternatively, you can create a new user, RisingWave Cloud offers `psql`, `Connection String`, `Parameters Only`, `Java`, `Node.js`, `Python`, and `Golang` as connection options.
 
-  <grid
-  container
-  direction="row"
-  spacing="20"
-  justifyContent="space-between"
-  justifyItems="stretch"
-  alignItems="baseline">
+    :::note
+    To connect via `psql`, you need to [Install `psql`](/docs/current/install-psql-without-postgresql/) in your environment. `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
+    :::
 
-  <grid item xs={12} md={6}>
+3. You may need to set up a CA certificate to enable SSL connections. See the instructions displayed on the portal for more details.
+
+4. Copy the command and run it in a terminal window.
+
+5. Log in with the password of the database user.
 
     <img
     src={require('./images/psql-login.png').default}
     alt="Connect via psql"
+    width="46%"
     />
-
-  </grid>
-
-  <grid item xs={12} md={6}>
-
     <img
     src={require('./images/psql-connected.png').default}
     alt="Connect via psql"
+    width="46%"
     />
-    
-  </grid>
-  </grid>
+
+    :::note
+    If you choose `Java`, `Node.js`, `Python`, or `Golang` as the startup mode, replace `<ENTER-SQL-USER-PASSWORD>` in the command with the password you set when creating a new user.
+    :::
 
 
 </TabItem>

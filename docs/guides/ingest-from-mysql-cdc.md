@@ -1,7 +1,7 @@
 ---
 id: ingest-from-mysql-cdc
-title: Ingest data from MySQL CDC
-description: Ingest data from MySQL CDC.
+title: Ingest CDC data from MySQL
+description: Ingest CDC data from MySQL.
 slug: /ingest-from-mysql-cdc
 ---
 <head>
@@ -18,9 +18,6 @@ You can ingest CDC data from MySQL in two ways:
 
   With this connector, RisingWave can connect to MySQL databases directly to obtain data from the binlog without starting additional services.
 
-  :::note Beta feature
-  The built-in MySQL CDC connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
-  :::
 
 - Using a CDC tool and a message broker
 
@@ -51,7 +48,7 @@ CREATE USER 'user'@'%' IDENTIFIED BY 'password';
 2. Grant the appropriate privileges to the user.
 
 ```sql
-GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user'@'%';
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user'@'%';
 ```
 
 3. Finalize the privileges.
@@ -99,9 +96,9 @@ SHOW VARIABLES LIKE 'log_bin';
 See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connectors/mysql.html#setting-up-mysql) for more details.
 
 </TabItem>
-<TabItem value="AWS RDS MySQL" label="AWS RDS">
+<TabItem value="AWS/Aurora MySQL" label="AWS RDS MySQL and Aurora (MySQL-Compatible)">
 
-If your MySQL is hosted on AWS RDS, the configuration process is different. We will use a standard class MySQL instance without Multi-AZ deployment for illustration.
+The configuration process is different for AWS RDS MySQL or Aurora (MySQL-Compatible) compared to the self-hosted version. We will use a standard class AWS RDS MySQL instance without Multi-AZ deployment for illustration, but the process will be similar for Aurora.
 
 1. Turn on binary logging and choose a non-zero value for the **Retention period**.
 <img
@@ -141,6 +138,8 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
   alt="Save changes made to MySQL RDS instance"
 />
 
+6. Ensure your MySQL users can access the tables and replications.
+
 </TabItem>
 </Tabs>
 
@@ -154,20 +153,6 @@ To ensure all data changes are captured, you must create a table and specify pri
 
 ### Syntax
 
-Syntax for creating a CDC table. Note that a primary key is required.
-
-```sql
-CREATE TABLE [ IF NOT EXISTS ] table_name (
-   column_name data_type PRIMARY KEY , ...
-   PRIMARY KEY ( column_name, ... )
-) 
-WITH (
-   connector='mysql-cdc',
-   connector_parameter='value', ...
-)
-[ FORMAT DEBEZIUM ENCODE JSON ];
-```
-
 Syntax for creating a CDC source.
 
 ```sql
@@ -175,6 +160,20 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
    connector='mysql-cdc',
    <field>=<value>, ...
 );
+```
+
+Syntax for creating a CDC table. Note that a primary key is required and must be consistent with the upstream table.
+
+```sql
+CREATE TABLE [ IF NOT EXISTS ] table_name (
+   column_name data_type PRIMARY KEY , ...
+   PRIMARY KEY ( column_name, ... )
+) 
+[ INCLUDE timestamp AS column_name ]
+WITH (
+   snapshot='true' 
+)
+FROM source TABLE table_name;
 ```
 
 ### Connector parameters
@@ -190,8 +189,36 @@ All the fields listed below are required. Note that the value of these parameter
 |database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| Required if creating a shared source. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
+|ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with MySQL. It accepts three values: `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.|
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+
+The following fields are used when creating a CDC table.
+
+|Field|Notes|
+|---|---|
 |snapshot| Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
+|snapshot.interval| Optional. Specifies the barrier interval for buffering upstream events. The default value is `1`. |
+|snapshot.batch_size| Optional. Specifies the batch size of a snapshot read query from the upstream table. The default value is `1000`. |
+
+Regarding the `INCLUDE timestamp AS column_name` clause, it allows you to ingest the upstream commit timestamp. For historical data, the commit timestamp will be set to `1970-01-01 00:00:00+00:00`. Here is an example:
+
+```sql
+CREATE TABLE mytable (v1 int PRIMARY KEY, v2 varchar)
+INCLUDE timestamp AS commit_ts
+FROM pg_source TABLE 'public.mytable';
+
+SELECT * FROM t2 ORDER BY v1;
+
+----RESULT
+ v1 | v2 |         commit_ts
+----+----+---------------------------
+  1 | aa | 1970-01-01 00:00:00+00:00
+  2 | bb | 1970-01-01 00:00:00+00:00
+  3 | cc | 2024-05-20 09:01:08+00:00
+  4 | dd | 2024-05-20 09:01:08+00:00
+```
+
+You can see the [INCLUDE clause](/ingest/include-clause.md) for more details.
 
 #### Debezium parameters
 
@@ -217,35 +244,6 @@ CREATE SOURCE mysql_mydb WITH (
 Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
 
 ## Examples
-
-### Create a single CDC table 
-
-The following example creates a table in RisingWave that reads CDC data from the `orders` table in MySQL. When connecting to a specific table in MySQL, use the `CREATE TABLE` command.
-
-```sql
-CREATE TABLE orders (
-  order_id int,
-  order_date bigint,
-  customer_name string,
-  price decimal,
-  product_id int,
-  order_status smallint,
-  PRIMARY KEY (order_id)
-) WITH (
-  connector = 'mysql-cdc',
-  hostname = '127.0.0.1',
-  port = '3306',
-  username = 'root',
-  password = '123456',
-  database.name = 'mydb',
-  table.name = 'orders',
-  server.id = '5454'
-);
-```
-
-### Create multiple CDC tables with the same source
-
-RisingWave supports creating a single MySQL source that allows you to read CDC data from multiple tables located in the same database.
 
 Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command and MySQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
 
@@ -273,7 +271,7 @@ CREATE TABLE t1_rw (
 ) FROM mysql_mydb TABLE 'mydb.t1';
 ```
 
-You can create another CDC table in RisingWave that ingests data from table `t3` in the same database `mydb`.
+You can also create another CDC table in RisingWave that ingests data from table `t3` in the same database `mydb`.
 
 ```sql
 CREATE TABLE t3_rw (

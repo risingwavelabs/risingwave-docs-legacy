@@ -65,8 +65,20 @@ module.exports = {
             },
             {
               type: "doc",
+              id: "cluster-connection-errors",
+            },
+            {
+              type: "doc",
+              id: "cluster-create-byoc-cluster",
+            },
+            {
+              type: "doc",
               id: "cluster-check-status-and-metrics",
               label: "Check status and metrics",
+            },
+            {
+              type: "doc",
+              id: "cluster-scale-a-cluster-manually"
             },
             {
               type: "doc",
@@ -111,6 +123,10 @@ module.exports = {
         {
           type: "doc",
           id: "cluster-monitor-materialized-views",
+        },
+        {
+          type: "doc",
+          id: "cluster-export-metrics",
         },
       ],
     },
@@ -170,23 +186,23 @@ module.exports = {
         },
         {
           type: "category",
-          label: "VPC connection",
+          label: "PrivateLink connection",
           collapsible: true,
           collapsed: true,
-          link: { type: "doc", id: "vpc-overview" },
+          link: { type: "doc", id: "PrivateLink-overview" },
           items: [
             {
               type: "doc",
-              id: "vpc-overview",
+              id: "PrivateLink-overview",
               label: "Overview",
             },
             {
               type: "doc",
-              id: "vpc-create-a-connection",
+              id: "PrivateLink-create-a-connection",
             },
             {
               type: "doc",
-              id: "vpc-drop-a-connection",
+              id: "PrivateLink-drop-a-connection",
             },
           ],
         },
@@ -199,8 +215,8 @@ module.exports = {
     {
       type: "category",
       label: "Organization",
-      collapsible: false,
-      collapsed: false,
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -217,18 +233,47 @@ module.exports = {
           id: "organization-sso",
           label: "Single Sign-On (SSO)",
         },
-        // {
-        //   type: "doc",
-        //   id: "organization-service-account",
-        //   label: "Service account & API key",
-        // },
+        {
+          type: "doc",
+          id: "organization-service-account",
+          label: "Service account & API key",
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Billing",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "billing-overview",
+          label: "Overview",
+        },
+        {
+          type: "doc",
+          id: "billing-pricing",
+        },
+        {
+          type: "doc",
+          id: "billing-check-spending-details",
+        },
+        {
+          type: "doc",
+          id: "billing-review-and-pay-invoices",
+        },
+        {
+          type: "doc",
+          id: "billing-manage-payment-methods",
+        },
       ],
     },
     {
       type: "category",
       label: "Account",
-      collapsible: false,
-      collapsed: false,
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: "category",
