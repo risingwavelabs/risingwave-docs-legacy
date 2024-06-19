@@ -45,7 +45,7 @@ A simplified description of RisingWave’s memory control mechanism:
 
 3. RisingWave periodically checks the current memory usage against the rest 70% of the total memory, i.e., usable memory, and decides if it should evict data. If it exceeds 70% of usable memory, it gracefully evicts. The eviction will be further intensified if it exceeds 80% and 90%.
 
-In the figure above, we have allocated 12 GB of memory to the compute node. The real memory usage keeps fluctuating around 8.64 GB (90% of usable memory). This suggests that the eviction is triggered constantly as RisingWave tries to use more memory.
+In the figure above, we have allocated 12 GB of memory to the compute node. The real memory usage keeps fluctuating around 8.64 GB (over 90% of usable memory). This suggests that the eviction is triggered constantly as RisingWave tries to use more memory.
 
 **Takeaway**
 
