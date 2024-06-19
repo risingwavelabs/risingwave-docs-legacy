@@ -5,13 +5,13 @@ description: Check and monitor the overall running status and detailed metrics o
 slug: /check-status-and-metrics
 ---
 
-You can check and monitor your clusters' overall running status and detailed metrics.
+You can check and monitor your projects' overall running status and detailed metrics.
 
 ## Check all project
 
-To browse each cluster's configuration and running status in your account, go to [**Project**](https://cloud.risingwave.com/project/home/).
+To browse each project's configuration and running status in your account, go to [**Projects**](https://cloud.risingwave.com/project/home/).
 
-In **Clusters**, you can see all the clusters in your account and [control their running states](cluster-stop-and-delete-clusters.md). You can also check the current plan, RisingWave version, region, and creation time of each cluster here.
+In **Projects**, you can see all the projects in your account and [control their running states](project-stop-and-delete-projects.md). You can also check the current plan, RisingWave version, region, and creation time of each project here.
 
 <img
   src={require('./images/clusters.png').default}
@@ -20,13 +20,13 @@ In **Clusters**, you can see all the clusters in your account and [control their
 
 ## Check project details
 
-To enter the cluster details page and check the information, such as current activities and resource usage, and monitor all metrics of a cluster, go to [**Projects**](https://cloud.risingwave.com/project/home/) and click on the cluster.
+To enter the project details page and check the information, such as current activities and resource usage, and monitor all metrics of a project, go to [**Projects**](https://cloud.risingwave.com/project/home/) and click on the project.
 
 The project details page includes:
 
 - Current activities
 - Configuration details
-- [Database users](cluster-manage-database-users.md)
+- [Database users](project-manage-database-users.md)
 - Metrics
   - Key indicators — CPU usage, memory usage, throughput, storage usage, and network
   - Streaming — barrier latency, in-flight barrier number, backfilling throughput, backpressure rate
