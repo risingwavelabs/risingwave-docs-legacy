@@ -24,7 +24,7 @@ Alternatively, continue with your third-party account: **Google**, **Microsoft**
 
 After you sign up, you are navigated to **Create project** on the [home page](https://cloud.risingwave.com/project/home/). A project in RisingWave Cloud provides the necessary resources for hosting independent data repositories and streaming pipelines. Within a project, you can create and manage database users and databases.
 
-You can choose to create a free project or a customizable project if you have an invitation code. See [Choose a project plan](cluster-choose-a-cluster-plan.md) to decide on a project and configure the resources.
+You can choose to create a free project or a customizable project if you have an invitation code. See [Choose a project plan](project-choose-a-project-plan.md) to decide on a project and configure the resources.
 
 ## Step 3: Connect to your project
 

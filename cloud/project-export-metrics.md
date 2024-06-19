@@ -1,11 +1,11 @@
 ---
-id: cluster-export-metrics
+id: project-export-metrics
 title: Export metrics
-description: Export metrics from a RisingWave cloud cluster.
+description: Export metrics from a RisingWave cloud project.
 slug: /export-metrics
 ---
 
-This article describes how to use metrics API to export metrics from a RisingWave Cloud cluster to various monitoring systems like Prometheus, DataDog, and InfluxDB. The metrics include all major components such as `etcd`, `frontend`, `compute`, `compactor`, and `meta`.
+This article describes how to use metrics API to export metrics from a RisingWave Cloud project to various monitoring systems like Prometheus, DataDog, and InfluxDB. The metrics include all major components such as `etcd`, `frontend`, `compute`, `compactor`, and `meta`.
 
 ## Step 1: Generate API key
 
@@ -94,7 +94,7 @@ instances:
 
 To import the metrics to InfluxDB, you need to configure Telegraf first. See instructions on how to [use Telegraf to scrape Prometheus metrics](https://docs.influxdata.com/influxdb/v2/write-data/developer-tools/scrape-prometheus-metrics/#use-telegraf) and the [Prometheus input plugin](https://github.com/influxdata/telegraf/blob/master/plugins/inputs/prometheus/README.md).
 
-In the Telegraf configuration, you need to fill in the Prometheus input section, see [Prometheus](cluster-export-metrics.md?method=Prometheus#step-3-configure-metric-exporters) for details.
+In the Telegraf configuration, you need to fill in the Prometheus input section, see [Prometheus](project-export-metrics.md?method=Prometheus#step-3-configure-metric-exporters) for details.
 
 </TabItem>
 

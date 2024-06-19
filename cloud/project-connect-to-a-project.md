@@ -1,23 +1,27 @@
 ---
-id: cluster-connect-to-a-cluster
-title: Connect to a cluster
-description: Connect to a cluster and interact with RisingWave.
-slug: /connect-to-a-cluster
+id: project-connect-to-a-project
+title: Connect to a project
+description: Connect to a project and interact with RisingWave.
+slug: /connect-to-a-project
 ---
 
-After [getting a cluster up and running](cluster-manage-clusters.md#create-a-cluster), you need to connect to it so that you can interact with RisingWave.
+After [getting a project up and running](project-manage-projects.md#create-a-project), you need to connect to it so that you can interact with RisingWave.
 
-You can choose one of the following ways to connect to your cluster.
+:::note
+RisingWave Cloud creates a default user for every provisioned project since v1.7.1. The default user is authenticated with a temporary token under the OAuth 2.0 protocol to ease the burden on developers.
+:::
+
+You can choose one of the following ways to connect to your project.
 
 ## Workspace
 
-It is the most intuitive and easy way to connect to and interact with RisingWave via workspace. It offers graphical tools for managing data and visualizing results.
+Workspace offers graphical tools for managing data and visualizing results. It is the most intuitive and easy way to connect to and interact with RisingWave.
 
 To connect via workspace, follow the steps below:
 
-1. In RisingWave Cloud, go to [**Clusters**](https://cloud.risingwave.com/clusters/), and click **Workspace** for the cluster you want to connect to.
+1. In RisingWave Cloud, go to [**projects**](https://cloud.risingwave.com/project/home/), and click **Workspace** for the project you want to connect to.
 
-2. A workspace login window will pop up. You can choose **Default user** or **Create a new user**, then log in to the cluster.
+2. A workspace login window will pop up. You can choose **Default user** or **Create a new user**, then log in to the project.
 
 3. Click **Switch** in the top right corner to switch the user if needed.
 
@@ -27,15 +31,15 @@ For detailed instructions on using the workspace, see [Workspace](console-overvi
 
 ## Local client
 
-If you need to connect to the RisingWave cluster via local clients, you can configure the connection in multiple ways.
+If you need to connect to the RisingWave project via local clients, you can configure the connection in multiple ways.
 
 To connect with any local clients, follow the steps below:
 
-1. In RisingWave Cloud, go to [**Clusters**](https://cloud.risingwave.com/clusters/), and click **Connect** for the cluster you want to connect to.
+1. In RisingWave Cloud, go to [**projects**](https://cloud.risingwave.com/project/home/), and click **Connect** for the project you want to connect to.
 
 2. Click **Switch** in the top right corner to switch users, and then choose a startup mode.
 
-    - RisingWave Cloud creates a default user for every provisioned cluster since v1.7.1. The default user is authenticated with a temporary token under the OAuth 2.0 protocol to ease the burden on developers. For default users, RisingWave Cloud offers the `psql` command and a general `Connection String` for a quick connection.
+    - For default users, RisingWave Cloud offers the `psql` command and a general `Connection String` for a quick connection.
 
     - Alternatively, you can create a new user, RisingWave Cloud offers `psql`, `Connection String`, `Parameters Only`, `Java`, `Node.js`, `Python`, and `Golang` as connection options.
 

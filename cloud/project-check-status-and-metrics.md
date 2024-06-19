@@ -1,15 +1,15 @@
 ---
-id: cluster-check-status-and-metrics
-title: Check status and metrics of clusters
-description: Check and monitor the overall running status and detailed metrics of your clusters.
+id: project-check-status-and-metrics
+title: Check status and metrics of projects
+description: Check and monitor the overall running status and detailed metrics of your projects.
 slug: /check-status-and-metrics
 ---
 
 You can check and monitor your clusters' overall running status and detailed metrics.
 
-## Check all clusters
+## Check all project
 
-To browse each cluster's configuration and running status in your account, go to [**Clusters**](https://cloud.risingwave.com/clusters/).
+To browse each cluster's configuration and running status in your account, go to [**Project**](https://cloud.risingwave.com/project/home/).
 
 In **Clusters**, you can see all the clusters in your account and [control their running states](cluster-stop-and-delete-clusters.md). You can also check the current plan, RisingWave version, region, and creation time of each cluster here.
 
@@ -18,11 +18,11 @@ In **Clusters**, you can see all the clusters in your account and [control their
   alt="Clusters"
 />
 
-## Check cluster details
+## Check project details
 
-To enter the cluster details page and check the information, such as current activities and resource usage, and monitor all metrics of a cluster, go to [**Clusters**](https://cloud.risingwave.com/clusters/) and click on the cluster.
+To enter the cluster details page and check the information, such as current activities and resource usage, and monitor all metrics of a cluster, go to [**Projects**](https://cloud.risingwave.com/project/home/) and click on the cluster.
 
-The cluster details page includes:
+The project details page includes:
 
 - Current activities
 - Configuration details

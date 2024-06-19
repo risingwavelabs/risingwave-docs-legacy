@@ -1,11 +1,11 @@
 ---
-id: cluster-manage-database-users
+id: project-manage-database-users
 title: Manage database users
-description: A database user allows a person or application to access a specific database or set of databases within a cluster.
+description: A database user allows a person or application to access a specific database or set of databases within a project.
 slug: /manage-database-users
 ---
 
-In RisingWave, a database user is similar to a database user or role in Postgres, allowing a person or application to access a specific database or set of databases within a cluster. Also, you [connect and log in to a cluster](cluster-connect-to-a-cluster.md) as one of its database users. Database users can be assigned specific permissions to control their database privileges. Currently, all database users have the superuser privilege. Future releases will introduce more granular permissions.
+In RisingWave, a database user is similar to a database user or role in Postgres, allowing a person or application to access a specific database or set of databases within a project. Also, you [connect and log in to a project](project-connect-to-a-project.md) as one of its database users. Database users can be assigned specific permissions to control their database privileges. Currently, all database users have the superuser privilege. Future releases will introduce more granular permissions.
 
 <grid
  container
@@ -31,7 +31,7 @@ cloud="create-a-database-user"
 <card
 style={{height: "87%"}}
 title="Change user password"
-content="You can change the password of any database users in your cluster."
+content="You can change the password of any database users in your project."
 cloud="change-database-user-password"
 />
   

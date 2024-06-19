@@ -1,13 +1,13 @@
 ---
-id: cluster-monitor-materialized-views
+id: project-monitor-materialized-views
 title: Monitor materialized views
-description: You can view all materialized views defined in the databases of a cluster.
+description: You can view all materialized views defined in the databases of a project.
 slug: /monitor-materialized-views
 ---
 
-You can view all [materialized views](/docs/current/key-concepts/#materialized-views) defined in the databases of a cluster.
+You can view all [materialized views](/docs/current/key-concepts/#materialized-views) defined in the databases of a project.
 
-1. Go to the [cluster details page](cluster-check-status-and-metrics.md#check-cluster-details).
+1. Go to the [project details page](project-check-status-and-metrics.md#check-project-details).
 
 2. Select the **Materialized Views** tab.
 
