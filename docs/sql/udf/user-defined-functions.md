@@ -52,6 +52,27 @@ For details about how to create a SQL UDF and its use cases, see:
 
 - [`CREATE FUNCTION`](/sql/commands/sql-create-function.md)
 
+<details>
+
+<summary>Click here to know other ways to categorize UDFs</summary>
+
+UDFs can be categorized based on three dimensions. In the documentation provided above, we categorize them according to the execution method of functions, which has an impact on their performance and capabilities.
+
+The other two dimensions are:
+
+- the input and output of functions
+
+  For this dimension, since common SQL functions include scalar functions,  table functions, aggregate functions, and window functions, UDFS can be classified as user-defined scalar functions (abbreviated as UDFs), user-defined table functions(UDTFs), user-defined aggregate functions(UDAFs), and user-defined window functions(UDWFs).
+
+  RisingWave currently supports UDF, UDTF and UDAF, covering most practical needs. 
+ 
+- the language used to write the function
+
+  RisingWave currently supports using SQL, Python, Java, JavaScript, and Rust to write UDFs.
+  
+</details>
+
+
 ## See also
 
 You may also use UDFs to query data stored in different databases
