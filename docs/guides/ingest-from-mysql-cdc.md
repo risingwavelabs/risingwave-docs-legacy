@@ -348,7 +348,7 @@ Please be aware that the range of specific values varies among MySQL types and R
 | TIMESTAMP | TIMESTAMPTZ | `1970-01-01 00:00:01.000000` to `2038-01-19 03:14:07.499999` | `0001-01-01 00:00:00` to `9999-12-31 23:59:59` |
 
 
-## Use dbt to ingest data from mysql-cdc
+## Use dbt to ingest data from MySQL CDC
 
 Here is an example of how to use dbt to ingest data from MySQL CDC. In this dbt example, `source` and `table_with_connector` models will be used. For more details about these two models, please refer to [Use dbt for data transformations](/transform/use-dbt.md#define-dbt-models).
 
