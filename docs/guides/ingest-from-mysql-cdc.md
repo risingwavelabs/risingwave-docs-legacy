@@ -350,7 +350,7 @@ Please be aware that the range of specific values varies among MySQL types and R
 
 ## Use dbt to ingest data from mysql-cdc
 
-In this dbt example, `source` and `table_with_connector` models would be used. For more details, please refer to https://docs.risingwave.com/docs/current/use-dbt/#define-dbt-models
+Here is an example of how to use dbt to ingest data from MySQL CDC. In this dbt example, `source` and `table_with_connector` models will be used. For more details about these two models, please refer to [Use dbt for data transformations](/transform/use-dbt.md#define-dbt-models).
 
 First, we create a `source` model `mysql_mydb.sql`.
 
