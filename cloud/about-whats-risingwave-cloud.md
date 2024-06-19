@@ -18,5 +18,5 @@ content="Are you ready? Check out our quick start guide to start your journey wi
 
 <card
 title="Join community"
-content="Feel free to join our active RisingWave Cloud community, where you can connect with other users, and our professional team members who are always on hand to assist with your queries."
+content="Join our active Slack community to connect with fellow users and get support from our expert team."
 />
