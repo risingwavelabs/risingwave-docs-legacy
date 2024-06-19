@@ -348,3 +348,32 @@ RisingWave cannot correctly parse composite types from PostgreSQL as Debezium do
 |CIDR |CHARACTER VARYING* |
 |MACADDR |CHARACTER VARYING* |
 |MACADDR8 |CHARACTER VARYING* |
+
+## Use dbt to ingest data from PostgreSQL CDC
+
+Here is an example of how to use dbt to ingest data from PostgreSQL CDC. In this dbt example, `source` and `table_with_connector` models will be used. For more details about these two models, please refer to [Use dbt for data transformations](/transform/use-dbt.md#define-dbt-models).
+
+First, we create a `source` model `pg_mydb.sql`.
+
+```sql
+{{ config(materialized='source') }}
+CREATE SOURCE {{ this }} WITH (
+    connector = 'postgres-cdc',
+    hostname = '127.0.0.1',
+    port = '8306',
+    username = 'root',
+    password = '123456',
+    database.name = 'mydb',
+    slot.name = 'mydb_slot'
+);
+```
+
+And then we create a `table_with_connector` model `tt3.sql`.
+
+```sql
+{{ config(materialized='table_with_connector') }}
+CREATE TABLE {{ this }} (
+    v1 integer primary key,
+    v2 timestamp with time zone
+) FROM {{ ref('pg_mydb') }} TABLE 'public.tt3';
+```
