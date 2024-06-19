@@ -351,7 +351,7 @@ RisingWave cannot correctly parse composite types from PostgreSQL as Debezium do
 
 ## Use dbt to ingest data from postgres-cdc
 
-In this dbt example, `source` and `table_with_connector` models would be used. For more details, please refer to https://docs.risingwave.com/docs/current/use-dbt/#define-dbt-models
+Here is an example of how to use dbt to ingest data from PostgreSQL CDC. In this dbt example, `source` and `table_with_connector` models will be used. For more details about these two models, please refer to [Use dbt for data transformations](/transform/use-dbt.md#define-dbt-models).
 
 First, we create a `source` model `pg_mydb.sql`.
 
