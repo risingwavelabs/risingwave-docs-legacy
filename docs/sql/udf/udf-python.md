@@ -10,10 +10,6 @@ description: Define your own functions with the help of the RisingWave UDF API f
 
 This article provides a step-by-step guide for installing the RisingWave UDF API, defining functions in a Python file, starting the UDF server, and declaring and using UDFs in RisingWave.
 
-:::note
-The Python UDF SDK has been updated since version 1.9. If you're currently using RisingWave 1.10, we strongly encourage you to update to the latest version. Older versions are still supported.
-:::
-
 ## Prerequisites
 
 - Ensure that you have [Python](https://www.python.org/downloads/) (3.8 or later) installed on your computer.
@@ -25,13 +21,21 @@ The Python UDF SDK has been updated since version 1.9. If you're currently using
 Run the following command to download and install the RisingWave UDF API package and its dependencies.
 
 ```shell
-pip install risingwave
+pip install arrow-udf
 ```
 
 <details>
 <summary>Cannot run this command?</summary>
 If "command not found: pip" is returned, <a href="https://packaging.python.org/en/latest/tutorials/installing-packages/#ensure-you-can-run-pip-from-the-command-line">check if pip is available</a> in your environment and <a href="https://packaging.python.org/en/latest/tutorials/installing-packages/#ensure-pip-setuptools-and-wheel-are-up-to-date">ensure it is up to date</a>.
 </details>
+
+:::note
+The current Python UDF SDK is supported since version 1.10 and is not supported in older versions.
+If you are using an older version of RisingWave, please refer to the historical version of the documentation.
+If you have used an older version of the RisingWave UDF SDK (risingwave 0.1), we strongly encourage you to update to the latest version.
+You can refer to the [migration guide](#migration-guide-from-risingwave-01-to-arrow-udf-02) for upgrading.
+Older versions are still supported but will not receive new features or bug fixes.
+:::
 
 ## 2. Define your functions in a Python file
 
@@ -77,10 +81,8 @@ Here we take the Vim text editor as an example.
 </details>
 
 ```python title="udf.py"
-# Import components from the risingwave.udf module
-from risingwave.udf import udf, udtf, UdfServer
-import struct
-import socket
+# Import components from the arrow-udf module
+from arrow_udf import udf, udtf, UdfServer
 
 # Define a scalar function that returns a single value
 @udf(input_types=['INT', 'INT'], result_type='INT')
@@ -95,16 +97,13 @@ def blocking(x):
     time.sleep(0.01) 
     return x
 
-# Define a scalar function that returns multiple values (within a struct)
-@udf(input_types=['BYTEA'], result_type='STRUCT<VARCHAR, VARCHAR, SMALLINT, SMALLINT>')
-def extract_tcp_info(tcp_packet: bytes):
-    src_addr, dst_addr = struct.unpack('!4s4s', tcp_packet[12:20])
-    src_port, dst_port = struct.unpack('!HH', tcp_packet[20:24])
-    src_addr = socket.inet_ntoa(src_addr)
-    dst_addr = socket.inet_ntoa(dst_addr)
-    return src_addr, dst_addr, src_port, dst_port
+# Define a scalar function that returns multiple values within a struct
+@udf(input_types=['VARCHAR'], result_type='STRUCT<key: VARCHAR, value: VARCHAR>')
+def key_value(pair: str):
+    key, value = pair.split('=')
+    return {'key': key, 'value': value}
 
-# Define a table function
+# Define a table function over a Python generator function
 @udtf(input_types='INT', result_types='INT')
 def series(n):
     for i in range(n):
@@ -114,7 +113,7 @@ def series(n):
 if __name__ == '__main__':
     server = UdfServer(location="0.0.0.0:8815") # You can use any available port in your system. Here we use port 8815.
     server.add_function(gcd)
-    server.add_function(extract_tcp_info)
+    server.add_function(key_value)
     server.add_function(series)
     server.serve()
 ```
@@ -130,15 +129,10 @@ The code defines three scalar functions and one table function:
 
 - The scalar function `gcd`, decorated with `@udf`, takes two integer inputs and returns the greatest common divisor of the two integers. 
 - The scalar function `blocking`, decorated with `@udf`. The `io_threads` parameter specifies the number of threads that the Python UDF will use during execution to enhance processing performance of IO-intensive functions. Please note that multithreading can not speed up compute-intensive functions due to the GIL.
-- The scalar function `extract_tcp_info`, decorated with `@udf`, takes a single binary input and returns a structured output.
+- The scalar function `key_value`, decorated with `@udf`, takes a single string input and returns a structured output.
+- The table function `series`, decorated by `@udtf`, takes an integer input and yields a sequence of integers from 0 to `n-1`.
 
-    The function takes a single argument `tcp_packet` of type bytes and uses the struct module to unpack the source and destination addresses and port numbers from `tcp_packet`, and then converts the binary IP addresses to strings using `socket.inet_ntoa`.
-
-    The function returns a tuple containing the source IP address, destination IP address, source port number, and destination port number, all converted to their respective types. The return type is specified as a struct with four fields using the `result_type` argument.
-
-- The table function `series`, decorated by `@udtf`, takes an integer input and yields a sequence of integers from 0 to n-1.
-
-Finally, the script starts a UDF server using `UdfServer` and listens for incoming requests on port 8815 of the local machine. It then adds the `gcd`, `extract_tcp_info` and `series` functions to the server and starts the server using the `serve()` method. The `if __name__ == '__main__':` conditional is used to ensure that the server is only started if the script is run directly, rather than being imported as a module.
+Finally, the script starts a UDF server using `UdfServer` and listens for incoming requests on port 8815 of the local machine. It then adds the `gcd`, `key_value` and `series` functions to the server and starts the server using the `serve()` method. The `if __name__ == '__main__':` conditional is used to ensure that the server is only started if the script is run directly, rather than being imported as a module.
 
 </details>
 
@@ -173,9 +167,8 @@ LANGUAGE python AS gcd USING LINK 'http://localhost:8815'; -- If you are running
 CREATE FUNCTION blocking(int) RETURNS int
 LANGUAGE python AS blocking USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
 
-CREATE FUNCTION extract_tcp_info(bytea)
-RETURNS struct<src_ip varchar, dst_ip varchar, src_port smallint, dst_port smallint>
-LANGUAGE python AS extract_tcp_info USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
+CREATE FUNCTION key_value(bytea) RETURNS struct<key varchar, value varchar> -- the field names must exactly match the ones in Python decorator
+LANGUAGE python AS key_value USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
 
 CREATE FUNCTION series(int) RETURNS TABLE (x int)
 LANGUAGE python AS series USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
@@ -196,22 +189,17 @@ SELECT blocking(2);
 ---
 2
 
-SELECT extract_tcp_info(E'\\x45000034a8a8400040065b8ac0a8000ec0a80001035d20b6d971b900000000080020200493310000020405b4' :: bytea);
+SELECT key_value('a=b');
 ---
-(192.168.0.14,192.168.0.1,861,8374)
+(a,b)
 
-SELECT * FROM series(10);
+SELECT * FROM series(5);
 ---
 0
 1
 2
 3
 4
-5
-6
-7
-8
-9
 ```
 
 ## 6. Scale the UDF Server
@@ -265,7 +253,41 @@ The RisingWave Python UDF SDK supports the following data types:
 | INTERVAL         | MonthDayNano / (int, int, int) | Fields can be obtained by `months()`, `days()` and `nanoseconds()` from `MonthDayNano` |
 | VARCHAR          | str                            |                    |
 | BYTEA            | bytes                          |                    |
-| JSONB            | any                            |                    |
+| JSONB            | any                            | Parsed / Serialized by `json.loads` / `json.dumps` |
 | T[]              | list[T]                        |                    |
-| STRUCT&lt;&gt;        | tuple                          |                    |
+| STRUCT&lt;&gt;   | dict                           |                    |
 | ...others        |                                | Not supported yet. |
+
+## Migration Guide from risingwave 0.1 to arrow-udf 0.2
+
+If you have used the Python UDF SDK in RisingWave 1.9 or earlier versions, please refer to the following steps for upgrading.
+
+Import the `arrow_udf` package instead of `risingwave.udf`.
+
+```shell
+pip install arrow-udf
+```
+
+```diff
+- from risingwave.udf import udf, udtf, UdfServer
++ from arrow_udf import udf, udtf, UdfServer
+```
+
+The type aliases `FLOAT4` and `FLOAT8` are removed and replaced by `REAL` and `DOUBLE PRECISION`.
+
+```diff
+- @udf(input_types=['FLOAT4', 'FLOAT8'], result_type='INT')
++ @udf(input_types=['REAL', 'DOUBLE PRECISION'], result_type='INT')
+```
+
+The `STRUCT` type now requires field names. The field names must exactly match the ones defined in `CREATE FUNCTION`.
+The function that returns a struct type now returns a dict instead of a tuple. The field names of the dictionary must match the definition in the signature.
+
+```diff
+- @udf(input_types=['VARCHAR'], result_type='STRUCT<VARCHAR, VARCHAR>')
++ @udf(input_types=['VARCHAR'], result_type='STRUCT<key: VARCHAR, value: VARCHAR>')
+  def key_value(pair: str):
+      key, value = pair.split('=')
+-     return (key, value)
++     return {'key': key, 'value': value}
+```

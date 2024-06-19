@@ -37,10 +37,6 @@ RisingWave supports creating external UDFs with the following programming langua
 
 - [Java](/sql/udf/udf-java.md)
 
-:::note
-The Python UDF SDK has been updated since version 1.9. If you're currently using RisingWave 1.10, we strongly encourage you to update to the latest version. Older versions are still supported.
-:::
-
 ### Embedded UDFs
 
 RisingWave supports creating embedded UDFs with the following programming languages:

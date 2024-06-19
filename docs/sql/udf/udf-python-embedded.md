@@ -38,6 +38,10 @@ The Python code must contain a function that has the same name as declared in th
 
 See the correspondence between SQL types and Python types in the [Data type mapping](udf-python-embedded.md#data-type-mapping).
 
+:::warn
+Due to the nature of Python, the correctness of the source code cannot be verified when creating a function. It is recommended to make sure your implementation is correct through batch query before using UDFs in materialized views. If an error occurs when executing UDF in materialized views, you will see that the output results are all NULL.
+:::
+
 ```sql title="Call function"
 SELECT gcd(15, 25);
 
