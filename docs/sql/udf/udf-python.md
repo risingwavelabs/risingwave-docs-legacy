@@ -281,7 +281,7 @@ The type aliases `FLOAT4` and `FLOAT8` are removed and replaced by `REAL` and `D
 ```
 
 The `STRUCT` type now requires field names. The field names must exactly match the ones defined in `CREATE FUNCTION`.
-The function that returns a struct type now returns a dict instead of a tuple. The field names of the dictionary must match the definition in the signature.
+The function that returns a struct type now returns a dictionary instead of a tuple. The field names of the dictionary must match the definition in the signature.
 
 ```diff
 - @udf(input_types=['VARCHAR'], result_type='STRUCT<VARCHAR, VARCHAR>')
