@@ -477,11 +477,6 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  id: "sql/udf/sql-udfs",
-                  label: "SQL UDFs",
-                },
-                {
-                  type: "doc",
                   id: "sql/udf/udf-foreign-data",
                   label: "Foreign data",
                 },
