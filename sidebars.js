@@ -653,6 +653,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "Microsoft SQL Server",
+                  id: "guides/sink-to-sqlserver",
+                },
+                {
+                  type: "doc",
                   label: "MQTT",
                   id: "guides/sink-to-mqtt",
                 },

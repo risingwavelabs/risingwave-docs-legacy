@@ -34,7 +34,7 @@ WITH (
 
 | Parameter Names | Description |
 | --------------- | ---------------------------------------------------------------------- |
-| type | Required. Allowed values: `appendonly` and `upsert`. |
+| type | Required. Allowed values: `append-only` and `upsert`. |
 | force_append_only | Optional. If `true`, forces the sink to be `append-only`, even if it cannot be. |
 | primary_key | Conditional. The primary keys of the sink. Use ',' to delimit the primary key columns. Primary keys are required for `upsert` sinks. |
 | sqlserver.host | Required. The SQL Server host. |
