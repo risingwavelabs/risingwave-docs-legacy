@@ -36,9 +36,21 @@ psql "postgresql://<username>:@<tenant identifier>.<hostname>:<port>/<database?s
 Not all clients support SNI routing. If your client does not support SNI routing, you can use solution 1.
 :::
 
+### Solution 3: Put the tenant identifier in the username
+
+You can also put the tenant identifier in the username in the format of `<tenant identifier>;<username>`. This solution is available for all clients. 
+
+```shell
+psql "postgresql://<tenant identifier>;<username>:@<hostname>:<port>/<database?sslmode=verify-full"
+```
+
+:::note
+The server will use `AuthenticationCleartextPassword` response to authenticate the user. Learn more about the protocol in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/protocol-flow.html).
+:::
+
 ## SSL error: certificate verify failed
 
-When you see the error `SSL error: certificate verify failed`, it means the client cannot verify the certificate of the server. To fix this error, you need to download the root certificate of RisingWave Cloud and put it in the correct location.
+When you see errors like `SSL error: certificate verify failed`, `root certificate file xxx does not exist`, or `no certificate or crl found`, it means the client cannot verify the certificate of the server. To fix this error, you need to download the root certificate of RisingWave Cloud and put it in the correct location.
 
 ### Mac/Linux
 
