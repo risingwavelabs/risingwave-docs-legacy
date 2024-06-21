@@ -658,6 +658,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "Microsoft SQL Server",
+                  id: "guides/sink-to-sqlserver",
+                },
+                {
+                  type: "doc",
                   label: "MQTT",
                   id: "guides/sink-to-mqtt",
                 },
@@ -1108,6 +1113,11 @@ const sidebars = {
         {
           type: 'doc',
           id: 'manage/meta-backup',
+        },
+        {
+          type: 'doc',
+          id: 'manage/migrate-to-sql-backend',
+          label: "Migrate to SQL backend",
         },
         {
           type: "doc",
