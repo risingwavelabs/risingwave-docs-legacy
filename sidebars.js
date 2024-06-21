@@ -1110,6 +1110,11 @@ const sidebars = {
           id: 'manage/meta-backup',
         },
         {
+          type: 'doc',
+          id: 'manage/migrate-to-sql-backend',
+          label: "Migrate to SQL backend",
+        },
+        {
           type: "doc",
           id: "manage/secure-connections-with-ssl-tls",
           label: "Secure connections with SSL/TLS",
