@@ -17,7 +17,7 @@ You can test out this process on your own device by using the `sqlserver_sink.sl
 Before sinking data from RisingWave to SQL Server, please ensure the following:
 
 - The SQL Server table you want to sink to is accessible from RisingWave.
-- Ensure you have an upstream materialized view or table in RisingWave that you can sink data from.
+- You have an upstream materialized view or table in RisingWave that you can sink data from.
 
 ## Syntax
 
