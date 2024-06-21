@@ -128,7 +128,7 @@ SELECT pg_get_viewdef('materialized_view1'::regclass);
 
 ## `pg_index_column_has_property()`
 
-Checks if an index column has a specific property. The `index` parameter represents the OID of the index, while the `column` parameter represents the column number (starting from 1) within the index. If the property name is not recognized or doesn't apply to the object, or if the OID or column number is invalid, NULL will be returned.
+Checks if an index column has a specific property. The `index` parameter represents the OID of the index, while the `column` parameter represents the column number (starting from 1) within the index. If the property name is not recognized or doesn't apply to the object, or if the OID or column number is invalid, this function will return NULL.
 
 ```sql title="Syntax"
 pg_index_column_has_property ( index regclass, column integer, property text ) → boolean
