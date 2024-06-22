@@ -10,10 +10,10 @@ module.exports = {
           type: "doc",
           id: "about-whats-risingwave-cloud",
         },
-        // {
-        //   type: "doc",
-        //   id: "about-whats-new",
-        // },
+        {
+          type: "doc",
+          id: "about-whats-new",
+        },
         {
           type: "doc",
           id: "about-faq",
