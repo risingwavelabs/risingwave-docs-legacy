@@ -593,6 +593,11 @@ const sidebars = {
               items: [
                 {
                   type: "doc",
+                  label: "Amazon DynamoDB",
+                  id: "guides/sink-to-dynamodb",
+                },
+                {
+                  type: "doc",
                   label: "Apache Doris",
                   id: "guides/sink-to-doris",
                 },
