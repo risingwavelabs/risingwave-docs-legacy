@@ -62,7 +62,7 @@ For example, the watermark generation strategy can be specified as:
 
 :::note
 
-Currently, RisingWave only supports using one of the columns from the table as the watermark column. To use nested fields e.g. fields in `STRUCT`, or perform expression evaluation on the input rows e.g. casting data types, please refer to [generated columns](/sql/query-syntax/query-syntax-generated-columns.md).
+Currently, RisingWave only supports using one of the columns from the table as the watermark column. To use nested fields (e.g., fields in `STRUCT`), or perform expression evaluation on the input rows (e.g., casting data types), please refer to [generated columns](/sql/query-syntax/query-syntax-generated-columns.md).
 
 :::
 
