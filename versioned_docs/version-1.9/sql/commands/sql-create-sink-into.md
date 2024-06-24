@@ -22,7 +22,7 @@ CREATE SINK [ IF NOT EXISTS ] sink_name INTO table_name [ ( col_name [ , ... ] )
 | Parameter or clause | Description|
 |-----------|-------------|
 |`sink_name`    |The name of the sink. If a schema name is given (for example, `CREATE SINK <schema>.<sink> ...`), then the sink is created in the specified schema. Otherwise it is created in the current schema.|
-|`col_name`      |The corresponding table columns in the sink result. For those table's columns not listed, it will be inserted as the default value defined in the table|
+|`col_name`      |The corresponding table columns in the sink result. For those columns not listed, it will be inserted as the default value defined in the table.|
 
 :::note
 

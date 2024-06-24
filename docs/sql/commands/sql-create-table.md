@@ -78,7 +78,7 @@ FORMAT upsert ENCODE AVRO (
 |`generation_expression`| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |`watermark_clause`| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For the watermark clause to be valid, the table must be an append-only table. That is, the `APPEND ONLY` option must be specified. This restriction only applies to a table. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
 |`APPEND ONLY` | When this option is specified, the table will be created as an append-only table. An append-only table cannot have primary keys. `UPDATE` and `DELETE` statements are not valid for append-only tables. Note that append-only tables is a Beta feature. |
-|`ON CONFLICT` | Specify the alternative action when the newly inserted record bring a violation of PRIMARY KEY constraint on the table. See Section "PK Conflict Behavior" below for more information. |
+|`ON CONFLICT` | Specify the alternative action when the newly inserted record brings a violation of PRIMARY KEY constraint on the table. See [PK conflict behavior](#pk-conflict-behavior) below for more information. |
 |**INCLUDE** clause | Extract fields not included in the payload as separate columns. For more details on its usage, see [`INCLUDE` clause](/ingest/include-clause.md). |
 |**WITH** clause |Specify the connector settings here if trying to store all the source data. See the [Data ingestion](/ingest/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
 |**FORMAT** and **ENCODE** options |Specify the data format and the encoding format of the source data. To learn about the supported data formats, see [Data formats](sql-create-source.md#supported-formats). |
@@ -91,21 +91,24 @@ Please distinguish between the parameters set in the FORMAT and ENCODE options a
 
 RisingWave supports generating watermarks when creating an append-only streaming table. Watermarks are like markers or signals that track the progress of event time, allowing you to process events within their corresponding time windows. For more information on the syntax on how to create a watermark, see [Watermarks](/transform/watermarks.md).
 
-## PK Conflict Behavior
-The record with "insert" operation could introduce duplicate records with the same primary key in the table. In that case, an alternative action Specified by the `ON CONFLICT` clause will be adopted. The record can come from Insert DML statement, table's external connectors or sinks into the table([`CREATE SINK INTO`](sql-create-sink-into.md)). 
+## PK conflict behavior
 
-The option could one of the belows, a column not in primary key can be specified as the version column for `DO UPDATE FULL` and `DO UPDATE IF NOT NULL`. When version column is specified, the insert operation will take effect only when the newly inserted value is greater or equal than the exist data record in the table's specified column.
-- `DO NOTHING`: ignore the newly inserted record.
-- `DO UPDATE FULL [WITH VERSION COLUMN(col_name)]`: replace the exist row in the table. When version column is specified, the exist row will be replaced only when the newly inserted value is greater or equal than the exist data record in the table's specified column.
-- `DO UPDATE IF NOT NULL [WITH VERSION COLUMN(col_name)]`: only replace those fields which is not NULL in the inserted row. If version column is specified but the inserted row's version field is NULL, the version column will not take effect.
+The record with insert operation could introduce duplicate records with the same primary key in the table. In that case, an alternative action specified by the `ON CONFLICT` clause will be adopted. The record can come from Insert DML statement, external connectors of the table, or sinks into the table [`CREATE SINK INTO`](sql-create-sink-into.md).
+
+The action could one of the following. A column not in the primary key can be specified as the version column for `DO UPDATE FULL` and `DO UPDATE IF NOT NULL`. When version column is specified, the insert operation will take effect only when the newly inserted value is greater or equal than the exist data record in the table's specified column.
+
+- `DO NOTHING`: Ignore the newly inserted record.
+- `DO UPDATE FULL [WITH VERSION COLUMN(col_name)]`: Replace the existing row in the table. When version column is specified, the existing row will be replaced only when the newly inserted value is greater or equal than the existing data record in the table's specified column.
+- `DO UPDATE IF NOT NULL [WITH VERSION COLUMN(col_name)]`: Only replace those fields which is not NULL in the inserted row. If version column is specified but the inserted row's version field is NULL, the version column will not take effect.
 
 :::note
-The "delete" and "update" operation on the table can not break the primary key constraint on the table. So the option will not take effect for those cases.
+The delete and update operation on the table cannot break the primary key constraint on the table, so the option will not take effect for those cases.
 :::
 
 :::note
 When `DO UPDATE IF NOT NULL` behavior is applied, `DEFAULT` clause is not allowed on the table's columns.
 :::
+
 ## Examples
 
 The statement below creates a table that has three columns.
