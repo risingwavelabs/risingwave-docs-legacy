@@ -108,7 +108,7 @@ For more details, see [Use UDFs in Rust](/sql/udf/udf-rust.md).
 
 SQL UDFs in RisingWave are designed to expand directly into expressions at the frontend, resulting in minimal performance difference compared to manually calling multiple functions. 
 
-The `CREATE FUNCTION` command is used to define SQL UDFs. You can read our [specific guide dedicated to SQL UDFs](/sql/udf/sql-udfs.md) for more details.
+The `CREATE FUNCTION` command is used to define SQL UDFs. You can read our guide on [SQL UDFs](/sql/udf/sql-udfs.md) for more details.
 
 ```sql title="Syntax of SQL UDFs"
 CREATE FUNCTION function_name ( argument_type [, ...] )
