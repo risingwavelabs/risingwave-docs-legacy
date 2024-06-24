@@ -64,6 +64,13 @@ SELECT * FROM test;
 
 You can see the [INCLUDE clause](/ingest/include-clause.md) for more details.
 
+## Metadata options
+
+|Field|Notes|
+|---|---|
+|database_name| Name of the database. |
+|collection_name| Name of the MongoDB collection. |
+
 ### Examples
 
 The following SQL query creates a table that ingests data from all collections in the `dev` database.
