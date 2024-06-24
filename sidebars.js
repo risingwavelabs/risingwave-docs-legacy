@@ -477,6 +477,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/udf/sql-udfs",
+                  label: "SQL UDFs",
+                },
+                {
+                  type: "doc",
                   id: "sql/udf/udf-foreign-data",
                   label: "Foreign data",
                 },
@@ -655,6 +660,11 @@ const sidebars = {
                   type: "doc",
                   label: "Google Pub/Sub",
                   id: "guides/sink-to-google-pubsub",
+                },
+                {
+                  type: "doc",
+                  label: "Microsoft SQL Server",
+                  id: "guides/sink-to-sqlserver",
                 },
                 {
                   type: "doc",
@@ -1108,6 +1118,11 @@ const sidebars = {
         {
           type: 'doc',
           id: 'manage/meta-backup',
+        },
+        {
+          type: 'doc',
+          id: 'manage/migrate-to-sql-backend',
+          label: "Migrate to SQL backend",
         },
         {
           type: "doc",
