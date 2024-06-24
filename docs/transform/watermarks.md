@@ -59,9 +59,16 @@ For example, the watermark generation strategy can be specified as:
 
     Supported `time_unit` values include: second, minute, hour, day, month, and year. For more details, see the `interval` data type under [Overview of data types](/sql/sql-data-types.md).
 
+
+:::note
+
+Currently, RisingWave only supports using one of the columns from the table as the watermark column. To use nested fields (e.g., fields in `STRUCT`), or perform expression evaluation on the input rows (e.g., casting data types), please refer to [generated columns](/sql/query-syntax/query-syntax-generated-columns.md).
+
+:::
+
 ### Example
 
-We can generate the watermark as the latest timestamp observed in `order_time` minus 5 seconds.
+The following query generates the watermark as the latest timestamp observed in `order_time` minus 5 seconds.
 
 ```sql
 CREATE SOURCE s1 (
@@ -76,4 +83,20 @@ CREATE SOURCE s1 (
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
 ) FORMAT PLAIN ENCODE JSON;
+```
+
+The following query uses a [generated column](/sql/query-syntax/query-syntax-generated-columns.md) to extract the timestamp column first, and then generates the watermark using it.
+
+```sql
+CREATE SOURCE s2 (
+    order_id BITINT,
+    detail STRUCT<
+        product VARCHAR,
+        user VARCHAR,
+        price DOUBLE PRECISION
+        order_time TIMESTAMP
+    >,
+    order_time AS (detail).order_time,
+    WATERMARK FOR order_time AS order_time - INTERVAL '5' SECOND
+) WITH ( ... );
 ```

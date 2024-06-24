@@ -28,14 +28,11 @@ FORMAT data_format ENCODE data_encode (
 
 | Field | Note |
 | --- | --- |
-| pubsub.subscription | Required. Specifies the Pub/Sub subscription to consume messages from. Ensure the subscription is configured with the `retain-on-ack` property to enable message replay. |
-| pubsub.credentials | Required. A JSON string containing the service account credentials for authorization, see the [service-account credentials guide](https://developers.google.com/workspace/guides/create-credentials#create_credentials_for_a_service_account). The provided account credential must have the `pubsub.subscriber` [role](https://cloud.google.com/pubsub/docs/access-control#roles). |
-| pubsub.start_offset.nanos | Optional. Cannot be set together with pubsub.start_snapshot. Specifies a numeric timestamp in nanoseconds, ideally the publish timestamp of a message in the subscription. If present, the connector seeks the subscription to the timestamp and starts consuming from there. Note that the seek operation is subject to limitations based on the message retention policy of the subscription.|
+| pubsub.subscription | Required. Specifies where the Pub/Sub subscription to consume messages from. Pub/Sub is used to load-balance messages among all readers pulling from the same subscription, so one subscription (i.e., one source) can only be used for one materialized view (MV) that is shared between the actors of its fragment. Otherwise, different MVs on the same source will both receive part of the messages.|
+| pubsub.credentials | Required. A JSON string containing the service account credentials for authorization, see the [service-account credentials guide](https://developers.google.com/workspace/guides/create-credentials#create_credentials_for_a_service_account). The provided account credential must have the `pubsub.subscriber` [role](https://cloud.google.com/pubsub/docs/access-control#pubsub.subscriber) and `pubsub.viewer` [role](https://cloud.google.com/pubsub/docs/access-control#pubsub.viewer).|
+| pubsub.start_offset.nanos | Optional. Cannot be set together with `pubsub.start_snapshot`. Specifies a numeric timestamp in nanoseconds, ideally the publish timestamp of a message in the subscription. If present, the connector seeks the subscription to the timestamp and starts consuming from there. Note that the seek operation is subject to limitations based on the message retention policy of the subscription.|
 | pubsub.start_snapshot | Optional. Cannot be set together with `pubsub.start_offset.nanos`. If present, the connector first seeks to the specified snapshot before starting consumption. |
-
-:::note
-The Pub/Sub topic provided must have `retain_acked_messages` enabled and must define a retention policy. For details, see [Configure subscription message retention](https://cloud.google.com/pubsub/docs/replay-overview#subscription_message_retention).
-:::
+| pubsub.parallelism | Optional. Specifies the number of parallel consumers to run for the subscription. If not specified, the default value is 1. |
 
 :::info
 We can only achieve at-least-once semantic for the Pub/Sub source rather than exactly once because the SDK cannot seek back to a specific message offset.
