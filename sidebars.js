@@ -513,12 +513,7 @@ const sidebars = {
               type: "doc",
               id: "transform/multiple-table-sink",
               label: "Maintain wide table with table sinks",
-            },    
-            {
-              type: "doc",
-              id: "transform/multiple-table-sink",
-              label: "Maintain wide table with table sinks",
-            },    
+            },      
             {
               type: "doc",
               id: "transform/subscription",
