@@ -21,7 +21,7 @@ Keep in mind that the `ON CONFLICT` clause does not affect the update or delete 
 CREATE TABLE d1(v1 int, k int primary key);
 CREATE TABLE d2(v2 int, k int primary key);
 CREATE TABLE d3(v3 int, k int primary key);
-CREATE TABLE wide_d(v1 int, v2 int, v3 int, k primary key)
+CREATE TABLE wide_d(v1 int, v2 int, v3 int, k int primary key)
 ON CONFLICT DO UPDATE IF NOT NULL;
 
 CREATE SINK sink1 INTO wide_d (v1, k) AS
