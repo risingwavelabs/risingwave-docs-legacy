@@ -101,6 +101,10 @@ The action could one of the following. A column not in the primary key can be sp
 - `DO UPDATE FULL [WITH VERSION COLUMN(col_name)]`: Replace the existing row in the table. When version column is specified, the existing row will be replaced only when the newly inserted value is greater or equal than the existing data record in the table's specified column.
 - `DO UPDATE IF NOT NULL [WITH VERSION COLUMN(col_name)]`: Only replace those fields which is not NULL in the inserted row. If version column is specified but the inserted row's version field is NULL, the version column will not take effect.
 
+:::note Beta Feature
+Version column is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::
+
 :::note
 The delete and update operation on the table cannot break the primary key constraint on the table, so the option will not take effect for those cases.
 :::
