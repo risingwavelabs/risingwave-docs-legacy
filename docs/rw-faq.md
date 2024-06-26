@@ -119,7 +119,7 @@ For example, let's consider a compute node with 32GB of memory. The reserved mem
 
 - The total reserved memory is 4.8GB + 3.2GB = 8GB
 
-This calculation method ensures that in scenarios with smaller memory, the system reserves more memory for critical tasks. On the other hand, in scenarios with larger memory, it reserves less memory, thus achieving a better balance between system performance and memory utilization.
+This calculation method ensures that in scenarios with less memory, the system reserves more memory for critical tasks. On the other hand, in scenarios with more memory, it reserves less memory, thus achieving a better balance between system performance and memory utilization.
 
 However, this may not be suitable for all workloads and machine setups. To address this, we introduce a new option, which allows you to explicitly configure the amount of reserved memory for compute nodes. You can use the startup option `--reserved-memory-bytes` and the environment variable `RW_RESERVED_MEMORY_BYTES` to override the reserved memory configuration for compute nodes. **Note that the memory reserved should be at least 512MB.**
 
