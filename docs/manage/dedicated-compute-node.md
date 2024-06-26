@@ -28,7 +28,7 @@ For specific changes required in the YAML file, see [Separate batch streaming mo
 
 ## Configure a `serving` compute node for batch queries
 
-You can use a TOML configuration file to configure a `serving` compute node. For detailed instructions, see [Configure node-specific parameters](/manage/configure-node-specific-parameters.md).
+You can use a TOML configuration file to configure a `serving` compute node. For detailed instructions, see [Node-specific configurations](./node-specific-configurations.md).
 
 Unlike a general-purpose `both` compute node, a `serving` compute node doesn't require memory allocation or reservation for shared buffer and operator caches. Instead, it's more efficient to increase the sizes of the block and meta caches. However, making these caches too large can limit the scope of data that batch queries can execute.
 

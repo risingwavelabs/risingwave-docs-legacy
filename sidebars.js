@@ -518,7 +518,7 @@ const sidebars = {
               type: "doc",
               id: "transform/multiple-table-sink",
               label: "Maintain wide table with table sinks",
-            },      
+            },
             {
               type: "doc",
               id: "transform/subscription",
@@ -1104,11 +1104,11 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/configure-node-specific-parameters',
+          id: 'manage/node-specific-configurations',
         },
         {
           type: 'doc',
-          id: 'manage/node-specific-parameters',
+          id: 'manage/configure-file-cache-block-cache',
         },
         {
           type: "doc",
@@ -1211,7 +1211,7 @@ const sidebars = {
               },
             ]
         },
-        
+
         {
           type: "doc",
           label: "Recovery failure",
