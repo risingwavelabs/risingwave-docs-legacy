@@ -120,6 +120,31 @@ The execution time for the `CREATE MATERIALIZED VIEW` statement can vary based o
 
 2. **High cluster latency**: If the cluster experiences high latency, it may take longer to apply changes to the streaming graph. If the `Progress` in the `SHOW JOBS;` result stays at 0.0%, high latency could be the cause. See details in [Troubleshoot high latency](/troubleshoot/troubleshoot-high-latency.md) 
 
+
+### What consists of the memory usage and disk usage？
+
+Memory usage is divided into the following components:
+
+- Total memory: The overall available memory for the compute node.
+
+- Storage memory: Memory dedicated to storage-related tasks, which includes caching data and metadata to improve performance.
+
+- Compute memory: Memory allocated for computational tasks.
+
+- Reserved memory: Memory reserved for system operations to ensure critical tasks always have available memory.
+
+Below is a specific example of memory usage composition on a compute node with 8G memory:
+
+```sql
+total_memory: 8.00 GiB
+    storage_memory: 2.13 GiB
+        block_cache_capacity: 688.00 MiB
+        meta_cache_capacity: 802.00 MiB
+        shared_buffer_capacity: 688.00 MiB
+    compute_memory: 3.47 GiB
+    reserved_memory: 2.40 GiB
+```
+
 <details>
 <summary>I'd like to explore more questions.</summary>
 
