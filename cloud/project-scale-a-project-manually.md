@@ -16,23 +16,12 @@ You can scale the projects created in the Pro plan and the Enterprise plan. The 
 To scale your project:
 
 1. Navigate to the project details page.
-2. Click **Edit engine specs** to access the scaling options.
 
-<img
-   src={require('./images/cluster-edit-spec.png').default}
-   alt="Edit engine specs"
-   width="300"
-/>
+2. Click **Configuration details** > **Re-scale** to access the scaling options.
 
 ## Configure node resources
 
 When scaling, you will configure the vCPU numbers for each component, with the memory size automatically scaling at a 1:4 ratio with the vCPUs. The [RWU](/billing-pricing.md#risingwave-unit-rwu) numbers are calculated based on the vCPU and memory size.
-
-<img
-   src={require('./images/cluster-edit-spec-page.png').default}
-   alt="Edit engine specs page"
-   width="600"
-/>
 
 - **Compute node**
     - RWU options: 2, 4, 8, 16
