@@ -40,7 +40,7 @@ FORMAT data_format ENCODE data_encode [ (
 
 ## Partition key and sort key mapping
 
-For the DynamoDB sink to function correctly, it is required that the source table in RisingWave has a composite primary key comprising two columns, each corresponding to the partition key and sort key defined in the target DynamoDB table.
+For the DynamoDB sink to function correctly, it is required that the source table in RisingWave has a composite primary key comprising two columns, corresponding to the partition key and sort key defined in the target DynamoDB table.
 
 For example, if you are sinking data into a DynamoDB table named movies that is configured with a partition key title and a sort key year, you must ensure that the RisingWave table schema also defines a composite primary key with the same columns. Below is an example schema definition for the RisingWave table:
 
