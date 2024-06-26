@@ -403,7 +403,7 @@ The `jsonb_populate_recordset` function in RisingWave differs from the function 
 
 ### `jsonb_set`
 
-Modifies JSONB data by replacing or inserting new value at a specified path. If the path exists, the function will replace the value with the new one. If the path does not exist and the `create_if_missing parameter` is set to true (which is the default), the function will add the new value.
+Modifies JSONB data by replacing or inserting new values at a specified path. If the path exists, the function will replace the value with the new one. If the path does not exist and the `create_if_missing` parameter is set to `true` (which is the default), the function will add the new value.
 
 ```bash title=Syntax
 jsonb_set ( target jsonb, path text[], new_value jsonb [, create_if_missing boolean ] ) → jsonb
