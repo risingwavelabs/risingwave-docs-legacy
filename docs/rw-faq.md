@@ -135,15 +135,16 @@ For instance, suppose you are deploying a compute node on a machine or pod with 
 
 However, if you find this excessive for your specific use case, you have the option to specify a different value. You can set either `RW_RESERVED_MEMORY_BYTES=8589934592` or `--reserved-memory-bytes=8589934592` when starting up the compute node. This will allocate 8GB as the reserved memory instead.
 
-:::info Evolution of the reserved memory feature in RisingWave
+<details>
+<summary>I'd like to explore the evolution of the reserved memory feature.</summary>
 
 Before version 1.9, RisingWave allocated 30% of the total memory as reserved memory by default. However, through practical application, we realized that this default setting may not be suitable for all scenarios. Therefore, in version 1.9, we introduced the ability to customize the reserved memory.
 
 To further optimize this feature, we changed the calculation method for reserved memory in version 1.10 and introduced the current gradient calculation method. These changes improve memory utilization and provide enhanced performance for our users.
 
 By continuously improving the reserved memory feature, we strive to offer a more flexible and efficient memory management solution to meet the diverse needs of our users.
+</details>
 
-:::
 
 ### Why does the `CREATE MATERIALIZED VIEW` statement take a long time to execute?
 
