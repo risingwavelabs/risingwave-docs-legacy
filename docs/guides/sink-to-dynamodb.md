@@ -66,6 +66,7 @@ This makes sure that the data structure in RisingWave aligns with the key defini
 | numeric                     | number (N)         |
 | real                        | number (N)         |
 | double precision            | number (N)         |
+| serial                      | number (N)         |
 | character varying (varchar) | string (S)         |
 | bytea                       | binary             |
 | date                        | string (S)         |
