@@ -164,7 +164,7 @@ Memory usage is divided into the following components:
 
 - Compute memory: Memory allocated for computational tasks.
 
-- Reserved memory: Memory reserved for system operations to ensure critical tasks always have available memory.
+- Reserved memory: Memory reserved for system usage, such as the stack and code segment of processes, allocation overhead, and network buffer.
 
 Below is a specific example of memory usage composition on a compute node with 8G memory:
 
