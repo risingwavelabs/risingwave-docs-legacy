@@ -477,6 +477,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/udf/sql-udfs",
+                  label: "SQL UDFs",
+                },
+                {
+                  type: "doc",
                   id: "sql/udf/udf-foreign-data",
                   label: "Foreign data",
                 },
@@ -509,6 +514,11 @@ const sidebars = {
               id: "transform/use-dbt",
               label: "Use dbt for data transformations",
             },
+            {
+              type: "doc",
+              id: "transform/multiple-table-sink",
+              label: "Maintain wide table with table sinks",
+            },      
             {
               type: "doc",
               id: "transform/subscription",
@@ -591,6 +601,11 @@ const sidebars = {
               collapsible: true,
               collapsed: true,
               items: [
+                {
+                  type: "doc",
+                  label: "Amazon DynamoDB",
+                  id: "guides/sink-to-dynamodb",
+                },
                 {
                   type: "doc",
                   label: "Apache Doris",

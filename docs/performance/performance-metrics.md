@@ -41,15 +41,15 @@ A simplified description of RisingWave’s memory control mechanism:
 
 1. RisingWave calculates and monitors the memory usage of each component.
 
-2. RisingWave reserves 20% of the total memory, i.e., reserved memory, as a buffer. In case of a sudden spike in input data, RisingWave has enough time to adjust its memory usage.
+2. RisingWave reserves 30% of the total memory, i.e., reserved memory, as a buffer. In case of a sudden spike in input data, RisingWave has enough time to adjust its memory usage.
 
-3. RisingWave periodically checks the current memory usage against the rest 80% of the total memory, i.e., usable memory, and decides if it should evict data. If it exceeds 70% of usable memory, it gracefully evicts. The eviction will be further intensified if it exceeds 80% and 90%.
+3. RisingWave periodically checks the current memory usage against the rest 70% of the total memory, i.e., usable memory, and decides if it should evict data. If it exceeds 70% of usable memory, it gracefully evicts. The eviction will be further intensified if it exceeds 80% and 90%.
 
-In the figure above, we have allocated 12 GB of memory to the compute node. The real memory usage keeps fluctuating around 8.64 GB (90% of usable memory). This suggests that the eviction is triggered constantly as RisingWave tries to use more memory.
+In the figure above, we have allocated 12 GB of memory to the compute node. The real memory usage keeps fluctuating around 8.64 GB (over 90% of usable memory). This suggests that the eviction is triggered constantly as RisingWave tries to use more memory.
 
 **Takeaway**
 
-1. If the memory is kept below 6.72 GB (70% of usable memory), we can be sure that the workload only asks for this amount. In other words, the data/state is completely kept in memory, as the eviction is never triggered. As a result, we can tune down the memory resources to save costs.
+1. If the memory is kept below 5.88 GB (70% of usable memory), we can be sure that the workload only asks for this amount. In other words, the data/state is completely kept in memory, as the eviction is never triggered. As a result, we can tune down the memory resources to save costs.
 
 2. If the memory is higher than 70% of the usable memory, we consider allocating more memory to speed up if the extra cost is acceptable. Additionally, we recommend taking the cache miss ratio below into consideration when making this decision.
 

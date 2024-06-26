@@ -52,6 +52,8 @@ For example, the following figure shows a materialized view with extremely high 
   alt="An example of extremely high latency"
 />
 
+To solve the issue, consider rewriting the SQL query to reduce join amplification, such as using better equal conditions on the problematic join to reduce the number of matched rows. See [Maintain wide table with table sinks](/transform/multiple-table-sink.md) for details.
+
 At the same time, a log of `high_join_amplification` with the problematic join keys will be printed, such as
 
 ```

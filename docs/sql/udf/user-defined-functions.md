@@ -29,6 +29,9 @@ At present, there are three ways to define your UDF. The first option is to use 
 UDF is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
+You can create all types of UDFs mentioned above using the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md) command. However, the syntax may vary slightly depending on the type of UDF you want to create. We have provided specific guides for each type of UDF below, so you can choose the one that best meets your needs.
+
+
 ### UDFs as external functions
 
 RisingWave supports creating external UDFs with the following programming languages:
@@ -50,7 +53,7 @@ RisingWave supports creating embedded UDFs with the following programming langua
 
 For details about how to create a SQL UDF and its use cases, see:
 
-- [`CREATE FUNCTION`](/sql/commands/sql-create-function.md)
+- [SQL UDFs](/sql/udf/sql-udfs.md)
 
 <details>
 
@@ -62,13 +65,16 @@ The other two dimensions are:
 
 - the input and output of functions
 
-  For this dimension, since common SQL functions include scalar functions,  table functions, aggregate functions, and window functions, UDFS can be classified as user-defined scalar functions (abbreviated as UDFs), user-defined table functions(UDTFs), user-defined aggregate functions(UDAFs), and user-defined window functions(UDWFs).
+  For this dimension, since common SQL functions include scalar functions,  table functions, aggregate functions, and window functions, UDFS can be classified as user-defined scalar functions (abbreviated as UDFs), user-defined table functions (UDTFs), user-defined aggregate functions (UDAFs), and user-defined window functions (UDWFs).
 
   RisingWave currently supports UDF, UDTF and UDAF, covering most practical needs. 
  
 - the language used to write the function
 
   RisingWave currently supports using SQL, Python, Java, JavaScript, and Rust to write UDFs.
+
+
+To learn more about the design and implementation of our user-defined functions (UDFs), we have a series of blog articles on our website, such as "[RisingWave user-defined functions: Overview](https://risingwave.com/blog/risingwave-user-defined-functions-overview/)". These blogs provide in-depth information about UDFs and can help you understand their features and capabilities better. Feel free to explore them!
   
 </details>
 
