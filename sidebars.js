@@ -477,6 +477,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/udf/sql-udfs",
+                  label: "SQL UDFs",
+                },
+                {
+                  type: "doc",
                   id: "sql/udf/udf-foreign-data",
                   label: "Foreign data",
                 },
@@ -509,6 +514,11 @@ const sidebars = {
               id: "transform/use-dbt",
               label: "Use dbt for data transformations",
             },
+            {
+              type: "doc",
+              id: "transform/multiple-table-sink",
+              label: "Maintain wide table with table sinks",
+            },      
             {
               type: "doc",
               id: "transform/subscription",
@@ -593,6 +603,11 @@ const sidebars = {
               items: [
                 {
                   type: "doc",
+                  label: "Amazon DynamoDB",
+                  id: "guides/sink-to-dynamodb",
+                },
+                {
+                  type: "doc",
                   label: "Apache Doris",
                   id: "guides/sink-to-doris",
                 },
@@ -650,6 +665,11 @@ const sidebars = {
                   type: "doc",
                   label: "Google Pub/Sub",
                   id: "guides/sink-to-google-pubsub",
+                },
+                {
+                  type: "doc",
+                  label: "Microsoft SQL Server",
+                  id: "guides/sink-to-sqlserver",
                 },
                 {
                   type: "doc",
@@ -1103,6 +1123,11 @@ const sidebars = {
         {
           type: 'doc',
           id: 'manage/meta-backup',
+        },
+        {
+          type: 'doc',
+          id: 'manage/migrate-to-sql-backend',
+          label: "Migrate to SQL backend",
         },
         {
           type: "doc",

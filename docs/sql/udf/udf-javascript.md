@@ -60,6 +60,61 @@ SELECT gcd(25, 15);
 SELECT * from series(5);
 ```
 
+## Define your aggregate functions
+
+You can create aggregate functions using the [`CREATE AGGREGATE`](/sql/commands/sql-create-aggregate.md) command. Refer to the syntax below:
+
+```sql
+CREATE AGGREGATE function_name ( argument_type [, ...] )
+    RETURNS return_type
+    LANGUAGE javascript
+    AS $$ function_body $$
+```
+
+In the *function_body*, the code should define several **exported** functions to implement the aggregate function.
+
+Required functions:
+
+- `create_state() -> state`: Create a new state.
+- `accumulate(state, *args) -> state`: Accumulate a new value into the state, returning the updated state.
+
+Optional functions:
+
+- `finish(state) -> value`: Get the result of the aggregate function. If not defined, the state is returned as the result.
+- `retract(state, *args) -> state`: Retract a value from the state, returning the updated state. If not defined, the state can not be updated incrementally in materialized views and performance may be affected.
+
+The following command creates an aggregate function named `weighted_avg` to calculate the weighted average.
+
+```sql title="Javascript UDAF"
+create aggregate weighted_avg(value int, weight int) returns float language javascript as $$
+    export function create_state() {
+        return { sum: 0, weight: 0 };
+    }
+    export function accumulate(state, value, weight) {
+        if (value == null || weight == null) {
+            return state;
+        }
+        state.sum += value * weight;
+        state.weight += weight;
+        return state;
+    }
+    export function retract(state, value, weight) {
+        if (value == null || weight == null) {
+            return state;
+        }
+        state.sum -= value * weight;
+        state.weight -= weight;
+        return state;
+    }
+    export function finish(state) {
+        if (state.weight == 0) {
+            return null;
+        }
+        return state.sum / state.weight;
+    }
+$$;
+```
+
 ## Data type mapping
 
 The following table shows the data type mapping between SQL and JavaScript:

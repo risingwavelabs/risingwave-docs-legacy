@@ -126,6 +126,43 @@ SELECT pg_get_viewdef('materialized_view1'::regclass);
 (1 row)
 ```
 
+## `pg_index_column_has_property()`
+
+Checks if an index column has a specific property. The `index` parameter represents the OID of the index, while the `column` parameter represents the column number (starting from 1) within the index. If the property name is not recognized or doesn't apply to the object, or if the OID or column number is invalid, this function will return NULL.
+
+```sql title="Syntax"
+pg_index_column_has_property ( index regclass, column integer, property text ) → boolean
+```
+
+The supported properties are as follows:
+
+- `asc`: Indicates whether the column sorts in ascending order on a forward scan.
+
+- `desc`: Indicates whether the column sorts in descending order on a forward scan.
+
+- `nulls_first`: Indicates whether the column sorts with nulls first on a forward scan.
+
+- `nulls_last`: Indicates whether the column sorts with nulls last on a forward scan.
+
+```sql title="Examples"
+-- Create a table named 't' with columns 'a' and 'b' of type INT
+CREATE TABLE t (a INT, b INT); 
+
+-- Create an index named 'i' on table 't' with column 'a' in ascending order and column 'b' in descending order
+CREATE INDEX i ON t (a ASC, b DESC);
+
+
+-- Check if the first column of index 'i' has the 'ASC' property
+SELECT pg_index_column_has_property('i'::REGCLASS, 1, 'ASC');
+----RESULT
+t
+
+-- Check if the first column of index 'i' has the 'DESC' property
+SELECT pg_index_column_has_property('i'::REGCLASS, 1, 'DESC');
+----RESULT
+f
+```
+
 ## `pg_typeof()`
 
 Returns the standard name of the data type of the provided value. More specifically, it returns the OID of the data type of the provided value. It returns a regtype, which is an OID alias type. Therefore it’s the same as an OID for comparison purposes but displays as a type name.
