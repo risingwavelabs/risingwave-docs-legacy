@@ -65,7 +65,7 @@ module.exports = {
             },
             {
               type: "doc",
-              id: "project-connection-errors",
+              id: "cluster-connection-errors",
             },
             {
               type: "doc",
