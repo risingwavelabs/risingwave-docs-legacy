@@ -64,14 +64,26 @@ SELECT * FROM test;
 
 You can see the [INCLUDE clause](/ingest/include-clause.md) for more details.
 
-## Metadata options
+### Metadata options
 
 |Field|Notes|
 |---|---|
 |database_name| Name of the database. |
 |collection_name| Name of the MongoDB collection. |
 
-### Examples
+```sql
+CREATE TABLE users (_id JSONB PRIMARY KEY, payload JSONB)
+INCLUDE TIMESTAMP as commit_ts
+INCLUDE DATABASE_NAME as database_name
+INCLUDE COLLECTION_NAME as collection_name
+WITH (
+  connector = 'mongodb-cdc',
+  mongodb.url = 'mongodb://mongodb:27017/?replicaSet=rs0',
+  collection.name = 'random_data.*'
+);
+```
+
+## Examples
 
 The following SQL query creates a table that ingests data from all collections in the `dev` database.
 
