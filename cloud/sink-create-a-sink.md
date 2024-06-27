@@ -18,7 +18,7 @@ You can create a sink with one of the following methods:
 
 1. Go to [**Sink**](https://cloud.risingwave.com/sink/).
 
-2. Specify the cluster and database, and log in as a database user.
+2. Specify the project and database, and log in as a database user.
 
     <img
     src={require('./images/sink-login.png').default}

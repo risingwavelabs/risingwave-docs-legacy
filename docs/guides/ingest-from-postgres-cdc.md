@@ -254,6 +254,33 @@ CREATE SOURCE pg_mydb WITH (
 
 Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
 
+### Metadata options
+
+Below are the metadata columns available for PostgreSQL CDC.
+
+|Field|Notes|
+|---|---|
+|database_name| Name of the database. |
+|schema_name| Name of the schema.|
+|table_name| Name of the table.|
+
+For instance, the person table below contains columns for typical personal information. It also includes metadata fields (`database_name`, `schema_name`, `table_name`) to provide contextual information about where the data resides within the PostgreSQL database.
+
+```sql
+CREATE TABLE person (
+    id int,
+    name varchar,
+    email_address varchar,
+    credit_card varchar,
+    city varchar,
+    PRIMARY KEY (id)
+) INCLUDE TIMESTAMP AS commit_ts
+INCLUDE DATABASE_NAME as database_name
+INCLUDE SCHEMA_NAME as schema_name
+INCLUDE TABLE_NAME as table_name
+FROM pg_source TABLE 'public.person';
+```
+
 ## Examples
 
 Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command and PostgreSQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.

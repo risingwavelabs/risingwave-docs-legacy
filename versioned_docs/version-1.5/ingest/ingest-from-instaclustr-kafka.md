@@ -56,13 +56,13 @@ After these steps, you are on your way to build stream processing applications a
 
 ## Ingest data from Instaclustr Kafka
 
-### Create a RisingWave cluster
+### Create a RisingWave project
 
-You can create a RisingWave cluster and connect to it by following the steps in the [Quick Start](/get-started.md) in the RisingWave documentation.
+You can create a RisingWave project and connect to it by following the steps in the [Quick Start](/get-started.md) in the RisingWave documentation.
 
 ### Create a source
 
-Once you have successfully deployed the RisingWave cluster and connected to it, proceed to create a source in RisingWave to ingest data from Instaclustr Kafka.
+Once you have successfully deployed the RisingWave project and connected to it, proceed to create a source in RisingWave to ingest data from Instaclustr Kafka.
 
 ```sql
 CREATE SOURCE aviation_source (

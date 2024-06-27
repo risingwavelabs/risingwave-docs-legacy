@@ -688,6 +688,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "OpenSearch",
+                  id: "guides/sink-to-opensearch",
+                },
+                {
+                  type: "doc",
                   label: "PostgreSQL",
                   id: "guides/sink-to-postgres",
                 },

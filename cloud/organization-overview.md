@@ -7,11 +7,11 @@ slug: /organization-overview
 
 ## Concept
 
-In RisingWave Cloud, an organization serves as the central entity that owns all resources, such as accounts, clusters, database objects, and VPC connections. Each organization provides all associated users with access to the same set of resources for seamless collaboration among them. When you sign up for RisingWave Cloud, an organization is automatically created for you. 
+In RisingWave Cloud, an organization serves as the central entity that owns all resources, such as accounts, projects, database objects, and VPC connections. Each organization provides all associated users with access to the same set of resources for seamless collaboration among them. When you sign up for RisingWave Cloud, an organization is automatically created for you. 
 
 In an organization, you can:
 
-- Share clusters, databases (and their tables, sources, sinks, and views), VPC connections, and other resources with all users.
+- Share projects, databases (and their tables, sources, sinks, and views), VPC connections, and other resources with all users.
 
 - Allow users to manage the resources.
 
@@ -34,7 +34,7 @@ In an organization, you can:
 
 <card
 title="Invite and manage users"
-content="Invite others to your organization and manage them. Share your clusters, databases, and other resources with your team."
+content="Invite others to your organization and manage them. Share your projects, databases, and other resources with your team."
 cloud="manage-users"
 style={{height: "87%"}}
 />

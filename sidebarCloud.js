@@ -40,28 +40,28 @@ module.exports = {
     },
     {
       type: "category",
-      label: "Cluster & database",
+      label: "Project & database",
       collapsible: false,
       collapsed: false,
       items: [
         {
           type: "category",
-          label: "Manage clusters",
+          label: "Manage projects",
           collapsible: true,
-          link: { type: "doc", id: "cluster-manage-clusters" },
+          link: { type: "doc", id: "project-manage-projects" },
           items: [
             {
               type: "doc",
-              id: "cluster-manage-clusters",
+              id: "project-manage-projects",
               label: "Overview",
             },
             {
               type: "doc",
-              id: "cluster-choose-a-cluster-plan",
+              id: "project-choose-a-project-plan",
             },
             {
               type: "doc",
-              id: "cluster-connect-to-a-cluster",
+              id: "project-connect-to-a-project",
             },
             {
               type: "doc",
@@ -69,25 +69,25 @@ module.exports = {
             },
             {
               type: "doc",
-              id: "cluster-create-byoc-cluster",
+              id: "project-byoc",
             },
             {
               type: "doc",
-              id: "cluster-check-status-and-metrics",
+              id: "project-check-status-and-metrics",
               label: "Check status and metrics",
             },
             {
               type: "doc",
-              id: "cluster-scale-a-cluster-manually"
+              id: "project-scale-a-project-manually"
             },
             {
               type: "doc",
-              id: "cluster-update-database-version",
+              id: "project-update-database-version",
               label: "Update database version",
             },
             {
               type: "doc",
-              id: "cluster-stop-and-delete-clusters",
+              id: "project-stop-and-delete-projects",
             },
           ],
         },
@@ -96,37 +96,37 @@ module.exports = {
           label: "Manage database users",
           collapsible: true,
           collapsed: true,
-          link: { type: "doc", id: "cluster-manage-database-users" },
+          link: { type: "doc", id: "project-manage-database-users" },
           items: [
             {
               type: "doc",
-              id: "cluster-manage-database-users",
+              id: "project-manage-database-users",
               label: "Overview",
             },
             {
               type: "doc",
-              id: "cluster-create-a-database-user",
+              id: "project-create-a-database-user",
               label: "Create a user",
             },
             {
               type: "doc",
-              id: "cluster-change-database-user-password",
+              id: "project-change-database-user-password",
               label: "Change user password",
             },
             {
               type: "doc",
-              id: "cluster-delete-a-database-user",
+              id: "project-delete-a-database-user",
               label: "Delete a user",
             },
           ],
         },
         {
           type: "doc",
-          id: "cluster-monitor-materialized-views",
+          id: "project-monitor-materialized-views",
         },
         {
           type: "doc",
-          id: "cluster-export-metrics",
+          id: "project-export-metrics",
         },
       ],
     },

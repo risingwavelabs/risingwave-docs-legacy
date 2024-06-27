@@ -8,7 +8,7 @@ This topic summarizes the connection errors that you may encounter when using Ri
 
 ## Failed to get tenant identifier
 
-To connect to a cluster, you need to provide the tenant identifier. The tenant identifier is a global unique identifier for each cluster, and the format of the tenant identifier is `rwc-g1huxxxxxx-mycluster`. You can find the tenant identifier in the RisingWave Cloud console.
+To connect to a project, you need to provide the tenant identifier. The tenant identifier is a global unique identifier for each project, and the format of the tenant identifier is `rwc-g1huxxxxxx-mycluster`. You can find the tenant identifier in the RisingWave Cloud console.
 
 Below are 3 ways to put the tenant identifier in the connection string.
 
@@ -67,4 +67,4 @@ mkdir -p $env:appdata\postgresql\; Invoke-WebRequest -Uri https://risingwave.clo
 
 ## Instance is currently unavailable
 
-This error occurs when the cluster is not available. You can check the status of the cluster in the RisingWave Cloud console. If the cluster is running, you can try to reconnect to the cluster.
+This error occurs when the project is not available. You can check the status of the project in the RisingWave Cloud console. If the project is running, you can try to reconnect to the project.
