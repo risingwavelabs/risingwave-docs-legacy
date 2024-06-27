@@ -50,7 +50,7 @@ WITH (
 
 The OpenSearch sink defaults to the `upsert` sink type. It does not support the `append-only` sink type.
 
-If you want to customize your OpenSearch ID, please specify it via the `primary_key` parameter. RisingWave will combine multiple primary key values into a single string with the delimiter you set, and use it as the OpenSearch ID.
+To customize your OpenSearch ID, specify it via the `primary_key` parameter. RisingWave will combine multiple primary key values into a single string with the delimiter set, and use it as the OpenSearch ID.
 
 If you don't want to customize your OpenSearch ID, RisingWave will use the first column in the sink definition as the OpenSearch ID.
 
