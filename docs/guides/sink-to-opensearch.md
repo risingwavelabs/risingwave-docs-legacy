@@ -11,7 +11,9 @@ OpenSearch is the flexible, scalable, open-source way to build solutions for dat
 
 ## Prerequisites
 
-xx
+- Ensure the OpenSearch cluster is accessible from RisingWave.
+
+- If you are running RisingWave locally from binaries, make sure that you have [JDK 11](https://openjdk.org/projects/jdk/11/) or later versions installed in your environment.
 
 ## Create an OpenSearch sink
 
