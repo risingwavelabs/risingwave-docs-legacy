@@ -46,7 +46,7 @@ Node-specific configurations can be set in the `risingwave.toml` configuration f
 
 5. Restart the node.
 
-   For the changes to take effect, you may need to restart the node.
+   For the changes to take effect, you must restart the node.
 
 Any items present in `risingwave.toml` will override the default values in the source code. If no configuration file is specified, the default values in `/risingwave/src/common/src/config.rs` will be used.
 
