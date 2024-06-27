@@ -7,7 +7,7 @@ slug: /PrivateLink-overview
 
 ## Concept
 
-In RisingWave Cloud, if you want to connect RisingWave projects with your services inside your private Virtual Private Cloud (VPC) network, you can use the PrivateLink service to establish a private and secure connection between RisingWave Cloud and your private VPC in the same region.
+In RisingWave Cloud, if you want to connect RisingWave instances with your services inside your private Virtual Private Cloud (VPC) network, you can use the PrivateLink service to establish a private and secure connection between RisingWave Cloud and your private VPC in the same region.
 
 RisingWave Cloud utilizes the the private connection capability of the underlying Cloud vendors to establish the PrivateLink connection. In particular, the PrivateLink service is built on top of the following services:
 
