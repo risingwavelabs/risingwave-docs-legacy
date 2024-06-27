@@ -7,10 +7,6 @@ slug: /connect-to-a-project
 
 After [getting a project up and running](project-manage-projects.md#create-a-project), you need to connect to it so that you can interact with RisingWave.
 
-:::note
-RisingWave Cloud creates a default user for every provisioned project since v1.7.1. The default user is authenticated with a temporary token under the OAuth 2.0 protocol to ease the burden on developers.
-:::
-
 You can choose one of the following ways to connect to your project.
 
 ## Workspace
@@ -21,13 +17,7 @@ To connect via workspace, follow the steps below:
 
 1. In RisingWave Cloud, go to [**projects**](https://cloud.risingwave.com/project/home/), and click **Workspace** for the project you want to connect to.
 
-2. A workspace login window will pop up. You can choose **Default user** or **Create a new user**, then log in to the project.
-
-3. Click **Switch** in the top right corner to switch the user if needed.
-
-:::tip
-For detailed instructions on using the workspace, see [Workspace](console-overview.md).
-:::
+2. For detailed instructions on using the workspace, see [Workspace](console-overview.md).
 
 ## Local client
 
@@ -39,7 +29,7 @@ To connect with any local clients, follow the steps below:
 
 2. Click **Switch** in the top right corner to switch users, and then choose a startup mode.
 
-    - For default users, RisingWave Cloud offers the `psql` command and a general `Connection String` for a quick connection.
+    - RisingWave Cloud creates a default user for every provisioned project since v1.7.1. The default user is authenticated with a temporary token under the OAuth 2.0 protocol to ease the burden on developers. For default users, RisingWave Cloud offers the `psql` command and a general `Connection String` for a quick connection.
 
     - Alternatively, you can create a new user, RisingWave Cloud offers `psql`, `Connection String`, `Parameters Only`, `Java`, `Node.js`, `Python`, and `Golang` as connection options.
 

@@ -9,7 +9,7 @@ You can view all [materialized views](/docs/current/key-concepts/#materialized-v
 
 1. Go to the [project details page](project-check-status-and-metrics.md#check-project-details).
 
-2. Select the **Materialized Views** tab.
+2. Select the **Workspace** > **Materialized Views** tab.
 
     <img
     src={require('./images/cluster-details-mv.png').default}

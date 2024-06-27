@@ -32,10 +32,6 @@ After getting a project up and running, you need to connect to it so that you ca
 
 Choose from the following ways to connect to your project.
 
-:::note
-RisingWave Cloud creates a default user for every provisioned project. The default user is authenticated with a temporary token under the OAuth 2.0 protocol to ease the burden on developers.
-:::
-
 <Tabs>
 
 <TabItem value="Workspace" label="Workspace">
@@ -46,11 +42,7 @@ Workspace offers graphical tools for managing data and visualizing results. It i
 
 1. In RisingWave Cloud, go to [**Projects**](https://cloud.risingwave.com/project/home/), and click **Workspace** for the project you want to connect to.
 
-2. You will enter the Workspace as a default user. Click **Switch** in the top right corner to switch the user if needed.
-
-:::tip
-For detailed instructions on using the workspace, see [Workspace](console-overview.md).
-:::
+2. For detailed instructions on using the workspace, see [Workspace](console-overview.md).
 
 </TabItem>
  
@@ -64,19 +56,13 @@ If you need to connect to the RisingWave project via local clients, you can conf
 
 2. Click **Switch** in the top right corner to switch users, and then choose a startup mode.
 
-    - For default users, RisingWave Cloud offers the `psql` command and a general `Connection String` for a quick connection.
-
-    - Alternatively, you can create a new user, RisingWave Cloud offers `psql`, `Connection String`, `Parameters Only`, `Java`, `Node.js`, `Python`, and `Golang` as connection options.
-
-    :::note
-    To connect via `psql`, you need to [Install `psql`](/docs/current/install-psql-without-postgresql/) in your environment. `psql` is a command-line interface for interacting with PostgreSQL databases, including RisingWave.
-    :::
-
 3. You may need to set up a CA certificate to enable SSL connections. See the instructions displayed on the portal for more details.
 
 4. Copy the command and run it in a terminal window.
 
 5. Log in with the password of the database user.
+
+For detailed instructions, see [Local client](project-connect-to-a-project.md#local-client).
 
 </TabItem>
 
