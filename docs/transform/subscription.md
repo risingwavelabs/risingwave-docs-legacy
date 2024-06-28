@@ -50,7 +50,9 @@ If you don’t specify the `since_clause`, the returned data will include both t
 
 3. `since unix_ms` : Starts reading from the first time point greater than or equal to the specified `unix_ms` value. It's important to note that the `unix_ms` value should fall within the range of `now() - subscription's retention` and `now`.
 
-### Results parameters
+### Fetch from cursor
+
+#### `FETCH NEXT FROM cursor_name`
 
 After creating a subscription cursor, you can fetch the data by the `FETCH NEXT FROM cursor_name` command. Then you will see a result like  below:
 
@@ -69,6 +71,14 @@ The `op` column in the result stands for the change operations. It has four opti
 Note that each time `FETCH NEXT FROM cursor_name` is called, it will return one row of incremental data from the subscribed table. It does not return all the incremental data at once, but requires the user to repeatedly call this statement to fetch the data.
 
 This method is non-blocking. Even if the current table has no new incremental data, `FETCH NEXT FROM cursor_name` will not block, but will return an empty row. When new incremental data is generated, calling this statement again will return the latest row of data.
+
+#### `FETCH n FROM cursor_name`
+
+You also can fetch multiple rows at once from the cursor using the FETCH n FROM cursor_name command. `n` is the number of rows to fetch.
+
+```sql
+FETCH n FROM cursor_name;
+```
 
 ### Examples
 
