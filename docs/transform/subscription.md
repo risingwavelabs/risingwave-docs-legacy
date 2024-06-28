@@ -74,7 +74,7 @@ This method is non-blocking. Even if the current table has no new incremental da
 
 #### `FETCH n FROM cursor_name`
 
-You also can fetch multiple rows at once from the cursor using the FETCH n FROM cursor_name command. `n` is the number of rows to fetch.
+You also can fetch multiple rows at once from the cursor using the `FETCH n FROM cursor_name` command. `n` is the number of rows to fetch.
 
 ```sql
 FETCH n FROM cursor_name;
