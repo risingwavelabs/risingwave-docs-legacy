@@ -73,7 +73,7 @@ Iceberg supports these types of catalogs:
 
 - Jdbc catalog: RisingWave supports the [JDBC catalog](https://iceberg.apache.org/docs/latest/jdbc/#configurations). See the full example in this [configuration file](https://github.com/risingwavelabs/risingwave/blob/main/integration_tests/iceberg-sink2/docker/jdbc/config.ini).
 
-- Glue Catalog: RisingWave supports Glue catalog. See [Glue catalog](https://iceberg.apache.org/docs/nightly/aws/?h=glue#glue-catalog) in the Iceberg documentation for details about this catalog. You should use S3 if you use the Glue catalog.
+- Glue Catalog: RisingWave supports the Glue catalog. You should use AWS S3 if you use the Glue catalog.
 
 ## Time travel
 
