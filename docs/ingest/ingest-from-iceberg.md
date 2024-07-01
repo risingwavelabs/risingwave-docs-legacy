@@ -65,17 +65,85 @@ RisingWave converts data types from Iceberg to RisingWave according to the follo
 
 Iceberg supports these types of catalogs:
 
-- Storage catalog: The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system. See the full example in this [configuration file](https://github.com/risingwavelabs/risingwave/blob/main/integration_tests/iceberg-source/docker/storage/config.ini).
+- Storage catalog: The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system. 
 
-- REST catalog: RisingWave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use RisingWave with Iceberg tables. See the full example in this [configuration file](https://github.com/risingwavelabs/risingwave/blob/main/integration_tests/iceberg-source/docker/rest/config.ini).
+    ```sql title="Examples"
+    create source source_demo_storage
+    with (
+        connector = 'iceberg',
+        catalog.type = 'storage',
+        warehouse.path = 's3://icebergdata/demo',
+        s3.endpoint = 'http://minio-0:9301',
+        s3.access.key = 'hummockadmin',
+        s3.secret.key = 'hummockadmin',
+        s3.region = 'ap-southeast-1',
+        database.name = 's1',
+        table.name = 't1'
+    );
+    ```
 
-- Hive catalog: RisingWave supports the Hive catalog. You need to set `catalog.type` to `hive` to use it. See the full example in this [configuration file](https://github.com/risingwavelabs/risingwave/blob/main/integration_tests/iceberg-sink2/docker/hive/config.ini).
+- REST catalog: RisingWave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use RisingWave with Iceberg tables. 
 
-- Jdbc catalog: RisingWave supports the [JDBC catalog](https://iceberg.apache.org/docs/latest/jdbc/#configurations). See the full example in this [configuration file](https://github.com/risingwavelabs/risingwave/blob/main/integration_tests/iceberg-sink2/docker/jdbc/config.ini).
+  ```sql title="Examples"
+  create source source_demo_rest
+  with (
+      connector = 'iceberg',
+      s3.endpoint = 'http://minio-0:9301',
+      s3.access.key = 'hummockadmin',
+      s3.secret.key = 'hummockadmin',
+      s3.region = 'ap-southeast-1',
+      catalog.type = 'rest',
+      catalog.name = 'demo',
+      catalog.uri = 'http://rest:8181',
+      warehouse.path = 's3://icebergdata/demo',
+      database.name = 's1',
+      table.name = 't1'
+  );
+  ```
+
+- Hive catalog: RisingWave supports the Hive catalog. You need to set `catalog.type` to `hive` to use it. 
+
+    ```sql title="Examples"
+    create source source_demo_hive
+    with (
+        connector = 'iceberg',
+        catalog.type = 'hive',
+        catalog.uri = 'thrift://metastore:9083',
+        warehouse.path = 's3://icebergdata/demo',
+        s3.endpoint = 'http://minio-0:9301',
+        s3.access.key = 'hummockadmin',
+        s3.secret.key = 'hummockadmin',
+        s3.region = 'ap-southeast-1',
+        catalog.name = 'demo',
+        database.name = 's1',
+        table.name = 't1'
+    );
+    ```
+
+- Jdbc catalog: RisingWave supports the [JDBC catalog](https://iceberg.apache.org/docs/latest/jdbc/#configurations). 
+
+    ```sql title="Examples"
+    create source source_demo_jdbc
+    with (
+        connector = 'iceberg',
+        warehouse.path = 's3://icebergdata/demo',
+        s3.endpoint = 'http://minio-0:9301',
+        s3.access.key = 'hummockadmin',
+        s3.secret.key = 'hummockadmin',
+        s3.region = 'ap-southeast-1',
+        catalog.name = 'demo',
+        catalog.type = 'jdbc',
+        catalog.uri = 'jdbc:postgresql://postgres:5432/iceberg',
+        catalog.jdbc.user = 'admin',
+        catalog.jdbc.password = '123456',
+        database.name = 's1',
+        table.name = 't1'
+    );
+    ```
 
 - Glue Catalog: RisingWave supports the Glue catalog. You should use AWS S3 if you use the Glue catalog. Below are example codes for using this catalog:
 
-  ```sql title="Glue catalog examples"
+  ```sql title="Examples"
   create source source_test
   with (
       connector = 'iceberg',
