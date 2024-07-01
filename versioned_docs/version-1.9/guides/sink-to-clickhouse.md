@@ -24,7 +24,7 @@ The ClickHouse sink connector in RisingWave is currently in Beta. Please contact
 - Ensure you have an upstream materialized view or source that you can sink data from.
 
 :::note
-We highly recommend using the deduplication engine like ReplacingMergeTree in ClickHouse. This is because it addresses the potential problem of duplicate writes in ClickHouse during RisingWave recovery when primary keys can be duplicated.
+We highly recommend using the de-weightable engine like ReplacingMergeTree in ClickHouse. This is because it addresses the potential problem of duplicate writes in ClickHouse during RisingWave recovery when primary keys can be duplicated.
 :::
 
 ## Syntax
