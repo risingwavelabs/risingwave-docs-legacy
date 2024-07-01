@@ -79,3 +79,5 @@ CREATE INDEX idx_o_custkey ON orders(o_custkey);
 SELECT * FROM customers JOIN orders ON c_custkey = o_custkey 
 WHERE c_phone = '123456789';
 ```
+RisingWave supports creating indexes on expressions. For more details, see [Indexes on expressions](/transform/indexes.md#Indexes-on-expressions).
+
