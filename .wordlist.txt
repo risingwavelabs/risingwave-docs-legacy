@@ -205,4 +205,3 @@ Standalone's
 localhost
 prometheus
 datasources
-de-weightable
