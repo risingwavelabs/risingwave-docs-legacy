@@ -27,15 +27,13 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
 ## Steps
 
-1. Go to the [**PrivateLink**](https://cloud.risingwave.com/connection/) page and click **Create PrivateLink**.
+1. Go to the [**Project**](https://cloud.risingwave.com/project/home/) page and select the project you want to connect the VPC to.
 
-2. For **Platform**, select your cloud service provider. Currently, RisingWave Cloud supports **AWS** PrivateLink and **GCP** Private Service Connect.
+2. Select **PrivateLink** tab, and click **Create PrivateLink**.
 
-3. For **project**, select the project you want to connect the VPC to. Ensure that the VPC and the project are in the same region.
+3. For **Name**, enter a descriptive name for the connection.
 
-4. For **Name name**, enter a descriptive name for the connection.
-   
-5. For **Endpoint service name** or **Service attachment**:
+4. For **Endpoint service name** or **Service attachment**:
 
     <details><summary>If you choose AWS as the platform, enter the service name of the endpoint service.</summary>
 
@@ -59,7 +57,7 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
     </details>
 
-6. Click **Confirm** to create the connection.
+5. Click **Confirm** to create the connection.
 
 ## What's next
 
