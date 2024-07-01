@@ -94,7 +94,7 @@ Currently, RisingWave supports the following sink connectors:
 
 ## Sink decoupling
 
-Typically, sinks in RisingWave operates in a blocking manner. This means that if the downstream target system experiences performance fluctuations or becomes unavailable, it can potentially impact the stability of the RisingWave instance. However, sink decoupling can be implemented to address this issue.
+Typically, sinks in RisingWave operate in a blocking manner. This means that if the downstream target system experiences performance fluctuations or becomes unavailable, it can potentially impact the stability of the RisingWave instance. However, sink decoupling can be implemented to address this issue.
 
 Sink decoupling introduces a buffering queue between a RisingWave sink and the downstream system. This buffering mechanism helps maintain the stability and performance of the RisingWave instance, even when the downstream system is temporarily slow or unavailable.
 
@@ -117,8 +117,9 @@ Sink decouple is enabled by default for the following sinks if the sink is appen
 - [Kafka](/guides/create-sink-kafka.md)
 - [Pulsar](/guides/sink-to-pulsar.md)
 - [Kinesis](/guides/sink-to-iceberg.md)
-- [Clickhouse](/guides/sink-to-clickhouse.md)
+- [Google Pub/Sub](guides/sink-to-google-pubsub.md)
 - [Nats](/guides/sink-to-nats.md)
+- [MQTT](/docs/guides/sink-to-mqtt.md)
 - JDBC
   - [MySQL](/guides/sink-to-mysql.md)
   - [PostgreSQL](/guides/sink-to-postgres.md)
