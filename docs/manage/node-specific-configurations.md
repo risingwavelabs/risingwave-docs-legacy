@@ -52,7 +52,7 @@ Any items present in `risingwave.toml` will override the default values in the s
 
 ## Node-specific configurations
 
-Configurations for different components lies under different TOML section. Here's an example:
+Configurations for different components lie under different TOML sections. Here's an example:
 
 ```toml
 [system]
