@@ -1112,10 +1112,6 @@ const sidebars = {
           id: 'manage/node-specific-configurations',
         },
         {
-          type: 'doc',
-          id: 'manage/configure-file-cache-block-cache',
-        },
-        {
           type: "doc",
           id: "manage/dedicated-compute-node",
           label: "Set up a dedicated compute node",
