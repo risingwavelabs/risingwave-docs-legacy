@@ -43,6 +43,7 @@ WITH (
 | bigquery.project | Required. The BigQuery project ID. |
 | bigquery.dataset | Required. The BigQuery dataset ID. |
 | bigquery.table | Required. The BigQuery table you want to sink to. |
+| auto_create | Optional. Defaults to `false`. If `true`, a new table will be automatically created in BigQuery when the specified table is not found.|
 | aws.credentials.access_key_id | Optional. The access key of the S3 file. This must be specified if sinking to an S3 file. |
 | aws.credentials.secret_access_key | Optional. The secret access key of the S3 file. This must be specified if sinking to an S3 file.|
 | region | Optional. The service region of the S3 file. This must be specified if sinking to an S3 file. |
@@ -97,7 +98,7 @@ WITH (
 |numeric |numeric|
 |date |date|
 |character varying (varchar) |string|
-|time without time zone |unsupported|
+|time without time zone |time|
 |timestamp without time zone |datetime|
 |timestamp with time zone |timestamp|
 |interval |interval|
