@@ -99,7 +99,7 @@ These options should be set in `FORMAT data_format ENCODE data_encode (key = 'va
 
 ### Avro specific parameters
 
-When creating an upsert Avro sink, the following options can be used following `FORMAT UPSERT ENCODE AVRO`.
+When creating an Avro sink, the following options can be used following `FORMAT UPSERT ENCODE AVRO` or `FORMAT PLAIN ENCODE AVRO`.
 
 |Field|Notes|
 |-----|-----|
@@ -113,7 +113,7 @@ When creating an upsert Avro sink, the following options can be used following `
 Syntax:
 
 ```sql
-FORMAT UPSERT
+FORMAT [ UPSERT | PLAIN ]
 ENCODE AVRO (
    schema.registry = 'schema_registry_url',
    [schema.registry.username = 'username'],
