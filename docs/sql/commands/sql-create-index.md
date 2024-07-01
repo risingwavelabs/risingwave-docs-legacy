@@ -18,7 +18,7 @@ CREATE INDEX [ IF NOT EXISTS ] index_name ON object_name ( index_column [ ASC | 
 [ DISTRIBUTED BY ( distributed_column [, ...] ) ];
 ```
 
-### Parameters
+## Parameters
 
 | Parameter or clause| Description|
 |-----------|-------------|
@@ -80,36 +80,4 @@ SELECT * FROM customers JOIN orders ON c_custkey = o_custkey
 WHERE c_phone = '123456789';
 ```
 
-RisingWave supports creating indexes on expressions. Indexes on expressions are normally used to improve the performance of queries for frequently used expressions. To create an index on an expression, use the syntax:
-
-```sql
-CREATE INDEX index_name ON object_name (expression(column_name));
-```
-
-For example, if you often perform queries like this:
-
-```sql
-SELECT * FROM people WHERE (first_name || ' ' || last_name) = 'John Smith';
-```
-
-Then you might want to create an index like the following to improve the performance of such queries:
-
-```sql
-CREATE INDEX people_names ON people ((first_name || ' ' || last_name));
-```
-
-
-This syntax is quite useful when working with a semi-structured table that utilizes the [JSONB](/sql/data-types/data-type-jsonb.md) datatype. Here is an example of creating an index on a specific field within a JSONB column.
-
-```sql
-dev=> create table t(v jsonb);
-CREATE_TABLE
-dev=> create index i on t((v -> 'field')::int);
-CREATE_INDEX
-dev=> explain select * from t where (v->'field')::int = 123;
-                                QUERY PLAN                                
---------------------------------------------------------------------------
- BatchExchange { order: [], dist: Single }
- └─BatchScan { table: i, columns: [v], scan_ranges: [CAST = Int32(123)] }
-(2 rows)
-```
+RisingWave supports creating indexes on expressions. For more details, see [Indexes on expressions](/transform/indexes.md#Indexes-on-expressions).
