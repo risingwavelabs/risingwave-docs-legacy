@@ -172,7 +172,7 @@ Below is an example of the data file cache configuration for your reference. Ple
 | `indexer_shards` | `64` | The shard number of the indexer. |
 | `compression` | `"none"` | Compression algorithm for cached data. Supports `none`, `lz4`, and `zstd`. |
 
-The cache refill configuration is responsible for managing the behavior of LSM-tree data block cache refilling after compaction. The data blocks are refilling at the unit level, where a unit refers to a range of continuous data blocks that be batched and refilled together in one request.
+The cache refill configuration is responsible for managing the behavior of LSM-tree data block cache refilling after compaction. The data blocks are refilling at the unit level, where a unit refers to a range of continuous data blocks that are batched and refilled together in one request.
 
 RisingWave uses a recent filter to decide whether to fill a block or unit. The recent filter is a multi-layer hash set. The first layer records the accessed block IDs within a time window. When each time window passes, the recent filter will add a new layer to record and evict the last layer. Blocks whose IDs appear in the recent filter will be treated as "recently used". When the "recently used" block ratio exceeds a threshold, the unit will be refilled.
 
