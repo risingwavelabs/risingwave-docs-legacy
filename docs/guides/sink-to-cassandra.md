@@ -50,7 +50,7 @@ Once the sink is created, data changes will be streamed to the specified table.
 | `cassandra.url`        | Required. The URL or IP address of the Cassandra or ScyllaDB cluster or node you want to connect to.|
 | `cassandra.keyspace`       | Required. The name of the keyspace within the Cassandra database or ScyllaDB where you want to store the data. A keyspace is a logical container for organizing data in Cassandra.|
 | `cassandra.table`   | Required. The name of the table in the specified keyspace where you want to insert or update the data.|
-| `cassandra.datacenter`  | Required. If you are working with a multi-data center Cassandra setup, you may need to specify the name of the target data center where the data should be written.|
+| `cassandra.datacenter`  | Required. The name of the datacenter within the Cassandra or ScyllaDB. You can set it in Cassandra or ScyllaDB. If not specified, the default value is `datacenter1`.|
 | `cassandra.max_batch_rows` | Optional. The number of batch rows sent at a time. The value must be between 1 and 65535. The default value is 512. |
 | `cassandra.request_timeout_ms` | Optional. The waiting time for each batch. The default value is 2000. It is recommended to reduce batch size first before trying to change the waiting time. |
 
