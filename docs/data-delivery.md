@@ -112,7 +112,7 @@ To disable sink decoupling, set `sink_decouple` as `false` or `disable`, regardl
 SET sink_decouple = false;
 ```
 
-Sink decouple is enabled by default for the following sinks if the sink is append-only.
+By default, the decoupling feature is enabled for Kafka, Pulsar, Kinesis, Google Pub/Sub, Nats, and MQTT sinks. Additionally, the JDBC sink below will have decoupling enabled by default if the sink is append-only.
 
 - [Kafka](/guides/create-sink-kafka.md)
 - [Pulsar](/guides/sink-to-pulsar.md)
