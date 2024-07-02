@@ -17,7 +17,7 @@ A source problem can be identified by checking the **Source Throughput** panel i
 
 ![](../images/example-source-stuck.png)
 
-A sink problem is usually more serious because it back-pressures the entire streaming job, causing high barrier latency. To mitigate this issue, RisingWave introduced buffering before writing to the sink since v1.10. However, if the sink is still under heavy load, the buffer may be full, causing the entire streaming job to be blocked.
+A sink problem is usually more serious because it back-pressures the entire streaming job, causing high barrier latency. To mitigate this issue, RisingWave introduced **sink decoupling** (i.e. buffering) before writing to the sink since v1.10. However, if the sink is still under heavy load, the buffer may be full, causing the entire streaming job to be blocked.
 
 To identify a sink problem, navigate to the **Log Store Lag** panel in the **Grafana dashboard (dev)** > **Sink Metrics** section. This panel shows how much data is waiting to be written out. If the lag is increasing, the sink may be the bottleneck.
 
