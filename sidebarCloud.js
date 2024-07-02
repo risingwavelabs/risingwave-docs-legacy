@@ -238,6 +238,11 @@ module.exports = {
           id: "organization-service-account",
           label: "Service account & API key",
         },
+        {
+          type: "doc",
+          id: "organization-rbac",
+          label: "Role-based access control",
+        },
       ],
     },
     {
