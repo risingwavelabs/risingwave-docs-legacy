@@ -88,6 +88,10 @@ Currently, RisingWave supports the following sink connectors:
 
   With this connector, you can sink data from RisingWave to StarRocks. For details about the syntax and parameters, see [Sink data to StarRocks](/guides/sink-to-starrocks.md).
 
+- Microsoft SQL Server sink connector(`connector = 'sqlserver'`)
+  
+  With this connector, you can sink data from RisingWave to Microsoft SQL Server. For details about the syntax and parameters, see [Sink data to SQL Server](/guides/sink-to-sqlserver.md).
+
 ## Sink decoupling
 
 Typically, sinks in RisingWave operates in a blocking manner. This means that if the downstream target system experiences performance fluctuations or becomes unavailable, it can potentially impact the stability of the RisingWave instance. However, sink decoupling can be implemented to address this issue.

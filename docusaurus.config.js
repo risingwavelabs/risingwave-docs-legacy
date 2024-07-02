@@ -21,7 +21,7 @@ const config = {
           anonymizeIP: true,
         },
         googleTagManager: {
-          containerId: 'GTM-KJRVWHT7',
+          containerId: "GTM-KJRVWHT7",
         },
         docs: {
           admonitions: {
@@ -191,7 +191,7 @@ const config = {
             href: "https://github.com/risingwavelabs/risingwave",
             label: "GitHub",
             position: "right",
-          }
+          },
         ],
       },
       footer: {
@@ -230,16 +230,17 @@ const config = {
       async: true,
     },
     {
-      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@stable/dist/run-llm-search-widget.es.js",
+      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget/dist/run-llm-search-widget.es.js",
       id: "runllm-widget-script",
       type: "module",
       "runllm-server-address": "https://api.runllm.com",
       "runllm-assistant-id": "29",
-      "version": "stable",
+      version: "stable",
       "runllm-position": "TOP_RIGHT",
       "runllm-keyboard-shortcut": "Mod+l",
       "runllm-theme-color": "#005EEC",
-      "runllm-slack-community-url": "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",
+      "runllm-slack-community-url":
+        "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",
       "runllm-name": "RisingWave",
       async: true,
     },

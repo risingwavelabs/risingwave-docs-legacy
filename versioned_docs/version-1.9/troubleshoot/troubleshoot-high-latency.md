@@ -52,4 +52,12 @@ For example, the following figure shows a materialized view with extremely high 
   alt="An example of extremely high latency"
 />
 
+To solve the issue, consider rewriting the SQL query to reduce join amplification, such as using better equal conditions on the problematic join to reduce the number of matched rows. See [Maintain wide table with table sinks](/transform/multiple-table-sink.md) for details.
+
+At the same time, a log of `high_join_amplification` with the problematic join keys will be printed, such as
+
+```
+hash_join_amplification: large rows matched for join key matched_rows_len=200000 update_table_id=31 match_table_id=33 join_key=OwnedRow([Some(Int32(1)), Some(Utf8("abc"))]) actor_id=119 fragment_id=30
+```
+
 To address this problem, it is advisable to refactor the SQL query in order to minimize join amplification. This can be achieved by improving the equal conditions used in the problematic join, thereby reducing the number of matched rows.

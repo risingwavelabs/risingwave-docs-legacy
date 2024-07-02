@@ -62,9 +62,9 @@ For detailed documentation and client-specific guides, please refer to [Upstash 
 
 ## Ingest and process data from Upstash Kafka
 
-### Create a RisingWave cluster
+### Create a RisingWave project
 
-Create a RisingWave cluster in [RisingWave Cloud](https://cloud.risingwave.com/) using the free plan. See the [documentation of RisingWave Cloud](/cloud/manage-clusters/) for instructions.
+Create a RisingWave project in [RisingWave Cloud](https://cloud.risingwave.com/) using the free plan. See the [documentation of RisingWave Cloud](/cloud/manage-projects/) for instructions.
 
 ### Create a source
 

@@ -9,11 +9,11 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
 ## Prerequisites
 
-- You need to create a cluster with the Pro plan or Enterprise plan in RisingWave Cloud:
+- You need to create a project with the Pro plan or Enterprise plan in RisingWave Cloud:
   
-  - See [Choose a cluster plan](/cluster-choose-a-cluster-plan.md) for more information. Please note that Developer clusters do not support PrivateLink connections.
+  - See [Choose a project plan](/project-choose-a-project-plan.md) for more information. Please note that Developer projects do not support PrivateLink connections.
   
-  - The VPC you want to connect to and your cluster must be in the same region. If your preferred region is not available when creating a cluster, contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com).
+  - The VPC you want to connect to and your project must be in the same region. If your preferred region is not available when creating a project, contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com).
   
 - You need to set up a PrivateLink service in your VPC and make sure it runs properly. The following links might be helpful:
   
@@ -31,7 +31,7 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
 2. For **Platform**, select your cloud service provider. Currently, RisingWave Cloud supports **AWS** PrivateLink and **GCP** Private Service Connect.
 
-3. For **Cluster**, select the cluster you want to connect the VPC to. Ensure that the VPC and the cluster are in the same region.
+3. For **project**, select the project you want to connect the VPC to. Ensure that the VPC and the project are in the same region.
 
 4. For **Name name**, enter a descriptive name for the connection.
    

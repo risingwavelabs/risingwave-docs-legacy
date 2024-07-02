@@ -13,36 +13,16 @@ Use the `CREATE SINK INTO` command to create a sink into RisingWave's table.
 ## Syntax
 
 ```sql
-CREATE SINK [ IF NOT EXISTS ] sink_name INTO table_name
+CREATE SINK [ IF NOT EXISTS ] sink_name INTO table_name [ ( col_name [ , ... ] ) ]
 [FROM sink_from | AS select_query]
 ```
 
-import rr from '@theme/RailroadDiagram'
+## Parameters
 
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal('CREATE SINK'),
-      rr.Optional(rr.Terminal('IF NOT EXISTS')),
-      rr.NonTerminal('sink_name', 'skip'),
-      rr.Terminal('INTO'),
-      rr.NonTerminal('table_name'),
-      rr.ZeroOrMore(
-      rr.Sequence(
-         rr.Terminal('FROM'),
-         rr.NonTerminal('sink_from', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('AS'),
-         rr.NonTerminal('select_query', 'skip')
-      ),
-   ),
-   ),
-   rr.Terminal(';'),
-)
-);
-
-<drawer SVG={svg} />
+| Parameter or clause | Description|
+|-----------|-------------|
+|`sink_name`    |The name of the sink. If a schema name is given (for example, `CREATE SINK <schema>.<sink> ...`), then the sink is created in the specified schema. Otherwise it is created in the current schema.|
+|`col_name`      |The corresponding table columns in the sink result. For those columns not listed, it will be inserted as the default value defined in the table.|
 
 :::note
 

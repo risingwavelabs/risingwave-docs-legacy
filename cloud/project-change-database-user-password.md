@@ -1,13 +1,13 @@
 ---
-id: cluster-change-database-user-password
+id: project-change-database-user-password
 title: Change database user password
-description: You can change the password of any database users in your cluster.
+description: You can change the password of any database users in your project.
 slug: /change-database-user-password
 ---
 
 You can change the password of any database user in your cluster.
 
-1. Go to the [cluster details page](cluster-check-status-and-metrics.md#check-cluster-details).
+1. Go to the [project details page](project-check-status-and-metrics.md#check-project-details).
 
 2. Select the **Users** tab.
 
