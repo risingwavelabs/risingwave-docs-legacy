@@ -44,8 +44,8 @@ When operating in the emit-on-window-close mode for a streaming query, `ORDER BY
 The syntax of `frame_clause` is:
 
 ```sql
-{ ROWS | RANGE } frame_start [ frame_exclusion ]
-{ ROWS | RANGE } BETWEEN frame_start AND frame_end [ frame_exclusion ]
+{ ROWS | RANGE | SESSION } frame_start [ frame_exclusion ]
+{ ROWS | RANGE | SESSION } BETWEEN frame_start AND frame_end [ frame_exclusion ]
 ```
 
 `frame_start` and `frame_end` can be:
@@ -60,13 +60,21 @@ UNBOUNDED FOLLOWING
 
 If only `frame_start` is specified, `CURRENT ROW` will be used as the end of the window.
 
-The meaning of `offset` varies in different modes: in `ROWS` mode, the `offset` is a positive integer indicating the number of rows before or after the current row, while `RANGE` mode requires the `ORDER BY` clause to specify one column, and the data type of the offset expression is determined by the data type of the ordering column.
-
 `frame_exclusion` can be either of these:
 
 ```
 EXCLUDE CURRENT ROW
 EXCLUDE NO OTHERS
+```
+
+The meaning of `offset`/`gap` varies in different frames: in `ROWS` frame, the `offset` is a positive integer indicating the number of rows before or after the current row, while `RANGE` frame requires the `ORDER BY` clause to specify one column, and the data type of the offset expression is determined by the data type of the ordering column. `SESSION` frame defines activity periods with a specified gap using the `WITH GAP` clause, and it's supported in batch and emit-on-window-close mode.
+
+```sql title="Example of session frame"
+SELECT
+  *,
+  first_value(x) OVER (PARTITION BY y ORDER BY ts SESSION WITH GAP '10 minutes') AS window_start,
+  sum(w) OVER (PARTITION BY y ORDER BY ts SESSION WITH GAP '10 minutes') AS sum_w
+FROM t;
 ```
 
 :::note
