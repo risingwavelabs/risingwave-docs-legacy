@@ -124,6 +124,8 @@ ENCODE AVRO (
 )
 ```
 
+For data mapping, the serial type is supported, which is mapped into the 64-bit integer.
+
 ### Protobuf specific parameters
 
 When creating an append-only Protobuf sink, the following options can be used following `FORMAT PLAIN ENCODE PROTOBUF`.
@@ -150,6 +152,12 @@ ENCODE PROTOBUF (
    schema.location = 'location'
 )
 ```
+
+For data mapping, the serial type is supported, which is mapped into the 64-bit integer.
+
+### JSON specific parameters
+
+For data mapping, the serial type is supported. But it is mapped into the string type. Because the serial type is often used as a key, precision issues with large int64 values in JSON can lead to unexpected problems. In our implementation, to preserve the original semantics of the serial type, we use hexadecimal strings with leading zeros. Adding leading zeros helps maintain numerical order, and using hexadecimal format prevents excessively long numbers from affecting display.
 
 ## Examples
 
