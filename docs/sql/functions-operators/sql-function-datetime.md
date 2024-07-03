@@ -48,7 +48,11 @@ An interval can contain hour/minute/second (i.e., fixed length) but not year/mon
 
 :::
 
-The time zone parameter passed to `AT TIME ZONE` can be an arbitrary VARCHAR expression, rather than just a literal value. For example, the following statement converts the local timestamp column to the time zone specified in the zone column:
+Besides a literal value, the time zone parameter passed to `AT TIME ZONE` can also be an arbitrary VARCHAR expression. For example, both of the following statement works when converting the local timestamp column to the time zone specified in the zone column:
+
+```sql
+t.local AT TIME ZONE 'US/Pacific'
+```
 
 ```sql
 t.local AT TIME ZONE t.zone
