@@ -30,7 +30,13 @@ When building a materialized view (MV), it is possible to build more MVs on top 
 
 Users may have concerns if decomposing a complex pipeline into multiple MVs introduces additional performance overhead. We remark that more decomposition does not lead to more computation overhead but only more storage space. Since RisingWave is typically deployed with cheap object store on the public cloud to store large amounts of data, we generally consider it a less crucial factor in most cases. We are planning to introduce a new feature that allows users to remove an intermediate MV if it's considered unnecessary and poses a significant storage space concern.
 
-Please be aware that when the MV on MV is backfilling, the data from the upstream MV may not have good locality. To optimize this, we recommend modifying the SQL query so that the order key of the upstream table aligns with the group key of the downstream MV. This alignment improves the performance of the backfilling process and ensures better efficiency.
+### Optimize backfilling of MV on MV
+
+During the backfilling process of the MV on MV, the data from the upstream MV may not have good locality. To optimize this, we recommend modifying the SQL query so that the order key of the upstream table aligns with the group key of the downstream MV. This alignment improves the performance of the backfilling process and ensures better efficiency.
+
+Suppose we create a table `t` using `create table t(v1 int, v2 varchar, v3 timestamp);`. This table contains a large amount of historical data. When creating a new MV on top of this table, it requires backfilling all the historical data, which can be a time-consuming process. Then we create an MV called `m` using `create materialized view m as select v1, sum(v2) from t group by v1;`. The challenge during backfilling is that when reading data from table `t` to build the MV `m`, the order of the `v1` values may be random. This randomness can lead to poor cache locality and trigger remote I/O, ultimately decreasing performance.
+
+However, if we use `create table t(v1 int primary key, v2 varchar);` instead to create a table, or define an intermediate mv like `create materialized view tmp as select * from t order by v1;`. The storage of RisingWave will order rows by `v1`, which means that rows with same `v1` will be read consecutively. This adjustment enhances cache locality and thereby improves performance.
 
 ## When to scale up or scale out computation and compaction resources?
 
@@ -46,13 +52,13 @@ In terms of compactor nodes, we favor scaling up when the resources of the compa
 
 In RisingWave, we can declare a source, a table, and an append-only table when connecting to an external upstream system.
 
-The difference between the source and the two types of tables is that a source does not persist the ingested data within RisingWave while the tables do. When the data is stored within RisingWave, it gives users the ability to insert, delete, and update data to a table and only insert data to an append-only table. Therefore, users make a tradeoff between taking up more storage space and giving up the ability to modify source data within RisingWave. See details in [`CREATE SOURCE`](/sql/commands/sql-create-source.md). 
+The difference between the source and the two types of tables is that a source does not persist the ingested data within RisingWave while the tables do. When the data is stored within RisingWave, it gives users the ability to insert, delete, and update data to a table and only insert data to an append-only table. Therefore, users make a tradeoff between taking up more storage space and giving up the ability to modify source data within RisingWave. See details in [`CREATE SOURCE`](/sql/commands/sql-create-source.md).
 
 Another difference is the performance implication. Unlike the table, the source and the append-only table will never process any updates or deletes. This gives us opportunities for optimization.
 
 Suppose we have a materialized view that tracks the maximal account balance among all the clients at a retail bank, e.g., `CREATE MATERIALIZED VIEW max_account_balance AS SELECT max(balance) FROM account_table`. Since the account balance of each client is frequently changing, we cannot declare it as a source or an append-only table. Then RisingWave has to persist the balances from all the accounts to maintain the result, such as finding how much the second largest balance is when the first largest balance decreases.
 
-Suppose we have another materialized view that tracks the time of the latest transaction among all the transactions, i.e., `CREATE MATERIALIZED VIEW time_latest_transaction AS SELECT max(timestamp) FROM transactions`. Since the transaction is irreversible (even if one transaction is a mistake, we correct it with a new transaction), it is perfect for us to declare transactions as a source or an append-only table. Then RisingWave only needs to keep a single data point, i.e., the timestamp of the latest transaction, and simply compare it with the timestamp of a new transaction to update the result.
+Suppose we have another materialized view that tracks the time of the latest transaction among all the transactions, e.g., `CREATE MATERIALIZED VIEW time_latest_transaction AS SELECT max(timestamp) FROM transactions`. Since the transaction is irreversible (even if one transaction is a mistake, we correct it with a new transaction), it is perfect for us to declare transactions as a source or an append-only table. Then RisingWave only needs to keep a single data point, i.e., the timestamp of the latest transaction, and simply compare it with the timestamp of a new transaction to update the result.
 
 This append-only versus non-append-only difference can make an impact in a few use cases:
 
