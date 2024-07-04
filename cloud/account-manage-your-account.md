@@ -52,7 +52,7 @@ To change the login password of your account:
 
 To delete your RisingWave Cloud account and all its associated data:
 
-1. [Delete all clusters](cluster-stop-and-delete-clusters.md#delete-a-cluster).
+1. [Delete all projects](project-stop-and-delete-projects.md#delete-a-project).
 
 2. Go to **Settings**.
 

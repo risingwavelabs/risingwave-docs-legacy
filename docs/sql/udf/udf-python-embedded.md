@@ -38,6 +38,10 @@ The Python code must contain a function that has the same name as declared in th
 
 See the correspondence between SQL types and Python types in the [Data type mapping](udf-python-embedded.md#data-type-mapping).
 
+:::note
+Due to the nature of Python, the correctness of the source code cannot be verified when creating a function. It is recommended to make sure your implementation is correct through batch query before using UDFs in materialized views. If an error occurs when executing UDF in materialized views, all output results will be NULL.
+:::
+
 ```sql title="Call function"
 SELECT gcd(15, 25);
 
@@ -91,6 +95,61 @@ def key_value(s: str):
 $$;
 ```
 
+## Define your aggregate functions
+
+You can create aggregate functions using the [`CREATE AGGREGATE`](/sql/commands/sql-create-aggregate.md) command. Refer to the syntax below:
+
+```sql
+CREATE AGGREGATE function_name ( argument_type [, ...] )
+    RETURNS return_type
+    LANGUAGE python
+    AS $$ function_body $$
+```
+
+In the *function_body*, the code should define several functions to implement the aggregate function.
+
+Required functions:
+
+- `create_state() -> state`: Create a new state.
+- `accumulate(state, *args) -> state`: Accumulate a new value into the state, returning the updated state.
+
+Optional functions:
+
+- `finish(state) -> value`: Get the result of the aggregate function. If not defined, the state is returned as the result.
+- `retract(state, *args) -> state`: Retract a value from the state, returning the updated state. If not defined, the state can not be updated incrementally in materialized views and performance may be affected.
+
+The following command creates an aggregate function named `weighted_avg` to calculate the weighted average.
+
+```sql title="Python UDAF"
+create aggregate weighted_avg(value int, weight int) returns float language python as $$
+def create_state():
+    return (0, 0)
+
+def accumulate(state, value, weight):
+    if value is None or weight is None:
+        return state
+    (s, w) = state
+    s += value * weight
+    w += weight
+    return (s, w)
+
+def retract(state, value, weight):
+    if value is None or weight is None:
+        return state
+    (s, w) = state
+    s -= value * weight
+    w -= weight
+    return (s, w)
+
+def finish(state):
+    (sum, weight) = state
+    if weight == 0:
+        return None
+    else:
+        return sum / weight
+$$;
+```
+
 ## Limitations
 
 Currently, embedded Python UDFs are only allowed to use the following standard libraries: `json`, `decimal`, `re`, `math`, `datetime`. Other third-party libraries are not supported. Embedded Python UDFs cannot access external resources, and the following built-in functions are also not allowed: `breakpoint`, `exit`, `eval`, `help`, `input`, `open`, `print`.
@@ -117,5 +176,5 @@ The following table shows the data type mapping between SQL and Python:
 | BYTEA            | bytes                          |                    |
 | JSONB            | bool, int, float, list, dict   |                    |
 | T[]              | list[T]                        |                    |
-| STRUCT&lt;&gt;         | class or dict                  |                    |
+| STRUCT&lt;&gt;   | class or dict                  |                    |
 | ...others        |                                | Not supported yet. |

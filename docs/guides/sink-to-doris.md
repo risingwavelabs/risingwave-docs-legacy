@@ -36,6 +36,7 @@ WITH (
 | `doris.password`| Required. The password associated with the Doris user. |
 | `doris.database`| Required. The Doris database you want to sink data to. |
 | `doris.table`   | Required. The Doris table you want to sink data to. |
+| `doris.partial_column` |Optional. Defaults to `false`. If `true`, you can perform partial updates on the columns of a table, see the [Partial update](https://doris.apache.org/docs/2.0/data-operate/update/update-of-unique-model/#partial-update) in the Doris documentation for more details. |
 | `force_append_only`| Optional. If `true`, forces the sink to be `append-only`, even if it cannot be. |
 | `primary_key`   | Optional. The primary keys of the sink. Use ',' to delimit the primary key columns. |
 
@@ -106,6 +107,6 @@ In regards to `decimal` types, RisingWave will round to the nearest decimal plac
 
 :::note
 
-Previously, when inserting data into an Apache Doris sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". However, we have made a change to the behavior. If a decimal value is out of bounds or represents "inf", "-inf", or "nan", we will insert null values. 
+Before v1.9, when inserting data into an Apache Doris sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". Since v1.9, we have made a change to the behavior. If a decimal value is out of bounds or represents "inf", "-inf", or "nan", we will insert null values. 
 
 :::

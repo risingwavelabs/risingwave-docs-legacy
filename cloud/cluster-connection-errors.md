@@ -8,9 +8,9 @@ This topic summarizes the connection errors that you may encounter when using Ri
 
 ## Failed to get tenant identifier
 
-To connect to a cluster, you need to provide the tenant identifier. The tenant identifier is a global unique identifier for each cluster, and the format of the tenant identifier is `rwc-g1huxxxxxx-mycluster`. You can find the tenant identifier in the RisingWave Cloud console.
+To connect to a project, you need to provide the tenant identifier. The tenant identifier is a global unique identifier for each project, and the format of the tenant identifier is `rwc-g1huxxxxxx-mycluster`. You can find the tenant identifier in the RisingWave Cloud console.
 
-Below are two ways to put the tenant identifier in the connection string.
+Below are 3 ways to put the tenant identifier in the connection string.
 
 ### Solution 1: Put the tenant identifier in the `options` field
 
@@ -21,11 +21,12 @@ psql "postgresql://<username>:@<hostname>:<port>/<database?options=--tenant%3D<t
 `%3D` is the URL encoded form of `=`. If the client does not require URL encoding, you can use `--tenant=<tenant identifier>` directly.
 
 :::note
-Not all clients support the `options` field. If your client does not support the `options` field, you can use solution 2.
+Not all clients support the `options` field. If your client does not support the `options` field, you can use solution 2 or 3.
 :::
 
 ### Solution 2: Put the tenant identifier in the host
 
+You can put the tenant identifier in the host in the format of `<tenant identifier>.<hostname>`.
 This solution is only available when the client supports SNI routing and the connection is secured by TLS. 
 
 ```shell
@@ -33,12 +34,24 @@ psql "postgresql://<username>:@<tenant identifier>.<hostname>:<port>/<database?s
 ```
 
 :::note
-Not all clients support SNI routing. If your client does not support SNI routing, you can use solution 1.
+Not all clients support SNI routing. If your client does not support SNI routing, you can use solution 1 or 3.
 :::
 
-## SSL error: certificate verify failed
+### Solution 3: Put the tenant identifier in the username
 
-When you see the error `SSL error: certificate verify failed`, it means the client cannot verify the certificate of the server. To fix this error, you need to download the root certificate of RisingWave Cloud and put it in the correct location.
+You can also put the tenant identifier in the username in the format of `<tenant identifier>;<username>`. This solution is available for all clients. 
+
+```shell
+psql "postgresql://<tenant identifier>;<username>:@<hostname>:<port>/<database?sslmode=verify-full"
+```
+
+:::note
+The server will use `AuthenticationCleartextPassword` response to authenticate the user. Learn more about the protocol in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/protocol-flow.html).
+:::
+
+## SSL error
+
+When you see errors like `SSL error: certificate verify failed`, `root certificate file xxx does not exist`, or `no certificate or crl found`, it means the client cannot verify the certificate of the server. To fix this error, you need to download the root certificate of RisingWave Cloud and put it in the correct location.
 
 ### Mac/Linux
 
@@ -54,4 +67,4 @@ mkdir -p $env:appdata\postgresql\; Invoke-WebRequest -Uri https://risingwave.clo
 
 ## Instance is currently unavailable
 
-This error occurs when the cluster is not available. You can check the status of the cluster in the RisingWave Cloud console. If the cluster is running, you can try to reconnect to the cluster.
+This error occurs when the project is not available. You can check the status of the project in the RisingWave Cloud console. If the project is running, you can try to reconnect to the project.

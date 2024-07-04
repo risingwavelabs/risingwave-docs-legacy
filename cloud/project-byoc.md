@@ -1,8 +1,8 @@
 ---
-id: cluster-create-byoc-cluster
+id: project-byoc
 title: Bring your own cloud
-description: You can use the BYOC cluster types to create custom clouds.
-slug: /create-byoc-cluster
+description: Use the BYOC plan to create custom clouds.
+slug: /project-byoc
 ---
 
 The Bring Your Own Cloud (BYOC) plan offers you the flexibility to tailor your cloud infrastructure instead of depending on a hosted service. It allows you to utilize the advantages of your chosen cloud provider, maintain full control over your environment, and adjust configurations to suit your specific needs. This guide outlines the services that RisingWave deploys in a BYOC environment and walks you through the process of enabling BYOC in a step-by-step manner.
@@ -23,7 +23,7 @@ Before creating a BYOC deployment, familiarize yourself with the following archi
 
 Follow the steps below to create your own cloud environment.
 
-1. Navigate to the [**Clusters**](https://cloud.risingwave.com/clusters/) page and click **Create cluster**.
+1. Navigate to the [**Project**](https://cloud.risingwave.com/project/home/) page and click **Create a project**.
 
 2. On the right-side panel, choose **Enterprise** and enter your invitation code. If you do not have an invitation code, please contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com) to obtain one.
 

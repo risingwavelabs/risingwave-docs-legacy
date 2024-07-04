@@ -145,7 +145,9 @@ An append-only temporal join is often used to widen a fact table. Its advantage 
 #### Syntax
 
 ```sql
-<table_expression> [ LEFT | INNER ] JOIN <table_expression> FOR SYSTEM_TIME AS OF PROCTIME() ON <join_conditions>;
+SELECT ... FROM <table_expression> [AS <alias>]
+[ LEFT | INNER ] JOIN <table_expression> FOR SYSTEM_TIME AS OF PROCTIME() [AS <alias>]
+ON <join_conditions>;
 ```
 
 #### Notes

@@ -243,6 +243,33 @@ CREATE SOURCE mysql_mydb WITH (
 
 Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
 
+### Metadata options
+
+Below are the metadata columns available for MySQL CDC.
+
+|Field|Notes|
+|---|---|
+|database_name| Name of the database. |
+|schema_name| Name of the schema.|
+|table_name| Name of the table.|
+
+For instance, the person table below contains columns for typical personal information. It also includes metadata fields (`database_name`, `schema_name`, `table_name`) to provide contextual information about where the data resides within the MySQL database.
+
+```sql
+CREATE TABLE person (
+    id int,
+    name varchar,
+    email_address varchar,
+    credit_card varchar,
+    city varchar,
+    PRIMARY KEY (id)
+) INCLUDE TIMESTAMP AS commit_ts
+INCLUDE DATABASE_NAME as database_name
+INCLUDE SCHEMA_NAME as schema_name
+INCLUDE TABLE_NAME as table_name
+FROM mysql_source TABLE 'public.person';
+```
+
 ## Examples
 
 Connect to the upstream database by creating a CDC source using the [`CREATE SOURCE`](/sql/commands/sql-create-source.md) command and MySQL CDC parameters. The data format is fixed as `FORMAT PLAIN ENCODE JSON` so it does not need to be specified.
@@ -346,3 +373,34 @@ Please be aware that the range of specific values varies among MySQL types and R
 | DATE | DATE | `1000-01-01` to `9999-12-31` | `0001-01-01` to `9999-12-31` |
 | DATETIME | TIMESTAMP | `1000-01-01 00:00:00.000000` to `9999-12-31 23:59:59.49999` | `1973-03-03 09:46:40` to `5138-11-16 09:46:40` |
 | TIMESTAMP | TIMESTAMPTZ | `1970-01-01 00:00:01.000000` to `2038-01-19 03:14:07.499999` | `0001-01-01 00:00:00` to `9999-12-31 23:59:59` |
+
+
+## Use dbt to ingest data from MySQL CDC
+
+Here is an example of how to use dbt to ingest data from MySQL CDC. In this dbt example, `source` and `table_with_connector` models will be used. For more details about these two models, please refer to [Use dbt for data transformations](/transform/use-dbt.md#define-dbt-models).
+
+First, we create a `source` model `mysql_mydb.sql`.
+
+```sql
+{{ config(materialized='source') }}
+CREATE SOURCE {{ this }} WITH (
+  connector = 'mysql-cdc',
+  hostname = '127.0.0.1',
+  port = '8306',
+  username = 'root',
+  password = '123456',
+  database.name = 'mydb',
+  server.id = 5888
+);
+```
+
+And then we create a `table_with_connector` model `t1_rw.sql`.
+
+```sql
+{{ config(materialized='table_with_connector') }}
+CREATE TABLE {{ this }}  (
+    v1 int,
+    v2 int,
+    PRIMARY KEY(v1)
+) FROM {{ ref('mysql_mydb') }} TABLE 'mydb.t1';
+```

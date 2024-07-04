@@ -477,6 +477,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/udf/sql-udfs",
+                  label: "SQL UDFs",
+                },
+                {
+                  type: "doc",
                   id: "sql/udf/udf-foreign-data",
                   label: "Foreign data",
                 },
@@ -508,6 +513,11 @@ const sidebars = {
               type: "doc",
               id: "transform/use-dbt",
               label: "Use dbt for data transformations",
+            },
+            {
+              type: "doc",
+              id: "transform/multiple-table-sink",
+              label: "Maintain wide table with table sinks",
             },
             {
               type: "doc",
@@ -593,6 +603,11 @@ const sidebars = {
               items: [
                 {
                   type: "doc",
+                  label: "Amazon DynamoDB",
+                  id: "guides/sink-to-dynamodb",
+                },
+                {
+                  type: "doc",
                   label: "Apache Doris",
                   id: "guides/sink-to-doris",
                 },
@@ -653,6 +668,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "Microsoft SQL Server",
+                  id: "guides/sink-to-sqlserver",
+                },
+                {
+                  type: "doc",
                   label: "MQTT",
                   id: "guides/sink-to-mqtt",
                 },
@@ -665,6 +685,11 @@ const sidebars = {
                   type: "doc",
                   label: "NATS",
                   id: "guides/sink-to-nats",
+                },
+                {
+                  type: "doc",
+                  label: "OpenSearch",
+                  id: "guides/sink-to-opensearch",
                 },
                 {
                   type: "doc",
@@ -1089,11 +1114,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/configure-node-specific-parameters',
-        },
-        {
-          type: 'doc',
-          id: 'manage/node-specific-parameters',
+          id: 'manage/node-specific-configurations',
         },
         {
           type: "doc",
@@ -1103,6 +1124,11 @@ const sidebars = {
         {
           type: 'doc',
           id: 'manage/meta-backup',
+        },
+        {
+          type: 'doc',
+          id: 'manage/migrate-to-sql-backend',
+          label: "Migrate to SQL backend",
         },
         {
           type: "doc",
@@ -1191,7 +1217,7 @@ const sidebars = {
               },
             ]
         },
-        
+
         {
           type: "doc",
           label: "Recovery failure",

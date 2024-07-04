@@ -1,5 +1,5 @@
 ---
-id: cluster-delete-a-database-user
+id: project-delete-a-database-user
 title: Delete a database user
 description: If you no longer need a database user, you can delete it.
 slug: /delete-a-database-user
@@ -7,7 +7,7 @@ slug: /delete-a-database-user
 
 If you no longer need a database user, you can delete it.
 
-1. Go to the [cluster details page](cluster-check-status-and-metrics.md#check-cluster-details).
+1. Go to the [project details page](project-check-status-and-metrics.md#check-project-details).
 
 2. Select the **Users** tab.
 
