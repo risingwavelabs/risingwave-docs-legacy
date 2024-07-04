@@ -124,7 +124,7 @@ ENCODE AVRO (
 )
 ```
 
-For data type mapping, the serial type is supported, which is mapped into the 64-bit signed integer.
+For data type mapping, the serial type is supported. We map the serial type to the 64-bit signed integer.
 
 ### Protobuf specific parameters
 
