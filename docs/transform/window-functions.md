@@ -61,7 +61,7 @@ UNBOUNDED FOLLOWING
 
 If only `frame_start` is specified, `CURRENT ROW` will be used as the end of the window.
 
-The requirements of `offset` varies in different frames. In `ROWS` frame, the `offset` should be a positive constant integer indicating the number of rows before or after the current row. While `RANGE` frame requires the `ORDER BY` clause to specify exactly one column, and the `offset` expression to be a positive constant of a data type that is determined by the data type of the ordering column. For example, if the ordering column is `timestamptz`, the `offset` expression should be an positive constant `interval`.
+The requirements of `offset` vary in different frames. In `ROWS` frame, the `offset` should be a positive constant integer indicating the number of rows before or after the current row. While `RANGE` frame requires the `ORDER BY` clause to specify exactly one column, and the `offset` expression to be a positive constant of a data type that is determined by the data type of the ordering column. For example, if the ordering column is `timestamptz`, the `offset` expression should be an positive constant `interval`.
 
 For `SESSION` frame, the requirements of `gap` are very similar to those of `offset` for `RANGE` frame. The `ORDER BY` clause should specify exactly one column and the `gap` expression should be a positive constant of a data type that is determined by the data type of the ordering column.
 
