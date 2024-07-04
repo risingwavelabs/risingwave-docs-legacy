@@ -157,7 +157,7 @@ For data type mapping, the serial type is supported, which is mapped into the 64
 
 ### JSON specific parameters
 
-For data mapping, the serial type is supported. However, note that it is mapped into a JSON string like `0x05fb93d677c4e000` instead of a JSON number `431100738685689856`. This string form avoids JSON number precision issues with large int64 values, and you can still order by the fixed-length hexadecimal string to obtain the same order as the serial number (whereas variable-length string "12" sorts before "7").
+For data mapping, the serial type is supported. However, note that it is mapped into a JSON string like `"0x05fb93d677c4e000"` instead of a JSON number `431100738685689856`. This string form avoids JSON number precision issues with large int64 values, and you can still order by the fixed-length hexadecimal string to obtain the same order as the serial number (whereas variable-length string "12" sorts before "7").
 
 ## Examples
 
