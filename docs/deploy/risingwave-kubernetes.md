@@ -124,6 +124,7 @@ RisingWave supports using these systems or services as state backends.
 * Google Cloud Storage
 * Azure Blob Storage
 * Alibaba Cloud OSS
+* HDFS
 
 You can [customize etcd as a separate cluster](#optional-customize-the-etcd-deployment), [customize the state backend](#optional-customize-the-state-backend), or [customize the state store directory](#optional-customize-the-state-store-directory).
 
@@ -184,6 +185,8 @@ helm install -f etcd-values.yaml etcd bitnami/etcd
 
 ### Optional: Customize the state backend
 
+#### Download source file
+
 If you intend to customize a resource file, download the file to a local path and edit it:
 
 ```curl
@@ -198,6 +201,8 @@ Then, apply the resource file by using the following command:
 kubectl apply -f a.yaml      # relative path
 kubectl apply -f /tmp/a.yaml # absolute path
 ```
+
+#### Customize the state backend
 
 To customize the state backend of your RisingWave cluster, edit the `spec:stateStore` section under the RisingWave resource (`kind: RisingWave`).
 
@@ -404,6 +409,231 @@ spec:
 </TabItem>
 
 </Tabs>
+
+##### HDFS
+
+To customize HDFS as state backend in RisingWave, mount Hadoop configurations with ConfigMap.
+
+1. Firstly, prepare the config files locally as follows:
+
+  ```bash
+  ls $HADOOP_HOME/etc/hadoop
+  core-site.xml hdfs-site.xml
+  ```
+
+2. Next, create a ConfigMap, where `hadoop-conf` is the name of ConfigMap:
+
+  ```bash
+  kubectl create configmap hadoop-conf --from-file $HADOOP_HOME/etc/hadoop
+  ```
+
+3. Then mount the Hadoop configuration files using this ConfigMap:
+
+  <details><summary>See the code example</summary>
+
+  ```yaml
+  apiVersion: risingwave.risingwavelabs.com/v1alpha1
+  kind: RisingWave
+  metadata:
+    name: risingwave
+  spec:
+    image: <the image you packaged>
+    metaStore:
+      memory: true
+    stateStore:
+      hdfs:
+        nameNode: <your_cluster_name/namenode>
+        root: <data_directory>
+    components:
+      meta:
+        nodeGroups:
+        - name: ''
+          replicas: 1
+          template:
+            spec:
+              resources:
+                limits:
+                  cpu: 1
+                  memory: 2Gi
+              env:
+              - name: HADOOP_CONF_DIR
+                value: /var/etc/hadoop/conf
+              volumes:
+              - name: hadoop-conf
+                configMap:
+                  name: hadoop-conf
+              volumeMounts:
+              - name: hadoop-conf
+                mountPath: /var/etc/hadoop/conf
+                readOnly: true
+      compute:
+        nodeGroups:
+        - name: ''
+          replicas: 1
+          template:
+            spec:
+              resources:
+                limits:
+                  cpu: 4
+                  memory: 16Gi
+              env:
+              - name: HADOOP_CONF_DIR
+                value: /var/etc/hadoop/conf
+              volumes:
+              - name: hadoop-conf
+                configMap:
+                  name: hadoop-conf
+              volumeMounts:
+              - name: hadoop-conf
+                mountPath: /var/etc/hadoop/conf
+                readOnly: true
+      compactor:
+        nodeGroups:
+        - name: ''
+          replicas: 1
+          template:
+            spec:
+              resources:
+                limits:
+                  cpu: 2
+                  memory: 4Gi
+              env:
+              - name: HADOOP_CONF_DIR
+                value: /var/etc/hadoop/conf
+              volumes:
+              - name: hadoop-conf
+                configMap:
+                  name: hadoop-conf
+              volumeMounts:
+              - name: hadoop-conf
+                mountPath: /var/etc/hadoop/conf
+                readOnly: true
+      frontend:
+        nodeGroups:
+        - name: ''
+          replicas: 1
+          template:
+            spec:
+              resources:
+                limits:
+                  cpu: 2
+                  memory: 4Gi
+  ```
+  </details>
+
+  Replace the following placeholders:
+
+  - `<your-risingwave-image-name>`: The name of your RisingWave Docker image.
+  - `<your-hadoop-namenode-address>`: The address of your Hadoop NameNode.
+  - `<your-hadoop-data-directory>`: The directory where your Hadoop data is stored.
+
+  Note that the value of the `HADOOP_CONF_DIR` environment variable and the path where the `hadoop-conf` ConfigMap is mounted should be identical.
+
+Furthermore, regarding customizing the HDFS client, we have built an image based on Hadoop 2.7.3. If you want to create your own RisingWave image, please adjust the Hadoop configuration according to your specific cluster information and ensure that:
+
+- The `CLASSPATH` is correctly set.
+- `HADOOP_CONF_DIR` is placed at the beginning of the `CLASSPATH`.
+
+<details><summary>See the code example</summary>
+
+```docker
+FROM ubuntu:22.04 AS base
+ENV LANG en_US.utf8
+RUN apt-get update \
+  && apt-get -y install ca-certificates build-essential libsasl2-dev openjdk-11-jdk
+
+FROM base AS builder
+
+RUN apt-get update && apt-get -y install make cmake protobuf-compiler curl bash lld maven unzip
+
+SHELL ["/bin/bash", "-c"]
+
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --no-modify-path --default-toolchain none -y
+
+RUN mkdir -p /risingwave
+
+WORKDIR /risingwave
+
+COPY ./ /risingwave
+COPY ./docker/hdfs_env.sh /risingwave/hdfs_env.sh
+
+ENV PATH /root/.cargo/bin/:$PATH
+
+ENV IN_CONTAINER=1
+
+ARG GIT_SHA
+ENV GIT_SHA=$GIT_SHA
+
+RUN curl -LO https://github.com/risingwavelabs/risingwave/archive/refs/heads/dashboard-artifact.zip
+RUN unzip dashboard-artifact.zip && mv risingwave-dashboard-artifact /risingwave/ui && rm dashboard-artifact.zip
+
+# We need to add the `rustfmt` dependency, otherwise `risingwave_pb` will not compile
+RUN rustup self update \
+  && rustup set profile minimal \
+  && rustup show \
+  && rustup component add rustfmt
+
+RUN cargo fetch
+
+# java home for hdrs
+ARG JAVA_HOME_PATH
+ENV JAVA_HOME ${JAVA_HOME_PATH}
+ENV LD_LIBRARY_PATH ${JAVA_HOME_PATH}/lib/server:${LD_LIBRARY_PATH}
+
+RUN cargo fetch && \
+  cargo build -p risingwave_cmd_all --release --features "rw-static-link" && \
+  mkdir -p /risingwave/bin && mv /risingwave/target/release/risingwave /risingwave/bin/ && \
+  cp ./target/release/build/tikv-jemalloc-sys-*/out/build/bin/jeprof /risingwave/bin/ && \
+  chmod +x /risingwave/bin/jeprof && \
+  mkdir -p /risingwave/lib && cargo clean
+
+RUN cd /risingwave/java && mvn -B package -Dmaven.test.skip=true -Djava.binding.release=true && \
+    mkdir -p /risingwave/bin/connector-node && \
+    tar -zxvf /risingwave/java/connector-node/assembly/target/risingwave-connector-1.0.0.tar.gz -C /risingwave/bin/connector-node
+
+FROM ubuntu:22.04 as image-base
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install ca-certificates openjdk-11-jdk wget libsasl2-dev && rm -rf /var/lib/{apt,dpkg,cache,log}/
+
+FROM image-base as risingwave
+LABEL org.opencontainers.image.source https://github.com/risingwavelabs/risingwave
+RUN mkdir -p /risingwave/bin/connector-node && mkdir -p /risingwave/lib
+COPY --from=builder /risingwave/bin/risingwave /risingwave/bin/risingwave
+COPY --from=builder /risingwave/bin/connector-node /risingwave/bin/connector-node
+COPY --from=builder /risingwave/ui /risingwave/ui
+COPY --from=builder /risingwave/hdfs_env.sh /risingwave/hdfs_env.sh
+RUN chmod +x /risingwave/hdfs_env.sh
+
+# hadoop
+RUN wget https://rw-yufan.s3.ap-southeast-1.amazonaws.com/hadoop-2.7.3.tar.gz -P /root/
+RUN tar -zxvf /root/hadoop-2.7.3.tar.gz -C /opt/
+RUN mv /opt/hadoop-2.7.3 /opt/hadoop
+RUN echo export HADOOP_HOME=/opt/hadoop/ >> ~/.bashrc
+RUN echo export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin >> ~/.bashrc
+RUN echo export JAVA_HOME=$(readlink -f $(which java)) >> /opt/hadoop/etc/hadoop/yarn-env.sh
+RUN echo export JAVA_HOME=$(readlink -f $(which java)) >> /opt/hadoop/etc/hadoop/hadoop-env.sh
+RUN rm -rf ~/hadoop-2.7.3.tar.gz
+
+# java
+ENV HADOOP_HOME /opt/hadoop/
+ENV PATH $PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+ARG JAVA_HOME_PATH
+ENV JAVA_HOME ${JAVA_HOME_PATH}
+ENV LD_LIBRARY_PATH ${JAVA_HOME_PATH}/lib/server:${LD_LIBRARY_PATH}
+ENV HADOOP_CONF_DIR /opt/hadoop/etc/hadoop/
+
+ENV CLASSPATH=your_classpath
+
+# Set default playground mode to docker-playground profile
+ENV PLAYGROUND_PROFILE docker-playground
+# Set default dashboard UI to local path instead of github proxy
+ENV RW_DASHBOARD_UI_PATH /risingwave/ui
+
+ENTRYPOINT [ "/risingwave/hdfs_env.sh" ]
+CMD [ "playground" ]
+```
+</details>
+
+Then build the image and push it to somewhere. Make sure it’s reachable by the Kubernetes clusters or the machine running docker.
 
 ### Optional: Customize the state store directory
 
