@@ -43,6 +43,7 @@ WITH (
 | bigquery.project | Required. The BigQuery project ID. |
 | bigquery.dataset | Required. The BigQuery dataset ID. |
 | bigquery.table | Required. The BigQuery table you want to sink to. |
+| bigquery.retry_times |Optional. The number of times the system should retry a BigQuery insert operation before ultimately returning an error. Defaults to `5`. |
 | auto_create | Optional. Defaults to `false`. If `true`, a new table will be automatically created in BigQuery when the specified table is not found.|
 | aws.credentials.access_key_id | Optional. The access key of the S3 file. This must be specified if sinking to an S3 file. |
 | aws.credentials.secret_access_key | Optional. The secret access key of the S3 file. This must be specified if sinking to an S3 file.|
