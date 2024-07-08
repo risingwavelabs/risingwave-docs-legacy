@@ -147,10 +147,8 @@ In future releases, we may no longer support `etcd` as the meta store backend, s
 
 #### PostgreSQL
 
-For PostgreSQL, the specified setting is:
-
-- `--backend` should be set to `postgres`. 
-- `--sql-endpoint` should be configured in format `{host}:{port}`.
+- `--backend`: Set to `postgres`. 
+- `--sql-endpoint`: Configure in format `{host}:{port}`.
 - Three additional parameters are required:
   - `--sql-username`: Username of SQL backend.
   - `--sql-password`: Password of SQL backend.
@@ -158,20 +156,16 @@ For PostgreSQL, the specified setting is:
 
 #### SQLite
 
-For SQLite, the specified setting is:
-
-- `--backend` should be set to `sqlite`. 
-- `--sql-endpoint` should be the file path.
+- `--backend`: Set to `sqlite`. 
+- `--sql-endpoint`: Should be the file path.
 
 We have a Docker Compose configuration file that you can use after the necessary configurations: [`docker-compose-with-sqlite.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-sqlite.yml). In this file, meta will mount a volume for SQLite db file, which means the SQLite meta storage backend requires singleton meta component.
 
 
 #### MySQL or MySQL-compatible storage
 
-For MySQL or MySQL-compatible storage, the specified setting is:
-
-- `--backend` should be set to `mysql`. 
-- `--sql-endpoint` should be configured in format `{host}:{port}`. In [`docker-compose-with-sqlite.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-sqlite.yml), specify the storage backend via `mysql` parameter.
+- `--backend`: Set to `mysql`. 
+- `--sql-endpoint`: Configure in format `{host}:{port}`. In [`docker-compose-with-sqlite.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-sqlite.yml), specify the storage backend via `mysql` parameter.
 
     ```bash
     --sql-endpoint mysql://<user>:<password>@<host>:<port>/<db>
