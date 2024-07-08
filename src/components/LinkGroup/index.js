@@ -4,7 +4,7 @@ import Collapse from "@mui/material/Collapse";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styled from "@emotion/styled";
 
-const buttonSize = 36;
+const buttonSize = 42;
 
 const LinkButton = styled("div")({
   backgroundColor: "#8080803b",
@@ -39,13 +39,13 @@ const FoldedTab = styled("div")({
 
 const FoldedTabContainer = styled(Collapse)({
   position: "absolute",
-  top: `${buttonSize / 3.6}px`,
+  top: `${buttonSize / 4.2}px`,
   right: `${buttonSize + 10}px`,
 });
 
 const LinkImg = styled("img")({
-  width: "18px",
-  height: "18px",
+  width: "22px",
+  height: "22px",
 });
 
 const LinkItem = (props) => {
@@ -76,35 +76,11 @@ const LinkItem = (props) => {
 
 export default function LinkGroup(props) {
   const [slackFocus, setSlackFocus] = useState(false);
-  const [twitterFocus, setTwitterFocus] = useState(false);
-  const [githubFocus, setGithubFocus] = useState(false);
-  const [rwFocus, setRWFocus] = useState(false);
-  const [linkedInFocus, setLinkedInFocus] = useState(false);
+
 
   return (
     <div className={styles.container}>
       <div className={styles.flexBox}>
-        <LinkItem
-          link="https://www.risingwave.com/"
-          focusing={rwFocus}
-          setFocus={setRWFocus}
-          label="RisingWave Labs"
-          imgUrl={useBaseUrl("/img/logo.svg")}
-        />
-        <LinkItem
-          link="https://github.com/risingwavelabs/risingwave"
-          focusing={githubFocus}
-          setFocus={setGithubFocus}
-          label="Github/RisingWave"
-          imgUrl={useBaseUrl("/img/home/github.png")}
-        />
-        <LinkItem
-          link="https://twitter.com/risingwavelabs"
-          focusing={twitterFocus}
-          setFocus={setTwitterFocus}
-          label="Follow us on Twitter"
-          imgUrl={useBaseUrl("/img/home/twitter.png")}
-        />
         <LinkItem
           link="https://www.risingwave.com/slack"
           focusing={slackFocus}
@@ -112,13 +88,7 @@ export default function LinkGroup(props) {
           label="Let's chat on Slack"
           imgUrl={useBaseUrl("/img/home/slack.png")}
         />
-        <LinkItem
-          link="https://www.linkedin.com/company/risingwave-labs/"
-          focusing={linkedInFocus}
-          setFocus={setLinkedInFocus}
-          label="Follow us on LinkedIn"
-          imgUrl={useBaseUrl("/img/home/linkedin.png")}
-        />
+
       </div>
     </div>
   );
