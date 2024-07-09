@@ -36,16 +36,17 @@ WITH (
 |*sink_name*| Name of the sink to be created.|
 |*sink_from*| A clause that specifies the direct source from which data will be output. *sink_from* can be a materialized view or a table. Either this clause or *select_query* query must be specified.|
 |AS *select_query*| A `SELECT` query that specifies the data to be output to the sink. Either this query or a *sink_from* clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the `SELECT` command.|
-| type | Required. Only `append-only` sinks are supported as BigQuery has limited support for updates and deletes.|
+| type | Required. Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li>`upsert`: For this type, you need to set corresponding permissions and primary keys based on the [Document of BigQuery](https://cloud.google.com/bigquery/docs/change-data-capture).</li></ul>|
 | force_append_only | Optional. If `true`, forces the sink to be `append-only`, even if it cannot be. |
 | bigquery.local.path | Optional. The file path leading to the JSON key file located in your local server. Details can be found in [Service Accounts](https://console.cloud.google.com/iam-admin/serviceaccounts) under your Google Cloud account. Either `bigquery.local.path` or `bigquery.s3.path` must be specified. |
 | bigquery.s3.path | Optional. The file path leading to the JSON key file located in S3. Details can be found in [Service Accounts](https://console.cloud.google.com/iam-admin/serviceaccounts) under your Google Cloud account. At least one of `bigquery.local.path` or `bigquery.s3.path` must be specified.|
 | bigquery.project | Required. The BigQuery project ID. |
 | bigquery.dataset | Required. The BigQuery dataset ID. |
 | bigquery.table | Required. The BigQuery table you want to sink to. |
-| access_key | Conditional. The access key of the S3 file. This must be specified if sinking to an S3 file. |
-| secret_access | Conditional. The secret access key of the S3 file. This must be specified if sinking to an S3 file.|
-| region | Conditional. The service region of the S3 file. This must be specified if sinking to an S3 file. |
+| auto_create | Optional. Defaults to `false`. If `true`, a new table will be automatically created in BigQuery when the specified table is not found.|
+| aws.credentials.access_key_id | Optional. The access key of the S3 file. This must be specified if sinking to an S3 file. |
+| aws.credentials.secret_access_key | Optional. The secret access key of the S3 file. This must be specified if sinking to an S3 file.|
+| region | Optional. The service region of the S3 file. This must be specified if sinking to an S3 file. |
 
 ## Examples
 
@@ -77,8 +78,8 @@ WITH (
     bigquery.project= '${project_id}',
     bigquery.dataset= '${dataset_id}',
     bigquery.table= '${table_id}',
-    access_key = '${aws_access_key}',
-    secret_access = '${aws_secret_access}',
+    aws.credentials.access_key_id = '${aws_access_key}',
+    aws.credentials.secret_access_key = '${aws_secret_access}',
     region = '${aws_region}',
     force_append_only='true',
 );
@@ -97,7 +98,7 @@ WITH (
 |numeric |numeric|
 |date |date|
 |character varying (varchar) |string|
-|time without time zone |unsupported|
+|time without time zone |time|
 |timestamp without time zone |datetime|
 |timestamp with time zone |timestamp|
 |interval |interval|

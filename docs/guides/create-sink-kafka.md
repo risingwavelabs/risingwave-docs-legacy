@@ -30,6 +30,7 @@ WITH (
 FORMAT data_format ENCODE data_encode [ (
     key = 'value'
 ) ]
+[KEY ENCODE key_encode [(...)]]
 ;
 ```
 
@@ -72,6 +73,7 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |queue.buffering.max.kbytes |properties.queue.buffering.max.kbytes| int|
 |queue.buffering.max.messages |properties.queue.buffering.max.messages |int|
 |queue.buffering.max.ms |properties.queue.buffering.max.ms |float|
+|request.required.acks| properties.request.required.acks| int |
 |retry.backoff.ms |properties.retry.backoff.ms| int|
 |receive.message.max.bytes | properties.receive.message.max.bytes | int |
 |ssl.endpoint.identification.algorithm | properties.ssl.endpoint.identification.algorithm | str |
@@ -89,14 +91,15 @@ These options should be set in `FORMAT data_format ENCODE data_encode (key = 'va
 |Field|Notes|
 |-----|-----|
 |data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
-|data_encode| Data encode. Supported encodes: `JSON`, `AVRO`, and `PROTOBUF`. For `AVRO` encode, only `UPSERT AVRO` sinks are supported. For `PROTOBUF` encode, only `PLAIN PROTOBUF` sinks are supported.|
+|data_encode| Data encode. Supported encodes: `JSON`, `AVRO`, and `PROTOBUF`. For `AVRO` encode, `UPSERT AVRO` and `PLAIN AVRO` sinks are supported. For `PROTOBUF` encode, only `PLAIN PROTOBUF` sinks are supported.|
 |force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
 |timestamptz.handling.mode|Controls the timestamptz output format. This parameter specifically applies to append-only or upsert sinks using JSON encoding. <br/> - If omitted, the output format of timestamptz is `2023-11-11T18:30:09.453000Z` which includes the UTC suffix `Z`. <br/> - When `utc_without_suffix` is specified, the format is changed to `2023-11-11 18:30:09.453000`.|
 |schemas.enable| Only configurable for upsert JSON sinks. By default, this value is `false` for upsert JSON sinks and `true` for debezium `JSON` sinks. If `true`, RisingWave will sink the data with the schema to the Kafka sink. Note that this is not referring to a schema registry containing a JSON schema, but rather schema formats defined using [Kafka Connect](https://www.confluent.io/blog/kafka-connect-deep-dive-converters-serialization-explained/#json-schemas).|
+|key_encode| Optional. When specified, the key encode can only be `TEXT`, and the primary key should be one and only one of the following types: `varchar`, `bool`, `smallint`, `int`, and `bigint`; When absent, both key and value will use the same setting of `ENCODE data_encode ( ... )`. |
 
 ### Avro specific parameters
 
-When creating an upsert Avro sink, the following options can be used following `FORMAT UPSERT ENCODE AVRO`.
+When creating an Avro sink, the following options can be used following `FORMAT UPSERT ENCODE AVRO` or `FORMAT PLAIN ENCODE AVRO`.
 
 |Field|Notes|
 |-----|-----|
@@ -110,7 +113,7 @@ When creating an upsert Avro sink, the following options can be used following `
 Syntax:
 
 ```sql
-FORMAT UPSERT
+FORMAT [ UPSERT | PLAIN ]
 ENCODE AVRO (
    schema.registry = 'schema_registry_url',
    [schema.registry.username = 'username'],
@@ -120,6 +123,8 @@ ENCODE AVRO (
    [message = 'main_message',]
 )
 ```
+
+For data type mapping, the serial type is supported. We map the serial type to the 64-bit signed integer.
 
 ### Protobuf specific parameters
 
@@ -147,6 +152,12 @@ ENCODE PROTOBUF (
    schema.location = 'location'
 )
 ```
+
+For data type mapping, the serial type is supported. We map the serial type to the 64-bit signed integer.
+
+### JSON specific parameters
+
+For data mapping, the serial type is supported. However, note that it is mapped into a JSON string like `"0x05fb93d677c4e000"` instead of a JSON number `431100738685689856`. This string form avoids JSON number precision issues with large int64 values, and you can still order by the fixed-length hexadecimal string to obtain the same order as the serial number (whereas variable-length string `"12"` sorts before `"7"`).
 
 ## Examples
 
@@ -254,6 +265,8 @@ RisingWave supports these SASL authentication mechanisms:
 
 - `SASL/PLAIN`
 - `SASL/SCRAM`
+- `SASL/GSSAPI`
+- `SASL/OAUTHBEARER`
 
 SSL encryption can be used concurrently with SASL authentication mechanisms.
 
@@ -261,7 +274,12 @@ To learn about how to enable SSL encryption and SASL authentication in Kafka, in
 
 You need to specify encryption and authentication parameters in the WITH section of a `CREATE SINK` statement.
 
-### SSL without SASL
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs queryString="method">
+
+<TabItem value="SSL without SASL" label="SSL without SASL">
 
 To sink data encrypted with SSL without SASL authentication, specify these parameters in the WITH section of your `CREATE SINK` statement.
 
@@ -296,7 +314,9 @@ WITH (
 FORMAT PLAIN ENCODE JSON;
 ```
 
-### `SASL/PLAIN`
+</TabItem>
+
+<TabItem value="SASL/PLAIN" label="SASL/PLAIN">
 
 |Parameter| Notes|
 |---|---|
@@ -353,8 +373,9 @@ WITH (
 )
 FORMAT PLAIN ENCODE JSON;
 ```
+</TabItem>
 
-### `SASL/SCRAM`
+<TabItem value="SASL/SCRAM" label="SASL/SCRAM">
 
 |Parameter| Notes|
 |---|---|
@@ -391,6 +412,93 @@ WITH (
 )
 FORMAT PLAIN ENCODE JSON;
 ```
+
+</TabItem>
+
+<TabItem value="SASL/GSSAPI" label="SASL/GSSAPI">
+
+
+|Parameter| Notes|
+|---|---|
+|`properties.security.protocol`| Set to `SASL_PLAINTEXT`, as RisingWave does not support using SASL/GSSAPI with SSL.|
+|`properties.sasl.mechanism`| Set to `GSSAPI`.|
+|`properties.sasl.kerberos.service.name`| |
+|`properties.sasl.kerberos.keytab`| |
+|`properties.sasl.kerberos.principal`| |
+|`properties.sasl.kerberos.kinit.cmd`| |
+|`properties.sasl.kerberos.min.time.before.relogin`| |
+
+:::note
+
+For the definitions of the parameters, see the [librdkafka properties list](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md). Note that the parameters in the list assumes all parameters start with `properties.` and therefore do not include this prefix.
+
+:::
+
+Here is an example of creating a sink authenticated with SASL/GSSAPI without SSL encryption.
+
+```sql
+CREATE SINK sink1 FROM mv1                 
+WITH (
+   connector='kafka',
+   type = 'append-only',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   properties.sasl.mechanism='GSSAPI',
+   properties.security.protocol='SASL_PLAINTEXT',
+   properties.sasl.kerberos.service.name='kafka',
+   properties.sasl.kerberos.keytab='/etc/krb5kdc/kafka.client.keytab',
+   properties.sasl.kerberos.principal='kafkaclient4@AP-SOUTHEAST-1.COMPUTE.INTERNAL',
+   properties.sasl.kerberos.kinit.cmd='sudo kinit -R -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal} || sudo kinit -kt "%{sasl.kerberos.keytab}" %{sasl.kerberos.principal}',
+   properties.sasl.kerberos.min.time.before.relogin='10000'
+) FORMAT PLAIN ENCODE JSON;
+```
+</TabItem>
+
+<TabItem value="SASL/OAUTHBEARER" label="SASL/OAUTHBEARER">
+
+:::caution
+
+ The implementation of SASL/OAUTHBEARER in RisingWave validates only [unsecured client side tokens](https://docs.confluent.io/platform/current/kafka/authentication_sasl/authentication_sasl_oauth.html#unsecured-client-side-token-creation-options-for-sasl-oauthbearer), and does not support OpenID Connect (OIDC) authentication. Therefore, it should not be used in production environments.
+
+:::
+
+|Parameter| Notes|
+|---|---|
+|`properties.security.protocol`| For SASL/OAUTHBEARER without SSL, set to `SASL_PLAINTEXT`. For SASL/OAUTHBEARER with SSL, set to `SASL_SSL`.|
+|`properties.sasl.mechanism`|Set to `OAUTHBEARER`.|
+|`properties.sasl.oauthbearer.config`| |
+
+:::note
+
+For the definitions of the parameters, see the [librdkafka properties list](https://github.com/edenhill/librdkafka/blob/master/CONFIGURATION.md). Note that the parameters in the list assumes all parameters start with `properties.` and therefore do not include this prefix. Also, due to the limitation of the SASL/OAUTHBEARER implementation, you only need to specify one OAUTHBEARER parameter: `properties.sasl.oauthbearer.config`. Other OAUTHBEARER parameters are not applicable.
+
+:::
+
+For SASL/OAUTHBEARER with SSL, you also need to include these SSL parameters:
+
+- `properties.ssl.ca.location`
+- `properties.ssl.certificate.location`
+- `properties.ssl.key.location`
+- `properties.ssl.key.password`
+
+This is an example of creating a sink authenticated with SASL/OAUTHBEARER without SSL encryption.
+
+```sql
+CREATE SINK sink1 FROM mv1                 
+WITH (
+   connector='kafka',
+   type = 'append-only',
+   topic='quickstart-events',
+   properties.bootstrap.server='localhost:9093',
+   properties.sasl.mechanism='OAUTHBEARER',
+   properties.security.protocol='SASL_PLAINTEXT',
+   properties.sasl.oauthbearer.config='principal=bob'
+) FORMAT PLAIN ENCODE JSON;
+```
+
+</TabItem>
+
+</Tabs>
 
 ## Data type mapping - RisingWave and Debezium JSON
 

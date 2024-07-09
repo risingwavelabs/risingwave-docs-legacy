@@ -48,7 +48,7 @@ CREATE USER 'user'@'%' IDENTIFIED BY 'password';
 2. Grant the appropriate privileges to the user.
 
 ```sql
-GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user'@'%';
+GRANT SELECT, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'user'@'%';
 ```
 
 3. Finalize the privileges.
@@ -169,6 +169,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
 ) 
+[ INCLUDE timestamp AS column_name ]
 WITH (
    snapshot='true' 
 )
@@ -188,6 +189,7 @@ All the fields listed below are required. Note that the value of these parameter
 |database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| Required if creating a shared source. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
+|ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with MySQL. It accepts three values: `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.|
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
 
 The following fields are used when creating a CDC table.
@@ -195,6 +197,28 @@ The following fields are used when creating a CDC table.
 |Field|Notes|
 |---|---|
 |snapshot| Optional. If `false`, CDC backfill will be disabled and only upstream events that have occurred after the creation of the table will be consumed. This option can only be applied for tables created from a shared source. |
+|snapshot.interval| Optional. Specifies the barrier interval for buffering upstream events. The default value is `1`. |
+|snapshot.batch_size| Optional. Specifies the batch size of a snapshot read query from the upstream table. The default value is `1000`. |
+
+Regarding the `INCLUDE timestamp AS column_name` clause, it allows you to ingest the upstream commit timestamp. For historical data, the commit timestamp will be set to `1970-01-01 00:00:00+00:00`. Here is an example:
+
+```sql
+CREATE TABLE mytable (v1 int PRIMARY KEY, v2 varchar)
+INCLUDE timestamp AS commit_ts
+FROM pg_source TABLE 'public.mytable';
+
+SELECT * FROM t2 ORDER BY v1;
+
+----RESULT
+ v1 | v2 |         commit_ts
+----+----+---------------------------
+  1 | aa | 1970-01-01 00:00:00+00:00
+  2 | bb | 1970-01-01 00:00:00+00:00
+  3 | cc | 2024-05-20 09:01:08+00:00
+  4 | dd | 2024-05-20 09:01:08+00:00
+```
+
+You can see the [INCLUDE clause](/ingest/include-clause.md) for more details.
 
 #### Debezium parameters
 
@@ -218,6 +242,33 @@ CREATE SOURCE mysql_mydb WITH (
 ### Data format
 
 Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The MySQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `mysql-cdc` as the source.
+
+### Metadata options
+
+Below are the metadata columns available for MySQL CDC.
+
+|Field|Notes|
+|---|---|
+|database_name| Name of the database. |
+|schema_name| Name of the schema.|
+|table_name| Name of the table.|
+
+For instance, the person table below contains columns for typical personal information. It also includes metadata fields (`database_name`, `schema_name`, `table_name`) to provide contextual information about where the data resides within the MySQL database.
+
+```sql
+CREATE TABLE person (
+    id int,
+    name varchar,
+    email_address varchar,
+    credit_card varchar,
+    city varchar,
+    PRIMARY KEY (id)
+) INCLUDE TIMESTAMP AS commit_ts
+INCLUDE DATABASE_NAME as database_name
+INCLUDE SCHEMA_NAME as schema_name
+INCLUDE TABLE_NAME as table_name
+FROM mysql_source TABLE 'public.person';
+```
 
 ## Examples
 
@@ -322,3 +373,62 @@ Please be aware that the range of specific values varies among MySQL types and R
 | DATE | DATE | `1000-01-01` to `9999-12-31` | `0001-01-01` to `9999-12-31` |
 | DATETIME | TIMESTAMP | `1000-01-01 00:00:00.000000` to `9999-12-31 23:59:59.49999` | `1973-03-03 09:46:40` to `5138-11-16 09:46:40` |
 | TIMESTAMP | TIMESTAMPTZ | `1970-01-01 00:00:01.000000` to `2038-01-19 03:14:07.499999` | `0001-01-01 00:00:00` to `9999-12-31 23:59:59` |
+
+
+## Use dbt to ingest data from MySQL CDC
+
+Here is an example of how to use dbt to ingest data from MySQL CDC. In this dbt example, `source` and `table_with_connector` models will be used. For more details about these two models, please refer to [Use dbt for data transformations](/transform/use-dbt.md#define-dbt-models).
+
+First, we create a `source` model `mysql_mydb.sql`.
+
+```sql
+{{ config(materialized='source') }}
+CREATE SOURCE {{ this }} WITH (
+  connector = 'mysql-cdc',
+  hostname = '127.0.0.1',
+  port = '8306',
+  username = 'root',
+  password = '123456',
+  database.name = 'mydb',
+  server.id = 5888
+);
+```
+
+And then we create a `table_with_connector` model `t1_rw.sql`.
+
+```sql
+{{ config(materialized='table_with_connector') }}
+CREATE TABLE {{ this }}  (
+    v1 int,
+    v2 int,
+    PRIMARY KEY(v1)
+) FROM {{ ref('mysql_mydb') }} TABLE 'mydb.t1';
+```
+
+## Automatically map upstream table schema
+
+RisingWave supports automatically mapping the upstream table schema when creating a CDC table from a MySQL CDC source. Instead of defining columns individually, you can use `*` when creating a table to ingest all columns from the source table. Note that `*` cannot be used if other columns are specified in the table creation process.
+
+Below is an example to create a table that ingests all columns from the upstream table from the MySQL database:
+
+```sql
+CREATE TABLE supplier (*) FROM mysql_source TABLE 'public.supplier';
+```
+
+And this it the output of `DESCRIBE supplier;`
+
+```sql
+       Name        |       Type        | Is Hidden | Description
+-------------------+-------------------+-----------+-------------
+ s_suppkey         | bigint            | false     |
+ s_name            | character varying | false     |
+ s_address         | character varying | false     |
+ s_nationkey       | bigint            | false     |
+ s_phone           | character varying | false     |
+ s_acctbal         | numeric           | false     |
+ s_comment         | character varying | false     |
+ primary key       | s_suppkey         |           |
+ distribution key  | s_suppkey         |           |
+ table description | supplier          |           |
+(10 rows)
+``` 

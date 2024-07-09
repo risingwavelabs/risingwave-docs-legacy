@@ -2,13 +2,19 @@
 id: sink-to-elasticsearch
 title: Sink data from RisingWave to Elasticsearch
 description: Sink data from RisingWave to Elasticsearch.
-slug: /sink-to-elasticsearch 
+slug: /sink-to-elasticsearch
 ---
 You can deliver the data that has been ingested and transformed in RisingWave to Elasticsearch to serve searches or analytics.
 
 This guide describes how to sink data from RisingWave to Elasticsearch using the Elasticsearch sink connector in RisingWave.
 
 [Elasticsearch](https://www.elastic.co/elasticsearch/) is a distributed, RESTful search and analytics engine capable of addressing a growing number of use cases. It centrally stores your data for lightning-fast search, fine‑tuned relevancy, and powerful analytics that scale with ease.
+
+The Elasticsearch sink connecter in RisingWave will perform index operations via the [bulk API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-bulk.html#docs-bulk-api-request), flushing updates whenever one of these criteria is met:
+
+- 1,000 operations
+- 5mb of updates
+- 5 seconds since the last flush (assuming new actions are queued)
 
 :::note Beta Feature
 The Elasticsearch sink connector in RisingWave is currently a Beta feature that supports only versions 7.x and 8.x of Elasticsearch. Please contact us if you encounter any issues or have feedback.
@@ -38,7 +44,7 @@ WITH (
   primary_key = '<primary key of the sink_from object>',
   { index = '<your Elasticsearch index>' | index_column = '<your index column>' },
   url = 'http://<ES hostname>:<ES port>',
-  username = '<your ES username>', 
+  username = '<your ES username>',
   password = '<your password>',
   delimiter='<delimiter>'
 );
@@ -56,7 +62,7 @@ WITH (
 | `index_column`  |This parameter enables you to create a sink that writes to multiple indexes dynamically. The sink decides which index to write to based on a column. It is mutually exclusive with the parameter `index`. Only one of them **can and must** be set. When `index` is set, the write index of Elasticsearch is `index`. When `index_column` is set, the index of Elasticsearch is the value of this column, which must be the `string` type. Since Elasticsearch sink defaults to the first column as the key, it is not recommended to place this column as the first column.|
 | `url`          | Required. URL of the Elasticsearch REST API endpoint.|
 | `username`        | Optional. `elastic` user name for accessing the Elasticsearch endpoint. It must be used with `password`.|
-| `password`       | Optional. Password for accessing the Elasticseaerch endpoint. It must be used with `username`.|
+| `password`       | Optional. Password for accessing the Elasticsearch endpoint. It must be used with `username`.|
 |`delimiter` | Optional. Delimiter for Elasticsearch ID when the sink's primary key has multiple columns.|
 
 :::note

@@ -96,39 +96,29 @@ In contrast, materialized views in OLAP databases may not prioritize real-time u
 
 ## Using RisingWave
 
-### Why does RisingWave not accept Kafka consumer group IDs?
-
-A Kafka consumer group is a concept in Apache Kafka. It refers to a group of consumers that work together to consume data from one or more topics.
-
-1. **Grouping consumers**: Kafka allows multiple consumers to form a group (called a consumer group) to consume messages from a topic. Consumers divide the topic's partitions among themselves to consume messages more efficiently.
-
-2. **Partition assignment**: In Kafka, topics are divided into partitions for scalability and parallelism. Each consumer in a group is assigned one or more partitions to read messages from. This split of tasks helps process data in parallel.
-
-3. **Load balancing**: Kafka automatically distributes partitions among consumers. When new consumers join the group or existing consumers leave, Kafka reassigns the partition among the remaining consumers. This ensures even workload distribution and high availability.
-
-4. **Scalability and fault tolerance**: Kafka consumer groups provide scalability by distributing the consumption process across multiple consumers. If a consumer fails, others in the group can take over its partitions, ensuring fault tolerance.
-
-### RisingWave's task parallelism
-
-In RisingWave, each task is divided into smaller operational units known as `actors.` These actors are assigned globally unique actor IDs by the meta. This design is crucial for ensuring efficient execution of tasks.
-
-### Design of Kafka sources in RisingWave
-
-For Kafka sources, RisingWave operates under the assumption that each actor exclusively receives messages from a designated Kafka partition. This assumption simplifies offset management and allows for the distribution of partitions across different actors to optimize throughput. However, in scenarios where the number of partitions in the upstream Kafka topic is fewer than RisingWave's task parallelism, some actors may remain inactive and not produce messages downstream. Each active actor processes at least one partition, forwarding the consumed data and the latest offset of each partition downstream. This information is then recorded in the state table. Within the same epoch, the state table only allows one actor to write for a given partition, requiring a clear mapping between partitions and actors.
-
-### Issues with specifying group IDs
-
-1. **Data loss**: In Kafka's fault tolerance mechanism, when a consumer fails, other consumers in the group can take over its partitions. However, this behavior contradicts the foundational assumption of RisingWave regarding sources. Specifically, if `actor_1` crashes at time `T0` and the Kafka broker reassigns its partition to `actor_2`, `actor_2` will discard messages not originating from its assigned partition. When `actor_1` recovers and the broker reassigns the original partition back, messages between `T0` and `T1` are considered consumed and not available, resulting in data loss. This scenario violates the requirement of exactly-once semantics and disrupts the records in the state table. The scheduling of brokers in consumer groups is likely misaligned with RisingWave's checkpoints, potentially causing failures in writing to the state table.
-
-2. **Disruption of existing RisingWave behavior**: The issue arises when users are allowed to specify group IDs in sources. Let's consider a scenario where two downstream materialized views depend on the same source, assuming a parallelism degree of 3 and the upstream topic having 3 partitions. In the current implementation, there would be two sets of source executors, totaling six, all sharing the same group ID.
-
-According to Kafka's behavior, "each consumer in a group is assigned one or more partitions to read messages from." However, if the number of consumers exceeds the number of partitions, some consumers will not receive any data. This situation clearly fails to meet the requirement of both materialized views receiving complete data sets.
-
 ### Why the memory usage is so high?
 
 Don't worry, this is by design. RisingWave uses memory for in-memory cache of streaming queries, such as data structures like hash tables, etc., to optimize streaming computation performance. By default, RisingWave will utilize all available memory (unless specifically configured through `RW_TOTAL_MEMORY_BYTES`/`--total-memory-bytes`). This is why setting memory limits is required in Kubernetes/Docker deployments. 
 
 During the instance running, RisingWave will keep memory usage below this limit. If you encounter unexpected issues like OOM (Out-of-memory), please refer to [Troubleshoot out-of-memory](/troubleshoot/troubleshoot-oom.md) for assistance.
+
+### Why is the memory for compute nodes not fully utilized?
+
+As part of its design, RisingWave allocates 30% of the total memory in the compute node as reserved memory. This reserved memory is specifically set aside for system usage, such as the stack and code segment of processes, allocation overhead, and network buffer.
+
+However, this may not be suitable for all workloads and machine setups. To address this, we introduce a new option in version 1.9 and above, which allows you to explicitly configure the amount of reserved memory for compute nodes. You can use the startup option `--reserved-memory-bytes` and the environment variable `RW_RESERVED_MEMORY_BYTES` to override the reserved memory configuration for compute nodes. Note that the memory reserved should be at least 512MB.
+
+If you prefer to keep the reserved memory configuration unchanged, you don't need to make any modifications. The default setup remains the same as before, where compute nodes will use 30% of their total memory as reserved memory.
+
+For example, let's assume you're deploying a compute node on a 64GB machine or pod. By default, the node will reserve 30% of the memory, which amounts to 19.2GB. However, if you find this excessive for your specific use case, you have the option to specify a different value. You can set either `RW_RESERVED_MEMORY_BYTES=8589934592` or `--reserved-memory-bytes=8589934592` when starting up the compute node. This will allocate 8GB as the reserved memory instead.
+
+### Why does the `CREATE MATERIALIZED VIEW` statement take a long time to execute?
+
+The execution time for the `CREATE MATERIALIZED VIEW` statement can vary based on several factors. Here are two common reasons:
+
+1. **Backfilling of historical data**: RisingWave ensures consistent snapshots across materialized views (MVs). So when a new MV is created, it backfills all historical data from the upstream MV or tables and calculate them, which takes some time. And the created DDL statement will only end when the backfill ends. You can run `SHOW JOBS;` in SQL to check the DDL progress. If you want the create statement to not wait for the process to finish and not block the session, you can execute `SET BACKGROUND_DDL=true;` before running the `CREATE MATERIALIZED VIEW` statement. See details in [`SET BACKGROUND_DDL`](/sql/commands/sql-set-background-ddl.md). But please notice that the newly created MV is still invisible in the catalog until the end of backfill when `BACKGROUND_DDL=true`.
+
+2. **High cluster latency**: If the cluster experiences high latency, it may take longer to apply changes to the streaming graph. If the `Progress` in the `SHOW JOBS;` result stays at 0.0%, high latency could be the cause. See details in [Troubleshoot high latency](/troubleshoot/troubleshoot-high-latency.md) 
 
 <details>
 <summary>I'd like to explore more questions.</summary>

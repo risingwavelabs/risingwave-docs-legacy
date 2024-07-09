@@ -326,6 +326,11 @@ const sidebars = {
                       label: "PostgreSQL CDC",
                       id: "guides/ingest-from-postgres-cdc",
                     },
+                    {
+                      type: "doc",
+                      label: "Supabase CDC",
+                      id: "ingest/ingest-from-supabase-cdc",
+                    },
                   ]
                 },
                 {
@@ -445,11 +450,6 @@ const sidebars = {
                       id: "sql/udf/udf-java",
                       label: "Java",
                     },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-rust",
-                      label: "Rust",
-                    },
                   ],
                 },
                 {
@@ -468,7 +468,17 @@ const sidebars = {
                       id: "sql/udf/udf-javascript",
                       label: "JavaScript",
                     },
+                    {
+                      type: "doc",
+                      id: "sql/udf/udf-rust",
+                      label: "Rust",
+                    }
                   ],
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/sql-udfs",
+                  label: "SQL UDFs",
                 },
                 {
                   type: "doc",
@@ -503,6 +513,16 @@ const sidebars = {
               type: "doc",
               id: "transform/use-dbt",
               label: "Use dbt for data transformations",
+            },
+            {
+              type: "doc",
+              id: "transform/multiple-table-sink",
+              label: "Maintain wide table with table sinks",
+            },
+            {
+              type: "doc",
+              id: "transform/subscription",
+              label: "Subscription",
             },
             {
               type: "doc",
@@ -554,11 +574,6 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "Supabase",
-              id: "guides/supabase-integration",
-            },
-            {
-              type: "doc",
               label: "Superset",
               id: "guides/superset-integration",
             },
@@ -586,6 +601,11 @@ const sidebars = {
               collapsible: true,
               collapsed: true,
               items: [
+                {
+                  type: "doc",
+                  label: "Amazon DynamoDB",
+                  id: "guides/sink-to-dynamodb",
+                },
                 {
                   type: "doc",
                   label: "Apache Doris",
@@ -643,6 +663,16 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "Google Pub/Sub",
+                  id: "guides/sink-to-google-pubsub",
+                },
+                {
+                  type: "doc",
+                  label: "Microsoft SQL Server",
+                  id: "guides/sink-to-sqlserver",
+                },
+                {
+                  type: "doc",
                   label: "MQTT",
                   id: "guides/sink-to-mqtt",
                 },
@@ -658,6 +688,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "OpenSearch",
+                  id: "guides/sink-to-opensearch",
+                },
+                {
+                  type: "doc",
                   label: "PostgreSQL",
                   id: "guides/sink-to-postgres",
                 },
@@ -668,8 +703,18 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "Snowflake",
+                  id: "guides/sink-to-snowflake",
+                },
+                {
+                  type: "doc",
                   label: "StarRocks",
                   id: "guides/sink-to-starrocks",
+                },
+                {
+                  type: "doc",
+                  label: "Supabase",
+                  id: "guides/sink-to-supabase",
                 },
                 {
                   type: "doc",
@@ -978,32 +1023,36 @@ const sidebars = {
           label: "Client libraries",
           collapsible: true,
           collapsed: true,
+          link: {
+            type: "doc",
+            id: "dev/client-libraries-overview",
+          },
           items: [
-            {
-              type: "doc",
-              id: "dev/java-client-libraries",
-              label: "Java",
-            },
-            {
-              type: "doc",
-              id: "dev/nodejs-client-libraries",
-              label: "Node.js",
-            },
-            {
-              type: "doc",
-              id: "dev/python-client-libraries",
-              label: "Python",
-            },
-            {
-              type: "doc",
-              id: "dev/go-client-libraries",
-              label: "Go",
-            },
-            {
-              type: "doc",
-              id: "dev/ruby-client-libraries",
-              label: "Ruby",
-            },
+            // {
+            //   type: "doc",
+            //   id: "dev/java-client-libraries",
+            //   label: "Java",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/nodejs-client-libraries",
+            //   label: "Node.js",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/python-client-libraries",
+            //   label: "Python",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/go-client-libraries",
+            //   label: "Go",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "dev/ruby-client-libraries",
+            //   label: "Ruby",
+            // },
           ],
         },
       ],
@@ -1065,11 +1114,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/configure-node-specific-parameters',
-        },
-        {
-          type: 'doc',
-          id: 'manage/node-specific-parameters',
+          id: 'manage/node-specific-configurations',
         },
         {
           type: "doc",
@@ -1079,6 +1124,11 @@ const sidebars = {
         {
           type: 'doc',
           id: 'manage/meta-backup',
+        },
+        {
+          type: 'doc',
+          id: 'manage/migrate-to-sql-backend',
+          label: "Migrate to SQL backend",
         },
         {
           type: "doc",
@@ -1149,10 +1199,25 @@ const sidebars = {
             ]
         },
         {
-          type: "doc",
-          label: "Meta failure",
-          id: "troubleshoot/troubleshoot-meta"
+          type: "category",
+          label: "Node failure",
+          collapsible: true,
+          collapsed: true,
+          items:
+            [
+              {
+                type: "doc",
+                label: "Overview",
+                id: "troubleshoot/troubleshoot-node-failure"
+              },
+              {
+                type: "doc",
+                label: "Meta failure",
+                id: "troubleshoot/troubleshoot-meta"
+              },
+            ]
         },
+
         {
           type: "doc",
           label: "Recovery failure",
