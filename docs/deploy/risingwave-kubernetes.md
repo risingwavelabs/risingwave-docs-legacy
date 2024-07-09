@@ -525,7 +525,7 @@ To customize HDFS as state backend in RisingWave, mount Hadoop configurations wi
 
   - `<your-risingwave-image-name>`: The name of your RisingWave Docker image.
   - `<your-hadoop-namenode-address>`: The address of your Hadoop NameNode.
-  - `<your-hadoop-data-directory>`: The directory where your Hadoop data is stored.
+  - `<your-hadoop-data-directory>`: The directory where data is stored.
 
   Note that the value of the `HADOOP_CONF_DIR` environment variable and the path where the `hadoop-conf` ConfigMap is mounted should be identical.
 
