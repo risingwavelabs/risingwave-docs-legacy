@@ -91,6 +91,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 
 |System | Source |Sink |
 |---|---|---|
+|Amazon DynamoDB| In progress <voteNotify note="amazon_dynamodb_source" />| Available. For details, see [Sink to DynamoDB](/guides/sink-to-dynamodb.md). |
 |Apache Druid| No plan| Researching <voteNotify note="druid_sink" /> |
 |Apache Pinot| No plan| Pinot supports ingesting data from Kafka, Pulsar, and Kinesis. To sink data from RisingWave to Pinot, you can use Kafka, Pulsar, or Kinesis as a sink, then ingest the data into Pinot. See [Sink Changes from RisingWave Tables to Apache Pinot](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests/pinot-sink) for a demo. |
 |AWS Redshift| No plan|Researching <voteNotify note="redshift_sink" />|
@@ -103,6 +104,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Google BigQuery| No plan |Available. For details, see [Sink to Google BigQuery](/guides/sink-to-bigquery.md).|
 |MongoDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <voteNotify note="mongodb_sink" /> |
 |Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
+|OpenSearch| No plan| Available. For details, see [Sink to OpenSearch](/guides/sink-to-opensearch.md). |
 |Redis|Researching <voteNotify note="redis_source" />|Available. For details, see [Sink to Redis](/guides/sink-to-redis.md).|
 |Snowflake| No plan|Available. For details, see [Sink data to Snowflake](/guides/sink-to-snowflake.md).|
 |SQL Server| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).| Available. See [Sink to SQL Server](/guides/sink-to-sqlserver.md). |
