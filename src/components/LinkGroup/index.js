@@ -4,7 +4,7 @@ import Collapse from "@mui/material/Collapse";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styled from "@emotion/styled";
 
-const buttonSize = 42;
+const buttonSize = 62;
 
 const LinkButton = styled("div")({
   backgroundColor: "#8080803b",
@@ -20,7 +20,7 @@ const LinkButton = styled("div")({
 const FoldedTextSpan = styled("span")({
   paddingLeft: "4px",
   color: "var(--ifm-font-color-base)",
-  fontSize: "12px",
+  fontSize: "14px",
   fontWeight: "bold",
 });
 
@@ -39,13 +39,13 @@ const FoldedTab = styled("div")({
 
 const FoldedTabContainer = styled(Collapse)({
   position: "absolute",
-  top: `${buttonSize / 4.2}px`,
+  top: `10px`,
   right: `${buttonSize + 10}px`,
 });
 
 const LinkImg = styled("img")({
-  width: "22px",
-  height: "22px",
+  width: "40px",
+  height: "40px",
 });
 
 const LinkItem = (props) => {
