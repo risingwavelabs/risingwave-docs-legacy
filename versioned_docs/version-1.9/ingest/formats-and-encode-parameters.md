@@ -30,8 +30,8 @@ The `FORMAT` parameter represents the organization format of the data and includ
 The `ENCODE` parameter represents the data encoding and includes the following options:
 
 - `JSON`: Data serialized in JSON format in the message queue, compatible with all `FORMAT` options.
-- `AVRO`: Data serialized in AVRO format in the message queue, compatible with all `FORMAT` options.
-- `Protobuf`: Data serialized in Protobuf format in the message queue, compatible with `FORMAT PLAIN / UPSERT / CANAL`.
+- `AVRO`: Data serialized in AVRO format in the message queue, compatible with `FORMAT PLAIN / UPSERT / DEBEZIUM`.
+- `Protobuf`: Data serialized in Protobuf format in the message queue, compatible with `FORMAT PLAIN`.
 - `CSV`: Data serialized in CSV format in the message queue, compatible with `FORMAT PLAIN`.
 - `Bytes`: Data exists in the message queue in raw bytes format, compatible with `FORMAT PLAIN`.
 
