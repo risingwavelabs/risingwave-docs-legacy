@@ -48,7 +48,7 @@ WITH (
 | `clickhouse.user`       | Required. User name for accessing the ClickHouse server. |
 | `clickhouse.password`   | Required. Password for accessing the ClickHouse server.|
 | `clickhouse.database`  | Required. Name of the ClickHouse database that you want to sink data to.|
-|`commit_checkpoint_interval`| Optional. Commit every N checkpoints (N > 0). If not set, it commits to ClickHouse at every checkpoint.|
+| `clickhouse.table`      | Required. Name of the ClickHouse table that you want to sink data to.|
 
 ### Upsert sinks
 
