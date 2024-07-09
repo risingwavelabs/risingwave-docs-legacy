@@ -105,13 +105,9 @@ In the corresponding `docker-compose-with-service_name.yml` file (for example, `
 
 #### HDFS
 
-Mount your `HADOOP_HOME` in the compactor node, computer node, and meta node volumes.
+Fill in your image name, cluster name (or namenode), and data directory
 
-In `/docker-compose-with-hdfs.yml`, specify the cluster name via the `hummock+hdfs` parameter.
-
-```bash
-- "hummock+hdfs://<cluster_name>"
-```
+Mount your `HADOOP_HOME` to the volume `<$HADOOP_HOME>:/opt/hadoop/`, see [`docker-compose-with-hdfs.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-hdfs.yml) for more information.
 
 #### Huawei Cloud OBS
 
