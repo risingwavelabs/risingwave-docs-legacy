@@ -40,13 +40,12 @@ DROP SUBSCRIPTION <subscription_name>;
 
 ### Alter subscription
 
-To rename a subscription, change the owner, adjust parallelism, or set a new schema, use the syntax below:
+To rename a subscription, change the owner, or set a new schema, use the syntax below:
 
 ```sql
 ALTER SUBSCRIPTION <subscription_name>
     [ RENAME TO <new_subscription_name> ]
     [ OWNER TO <new_owner> ]
-    [ SET ( parallelism = value ) ]
     [ SET SCHEMA <new_schema_name> ]
     ;
 ```
