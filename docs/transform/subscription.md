@@ -12,9 +12,13 @@ Subscription is used to pull data change records for a specific table or materia
 
 This feature allows you to monitor all data changes without relying on external event stores like Kafka. Compared to the Kafka sink or other event store sinks, subscription requires fewer component and thus, less maintenance.
 
-## Create subscription
+## Manage subscription
 
-Use the syntax below to create subscription.
+Use the syntax below to create, drop or alter subscription.
+
+### Create subscription
+
+To create a subscription, use the syntax below:
 
 ```sql
 CREATE SUBSCRIPTION <subscription_name> FROM <table_or_mv_name> WITH (
@@ -25,6 +29,27 @@ retention = '<duration>'
 The `FROM` clause must specify either a table or a materialized view (mv).
 
 The `retention` parameter should be provided as a string in the format of an interval. It represents the duration for which incremental data will be retained. Any incremental data that exceeds the specified retention duration will be automatically deleted and will no longer be accessible.
+
+### Drop subscription
+
+To drop a subscription, use the syntax below:
+
+```sql
+DROP SUBSCRIPTION <subscription_name>;
+```
+
+### Alter subscription
+
+To rename a subscription, change the owner, adjust parallelism, or set a new schema, use the syntax below:
+
+```sql
+ALTER SUBSCRIPTION subscription_name
+    [ RENAME TO new_subscription_name ]
+    [ OWNER TO new_owner ]
+    [ SET ( parallelism = value ) ]
+    [ SET SCHEMA new_schema_name ]
+    ;
+```
 
 ## Subscription cursor
 
