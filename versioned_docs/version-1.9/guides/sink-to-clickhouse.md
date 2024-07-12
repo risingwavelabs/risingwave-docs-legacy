@@ -24,7 +24,7 @@ The ClickHouse sink connector in RisingWave is currently in Beta. Please contact
 - Ensure you have an upstream materialized view or source that you can sink data from.
 
 :::note
-We highly recommend using the ReplacingMergeTree engine in ClickHouse. This is because it addresses the potential problem of duplicate writes in ClickHouse during RisingWave recovery when primary keys can be duplicated.
+We highly recommend using the deduplication engine, like ReplacingMergeTree, in ClickHouse. This is because it addresses the potential problem of duplicate writes in ClickHouse during RisingWave recovery when primary keys can be duplicated.
 :::
 
 ## Syntax
@@ -49,12 +49,6 @@ WITH (
 | `clickhouse.password`   | Required. Password for accessing the ClickHouse server.|
 | `clickhouse.database`  | Required. Name of the ClickHouse database that you want to sink data to.|
 | `clickhouse.table`      | Required. Name of the ClickHouse table that you want to sink data to.|
-
-:::note
-
-ClickHouse does not recommend using the `upsert`(`update` and `delete`) feature as it may result in significant performance degradation.
-
-:::
 
 ### Upsert sinks
 
@@ -207,7 +201,7 @@ In ClickHouse, the `Nested` data type doesn't support multiple levels of nesting
 
 :::note
 
-Previously, when inserting data into a ClickHouse sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". However, we have made a change to this behavior. If the ClickHouse column is nullable, we will insert null values in such cases. If the column is not nullable, we will insert `0` instead. 
+Before v1.9, when inserting data into a ClickHouse sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". Since v1.9, we have made a change to this behavior. If the ClickHouse column is nullable, we will insert null values in such cases. If the column is not nullable, we will insert `0` instead.
 
 :::
 

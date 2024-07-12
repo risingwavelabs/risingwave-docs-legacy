@@ -46,6 +46,7 @@ All parameters are required unless specified otherwise.
 | type | Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a chagelog stream. In StarRocks, Primary Key table must be selected. </li></ul> |
 | force_append_only | If `true`, forces the sink to be `append-only`, even if it cannot be. |
 | primary_key | Required if `type` is `upsert`. The primary key of the downstream table. |
+| commit_checkpoint_interval | Optional. You can use this parameter to decouple the downstream system’s commit from RisingWave’s commit. This means that instead of committing data to the downstream system at every barrier, RisingWave will commit data only when the specified checkpoint interval is reached. For instance, if `commit_checkpoint_interval` is set to `5`, RisingWave will commit data every five checkpoints. The default value is `1`. Note that when `commit_checkpoint_interval` is a positive integer larger than `1`, the [`sink_decouple`](/data-delivery.md#sink-decoupling) option will be enabled automatically.|
 
 ## Examples
 
@@ -94,6 +95,6 @@ The following table shows the corresponding data type in RisingWave that should 
 
 :::note
 
-Previously, when inserting data into a StarRocks sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". However, we have made a change to the behavior. If a decimal value is out of bounds or represents "inf", "-inf", or "nan", we will insert null values. 
+Before v1.9, when inserting data into a StarRocks sink, an error would be reported if the values were "nan (not a number)", "inf (infinity)", or "-inf (-infinity)". Since v1.9, we have made a change to the behavior. If a decimal value is out of bounds or represents "inf", "-inf", or "nan", we will insert null values.
 
 :::

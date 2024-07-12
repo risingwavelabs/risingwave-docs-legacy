@@ -58,7 +58,7 @@ For a table with primary key constraints, if a new data record with an existing 
 |Field|Notes|
 |---|---|
 |topic |Required. Address of the Pulsar topic. One source can only correspond to one topic.|
-|service.url| Required. Address of the Pulsar service. |
+|service.url| Required. Address of the Pulsar service. Typically in the format `pulsar://` or `pulsar+ssl://<host>:<port>` |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp.millis.| Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
 |auth.token | Optional. A token for auth. If both `auth.token` and `oauth` are set, only `oauth` authorization is effective.|

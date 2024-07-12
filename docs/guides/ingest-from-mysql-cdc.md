@@ -404,3 +404,31 @@ CREATE TABLE {{ this }}  (
     PRIMARY KEY(v1)
 ) FROM {{ ref('mysql_mydb') }} TABLE 'mydb.t1';
 ```
+
+## Automatically map upstream table schema
+
+RisingWave supports automatically mapping the upstream table schema when creating a CDC table from a MySQL CDC source. Instead of defining columns individually, you can use `*` when creating a table to ingest all columns from the source table. Note that `*` cannot be used if other columns are specified in the table creation process.
+
+Below is an example to create a table that ingests all columns from the upstream table from the MySQL database:
+
+```sql
+CREATE TABLE supplier (*) FROM mysql_source TABLE 'public.supplier';
+```
+
+And this it the output of `DESCRIBE supplier;`
+
+```sql
+       Name        |       Type        | Is Hidden | Description
+-------------------+-------------------+-----------+-------------
+ s_suppkey         | bigint            | false     |
+ s_name            | character varying | false     |
+ s_address         | character varying | false     |
+ s_nationkey       | bigint            | false     |
+ s_phone           | character varying | false     |
+ s_acctbal         | numeric           | false     |
+ s_comment         | character varying | false     |
+ primary key       | s_suppkey         |           |
+ distribution key  | s_suppkey         |           |
+ table description | supplier          |           |
+(10 rows)
+``` 
