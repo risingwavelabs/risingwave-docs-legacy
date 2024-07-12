@@ -11,7 +11,7 @@ Dynamic filters function as filter operators, but the filter condition contains 
 
 An valid dynamic filter comprises the following components:
 
-- A comparision operator including `<`, `>`, `<=`, `>=` and `BETWEEN`
+- A comparison operator including `<`, `>`, `<=`, `>=` and `BETWEEN`
 - A column as the left side 
 - A scalar subquery as the right side
 
