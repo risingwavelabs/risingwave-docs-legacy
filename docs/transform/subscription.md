@@ -12,9 +12,13 @@ Subscription is used to pull data change records for a specific table or materia
 
 This feature allows you to monitor all data changes without relying on external event stores like Kafka. Compared to the Kafka sink or other event store sinks, subscription requires fewer component and thus, less maintenance.
 
-## Create subscription
+## Manage subscription
 
-Use the syntax below to create subscription.
+Use the syntax below to create, drop or alter subscription.
+
+### Create subscription
+
+To create a subscription, use the syntax below:
 
 ```sql
 CREATE SUBSCRIPTION <subscription_name> FROM <table_or_mv_name> WITH (
@@ -25,6 +29,26 @@ retention = '<duration>'
 The `FROM` clause must specify either a table or a materialized view (mv).
 
 The `retention` parameter should be provided as a string in the format of an interval. It represents the duration for which incremental data will be retained. Any incremental data that exceeds the specified retention duration will be automatically deleted and will no longer be accessible.
+
+### Drop subscription
+
+To drop a subscription, use the syntax below:
+
+```sql
+DROP SUBSCRIPTION <subscription_name>;
+```
+
+### Alter subscription
+
+To rename a subscription, change the owner, or set a new schema, use the syntax below:
+
+```sql
+ALTER SUBSCRIPTION <subscription_name>
+    [ RENAME TO <new_subscription_name> ]
+    [ OWNER TO <new_owner> ]
+    [ SET SCHEMA <new_schema_name> ]
+    ;
+```
 
 ## Subscription cursor
 
@@ -66,7 +90,7 @@ FETCH NEXT FROM cur;
 (1 row)
 ```
 
-The `op` column in the result stands for the change operations. It has four options: `op = 1` (insert), `op = 2` (delete), `op = 3` (update_insert),  and `op = 4` (update_insert). The `update` statement here is transformed into `update_delete` and `update_insert` operations. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
+The `op` column in the result stands for the change operations. It has four options: `op = 1` (insert), `op = 2` (delete), `op = 3` (update_insert),  and `op = 4` (update_delete). The `update` statement here is transformed into `update_insert` and `update_delete` operations. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
 
 Note that each time `FETCH NEXT FROM cursor_name` is called, it will return one row of incremental data from the subscribed table. It does not return all the incremental data at once, but requires the user to repeatedly call this statement to fetch the data.
 

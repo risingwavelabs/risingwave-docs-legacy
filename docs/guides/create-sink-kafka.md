@@ -124,13 +124,15 @@ ENCODE AVRO (
 )
 ```
 
+For data type mapping, the serial type is supported. We map the serial type to the 64-bit signed integer.
+
 ### Protobuf specific parameters
 
 When creating an append-only Protobuf sink, the following options can be used following `FORMAT PLAIN ENCODE PROTOBUF`.
 
 |Field|Notes|
 |-----|-----|
-|message| Required. Message name of the main Message in the schema definition. . |
+|message| Required. Package qualified message name of the main Message in the schema definition.  |
 |schema.location| Required if `schema.registry` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The schema location. This can be in either `file://`, `http://`, `https://` format. |
 |schema.registry| Required if `schema.location` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The address of the schema registry. |
 |schema.registry.username| Optional. The user name used to access the schema registry. |
@@ -146,10 +148,16 @@ Syntax:
 ```sql
 FORMAT PLAIN
 ENCODE PROTOBUF (
-   message = 'main_message',
+   message = 'com.example.MyMessage',
    schema.location = 'location'
 )
 ```
+
+For data type mapping, the serial type is supported. We map the serial type to the 64-bit signed integer.
+
+### JSON specific parameters
+
+For data mapping, the serial type is supported. However, note that it is mapped into a JSON string like `"0x05fb93d677c4e000"` instead of a JSON number `431100738685689856`. This string form avoids JSON number precision issues with large int64 values, and you can still order by the fixed-length hexadecimal string to obtain the same order as the serial number (whereas variable-length string `"12"` sorts before `"7"`).
 
 ## Examples
 
