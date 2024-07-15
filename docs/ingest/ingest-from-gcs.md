@@ -39,7 +39,7 @@ FORMAT data_format ENCODE data_encode (
 |gcs.bucket_name |Required. The name of the bucket the data source is stored in. |
 |gcs.credential|Optional. The base64 encoded credential key. If this field is not specified, ADC (application default credentials) will be used. |
 |gcs.service_account|Optional. The service account of the target GCS source. If `gcs.credential` or ADC is not specified, the credentials will be derived from the service account.|
-|match_pattern| Conditional. This field is used to find object keys in the bucket that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported. |
+|match_pattern| Conditional. This field is used to find object keys in the bucket that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported. When set to `*.parquet`, you can use file source to read parquet file.|
 
 ### Other parameters
 
