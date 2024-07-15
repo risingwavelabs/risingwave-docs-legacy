@@ -26,12 +26,12 @@ Below are permissions and limitations for roles to ensure that each service acco
 **Permissions:**
 
 - Full control over tenants and related resources.
-- Management of service accounts, users, invitations, and role bindings.
+- Management of service accounts, users, invitations, and RoleBinding.
 - Access to all billing resources.
 
 **Limitations:**
 
-- Cannot modify their own admin role bindings.
+- Cannot modify their own admin RoleBinding.
 
 ---
 
@@ -74,6 +74,21 @@ Below are permissions and limitations for roles to ensure that each service acco
 
 ## RoleBinding
 
-A RoleBinding binds a set of permissions defined in a role to a user or service account within a specific namespace. Essentially, it connects a role to subjects (such as users) to grant permissions. RoleBindings are used to enforce RBAC policies and ensure that only authorized entities have access to resources and operations based on their defined roles.
+RoleBindings ensure that only authorized entities have access to resources and operations based on their defined roles.
 
-xxx
+### Prerequisites
+
+Only the OrganizationAdmin has the permission to manage user's RoleBinding.
+
+### Scenarios
+
+| User scenarios                             | Description                                                                                                                                                                      |
+|--------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Invite a user to the organization               | Currently, you can only invite a new user as an OrganizationMember. If you want to grant more permissions to the target user, please go to **Organization** > **Role management** > **Users** to modify after the user accepts the invitation.                                     |
+| Create a service account in the organization      | The service account RoleBinding is used for authorization when accessing Cloud APIs using the service account's API keys. By default, the service account is assigned the read-only OrganizationMember role. If you need to assign more permissions to the service account, please go to **Organization** > **Role management** > **Service Accounts** to add other roles. |
+| Delete or add RoleBinding for a user       | Go to **Organization** > **Role management** > **Users**, click the corresponding `Edit Roles` of the specific role. A popup window will appear, allowing you to uncheck the role or select the new ones. Click **Confirm** to save the change. |
+| Delete or add RoleBinding for the service account | Go to **Organization** > **Role management** > **Users**, click the corresponding `Edit Roles` of the specific service account. A popup window will appear, allowing you to uncheck the role or select the new ones. Click **Confirm** to save the change. |
+
+:::note
+Every organization needs at least one OrganizationAdmin user. Any attempt to delete the last OrganizationAdmin RoleBinding will fail.
+:::
