@@ -7,7 +7,7 @@ slug: /organization-rbac
 
 In RisingWave Cloud, Role-based access control (RBAC) system empowers organizations to precisely manage access permissions based on their roles. Among RisingWave Cloud users in the organization, each user is associated with a pre-defined role. The organization administrator will have permission to edit the roles of all the members, whereas other members will have access to different subsystems depending on their roles.
 
-## Service accounts and users
+## Overview of mechanism
 
 RBAC in RisingWave Cloud applies to both service accounts and users. These entities are authenticated and authorized to perform operations within the RisingWave Cloud platform.
 
