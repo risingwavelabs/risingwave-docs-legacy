@@ -24,7 +24,7 @@ Then wait for the uninstallation to complete. You can monitor the uninstallation
 kubectl get pods
 ```
 
-## Delete the persistent volumn claims
+## Delete the persistent volume claims
 
 To check the persistent volume claims, use the following command:
 

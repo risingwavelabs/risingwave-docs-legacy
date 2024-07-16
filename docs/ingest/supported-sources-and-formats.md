@@ -219,7 +219,7 @@ ENCODE JSON [ (
 
 ### Protobuf
 
-For data in protobuf format, you must specify a message and a schema location. The schema location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in protobuf, instead of providing a schema location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/ingest/ingest-from-kafka.md#read-schemas-from-schema-registry).
+For data in protobuf format, you must specify a message (fully qualified by package path) and a schema location. The schema location can be an actual Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in protobuf, instead of providing a schema location, you can provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/ingest/ingest-from-kafka.md#read-schemas-from-schema-registry).
 
 `schema.registry` can accept multiple addresses. RisingWave will send requests to all URLs and return the first successful result.
 
@@ -246,7 +246,7 @@ Syntax:
 ```sql
 FORMAT PLAIN
 ENCODE PROTOBUF (
-   message = 'main_message',
+   message = 'com.example.MyMessage',
    schema.location = 'location' | schema.registry = 'schema_registry_url [, ...]',
    [schema.registry.name.strategy = 'topic_name_strategy'],
    [key.message = 'test_key']

@@ -34,7 +34,7 @@ To check your current version, go to [**Projects**](https://cloud.risingwave.com
 
 <img
   src={require('./images/cluster-rwversion.png').default}
-  alt="Check RisingWave verison of clusters"
+  alt="Check RisingWave version of clusters"
   width="95%"
 />
 
@@ -148,7 +148,7 @@ links={[
  content="Continue to learn about RisingWave."
  links={[
  {text:"Key concepts", url:"/docs/current/key-concepts/"},
- {text:"Architechture", url:"/docs/current/architecture/"},
+ {text:"Architecture", url:"/docs/current/architecture/"},
  {text:"RisingWave vs. Apache Flink", url:"/docs/current/risingwave-flink-comparison/"},
  {text:"Release notes", url:"/release-notes/"}
  ]}
