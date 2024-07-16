@@ -224,12 +224,11 @@ const config = {
       async: true,
     },
     {
-      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@stable/dist/run-llm-search-widget.es.js",
+      src: "https://widget.runllm.com",
       id: "runllm-widget-script",
       type: "module",
       "runllm-server-address": "https://api.runllm.com",
       "runllm-assistant-id": "29",
-      "version": "stable",
       "runllm-position": "TOP_RIGHT",
       "runllm-keyboard-shortcut": "Mod+l",
       "runllm-theme-color": "#005EEC",
