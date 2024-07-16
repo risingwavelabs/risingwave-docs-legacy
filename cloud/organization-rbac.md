@@ -9,13 +9,11 @@ In RisingWave Cloud, Role-based access control (RBAC) system empowers organizati
 
 ## Security principal
 
-RBAC in RisingWave Cloud applies to both service accounts and users, which are considered security principals within the platform. These security principals are authenticated and authorized to perform various operations and access resources in RisingWave Cloud.
+A security principal refers to an entity that is authenticated and authorized to perform various operations and access resources in RisingWave Cloud. You can assign a role to any of these security principals:
 
-Security principals in RisingWave Cloud have distinct purposes:
+- Service account: Typically represents an application. It accesses RisingWave Cloud resources on the application's behalf, using API keys for authentication.
 
-- Service accounts: Typically represents an application. It accesses RisingWave Cloud resources on the application's behalf, using API keys for authentication.
-
-- Users: Typically represents an individual user who interacts with resources via the user interface.
+- User: Typically represents an individual user who interacts with resources via the user interface.
 
 ## Role permissions and limitations
 
