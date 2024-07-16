@@ -7,10 +7,6 @@ slug: /project-byoc
 
 The Bring Your Own Cloud (BYOC) plan offers you the flexibility to tailor your cloud infrastructure instead of depending on a hosted service. It allows you to utilize the advantages of your chosen cloud provider, maintain full control over your environment, and adjust configurations to suit your specific needs. This guide outlines the services that RisingWave deploys in a BYOC environment and walks you through the process of enabling BYOC in a step-by-step manner.
 
-:::note
-We currently support AWS and GCS as the cloud platform. Azure integration is in development and will be available soon.
-:::
-
 ## Architecture overview
 
 Before creating a BYOC deployment, familiarize yourself with the following architecture. In the BYOC environment, the entire data plane is deployed in the user's space. To manage the RisingWave clusters within this environment, we deploy two key services for operation delegation:
@@ -137,7 +133,7 @@ import TabItem from '@theme/TabItem';
 
 </TabItem>
 
-<TabItem value="Azure" label="Azure (coming soon)">
+<TabItem value="Azure" label="Azure">
 
 - **Required feature flags**
 

@@ -21,10 +21,6 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
   - For GCP, see [GCP Published services](https://cloud.google.com/vpc/docs/about-vpc-hosted-services).
   - For Azure, see [Azure Private Link services](https://learn.microsoft.com/en-us/azure/private-link/private-link-service-overview).
 
-  :::note
-   Azure Private Link integration is currently in development and will be available soon.
-  :::
-
 ## Steps
 
 1. Go to the [**Project**](https://cloud.risingwave.com/project/home/) page and select the project you want to connect the VPC to.
@@ -33,11 +29,11 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
 3. For **Name**, enter a descriptive name for the connection.
 
-4. For **Endpoint service name** or **Service attachment**:
+4. For **Endpoint service name** or **Service attachment** or **Private link service resource ID:**
 
     <details><summary>If you choose AWS as the platform, enter the service name of the endpoint service.</summary>
 
-    You can find it in the [Amazon VPC console](https://console.aws.amazon.com/vpc/) → **Endpoint services** → **Service name** section.
+    You can find it in the [Amazon VPC Console](https://console.aws.amazon.com/vpc/) → **Endpoint services** → **Service name** section.
 
     <img
     src={require('./images/aws-endpoint-service-name.png').default}
@@ -53,6 +49,17 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
     <img
     src={require('./images/gcp-service-attachment.png').default}
     alt="GCP Service attachment"
+    />
+
+    </details>
+
+    <details><summary>If you choose Azure as the platform, enter the Private link service resource ID.</summary>
+
+    You can find it in the [Azure Portal](https://portal.azure.com/) → **Private link service** section.
+
+    <img
+    src={require('./images/azure-resource-id.png').default}
+    alt="Azure Resource id"
     />
 
     </details>
