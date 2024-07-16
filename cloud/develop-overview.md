@@ -15,7 +15,7 @@ Developers can refer to the user documentation for RisingWave to develop streami
 
 ## How to use the docs
 
-RisingWave is a rapidly evolving system, with [new features](/release-notes/) added with each release. However, this also means some features may not function properly in older versions. Therefore, when using the RisingWave user docs, it's important to select the corresponding documentation version based on your RisingWave cluster's version.
+RisingWave is a rapidly evolving system, with [new features](/release-notes/) added with each release. However, this also means some features may not function properly in older versions. Therefore, when using the RisingWave user docs, it's important to select the corresponding documentation version based on the RisingWave version in your project.
 
 
 <grid
@@ -30,11 +30,11 @@ RisingWave is a rapidly evolving system, with [new features](/release-notes/) ad
 
 ### Check RisingWave version
 
-To check your current version, go to [**Clusters**](https://cloud.risingwave.com/clusters/).
+To check your current version, go to [**Projects**](https://cloud.risingwave.com/project/home/).
 
 <img
   src={require('./images/cluster-rwversion.png').default}
-  alt="Check RisingWave verison of clusters"
+  alt="Check RisingWave version of clusters"
   width="95%"
 />
 
@@ -148,7 +148,7 @@ links={[
  content="Continue to learn about RisingWave."
  links={[
  {text:"Key concepts", url:"/docs/current/key-concepts/"},
- {text:"Architechture", url:"/docs/current/architecture/"},
+ {text:"Architecture", url:"/docs/current/architecture/"},
  {text:"RisingWave vs. Apache Flink", url:"/docs/current/risingwave-flink-comparison/"},
  {text:"Release notes", url:"/release-notes/"}
  ]}

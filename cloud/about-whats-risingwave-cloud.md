@@ -11,10 +11,14 @@ The intuitive console of RisingWave Cloud allows you to manage data sources easi
 
 Whether you are an experienced data professional or just starting, RisingWave Cloud is the ideal solution for modern data processing. Start now and bring the power of streaming analytics to your applications and services at a minimal cost.
 
-<rollButton text="Quick start" cloud="quickstart" block/>
-<p></p>
+<card
+title="Quick start"
+content="Are you ready? Check out our quick start guide to start your journey with RisingWave Cloud."
+cloud="quickstart"
+/>
 
-<img
-  src={require('./images/overview.png').default}
-  alt="RisingWave Cloud Overview"
+<card
+title="Join community"
+content="Join our active Slack community to connect with fellow users and get support from our expert team."
+url="https://www.risingwave.com/slack"
 />

@@ -105,13 +105,9 @@ In the corresponding `docker-compose-with-service_name.yml` file (for example, `
 
 #### HDFS
 
-Mount your `HADOOP_HOME` in the compactor node, computer node, and meta node volumes.
+Fill in your image name, cluster name (or namenode), and data directory
 
-In `/docker-compose-with-hdfs.yml`, specify the cluster name via the `hummock+hdfs` parameter.
-
-```bash
-- "hummock+hdfs://<cluster_name>"
-```
+Mount your `HADOOP_HOME` to the volume `<$HADOOP_HOME>:/opt/hadoop/`, see [`docker-compose-with-hdfs.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-hdfs.yml) for more information.
 
 #### Huawei Cloud OBS
 
@@ -125,36 +121,63 @@ In the `docker-compose-with-obs.yml` file, specify the bucket name via the `humm
 
 ### Customize meta store
 
-For meta store, RisingWave uses `etcd` as the default storage backend and also supports the following SQL storage backends:
+For meta store, RisingWave uses [`postgresql`](#postgresql) as the default meta store backend and also supports the following meta store backends:
 
 - [SQLite](#sqlite)
-- [PostgreSQL or PostgreSQL-compatible storage](#postgresql-or-postgresql-compatible-storage)
 - [MySQL or MySQL-compatible storage](#mysql-or-mysql-compatible-storage)
+- [etcd](#etcd)
 
-For each of the options, you only have to change the options of meta:
+To customize the meta store backend (except for `etcd`), you need to configure the following settings.
 
-- Configure `--backend` to `sql`.
+- `--backend`: The meta store backend you want to use.
 
-- Configure `--sql-endpoint` to the target sql backend endpoint.
+- `--sql-endpoint`: The target SQL backend endpoint.
+
+- Some parameters that required for specified backends.
+
+You can read the specified guide for setting each backend below for more details.
+
+:::note
+In future releases, we may no longer support `etcd` as the meta store backend, so please consider using alternative options to ensure compatibility and continued support.
+:::
+
+#### PostgreSQL
+
+- `--backend`: Set to `postgres`. 
+- `--sql-endpoint`: Configure in format `{host}:{port}`.
+- Three additional parameters are required:
+  - `--sql-username`: Username of SQL backend.
+  - `--sql-password`: Password of SQL backend.
+  - `--sql-database`: Database of SQL backend.
 
 #### SQLite
 
-For SQLite, we have a Docker Compose configuration file that you can use after the necessary configurations: [`docker-compose-with-sqlite.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-sqlite.yml). In this file, meta will mount a volume for SQLite db file, which means the SQLite meta storage backend requires singleton meta component.
+- `--backend`: Set to `sqlite`. 
+- `--sql-endpoint`: Should be the file path.
 
-#### PostgreSQL or PostgreSQL-compatible storage
+We have a Docker Compose configuration file that you can use after the necessary configurations: [`docker-compose-with-sqlite.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-sqlite.yml). In this file, meta will mount a volume for SQLite db file, which means the SQLite meta storage backend requires singleton meta component.
 
-In `docker-compose-with-sqlite.yml`, specify the storage backend via `postgresql` parameter.
-
-```bash
---sql-endpoint postgres://<user>:<password>@<host>:<port>/<db>
-```
 
 #### MySQL or MySQL-compatible storage
 
-In `docker-compose-with-sqlite.yml`, specify the storage backend via `mysql` parameter.
+- `--backend`: Set to `mysql`. 
+- `--sql-endpoint`: Configure in format `{host}:{port}`. In [`docker-compose-with-sqlite.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-sqlite.yml), specify the storage backend via `mysql` parameter.
+
+    ```bash
+    --sql-endpoint mysql://<user>:<password>@<host>:<port>/<db>
+    ```
+
+- Three additional parameters are required:
+  - `--sql-username`: Username of SQL backend.
+  - `--sql-password`: Password of SQL backend.
+  - `--sql-database`: Database of SQL backend.
+
+#### etcd
+
+In [`docker-compose-etcd.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-etcd.yml), specify the storage backend via `etcd` parameter.
 
 ```bash
---sql-endpoint mysql://<user>:<password>@<host>:<port>/<db>
+--etcd-endpoints etcd://<user>:<password>@<host>:<port>/<db>
 ```
 
 ## Start a RisingWave cluster

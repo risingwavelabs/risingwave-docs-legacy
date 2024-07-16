@@ -219,6 +219,12 @@ h3 {
   margin-bottom: 1rem;
 }
 
+div[role="tabpanel"] ol > li:not(.tabs__item) {
+  list-style: decimal;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
 .theme-doc-markdown ol li:not(.tabs__item) > *:not(:first-child, code, strong) {
   margin-left: 1.5rem;
 }

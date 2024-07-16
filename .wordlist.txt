@@ -202,3 +202,7 @@ HiveMQ
 MQTT
 RabbitMQ
 Standalone's
+localhost
+prometheus
+datasources
+OpenSearch

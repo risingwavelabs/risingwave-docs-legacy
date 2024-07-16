@@ -48,7 +48,7 @@ style={{height: "80%"}}
 
 ## Check source details
 
-Click on a source to view its details, inclduing the connector settings, schema, and running status.
+Click on a source to view its details, including the connector settings, schema, and running status.
 
 <img
 src={require('./images/source-details-page.png').default}

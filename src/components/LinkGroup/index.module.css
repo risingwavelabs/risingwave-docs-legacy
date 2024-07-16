@@ -40,5 +40,6 @@
 
   .linkItem {
     margin-right: 10px;
+    display: none;
   }
 }
