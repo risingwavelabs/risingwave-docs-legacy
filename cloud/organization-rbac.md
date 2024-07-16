@@ -21,66 +21,23 @@ Service accounts and users have distinct purposes:
 
 Below are permissions and limitations for roles to ensure that each service account or user has appropriate access tailored to their responsibilities.
 
-### OrganizationAdmin
+| Role              | Permissions                                                                                             | Limitations                                                                                                                      |
+|-------------------|---------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| OrganizationAdmin | <ul><li>Full control over tenants and related resources.</li><li>Management of service accounts, users, invitations, and RoleBinding.</li><li>Access to all billing resources.</li></ul> | <ul><li>Cannot modify their own admin RoleBinding.</li></ul>                                                                      |
+| OrganizationMember| <ul><li>View access to all tenants.</li><li>View service accounts, users, and invitations.</li></ul>       | <ul><li>No permissions for tenant-related operations (create, update, delete).</li><li>No permissions for service accounts, users, or invitations operations (create, update, delete).</li><li>No access to billing resources.</li></ul> |
+| BillingManager    | <ul><li>Full access to all billing resources.</li></ul>                                                   | <ul><li>No access to any other operations outside of billing.</li></ul>                                                            |
+| ProjectAdmin      | <ul><li>Full access to operations related to any tenants.</li></ul>                                       | <ul><li>No access to billing operations, service accounts, users, or invitations.</li></ul>                                       |
 
-**Permissions:**
-
-- Full control over tenants and related resources.
-- Management of service accounts, users, invitations, and RoleBinding.
-- Access to all billing resources.
-
-**Limitations:**
-
-- Cannot modify their own admin RoleBinding.
-
----
-
-### OrganizationMember
-
-**Permissions:**
-
-- View access to all tenants.
-- View service accounts, users, and invitations.
-
-**Limitations:**
-
-- No permissions for tenant-related operations (create, update, delete).
-- No permissions for service accounts, users, or invitations operations (create, update, delete).
-- No access to billing resources.
-
----
-
-### BillingManager
-
-**Permissions:**
-
-- Full access to all billing resources.
-
-**Limitations:**
-
-- No access to any other operations outside of billing.
-
----
-
-### ProjectAdmin
-
-**Permissions:**
-
-- Full access to operations related to any tenants.
-
-**Limitations:**
-
-- No access to billing operations, service accounts, users, or invitations.
 
 ## RoleBinding
 
 RoleBindings ensure that only authorized entities have access to resources and operations based on their defined roles.
 
-### Prerequisites
+### Prerequisite
 
 Only the OrganizationAdmin has the permission to manage user's RoleBinding.
 
-### Scenarios
+### Scenario
 
 | User scenarios                             | Description                                                                                                                                                                      |
 |--------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
