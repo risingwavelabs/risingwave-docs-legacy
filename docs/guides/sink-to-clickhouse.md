@@ -12,6 +12,9 @@ This guide describes how to sink data from RisingWave to ClickHouse using the Cl
 
 ClickHouse® is a high-performance, column-oriented SQL database management system (DBMS) for online analytical processing (OLAP). For more information about ClickHouse, see [ClickHouse official website](https://clickhouse.com).
 
+:::note Beta Feature
+The ClickHouse sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::
 
 ## Prerequisites
 
