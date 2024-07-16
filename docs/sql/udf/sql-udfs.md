@@ -220,7 +220,7 @@ select add_sub_wrapper(1, 1);
 The examples in this section are a basic simulation of real-world use cases.
 
 ```sql title="Create table"
--- Create 3 tables. t1 and t2 are for unamed SQL UDF. t3 is for named SQL UDF.
+-- Create 3 tables. t1 and t2 are for unnamed SQL UDF. t3 is for named SQL UDF.
 
 create table t1 (c1 INT, c2 INT);
 create table t2 (c1 INT, c2 FLOAT, c3 INT);

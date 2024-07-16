@@ -184,7 +184,7 @@ make_date(2024, 1, 31) → 2024-01-31
 
 Creates time from hour, minute, and seconds fields.
 
-```bash titile=Syntax
+```bash title=Syntax
 make_time ( hour int, min int, sec double precision ) → time
 ```
 
@@ -198,7 +198,7 @@ make_time(1, 45, 30.2) → 01:45:30.200
 
 Creates timestamp from year, month, day, hour, minute, and seconds fields.
 
-```bash titile=Syntax
+```bash title=Syntax
 make_timestamp ( year int, month int, day int, hour int, min int, sec double precision ) → timestamp
 ```
 
