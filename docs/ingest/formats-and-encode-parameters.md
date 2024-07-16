@@ -31,11 +31,15 @@ The `ENCODE` parameter represents the data encoding and includes the following o
 
 - `JSON`: Data serialized in JSON format in the message queue, compatible with all `FORMAT` options.
 - `AVRO`: Data serialized in AVRO format in the message queue, compatible with `FORMAT PLAIN / UPSERT / DEBEZIUM`.
-- `Protobuf`: Data serialized in Protobuf format in the message queue, compatible with `FORMAT PLAIN`.
+- `Protobuf`: Data serialized in Protobuf format in the message queue, compatible with `FORMAT PLAIN / UPSERT`.
 - `CSV`: Data serialized in CSV format in the message queue, compatible with `FORMAT PLAIN`.
 - `Bytes`: Data exists in the message queue in raw bytes format, compatible with `FORMAT PLAIN`.
 
 
 :::note
-Please distinguish between the parameters set in the FORMAT and ENCODE options and those set in the WITH clause. Ensure that you place them correctly and avoid any misuse.
+
+- `FORMAT UPSERT ENCODE PROTOBUF` is supported but NOT RECOMMENDED. Because this may disrupt the order of upserts. For example, two upserts (`upsert_1` and `upsert_2`) might end up in different partitions due to the partition key issue. This may lead to `upsert_2` being processed before `upsert_1` in RisingWave, resulting in incorrect data. For more details, see the [documentation of Confluent](https://docs.confluent.io/platform/7.6/control-center/topics/schema.html#c3-schemas-best-practices-key-value-pairs).
+
+- Please distinguish between the parameters set in the FORMAT and ENCODE options and those set in the WITH clause. Ensure that you place them correctly and avoid any misuse.
+
 :::
