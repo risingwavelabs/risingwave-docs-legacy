@@ -15,7 +15,7 @@ RisingWave supports three types of time windows:
 * Hop windows
 * Session windows
 
-For tumbling and hopping windows, RisingWave supports them by **time window function**, `tumble()` and `hop()` respectively. For session window, RisingWave supports it by a special type of window function frame, i.e. `SESSION` frame.
+For tumbling and hopping windows, RisingWave supports them by **time window functions**, `tumble()` and `hop()` respectively. For session window, RisingWave supports it by a special type of window function frame, i.e. `SESSION` frame.
 
 ## Time window function
 
@@ -32,7 +32,7 @@ SELECT [ ALL | DISTINCT ] [ * | expression [ AS output_name ] [, expression [ AS
 FROM TUMBLE ( table_or_source, time_col, window_size [, offset ] );
 ```
 
-- *table_or_source* specifies the table/source/materialized view that need to be assigned time windows.
+- *table_or_source* specifies the table/source/materialized view that need to be assigned with time windows.
 
 - *time_col* specifies the column to determine time windows on. It can be in either timestamp or timestamp with time zone format.
 
@@ -90,7 +90,7 @@ SELECT [ ALL | DISTINCT] [ * | expression [ AS output_name ] [, expression [ AS 
 FROM HOP ( table_or_source, time_col, hop_size, window_size [, offset ]);
 ```
 
-- *table_or_source* specifies the table/source/materialized view that need to be assigned time windows.
+- *table_or_source* specifies the table/source/materialized view that need to be assigned with time windows.
 
 - *time_col* specifies the column to determine time windows on. It can be in either timestamp or timestamp with time zone format.
 
