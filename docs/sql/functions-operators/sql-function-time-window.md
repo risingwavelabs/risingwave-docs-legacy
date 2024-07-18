@@ -32,7 +32,7 @@ SELECT [ ALL | DISTINCT ] [ * | expression [ AS output_name ] [, expression [ AS
 FROM TUMBLE ( table_or_source, time_col, window_size [, offset ] );
 ```
 
-- *table_or_source* specifies the table/source/materialized view that need to be assigned with time windows.
+- *table_or_source* specifies the table/source/materialized view that needs to be assigned with time windows.
 
 - *time_col* specifies the column to determine time windows on. It can be in either timestamp or timestamp with time zone format.
 
@@ -81,7 +81,7 @@ The result looks like this:
 
 ## `hop()` time window function
 
-The `hop()` time window function also assigns each row a time window with fixed size, which is very similar to `tumble()`, except that the assigned time windows may overlap.
+The `hop()` time window function also assigns each row a time window with a fixed size, which is very similar to `tumble()`, except that the assigned time windows may overlap.
 
 See below for the syntax of the `hop()` time window function.
 
@@ -90,7 +90,7 @@ SELECT [ ALL | DISTINCT] [ * | expression [ AS output_name ] [, expression [ AS 
 FROM HOP ( table_or_source, time_col, hop_size, window_size [, offset ]);
 ```
 
-- *table_or_source* specifies the table/source/materialized view that need to be assigned with time windows.
+- *table_or_source* specifies the table/source/materialized view that needs to be assigned with time windows.
 
 - *time_col* specifies the column to determine time windows on. It can be in either timestamp or timestamp with time zone format.
 
@@ -238,7 +238,7 @@ The result looks like this:
 
 ### Session window aggregations
 
-Below is an example of aggregation over session windows. In this example, we want get the number of unique products viewed by each user in session gapped by 5 minutes interval, based on the example data in previous [Session windows](#session-windows) section.
+Below is an example of aggregation over session windows. In this example, we want to get the number of unique products viewed by each user in session gapped by 5 minutes interval, based on the example data in previous [Session windows](#session-windows) section.
 
 ```sql
 SELECT
