@@ -70,15 +70,9 @@ The sample queries cover the most common steps in RisingWave, such as establishi
 
 See [Explore RisingWave with examples](/quickstart.md/?step=4) for details.
 
-#### Switch clusters or users
+#### Switch users
 
-Click **Switch** to change to another cluster or another user in your current cluster when using the console.
-
-<img
-src={require('./images/console-switchclusteruser.gif').default}
-alt="Switch clusters or users"
-width="800px"
-/>
+Click **Switch** in the top right corner to change to another user in your current project when using the console.
 
 ### Query results
 

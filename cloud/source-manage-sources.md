@@ -47,9 +47,7 @@ When checking throughput and errors, you can click **Last 30 minutes** on the ri
 
 ## Drop a source
 
-If you no longer require data from a source, drop the source connection to stop data consumption.
-
-You can drop a source with one of the following methods:
+If you no longer require data from a source, drop the source connection with one of the following methods to stop data consumption.
 
 ### Using guided step
 

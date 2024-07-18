@@ -1,5 +1,5 @@
 ---
-id: cluster-connection-errors
+id: project-connection-errors
 title: Connection errors
 description: Troubleshoot connection errors in RisingWave Cloud.
 slug: /connection-errors
