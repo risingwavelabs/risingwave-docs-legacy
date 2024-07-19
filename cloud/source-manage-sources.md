@@ -35,7 +35,7 @@ You can create a source with one of the following methods:
 
 Refer to [`CREARE SOURCE`](/docs/current/sql-create-source/#supported-sources) in the RisingWave documentation. Select a connector to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
 
-## Check source details
+## Check a source
 
 Click on a source to view its details, including the connector settings, schema, throughput, errors, and running status.
 

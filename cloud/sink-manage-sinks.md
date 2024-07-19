@@ -13,24 +13,20 @@ For the complete list of supported sink connectors and data formats, see [Data d
 
 ## Create a sink
 
-You can create a sink by using SQL command.
+You can create a sink using SQL command.
 
 Refer to [`CREATE SINK`](/docs/current/sql-create-sink) in the RisingWave Database documentation.
 
-## Check sink details
+## Check a sink
 
+1. Go to [**Project**](https://cloud.risingwave.com/project/home/).
 
+2. Specify the project and click its **Workspace**.
+
+3. Click **Sink** tab to view sinks.
 
 ## Drop a sink
 
-If you no longer need to deliver data to a sink, you can drop the sink with one of the following methods:
-
-### Using guided step
-
-1. Go to **Sink**.
-
-2. Click the delete button on the sink you want to drop and confirm the deletion.
-
-### Using SQL command
+If you no longer need to deliver data to a sink, you can drop the sink using SQL command.
 
 Refer to [`DROP SINK`](/docs/current/sql-drop-sink) in the RisingWave Database documentation.
