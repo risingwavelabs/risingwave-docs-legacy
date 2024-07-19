@@ -21,7 +21,7 @@ psql -p 4566 -d dev -h localhost -U root --set=sslmode=verify-full
 ```
 
 If the connection is successful, you will see information similar to the following:
-```bash
+```
 SSL connection (protocol: TLSv1.3, cipher: TLS_AES_256_GCM_SHA384, bits: 256, compression: off)
 ```
 

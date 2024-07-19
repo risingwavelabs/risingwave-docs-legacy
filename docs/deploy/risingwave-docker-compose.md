@@ -62,7 +62,7 @@ docker compose up -d
 ```
 
 :::tip Command not found?
-The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2). 
+The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2).
 
 If you're using Compose V1, use `docker-compose` instead.
 :::
@@ -89,7 +89,7 @@ To use S3-compatible storage options like Tencent Cloud COS, you need to configu
 
 In `docker-compose-with-s3.yml`, specify the bucket name via the `hummock+s3` parameter.
 
-```bash
+```yaml
 - "hummock+s3://<bucket-name>"
 ```
 
@@ -99,7 +99,7 @@ Configure the credentials for the cloud service you want to use in `/docker/mult
 
 In the corresponding `docker-compose-with-service_name.yml` file (for example, `docker-compose-with-gcs.yml` for Google Cloud Storage), specify the bucket name via the `hummock+<service_name>` parameter.
 
-```bash
+```yaml
  - "hummock+<service_name>://<bucket-name>"
 ```
 
@@ -143,7 +143,7 @@ In future releases, we may no longer support `etcd` as the meta store backend, s
 
 #### PostgreSQL
 
-- `--backend`: Set to `postgres`. 
+- `--backend`: Set to `postgres`.
 - `--sql-endpoint`: Configure in format `{host}:{port}`.
 - Three additional parameters are required:
   - `--sql-username`: Username of SQL backend.
@@ -152,7 +152,7 @@ In future releases, we may no longer support `etcd` as the meta store backend, s
 
 #### SQLite
 
-- `--backend`: Set to `sqlite`. 
+- `--backend`: Set to `sqlite`.
 - `--sql-endpoint`: Should be the file path.
 
 We have a Docker Compose configuration file that you can use after the necessary configurations: [`docker-compose-with-sqlite.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-sqlite.yml). In this file, meta will mount a volume for SQLite db file, which means the SQLite meta storage backend requires singleton meta component.
@@ -160,7 +160,7 @@ We have a Docker Compose configuration file that you can use after the necessary
 
 #### MySQL or MySQL-compatible storage
 
-- `--backend`: Set to `mysql`. 
+- `--backend`: Set to `mysql`.
 - `--sql-endpoint`: Configure in format `{host}:{port}`. In [`docker-compose-with-sqlite.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-sqlite.yml), specify the storage backend via `mysql` parameter.
 
     ```bash

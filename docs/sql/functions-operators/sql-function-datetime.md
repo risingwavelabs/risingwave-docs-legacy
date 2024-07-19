@@ -54,11 +54,11 @@ An interval can contain hour/minute/second (i.e., fixed length) but not year/mon
 
 Returns the current date and time.
 
-```bash title=Syntax
+```sql title=Syntax
 current_timestamp() → *timestamptz*
 ```
 
-```bash title=Example
+```sql title=Example
 current_timestamp() → `2023-09-06 07:06:46.724+00:00`
 ```
 
@@ -68,7 +68,7 @@ current_timestamp() → `2023-09-06 07:06:46.724+00:00`
 
 Extracts the value of a date or timestamp.
 
-```bash title=Syntax
+```sql title=Syntax
 date_part ( precision_string, date/time_value[, time_zone ] ) → double_precision
 ```
 
@@ -80,7 +80,7 @@ If `date/time_value` is timestamptz, it is recommended that `time_zone` is also 
 
 As `date_part()` returns values of type double precision, this can result in a loss of precision; therefore, using `extract()` is recommended.
 
-```bash title=Examples
+```sql title=Examples
 date_part('day', date '2022-04-07') → 7
 
 date_part('hour', timestamp '2022-04-07 22:00:30') → 22
@@ -98,7 +98,7 @@ date_part('day', '2023-06-01 00:00:00Z'::timestamptz, 'Australia/Sydney') → 1
 
 Truncates a `date/time_value` to a specified `precision_string`.
 
-```bash title=Syntax
+```sql title=Syntax
 date_trunc ( precision_string, date/time_value[, time_zone ] ) → date/time_value
 ```
 
@@ -110,7 +110,7 @@ If `date/time_value` is timestamptz, it is recommended that `time_zone` is also 
 
 `precision_string` value 'week' is not supported for interval.
 
-```bash title=Examples
+```sql title=Examples
 date_trunc('hour', timestamp '2202-02-16 20:38:40.123456') → 2202-02-16 20:00:00
 
 date_trunc('day', timestamp with time zone '2202-02-16 20:38:40.123456Z', 'Australia/Sydney') → 2202-02-16 13:00:00+00:00
@@ -128,7 +128,7 @@ This function has two variants.
 
 Extracts the value of a date or timestamp.
 
-```bash title=Syntax
+```sql title=Syntax
 extract ( field from source [AT TIME ZONE time_zone]) → numeric
 ```
 
@@ -138,7 +138,7 @@ extract ( field from source [AT TIME ZONE time_zone]) → numeric
 
 If `time_zone` is specified, `source` should be of type timestamptz.
 
-```bash title=Examples
+```sql title=Examples
 extract(day from date '2022-04-07') → 7
 
 extract(hour from timestamp '2022-04-07 22:00:30') → 22
@@ -156,11 +156,11 @@ extract(day from '2023-06-01 00:00:00Z'::timestamptz at time zone 'us/pacific') 
 
 Converts the value of timestamp with time zone to Unix epoch seconds (the number of seconds since 1970-01-01 00:00:00 UTC). Negative for timestamps prior to that.
 
-```bash title=Syntax
+```sql title=Syntax
 extract ( epoch FROM timestamp_with_time_zone ) → seconds_numeric
 ```
 
-```bash title=Example
+```sql title=Example
 extract(epoch from '2010-01-01 12:34:56.789012Z'::timestamp with time zone) → 1262349296.789012
 ```
 
@@ -170,11 +170,11 @@ extract(epoch from '2010-01-01 12:34:56.789012Z'::timestamp with time zone) → 
 
 Creates date from year, month, and day fields.
 
-```bash title=Syntax
+```sql title=Syntax
 make_date ( year int, month int, day int ) → date
 ```
 
-```bash title=Example
+```sql title=Example
 make_date(2024, 1, 31) → 2024-01-31
 ```
 
@@ -184,11 +184,11 @@ make_date(2024, 1, 31) → 2024-01-31
 
 Creates time from hour, minute, and seconds fields.
 
-```bash title=Syntax
+```sql title=Syntax
 make_time ( hour int, min int, sec double precision ) → time
 ```
 
-```bash title=Example
+```sql title=Example
 make_time(1, 45, 30.2) → 01:45:30.200
 ```
 
@@ -198,11 +198,11 @@ make_time(1, 45, 30.2) → 01:45:30.200
 
 Creates timestamp from year, month, day, hour, minute, and seconds fields.
 
-```bash title=Syntax
+```sql title=Syntax
 make_timestamp ( year int, month int, day int, hour int, min int, sec double precision ) → timestamp
 ```
 
-```bash title=Example
+```sql title=Example
 make_timestamp(2024, 1, 31, 1, 45, 30.2) → 2024-01-31 01:45:30.200
 ```
 
@@ -212,11 +212,11 @@ make_timestamp(2024, 1, 31, 1, 45, 30.2) → 2024-01-31 01:45:30.200
 
 Returns the current date and time. For streaming queries, `now()` can only be used with WHERE, HAVING, and ON clauses. For more information, see [Temporal filters](/sql/syntax/sql-pattern-temporal-filters.md). This constraint does not apply to batch queries.
 
-```bash title=Syntax
+```sql title=Syntax
 now() → timestamptz
 ```
 
-```bash title=Example
+```sql title=Example
 now() → '2023-08-04 21:29:59.662+00:00'
 ```
 
@@ -226,7 +226,7 @@ now() → '2023-08-04 21:29:59.662+00:00'
 
 Returns the system time with time zone when a record is processed. You can use this function to specify the processing time of a record in a table or source.
 
-```bash title=Syntax
+```sql title=Syntax
 proctime() → timestamptz
 ```
 
@@ -240,13 +240,13 @@ CREATE TABLE t1 (v1 int, proc_time timestamptz as proctime());
 
 Converts the input to string according to the given format. Both uppercase and lowercase formats are supported.
 
-```bash title=Syntax
+```sql title=Syntax
 to_char ( timestamptz, format ) → *string*
 to_char ( timestamp, format ) → *string*
 to_char ( interval, format ) → *string*
 ```
 
-```bash title=Example
+```sql title=Example
 
 to_char(timestamp '2002-04-20 17:31:12.66', 'HH12:MI:SS') → '05:31:12'
 
@@ -261,11 +261,11 @@ to_char('1year 2 month 3day 4hour 5minute 6second'::interval, 'YYYY MM DD PM HH1
 
 Converts a string to a date according to the given format.
 
-```bash title=Syntax
+```sql title=Syntax
 to_date ( date_string, format ) → date
 ```
 
-```bash title=Example
+```sql title=Example
 to_date('05 Dec 2000', 'DD Mon YYYY') → '2000-12-05'
 ```
 
@@ -279,11 +279,11 @@ This function has two variants.
 
 Converts Unix epoch seconds (the number of seconds since 1970-01-01 00:00:00+00) to timestamptz.
 
-```bash title=Syntax
+```sql title=Syntax
 to_timestamp ( seconds_double_precision ) → timestamptz
 ```
 
-```bash title=Example
+```sql title=Example
 to_timestamp(1262349296.7890123) → '2010-01-01 12:34:56.789012+00:00'
 ```
 
@@ -293,11 +293,11 @@ to_timestamp(1262349296.7890123) → '2010-01-01 12:34:56.789012+00:00'
 
 Converts a string to timestamptz according to the given format.
 
-```bash title=Syntax
+```sql title=Syntax
 to_timestamp ( string, timestamp_format ) → timestamptz
 ```
 
-```bash title=Example
+```sql title=Example
 to_timestamp('2022 12 25', 'YYYY MM DD') → '2022-12-25 00:00:00+00:00'
 
 to_timestamp('2022-12-25 00:00:00.900006', 'YYYY-MM-DD HH24:MI:SS.US') → '2022-12-25 00:00:00.900006+00:00'
@@ -344,7 +344,7 @@ The following functions are available to delay execution of the current session'
 
 The `pg_sleep()` function makes the current session's process sleep until the given number of seconds have elapsed. Fractional-second delays can be specified.
 
-```bash title=Syntax
+```sql title=Syntax
 pg_sleep ( double precision )
 ```
 
@@ -356,7 +356,7 @@ SELECT pg_sleep(1.5);
 
 `pg_sleep_for` is a convenience function to allow the sleep time to be specified as an interval.
 
-```bash title=Syntax
+```sql title=Syntax
 pg_sleep_for ( interval )
 ```
 

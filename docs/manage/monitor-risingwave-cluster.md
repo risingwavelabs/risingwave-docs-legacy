@@ -38,7 +38,7 @@ kubectl get servicemonitors -A -l risingwave/name
 
 The expected output is like this:
 
-```bash
+```
 NAMESPACE    NAME                         AGE
 monitoring   risingwave-service-monitor   119m
 ```

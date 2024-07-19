@@ -48,7 +48,7 @@ helm repo update
 helm search repo risingwavelabs/risingwave -l
 ```
 
-```bash title=Example output
+``` title=Example output
 NAME                               CHART VERSION APP VERSION DESCRIPTION
 risingwavelabs/risingwave          0.1.16        v1.1.3      The distributed streaming database SQL stream p...
 risingwavelabs/risingwave          0.1.15        v1.1.2      The distributed streaming database SQL stream p...

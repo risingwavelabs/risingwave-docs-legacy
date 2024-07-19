@@ -29,7 +29,7 @@ dbt --version
 
 If you see something like below, the plugin is successfully installed:
 
-```bash
+```
 Plugins:
 ...
   - risingwave: 1.6.0 - Up to date!
@@ -43,7 +43,7 @@ Before you initial a dbt project, you need to ensure that RisingWave is installe
 You can initiate a [dbt project](https://docs.getdbt.com/docs/build/projects) by running the following command.
 
 ```sql
-dbt init 
+dbt init
 ```
 
 It will ask you to enter a project name, choose the database you like to use (`risingwave`), and specify other database configurations such as hostname, port, user name, etc.
