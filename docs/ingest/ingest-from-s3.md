@@ -137,7 +137,7 @@ While this decision forbids the creation of new stream jobs using the deprecate 
 
 The `s3_v2` connector is designed to address the scalability and performance limitations of the `s3` connector by implementing a more efficient listing and fetching mechanism. If you want to explore the technical details of this new approach, refer to [the design document](https://github.com/risingwavelabs/rfcs/blob/main/rfcs/0076-refined-s3-source.md).
 
-## Example
+## Examples
 
 Here are examples of connecting RisingWave to an S3 source to read data from individual streams.
 
@@ -199,11 +199,11 @@ RisingWave has a prefix argument designed for filtering objects in the S3 bucket
 
 A feature to create a column with the source file name is currently under development. You can track the progress [here](https://github.com/risingwavelabs/rfcs/pull/79).
 
-### Handling new files in the bucket
+### Handle new files in the bucket
 
 RisingWave automatically ingests new files added to the bucket. However, it does not detect updates to a file if a file is deleted and a new file with the same name is added simultaneously. Additionally, RisingWave will ignore file deletions.
 
-### Reading data from the source
+### Read data from the source
 
 You need to create a materialized view from the source or create a table with the S3 connector to read the data. Here are some examples:
 
@@ -216,6 +216,28 @@ CREATE MATERIALIZED VIEW mv AS SELECT * FROM s3_source;
 CREATE TABLE s3_table ( ... ) WITH ( connector = 's3_v2', ... );
 ```
 
-### Handling unexpected file types or poorly formatted files
+### Read parquet files from S3
+
+You can use the table function `file_scan()` to read a parquet file from S3. Here is the syntax and an example.
+
+```sql title="Syntax"
+file_scan(file_format, storage_type, s3_region, s3_access_key, s3_secret_key, file_location)
+```
+
+```sql title="Examples"
+SELECT * FROM file_scan(
+  'parquet',
+  's3',
+  'ap-southeast-2',
+  'xxxxxxxxxx',
+  'yyyyyyyy',
+  's3://your-bucket/path/to/fila_name.parquet'
+);
+
+----RESULT
+
+```
+
+### Handle unexpected file types or poorly formatted files
 
 RisingWave will attempt to interpret and parse files, regardless of their type, as CSV or ndjson, based on the specified rules. Warnings will be reported for parts of the file that cannot be parsed, but the source part will not fail. Poorly formatted parts of a file will be discarded.
