@@ -37,7 +37,7 @@ The reason is straightforward: running a query with 10 CTEs or subqueries is sim
 
 Note that this resource competition doesn't simply mean each of the 10 queries gets 1/10 of the total resources. Extra overhead and limitations can lead to even worse performance than 1/10 of the original.
 
-If you observe high CPU utilization or high cache miss rates during backfilling of a large, complex query, we suggest decomposing it into several independent queries. This approach could significantly improve performance.
+If you observe high CPU utilization or high cache miss rates during backfilling of a large, complex query, we suggest decomposing it into several independent queries and creating each MV one by one. This approach could significantly improve performance.
 
 ## When to use MVs on MVs
 
