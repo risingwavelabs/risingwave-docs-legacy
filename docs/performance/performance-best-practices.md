@@ -21,6 +21,24 @@ We determine how the index should be created by checking:
 
 We remark that the incremental maintenance of indexes in RisingWave is similar to the incremental maintenance of materialized views but with minimal computation. Therefore, it is cost-effective to create indexes in RisingWave. We encourage users to detect the patterns in batch queries and create indexes if the pattern occurs frequently or/and a batch query is slow.
 
+## When to speed up backfilling
+
+Backfilling refers to the operation where a query processes all existing or historical data.
+
+Suppose we have 100 GB of data in an upstream Kafka topic, with new data continuously flowing in. When we define a query to ingest data from this topic, it first processes all existing data, and this is the backfilling stage. Afterward, it continues to process new incoming data.
+
+RisingWave always tries to ingest and process data as quickly as possible, so the backfilling stage tends to saturate cluster resources. Backfilling performance often worsens with more complex queries, such as large materialized view (MV) or sink queries with many common table expressions (CTEs) or subqueries. While these queries might be efficient for ongoing processing, they may not be ideal for backfilling when the cluster is overloaded.
+
+The reason is straightforward: running a query with 10 CTEs or subqueries is similar to running 10 different queries simultaneously. This can lead to serious resource competition:
+
+- Memory: There may not be enough memory to hold the state of all stateful operators in the query, resulting in high cache miss rates and high remote I/O operations per second (IOPS).
+- CPU: The block cache and meta cache become very busy bringing in and evicting data. Data must be deserialized before operators can use it, consuming more CPU.
+- Remote I/O bandwidth: Due to memory constraints, RisingWave may hit object storage (e.g., S3/GCS) rate limits more frequently.
+
+Note that this resource competition doesn't simply mean each of the 10 queries gets 1/10 of the total resources. Extra overhead and limitations can lead to even worse performance than 1/10 of the original.
+
+If you observe high CPU utilization or high cache miss rates during backfilling of a large, complex query, we suggest decomposing it into several independent queries. This approach could significantly improve performance.
+
 ## When to use MVs on MVs
 
 When building a materialized view (MV), it is possible to build more MVs on top of the existing one. This approach is similar to creating complex functionalities by composing simple functions in a codebase. The benefits of building MVs on MVs include:
