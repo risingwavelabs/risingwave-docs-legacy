@@ -21,7 +21,7 @@ We determine how the index should be created by checking:
 
 We remark that the incremental maintenance of indexes in RisingWave is similar to the incremental maintenance of materialized views but with minimal computation. Therefore, it is cost-effective to create indexes in RisingWave. We encourage users to detect the patterns in batch queries and create indexes if the pattern occurs frequently or/and a batch query is slow.
 
-## When to speed up backfilling
+## How to speed up backfilling
 
 Backfilling refers to the operation where a query processes all existing or historical data.
 
