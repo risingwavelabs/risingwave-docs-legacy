@@ -7,13 +7,11 @@ slug: /manage-sinks
 
 To stream data out of RisingWave, you must create a sink. A sink refers to an external target that you can send data to. You can deliver data to downstream systems via our sink connectors.
 
-You need to create a sink in the database to deliver processed data to an external target. After a source is connected, you can create materialized views to perform analysis or sinks for data transformations.
-
 For the complete list of supported sink connectors and data formats, see [Data delivery](/docs/current/data-delivery/) in the RisingWave documentation.
 
 ## Create a sink
 
-You can create a sink using SQL command.
+ You can create a sink using SQL command to deliver processed data to an external target.
 
 Refer to [`CREATE SINK`](/docs/current/sql-create-sink) in the RisingWave Database documentation.
 
