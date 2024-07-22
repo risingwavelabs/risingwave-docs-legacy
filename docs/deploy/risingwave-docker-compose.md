@@ -130,9 +130,7 @@ For meta store, RisingWave uses [`postgresql`](#postgresql) as the default meta 
 To customize the meta store backend (except for `etcd`), you need to configure the following settings.
 
 - `--backend`: The meta store backend you want to use.
-
 - `--sql-endpoint`: The target SQL backend endpoint.
-
 - Some parameters that required for specified backends.
 
 You can read the specified guide for setting each backend below for more details.
@@ -231,10 +229,11 @@ Remember to replace the `docker-compose-with-storage_backend_name.yml` with the 
  Access Prometheus at [http://127.0.0.1:9500/](http://127.0.0.1:9500/). No credentials are needed. You can use Prometheus for real-time alerting.
 
 ## Common issues
+
 One of the common issues you may encounter is insufficient storage space. For example:
 
 ```
-Error { code: "XMinioStorageFull", message: "Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed."
+Error { code: "XMinioStorageFull", message: "Storage backend has reached its minimum free drive threshold. Please delete a few objects to proceed." }
 ```
 
 This issue typically occurs on macOS when using Docker Desktop. Docker Desktop runs within the macOS Hypervisor, where all the data, including logs, images, and volumes, is stored. The macOS Hypervisor has a default limit on disk capacity. If you encounter this error, you can resolve it by cleaning up unused containers or images. Another option is to increase the disk image size limit by following these steps: Click on the Docker Desktop icon in the menu bar, then go to **Preferences** > **Resources** > **Advanced**, and adjust the slider for disk image size to allocate more space for Docker images. If you are using a different platform, please ensure sufficient space is available on the local disk.
