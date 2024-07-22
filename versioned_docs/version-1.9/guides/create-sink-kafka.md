@@ -130,7 +130,7 @@ When creating an append-only Protobuf sink, the following options can be used fo
 
 |Field|Notes|
 |-----|-----|
-|message| Required. Message name of the main Message in the schema definition. . |
+|message| Required. Package qualified message name of the main Message in the schema definition. |
 |schema.location| Required if `schema.registry` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The schema location. This can be in either `file://`, `http://`, `https://` format. |
 |schema.registry| Required if `schema.location` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The address of the schema registry. |
 |schema.registry.username| Optional. The user name used to access the schema registry. |
@@ -146,7 +146,7 @@ Syntax:
 ```sql
 FORMAT PLAIN
 ENCODE PROTOBUF (
-   message = 'main_message',
+   message = 'com.example.MyMessage',
    schema.location = 'location'
 )
 ```

@@ -33,7 +33,7 @@ You can create a source with one of the following methods:
     More services will be supported in future releases.
     :::
 
-5. Configure the connector settings, source details, and schema according to the instuctions of the guided setup.
+5. Configure the connector settings, source details, and schema according to the instructions of the guided setup.
 
 6. Check the generated SQL statement and click **Confirm** to create the source in your database.
 
@@ -44,4 +44,4 @@ You can create a source with one of the following methods:
 
 ## Using SQL command
 
-Refer to [`CREARE SOURCE`](/docs/current/sql-create-source/#supported-sources) in the RisngWave documentation. Select a connector to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
+Refer to [`CREARE SOURCE`](/docs/current/sql-create-source/#supported-sources) in the RisingWave documentation. Select a connector to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.

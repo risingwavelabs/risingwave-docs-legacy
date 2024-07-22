@@ -13,7 +13,7 @@ The "window" is defined by the `OVER` clause, which generally consists of thre
 
 - Window partitioning (the `PARTITION BY` clause): Specifies how to partition rows into smaller sets.
 - Window ordering (the `ORDER BY` clause): Specifies how the rows are ordered. This part is required for ranking functions.
-- Window frame (the `ROWS` or `RANGE` clause): Specifies a particular row or the range of the rows over which calculations are performed.
+- Window frame (the `ROWS`, `RANGE` or `SESSION` clause): Specifies a particular row or the range of the rows over which calculations are performed.
 
 If your goal is to generate calculation results strictly as append-only output when a window closes, you can utilize the emit-on-window-close policy. This approach helps avoid unnecessary computations. For more information on the emit-on-window-close policy, please refer to [Emit on window close](/transform/emit-on-window-close.md).
 
@@ -39,16 +39,17 @@ When operating in the emit-on-window-close mode for a streaming query, `ORDER BY
 `window_function` can be one of the following:
 
 - [General-purpose window functions](#general-purpose-window-functions)
-- [Aggregate functions](#aggregate-window-functions)
+- [Aggregate window functions](#aggregate-window-functions)
 
-The syntax of `frame_clause` is:
+The syntax of `frame_clause` has three valid forms:
 
 ```sql
 { ROWS | RANGE } frame_start [ frame_exclusion ]
 { ROWS | RANGE } BETWEEN frame_start AND frame_end [ frame_exclusion ]
+SESSION WITH GAP gap [ frame_exclusion ]
 ```
 
-`frame_start` and `frame_end` can be:
+For `ROWS` or `RANGE` frame, `frame_start` and `frame_end` can be:
 
 ```
 UNBOUNDED PRECEDING
@@ -60,7 +61,15 @@ UNBOUNDED FOLLOWING
 
 If only `frame_start` is specified, `CURRENT ROW` will be used as the end of the window.
 
-The meaning of `offset` varies in different modes: in `ROWS` mode, the `offset` is a positive integer indicating the number of rows before or after the current row, while `RANGE` mode requires the `ORDER BY` clause to specify one column, and the data type of the offset expression is determined by the data type of the ordering column.
+The requirements of `offset` vary in different frames. In `ROWS` frame, the `offset` should be a positive constant integer indicating the number of rows before or after the current row. While `RANGE` frame requires the `ORDER BY` clause to specify exactly one column, and the `offset` expression to be a positive constant of a data type that is determined by the data type of the ordering column. For example, if the ordering column is `timestamptz`, the `offset` expression should be an positive constant `interval`.
+
+For `SESSION` frame, the requirements of `gap` are very similar to those of `offset` for `RANGE` frame. The `ORDER BY` clause should specify exactly one column and the `gap` expression should be a positive constant of a data type that is determined by the data type of the ordering column.
+
+:::note
+
+Currently, `SESSION` frame is only supported in batch mode and emit-on-window-close streaming mode.
+
+:::
 
 `frame_exclusion` can be either of these:
 

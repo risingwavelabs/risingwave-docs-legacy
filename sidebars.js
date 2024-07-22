@@ -400,13 +400,13 @@ const sidebars = {
             },
             {
               type: "doc",
-              id: "transform/indexes",
-              label: "Indexes",
+              id: "sql/syntax/sql-pattern-temporal-filters",
+              label: "Temporal filters",
             },
             {
               type: "doc",
-              id: "sql/syntax/sql-pattern-temporal-filters",
-              label: "Temporal filters",
+              id: "transform/indexes",
+              label: "Indexes",
             },
             {
               type: "doc",
@@ -415,13 +415,35 @@ const sidebars = {
             },
             {
               type: "doc",
+              id: "sql/functions-operators/sql-function-time-window",
+              label: "Time windows",
+            },
+            {
+              type: "doc",
+              id: "transform/window-functions",
+              label: "Window functions",
+            },
+            {
+              type: "doc",
               id: "sql/syntax/sql-pattern-topn",
               label: "Top-N by group",
             },
             {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-time-window",
-              label: "Time window functions",
+              type: "category",
+              label: "Emit on window close",
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: "doc",
+                id: "transform/emit-on-window-close",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "transform/watermarks",
+                  label: "Watermarks",
+                },
+              ]
             },
             {
               type: "category",
@@ -489,28 +511,6 @@ const sidebars = {
             },
             {
               type: "doc",
-              id: "transform/window-functions",
-              label: "Window functions",
-            },
-            {
-              type: "category",
-              label: "Emit on window close",
-              collapsible: true,
-              collapsed: true,
-              link: {
-                type: "doc",
-                id: "transform/emit-on-window-close",
-              },
-              items: [
-                {
-                  type: "doc",
-                  id: "transform/watermarks",
-                  label: "Watermarks",
-                },
-              ]
-            },
-            {
-              type: "doc",
               id: "transform/use-dbt",
               label: "Use dbt for data transformations",
             },
@@ -518,7 +518,7 @@ const sidebars = {
               type: "doc",
               id: "transform/multiple-table-sink",
               label: "Maintain wide table with table sinks",
-            },      
+            },
             {
               type: "doc",
               id: "transform/subscription",
@@ -1114,11 +1114,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/configure-node-specific-parameters',
-        },
-        {
-          type: 'doc',
-          id: 'manage/node-specific-parameters',
+          id: 'manage/node-specific-configurations',
         },
         {
           type: "doc",
@@ -1221,7 +1217,7 @@ const sidebars = {
               },
             ]
         },
-        
+
         {
           type: "doc",
           label: "Recovery failure",
