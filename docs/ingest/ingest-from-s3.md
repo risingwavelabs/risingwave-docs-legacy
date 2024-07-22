@@ -218,9 +218,9 @@ CREATE TABLE s3_table ( ... ) WITH ( connector = 's3_v2', ... );
 
 ### Read parquet files from S3
 
-You can use the table function `file_scan()` to read a parquet file from S3. Here is the syntax and an example.
+You can use the table function `file_scan()` to read a parquet file from S3.
 
-```sql title="Syntax"
+```sql title="Function signature"
 file_scan(file_format, storage_type, s3_region, s3_access_key, s3_secret_key, file_location)
 ```
 
@@ -235,7 +235,11 @@ SELECT * FROM file_scan(
 );
 
 ----RESULT
-
+ a | b | c
+---+---+---
+ 2 | 2 | 3
+ 4 | 5 | 6
+(2 rows)
 ```
 
 ### Handle unexpected file types or poorly formatted files
