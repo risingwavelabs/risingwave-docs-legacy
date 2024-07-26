@@ -216,15 +216,21 @@ CREATE MATERIALIZED VIEW mv AS SELECT * FROM s3_source;
 CREATE TABLE s3_table ( ... ) WITH ( connector = 's3_v2', ... );
 ```
 
-### Read parquet files from S3
+### Read Parquet files from S3
 
-You can use the table function `file_scan()` to read a parquet file from S3.
+You can use the table function `file_scan()` to read Parquet files from S3, either a single file or a directory of Parquet files.
+
 
 ```sql title="Function signature"
-file_scan(file_format, storage_type, s3_region, s3_access_key, s3_secret_key, file_location)
+file_scan(file_format, storage_type, s3_region, s3_access_key, s3_secret_key, file_location_or_directory)
 ```
 
+:::note
+Note: When reading a directory of Parquet files, the schema will be based on the first Parquet file listed. Please ensure that all Parquet files in the directory have the same schema.
+:::
+
 ```sql title="Examples"
+-- Read a single Parquet file
 SELECT * FROM file_scan(
   'parquet',
   's3',
@@ -240,6 +246,57 @@ SELECT * FROM file_scan(
  2 | 2 | 3
  4 | 5 | 6
 (2 rows)
+
+-- Read a directory of Parquet files
+SELECT * FROM file_scan(
+  'parquet',
+  's3',
+  'ap-southeast-2',
+  'xxxxxxxxxx',
+  'yyyyyyyy',
+  's3://your-bucket/path/to/directory/'
+);
+
+----RESULT
+{
+  "file_path": "s3://your-bucket/path/to/directory/file1.parquet",
+  "file_size": 1024000,
+  "row_count": 10000,
+  "column_count": 5,
+  "schema": {
+    "column1": "string",
+    "column2": "int64",
+    "column3": "double",
+    "column4": "boolean",
+    "column5": "timestamp"
+  }
+},
+{
+  "file_path": "s3://your-bucket/path/to/directory/file2.parquet",
+  "file_size": 2048000,
+  "row_count": 20000,
+  "column_count": 7,
+  "schema": {
+    "column1": "string",
+    "column2": "int64", 
+    "column3": "double",
+    "column4": "boolean",
+    "column5": "timestamp",
+    "column6": "string",
+    "column7": "int32"
+  }
+},
+{
+  "file_path": "s3://your-bucket/path/to/directory/file3.parquet",
+  "file_size": 512000,
+  "row_count": 5000,
+  "column_count": 3,
+  "schema": {
+    "column1": "string",
+    "column2": "int32",
+    "column3": "float"
+  }
+}
 ```
 
 ### Handle unexpected file types or poorly formatted files
