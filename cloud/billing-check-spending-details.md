@@ -5,7 +5,7 @@ description: Check the spending details of the current or previous billing perio
 slug: /check-spending-details
 ---
 
-You can view the usage and the corresponding charges for each cluster during the ongoing billing period. You can also download a PDF version of the invoice for your records.
+You can view the usage and the corresponding charges for each project during the ongoing billing period. You can also download a PDF version of the invoice for your records.
 
 <img
    src={require('./images/billing-invoice-details.png').default}

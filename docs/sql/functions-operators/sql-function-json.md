@@ -13,7 +13,7 @@ title: JSON functions and operators
 
 Expands the top-level JSON array into a set of JSON values.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_array_elements ( jsonb ) → setof jsonb
 ```
 
@@ -29,7 +29,7 @@ true
 
 Expands the top-level JSON array into a set of text (varchar) values.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_array_elements_text ( jsonb ) → setof varchar
 ```
 
@@ -44,7 +44,7 @@ bar
 
 Returns the number of elements in the top-level JSON array.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_array_length ( jsonb ) → integer
 ```
 
@@ -58,7 +58,7 @@ SELECT jsonb_array_length('[1,2,3,{"f1":1,"f2":[5,6]},4]');
 
 Builds a JSON array out of a variadic argument list. Each argument is converted as per `to_jsonb`.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_build_array ( VARIADIC "any" ) → jsonb
 ```
 
@@ -77,7 +77,7 @@ SELECT jsonb_build_array(variadic array[1, 2, 4, 5]);
 
 Builds a JSON object out of a variadic argument list. By convention, the argument list consists of alternating keys and values. Key arguments are coerced to text; value arguments are converted as per `to_jsonb`.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_build_object ( VARIADIC "any" ) → jsonb
 ```
 
@@ -86,7 +86,7 @@ SELECT jsonb_build_object('foo', 1, 2, row(3,'bar'));
 ------RESULT
 {"2": {"f1": 3, "f2": "bar"}, "foo": 1}
 
-SELECT jsonb_build_object(variadic array['foo', '1', '2', 'bar']); 
+SELECT jsonb_build_object(variadic array['foo', '1', '2', 'bar']);
 ------RESULT
  {"2": "bar", "foo": 1}
 ```
@@ -95,7 +95,7 @@ SELECT jsonb_build_object(variadic array['foo', '1', '2', 'bar']);
 
 Expands the top-level JSON object into a set of key-value pairs.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_each ( jsonb ) → setof record ( key varchar, value jsonb )
 ```
 
@@ -110,14 +110,14 @@ b "bar"
 
 Expands the top-level JSON object into a set of key-value pairs. The returned values will be of type varchar.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_each_text ( jsonb ) → setof record ( key varchar, value varchar )
 ```
 
 ```sql title=Example
 SELECT * FROM jsonb_each_text('{"a":"foo", "b":"bar"}'::jsonb);
 ------RESULT
- key | value 
+ key | value
 -----+-------
  a   | foo
  b   | bar
@@ -130,7 +130,7 @@ Extracts JSON sub-object at the specified path.
 
 This function is equivalent to the [`#>`](#jsonb--text---jsonb) operator in functionality.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_extract_path ( from_json jsonb, VARIADIC path_elems text[] ) → jsonb
 ```
 - `from_json` is the input JSON value from which to extract the sub-object.
@@ -143,7 +143,7 @@ SELECT json_extract_path('{"f2":{"f3":1},"f4":{"f5":99,"f6":"foo"}}', 'f4', 'f6'
 ------RESULT
 "foo"
 
-SELECT jsonb_extract_path('{"a": {"b": ["foo","bar"]}}', variadic array['a', 'b', '1']); 
+SELECT jsonb_extract_path('{"a": {"b": ["foo","bar"]}}', variadic array['a', 'b', '1']);
 ------RESULT
  "bar"
 
@@ -156,7 +156,7 @@ Extracts JSON sub-object at the specified path as text.
 This function is equivalent to the [`#>>`](#jsonb--text---text) operator in functionality.
 
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_extract_path_text ( from_json jsonb, VARIADIC path_elems text[] ) → text
 ```
 
@@ -165,7 +165,7 @@ SELECT jsonb_extract_path_text('{"f2":{"f3":1},"f4":{"f5":99,"f6":"string"}}', '
 ------RESULT
 string
 
-SELECT jsonb_extract_path_text('{"a": {"b": ["foo","bar"]}}', variadic array['a', 'b', '1']); 
+SELECT jsonb_extract_path_text('{"a": {"b": ["foo","bar"]}}', variadic array['a', 'b', '1']);
 ------RESULT
  bar
 ```
@@ -174,7 +174,7 @@ SELECT jsonb_extract_path_text('{"a": {"b": ["foo","bar"]}}', variadic array['a'
 
 Returns the set of keys in the top-level JSON object.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_object_keys ( jsonb ) → setof varchar
 ```
 
@@ -190,7 +190,7 @@ f2
 Removes all object fields that have null values from a given JSONB value, recursively. Empty objects or null values that are not object fields are left untouched.
 
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_strip_nulls ( jsonb ) → jsonb
 ```
 
@@ -214,7 +214,7 @@ If the `vars` argument is provided, it must be a JSON object. Its fields act as 
 
 For information on the SQL/JSON Path syntax, refer to the [PostgreSQL documentation](https://www.postgresql.org/docs/current/functions-json.html#FUNCTIONS-SQLJSON-PATH).
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_path_exists ( target jsonb, path varchar [, vars jsonb [, silent boolean ]] ) → boolean
 ```
 
@@ -228,7 +228,7 @@ t
 
 Evaluates a JSON path predicate on a JSON value and returns the results as a boolean. Only the first item of the result is taken into account.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_path_match ( target jsonb, path varchar [, vars jsonb [, silent boolean ]] ) → boolean
 ```
 
@@ -242,7 +242,7 @@ t
 
 Extracts items from a JSON value matching a JSON path and returns as a set.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_path_query ( target jsonb, path varchar [, vars jsonb [, silent boolean ]] ) → setof jsonb
 ```
 
@@ -268,7 +268,7 @@ SELECT jsonb_path_query('{
   ]
 }', '$.employees[*] ? (@.age >= 25 && @.age <= 30)');
 ------RESULT
-       jsonb_path_query       
+       jsonb_path_query
 ------------------------------
  {"age": 30, "name": "John"}
  {"age": 25, "name": "Jane"}
@@ -278,7 +278,7 @@ SELECT jsonb_path_query('{
 
 Extracts matching JSON path items and returns them wrapped in an array.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_path_query_array ( target jsonb, path varchar [, vars jsonb [, silent boolean ]] ) → jsonb
 ```
 
@@ -300,7 +300,7 @@ SELECT jsonb_path_query_array('{
   ]
 }', '$.employees[*] ? (@.age >= $min && @.age <= $max)', '{"min": 24, "max": 32}');
 ------RESULT
-                  jsonb_path_query_array                   
+                  jsonb_path_query_array
 -----------------------------------------------------------
  [{"age": 30, "name": "John"}, {"age": 25, "name": "Bob"}]
 ```
@@ -309,7 +309,7 @@ SELECT jsonb_path_query_array('{
 
 Extracts the first matching item from a JSON value using a JSON path.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_path_query_first ( target jsonb, path varchar [, vars jsonb [, silent boolean ]] ) → jsonb
 ```
 
@@ -331,7 +331,7 @@ SELECT jsonb_path_query_first('{
   ]
 }', '$.employees[0]');
 ------RESULT
-   jsonb_path_query_first    
+   jsonb_path_query_first
 -----------------------------
  {"age": 30, "name": "John"}
 ```
@@ -340,13 +340,13 @@ SELECT jsonb_path_query_first('{
 
 Expands the top-level JSON object to a row having the **struct type** of the base argument.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_populate_record ( base anyelement, from_json jsonb ) → anyelement
 ```
 
 It scans the JSON object for fields matching the output row's column names, inserting their values into the corresponding output columns. Any fields not matching column names are ignored. Typically the base is `NULL`, meaning that any output columns that do not match any object field will be `NULL`. Otherwise, values in the base are used for unmatched columns.
 
-The coversion of JSON values to SQL types of the output column applies these rules in sequence:
+The conversion of JSON values to SQL types of the output column applies these rules in sequence:
 
 - A JSON null value is converted to an SQL null in all cases.
 
@@ -366,7 +366,7 @@ SELECT * FROM jsonb_populate_record(
     '{"a": 1, "b": ["2", "a b"], "c": {"d": 4, "e": "a b c"}, "x": "foo"}'
 );
 ----RESULT
- a |     b     |      c      
+ a |     b     |      c
 ---+-----------+-------------
  1 | {2,"a b"} | (4,"a b c")
 ```
@@ -381,7 +381,7 @@ The `jsonb_populate_record` function in RisingWave differs from the function in 
 
 Expands the top-level JSON array of objects to a set of rows having the **struct type** of the base argument. Each element of the JSON array is processed as described above for [`jsonb_populate_record`](#jsonb_populate_record).
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_populate_recordset ( base anyelement, from_json jsonb ) → setof anyelement
 ```
 
@@ -401,11 +401,23 @@ The `jsonb_populate_recordset` function in RisingWave differs from the function 
 
 :::
 
+### `jsonb_set`
+
+Modifies JSONB data by replacing or inserting new values at a specified path. If the path exists, the function will replace the value with the new one. If the path does not exist and the `create_if_missing` parameter is set to `true` (which is the default), the function will add the new value.
+
+```sql title=Syntax
+jsonb_set ( target jsonb, path text[], new_value jsonb [, create_if_missing boolean ] ) → jsonb
+```
+
+```sql title=Example
+jsonb_set('[{"f1":1,"f2":null},2]', '{0,f3}', '[2,3,4]') → [{"f1": 1, "f2": null, "f3": [2, 3, 4]}, 2]
+```
+
 ### `jsonb_typeof`
 
 Returns the type of the top-level JSON value as a text string.
 
-```bash title=Syntax
+```sql title=Syntax
 jsonb_typeof ( jsonb ) → varchar
 ```
 
@@ -508,7 +520,7 @@ SELECT '{"a":1,"b":2}'::jsonb ->> 'b';
 
 Deletes a key (and its value) from a JSON object, or matching string value(s) from a JSON array.
 
-```bash title=Examples
+```sql title=Examples
 '{"a": "b", "c": "d"}'::jsonb - 'a' → {"c": "d"}
 '["a", "b", "c", "b"]'::jsonb - 'b' → ["a", "c"]
 ```
@@ -517,7 +529,7 @@ Deletes a key (and its value) from a JSON object, or matching string value(s) fr
 
 Deletes all matching keys or array elements from a JSON object.
 
-```bash title=Example
+```sql title=Example
 '{"a": "b", "c": "d"}'::jsonb - '{a,c}'::text[] → {}
 ```
 
@@ -525,7 +537,7 @@ Deletes all matching keys or array elements from a JSON object.
 
 Deletes the array element with the specified index (negative integers counting from the end). Throws an error if JSON object is not an array.
 
-```bash title=Example
+```sql title=Example
 '["a", "b"]'::jsonb - 1 → ["a"]
 ```
 
@@ -533,7 +545,7 @@ Deletes the array element with the specified index (negative integers counting f
 
 Deletes the field or array element at the specified path, where path elements can be either field keys or array indexes.
 
-```bash title=Example
+```sql title=Example
 '["a", {"b":1}]'::jsonb #- '{1,b}' → ["a", {}]
 ```
 
@@ -542,7 +554,7 @@ Deletes the field or array element at the specified path, where path elements ca
 Concatenates jsonb data.
 
 ```sql title=Examples
-SELECT '["a", "b"]'::jsonb || '["a", "d"]'::jsonb;  
+SELECT '["a", "b"]'::jsonb || '["a", "d"]'::jsonb;
 SELECT '{"a": "b"}'::jsonb || '{"c": "d"}'::jsonb;
 SELECT '[1, 2]'::jsonb || '3'::jsonb;
 SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
@@ -557,7 +569,7 @@ SELECT '{"a": "b"}'::jsonb || '42'::jsonb;
 
 This operator checks if the left `jsonb` value contains the right `jsonb` value. For a detailed description and examples about containment and existence, see [jsonb Containment and Existence](https://www.postgresql.org/docs/current/datatype-json.html) in PostgreSQL's documentation.
 
-```bash title=Examples
+```sql title=Examples
 '[1, 2, 3]'::jsonb @> '[1, 3]'::jsonb → t
 
 '{"product": "PostgreSQL", "version": 9.4, "jsonb": true}'::jsonb @> '{"version": 9.4}'::jsonb → t
@@ -571,7 +583,7 @@ This operator checks if the left `jsonb` value contains the right `jsonb` value.
 
 This operator checks if the left `jsonb` value is contained within the right `jsonb` value. For a detailed description and examples about containment and existence, see [jsonb Containment and Existence](https://www.postgresql.org/docs/current/datatype-json.html) in PostgreSQL's documentation.
 
-```bash title=Examples
+```sql title=Examples
 '{"b":2}'::jsonb <@ '{"a":1, "b":2}'::jsonb → t
 ```
 
@@ -579,7 +591,7 @@ This operator checks if the left `jsonb` value is contained within the right `js
 
 This operator checks if a string exists as a top-level array element or object key within a `jsonb` value.
 
-```bash title=Examples
+```sql title=Examples
 '["foo", "bar", "baz"]'::jsonb ? 'bar' → t
 
 '{"foo": "bar"}'::jsonb ? 'foo' → t
@@ -681,7 +693,7 @@ FROM (VALUES
       ('123'), ('"abc"'), ('{"a": "b"}'), ('[1,2]'),('abc')) foo(js);
 ```
 
-```markdown title=Result
+``` title=Result
 
  js         | json? | scalar? | object? | array?
 ------------+-------+---------+---------+---------

@@ -81,6 +81,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
 |Relation Name | Description|
 |---|---|
  rw_actors             | Contains the available actor IDs, their statuses, and the corresponding fragment IDs, and parallel unit IDs. |
+rw_actor_id_to_ddl | Contains information about the participants who executed the database schema change operations (DDL) and their corresponding `actor_id` identifiers. The outputs include actor IDs, fragment IDs, job IDs, schema IDs,  DDL types, and names of the affected object.|
   rw_columns            | Contains information about columns of all relations (except sources) in the database, including their names, positions, data types, generation details, and more.|
  rw_connections        | Contains details about the connections available in the database, such as their IDs, names, owners, types, and more.|
  rw_databases          | Contains information about the databases available in the database, such as the IDs, names, and owners.|
@@ -88,6 +89,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_ddl_progress       | Contains the progress of running DDL statements. You can use this relation to view the progress of running DDL statements. For details, see [View statement progress](/manage/view-statement-progress.md).|
  rw_description        | Contains optional descriptions (comments) for each database object. Descriptions can be added with the [`COMMENT ON`](/sql/commands/sql-comment-on.md) command and viewed with `DESCRIBE` or `SHOW COLUMNS FROM` command.|
  rw_event_logs         | Contains information about events, including event IDs, timestamps, event types, and additional information if available. |
+ rw_fragment_id_to_ddl| Contains information about the database schema change operations (DDL) and their corresponding `fragment_id` identifiers. The outputs include fragment IDs, job IDs, schema IDs,  DDL types, and names of the affected object.|
  rw_fragment_parallelism          | Contains information about the parallelism configuration at the fragment level, including fragment IDs, parallelism, and more. |
  rw_fragments          | Contains low-level information about fragments in the database, including fragment IDs, table IDs, and more. |
  rw_functions          | Contains information about functions in the database, including their IDs, names, schema identifiers, types, argument and return data types, programming language, and more. |
@@ -105,7 +107,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  |rw_iceberg_snapshots| Contains all Iceberg snapshots in RisingWave. Based on it, you can read a specific snapshot by a time travel query.|
  rw_indexes            | Contains information about indexes in the database, including their IDs, names, schema identifiers, definitions, and more.|
  rw_internal_tables    | Contains information about internal tables in the database. Internal tables are tables that store intermediate results (also known as internal states) of queries. Equivalent to the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command.|
- rw_materialized_views | Contains information about materialized views in the database, including their names, definitions, schema and owner IDs, and access control lists.
+ rw_materialized_views | Contains information about materialized views in the database, including their unique IDs, names, schema IDs, owner IDs, definitions, append-only information, access control lists, initialization and creation timestamps, and the cluster version when the materialized view was initialized and created.|
  rw_meta_snapshot      | Contains information about existing snapshots of the RisingWave meta service. You can use this relation to get IDs of meta snapshots and then restore the meta service from a snapshot. For details, see [Back up and restore meta service](/manage/meta-backup.md).|
  rw_parallel_units     | Contains information about parallel worker units used for executing database operations, including their unique IDs, worker IDs, and primary keys.|
  rw_relation_info      | Contains low-level relation information about tables, sources, materialized views, and indexes that are available in the database.|
@@ -117,7 +119,7 @@ SELECT name, initialized_at, created_at FROM rw_sources;
  rw_system_tables      | Contains information about system tables in the database, including their unique IDs, names, schema IDs, owners, and more. |
  rw_table_fragments    | Contains information about table fragments in the database, including their parent table IDs, fragment statuses, and primary keys.|
  rw_table_stats        | Contains statistical information about tables, including their unique IDs, total key count, total key size, and total value size in bytes.|
- rw_tables             | Contains information about tables that are available in the database, including their unique IDs, names, schema IDs, owner IDs, definitions, and more.|
+ rw_tables             | Contains information about tables that are available in the database, including their unique IDs, names, schema IDs, owner IDs, definitions, append-only information, access control lists, initialization and creation timestamps, and the cluster version when the table was initialized and created.|
  rw_types              | Contains information about data types that are supported by the database, including their IDs and names.|
  rw_user_secrets       | This table stores the encrypted passwords of all users in the database and is accessible exclusively to super users.|
  rw_users              | Contains information about users that are available in the database, including their unique IDs, names, and boolean flags indicating whether they are a superuser, whether they can create databases, whether they can create other users, and whether can log in.|

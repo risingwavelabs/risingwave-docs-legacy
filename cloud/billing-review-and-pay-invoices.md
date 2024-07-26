@@ -14,7 +14,7 @@ In [**Invoices**](https://cloud.risingwave.com/billing/invoices/), you can acces
 
 ## Review invoices
 
-At the start of each month, you'll receive an invoice that consolidates the usage and associated costs for all your clusters from the preceding month.
+At the start of each month, you'll receive an invoice that consolidates the usage and associated costs for all your projects from the preceding month.
 
 Your invoices provide a record of your usage and payments. It includes:
 
@@ -46,5 +46,5 @@ The automatic payment process could fail if your payment methods are invalid or 
 To pay an invoice manually, click the **Pay Now** button on the invoice you want to pay and follow the instructions on the screen.
 
 :::caution
-If you don't settle the outstanding payments within 10 days of the "Overdue" period, all services that you’re currently using will be stopped and you won't be able to create any new clusters. You have to contact the support team to resume the services.
+If you don't settle the outstanding payments within 10 days of the "Overdue" period, all services that you’re currently using will be stopped and you won't be able to create any new projects. You have to contact the support team to resume the services.
 :::

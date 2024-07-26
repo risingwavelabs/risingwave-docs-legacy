@@ -12,12 +12,6 @@ This topic describes how to sink data from RisingWave to a Kafka broker and how 
 
 A sink is an external target that you can send data to. To stream data out of RisingWave, you need to create a sink. Use the `CREATE SINK` statement to create a sink. You can create a sink with data from a materialized view or a table. RisingWave only supports writing messages in non-transactional mode.
 
-:::tip Guided setup
-RisingWave Cloud provides an intuitive guided setup for creating a Kafka sink. For more information, see [Create a sink using guided setup](/cloud/create-a-sink/#using-guided-setup) in the RisingWave Cloud documentation.
-
-<lightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
-:::
-
 ## Syntax
 
 ```sql
@@ -30,6 +24,7 @@ WITH (
 FORMAT data_format ENCODE data_encode [ (
     key = 'value'
 ) ]
+[KEY ENCODE key_encode [(...)]]
 ;
 ```
 
@@ -90,14 +85,15 @@ These options should be set in `FORMAT data_format ENCODE data_encode (key = 'va
 |Field|Notes|
 |-----|-----|
 |data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
-|data_encode| Data encode. Supported encodes: `JSON`, `AVRO`, and `PROTOBUF`. For `AVRO` encode, only `UPSERT AVRO` sinks are supported. For `PROTOBUF` encode, only `PLAIN PROTOBUF` sinks are supported.|
+|data_encode| Data encode. Supported encodes: `JSON`, `AVRO`, and `PROTOBUF`. For `AVRO` encode, `UPSERT AVRO` and `PLAIN AVRO` sinks are supported. For `PROTOBUF` encode, only `PLAIN PROTOBUF` sinks are supported.|
 |force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
 |timestamptz.handling.mode|Controls the timestamptz output format. This parameter specifically applies to append-only or upsert sinks using JSON encoding. <br/> - If omitted, the output format of timestamptz is `2023-11-11T18:30:09.453000Z` which includes the UTC suffix `Z`. <br/> - When `utc_without_suffix` is specified, the format is changed to `2023-11-11 18:30:09.453000`.|
 |schemas.enable| Only configurable for upsert JSON sinks. By default, this value is `false` for upsert JSON sinks and `true` for debezium `JSON` sinks. If `true`, RisingWave will sink the data with the schema to the Kafka sink. Note that this is not referring to a schema registry containing a JSON schema, but rather schema formats defined using [Kafka Connect](https://www.confluent.io/blog/kafka-connect-deep-dive-converters-serialization-explained/#json-schemas).|
+|key_encode| Optional. When specified, the key encode can only be `TEXT`, and the primary key should be one and only one of the following types: `varchar`, `bool`, `smallint`, `int`, and `bigint`; When absent, both key and value will use the same setting of `ENCODE data_encode ( ... )`. |
 
 ### Avro specific parameters
 
-When creating an upsert Avro sink, the following options can be used following `FORMAT UPSERT ENCODE AVRO`.
+When creating an Avro sink, the following options can be used following `FORMAT UPSERT ENCODE AVRO` or `FORMAT PLAIN ENCODE AVRO`.
 
 |Field|Notes|
 |-----|-----|
@@ -111,7 +107,7 @@ When creating an upsert Avro sink, the following options can be used following `
 Syntax:
 
 ```sql
-FORMAT UPSERT
+FORMAT [ UPSERT | PLAIN ]
 ENCODE AVRO (
    schema.registry = 'schema_registry_url',
    [schema.registry.username = 'username'],
@@ -122,13 +118,15 @@ ENCODE AVRO (
 )
 ```
 
+For data type mapping, the serial type is supported. We map the serial type to the 64-bit signed integer.
+
 ### Protobuf specific parameters
 
 When creating an append-only Protobuf sink, the following options can be used following `FORMAT PLAIN ENCODE PROTOBUF`.
 
 |Field|Notes|
 |-----|-----|
-|message| Required. Message name of the main Message in the schema definition. . |
+|message| Required. Package qualified message name of the main Message in the schema definition.  |
 |schema.location| Required if `schema.registry` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The schema location. This can be in either `file://`, `http://`, `https://` format. |
 |schema.registry| Required if `schema.location` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The address of the schema registry. |
 |schema.registry.username| Optional. The user name used to access the schema registry. |
@@ -144,10 +142,16 @@ Syntax:
 ```sql
 FORMAT PLAIN
 ENCODE PROTOBUF (
-   message = 'main_message',
+   message = 'com.example.MyMessage',
    schema.location = 'location'
 )
 ```
+
+For data type mapping, the serial type is supported. We map the serial type to the 64-bit signed integer.
+
+### JSON specific parameters
+
+For data mapping, the serial type is supported. However, note that it is mapped into a JSON string like `"0x05fb93d677c4e000"` instead of a JSON number `431100738685689856`. This string form avoids JSON number precision issues with large int64 values, and you can still order by the fixed-length hexadecimal string to obtain the same order as the serial number (whereas variable-length string `"12"` sorts before `"7"`).
 
 ## Examples
 

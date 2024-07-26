@@ -43,9 +43,11 @@ WITH (
 | bigquery.project | Required. The BigQuery project ID. |
 | bigquery.dataset | Required. The BigQuery dataset ID. |
 | bigquery.table | Required. The BigQuery table you want to sink to. |
-| access_key | Conditional. The access key of the S3 file. This must be specified if sinking to an S3 file. |
-| secret_access | Conditional. The secret access key of the S3 file. This must be specified if sinking to an S3 file.|
-| region | Conditional. The service region of the S3 file. This must be specified if sinking to an S3 file. |
+| bigquery.retry_times |Optional. The number of times the system should retry a BigQuery insert operation before ultimately returning an error. Defaults to `5`. |
+| auto_create | Optional. Defaults to `false`. If `true`, a new table will be automatically created in BigQuery when the specified table is not found.|
+| aws.credentials.access_key_id | Optional. The access key of the S3 file. This must be specified if sinking to an S3 file. |
+| aws.credentials.secret_access_key | Optional. The secret access key of the S3 file. This must be specified if sinking to an S3 file.|
+| region | Optional. The service region of the S3 file. This must be specified if sinking to an S3 file. |
 
 ## Examples
 
@@ -77,8 +79,8 @@ WITH (
     bigquery.project= '${project_id}',
     bigquery.dataset= '${dataset_id}',
     bigquery.table= '${table_id}',
-    access_key = '${aws_access_key}',
-    secret_access = '${aws_secret_access}',
+    aws.credentials.access_key_id = '${aws_access_key}',
+    aws.credentials.secret_access_key = '${aws_secret_access}',
     region = '${aws_region}',
     force_append_only='true',
 );
@@ -97,7 +99,7 @@ WITH (
 |numeric |numeric|
 |date |date|
 |character varying (varchar) |string|
-|time without time zone |unsupported|
+|time without time zone |time|
 |timestamp without time zone |datetime|
 |timestamp with time zone |timestamp|
 |interval |interval|

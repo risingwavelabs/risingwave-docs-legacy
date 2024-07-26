@@ -20,11 +20,11 @@ title: String functions and operators
 
 This function returns the Unicode code point of the first character of the *input_string*. If the string is empty, it returns `NULL`.
 
-```bash title=Syntax
+```sql title=Syntax
 ascii ( input_string ) → int
 ```
 
-```bash title=Examples
+```sql title=Examples
 ascii('RisingWave') → 82
 ascii('🌊') → 127754
 ```
@@ -35,11 +35,11 @@ ascii('🌊') → 127754
 
 This function returns the number of bits in the input string, which is 8 times the `octet_length`.
 
-```bash title=Syntax
+```sql title=Syntax
 bit_length ( input_string ) → integer
 ```
 
-```bash title=Examples
+```sql title=Examples
 bit_length('wave') → 32
 ```
 
@@ -49,11 +49,11 @@ bit_length('wave') → 32
 
 This function is equal to `trim (BOTH)`. It removes the specified characters from both the beginning and end of the input string.
 
-```bash title=Syntax
+```sql title=Syntax
 btrim ( input_string [, characters ] ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 btrim(' cake ') → 'cake'
 btrim('abcxyzabc', 'cba') → 'xyz'
 ```
@@ -64,13 +64,13 @@ btrim('abcxyzabc', 'cba') → 'xyz'
 
 These functions return the number of characters in the input string.
 
-```bash title=Syntax
+```sql title=Syntax
 char_length ( input_string ) → integer_output
 character_length ( input_string ) → integer_output
 length ( input_string ) → integer_output
 ```
 
-```bash title=Examples
+```sql title=Examples
 char_length('wave') → 4
 ```
 
@@ -80,11 +80,11 @@ char_length('wave') → 4
 
 This function returns the character with the Unicode code point equivalent to the input integer value provided.
 
-```bash title=Syntax
+```sql title=Syntax
 chr ( input_int ) → string
 ```
 
-```bash title=Examples
+```sql title=Examples
 chr(65) → 'A'
 ```
 
@@ -94,11 +94,11 @@ chr(65) → 'A'
 
 This function concatenates the arguments. NULL arguments are ignored.
 
-```bash title=Syntax
+```sql title=Syntax
 concat ( any_input-value_1 [, any_input-value_2 [, ...] ]) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 concat('Abcde', 2, NULL, 22) → 'Abcde222'
 concat(variadic array['abcde', '2', NULL, '22']); -> "abcde222"
 ```
@@ -109,11 +109,11 @@ concat(variadic array['abcde', '2', NULL, '22']); -> "abcde222"
 
 This function concatenates the arguments with a separator. The first argument is used as the separator and should not be NULL. Other NULL arguments are ignored.
 
-```bash title=Syntax
+```sql title=Syntax
 concat_ws ( separator_string, any_input-value_1 [, any_input-value_2 [, ...] ]) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 concat_ws(',', 'Abcde', 2, NULL, 22) → 'Abcde,2,22'
 concat_ws(',', variadic array['abcde', 2, NULL, 22] :: varchar[]); -> "abcde,2,22"
 ```
@@ -124,28 +124,29 @@ concat_ws(',', variadic array['abcde', 2, NULL, 22] :: varchar[]); -> "abcde,2,2
 
 This function converts a string to the database encoding. The original encoding is specified by `src_encoding name`. The string must be valid in this encoding.
 
-```bash title=Syntax
+```sql title=Syntax
 convert_from(string bytea, src_encoding name)  →  text
 ```
 
-```bash title=Examples
+```sql title=Examples
 convert_from('\x4346464558'::bytea, 'utf8')  →  'CFFEX'
 ```
 
 :::note
 For this function, only encoding UTF8 is supported. RisingWave uses UTF8 encoding to store text, so this function primarily serves as a type conversion operation.
 :::
+
 ---
 
 ### `convert_to`
 
 This function converts a string to the encoding specified by `dest_encoding name` and returns a byte array.
 
-```bash title=Syntax
+```sql title=Syntax
 convert_to(string text, dest_encoding name) → bytea
 ```
 
-```bash title=Examples
+```sql title=Examples
 convert_to('Hello World', 'UTF8') → '\\x48656c6c6f20576f726c64'
 ```
 
@@ -159,11 +160,11 @@ For this function, only encoding UTF8 is supported. RisingWave uses UTF8 encodin
 
 This function decodes the text data in the input string into binary data. Supported formats for the encoded input string include `base64`, `hex`, and `escape`.
 
-```bash title=Syntax
+```sql title=Syntax
 decode ( input_string, format_type ) → bytea
 ```
 
-```bash title=Examples
+```sql title=Examples
 decode('MTIz', 'base64') → '123'
 ```
 
@@ -173,11 +174,11 @@ decode('MTIz', 'base64') → '123'
 
 This function encodes the binary data in bytea into its textual representation. Supported encoding formats include `base64`, `hex`, and `escape`.
 
-```bash title=Syntax
+```sql title=Syntax
 encode ( bytea, format_type ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 encode(E'123'::bytea, 'base64') → 'MTIz'
 ```
 
@@ -187,7 +188,7 @@ encode(E'123'::bytea, 'base64') → 'MTIz'
 
 This function produces output formatted according to a format string, in a style similar to the C function `sprintf`.
 
-```bash title=Syntax
+```sql title=Syntax
 format( format_string [, format_arg [, ...] ] ) → output_string
 ```
 
@@ -195,7 +196,7 @@ The *format_string* specifies how the *output_string* should be formatted. It co
 
 The syntax of the format specifier:
 
-```bash
+```
 %type
 ```
 
@@ -233,11 +234,11 @@ format('%s %s', variadic array['Hello', 'World']); -> "Hello World"
 
 This function capitalizes the first letter of each word in the input string and converts the remaining characters to lowercase.
 
-```bash title=Syntax
+```sql title=Syntax
 initcap ( input_string ) → string
 ```
 
-```bash title=Examples
+```sql title=Examples
 initcap('POWERFUL and flexible') → 'Powerful And Flexible'
 ```
 
@@ -247,11 +248,11 @@ initcap('POWERFUL and flexible') → 'Powerful And Flexible'
 
 This function converts the string to all lowercase.
 
-```bash title=Syntax
+```sql title=Syntax
 lower ( input_string ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 lower('TOM') → 'tom'
 ```
 
@@ -261,11 +262,11 @@ lower('TOM') → 'tom'
 
 This function returns the first input integer characters in the input string. If the input integer is negative, the last *input_integer* characters are removed from the output string.
 
-```bash title=Syntax
+```sql title=Syntax
 left ( input_string, input_integer ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 left('risingwave', 4) → 'risi'
 left('risingwave', -4) → 'rising'
 ```
@@ -276,13 +277,13 @@ left('risingwave', -4) → 'rising'
 
 This function pads the input string on the left with spaces until it reaches the specified input integer length. If the input string is longer than the input integer length, it is truncated to the specified length. Providing the optional padding string replaces the spaces with the padding string.
 
-```bash title=Syntax
+```sql title=Syntax
 lpad ( input_string, input_int ) → string
 
 lpad ( input_string, input_int, padding_string ) → string
 ```
 
-```bash title=Examples
+```sql title=Examples
 lpad('42', 5) → '&nbsp;&nbsp;&nbsp42'
 lpad('42', 5, 'R') → 'RRR42'
 ```
@@ -293,11 +294,11 @@ lpad('42', 5, 'R') → 'RRR42'
 
 This function is equal to `trim (LEADING)`. It removes the specified characters from the beginning of the input string.
 
-```bash title=Syntax
+```sql title=Syntax
 ltrim ( input_string [, characters ] ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 ltrim(' cake ') → 'cake '
 ltrim('abcxyzabc', 'cba') → 'xyzabc'
 ```
@@ -308,11 +309,11 @@ ltrim('abcxyzabc', 'cba') → 'xyzabc'
 
 This function returns the number of bytes in the string.
 
-```bash title=Syntax
+```sql title=Syntax
 octet_length ( input_string )
 ```
 
-```bash title=Examples
+```sql title=Examples
 octet_length('wave') → 4
 ```
 
@@ -322,11 +323,11 @@ octet_length('wave') → 4
 
 This function replaces a substring in the input string with a substring, starting at a specified position and with an optional length. If the length is omitted, its value is the length of the substring.
 
-```bash title=Syntax
+```sql title=Syntax
 overlay ( input_string PLACING substring FROM start_int [ FOR length_int ] ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 overlay('yabadoo' PLACING 'daba' FROM 5 FOR 0) → 'yabadabadoo'
 overlay('abcdef' PLACING '45' FROM 4) → 'abc45f'
 overlay('RisingWave' PLACING '🌊' FROM 7) → 'Rising🌊ave'
@@ -338,12 +339,73 @@ overlay('RisingWave' PLACING '🌊' FROM 7) → 'Rising🌊ave'
 
 This function returns the starting index of the specified substring within the input string, or zero if it is not present.
 
-```bash title=Syntax
+```sql title=Syntax
 position ( substring in input_string ) → integer_output
 ```
 
-```bash title=Examples
+```sql title=Examples
 position('ing' in 'rising') → 4
+```
+
+---
+
+### `quote_literal(string text)`
+
+Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. This involves doubling any embedded single-quotes and backslashes. Note that if the input string is null, the function `quote_literal` returns null. In such cases, the function [`quote_nullable`](#quote_nullablestring-text) is often a better choice. Note that the quotes are part of the output string.
+
+```sql title="Syntax"
+quote_literal(string text) → text
+```
+
+```sql title="Examples"
+
+SELECT quote_literal(E'O\'Reilly');
+----RESULT
+'O''Reilly'
+
+SELECT quote_literal(E'C:\\Windows\\');
+----RESULT
+E'C:\\Windows\\'
+```
+
+---
+### `quote_literal(value anyelement)`
+
+Converts the given value to text and then quotes it as a literal to be safely used in an SQL statement, similar to [`quote_literal(string text)`](#quote_literalstring-text). This involves doubling any embedded single-quotes and backslashes to ensure their proper representation.
+
+```sql title="Syntax"
+quote_literal(value anyelement) → text
+```
+
+```sql title="Examples"
+SELECT quote_literal(42.5);
+----RESULT
+'42.5'
+
+SELECT quote_literal('hello'::bytea);
+----RESULT
+E'\\x68656c6c6f'
+
+SELECT quote_literal('{"hello":"world","foo":233}'::jsonb);
+----RESULT
+'{"foo": 233, "hello": "world"}'
+```
+
+---
+
+### `quote_nullable(string text)`
+
+Returns the given string properly quoted, so that a string can be safely used as a string literal in an SQL statement. Returns NULL if the input string is null. This involves doubling any embedded single-quotes and backslashes. When the argument is null, this function is usually more suitable than the `quote_literal` function.
+
+```sql title="Syntax"
+quote_nullable(string text) → text
+```
+
+```sql title="Examples"
+
+SELECT quote_nullable(NULL);
+----RESULT
+NULL
 ```
 
 ---
@@ -352,11 +414,11 @@ position('ing' in 'rising') → 4
 
 Returns the number of times a POSIX regular expressions pattern appears in *input_string*. Back reference, positive, negative lookahead, and positive, negative lookbehind are supported. Optional flags include `i`, which stands for case-insensitive matching, and `c`, which represents case-sensitive matching.
 
-```bash title=Syntax
+```sql title=Syntax
 regexp_count( input_string, pattern [, start_int [, optional_flag ]] ) → output_int
 ```
 
-```bash title=Examples
+```sql title=Examples
 regexp_count('ABCABCAXYaxy', 'A.', 1, 'c') → 3
 regexp_count('ABCABCAXYaxy', 'A.', 2, 'c') → 2
 ```
@@ -367,11 +429,11 @@ regexp_count('ABCABCAXYaxy', 'A.', 2, 'c') → 2
 
 Returns a string array of captured substring(s) resulting from the first match of a POSIX regular expression pattern to a string. If there is no match, the result is NULL. Back reference, positive, negative lookahead, and positive, negative lookbehind are supported. Optional flags include `i`, which stands for case-insensitive matching, and `c`, which represents case-sensitive matching.
 
-```bash title=Syntax
+```sql title=Syntax
 regexp_match( input_string, pattern [, optional_flag ] ) → matched_string[]
 ```
 
-```bash title=Examples
+```sql title=Examples
 regexp_match('foobarbequebaz', '(bar)(beque)') → {bar,beque}
 regexp_match('abc', 'd') → NULL
 regexp_match('abc', 'Bc', 'ici') → {bc}
@@ -383,11 +445,11 @@ regexp_match('abc', 'Bc', 'ici') → {bc}
 
 Returns a set of string arrays of captured substring(s) resulting from matching a POSIX regular expression pattern to a string. Returns all matches by default. Back reference, positive, negative lookahead, and positive, negative lookbehind are supported. Optional flags include `i`, which stands for case-insensitive matching, and `c`, which represents case-sensitive matching.
 
-```bash title=Syntax
+```sql title=Syntax
 regexp_matches( input_string, pattern [, optional_flag ] ) → set_of_matched_string[]
 ```
 
-```bash title=Examples
+```sql title=Examples
 regexp_matches('foobarbequebazilbarfbonk', '(b[^b]+)(b[^b]+)') →
 {bar,beque}
 {bazil,barf}
@@ -413,11 +475,11 @@ Optional flags can modify the matching behavior:
 
 **Note:** If *start_integer* is used, *flags* is not permitted unless *N_integer* is also specified.
 
-```bash title=Syntax
+```sql title=Syntax
 regexp_replace( input_string, pattern, replacement_string [, start_integer [, N_integer ] ] [, flags ] ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 regexp_replace('foobarbaz', 'b(..)', 'X\1Y', 'g') → fooXarYXazY
 
 regexp_replace('HELLO world', '[aeiou]', 'X', 'ig') → HXLLX wXrld
@@ -447,11 +509,11 @@ regexp_split_to_array('applebananaorange', ',') → {applebananaorange}
 
 Repeats *input_string* specific times. Null is returned when *times_int* is zero, negative, or null.
 
-```bash title=Syntax
+```sql title=Syntax
 repeat( input_string, times_int ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 repeat('A1b2', 3) → A1b2A1b2A1b2
 ```
 
@@ -461,11 +523,11 @@ repeat('A1b2', 3) → A1b2A1b2A1b2
 
 Replaces all occurrences of substring *from_string* in *input_string* with substring *to_string*.
 
-```bash title=Syntax
+```sql title=Syntax
 replace( input_string, from_string, to_string ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 replace('abcdefabcdef', 'cd', 'XX') → abXXefabXXef
 ```
 
@@ -475,11 +537,11 @@ replace('abcdefabcdef', 'cd', 'XX') → abXXefabXXef
 
 Returns the *input_string* with its characters in the reverse order.
 
-```bash title=Syntax
+```sql title=Syntax
 reverse( input_string ) → string
 ```
 
-```bash title=Examples
+```sql title=Examples
 reverse('RisingWave') → evaWgnisiR
 ```
 
@@ -489,11 +551,11 @@ reverse('RisingWave') → evaWgnisiR
 
 Returns the last *input_integer* characters in the *input_string*. If *input_integer* is negative, the first \|*input_integer*\| characters are removed from *output_string*.
 
-```bash title=Syntax
+```sql title=Syntax
 right( input_string, input_integer ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 right('risingwave', 4) → wave
 right('risingwave', -4) → ngwave
 ```
@@ -504,11 +566,11 @@ right('risingwave', -4) → ngwave
 
 Pads the input string on the right with spaces until it reaches the specified length. If the string is longer than the specified length, it is truncated to the specified length. Providing the optional padding string replaces the spaces with the padding string.
 
-```bash title=Syntax
+```sql title=Syntax
 rpad( input_string, input_int, padding_string ) → string
 ```
 
-```bash title=Examples
+```sql title=Examples
 rpad('42', 5) → '42    '
 rpad('42', 5, 'R') → '42RRR'
 ```
@@ -519,11 +581,11 @@ rpad('42', 5, 'R') → '42RRR'
 
 Equals to `trim (TRAILING)`.
 
-```bash title=Syntax
+```sql title=Syntax
 rtrim( input_string[, characters] ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 rtrim(' cake ') → 'cake'
 rtrim('abcxyzabc', 'cba') → 'abcxyz'
 ```
@@ -534,11 +596,11 @@ rtrim('abcxyzabc', 'cba') → 'abcxyz'
 
 Splits the input string at occurrences of the delimiter string and returns the n'th field (counting from one), or when n is negative, returns the |n|'th-from-last field. When n is zero, returns an 'InvalidParameterValue' error. When the input delimiter string is an empty string, returns the input string if querying the first or last field. Otherwise, returns an empty string.
 
-```bash title=Syntax
+```sql title=Syntax
 split_part( input_string, delimiter_string, int_n ) → varchar
 ```
 
-```bash title=Examples
+```sql title=Examples
 split_part('abc~@~def~@~ghi', '~@~', 2) → 'def'
 ```
 
@@ -548,11 +610,11 @@ split_part('abc~@~def~@~ghi', '~@~', 2) → 'def'
 
 Returns true if the input string starts with the specified prefix string, otherwise returns false.
 
-```bash title=Syntax
+```sql title=Syntax
 starts_with( input_string, prefix_string ) → boolean
 ```
 
-```bash title=Examples
+```sql title=Examples
 starts_with('RisingWave is powerful', 'Rising') → true
 ```
 
@@ -562,11 +624,11 @@ starts_with('RisingWave is powerful', 'Rising') → true
 
 Extracts the substring from input_string starting at position start_int and extending for count_int characters.
 
-```bash title=Syntax
+```sql title=Syntax
 substr( input_string, start_int[, count_int] ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 substr('alphabet', 3) → 'phabet';
 substring('alphabet', 3, 2) → 'ph'
 ```
@@ -577,11 +639,11 @@ substring('alphabet', 3, 2) → 'ph'
 
 Returns the input string with non-ASCII characters replaced by their closest ASCII equivalents.
 
-```bash title=Syntax
+```sql title=Syntax
 to_ascii( input_string ) → string
 ```
 
-```bash title=Examples
+```sql title=Examples
 to_ascii('Café') → 'Cafe'
 ```
 
@@ -591,11 +653,11 @@ to_ascii('Café') → 'Cafe'
 
 Converts input_int or input_bigint to its hexadecimal representation as a string.
 
-```bash title=Syntax
+```sql title=Syntax
 to_hex( input_int ) → string
 ```
 
-```bash title=Examples
+```sql title=Examples
 to_hex(255) → 'ff'
 to_hex(123456789012345678) → '1b69b4ba630f34e'
 ```
@@ -606,11 +668,11 @@ to_hex(123456789012345678) → '1b69b4ba630f34e'
 
 Replaces each character in the *input_string* that matches a character in the *from_string* with the corresponding character in the *to_string*.
 
-```bash title=Syntax
+```sql title=Syntax
 translate( input_string, from_string, to_string ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 translate('M1X3', '13', 'ae') → 'MaXe'
 ```
 
@@ -622,15 +684,15 @@ Trims the longest contiguous substring of characters from the beginning, end, or
 
 There are two syntax variants.
 
-```bash title=Syntax A
+```sql title=Syntax A
 trim( [ LEADING | TRAILING | BOTH ] [ characters ] FROM input_string ) → output_string
 ```
 
-```bash title=Syntax B
+```sql title=Syntax B
 trim( [ LEADING | TRAILING | BOTH ]  [FROM ] input_string[, characters] ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 trim(' cake ') → 'cake'
 trim(both 'cba' from 'abcxyzabc') → 'xyz'
 trim(both from 'abcxyzabc', 'cba') → 'xyz'
@@ -643,11 +705,11 @@ trim('abcxyzabc', 'cba') → 'xyz'
 
 Converts the string to all uppercase.
 
-```bash title=Syntax
+```sql title=Syntax
 upper( input_string ) → output_string
 ```
 
-```bash title=Examples
+```sql title=Examples
 upper('tom') → 'TOM'
 ```
 
@@ -668,7 +730,7 @@ Alternatively, you can use the operators `~~` and `~~*` as equivalents to `LIKE`
 ### Wildcards
 
 - An underscore `_` in a pattern matches any single character.
-  
+
 - A percent sign `%` matches any sequence of zero or more characters.
 
 If the pattern does not contain `_` or `%`, then the pattern only represents the string itself. For example, the pattern 'apple' matches only the string 'apple'. In that case, `LIKE` acts like the equals operator `=`.

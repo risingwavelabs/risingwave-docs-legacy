@@ -171,6 +171,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
 ) 
+[ INCLUDE timestamp AS column_name ]
 WITH (
     snapshot='true' 
 )
@@ -210,6 +211,26 @@ The following fields are used when creating a CDC table.
 |snapshot.interval| Optional. Specifies the barrier interval for buffering upstream events. The default value is `1`. |
 |snapshot.batch_size| Optional. Specifies the batch size of a snapshot read query from the upstream table. The default value is `1000`. |
 
+Regarding the `INCLUDE timestamp AS column_name` clause, it allows you to ingest the upstream commit timestamp. For historical data, the commit timestamp will be set to `1970-01-01 00:00:00+00:00`. Here is an example:
+
+```sql
+CREATE TABLE mytable (v1 int PRIMARY KEY, v2 varchar)
+INCLUDE timestamp AS commit_ts
+FROM pg_source TABLE 'public.mytable';
+
+SELECT * FROM t2 ORDER BY v1;
+
+----RESULT
+ v1 | v2 |         commit_ts
+----+----+---------------------------
+  1 | aa | 1970-01-01 00:00:00+00:00
+  2 | bb | 1970-01-01 00:00:00+00:00
+  3 | cc | 2024-05-20 09:01:08+00:00
+  4 | dd | 2024-05-20 09:01:08+00:00
+```
+
+You can see the [INCLUDE clause](/ingest/include-clause.md) for more details.
+
 #### Debezium parameters
 
 [Debezium v2.4 connector configuration properties](https://debezium.io/documentation/reference/2.4/connectors/postgresql.html#postgresql-advanced-configuration-properties) can also be specified under the `WITH` clause when creating a table or shared source. Add the prefix `debezium.` to the connector property you want to include.
@@ -232,6 +253,33 @@ CREATE SOURCE pg_mydb WITH (
 ### Data format
 
 Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based CDC tool that can capture row changes from various database management systems such as PostgreSQL, MySQL, and SQL Server and generate events with consistent structures in real time. The PostgreSQL CDC connector in RisingWave supports JSON as the serialization format for Debezium data. The data format does not need to be specified when creating a table with `postgres-cdc` as the source.
+
+### Metadata options
+
+Below are the metadata columns available for PostgreSQL CDC.
+
+|Field|Notes|
+|---|---|
+|database_name| Name of the database. |
+|schema_name| Name of the schema.|
+|table_name| Name of the table.|
+
+For instance, the person table below contains columns for typical personal information. It also includes metadata fields (`database_name`, `schema_name`, `table_name`) to provide contextual information about where the data resides within the PostgreSQL database.
+
+```sql
+CREATE TABLE person (
+    id int,
+    name varchar,
+    email_address varchar,
+    credit_card varchar,
+    city varchar,
+    PRIMARY KEY (id)
+) INCLUDE TIMESTAMP AS commit_ts
+INCLUDE DATABASE_NAME as database_name
+INCLUDE SCHEMA_NAME as schema_name
+INCLUDE TABLE_NAME as table_name
+FROM pg_source TABLE 'public.person';
+```
 
 ## Examples
 
@@ -327,3 +375,60 @@ RisingWave cannot correctly parse composite types from PostgreSQL as Debezium do
 |CIDR |CHARACTER VARYING* |
 |MACADDR |CHARACTER VARYING* |
 |MACADDR8 |CHARACTER VARYING* |
+
+## Use dbt to ingest data from PostgreSQL CDC
+
+Here is an example of how to use dbt to ingest data from PostgreSQL CDC. In this dbt example, `source` and `table_with_connector` models will be used. For more details about these two models, please refer to [Use dbt for data transformations](/transform/use-dbt.md#define-dbt-models).
+
+First, we create a `source` model `pg_mydb.sql`.
+
+```sql
+{{ config(materialized='source') }}
+CREATE SOURCE {{ this }} WITH (
+    connector = 'postgres-cdc',
+    hostname = '127.0.0.1',
+    port = '8306',
+    username = 'root',
+    password = '123456',
+    database.name = 'mydb',
+    slot.name = 'mydb_slot'
+);
+```
+
+And then we create a `table_with_connector` model `tt3.sql`.
+
+```sql
+{{ config(materialized='table_with_connector') }}
+CREATE TABLE {{ this }} (
+    v1 integer primary key,
+    v2 timestamp with time zone
+) FROM {{ ref('pg_mydb') }} TABLE 'public.tt3';
+```
+
+## Automatically map upstream table schema
+
+RisingWave supports automatically mapping the upstream table schema when creating a CDC table from a PostgreSQL CDC source. Instead of defining columns individually, you can use `*` when creating a table to ingest all columns from the source table. Note that `*` cannot be used if other columns are specified in the table creation process.
+
+Below is an example to create a table that ingests all columns from the upstream table from the PostgreSQL database:
+
+```sql
+CREATE TABLE supplier (*) FROM pg_source TABLE 'public.supplier';
+```
+
+And this it the output of `DESCRIBE supplier;`
+
+```sql
+       Name        |       Type        | Is Hidden | Description
+-------------------+-------------------+-----------+-------------
+ s_suppkey         | bigint            | false     |
+ s_name            | character varying | false     |
+ s_address         | character varying | false     |
+ s_nationkey       | bigint            | false     |
+ s_phone           | character varying | false     |
+ s_acctbal         | numeric           | false     |
+ s_comment         | character varying | false     |
+ primary key       | s_suppkey         |           |
+ distribution key  | s_suppkey         |           |
+ table description | supplier          |           |
+(10 rows)
+``` 

@@ -326,6 +326,11 @@ const sidebars = {
                       label: "PostgreSQL CDC",
                       id: "guides/ingest-from-postgres-cdc",
                     },
+                    {
+                      type: "doc",
+                      label: "Supabase CDC",
+                      id: "ingest/ingest-from-supabase-cdc",
+                    },
                   ]
                 },
                 {
@@ -395,13 +400,13 @@ const sidebars = {
             },
             {
               type: "doc",
-              id: "transform/indexes",
-              label: "Indexes",
+              id: "sql/syntax/sql-pattern-temporal-filters",
+              label: "Temporal filters",
             },
             {
               type: "doc",
-              id: "sql/syntax/sql-pattern-temporal-filters",
-              label: "Temporal filters",
+              id: "transform/indexes",
+              label: "Indexes",
             },
             {
               type: "doc",
@@ -410,13 +415,35 @@ const sidebars = {
             },
             {
               type: "doc",
+              id: "sql/functions-operators/sql-function-time-window",
+              label: "Time windows",
+            },
+            {
+              type: "doc",
+              id: "transform/window-functions",
+              label: "Window functions",
+            },
+            {
+              type: "doc",
               id: "sql/syntax/sql-pattern-topn",
               label: "Top-N by group",
             },
             {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-time-window",
-              label: "Time window functions",
+              type: "category",
+              label: "Emit on window close",
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: "doc",
+                id: "transform/emit-on-window-close",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "transform/watermarks",
+                  label: "Watermarks",
+                },
+              ]
             },
             {
               type: "category",
@@ -472,6 +499,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/udf/sql-udfs",
+                  label: "SQL UDFs",
+                },
+                {
+                  type: "doc",
                   id: "sql/udf/udf-foreign-data",
                   label: "Foreign data",
                 },
@@ -479,30 +511,18 @@ const sidebars = {
             },
             {
               type: "doc",
-              id: "transform/window-functions",
-              label: "Window functions",
-            },
-            {
-              type: "category",
-              label: "Emit on window close",
-              collapsible: true,
-              collapsed: true,
-              link: {
-                type: "doc",
-                id: "transform/emit-on-window-close",
-              },
-              items: [
-                {
-                  type: "doc",
-                  id: "transform/watermarks",
-                  label: "Watermarks",
-                },
-              ]
+              id: "transform/use-dbt",
+              label: "Use dbt for data transformations",
             },
             {
               type: "doc",
-              id: "transform/use-dbt",
-              label: "Use dbt for data transformations",
+              id: "transform/multiple-table-sink",
+              label: "Maintain wide table with table sinks",
+            },
+            {
+              type: "doc",
+              id: "transform/subscription",
+              label: "Subscription",
             },
             {
               type: "doc",
@@ -554,11 +574,6 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "Supabase",
-              id: "guides/supabase-integration",
-            },
-            {
-              type: "doc",
               label: "Superset",
               id: "guides/superset-integration",
             },
@@ -586,6 +601,11 @@ const sidebars = {
               collapsible: true,
               collapsed: true,
               items: [
+                {
+                  type: "doc",
+                  label: "Amazon DynamoDB",
+                  id: "guides/sink-to-dynamodb",
+                },
                 {
                   type: "doc",
                   label: "Apache Doris",
@@ -643,6 +663,16 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "Google Pub/Sub",
+                  id: "guides/sink-to-google-pubsub",
+                },
+                {
+                  type: "doc",
+                  label: "Microsoft SQL Server",
+                  id: "guides/sink-to-sqlserver",
+                },
+                {
+                  type: "doc",
                   label: "MQTT",
                   id: "guides/sink-to-mqtt",
                 },
@@ -655,6 +685,11 @@ const sidebars = {
                   type: "doc",
                   label: "NATS",
                   id: "guides/sink-to-nats",
+                },
+                {
+                  type: "doc",
+                  label: "OpenSearch",
+                  id: "guides/sink-to-opensearch",
                 },
                 {
                   type: "doc",
@@ -675,6 +710,11 @@ const sidebars = {
                   type: "doc",
                   label: "StarRocks",
                   id: "guides/sink-to-starrocks",
+                },
+                {
+                  type: "doc",
+                  label: "Supabase",
+                  id: "guides/sink-to-supabase",
                 },
                 {
                   type: "doc",
@@ -1074,11 +1114,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'manage/configure-node-specific-parameters',
-        },
-        {
-          type: 'doc',
-          id: 'manage/node-specific-parameters',
+          id: 'manage/node-specific-configurations',
         },
         {
           type: "doc",
@@ -1088,6 +1124,11 @@ const sidebars = {
         {
           type: 'doc',
           id: 'manage/meta-backup',
+        },
+        {
+          type: 'doc',
+          id: 'manage/migrate-to-sql-backend',
+          label: "Migrate to SQL backend",
         },
         {
           type: "doc",
@@ -1158,10 +1199,25 @@ const sidebars = {
             ]
         },
         {
-          type: "doc",
-          label: "Meta failure",
-          id: "troubleshoot/troubleshoot-meta"
+          type: "category",
+          label: "Node failure",
+          collapsible: true,
+          collapsed: true,
+          items:
+            [
+              {
+                type: "doc",
+                label: "Overview",
+                id: "troubleshoot/troubleshoot-node-failure"
+              },
+              {
+                type: "doc",
+                label: "Meta failure",
+                id: "troubleshoot/troubleshoot-meta"
+              },
+            ]
         },
+
         {
           type: "doc",
           label: "Recovery failure",

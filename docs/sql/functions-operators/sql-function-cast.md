@@ -26,6 +26,7 @@ value :: type
 
 
 ## Example
+
 ```sql
 SELECT '2049-01-01 23:34:56+08:00'::timestamp with time zone::varchar;
 ```

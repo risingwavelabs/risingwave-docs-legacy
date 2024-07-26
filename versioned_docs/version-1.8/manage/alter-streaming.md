@@ -16,9 +16,9 @@ This document explains how to modify the logic in streaming pipelines within Ris
 To add or drop columns from a table or source, simply use the [ALTER TABLE](/sql/commands/sql-alter-table.md) or [ALTER SOURCE](/sql/commands/sql-alter-source.md) command. For example:
 
 ```sql
-ALTER TABLE customers ADD COLUMN birth_date;
+ALTER TABLE customers ADD COLUMN birth_date date;
 
-ALTER SOURCE customers ADD COLUMN birth_date;
+ALTER SOURCE customers ADD COLUMN birth_date date;
 ```
 
 The new column will be `NULL` for existing records. 

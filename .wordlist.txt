@@ -205,3 +205,4 @@ Standalone's
 localhost
 prometheus
 datasources
+OpenSearch

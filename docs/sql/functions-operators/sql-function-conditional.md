@@ -14,8 +14,8 @@ Goes through conditions in sequence and returns the value of the result associat
 ### Syntax 1
 
 ```sql
-CASE 
-    WHEN condition THEN result 
+CASE
+    WHEN condition THEN result
     [ ... ]
     [ ELSE result ]
 END
@@ -38,7 +38,7 @@ END
 
 ```sql
 CASE expression
-    WHEN value THEN result 
+    WHEN value THEN result
     [ ... ]
     [ ELSE result ]
 END
@@ -64,7 +64,7 @@ The following statement (using Syntax 1) classifies the distance of each trip in
 
 ```sql
 SELECT id, distance,
-  CASE 
+  CASE
     WHEN (distance < 3) THEN 'short'
     WHEN (distance >= 3 AND distance < 10) THEN 'mid'
     WHEN (distance >= 10 AND distance < 20) THEN 'long'
@@ -73,8 +73,8 @@ SELECT id, distance,
   FROM taxi_trips;
 ```
 
-```markdown
- id | distance | Category 
+```
+ id | distance | Category
 ----+----------+----------
   1 |       16 | long
   2 |       23 | extra
@@ -95,7 +95,7 @@ SELECT id, distance,
 ```
 
 ```markdown
- id | distance |    Digit     
+ id | distance |    Digit
 ----+----------+--------------
   1 |       16 | Double-digit
   2 |       23 | Double-digit
@@ -155,8 +155,7 @@ insert into t values (1, 1, 2, 3), (2, 2, NULL, 5), (3, NULL, NULL, 8), (4, NULL
 
 select least(1, 2, 3); -- results: 1
 
-select least(v1, v2, v3) from t order by id; 
+select least(v1, v2, v3) from t order by id;
 ------ results
 1, 2, 8, NULL
 ```
-

@@ -40,7 +40,7 @@ You don’t need to specify the column name for the Iceberg source, as RisingWav
 | database.name   | Required. Name of the database that you want to ingest data from.|
 | table.name      | Required. Name of the table that you want to ingest data from.|
 | catalog.name    | Conditional. The name of the Iceberg catalog. It can be omitted for storage catalog but required for other catalogs.|
-| catalog.type    | Optional. The catalog type used in this table. Currently, the supported values are `storage`, `rest`, `hive` and `jdbc`. If not specified, `storage` is used. For details, see [Catalogs](#catalogs).|
+| catalog.type    | Optional. The catalog type used in this table. Currently, the supported values are `storage`, `rest`, `hive`, `jdbc`, and `glue`. If not specified, `storage` is used. For details, see [Catalogs](#catalogs).|
 | warehouse.path  | Conditional. The path of the Iceberg warehouse. Currently, only S3-compatible object storage systems, such as AWS S3 and MinIO, are supported. It's required if the `catalog.type` is not `rest`.|
 | catalog.url     | Conditional. The URL of the catalog. It is required when `catalog.type` is not `storage`. |
 
@@ -65,13 +65,97 @@ RisingWave converts data types from Iceberg to RisingWave according to the follo
 
 Iceberg supports these types of catalogs:
 
-- Storage catalog: The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system.
+- Storage catalog: The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system. 
 
-- REST catalog: RisingWave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use RisingWave with Iceberg tables.
+    ```sql title="Examples"
+    create source source_demo_storage
+    with (
+        connector = 'iceberg',
+        catalog.type = 'storage',
+        warehouse.path = 's3://icebergdata/demo',
+        s3.endpoint = 'http://minio-0:9301',
+        s3.access.key = 'xxxxxxxxxx',
+        s3.secret.key = 'xxxxxxxxxx',
+        s3.region = 'ap-southeast-1',
+        database.name = 's1',
+        table.name = 't1'
+    );
+    ```
 
-- Hive catalog: RisingWave supports the Hive catalog. You need to set `catalog.type` to `hive` to use it. See the full example in this [configuration file](https://github.com/risingwavelabs/risingwave/blob/main/integration_tests/iceberg-sink2/docker/hive/config.ini).
+- REST catalog: RisingWave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use RisingWave with Iceberg tables. 
 
-- Jdbc catalog: RisingWave supports the [JDBC catalog](https://iceberg.apache.org/docs/latest/jdbc/#configurations). See the full example in this [configuration file](https://github.com/risingwavelabs/risingwave/blob/main/integration_tests/iceberg-sink2/docker/jdbc/config.ini).
+  ```sql title="Examples"
+  create source source_demo_rest
+  with (
+      connector = 'iceberg',
+      s3.endpoint = 'http://minio-0:9301',
+      s3.access.key = 'xxxxxxxxxx',
+      s3.secret.key = 'xxxxxxxxxx',
+      s3.region = 'ap-southeast-1',
+      catalog.type = 'rest',
+      catalog.name = 'demo',
+      catalog.uri = 'http://rest:8181',
+      warehouse.path = 's3://icebergdata/demo',
+      database.name = 's1',
+      table.name = 't1'
+  );
+  ```
+
+- Hive catalog: RisingWave supports the Hive catalog. You need to set `catalog.type` to `hive` to use it. 
+
+    ```sql title="Examples"
+    create source source_demo_hive
+    with (
+        connector = 'iceberg',
+        catalog.type = 'hive',
+        catalog.uri = 'thrift://metastore:9083',
+        warehouse.path = 's3://icebergdata/demo',
+        s3.endpoint = 'http://minio-0:9301',
+        s3.access.key = 'xxxxxxxxxx',
+        s3.secret.key = 'xxxxxxxxxx',
+        s3.region = 'ap-southeast-1',
+        catalog.name = 'demo',
+        database.name = 's1',
+        table.name = 't1'
+    );
+    ```
+
+- Jdbc catalog: RisingWave supports the [JDBC catalog](https://iceberg.apache.org/docs/latest/jdbc/#configurations). 
+
+    ```sql title="Examples"
+    create source source_demo_jdbc
+    with (
+        connector = 'iceberg',
+        warehouse.path = 's3://icebergdata/demo',
+        s3.endpoint = 'http://minio-0:9301',
+        s3.access.key = 'xxxxxxxxxx',
+        s3.secret.key = 'xxxxxxxxxx',
+        s3.region = 'ap-southeast-1',
+        catalog.name = 'demo',
+        catalog.type = 'jdbc',
+        catalog.uri = 'jdbc:postgresql://postgres:5432/iceberg',
+        catalog.jdbc.user = 'admin',
+        catalog.jdbc.password = '123456',
+        database.name = 's1',
+        table.name = 't1'
+    );
+    ```
+
+- Glue Catalog: RisingWave supports the Glue catalog. You should use AWS S3 if you use the Glue catalog. Below are example codes for using this catalog:
+
+  ```sql title="Examples"
+  create source source_test
+  with (
+      connector = 'iceberg',
+      catalog.type = 'glue',
+      warehouse.path = 's3://my-iceberg-bucket/test',
+      s3.access.key = 'xxxxxxxxxx',
+      s3.secret.key = 'xxxxxxxxxx',
+      s3.region = 'ap-southeast-2',
+      database.name='test_db',
+      table.name='test_table'
+  );
+  ```
 
 ## Time travel
 
@@ -159,8 +243,20 @@ WITH (
 );
 ```
 
-Then, you can query the Iceberg source:
+Then, you can query the Iceberg source by using a batch query:
 
 ```sql
 SELECT * FROM iceberg_source;
+```
+
+Typically, you can use CTAS (CREATE TABLE AS SELECT) to load historical Iceberg table data into a RisingWave table:
+
+```sql
+CREATE TABLE t AS SELECT * FROM iceberg_source;
+```
+
+Furthermore, if you have a Kafka upstream on the Iceberg table, you can use `SINK INTO TABLE` to ingest data from Kafka to the RisingWave table:
+
+```sql
+CREATE SINK s INTO TABLE t AS SELECT * FROM kafka_source;
 ```

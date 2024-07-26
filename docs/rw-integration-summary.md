@@ -36,9 +36,9 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Apache Pulsar|Available. See [Ingest from Pulsar](/ingest/ingest-from-pulsar.md) for details. | Available. See [Sink to Pulsar](/guides/sink-to-pulsar.md) for details.|
 | Confluent Cloud | Available. See [Ingest from Confluent Cloud](/guides/confluent-kafka-source.md) for details. | |
 |DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <voteNotify note="astra_streaming_sink" />|
-|EMQX|Available. See [Ingest from MQTT brokers](/ingest/ingest-from-mqtt.md) for details.| In progress <voteNotify note="emqx" /> |
-|Google Pub/Sub|Available. See [Ingest from Google Pub/Sub](/ingest/ingest-from-google-pubsub.md) for details.| In progress <voteNotify note="google_pubsub_sink" /> |
-|HiveMQ|Available. See [Ingest from MQTT brokers](/ingest/ingest-from-mqtt.md) for details.| In progress <voteNotify note="hivemq" /> |
+|EMQX|Available. See [Ingest from MQTT brokers](/ingest/ingest-from-mqtt.md) for details.| Available. See [Sink to MQTT brokers](/guides/sink-to-mqtt.md) for details. |
+|Google Pub/Sub|Available. See [Ingest from Google Pub/Sub](/ingest/ingest-from-google-pubsub.md) for details.| Available. See [Sink to Google Pub/Sub](/guides/sink-to-google-pubsub.md) for details. |
+|HiveMQ|Available. See [Ingest from MQTT brokers](/ingest/ingest-from-mqtt.md) for details.| Available. See [Sink to MQTT brokers](/guides/sink-to-mqtt.md) for details. |
 |Kinesis Data Streams|Available. See [Ingest from Kinesis](/ingest/ingest-from-kinesis.md) for details.|Available. See [Sink to Kinesis](/guides/sink-to-aws-kinesis.md) for details.|
 |RabbitMQ|Researching <voteNotify note="rabbitmq_source" />|Researching <voteNotify note="rabbitmq_sink" />|
 |Redpanda | Available. See [Ingest from Redpanda](/ingest/ingest-from-redpanda.md) for details. |Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.|
@@ -91,6 +91,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 
 |System | Source |Sink |
 |---|---|---|
+|Amazon DynamoDB| In progress <voteNotify note="amazon_dynamodb_source" />| Available. For details, see [Sink to DynamoDB](/guides/sink-to-dynamodb.md). |
 |Apache Druid| No plan| Researching <voteNotify note="druid_sink" /> |
 |Apache Pinot| No plan| Pinot supports ingesting data from Kafka, Pulsar, and Kinesis. To sink data from RisingWave to Pinot, you can use Kafka, Pulsar, or Kinesis as a sink, then ingest the data into Pinot. See [Sink Changes from RisingWave Tables to Apache Pinot](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests/pinot-sink) for a demo. |
 |AWS Redshift| No plan|Researching <voteNotify note="redshift_sink" />|
@@ -103,9 +104,10 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Google BigQuery| No plan |Available. For details, see [Sink to Google BigQuery](/guides/sink-to-bigquery.md).|
 |MongoDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <voteNotify note="mongodb_sink" /> |
 |Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
+|OpenSearch| No plan| Available. For details, see [Sink to OpenSearch](/guides/sink-to-opensearch.md). |
 |Redis|Researching <voteNotify note="redis_source" />|Available. For details, see [Sink to Redis](/guides/sink-to-redis.md).|
 |Snowflake| No plan|Available. For details, see [Sink data to Snowflake](/guides/sink-to-snowflake.md).|
-|SQL Server| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <voteNotify note="sql_server_sink" /> |
+|SQL Server| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).| Available. See [Sink to SQL Server](/guides/sink-to-sqlserver.md). |
 |StarRocks| No plan | Available. For details, see [Sink data to StarRocks](/guides/sink-to-starrocks.md).|
 |TiDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Available. For details, see [Sink to TiDB](/guides/sink-to-tidb.md). |
 
@@ -133,6 +135,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Redash || Available |
 |DataGrip | |Researching <voteNotify note="datagrip" /> |
 |PgAdmin | |Researching <voteNotify note="pgadmin" /> |
+|Hex | |Available. For this integration, you can directly use the [PostgreSQL data connection of Hex](https://learn.hex.tech/docs/connect-to-data/data-connections/data-connections-introduction).|
 
 ## Other systems
 
@@ -143,4 +146,4 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Google Cloud Storage (GCS)| | Available as source. For details, see [Ingest from Google Cloud Storage](/ingest/ingest-from-gcs.md).|
 |Hasura| |Researching <voteNotify note="hasura" />|
 |Liquibase| |Researching <voteNotify note="liquibase" />|
-|Supabase| |Available. For details, see [Empower Supabase with stream processing capabilities](/guides/supabase-integration.md).|
+|Supabase| |Available. For details, see [Ingest data from Supabase CDC](/ingest/ingest-from-supabase-cdc.md) and [Sink data to Supabase](/guides/sink-to-supabase.md).|

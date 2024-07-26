@@ -21,7 +21,7 @@ const config = {
           anonymizeIP: true,
         },
         googleTagManager: {
-          containerId: 'GTM-KJRVWHT7',
+          containerId: "GTM-KJRVWHT7",
         },
         docs: {
           admonitions: {
@@ -34,14 +34,20 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "1.9 (dev)",
+              label: "1.10 (dev)",
               path: "/dev",
               badge: false,
               banner: "unreleased",
             },
-            1.8: {
-              label: "1.8 (current)",
+            1.9: {
+              label: "1.9 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            1.8: {
+              label: "1.8",
+              path: "/1.8",
               badge: false,
               banner: "none",
             },
@@ -185,7 +191,7 @@ const config = {
             href: "https://github.com/risingwavelabs/risingwave",
             label: "GitHub",
             position: "right",
-          }
+          },
         ],
       },
       footer: {
@@ -224,16 +230,16 @@ const config = {
       async: true,
     },
     {
-      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget@0.0.4-image-demo/dist/run-llm-search-widget.es.js",
+      src: "https://widget.runllm.com",
       id: "runllm-widget-script",
       type: "module",
       "runllm-server-address": "https://api.runllm.com",
       "runllm-assistant-id": "29",
-      "version": "0.0.4-image-demo",
       "runllm-position": "TOP_RIGHT",
       "runllm-keyboard-shortcut": "Mod+l",
       "runllm-theme-color": "#005EEC",
-      "runllm-slack-community-url": "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",
+      "runllm-slack-community-url":
+        "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",
       "runllm-name": "RisingWave",
       async: true,
     },

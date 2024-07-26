@@ -163,7 +163,6 @@ SELECT * FROM ad_ctr WHERE ad_id = 9;
 Here is an example result.
 
 ```
-
  ad_id |              ctr
 -------+--------------------------------
      9 | 0.9256055363321799307958477509

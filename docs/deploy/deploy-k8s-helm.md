@@ -76,7 +76,7 @@ Now start a RisingWave cluster with Helm.
 
     You may get an output message like this:
 
-    ```bash
+    ```
     NAME: my-risingwave
     LAST DEPLOYED: Wed Aug 16 15:35:19 2023
     NAMESPACE: default
@@ -93,7 +93,7 @@ Now start a RisingWave cluster with Helm.
 
   When your status looks like below, it means the RisingWave cluster starts successfully:
 
-  ```bash
+  ```
   NAME                                   READY   STATUS    RESTARTS        AGE
   risingwave-compactor-8dd799db6-hdjjz   1/1     Running   1 (8m33s ago)   11m
   risingwave-compute-0                   2/2     Running   0               11m
@@ -125,8 +125,8 @@ You can monitor the RisingWave cluster using the monitoring stack. For details, 
 
 By editing the configurations in [`values.yml`](https://github.com/risingwavelabs/helm-charts/blob/main/charts/risingwave/values.yaml), you can resize a worker node. The compactor node configurations are in the `compactorComponent` section. Configurations for the meta node and compute node are in `metaComponent` and `computeComponent` sections respectively. See [Customize pods of different components](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#customize-pods-of-different-components) for details.
 
-```bash
-# To resize other types of node, please replace the name with 
+```yaml
+# To resize other types of node, please replace the name with
 # computeComponent, or metaComponent.
 compactorComponent:
   resources:

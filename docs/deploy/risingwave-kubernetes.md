@@ -124,6 +124,7 @@ RisingWave supports using these systems or services as state backends.
 * Google Cloud Storage
 * Azure Blob Storage
 * Alibaba Cloud OSS
+* HDFS
 
 You can [customize etcd as a separate cluster](#optional-customize-the-etcd-deployment), [customize the state backend](#optional-customize-the-state-backend), or [customize the state store directory](#optional-customize-the-state-store-directory).
 
@@ -184,6 +185,8 @@ helm install -f etcd-values.yaml etcd bitnami/etcd
 
 ### Optional: Customize the state backend
 
+#### Download source file
+
 If you intend to customize a resource file, download the file to a local path and edit it:
 
 ```curl
@@ -199,6 +202,8 @@ kubectl apply -f a.yaml      # relative path
 kubectl apply -f /tmp/a.yaml # absolute path
 ```
 
+#### Customize the state backend
+
 To customize the state backend of your RisingWave cluster, edit the `spec:stateStore` section under the RisingWave resource (`kind: RisingWave`).
 
 import Tabs from '@theme/Tabs';
@@ -212,30 +217,30 @@ spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
-    
+
     # Declaration of the S3 state store backend.
     s3:
       # Region of the S3 bucket.
       region: us-east-1
-      
+
       # Name of the S3 bucket.
       bucket: risingwave
-      
+
       # Credentials to access the S3 bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: s3-credentials
-        
+
         # Key of the access key ID in the secret.
         accessKeyRef: AWS_ACCESS_KEY_ID
-        
+
         # Key of the secret access key in the secret.
         secretAccessKeyRef: AWS_SECRET_ACCESS_KEY
-        
-        # Optional, set it to true when the credentials can be retrieved 
+
+        # Optional, set it to true when the credentials can be retrieved
         # with the service account token, e.g., running inside the EKS.
-        # 
-        # useServiceAccount: true 
+        #
+        # useServiceAccount: true
 ```
 
 </TabItem>
@@ -250,25 +255,25 @@ spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
-    
+
     # Declaration of the MinIO state store backend.
     minio:
       # Endpoint of the MinIO service.
       endpoint: risingwave-minio:9301
-      
+
       # Name of the MinIO bucket.
       bucket: hummock001
-      
+
       # Credentials to access the MinIO bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: minio-credentials
-        
+
         # Key of the username ID in the secret.
         usernameKeyRef: username
-        
+
         # Key of the password key in the secret.
-        passwordKeyRef: password 
+        passwordKeyRef: password
 ```
 
 </TabItem>
@@ -279,28 +284,28 @@ spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
-    
+
     # Declaration of the S3 compatible state store backend.
     s3:
       # Endpoint of the S3 compatible object storage.
       #
       # Here we use Tencent Cloud Object Store (COS) in ap-guangzhou as an example.
       endpoint: cos.ap-guangzhou.myqcloud.com
-      
+
       # Region of the S3 compatible bucket.
       region: ap-guangzhou
-      
+
       # Name of the S3 compatible bucket.
       bucket: risingwave
-      
+
       # Credentials to access the S3 compatible bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: cos-credentials
-        
+
         # Key of the access key ID in the secret.
         accessKeyRef: ACCESS_KEY_ID
-        
+
         # Key of the secret access key in the secret.
         secretAccessKeyRef: SECRET_ACCESS_KEY
 ```
@@ -314,26 +319,26 @@ spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
-    
+
     # Declaration of the Google Cloud Storage state store backend.
     azureBlob:
       # Endpoint of the Azure Blob service.
       endpoint: https://you-blob-service.blob.core.windows.net
-      
+
       # Working directory root of the Azure Blob service.
       root: risingwave
-      
+
       # Container name of the Azure Blob service.
       container: risingwave
-    
+
       # Credentials to access the Google Cloud Storage bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: gcs-credentials
-        
+
         # Key of the account name in the secret.
         accountNameRef: AccountName
-        
+
         # Key of the account name in the secret.
         accountKeyRef: AccountKey
 ```
@@ -347,23 +352,23 @@ spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
-    
+
     # Declaration of the Google Cloud Storage state store backend.
     gcs:
       # Name of the Google Cloud Storage bucket.
       bucket: risingwave
-      
+
       # Root directory of the Google Cloud Storage bucket.
       root: risingwave
-    
+
       # Credentials to access the Google Cloud Storage bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: gcs-credentials
-        
+
         # Key of the service account credentials in the secret.
         serviceAccountCredentialsKeyRef: ServiceAccountCredentials
-        
+
         # Optional, set it to true when the credentials can be retrieved.
         # useWorkloadIdentity: true
 ```
@@ -377,30 +382,164 @@ spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
-    
+
     # Declaration of the Alibaba Cloud OSS state store backend.
     aliyunOSS:
       # Region of the Alibaba Cloud OSS bucket.
       region: cn-hangzhou
-      
+
       # Name of the Alibaba Cloud OSS compatible bucket.
       bucket: risingwave
 
       # Use internal endpoint or not. Check the following document for details:
       # https://www.alibabacloud.com/help/en/oss/user-guide/regions-and-endpoints
       internalEndpoint: false
-      
+
       # Credentials to access the Alibaba Cloud OSS bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: oss-credentials
-        
+
         # Key of the access key ID in the secret.
         accessKeyRef: ACCESS_KEY_ID
-        
+
         # Key of the secret access key in the secret.
         secretAccessKeyRef: SECRET_ACCESS_KEY_ID
 ```
+</TabItem>
+
+<TabItem value="HDFS" label="HDFS">
+
+#### Customize HDFS as state backend
+
+To customize HDFS as state backend in RisingWave, mount Hadoop configurations with ConfigMap.
+
+1. Firstly, prepare the config files locally like below, make sure the entire directory are mounted as a Config Map.
+
+  ```bash
+  ls $HADOOP_HOME/etc/hadoop
+  core-site.xml hdfs-site.xml
+  ```
+
+2. Next, create a ConfigMap, where `hadoop-conf` is the name of ConfigMap:
+
+  ```bash
+  kubectl create configmap hadoop-conf --from-file $HADOOP_HOME/etc/hadoop
+  ```
+
+3. Then mount the Hadoop configuration files using this ConfigMap:
+
+  <details><summary>See the code example</summary>
+
+  ```yaml
+  apiVersion: risingwave.risingwavelabs.com/v1alpha1
+  kind: RisingWave
+  metadata:
+    name: risingwave
+  spec:
+    image: <the image you packaged>
+    metaStore:
+      memory: true
+    stateStore:
+      hdfs:
+        nameNode: <your_cluster_name/namenode>
+        root: <data_directory>
+    components:
+      meta:
+        nodeGroups:
+        - name: ''
+          replicas: 1
+          template:
+            spec:
+              resources:
+                limits:
+                  cpu: 1
+                  memory: 2Gi
+              env:
+              - name: HADOOP_CONF_DIR
+                value: /var/etc/hadoop/conf
+              volumes:
+              - name: hadoop-conf
+                configMap:
+                  name: hadoop-conf
+              volumeMounts:
+              - name: hadoop-conf
+                mountPath: /var/etc/hadoop/conf
+                readOnly: true
+      compute:
+        nodeGroups:
+        - name: ''
+          replicas: 1
+          template:
+            spec:
+              resources:
+                limits:
+                  cpu: 4
+                  memory: 16Gi
+              env:
+              - name: HADOOP_CONF_DIR
+                value: /var/etc/hadoop/conf
+              volumes:
+              - name: hadoop-conf
+                configMap:
+                  name: hadoop-conf
+              volumeMounts:
+              - name: hadoop-conf
+                mountPath: /var/etc/hadoop/conf
+                readOnly: true
+      compactor:
+        nodeGroups:
+        - name: ''
+          replicas: 1
+          template:
+            spec:
+              resources:
+                limits:
+                  cpu: 2
+                  memory: 4Gi
+              env:
+              - name: HADOOP_CONF_DIR
+                value: /var/etc/hadoop/conf
+              volumes:
+              - name: hadoop-conf
+                configMap:
+                  name: hadoop-conf
+              volumeMounts:
+              - name: hadoop-conf
+                mountPath: /var/etc/hadoop/conf
+                readOnly: true
+      frontend:
+        nodeGroups:
+        - name: ''
+          replicas: 1
+          template:
+            spec:
+              resources:
+                limits:
+                  cpu: 2
+                  memory: 4Gi
+  ```
+  </details>
+
+  Replace the following placeholders:
+
+  - `<your-risingwave-image-name>`: The name of your RisingWave Docker image.
+  - `<your-hadoop-namenode-address>`: The address of your Hadoop NameNode.
+  - `<your-hadoop-data-directory>`: The directory where data is stored.
+
+  Note that the value of the `HADOOP_CONF_DIR` environment variable and the path where the `hadoop-conf` ConfigMap is mounted should be identical.
+
+#### Customize HDFS client
+
+You can also customize the HDFS client as needed. We have built an image based on Hadoop 2.7.3. If you want to create your own RisingWave image, please adjust the Hadoop configuration according to your specific cluster information and ensure that:
+
+- The `CLASSPATH` is correctly set.
+- `HADOOP_CONF_DIR` is placed at the beginning of the `CLASSPATH`.
+
+See [Docker file for HDFS](https://github.com/risingwavelabs/risingwave/blob/main/docker/Dockerfile.hdfs) for the latest version.
+
+Then build the image and push it to somewhere. Make sure it’s reachable by the Kubernetes clusters or the machine running docker.
+
 </TabItem>
 
 </Tabs>

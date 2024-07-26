@@ -1,11 +1,11 @@
 ---
 id: console-overview
-title: Query console
-description: The query console is the most intuitive and easy way to connect to and interact with RisingWave, offering graphical tools for managing data and visualizing results.
+title: Workspace
+description: The most intuitive and easy way to connect to and interact with RisingWave.
 slug: /console-overview
 ---
 
-The query console is the most intuitive and easy way to interact with RisingWave, offering graphical tools for managing data and visualizing results.
+It is the most intuitive and easy way to interact with RisingWave via workspace. It offers graphical tools for managing data and visualizing results.
 
 <img
 src={require('./images/console.png').default}
@@ -70,15 +70,9 @@ The sample queries cover the most common steps in RisingWave, such as establishi
 
 See [Explore RisingWave with examples](/quickstart.md/?step=4) for details.
 
-#### Switch clusters or users
+#### Switch users
 
-Click **Switch** to change to another cluster or another user in your current cluster when using the console.
-
-<img
-src={require('./images/console-switchclusteruser.gif').default}
-alt="Switch clusters or users"
-width="800px"
-/>
+Click **Switch** in the top right corner to change to another user in your current project when using the console.
 
 ### Query results
 

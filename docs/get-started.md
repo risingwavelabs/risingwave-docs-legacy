@@ -27,7 +27,7 @@ Open a terminal and run the following `curl` command.
 curl https://risingwave.com/sh | sh
 ```
 
-To start a RisingWave instance, run the following command. 
+To start a RisingWave instance, run the following command.
 
 ```shell
 risingwave
@@ -112,12 +112,11 @@ GROUP BY
 ```sql title="Query the current result"
 SELECT * FROM average_exam_scores;
 ------
- exam_id |   average_score   | total_scores 
+ exam_id |   average_score   | total_scores
 ---------+-------------------+--------------
      102 | 90.05000000000001 |            2
      101 | 85.33333333333333 |            3
 (2 rows)
-
 ```
 
 As new data is received, the `average_exam_scores` materialized view will be automatically updated. RisingWave performs incremental computations in the background to keep the results up to date.
@@ -136,7 +135,7 @@ VALUES
 ```sql title="Query the latest result"
 SELECT * FROM average_exam_scores;
 ------
- exam_id |   average_score   | total_scores 
+ exam_id |   average_score   | total_scores
 ---------+-------------------+--------------
      101 |             87.74 |            5
      102 | 88.64000000000001 |            5
@@ -175,6 +174,7 @@ risingwave --in-memory
 ```
 
 You can view other options with:
+
 ```sh
 risingwave single --help
 ```
@@ -193,17 +193,20 @@ Start the RisingWave standalone cluster.
 Make sure you're in the `RisingWave` directory.
 
 Start your prometheus instance:
+
 ```shell
 prometheus --config.file=./standalone/prometheus.yaml --web.listen-address=0.0.0.0:9500
 ```
 
 Then start the Grafana instance:
+
 ```sh
 grafana server --config ./standalone/grafana.ini
 ```
 
 Next, add the Prometheus Data Source on the Grafana Dashboard: http://localhost:3001/connections/datasources/prometheus.
-```shell
+
+```
 name: risedev-prometheus
 Prometheus Server URL: http://localhost:9500
 ```
@@ -215,10 +218,10 @@ With that you can now monitor your standalone cluster with Grafana and Prometheu
 
 ## What's next?
 
-Congratulations! You've successfully started RisingWave and conducted some initial data analysis. To explore further, you may want to: 
+Congratulations! You've successfully started RisingWave and conducted some initial data analysis. To explore further, you may want to:
 
 - Check out the ready-to-run examples:
-  * [Example A: Ingest data from Kafka](https://github.com/risingwavelabs/awesome-stream-processing/blob/main/00-get-started/01-ingest-kafka-data.md)
-  * [Example B: Ingest data from Postgres CDC](https://github.com/risingwavelabs/awesome-stream-processing/blob/main/00-get-started/02-ingest-pg-cdc.md)
+  - [Example A: Ingest data from Kafka](https://github.com/risingwavelabs/awesome-stream-processing/blob/main/00-get-started/01-ingest-kafka-data.md)
+  - [Example B: Ingest data from Postgres CDC](https://github.com/risingwavelabs/awesome-stream-processing/blob/main/00-get-started/02-ingest-pg-cdc.md)
 - See [this GitHub directory](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) for ready-to-run demos and integration examples.
 - Read our documentation to learn about how to ingest data from data streaming sources, transform data, and deliver data to downstream systems.

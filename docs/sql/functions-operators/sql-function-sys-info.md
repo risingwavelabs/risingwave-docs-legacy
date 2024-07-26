@@ -7,7 +7,7 @@ title: System information functions
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-sys-info/" />
 </head>
 
-RisingWave provides functions to help you get system information, including databse, schema, user, role, session, and more.
+RisingWave provides functions to help you get system information, including database, schema, user, role, session, and more.
 
 ## `current_database()`
 
@@ -66,6 +66,38 @@ SELECT current_user(); → `root`
 Returns the file system location of a tablespace. To use this function, you need to provide the OID of the tablespace you want to get the location for as an argument.
 -->
 
+## `pg_get_keywords()`
+
+Returns a collection of records that provide information about the SQL keywords recognized by the server. Each record has three columns: `word`, `catcode`, and `catdesc`. 
+
+The `word` column contains the actual keyword, while the `catcode` column indicates the category code of the keyword.
+
+Here are the possible category codes and their meanings:
+
+- `U`: Indicates an unreserved keyword.
+
+- `C`: Indicates a keyword that can be used as a column name.
+
+- `T`: Indicates a keyword that can be used as a type or function name.
+
+- `R`: Indicates a fully reserved keyword.
+
+The `catdesc` column contains a string that describes the category of the keyword. This description may be localized, depending on the language settings of the server.
+
+```sql title="Syntax"
+pg_get_keywords () → setof record ( word text, catcode text, catdesc text)
+```
+
+```sql title=Examples
+SELECT * FROM pg_get_keywords() LIMIT 1;
+
+----RESULT
+ word    | catcode | catdesc 
+---------+---------+---------
+ABSOLUTE | R       | Reserved
+(1 rows)
+```
+
 
 ## `pg_get_viewdef()`
 
@@ -92,6 +124,43 @@ SELECT pg_get_viewdef('materialized_view1'::regclass);
 ----RESULT
  SELECT id, name FROM table1
 (1 row)
+```
+
+## `pg_index_column_has_property()`
+
+Checks if an index column has a specific property. The `index` parameter represents the OID of the index, while the `column` parameter represents the column number (starting from 1) within the index. If the property name is not recognized or doesn't apply to the object, or if the OID or column number is invalid, this function will return NULL.
+
+```sql title="Syntax"
+pg_index_column_has_property ( index regclass, column integer, property text ) → boolean
+```
+
+The supported properties are as follows:
+
+- `asc`: Indicates whether the column sorts in ascending order on a forward scan.
+
+- `desc`: Indicates whether the column sorts in descending order on a forward scan.
+
+- `nulls_first`: Indicates whether the column sorts with nulls first on a forward scan.
+
+- `nulls_last`: Indicates whether the column sorts with nulls last on a forward scan.
+
+```sql title="Examples"
+-- Create a table named 't' with columns 'a' and 'b' of type INT
+CREATE TABLE t (a INT, b INT); 
+
+-- Create an index named 'i' on table 't' with column 'a' in ascending order and column 'b' in descending order
+CREATE INDEX i ON t (a ASC, b DESC);
+
+
+-- Check if the first column of index 'i' has the 'ASC' property
+SELECT pg_index_column_has_property('i'::REGCLASS, 1, 'ASC');
+----RESULT
+t
+
+-- Check if the first column of index 'i' has the 'DESC' property
+SELECT pg_index_column_has_property('i'::REGCLASS, 1, 'DESC');
+----RESULT
+f
 ```
 
 ## `pg_typeof()`
