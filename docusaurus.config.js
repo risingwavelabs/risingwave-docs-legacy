@@ -39,7 +39,7 @@ const config = {
               badge: false,
               banner: "unreleased",
             },
-            1.10: {
+            "1.10": {
               label: "1.10 (current)",
               path: "/current",
               badge: false,
