@@ -10,10 +10,6 @@ slug: /sql-alter-table
 
 The `ALTER TABLE` command modifies the definition of a table.
 
-:::
-For tables with generated columns, we support altering them with the clauses below, except for `DROP COLUMN`. If you attempt to drop a column that's referenced by a generated column, RisingWave will return an error. To resolve this, you can first drop the generated column, and then drop the referenced column.
-:::
-
 ## Syntax
 
 ```sql
@@ -75,6 +71,9 @@ ALTER TABLE employees DROP fax;
 + If your table is defined with a schema registry, its column can not be altered.
 
 + You cannot drop columns referenced by materialized views or indexes.
+
++ If you attempt to drop a column referenced by a generated column, RisingWave will return an error. To resolve this, you can first drop the generated column, and then drop the referenced column.
+
 :::
 
 ### `OWNER TO`
