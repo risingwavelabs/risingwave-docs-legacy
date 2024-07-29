@@ -64,11 +64,17 @@ FETCH NEXT FROM cur;
 (1 row)
 ```
 
-The `op` column in the result stands for the change operations. It has four options: `op = 1` (insert), `op = 2` (delete), `op = 3` (update_insert),  and `op = 4` (update_delete). The `update` statement here is transformed into `update_insert` and `update_delete` operations. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
+The `op` column in the result stands for the change operations. It has four options: `op = 1` (insert), `op = 2` (delete), `op = 3` (update_insert),  and `op = 4` (update_delete). For a single UPDATE statement, the subscription log will contain two separate rows: one with update_insert and another with update_delete. This is because RisingWave treats an UPDATE as a delete of the old value followed by an insert of the new value. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
 
 Note that each time `FETCH NEXT FROM cursor_name` is called, it will return one row of incremental data from the subscribed table. It does not return all the incremental data at once, but requires the user to repeatedly call this statement to fetch the data.
 
 This method is non-blocking. Even if the current table has no new incremental data, `FETCH NEXT FROM cursor_name` will not block, but will return an empty row. When new incremental data is generated, calling this statement again will return the latest row of data.
+
+Regarding the order of the fetched data:
+
+- For rows with different `rw_timestamp`, values are returned in the order the events occurred.
+
+- For rows with the same `rw_timestamp`, the order matches the event sequence if the primary keys are the same; If primary keys differ, the order may not reflect the exact event sequence.
 
 ### Examples
 
