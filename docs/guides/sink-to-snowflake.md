@@ -184,7 +184,7 @@ WITH (
  ) FORMAT PLAIN ENCODE JSON;
  ```
 
-```sql title=""
+```sql title="Create materialized view in RisingWave"
 CREATE MATERIALIZED VIEW ss_mv AS
 WITH sub AS changelog FROM user_behaviors
 SELECT
