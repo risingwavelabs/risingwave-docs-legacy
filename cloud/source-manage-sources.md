@@ -5,52 +5,58 @@ description: Manage data sources your database connected to.
 slug: /manage-sources
 ---
 
-To ingest data into RisingWave, you must first create a source. A source refers to an external data feed that RisingWave can read from. You can connect RisingWave to a variety of external sources like databases and message brokers.
+To ingest data into RisingWave, you must first create a source. A source refers to an external data feed that RisingWave can read from. You can connect RisingWave to a variety of external sources like databases and message brokers. After a source is connected, you can create materialized views to perform analysis or sinks for data transformations.
 
-You can manage your data sources in [**Source**](https://cloud.risingwave.com/source/).
+For the complete list of supported sources and formats, see [Supported sources and formats](/docs/current/sql-create-source/#supported-sources).
 
-<img
-src={require('./images/sources.png').default}
-alt="Sources page"
-/>
+## Create a source
 
-<grid
- container
- direction="row"
- spacing="15"
- justifyContent="space-between"
- justifyItems="stretch"
- alignItems="stretch">
+You can create a source with one of the following methods:
 
-<grid item xs={12} sm={6} md={6}>
+### Using guided setup
 
-<card
-title="Create a source"
-content="Create a source in the database to read external data."
-cloud="create-a-source"
-style={{height: "80%"}}
-/>
+1. Go to [**Project**](https://cloud.risingwave.com/project/home/).
 
-</grid>
+2. Specify the project and click its **Workspace**.
 
-<grid item xs={12} sm={6} md={6}>
+3. Next to **Source** tab, click **+ Add new**.
 
-<card
-title="Drop a source"
-content="If you no longer require data from a source, drop the source connection to stop data consumption."
-cloud="drop-a-source"
-style={{height: "80%"}}
-/>
+4. Select the service you want to connect to.
 
-</grid>
+    :::note
+    More services will be supported in future releases.
+    :::
 
-</grid>
+5. Configure the connector settings, source details, and schema according to the instructions of the guided setup.
 
-## Check source details
+6. Check the generated SQL statement and click **Confirm** to create the source in your database.
 
-Click on a source to view its details, including the connector settings, schema, and running status.
+### Using SQL command
 
-<img
-src={require('./images/source-details-page.png').default}
-alt="Source details page"
-/>
+Refer to [`CREARE SOURCE`](/docs/current/sql-create-source/#supported-sources) in the RisingWave documentation. Select a connector to see the SQL syntax, options, and sample statement of connecting RisingWave to the connector.
+
+## Check a source
+
+Click on a source to view its details, including the connector settings, schema, throughput, errors, and running status.
+
+:::tip
+
+When checking throughput and errors, you can click **Last 30 minutes** on the right side to customize your time range.
+
+:::
+
+## Drop a source
+
+If you no longer require data from a source, drop the source connection with one of the following methods to stop data consumption.
+
+### Using guided step
+
+1. Go to **Source**.
+
+2. Click the delete button on the source you want to drop and confirm the deletion.
+
+### Using SQL command
+
+- Use the [`DROP SOURCE`](/docs/current/sql-drop-source/) command to drop a source from the database.
+
+- Use the [`DROP TABLE`](/docs/current/sql-drop-table/) command if it's a materialized source.

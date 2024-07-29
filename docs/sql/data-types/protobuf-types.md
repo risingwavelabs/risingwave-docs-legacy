@@ -12,7 +12,7 @@ RisingWave supports a variety of protobuf data types, which are converted to equ
 
 ## Conversion
 
-RisingWave converts [well-known types](https://protobuf.dev/reference/protobuf/google.protobuf/) from the protobuf library to specific types in RisngWave. The conversion is as follows:
+RisingWave converts [well-known types](https://protobuf.dev/reference/protobuf/google.protobuf/) from the protobuf library to specific types in RisingWave. The conversion is as follows:
 
 Protobuf type | RisingWave type
 -- | --
