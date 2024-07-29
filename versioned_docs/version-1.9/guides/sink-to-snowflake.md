@@ -15,9 +15,21 @@ Snowflake is a cloud-based data warehousing platform that allows for scalable an
 
 ## Prerequisite
 
-- Ensure you already have a Snowflake table that you can sink data to. For additional guidance on creating a table and setting up Snowflake, refer to the [Getting started](https://docs.snowflake.com/en/user-guide-getting-started) guide of Snowflake documentation.
+- Ensure you have a S3 bucket that RisingWave can connect to.
 
 - Ensure you have an upstream materialized view or source in RisingWave that you can sink data from.
+
+- Ensure you have a RSA key-value pair for authentication, and set up the credential for the `Snowflake User`.
+
+- Ensure you have a `Snowflake table` that you can sink data to. For additional guidance on creating a table and setting up Snowflake, refer to the [Getting started](https://docs.snowflake.com/en/user-guide-getting-started) guide of Snowflake documentation.
+
+- Ensure you have a `Snowflake stage` that references the external Amazon S3 bucket. Snowflake will use this stage internally to load the data. Currently, only the JSON format is supported.
+
+- Ensure you have a `Snowflake pipe` to receive the loaded data from the pre-defined stage and copy it to the Snowflake table.
+
+:::note
+RisingWave will not be responsible for deleting data already imported by S3. You can manually set the lifecycle configuration of your S3 bucket to clear out unnecessary data. See [lifecycle configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-set-lifecycle-configuration-intro.html) for more details.
+:::
 
 ## Required permission
 
