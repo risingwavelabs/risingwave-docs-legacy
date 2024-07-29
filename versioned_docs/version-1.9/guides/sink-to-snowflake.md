@@ -11,7 +11,7 @@ slug: /sink-to-snowflake
 
 This guide describes how to sink data from RisingWave to Snowflake using the Snowflake sink connector in RisingWave.
 
-Snowflake is a cloud-based data warehousing platform that allows for scalable and efficient data storage and analysis. For more information about Snowflake, see [Snowflake official website](https://www.snowflake.com/en/).
+Snowflake is a cloud-based data warehousing platform that allows for scalable and efficient data storage and analysis. For more information about Snowflake, see [Snowflake official website](https://www.snowflake.com/en/). Sinking from RisingWave to Snowflake utilizes [Snowpipe](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis) for data loading. Initially, Data is staged in a user-managed S3 bucket in JSON format, and then loaded into the Snowflake table via Snowpipe.
 
 ## Prerequisite
 
