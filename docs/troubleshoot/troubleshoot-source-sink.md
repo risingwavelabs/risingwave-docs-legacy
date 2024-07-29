@@ -35,16 +35,16 @@ We are currently rolling out sink decoupling to all sinks. Track the latest prog
 
 ## Diagnosis
 
-It's usually helpful to check the logs of both RisingWave and the source/sink systems, especially when source/sink fails instead of being slow.
+It is helpful to check the logs of both RisingWave and the source or sink system, especially when the source or sink is failing instead of being slow.
 
-Source and sink connectors are running on RisingWave Compute nodes, and sometimes require validation in Meta node. Please search for "`risingwave_connector_node`" in the RisingWave logs to find related information.
+Source and sink connectors are running on RisingWave Compute nodes, and sometimes require validation in the Meta node. Search for "`risingwave_connector_node`" in the RisingWave logs to find related information.
 
 The root causes of source and sink problems are various. You may need to check their documents or logs to address the root causes.
 
 Here are some common issues:
 
-- The source or sink system is down, overloaded or misconfigured, causing RisingWave to fail to connect to it.
-- There's poor network between RisingWave and the source/sink systems. Please make sure they are deployed in the same data center or region.
-- Long-running transactions in the upstream databases prevent our CDC source from reading new changes. PostgresQL's vacuum may also cause this problem.
+- The source or sink system is down, overloaded, or misconfigured, causing RisingWave to fail to connect to it.
+- The network is poor between RisingWave and the source and sink systems. Ensure they are deployed in the same data center or region.
+- Long-running transactions in the upstream databases prevent CDC sources from reading new changes. PostgresQL's vacuum may also cause this problem.
 - Rate limit of downstream system leads to frequent write failures.
 - Lock contention or deadlock in the downstream database causes long lock-wait time.
