@@ -226,7 +226,7 @@ file_scan(file_format, storage_type, s3_region, s3_access_key, s3_secret_key, fi
 ```
 
 :::note
-Note: When reading a directory of Parquet files, the schema will be based on the first Parquet file listed. Please ensure that all Parquet files in the directory have the same schema.
+When reading a directory of Parquet files, the schema will be based on the first Parquet file listed. Please ensure that all Parquet files in the directory have the same schema.
 :::
 
 For example, assume you have a Parquet file named `sales_data.parquet` that stores a company's sales data, containing the following fields:
