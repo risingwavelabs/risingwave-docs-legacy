@@ -1225,6 +1225,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Source & Sink",
+          id: "troubleshoot/troubleshoot-source-sink"
+        },
+        {
+          type: "doc",
           label: "Deployment issues",
           id: "troubleshoot/troubleshooting-deployment-issues"
         },
