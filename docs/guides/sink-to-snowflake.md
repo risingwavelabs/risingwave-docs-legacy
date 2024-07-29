@@ -11,21 +11,39 @@ slug: /sink-to-snowflake
 
 This guide describes how to sink data from RisingWave to Snowflake using the Snowflake sink connector in RisingWave.
 
-Snowflake is a cloud-based data warehousing platform that allows for scalable and efficient data storage and analysis. For more information about Snowflake, see [Snowflake official website](https://www.snowflake.com/en/).
+Snowflake is a cloud-based data warehousing platform that allows for scalable and efficient data storage and analysis. For more information about Snowflake, see [Snowflake official website](https://www.snowflake.com/en/). Sinking from RisingWave to Snowflake utilizes [Snowpipe](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis) for data loading. Initially, data is staged in a user-managed S3 bucket in JSON format, and then loaded into the Snowflake table via Snowpipe.
 
 ## Prerequisite
 
-- Ensure you already have a Snowflake table that you can sink data to. For additional guidance on creating a table and setting up Snowflake, refer to the [Getting started](https://docs.snowflake.com/en/user-guide-getting-started) guide of Snowflake documentation.
+- Ensure you have a S3 bucket that RisingWave can connect to.
 
 - Ensure you have an upstream materialized view or source in RisingWave that you can sink data from.
 
+- Ensure you have a RSA key-value pair for authentication, and set up the credential for the `Snowflake User`.
+
+- Ensure you have a `Snowflake table` that you can sink data to. For additional guidance on creating a table and setting up Snowflake, refer to the [Getting started](https://docs.snowflake.com/en/user-guide-getting-started) guide of Snowflake documentation.
+
+- Ensure you have a `Snowflake stage` that references the external Amazon S3 bucket. Snowflake will use this stage internally to load the data. Currently, only the JSON format is supported.
+
+- Ensure you have a `Snowflake pipe` to receive the loaded data from the pre-defined stage and copy it to the Snowflake table.
+
+:::note
+RisingWave will not be responsible for deleting data already imported by S3. You can manually set the lifecycle configuration of your S3 bucket to clear out unnecessary data. See [lifecycle configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-set-lifecycle-configuration-intro.html) for more details.
+:::
+
 ## Required permission
 
-To successfully sink data into Snowflake, the Snowflake user account must have the appropriate permissions. These permissions include:
+To successfully sink data into Snowflake, the S3 user account must have the appropriate permission:
 
-- For the table: The user must have either `OWNERSHIP` permission, or at the very least `INSERT` permission.
-- For the database: The user must have `USAGE` permission.
-- For the schema: The user must have `USAGE` permission.
+- For the S3:  The user must have `WRITE` permission.
+
+Meanwhile, the Snowflake user account must have the appropriate permissions:
+
+- For the pipe: The user must have `OPERATE`permission.
+- For the stage: The user must have `USAGE` and `READ` permission.
+- For the table: The user must have `INSERT` and `SELECT` permission.
+- For the database: The user must have `USAGE` permission.
+- For the schema: The user must have `USAGE` permission.
 
 ## Syntax
 
@@ -145,4 +163,69 @@ CREATE SINK snowflake_sink FROM ss_mv WITH (
     snowflake.max_batch_row_num = '1030',
     snowflake.s3_path = 'EXAMPLE_S3_PATH',
 );
+ ```
+
+### Sink data with upsert
+
+Snowflake tables don't support direct updates. To handle this, RisingWave imports incremental logs and modification order for each data piece into Snowflake. You can then merge these as you read, or create dynamic tables to read the upsert results. See [Dynamic tables](https://docs.snowflake.com/en/user-guide/dynamic-tables-about) for more details.
+
+Below are some examples for your reference.
+
+```sql title="Create source in RisingWave"
+CREATE SOURCE s1_source (id int,name varchar)
+WITH (
+    connector ='datagen',
+    fields.id.kind ='sequence',
+    fields.id.start ='1',
+    fields.id.end ='10000',
+    fields.name.kind ='random',
+    fields.name.length ='10',
+    datagen.rows.per.second ='200'
+ ) FORMAT PLAIN ENCODE JSON;
+ ```
+
+```sql title=""
+CREATE MATERIALIZED VIEW ss_mv AS
+WITH sub AS changelog FROM user_behaviors
+SELECT
+    user_id,
+    target_id,
+    event_timestamp AT TIME ZONE 'America/Indiana/Indianapolis' as event_timestamp,
+    changelog_op AS __op,
+    _changelog_row_id::bigint AS __row_id
+FROM
+    sub;
+ ```
+
+ ```sql title="Create sink in Risingwave"
+CREATE SINK snowflake_sink FROM ss_mv 
+WITH (
+    connector ='snowflake',
+    type ='append-only',
+    snowflake.database ='EXAMPLE_DB',
+    snowflake.schema ='EXAMPLE_SCHEMA',
+    snowflake.pipe ='EXAMPLE_SNOWFLAKE_PIPE',
+    snowflake.account_identifier ='<ORG_NAME>-<ACCOUNT_NAME>',
+    snowflake.user ='EXAMPLE_USER',
+    snowflake.rsa_public_key_fp ='EXAMPLE_FP',
+    snowflake.private_key ='EXAMPLE_PK',
+    snowflake.s3_bucket ='EXAMPLE_S3_BUCKET',
+    snowflake.aws_access_key_id ='EXAMPLE_AWS_ID',
+    snowflake.aws_secret_access_key ='EXAMPLE_SECRET_KEY',
+    snowflake.aws_region ='EXAMPLE_REGION',
+    snowflake.max_batch_row_num ='1030',
+    snowflake.s3_path ='EXAMPLE_S3_PATH',
+);
+ ```
+
+ ```sql title="Create dynamic table in Snowflake"
+    CREATE OR REPLACE DYNAMIC TABLE user_behaviors
+    TARGET_LAG = '1 minute'
+    WAREHOUSE = test_warehouse
+    AS SELECT *
+        FROM (
+            SELECT *, ROW_NUMBER() OVER (PARTITION BY {primary_key} ORDER BY __row_id DESC) AS dedupe_id
+            FROM t3
+        ) AS subquery
+    WHERE dedupe_id = 1 AND (__op = 1 or __op = 3);
  ```
