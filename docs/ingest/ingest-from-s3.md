@@ -229,74 +229,69 @@ file_scan(file_format, storage_type, s3_region, s3_access_key, s3_secret_key, fi
 Note: When reading a directory of Parquet files, the schema will be based on the first Parquet file listed. Please ensure that all Parquet files in the directory have the same schema.
 :::
 
-```sql title="Examples"
--- Read a single Parquet file
-SELECT * FROM file_scan(
+For example, assume you have a Parquet file named `sales_data.parquet` that stores a company's sales data, containing the following fields:
+
+- `product_id`: Product ID
+
+- `sales_date`: Sales date
+
+- `quantity`: Sales quantity
+
+- `revenue`: Sales revenue
+
+You can use the following SQL statement to read this Parquet file:
+
+```sql title="Read a single Parquet file"
+SELECT
+  product_id,
+  sales_date,
+  quantity,
+  revenue
+FROM file_scan(
   'parquet',
   's3',
   'ap-southeast-2',
   'xxxxxxxxxx',
   'yyyyyyyy',
-  's3://your-bucket/path/to/fila_name.parquet'
+  's3://your-bucket/path/to/sales_data.parquet'
 );
 
 ----RESULT
- a | b | c
----+---+---
- 2 | 2 | 3
- 4 | 5 | 6
-(2 rows)
+product_id |  sales_date  | quantity | revenue
+------------+-------------+----------+----------
+         12 | 2023-04-01   |       50 |   1000.00
+         12 | 2023-04-02   |       30 |    600.00
+         15 | 2023-04-01   |       20 |    400.00
+(3 rows)
+```
 
--- Read a directory of Parquet files
-SELECT * FROM file_scan(
+If you have several such Parquet files, you can also read by their file directory:
+
+```sql title="Read a directory of Parquet files"
+SELECT
+  product_id,
+  sales_date,
+  quantity,
+  revenue
+FROM file_scan(
   'parquet',
   's3',
   'ap-southeast-2',
   'xxxxxxxxxx',
   'yyyyyyyy',
-  's3://your-bucket/path/to/directory/'
+  's3://your-bucket/path/to/sales_data_file_directory/'
 );
 
 ----RESULT
-{
-  "file_path": "s3://your-bucket/path/to/directory/file1.parquet",
-  "file_size": 1024000,
-  "row_count": 10000,
-  "column_count": 5,
-  "schema": {
-    "column1": "string",
-    "column2": "int64",
-    "column3": "double",
-    "column4": "boolean",
-    "column5": "timestamp"
-  }
-},
-{
-  "file_path": "s3://your-bucket/path/to/directory/file2.parquet",
-  "file_size": 2048000,
-  "row_count": 20000,
-  "column_count": 7,
-  "schema": {
-    "column1": "string",
-    "column2": "int64", 
-    "column3": "double",
-    "column4": "boolean",
-    "column5": "timestamp",
-    "column6": "string",
-    "column7": "int32"
-  }
-},
-{
-  "file_path": "s3://your-bucket/path/to/directory/file3.parquet",
-  "file_size": 512000,
-  "row_count": 5000,
-  "column_count": 3,
-  "schema": {
-    "column1": "string",
-    "column2": "int32",
-    "column3": "float"
-  }
-}
+product_id |  sales_date  | quantity | revenue
+------------+-------------+----------+----------
+         12 | 2023-04-01   |       50 |   1000.00
+         12 | 2023-04-02   |       30 |    600.00
+         15 | 2023-04-01   |       20 |    400.00
+         15 | 2023-04-03   |       40 |    800.00
+         18 | 2023-04-02   |       25 |    500.00
+         18 | 2023-04-04   |       35 |    700.00
+(6 rows)
 ```
 
 ### Handle unexpected file types or poorly formatted files
