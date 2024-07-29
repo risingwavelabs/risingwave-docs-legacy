@@ -10,6 +10,10 @@ slug: /sql-alter-table
 
 The `ALTER TABLE` command modifies the definition of a table.
 
+:::note
+ If your table is defined with a schema registry, for the following clauses, you can typically only use the `REFRESH SCHEMA` clause to alter it, with an exception for [tables with generated columns](#drop-column).
+:::
+
 ## Syntax
 
 ```sql
@@ -68,7 +72,7 @@ ALTER TABLE employees DROP fax;
 
 :::note
 
-+ If your table is defined with a schema registry, its column can not be altered. However, if the table with a schema registry has generated columns, you can drop the generated columns. Note that dropping these generated columns will trigger a schema refresh.
++ As mentioned at the beginning of this page, for tables with a schema registry, you can generally only use the `REFRESH SCHEMA` clause. However, there's an exception for tables with generated columns. You can drop these generated columns even if the schema is defined in a registry. Note that dropping these generated columns will trigger a schema refresh.
 
 + You cannot drop columns referenced by materialized views or indexes.
 
