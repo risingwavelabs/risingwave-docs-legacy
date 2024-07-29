@@ -72,7 +72,7 @@ ALTER TABLE employees DROP fax;
 
 + You cannot drop columns referenced by materialized views or indexes.
 
-+ If you attempt to drop a column referenced by a generated column, RisingWave will return an error. To resolve this, you can first drop the generated column, and then drop the referenced column.
++ You cannot drop columns referenced by a generated column without the generated column being dropped.
 
 :::
 
