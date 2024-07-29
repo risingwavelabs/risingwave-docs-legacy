@@ -110,9 +110,11 @@ FETCH n FROM cursor_name;
 
 #### Order of the fetched data
 
-- For rows with different `rw_timestamp`, values are returned in the order the events occurred.
+- For data with different `rw_timestamp`, values are returned in the order the events occurred.
 
-- For rows with the same `rw_timestamp`, the order matches the event sequence if the primary keys are the same; If primary keys differ, the order may not reflect the exact event sequence.
+- For data with the same `rw_timestamp`, the order matches the event sequence if the data belongs to the same primary key in the subscribed materialized view or table.
+
+- For data with the same `rw_timestamp` but different primary keys, the order may not reflect the exact event sequence.
 
 ### Examples
 
