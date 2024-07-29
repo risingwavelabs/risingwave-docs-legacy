@@ -106,7 +106,7 @@ export const svg = rr.Diagram(
 |s3.bucket_name |Required. The name of the bucket the data source is stored in. |
 |s3.credentials.access|Required. This field indicates the access key ID of AWS. |
 |s3.credentials.secret|Required. This field indicates the secret access key of AWS.|
-|match_pattern| Conditional. This field is used to find object keys in `s3.bucket_name` that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported. When set to `*.parquet`, the file source can read parquet files.|
+|match_pattern| Conditional. This field is used to find object keys in `s3.bucket_name` that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported. When set to `.parquet`, the file source can read parquet files.|
 |s3.endpoint_url| Conditional. The host URL for an S3-compatible object storage server. This allows users to use a different server instead of the standard S3 server. |
 
 :::note
