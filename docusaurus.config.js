@@ -34,14 +34,20 @@ const config = {
           showLastUpdateTime: true,
           versions: {
             current: {
-              label: "1.10 (dev)",
+              label: "1.11 (dev)",
               path: "/dev",
               badge: false,
               banner: "unreleased",
             },
-            1.9: {
-              label: "1.9 (current)",
+            "1.10": {
+              label: "1.10 (current)",
               path: "/current",
+              badge: false,
+              banner: "none",
+            },
+            1.9: {
+              label: "1.9",
+              path: "/1.9",
               badge: false,
               banner: "none",
             },
@@ -230,12 +236,11 @@ const config = {
       async: true,
     },
     {
-      src: "https://cdn.jsdelivr.net/npm/@runllm/search-widget/dist/run-llm-search-widget.es.js",
+      src: "https://widget.runllm.com",
       id: "runllm-widget-script",
       type: "module",
       "runllm-server-address": "https://api.runllm.com",
       "runllm-assistant-id": "29",
-      version: "stable",
       "runllm-position": "TOP_RIGHT",
       "runllm-keyboard-shortcut": "Mod+l",
       "runllm-theme-color": "#005EEC",

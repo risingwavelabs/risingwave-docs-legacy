@@ -65,7 +65,7 @@ module.exports = {
             },
             {
               type: "doc",
-              id: "cluster-connection-errors",
+              id: "project-connection-errors",
             },
             {
               type: "doc",
@@ -141,48 +141,12 @@ module.exports = {
           id: "develop-overview",
         },
         {
-          type: "category",
-          label: "Manage sources",
-          collapsible: true,
-          collapsed: true,
-          link: { type: "doc", id: "source-manage-sources" },
-          items: [
-            {
-              type: "doc",
-              id: "source-manage-sources",
-              label: "Overview",
-            },
-            {
-              type: "doc",
-              id: "source-create-a-source",
-            },
-            {
-              type: "doc",
-              id: "source-drop-a-source",
-            },
-          ],
+          type: "doc",
+          id: "source-manage-sources",
         },
         {
-          type: "category",
-          label: "Manage sinks",
-          collapsible: true,
-          collapsed: true,
-          link: { type: "doc", id: "sink-manage-sinks" },
-          items: [
-            {
-              type: "doc",
-              id: "sink-manage-sinks",
-              label: "Overview",
-            },
-            {
-              type: "doc",
-              id: "sink-create-a-sink",
-            },
-            {
-              type: "doc",
-              id: "sink-drop-a-sink",
-            },
-          ],
+          type: "doc",
+          id: "sink-manage-sinks",
         },
         {
           type: "category",
@@ -237,6 +201,11 @@ module.exports = {
           type: "doc",
           id: "organization-service-account",
           label: "Service account & API key",
+        },
+        {
+          type: "doc",
+          id: "organization-rbac",
+          label: "Role-based access control",
         },
       ],
     },

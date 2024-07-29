@@ -12,12 +12,6 @@ This topic describes how to sink data from RisingWave to a Kafka broker and how 
 
 A sink is an external target that you can send data to. To stream data out of RisingWave, you need to create a sink. Use the `CREATE SINK` statement to create a sink. You can create a sink with data from a materialized view or a table. RisingWave only supports writing messages in non-transactional mode.
 
-:::tip Guided setup
-RisingWave Cloud provides an intuitive guided setup for creating a Kafka sink. For more information, see [Create a sink using guided setup](/cloud/create-a-sink/#using-guided-setup) in the RisingWave Cloud documentation.
-
-<lightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
-:::
-
 ## Syntax
 
 ```sql
@@ -130,7 +124,7 @@ When creating an append-only Protobuf sink, the following options can be used fo
 
 |Field|Notes|
 |-----|-----|
-|message| Required. Message name of the main Message in the schema definition. . |
+|message| Required. Package qualified message name of the main Message in the schema definition. |
 |schema.location| Required if `schema.registry` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The schema location. This can be in either `file://`, `http://`, `https://` format. |
 |schema.registry| Required if `schema.location` is not specified. Only one of `schema.location` or `schema.registry` can be defined. The address of the schema registry. |
 |schema.registry.username| Optional. The user name used to access the schema registry. |
@@ -146,7 +140,7 @@ Syntax:
 ```sql
 FORMAT PLAIN
 ENCODE PROTOBUF (
-   message = 'main_message',
+   message = 'com.example.MyMessage',
    schema.location = 'location'
 )
 ```
