@@ -11,7 +11,7 @@ slug: /sink-to-snowflake
 
 This guide describes how to sink data from RisingWave to Snowflake using the Snowflake sink connector in RisingWave.
 
-Snowflake is a cloud-based data warehousing platform that allows for scalable and efficient data storage and analysis. For more information about Snowflake, see [Snowflake official website](https://www.snowflake.com/en/). Sinking from RisingWave to Snowflake utilizes [Snowpipe](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis) for data loading. Initially, Data is staged in a user-managed S3 bucket in JSON format, and then loaded into the Snowflake table via Snowpipe.
+Snowflake is a cloud-based data warehousing platform that allows for scalable and efficient data storage and analysis. For more information about Snowflake, see [Snowflake official website](https://www.snowflake.com/en/). Sinking from RisingWave to Snowflake utilizes [Snowpipe](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis) for data loading. Initially, data is staged in a user-managed S3 bucket in JSON format, and then loaded into the Snowflake table via Snowpipe.
 
 ## Prerequisite
 
@@ -21,11 +21,17 @@ Snowflake is a cloud-based data warehousing platform that allows for scalable an
 
 ## Required permission
 
-To successfully sink data into Snowflake, the Snowflake user account must have the appropriate permissions. These permissions include:
+To successfully sink data into Snowflake, the S3 user account must have the appropriate permission:
 
-- For the table: The user must have either `OWNERSHIP` permission, or at the very least `INSERT` permission.
-- For the database: The user must have `USAGE` permission.
-- For the schema: The user must have `USAGE` permission.
+- For the S3:  The user must have `WRITE` permission.
+
+Meanwhile, the Snowflake user account must have the appropriate permissions:
+
+- For the pipe: The user must have `OPERATE`permission.
+- For the stage: The user must have `USAGE` and `READ` permission.
+- For the table: The user must have `INSERT` and `SELECT` permission.
+- For the database: The user must have `USAGE` permission.
+- For the schema: The user must have `USAGE` permission.
 
 ## Syntax
 
