@@ -76,7 +76,11 @@ If you don’t specify the `since_clause`, the returned data will include both t
 
 ### Fetch from cursor
 
-#### `FETCH NEXT FROM cursor_name`
+:::note
+FETCH from cursor function is currently only supported in the PSQL simple query mode. If you are using components like JDBC that default to the extended query mode, please manually set the mode to simple query mode.
+:::
+
+#### FETCH NEXT FROM cursor
 
 After creating a subscription cursor, you can fetch the data by the `FETCH NEXT FROM cursor_name` command. Then you will see a result like  below:
 
@@ -96,13 +100,21 @@ Note that each time `FETCH NEXT FROM cursor_name` is called, it will return one 
 
 This method is non-blocking. Even if the current table has no new incremental data, `FETCH NEXT FROM cursor_name` will not block, but will return an empty row. When new incremental data is generated, calling this statement again will return the latest row of data.
 
-#### `FETCH n FROM cursor_name`
+#### FETCH n FROM cursor
 
 You also can fetch multiple rows at once from the cursor using the `FETCH n FROM cursor_name` command. `n` is the number of rows to fetch.
 
 ```sql
 FETCH n FROM cursor_name;
 ```
+
+#### Order of the fetched data
+
+- For data with different `rw_timestamp`, values are returned in the order the events occurred.
+
+- For data with the same `rw_timestamp`, the order matches the event sequence if the data belongs to the same primary key in the subscribed materialized view or table.
+
+- For data with the same `rw_timestamp` but different primary keys, the order may not reflect the exact event sequence.
 
 ### Examples
 
