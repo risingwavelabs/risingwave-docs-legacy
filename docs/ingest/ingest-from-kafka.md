@@ -328,6 +328,30 @@ Based on the compatibility type that is configured for the schema registry, some
 
 To learn about compatibility types for Schema Registry and the changes allowed, see [Compatibility Types](https://docs.confluent.io/platform/current/schema-registry/avro.html#compatibility-types).
 
+## Read schemas from AWS Glue Schema Registry
+
+:::note
+This is a premium edition feature.
+:::
+
+AWS Glue Schema Registry is a serverless feature of AWS Glue that allows you to centrally manage and enforce schemas for data streams, enabling data validation and compatibility checks. It helps in improving the quality of data streams by providing a central repository for managing and enforcing schemas across various AWS services and custom applications.
+
+You can specify the following configurations in the `ENCODE AVRO (...)` clause to read schemas from Glue.
+
+**Auth-related configurations**:
+
+- `aws.region`: The region of the AWS Glue Schema Registry. For example, `us-west-2`.
+
+- `aws.credentials.access_key_id`: Your AWS access key ID.
+
+- `aws.credentials.secret_access_key`: Your AWS secret access key.
+
+- `aws.credentials.role.arn`: The Amazon Resource Name (ARN) of the role to assume. For example, `arn:aws:iam::123456123456:role/MyGlueRole`.
+
+**ARN to the schema**:
+
+- `aws.glue.schema_arn`: The ARN of the schema in AWS Glue Schema Registry. For example, `'arn:aws:glue:ap-southeast-1:123456123456:schema/default-registry/MyEvent'`.
+
 ## Create source with PrivateLink connection
 
 If your Kafka source service is located in a different VPC from RisingWave, use AWS PrivateLink to establish a secure and direct connection. For details on how to set up an AWS PrivateLink connection, see [Create an AWS PrivateLink connection](/sql/commands/sql-create-connection.md#create-an-aws-privatelink-connection).
