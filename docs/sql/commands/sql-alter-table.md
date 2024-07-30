@@ -10,9 +10,6 @@ slug: /sql-alter-table
 
 The `ALTER TABLE` command modifies the definition of a table.
 
-:::note
- If your table is defined with a schema registry, for the following clauses, you can typically only use the `REFRESH SCHEMA` clause to alter it, with an exception for [tables with generated columns](#drop-column).
-:::
 
 ## Syntax
 
