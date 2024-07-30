@@ -11,7 +11,7 @@ This page summarizes changes in each version of RisingWave, including new featur
 
 ## v1.10.0
 
-This version was released on July xx, 2024.
+This version was released on July 30, 2024.
 
 ### Main changes
 
