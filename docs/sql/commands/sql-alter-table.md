@@ -73,6 +73,8 @@ ALTER TABLE employees DROP fax;
 
 + You cannot drop columns referenced by materialized views or indexes.
 
++ To drop a column referenced by a generated column, you must first drop the generated column.
+
 :::
 
 ### `OWNER TO`

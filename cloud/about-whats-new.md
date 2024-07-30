@@ -9,6 +9,29 @@ slug: /whats-new
 
 Keep up with the latest updates on RisingWave Cloud.
 
+## July 2024
+
+Here are the notable new features and changes we introduced to RisingWave Cloud in July.
+
+### Launching Azure
+
+RisingWave Cloud now supports both hosted service and BYOC deployment on the Azure platform. You can now connect hosted RisingWave clusters with Azure-hosted services via Azure Private Link, or a BYOC project in your Azure account. If your desired region on Azure is not available yet, please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for a PoC request.
+
+
+### BYOC project CA certificate
+
+Different from hosted services, each BYOC environment is equipped with one unique CA certification to establish an SSL connection between all RisingWave projects in this BYOC environment and the psql client. If you have downloaded the CA cert for hosted projects before, make sure to re-download it following the instructions in the cloud portal.
+
+<img
+  src={require('./images/cloud-updates/byoc-ca-cert.png').default}
+  alt="Download CA certificate in BYOC environment"
+/>
+
+### New source wizards
+
+We added three more connector wizards, namely MongoDB CDC, AWS S3, and Google Cloud storage, to help our users build their sources without writing any SQL statements. To request more connector wizards, please contact us. 
+
+
 ## June 2024
 
 Here are the notable new features and changes we introduced to RisingWave Cloud in June.

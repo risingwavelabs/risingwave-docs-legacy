@@ -216,30 +216,82 @@ CREATE MATERIALIZED VIEW mv AS SELECT * FROM s3_source;
 CREATE TABLE s3_table ( ... ) WITH ( connector = 's3_v2', ... );
 ```
 
-### Read parquet files from S3
+### Read Parquet files from S3
 
-You can use the table function `file_scan()` to read a parquet file from S3.
+You can use the table function `file_scan()` to read Parquet files from S3, either a single file or a directory of Parquet files.
+
 
 ```sql title="Function signature"
-file_scan(file_format, storage_type, s3_region, s3_access_key, s3_secret_key, file_location)
+file_scan(file_format, storage_type, s3_region, s3_access_key, s3_secret_key, file_location_or_directory)
 ```
 
-```sql title="Examples"
-SELECT * FROM file_scan(
+:::note
+When reading a directory of Parquet files, the schema will be based on the first Parquet file listed. Please ensure that all Parquet files in the directory have the same schema.
+:::
+
+For example, assume you have a Parquet file named `sales_data.parquet` that stores a company's sales data, containing the following fields:
+
+- `product_id`: Product ID
+
+- `sales_date`: Sales date
+
+- `quantity`: Sales quantity
+
+- `revenue`: Sales revenue
+
+You can use the following SQL statement to read this Parquet file:
+
+```sql title="Read a single Parquet file"
+SELECT
+  product_id,
+  sales_date,
+  quantity,
+  revenue
+FROM file_scan(
   'parquet',
   's3',
   'ap-southeast-2',
   'xxxxxxxxxx',
   'yyyyyyyy',
-  's3://your-bucket/path/to/fila_name.parquet'
+  's3://your-bucket/path/to/sales_data.parquet'
 );
 
 ----RESULT
- a | b | c
----+---+---
- 2 | 2 | 3
- 4 | 5 | 6
-(2 rows)
+product_id |  sales_date  | quantity | revenue
+------------+-------------+----------+----------
+         12 | 2023-04-01   |       50 |   1000.00
+         12 | 2023-04-02   |       30 |    600.00
+         15 | 2023-04-01   |       20 |    400.00
+(3 rows)
+```
+
+If you have several such Parquet files, you can also read by their file directory:
+
+```sql title="Read a directory of Parquet files"
+SELECT
+  product_id,
+  sales_date,
+  quantity,
+  revenue
+FROM file_scan(
+  'parquet',
+  's3',
+  'ap-southeast-2',
+  'xxxxxxxxxx',
+  'yyyyyyyy',
+  's3://your-bucket/path/to/sales_data_file_directory/'
+);
+
+----RESULT
+product_id |  sales_date  | quantity | revenue
+------------+-------------+----------+----------
+         12 | 2023-04-01   |       50 |   1000.00
+         12 | 2023-04-02   |       30 |    600.00
+         15 | 2023-04-01   |       20 |    400.00
+         15 | 2023-04-03   |       40 |    800.00
+         18 | 2023-04-02   |       25 |    500.00
+         18 | 2023-04-04   |       35 |    700.00
+(6 rows)
 ```
 
 ### Handle unexpected file types or poorly formatted files
