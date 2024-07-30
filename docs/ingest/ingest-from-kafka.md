@@ -276,7 +276,7 @@ WHERE _rw_kafka_timestamp > now() - interval '10 minute';
 
 ## Read schemas from locations
 
-RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Protobuf format. For Avro, only Confluent Schema Registry is supported for reading schemas.
+RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Protobuf format. For Avro, Confluent Schema Registry and AWS Glue Schema Registry are supported for reading schemas.
 
 For Protobuf, if a schema location is specified, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
 
@@ -298,13 +298,13 @@ If a primary key also needs to be defined, use the table constraint syntax.
 CREATE TABLE table1 (PRIMARY KEY(id)) 
 ```
 
-## Read schemas from Schema Registry
+## Read schemas from Confluent Schema Registry
 
 Confluent and [Karapace](https://aiven.io/docs/products/kafka/karapace) Schema Registry provide a serving layer for your metadata. They provide a RESTful interface for storing and retrieving your schemas.
 
-RisingWave supports reading schemas from a Schema Registry. The latest schema will be retrieved from the specified Schema Registry using the `TopicNameStrategy` strategy when the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
+RisingWave supports reading schemas from a Confluent Schema Registry. The latest schema will be retrieved from the specified Confluent Schema Registry using the `TopicNameStrategy` strategy when the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
 
-To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement.
+To specify the Confluent Schema Registry, add this clause to a `CREATE SOURCE` statement.
 
 ```sql
 ENCODE data_encode (
@@ -319,7 +319,7 @@ To learn more about Karapace Schema Registry and how to get started, see [Get st
 If a primary key also needs to be defined, use the table constraint syntax.
 
 ```sql
-CREATE TABLE table1 (PRIMARY KEY(id)) 
+CREATE TABLE table1 (PRIMARY KEY(id));
 ```
 
 ### Schema evolution
@@ -351,6 +351,17 @@ You can specify the following configurations in the `ENCODE AVRO (...)` clause t
 **ARN to the schema**:
 
 - `aws.glue.schema_arn`: The ARN of the schema in AWS Glue Schema Registry. For example, `'arn:aws:glue:ap-southeast-1:123456123456:schema/default-registry/MyEvent'`.
+
+```sql title="Examples"
+ENCODE AVRO (
+  aws.glue.schema_arn = 'arn:aws:glue:ap-southeast-1:123456123456:schema/default-registry/MyEvent',
+  aws.region = 'US-WEST-2',
+  aws.credentials.access_key_id = 'your_access_key_id',
+  aws.credentials.secret_access_key = 'your_secret_access_key',
+  aws.credentials.role.arn = 'arn:aws:iam::123456123456:role/MyGlueRole'
+  ...
+);
+```
 
 ## Create source with PrivateLink connection
 
