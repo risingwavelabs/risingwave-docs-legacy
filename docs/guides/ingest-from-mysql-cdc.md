@@ -432,3 +432,61 @@ And this it the output of `DESCRIBE supplier;`
  table description | supplier          |           |
 (10 rows)
 ``` 
+
+## Monitor the progress
+
+To observe the progress of direct CDC, use the following methods:
+
+### For historical data
+
+Historical data needs to be backfilled into the table. You can check the internal state of the backfill executor as follows:
+
+1. Create a table to backfill historical data:
+
+    ```sql
+    CREATE TABLE t3 (id INTEGER, v1 TIMESTAMP WITH TIME ZONE, PRIMARY KEY(id)) FROM pg_source TABLE 'public.t3';
+    ```
+
+2. List the internal tables to find the relevant backfill executor state:
+
+    ```sql
+    SHOW INTERNAL TABLES;
+    ```
+
+    Output:
+
+    ```
+    Name
+    ---------------------------------
+    __internal_t3_3_streamcdcscan_4
+    __internal_pg_source_1_source_2
+    (2 rows)
+    ```
+
+3. Check the internal state of the backfill executor:
+
+    ```sql
+    SELECT * FROM __internal_t3_3_streamcdcscan_4;
+    ```
+
+    Example Output:
+
+    ```
+    split_id | id | backfill_finished | row_count | cdc_offset
+    ----------+----+-------------------+-----------+--------------------------------------------------
+    3        |  5 | t                 |         4 | {"Postgres": {"lsn": 4558482960, "txid": 35853}}
+    (1 row)
+    ```
+
+### For new data
+
+RisingWave stores source offset in the internal state table of source executor. You can check the current consumed offset by checking this table and comparing it with the upstream database's log offset.
+
+You can execute the following SQL on upstream MySQL to get the current binlog offset.
+
+:::sql
+SHOW MASTER STATUS;
+:::
+
+Then compare the above offset with source offset stored in the state table to determine the CDC progress.
+
