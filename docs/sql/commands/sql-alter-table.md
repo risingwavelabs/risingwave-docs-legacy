@@ -69,7 +69,7 @@ ALTER TABLE employees DROP fax;
 
 :::note
 
-+ As mentioned at the beginning of this page, for tables with a schema registry, you can generally only use the `REFRESH SCHEMA` clause. However, there's an exception for tables with generated columns. You can drop these generated columns even if the schema is defined in a registry. Note that dropping these generated columns will trigger a schema refresh.
++ If your table is defined with a schema registry, you can only change the table schema by `ALTER TABLE t REFRESH SCHEMA`. One exception is you can drop the generated columns even if the schema is defined with a schema registry. Note that dropping these generated columns will trigger a schema refresh.
 
 + You cannot drop columns referenced by materialized views or indexes.
 
