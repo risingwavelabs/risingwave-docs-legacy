@@ -15,7 +15,7 @@ Here are the notable new features and changes we introduced to RisingWave Cloud 
 
 ### Launching Azure
 
-RisingWave Cloud now supports both hosted service and BYOC deployment on the Azure platform. You can now connect hosted RisingWave clusters with Azure-hosted services via Azure Private Link, or a BYOC project in your Azure account. If we have not opened your desired region on Azure yet, please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for a PoC request.
+RisingWave Cloud now supports both hosted service and BYOC deployment on the Azure platform. You can now connect hosted RisingWave clusters with Azure-hosted services via Azure Private Link, or a BYOC project in your Azure account. If your desired region on Azure is not available yet, please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for a PoC request.
 
 
 ### BYOC project CA certificate
