@@ -14,17 +14,9 @@ This guide describes how to leverage time travel to access historical data at a 
 
 Time travel requires the meta store type to be [SQL compatible](/docs/current/risingwave-docker-compose/#customize-meta-store). We recommend reserving at least 50 GB of disk space for the meta store.
 
-Time travel need to be enabled explicitly, by set `enable_hummock_time_travel = true` and restart the meta node. 
-```toml
-[meta]
-enable_hummock_time_travel = true
-```
+Time travel is controlled by the system parameter `time_travel_retention_ms`, which is 0 by default indicating time travel is disabled. To enable time travel, [alter the system parameter](../manage/view-configure-system-parameters.md#how-to-configure-system-parameters) `time_travel_retention_ms` to a non-zero value. For example, when `time_travel_retention_ms` is set to 86400000 (1 day), meaning historical data older than this period will be deleted and no longer accessible.
 
-Enabling time travel introduces additional overhead to both the meta store and the object store. The default data retention period is 1 day, meaning historical data older than 1 day will be deleted and no longer accessible. You can modify `hummock_time_travel_retention_ms` and restart the meta node for the changes to take effect.
-```toml
-[meta]
-hummock_time_travel_retention_ms = 86400000
-```
+Note that enabling time travel introduces additional overhead to both the meta store and the object store.
 
 ## Query Syntax
 
