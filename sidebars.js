@@ -213,7 +213,7 @@ const sidebars = {
             },
             {
               type: "doc",
-              label: "CDC via event streaming systems",
+              label: "Change data capture with RisingWave",
               id: "ingest/ingest-from-cdc",
             },
             {
