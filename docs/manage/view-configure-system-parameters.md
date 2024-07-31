@@ -30,7 +30,7 @@ Currently, these system parameters are available in RisingWave.
 |`max_concurrent_creating_streaming_jobs`|The maximum number of streaming jobs that can be created concurrently. That is, the maximum of materialized views, indexes, tables, sinks, or sources that can be created concurrently. |
 |`pause_on_next_bootstrap`|This parameter is used for debugging and maintenance purposes. Setting it to `true` will pause all data sources, such as connectors and DMLs, when the cluster restarts. This parameter will then be reset to its default value (`false`). To resume data ingestion, simply run `risectl meta resume` or restart the cluster again. |
 |`enable_tracing`|Whether to enable distributed tracing. This parameter is used to toggle the opentelemetry tracing during runtime. Its default value is `false`.|
-|`time_travel_retention_ms`|The data retention period for time travel is set to a default value of 0, indicating that time travel is disabled.|
+|`time_travel_retention_ms`|The data retention period for time travel. Defaults to `0`, which disables time travel. To enable this feature, set it to a a positive value.|
 
 
 ## How to view system parameters?
