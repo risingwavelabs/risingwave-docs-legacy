@@ -113,6 +113,7 @@ rw_actor_id_to_ddl | Contains information about the participants who executed th
  rw_relation_info      | Contains low-level relation information about tables, sources, materialized views, and indexes that are available in the database.|
  rw_relations          | Contains information about relations in the database, including their unique IDs, names, types, schema IDs, and owners.|
  rw_schemas            | Contains information about schemas that are available in the database, including their names, unique IDs, owner IDs, and more. |
+ rw_secrets            | Contains information about the ID, name, owner, and access control of secret objects. |
  rw_sinks              | Contains information about sinks that are available in the database, including their unique IDs, names, schema IDs, owner IDs, connector types, sink types, connection IDs, definitions, and more.|
  rw_sources            | Contains information about sources that are available in the database, including their unique IDs, names, schema IDs, owner IDs, connector types, column definitions, row formats, append-only flags, connection IDs, and more.|
  rw_streaming_parallelism            | Contains information about the streaming parallelism configuration for streaming jobs, including their IDs, names, relation types, and parallelism.|
