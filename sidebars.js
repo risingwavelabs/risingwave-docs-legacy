@@ -212,6 +212,11 @@ const sidebars = {
               id: "ingest/include-clause",
             },
             {
+              type: "doc",
+              label: "CDC via event streaming systems",
+              id: "ingest/ingest-from-cdc",
+            },
+            {
               type: "category",
               label: "Sources",
               collapsible: true,
@@ -292,46 +297,40 @@ const sidebars = {
                 },
                 {
                   type: "category",
-                  label: "CDC",
+                  label: "PostgreSQL CDC",
                   collapsible: true,
                   collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      label: "CDC via event streaming systems",
-                      id: "ingest/ingest-from-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "Citus CDC",
-                      id: "guides/ingest-from-citus-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "MongoDB CDC",
-                      id: "guides/ingest-from-mongodb-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "MySQL CDC",
-                      id: "guides/ingest-from-mysql-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "Neon CDC",
-                      id: "guides/ingest-from-neon-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "PostgreSQL CDC",
-                      id: "guides/ingest-from-postgres-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "Supabase CDC",
-                      id: "ingest/ingest-from-supabase-cdc",
-                    },
+                  items: [{
+                    type: "doc",
+                    label: "PostgreSQL CDC",
+                    id: "guides/ingest-from-postgres-cdc",
+                  },
+                  {
+                    type: "doc",
+                    label: "Neon CDC",
+                    id: "guides/ingest-from-neon-cdc",
+                  },
+                  {
+                    type: "doc",
+                    label: "Supabase CDC",
+                    id: "ingest/ingest-from-supabase-cdc",
+                  },
                   ]
+                },
+                {
+                  type: "doc",
+                  label: "MySQL CDC",
+                  id: "guides/ingest-from-mysql-cdc",
+                },
+                {
+                  type: "doc",
+                  label: "MongoDB CDC",
+                  id: "guides/ingest-from-mongodb-cdc",
+                },
+                {
+                  type: "doc",
+                  label: "Citus CDC",
+                  id: "guides/ingest-from-citus-cdc",
                 },
                 {
                   type: "doc",
