@@ -1,14 +1,14 @@
 ---
-id: time-travel-query
-title: Time travel query
+id: time-travel-queries
+title: Time travel queries
 description: Access historical data at a specific time.
-slug: /time-travel-query
+slug: /time-travel-queries
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/time-travel-query/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/time-travel-queries/" />
 </head>
 
-This guide describes how to leverage time travel to access historical data at a specific time.
+This guide describes how to leverage time travel queries to access historical data at a specific time.
 
 ## Prerequisites
 
@@ -18,7 +18,9 @@ The system parameter `time_travel_retention_ms` controls time travel functionali
 
 For example, you can set `time_travel_retention_ms` to `86400000` (1 day). Then historical data older than this period will be deleted and no longer accessible.
 
-Note that enabling time travel introduces additional overhead to both the meta store and the object store.
+:::note
+Enabling time travel will introduce additional overhead to both the meta store and the object store.
+:::
 
 ## Syntax
 
@@ -30,7 +32,9 @@ Specify `FOR SYSTEM_TIME AS OF` separately for each table accessing historical d
 
 - NOW() [ - Interval ]. For example, `SELECT * FROM t_foo FOR SYSTEM_TIME AS OF NOW() - '10' SECOND;`.
 
-Note that if you specify a point in time that is outside the time travel period, the query will return an error, like `time travel: version not found for epoch`.
+:::note
+If you specify a point in time that is outside the time travel period, the query will return an error, like `time travel: version not found for epoch`.
+:::
 
 ## Storage space reclamation
 

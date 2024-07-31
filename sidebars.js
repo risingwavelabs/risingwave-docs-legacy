@@ -526,6 +526,11 @@ const sidebars = {
             },
             {
               type: "doc",
+              id: "transform/time-travel-queries",
+              label: "Time travel queries",
+            },
+            {
+              type: "doc",
               id: "transform/ad-hoc-queries",
               label: "Ad-hoc queries",
             },
