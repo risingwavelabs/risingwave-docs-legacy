@@ -482,7 +482,7 @@ Historical data needs to be backfilled into the table. You can check the interna
 
 RisingWave stores source offset in the internal state table of source executor. You can check the current consumed offset by checking this table and comparing it with the upstream database's log offset.
 
-You can execute the following SQL on upstream MySQL to get the current binlog offset.
+You can execute the following SQL on upstream MySQL (earlier than 8.4.0) to get the current binlog offset.
 
 :::sql
 SHOW MASTER STATUS;

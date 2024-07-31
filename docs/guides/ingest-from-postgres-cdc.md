@@ -484,7 +484,7 @@ RisingWave stores source offset in the internal state table of source executor. 
 
 The Postgres connector commits offsets to the upstream database, allowing Postgres to free up space used by Write-Ahead Log (WAL) files. This offset commitment happens during checkpoint commits in the CDC source. If there is high checkpoint point latency, WAL files may accumulate on the upstream server.
 
-To check for WAL accumulation on the upstream Postgres server, run this SQL query:
+To check for WAL accumulation on the upstream Postgres server, run this SQL query on upstream Postgres:
 
 ```sql
 SELECT slot_name, 
