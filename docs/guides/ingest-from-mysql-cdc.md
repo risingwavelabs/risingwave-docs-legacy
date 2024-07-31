@@ -469,7 +469,7 @@ Historical data needs to be backfilled into the table. You can check the interna
     SELECT * FROM __internal_t3_3_streamcdcscan_4;
     ```
 
-    Example Output:
+    Output:
 
     ```
     split_id | id | backfill_finished | row_count | cdc_offset
