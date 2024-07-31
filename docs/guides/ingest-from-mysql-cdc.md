@@ -433,9 +433,9 @@ And this it the output of `DESCRIBE supplier;`
 (10 rows)
 ``` 
 
-## Monitor the progress
+## Monitor the progress of direct CDC
 
-To observe the progress of direct CDC, use the following methods:
+To observe the progress of direct CDC for MySQL, use the following methods:
 
 ### For historical data
 
@@ -478,7 +478,7 @@ Historical data needs to be backfilled into the table. You can check the interna
     (1 row)
     ```
 
-### For new data
+### For real-time data
 
 RisingWave stores source offset in the internal state table of source executor. You can check the current consumed offset by checking this table and comparing it with the upstream database's log offset.
 
@@ -489,4 +489,3 @@ SHOW MASTER STATUS;
 :::
 
 Then compare the above offset with source offset stored in the state table to determine the CDC progress.
-
