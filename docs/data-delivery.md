@@ -125,6 +125,7 @@ Sink decoupling is enabled by default for the following sinks if `commit_checkpo
 - [StarRocks](/guides/sink-to-starrocks.md)
 - [Delta Lake](/guides/sink-to-delta-lake.md)
 - [Apache Iceberg](/guides/sink-to-iceberg.md)
+- [Clickhouse](/guides/sink-to-clickhouse.md)
 
 Sink decoupling is enabled by default for the following sinks if the sink is append-only:
 
