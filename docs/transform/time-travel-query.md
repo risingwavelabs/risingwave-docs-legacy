@@ -8,7 +8,7 @@ slug: /time-travel-queries
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/time-travel-queries/" />
 </head>
 
-This guide describes how to leverage time travel queries to access historical data at a specific time.
+This guide describes how to leverage the time travel feature. This feature helps access historical data at a specific time.
 
 ## Prerequisites
 
