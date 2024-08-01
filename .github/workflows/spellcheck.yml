@@ -16,32 +16,54 @@ jobs:
         with:
           files: ./docs ./versioned_docs ./cloud ./README.md
 
-      - name: Truncate Typos Output
+      - name: Get last three errors
         if: ${{ failure() }}
-        id: truncated-output
+        id: get-errors
         run: |
-          truncated_output=$(echo "${{ steps.typos-output.outputs.typos_output }}" | head -n 3)
-          echo "::set-output name=truncated_output::$truncated_output"
+          full_output="${{ steps.typos-output.outputs }}"
+          errors=$(echo "$full_output" | grep -A 2 "error:")
+          last_three_errors=$(echo "$errors" | tail -n 9)
+          echo "$last_three_errors"
+          echo "::set-output name=errors::$last_three_errors"
 
-      - name: Comment on PR if typos fail
-        if: ${{ failure() }}
-        uses: peter-evans/create-or-update-comment@v4
+      - name: Find Comment
+        uses: peter-evans/find-comment@v3
+        id: find-comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: "github-actions[bot]"
+          body-includes: CI Check Failed
+        continue-on-error: true
+
+      - name: Create comment on PR if typos fail
+        if: ${{ failure() }} && steps.find-comment.outputs.comment-id == ''
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
           body: |
             ### CI Check Failed
             The CI check for spelling has failed. Please review the errors and correct any spelling mistakes.
-            You can run `typos` locally to check for and fix spelling issues.
 
-              
             Here are some of the errors found:
 
-            ${{ steps.truncated-output.outputs.truncated_output }}  
+            ${{ steps.get-errors.outputs.errors }}  
               
-            For more information about the "typos" package, you can refer to its GitHub repository:
+            For more errors and details, you can check the [CI Log](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) or you can install [typos](https://github.com/crate-ci/typos?tab=readme-ov-file#install) and run `typos` locally to check for and fix spelling issues.
 
-            https://github.com/crate-ci/typos?tab=readme-ov-file#install
+      - name: Update comment if typos fail
+        if: ${{ failure() }} && steps.find-comment.outputs.comment-id != ''
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          body: |
+            ### CI Check Failed
+            The CI check for spelling has failed. Please review the errors and correct any spelling mistakes.
+
+            Here are some of the errors found:
+
+            ${{ steps.get-errors.outputs.errors }}  
+              
+            For more errors and details, you can check the [CI Log](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) or you can install [typos](https://github.com/crate-ci/typos?tab=readme-ov-file#install) and run `typos` locally to check for and fix spelling issues.
 
       - name: Check Spelling
         uses: rojopolis/spellcheck-github-actions@0.35.0
