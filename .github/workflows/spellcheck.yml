@@ -1,12 +1,20 @@
 name: spellcheck
 on:
   pull_request:
+
 jobs:
-  check-spelling:
+  run:
+    name: Spell Check with Typos
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: typos-action
+        uses: crate-ci/typos@latest
+        with:
+          files: ./docs ./versioned_docs ./cloud ./README.md
+
       - name: Check Spelling
         uses: rojopolis/spellcheck-github-actions@0.35.0
         with:
