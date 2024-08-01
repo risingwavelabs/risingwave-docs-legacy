@@ -11,9 +11,37 @@ jobs:
         uses: actions/checkout@v4
 
       - name: typos-action
+        id: typos-output
         uses: crate-ci/typos@v1.23.6
         with:
           files: ./docs ./versioned_docs ./cloud ./README.md
+
+      - name: Truncate Typos Output
+        if: ${{ failure() }}
+        id: truncated-output
+        run: |
+          truncated_output=$(echo "${{ steps.typos-output.outputs.typos_output }}" | head -n 3)
+          echo "::set-output name=truncated_output::$truncated_output"
+
+      - name: Comment on PR if typos fail
+        if: ${{ failure() }}
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "github-actions[bot]"
+          body: |
+            ### CI Check Failed
+            The CI check for spelling has failed. Please review the errors and correct any spelling mistakes.
+            You can run `typos` locally to check for and fix spelling issues.
+
+              
+            Here are some of the errors found:
+
+            ${{ steps.truncated-output.outputs.truncated_output }}  
+              
+            For more information about the "typos" package, you can refer to its GitHub repository:
+
+            https://github.com/crate-ci/typos?tab=readme-ov-file#install
 
       - name: Check Spelling
         uses: rojopolis/spellcheck-github-actions@0.35.0

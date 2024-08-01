@@ -13,17 +13,17 @@ If you are not familiar with writing and formatting on GitHub, get started by re
 
 # Test locally
 
-If you woud like to view your changes on the docs locally before submitting a pull request:
+If you would like to view your changes on the docs locally before submitting a pull request:
 
 1. If you don't have `yarn` in your local machine, run `npm i -g yarn` to install it.
-1. Open the `risingwave-docs` repo in terminal and run:
+2. Open the `risingwave-docs` repo in terminal and run:
 
    ```sh
    yarn
    yarn start
    ```
 
-1. The rendered docs will open in your browser automatically.
+3. The rendered docs will open in your browser automatically.
 
 # Visit our official doc site
 
