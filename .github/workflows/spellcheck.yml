@@ -27,13 +27,13 @@ jobs:
           echo "::set-output name=errors::$last_three_errors"
 
       - name: Find Comment
+        if: ${{ failure() }}
         uses: peter-evans/find-comment@v3
         id: find-comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: "github-actions[bot]"
-          body-includes: CI Check Failed
-        continue-on-error: true
+          body-includes: The CI check for spelling has failed
 
       - name: Create comment on PR if typos fail
         if: ${{ failure() }} && steps.find-comment.outputs.comment-id == ''
@@ -55,6 +55,7 @@ jobs:
         uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
           body: |
             ### CI Check Failed
             The CI check for spelling has failed. Please review the errors and correct any spelling mistakes.
