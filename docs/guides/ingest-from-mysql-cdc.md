@@ -444,7 +444,7 @@ Historical data needs to be backfilled into the table. You can check the interna
 1. Create a table to backfill historical data:
 
     ```sql
-    CREATE TABLE t3 (id INTEGER, v1 TIMESTAMP WITH TIME ZONE, PRIMARY KEY(id)) FROM pg_source TABLE 'public.t3';
+    CREATE TABLE t3 (id INTEGER, v1 TIMESTAMP WITH TIME ZONE, PRIMARY KEY(id)) FROM mysql_source TABLE 'mydb.t3';
     ```
 
 2. List the internal tables to find the relevant backfill executor state:
@@ -459,7 +459,7 @@ Historical data needs to be backfilled into the table. You can check the interna
     Name
     ---------------------------------
     __internal_t3_3_streamcdcscan_4
-    __internal_pg_source_1_source_2
+    __internal_mysql_source_1_source_2
     (2 rows)
     ```
 
@@ -474,7 +474,7 @@ Historical data needs to be backfilled into the table. You can check the interna
     ```
     split_id | id | backfill_finished | row_count | cdc_offset
     ----------+----+-------------------+-----------+--------------------------------------------------
-    3        |  5 | t                 |         4 | {"Postgres": {"lsn": 4558482960, "txid": 35853}}
+    3        |  5 | t                 |         4 | {"MySql": {"filename": "binlog.000067", "position": 39101}}
     (1 row)
     ```
 
