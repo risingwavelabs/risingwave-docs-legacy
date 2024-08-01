@@ -16,16 +16,6 @@ jobs:
         with:
           files: ./docs ./versioned_docs ./cloud ./README.md
 
-      - name: Get last three errors
-        if: ${{ failure() }}
-        id: get-errors
-        run: |
-          full_output="${{ steps.typos-output.outputs }}"
-          errors=$(echo "$full_output" | grep -A 2 "error:")
-          last_three_errors=$(echo "$errors" | tail -n 9)
-          echo "$last_three_errors"
-          echo "::set-output name=errors::$last_three_errors"
-
       - name: Find Comment
         if: ${{ failure() }}
         uses: peter-evans/find-comment@v3
@@ -36,22 +26,18 @@ jobs:
           body-includes: The CI check for spelling has failed
 
       - name: Create comment on PR if typos fail
-        if: ${{ failure() }} && steps.find-comment.outputs.comment-id == ''
+        if: ${{ failure() }} && ${{ steps.find-comment.outputs.comment-id == '' }}
         uses: peter-evans/create-or-update-comment@v4
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             ### CI Check Failed
             The CI check for spelling has failed. Please review the errors and correct any spelling mistakes.
-
-            Here are some of the errors found:
-
-            ${{ steps.get-errors.outputs.errors }}  
               
             For more errors and details, you can check the [CI Log](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) or you can install [typos](https://github.com/crate-ci/typos?tab=readme-ov-file#install) and run `typos` locally to check for and fix spelling issues.
 
       - name: Update comment if typos fail
-        if: ${{ failure() }} && steps.find-comment.outputs.comment-id != ''
+        if: ${{ failure() }} && ${{ steps.find-comment.outputs.comment-id != '' }}
         uses: peter-evans/create-or-update-comment@v4
         with:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
@@ -59,10 +45,6 @@ jobs:
           body: |
             ### CI Check Failed
             The CI check for spelling has failed. Please review the errors and correct any spelling mistakes.
-
-            Here are some of the errors found:
-
-            ${{ steps.get-errors.outputs.errors }}  
               
             For more errors and details, you can check the [CI Log](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) or you can install [typos](https://github.com/crate-ci/typos?tab=readme-ov-file#install) and run `typos` locally to check for and fix spelling issues.
 
