@@ -1,0 +1,18 @@
+[default]
+extend-ignore-identifiers-re = [
+    # base64
+    "\\b[0-9A-Za-z+/]{64}(=|==)?\\b",
+    "\\b[0-9A-Za-z]{16}\\b",
+    "\\b[0-9A-Za-z]{12}\\b",
+    "\\b[0-9A-Za-z]{15}\\b",
+]
+
+[default.extend-identifiers]
+
+[default.extend-words]
+Iy = "Iy"
+YTO = "YTO"
+# Azure Kubernetes Service 
+AKS = "AKS"
+# schema.history.internal.skip.unparseable.ddl
+unparseable="unparseable"

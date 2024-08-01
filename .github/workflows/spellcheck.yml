@@ -15,6 +15,7 @@ jobs:
         uses: crate-ci/typos@v1.23.6
         with:
           files: ./docs ./versioned_docs ./cloud ./README.md
+          config: ./typos.toml
 
       - name: Find Comment
         if: ${{ failure() }}
