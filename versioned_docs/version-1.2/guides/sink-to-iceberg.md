@@ -67,7 +67,7 @@ RisingWave converts risingwave data types from/to Iceberg according to the follo
 
 ## Catalog
 
-Currenlty we only support filesystem catalog. The support for more catalogs will be available later.
+Currently we only support filesystem catalog. The support for more catalogs will be available later.
 
 ## Examples
 

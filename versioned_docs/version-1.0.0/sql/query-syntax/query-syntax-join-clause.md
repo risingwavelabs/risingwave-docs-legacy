@@ -120,7 +120,7 @@ The syntax of an interval join is:
 <table_expression> JOIN <table_expression> ON <equality_join_condition> AND <interval_condition> ...;
 ```
 
-In an interval join, the `interval_condtion` must be a watermark-based range.
+In an interval join, the `interval_condition` must be a watermark-based range.
 
 For example, for sources `s1` and `s2` used in the above section, you can create an interval join:
 

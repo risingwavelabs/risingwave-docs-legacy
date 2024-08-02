@@ -31,7 +31,7 @@ To ingest data from external sources into RisingWave, you need to create a sourc
 
 <div>As shown above, a key distinction between the two is that a table persists the ingested raw data, whereas a source does not. For example, let's consider the upstream input of 5 records: `AA`, `BB`, `CC`, `DD`, and `EE`. If a table is used, these 5 records will be persisted in RisingWave. However, if a source is used, these records will not be persisted. </div>
 <br/>
-<div>One advantage of using a table is that you can performa ad-hoc queries against the ingested raw data. </div>
+<div>One advantage of using a table is that you can performs ad-hoc queries against the ingested raw data. </div>
 <br/>
 
 <div>Another advantage of using a table is the ability to consume data changes. If the upstream system deletes or updates a record, this operation will be consumed by RisingWave, thereby modifying the results of the stream computation. On the other hand, a source only supports appending records and cannot handle data changes. Besides, to allow a table to accept data changes, a primary key must be specified on the table.</div>

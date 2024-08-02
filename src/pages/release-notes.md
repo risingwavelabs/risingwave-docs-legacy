@@ -1200,7 +1200,7 @@ This version was released on September 7, 2022.
   - Kafka & Redpanda
     - `kafka.brokers` -> `properties.bootstrap.server`
     - `kafka.topic` -> `topic`
-    - `kafka.scan.startup.mode` -> `scan.starup.mode`
+    - `kafka.scan.startup.mode` -> `scan.startup.mode`
     - `kafka.time.offset` -> `scan.startup.timestamp_millis`
     - `kafka.consumer.group` -> `consumer.group.id`
 

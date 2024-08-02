@@ -72,4 +72,4 @@ According to the [NATS documentation](https://docs.nats.io/running-a-nats-servic
 |`subject`| Required. NATS subject that you want to sink data to.|
 |`connect_mode`|Required. Authentication mode for the connection. Allowed values: `plain`: No authentication; `user_and_password`: Use user name and password for authentication. For this option, `username` and `password` must be specified; `credential`: Use JSON Web Token (JWT) and NKeys for authentication. For this option, `jwt` and `nkey` must be specified.  |
 |`jwt` and `nkey`|JWT and NKEY for authentication. For details, see [JWT](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/jwt) and [NKeys](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/nkey_auth).|
-|`username` and `password`| Conditional. The client user name and pasword. Required when `connect_mode` is `user_and_password`.|
+|`username` and `password`| Conditional. The client user name and password. Required when `connect_mode` is `user_and_password`.|

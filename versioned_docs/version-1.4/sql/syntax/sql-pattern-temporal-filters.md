@@ -11,7 +11,7 @@ Temporal filters allow you to filter data based on time intervals, which are use
 
 An valid temporal filter comprises the following components:
 
-- A comparision operator including `<`, `>`, `<=`, `>=` and `BETWEEN`
+- A comparison operator including `<`, `>`, `<=`, `>=` and `BETWEEN`
 - A time column as the left side 
 - A time expression with `NOW() +/- interval` as the right side
 

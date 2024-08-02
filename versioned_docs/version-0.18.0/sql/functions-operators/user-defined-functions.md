@@ -83,7 +83,7 @@ from risingwave.udf import udf, udtf, UdfServer
 import struct
 import socket
 
-# Define a scalar functio that returns a single value
+# Define a scalar function that returns a single value
 @udf(input_types=['INT', 'INT'], result_type='INT')
 def gcd(x, y):
     while y != 0:

@@ -29,7 +29,7 @@ To access data in an array, use the `ARRAY_COLUMN[RELATIVE_POSITION]` syntax. Re
 
 ## Unnest data from an array
 
-You can use the `unnest()` function to spread values in an array into seperate rows.
+You can use the `unnest()` function to spread values in an array into separate rows.
 
 ```sql
 SELECT * FROM unnest(array[1,2,3,4]);

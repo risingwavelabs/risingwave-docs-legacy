@@ -87,7 +87,7 @@ First, you can run `dbt debug` to check your connection to RisingWave.
 dbt debug
 ```
 
-If the connection is valid, you will see a "OK connection ok" mesage. In this case, you can run your models. Otherwise, please check `~/.dbt/profiles.yml` to ensure your connection configurations are valid.
+If the connection is valid, you will see a "OK connection ok" message. In this case, you can run your models. Otherwise, please check `~/.dbt/profiles.yml` to ensure your connection configurations are valid.
 
 Run the following command to run your models.
 

@@ -13,7 +13,7 @@ Certain data types can be cast to and from other types implicitly or explicitly.
 - **Assigned to**: Values can be automatically converted when inserted to a column of the target type.
 - **Explicitly cast to**: Values can be converted to the target type only when you use the [`cast`](/sql/functions-operators/sql-function-cast.md) function or the `::` operator.
 
-|From type|Implictly cast to|Assigned to|Explictly cast to|
+|From type|Implicitly cast to|Assigned to|Explicitly cast to|
 |-|-|-|-|
 |**boolean**||varchar<br/>|integer<br/>|
 |**smallint**|integer<br/>bigint<br/>numeric<br/>real<br/>double<br/>rw_int256|varchar||
@@ -34,7 +34,7 @@ Certain data types can be cast to and from other types implicitly or explicitly.
 
 :::note
 
-Structs can be casted to structs explictly or implicitly if the nested expressions and types can be casted.
+Structs can be casted to structs explicitly or implicitly if the nested expressions and types can be casted.
 
 :::
 
