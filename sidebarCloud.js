@@ -245,37 +245,8 @@ module.exports = {
       collapsed: true,
       items: [
         {
-          type: "category",
-          label: "Manage your account",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              id: "account-manage-your-account",
-              label: "Overview",
-            },
-            {
-              type: "link",
-              label: "Update your profile",
-              href: "/cloud/manage-your-account/?task=update-profile",
-            },
-            {
-              type: "link",
-              label: "Change account password",
-              href: "/cloud/manage-your-account/?task=change-password",
-            },
-            {
-              type: "link",
-              label: "Delete your account",
-              href: "/cloud/manage-your-account/?task=delete-account",
-            },
-            {
-              type: "link",
-              label: "Switch accounts",
-              href: "/cloud/manage-your-account/?task=switch-accounts",
-            },
-          ],
+          type: "doc",
+          id: "account-manage-your-account",
         },
         {
           type: "doc",
