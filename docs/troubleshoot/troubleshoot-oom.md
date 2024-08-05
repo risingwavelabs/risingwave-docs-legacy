@@ -28,15 +28,15 @@ This guide focuses on addressing OOM issues on the compute node. If you encounte
 If OOM happens during the creation of a new materialized view, it might be caused by the large amount of existing data in upstream systems like Kafka. In this case, before creating or recreating a materialized view, you can set `streaming_parallelism` to a smaller number:
 
 ```sql
-CREATE MATERIALIZED VIEW mv WITH ( streaming_rate_limit = 200 ) AS ...
+CREATE MATERIALIZED VIEW mv WITH ( source_rate_limit = 200 ) AS ...
 ```
 
-The parameter [`streaming_rate_limit`](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters) refers to the maximum number of records per second for each parallelism on each source, where the default parallelism for streaming jobs is the total number of CPU cores across the cluster. For example, assuming a materialized view has four parallelisms and two sources joining together, each source's throughput will be throttled to `4 * streaming_rate_limit` records/s.
+The parameter [`source_rate_limit`](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters) refers to the maximum number of records per second for each parallelism on each source, where the default parallelism for streaming jobs is the total number of CPU cores across the cluster. For example, assuming a materialized view has four parallelisms and two sources joining together, each source's throughput will be throttled to `4 * source_rate_limit` records/s.
 
 Alternatively, you may use `risectl` to alter the streaming rate limit of an existent materialized view, where the `<id>` can be found either from the RisingWave Dashboard or `rw_catalog` schema.
 
 ```sh
-risingwave ctl throttle source/mv <id> <streaming_rate_limit>
+risingwave ctl throttle source/mv <id> <source_rate_limit>
 ```
 
 ## OOM caused by extremely high barrier latency
