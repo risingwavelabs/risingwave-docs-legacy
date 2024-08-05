@@ -1,7 +1,7 @@
 ---
 id: ingest-from-cdc
 title: Change data capture with RisingWave
-description: Overview of change data capture with RisingWave
+description: Overview of change data capture with RisingWave.
 slug: /ingest-from-cdc
 ---
 <head>
