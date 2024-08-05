@@ -11,7 +11,9 @@ slug: /sink-to-snowflake
 
 This guide describes how to sink data from RisingWave to Snowflake using the Snowflake sink connector in RisingWave.
 
-Snowflake is a cloud-based data warehousing platform that allows for scalable and efficient data storage and analysis. For more information about Snowflake, see [Snowflake official website](https://www.snowflake.com/en/). Sinking from RisingWave to Snowflake utilizes [Snowpipe](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis) for data loading. Initially, data is staged in a user-managed S3 bucket in JSON format, and then loaded into the Snowflake table via Snowpipe.
+Snowflake is a cloud-based data warehousing platform that allows for scalable and efficient data storage and analysis. For more information about Snowflake, see [Snowflake official website](https://www.snowflake.com/en/). 
+
+Sinking from RisingWave to Snowflake utilizes [Snowpipe](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis) for data loading. Initially, data is staged in a user-managed S3 bucket in JSON format, and then loaded into the Snowflake table via Snowpipe.
 
 ## Prerequisite
 
@@ -28,7 +30,7 @@ Snowflake is a cloud-based data warehousing platform that allows for scalable an
 - Ensure you have a `Snowflake pipe` to receive the loaded data from the pre-defined stage and copy it to the Snowflake table.
 
 :::note
-RisingWave will not be responsible for deleting data already imported by S3. You can manually set the lifecycle configuration of your S3 bucket to clear out unnecessary data. See [lifecycle configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-set-lifecycle-configuration-intro.html) for more details.
+RisingWave will not be responsible for deleting data already imported by S3. You can manually set the lifecycle configuration of your S3 bucket to clear out unnecessary data. See [Lifecycle configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-set-lifecycle-configuration-intro.html) and [Delete staged files](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-manage#deleting-staged-files-after-snowpipe-loads-the-datafor) for more details.
 :::
 
 ## Required permission
@@ -78,7 +80,6 @@ All parameters are required unless specified otherwise.
 | snowflake.aws_region          | The S3 region, e.g., `us-east-2`.                                                                                                                   |
 | snowflake.max_batch_row_num   | The configurable max row(s) to batch, which should be **explicitly** specified.                                                                    |
 | force_append_only             | Optional. If `true`, forces the sink to be append-only, even if it cannot be.                                                   |
-
 
 ## Data type mapping
 
@@ -167,7 +168,7 @@ CREATE SINK snowflake_sink FROM ss_mv WITH (
 
 ### Sink data with upsert
 
-Snowflake tables don't support direct updates. To handle this, RisingWave imports incremental logs and modification order for each data piece into Snowflake. You can then merge these as you read, or create dynamic tables to read the upsert results. See [Dynamic tables](https://docs.snowflake.com/en/user-guide/dynamic-tables-about) for more details.
+Snowflake tables don't support direct updates. To handle this, RisingWave imports incremental logs and modification order for each data piece into Snowflake. You can then merge these as you read, or create dynamic tables to read the upsert results. See [How dynamic tables work](https://docs.snowflake.com/en/user-guide/dynamic-tables-about) for more details.
 
 Below are some examples for your reference.
 
@@ -196,8 +197,10 @@ SELECT
 FROM
     sub;
  ```
+ 
+Note that RisingWave uses `changelog` to transform streaming data into incremental logs. In the example above, `changelog_op` represents the type of modification (Insert/Update/Delete), while `_changelog_row_id` indicates the order of the modification.
 
- ```sql title="Create sink in Risingwave"
+ ```sql title="Create sink in RisingWave"
 CREATE SINK snowflake_sink FROM ss_mv 
 WITH (
     connector ='snowflake',
