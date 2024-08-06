@@ -88,7 +88,27 @@ ALTER MATERIALIZED VIEW materialized_view_name
 |**RENAME TO**|This clause changes the name of the materialized view.|
 |*new_name*|The new name of the materialized view.|
 
-```sql title=Example
+```sql title=Examples
 -- Change the name of the materialized view named "mv_1" to "mv_2"
 ALTER MATERIALIZED VIEW mv_1 RENAME TO mv_2;
+```
+
+### `SET BACKFILL_RATE_LIMIT`
+
+```sql title=Syntax
+ALTER MATERIALIZED VIEW mv_name
+    SET BACKFILL_RATE_LIMIT { TO | = } { default | rate_limit_number };
+```
+
+Use this statement to modify the backfill rate limit of a running materialized view. For the specific value of `BACKFILL_RATE_LIMIT`, refer to [How to view runtime parameters](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
+
+```sql title="Examples"
+-- Pause the backfill
+ALTER MATERIALIZED VIEW mv1 SET BACKFILL_RATE_LIMIT=0;
+
+-- Set backfill rate limit to 1
+ALTER MATERIALIZED VIEW mv1 SET BACKFILL_RATE_LIMIT=1;
+
+-- Disable the backfill
+ALTER MATERIALIZED VIEW mv1 SET BACKFILL_RATE_LIMIT=DEFAULT;
 ```
