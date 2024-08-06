@@ -37,7 +37,7 @@ ALTER MATERIALIZED VIEW materialized_view_name
 |**OWNER TO**|This clause changes the owner of the materialized view. Note that this will cascadingly change all related internal objects as well.|
 |*new_user*|The new owner you want to assign to the materialized view.|
 
-```sql title=Example
+```sql title=Examples
 -- Change the owner of the materialized view named "materialized_view1" to user "user1"
 ALTER MATERIALIZED VIEW materialized_view1 OWNER TO user1;
 ```
@@ -54,7 +54,7 @@ ALTER MATERIALIZED VIEW materialized_view_name
 |**SET SCHEMA**|This clause moves the materialized view to a different schema.|
 |*schema_name*|The name of the schema to which the materialized view will be moved.|
 
-```sql title=Example
+```sql title=Examples
 -- Move the materialized view named "test_materialized_view" to the schema named "test_schema"
 ALTER MATERIALIZED VIEW test_materialized_view SET SCHEMA test_schema;
 ```
