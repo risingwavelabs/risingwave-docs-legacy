@@ -74,7 +74,7 @@ Some connectors need credentials stored as file paths (e.g., `ssl.ca.location`),
 ```sql title="Reference a secret as a file path"
 CREATE TABLE district (
     d_id INTEGER,
-    PRIMARY KEY (d_id, d_w_id)
+    PRIMARY KEY (d_id)
 ) with (
     connector = 'kafka',
     topic = 'your-topic',
