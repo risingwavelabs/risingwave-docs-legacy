@@ -47,7 +47,7 @@ CREATE SECRET mysql_pwd WITH (
 Currently only the meta backend is supported.
 :::
 
-## Use Secrets
+## Use secrets
 
 After creating secrets, you can use `SECRET your_secret_name` as the option value in the `WITH` clause. For example:
 
