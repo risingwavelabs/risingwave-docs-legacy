@@ -1110,11 +1110,6 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Manage secrets",
-          id: "deploy/manage-secrets",
-        },
-        {
-          type: "doc",
           id: "manage/view-configure-system-parameters",
         },
         {
