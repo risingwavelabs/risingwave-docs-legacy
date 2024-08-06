@@ -80,7 +80,7 @@ For tables with primary key constraints, if a new data record with an existing k
 |*data_encode*| Data encode. Supported encodes: `JSON`, `AVRO`, `PROTOBUF`, `CSV`. |
 |*message* | Message name of the main Message in schema definition. Required for Protobuf. |
 |*location*| Web location of the schema file in `http://...`, `https://...`, or `S3://...` format. This option is not supported for Avro data. For Protobuf data, you must specify either a schema location or a schema registry but not both.|
-|*schema.registry*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro data, you must specify a Confluent Schema Registry. For Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
+|*schema.registry*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro data, you must specify a Confluent Schema Registry or an AWS Glue Schema Registry. For Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 |*schema.registry.username*|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
 |*schema.registry.password*|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
 |*schema.registry.name.strategy*|Optional. Accepts `topic_name_strategy` (default), `record_name_strategy`, `topic_record_name_strategy`. If it is set to either `record_name_strategy` or `topic_record_name_strategy`, the `message` parameter must also be set. It can only be specified with *schema.registry*. |
@@ -276,7 +276,7 @@ WHERE _rw_kafka_timestamp > now() - interval '10 minute';
 
 ## Read schemas from locations
 
-RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Protobuf format. For Avro, only Confluent Schema Registry is supported for reading schemas.
+RisingWave supports reading schemas from a Web location in `http://...`, `https://...`, or `S3://...` format, or a Confluent Schema Registry for Kafka data in Protobuf format. For Avro, Confluent Schema Registry and AWS Glue Schema Registry are supported for reading schemas.
 
 For Protobuf, if a schema location is specified, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
 
@@ -298,13 +298,13 @@ If a primary key also needs to be defined, use the table constraint syntax.
 CREATE TABLE table1 (PRIMARY KEY(id)) 
 ```
 
-## Read schemas from Schema Registry
+## Read schemas from Confluent Schema Registry
 
 Confluent and [Karapace](https://aiven.io/docs/products/kafka/karapace) Schema Registry provide a serving layer for your metadata. They provide a RESTful interface for storing and retrieving your schemas.
 
-RisingWave supports reading schemas from a Schema Registry. The latest schema will be retrieved from the specified Schema Registry using the `TopicNameStrategy` strategy when the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
+RisingWave supports reading schemas from a Confluent Schema Registry. The latest schema will be retrieved from the specified Confluent Schema Registry using the `TopicNameStrategy` strategy when the `CREATE SOURCE` statement is issued. Then the schema parser in RisingWave will automatically determine the columns and data types to use in the source.
 
-To specify the Schema Registry, add this clause to a `CREATE SOURCE` statement.
+To specify the Confluent Schema Registry, add this clause to a `CREATE SOURCE` statement.
 
 ```sql
 ENCODE data_encode (
@@ -319,7 +319,7 @@ To learn more about Karapace Schema Registry and how to get started, see [Get st
 If a primary key also needs to be defined, use the table constraint syntax.
 
 ```sql
-CREATE TABLE table1 (PRIMARY KEY(id)) 
+CREATE TABLE table1 (PRIMARY KEY(id));
 ```
 
 ### Schema evolution
@@ -327,6 +327,41 @@ CREATE TABLE table1 (PRIMARY KEY(id))
 Based on the compatibility type that is configured for the schema registry, some changes are allowed without changing the schema to a different version. In this case, RisingWave will continue using the original schema definition. To use a newer version of the writer schema in RisingWave, you need to drop and recreate the source.
 
 To learn about compatibility types for Schema Registry and the changes allowed, see [Compatibility Types](https://docs.confluent.io/platform/current/schema-registry/avro.html#compatibility-types).
+
+## Read schemas from AWS Glue Schema Registry
+
+:::note Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team.
+:::
+
+AWS Glue Schema Registry is a serverless feature of AWS Glue that allows you to centrally manage and enforce schemas for data streams, enabling data validation and compatibility checks. It helps in improving the quality of data streams by providing a central repository for managing and enforcing schemas across various AWS services and custom applications.
+
+You can specify the following configurations in the `ENCODE AVRO (...)` clause to read schemas from Glue.
+
+**Auth-related configurations**:
+
+- `aws.region`: The region of the AWS Glue Schema Registry. For example, `us-west-2`.
+
+- `aws.credentials.access_key_id`: Your AWS access key ID.
+
+- `aws.credentials.secret_access_key`: Your AWS secret access key.
+
+- `aws.credentials.role.arn`: The Amazon Resource Name (ARN) of the role to assume. For example, `arn:aws:iam::123456123456:role/MyGlueRole`.
+
+**ARN to the schema**:
+
+- `aws.glue.schema_arn`: The ARN of the schema in AWS Glue Schema Registry. For example, `'arn:aws:glue:ap-southeast-1:123456123456:schema/default-registry/MyEvent'`.
+
+```sql title="Examples"
+ENCODE AVRO (
+  aws.glue.schema_arn = 'arn:aws:glue:ap-southeast-1:123456123456:schema/default-registry/MyEvent',
+  aws.region = 'US-WEST-2',
+  aws.credentials.access_key_id = 'your_access_key_id',
+  aws.credentials.secret_access_key = 'your_secret_access_key',
+  aws.credentials.role.arn = 'arn:aws:iam::123456123456:role/MyGlueRole'
+  ...
+);
+```
 
 ## Create source with PrivateLink connection
 
