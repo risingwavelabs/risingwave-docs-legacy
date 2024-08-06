@@ -29,7 +29,7 @@ RisingWave provides four key secret management operations:
 
 In addition, you can use the [`rw_secrets`](/sql/system-catalogs/rw_catalog.md) catalog to view the ID, name, owner, and access control of secret objects.
 
-### Create secrets
+## Create secrets
 
 You can use the following statement to create secrets:
 
@@ -47,7 +47,7 @@ CREATE SECRET mysql_pwd WITH (
 Currently only the meta backend is supported.
 :::
 
-### Use Secrets
+## Use Secrets
 
 After creating secrets, you can use `SECRET your_secret_name` as the option value in the `WITH` clause. For example:
 
