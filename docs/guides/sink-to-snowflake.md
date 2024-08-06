@@ -198,11 +198,10 @@ FROM
     sub;
  ```
  
-Note that RisingWave uses `changelog` to transform streaming data into incremental logs. In the example above, `changelog_op` represents the type of modification (Insert/Update/Delete), while `_changelog_row_id` indicates the order of the modification.
+Note that RisingWave uses `changelog` to transform streaming data into incremental logs. In the example above, `changelog_op` represents the type of modification (Insert/Update/Delete), while `_changelog_row_id` indicates the order of the modification. See [AS CHANGELOG](/sql/commands/sql-as-changelog.md).
 
  ```sql title="Create sink in RisingWave"
-CREATE SINK snowflake_sink FROM ss_mv 
-WITH (
+CREATE SINK snowflake_sink FROM ss_mv WITH (
     connector ='snowflake',
     type ='append-only',
     snowflake.database ='EXAMPLE_DB',
@@ -219,6 +218,10 @@ WITH (
     snowflake.max_batch_row_num ='1030',
     snowflake.s3_path ='EXAMPLE_S3_PATH',
 );
+ ```
+
+ ```sql title="Create warehouse"
+CREATE WAREHOUSE test_warehouse;
  ```
 
  ```sql title="Create dynamic table in Snowflake"
