@@ -1,6 +1,6 @@
 ---
 id: manage-secrets
-title: Manage secrets.
+title: Manage secrets
 description: Use the secret management feature to store credentials securely.
 slug: /manage-secrets
 ---
