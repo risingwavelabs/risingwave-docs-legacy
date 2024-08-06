@@ -27,6 +27,7 @@ RisingWave provides four key secret management operations:
 
 - Dropping secrets.
 
+In addition, you can use the [`rw_secrets`](/sql/system-catalogs/rw_catalog.md) catalog to view the ID, name, owner, and access control of secret objects.
 
 ### Create secrets
 
