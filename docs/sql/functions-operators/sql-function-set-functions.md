@@ -84,8 +84,6 @@ The result looks like this:
 2008-03-04 12:00:00
 ```
 
-From version 2.0, RisingWave supports continuously generating timestamp with a given interval into a materialized view. To achieve this, you can use `now()` as the `stop` of `generate_series`(), for example:
-
 Starting with version 2.0, RisingWave allows you to continuously generate timestamps at specified intervals in a materialized view. To do this, use `now()` as the `stop` parameter in the `generate_series`() function. For example:
 
 ```sql
