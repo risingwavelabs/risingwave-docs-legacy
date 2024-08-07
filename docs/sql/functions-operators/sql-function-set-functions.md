@@ -18,13 +18,13 @@ SELECT *
 FROM generate_series(start, stop, step);
 ```
 
-*start*, *stop*, and *step* can be of type *integer*, *bigint*, *numeric*, or *timestamp*.
+`start`, `stop`, and `step` can be of type *integer*, *bigint*, *numeric*, or *timestamp*.
 
-*start* is the first value in the series.
+`start` is the first value in the series.
 
-*stop* is the last value in the series.
+`stop` is the last value in the series.
 
-*step* is optional unless *start* and *stop* are of type *timestamp*. It is the increment value. If it is omitted, the default step value is 1.
+`step` is optional unless `start` and `stop` are of type *timestamp*. It is the increment value. If it is omitted, the default step value is 1.
 
 Here is an example of how you can use the `generate_series`() function to generate a series of numbers:
 
@@ -84,6 +84,27 @@ The result looks like this:
 2008-03-04 12:00:00
 ```
 
+From version 2.0, RisingWave supports continuously generating timestamp with a given interval into a materialized view. To achieve this, you can use `now()` as the `stop` of `generate_series`(), for example:
+
+Starting with version 2.0, RisingWave allows you to continuously generate timestamps at specified intervals in a materialized view. To do this, use `now()` as the `stop` parameter in the `generate_series`() function. For example:
+
+```sql
+CREATE MATERIALIZED VIEW mv AS
+SELECT * FROM generate_series(
+  '2020-01-01 00:00:00', 
+  now(),
+  interval '1 hour'
+);
+```
+
+And you should follow the following syntax: 
+
+- `start` must be a constant expression of type *timestamptz*.
+
+- `stop` must be `now()`.
+
+- `step` must be a constant expression of type *interval*.
+
 ## range()
 
 The `range`() function in PostgreSQL is a set-returning function that generates a series of values, based on the start and end values defined by the user. The end value is not included, unlike `generate_series()`. It is useful for generating test data or for creating a sequence of numbers or timestamps.
@@ -95,13 +116,13 @@ SELECT *
 FROM range(start, stop, step);
 ```
 
-*start*, *stop*, and *step* can be of type *integer*, *bigint*, *numeric*, or *timestamp*. 
+`start`, `stop`, and `step` can be of type *integer*, *bigint*, *numeric*, or *timestamp*. 
 
-*start* is the first value in the series.
+`start` is the first value in the series.
 
-*stop* is the last value in the series.
+`stop` is the last value in the series.
 
-*step* is optional unless *start* and *stop* are of type *timestamp*. It is the increment value. If it is omitted, the default step value is 1.
+`step` is optional unless `start` and `stop` are of type *timestamp*. It is the increment value. If it is omitted, the default step value is 1.
 
 Here is an example of how you can use the `range`() function to generate a series of numbers:
 
