@@ -11,25 +11,32 @@ Temporal filters allow you to filter data based on time intervals, which are use
 
 ## Syntax
 
-The temporal filter is an expression using `NOW()`. It can only be used in the `WHERE` and `HAVING` clauses in the query.
+A temporal filter is a filter condition with a `NOW()` function call. It can only be used in the `WHERE` and `HAVING` clauses in the query.
 
 An valid temporal filter comprises the following components:
 
-- A comparison operator, including `<`, `>`, `<=`, `>=`, `=` and `BETWEEN`
-- A time expression of the columns in the base relation as the left side 
-- A time expression with `NOW() +/- interval` as the right side
-
-There could be multiple temporal filters and other expressions in the `WHERE` clause connected with the `AND` operator.
+- A comparison operator, among `<`, `>`, `<=`, `>=`, `=` and `BETWEEN`
+- A time expression of the columns in the base relation as one compare side
+- A non-decreasing time expression with exactly one `NOW()` function call as the other side
 
 ```sql
--- Allowed
+-- Valid
+t > NOW() - INTERVAL '1 hour'
+t <= NOW() - INTERVAL '1 hour' -- to delay the handling of events to 1 hour later
+t < DATE_TRUNC('hour', NOW()) - INTERVAL '1 hour'
+```
+
+There could be multiple temporal filters and other expressions in the `WHERE` clause conjoined with the `AND` operator.
+
+```sql
+-- Valid
 t > NOW() - INTERVAL '1 hour' AND t < NOW() + INTERVAL '1 hour' AND a < 1
 ```
 
-A temporal filter condition cannot be connected with another temporal filter using the `OR` operator, but connecting it with a normal expression is allowed. See the examples below:
+A temporal filter condition cannot be disjoined with another temporal filter using the `OR` operator, but is allowed to be disjoined with another normal filter. See the examples below:
 
 ```sql
--- Allowed
+-- Valid
 t > NOW() - INTERVAL '1 hour' OR t IS NULL OR a < 1
 
 -- Invalid
@@ -39,11 +46,11 @@ t > NOW() - INTERVAL '1 hour' OR t < NOW() - INTERVAL '1 hour'
 (a < 1) OR (t > NOW() - INTERVAL '1 hour' AND t < NOW() - INTERVAL '1')
 ```
 
-Also, in the `WHERE` clause, each expression connected by the `AND` operator should have only one temporal filter connected with `OR` expression.
+Also, in the `WHERE` clause, each expression conjoined by the `AND` operator should have only one temporal filter disjoined with `OR` operator.
 
 ```sql
 -- Invalid
-(t < NOW() - INTERVAL '1 hour' OR t > NOW() OR a < 1) 
+(t < NOW() - INTERVAL '1 hour' OR t > NOW() OR a < 1)
 AND (t < NOW() - INTERVAL '1 hour' OR a < 1)
 ```
 
@@ -57,8 +64,8 @@ The following query returns all rows from the `sales_source` sources where the `
 CREATE SOURCE sales_source(...) with (connector = 'kafka', ...) FORMAT PLAIN ENCODE JSON;
 
 CREATE MATERIALIZED VIEW sales AS
-SELECT * 
-FROM sales_source 
+SELECT *
+FROM sales_source
 WHERE sale_date > NOW() - INTERVAL '1 week';
 ```
 
@@ -70,7 +77,7 @@ The following query returns all rows from the `user_sessions` table where the su
 CREATE SOURCE user_sessions_source(...) with (connector = 'kafka', ...) FORMAT PLAIN ENCODE JSON;
 
 CREATE MATERIALIZED VIEW user_sessions AS
-SELECT * 
+SELECT *
 FROM user_sessions_source
 WHERE last_active + session_timeout * 2 > NOW();
 ```
@@ -92,9 +99,9 @@ Here is a typical example of the temporal join used to widen a fact table.
 However, due to delays caused by the network or other phases, it is not guaranteed that when the record of the `fact` arrives, the corresponding record in the `dimension` table has arrived. Therefore, a temporal filter can be set on the `fact` source to introduce a delay and wait for the dimension table's changes.
 
 ```sql
-  CREATE MATERIALIZED VIEW mv AS 
-  SELECT 
-    id1, a1, a2 
+  CREATE MATERIALIZED VIEW mv AS
+  SELECT
+    id1, a1, a2
   FROM (
     -- Delay the source for 5 seconds
     SELECT * FROM fact WHERE fact.p_time + INTERVAL '5' SECOND < NOW()
