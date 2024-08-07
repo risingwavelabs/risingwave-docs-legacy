@@ -38,7 +38,7 @@ Here are the notable new features and changes we introduced to RisingWave Cloud 
 
 ### Introducing projects
 
-We have reorganized some core concepts in RisingWave for better clarity and user experience. From June, RisingWave Cloud is introducing projects as the central concept of building applications. Each project is connected to its own plan, computational resources, database users, and related functionalities. To get started with RisingWave Cloud, you will need to create a new plan. Currently, RisingWave Cloud offers three plans: Developer, Pro, and Enterprise. 
+We have reorganized some core concepts in RisingWave for better clarity and user experience. From June, RisingWave Cloud is introducing projects as the central concept of building applications. Each project is connected to its own plan, computational resources, database users, and related functionalities. To get started with RisingWave Cloud, you will need to create a new plan. Currently, RisingWave Cloud offers three plans: Trial, Standard, and Advanced. 
 
 <img
   src={require('./images/cloud-updates/june-dashboard.png').default}

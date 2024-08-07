@@ -13,17 +13,17 @@ RisingWave Cloud charges the cost of each project individually. The pricing mode
 
 | Plan | Pricing model | Pricing precision |
 | --- | --- | --- |
-| [Developer](#developer-plan) | Free | / |
-| [Pro](#pro-plan) | Pay-as-you-go | 30-second basis |
-| [Enterprise](#enterprise-plan) | Contact sales | Contact sales |
+| [Trial](#trial-plan) | Free | / |
+| [Standard](#standard-plan) | Pay-as-you-go | 30-second basis |
+| [Advanced](#advanced-plan) | Contact sales | Contact sales |
 
-### Developer plan
+### Trial plan
 
-The Developer plan is offered for free. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave.
+The Trial plan is offered for free. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave.
 
-### Pro plan
+### Standard plan
 
-The Pro plan operates on a pay-as-you-go model. You only pay for your actual usage, which includes compute resources and storage capacity.
+The Standard plan operates on a pay-as-you-go model. You only pay for your actual usage, which includes compute resources and storage capacity.
 
 - **Compute resources**: Compute resources are measured in RisingWave Unit (RWU) hours used across all projects in the organization. See the [explanation of RWU](#risingwave-unit-rwu) below. In each RisingWave project, the usages are tracked for all five components:
 
@@ -39,9 +39,9 @@ The Pro plan operates on a pay-as-you-go model. You only pay for your actual usa
 
 See the [pricing information](#pricing-information) below for the cost of compute resources and storage capacity in different regions.
 
-### Enterprise plan
+### Advanced plan
 
-The Enterprise plan offers a customized pricing model based on your specific needs. Unlike other plans, the billing details for enterprise projects aren't directly displayed in the billing system. The usage for enterprise projects is monitored in the backend and your invoices are generated based on a customized base price. While the pricing model aligns with the Pro plan, we provide a custom offer to match your specific needs. Please reach out to our sales for your customized offer.
+The Advanced plan offers a customized pricing model based on your specific needs. Unlike other plans, the billing details for Advanced projects aren't directly displayed in the billing system. The usage for Advanced projects is monitored in the backend and your invoices are generated based on a customized base price. While the pricing model aligns with the Standard plan, we provide a custom offer to match your specific needs. Please reach out to our sales for your customized offer.
 
 ## RisingWave Unit (RWU)
 
@@ -53,7 +53,7 @@ Billing for all components within a RisingWave project is based on RWU-hour usag
 
 ## Pricing information
 
-For detailed pricing information on the compute resources and storage capacity for the Pro plan and Enterprise plan in different regions, please contact our sales team.
+For detailed pricing information on the compute resources and storage capacity for the Standard plan and Advanced plan in different regions, please contact our sales team.
 
 ## Pricing example
 

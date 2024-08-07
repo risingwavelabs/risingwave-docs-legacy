@@ -8,7 +8,7 @@ slug: /scale-a-project-manually
 After creating a project, you have the flexibility to scale its resources and capacity to meet your specific data processing and analysis needs. This can be achieved through two methods: increasing or decreasing the number of worker nodes (horizontal scaling) or adjusting the resource capacity of each node in the project (vertical scaling).
 
 :::note
-You can scale the projects created in the Pro plan and the Enterprise plan. The Developer plan has a fixed number of nodes and resources.
+You can scale the projects created in the Standard plan and the Advanced plan. The Trial plan has a fixed number of nodes and resources.
 :::
 
 ## Scale your project
