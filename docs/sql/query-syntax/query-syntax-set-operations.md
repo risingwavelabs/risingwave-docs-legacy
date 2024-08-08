@@ -1,13 +1,15 @@
 ---
-id: sql-function-set-operators
-slug: /sql-function-set-operators
-title: Set operators
+id: query-syntax-set-operations
+slug: /query-syntax-set-operations
+title: Set operations
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-set-operators/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-set-operations/" />
 </head>
 
-## UNION and UNION ALL
+The results of two queries can be combined using the set operations `UNION` and `INTERSECT`.
+
+## `UNION` and `UNION ALL`
 
 The UNION operator combines the result sets of 2 or more SELECT statements and removes duplicate rows between the various SELECT statements.
 
@@ -48,14 +50,14 @@ Next, suppose that we have a second table, `points_scored_last_week`, that consi
 Here is an example that uses the UNION operator:
 
 ```sql
-SELECT * 
-FROM points_scored_current_week 
+SELECT *
+FROM points_scored_current_week
 UNION
-SELECT * 
+SELECT *
 FROM points_scored_last_week;
 ```
 
-The result looks like this: 
+The result looks like this:
 
 ```
 |  id   |first_half|second_half|
@@ -66,14 +68,14 @@ The result looks like this:
 Here is an example that uses the UNION ALL operator:
 
 ```sql
-SELECT * 
-FROM points_scored_current_week 
-UNION ALL 
-SELECT * 
+SELECT *
+FROM points_scored_current_week
+UNION ALL
+SELECT *
 FROM points_scored_last_week;
 ```
 
-The result looks like this: 
+The result looks like this:
 
 ```
 |  id   |first_half|second_half|
@@ -88,7 +90,7 @@ UNION and UNION ALL operators are both supported for streaming queries.
 
 :::
 
-## INTERSECT
+## `INTERSECT`
 
 The `INTERSECT` operator combines the result sets of 2 or more `SELECT` statements and returns only the rows that are common to all the `SELECT` statements. It removes duplicate rows from the final result set.
 
@@ -127,10 +129,10 @@ Next, suppose that we have a second table, `points_scored_last_week`, that consi
 Here is an example that uses the `INTERSECT` operator:
 
 ```sql
-SELECT * 
-FROM points_scored_current_week 
+SELECT *
+FROM points_scored_current_week
 INTERSECT
-SELECT * 
+SELECT *
 FROM points_scored_last_week;
 ```
 

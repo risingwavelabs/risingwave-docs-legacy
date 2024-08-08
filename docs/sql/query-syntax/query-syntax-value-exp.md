@@ -24,8 +24,21 @@ aggregate_name ( [ expression [ , ... ] ] ) WITHIN GROUP ( order_by_clause ) [ F
 
 where `aggregate_name` is one of the aggregation functions listed on [Aggregate functions](/sql/functions-operators/sql-function-aggregate.md), and `expression` is a value expression that does not contain an aggregate expression or a window function call.
 
-In RisingWave, the `DISTINCT` keyword, which is only available in the second form, cannot be used in conjunction with an `ORDER BY` or `WITHIN GROUP` clause. Additionally, it's important to note that the `order_by_clause` is positioned differently in the first and fourth forms.
+In RisingWave, the `DISTINCT` keyword, which is only available in the second form, cannot be used together with an `ORDER BY` or `WITHIN GROUP` clause. Additionally, it's important to note that the `order_by_clause` is positioned differently in the first and fourth forms.
 
+## Type casts
+
+A type cast specifies a conversion from one data type to another.
+
+```sql
+CAST ( expression AS type )
+expression::type
+```
+
+| Parameter | Description     |
+|-----------|-----------------|
+| *expression* | The expression of which the data type to be converted. |
+| *type*       | The data type of the returned value.<br/>For the types you can cast the value to, see [Data types](/sql/sql-data-types.md/#casts). |
 
 ## Row constructors
 
@@ -51,7 +64,7 @@ SELECT row (v1, v2*2) AS demo FROM t;
 ```
 
 ```
-  demo  
+  demo
 --------
  (1,24)
  (2,26)

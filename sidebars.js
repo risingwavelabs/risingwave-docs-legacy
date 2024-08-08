@@ -802,18 +802,23 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/query-syntax/query-syntax-where-clause",
+                  label: "WHERE clause",
+                },
+                {
+                  type: "doc",
                   id: "sql/query-syntax/query-syntax-group-by-clause",
                   label: "GROUP BY clause",
                 },
                 {
                   type: "doc",
-                  id: "sql/query-syntax/query-syntax-order-by-clause",
-                  label: "ORDER BY clause",
+                  id: "sql/query-syntax/query-syntax-having-clause",
+                  label: "HAVING clause",
                 },
                 {
                   type: "doc",
-                  id: "sql/query-syntax/query-syntax-having-clause",
-                  label: "HAVING clause",
+                  id: "sql/query-syntax/query-syntax-order-by-clause",
+                  label: "ORDER BY clause",
                 },
                 {
                   type: "doc",
@@ -827,8 +832,8 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  id: "sql/query-syntax/query-syntax-where-clause",
-                  label: "WHERE clause",
+                  id: "sql/query-syntax/query-syntax-set-operations",
+                  label: "Set operations",
                 },
                 {
                   type: "doc",
@@ -899,85 +904,74 @@ const sidebars = {
               },
               items: [
                 {
-                  type: 'doc',
-                  id: 'sql/functions-operators/sql-function-aggregate',
-                  label: 'Aggregate',
-                },
-                {
                   type: "doc",
-                  id: "sql/functions-operators/sql-function-array",
-                  label: "Array",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-binarystring",
-                  label: "Binary string",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-cast",
-                  label: "Cast",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-conditional",
-                  label: "Conditional",
+                  id: "sql/functions-operators/sql-function-logical",
+                  label: "Logical operators",
                 },
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-comparison",
-                  label: "Comparison",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-cryptographic-functions",
-                  label: "Cryptographic",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-datetime",
-                  label: "Date & time",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-json",
-                  label: "JSON",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-logical",
-                  label: "Logical",
+                  label: "Comparison functions and operators",
                 },
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-mathematical",
-                  label: "Mathematical",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-set-functions",
-                  label: "Set functions",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-set-operators",
-                  label: "Set operators",
+                  label: "Mathematical functions and operators",
                 },
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-string",
-                  label: "String",
+                  label: "String functions and operators",
                 },
-
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-binarystring",
+                  label: "Binary string functions and operators",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-datetime",
+                  label: "Date/time functions and operators",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-cryptographic",
+                  label: "Cryptographic functions",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-json",
+                  label: "JSON functions and operators",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-array",
+                  label: "Array functions and operators",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-conditional",
+                  label: "Conditional expressions",
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/functions-operators/sql-function-aggregate',
+                  label: 'Aggregate functions',
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-set-returning",
+                  label: "Set-returning functions",
+                },
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-sys-admin",
-                  label: "System administration",
+                  label: "System administration functions",
                 },
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-sys-info",
-                  label: "System information",
+                  label: "System information functions",
                 },
               ],
             },

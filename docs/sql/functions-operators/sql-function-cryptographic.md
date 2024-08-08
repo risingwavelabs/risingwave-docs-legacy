@@ -1,21 +1,21 @@
 ---
-id: sql-function-cryptographic-functions
-slug: /sql-function-cryptographic-functions
+id: sql-function-cryptographic
+slug: /sql-function-cryptographic
 title: Cryptographic functions
 description: Cryptographic functions.
 ---
 <head>
-  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-cryptographic-functions/" />
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-cryptographic/" />
 </head>
 
 ### `Raw encryption functions`
 
 Raw encryption functions are basic encryption functions that perform encryption and decryption of data using cryptographic algorithms. Please note they solely apply a cipher to the data and do not provide additional security measures.
 
-```sql title=Syntax 
+```sql title=Syntax
 encrypt(data bytea, key bytea, type text) -> bytea
 decrypt(data bytea, key bytea, type text) -> bytea
-```  
+```
 
 The cipher method is specified by `type`. The syntax of the `type` string is:
 
@@ -44,7 +44,7 @@ The given encryption/decryption key MUST match length 16/24/32 bytes as required
 aes-cbc/pad:pkcs => AES algorithm, cbc mode, enabling padding
 aes => AES algorithm, cbc mode, enabling padding
 aes-ecb => AES algorithm, ecb mode, enabling padding
-```  
+```
 
 ```sql title="Example of raw encryption functions"
 SELECT encrypt('Hello, World!', 'my_secret_key111', 'aes-cbc/pad:pkcs');
