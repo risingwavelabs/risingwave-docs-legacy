@@ -13,16 +13,16 @@ Temporal filters allow you to filter data based on time intervals, which are use
 
 A temporal filter is a filter condition with a `NOW()` function call. It can only be used in the `WHERE` and `HAVING` clauses in the query.
 
-An valid temporal filter comprises the following components:
+A valid temporal filter comprises the following components:
 
-- A comparison operator, among `<`, `>`, `<=`, `>=`, `=` and `BETWEEN`
-- A time expression of the columns in the base relation as one compare side
-- A non-decreasing time expression with exactly one `NOW()` function call as the other side
+- A comparison operator, among `<`, `>`, `<=`, `>=`, `=` and `BETWEEN`.
+- A time expression of the columns in the base relation as one comparing side.
+- A non-decreasing time expression with exactly one `NOW()` function call as the other comparing side.
 
 ```sql
 -- Valid
 t > NOW() - INTERVAL '1 hour'
-t <= NOW() - INTERVAL '1 hour' -- to delay the handling of events to 1 hour later
+t <= NOW() - INTERVAL '1 hour' -- To delay event handling by 1 hour
 t < DATE_TRUNC('hour', NOW()) - INTERVAL '1 hour'
 ```
 
@@ -33,7 +33,7 @@ There could be multiple temporal filters and other expressions in the `WHERE` cl
 t > NOW() - INTERVAL '1 hour' AND t < NOW() + INTERVAL '1 hour' AND a < 1
 ```
 
-A temporal filter condition cannot be disjoined with another temporal filter using the `OR` operator, but is allowed to be disjoined with another normal filter. See the examples below:
+A temporal filter condition cannot be disjoined with another temporal filter using the `OR` operator. But it is allowed to be disjoined with another normal filter. See the examples below:
 
 ```sql
 -- Valid
@@ -46,7 +46,7 @@ t > NOW() - INTERVAL '1 hour' OR t < NOW() - INTERVAL '1 hour'
 (a < 1) OR (t > NOW() - INTERVAL '1 hour' AND t < NOW() - INTERVAL '1')
 ```
 
-Also, in the `WHERE` clause, each expression conjoined by the `AND` operator should have only one temporal filter disjoined with `OR` operator.
+Also, in the `WHERE` clause, each expression conjoined by the `AND` operator should have only one temporal filter disjoined with the `OR` operator.
 
 ```sql
 -- Invalid
