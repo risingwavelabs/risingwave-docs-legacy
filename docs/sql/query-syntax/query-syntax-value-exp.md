@@ -16,15 +16,23 @@ An aggregate function call represents the application of an aggregate function a
 An aggregate function call should be in one of the following syntaxes:
 
 ```sql
-aggregate_name (expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
-aggregate_name (DISTINCT expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
+aggregate_name ( expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
+aggregate_name ( DISTINCT expression [ , ... ] [ order_by_clause ] ) [ FILTER ( WHERE filter_clause ) ]
 aggregate_name ( * ) [ FILTER ( WHERE filter_clause ) ]
 aggregate_name ( [ expression [ , ... ] ] ) WITHIN GROUP ( order_by_clause ) [ FILTER ( WHERE filter_clause ) ]
 ```
 
 `aggregate_name` is one of the aggregation functions listed on [Aggregate functions](/sql/functions-operators/sql-function-aggregate.md), and `expression` is a value expression that does not contain an aggregate expression or a window function call.
 
-In RisingWave, the `DISTINCT` keyword, which is only available in the second form, cannot be used together with an `ORDER BY` or `WITHIN GROUP` clause. Additionally, it's important to note that the `order_by_clause` is positioned differently in the first and fourth forms.
+The `DISTINCT` keyword, which is only available in the second form, cannot be used together with an `ORDER BY` or `WITHIN GROUP` clause. Additionally, it's important to note that the `order_by_clause` is positioned differently in the first and fourth forms.
+
+In batch mode, `aggregate_name` can also be in the following form:
+
+```sql
+AGGREGATE:function_name
+```
+
+where the `AGGREGATE:` prefix converts a [builtin array function](../functions-operators/sql-function-array.md) (e.g. `array_sum`) or an [user-defined function](../../sql/udf/user-defined-functions.md), to an aggregate function. The function being converted must accept exactly one argument of an [array type](../data-types/data-type-array.md). After the conversion, a function like `foo ( array of T ) -> U` becomes an aggregate function like `AGGREGATE:foo ( T ) -> U`.
 
 ## Window function calls
 
