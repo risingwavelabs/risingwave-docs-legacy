@@ -419,11 +419,6 @@ const sidebars = {
             },
             {
               type: "doc",
-              id: "transform/window-functions",
-              label: "Window functions",
-            },
-            {
-              type: "doc",
               id: "sql/syntax/sql-pattern-topn",
               label: "Top-N by group",
             },
@@ -957,6 +952,11 @@ const sidebars = {
                   type: 'doc',
                   id: 'sql/functions-operators/sql-function-aggregate',
                   label: 'Aggregate functions',
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/functions-operators/sql-function-window-functions',
+                  label: 'Window functions',
                 },
                 {
                   type: "doc",
