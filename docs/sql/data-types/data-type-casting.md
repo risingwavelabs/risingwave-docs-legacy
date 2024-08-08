@@ -11,7 +11,7 @@ Certain data types can be cast to and from other types implicitly or explicitly.
 
 - **Implicitly cast to**: Values can be automatically converted to the target type.
 - **Assigned to**: Values can be automatically converted when inserted to a column of the target type.
-- **Explicitly cast to**: Values can be converted to the target type only when you use the [`cast`](/sql/functions-operators/sql-function-cast.md) function or the `::` operator.
+- **Explicitly cast to**: Values can be converted to the target type using explicit [Type casts](/sql/query-syntax/query-syntax-value-exp.md#type-casts).
 
 |From type|Implicitly cast to|Assigned to|Explicitly cast to|
 |-|-|-|-|
