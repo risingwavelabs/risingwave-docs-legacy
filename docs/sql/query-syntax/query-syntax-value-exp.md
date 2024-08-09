@@ -38,7 +38,7 @@ expression::type
 | Parameter | Description     |
 |-----------|-----------------|
 | *expression* | The expression of which the data type to be converted. |
-| *type*       | The data type of the returned value.<br/>For the types you can cast the value to, see [Data types](/sql/sql-data-types.md/#casts). |
+| *type*       | The data type of the returned value.<br/>For the types you can cast the value to, see [Casting](/sql/data-types/data-type-casting.md |
 
 ## Row constructors
 
