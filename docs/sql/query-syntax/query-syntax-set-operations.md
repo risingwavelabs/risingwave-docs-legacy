@@ -156,7 +156,7 @@ In this case, the `INTERSECT` operator returned the rows that are common to both
 
 Set operations (`UNION`, `INTERSECT`, and `EXCEPT`) require that the two queries return the same number of columns, and that the columns must match in left-to-right order (by column index).
 
-However, you can use the `CORRESPONDING` keyword in these operations to match columns by name instead of relying on a strict column order. This approach only overlays columns that exist on both sides of the set operation. It ignores columns that aren't present in both sets. Columns are considered matching if they have the same name or alias.
+You can use the `CORRESPONDING` keyword in these operations to match columns by name instead of relying on a strict column order. This approach only overlays columns that exist on both sides of the set operation. It ignores columns that aren't present in both sets. Columns are considered matching if they have the same name or alias.
 
 Assuming we are obtaining data from two tables, the syntax for using `CORRESPONDING` is:
 
@@ -168,20 +168,26 @@ SELECT column1, column2, ...
 FROM table2;
 ```
 
-Where `<operation>` is one of the below set operations:
+`<operation>` is one of the below operations:
 
 ```sql
 UNION [ALL] | INTERSECT | EXCEPT
 ```
 
-If you want to explicitly specify the columns to match, use the `CORRESPONDING BY` clause. For example:
+If you want to explicitly specify the columns to match, use the `CORRESPONDING BY` clause. Only columns that are on both sides and specified will be overlayed. For example:
 
 ```sql
-SELECT column1, column2, ...
-FROM table1 
-OPERATION CORRESPONDING BY (col1, col2, ...)
-SELECT column1, column2, ...
-FROM table2;
-```
+-- Not specifying the columns to match. Columns id, name, gender will be overlayed.
+SELECT id, name, age, gender
+FROM employees
+UNION CORRESPONDING
+SELECT id, name, salary, gender
+FROM managers;
 
-This allows you to control which specific columns are used for the set operation.
+-- Specify the columns to match. Only id and name columns will be overlayed.
+SELECT id, name, age, gender
+FROM employees
+UNION CORRESPONDING BY (id, name)
+SELECT id, name, salary, gender
+FROM managers;
+```
