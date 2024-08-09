@@ -151,3 +151,37 @@ In this case, the `INTERSECT` operator returned the rows that are common to both
 `INTERSECT` operator is supported for streaming queries.
 
 :::
+
+## `CORRESPONDING` in set operations
+
+Set operations (`UNION`, `INTERSECT`, and `EXCEPT`) require that the two queries return the same number of columns, and that the columns must match in left-to-right order (by column index).
+
+However, you can use the `CORRESPONDING` keyword in these operations to match columns by name instead of relying on a strict column order. This approach only overlays columns that exist on both sides of the set operation. It ignores columns that aren't present in both sets. Columns are considered matching if they have the same name or alias.
+
+Assuming we are obtaining data from two tables, the syntax for using `CORRESPONDING` is:
+
+```sql
+SELECT column1, column2, ...
+FROM table1
+<operation> CORRESPONDING [BY (column_name1, column_name2, ...)]
+SELECT column1, column2, ...
+FROM table2;
+```
+
+Where `<operation>` is one of the below set operations:
+
+```sql
+UNION [ALL] | INTERSECT | EXCEPT
+```
+
+If you want to explicitly specify the columns to match, use the `CORRESPONDING BY` clause. For example:
+
+```sql
+SELECT column1, column2, ...
+FROM table1 
+OPERATION CORRESPONDING BY (col1, col2, ...)
+SELECT column1, column2, ...
+FROM table2;
+```
+
+This allows you to control which specific columns are used for the set operation.
