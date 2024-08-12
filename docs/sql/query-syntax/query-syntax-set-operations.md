@@ -174,17 +174,17 @@ FROM table2;
 UNION [ALL] | INTERSECT | EXCEPT
 ```
 
-If you want to explicitly specify the columns to match, use the `CORRESPONDING BY` clause. Only columns that are on both sides and specified will be overlayed. For example:
+If you want to explicitly specify the columns to match, use the `CORRESPONDING BY` clause. Only columns that are on both sides and specified will be overlaid. For example:
 
 ```sql
--- Not specifying the columns to match. Columns id, name, gender will be overlayed.
+-- Not specifying the columns to match. Columns id, name, gender will be overlaid.
 SELECT id, name, age, gender
 FROM employees
 UNION CORRESPONDING
 SELECT id, name, salary, gender
 FROM managers;
 
--- Specify the columns to match. Only id and name columns will be overlayed.
+-- Specify the columns to match. Only id and name columns will be overlaid.
 SELECT id, name, age, gender
 FROM employees
 UNION CORRESPONDING BY (id, name)
