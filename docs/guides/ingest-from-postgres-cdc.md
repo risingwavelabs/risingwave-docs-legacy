@@ -151,11 +151,11 @@ If you are running RisingWave locally from binaries and intend to use the native
 
 ## Create a table using the native CDC connector
 
-To ensure all data changes are captured, you must create a table or source and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details.
+To ensure all data changes are captured, you must create a shared source first and create tables based on that source.
 
 ### Syntax
 
-Syntax for creating a CDC source.
+Syntax for creating a shared CDC source.
 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
@@ -164,7 +164,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
 );
 ```
 
-Syntax for creating a CDC table. Note that a primary key is required and must be consistent with the upstream table.
+Syntax for creating a CDC table based on the shared source. Note that a primary key is required and must be consistent with the upstream table.
 
 ```sql
 CREATE TABLE [ IF NOT EXISTS ] table_name (
@@ -175,7 +175,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
 WITH (
     snapshot='true' 
 )
-FROM source TABLE table_name;
+FROM source_name TABLE table_name;
 ```
 
 To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it. 
