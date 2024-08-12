@@ -158,14 +158,16 @@ Set operations (`UNION`, `INTERSECT`, and `EXCEPT`) require that the two queries
 
 You can use the `CORRESPONDING` keyword in these operations to match columns by name instead of relying on a strict column order. This approach only overlays columns that exist on both sides of the set operation. It ignores columns that aren't present in both sets. Columns are considered matching if they have the same name or alias.
 
-Assuming we are obtaining data from two tables, the syntax for using `CORRESPONDING` is:
+The syntax for using `CORRESPONDING` is as below:
 
 ```sql
-SELECT column1, column2, ...
-FROM table1
+SELECT expression1, expression2, ... expression_n
+FROM tables
+[WHERE conditions]
 <operation> CORRESPONDING [BY (column_name1, column_name2, ...)]
-SELECT column1, column2, ...
-FROM table2;
+SELECT expression1, expression2, ... expression_n
+FROM tables
+[WHERE conditions];
 ```
 
 `<operation>` is one of the below operations:
