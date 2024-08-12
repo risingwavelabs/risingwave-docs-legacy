@@ -65,13 +65,13 @@ curl -L --create-dirs -o $HOME/.postgresql/root.crt 'https://risingwave.cloud/ro
 mkdir -p $env:appdata\postgresql\; Invoke-WebRequest -Uri https://risingwave.cloud/rootca/root.crt
 ```
 
-## The endpoint ID is not specified
+## The tenant identifier is not specified
 
-This error occurs when your Postgres client doesn't support Server Name Indication (SNI), so it can't automatically send the endpoint ID needed to route your request correctly.
+This error occurs when your Postgres client doesn't support Server Name Indication (SNI), so it can't automatically send the tenant identifier needed to route your request correctly.
 
 RisingWave Cloud has tested the following drivers for SNI support:
 
-| Driver               | Language | SNI Support | Notes                                      |
+| Driver               | Language | SNI support | Note                                      |
 |----------------------|----------|-------------|--------------------------------------------|
 | psycopg2                |   Python     | ✓            |    Requires the `'sslmode': 'require'` option                                        |
 | asyncpg             | Python   | ✓           | Requires the `'sslmode': 'verify-full'` option |
