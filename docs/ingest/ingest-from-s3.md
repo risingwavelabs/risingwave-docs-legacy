@@ -12,7 +12,9 @@ Use the SQL statement below to connect RisingWave to an Amazon S3 source. Rising
 
 The S3 connector does not guarantee the sequential reading of files or complete file reading.
 
-## Syntax
+## Connect RisingWave to an Amazon S3 source
+
+### Syntax
 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name 
@@ -32,62 +34,6 @@ FORMAT data_format ENCODE data_encode (
 For CSV data, specify the delimiter in the `delimiter` option in `ENCODE properties`.
 :::
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE SOURCE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('source_name', 'skip')
-        ),
-        rr.NonTerminal('schema_definition', 'skip'),
-        rr.Sequence(
-            rr.Terminal('FORMAT'),
-            rr.NonTerminal('format', 'skip')
-        ),
-        rr.Sequence(
-            rr.Terminal('ENCODE'),
-            rr.NonTerminal('encode', 'skip'),
-            rr.Optional(
-                rr.Sequence(
-                rr.Terminal('('),
-                rr.NonTerminal('encode_parameter', 'skip'),
-                rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.Terminal('\'s3_v2\''),
-                        rr.Terminal(','),
-                    ),
-                    rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('connector_parameter', 'skip'),
-                            rr.Terminal('='),
-                            rr.Terminal('\''),
-                            rr.NonTerminal('value', 'skip'),
-                            rr.Terminal('\''),
-                            rr.Terminal(','),
-                        ),
-                    ),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 **schema_definition**:
 
 ```sql
@@ -97,7 +43,7 @@ export const svg = rr.Diagram(
 )
 ```
 
-## Parameters
+### Parameters
 
 |Field|Notes|
 |---|---|
@@ -120,7 +66,7 @@ Empty cells in CSV files will be parsed to `NULL`.
 |*without_header*| Whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
 |*delimiter*| How RisingWave splits contents. For `JSON` encode, the delimiter is `\n`. |
 
-### `s3_v2` connector
+#### `s3_v2` connector
 
 :::note BETA FEATURE
 
@@ -137,7 +83,7 @@ While this decision forbids the creation of new stream jobs using the deprecate 
 
 The `s3_v2` connector is designed to address the scalability and performance limitations of the `s3` connector by implementing a more efficient listing and fetching mechanism. If you want to explore the technical details of this new approach, refer to [the design document](https://github.com/risingwavelabs/rfcs/blob/main/rfcs/0076-refined-s3-source.md).
 
-## Examples
+### Examples
 
 Here are examples of connecting RisingWave to an S3 source to read data from individual streams.
 
