@@ -156,7 +156,7 @@ In this case, the `INTERSECT` operator returned the rows that are common to both
 
 Set operations (`UNION`, `INTERSECT`, and `EXCEPT`) require that the two queries return the same number of columns, and that the columns must match in left-to-right order (by column index).
 
-You can use the `CORRESPONDING` keyword in these operations to match columns by name instead of relying on a strict column order. This approach only overlays columns that exist on both sides of the set operation. It ignores columns that aren't present in both sets. Columns are considered matching if they have the same name or alias.
+However, you can use the `CORRESPONDING` keyword in these operations to match columns by their name instead of relying on a strict column order. This approach only overlays columns that exist on both sides of the set operation. It ignores columns that aren't present in both sets. Columns are considered matching if they have the same name or alias.
 
 The syntax for using `CORRESPONDING` is as below:
 
@@ -176,7 +176,35 @@ FROM tables
 UNION [ALL] | INTERSECT | EXCEPT
 ```
 
-If you want to explicitly specify the columns to match, use the `CORRESPONDING BY` clause. Only columns that are on both sides and specified will be overlaid. For example:
+If you want to explicitly specify the columns to match, use the `CORRESPONDING BY` clause. Only columns that are specified and on both sides will be overlaid.
+
+Here is a simple example. First, let's create two tables `employees` and `managers`, and insert some data. Then you can use the `CORRESPONDING` keyword.
+
+```sql
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    name VARCHAR,
+    age INT,
+    gender VARCHAR
+);
+
+CREATE TABLE managers (
+    id INT PRIMARY KEY,
+    name VARCHAR,
+    salary DECIMAL,
+    gender VARCHAR
+);
+
+INSERT INTO employees (id, name, age, gender) VALUES
+(1, 'Alice', 30, 'Female'),
+(2, 'Bob', 25, 'Male'),
+(3, 'Charlie', 28, 'Male');
+
+INSERT INTO managers (id, name, salary, gender) VALUES
+(1, 'David', 80000, 'Male'),
+(2, 'Eve', 90000, 'Female'),
+(3, 'Frank', 75000, 'Male');
+```
 
 ```sql
 -- Not specifying the columns to match. Columns id, name, gender will be overlaid.
@@ -186,10 +214,34 @@ UNION CORRESPONDING
 SELECT id, name, salary, gender
 FROM managers;
 
+----RESULT
+id |  name   | gender 
+----+---------+--------
+  1 | Alice   | Female
+  3 | Frank   | Male
+  1 | David   | Male
+  3 | Charlie | Male
+  2 | Eve     | Female
+  2 | Bob     | Male
+(6 rows)
+```
+
+```sql
 -- Specify the columns to match. Only id and name columns will be overlaid.
 SELECT id, name, age, gender
 FROM employees
 UNION CORRESPONDING BY (id, name)
 SELECT id, name, salary, gender
 FROM managers;
+
+----RESULT
+ id |  name   
+----+---------
+  3 | Charlie
+  1 | Alice
+  3 | Frank
+  1 | David
+  2 | Eve
+  2 | Bob
+(6 rows)
 ```
