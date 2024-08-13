@@ -154,9 +154,19 @@ In this case, the `INTERSECT` operator returned the rows that are common to both
 
 ## `CORRESPONDING` in set operations
 
-Set operations (`UNION`, `INTERSECT`, and `EXCEPT`) require that the two queries return the same number of columns, and that the columns must match in left-to-right order (by column index).
+Set operations (`UNION`, `INTERSECT`, and `EXCEPT`) typically require:
 
-However, you can use the `CORRESPONDING` keyword in these operations to match columns by their name instead of relying on a strict column order. This approach only overlays columns that exist on both sides of the set operation. It ignores columns that aren't present in both sets. Columns are considered matching if they have the same name or alias.
+- Both queries to return the same number of columns
+- Columns to match in left-to-right order (by column index)
+
+However, you can use the `CORRESPONDING` keyword to match columns by name instead of order. This approach:
+
+- Only combines columns that exist in both sets
+- Ignores columns not present in both sets
+- Considers columns matching if they have the same name or alias
+
+Overall, using `CORRESPONDING` gives you more flexibility when performing set operations, as it doesn't rely on strict column ordering.
+
 
 The syntax for using `CORRESPONDING` is as below:
 
