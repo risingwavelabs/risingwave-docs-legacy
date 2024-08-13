@@ -189,34 +189,7 @@ WITH (
 </TabItem>
 </Tabs>
 
-## Important considerations
-
-### Object filtering in S3 buckets
-
-RisingWave has a prefix argument designed for filtering objects in the S3 bucket. It relies on [Apache Opendal](https://github.com/apache/incubator-opendal) whose prefix filter implementation is expected to be released soon.
-
-### Source file name as column
-
-A feature to create a column with the source file name is currently under development. You can track the progress [here](https://github.com/risingwavelabs/rfcs/pull/79).
-
-### Handle new files in the bucket
-
-RisingWave automatically ingests new files added to the bucket. However, it does not detect updates to a file if a file is deleted and a new file with the same name is added simultaneously. Additionally, RisingWave will ignore file deletions.
-
-### Read data from the source
-
-You need to create a materialized view from the source or create a table with the S3 connector to read the data. Here are some examples:
-
-```sql
--- Create a materialized view from the source
-CREATE SOURCE s3_source WITH ( connector = 's3_v2', ... );
-CREATE MATERIALIZED VIEW mv AS SELECT * FROM s3_source;
-
--- Create a table with the S3 connector
-CREATE TABLE s3_table ( ... ) WITH ( connector = 's3_v2', ... );
-```
-
-### Read Parquet files from S3
+## Read Parquet files from S3
 
 You can use the table function `file_scan()` to read Parquet files from S3, either a single file or a directory of Parquet files.
 
@@ -292,6 +265,34 @@ product_id |  sales_date  | quantity | revenue
          18 | 2023-04-02   |       25 |    500.00
          18 | 2023-04-04   |       35 |    700.00
 (6 rows)
+```
+
+
+## Important considerations
+
+### Object filtering in S3 buckets
+
+RisingWave has a prefix argument designed for filtering objects in the S3 bucket. It relies on [Apache Opendal](https://github.com/apache/incubator-opendal) whose prefix filter implementation is expected to be released soon.
+
+### Source file name as column
+
+A feature to create a column with the source file name is currently under development. You can track the progress [here](https://github.com/risingwavelabs/rfcs/pull/79).
+
+### Handle new files in the bucket
+
+RisingWave automatically ingests new files added to the bucket. However, it does not detect updates to a file if a file is deleted and a new file with the same name is added simultaneously. Additionally, RisingWave will ignore file deletions.
+
+### Read data from the source
+
+You need to create a materialized view from the source or create a table with the S3 connector to read the data. Here are some examples:
+
+```sql
+-- Create a materialized view from the source
+CREATE SOURCE s3_source WITH ( connector = 's3_v2', ... );
+CREATE MATERIALIZED VIEW mv AS SELECT * FROM s3_source;
+
+-- Create a table with the S3 connector
+CREATE TABLE s3_table ( ... ) WITH ( connector = 's3_v2', ... );
 ```
 
 ### Handle unexpected file types or poorly formatted files
