@@ -176,7 +176,7 @@ FROM tables
 UNION [ALL] | INTERSECT | EXCEPT
 ```
 
-If you want to explicitly specify the columns to match, use the `CORRESPONDING BY` clause. Only columns that are specified and on both sides will be overlaid.
+If you want to explicitly specify the columns to match, use the `CORRESPONDING BY` specification. Only columns that are specified and exist on both sides will be overlaid.
 
 Here is a simple example. First, let's create two tables `employees` and `managers`, and insert some data. Then you can use the `CORRESPONDING` keyword.
 
