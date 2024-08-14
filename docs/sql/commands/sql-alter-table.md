@@ -253,7 +253,7 @@ ALTER TABLE table_name
     SET BACKFILL_RATE_LIMIT { TO | = } { default | rate_limit_number };
 ```
 
-Use this statement to modify the backfill rate limit of a table being created. For the specific value of `BACKFILL_RATE_LIMIT`, refer to [How to view runtime parameters](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
+Use this statement to modify the backfill rate limit of a CDC table being created from a CDC source. For the specific value of `BACKFILL_RATE_LIMIT`, refer to [How to view runtime parameters](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
 
 ```sql title="Examples"
 -- Pause the backfill
