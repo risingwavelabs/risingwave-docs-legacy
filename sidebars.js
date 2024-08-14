@@ -184,43 +184,50 @@ const sidebars = {
           type: "category",
           label: "Ingest data",
           collapsible: true,
-          collapsed: true,
+          collapsed: false,
           items: [
             {
-              type: "doc",
+              type: "category",
               label: "Overview",
-              id: "ingest/data-ingestion",
-            },
-            {
-              type: "doc",
-              label: "Formats and encoding",
-              id: "ingest/format-and-encode-parameters",
-            },
-            {
-              type: "doc",
-              label: "Supported sources and formats",
-              id: "ingest/supported-sources-and-formats",
-            },
-            {
-              type: "doc",
-              label: "Modify source or table schemas",
-              id: "ingest/modify-schemas",
-            },
-            {
-              type: "doc",
-              label: "Ingest additional source fields",
-              id: "ingest/include-clause",
-            },
-            {
-              type: "doc",
-              label: "Change data capture with RisingWave",
-              id: "ingest/ingest-from-cdc",
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: "doc",
+                id: "ingest/data-ingestion",
+              },
+              items: [
+                {
+                  type: "doc",
+                  label: "Formats and encoding",
+                  id: "ingest/format-and-encode-parameters",
+                },
+                {
+                  type: "doc",
+                  label: "Supported sources and formats",
+                  id: "ingest/supported-sources-and-formats",
+                },
+                {
+                  type: "doc",
+                  label: "Modify source or table schemas",
+                  id: "ingest/modify-schemas",
+                },
+                {
+                  type: "doc",
+                  label: "Ingest additional source fields",
+                  id: "ingest/include-clause",
+                },
+                {
+                  type: "doc",
+                  label: "Change data capture with RisingWave",
+                  id: "ingest/ingest-from-cdc",
+                },
+              ]
             },
             {
               type: "category",
               label: "Sources",
               collapsible: true,
-              collapsed: true,
+              collapsed: false,
               link: {
                 type: "generated-index",
                 title: "Sources",
@@ -279,24 +286,6 @@ const sidebars = {
                 },
                 {
                   type: "category",
-                  label: "Pulsar",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      label: "Apache Pulsar",
-                      id: "ingest/ingest-from-pulsar",
-                    },
-                    {
-                      type: "doc",
-                      label: "DataStax Astra Streaming",
-                      id: "guides/connector-astra-streaming",
-                    },
-                  ]
-                },
-                {
-                  type: "category",
                   label: "PostgreSQL CDC",
                   collapsible: true,
                   collapsed: true,
@@ -328,14 +317,22 @@ const sidebars = {
                   id: "guides/ingest-from-mongodb-cdc",
                 },
                 {
-                  type: "doc",
-                  label: "Citus CDC",
-                  id: "guides/ingest-from-citus-cdc",
-                },
-                {
-                  type: "doc",
-                  label: "Apache Iceberg",
-                  id: "ingest/ingest-from-iceberg",
+                  type: "category",
+                  label: "Pulsar",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "Apache Pulsar",
+                      id: "ingest/ingest-from-pulsar",
+                    },
+                    {
+                      type: "doc",
+                      label: "DataStax Astra Streaming",
+                      id: "guides/connector-astra-streaming",
+                    },
+                  ]
                 },
                 {
                   type: "doc",
@@ -344,39 +341,57 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  label: "AWS S3",
-                  id: "ingest/ingest-from-s3",
-                },
-                {
-                  type: "doc",
                   label: "Google Pub/Sub",
                   id: "ingest/ingest-from-google-pubsub",
                 },
                 {
                   type: "doc",
-                  label: "Google Cloud Storage",
-                  id: "ingest/ingest-from-gcs",
+                  label: "AWS S3",
+                  id: "ingest/ingest-from-s3",
                 },
                 {
-                  type: "doc",
-                  label: "MQTT",
-                  id: "ingest/ingest-from-mqtt",
-                },
-                {
-                  type: "doc",
-                  label: "NATS JetStream",
-                  id: "ingest/ingest-from-nats",
-                },
-                {
-                  type: "doc",
-                  label: "Redpanda",
-                  id: "ingest/ingest-from-redpanda",
-                },
-                {
-                  type: "doc",
-                  label: "Load generator",
-                  id: "ingest/ingest-from-datagen",
-                },
+                  type: "category",
+                  label: "More Sources",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "Citus CDC",
+                      id: "guides/ingest-from-citus-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "Apache Iceberg",
+                      id: "ingest/ingest-from-iceberg",
+                    },
+                    {
+                      type: "doc",
+                      label: "Google Cloud Storage",
+                      id: "ingest/ingest-from-gcs",
+                    },
+                    {
+                      type: "doc",
+                      label: "MQTT",
+                      id: "ingest/ingest-from-mqtt",
+                    },
+                    {
+                      type: "doc",
+                      label: "NATS JetStream",
+                      id: "ingest/ingest-from-nats",
+                    },
+                    {
+                      type: "doc",
+                      label: "Redpanda",
+                      id: "ingest/ingest-from-redpanda",
+                    },
+                    {
+                      type: "doc",
+                      label: "Load generator",
+                      id: "ingest/ingest-from-datagen",
+                    },
+                  ]
+                }
               ]
             },
           ],
