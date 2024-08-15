@@ -116,8 +116,8 @@ Empty cells in CSV files will be parsed to `NULL`.
 |Field|Notes|
 |---|---|
 |*data_format*| Supported data format: `PLAIN`. |
-|*data_encode*| Supported data encodes: `CSV`, `JSON`. |
-|*without_header*| Whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
+|*data_encode*| Supported data encodes: `CSV`, `JSON`, `PARQUET`. |
+|*without_header*| This field is only for `CSV` encode, and it indicates whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
 |*delimiter*| How RisingWave splits contents. For `JSON` encode, the delimiter is `\n`. |
 
 ### `s3_v2` connector
@@ -186,6 +186,25 @@ WITH (
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
+<Tabs>
+<TabItem value="parquet" label="PARQUET" default>
+
+```sql
+CREATE TABLE s(
+    id int,
+    name varchar,
+    age int
+) 
+WITH (
+    connector = 's3_v2',
+    match_pattern = '*.parquet',
+    s3.region_name = 'ap-southeast-2',
+    s3.bucket_name = 'example-s3-source',
+    s3.credentials.access = 'xxxxx',
+    s3.credentials.secret = 'xxxxx'
+) FORMAT PLAIN ENCODE PARQUET;
+```
+
 </TabItem>
 </Tabs>
 
@@ -195,9 +214,6 @@ WITH (
 
 RisingWave has a prefix argument designed for filtering objects in the S3 bucket. It relies on [Apache Opendal](https://github.com/apache/incubator-opendal) whose prefix filter implementation is expected to be released soon.
 
-### Source file name as column
-
-A feature to create a column with the source file name is currently under development. You can track the progress [here](https://github.com/risingwavelabs/rfcs/pull/79).
 
 ### Handle new files in the bucket
 
@@ -215,6 +231,14 @@ CREATE MATERIALIZED VIEW mv AS SELECT * FROM s3_source;
 -- Create a table with the S3 connector
 CREATE TABLE s3_table ( ... ) WITH ( connector = 's3_v2', ... );
 ```
+
+To view the progress of the source, you can also read the source directly
+```sql
+-- Create a materialized view from the source
+CREATE SOURCE s3_source WITH ( connector = 's3_v2', ... );
+SELECT count(*) from s3_source;
+```
+
 
 ### Read Parquet files from S3
 
