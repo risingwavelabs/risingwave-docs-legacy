@@ -8,7 +8,7 @@ slug: /manage-secrets
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/manage-secrets/" />
 </head>
 
-:::note Premium Edition Feature
+:::tip Premium Edition Feature
 This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
 :::
 

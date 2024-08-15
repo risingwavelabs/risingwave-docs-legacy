@@ -330,7 +330,7 @@ To learn about compatibility types for Schema Registry and the changes allowed, 
 
 ## Read schemas from AWS Glue Schema Registry
 
-:::note Premium Edition Feature
+:::tip Premium Edition Feature
 This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
 :::
 
