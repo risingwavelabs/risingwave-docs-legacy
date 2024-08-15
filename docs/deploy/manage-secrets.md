@@ -121,10 +121,16 @@ SHOW CREATE SOURCE mysql_source;
 --- public.mysql_mydb | CREATE SOURCE mysql_mydb WITH (connector = 'mysql-cdc', hostname = 'mysql', port = '3306', username = 'root', password = secret mysql_pwd, database.name = 'mydb', server.id = '2') FORMAT PLAIN ENCODE JSON
 ```
 
-As shown in the result, the mysql password is hidden, ensuring no secret leaks.
+As shown in the result, the MySQL password is hidden, ensuring no secret leaks.
 
 ## Notes for open-source deployment
 
 To use secret management, you need to set the environment variable `RW_SECRET_STORE_PRIVATE_KEY_HEX` to a hex representation of a 128-bit key (e.g. `0123456789abcdef`). This key is used to encrypt secrets in RisingWave. You **MUST NOT** lose this key, as it is required to decrypt secrets.
 
 To specify the temporary secret file directory, set `RW_TEMP_SECRET_FILE_DIR`. This is only used with the `as file` option.
+
+## See also
+
+- [CREATE SECRET](/sql/commands/sql-create-secret.md): Create a secret.
+
+- [DROP SECRET](/sql/commands/sql-drop-secret.md): Dropping a secret.
