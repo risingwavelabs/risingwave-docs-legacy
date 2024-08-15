@@ -20,7 +20,7 @@ DROP SECRET secret_name;
 
 | Parameter or Clause | Description |
 |---------------------|-------------|
-| **secret_name**     | The name of the secret to be dropped. |
+| *secret_name*     | The name of the secret to be dropped. |
 
 ## Examples
 
@@ -38,4 +38,4 @@ DROP_SECRET
 
 - [Manage secrets](/deploy/manage-secrets.md): A comprehensive guide for secret management operations, including creation, usage, and deletion.
 
-- [CREATE SECRET](/sql/commands/sql-create-secret.md): Create a secret.
+- [`CREATE SECRET`](/sql/commands/sql-create-secret.md): Create a secret.

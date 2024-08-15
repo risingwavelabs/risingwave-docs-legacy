@@ -20,9 +20,9 @@ CREATE SECRET secret_name WITH ( backend = 'meta') AS 'your_secret';
 
 | Parameter or Clause | Description |
 |---------------------|-------------|
-| **secret_name**     | The name of the secret to be created. This should be a unique identifier within the system. |
-| **backend**         | Specifies the backend where the secret will be stored. Currently, only the `meta` backend is supported. |
-| **your_secret**     | The actual secret value that you wish to store. This is the sensitive information that will be securely stored. |
+| *secret_name*     | The name of the secret to be created. This should be a unique identifier within the system. |
+| *backend*         | Specifies the backend where the secret will be stored. Currently, only the `meta` backend is supported. |
+| *your_secret*     | The actual secret value that you wish to store. This is the sensitive information that will be securely stored. |
 
 ## Examples
 
@@ -33,7 +33,7 @@ CREATE SECRET mysql_pwd WITH ( backend = 'meta' ) AS '123';
 ```
 
 ```sql
-create source mysql_source with (
+CREATE SOURCE mysql_source WITH (
  connector = 'mysql-cdc',
  hostname = 'localhost',
  port = '8306',
@@ -55,4 +55,4 @@ SHOW CREATE SOURCE mysql_source;
 
 - [Manage secrets](/deploy/manage-secrets.md): A comprehensive guide for secret management operations, including creation, usage, and deletion.
 
-- [DROP SECRET](/sql/commands/sql-drop-secret.md): Dropping a secret.
+- [`DROP SECRET`](/sql/commands/sql-drop-secret.md): Dropping a secret.

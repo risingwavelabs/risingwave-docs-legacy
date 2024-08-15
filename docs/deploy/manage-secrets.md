@@ -103,7 +103,7 @@ CREATE SECRET mysql_pwd WITH ( backend = 'meta' ) AS '123';
 ```
 
 ```sql
-create source mysql_source with (
+CREATE SOURSE mysql_source WITH (
  connector = 'mysql-cdc',
  hostname = 'localhost',
  port = '8306',
@@ -131,6 +131,6 @@ To specify the temporary secret file directory, set `RW_TEMP_SECRET_FILE_DIR`. T
 
 ## See also
 
-- [CREATE SECRET](/sql/commands/sql-create-secret.md): Create a secret.
+- [`CREATE SECRET`](/sql/commands/sql-create-secret.md): Creating a secret.
 
-- [DROP SECRET](/sql/commands/sql-drop-secret.md): Dropping a secret.
+- [`DROP SECRET`](/sql/commands/sql-drop-secret.md): Dropping a secret.
