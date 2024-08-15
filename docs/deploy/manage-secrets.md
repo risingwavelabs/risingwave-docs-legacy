@@ -103,7 +103,7 @@ CREATE SECRET mysql_pwd WITH ( backend = 'meta' ) AS '123';
 ```
 
 ```sql
-CREATE SOURSE mysql_source WITH (
+CREATE SOURCE mysql_source WITH (
  connector = 'mysql-cdc',
  hostname = 'localhost',
  port = '8306',
