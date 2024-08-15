@@ -22,7 +22,7 @@ CREATE SECRET secret_name WITH ( backend = 'meta') AS 'your_secret';
 |---------------------|-------------|
 | *secret_name*     | The name of the secret to be created. This should be a unique identifier within the system. |
 | *backend*         | Specifies the backend where the secret will be stored. Currently, only the `meta` backend is supported. |
-| *your_secret*     | The actual secret value that you wish to store. This is the sensitive information that will be securely stored. |
+| *your_secret*     | The secret value that you wish to store securely. |
 
 ## Examples
 
