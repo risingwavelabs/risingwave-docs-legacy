@@ -186,8 +186,8 @@ WITH (
     s3.endpoint_url = 'https://s3.us-east-1.amazonaws.com'
 ) FORMAT PLAIN ENCODE JSON;
 ```
+</TabItem>
 
-<Tabs>
 <TabItem value="parquet" label="PARQUET" default>
 
 ```sql

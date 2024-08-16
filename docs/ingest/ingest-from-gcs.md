@@ -66,6 +66,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <Tabs>
+
 <TabItem value="csv" label="CSV" default>
 
 ```sql
@@ -85,6 +86,7 @@ WITH (
 ```
 
 </TabItem>
+
 <TabItem value="json" label="JSON" default>
 
 ```sql
@@ -102,7 +104,8 @@ WITH (
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
-<Tabs>
+</TabItem>
+
 <TabItem value="parquet" label="PARQUET" default>
 
 ```sql
