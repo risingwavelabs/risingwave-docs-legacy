@@ -26,7 +26,7 @@ You can ingest CDC data from SQL Server into RisingWave in two ways:
 
 Microsoft offers [official images](https://hub.docker.com/r/microsoft/mssql-server) for Microsoft SQL Server based on Ubuntu. Microsoft Azure also provides [Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) as a managed SQL Server service. In this section, we will demonstrate using a SQL Server instance running in a Docker container and highlight the differences when using Azure SQL Database.
 
-1. [SQL Server Agent](https://learn.microsoft.com/en-us/sql/ssms/agent/sql-server-agent?view=sql-server-ver16) is a tool in SQL Server that can automate and schedule tasks in SQL Server like database backups. The SQL Server connector in RisingWave relys on SQL Server Agent to query the required information of the CDC tables, so make sure that SQL Server Agent is running. You can check by using the following statement.
+1. [SQL Server Agent](https://learn.microsoft.com/en-us/sql/ssms/agent/sql-server-agent?view=sql-server-ver16) is a tool in SQL Server that can automate and schedule tasks in SQL Server like database backups. The SQL Server connector in RisingWave relies on SQL Server Agent to query the required information of the CDC tables, so make sure that SQL Server Agent is running. You can check by using the following statement.
 
     ```sql
     SELECT status_desc FROM sys.dm_server_services WHERE servicename LIKE 'SQL Server Agent%';
