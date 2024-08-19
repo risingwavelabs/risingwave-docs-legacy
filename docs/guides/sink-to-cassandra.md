@@ -53,6 +53,8 @@ Once the sink is created, data changes will be streamed to the specified table.
 | `cassandra.datacenter`  | Required. The name of the datacenter within the Cassandra or ScyllaDB. You can set it in Cassandra or ScyllaDB. If not specified, the default value is `datacenter1`.|
 | `cassandra.max_batch_rows` | Optional. The number of batch rows sent at a time. The value must be between 1 and 65535. The default value is 512. |
 | `cassandra.request_timeout_ms` | Optional. The waiting time for each batch. The default value is 2000. It is recommended to reduce batch size first before trying to change the waiting time. |
+| `cassandra.username` | Optional. The username for Cassandra login. Ensure you have the necessary permissions. |
+| `cassandra.password` | Optional. The password for Cassandra login. Ensure that you have the required permissions.|
 
 ## Data type mapping - RisingWave and Cassandra
 

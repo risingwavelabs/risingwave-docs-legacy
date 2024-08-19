@@ -47,7 +47,7 @@ WITH (
 | catalog.type    | Optional. The catalog type used in this table. Currently, the supported values are `storage` and `rest`. If not specified, `storage` is used. For details, see [Catalogs](#catalogs).|
 | warehouse.path  | Conditional. The path of the Iceberg warehouse. Currently, only S3-compatible object storage systems, such as AWS S3 and MinIO, are supported. It's required if the `catalog.type` is  `storage`.|
 | catalog.uri     | Conditional. The URL of the catalog. It is required when `catalog.type` is `rest`. |
-| primary_key     | The primary key for an upsert sink. It is only appliable to the upsert mode. |
+| primary_key     | The primary key for an upsert sink. It is only applicable to the upsert mode. |
 
 ## Data Type Mapping
 

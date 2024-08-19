@@ -432,3 +432,60 @@ And this it the output of `DESCRIBE supplier;`
  table description | supplier          |           |
 (10 rows)
 ``` 
+
+## Monitor the progress of direct CDC
+
+To observe the progress of direct CDC for MySQL, use the following methods:
+
+### For historical data
+
+Historical data needs to be backfilled into the table. You can check the internal state of the backfill executor as follows:
+
+1. Create a table to backfill historical data:
+
+    ```sql
+    CREATE TABLE t3 (id INTEGER, v1 TIMESTAMP WITH TIME ZONE, PRIMARY KEY(id)) FROM mysql_source TABLE 'mydb.t3';
+    ```
+
+2. List the internal tables to find the relevant backfill executor state:
+
+    ```sql
+    SHOW INTERNAL TABLES;
+    ```
+
+    Output:
+
+    ```
+    Name
+    ---------------------------------
+    __internal_t3_3_streamcdcscan_4
+    __internal_mysql_source_1_source_2
+    (2 rows)
+    ```
+
+3. Check the internal state of the backfill executor:
+
+    ```sql
+    SELECT * FROM __internal_t3_3_streamcdcscan_4;
+    ```
+
+    Output:
+
+    ```
+    split_id | id | backfill_finished | row_count | cdc_offset
+    ----------+----+-------------------+-----------+--------------------------------------------------
+    3        |  5 | t                 |         4 | {"MySql": {"filename": "binlog.000067", "position": 39101}}
+    (1 row)
+    ```
+
+### For real-time data
+
+RisingWave stores source offset in the internal state table of source executor. You can check the current consumed offset by checking this table and comparing it with the upstream database's log offset.
+
+To get the current binlog offset, run this SQL query on upstream MySQL (earlier than 8.4.0):
+
+:::sql
+SHOW MASTER STATUS;
+:::
+
+Then compare the above offset with source offset stored in the state table to determine the CDC progress.

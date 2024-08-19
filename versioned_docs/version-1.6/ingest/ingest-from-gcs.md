@@ -36,8 +36,7 @@ FORMAT data_format ENCODE data_encode (
 |Field|Notes|
 |---|---|
 |gcs.bucket_name |Required. The name of the bucket the data source is stored in. |
-|gcs.credential|Optional. The base64 encoded credential key. If this field is not specified, ADC (application default credentials) will be used. |
-|gcs.service_account|Optional. The service account of the target GCS source. If `gcs.credential` or ADC is not specified, the credentials will be derived from the service account.|
+|gcs.credential|Optional. The base64 encoded credential key. This key is obtained from the GCS service account key JSON file, and should be encoded with base64. To get this JSON file, refer to the [guides of GCS documentation](https://cloud.google.com/iam/docs/keys-create-delete#iam-service-account-keys-create-console).  To encode it with base64, run the following command: <code>cat ~/Downloads/rwc-byoc-test-464bdd851bce.json &#124; base64 -b 0 &#124; pbcopy</code>, and then paste the output as the value for this parameter. If this field is not specified, ADC (application default credentials) will be used. |
 |match_pattern| Conditional. This field is used to find object keys in the bucket that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported. |
 
 ### Other parameters

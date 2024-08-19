@@ -19,9 +19,9 @@ Before creating a BYOC deployment, familiarize yourself with the following archi
 
 Follow the steps below to create your own cloud environment.
 
-1. Navigate to the [**Project**](https://cloud.risingwave.com/project/home/) page and click **Create a project**.
+1. Navigate to the [**Project**](https://cloud.risingwave.com/project/home/) page and click **Create project**.
 
-2. On the right-side panel, choose **Enterprise** and enter your invitation code. If you do not have an invitation code, please contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com) to obtain one.
+2. Choose **Advanced** and enter your invitation code. If you do not have an invitation code, please contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com) to obtain one.
 
 3. Once you've redeemed the invitation code, select **BYOC** as the deployment type, and select your cloud platform as AWS or GCP (see [Resource and permission](#resource-and-permission) for more details), region, and ID as necessary.
 

@@ -300,7 +300,7 @@ RisingWave also incorporates these third-party components:
 - Azure Blob Storage
 - HDFS
 
-For each of the options, we have a Docker Compose configuraion file that you can use after necessary configurations.
+For each of the options, we have a Docker Compose configuration file that you can use after necessary configurations.
 
 #### Start a RisingWave cluster with MinIO
 

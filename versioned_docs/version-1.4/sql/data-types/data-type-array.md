@@ -139,7 +139,7 @@ In PostgreSQL, a 3-dimensional array `arr` is still of type T[ ]:
 
 ### Unnest data from an array
 
-You can use the `unnest()` function to spread values in an array into seperate rows.
+You can use the `unnest()` function to spread values in an array into separate rows.
 
 ```sql
 SELECT unnest(array[1,2,3,4]);

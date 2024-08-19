@@ -154,7 +154,7 @@ This version was released on September 7, 2022.
 * SQL commands:
     * `EXPLAIN` now supports specifying options. Supported options: `trace`, `verbose`, and `type`. Unlike PostgreSQL, each option should be separated by a comma and wrapped by parentheses as a whole. [#4730](https://github.com/risingwavelabs/risingwave/pull/4730)
     * Adds support for `ALTER USER`. [#4261](https://github.com/risingwavelabs/risingwave/pull/4261)
-    * `CREATE/ALTER USER` now has new options `CREATEUSER` and `NOCREATEUSER`, which specifiy whether or not the user has the privilege to create, alter, or drop other users. [#4447](https://github.com/risingwavelabs/risingwave/pull/4447)
+    * `CREATE/ALTER USER` now has new options `CREATEUSER` and `NOCREATEUSER`, which specify whether or not the user has the privilege to create, alter, or drop other users. [#4447](https://github.com/risingwavelabs/risingwave/pull/4447)
     * Adds support for EXPLAIN CREATE SINK. [#4430](https://github.com/risingwavelabs/risingwave/pull/4430)
 * SQL functions:
     * Adds support for new system information functions: `current_schema`, `current_schema()`, and `session_user`. [#4358](https://github.com/risingwavelabs/risingwave/pull/4358)
@@ -167,7 +167,7 @@ This version was released on September 7, 2022.
     * Kafka & Redpanda
         * `kafka.brokers` -> `properties.bootstrap.server`
         * `kafka.topic` -> `topic`
-        * `kafka.scan.startup.mode` -> `scan.starup.mode`
+        * `kafka.scan.startup.mode` -> `scan.startup.mode`
         * `kafka.time.offset` -> `scan.startup.timestamp_millis`
         * `kafka.consumer.group` -> `consumer.group.id`
 

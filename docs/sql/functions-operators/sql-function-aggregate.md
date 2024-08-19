@@ -9,7 +9,7 @@ title: Aggregate functions
 
 Aggregate functions compute a single result from a set of input values.
 
-For details about the supported syntaxes of aggregate expressions, see [Aggregate expressions](/sql/query-syntax/query-syntax-value-exp.md/#aggregate-expressions).
+For details about the supported syntaxes of aggregate expressions, see [Aggregate function calls](/sql/query-syntax/query-syntax-value-exp.md#aggregate-function-calls).
 
 ## General-purpose aggregate functions
 

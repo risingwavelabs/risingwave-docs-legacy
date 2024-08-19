@@ -49,6 +49,18 @@ psql "postgresql://<tenant identifier>;<username>:@<hostname>:<port>/<database?s
 The server will use `AuthenticationCleartextPassword` response to authenticate the user. Learn more about the protocol in the [PostgreSQL documentation](https://www.postgresql.org/docs/current/protocol-flow.html).
 :::
 
+## The tenant identifier is not specified
+
+This error occurs when your Postgres client doesn't support Server Name Indication (SNI), so it can't automatically send the tenant identifier needed to route your request correctly.
+
+RisingWave Cloud has tested the following drivers for SNI support:
+
+| Driver               | Language | SNI support | Note                                      |
+|----------------------|----------|-------------|--------------------------------------------|
+| psycopg2                |   Python     | ✓            |    Requires the `'sslmode': 'require'` option                                        |
+| asyncpg             | Python   | ✓           | Requires the `'sslmode': 'verify-full'` option |
+| SQLAlchemy    | Python       | ✓           | Requires the `'sslmode': 'require'` option |
+
 ## SSL error
 
 When you see errors like `SSL error: certificate verify failed`, `root certificate file xxx does not exist`, or `no certificate or crl found`, it means the client cannot verify the certificate of the server. To fix this error, you need to download the root certificate of RisingWave Cloud and put it in the correct location.

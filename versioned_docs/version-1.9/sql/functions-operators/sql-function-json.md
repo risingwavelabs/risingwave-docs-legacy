@@ -346,7 +346,7 @@ jsonb_populate_record ( base anyelement, from_json jsonb ) → anyelement
 
 It scans the JSON object for fields matching the output row's column names, inserting their values into the corresponding output columns. Any fields not matching column names are ignored. Typically the base is `NULL`, meaning that any output columns that do not match any object field will be `NULL`. Otherwise, values in the base are used for unmatched columns.
 
-The coversion of JSON values to SQL types of the output column applies these rules in sequence:
+The conversion of JSON values to SQL types of the output column applies these rules in sequence:
 
 - A JSON null value is converted to an SQL null in all cases.
 

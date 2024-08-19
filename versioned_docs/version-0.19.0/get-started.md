@@ -27,7 +27,7 @@ This method launches RisingWave in playground mode, where data is temporarily st
 
 :::
 
-Other installation options are available. If you intend to deploy RisingWave to production environments, use [Kubernete Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service.
+Other installation options are available. If you intend to deploy RisingWave to production environments, use [Kubernetes Operator](/deploy/risingwave-kubernetes.md) or [RisingWave Cloud](/deploy/risingwave-cloud.md), our fully managed service.
 
 ## Connect to RisingWave
 

@@ -9,7 +9,7 @@ slug: /view-adjust-system-parameters
 
 System parameters in RisingWave refer to the parameters that advanced users can use to adjust how internal components work in RisingWave.
 
-Currently, these system parameters are availble in RisingWave.
+Currently, these system parameters are available in RisingWave.
 
 | Parameter           |    Description    |
 |---|---|

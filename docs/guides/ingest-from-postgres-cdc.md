@@ -193,7 +193,7 @@ Unless specified otherwise, the fields listed are required. Note that the value 
 |database.name| Name of the database.|
 |schema.name| Optional. Name of the schema. By default, the value is `public`. |
 |table.name| Name of the table that you want to ingest data from. |
-|slot.name| Optional. The [replication slot](https://www.postgresql.org/docs/14/logicaldecoding-explanation.html#LOGICALDECODING-REPLICATION-SLOTS) for this PostgreSQL source. By default, a unique slot name will be randomly generated. Each source should have a unique slot name.|
+|slot.name| Optional. The [replication slot](https://www.postgresql.org/docs/14/logicaldecoding-explanation.html#LOGICALDECODING-REPLICATION-SLOTS) for this PostgreSQL source. By default, a unique slot name will be randomly generated. Each source should have a unique slot name. Valid replication slot names must contain only lowercase letters, numbers, and underscores, and be no longer than 63 characters.|
 |ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with Postgres. It accepts three values: `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.|
 |publication.name| Optional. Name of the publication. By default, the value is `rw_publication`. For more information, see [Multiple CDC source tables](#multiple-cdc-source-tables). |
 |publication.create.enable| Optional. By default, the value is `'true'`. If `publication.name` does not exist and this value is `'true'`, a `publication.name` will be created. If `publication.name` does not exist and this value is `'false'`, an error will be returned. |
@@ -432,3 +432,64 @@ And this it the output of `DESCRIBE supplier;`
  table description | supplier          |           |
 (10 rows)
 ``` 
+
+## Monitor the progress of direct CDC
+
+To observe the progress of direct CDC for PostgreSQL, use the following methods:
+
+### For historical data
+
+Historical data needs to be backfilled into the table. You can check the internal state of the backfill executor as follows:
+
+1. Create a table to backfill historical data:
+
+    ```sql
+    CREATE TABLE t3 (id INTEGER, v1 TIMESTAMP WITH TIME ZONE, PRIMARY KEY(id)) FROM pg_source TABLE 'public.t3';
+    ```
+
+2. List the internal tables to find the relevant backfill executor state:
+
+    ```sql
+    SHOW INTERNAL TABLES;
+    ```
+
+    Output:
+
+    ```
+    Name
+    ---------------------------------
+    __internal_t3_3_streamcdcscan_4
+    __internal_pg_source_1_source_2
+    (2 rows)
+    ```
+
+3. Check the internal state of the backfill executor:
+
+    ```sql
+    SELECT * FROM __internal_t3_3_streamcdcscan_4;
+    ```
+
+    Output:
+
+    ```
+    split_id | id | backfill_finished | row_count | cdc_offset
+    ----------+----+-------------------+-----------+--------------------------------------------------
+    3        |  5 | t                 |         4 | {"Postgres": {"lsn": 4558482960, "txid": 35853}}
+    (1 row)
+    ```
+
+### For real-time data
+
+RisingWave stores source offset in the internal state table of source executor. You can check the current consumed offset by checking this table and comparing it with the upstream database's log offset.
+
+The Postgres connector commits offsets to the upstream database, allowing Postgres to free up space used by Write-Ahead Log (WAL) files. This offset commitment happens during checkpoint commits in the CDC source. If there is high checkpoint point latency, WAL files may accumulate on the upstream server.
+
+To check WAL accumulation on the upstream Postgres server, run this SQL query on upstream Postgres:
+
+```sql
+SELECT slot_name, 
+       pg_wal_lsn_diff(pg_current_wal_lsn(), restart_lsn) AS raw, 
+       pg_size_pretty(pg_wal_lsn_diff(pg_current_wal_lsn(), restart_lsn)) AS replicationSlotLag, 
+       active 
+FROM pg_replication_slots;
+```

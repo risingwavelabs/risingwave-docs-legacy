@@ -233,7 +233,7 @@ select * from select_people_table_pg('SELECT * FROM people WHERE age > 25;'::VAR
 select * from select_people_table_pg('SELECT * FROM people;'::VARCHAR) WHERE age > 25;
 ```
 
-Please note that if errors happend when evaluating the UDF, the results will be empty and error message could be found both in logs of compute nodes and the UDF server, e.g. 
+Please note that if errors happened when evaluating the UDF, the results will be empty and error message could be found both in logs of compute nodes and the UDF server, e.g. 
 
 ```sql
 select * from select_people_table_pg('an invalid query;'::VARCHAR);

@@ -69,9 +69,9 @@ import TabItem from '@theme/TabItem';
     postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
     ```
 
-3. Grant required priviledges to the user.
+3. Grant required privileges to the user.
 
-    Run the following statements to grant the required priviledges to the user.
+    Run the following statements to grant the required privileges to the user.
 
     ```sql
     GRANT CONNECT ON DATABASE <database_name> TO <username>;   
@@ -79,7 +79,7 @@ import TabItem from '@theme/TabItem';
     GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>; 
     ```
 
-    You can use the following statement to check the priviledges of the user to the tables:
+    You can use the following statement to check the privileges of the user to the tables:
 
     ```sql
     postgres=# SELECT table_name, grantee, privilege_type

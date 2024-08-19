@@ -84,7 +84,7 @@ According to the [NATS documentation](https://docs.nats.io/running-a-nats-servic
 |nats.server_url| Required. URLs of the NATS JetStream server, in the format of *address*:*port*. If multiple addresses are specified, use commas to separate them.|
 |nats.subject| Required. NATS subject that you want to ingest from.|
 |nats.user| Optional. If authentication is required, specify the client user name.|
-|nats.password| Optinal. If authentication is required, specify the client password.|
+|nats.password| Optional. If authentication is required, specify the client password.|
 
 ## What's next
 
