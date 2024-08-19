@@ -25,10 +25,6 @@ It is important to note that UDFs have lower execution efficiency compared to bu
 
 At present, there are three ways to define your UDF. The first option is to use it as an external function, which runs as a standalone service and provides maximum flexibility. The second option is to use an embedded UDF, which runs internally in RisingWave. The third is to use a SQL UDF, which allows for the same capabilities as regular SQL while offering a more concise way to express complex queries.
 
-:::note Beta feature
-UDF is currently in Beta. Please contact us if you encounter any issues or have feedback.
-:::
-
 You can create all types of UDFs mentioned above using the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md) command. However, the syntax may vary slightly depending on the type of UDF you want to create. We have provided specific guides for each type of UDF below, so you can choose the one that best meets your needs.
 
 
