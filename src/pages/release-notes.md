@@ -26,12 +26,12 @@ This version was released on July 30, 2024.
 - SQL functions & operators:
     - Supports `has_table_privilege()`, `has_schema_privilege()`, and `has_any_column_privilege()`. [#16674](https://github.com/risingwavelabs/risingwave/pull/16674). See [System administration functions](/docs/current/sql-function-sys-admin/).
     - Supports `quote_literal()` and `quote_nullable()`. [#16807](https://github.com/risingwavelabs/risingwave/pull/16807). See [String functions and operators](/docs/current/sql-function-string/).
-    - Supports `pg_get_keywords()`. [#17033](https://github.com/risingwavelabs/risingwave/pull/17033). See [System information functions](/docs/dev/sql-function-sys-info/).
+    - Supports `pg_get_keywords()`. [#17033](https://github.com/risingwavelabs/risingwave/pull/17033). See [System information functions](/docs/current/sql-function-sys-info/).
     - Supports `jsonb_set()`. [#17124](https://github.com/risingwavelabs/risingwave/pull/17124). See [JSON functions and operators](/docs/current/sql-function-json/).
     - Allows the specified time zone of `AT TIME ZONE` to be non-literal. [#17395](https://github.com/risingwavelabs/risingwave/pull/17395)
 - System catalog:
     - Supports `rw_catalog.actor_id_to_ddl` and `rw_catalog.fragment_id_to_ddl`. [#17229](https://github.com/risingwavelabs/risingwave/pull/17229). See [RisingWave catalogs](/docs/current/rw_catalog/).
-    
+
 
 #### Connectors
 
@@ -278,7 +278,7 @@ See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/c
 
 ## v1.6.0
 
-This version was released on January 11, 2024. 
+This version was released on January 11, 2024.
 
 ### Main changes
 
@@ -349,7 +349,7 @@ This version was released on December 11, 2023.
   - Supports `KILL` command. [#13434](https://github.com/risingwavelabs/risingwave/pull/13434)
   - Supports `SHOW PROCESSLIST` command. [#13287](https://github.com/risingwavelabs/risingwave/pull/13287). See [`SHOW PROCESSLIST` command](/docs/1.5/sql-show-processlist/).
   - Supports `SET TO DEFAULT` command. [#13693](https://github.com/risingwavelabs/risingwave/pull/13693). See [`SET` command](/docs/1.5/sql-set/).
-  - Supports `SHOW COLUMNS` and `DESCRIBE` from sinks and views. [#13626](https://github.com/risingwavelabs/risingwave/pull/13626). See [`SHOW COLUMNS`](/docs/1.5/sql-show-columns/) and [`DESCRIBE`](/docs/1.5/sql-describe/) command. 
+  - Supports `SHOW COLUMNS` and `DESCRIBE` from sinks and views. [#13626](https://github.com/risingwavelabs/risingwave/pull/13626). See [`SHOW COLUMNS`](/docs/1.5/sql-show-columns/) and [`DESCRIBE`](/docs/1.5/sql-describe/) command.
 - SQL functions & operators
   - Supports list and struct types for `jsonb_agg` and `jsonb_object_agg`. [#13299](https://github.com/risingwavelabs/risingwave/pull/13299). See [JSON functions operators](/docs/1.5/sql-function-json).
   - Supports `jsonb_build_array` and `jsonb_build_object`. [#13198](https://github.com/risingwavelabs/risingwave/pull/13198). See [JSON functions operators](/docs/1.5/sql-function-json).
@@ -640,7 +640,7 @@ This version was released on August 8, 2023.
 
           ```sql
           SELECT date_trunc('month', date '2023-03-04');
-          
+
                   date_trunc
           ---------------------------
             2023-03-01 00:00:00
@@ -651,7 +651,7 @@ This version was released on August 8, 2023.
 
           ```sql
           SELECT date_trunc('month', date '2023-03-04');
-          
+
                   date_trunc
           ---------------------------
             2023-03-01 00:00:00+00:00
@@ -676,7 +676,7 @@ This version was released on August 8, 2023.
 
 - Patterns
   - Supports multiple rank function calls in TopN by group. [#11149](https://github.com/risingwavelabs/risingwave/pull/11149)
-  
+
 - System catalog
 
   - Supports querying `created_at` and `initialized_at` from RisingWave relations such as sources, sinks, and tables in RisingWave catalogs. [#11199](https://github.com/risingwavelabs/risingwave/pull/11199)
@@ -686,7 +686,7 @@ This version was released on August 8, 2023.
 - Supports specifying more Kafka parameters when creating a source or sink. [#11203](https://github.com/risingwavelabs/risingwave/pull/11203)
 
 - JDBC sinks used for upserts must specify the downstream primary key via the `primary_key` option. [#11042](https://github.com/risingwavelabs/risingwave/pull/11042)
-  
+
 - `access_key` and its corresponding `secret_key` are now mandatory for all AWS authentication components. [#11120](https://github.com/risingwavelabs/risingwave/pull/11120)
 
 ### Assets
@@ -742,7 +742,7 @@ This version was released on July 12, 2023.
   - Adds a new system catalog `pg_proc`. [#10216](https://github.com/risingwavelabs/risingwave/pull/10216)
 
   - Adds new RisingWave catalogs:
-  
+
     - `rw_table_fragments`, `rw_fragments`, `rw_actors` [#10712](https://github.com/risingwavelabs/risingwave/pull/10712)
     - `rw_worker_nodes`, `rw_parallel_units` [#10656](https://github.com/risingwavelabs/risingwave/pull/10656)
     - `rw_connections`, `rw_databases`, `rw_functions`, `rw_indexes`, `rw_materialized_views`, `rw_schemas`, `rw_sinks`, `rw_sources`, `rw_tables`, `rw_users`, `rw_views` [#10593](https://github.com/risingwavelabs/risingwave/pull/10593)
@@ -775,7 +775,7 @@ This version was released on July 12, 2023.
     Old syntax - part 1:
 
     ```sql
-    ROW FORMAT data_format 
+    ROW FORMAT data_format
     [ MESSAGE 'message' ]
     [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
     ```
@@ -1138,7 +1138,7 @@ This version was released on October 17, 2022.
 
         ```sql
         SELECT * FROM generate_series(5,1,-2);
-        generate_series 
+        generate_series
         -----------------
                        5
                        3
@@ -1259,7 +1259,7 @@ This version was released on July 29, 2022.
 
 - RisingWave can now sink data to Kafka topics in append-only mode and Debezium mode. [#3923](https://github.com/risingwavelabs/risingwave/pull/3923) [#3682](https://github.com/risingwavelabs/risingwave/pull/3682) [#3674](https://github.com/risingwavelabs/risingwave/pull/3674)
 - Syntax change for `CREATE SOURCE`: A parameter name is no longer wrapped by single quotation marks. [#3997](https://github.com/risingwavelabs/risingwave/pull/3997). See the example:
-  - Old: `CREATE SOURCE s1 WITH ( 'connector' = 'kafka', 'kafka.topic' = 'kafka_1_partition_topic', 'kafka.brokers' = '127.0.0.1:29092' ) ROW FORMAT json;`  
+  - Old: `CREATE SOURCE s1 WITH ( 'connector' = 'kafka', 'kafka.topic' = 'kafka_1_partition_topic', 'kafka.brokers' = '127.0.0.1:29092' ) ROW FORMAT json;`
   - New: `CREATE SOURCE s WITH ( connector = 'kafka', kafka.topic = 'kafka_1_partition_topic', kafka.brokers = '127.0.0.1:29092' ) ROW FORMAT json;`
 
 ### Assets

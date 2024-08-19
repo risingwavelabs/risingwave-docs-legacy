@@ -245,3 +245,23 @@ ALTER TABLE kafka_source SET source_rate_limit TO default;
 -- Alter the rate limit of this table
 ALTER TABLE kafka_source SET source_rate_limit TO 1000;
 ```
+
+### `SET BACKFILL_RATE_LIMIT`
+
+```sql title=Syntax
+ALTER TABLE table_name
+    SET BACKFILL_RATE_LIMIT { TO | = } { default | rate_limit_number };
+```
+
+Use this statement to modify the backfill rate limit of a CDC table being created from a CDC source. For the specific value of `BACKFILL_RATE_LIMIT`, refer to [How to view runtime parameters](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
+
+```sql title="Examples"
+-- Pause the backfill
+ALTER TABLE t1 SET BACKFILL_RATE_LIMIT=0;
+
+-- Alter backfill rate limit
+ALTER TABLE t1 SET BACKFILL_RATE_LIMIT=1000;
+
+-- Disable the backfill
+ALTER TABLE t1 SET BACKFILL_RATE_LIMIT=DEFAULT;
+```
