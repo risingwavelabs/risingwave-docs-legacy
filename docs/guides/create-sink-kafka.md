@@ -122,7 +122,7 @@ For data type mapping, the serial type is supported. We map the serial type to t
 
 ### Protobuf specific parameters
 
-When creating an append-only Protobuf sink, the following options can be used following `FORMAT PLAIN ENCODE PROTOBUF`.
+When creating an append-only Protobuf sink, the following options can be used following `FORMAT PLAIN ENCODE PROTOBUF` or `FORMAT UPSERT ENCODE PROTOBUF`.
 
 |Field|Notes|
 |-----|-----|
@@ -139,12 +139,20 @@ The `file://` format is not recommended for production use. If it is used, it ne
 
 Syntax:
 
-```sql
+```sql title="FORMAT as PLAIN"
 FORMAT PLAIN
 ENCODE PROTOBUF (
    message = 'com.example.MyMessage',
    schema.location = 'location'
 )
+```
+
+```sql title="FORMAT as UPSERT"
+FORMAT UPSERT
+ENCODE PROTOBUF (
+   message = 'com.example.MyMessage',
+   schema.location = 'location'
+) KEY ENCODE TEXT
 ```
 
 For data type mapping, the serial type is supported. We map the serial type to the 64-bit signed integer.
