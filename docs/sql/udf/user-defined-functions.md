@@ -51,32 +51,38 @@ For details about how to create a SQL UDF and its use cases, see:
 
 - [SQL UDFs](/sql/udf/sql-udfs.md)
 
-<details>
+---
 
-<summary>Click here to know other ways to categorize UDFs</summary>
+### Other ways to categorize UDFs
 
 UDFs can be categorized based on three dimensions. In the documentation provided above, we categorize them according to the execution method of functions, which has an impact on their performance and capabilities.
 
 The other two dimensions are:
 
-- the input and output of functions
+- The input and output of functions.
 
   For this dimension, since common SQL functions include scalar functions,  table functions, aggregate functions, and window functions, UDFS can be classified as user-defined scalar functions (abbreviated as UDFs), user-defined table functions (UDTFs), user-defined aggregate functions (UDAFs), and user-defined window functions (UDWFs).
 
-  RisingWave currently supports UDF, UDTF and UDAF, covering most practical needs. 
+  RisingWave supports UDFs, UDTFs and UDAFs, covering most practical needs. You can find their guides in our documentation too.
+  
+  For example, for UDAFs, you can use the [`CREATE AGGREGATE`](/sql/commands/sql-create-aggregate.md) command to create functions. Meanwhile, we also offer dedicated sections for creating UDAFs in [Embedded Python UDFs](/sql/udf/udf-python-embedded.md#define-your-aggregate-functions) and [Embedded JavaScript UDFs](/sql/udf/udf-javascript.md#define-your-aggregate-functions).
  
-- the language used to write the function
+- The language used to write functions.
 
   RisingWave currently supports using SQL, Python, Java, JavaScript, and Rust to write UDFs.
-
-
-To learn more about the design and implementation of our user-defined functions (UDFs), we have a series of blog articles on our website, such as "[RisingWave user-defined functions: Overview](https://risingwave.com/blog/risingwave-user-defined-functions-overview/)". These blogs provide in-depth information about UDFs and can help you understand their features and capabilities better. Feel free to explore them!
-  
-</details>
-
 
 ## See also
 
 You may also use UDFs to query data stored in different databases
 
 - [Query foreign data](/sql/udf/udf-foreign-data.md)
+
+To learn more about the design and implementation of our user-defined functions (UDFs), we have a series of blog articles on our website, for example:
+
+- [RisingWave user-defined functions: Overview](https://risingwave.com/blog/risingwave-user-defined-functions-overview/)
+
+- [RisingWave user-defined functions: Rust x WebAssembly](https://risingwave.com/blog/user-defined-functions-rust-x-webassembly/)
+
+- [RisingWave user-defined functions: Python external functions](https://risingwave.com/blog/risingwave-user-defined-functions-3-python-external-functions/)
+
+These blogs provide in-depth information about UDFs and can help you understand their features and capabilities better. Feel free to explore them!
