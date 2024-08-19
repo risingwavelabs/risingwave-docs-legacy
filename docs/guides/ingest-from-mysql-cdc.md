@@ -222,7 +222,7 @@ You can see the [INCLUDE clause](/ingest/include-clause.md) for more details.
 
 #### Debezium parameters
 
-[Debezium v2.4 connector configuration properties](https://debezium.io/documentation/reference/2.4/connectors/mysql.html#mysql-advanced-connector-configuration-properties) can also be specified under the `WITH` clause when creating a table or shared source. Add the prefix `debezium.` to the connector property you want to include.
+[Debezium v2.6 connector configuration properties](https://debezium.io/documentation/reference/2.6/connectors/mysql.html#mysql-advanced-connector-configuration-properties) can also be specified under the `WITH` clause when creating a table or shared source. Add the prefix `debezium.` to the connector property you want to include.
 
 For instance, to skip unknown DDL statements, specify the `schema.history.internal.skip.unparseable.ddl` parameter as `debezium.schema.history.internal.skip.unparseable.ddl`.
 
