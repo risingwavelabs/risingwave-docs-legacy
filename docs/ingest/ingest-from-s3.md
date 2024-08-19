@@ -45,7 +45,7 @@ For CSV data, specify the delimiter in the `delimiter` option in `ENCODE propert
 
 |Field|Notes|
 |---|---|
-|connector|Required. Support the `s3` (recommended) connector only. |
+|connector|Required. Support the `s3` connector only. |
 |s3.region_name |Required. The service region.|
 |s3.bucket_name |Required. The name of the bucket the data source is stored in. |
 |s3.credentials.access|Required. This field indicates the access key ID of AWS. |
