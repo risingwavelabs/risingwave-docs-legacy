@@ -25,7 +25,7 @@ The following is a list of all features in the public preview phase:
 
 | Feature name                            | In public preview phase? | Start date | Start version | End date |
 |-----------------------------------------|-------------------------|------------|---------------|----------|
-| [Subscription](/transform/subscription.md) | Yes                     | 2024-06-15 | 1.0.0         | \        |
+| [Subscription](/docs/next/subscription/) | Yes                     | 2024-06-15 | 1.0.0         | \        |
 | Time travel queries                     | Yes                     | 2024-07-01 | 1.0.1         | \        |
 | Manage secrets                          | Yes                     | 2024-07-10 | 1.0.2         | \        |
 | Ingest from MySQL CDC (Auto-map schema) | Yes                     | 2024-07-20 | 1.0.3         | \        |
