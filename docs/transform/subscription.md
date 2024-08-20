@@ -12,8 +12,8 @@ Subscription is used to pull data change records for a specific table or materia
 
 This feature allows you to monitor all data changes without relying on external event stores like Kafka. Compared to the Kafka sink or other event store sinks, a subscription requires fewer components and thus, less maintenance.
 
-:::info Public Review
-This feature is in the public review stage. This means it's nearing the final product, but not fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public review feature list](/product-lifecycle/).
+:::info Public Preview
+This feature is in the public preview stage. This means it's nearing the final product, but not fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/).
 :::
 
 ## Manage subscription

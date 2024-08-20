@@ -29,8 +29,8 @@ In addition, you can use the [`rw_secrets`](/sql/system-catalogs/rw_catalog.md) 
 This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
 :::
 
-:::info Public Review
-This feature is in the public review stage. This means it's nearing the final product, but not fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public review feature list](/product-lifecycle/).
+:::info Public Preview
+This feature is in the public preview stage. This means it's nearing the final product, but not fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/).
 :::
 
 ## Create secrets
