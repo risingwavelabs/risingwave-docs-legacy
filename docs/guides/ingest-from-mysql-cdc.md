@@ -484,8 +484,8 @@ RisingWave stores source offset in the internal state table of source executor. 
 
 To get the current binlog offset, run this SQL query on upstream MySQL (earlier than 8.4.0):
 
-:::sql
+```sql
 SHOW MASTER STATUS;
-:::
+```
 
 Then compare the above offset with source offset stored in the state table to determine the CDC progress.
