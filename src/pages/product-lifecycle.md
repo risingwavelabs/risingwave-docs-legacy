@@ -25,10 +25,10 @@ The following is a list of all features in the public preview phase:
 
 | Feature name                            | In public preview phase? | Start date | Start version | End date |
 |-----------------------------------------|-------------------------|------------|---------------|----------|
-| [Subscription](/docs/current/subscription/) | Yes                     | 2024.5 | 1.9         | \        |
-| [Time travel queries](/docs/current/time-travel-queries/)                     | Yes                     | 2024.7 | 2.0         | \        |
-| [Manage secrets](/docs/current/manage-secrets/)                          | Yes                     | 2024.7 | 2.0         | \        |
-| [Ingest from MySQL CDC (Auto-map schema)](/docs/current/ingest-from-mysql-cdc/#automatically-map-upstream-table-schema) | Yes                     | 2024.6 | 1.10         | \        |
+| [Subscription](/docs/dev/subscription/) | Yes                     | 2024.5 | 1.9         | \        |
+| [Time travel queries](/docs/dev/time-travel-queries/)                     | Yes                     | 2024.7 | 2.0         | \        |
+| [Manage secrets](/docs/dev/manage-secrets/)                          | Yes                     | 2024.7 | 2.0         | \        |
+| [Ingest from MySQL CDC (Auto-map schema)](/docs/dev/ingest-from-mysql-cdc/#automatically-map-upstream-table-schema) | Yes                     | 2024.6 | 1.10         | \        |
 
 
 This table will be updated regularly to reflect the latest status of features as they progress through the release stages.
