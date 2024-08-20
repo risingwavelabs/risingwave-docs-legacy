@@ -15,7 +15,7 @@ In RisingWave, the release of product typically follows three main stages:
 
 2. **Public preview**: The public preview stage is where we've incorporated feedback from the technical preview and are nearing the final product. It's more stable than the technical preview, but there may still be some bugs and issues. During this stage, corresponding guides are provided in the official documentation, and the feature is marked with a "Public preview" note. A complete list of all such features is offered below.
 
-3. **General availability (GA)**: All other features are considered to be generally available. The general availability stage is where the feature is fully developed, tested, and ready for use in production environments. At this stage, the "Public preview" note is removed.
+3. **General availability (GA)**: All other features are considered to be generally available. The general availability stage is where the feature is fully developed, tested, and ready for use in production environments.
 
 ## List of features in the public preview stage
 
