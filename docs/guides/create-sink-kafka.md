@@ -85,7 +85,7 @@ These options should be set in `FORMAT data_format ENCODE data_encode (key = 'va
 |Field|Notes|
 |-----|-----|
 |data_format| Data format. Allowed formats:<ul><li> `PLAIN`: Output data with insert operations.</li><li> `DEBEZIUM`: Output change data capture (CDC) log in Debezium format.</li><li> `UPSERT`: Output data as a changelog stream. `primary_key` must be specified in this case. </li></ul> To learn about when to define the primary key if creating an `UPSERT` sink, see the [Overview](/data-delivery.md).|
-|data_encode| Data encode. Supported encodes: `JSON`, `AVRO`, and `PROTOBUF`. For `AVRO` encode, `UPSERT AVRO` and `PLAIN AVRO` sinks are supported. For `PROTOBUF` encode, only `PLAIN PROTOBUF` sinks are supported.|
+|data_encode| Data encode. Allowed encodes:<ul><li> `JSON`: Supports `PLAIN JSON`, `UPSERT JSON` and `DEBEZIUM JSON` sinks. </li><li> `AVRO`: Supports `UPSERT AVRO` and `PLAIN AVRO` sinks. </li><li> `PROTOBUF`: Supports `PLAIN PROTOBUF` and `UPSERT PROTOBUF` sinks.  </li></ul> For `UPSERT PROTOBUF` sinks, you must specify `key encode text`, while it remains optional for other format/encode combinations.|
 |force_append_only| If `true`, forces the sink to be `PLAIN` (also known as `append-only`), even if it cannot be.|
 |timestamptz.handling.mode|Controls the timestamptz output format. This parameter specifically applies to append-only or upsert sinks using JSON encoding. <br/> - If omitted, the output format of timestamptz is `2023-11-11T18:30:09.453000Z` which includes the UTC suffix `Z`. <br/> - When `utc_without_suffix` is specified, the format is changed to `2023-11-11 18:30:09.453000`.|
 |schemas.enable| Only configurable for upsert JSON sinks. By default, this value is `false` for upsert JSON sinks and `true` for debezium `JSON` sinks. If `true`, RisingWave will sink the data with the schema to the Kafka sink. Note that this is not referring to a schema registry containing a JSON schema, but rather schema formats defined using [Kafka Connect](https://www.confluent.io/blog/kafka-connect-deep-dive-converters-serialization-explained/#json-schemas).|
@@ -122,7 +122,7 @@ For data type mapping, the serial type is supported. We map the serial type to t
 
 ### Protobuf specific parameters
 
-When creating an append-only Protobuf sink, the following options can be used following `FORMAT PLAIN ENCODE PROTOBUF`.
+When creating an append-only Protobuf sink, the following options can be used following `FORMAT PLAIN ENCODE PROTOBUF` or `FORMAT UPSERT ENCODE PROTOBUF`.
 
 |Field|Notes|
 |-----|-----|
@@ -139,12 +139,20 @@ The `file://` format is not recommended for production use. If it is used, it ne
 
 Syntax:
 
-```sql
+```sql title="FORMAT as PLAIN"
 FORMAT PLAIN
 ENCODE PROTOBUF (
    message = 'com.example.MyMessage',
    schema.location = 'location'
 )
+```
+
+```sql title="FORMAT as UPSERT"
+FORMAT UPSERT
+ENCODE PROTOBUF (
+   message = 'com.example.MyMessage',
+   schema.location = 'location'
+) KEY ENCODE TEXT
 ```
 
 For data type mapping, the serial type is supported. We map the serial type to the 64-bit signed integer.

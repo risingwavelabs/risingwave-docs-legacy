@@ -8,7 +8,7 @@ slug: /go-client-libraries
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/go-client-libraries/" />
 </head>
 
-As RisingWave is wire-compatible with PostgreSQL, you can use third-party PostgreSQL drivers to interact with RisingWave from your Python applications.
+As RisingWave is wire-compatible with PostgreSQL, you can use third-party PostgreSQL drivers to interact with RisingWave from your Go applications.
 
 In this guide, we use the [`pgx` driver](https://github.com/jackc/pgx) to connect to RisingWave.
 
