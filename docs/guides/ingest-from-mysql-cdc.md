@@ -407,6 +407,10 @@ CREATE TABLE {{ this }}  (
 
 ## Automatically map upstream table schema
 
+:::info Public Review
+This feature is in the public review stage. This means it's nearing the final product, but not fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public review feature list](/product-lifecycle/).
+:::
+
 RisingWave supports automatically mapping the upstream table schema when creating a CDC table from a MySQL CDC source. Instead of defining columns individually, you can use `*` when creating a table to ingest all columns from the source table. Note that `*` cannot be used if other columns are specified in the table creation process.
 
 Below is an example to create a table that ingests all columns from the upstream table from the MySQL database:
