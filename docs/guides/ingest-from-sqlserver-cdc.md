@@ -22,6 +22,10 @@ You can ingest CDC data from SQL Server into RisingWave in two ways:
   
   You can use a CDC tool and then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/ingest/ingest-from-cdc.md) topic.
 
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
 ## Set up SQL Server
 
 Microsoft offers [official images](https://hub.docker.com/r/microsoft/mssql-server) for Microsoft SQL Server based on Ubuntu. Microsoft Azure also provides [Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) as a managed SQL Server service. In this section, we will demonstrate using a SQL Server instance running in a Docker container and highlight the differences when using Azure SQL Database.
