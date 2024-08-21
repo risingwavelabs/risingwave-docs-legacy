@@ -215,3 +215,5 @@ terraform
 Serverless
 WASM
 schemas
+risingwavecloud
+Rockset
