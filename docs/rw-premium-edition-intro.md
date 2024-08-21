@@ -82,8 +82,7 @@ RisingWave Premium 1.0 is the first major release of this new edition with sever
 
 - Backup/Restore
 
-The premium feature set will grow over time. Meanwhile, customers will have the opportunity to influence our roadmap in an impactful 
-way through monthly customer success reviews.
+The premium feature set will grow over time. Meanwhile, customers will have the opportunity to influence our roadmap through monthly customer success reviews.
 
 ## Support
 
