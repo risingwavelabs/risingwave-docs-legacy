@@ -42,6 +42,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          id: "rw-premium-edition-intro",
+          label: "RisingWave Premium",
+        },
+        {
+          type: "doc",
           label: "FAQ",
           id: "rw-faq",
         },
