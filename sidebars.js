@@ -37,11 +37,6 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "RisingWave vs. Flink",
-          id: "risingwave-flink-comparison",
-        },
-        {
-          type: "doc",
           label: "Integrations",
           id: "rw-integration-summary",
         },
@@ -80,6 +75,11 @@ const sidebars = {
               type: "doc",
               label: "Transactions",
               id: "concepts/transactions",
+            },
+            {
+              type: "doc",
+              label: "RisingWave vs. Flink",
+              id: "risingwave-flink-comparison",
             },
           ],
         },
