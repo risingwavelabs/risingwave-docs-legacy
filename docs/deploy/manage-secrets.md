@@ -9,7 +9,7 @@ slug: /manage-secrets
 </head>
 
 :::tip Premium Edition Feature
-This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions.  For a complete list of premium features and more information about the premium edition, please visit our RisingWave Premium introduction page. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions.  For a complete list of premium features and more information about the premium edition, please visit our [RisingWave Premium introduction](/rw-premium-edition-intro.md#complete-list-of-premium-features) page. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
 :::
 
 By default, credentials for connecting to external services (like MySQL) are specified in plain text within the `WITH` clause of `CREATE SOURCE / SINK` statements. This practice poses security risks, particularly for large organizations where multiple teams manage connected services.

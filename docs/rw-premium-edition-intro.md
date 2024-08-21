@@ -64,7 +64,7 @@ RisingWave Premium 1.0 is the first major release of this new edition with sever
 
 ### Maintenance and operation
 
-- Manage user credentials like secrets
+- [Manage user credentials like secrets](/deploy/manage-secrets.md)
 
 - New Grafana template for Observability
 
