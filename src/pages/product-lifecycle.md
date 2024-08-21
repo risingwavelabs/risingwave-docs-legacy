@@ -17,7 +17,7 @@ In RisingWave, the release of product typically follows three main stages:
 
 3. **General availability (GA)**: All other features are considered to be generally available. The general availability stage is where the feature is fully developed, tested, and ready for use in production environments.
 
-## List of features in the public preview stage
+## Features in the public preview stage
 
 As introduced above, when you see a "Public preview" note in the documentation, it indicates that a feature has not yet achieved 100% stability. We recommend evaluating the feature according to your specific use case. If you encounter any issues with the feature, please contact us via our [Slack channel](https://www.risingwave.com/slack). We also welcome any of your feedback to help us improve it.
 
@@ -25,10 +25,10 @@ The following is a list of all features in the public preview phase:
 
 | Feature name                            | In public preview phase? | Start date | Start version | End date |
 |-----------------------------------------|-------------------------|------------|---------------|----------|
-| [Subscription](/docs/dev/subscription/) | Yes                     | 2024.5 | 1.9         | \        |
-| [Time travel queries](/docs/dev/time-travel-queries/)                     | Yes                     | 2024.7 | 2.0         | \        |
-| [Manage secrets](/docs/dev/manage-secrets/)                          | Yes                     | 2024.7 | 2.0         | \        |
-| [Ingest from MySQL CDC (Auto-map schema)](/docs/dev/ingest-from-mysql-cdc/#automatically-map-upstream-table-schema) | Yes                     | 2024.6 | 1.10         | \        |
+| [Subscription](/docs/next/subscription) | Yes                     | 2024.5 | 1.9         | \        |
+| [Time travel queries](/docs/next/time-travel-queries/)                     | Yes                     | 2024.7 | 2.0         | \        |
+| [Manage secrets](/docs/next/manage-secrets/)                          | Yes                     | 2024.7 | 2.0         | \        |
+| [Ingest from MySQL CDC (Auto-map schema)](/docs/next/ingest-from-mysql-cdc/#automatically-map-upstream-table-schema) | Yes                     | 2024.6 | 1.10         | \        |
 
 
 This table will be updated regularly to reflect the latest status of features as they progress through the release stages.

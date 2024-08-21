@@ -30,7 +30,7 @@ This feature is only available in the premium edition of RisingWave. The premium
 :::
 
 :::info Public Preview
-This feature is in the public preview stage. This means it's nearing the final product, but not fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/).
+This feature is in the public preview stage. This means it's nearing the final product, but not fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 ## Create secrets
