@@ -87,7 +87,7 @@ way through monthly customer success reviews.
 
 ## Support
 
-## Liscening
+## Licensing
 
 RisingWave Premium will not alter the source code licensing model. RisingWave will continue to keep Apache 2 license. All the feature development will occur in the same open repository. However, there will be two sets of binaries. Original edition will be released ‘RisingWave Open Source’, the new edition will be released as ‘RisingWave Premium’. The former will not have access to the features tagged as ‘Premium features’ while the latter will provide full access albeit using a license key.
 
