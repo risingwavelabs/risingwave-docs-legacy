@@ -26,7 +26,7 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 
     Ensure that [Docker](https://docs.docker.com/desktop/) is installed in your environment and running.
 
-* Ensure you allocate enough resources for the deployment, and use the recommended disks for etcd. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
+* Ensure you allocate enough resources for the deployment. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
 
 ## Create a Kubernetes cluster
 
@@ -114,7 +114,7 @@ RisingWave Kubernetes Operator extends the Kubernetes with CRDs (Custom Resource
 
 The RisingWave resource is a custom resource that defines a RisingWave cluster. In [this directory](https://github.com/risingwavelabs/risingwave-operator/blob/main/docs/manifests/risingwave), you can find resource examples that deploy RisingWave with different configurations of metadata store and state backend. Based on your requirements, you can use these resource files directly or as a reference for your customization. The [stable directory](https://github.com/risingwavelabs/risingwave-operator/tree/main/docs/manifests/stable/) contains resource files that we have tested compatibility with the latest released version of the RisingWave Operator:
 
-The resource files are named using the convention of "risingwave-<meta_store>-<state_backend>.yaml". For example, `risingwave-etcd-s3.yaml` means that this manifest file uses etcd as the meta storage and AWS S3 as the state backend. The resource files whose names do not contain `etcd` means that they use memory as the meta store, which does not persist meta node data and therefore has a risk of losing data. Note that for production deployments, you should use etcd as the metadata store. Therefore, please use a resource file that contains `etcd` in its name or choose a file that is in the `/stable/` directory.
+The resource files are named using the convention of "risingwave-<meta_store>-<state_backend>.yaml". For example, `risingwave-postgresql-s3.yaml` means that this manifest file uses PostgreSQL as the meta storage and AWS S3 as the state backend.
 
 RisingWave supports using these systems or services as state backends.
 
@@ -126,62 +126,7 @@ RisingWave supports using these systems or services as state backends.
 * Alibaba Cloud OSS
 * HDFS
 
-You can [customize etcd as a separate cluster](#optional-customize-the-etcd-deployment), [customize the state backend](#optional-customize-the-state-backend), or [customize the state store directory](#optional-customize-the-state-store-directory).
-
-### Optional: Customize the etcd deployment
-
-RisingWave uses etcd for persisting data for meta nodes. It's important to note that etcd is highly sensitive to disk write latency. Slow disk performance can lead to increased etcd request latency and potentially impact the stability of the cluster. When planning your RisingWave deployment, follow the [etcd disk recommendations](/deploy/hardware-requirements.md#etcd).
-
-We recommend using the [bitnami/etcd](https://github.com/bitnami/charts/blob/main/bitnami/etcd/README.md) Helm chart to deploy the etcd. Please save the following configuration as `etcd-values.yaml`.
-
-```yaml
-service:
-  ports:
-    client: 2379
-  peer: 2380
-
-replicaCount: 3
-
-resources:
-  limits:
-    cpu: 1
-    memory: 2Gi
-  requests:
-    cpu: 1
-    memory: 2Gi
-
-persistence:
-  # storageClass: default
-  size: 10Gi
-  accessModes: [ "ReadWriteOnce" ]
-
-auth:
-  rbac:
-    create: false
-    allowNoneAuthentication: true
-
-extraEnvVars:
-- name:  "ETCD_MAX_REQUEST_BYTES"
-  value: "104857600"
-- name:  "MAX_QUOTA_BACKEND_BYTES"
-  value: "8589934592"
-- name:  "ETCD_AUTO_COMPACTION_MODE"
-  value: "periodic"
-- name:  "ETCD_AUTO_COMPACTION_RETENTION"
-  value: "1m"
-- name:  "ETCD_SNAPSHOT_COUNT"
-  value: "10000"
-- name:  "ETCD_MAX_TXN_OPS"
-  value: "999999"
-```
-
-If you would like to specify the storage class of the persistent volume, uncomment the `# storageClass: default` and specify the right value.
-
-Then, run the following command to deploy the etcd cluster:
-
-```bash
-helm install -f etcd-values.yaml etcd bitnami/etcd
-```
+You can [customize the state backend](#optional-customize-the-state-backend), or [customize the state store directory](#optional-customize-the-state-store-directory).
 
 ### Optional: Customize the state backend
 
@@ -560,7 +505,7 @@ If the instance is running properly, the output should look like this:
 
 ```shell
 NAME        RUNNING   STORAGE(META)   STORAGE(OBJECT)   AGE
-risingwave  True      etcd            S3                30s
+risingwave  True      postgresql      S3                30s
 ```
 
 ## Connect to RisingWave
@@ -611,7 +556,7 @@ You can connect to RisingWave from Nodes such as EC2 in Kubernetes
 1. Connect to RisingWave by running the following commands on the Node.
 
     ```shell
-    export RISINGWAVE_NAME=risingwave-etcd-hdfs
+    export RISINGWAVE_NAME=risingwave-postgresql-hdfs
     export RISINGWAVE_NAMESPACE=default
     export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get node -o jsonpath='{.items[0].status.addresses[?(@.type=="InternalIP")].address}'`
     export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].nodePort}'`
@@ -640,7 +585,7 @@ If you are using EKS, GCP, or other managed Kubernetes services provided by clou
 2. Connect to RisingWave with the following commands.
 
     ```shell
-    export RISINGWAVE_NAME=risingwave-etcd-hdfs
+    export RISINGWAVE_NAME=risingwave-postgresql-hdfs
     export RISINGWAVE_NAMESPACE=default
     export RISINGWAVE_HOST=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].status.loadBalancer.ingress[0].ip}'`
     export RISINGWAVE_PORT=`kubectl -n ${RISINGWAVE_NAMESPACE} get svc -l risingwave/name=${RISINGWAVE_NAME},risingwave/component=frontend -o jsonpath='{.items[0].spec.ports[0].port}'`

@@ -14,7 +14,7 @@ This guide walks you through the process of deploying RisingWave in a single Kub
 
 - Ensure you have Helm 3.7 + installed in your environment. For details about how to install Helm, see the [Helm documentation](https://helm.sh/docs/intro/install/).
 - Ensure you have [Kubernetes](https://kubernetes.io/) 1.24 or higher installed in your environment.
-- Ensure you allocate enough resources for the deployment, and use the recommended disks for etcd. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
+- Ensure you allocate enough resources for the deployment. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
 
 ## Step 1: Start Kubernetes
 
