@@ -69,6 +69,7 @@ For tables with primary key constraints, if a new data record with an existing k
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
 |scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp.millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+|group.id.prefix | Optional. Specify a custom group ID prefix for the source. The default prefix is `rw-consumer`. Each job (materialized view) will have a separate consumer group with a generated suffix in the group ID， so the format of consumer group is `{group_id_prefix}-{fragment_id}`. This is used for monitoring progress in external Kafka tools and for authorization purposes. RisingWave does not rely on committed offsets or join the consumer group, it only reports offsets to the group.|
 |properties.sync.call.timeout | Optional. Specify the timeout. By default, the timeout is 5 seconds.  |
 |properties.client.id|Optional. Client ID associated with the Kafka client. |
 
@@ -658,10 +659,3 @@ WITH (
 </TabItem>
 
 </Tabs>
-
-
----
-
-:::note
-We have noticed that there is a frequently asked question about the Kafka source: why doesn't RisingWave accept the Kafka consumer group ID? We want to inform you that we are actively working on supporting this feature. You can look forward to using the Kafka consumer group ID with RisingWave soon.
-:::
