@@ -33,4 +33,4 @@ Identifiers are case-insensitive. It means `wave`, `WAVE`, and `wAve` are the sa
 
 To avoid conflicts, double-quote all field names (e.g., `"field_name"`) when working with case-sensitive sources.
 
-RisingWave processes unquoted identifers as in lower cases. If you create a table named `WAVE`, it will display as `wave` when you choose to list all tables. You can reference it by `wave`, `WAVE`, or a combination of upper- and lower cases in SQL statements.
+RisingWave processes unquoted identifiers as in lower cases. If you create a table named `WAVE`, it will display as `wave` when you choose to list all tables. You can reference it by `wave`, `WAVE`, or a combination of upper- and lower cases in SQL statements.

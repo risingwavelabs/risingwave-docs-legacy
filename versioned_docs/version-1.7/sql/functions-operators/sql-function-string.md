@@ -202,7 +202,7 @@ The syntax of the format specifier:
 The allowed values for *type* are:
 
 - `s`: Formats the argument value as a string. NULL is treated as an empty string.
-- `I`: Treats the argument value as an SQL identifer.
+- `I`: Treats the argument value as an SQL identifier.
 <!-- `L` is not supported yet - `L`: Quotes the argument value as an SQL literal. -->
 
 Please note that *format_string* and *format_arg* can be variables.

@@ -119,13 +119,13 @@ Sink decoupling is enabled by default for the following sinks:
 - [Kinesis](/guides/sink-to-iceberg.md)
 - [Google Pub/Sub](guides/sink-to-google-pubsub.md)
 - [Nats](/guides/sink-to-nats.md)
-- [Clickhouse](/guides/sink-to-clickhouse.md)
 
 Sink decoupling is enabled by default for the following sinks if `commit_checkpoint_interval` > 1:
 
 - [StarRocks](/guides/sink-to-starrocks.md)
 - [Delta Lake](/guides/sink-to-delta-lake.md)
 - [Apache Iceberg](/guides/sink-to-iceberg.md)
+- [Clickhouse](/guides/sink-to-clickhouse.md)
 
 Sink decoupling is enabled by default for the following sinks if the sink is append-only:
 

@@ -9,9 +9,9 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
 ## Prerequisites
 
-- You need to create a project with the Pro plan or Enterprise plan in RisingWave Cloud:
+- You need to create a project with the Standard plan or Advanced plan in RisingWave Cloud:
   
-  - See [Choose a project plan](/project-choose-a-project-plan.md) for more information. Please note that Developer projects do not support PrivateLink connections.
+  - See [Choose a project plan](/project-choose-a-project-plan.md) for more information. Please note that Trial projects do not support PrivateLink connections.
   
   - The VPC you want to connect to and your project must be in the same region. If your preferred region is not available when creating a project, contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com).
   

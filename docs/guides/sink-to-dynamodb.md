@@ -25,18 +25,18 @@ FORMAT data_format ENCODE data_encode [ (
 
 ## Parameters
 
-| Field                              | Note                                                                                                                   |
-|------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| `table`                            | Required. Name of the DynamoDB table where you want to write the data.                                                  |
-| `primary_key`                      | Required. A pair of columns representing the partition key and sort key of DynamoDB, e.g., `key1,key2`, separated by comma.|
-| `aws.region`                       | Required. AWS region where your DynamoDB table is hosted.                                                               |
-| `aws.endpoint_url`                 | Optional. Custom endpoint URL for connecting to DynamoDB. Useful for testing with DynamoDB Local.                        |
-| `aws.credentials.access_key_id`    | Conditional. AWS access key ID for accessing DynamoDB. Must be specified when using access key ID and secret key.       |
-| `aws.credentials.secret_access_key`| Conditional. AWS secret access key for accessing DynamoDB. Must be specified when using access key ID and secret key.   |
-| `aws.credentials.role.arn`         | Conditional. ARN of the IAM role to assume for accessing DynamoDB. Must be specified when using AssumeRole.             |
-| `aws.credentials.role.external_id` | Conditional. External ID for assuming the IAM role specified in `aws.credentials.role.arn`.                              |
-| `aws.profile`                      | Optional. The name of the AWS CLI profile to use for accessing DynamoDB. If specified, it overrides the default profile. |
-| `dynamodb.max_batch_rows`          | Optional. Maximum number of rows to write in a single batch operation to DynamoDB. This helps optimize throughput and manage rate limits. Default value is `1024`.                      |
+| Field                               | Note                                                                                                                                                               |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `table`                             | Required. Name of the DynamoDB table where you want to write the data.                                                                                             |
+| `primary_key`                       | Required. A pair of columns representing the partition key and sort key of DynamoDB, e.g., `key1,key2`, separated by comma.                                        |
+| `aws.region`                        | Required. AWS region where your DynamoDB table is hosted.                                                                                                          |
+| `aws.endpoint_url`                  | Optional. Custom endpoint URL for connecting to DynamoDB. Useful for testing with DynamoDB Local.                                                                  |
+| `aws.credentials.access_key_id`     | Conditional. AWS access key ID for accessing DynamoDB. Must be specified when using access key ID and secret key.                                                  |
+| `aws.credentials.secret_access_key` | Conditional. AWS secret access key for accessing DynamoDB. Must be specified when using access key ID and secret key.                                              |
+| `aws.credentials.role.arn`          | Conditional. ARN of the IAM role to assume for accessing DynamoDB. Must be specified when using AssumeRole.                                                        |
+| `aws.credentials.role.external_id`  | Conditional. External ID for assuming the IAM role specified in `aws.credentials.role.arn`.                                                                        |
+| `aws.profile`                       | Optional. The name of the AWS CLI profile to use for accessing DynamoDB. If specified, it overrides the default profile.                                           |
+| `dynamodb.max_batch_rows`           | Optional. Maximum number of rows to write in a single batch operation to DynamoDB. This helps optimize throughput and manage rate limits. Default value is `1024`. |
 
 ## Partition key and sort key mapping
 
@@ -53,12 +53,12 @@ CREATE TABLE IF NOT EXISTS movies (
 );
 ```
 
-This makes sure that the data structure in RisingWave aligns with the key definition in DynamoDB, thus preventing any further mis-operations.
+This makes sure that the data structure in RisingWave aligns with the key definition in DynamoDB, thus preventing any further misoperations.
 
 ## Data type mapping
 
 | RisingWave Data Type        | DynamoDB Data Type |
-|-----------------------------|--------------------|
+| --------------------------- | ------------------ |
 | boolean                     | Bool               |
 | smallint                    | number (N)         |
 | integer                     | number (N)         |

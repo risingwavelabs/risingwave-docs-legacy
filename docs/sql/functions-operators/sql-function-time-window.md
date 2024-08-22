@@ -132,7 +132,7 @@ The result looks like the table below. Note that the number of rows in the resul
 
 ## Session windows
 
-In RisingWave, session windows are supported by a special type of window function frame: `SESSION` frame. You can refer to [Window functions (OVER clause)](../../transform/window-functions.md) for detailed syntax.
+In RisingWave, session windows are supported by a special type of window function frame: `SESSION` frame. You can refer to [Window function calls](../../sql/query-syntax/query-syntax-value-exp.md#window-function-calls) for detailed syntax.
 
 :::note
 

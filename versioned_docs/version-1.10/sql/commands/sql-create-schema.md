@@ -43,7 +43,7 @@ Names and unquoted identifiers are case-insensitive. Therefore, you must double-
 
 ```sql title="Examples of AUTHORIZATION clause"
 
--- Create a new schema for the user 'joe'. As the schema name is ommited, the schema name is default to the user name 'joe'.
+-- Create a new schema for the user 'joe'. As the schema name is omitted, the schema name is default to the user name 'joe'.
 CREATE SCHEMA IF NOT EXISTS AUTHORIZATION joe;
 
 ----RESULT

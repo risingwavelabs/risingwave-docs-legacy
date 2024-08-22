@@ -131,7 +131,7 @@ All WITH options are required.
 
 You can sink data from a table, source, or materialized view in RisingWave to PostgreSQL.
 
-For demostration purposes, we'll create a source and a materialized view, and then sink data from the materialized view. If you already have a table or materialized view to sink data from, you don't need to perform this step.
+For demonstration purposes, we'll create a source and a materialized view, and then sink data from the materialized view. If you already have a table or materialized view to sink data from, you don't need to perform this step.
 
 Run the following query to create a source to read data from a Kafka broker.
 

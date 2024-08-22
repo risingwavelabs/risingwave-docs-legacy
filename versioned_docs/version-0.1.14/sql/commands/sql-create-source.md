@@ -56,7 +56,7 @@ ROW FORMAT JSON
 
 ### Protobuf
 
-For data in Protobuf format, you must specify a message and the schema. You can specify the schema by providing a Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Regsitry that RisingWave can get the schema from.
+For data in Protobuf format, you must specify a message and the schema. You can specify the schema by providing a Web location that is in `http://...`, `https://...`, or `S3://...` format. For Kafka data in Protobuf, instead of providing a schema location, you can provide a Confluent Schema Registry that RisingWave can get the schema from.
 
 If you specify the schema by providing a location, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
 

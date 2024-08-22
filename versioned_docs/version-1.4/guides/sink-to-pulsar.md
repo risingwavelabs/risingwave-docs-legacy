@@ -7,7 +7,7 @@
 
 This guide describes how to sink data from RisingWave to Apache Pulsar.
 
-[Apache Pulsar](https://pulsar.apache.org) is an open-source distributed pub-sub messaging system and event streaming platform that is scaleable and designed to support geo-replication.
+[Apache Pulsar](https://pulsar.apache.org) is an open-source distributed pub-sub messaging system and event streaming platform that is scalable and designed to support geo-replication.
 
 :::caution Beta feature
 The Pulsar sink connector in RisingWave is currently in Beta. Please use this with caution as stability issues may still occur. Its functionality may evolve based on feedback. Please report any issues encountered to our team.

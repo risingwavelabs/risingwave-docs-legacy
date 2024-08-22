@@ -55,7 +55,7 @@ You can now start a RisingWave cluster. You can use the following storage option
 - Azure Blob Storage
 - HDFS
 
-For each of the options, we have a Docker Compose configuraion file that you can use after necessary configurations.
+For each of the options, we have a Docker Compose configuration file that you can use after necessary configurations.
 
 ### MinIO
 

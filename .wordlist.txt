@@ -206,3 +206,7 @@ localhost
 prometheus
 datasources
 OpenSearch
+codebase
+Databricks
+SDKs
+personalization

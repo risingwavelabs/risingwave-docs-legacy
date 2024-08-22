@@ -3,6 +3,7 @@ id: use-dbt
 slug: /use-dbt
 title: Use dbt for data transformations
 ---
+
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/use-dbt/" />
 </head>
@@ -38,12 +39,12 @@ Plugins:
 
 ## Initiate a dbt project
 
-Before you initial a dbt project, you need to ensure that RisingWave is installed and running. To learn about how to install and run RisingWave, see the topics under *Run RisingWave*.
+Before you initial a dbt project, you need to ensure that RisingWave is installed and running. To learn about how to install and run RisingWave, see the topics under _Run RisingWave_.
 
 You can initiate a [dbt project](https://docs.getdbt.com/docs/build/projects) by running the following command.
 
 ```sql
-dbt init 
+dbt init
 ```
 
 It will ask you to enter a project name, choose the database you like to use (`risingwave`), and specify other database configurations such as host name, port, user name, etc.
@@ -86,7 +87,7 @@ First, you can run `dbt debug` to check your connection to RisingWave.
 dbt debug
 ```
 
-If the connection is valid, you will see a "OK connection ok" mesage. In this case, you can run your models. Otherwise, please check `~/.dbt/profiles.yml` to ensure your connection configurations are valid.
+If the connection is valid, you will see a "OK connection ok" message. In this case, you can run your models. Otherwise, please check `~/.dbt/profiles.yml` to ensure your connection configurations are valid.
 
 Run the following command to run your models.
 
@@ -115,4 +116,4 @@ from source_data
 
 ## Additional reference
 
-For details about building and deploying dbt models in general, plase refer to the [dbt documentation](https://docs.getdbt.com/docs/introduction).
+For details about building and deploying dbt models in general, please refer to the [dbt documentation](https://docs.getdbt.com/docs/introduction).

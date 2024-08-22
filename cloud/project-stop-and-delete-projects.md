@@ -29,7 +29,7 @@ Please ensure that all critical tasks are safely paused before proceeding. You c
 If you no longer need a project and its associated data, you can delete it to free up resources.
 
 :::info
-You must delete all projects before [deleting your account](account-manage-your-account.md/?task=delete-account).
+You must delete all projects before [deleting your account](account-manage-your-account.md#delete-your-account).
 :::
 
 This is irreversible and will remove all data and running streaming pipelines in the project permanently.

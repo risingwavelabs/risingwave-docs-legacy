@@ -32,7 +32,7 @@ RisingWave accepts these data formats:
 
 - Maxwell JSON (for MySQL only)
 
-    For Maxwell JSON (`FORAT MAXWELL ENCODE JSON`)M, you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
+    For Maxwell JSON (`FORMAT MAXWELL ENCODE JSON`)M, you need to use [Maxwell's daemon](https://maxwells-daemon.io/) to convert MySQL data changes to Kafka topics or Kinesis data streams. To learn about how to configure MySQL and deploy Maxwell's daemon, see the [Quick Start](https://maxwells-daemon.io/quickstart/).
 
 - The TiCDC dialect of Canal JSON (for TiDB only)
 

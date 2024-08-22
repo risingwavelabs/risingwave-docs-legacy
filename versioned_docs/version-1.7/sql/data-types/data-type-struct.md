@@ -128,7 +128,7 @@ FROM trip;
 
 ## Casting
 
-Structs can be casted explicitly or implictly to structs if the nested expressions and types can be casted.
+Structs can be casted explicitly or implicitly to structs if the nested expressions and types can be casted.
 
 ### Examples
 

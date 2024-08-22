@@ -8,7 +8,7 @@ slug: /sql-explain
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-explain/" />
 </head>
 
-<!--Track the implementation progress of EXPALIN here: https://github.com/risingwavelabs/risingwave/issues/4856-->
+<!--Track the implementation progress of EXPLAIN here: https://github.com/risingwavelabs/risingwave/issues/4856-->
 
 Use the `EXPLAIN` command to show the execution plan of a statement. 
 
