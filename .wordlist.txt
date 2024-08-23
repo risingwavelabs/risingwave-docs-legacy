@@ -217,3 +217,5 @@ WASM
 schemas
 risingwavecloud
 Rockset
+personalization
+

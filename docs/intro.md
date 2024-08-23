@@ -25,7 +25,7 @@ RisingWave can ingest millions of events per second, seamlessly join and analyze
 
 RisingWave is the ideal solution for:
 
-- Handling real-time data sources like Kafka streams, CDC data, and more.
+- Handling real-time data sources like Kafka streams, database CDC, and more.
 - Performing complex, on-the-fly queries such as joins, aggregations, and time windowing.
 - Interactively and concurrently explore consistent, up-to-the-moment results.
 - Seamlessly send results to downstream systems.
@@ -64,7 +64,7 @@ Modern analytical databases, such as ClickHouse with materialized views, Snowfla
 
 Moreover, RisingWave’s transparent dynamic scaling and instant failure recovery mechanisms are superior to other analytical databases.
 
-However, RisingWave does not feature columnar storage. If your workloads involve ad-hoc, long-range scans rather than predefined queries, an analytical database might be a better fit.
+However, RisingWave does not feature columnar storage. If your workloads mostly involve ad-hoc, long-range scans rather than predefined queries, an analytical database might be a better fit.
 
 ### Operational databases
 

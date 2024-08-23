@@ -51,7 +51,6 @@ For details about how to create a SQL UDF and its use cases, see:
 
 - [SQL UDFs](/sql/udf/sql-udfs.md)
 
-
 ## Other ways to categorize UDFs
 
 UDFs can be categorized based on three dimensions. In the documentation provided above, we categorize them according to the execution method of functions, which has an impact on their performance and capabilities.

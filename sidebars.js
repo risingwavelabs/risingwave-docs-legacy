@@ -318,6 +318,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "SQL Server CDC",
+                  id: "guides/ingest-from-sqlserver-cdc",
+                },
+                {
+                  type: "doc",
                   label: "MongoDB CDC",
                   id: "guides/ingest-from-mongodb-cdc",
                 },
