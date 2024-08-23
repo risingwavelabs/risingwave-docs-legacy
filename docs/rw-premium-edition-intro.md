@@ -18,7 +18,7 @@ By this edition, we aim to provide a seamless transition for businesses self-hos
 
 ## Complete list of premium features
 
-RisingWave Premium 1.0 is the first major release of this new edition with several high-impact features planned. The following is the initial list of premium features, which we have targetted "Premium Edition Feature" note in the documentation.
+RisingWave Premium 1.0 is the first major release of this new edition with several high-impact features planned. The following is the initial list of premium features, which we have targeted "Premium Edition Feature" note in the documentation.
 
 ### Schema management
 
@@ -85,6 +85,19 @@ RisingWave Premium 1.0 is the first major release of this new edition with sever
 Our premium features will expand over time. Customers can shape our roadmap through monthly success reviews.
 
 ## Support
+
+Below is the premium support
+
+| Support feature             | Standard                     | Premium                  |
+|-----------------------------|------------------------------|--------------------------|
+| **Service hours**           | 12 x 5                        | 24 x 7                   |
+| **Response time**           | **Critical** - 4 hours        | **Critical** - 1 hour    |
+|                              | **High** - 12 hours           | **High** - 4 hours       |
+|                              | **Medium** - 24 hours         | **Medium** - 12 hours    |
+|                              | **Low** - 48 hours            | **Low** - 24 hours       |
+| **Dedicated Slack channel**  | No                            | Yes                      |
+| **Solution engineer access** | 2 hours per month             | 8 hours per month        |
+
 
 ## Licensing
 
