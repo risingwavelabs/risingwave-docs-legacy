@@ -26,7 +26,7 @@ RisingWave Premium 1.0 is the first major release of this new edition with sever
 
 - Automatic schema change from upstream
 
-- Support AWS Glue Schema Registry
+- [Support AWS Glue Schema Registry](/ingest/ingest-from-kafka.md#read-schemas-from-aws-glue-schema-registry)
 
 - Seamless integration with Pulsar source
 
