@@ -8,17 +8,17 @@ slug: /rw-premium-edition-intro
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw-premium-edition-intro/" />
 </head>
 
-This topic introduce the RisingWave Premium edition and offer a complete list of all premium features.
+This topic introduces the RisingWave Premium edition and offers a complete list of all premium features.
 
 ## What is RisingWave Premium?
 
 RisingWave Premium is a new edition from RisingWave Labs, tailored for enterprises with unique requirements that surpass typical stream processing workloads. This premium service combines new advanced features with the same user-friendly experience.
 
-Our goal is to provide a seamless transition for businesses self-hosting, enabling them to confidently move their workloads to production with comprehensive tooling and premium support.
+By this edition, we aim to provide a seamless transition for businesses self-hosting. Our comprehensive tools and premium support ensure you can confidently move your workloads to production.
 
 ## Complete list of premium features
 
-RisingWave Premium 1.0 is the first major release of this new edition with several high-impact features planned. The following is the initial list of premium features.
+RisingWave Premium 1.0 is the first major release of this new edition with several high-impact features planned. The following is the initial list of premium features, which we have targetted "Premium Edition Feature" note in the documentation.
 
 ### Schema management
 
@@ -68,7 +68,7 @@ RisingWave Premium 1.0 is the first major release of this new edition with sever
 
 - New Grafana template for Observability
 
-- Terraform provider support: [https://github.com/risingwavelabs/terraform-provider-risingwavecloud](https://github.com/risingwavelabs/terraform-provider-risingwavecloud)
+- [Terraform provider support](https://github.com/risingwavelabs/terraform-provider-risingwavecloud)
 
 - Automatic (Serverless) scaling on streaming jobs
   - Based on workload metrics
@@ -78,19 +78,22 @@ RisingWave Premium 1.0 is the first major release of this new edition with sever
 
 - Automatic scaling on compaction jobs
 
-- VPC Private link: [https://docs.risingwave.com/cloud/create-a-connection/](https://docs.risingwave.com/cloud/create-a-connection/)
+- [VPC Private link](/cloud/create-a-connection/)
 
 - Backup/Restore
 
-The premium feature set will grow over time. Meanwhile, customers will have the opportunity to influence our roadmap through monthly customer success reviews.
+Our premium features will expand over time. Customers can shape our roadmap through monthly success reviews.
 
 ## Support
 
 ## Licensing
 
-RisingWave Premium will not alter the source code licensing model. RisingWave will continue to keep Apache 2 license. All the feature development will occur in the same open repository. However, there will be two sets of binaries. Original edition will be released ‘RisingWave Open Source’, the new edition will be released as ‘RisingWave Premium’. The former will not have access to the features tagged as ‘Premium features’ while the latter will provide full access albeit using a license key.
+RisingWave Premium maintains the Apache 2 license of the source code. All feature development will remain in the same open repository. However, we'll offer two binary sets:
+
+- **RisingWave Open Source**: The original edition, without access to premium features.
+
+- **RisingWave Premium**: Full access to all premium features via a license key.
 
 ## Pricing
 
-Pricing for RisingWave Premium will be based on the Cluster size, measured in RisingWave Units (RWUs). The number of RWUs will be determined based on the scale of data ingestion, number of streaming jobs, the complexity of use case. There could be additional factors as well. Detailed pricing will be provided by the Sales team. Please contact sales@risingwave-labs.com for more 
-details.
+Pricing for RisingWave Premium will be based on the cluster size, measured in RisingWave Units (RWUs). The number of RWUs will be determined based on the scale of data ingestion, number of streaming jobs, the complexity of use case. There could be additional factors as well. Detailed pricing will be provided by the sales team. Please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for more details.
