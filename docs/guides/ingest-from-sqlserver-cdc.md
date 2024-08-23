@@ -8,6 +8,10 @@
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-sqlserver-cdc/" />
 </head>
 
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, and then delivering the changes to a downstream service in real time.
 
 RisingWave supports ingesting CDC data from SQL Server. Versions 2019 and 2022 of SQL Server are supported.
@@ -21,10 +25,6 @@ You can ingest CDC data from SQL Server into RisingWave in two ways:
 - Using a CDC tool and a message broker
   
   You can use a CDC tool and then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/ingest/ingest-from-cdc.md) topic.
-
-:::tip Premium Edition Feature
-This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
-:::
 
 ## Set up SQL Server
 
@@ -252,7 +252,7 @@ RisingWave data types marked with an asterisk indicate that while there is no co
 |DATETIMEOFFSET |TIMESTAMP WITH TIME ZONE|
 |UUID |CHARACTER VARYING, uppercase |
 |XML |CHARACTER VARYING |
-|Other Types |No support |
+|CURSOR, GEOGRAPHY, GEOMETRY, HIERARCHYID, JSON, ROWVERSION, SQL_VARIANT, TABLE, IMAGE, MONEY, SMALLMONEY |No support |
 
 <!-- |JSON, JSONB |JSONB |
 |MONEY[(M[,D])] |NUMERIC |
