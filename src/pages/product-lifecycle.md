@@ -29,7 +29,7 @@ The following is a list of all features in the public preview phase:
 | [Time travel queries](/docs/next/time-travel-queries/)                     | Yes                     | 2024.7 | 2.0         | \        |
 | [Manage secrets](/docs/next/manage-secrets/)                          | Yes                     | 2024.7 | 2.0         | \        |
 | [Ingest from MySQL CDC (Auto-map schema)](/docs/next/ingest-from-mysql-cdc/#automatically-map-upstream-table-schema) | Yes                     | 2024.6 | 1.10         | \        |
-|[Ingest data from SQL Server CDC](docs/next/ingest-from-sqlserver-cdc/)| Yes | 2024.8 | 2.0 | \ |
+|[Ingest data from SQL Server CDC](/docs/next/ingest-from-sqlserver-cdc/)| Yes | 2024.8 | 2.0 | \ |
 
 
 This table will be updated regularly to reflect the latest status of features as they progress through the release stages.
