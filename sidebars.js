@@ -71,11 +71,6 @@ const sidebars = {
               label: "Transactions",
               id: "concepts/transactions",
             },
-            {
-              type: "doc",
-              label: "RisingWave vs. Flink",
-              id: "risingwave-flink-comparison",
-            },
           ],
         },
       ],
@@ -1185,7 +1180,7 @@ const sidebars = {
       type: "category",
       label: "FAQ",
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -1194,6 +1189,11 @@ const sidebars = {
         {
           type: "doc",
           id: "faq/faq-when-to-use-risingwave"
+        },
+        {
+          type: "doc",
+          label: "RisingWave vs. Flink",
+          id: "faq/risingwave-flink-comparison",
         },
         {
           type: "doc",
