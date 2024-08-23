@@ -42,11 +42,6 @@ const sidebars = {
         },
         {
           type: "doc",
-          id: "rw-premium-edition-intro",
-          label: "RisingWave Premium",
-        },
-        {
-          type: "doc",
           label: "FAQ",
           id: "rw-faq",
         },
@@ -85,6 +80,11 @@ const sidebars = {
               type: "doc",
               label: "RisingWave vs. Flink",
               id: "risingwave-flink-comparison",
+            },
+            {
+              type: "doc",
+              id: "rw-premium-edition-intro",
+              label: "RisingWave Premium",
             },
           ],
         },

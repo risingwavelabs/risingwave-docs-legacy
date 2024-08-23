@@ -40,7 +40,7 @@ RisingWave Premium 1.0 is the first major release of this new edition with sever
 
 - Direct Oracle CDC
 
-- Direct SQL Server CDC
+- [Direct SQL Server CDC](/)
 
 - Sink to Oracle
 
