@@ -86,7 +86,7 @@ Our premium features will expand over time. Customers can shape our roadmap thro
 
 ## Support
 
-RisingWave Premium edittion offers the premium support:
+RisingWave Premium edition offers the premium support:
 
 | Support feature             | Standard            | Premium            |
 |-----------------------------|---------------------|--------------------|
