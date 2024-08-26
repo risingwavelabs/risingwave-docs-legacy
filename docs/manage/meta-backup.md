@@ -71,9 +71,9 @@ If the cluster has been using a SQL database as meta store backend, follow these
     :::note
     This step is especially important because the meta backup and recovery process does not replicate SST files. It is not permitted for multiple clusters to run with the same SSTs set at any time, as this can corrupt the SST files.
     :::
-2. Create a new meta store, i.e. a new SQL database instance.
-
-   Note that this new SQL database instance must have the exact same tables defined as the original, but all tables should remain empty. To achieve this, you can optionally use the [schema migration tool](https://github.com/risingwavelabs/risingwave/tree/main/src/meta/model_v2/migration) to create tables, then truncate the `seaql_migrations` table, which will be populated by the tool.
+2. Create an new meta store, i.e. a new SQL database instance.   
+   
+   Note that this new SQL database instance must have the exact same tables defined as the original, but all tables should remain empty. To achieve this, you can optionally use the [schema migration tool](https://github.com/risingwavelabs/risingwave/tree/main/src/meta/model_v2/migration) to create tables, then truncate those non-empty tables, which will have been populated by the tool.
 3. Restore the meta snapshot to the new meta store.
 
     ```bash
@@ -165,23 +165,22 @@ Meta snapshot is used to support historical data access, also known as time trav
 
 Use the following steps to perform a time travel query.
 
-1. List all valid historical point-in-time (i.e., epoch).
+1. List all valid historical point-in-time (i.e., epoch) for a table. For example to query the table of id 6:
 
     ```sql
-    SELECT safe_epoch,safe_epoch_ts,max_committed_epoch,max_committed_epoch_ts FROM rw_catalog.rw_meta_snapshot;
+    SELECT state_table_info->'6'->>'safeEpoch' as safe_epoch,state_table_info->'6'->>'committedEpoch' committed_epoch from rw_meta_snapshot;
     ```
 
    Example output:
 
     ```
-        safe_epoch    |      safe_epoch_ts      | max_committed_epoch | max_committed_epoch_ts
-    ------------------+-------------------------+---------------------+-------------------------
-     3603859827458048 | 2022-12-28 11:08:56.918 |    3603862776381440 | 2022-12-28 11:09:41.915
-     3603898821640192 | 2022-12-28 11:18:51.922 |    3603900263432192 | 2022-12-28 11:19:13.922
+        safe_epoch   | committed_epoch  
+    -----------------+------------------
+    7039353459507200 | 7039354678542336
+    7039354678542346 | 7039622397886464
     ```
 
-   Valid epochs are within range (`safe_epoch`,`max_committed_epoch`). For example, any epochs in [3603859827458048, 3603862776381440] or in [3603898821640192, 3603900263432192] are acceptable.
-   `safe_epoch_ts` and `max_committed_epoch_ts` are human-readable equivalences.
+   Choose an epoch to query. Valid epochs are within range [`safe_epoch`,`committed_epoch`], e.g. [7039353459507200, 7039354678542336] or [7039354678542346, 7039622397886464].
 2. Set session config `QUERY_EPOCH`. By default, it's 0, which means disabling historical query.
 
     ```sql
