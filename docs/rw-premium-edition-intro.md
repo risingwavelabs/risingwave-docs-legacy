@@ -86,17 +86,20 @@ Our premium features will expand over time. Customers can shape our roadmap thro
 
 ## Support
 
-Below is the premium support:
+RisingWave Premium edittion offers the premium support:
 
-| Support feature             | Standard                     | Premium                  |
-|-----------------------------|------------------------------|--------------------------|
-| **Service hours**           | 12 x 5                        | 24 x 7                   |
-| **Response time**           | **Critical** - 4 hours        | **Critical** - 1 hour    |
-|                              | **High** - 12 hours           | **High** - 4 hours       |
-|                              | **Medium** - 24 hours         | **Medium** - 12 hours    |
-|                              | **Low** - 48 hours            | **Low** - 24 hours       |
-| **Dedicated Slack channel**  | No                            | Yes                      |
-| **Solution engineer access** | 2 hours per month             | 8 hours per month        |
+| Support feature             | Standard            | Premium            |
+|-----------------------------|---------------------|--------------------|
+| Service hours               | 12x5                | 24x7               |
+| Response time               | Critical - 4 hours  | Critical - 1 hour  |
+|                             | High - 12 hours     | High - 4 hours     |
+|                             | Medium - 24 hours   | Medium - 12 hours  |
+|                             | Low - 48 hours      | Low - 24 hours     |
+| Dedicated Slack channel      | No                  | Yes                |
+| Max technical contacts      | 2                   | 8                  |
+| Named support engineer      | No                  | Yes                |
+| Solution engineer access    | 2 hours per month   | 8 hours per month  |
+
 
 
 ## Licensing
