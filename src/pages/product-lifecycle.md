@@ -23,16 +23,18 @@ As introduced above, when you see a "Public preview" note in the documentation, 
 
 The following is a list of all features in the public preview phase:
 
-| Feature name                            | In public preview phase? | Start date | Start version | End date |
-|-----------------------------------------|-------------------------|------------|---------------|----------|
-| [Subscription](/docs/next/subscription) | Yes                     | 2024.5 | 1.9         | \        |
-| [Time travel queries](/docs/next/time-travel-queries/)                     | Yes                     | 2024.7 | 2.0         | \        |
-| [Manage secrets](/docs/next/manage-secrets/)                          | Yes                     | 2024.7 | 2.0         | \        |
-| [MySQL CDC source (Auto-map schema)](/docs/next/ingest-from-mysql-cdc/#automatically-map-upstream-table-schema) | Yes                     | 2024.6 | 1.10         | \        |
-| [SQL Server CDC source](/docs/next/ingest-from-sqlserver-cdc/) | Yes | 2024.8 | 2.0 | \ |
-|[Snowflake sink](/docs/current/sink-to-snowflake/)| Yes | 2024.5 | 1.9 | \ |
-| [Amazon DynamoDB sink](/docs/current/sink-to-dynamodb/) | Yes | 2024.6 | 1.10 | \ |
-| [Google BigQuery sink](/docs/current/sink-to-bigquery/) | Yes | 2023.11 | 1.4 | \ |
+| Feature name                            | Start date | Start version |
+|-----------------------------------------|------------|---------------|
+| [Subscription](/docs/next/subscription) | 2024.5     | 1.9           |
+| [Time travel queries](/docs/next/time-travel-queries/) | 2024.7     | 2.0           |
+| [Manage secrets](/docs/next/manage-secrets/) | 2024.7     | 2.0           |
+| [Decouple sinks](/docs/next/data-delivery/#sink-decoupling) | 2023.10    | 1.3           |
+| [MySQL CDC source (Auto-map schema)](/docs/next/ingest-from-mysql-cdc/#automatically-map-upstream-table-schema) | 2024.6     | 1.10          |
+| [SQL Server CDC source](/docs/next/ingest-from-sqlserver-cdc/) | 2024.8     | 2.0           |
+| [Snowflake sink](/docs/next/sink-to-snowflake/) | 2024.5     | 1.9           |
+| [Amazon DynamoDB sink](/docs/next/sink-to-dynamodb/) | 2024.6     | 1.10          |
+| [Google BigQuery sink](/docs/next/sink-to-bigquery/) | 2023.11    | 1.4           |
+
 
 
 This table will be updated regularly to reflect the latest status of features as they progress through the release stages.
