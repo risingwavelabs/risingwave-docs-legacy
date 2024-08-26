@@ -1129,6 +1129,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Tune reserved memory",
+          id: "deploy/tune-reserved-memory",
+        },
+        {
+          type: "doc",
           id: "manage/view-configure-system-parameters",
         },
         {
