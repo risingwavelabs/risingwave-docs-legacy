@@ -59,16 +59,21 @@ Here's an example of how to delete a meta snapshot with `risectl`:
 risectl meta delete-meta-snapshots [snapshot_ids]
 ```
 
-## Restore from a meta snapshot (SQL database as meta store backend)
+## Restore from a meta snapshot
 
-If the cluster has been using a SQL database as meta store backend, use the following steps to restore from a meta snapshot.
+Below are two separate methods to restore from a meta snapshot using SQL database and etcd as the meta store backend.
+
+### SQL database as meta store backend
+
+If the cluster has been using a SQL database as meta store backend, follow these steps to restore from a meta snapshot.
 
 1. Shut down the meta service.
     :::note
     This step is especially important because the meta backup and recovery process does not replicate SST files. It is not permitted for multiple clusters to run with the same SSTs set at any time, as this can corrupt the SST files.
     :::
-2. Create an new meta store, i.e. a new SQL database instance.   
-   Note that this new SQL database instance must have the exact same tables defined as the original, but all tables should remain empty. To achieve this, you can optionally use the [schema migration tool](https://github.com/risingwavelabs/risingwave/tree/main/src/meta/model_v2/migration) to create tables, then truncate the `seaql_migrations` table, which will have been populated by the tool.
+2. Create a new meta store, i.e. a new SQL database instance.
+
+   Note that this new SQL database instance must have the exact same tables defined as the original, but all tables should remain empty. To achieve this, you can optionally use the [schema migration tool](https://github.com/risingwavelabs/risingwave/tree/main/src/meta/model_v2/migration) to create tables, then truncate the `seaql_migrations` table, which will be populated by the tool.
 3. Restore the meta snapshot to the new meta store.
 
     ```bash
@@ -103,15 +108,15 @@ If the cluster has been using a SQL database as meta store backend, use the foll
     - `--hummock-storage-directory state_data`.
 4. Configure meta service to use the new meta store.
 
-## Restore from a meta snapshot (etcd as meta store backend)
+### etcd as meta store backend
 
-If the cluster has been using etcd as meta store backend, use the following steps to restore from a meta snapshot.
+If the cluster has been using etcd as meta store backend, follow these steps to restore from a meta snapshot.
 
 1. Shut down the meta service.
     :::note
     This step is especially important because the meta backup and recovery process does not replicate SST files. It is not permitted for multiple clusters to run with the same SSTs set at any time, as this can corrupt the SST files.
     :::
-2. Create an new meta store, i.e. a new and empty etcd instance.
+2. Create a new meta store, i.e. a new and empty etcd instance.
 3. Restore the meta snapshot to the new meta store.
 
     ```bash
