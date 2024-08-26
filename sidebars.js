@@ -40,39 +40,6 @@ const sidebars = {
           label: "Integrations",
           id: "rw-integration-summary",
         },
-        {
-          type: "category",
-          label: "Deep-dive",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              id: "architecture",
-              label: "Architecture",
-            },
-            {
-              type: "doc",
-              id: "concepts/key-concepts",
-              label: "Key concepts and terms",
-            },
-            {
-              type: "doc",
-              label: "Fault tolerance",
-              id: "fault-tolerance",
-            },
-            {
-              type: "doc",
-              label: "Data persistence",
-              id: "data-persistence",
-            },
-            {
-              type: "doc",
-              label: "Transactions",
-              id: "concepts/transactions",
-            },
-          ],
-        },
       ],
     },
     {
@@ -1062,6 +1029,39 @@ const sidebars = {
             //   label: "Ruby",
             // },
           ],
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Reference",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "reference/architecture",
+          label: "Architecture",
+        },
+        {
+          type: "doc",
+          id: "concepts/key-concepts",
+          label: "Key concepts and terms",
+        },
+        {
+          type: "doc",
+          label: "Fault tolerance",
+          id: "reference/fault-tolerance",
+        },
+        {
+          type: "doc",
+          label: "Data persistence",
+          id: "reference/data-persistence",
+        },
+        {
+          type: "doc",
+          label: "Transactions",
+          id: "concepts/transactions",
         },
       ],
     },
