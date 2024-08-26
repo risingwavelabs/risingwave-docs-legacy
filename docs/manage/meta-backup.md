@@ -68,7 +68,7 @@ If the cluster has been using a SQL database as meta store backend, use the foll
     This step is especially important because the meta backup and recovery process does not replicate SST files. It is not permitted for multiple clusters to run with the same SSTs set at any time, as this can corrupt the SST files.
     :::
 2. Create an new meta store, i.e. a new SQL database instance.   
-   Note that this new SQL database instance must have the exact same tables defined as the original, but all tables should remain empty. To achive this, you can use the [schema migration tool](https://github.com/risingwavelabs/risingwave/tree/main/src/meta/model_v2/migration) to create tables, and then truncate the `seaql_migrations` table.
+   Note that this new SQL database instance must have the exact same tables defined as the original, but all tables should remain empty. To achive this, you can optionally use the [schema migration tool](https://github.com/risingwavelabs/risingwave/tree/main/src/meta/model_v2/migration) to create tables, then truncate the `seaql_migrations` table, which will have been populated by the tool.
 3. Restore the meta snapshot to the new meta store.
 
     ```bash
