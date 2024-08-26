@@ -28,8 +28,8 @@ The following is a list of all features in the public preview phase:
 | [Subscription](/docs/next/subscription) | Yes                     | 2024.5 | 1.9         | \        |
 | [Time travel queries](/docs/next/time-travel-queries/)                     | Yes                     | 2024.7 | 2.0         | \        |
 | [Manage secrets](/docs/next/manage-secrets/)                          | Yes                     | 2024.7 | 2.0         | \        |
-| [Ingest from MySQL CDC (Auto-map schema)](/docs/next/ingest-from-mysql-cdc/#automatically-map-upstream-table-schema) | Yes                     | 2024.6 | 1.10         | \        |
-| [Ingest data from SQL Server CDC](/docs/next/ingest-from-sqlserver-cdc/) | Yes | 2024.8 | 2.0 | \ |
+| [MySQL CDC source (Auto-map schema)](/docs/next/ingest-from-mysql-cdc/#automatically-map-upstream-table-schema) | Yes                     | 2024.6 | 1.10         | \        |
+| [SQL Server CDC source](/docs/next/ingest-from-sqlserver-cdc/) | Yes | 2024.8 | 2.0 | \ |
 |[Snowflake sink](/docs/current/sink-to-snowflake/)| Yes | 2024.5 | 1.9 | \ |
 | [Amazon DynamoDB sink](/docs/current/sink-to-dynamodb/) | Yes | 2024.6 | 1.10 | \ |
 | [Google BigQuery sink](/docs/current/sink-to-bigquery/) | Yes | 2023.11 | 1.4 | \ |
