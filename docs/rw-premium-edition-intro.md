@@ -86,7 +86,7 @@ Our premium features will expand over time. Customers can shape our roadmap thro
 
 ## Support
 
-Below is the premium support
+Below is the premium support:
 
 | Support feature             | Standard                     | Premium                  |
 |-----------------------------|------------------------------|--------------------------|
