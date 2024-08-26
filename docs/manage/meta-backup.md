@@ -90,7 +90,7 @@ If the cluster has been using a SQL database as meta store backend, use the foll
     ```
     psql=> show parameters;
                   Name                     |                Value                 | Mutable
-   ----------------------------------------+--------------------------------------+---------
+    ---------------------------------------+--------------------------------------+---------
     state_store                            | hummock+s3://state_bucket            | f
     data_directory                         | state_data                           | f
     backup_storage_url                     | s3://backup_bucket                   | t
@@ -141,7 +141,7 @@ If the cluster has been using etcd as meta store backend, use the following step
     ```
     psql=> show parameters;
                   Name                     |                Value                 | Mutable
-   ----------------------------------------+--------------------------------------+---------
+    ---------------------------------------+--------------------------------------+---------
     state_store                            | hummock+s3://state_bucket            | f
     data_directory                         | state_data                           | f
     backup_storage_url                     | s3://backup_bucket                   | t
