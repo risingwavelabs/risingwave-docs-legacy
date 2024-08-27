@@ -21,7 +21,7 @@ Sinking from RisingWave to Snowflake utilizes [Snowpipe](https://docs.snowflake.
 
 - Ensure you have an upstream materialized view or source in RisingWave that you can sink data from.
 
-- Ensure you have a RSA key-value pair for authentication, and set up the credential for the `Snowflake User`.
+- Ensure you have an RSA key-value pair for authentication, and set up the credential for the `Snowflake User`.
 
 - Ensure you have a `Snowflake table` that you can sink data to. For additional guidance on creating a table and setting up Snowflake, refer to the [Getting started](https://docs.snowflake.com/en/user-guide-getting-started) guide of Snowflake documentation.
 
