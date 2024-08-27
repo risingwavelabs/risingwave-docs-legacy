@@ -46,7 +46,7 @@ WITH (
 | `clickhouse.password`   | Required. Password for accessing the ClickHouse server.|
 | `clickhouse.database`  | Required. Name of the ClickHouse database that you want to sink data to.|
 | `clickhouse.table`      | Required. Name of the ClickHouse table that you want to sink data to.|
-| `commit_checkpoint_interval`| Optional. Commit every N checkpoints (N > 0). If not set, it commits to ClickHouse at every checkpoint.|
+| `commit_checkpoint_interval`| Optional. You can use this parameter to decouple the downstream system’s commit from RisingWave’s commit. This means that instead of committing data to the downstream system at every barrier, RisingWave will commit data only when the specified checkpoint interval is reached. For instance, if `commit_checkpoint_interval` is set to `5`, RisingWave will commit data every five checkpoints. The default value is `1`. Note that when `commit_checkpoint_interval` is a positive integer larger than `1`, the [`sink_decouple`](/data-delivery.md#sink-decoupling) option will be enabled automatically.|
 
 ### Upsert sinks
 
