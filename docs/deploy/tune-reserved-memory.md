@@ -12,7 +12,7 @@ This topic introduces the concept and the tuning method of reserved memory and c
 
 ## What is reserved memory and cache eviction policy?
 
-A simplified description of our memory control mechanism will help you understand these two concepts more straightforward. In simple words, RisingWave manages memory usage through a three-step process:
+A simplified description of our memory control mechanism will help you understand these two concepts more straightforwardly. In simple words, RisingWave manages memory usage through a three-step process:
 
 1. Monitoring: The system calculates and monitors the memory usage of each component.
 
