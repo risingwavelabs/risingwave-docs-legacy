@@ -18,7 +18,7 @@ A simplified description of our memory control mechanism will help you understan
 
 2. Reserving buffer: The system reserves 30% of the total memory as a buffer. This is the **reserved memory**. In case of a sudden spike in input data, RisingWave has enough time to adjust its memory usage.
 
-3. Eviction checks: The system regularly compares current memory use against the remaining 70% (usable memory), and decides if it should evict data. This  **cache eviction policy** is based on usage levels:
+3. Eviction checks: The system regularly compares current memory usage against the remaining 70% (usable memory), and decides if it should evict data. RisingWave applies a **cache eviction policy** based on the memory usage levels:
 
 - Above 70%: Begins gentle data eviction
 
