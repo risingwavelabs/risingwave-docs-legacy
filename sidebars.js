@@ -21,7 +21,7 @@ const sidebars = {
   MainSidebar: [
     {
       type: "category",
-      label: "About",
+      label: "Get started",
       collapsible: false,
       collapsed: false,
       items: [
@@ -33,30 +33,12 @@ const sidebars = {
         {
           type: "doc",
           id: "use-cases",
-          label: "Use cases",
+          label: "Use cases & Examples",
         },
-        {
-          type: "doc",
-          label: "Integrations",
-          id: "rw-integration-summary",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Get started",
-      collapsible: false,
-      collapsed: false,
-      items: [
         {
           type: "doc",
           label: "Quick start",
           id: "get-started",
-        },
-        {
-          "type": "doc",
-          "id": "deploy/risingwave-docker-compose",
-          "label": "Deploy locally with Docker Compose"
         },
         {
           "type": "category",
@@ -80,12 +62,12 @@ const sidebars = {
               "label": "Deploy on Kubernetes with Helm"
             }
           ]
-        },
+        },        
         {
-          "type": "doc",
-          "id": "guides/install-psql-without-postgresql",
-          "label": "Install psql"
-        }
+          type: "doc",
+          label: "Integrations",
+          id: "rw-integration-summary",
+        },
       ],
     },
     {
@@ -1075,6 +1057,16 @@ const sidebars = {
           type: "doc",
           id: "deploy/hardware-requirements",
           label: "Hardware requirements",
+        },
+        {
+          "type": "doc",
+          "id": "guides/install-psql-without-postgresql",
+          "label": "Install psql"
+        },
+        {
+          "type": "doc",
+          "id": "deploy/risingwave-docker-compose",
+          "label": "Deploy locally with Docker Compose"
         },
         {
           type: "doc",
