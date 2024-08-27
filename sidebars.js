@@ -1129,7 +1129,7 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Tune reserved memory",
+          label: "Tune reserved memory and cache eviction policy",
           id: "deploy/tune-reserved-memory",
         },
         {
