@@ -112,28 +112,7 @@ To disable sink decoupling, set `sink_decouple` as `false` or `disable`, regardl
 SET sink_decouple = false;
 ```
 
-Sink decoupling is enabled by default for the following sinks:
-
-- [Kafka](/guides/create-sink-kafka.md)
-- [Pulsar](/guides/sink-to-pulsar.md)
-- [Kinesis](/guides/sink-to-iceberg.md)
-- [Google Pub/Sub](guides/sink-to-google-pubsub.md)
-- [Nats](/guides/sink-to-nats.md)
-
-Sink decoupling is enabled by default for the following sinks if `commit_checkpoint_interval` > 1:
-
-- [StarRocks](/guides/sink-to-starrocks.md)
-- [Delta Lake](/guides/sink-to-delta-lake.md)
-- [Apache Iceberg](/guides/sink-to-iceberg.md)
-- [Clickhouse](/guides/sink-to-clickhouse.md)
-
-Sink decoupling is enabled by default for the following sinks if the sink is append-only:
-
-- JDBC
-  - [MySQL](/guides/sink-to-mysql.md)
-  - [PostgreSQL](/guides/sink-to-postgres.md)
-  - [TiDB](/guides/sink-to-tidb.md)
-  - [CockroachDB](/guides/sink-to-cockroach.md)
+Sink decoupling is enabled by default for **all sinks** in RisingWave.
 
 An internal system table `rw_sink_decouple` is provided to query whether a created sink has enabled sink decoupling or not.
 
