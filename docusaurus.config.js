@@ -231,7 +231,7 @@ const config = {
       "runllm-server-address": "https://api.runllm.com",
       "runllm-assistant-id": "29",
       "runllm-position": "TOP_RIGHT",
-      "runllm-keyboard-shortcut": "Mod+l",
+      "runllm-keyboard-shortcut": "disable",
       "runllm-theme-color": "#005EEC",
       "runllm-slack-community-url":
         "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",
