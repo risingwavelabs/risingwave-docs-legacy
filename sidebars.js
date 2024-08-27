@@ -41,11 +41,6 @@ const sidebars = {
           id: "rw-integration-summary",
         },
         {
-          type: "doc",
-          label: "FAQ",
-          id: "rw-faq",
-        },
-        {
           type: "category",
           label: "Deep-dive",
           collapsible: true,
@@ -75,11 +70,6 @@ const sidebars = {
               type: "doc",
               label: "Transactions",
               id: "concepts/transactions",
-            },
-            {
-              type: "doc",
-              label: "RisingWave vs. Flink",
-              id: "risingwave-flink-comparison",
             },
           ],
         },
@@ -1183,6 +1173,31 @@ const sidebars = {
           type: "doc",
           label: "Best practices",
           id: "performance/performance-best-practices"
+        },
+      ]
+    },
+    {
+      type: "category",
+      label: "FAQ",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "faq/faq-overview"
+        },
+        {
+          type: "doc",
+          id: "faq/faq-when-to-use-risingwave"
+        },
+        {
+          type: "doc",
+          label: "RisingWave vs. Flink",
+          id: "faq/risingwave-flink-comparison",
+        },
+        {
+          type: "doc",
+          id: "faq/faq-using-risingwave"
         },
       ]
     },
