@@ -59,7 +59,7 @@ For instance, suppose you are deploying a compute node on a machine or pod with 
 
 - The total reserved memory would be 4.8GB + 9.6GB, which equals 14.4GB.
 
-However, if you find this excessive for your specific use case, you have the option to specify a different value. You can set either `RW_RESERVED_MEMORY_BYTES=8589934592` or `--reserved-memory-bytes=8589934592` when starting up the compute node. This will allocate 8GB as the reserved memory instead.
+However, if you find this excessive for your specific use case, you have the option to specify a different value. You can set either `RW_RESERVED_MEMORY_BYTES=8589934592` as an environment variable or `--reserved-memory-bytes=8589934592` as a command line parameter when starting up the compute node. This will allocate 8GB as the reserved memory instead.
 
 <details>
 <summary>Reserved memory setting before 1.10</summary>
