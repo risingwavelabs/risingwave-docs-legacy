@@ -8,7 +8,7 @@ slug: /ingest-from-s3
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-s3/" />
 </head>
 
-Use the SQL statement below to connect RisingWave to an Amazon S3 source. RisingWave supports both CSV and [ndjson](https://ndjson.org/) file formats.
+Use the SQL statement below to connect RisingWave to an Amazon S3 source. RisingWave supports both CSV and [ndjson](https://github.com/ndjson) file formats.
 
 The S3 connector does not guarantee the sequential reading of files or complete file reading.
 
@@ -50,8 +50,9 @@ For CSV data, specify the delimiter in the `delimiter` option in `ENCODE propert
 |s3.bucket_name |Required. The name of the bucket the data source is stored in. |
 |s3.credentials.access|Required. This field indicates the access key ID of AWS. |
 |s3.credentials.secret|Required. This field indicates the secret access key of AWS.|
-|match_pattern| Conditional. This field is used to find object keys in `s3.bucket_name` that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported. |
 |s3.endpoint_url| Conditional. The host URL for an S3-compatible object storage server. This allows users to use a different server instead of the standard S3 server. |
+|compression_format|Optional. This field specifies the compression format of the file being read. You can define `compression_format` in the `CREATE TABLE` statement. When set to `gzip` or `gz`, the file reader reads all files with the .gz suffix. When set to `None` or not defined, the file reader will automatically read and decompress .gz and .gzip files.|
+|match_pattern| Conditional. This field is used to find object keys in `s3.bucket_name` that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported. |
 
 :::note
 Empty cells in CSV files will be parsed to `NULL`.
@@ -60,8 +61,8 @@ Empty cells in CSV files will be parsed to `NULL`.
 |Field|Notes|
 |---|---|
 |*data_format*| Supported data format: `PLAIN`. |
-|*data_encode*| Supported data encodes: `CSV`, `JSON`. |
-|*without_header*| Whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
+|*data_encode*| Supported data encodes: `CSV`, `JSON`, `PARQUET`. |
+|*without_header*| This field is only for `CSV` encode, and it indicates whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
 |*delimiter*| How RisingWave splits contents. For `JSON` encode, the delimiter is `\n`. |
 
 ## Examples
@@ -112,6 +113,25 @@ WITH (
     s3.endpoint_url = 'https://s3.us-east-1.amazonaws.com'
 ) FORMAT PLAIN ENCODE JSON;
 ```
+</TabItem>
+
+<TabItem value="parquet" label="PARQUET" default>
+
+```sql
+CREATE TABLE s(
+    id int,
+    name varchar,
+    age int
+) 
+WITH (
+    connector = 's3_v2',
+    match_pattern = '*.parquet',
+    s3.region_name = 'ap-southeast-2',
+    s3.bucket_name = 'example-s3-source',
+    s3.credentials.access = 'xxxxx',
+    s3.credentials.secret = 'xxxxx'
+) FORMAT PLAIN ENCODE PARQUET;
+```
 
 </TabItem>
 </Tabs>
@@ -122,9 +142,6 @@ WITH (
 
 RisingWave has a prefix argument designed for filtering objects in the S3 bucket. It relies on [Apache Opendal](https://github.com/apache/incubator-opendal) whose prefix filter implementation is expected to be released soon.
 
-### Source file name as column
-
-A feature to create a column with the source file name is currently under development. You can track the progress [here](https://github.com/risingwavelabs/rfcs/pull/79).
 
 ### Handle new files in the bucket
 
@@ -142,6 +159,14 @@ CREATE MATERIALIZED VIEW mv AS SELECT * FROM s3_source;
 -- Create a table with the S3 connector
 CREATE TABLE s3_table ( ... ) WITH ( connector = 's3', ... );
 ```
+
+To view the progress of the source, you can also read the source directly
+```sql
+-- Create a materialized view from the source
+CREATE SOURCE s3_source WITH ( connector = 's3_v2', ... );
+SELECT count(*) from s3_source;
+```
+
 
 ### Read Parquet files from S3
 
