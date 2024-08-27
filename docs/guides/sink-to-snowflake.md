@@ -35,7 +35,7 @@ RisingWave will not be responsible for deleting data already imported by S3. You
 
 ## Required permission
 
-To successfully sink data into Snowflake, the S3 user account must have the appropriate permission:
+To sink data into Snowflake, the S3 user account must have the appropriate permission:
 
 - For the S3:  The user must have `WRITE` permission.
 
