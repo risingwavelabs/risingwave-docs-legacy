@@ -9,6 +9,10 @@ This guide describes how to sink data from RisingWave to DynamoDB using the Dyna
 
 [Amazon DynamoDB](https://aws.amazon.com/dynamodb/) is a fully managed, serverless, key-value NoSQL database designed to run high-performance applications at any scale. It provides consistent, single-digit millisecond response times and offers built-in security, backup and restore, and in-memory caching.
 
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
 ## Syntax
 
 ```sql

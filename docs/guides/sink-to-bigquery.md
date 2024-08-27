@@ -11,6 +11,10 @@ This guide describes how to sink data from RisingWave to Google BigQuery.
 
 You can test out this process on your own device by using the `big-query-sink` demo in the [`integration_test directory`](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) of the RisingWave repository.
 
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
 ## Prerequisites
 
 Before sinking data from RisingWave to BigQuery, please ensure the following:
