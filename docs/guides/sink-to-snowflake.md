@@ -17,7 +17,7 @@ Sinking from RisingWave to Snowflake utilizes [Snowpipe](https://docs.snowflake.
 
 ## Prerequisite
 
-- Ensure you have a S3 bucket that RisingWave can connect to.
+- Ensure you have an S3 bucket that RisingWave can connect to.
 
 - Ensure you have an upstream materialized view or source in RisingWave that you can sink data from.
 
