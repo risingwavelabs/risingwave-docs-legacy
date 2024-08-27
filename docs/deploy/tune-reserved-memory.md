@@ -73,9 +73,9 @@ By continuously improving the reserved memory feature, we strive to offer a more
 
 ## How to tune cache enviction policy
 
-You can tune the cache enviction policy by configuring the `memory_controller_eviction_factor_XXX` varibles in the [configuration `toml` file](https://github.com/risingwavelabs/risingwave/tree/main/src/config).
+You can tune the cache enviction policy by configuring the `memory_controller_eviction_factor_XXX` variables in the [configuration `toml` file](https://github.com/risingwavelabs/risingwave/tree/main/src/config).
 
-```plain title="Varibles in the configuration toml file"
+```plain title="Variables in the configuration toml file"
   #[serde(default = "default::developer::memory_controller_threshold_aggressive")]
   pub memory_controller_threshold_aggressive: f64,
 
