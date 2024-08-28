@@ -19,9 +19,9 @@ Provide a link to the relevant code PR here, if applicable.
 ## Related doc issue
 
 <!--
-Provide a link to the relevant doc issue here, if applicable.
 If this PR fixes/resolves the issue, please write "Resolve #xxx".
 -->
+Resolve [ Provide a link to the relevant doc issue here, if applicable. ]
 
 <!--
 ❗️ Before you submit, please ensure you have selected the applicable software version from "Milestone" if this PR is version-specific and applied relevant labels to categorize the PR. Submit the PR as a draft if it's not ready for review.
