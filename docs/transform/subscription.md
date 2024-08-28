@@ -122,7 +122,7 @@ FETCH n FROM cursor_name;
 
 ### Show subscription cursors
 
-To show all subscription cursors, use the syntax below:
+To show all subscription cursors in the current session, use the syntax below:
 
 ```sql
 SHOW SUBSCRIPTION CURSORS;
