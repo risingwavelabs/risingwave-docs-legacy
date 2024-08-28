@@ -8,10 +8,6 @@ slug: /manage-secrets
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/manage-secrets/" />
 </head>
 
-:::tip Premium Edition Feature
-This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
-:::
-
 By default, credentials for connecting to external services (like MySQL) are specified in plain text within the `WITH` clause of `CREATE SOURCE / SINK` statements. This practice poses security risks, particularly for large organizations where multiple teams manage connected services.
 
 To address the issue, we recommend using the `CREATE SECRET` command to store credentials securely. Admins can create secrets in advance, allowing other team members to reference them using secret identifiers when creating source/sink connections. This ensures that secrets remain protected throughout all phases of access.
@@ -28,6 +24,14 @@ RisingWave provides four key secret management operations:
 - Dropping secrets.
 
 In addition, you can use the [`rw_secrets`](/sql/system-catalogs/rw_catalog.md) catalog to view the ID, name, owner, and access control of secret objects.
+
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
 
 ## Create secrets
 

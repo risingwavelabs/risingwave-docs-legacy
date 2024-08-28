@@ -32,7 +32,7 @@ We periodically update this article to keep up with the rapidly evolving landsca
 |Typical use cases| Streaming ETL, streaming analytics | Streaming ETL, streaming analytics, online serving|
 
 <img
-  src={require('./images/RisingWave vs Flink.png').default}
+  src={require('../images/RisingWave vs Flink.png').default}
   alt="RisingWave vs Flink"
 />
 
@@ -57,7 +57,7 @@ When developing applications using Apache Flink, users need to connect multiple 
 The diagram below illustrates the situation when building applications using traditional stream processing engines like Apache Flink. Developers need to manage multiple systems and handle the consistency relationships between them.
 
 <img
-  src={require('./images/stream_processing_without_risingwave.jpeg').default}
+  src={require('../images/stream_processing_without_risingwave.jpeg').default}
   alt="Stream Processing Without RisingWave"
 />
 
@@ -66,7 +66,7 @@ When using RisingWave, users only need to focus on constructing materialized vie
 The diagram below illustrates the situation when developing applications using the RisingWave stream database. Developers only need to manage a single system and do not need to consider any relationships between different system components.
 
 <img
-  src={require('./images/stream_processing_with_risingwave.jpeg').default}
+  src={require('../images/stream_processing_with_risingwave.jpeg').default}
   alt="Stream Processing With RisingWave"
 />
 
@@ -75,7 +75,7 @@ The diagram below illustrates the situation when developing applications using t
 *Apache Flink adopts a big-data style, coupled-compute-storage architecture that is optimized for scalability; RisingWave in contrast implements a cloud-native, decoupled compute-storage architecture that is optimized for cost efficiency.*
 
 <img
-  src={require('./images/architecture_comparison.png').default}
+  src={require('../images/architecture_comparison.png').default}
   alt="Flink and RisingWave Architectures"
 />
 

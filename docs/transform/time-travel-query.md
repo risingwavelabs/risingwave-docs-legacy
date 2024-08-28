@@ -10,6 +10,10 @@ slug: /time-travel-queries
 
 This guide describes how to leverage the time travel feature. This feature helps access historical data at a specific time.
 
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
 ## Prerequisites
 
 Time travel requires the meta store type to be [SQL-compatible](/docs/deploy/risingwave-docker-compose.md#customize-meta-store). We recommend reserving at least 50 GB of disk space for the meta store.
