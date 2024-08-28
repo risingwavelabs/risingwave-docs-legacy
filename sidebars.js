@@ -682,6 +682,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "MongoDB",
+                  id: "guides/sink-to-mongodb",
+                },
+                {
+                  type: "doc",
                   label: "MQTT",
                   id: "guides/sink-to-mqtt",
                 },

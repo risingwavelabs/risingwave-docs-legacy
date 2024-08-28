@@ -102,7 +102,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Elasticsearch| No plan| Available. Only versions 7.x and 8.x are supported. For details, see [Sink to Elasticsearch](/guides/sink-to-elasticsearch.md).|
 |Greenplum| No plan| Researching <voteNotify note="greenplum_sink" /> |
 |Google BigQuery| No plan |Available. For details, see [Sink to Google BigQuery](/guides/sink-to-bigquery.md).|
-|MongoDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <voteNotify note="mongodb_sink" /> |
+|MongoDB| Available. For details, see [Ingest data from MongoDB CDC](/guides/ingest-from-mongodb-cdc.md).|Available. For details, see [Sink to MongoDB](/guides/sink-to-mongodb.md). |
 |Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
 |OpenSearch| No plan| Available. For details, see [Sink to OpenSearch](/guides/sink-to-opensearch.md). |
 |Redis|Researching <voteNotify note="redis_source" />|Available. For details, see [Sink to Redis](/guides/sink-to-redis.md).|
