@@ -11,9 +11,9 @@ slug: /sink-to-snowflake
 
 This guide describes how to sink data from RisingWave to Snowflake using the Snowflake sink connector in RisingWave.
 
-Snowflake is a cloud-based data warehousing platform that allows for scalable and efficient data storage and analysis. For more information about Snowflake, see [Snowflake official website](https://www.snowflake.com/en/). 
+Snowflake is a cloud-based data warehousing platform that allows for scalable and efficient data storage and analysis. For more information about Snowflake, see [Snowflake official website](https://www.snowflake.com/en/).
 
-Sinking from RisingWave to Snowflake utilizes [Snowpipe](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis) for data loading. Initially, data is staged in a user-managed S3 bucket in JSON format, and then loaded into the Snowflake table via Snowpipe.
+Sinking from RisingWave to Snowflake utilizes [Snowpipe](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-rest-apis) for data loading. Initially, data is staged in a user-managed S3 bucket in JSON format, and then loaded into the Snowflake table via Snowpipe. For more information, see [Overview of the Snowpipe REST endpoints to load data](https://docs.snowflake.com/user-guide/data-load-snowpipe-rest-overview).
 
 :::info Public Preview
 This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
@@ -25,31 +25,13 @@ This feature is in the public preview stage, meaning it's nearing the final prod
 
 - Ensure you have an upstream materialized view or source in RisingWave that you can sink data from.
 
-- Ensure you have an RSA key-value pair for authentication, and set up the credential for the `Snowflake User`.
+- Ensure the S3 user account has `WRITE` permission.
 
-- Ensure you have a `Snowflake table` that you can sink data to. For additional guidance on creating a table and setting up Snowflake, refer to the [Getting started](https://docs.snowflake.com/en/user-guide-getting-started) guide of Snowflake documentation.
-
-- Ensure you have a `Snowflake stage` that references the external Amazon S3 bucket. Snowflake will use this stage internally to load the data. Currently, only the JSON format is supported.
-
-- Ensure you have a `Snowflake pipe` to receive the loaded data from the pre-defined stage and copy it to the Snowflake table.
+- Ensure that Snowflake and S3 are set up in the same manner as described in the [Automating Snowpipe for Amazon S3](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-auto-s3), as RisingWave is only responsible for writing data to S3.
 
 :::note
 RisingWave will not be responsible for deleting data already imported by S3. You can manually set the lifecycle configuration of your S3 bucket to clear out unnecessary data. See [Lifecycle configuration](https://docs.aws.amazon.com/AmazonS3/latest/userguide/how-to-set-lifecycle-configuration-intro.html) and [Delete staged files](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-manage#deleting-staged-files-after-snowpipe-loads-the-datafor) for more details.
 :::
-
-## Required permission
-
-To sink data into Snowflake, the S3 user account must have the appropriate permission:
-
-- For the S3:  The user must have `WRITE` permission.
-
-Meanwhile, the Snowflake user account must have the appropriate permissions:
-
-- For the pipe: The user must have `OPERATE`permission.
-- For the stage: The user must have `USAGE` and `READ` permission.
-- For the table: The user must have `INSERT` and `SELECT` permission.
-- For the database: The user must have `USAGE` permission.
-- For the schema: The user must have `USAGE` permission.
 
 ## Syntax
 
@@ -68,22 +50,14 @@ WITH (
 
 All parameters are required unless specified otherwise.
 
-| Parameter                      | Description                                                                                                                                      |
-|--------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| snowflake.database            | The Snowflake database used for sinking.                                                                                                          |
-| snowflake.schema              | The name of the corresponding schema where sink table exists.                                                                                                  |
-| snowflake.pipe                | The created pipe object, will be used as `insertFiles` target.                                                                                    |
-| snowflake.account_identifier  | The unique `account_identifier` provided by Snowflake. Please use the form `<orgname>-<account_name>`. See [Account identifiers](https://docs.snowflake.com/en/user-guide/admin-account-identifier) for more details.|
-| snowflake.user                | The user that owns the table to be sinked. The user should have been granted corresponding *role*. See [Grant role](https://docs.snowflake.com/en/sql-reference/sql/grant-role) for more details. |
-| snowflake.rsa_public_key_fp   | The public key fingerprint used when generating custom `jwt_token`. See [Authenticating to the server](https://docs.snowflake.com/en/developer-guide/sql-api/authenticating) for more details. |
-| snowflake.private_key         | The RSA Privacy Enhanced Mail (PEM) key **without** encryption. See [Key-pair authentication and key-pair rotation](https://docs.snowflake.com/en/user-guide/key-pair-auth) for more details.                                                                                                           |
-| snowflake.s3_bucket           | The S3 bucket where intermediate sink files will be stored.                                                                                       |
-| snowflake.s3_path             | Optional. The S3 path to be specified. If this field is specified, the actual file location would be `<s3_bucket>://<s3_path>/<rw_auto_gen_file_name>`. Otherwise, it would be `<s3_bucket>://<rw_auto_gen_file_name>`. |
-| snowflake.aws_access_key_id   | S3 credentials.                                                                                                                                   |
-| snowflake.aws_secret_access_key | S3 credentials.                                                                                                                                  |
-| snowflake.aws_region          | The S3 region, e.g., `us-east-2`.                                                                                                                   |
-| snowflake.max_batch_row_num   | The configurable max row(s) to batch, which should be **explicitly** specified.                                                                    |
-| force_append_only             | Optional. If `true`, forces the sink to be append-only, even if it cannot be.                                                   |
+| Parameter              | Description                                                                                       |
+|------------------------|---------------------------------------------------------------------------------------------------|
+| s3.bucket_name         | The S3 bucket where intermediate sink files will be stored.                                      |
+| s3.path                | Optional. The S3 path to be specified. If specified, the actual file location would be `<s3_bucket>://<s3_path>/<rw_auto_gen_file_name>`. Otherwise, it would be `<s3_bucket>://<rw_auto_gen_file_name>`. |
+| s3.credentials.access  | S3 access credentials.                                                                                  |
+| s3.credentials.secret  | S3 secret credentials.                                                                                  |
+| s3.region_name         | The S3 region, e.g., `us-east-2`.                                                                   |
+| force_append_only      | Optional. If true, forces the sink to be append-only, even if it cannot be.                      |
 
 ## Data type mapping
 
@@ -110,7 +84,7 @@ The following table shows the corresponding data types between RisingWave and Sn
 
 ## Example
 
-Here is an example on how you can sink data from RisingWave to Snowflake. For detailed data-pipelining and sinking logic, see [Overview of the Snowpipe REST endpoints to load data](https://docs.snowflake.com/user-guide/data-load-snowpipe-rest-overview).
+Here is an example on how you can sink data from RisingWave to Snowflake.
 
 ### Set up S3
 
@@ -122,31 +96,24 @@ Set up an external S3 bucket and ensure you have the corresponding credentials. 
 
 ### Set up Snowflake
 
-   Next, you need to set up Snowflake, which involves the following steps:
+Next, you need to set up a table, a stage, and a pipe. Additionally, make sure to open the SQS queue in S3.
 
-   - Generate a key-value pair for authentication.
-   - Create a `role` and grant the appropriate permissions.
-   - Set up the credential for the user (e.g., `RSA_PUBLIC_KEY`) and retrieve `snowflake.rsa_public_key_fp` for later use in RisingWave.
-   - Create a `table` to store the sink data from RisingWave.
-   - Create a `stage` to reference the external S3 bucket, which Snowflake will use internally to load the data.
-   - Create a `pipe` to receive the loaded data from the pre-defined stage and copy it to the Snowflake table.
+To complete the setup, follow the instructions in [Automating Snowpipe for Amazon S3](https://docs.snowflake.com/en/user-guide/data-load-snowpipe-auto-s3).
 
-This assumes that you have already created your accounts and corresponding databases in Snowflake. For detailed authentication processes, see [Authenticating to the server](https://docs.snowflake.com/en/developer-guide/sql-api/authenticating); for detailed commands, see [Reference](https://docs.snowflake.com/en/reference). You can find an example of Snowflake setup commands in `snowflake_prep.sql`.
-
-### Sink data
+### Sink data with append-only
 
 Now you can start sinking data. Launch your RisingWave cluster and execute the following SQL queries to create source and sink. See the examples below:
 
 ```sql title="Create source"
-CREATE SOURCE s1_source (id int, name varchar)
+CREATE SOURCE s1_source (id int,name varchar)
 WITH (
-     connector = 'datagen',
-     fields.id.kind = 'sequence',
-     fields.id.start = '1',
-     fields.id.end = '10000',
-     fields.name.kind = 'random',
-     fields.name.length = '10',
-     datagen.rows.per.second = '200'
+	connector ='datagen',
+	fields.id.kind ='sequence',
+	fields.id.start ='1',
+	fields.id.end ='10000',
+	fields.name.kind ='random',
+	fields.name.length ='10',
+	datagen.rows.per.second ='200'
  ) FORMAT PLAIN ENCODE JSON;
  ```
 
@@ -154,19 +121,12 @@ WITH (
 CREATE SINK snowflake_sink FROM ss_mv WITH (
     connector = 'snowflake',
     type = 'append-only',
-    snowflake.database = 'EXAMPLE_DB',
-    snowflake.schema = 'EXAMPLE_SCHEMA',
-    snowflake.pipe = 'EXAMPLE_SNOWFLAKE_PIPE',
-    snowflake.account_identifier = '<ORG_NAME>-<ACCOUNT_NAME>',
-    snowflake.user = 'EXAMPLE_USER',
-    snowflake.rsa_public_key_fp = 'EXAMPLE_FP',
-    snowflake.private_key = 'EXAMPLE_PK',
-    snowflake.s3_bucket = 'EXAMPLE_S3_BUCKET',
-    snowflake.aws_access_key_id = 'EXAMPLE_AWS_ID',
-    snowflake.aws_secret_access_key = 'EXAMPLE_SECRET_KEY',
-    snowflake.aws_region = 'EXAMPLE_REGION',
-    snowflake.max_batch_row_num = '1030',
-    snowflake.s3_path = 'EXAMPLE_S3_PATH',
+    s3.bucket_name = 'EXAMPLE_S3_BUCKET',
+    s3.credentials.access = 'EXAMPLE_AWS_ACCESS',
+    s3.credentials.secret = 'EXAMPLE_AWS_SECRET',
+    s3.region_name = 'EXAMPLE_REGION',
+    s3.path = 'EXAMPLE_S3_PATH',
+    force_append_only = 'true'
 );
  ```
 
@@ -202,25 +162,17 @@ FROM
     sub;
  ```
  
-Note that RisingWave uses `changelog` to transform streaming data into incremental logs. In the example above, `changelog_op` represents the type of modification (Insert/Update/Delete), while `_changelog_row_id` indicates the order of the modification. See [AS CHANGELOG](/sql/commands/sql-as-changelog.md).
+Note that RisingWave uses `changelog` to transform streaming data into incremental logs. In the example above, `changelog_op` represents the type of modification (Insert/Update/Delete), while `_changelog_row_id` indicates the order of the modification. For more information, see [AS CHANGELOG](/sql/commands/sql-as-changelog.md).
 
  ```sql title="Create sink in RisingWave"
 CREATE SINK snowflake_sink FROM ss_mv WITH (
-    connector ='snowflake',
-    type ='append-only',
-    snowflake.database ='EXAMPLE_DB',
-    snowflake.schema ='EXAMPLE_SCHEMA',
-    snowflake.pipe ='EXAMPLE_SNOWFLAKE_PIPE',
-    snowflake.account_identifier ='<ORG_NAME>-<ACCOUNT_NAME>',
-    snowflake.user ='EXAMPLE_USER',
-    snowflake.rsa_public_key_fp ='EXAMPLE_FP',
-    snowflake.private_key ='EXAMPLE_PK',
-    snowflake.s3_bucket ='EXAMPLE_S3_BUCKET',
-    snowflake.aws_access_key_id ='EXAMPLE_AWS_ID',
-    snowflake.aws_secret_access_key ='EXAMPLE_SECRET_KEY',
-    snowflake.aws_region ='EXAMPLE_REGION',
-    snowflake.max_batch_row_num ='1030',
-    snowflake.s3_path ='EXAMPLE_S3_PATH',
+    connector = 'snowflake',
+    type = 'append-only',
+    s3.bucket_name = 'EXAMPLE_S3_BUCKET',
+    s3.credentials.access = 'EXAMPLE_AWS_ACCESS',
+    s3.credentials.secret = 'EXAMPLE_AWS_SECRET',
+    s3.region_name = 'EXAMPLE_REGION',
+    s3.path = 'EXAMPLE_S3_PATH',
 );
  ```
 
@@ -229,13 +181,13 @@ CREATE WAREHOUSE test_warehouse;
  ```
 
  ```sql title="Create dynamic table in Snowflake"
-    CREATE OR REPLACE DYNAMIC TABLE user_behaviors
-    TARGET_LAG = '1 minute'
-    WAREHOUSE = test_warehouse
-    AS SELECT *
-        FROM (
-            SELECT *, ROW_NUMBER() OVER (PARTITION BY {primary_key} ORDER BY __row_id DESC) AS dedupe_id
-            FROM t3
-        ) AS subquery
-    WHERE dedupe_id = 1 AND (__op = 1 or __op = 3);
+CREATE OR REPLACE DYNAMIC TABLE user_behaviors
+TARGET_LAG = '1 minute'
+WAREHOUSE = test_warehouse
+AS SELECT *
+    FROM (
+        SELECT *, ROW_NUMBER() OVER (PARTITION BY {primary_key} ORDER BY __row_id DESC) AS dedupe_id
+        FROM t3
+    ) AS subquery
+WHERE dedupe_id = 1 AND (__op = 1 or __op = 3);
  ```
