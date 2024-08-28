@@ -1119,6 +1119,11 @@ const sidebars = {
         },
         {
           type: "doc",
+          label: "Tune reserved memory and cache eviction policy",
+          id: "deploy/tune-reserved-memory",
+        },
+        {
+          type: "doc",
           id: "manage/view-configure-system-parameters",
         },
         {
