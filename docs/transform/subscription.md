@@ -70,7 +70,7 @@ DECLARE cursor_name SUBSCRIPTION CURSOR FOR subscription_name [since_clause];
 
 The `since_clause` is used to specify the starting point for reading data. By setting this clause, you can control the range of data that is returned, allowing you to retrieve only the incremental data or data starting from a specific time or event. 
 
-If you don’t specify the `since_clause`, the returned data will include both the historical data up to the time of declaration and the incremental data after declaration. If you want to specify it, here are the available choices:
+Below are the available choices for `since_clause`. If you don’t specify the `since_clause`, the returned data will just include the incremental data after declaration, which equals to the first choice below.
 
 1. `since now()/proctime()` : The returned data will include only the incremental data starting from the time of declaration.
 
@@ -98,7 +98,7 @@ FETCH NEXT FROM cur;
 (1 row)
 ```
 
-The `op` column in the result stands for the change operations. It has four options: `op = 1` (insert), `op = 2` (delete), `op = 3` (update_insert),  and `op = 4` (update_delete). For a single UPDATE statement, the subscription log will contain two separate rows: one with `update_insert` and another with `update_delete`. This is because RisingWave treats an UPDATE as a delete of the old value followed by an insert of the new value. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
+The `op` column in the result stands for the change operations. It has four options: `op = 1` (insert), `op = 2` (update_insert), `op = 3` (delete),  and `op = 4` (update_delete). For a single UPDATE statement, the subscription log will contain two separate rows: one with `update_insert` and another with `update_delete`. This is because RisingWave treats an UPDATE as a delete of the old value followed by an insert of the new value. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
 
 Note that each time `FETCH NEXT FROM cursor_name` is called, it will return one row of incremental data from the subscribed table. It does not return all the incremental data at once, but requires the user to repeatedly call this statement to fetch the data.
 
@@ -119,6 +119,14 @@ FETCH n FROM cursor_name;
 - For data with the same `rw_timestamp`, the order matches the event sequence if the data belongs to the same primary key in the subscribed materialized view or table.
 
 - For data with the same `rw_timestamp` but different primary keys, the order may not reflect the exact event sequence.
+
+### Show subscription cursors
+
+To show all subscription cursors, use the syntax below:
+
+```sql
+SHOW SUBSCRIPTION CURSORS;
+```
 
 ### Examples
 
