@@ -123,4 +123,4 @@ The best configuration depends on your specific workload and data pattern. We re
 
 - [Memory usage](/performance/performance-metrics.md#memory-usage): The memory control mechanism of RisingWave.
 
-- [What consists of the memory usage and disk usage?](/rw-faq.md#what-consists-of-the-memory-usage-and-disk-usage)
+- [What consists of the memory usage and disk usage?](/faq/using-risingwave.md#what-consists-of-the-memory-usage-and-disk-usage)
