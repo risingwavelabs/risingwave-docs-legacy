@@ -472,6 +472,7 @@ to_jsonb ( any ) → JSONB
 ```sql title=Examples
 to_jsonb(array['apple', 'banana', 'cherry']) → ["apple", "banana", "cherry"]
 to_jsonb('Products labeled "expired"'::string) → "Products labeled \"expired\""
+to_jsonb(map_from_entries(array['a', 'b', 'c'], array[1, 2, 3])) → {"a": 1, "b": 2, "c": 3}
 ```
 
 ## JSON operators
@@ -702,4 +703,36 @@ FROM (VALUES
  {"a": "b"} | t     | f       | t       | f
  [1,2]      | t     | f       | f       | t
  abc        | f     | f       | f       | f
+```
+
+## Other functions
+
+### `map_from_entries`
+
+Creates a `map` from two arrays: one for keys and one for values.
+
+```sql title=Syntax
+map_from_entries(array<key_type>, array<value_type>) → map<key_type, value_type>
+```
+
+```sql title=Example
+SELECT map_from_entries(array['a', 'b', 'c'], array[1, 2, 3]);
+------RESULT
+{"a": 1, "b": 2, "c": 3}
+```
+
+---
+
+### `map_access`
+
+Retrieves the value associated with a given key in a `map`.
+
+```sql title=Syntax
+map_access(map, key) → value_type
+```
+
+```sql title=Example
+SELECT map_access(map_from_entries(array['a', 'b', 'c'], array[1, 2, 3]), 'b');
+------RESULT
+2
 ```
