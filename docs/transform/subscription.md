@@ -98,7 +98,7 @@ FETCH NEXT FROM cur;
 (1 row)
 ```
 
-The `op` column in the result stands for the change operations. It has four options: `op = 1` (insert), `op = 2` (update_insert), `op = 3` (delete),  and `op = 4` (update_delete). For a single UPDATE statement, the subscription log will contain two separate rows: one with `update_insert` and another with `update_delete`. This is because RisingWave treats an UPDATE as a delete of the old value followed by an insert of the new value. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
+The `op` column in the result stands for the change operations. It has four options: `insert`, `update_insert`, `delete`,  and `update_delete`. For a single UPDATE statement, the subscription log will contain two separate rows: one with `update_insert` and another with `update_delete`. This is because RisingWave treats an UPDATE as a delete of the old value followed by an insert of the new value. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
 
 Note that each time `FETCH NEXT FROM cursor_name` is called, it will return one row of incremental data from the subscribed table. It does not return all the incremental data at once, but requires the user to repeatedly call this statement to fetch the data.
 
