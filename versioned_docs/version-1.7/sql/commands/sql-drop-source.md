@@ -18,30 +18,6 @@ Before you can remove a source, you must use [DROP MATERIALIZED VIEW](sql-drop-m
 DROP SOURCE [ IF EXISTS ] [schema_name.]source_name [ CASCADE ];
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP SOURCE'),
-        rr.Optional(
-            rr.Terminal('IF EXISTS')
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.NonTerminal('schema_name'),
-                rr.Terminal('.')
-            ),
-        ),
-        rr.NonTerminal('source_name'),
-        rr.Optional(
-            rr.Terminal('CASCADE'), 'skip'
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 |Parameter                  | Description           |

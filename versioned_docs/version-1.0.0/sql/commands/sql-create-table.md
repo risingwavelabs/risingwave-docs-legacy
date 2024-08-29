@@ -31,43 +31,6 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
 ];
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE TABLE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('table_name', 'wrap'),
-            rr.Terminal('('),
-        ),
-        rr.Stack(
-            rr.OneOrMore(
-                rr.Sequence(
-                    rr.NonTerminal('col_name', 'skip'),
-                    rr.NonTerminal('data_type', 'skip'),
-                    rr.Optional(rr.Terminal('PRIMARY KEY')),
-                    rr.Optional(rr.Terminal('AS generation_expression')),
-                    rr.Optional(rr.Terminal(',')),
-                ),
-                rr.Comment('Alternative format: PRIMARY KEY (col_name, ... )'),
-            ),
-        ),
-        rr.Sequence(
-            rr.Terminal(')'),
-        rr.Optional(
-            rr.Stack(
-                rr.Sequence(
-                    rr.Terminal('WITH clause'),
-            ),
-        ),
-        ), rr.Terminal(';'),
-        ),
-    )
-);
-
-<drawer SVG={svg} />
-
 This is the WITH clause and the rest of the source parameters:
 
 export const svgTwo = rr.Diagram(
@@ -158,9 +121,9 @@ CREATE TABLE IF NOT EXISTS taxi_trips(
     distance DOUBLE PRECISION,
     duration DOUBLE PRECISION,
     fare STRUCT<
-      initial_charge DOUBLE PRECISION, 
-      subsequent_charge DOUBLE PRECISION, 
-      surcharge DOUBLE PRECISION, 
+      initial_charge DOUBLE PRECISION,
+      subsequent_charge DOUBLE PRECISION,
+      surcharge DOUBLE PRECISION,
       tolls DOUBLE PRECISION>);
 ```
 

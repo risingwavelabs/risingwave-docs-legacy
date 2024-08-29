@@ -16,30 +16,6 @@ Use the `DROP INDEX` command to remove an index from a table or a materialized v
 DROP INDEX [ IF EXISTS ] [ schema_name.]index_name [ CASCADE ];
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP INDEX'),
-        rr.Optional(
-            rr.Terminal('IF EXISTS')
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.NonTerminal('schema_name'),
-                rr.Terminal('.')
-            ),
-        ),
-        rr.NonTerminal('index_name'),
-        rr.Optional(
-            rr.Terminal('CASCADE'), 'skip'
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 |Parameter                  | Description           |

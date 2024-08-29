@@ -19,7 +19,7 @@ When creating a source, you can choose to persist the data from the source in Ri
 ## Syntax
 
 ```sql
-CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
+CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [ schema_definition ]
 WITH (
    connector='pulsar',
@@ -30,65 +30,6 @@ FORMAT data_format ENCODE data_encode (
    schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
 );
 ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Choice(1,
-                rr.Terminal('CREATE TABLE'),
-                rr.Terminal('CREATE SOURCE')
-            ),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('source_name', 'wrap')
-        ),
-        rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
-        rr.Sequence(
-            rr.Terminal('FORMAT'),
-            rr.NonTerminal('format', 'skip')
-        ),
-        rr.Sequence(
-            rr.Terminal('ENCODE'),
-            rr.NonTerminal('encode', 'skip'),
-            rr.Optional(
-                rr.Sequence(
-                rr.Terminal('('),
-                rr.NonTerminal('encode_parameter', 'skip'),
-                rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.NonTerminal('pulsar', 'skip'),
-                        rr.Terminal(','),
-                    ),
-                    rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('connector_parameter', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                    ),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Stack(
-            rr.Terminal(';'),
-        ),
-    )
-);
-
-<drawer SVG={svg} />
 
 **schema_definition**:
 
@@ -156,7 +97,7 @@ If you have sources created using the old syntax and intend to migrate to v1.0.0
 :::
 
 ```sql
-CREATE TABLE table1 (PRIMARY KEY(id)) 
+CREATE TABLE table1 (PRIMARY KEY(id))
 ```
 
 ## Example
@@ -170,7 +111,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="avro" label="Avro" default>
 
 ```sql
-CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc 
+CREATE {TABLE | SOURCE} IF NOT EXISTS source_abc
 WITH (
    connector='pulsar',
    topic='demo_topic',

@@ -23,7 +23,7 @@ You can ingest CDC data from PostgreSQL into RisingWave in two ways:
   :::
 
 - Using a CDC tool and a message broker
-  
+
   You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/create-source/create-source-cdc.md) topic.
 
 ## Set up PostgreSQL
@@ -74,9 +74,9 @@ import TabItem from '@theme/TabItem';
     Run the following statements to grant the required privileges to the user.
 
     ```sql
-    GRANT CONNECT ON DATABASE <database_name> TO <username>;   
-    GRANT USAGE ON SCHEMA <schema_name> TO <username>;  
-    GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>; 
+    GRANT CONNECT ON DATABASE <database_name> TO <username>;
+    GRANT USAGE ON SCHEMA <schema_name> TO <username>;
+    GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>;
     GRANT CREATE ON DATABASE <database_name> TO <username>;
     ```
 
@@ -157,87 +157,12 @@ To ensure all data changes are captured, you must create a table and specify pri
  CREATE TABLE [ IF NOT EXISTS ] source_name (
     column_name data_type PRIMARY KEY , ...
     PRIMARY KEY ( column_name, ... )
- ) 
+ )
  WITH (
     connector='postgres-cdc',
     <field>=<value>, ...
  );
  ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE TABLE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('source_name', 'wrap')
-        ),
-        rr.Terminal('('),
-        rr.Stack(
-            rr.Sequence(
-                rr.NonTerminal('column_name', 'skip'),
-                rr.NonTerminal('data_type', 'skip'),
-                rr.Terminal('PRIMARY KEY'),
-                rr.Optional(rr.Terminal(',')),
-            ),
-            rr.ZeroOrMore(
-                rr.Sequence(
-                    rr.Terminal(','),
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.NonTerminal('data_type', 'skip'),
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Optional(rr.Terminal(',')),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Terminal('('),
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.Optional(rr.Terminal(',')),
-                    rr.ZeroOrMore(
-                        rr.Sequence(
-                            rr.Terminal(','),
-                            rr.NonTerminal('column_name', 'skip'),
-                            rr.Optional(rr.Terminal(',')),
-                        ),
-                    ),
-                    rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Terminal(')'),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.Choice(1,
-                            rr.Terminal('mysql-cdc'),
-                            rr.Terminal('postgres-cdc'),
-                        ),
-                        rr.Terminal(','),
-                    ),
-                    rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('field', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                    ),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-    )
-);
-
-<drawer SVG={svg} />
 
 Note that a primary key is required.
 
