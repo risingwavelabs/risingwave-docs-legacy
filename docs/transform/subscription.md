@@ -126,6 +126,13 @@ To show all subscription cursors in the current session, use the syntax below:
 
 ```sql
 SHOW SUBSCRIPTION CURSORS;
+
+------RESULT
+ Name | SubscriptionName 
+------+------------------
+ cur2 | sub
+ cur  | sub
+(2 rows)
 ```
 
 ### Examples
@@ -150,7 +157,7 @@ After creation, we can use the `FETCH NEXT FROM cursor_name`  statement to fetch
 fetch next from cur;
    
 ----RESULT
-v1 | v2 | v3 |   op   | rw_timestamp 
+ v1 | v2 | v3 |   op   | rw_timestamp 
 ----+----+----+--------+--------------
   1 |  1 |  1 | Insert |             
 (1 row)
@@ -164,14 +171,14 @@ update t1 set v3 = 10 where v1 = 1;
 fetch next from cur;
 
 ----RESULT
-t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+ t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
 -------+-------+-------+---------------+---------------
      1 |     1 |     1 | UpdateDelete  | 1715669376304
 (1 row)
 
 fetch next from cur;
 ----RESULT
-t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+ t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
 -------+-------+-------+---------------+---------------
      1 |     1 |    10 | UpdateInsert  | 1715669376304
 (1 row)
@@ -184,7 +191,7 @@ declare cur2 subscription cursor for sub since 1715669376304;
 fetch next from cur2;
 
 ----RESULT
-t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+ t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
 -------+-------+-------+---------------+---------------
      1 |     1 |     1 | UpdateDelete  | 1715669376304
 (1 row)
@@ -192,7 +199,7 @@ t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp
 
 fetch next from cur2;
 ----RESULT
-t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+ t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
 -------+-------+-------+---------------+---------------
      1 |     1 |    10 | UpdateInsert  | 1715669376304
 (1 row)
