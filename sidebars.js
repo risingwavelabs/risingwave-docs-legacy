@@ -33,7 +33,7 @@ const sidebars = {
         {
           type: "doc",
           id: "use-cases",
-          label: "Use cases & Examples",
+          label: "Use cases & examples",
         },
         {
           type: "doc",
