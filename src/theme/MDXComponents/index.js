@@ -20,8 +20,6 @@ import NotifyButton from "@theme/NotifyButton";
 import Admonition from "@theme/Admonition";
 import Drawer from "@theme/Drawer";
 import Capsule from "@theme/Capsule";
-import Stepper from "@theme/Stepper";
-import VerticalStepper from "@theme/VerticalStepper";
 import OutlinedCard from "@theme/OutlinedCard";
 import ResponsiveGrid from "@theme/ResponsiveGrid";
 import SectionGrid from "@theme/SectionGrid";
@@ -84,8 +82,6 @@ const MDXComponents = {
   admonition: Admonition,
   drawer: Drawer,
   voteNotify: Capsule,
-  stepper: Stepper,
-  vstepper: VerticalStepper,
   card: OutlinedCard,
   grid: ResponsiveGrid,
   platformDetector: PlatformDetector,
