@@ -17,7 +17,6 @@ import DefaultButton from "@theme/DefaultButton";
 import LightButton from "@theme/LightButton";
 import NotifyButton from "@theme/NotifyButton";
 import Admonition from "@theme/Admonition";
-import Drawer from "@theme/Drawer";
 import Capsule from "@theme/Capsule";
 import OutlinedCard from "@theme/OutlinedCard";
 import ResponsiveGrid from "@theme/ResponsiveGrid";
@@ -78,7 +77,6 @@ const MDXComponents = {
   defaultButton: DefaultButton,
   lightButton: LightButton,
   admonition: Admonition,
-  drawer: Drawer,
   voteNotify: Capsule,
   card: OutlinedCard,
   grid: ResponsiveGrid,
