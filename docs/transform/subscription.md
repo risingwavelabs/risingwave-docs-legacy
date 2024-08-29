@@ -92,9 +92,9 @@ After creating a subscription cursor, you can fetch the data by the `FETCH NEXT 
 FETCH NEXT FROM cur;
 
 ----RESULT
- t1.v1 | t1.v2 | t1.v3 | t1.op | rw_timestamp  
--------+-------+-------+-------+---------------
-     1 |     1 |     1 |     4 | 1715669376304
+t1.v1 | t1.v2 | t1.v3 |    t1.op     |  rw_timestamp  
+-------+-------+-------+--------------+---------------
+     1 |     1 |     1 | UpdateDelete | 1715669376304
 (1 row)
 ```
 
@@ -150,9 +150,9 @@ After creation, we can use the `FETCH NEXT FROM cursor_name`  statement to fetch
 fetch next from cur;
    
 ----RESULT
-v1 | v2 | v3 | op | rw_timestamp 
-----+----+----+----+--------------
-  1 |  1 |  1 |  1 |             
+v1 | v2 | v3 |   op   | rw_timestamp 
+----+----+----+--------+--------------
+  1 |  1 |  1 | Insert |             
 (1 row)
 ```
 
@@ -164,16 +164,16 @@ update t1 set v3 = 10 where v1 = 1;
 fetch next from cur;
 
 ----RESULT
- t1.v1 | t1.v2 | t1.v3 | t1.op | rw_timestamp  
--------+-------+-------+-------+---------------
-     1 |     1 |     1 |     4 | 1715669376304
+t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+-------+-------+-------+---------------+---------------
+     1 |     1 |     1 | UpdateDelete  | 1715669376304
 (1 row)
 
 fetch next from cur;
 ----RESULT
- t1.v1 | t1.v2 | t1.v3 | t1.op | rw_timestamp  
--------+-------+-------+-------+---------------
-     1 |     1 |    10 |     3 | 1715669376304
+t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+-------+-------+-------+---------------+---------------
+     1 |     1 |    10 | UpdateInsert  | 1715669376304
 (1 row)
 ```
 
@@ -184,17 +184,17 @@ declare cur2 subscription cursor for sub since 1715669376304;
 fetch next from cur2;
 
 ----RESULT
- t1.v1 | t1.v2 | t1.v3 | t1.op | rw_timestamp  
--------+-------+-------+-------+---------------
-     1 |     1 |     1 |     4 | 1715669376304
+t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+-------+-------+-------+---------------+---------------
+     1 |     1 |     1 | UpdateDelete  | 1715669376304
 (1 row)
 
 
 fetch next from cur2;
 ----RESULT
- t1.v1 | t1.v2 | t1.v3 | t1.op | rw_timestamp  
--------+-------+-------+-------+---------------
-     1 |     1 |    10 |     3 | 1715669376304
+t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+-------+-------+-------+---------------+---------------
+     1 |     1 |    10 | UpdateInsert  | 1715669376304
 (1 row)
 ```
 
