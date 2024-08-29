@@ -22,5 +22,8 @@ SHOW CURSORS;
 SHOW CURSORS;
 
 ------RESULT
- 
+ Name
+-----------
+ my_cursor
+(1 row)
 ```
