@@ -8,7 +8,7 @@ slug: /sink-to-aws-kinesis
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-aws-kinesis/" />
 </head>
 
-This topic described how to sink data from RisingWave to AWS Kinesis Data Streams.
+This topic describes how to sink data from RisingWave to AWS Kinesis Data Streams.
 
 :::note Beta Feature
 The AWS Kinesis sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
