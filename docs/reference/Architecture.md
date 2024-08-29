@@ -16,6 +16,6 @@ The compute nodes are responsible for ingesting data from upstream systems, pars
 The compactor nodes handle data storage and retrieval from object storage. They also perform data compaction to optimize storage efficiency.
 
 <img
-  src={require('./images/rw_architecture.png').default}
+  src={require('../images/rw_architecture.png').default}
   alt="RisingWave Architecture"
 />
