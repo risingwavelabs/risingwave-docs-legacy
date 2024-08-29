@@ -22,5 +22,9 @@ SHOW SUBSCRIPTION CURSORS;
 SHOW SUBSCRIPTION CURSORS;
 
 ------RESULT
- 
+ Name | SubscriptionName 
+------+------------------
+ cur2 | sub
+ cur  | sub
+(2 rows)
 ```
