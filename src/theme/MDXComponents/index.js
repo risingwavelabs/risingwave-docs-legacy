@@ -22,7 +22,6 @@ import Drawer from "@theme/Drawer";
 import Capsule from "@theme/Capsule";
 import OutlinedCard from "@theme/OutlinedCard";
 import ResponsiveGrid from "@theme/ResponsiveGrid";
-import SectionGrid from "@theme/SectionGrid";
 
 function unwrapMDXElement(element) {
   if (element?.props?.mdxType && element?.props?.originalType) {
@@ -85,6 +84,5 @@ const MDXComponents = {
   card: OutlinedCard,
   grid: ResponsiveGrid,
   platformDetector: PlatformDetector,
-  sectionGrid: SectionGrid,
 };
 export default MDXComponents;
