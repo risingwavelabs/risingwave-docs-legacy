@@ -11,7 +11,6 @@ import DocItemTOCDesktop from "@theme/DocItem/TOC/Desktop";
 import DocItemContent from "@theme/DocItem/Content";
 import DocBreadcrumbs from "@theme/DocBreadcrumbs";
 import styles from "./styles.module.css";
-import Giscus from "@giscus/react";
 import { useColorMode } from "@docusaurus/theme-common";
 /**
  * Decide if the toc should be rendered, on mobile or desktop viewports
@@ -50,24 +49,6 @@ export default function DocItemLayout({ children }) {
             <DocItemFooter />
           </article>
           <DocItemPaginator />
-          {/* <div className={styles["giscus-container"]}>
-            <Giscus
-              id="comments"
-              repo="risingwavelabs/risingwave-docs"
-              repoId="R_kgDOG-KUnQ"
-              category="Announcements"
-              categoryId="DIC_kwDOG-KUnc4COB_V"
-              mapping="title"
-              term="Welcome to @giscus/react component!"
-              reactionsEnabled="0"
-              emitMetadata="0"
-              inputPosition="top"
-              theme={colorMode === "dark" ? "transparent_dark" : colorMode}
-              lang="en"
-              loading="lazy"
-              crossorigin="anonymous"
-            />
-          </div> */}
         </div>
       </div>
       {docTOC.desktop && <div className="col col--3">{docTOC.desktop}</div>}
