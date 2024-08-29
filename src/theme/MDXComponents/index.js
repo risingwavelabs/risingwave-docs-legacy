@@ -17,8 +17,6 @@ import DefaultButton from "@theme/DefaultButton";
 import PlatformDetector from "@theme/PlatformDetector";
 import LightButton from "@theme/LightButton";
 import NotifyButton from "@theme/NotifyButton";
-import DefaultNotify from "@theme/DefaultNotify";
-import LightNotify from "@theme/LightNotify";
 import Admonition from "@theme/Admonition";
 import Drawer from "@theme/Drawer";
 import Capsule from "@theme/Capsule";
@@ -77,12 +75,12 @@ const MDXComponents = {
   h4: (props) => <Heading as="h4" {...props} />,
   h5: (props) => <Heading as="h5" {...props} />,
   h6: (props) => <Heading as="h6" {...props} />,
+
+  // TODO(rc): should move these to `components` and import before using in MDX
   rollButton: RollButton,
   notifyButton: NotifyButton,
   defaultButton: DefaultButton,
   lightButton: LightButton,
-  defaultNotify: DefaultNotify,
-  lightNotify: LightNotify,
   admonition: Admonition,
   drawer: Drawer,
   voteNotify: Capsule,
