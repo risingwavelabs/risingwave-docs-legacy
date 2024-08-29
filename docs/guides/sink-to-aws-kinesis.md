@@ -44,6 +44,10 @@ FORMAT data_format ENCODE data_encode [ (
 |aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources. |
 |primary_key| Required. The primary keys of the sink. Use ',' to delimit the primary key columns. |
 
+:::note
+In the Kinesis sink, we use the [PutRecords](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecords.html) API to send multiple records in batches, which helps achieve higher throughput. However, due to Kinesis limitations, the records might be delivered out of order when using this API. Despite this, the current implementation of the Kinesis sink guarantees at-least-once delivery and eventual consistency.
+:::
+
 ## FORMAT and ENCODE options
 
 :::note
