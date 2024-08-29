@@ -8,7 +8,7 @@ slug: /node-specific-configurations
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/node-specific-configurations/" />
 </head>
 
-In RisingWave, certain configurations are node-specific and can vary between different nodes. These configurations are stored in a TOML file, which is read at system startup.
+In RisingWave, certain configurations are node-specific and can vary between different nodes. These configurations are stored in a [TOML file](https://github.com/risingwavelabs/risingwave/blob/main/src/config/example.toml), which is read at system startup.
 
 ## Setting up node-specific configurations
 
@@ -49,6 +49,8 @@ Node-specific configurations can be set in the `risingwave.toml` configuration f
    For the changes to take effect, you must restart the node.
 
 Any items present in `risingwave.toml` will override the default values in the source code. If no configuration file is specified, the default values in `/risingwave/src/common/src/config.rs` will be used.
+
+For more details about the parameters in the configuration file, see [RisingWave configuration files directory](https://github.com/risingwavelabs/risingwave/tree/main/src/config). There you'll find information like the [definitions and default values of these parameters](https://github.com/risingwavelabs/risingwave/blob/main/src/config/docs.md).
 
 ## Node-specific configurations
 

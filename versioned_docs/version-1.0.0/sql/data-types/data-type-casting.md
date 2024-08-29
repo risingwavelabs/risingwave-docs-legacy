@@ -31,7 +31,7 @@ Certain data types can be cast to and from other types implicitly or explicitly.
 
 :::note
 
-Structs can be casted to structs explictly or implicitly if the nested expressions and types can be casted.
+Structs can be casted to structs explicitly or implicitly if the nested expressions and types can be casted.
 
 :::
 

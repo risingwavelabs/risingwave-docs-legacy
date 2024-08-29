@@ -119,7 +119,7 @@ sudo ./aws/install
 sudo apt install openjdk-8-jdk -y
 ```
 
-### Download Kakfa client
+### Download Kafka client
 
 ```terminal
 wget https://archive.apache.org/dist/kafka/2.6.2/kafka_2.12-2.6.2.tgz

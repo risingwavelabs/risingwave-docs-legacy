@@ -44,8 +44,8 @@ SELECT meta_snapshot_id FROM rw_catalog.rw_meta_snapshot;
 
 Example output:
 
-```bash
- meta_snapshot_id 
+```
+ meta_snapshot_id
 ------------------
                 3
                 4
@@ -61,13 +61,62 @@ risectl meta delete-meta-snapshots [snapshot_ids]
 
 ## Restore from a meta snapshot
 
-Use the following steps to restore from a meta snapshot.
+Below are two separate methods to restore from a meta snapshot using SQL database and etcd as the meta store backend.
+
+### SQL database as meta store backend
+
+If the cluster has been using a SQL database as meta store backend, follow these steps to restore from a meta snapshot.
 
 1. Shut down the meta service.
     :::note
     This step is especially important because the meta backup and recovery process does not replicate SST files. It is not permitted for multiple clusters to run with the same SSTs set at any time, as this can corrupt the SST files.
     :::
-2. Create an empty meta store.
+2. Create a new meta store, i.e. a new SQL database instance.
+
+   Note that this new SQL database instance must have the exact same tables defined as the original, but all tables should remain empty. To achieve this, you can optionally use the [schema migration tool](https://github.com/risingwavelabs/risingwave/tree/main/src/meta/model_v2/migration) to create tables, then truncate those non-empty tables populated by the tool.
+3. Restore the meta snapshot to the new meta store.
+
+    ```bash
+    risectl \
+    meta \
+    restore-meta \
+    --meta-store-type sql \
+    --meta-snapshot-id [snapshot_id] \
+    --sql-endpoint [sql_endpoint] \
+    --backup-storage-url [backup_storage_url, e.g. s3://bucket_read_from] \
+    --backup-storage-directory [backup_storage_directory, e.g. dir_read_from] \
+    --hummock-storage-url [hummock_storage_url, e.g. s3://bucket_write_to] \
+    --hummock-storage-directory [hummock_storage_directory, e.g. dir_write_to]
+    ```
+
+    `restore-meta` reads snapshot data from backup storage and writes them to meta store and hummock storage.
+
+    For example, given the cluster settings below:  
+    ```
+    psql=> show parameters;
+                  Name                     |                Value                 | Mutable
+    ---------------------------------------+--------------------------------------+---------
+    state_store                            | hummock+s3://state_bucket            | f
+    data_directory                         | state_data                           | f
+    backup_storage_url                     | s3://backup_bucket                   | t
+    backup_storage_directory               | backup_data                          | t
+    ```
+    Parameters to `risectl meta restore-meta` should be:
+    - `--backup-storage-url s3://backup_bucket`.
+    - `--backup-storage-directory backup_data`.
+    - `--hummock-storage-url s3://state_bucket`. Note that the `hummock+` prefix is stripped.
+    - `--hummock-storage-directory state_data`.
+4. Configure meta service to use the new meta store.
+
+### etcd as meta store backend
+
+If the cluster has been using etcd as meta store backend, follow these steps to restore from a meta snapshot.
+
+1. Shut down the meta service.
+    :::note
+    This step is especially important because the meta backup and recovery process does not replicate SST files. It is not permitted for multiple clusters to run with the same SSTs set at any time, as this can corrupt the SST files.
+    :::
+2. Create a new meta store, i.e. a new and empty etcd instance.
 3. Restore the meta snapshot to the new meta store.
 
     ```bash
@@ -76,7 +125,7 @@ Use the following steps to restore from a meta snapshot.
     restore-meta \
     --meta-store-type etcd \
     --meta-snapshot-id [snapshot_id] \
-    --etcd-endpoints [etcd_endpoints] \
+    --etcd-endpoints [etcd_endpoints, e.g. 127.0.0.1:2388] \
     --backup-storage-url [backup_storage_url, e.g. s3://bucket_read_from] \
     --backup-storage-directory [backup_storage_directory, e.g. dir_read_from] \
     --hummock-storage-url [hummock_storage_url, e.g. s3://bucket_write_to] \
@@ -91,13 +140,13 @@ Use the following steps to restore from a meta snapshot.
     --etcd-password [etcd_password] \
     ```
 
-    `restore-meta` reads snapshot data from backup storage and writes them to etcd and hummock storage.
+    `restore-meta` reads snapshot data from backup storage and writes them to meta store and hummock storage.
 
-    Below is an example of setting parameters:
+    For example, given the cluster settings below:  
     ```
     psql=> show parameters;
                   Name                     |                Value                 | Mutable
-   ----------------------------------------+--------------------------------------+---------
+    ---------------------------------------+--------------------------------------+---------
     state_store                            | hummock+s3://state_bucket            | f
     data_directory                         | state_data                           | f
     backup_storage_url                     | s3://backup_bucket                   | t
@@ -116,23 +165,22 @@ Meta snapshot is used to support historical data access, also known as time trav
 
 Use the following steps to perform a time travel query.
 
-1. List all valid historical point-in-time (i.e., epoch).
+1. List all valid historical point-in-time (i.e., epoch) for a table. For example to query the table of id 6:
 
     ```sql
-    SELECT safe_epoch,safe_epoch_ts,max_committed_epoch,max_committed_epoch_ts FROM rw_catalog.rw_meta_snapshot;
+    SELECT state_table_info->'6'->>'safeEpoch' as safe_epoch,state_table_info->'6'->>'committedEpoch' committed_epoch from rw_meta_snapshot;
     ```
 
    Example output:
 
-    ```bash
-        safe_epoch    |      safe_epoch_ts      | max_committed_epoch | max_committed_epoch_ts  
-    ------------------+-------------------------+---------------------+-------------------------
-     3603859827458048 | 2022-12-28 11:08:56.918 |    3603862776381440 | 2022-12-28 11:09:41.915
-     3603898821640192 | 2022-12-28 11:18:51.922 |    3603900263432192 | 2022-12-28 11:19:13.922
+    ```
+        safe_epoch   | committed_epoch  
+    -----------------+------------------
+    7039353459507200 | 7039354678542336
+    7039354678542346 | 7039622397886464
     ```
 
-   Valid epochs are within range (`safe_epoch`,`max_committed_epoch`). For example, any epochs in [3603859827458048, 3603862776381440] or in [3603898821640192, 3603900263432192] are acceptable.  
-   `safe_epoch_ts` and `max_committed_epoch_ts` are human-readable equivalences.
+   Choose an epoch to query. Valid epochs are within range [`safe_epoch`,`committed_epoch`], e.g. [7039353459507200, 7039354678542336] or [7039354678542346, 7039622397886464].
 2. Set session config `QUERY_EPOCH`. By default, it's 0, which means disabling historical query.
 
     ```sql

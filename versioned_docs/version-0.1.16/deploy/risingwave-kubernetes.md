@@ -31,7 +31,7 @@ The Operator is a deployment and management system for RisingWave. It runs on to
 ## Create a Kubernetes cluster
 
 :::info
-The steps in this section are intented for creating a Kubernetes cluster in your local environment.<br/>If you are using a managed Kubernetes service such as AKS, GKE, and EKS, refer to the corresponding documentation for instructions.
+The steps in this section are intended for creating a Kubernetes cluster in your local environment.<br/>If you are using a managed Kubernetes service such as AKS, GKE, and EKS, refer to the corresponding documentation for instructions.
 :::
 
 **Steps:**

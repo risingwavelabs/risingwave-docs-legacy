@@ -8,7 +8,7 @@ slug: /sql-alter-table
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-alter-table/" />
 </head>
 
-Use the `ALTER TABLE` command to modify the structure of an existing regular table by adding or deleteing its columns.
+Use the `ALTER TABLE` command to modify the structure of an existing regular table by adding or deleting its columns.
 
 :::note
 Currently, `ALTER TABLE` does not support tables with connector settings (i.e. materialized sources created with [`CREATE TABLE`](sql-create-table.md)). This functionality will be available in future releases.

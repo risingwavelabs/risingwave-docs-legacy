@@ -26,11 +26,11 @@ RisingWave Cloud employs a detailed billing cycle that ensures accuracy and tran
 
 RisingWave Cloud offers two types of project plans to cater to your specific needs:
 
-- **Free** (Developer plan)
+- **Free** (Trial plan)
 
-    The Developer plan is offered for free. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave.
+    The Trial plan is offered for free. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave.
 
-- **Pay-as-you-go** (Pro plan)
+- **Pay-as-you-go** (Standard plan)
 
     You only pay for your actual usage of computational resources and storage. To help you keep track of your expenditures, RisingWave Cloud employs the RisingWave Unit (RWU), a virtual unit of resources, and the hours of usage to calculate your charges.
 

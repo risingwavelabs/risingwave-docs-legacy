@@ -64,7 +64,7 @@ sh kafka-console-consumer.sh --bootstrap-server 10.0.96.4:9092 --topic example_t
 1. If you do not have a RisingWave cluster, you need to create one by navigating to [**Clusters**](https://cloud.risingwave.com/clusters/) in RisingWave.
 2. Go to [**Source**](https://cloud.risingwave.com/source/), and log in to your database. Create a database user if necessary.
 3. Click **Create source**. Because AutoMQ Kafka is 100% compatible with Apache Kafka, you can simply select Kafka in the window that opens. 
-5. Specify the parameters for connecting to the AutoMQ Kafka topic that you created earier.
+5. Specify the parameters for connecting to the AutoMQ Kafka topic that you created earlier.
 
    :::note
 

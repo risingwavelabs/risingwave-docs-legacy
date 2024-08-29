@@ -5,11 +5,11 @@ description: Choose a plan when you create a project.
 slug: /choose-a-project-plan
 ---
 
-RisingWave Cloud offers different types of RisingWave projects. Each project type is associated with the corresponding features, capabilities, restrictions, and pricing models. Please choose a project plan and configure project resources according to your needs when creating a project. 
+RisingWave Cloud offers different types of RisingWave projects. Each project type is associated with the corresponding features, capabilities, restrictions, and pricing models. Please choose a project plan and configure project resources according to your needs when creating a project.
 
-Currently, RisingWave Cloud offers three types of projects: **Developer**, **Pro**, and **Enterprise**. The table below describes a high-level comparison of features and restrictions across three project types.
+Currently, RisingWave Cloud offers three types of projects: **Trial**, **Standard**, and **Advanced**. The table below describes a high-level comparison of features and restrictions across three project types.
 
-| Service type | Developer | Pro | Enterprise |
+| Service type | Trial | Standard | Advanced |
 | --- | --- | --- | --- |
 | Deployment type | Multi-tenancy deployment, single-node project | Multi-tenancy deployment, multi-node project | Multi-tenancy deployment, multi-node project |
 | Description | Standalone deployment with 2-RWU resources.  | Deployed on shared Kubernetes service with customized resources.  | Customized project deployment based on requests |
@@ -30,11 +30,11 @@ import TabItem from '@theme/TabItem';
 
 <Tabs queryString="plan">
 
-<TabItem value="developer" label="Developer plan">
+<TabItem value="trial" label="Trial plan">
 
-The **Developer** plan is designed for individual developers or small teams looking to explore and develop on the RisingWave platform. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave for free.
+The **Trial** plan is designed for individual developers or small teams looking to explore and develop on the RisingWave platform. This plan equips you with all the essential resources needed to test and experience the features offered by RisingWave for free.
 
-You can create up to three projects with the Developer plan in your account. Your project will be allocated with 2 RWUs with standalone deployment.
+You can create up to three projects with the Trial plan in your account. Your project will be allocated with 2 RWUs with standalone deployment.
 
 #### **Configuration**
 
@@ -52,9 +52,9 @@ You can create up to three projects with the Developer plan in your account. You
 
 </TabItem>
 
-<TabItem value="pro" label="Pro plan">
+<TabItem value="standard" label="Standard plan">
 
-The **Pro** plan offers a customizable and scalable project suitable for larger teams and more complex projects. You can tailor your project's resources to align with your project's specific needs, with the flexibility to adjust configurations as your project evolves. In the Pro plan, you can customize the resources of each component in the RisingWave project.
+The **Pro** plan offers a customizable and scalable project suitable for larger teams and more complex projects. You can tailor your project's resources to align with your project's specific needs, with the flexibility to adjust configurations as your project evolves. In the Standard plan, you can customize the resources of each component in the RisingWave project.
 
 You have to [add a payment method](/billing-manage-payment-methods.md) before you can access the **Pro** plan.
 
@@ -80,11 +80,11 @@ You have to [add a payment method](/billing-manage-payment-methods.md) before yo
 
 </TabItem>
 
-<TabItem value="enterprise" label="Enterprise plan">
+<TabItem value="advanced" label="Advanced plan">
 
-The **Enterprise** plan is specifically designed for our enterprise customers. You can either utilize our hosted service or [Bring Your Own Cloud](project-byoc.md). This plan provides unparalleled flexibility, allowing you to customize everything from the underlying infrastructure and project configurations to the pricing plan, which may include exclusive discounts.
+The **Advanced** plan is specifically designed for our enterprise customers. You can either utilize our hosted service or [Bring Your Own Cloud](project-byoc.md). This plan provides unparalleled flexibility, allowing you to customize everything from the underlying infrastructure and project configurations to the pricing plan, which may include exclusive discounts.
 
-To access the Enterprise plan, please contact our sales team. We will provide you with an invitation code. Once you receive this code, you can redeem it to activate the Enterprise plan across your entire organization.
+To access the Advanced plan, please contact our sales team. We will provide you with an invitation code. Once you receive this code, you can redeem it to activate the Advanced plan across your entire organization.
 
 
 #### **Configuration**

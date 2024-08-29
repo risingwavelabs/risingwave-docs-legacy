@@ -38,3 +38,9 @@
   color: var(--ifm-font-color-base);
   font-size: 0.9rem;
 }
+
+@media (max-width: 554px) {
+  .cardDescription {
+    max-width: 330px;
+  }
+}

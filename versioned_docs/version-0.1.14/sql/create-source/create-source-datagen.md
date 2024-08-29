@@ -57,7 +57,7 @@ Specify the following fields for every column.
 And select the type of data to be generated:
 
    <Tabs>
-   <TabItem value="nunber" label="Number">
+   <TabItem value="number" label="Number">
    
    Specify the following fields for every column in the source you are creating.
 

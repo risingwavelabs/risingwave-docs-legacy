@@ -51,17 +51,6 @@ Meta nodes manage metadata and coordinate the cluster. It is advisable to deploy
   - ≥2 CPU cores
   - ≥4 GB memory
 
-## Etcd
-
-RisingWave utilizes etcd for persisting data for meta nodes. It is crucial to note that etcd is highly sensitive to disk write latency. Slow disk performance can increase etcd request latency and potentially impact cluster stability.
-
-To optimize performance and stability, please consider the following recommendations:
-
-- For optimum disk performance, we recommend using local SSDs or high-performance virtualized block devices. If deploying etcd on Amazon EBS, we recommend gp3 or faster SSD volumes.
-- If you have a single meta node, increase the value of `meta_leader_lease_secs` to optimize performance.
-- If using MinIO, avoid deploying etcd and MinIO on the same disks to prevent conflicts or performance degradation.
-- For detailed disk performance requirements and recommendations, refer to the [Disks](https://etcd.io/docs/v3.3/op-guide/hardware/#disks) section in the etcd documentation.
-
 ## Storage
 
 RisingWave offers support for multiple storage systems as storage backends. For the complete list of supported storage systems for Kubernetes deployments, see [Set up a RisingWave cluster in Kubernetes](/deploy/risingwave-kubernetes.md#deploy-a-risingwave-instance).

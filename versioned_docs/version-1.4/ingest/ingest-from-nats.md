@@ -94,7 +94,7 @@ According to the [NATS documentation](https://docs.nats.io/running-a-nats-servic
 |`stream` | Required. NATS stream that you want to ingest data from.|
 |`connect_mode`|Required. Authentication mode for the connection. Allowed values: <ul><li>`plain`: No authentication. </li><li>`user_and_password`: Use user name and password for authentication. For this option, `username` and `password` must be specified.</li><li> `credential`: Use JSON Web Token (JWT) and NKeys for authentication. For this option, `jwt` and `nkey` must be specified.</li></ul> |
 |`jwt` and `nkey`|JWT and NKEY for authentication. For details, see [JWT](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/jwt) and [NKeys](https://docs.nats.io/running-a-nats-service/configuration/securing_nats/auth_intro/nkey_auth).|
-|`username` and `password`| Conditional. The client user name and pasword. Required when `connect_mode` is `user_and_password`.|
+|`username` and `password`| Conditional. The client user name and password. Required when `connect_mode` is `user_and_password`.|
 |`scan.startup.mode`|Optional. The offset mode that RisingWave will use to consume data. The supported modes are: <ul><li>`earliest`: Consume data from the earliest offset.</li><li>`latest`: Consume data from the latest offset.</li><li>`timestamp_millis`: Consume data from a particular UNIX timestamp, which is specified via `scan.startup.timestamp_millis`.</li></ul>If not specified, the default value `earliest` will be used.|
 |`scan.startup.timestamp_millis`|Conditional. Required when `scan.startup.mode` is `timestamp_millis`. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds).|
 

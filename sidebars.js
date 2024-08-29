@@ -21,7 +21,7 @@ const sidebars = {
   MainSidebar: [
     {
       type: "category",
-      label: "About",
+      label: "Get started",
       collapsible: false,
       collapsed: false,
       items: [
@@ -33,73 +33,12 @@ const sidebars = {
         {
           type: "doc",
           id: "use-cases",
-          label: "Use cases",
+          label: "Use cases & examples",
         },
-        {
-          type: "doc",
-          label: "RisingWave vs. Flink",
-          id: "risingwave-flink-comparison",
-        },
-        {
-          type: "doc",
-          label: "Integrations",
-          id: "rw-integration-summary",
-        },
-        {
-          type: "doc",
-          label: "FAQ",
-          id: "rw-faq",
-        },
-        {
-          type: "category",
-          label: "Deep-dive",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              id: "architecture",
-              label: "Architecture",
-            },
-            {
-              type: "doc",
-              id: "concepts/key-concepts",
-              label: "Key concepts and terms",
-            },
-            {
-              type: "doc",
-              label: "Fault tolerance",
-              id: "fault-tolerance",
-            },
-            {
-              type: "doc",
-              label: "Data persistence",
-              id: "data-persistence",
-            },
-            {
-              type: "doc",
-              label: "Transactions",
-              id: "concepts/transactions",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Get started",
-      collapsible: false,
-      collapsed: false,
-      items: [
         {
           type: "doc",
           label: "Quick start",
           id: "get-started",
-        },
-        {
-          "type": "doc",
-          "id": "deploy/risingwave-docker-compose",
-          "label": "Deploy locally with Docker Compose"
         },
         {
           "type": "category",
@@ -123,12 +62,12 @@ const sidebars = {
               "label": "Deploy on Kubernetes with Helm"
             }
           ]
-        },
+        },        
         {
-          "type": "doc",
-          "id": "guides/install-psql-without-postgresql",
-          "label": "Install psql"
-        }
+          type: "doc",
+          label: "Integrations",
+          id: "rw-integration-summary",
+        },
       ],
     },
     {
@@ -184,38 +123,50 @@ const sidebars = {
           type: "category",
           label: "Ingest data",
           collapsible: true,
-          collapsed: true,
+          collapsed: false,
           items: [
             {
-              type: "doc",
+              type: "category",
               label: "Overview",
-              id: "ingest/data-ingestion",
-            },
-            {
-              type: "doc",
-              label: "Formats and encoding",
-              id: "ingest/format-and-encode-parameters",
-            },
-            {
-              type: "doc",
-              label: "Supported sources and formats",
-              id: "ingest/supported-sources-and-formats",
-            },
-            {
-              type: "doc",
-              label: "Modify source or table schemas",
-              id: "ingest/modify-schemas",
-            },
-            {
-              type: "doc",
-              label: "Ingest additional source fields",
-              id: "ingest/include-clause",
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: "doc",
+                id: "ingest/data-ingestion",
+              },
+              items: [
+                {
+                  type: "doc",
+                  label: "Formats and encoding",
+                  id: "ingest/format-and-encode-parameters",
+                },
+                {
+                  type: "doc",
+                  label: "Supported sources and formats",
+                  id: "ingest/supported-sources-and-formats",
+                },
+                {
+                  type: "doc",
+                  label: "Modify source or table schemas",
+                  id: "ingest/modify-schemas",
+                },
+                {
+                  type: "doc",
+                  label: "Ingest additional source fields",
+                  id: "ingest/include-clause",
+                },
+                {
+                  type: "doc",
+                  label: "Change data capture with RisingWave",
+                  id: "ingest/ingest-from-cdc",
+                },
+              ]
             },
             {
               type: "category",
               label: "Sources",
               collapsible: true,
-              collapsed: true,
+              collapsed: false,
               link: {
                 type: "generated-index",
                 title: "Sources",
@@ -274,6 +225,43 @@ const sidebars = {
                 },
                 {
                   type: "category",
+                  label: "PostgreSQL CDC",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [{
+                    type: "doc",
+                    label: "PostgreSQL CDC",
+                    id: "guides/ingest-from-postgres-cdc",
+                  },
+                  {
+                    type: "doc",
+                    label: "Neon CDC",
+                    id: "guides/ingest-from-neon-cdc",
+                  },
+                  {
+                    type: "doc",
+                    label: "Supabase CDC",
+                    id: "ingest/ingest-from-supabase-cdc",
+                  },
+                  ]
+                },
+                {
+                  type: "doc",
+                  label: "MySQL CDC",
+                  id: "guides/ingest-from-mysql-cdc",
+                },
+                {
+                  type: "doc",
+                  label: "SQL Server CDC",
+                  id: "guides/ingest-from-sqlserver-cdc",
+                },
+                {
+                  type: "doc",
+                  label: "MongoDB CDC",
+                  id: "guides/ingest-from-mongodb-cdc",
+                },
+                {
+                  type: "category",
                   label: "Pulsar",
                   collapsible: true,
                   collapsed: true,
@@ -291,62 +279,9 @@ const sidebars = {
                   ]
                 },
                 {
-                  type: "category",
-                  label: "CDC",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      label: "CDC via event streaming systems",
-                      id: "ingest/ingest-from-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "Citus CDC",
-                      id: "guides/ingest-from-citus-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "MongoDB CDC",
-                      id: "guides/ingest-from-mongodb-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "MySQL CDC",
-                      id: "guides/ingest-from-mysql-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "Neon CDC",
-                      id: "guides/ingest-from-neon-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "PostgreSQL CDC",
-                      id: "guides/ingest-from-postgres-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "Supabase CDC",
-                      id: "ingest/ingest-from-supabase-cdc",
-                    },
-                  ]
-                },
-                {
-                  type: "doc",
-                  label: "Apache Iceberg",
-                  id: "ingest/ingest-from-iceberg",
-                },
-                {
                   type: "doc",
                   label: "AWS Kinesis",
                   id: "ingest/ingest-from-kinesis",
-                },
-                {
-                  type: "doc",
-                  label: "AWS S3",
-                  id: "ingest/ingest-from-s3",
                 },
                 {
                   type: "doc",
@@ -355,29 +290,52 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  label: "Google Cloud Storage",
-                  id: "ingest/ingest-from-gcs",
+                  label: "AWS S3",
+                  id: "ingest/ingest-from-s3",
                 },
                 {
-                  type: "doc",
-                  label: "MQTT",
-                  id: "ingest/ingest-from-mqtt",
-                },
-                {
-                  type: "doc",
-                  label: "NATS JetStream",
-                  id: "ingest/ingest-from-nats",
-                },
-                {
-                  type: "doc",
-                  label: "Redpanda",
-                  id: "ingest/ingest-from-redpanda",
-                },
-                {
-                  type: "doc",
-                  label: "Load generator",
-                  id: "ingest/ingest-from-datagen",
-                },
+                  type: "category",
+                  label: "More Sources",
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "Citus CDC",
+                      id: "guides/ingest-from-citus-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "Apache Iceberg",
+                      id: "ingest/ingest-from-iceberg",
+                    },
+                    {
+                      type: "doc",
+                      label: "Google Cloud Storage",
+                      id: "ingest/ingest-from-gcs",
+                    },
+                    {
+                      type: "doc",
+                      label: "MQTT",
+                      id: "ingest/ingest-from-mqtt",
+                    },
+                    {
+                      type: "doc",
+                      label: "NATS JetStream",
+                      id: "ingest/ingest-from-nats",
+                    },
+                    {
+                      type: "doc",
+                      label: "Redpanda",
+                      id: "ingest/ingest-from-redpanda",
+                    },
+                    {
+                      type: "doc",
+                      label: "Load generator",
+                      id: "ingest/ingest-from-datagen",
+                    },
+                  ]
+                }
               ]
             },
           ],
@@ -417,11 +375,6 @@ const sidebars = {
               type: "doc",
               id: "sql/functions-operators/sql-function-time-window",
               label: "Time windows",
-            },
-            {
-              type: "doc",
-              id: "transform/window-functions",
-              label: "Window functions",
             },
             {
               type: "doc",
@@ -523,6 +476,11 @@ const sidebars = {
               type: "doc",
               id: "transform/subscription",
               label: "Subscription",
+            },
+            {
+              type: "doc",
+              id: "transform/time-travel-queries",
+              label: "Time travel queries",
             },
             {
               type: "doc",
@@ -798,18 +756,23 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "sql/query-syntax/query-syntax-where-clause",
+                  label: "WHERE clause",
+                },
+                {
+                  type: "doc",
                   id: "sql/query-syntax/query-syntax-group-by-clause",
                   label: "GROUP BY clause",
                 },
                 {
                   type: "doc",
-                  id: "sql/query-syntax/query-syntax-order-by-clause",
-                  label: "ORDER BY clause",
+                  id: "sql/query-syntax/query-syntax-having-clause",
+                  label: "HAVING clause",
                 },
                 {
                   type: "doc",
-                  id: "sql/query-syntax/query-syntax-having-clause",
-                  label: "HAVING clause",
+                  id: "sql/query-syntax/query-syntax-order-by-clause",
+                  label: "ORDER BY clause",
                 },
                 {
                   type: "doc",
@@ -823,8 +786,8 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  id: "sql/query-syntax/query-syntax-where-clause",
-                  label: "WHERE clause",
+                  id: "sql/query-syntax/query-syntax-set-operations",
+                  label: "Set operations",
                 },
                 {
                   type: "doc",
@@ -895,85 +858,79 @@ const sidebars = {
               },
               items: [
                 {
-                  type: 'doc',
-                  id: 'sql/functions-operators/sql-function-aggregate',
-                  label: 'Aggregate',
-                },
-                {
                   type: "doc",
-                  id: "sql/functions-operators/sql-function-array",
-                  label: "Array",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-binarystring",
-                  label: "Binary string",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-cast",
-                  label: "Cast",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-conditional",
-                  label: "Conditional",
+                  id: "sql/functions-operators/sql-function-logical",
+                  label: "Logical operators",
                 },
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-comparison",
-                  label: "Comparison",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-cryptographic-functions",
-                  label: "Cryptographic",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-datetime",
-                  label: "Date & time",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-json",
-                  label: "JSON",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-logical",
-                  label: "Logical",
+                  label: "Comparison functions and operators",
                 },
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-mathematical",
-                  label: "Mathematical",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-set-functions",
-                  label: "Set functions",
-                },
-                {
-                  type: "doc",
-                  id: "sql/functions-operators/sql-function-set-operators",
-                  label: "Set operators",
+                  label: "Mathematical functions and operators",
                 },
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-string",
-                  label: "String",
+                  label: "String functions and operators",
                 },
-
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-binarystring",
+                  label: "Binary string functions and operators",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-datetime",
+                  label: "Date/time functions and operators",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-cryptographic",
+                  label: "Cryptographic functions",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-json",
+                  label: "JSON functions and operators",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-array",
+                  label: "Array functions and operators",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-conditional",
+                  label: "Conditional expressions",
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/functions-operators/sql-function-aggregate',
+                  label: 'Aggregate functions',
+                },
+                {
+                  type: 'doc',
+                  id: 'sql/functions-operators/sql-function-window-functions',
+                  label: 'Window functions',
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-set-returning",
+                  label: "Set-returning functions",
+                },
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-sys-admin",
-                  label: "System administration",
+                  label: "System administration functions",
                 },
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-sys-info",
-                  label: "System information",
+                  label: "System information functions",
                 },
               ],
             },
@@ -1059,6 +1016,39 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Reference",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "reference/architecture",
+          label: "Architecture",
+        },
+        {
+          type: "doc",
+          id: "concepts/key-concepts",
+          label: "Key concepts and terms",
+        },
+        {
+          type: "doc",
+          label: "Fault tolerance",
+          id: "reference/fault-tolerance",
+        },
+        {
+          type: "doc",
+          label: "Data persistence",
+          id: "reference/data-persistence",
+        },
+        {
+          type: "doc",
+          label: "Transactions",
+          id: "concepts/transactions",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Deploy & operate",
       collapsible: true,
       collapsed: true,
@@ -1067,6 +1057,16 @@ const sidebars = {
           type: "doc",
           id: "deploy/hardware-requirements",
           label: "Hardware requirements",
+        },
+        {
+          "type": "doc",
+          "id": "guides/install-psql-without-postgresql",
+          "label": "Install psql"
+        },
+        {
+          "type": "doc",
+          "id": "deploy/risingwave-docker-compose",
+          "label": "Deploy locally with Docker Compose"
         },
         {
           type: "doc",
@@ -1103,6 +1103,16 @@ const sidebars = {
         {
           type: 'doc',
           id: 'manage/alter-streaming',
+        },
+        {
+          type: "doc",
+          label: "Manage secrets",
+          id: "deploy/manage-secrets",
+        },
+        {
+          type: "doc",
+          label: "Tune reserved memory and cache eviction policy",
+          id: "deploy/tune-reserved-memory",
         },
         {
           type: "doc",
@@ -1165,6 +1175,31 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "FAQ",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "faq/faq-overview"
+        },
+        {
+          type: "doc",
+          id: "faq/faq-when-to-use-risingwave"
+        },
+        {
+          type: "doc",
+          label: "RisingWave vs. Flink",
+          id: "faq/risingwave-flink-comparison",
+        },
+        {
+          type: "doc",
+          id: "faq/faq-using-risingwave"
+        },
+      ]
+    },
+    {
+      type: "category",
       label: "Troubleshooting",
       collapsible: true,
       collapsed: false,
@@ -1222,6 +1257,11 @@ const sidebars = {
           type: "doc",
           label: "Recovery failure",
           id: "troubleshoot/troubleshoot-recovery-failure"
+        },
+        {
+          type: "doc",
+          label: "Source & Sink",
+          id: "troubleshoot/troubleshoot-source-sink"
         },
         {
           type: "doc",

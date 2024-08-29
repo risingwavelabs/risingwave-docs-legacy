@@ -37,7 +37,7 @@ ROW FORMAT csv [WITHOUT HEADER] DELIMITED BY ',';
 |s3.region_name	|Required. The service region.|
 |s3.bucket_name	|Required. The name of the bucket the data source is stored in.	|
 |s3.credentials.access| Conditional. This field indicates the access key ID of AWS. It must be used with `s3.credentials.secret`. If not specified, RisingWave will automatically try to use `~/.aws/credentials`.|
-|s3.credentials.secret| Conditional. This field indicates the secret access key of AWS. It must be used wtih `s3.credentials.access`. If not specified, RisingWave will automatically try to use `~/.aws/credentials`.|
+|s3.credentials.secret| Conditional. This field indicates the secret access key of AWS. It must be used with `s3.credentials.access`. If not specified, RisingWave will automatically try to use `~/.aws/credentials`.|
 
 
 ## Example

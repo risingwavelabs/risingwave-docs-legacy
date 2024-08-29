@@ -37,7 +37,7 @@ ALTER MATERIALIZED VIEW materialized_view_name
 |**OWNER TO**|This clause changes the owner of the materialized view. Note that this will cascadingly change all related internal objects as well.|
 |*new_user*|The new owner you want to assign to the materialized view.|
 
-```sql title=Example
+```sql title=Examples
 -- Change the owner of the materialized view named "materialized_view1" to user "user1"
 ALTER MATERIALIZED VIEW materialized_view1 OWNER TO user1;
 ```
@@ -54,7 +54,7 @@ ALTER MATERIALIZED VIEW materialized_view_name
 |**SET SCHEMA**|This clause moves the materialized view to a different schema.|
 |*schema_name*|The name of the schema to which the materialized view will be moved.|
 
-```sql title=Example
+```sql title=Examples
 -- Move the materialized view named "test_materialized_view" to the schema named "test_schema"
 ALTER MATERIALIZED VIEW test_materialized_view SET SCHEMA test_schema;
 ```
@@ -88,7 +88,27 @@ ALTER MATERIALIZED VIEW materialized_view_name
 |**RENAME TO**|This clause changes the name of the materialized view.|
 |*new_name*|The new name of the materialized view.|
 
-```sql title=Example
+```sql title=Examples
 -- Change the name of the materialized view named "mv_1" to "mv_2"
 ALTER MATERIALIZED VIEW mv_1 RENAME TO mv_2;
+```
+
+### `SET BACKFILL_RATE_LIMIT`
+
+```sql title=Syntax
+ALTER MATERIALIZED VIEW mv_name
+    SET BACKFILL_RATE_LIMIT { TO | = } { default | rate_limit_number };
+```
+
+Use this statement to modify the backfill rate limit of a materialized view being created. For the specific value of `BACKFILL_RATE_LIMIT`, refer to [How to view runtime parameters](/manage/view-configure-runtime-parameters.md#how-to-view-runtime-parameters).
+
+```sql title="Examples"
+-- Pause the backfill
+ALTER MATERIALIZED VIEW mv1 SET BACKFILL_RATE_LIMIT=0;
+
+-- Set backfill rate limit to 1
+ALTER MATERIALIZED VIEW mv1 SET BACKFILL_RATE_LIMIT=1;
+
+-- Disable the backfill
+ALTER MATERIALIZED VIEW mv1 SET BACKFILL_RATE_LIMIT=DEFAULT;
 ```

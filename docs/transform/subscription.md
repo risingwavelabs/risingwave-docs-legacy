@@ -10,7 +10,11 @@ slug: /subscription
 
 Subscription is used to pull data change records for a specific table or materialized view (MV). The data from a subscription includes both the existing data in the table at the time of subscription creation and the incremental change records in the table after the subscription is created. You can use the method of creating a subscription cursor to retrieve the full data set or the incremental data set after a specified starting point.
 
-This feature allows you to monitor all data changes without relying on external event stores like Kafka. Compared to the Kafka sink or other event store sinks, subscription requires fewer component and thus, less maintenance.
+This feature allows you to monitor all data changes without relying on external event stores like Kafka. Compared to the Kafka sink or other event store sinks, a subscription requires fewer components and thus, less maintenance.
+
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
 
 ## Manage subscription
 
@@ -76,7 +80,11 @@ If you don’t specify the `since_clause`, the returned data will include both t
 
 ### Fetch from cursor
 
-#### `FETCH NEXT FROM cursor_name`
+:::note
+FETCH from cursor function is currently only supported in the PSQL simple query mode. If you are using components like JDBC that default to the extended query mode, please manually set the mode to simple query mode.
+:::
+
+#### FETCH NEXT FROM cursor
 
 After creating a subscription cursor, you can fetch the data by the `FETCH NEXT FROM cursor_name` command. Then you will see a result like  below:
 
@@ -96,13 +104,21 @@ Note that each time `FETCH NEXT FROM cursor_name` is called, it will return one 
 
 This method is non-blocking. Even if the current table has no new incremental data, `FETCH NEXT FROM cursor_name` will not block, but will return an empty row. When new incremental data is generated, calling this statement again will return the latest row of data.
 
-#### `FETCH n FROM cursor_name`
+#### FETCH n FROM cursor
 
 You also can fetch multiple rows at once from the cursor using the `FETCH n FROM cursor_name` command. `n` is the number of rows to fetch.
 
 ```sql
 FETCH n FROM cursor_name;
 ```
+
+#### Order of the fetched data
+
+- For data with different `rw_timestamp`, values are returned in the order the events occurred.
+
+- For data with the same `rw_timestamp`, the order matches the event sequence if the data belongs to the same primary key in the subscribed materialized view or table.
+
+- For data with the same `rw_timestamp` but different primary keys, the order may not reflect the exact event sequence.
 
 ### Examples
 

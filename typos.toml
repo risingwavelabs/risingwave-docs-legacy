@@ -1,0 +1,19 @@
+[default]
+extend-ignore-identifiers-re = [
+    # base64
+    "\\b[0-9A-Za-z+/]{64}(=|==)?\\b",
+    # ingest/ingest-from-datagen.md
+    "\\b[0-9A-Za-z]{16}\\b",
+]
+
+[default.extend-identifiers]
+# sql/functions-operators/sql-function-string.md
+1b69b4ba630f34e = "1b69b4ba630f34e"
+
+[default.extend-words]
+Iy = "Iy"
+YTO = "YTO"
+# Azure Kubernetes Service 
+AKS = "AKS"
+# schema.history.internal.skip.unparseable.ddl
+unparseable="unparseable"
