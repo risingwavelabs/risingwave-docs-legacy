@@ -5,8 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-// This file is a copy of the original DocCard component from
-// https://github.com/facebook/docusaurus/blob/v3.5.2/packages/docusaurus-theme-classic/src/theme/DocCard/index.tsx.
+// This file is a copy of https://github.com/facebook/docusaurus/blob/v3.5.2/packages/docusaurus-theme-classic/src/theme/DocCard/index.tsx.
 // Changes are marked with "XXX: RW CUSTOMIZATION" comments.
 
 import React, { type ReactNode } from 'react';
