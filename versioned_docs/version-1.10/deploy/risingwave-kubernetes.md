@@ -429,7 +429,8 @@ To customize HDFS as state backend in RisingWave, mount Hadoop configurations wi
 
 3. Then mount the Hadoop configuration files using this ConfigMap:
 
-  <details><summary>See the code example</summary>
+  <details>
+  <summary>See the code example</summary>
 
   ```yaml
   apiVersion: risingwave.risingwavelabs.com/v1alpha1
