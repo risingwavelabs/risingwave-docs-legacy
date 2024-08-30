@@ -8,6 +8,7 @@ slug: /develop-overview
 <!-- MDX imports -->
 import DefaultButton from "@site/src/components/DefaultButton";
 import LightButton from "@site/src/components/LightButton";
+import OutlinedCard from "@site/src/components/OutlinedCard";
 
 RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. RisingWave provides an interface language that resembles PostgreSQL, enabling your team to build real-time data services without the high engineering cost and complexity of traditional stream processing.
 
@@ -73,7 +74,7 @@ Select the version of the corresponding docs when using the RisingWave user docs
 
 <grid item xs={12} sm={6} md={4}>
 
- <card
+ <OutlinedCard
  style={{height: "87%"}}
  title="Integrations"
  content="See how RisingWave can integrate with your existing data stack. Vote for your favorite data tools and streaming services to help us prioritize the integration development."
@@ -84,7 +85,7 @@ Select the version of the corresponding docs when using the RisingWave user docs
 
 <grid item xs={12} sm={6} md={4}>
 
- <card
+ <OutlinedCard
  style={{height: "87%"}}
  title="Sources"
  content="Connect to and ingest data from external sources such as databases and message brokers. See supported data sources."
@@ -95,7 +96,7 @@ Select the version of the corresponding docs when using the RisingWave user docs
 
 <grid item xs={12} sm={6} md={4}>
 
-<card
+<OutlinedCard
  style={{height: "87%"}}
  title="Sinks"
  content="Stream processed data out of RisingWave to message brokers and databases. See supported data destinations."
@@ -108,7 +109,7 @@ Select the version of the corresponding docs when using the RisingWave user docs
 
 ### Process data with RisingWave
 
-<card
+<OutlinedCard
 title="SQL references"
 content="SQL syntax and functionality supported by RisingWave. While RisingWave is wire-compatible with PostgreSQL, it has some unique features and notable differences."
 links={[
@@ -123,7 +124,7 @@ links={[
 
 ### Use RisingWave in your applications
 
-<card
+<OutlinedCard
 title="Client libraries"
 content="RisingWave offers support for popular PostgreSQL drivers, enabling seamless integration with your applications for interacting with it."
 links={[
@@ -146,7 +147,7 @@ links={[
 
 <grid item xs={12} sm={6} md={6}>
 
- <card
+ <OutlinedCard
  style={{height: "90%"}}
  title="About RisingWave"
  content="Continue to learn about RisingWave."
@@ -162,7 +163,7 @@ links={[
 
 <grid item xs={12} sm={6} md={6}>
 
-<card
+<OutlinedCard
  style={{height: "90%"}}
  title="Blog"
  content="Product insights, engineering deep-dives, community events, industry highlights, and company news posted regularly by our CEO, engineers, product experts, community runners, communication specialists, and community contributors."

@@ -12,7 +12,6 @@ import Heading from "@theme/Heading";
 import Details from "@theme/Details";
 import "./styles.css"; // MDX elements are wrapped through the MDX pragma. In some cases (notably usage
 // with Head/Helmet) we need to unwrap those elements.
-import OutlinedCard from "@site/src/components/OutlinedCard";
 import ResponsiveGrid from "@site/src/components/ResponsiveGrid";
 
 function unwrapMDXElement(element) {
@@ -66,7 +65,6 @@ const MDXComponents = {
   h6: (props) => <Heading as="h6" {...props} />,
 
   // TODO(rc): should move these to `components` and import before using in MDX
-  card: OutlinedCard,
   grid: ResponsiveGrid,
 };
 export default MDXComponents;
