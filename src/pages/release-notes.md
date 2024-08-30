@@ -960,7 +960,7 @@ Starting from this version, we’ll respect semantic versioning conventions by u
 - Removes the message name parameter for Avro data. [#8124](https://github.com/risingwavelabs/risingwave/pull/8124)
 - Adds support for AWS PrivateLink for Kafka source connector. [#8247](https://github.com/risingwavelabs/risingwave/pull/8247)
 
-**Full Changelog**: <https://github.com/risingwavelabs/risingwave/compare/v0.1.17...v0.18.0>
+See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/v0.1.17...v0.18.0).
 
 ### Assets
 
