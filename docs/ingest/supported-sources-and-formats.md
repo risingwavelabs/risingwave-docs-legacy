@@ -279,15 +279,3 @@ The `timestamptz.handling.mode` parameter controls the input format for timestam
 - `utc_without_suffix`: Allows the user to indicate that a naive timestamp is in UTC, rather than local time.
 
 You can set this parameter when using the `format plain | upsert | debezium encode json` command, but not when using `format debezium_mongo | canal | maxwell encode json`.
-
----
-
-### `jsonb.handling.mode`
-
-The `jsonb.handling.mode` determines how `jsonb` data types are encoded. This parameter has two possible values:
-
-- `string`: Encodes the `jsonb` type as a string. For example, if you choose this value, `{"k": 2}` will be converted to `"{\"k\": 2}"`.
-
-- `dynamic`: Dynamically encodes the `jsonb` type as json type. For example, if you choose this value, `{"k": 2}` will be converted to `{"k": 2}`. Here a json object `jsonb` is encoded to a json object.
-
-You can set this parameter in the `WITH` clause when using `ENCODE JSON`.  
