@@ -9,7 +9,7 @@ type Props = {
   note: string;
 };
 
-function Capsule({ note }: Props) {
+function VoteNotify({ note }: Props) {
   const [clicked, setClicked] = useState(false);
   const [count, setCount] = useState(0);
   const { colorMode } = useColorMode();
@@ -67,7 +67,7 @@ function Capsule({ note }: Props) {
   );
 }
 
-export default Capsule;
+export default VoteNotify;
 
 type ButtonSize = {
   fill: string;

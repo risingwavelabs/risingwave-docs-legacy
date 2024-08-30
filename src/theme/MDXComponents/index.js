@@ -12,11 +12,11 @@ import Heading from "@theme/Heading";
 import Details from "@theme/Details";
 import "./styles.css"; // MDX elements are wrapped through the MDX pragma. In some cases (notably usage
 // with Head/Helmet) we need to unwrap those elements.
-import DefaultButton from "@theme/DefaultButton";
-import LightButton from "@theme/LightButton";
-import Capsule from "@theme/Capsule";
-import OutlinedCard from "@theme/OutlinedCard";
-import ResponsiveGrid from "@theme/ResponsiveGrid";
+import DefaultButton from "@site/src/components/DefaultButton";
+import LightButton from "@site/src/components/LightButton";
+import VoteNotify from "@site/src/components/VoteNotify";
+import OutlinedCard from "@site/src/components/OutlinedCard";
+import ResponsiveGrid from "@site/src/components/ResponsiveGrid";
 
 function unwrapMDXElement(element) {
   if (element?.props?.mdxType && element?.props?.originalType) {
@@ -71,7 +71,7 @@ const MDXComponents = {
   // TODO(rc): should move these to `components` and import before using in MDX
   defaultButton: DefaultButton,
   lightButton: LightButton,
-  voteNotify: Capsule,
+  voteNotify: VoteNotify,
   card: OutlinedCard,
   grid: ResponsiveGrid,
 };
