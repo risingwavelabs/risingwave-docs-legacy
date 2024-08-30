@@ -10,10 +10,11 @@ slug: /risingwave-cloud
 
 <!-- MDX imports -->
 import DefaultButton from "@site/src/components/DefaultButton";
+import LightButton from "@site/src/components/LightButton";
 
 Experience intuitive and effortless stream processing with RisingWave Cloud. Sign up now and get a free, fully managed cluster up and running with a few clicks.
 
-<DefaultButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/"/><lightButton text="Quickstart" cloud="quickstart"/><lightButton text="FAQ" cloud="faq"/><lightButton text="Learn more" cloud="intro"/>
+<DefaultButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/"/><LightButton text="Quickstart" cloud="quickstart"/><LightButton text="FAQ" cloud="faq"/><LightButton text="Learn more" cloud="intro"/>
 
 <br/>
 <br/>

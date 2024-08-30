@@ -7,6 +7,7 @@ slug: /develop-overview
 
 <!-- MDX imports -->
 import DefaultButton from "@site/src/components/DefaultButton";
+import LightButton from "@site/src/components/LightButton";
 
 RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. RisingWave provides an interface language that resembles PostgreSQL, enabling your team to build real-time data services without the high engineering cost and complexity of traditional stream processing.
 
@@ -14,7 +15,7 @@ RisingWave Cloud leverages the superpower of RisingWave, an open-source distribu
 
 Developers can refer to the user documentation for RisingWave to develop streaming applications with RisingWave Cloud. The documentation covers essential topics such as data ingestion, SQL references, data delivery, client libraries, and ecosystem, providing comprehensive information on how to utilize the capabilities of RisingWave to build and manage data workflows that consume streaming data, perform incremental computations, and update results dynamically.
 
-<DefaultButton text="RisingWave user docs" url="/docs/current/intro/"/> <lightButton text="See recommended topics" cloud="develop-overview#top-read-topics-for-developers"/>
+<DefaultButton text="RisingWave user docs" url="/docs/current/intro/"/> <LightButton text="See recommended topics" cloud="develop-overview#top-read-topics-for-developers"/>
 
 ## How to use the docs
 

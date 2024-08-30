@@ -10,11 +10,11 @@ slug: /risingwave-trial
 
 <!-- MDX imports -->
 import DefaultButton from "@site/src/components/DefaultButton";
-
-Select an installation or running method.
-
+import LightButton from "@site/src/components/LightButton";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+Select an installation or running method.
 
 <Tabs queryString="method">
 
@@ -27,7 +27,7 @@ RisingWave offers two running modes and several installation or running options.
 |**Purpose**|Quick tests|Advanced tests|
 |**Starts in**|A single-node instance|A full-featured, multi-node cluster|
 |**Data persistence**|Data is stored solely in memory and will not be persisted after the service is terminated.|Data is persisted in storage.|
-|**Choose a method to run RisingWave**|Try out from browser <br /><lightButton text="Playground" doc="risingwave-trial?method=playground" block />Install directly <lightButton text="Homebrew" doc="risingwave-trial?method=homebrew" block /><lightButton text="Binaries" doc="risingwave-trial?method=binaries" block />Run in container <lightButton text="Docker" doc="risingwave-trial?method=docker" block />|Set up a local cluster <lightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" block />|
+|**Choose a method to run RisingWave**|Try out from browser <br /><LightButton text="Playground" doc="risingwave-trial?method=playground" block />Install directly <LightButton text="Homebrew" doc="risingwave-trial?method=homebrew" block /><LightButton text="Binaries" doc="risingwave-trial?method=binaries" block />Run in container <LightButton text="Docker" doc="risingwave-trial?method=docker" block />|Set up a local cluster <LightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" block />|
 
 </TabItem>
 

@@ -10,11 +10,11 @@ slug: /risingwave-trial
 
 <!-- MDX imports -->
 import DefaultButton from "@site/src/components/DefaultButton";
-
-All of the options on this page are for testing purposes. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
-
+import LightButton from "@site/src/components/LightButton";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+All of the options on this page are for testing purposes. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
 
 <Tabs queryString="method">
 
@@ -30,10 +30,10 @@ RisingWave will be started as a single-node instance. Data is stored solely in m
 
 These options are available:
 
-<lightButton text="Playground in a Web browser" doc="risingwave-trial?method=playground" />
-<lightButton text="Homebrew" doc="risingwave-trial?method=homebrew" />
-<lightButton text="Binaries" doc="risingwave-trial?method=binaries" />
-<lightButton text="Docker image" doc="risingwave-trial?method=docker" />
+<LightButton text="Playground in a Web browser" doc="risingwave-trial?method=playground" />
+<LightButton text="Homebrew" doc="risingwave-trial?method=homebrew" />
+<LightButton text="Binaries" doc="risingwave-trial?method=binaries" />
+<LightButton text="Docker image" doc="risingwave-trial?method=docker" />
 
 <br/>
 <br/>
@@ -42,7 +42,7 @@ These options are available:
 
 For advanced tests, we recommend using Docker Compose to start RisingWave as a multi-node cluster. With this option, data is persisted in storage. However, please be aware that certain critical features such as failover and resource management are not implemented in this mode. Therefore, this option is not recommended for production deployments.
 
-<lightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" />
+<LightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" />
 
 </TabItem>
 
