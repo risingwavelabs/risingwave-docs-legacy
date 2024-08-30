@@ -14,13 +14,11 @@ RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Ki
 
 Data in RisingWave can be output to external targets such as message brokers, data warehouses, and data lakes for storage or additional processing.
 
-<rollButton text="&nbsp;&nbsp;Get Started" doc="get-started" block />
-<br/>
+<p>
+  <defaultButton text="Get Started" doc="get-started" />
+</p>
 
-<img
-  src={require('./images/archi_simple.png').default}
-  alt="RisingWave Architecture"
-/>
+![RisingWave Architecture](./images/archi_simple.png)
 
 ## Is RisingWave a modern alternative to Flink?
 
