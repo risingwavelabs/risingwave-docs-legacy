@@ -30,15 +30,15 @@ WITH (
 | **Parameter Name**              | **Description**    |
 |--------------------------------|------------------|
 | `mongodb.url`                   | The URL of MongoDB.  |
-| `collection.name`               | The collection name where data should be written to or read from. For sinks, the format is `db_name.collection_name`. Data can also be written to dynamic collections; see `collection.name.field` for more information.   |
-| `r#type`                        |  Type identifier.  |
+| `r#type`                        | Type identifier.  |
+| `collection.name`               | The collection name where data should be written to or read from. For sinks, the format is `db_name.collection_name`. Data can also be written to dynamic collections; see `collection.name.field` below for more information.   |
 | `collection.name.field`         | Optional. The dynamic collection name where data should be sunk to. If specified, the field value will be used as the collection name. The collection name format is the same as `collection.name`. If the field value is null or an empty string, then the `collection.name` will be used as a fallback destination.        |
 | `collection.name.field.drop`    | Optional. Controls whether the field value of `collection.name.field` should be dropped when sinking. Set this option to `true` to avoid the duplicate values of `collection.name.field` being written to the result collection.  |
 | `mongodb.bulk_write.max_entries` | Optional. The maximum entries that will accumulate before performing the bulk write. Defaults to 1024. Default value is `1024`.  |
 
 ## Data type mapping
 
-| **MongoDB Type**      | **Risingwave Type**           |
+| **MongoDB Type**      | **RisingWave Type**           |
 |-----------------------|-------------------------------|
 | Boolean               | BOOLEAN                       |
 | 32-bit integer        | SMALLINT                      |
