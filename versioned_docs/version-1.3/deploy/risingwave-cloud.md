@@ -8,9 +8,12 @@ slug: /risingwave-cloud
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-cloud/" />
 </head>
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+
 Experience intuitive and effortless stream processing with RisingWave Cloud. Sign up now and get a free, fully managed cluster up and running with a few clicks.
 
-<defaultButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/"/><lightButton text="Quickstart" cloud="quickstart"/><lightButton text="FAQ" cloud="faq"/><lightButton text="Learn more" cloud="intro"/>
+<DefaultButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/"/><lightButton text="Quickstart" cloud="quickstart"/><lightButton text="FAQ" cloud="faq"/><lightButton text="Learn more" cloud="intro"/>
 
 <br/>
 <br/>

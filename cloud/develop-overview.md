@@ -5,13 +5,16 @@ description: Get started with building streaming services using RisingWave Cloud
 slug: /develop-overview
 ---
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+
 RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. RisingWave provides an interface language that resembles PostgreSQL, enabling your team to build real-time data services without the high engineering cost and complexity of traditional stream processing.
 
 ## RisingWave user docs
 
 Developers can refer to the user documentation for RisingWave to develop streaming applications with RisingWave Cloud. The documentation covers essential topics such as data ingestion, SQL references, data delivery, client libraries, and ecosystem, providing comprehensive information on how to utilize the capabilities of RisingWave to build and manage data workflows that consume streaming data, perform incremental computations, and update results dynamically.
 
-<defaultButton text="RisingWave user docs" url="/docs/current/intro/"/> <lightButton text="See recommended topics" cloud="develop-overview#top-read-topics-for-developers"/>
+<DefaultButton text="RisingWave user docs" url="/docs/current/intro/"/> <lightButton text="See recommended topics" cloud="develop-overview#top-read-topics-for-developers"/>
 
 ## How to use the docs
 
@@ -50,7 +53,7 @@ Select the version of the corresponding docs when using the RisingWave user docs
   src={require('./images/select-docs-version.gif').default}
   alt="Select docs version"
 />
-  
+
 </grid>
 
 </grid>
@@ -86,7 +89,7 @@ Select the version of the corresponding docs when using the RisingWave user docs
  content="Connect to and ingest data from external sources such as databases and message brokers. See supported data sources."
  url="/docs/current/data-ingestion/"
  />
-  
+
 </grid>
 
 <grid item xs={12} sm={6} md={4}>
@@ -97,7 +100,7 @@ Select the version of the corresponding docs when using the RisingWave user docs
  content="Stream processed data out of RisingWave to message brokers and databases. See supported data destinations."
  url="/docs/current/data-delivery/"
  />
-  
+
 </grid>
 
 </grid>
@@ -167,7 +170,7 @@ links={[
  {text:"Blog", url:"https://www.risingwave.com/resources/?filter=blogs"}
  ]}
  />
-  
+
 </grid>
 
 </grid>

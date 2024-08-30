@@ -9,6 +9,9 @@ keywords: [streaming database, risingwave, introduction]
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/intro/" />
 </head>
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+
 RisingWave is a distributed SQL database for stream processing. It is designed to reduce the complexity and cost of building real-time applications. RisingWave consumes streaming data, performs incremental computations when new data comes in, and updates results dynamically. As a database system, RisingWave maintains results in its own storage so that users can access data efficiently.
 
 RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Kinesis, Redpanda, and materialized CDC sources.
@@ -16,7 +19,7 @@ RisingWave accepts data from sources like Apache Kafka, Apache Pulsar, Amazon Ki
 Data in RisingWave can be output to external targets such as message brokers, data warehouses, and data lakes for storage or additional processing.
 
 <p>
-  <defaultButton text="Get Started" doc="get-started" />
+  <DefaultButton text="Get Started" doc="get-started" />
 </p>
 
 ![RisingWave Architecture](./images/archi_simple.png)

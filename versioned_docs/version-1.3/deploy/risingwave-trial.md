@@ -8,6 +8,9 @@ slug: /risingwave-trial
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-trial/" />
 </head>
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+
 All of the options on this page are for testing purposes. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
 
 import Tabs from '@theme/Tabs';
@@ -53,7 +56,7 @@ Try out RisingWave without the need for any installation or setup with RisingWav
 RisingWave Playground is intended for quick tests only. Your data will not be persisted after a session expires. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may lead to out-of-memory (OOM) errors. Some functionality may be limited.
 :::
 
-<defaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
+<DefaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
 
 <br/>
 
@@ -286,7 +289,7 @@ RisingWave also incorporates these third-party components:
   ```
 
   Now run the following commands to navigate to the `docker` directory.
-  
+
   ```shell
   cd docker
   ```

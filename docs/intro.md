@@ -9,12 +9,15 @@ keywords: [streaming database, risingwave, introduction]
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/intro/" />
 </head>
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+
 RisingWave is a Postgres-compatible SQL database engineered to offer the ***simplest*** and ***most cost-effective*** approach for **processing**, **analyzing**, and **managing** real-time event streaming data.
 
 RisingWave can ingest millions of events per second, seamlessly join and analyze live data streams with historical tables, serve ad-hoc queries in real-time, and deliver fresh, consistent results.
 
 <p>
-  <defaultButton text="Get Started" doc="get-started" />
+  <DefaultButton text="Get Started" doc="get-started" />
 </p>
 
 ![RisingWave Architecture](./images/architecture_20240814.png)

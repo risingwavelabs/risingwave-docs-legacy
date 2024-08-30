@@ -5,6 +5,9 @@ description: The most intuitive and easy way to connect to and interact with Ris
 slug: /console-overview
 ---
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+
 It is the most intuitive and easy way to interact with RisingWave via workspace. It offers graphical tools for managing data and visualizing results.
 
 <img
@@ -12,7 +15,7 @@ src={require('./images/console.png').default}
 alt="Console"
 />
 
-<defaultButton text="Go to query console" url="https://cloud.risingwave.com/console/" block/>
+<DefaultButton text="Go to query console" url="https://cloud.risingwave.com/console/" block/>
 
 ## Sections
 

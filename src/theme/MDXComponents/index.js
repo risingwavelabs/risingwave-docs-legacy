@@ -12,7 +12,6 @@ import Heading from "@theme/Heading";
 import Details from "@theme/Details";
 import "./styles.css"; // MDX elements are wrapped through the MDX pragma. In some cases (notably usage
 // with Head/Helmet) we need to unwrap those elements.
-import DefaultButton from "@site/src/components/DefaultButton";
 import LightButton from "@site/src/components/LightButton";
 import VoteNotify from "@site/src/components/VoteNotify";
 import OutlinedCard from "@site/src/components/OutlinedCard";
@@ -69,7 +68,6 @@ const MDXComponents = {
   h6: (props) => <Heading as="h6" {...props} />,
 
   // TODO(rc): should move these to `components` and import before using in MDX
-  defaultButton: DefaultButton,
   lightButton: LightButton,
   voteNotify: VoteNotify,
   card: OutlinedCard,

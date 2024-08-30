@@ -9,10 +9,13 @@ keywords: [streaming database, risingwave, introduction]
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/intro/" />
 </head>
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+
 RisingWave is a distributed SQL streaming database that enables simple, efficient, and reliable processing of streaming data.
 
 <p>
-  <defaultButton text="Get Started" doc="get-started" />
+  <DefaultButton text="Get Started" doc="get-started" />
 </p>
 
 ![RisingWave Architecture](./images/new_archi_grey.png)

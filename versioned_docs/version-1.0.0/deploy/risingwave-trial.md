@@ -8,6 +8,9 @@ slug: /risingwave-trial
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-trial/" />
 </head>
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+
 Select an installation or running method.
 
 import Tabs from '@theme/Tabs';
@@ -38,7 +41,7 @@ Try out RisingWave without the need for any installation or setup with RisingWav
 RisingWave Playground is intended for quick testing purposes only. Your data will not persist after a session expires. Some functionality may be limited.
 :::
 
-<defaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
+<DefaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
 
 <br/>
 
