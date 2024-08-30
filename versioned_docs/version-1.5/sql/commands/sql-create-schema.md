@@ -16,25 +16,6 @@ Use the `CREATE SCHEMA` command to create a new schema.
 CREATE SCHEMA [IF NOT EXISTS] [database_name.]schema_name;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal('CREATE SCHEMA'),
-      rr.Optional(rr.Terminal('IF NOT EXISTS')),
-      rr.Optional(rr.Sequence(
-         rr.NonTerminal('database_name', 'skip'),
-         rr.Terminal('.')
-      )),
-      rr.NonTerminal('schema_name', 'skip'),
-      rr.Terminal(';'),
-   ),
-)
-);
-
-<drawer SVG={svg} />
-
 
 ## Parameters
 |Parameter or clause        | Description           |

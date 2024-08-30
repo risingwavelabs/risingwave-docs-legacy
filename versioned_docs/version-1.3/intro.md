@@ -11,13 +11,11 @@ keywords: [streaming database, risingwave, introduction]
 
 RisingWave is a distributed SQL streaming database that enables simple, efficient, and reliable processing of streaming data.
 
-<rollButton text="&nbsp;&nbsp;Get Started" doc="get-started" block />
-<br/>
+<p>
+  <defaultButton text="Get Started" doc="get-started" />
+</p>
 
-<img
-  src={require('./images/new_archi_grey.png').default}
-  alt="RisingWave Architecture"
-/>
+![RisingWave Architecture](./images/new_archi_grey.png)
 
 ## Why RisingWave for stream processing?
 

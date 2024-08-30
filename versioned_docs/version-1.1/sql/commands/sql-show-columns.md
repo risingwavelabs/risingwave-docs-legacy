@@ -17,19 +17,6 @@ SHOW COLUMNS FROM table_name;
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW COLUMNS'),
-        rr.Terminal('FROM'),
-        rr.NonTerminal('table_name'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 
 
 ## Parameters
