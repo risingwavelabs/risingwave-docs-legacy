@@ -17,7 +17,7 @@ The S3 connector does not guarantee the sequential reading of files or complete 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name 
 schema_definition
-[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
+[INCLUDE { file | offset } [AS <column_name>]]
 WITH (
    connector='s3',
    connector_parameter='value', ...
@@ -64,6 +64,13 @@ Empty cells in CSV files will be parsed to `NULL`.
 |*without_header*| Whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
 |*delimiter*| How RisingWave splits contents. For `JSON` encode, the delimiter is `\n`. |
 
+### Additional Columns
+
+|Field|Notes|
+|---|---|
+|*file*| Optional. The column contains the file name where current record comes from. |
+|*offset*| Optional. The column contains the corresponding bytes offset (record offset for parquet files) where current message begins|
+
 ## Examples
 
 Here are examples of connecting RisingWave to an S3 source to read data from individual streams.
@@ -102,6 +109,8 @@ CREATE TABLE s3(
     age int,
     mark int,
 )
+INCLUDE file as file_name
+INCLUDE offset -- default column name is `_rw_s3_offset`
 WITH (
     connector = 's3',
     match_pattern = '%Ring%*.ndjson',
