@@ -1,12 +1,14 @@
-import lightTheme from "prism-react-renderer/themes/dracula/index.cjs.js";
+import { themes } from 'prism-react-renderer';
+
+const base = themes.dracula;
 
 export default {
-  ...lightTheme,
+  ...base,
   plain: {
     backgroundColor: "#001017",
   },
   styles: [
-    ...lightTheme.styles,
+    ...base.styles,
     {
       types: ["title"],
       style: {
