@@ -63,7 +63,6 @@ import TabItem from '@theme/TabItem';
 
     Select your operating system and run the following commands to install the dependencies.
 
-    <platformDetector queryString="current-os" />
     <Tabs groupId="current-os" queryString>
     <TabItem value="macos" label="macOS" default>
 

@@ -97,10 +97,7 @@ const config = {
           },
           editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
-        blog: {
-          showReadingTime: true,
-          editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
-        },
+        blog: false,
         theme: {
           customCss: [
             require.resolve("./src/css/fonts.css"),
@@ -190,7 +187,7 @@ const config = {
         ],
       },
       footer: {
-        copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community`,
+        copyright: `Copyright © ${new Date().getFullYear()} RisingWave Labs`,
       },
       prism: {
         additionalLanguages: ["sql", "java"],
@@ -211,7 +208,6 @@ const config = {
           content: "streaming database, documentation, risingwave",
         },
       ],
-      items: [{ label: "Latest", to: "docs/latest/intro" }],
     }),
   customFields: {
     docsUrl: "https://docs.risingwave.com",

@@ -17,20 +17,6 @@ DROP VIEW [IF EXISTS] view_name;
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP VIEW'),
-        rr.Optional(rr.Terminal('IF EXISTS')),
-        rr.NonTerminal('view_name'),
-        rr.Terminal(';')
-    )
-);
-
-
-<drawer SVG={svg} />
-
 
 
 

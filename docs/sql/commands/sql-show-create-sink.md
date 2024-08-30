@@ -1,7 +1,7 @@
 ---
 id: sql-show-create-sink
 title: SHOW CREATE SINK
-description: Show the query used to create the specified sink. 
+description: Show the query used to create the specified sink.
 slug: /sql-show-create-sink
 ---
 <head>
@@ -17,18 +17,6 @@ using this command, you can verify the sink's settings and troubleshoot any issu
 SHOW CREATE SINK sink_name;
 ```
 
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW CREATE SINK'),
-        rr.NonTerminal('sink_name', 'skip'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
 
 
 ## Parameters

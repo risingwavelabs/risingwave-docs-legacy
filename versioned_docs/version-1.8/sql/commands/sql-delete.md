@@ -20,30 +20,10 @@ Call [`FLUSH`](/sql/commands/sql-flush.md) after `DELETE` to persist the changes
 
 ```sql
 DELETE FROM table_name
-WHERE condition 
+WHERE condition
 [ RETURNING col_name ];
 ```
 
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DELETE FROM'),
-        rr.NonTerminal('table_name', 'skip'),
-        rr.Terminal('WHERE'),
-        rr.NonTerminal('condition', 'skip'),
-        rr.Optional(
-            rr.Sequence(
-                rr.Terminal('RETURNING'),
-                rr.NonTerminal('col_name', 'skip')
-            )
-        ),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
 
 
 
@@ -64,7 +44,7 @@ The `taxi_trips` table has three records:
 SELECT * FROM taxi_trips;
 ```
 ```
- id | distance |    city     
+ id | distance |    city
 ----+----------+-------------
   1 |       16 | Yerba Buena
   2 |       23 | New York
@@ -75,15 +55,15 @@ SELECT * FROM taxi_trips;
 The following statement removes the record with id 3 from the table. Also, it returns the value of *id* for the deleted row.
 
 ```sql
-DELETE FROM taxi_trips 
-WHERE id = 3 
+DELETE FROM taxi_trips
+WHERE id = 3
 RETURNING id;
 ```
 
-The following statement removes all rows from the table. 
+The following statement removes all rows from the table.
 
 ```sql
-DELETE FROM taxi_trips 
+DELETE FROM taxi_trips
 ```
 
 Let's see the result.
@@ -92,7 +72,7 @@ Let's see the result.
 SELECT * FROM taxi_trips;
 ```
 ```
- id | distance | city 
+ id | distance | city
 ----+----------+------
 (0 rows)
 ```
