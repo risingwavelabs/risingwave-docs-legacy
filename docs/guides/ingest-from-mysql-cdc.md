@@ -437,7 +437,7 @@ And this it the output of `DESCRIBE supplier;`
 (10 rows)
 ``` 
 
-## Automatically change schema in MySQL CDC
+## Automatically change schema
 
 :::tip Premium Edition Feature
 This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).

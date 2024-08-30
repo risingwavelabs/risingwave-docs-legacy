@@ -34,6 +34,7 @@ The following is a list of all features in the public preview phase:
 | [Snowflake sink](/docs/next/sink-to-snowflake/) | 2024.5     | 1.9           |
 | [Amazon DynamoDB sink](/docs/next/sink-to-dynamodb/) | 2024.6     | 1.10          |
 | [Google BigQuery sink](/docs/next/sink-to-bigquery/) | 2023.11    | 1.4           |
+| [MySQL CDC source (Auto schema change)](/docs/next/ingest-from-mysql-cdc/#automatically-change-schema) | 2024.8    | 2.0           |
 
 
 
