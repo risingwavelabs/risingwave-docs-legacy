@@ -32,7 +32,7 @@ const config: Config = {
           containerId: "GTM-KJRVWHT7",
         },
         docs: {
-          sidebarPath: require.resolve("./sidebars.js"),
+          sidebarPath: "./sidebars.ts",
           sidebarCollapsible: false,
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
@@ -120,7 +120,7 @@ const config: Config = {
         id: "cloud",
         path: "cloud",
         routeBasePath: "cloud",
-        sidebarPath: require.resolve("./sidebarCloud.js"),
+        sidebarPath: "./sidebarCloud.ts",
       } satisfies import("@docusaurus/plugin-content-docs").Options,
     ],
     "docusaurus-plugin-image-zoom",

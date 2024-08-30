@@ -1,4 +1,6 @@
-module.exports = {
+import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
+
+const sidebarCloud: SidebarsConfig = {
   CloudSidebar: [
     {
       type: "category",
@@ -256,3 +258,5 @@ module.exports = {
     },
   ],
 };
+
+export default sidebarCloud;
