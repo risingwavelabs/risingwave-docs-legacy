@@ -1,12 +1,9 @@
-import { themes } from 'prism-react-renderer';
+import { themes, PrismTheme } from 'prism-react-renderer';
 
-const base = themes.dracula;
+const base = themes.github;
 
 export default {
   ...base,
-  plain: {
-    backgroundColor: "#001017",
-  },
   styles: [
     ...base.styles,
     {
@@ -43,7 +40,7 @@ export default {
     {
       types: ["operator", "unit", "rule"],
       style: {
-        color: "#ebebeb",
+        color: "#393a34",
       },
     },
     {
@@ -73,8 +70,7 @@ export default {
     {
       types: ["keyword"],
       style: {
-        color: "#6db7ff",
-        fontStyle: "normal",
+        color: "#508fd2",
       },
     },
     {
@@ -110,7 +106,7 @@ export default {
     {
       types: ["custom"],
       style: {
-        color: "#ebebeb",
+        color: "#393a34",
         fontStyle: "italic",
       },
     },
@@ -123,9 +119,9 @@ export default {
     {
       types: ["string"],
       style: {
-        color: "#ebebeb",
+        color: "#393a34",
         fontStyle: "italic",
       },
     },
   ],
-};
+} satisfies PrismTheme;
