@@ -70,7 +70,7 @@ The generated column is created in RisingWave and will not be accessed through t
 |-----------|-------------|
 |*source_name*    |The name of the source. If a schema name is given (for example, `CREATE SOURCE <schema>.<source> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
 |*col_name*      |The name of a column.|
-|*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
+|*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets (`<>`). |
 |*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |*watermark_clause*| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
 |**INCLUDE** clause | Extract fields not included in the payload as separate columns. For more details on its usage, see [`INCLUDE` clause](/ingest/include-clause.md). |

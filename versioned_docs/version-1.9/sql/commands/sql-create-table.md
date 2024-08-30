@@ -73,7 +73,7 @@ FORMAT upsert ENCODE AVRO (
 |-----------|-------------|
 |`table_name`    |The name of the table. If a schema name is given (for example, `CREATE TABLE <schema>.<table> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
 |`col_name`      |The name of a column.|
-|`data_type`|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
+|`data_type`|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets (`<>`). |
 |`DEFAULT`|The `DEFAULT` clause allows you to assign a default value to a column. This default value is used when a new row is inserted, and no explicit value is provided for that column. `default_expr` is any constant value or variable-free expression that does not reference other columns in the current table or involve subqueries. The data type of `default_expr` must match the data type of the column.|
 |`generation_expression`| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |`watermark_clause`| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For the watermark clause to be valid, the table must be an append-only table. That is, the `APPEND ONLY` option must be specified. This restriction only applies to a table. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
@@ -133,9 +133,9 @@ CREATE TABLE IF NOT EXISTS taxi_trips(
     distance DOUBLE PRECISION,
     duration DOUBLE PRECISION,
     fare STRUCT<
-      initial_charge DOUBLE PRECISION, 
-      subsequent_charge DOUBLE PRECISION, 
-      surcharge DOUBLE PRECISION, 
+      initial_charge DOUBLE PRECISION,
+      subsequent_charge DOUBLE PRECISION,
+      surcharge DOUBLE PRECISION,
       tolls DOUBLE PRECISION>);
 ```
 
