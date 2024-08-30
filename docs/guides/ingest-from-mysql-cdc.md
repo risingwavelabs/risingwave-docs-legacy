@@ -493,6 +493,21 @@ ALTER TABLE customers ADD COLUMN v2 DOUBLE(5,2);
 DESCRIBE rw_customers;
 ```
 
+And this it the output of `DESCRIBE rw_customers;`
+
+```sql
+Name                        | Type                           | Is Hidden | Description
+----------------------------+--------------------------------+-----------+-------------
+id                          | bigint                         | false     | NULL
+modified                    | timestamp without time zone    | false     | NULL
+custinfo                    | jsonb                          | false     | NULL
+v1                          | character varying              | false     | NULL
+v2                          | double precision               | false     | NULL
+primary key id              | NULL                           | NULL      | NULL
+distribution key id         | NULL                           | NULL      | NULL
+table description rw_customers | NULL                       | NULL      | NULL
+```
+
 ## Monitor the progress of direct CDC
 
 To observe the progress of direct CDC for MySQL, use the following methods:
