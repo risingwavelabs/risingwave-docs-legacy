@@ -31,7 +31,8 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
 4. For **Endpoint service name** or **Service attachment** or **Private link service resource ID:**
 
-    <details><summary>If you choose AWS as the platform, enter the service name of the endpoint service.</summary>
+    <details>
+    <summary>If you choose AWS as the platform, enter the service name of the endpoint service.</summary>
 
     You can find it in the [Amazon VPC Console](https://console.aws.amazon.com/vpc/) → **Endpoint services** → **Service name** section.
 
@@ -39,7 +40,8 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
     </details>
 
-    <details><summary>If you choose GCP as the platform, enter the server target URL of the service attachment.</summary>
+    <details>
+    <summary>If you choose GCP as the platform, enter the server target URL of the service attachment.</summary>
 
     You can find it in the [Google Cloud Console](https://console.cloud.google.com/) → **Network services** → **Private Service Connect**.
 
@@ -47,7 +49,8 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
     </details>
 
-    <details><summary>If you choose Azure as the platform, enter the Private link service resource ID.</summary>
+    <details>
+    <summary>If you choose Azure as the platform, enter the Private link service resource ID.</summary>
 
     You can find it in the [Azure Portal](https://portal.azure.com/) → **Private link service** section.
 
