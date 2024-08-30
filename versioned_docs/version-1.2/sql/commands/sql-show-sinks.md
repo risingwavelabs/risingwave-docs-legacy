@@ -17,20 +17,6 @@ SHOW SINKS [ LIKE_expression ];
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW SINKS'),
-        rr.Optional(
-            rr.NonTerminal('LIKE_expression'),
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 |Parameter or clause        | Description           |

@@ -18,30 +18,6 @@ Before you can remove a table, you must remove all its dependent objects (indexe
 DROP TABLE [ IF EXISTS ] [schema_name.]table_name [ CASCADE ];
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP TABLE'),
-        rr.Optional(
-            rr.Terminal('IF EXISTS')
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.NonTerminal('schema_name'),
-                rr.Terminal('.')
-            ),
-        ),
-        rr.NonTerminal('table_name'),
-        rr.Optional(
-            rr.Terminal('CASCADE'), 'skip'
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 |Parameter                  | Description           |

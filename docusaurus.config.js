@@ -97,10 +97,7 @@ const config = {
           },
           editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
         },
-        blog: {
-          showReadingTime: true,
-          editUrl: "https://github.com/risingwavelabs/risingwave-docs/blob/main/",
-        },
+        blog: false,
         theme: {
           customCss: [
             require.resolve("./src/css/fonts.css"),
@@ -190,7 +187,7 @@ const config = {
         ],
       },
       footer: {
-        copyright: `Copyright © ${new Date().getFullYear()} RisingWave Community`,
+        copyright: `Copyright © ${new Date().getFullYear()} RisingWave Labs`,
       },
       prism: {
         additionalLanguages: ["sql", "java"],
@@ -211,7 +208,6 @@ const config = {
           content: "streaming database, documentation, risingwave",
         },
       ],
-      items: [{ label: "Latest", to: "docs/latest/intro" }],
     }),
   customFields: {
     docsUrl: "https://docs.risingwave.com",
@@ -231,7 +227,7 @@ const config = {
       "runllm-server-address": "https://api.runllm.com",
       "runllm-assistant-id": "29",
       "runllm-position": "TOP_RIGHT",
-      "runllm-keyboard-shortcut": "Mod+l",
+      "runllm-keyboard-shortcut": "disable",
       "runllm-theme-color": "#005EEC",
       "runllm-slack-community-url":
         "https://risingwave-community.slack.com/join/shared_invite/zt-2abrj3cbo-xnT_xn3_jd9piiM3vNPVdw",

@@ -104,13 +104,13 @@ html[data-theme="dark"] {
   border-right: none !important;
 }
 
-.theme-doc-sidebar-item-category-level-1 > div > a,
-.theme-doc-sidebar-item-category-level-1 > div > a:hover {
+.theme-doc-sidebar-item-category-level-1>div>a,
+.theme-doc-sidebar-item-category-level-1>div>a:hover {
   color: var(--ifm-color-emphasis-700);
   padding-top: 1.4rem;
 }
 
-.theme-doc-sidebar-item-category-level-1 > div:hover {
+.theme-doc-sidebar-item-category-level-1>div:hover {
   background: none;
   color: var(--ifm-color-primary);
 }
@@ -174,11 +174,11 @@ html[data-theme="dark"] {
   --ifm-h1-font-size: 2.1rem;
 }
 
-.markdown > h2 {
+.markdown>h2 {
   --ifm-h2-font-size: 1.4rem;
 }
 
-.markdown > h3 {
+.markdown>h3 {
   --ifm-h3-font-size: 1.3rem;
 }
 
@@ -214,22 +214,22 @@ h3 {
   padding-left: 0.5rem;
 }
 
-.theme-doc-markdown ol > li:not(.tabs__item) {
+.theme-doc-markdown ol>li:not(.tabs__item) {
   list-style: none;
   margin-bottom: 1rem;
 }
 
-div[role="tabpanel"] ol > li:not(.tabs__item) {
+div[role="tabpanel"] ol>li:not(.tabs__item) {
   list-style: decimal;
   margin-left: 1rem;
   margin-bottom: 1rem;
 }
 
-.theme-doc-markdown ol li:not(.tabs__item) > *:not(:first-child, code, strong) {
+.theme-doc-markdown ol li:not(.tabs__item)>*:not(:first-child, code, strong) {
   margin-left: 1.5rem;
 }
 
-.theme-doc-markdown > ol > li:not(.tabs__item) > :first-child:not(code, strong)::before {
+.theme-doc-markdown>ol>li:not(.tabs__item)> :first-child:not(code, strong)::before {
   font-size: 0.75rem;
   font-weight: bold;
   counter-increment: circle-counter;
@@ -271,13 +271,23 @@ div[role="tabpanel"] ol > li:not(.tabs__item) {
   display: none;
 }
 
-.theme-doc-sidebar-menu > .theme-doc-sidebar-item-link-level-1 a {
+.theme-doc-sidebar-menu>.theme-doc-sidebar-item-link-level-1 a {
   color: var(--ifm-color-emphasis-700);
   padding-top: 1.4rem;
 }
 
-.menu__list > .theme-doc-sidebar-item-category ul a {
+.menu__list>.theme-doc-sidebar-item-category ul a {
   font-weight: 400;
+}
+
+/* make the arrow icon of menu item without a linked index page smaller (1.5rem) */
+.menu__link--sublist-caret:after {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem;
+}
+
+/* make the arrow icon of menu item with a linked index page smaller (1.5rem) */
+.menu__caret:before {
+  background: var(--ifm-menu-link-sublist-icon) 50% / 1.5rem 1.5rem;
 }
 
 .docusaurus-highlight-code-line {
@@ -350,6 +360,7 @@ tbody tr td:first-child {
 }
 
 @media (min-width: 1024px) {
+
   thead tr th:first-child,
   tbody tr td:first-child {
     min-width: 13rem;
@@ -359,6 +370,7 @@ tbody tr td:first-child {
 }
 
 @media (min-width: 1440px) {
+
   thead tr th:first-child,
   tbody tr td:first-child {
     min-width: 14rem;
@@ -480,12 +492,14 @@ table tr:first-child {
 }
 
 @-webkit-keyframes slide-left {
+
   0%,
   30% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
   }
+
   90%,
   100% {
     -webkit-transform: translateX(-25px);
@@ -495,12 +509,14 @@ table tr:first-child {
 }
 
 @keyframes slide-left {
+
   0%,
   30% {
     -webkit-transform: translateX(0);
     transform: translateX(0);
     opacity: 1;
   }
+
   90%,
   100% {
     -webkit-transform: translateX(-25px);
@@ -510,13 +526,13 @@ table tr:first-child {
 }
 
 /* Codeblock with comment */
-.container .language-sql + div.theme-code-block:not(.language-sql) {
+.container .language-sql+div.theme-code-block:not(.language-sql) {
   border-top: 0;
   margin-top: -28px;
   padding-top: 0;
 }
 
-.container .language-sql + div.theme-code-block:hover div button {
+.container .language-sql+div.theme-code-block:hover div button {
   display: none;
 }
 

@@ -21,7 +21,7 @@ const sidebars = {
   MainSidebar: [
     {
       type: "category",
-      label: "About",
+      label: "Get started",
       collapsible: false,
       collapsed: false,
       items: [
@@ -33,73 +33,12 @@ const sidebars = {
         {
           type: "doc",
           id: "use-cases",
-          label: "Use cases",
+          label: "Use cases & examples",
         },
-        {
-          type: "doc",
-          label: "Integrations",
-          id: "rw-integration-summary",
-        },
-        {
-          type: "doc",
-          label: "FAQ",
-          id: "rw-faq",
-        },
-        {
-          type: "category",
-          label: "Deep-dive",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              id: "architecture",
-              label: "Architecture",
-            },
-            {
-              type: "doc",
-              id: "concepts/key-concepts",
-              label: "Key concepts and terms",
-            },
-            {
-              type: "doc",
-              label: "Fault tolerance",
-              id: "fault-tolerance",
-            },
-            {
-              type: "doc",
-              label: "Data persistence",
-              id: "data-persistence",
-            },
-            {
-              type: "doc",
-              label: "Transactions",
-              id: "concepts/transactions",
-            },
-            {
-              type: "doc",
-              label: "RisingWave vs. Flink",
-              id: "risingwave-flink-comparison",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Get started",
-      collapsible: false,
-      collapsed: false,
-      items: [
         {
           type: "doc",
           label: "Quick start",
           id: "get-started",
-        },
-        {
-          "type": "doc",
-          "id": "deploy/risingwave-docker-compose",
-          "label": "Deploy locally with Docker Compose"
         },
         {
           "type": "category",
@@ -123,12 +62,12 @@ const sidebars = {
               "label": "Deploy on Kubernetes with Helm"
             }
           ]
-        },
+        },        
         {
-          "type": "doc",
-          "id": "guides/install-psql-without-postgresql",
-          "label": "Install psql"
-        }
+          type: "doc",
+          label: "Integrations",
+          id: "rw-integration-summary",
+        },
       ],
     },
     {
@@ -1077,6 +1016,39 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "Reference",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "reference/architecture",
+          label: "Architecture",
+        },
+        {
+          type: "doc",
+          id: "concepts/key-concepts",
+          label: "Key concepts and terms",
+        },
+        {
+          type: "doc",
+          label: "Fault tolerance",
+          id: "reference/fault-tolerance",
+        },
+        {
+          type: "doc",
+          label: "Data persistence",
+          id: "reference/data-persistence",
+        },
+        {
+          type: "doc",
+          label: "Transactions",
+          id: "concepts/transactions",
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "Deploy & operate",
       collapsible: true,
       collapsed: true,
@@ -1085,6 +1057,16 @@ const sidebars = {
           type: "doc",
           id: "deploy/hardware-requirements",
           label: "Hardware requirements",
+        },
+        {
+          "type": "doc",
+          "id": "guides/install-psql-without-postgresql",
+          "label": "Install psql"
+        },
+        {
+          "type": "doc",
+          "id": "deploy/risingwave-docker-compose",
+          "label": "Deploy locally with Docker Compose"
         },
         {
           type: "doc",
@@ -1126,6 +1108,11 @@ const sidebars = {
           type: "doc",
           label: "Manage secrets",
           id: "deploy/manage-secrets",
+        },
+        {
+          type: "doc",
+          label: "Tune reserved memory and cache eviction policy",
+          id: "deploy/tune-reserved-memory",
         },
         {
           type: "doc",
@@ -1183,6 +1170,31 @@ const sidebars = {
           type: "doc",
           label: "Best practices",
           id: "performance/performance-best-practices"
+        },
+      ]
+    },
+    {
+      type: "category",
+      label: "FAQ",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "faq/faq-overview"
+        },
+        {
+          type: "doc",
+          id: "faq/faq-when-to-use-risingwave"
+        },
+        {
+          type: "doc",
+          label: "RisingWave vs. Flink",
+          id: "faq/risingwave-flink-comparison",
+        },
+        {
+          type: "doc",
+          id: "faq/faq-using-risingwave"
         },
       ]
     },

@@ -24,17 +24,6 @@ BEGIN READ ONLY;
 BEGIN
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('BEGIN READ ONLY'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Related topics
 
 - [Transactions](/concepts/transactions.md)
