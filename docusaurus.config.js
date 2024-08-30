@@ -24,10 +24,6 @@ const config = {
           containerId: "GTM-KJRVWHT7",
         },
         docs: {
-          admonitions: {
-            tag: ":::",
-            keywords: ["note", "tip", "info", "caution", "danger"],
-          },
           sidebarPath: require.resolve("./sidebars.js"),
           sidebarCollapsible: false,
           showLastUpdateAuthor: false,
