@@ -57,7 +57,7 @@ Follow the steps below to migrate an existing cluster from the etcd backend to a
     risingwave ctl meta migration --etcd-endpoints <etcd_address> --sql-endpoint <sql_address> -f
     ```
 
-   Replace <etcd_address> with the address of your etcd service and <sql_address> with the address of your SQL backend.
+   Replace `<etcd_address>` with the address of your etcd service and `<sql_address>` with the address of your SQL backend.
 
 3. Update meta configuration
 
