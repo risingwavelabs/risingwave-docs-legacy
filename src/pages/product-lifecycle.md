@@ -23,7 +23,7 @@ As introduced above, when you see a "Public preview" note in the documentation, 
 
 The following is a list of all features in the public preview phase:
 
-| Feature Name            | Start Date | Start Version |
+| Feature name            | Start date | Start version |
 |---------------------------|------------|---------------|
 | [Decouple sinks](/docs/next/data-delivery/#sink-decoupling)    | 2023.10   | 1.3         |
 | [Google BigQuery sink](/docs/next/sink-to-bigquery/)           | 2023.11   | 1.4         |
