@@ -280,6 +280,8 @@ The `timestamptz.handling.mode` parameter controls the input format for timestam
 
 You can set this parameter when using the `format plain | upsert | debezium encode json` command, but not when using `format debezium_mongo | canal | maxwell encode json`.
 
+---
+
 ### `jsonb.handling.mode`
 
 The `jsonb.handling.mode` determines how `jsonb` data types are encoded. This parameter has two possible values:
