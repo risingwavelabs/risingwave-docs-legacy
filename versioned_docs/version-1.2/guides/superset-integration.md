@@ -74,7 +74,7 @@ The following UI page should appear.
 
 5. Select **Test Connection** then **Connect**.
 
-![Add database in Superset](../images/supersetdb.png)
+  ![Add database in Superset](../images/supersetdb.png)
 
 ## Create a dashboard
 

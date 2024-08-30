@@ -21,7 +21,7 @@ Since RisingWave is compatible with PostgreSQL, you can connect Metabase to Risi
 
 1. Open the Metabase admin interface and click "Add a database".
 
-![Add a Database](../images/add-a-database.png)
+  ![Add a Database](../images/add-a-database.png)
 
 2. For the database type, select "PostgreSQL" since RisingWave uses the PostgreSQL wire protocol.
 
@@ -34,7 +34,7 @@ Since RisingWave is compatible with PostgreSQL, you can connect Metabase to Risi
   - Username: The username for accessing the database.
   - Password: The password associated with the provided username.
 
-![Fill in the Connection Details](../images/connection-details.png)
+  ![Fill in the Connection Details](../images/connection-details.png)
 
 4. Save the connection.
 

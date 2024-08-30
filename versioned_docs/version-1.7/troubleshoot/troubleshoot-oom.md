@@ -17,7 +17,7 @@ This guide focuses on addressing OOM issues on the compute node. If you encounte
 1. The Kubernetes shows the compute node pod suddenly restarts due to **OOM Killed (137)**.
 2. The Grafana metrics show memory increases unbounded, beyond the limit of `total_memory` set for the compute node. Memory settings can be found in the booting logs of the compute node. Search for keyword “Memory outline" to locate the specific section.
 
-![Out-of-memory symptom](../images/oom-symptom.png)
+  ![Out-of-memory symptom](../images/oom-symptom.png)
 
 ## OOM when creating materialized views
 
