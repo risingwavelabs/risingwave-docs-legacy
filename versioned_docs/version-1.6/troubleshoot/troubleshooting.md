@@ -25,7 +25,7 @@ You can monitor the performance metrics of a RisingWave cluster, including the u
 
 RisingWave uses Prometheus for collecting data, and Grafana for visualization and alerting. This monitoring stack requires configuration. To configure the monitoring stack, follow the steps detailed in [Monitor a RisingWave cluster](../manage/monitor-risingwave-cluster.md).
 
-After you complete the configuration, go to [http://localhost:3000](http://localhost:3000) to access Grafana from a local machine, or `http://<client_address>:3000` to access Grafana from a different host, where <client_address> is the IP address of the machine running the Grafana service. When prompted, enter the default credentials (username: `admin`; password: `prom-operator`).
+After you complete the configuration, go to [http://localhost:3000](http://localhost:3000) to access Grafana from a local machine, or `http://<client_address>:3000` to access Grafana from a different host, where `<client_address>` is the IP address of the machine running the Grafana service. When prompted, enter the default credentials (username: `admin`; password: `prom-operator`).
 
 There are 2 built-in dashboards in the official release.
 
