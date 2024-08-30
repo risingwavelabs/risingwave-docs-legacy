@@ -11,13 +11,11 @@ keywords: [streaming database, risingwave, introduction]
 
 RisingWave is a distributed SQL streaming database that enables simple, efficient, and reliable processing of streaming data.
 
-<rollButton text="&nbsp;&nbsp;Get Started" doc="get-started" block />
-<br/>
+<p>
+  <defaultButton text="Get Started" doc="get-started" />
+</p>
 
-<img
-  src={require('./images/new_archi_grey.png').default}
-  alt="RisingWave Architecture"
-/>
+![RisingWave Architecture](./images/new_archi_grey.png)
 
 ## Why RisingWave for stream processing?
 
@@ -33,29 +31,29 @@ Compared to existing stream processing systems like [Apache Flink](https://flink
 ### Ease-of-use
 
 * **Simple to learn**
-  
+
   RisingWave speaks PostgreSQL-style SQL, enabling users to dive into stream processing in much the same way as operating a PostgreSQL database.
-  
+
 * **Simple to develop**
-  
+
   RisingWave operates as a relational database, allowing users to decompose stream processing logic into smaller, manageable, stacked materialized views, rather than dealing with extensive computational programs.
 
 * **Simple to integrate**
-  
+
   With integrations to a diverse range of cloud systems and the PostgreSQL ecosystem, RisingWave boasts a rich and expansive ecosystem, making it straightforward to incorporate into existing infrastructures.
 
 ### Cost efficiency
 
 * **Highly efficient in complex queries**
-  
+
   RisingWave persists internal states in remote storage such as S3, and users can confidently and efficiently perform complex streaming queries (for example, joining dozens of data streams) in a production environment, without worrying about state size.
 
 * **Transparent dynamic scaling**
-  
+
   RisingWave's state management mechanism enables near-instantaneous dynamic scaling without any service interruptions.
 
 * **Instant failure recovery**
-  
+
   RisingWave's state management mechanism also allows it to recover from failure in seconds, not minutes or hours.
 
 ## Key feature differences: RisingWave vs. Flink
@@ -67,11 +65,11 @@ For the key feature differences between RisingWave and Flink, see: [RisingWave v
 RisingWave isn’t a panacea for all data engineering hurdles. It has its own set of limitations:
 
 * **No programmable interfaces**
-  
+
   RisingWave does not provide low-level APIs in languages like Java and Scala, and does not allow users to manage internal states manually (unless you want to hack!). For coding in Java, Scala, and other languages, please consider using RisingWave's User-Defined Functions (UDF).
 
 * **No support for transaction processing**
-  
+
   RisingWave isn’t cut out for transactional workloads, thus it’s not a viable substitute for operational databases dedicated to transaction processing. However, it supports read-only transactions, ensuring data freshness and consistency. It also comprehends the transactional semantics of upstream database Change Data Capture (CDC).
 
 ## In-production use cases

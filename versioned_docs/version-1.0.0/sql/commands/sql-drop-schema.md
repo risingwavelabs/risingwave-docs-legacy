@@ -20,27 +20,6 @@ DROP SCHEMA [ IF EXISTS ] [database_name.]schema_name;
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP SCHEMA'),
-        rr.Optional(
-            rr.Terminal('IF EXISTS')
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.NonTerminal('database_name'),
-                rr.Terminal('.')
-            ),
-        ),
-        rr.NonTerminal('schema_name'),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 
 
 

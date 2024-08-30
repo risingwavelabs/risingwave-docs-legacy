@@ -8,7 +8,7 @@ slug: /sql-show-sources
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-sources/" />
 </head>
 
-Use the `SHOW SOURCES` command to show existing sources. 
+Use the `SHOW SOURCES` command to show existing sources.
 
 ## Syntax
 
@@ -16,23 +16,6 @@ Use the `SHOW SOURCES` command to show existing sources.
 SHOW SOURCES [ FROM schema_name ];
 ```
 
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW SOURCES'),
-        rr.Optional(
-            rr.Sequence(
-                rr.Terminal('FROM'),
-                rr.NonTerminal('schema_name', 'skip'),
-            ),
-        ),
-        rr.Terminal(';'),
-    ),
-);
-
-<drawer SVG={svg} />
 
 
 ## Parameters

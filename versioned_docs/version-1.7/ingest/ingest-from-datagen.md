@@ -14,87 +14,14 @@ Use the SQL statement below to connect RisingWave to the built-in load generator
 
 ## Syntax
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
-<Tabs>
-<TabItem value="diagram" label="Diagram">
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal('CREATE TABLE'),
-      rr.NonTerminal('source_name', 'skip'),
-      rr.Terminal('('),
-      rr.OneOrMore (rr.Sequence ( rr.Terminal ('column_name'), rr.Terminal ('data_type')), ','),
-      rr.Terminal(')'),
-   ),
-   rr.Sequence(
-      rr.Terminal('FORMAT'),
-      rr.NonTerminal('PLAIN', 'skip'),
-   ),
-   rr.Sequence(
-      rr.Terminal('ENCODE'),
-      rr.NonTerminal('source_name', 'skip'),
-   ),
-   rr.Sequence(
-      rr.Terminal('WITH'),
-      rr.Terminal('('),
-      rr.Stack(
-         rr.Stack(
-            rr.Sequence(
-               rr.Terminal('connector = \' datagen \''),
-               rr.Terminal(',')
-            ),
-            rr.OneOrMore (
-               rr.Sequence(
-                  rr.Terminal('fields'),
-                  rr.Terminal('.'),
-                  rr.NonTerminal('column_name'),
-                  rr.Terminal('.'),
-                  rr.NonTerminal('column_parameter'),
-                  rr.Terminal('='),
-                  rr.Terminal('\''),
-                  rr.NonTerminal('value'),
-                  rr.Terminal('\''),
-                  rr.Terminal(','),
-               ),rr.Comment('Configure each column. See detailed information below.'),
-            ),
-            rr.Sequence(
-               rr.Terminal('datagen.rows.per.second'),
-               rr.Terminal('='),
-               rr.Terminal('\''),
-               rr.NonTerminal('rows_integer'),
-               rr.Terminal('\''),
-               rr.Comment('Number of rows to generate per second'),
-            ),
-            rr.Terminal(')'),
-         ),
-      ),
-   )
-)
-);
-
-<drawer SVG={svg} />
-
-</TabItem>
-
-<TabItem value="code" label="Code">
-
 ```sql
-CREATE TABLE source_name ( column_name data_type, ... ) 
+CREATE TABLE source_name ( column_name data_type, ... )
 WITH (
    connector = ' datagen ',
    fields.column_name.column_parameter = ' value ', ...  -- Configure the generator for each column. See detailed information below.
    datagen.rows.per.second = ' rows_integer '  -- Specify how many rows of records to generate every second. For example, '20'.
 ) FORMAT PLAIN ENCODE JSON;
 ```
-
-</TabItem>
-
-</Tabs>
 
 ### `WITH` options - *`column_parameter`*
 
@@ -106,6 +33,9 @@ The following table shows the data types that can be generated for each load gen
 |**Random**|✓|✓|✓|✓|✓|✓|
 
 Select the type of data to be generated.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Tabs>
 
@@ -224,7 +154,7 @@ WITH (
 If you want to generate an array of struct, your statement should look like the following.
 
 ```sql
-CREATE TABLE s1 (v1 struct<v2 int> []) 
+CREATE TABLE s1 (v1 struct<v2 int> [])
 WITH (
     connector = 'datagen',
     fields.v1.length = '2',
@@ -253,24 +183,24 @@ The following statement creates a source `s1` with five columns:
 - `c1` — Random strings with each consists of 16 characters
 
 ```sql
-CREATE TABLE s1 (i1 int [], v1 struct<v2 int, v3 double>, t1 timestamp, z1 timestamptz, c1 varchar) 
+CREATE TABLE s1 (i1 int [], v1 struct<v2 int, v3 double>, t1 timestamp, z1 timestamptz, c1 varchar)
 WITH (
      connector = 'datagen',
-  
+
      fields.i1.length = '3',
      fields.i1._.kind = 'sequence',
      fields.i1._.start = '1',
-  
+
      fields.v1.v2.kind = 'random',
      fields.v1.v2.min = '-10',
      fields.v1.v2.max = '10',
      fields.v1.v2.seed = '1',
-  
+
      fields.v1.v3.kind = 'random',
      fields.v1.v3.min = '15',
      fields.v1.v3.max = '55',
      fields.v1.v3.seed = '1',
-  
+
      fields.t1.kind = 'random',
      fields.t1.max_past = '2h 37min',
      fields.t1.max_past_mode = 'relative',
@@ -284,7 +214,7 @@ WITH (
      fields.c1.kind = 'random',
      fields.c1.length = '16',
      fields.c1.seed = '3',
-  
+
      datagen.rows.per.second = '10'
  ) FORMAT PLAIN ENCODE JSON;
 ```
@@ -296,7 +226,7 @@ SELECT * FROM s1 ORDER BY i1 LIMIT 20;
 ```
 
 ```
-     i1     |            v1            |             t1             |                z1                |        c1        
+     i1     |            v1            |             t1             |                z1                |        c1
 ------------+--------------------------+----------------------------+----------------------------------+------------------
  {1,2,3}    | (7,53.96978949033611)    | 2023-11-28 13:35:04.967040 | 2023-11-28 21:35:04.967330+00:00 | pGWJLsbmPJZZWpBe
  {4,5,6}    | (5,44.24453663454818)    | 2023-11-28 14:13:15.264457 | 2023-11-28 22:13:15.264481+00:00 | FT7BRdifYMrRgIyI

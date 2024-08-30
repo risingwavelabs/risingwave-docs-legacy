@@ -16,17 +16,6 @@ Use the `SHOW CLUSTERS` command to show the details of your RisingWave cluster, 
 SHOW CLUSTERS;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW CLUSTERS'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Example
 
 ```sql

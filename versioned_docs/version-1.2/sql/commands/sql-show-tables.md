@@ -17,26 +17,6 @@ SHOW TABLES [ FROM schema_name ] [ LIKE_expression ];
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW TABLES'),
-        rr.Optional(
-            rr.Sequence(
-                rr.Terminal('FROM'),
-                rr.NonTerminal('schema_name', 'skip'),
-            ),
-        ),
-        rr.Optional(
-            rr.NonTerminal('LIKE_expression'),
-        ),
-        rr.Terminal(';'),
-    ),
-);
-
-<drawer SVG={svg} />
-
 
 
 ## Parameters
