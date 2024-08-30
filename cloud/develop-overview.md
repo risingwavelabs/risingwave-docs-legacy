@@ -9,6 +9,7 @@ slug: /develop-overview
 import DefaultButton from "@site/src/components/DefaultButton";
 import LightButton from "@site/src/components/LightButton";
 import OutlinedCard from "@site/src/components/OutlinedCard";
+import ResponsiveGrid from "@site/src/components/ResponsiveGrid";
 
 RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. RisingWave provides an interface language that resembles PostgreSQL, enabling your team to build real-time data services without the high engineering cost and complexity of traditional stream processing.
 
@@ -23,7 +24,7 @@ Developers can refer to the user documentation for RisingWave to develop streami
 RisingWave is a rapidly evolving system, with [new features](/release-notes/) added with each release. However, this also means some features may not function properly in older versions. Therefore, when using the RisingWave user docs, it's important to select the corresponding documentation version based on the RisingWave version in your project.
 
 
-<grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -31,7 +32,7 @@ RisingWave is a rapidly evolving system, with [new features](/release-notes/) ad
  justifyItems="stretch"
  alignItems="baseline">
 
-<grid item xs={6} md={6}>
+<ResponsiveGrid item xs={6} md={6}>
 
 ### Check RisingWave version
 
@@ -43,9 +44,9 @@ To check your current version, go to [**Projects**](https://cloud.risingwave.com
   width="95%"
 />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={6} md={6}>
+<ResponsiveGrid item xs={6} md={6}>
 
 ### Select docs version
 
@@ -56,15 +57,15 @@ Select the version of the corresponding docs when using the RisingWave user docs
   alt="Select docs version"
 />
 
-</grid>
+</ResponsiveGrid>
 
-</grid>
+</ResponsiveGrid>
 
 ## Top read topics for developers
 
 ### Ecosystem
 
-<grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -72,7 +73,7 @@ Select the version of the corresponding docs when using the RisingWave user docs
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={4}>
+<ResponsiveGrid item xs={12} sm={6} md={4}>
 
  <OutlinedCard
  style={{height: "87%"}}
@@ -81,9 +82,9 @@ Select the version of the corresponding docs when using the RisingWave user docs
  url="/docs/current/rw-integration-summary/"
  />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={4}>
+<ResponsiveGrid item xs={12} sm={6} md={4}>
 
  <OutlinedCard
  style={{height: "87%"}}
@@ -92,9 +93,9 @@ Select the version of the corresponding docs when using the RisingWave user docs
  url="/docs/current/data-ingestion/"
  />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={4}>
+<ResponsiveGrid item xs={12} sm={6} md={4}>
 
 <OutlinedCard
  style={{height: "87%"}}
@@ -103,9 +104,9 @@ Select the version of the corresponding docs when using the RisingWave user docs
  url="/docs/current/data-delivery/"
  />
 
-</grid>
+</ResponsiveGrid>
 
-</grid>
+</ResponsiveGrid>
 
 ### Process data with RisingWave
 
@@ -137,7 +138,7 @@ links={[
 
 ### More to read
 
- <grid
+ <ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -145,7 +146,7 @@ links={[
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
  <OutlinedCard
  style={{height: "90%"}}
@@ -159,9 +160,9 @@ links={[
  ]}
  />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
 <OutlinedCard
  style={{height: "90%"}}
@@ -173,6 +174,6 @@ links={[
  ]}
  />
 
-</grid>
+</ResponsiveGrid>
 
-</grid>
+</ResponsiveGrid>

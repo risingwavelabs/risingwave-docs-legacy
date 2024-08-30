@@ -7,10 +7,11 @@ slug: /manage-database-users
 
 <!-- MDX imports -->
 import OutlinedCard from "@site/src/components/OutlinedCard";
+import ResponsiveGrid from "@site/src/components/ResponsiveGrid";
 
 In RisingWave, a database user is similar to a database user or role in Postgres, allowing a person or application to access a specific database or set of databases within a project. Also, you [connect and log in to a project](project-connect-to-a-project.md) as one of its database users. Database users can be assigned specific permissions to control their database privileges. Currently, all database users have the superuser privilege. Future releases will introduce more granular permissions.
 
-<grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -18,7 +19,7 @@ In RisingWave, a database user is similar to a database user or role in Postgres
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={4}>
+<ResponsiveGrid item xs={12} sm={6} md={4}>
 
 <OutlinedCard
 style={{height: "87%"}}
@@ -27,9 +28,9 @@ content="You can create a database user in several ways."
 cloud="create-a-database-user"
 />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={4}>
+<ResponsiveGrid item xs={12} sm={6} md={4}>
 
 <OutlinedCard
 style={{height: "87%"}}
@@ -38,9 +39,9 @@ content="You can change the password of any database users in your project."
 cloud="change-database-user-password"
 />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={4}>
+<ResponsiveGrid item xs={12} sm={6} md={4}>
 
 <OutlinedCard
 style={{height: "87%"}}
@@ -49,7 +50,7 @@ content="If you no longer need a database user, you can delete it."
 cloud="delete-a-database-user"
 />
 
-</grid>
+</ResponsiveGrid>
 
-</grid>
+</ResponsiveGrid>
 

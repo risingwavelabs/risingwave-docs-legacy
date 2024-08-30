@@ -7,6 +7,7 @@ slug: /manage-projects
 
 <!-- MDX imports -->
 import OutlinedCard from "@site/src/components/OutlinedCard";
+import ResponsiveGrid from "@site/src/components/ResponsiveGrid";
 
 A project in RisingWave Cloud provides the necessary resources for hosting independent data repositories and streaming pipelines. Within a project, you can create and manage database users and databases.
 
@@ -27,7 +28,7 @@ Once you have completed these steps, your project will be created.
 
 ## What's next?
 
-<grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -35,7 +36,7 @@ Once you have completed these steps, your project will be created.
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
 <OutlinedCard
 title="Connect to a project"
@@ -44,9 +45,9 @@ cloud="connect-to-a-project"
 style={{height: "87%"}}
 />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
 <OutlinedCard
 title="Check status and metrics of projects"
@@ -55,11 +56,11 @@ cloud="check-status-and-metrics"
 style={{height: "87%"}}
 />
 
-</grid>
+</ResponsiveGrid>
 
-</grid>
+</ResponsiveGrid>
 
-<grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -67,7 +68,7 @@ style={{height: "87%"}}
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
 <OutlinedCard
 title="Update database version"
@@ -76,9 +77,9 @@ cloud="update-database-version"
 style={{height: "87%"}}
 />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
 <OutlinedCard
 title="Stop and delete projects"
@@ -87,6 +88,6 @@ cloud="stop-and-delete-projects"
 style={{height: "87%"}}
 />
 
-</grid>
+</ResponsiveGrid>
 
-</grid>
+</ResponsiveGrid>
