@@ -35,53 +35,6 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
 
 This is the WITH clause and the rest of the source parameters:
 
-export const svgTwo = rr.Diagram(
-     rr.Stack(
-        rr.Optional(
-            rr.Stack(
-                rr.Sequence(
-                    rr.Terminal('WITH'),
-                    rr.Terminal('('),
-                        rr.Sequence(
-                            rr.Terminal('connector'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('connector_name', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                        rr.OneOrMore(
-                            rr.Sequence(
-                                rr.NonTerminal('connector_parameter', 'skip'),
-                                rr.Terminal('='),
-                                rr.NonTerminal('value', 'skip'),
-                                rr.Terminal(','),
-                            ),
-                        ),
-                    rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Stack(
-            rr.Sequence(
-                rr.Terminal('FORMAT'),
-                rr.NonTerminal('format', 'skip')
-            ),
-            rr.Sequence(
-                rr.Terminal('ENCODE'),
-                rr.NonTerminal('encode', 'skip'),
-                rr.Optional(
-                    rr.Sequence(
-                    rr.Terminal('('),
-                    rr.NonTerminal('encode_parameter', 'skip'),
-                    rr.Terminal(')'),
-                    ),
-                ),
-            ),
-        ),
-    )
-);
-
-<drawer SVG={svgTwo} />
-
 ## Notes
 
 For tables with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record.
