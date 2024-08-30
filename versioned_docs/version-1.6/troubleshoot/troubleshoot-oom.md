@@ -41,7 +41,7 @@ Barriers play a vital role in our system, supporting the proper functioning of i
 
 Barrier latency can be observed from Grafana dashboard - Barrier latency panel. For example, the latency curve in the following figure is abnormal, which indicates that the barrier is getting stuck.
 
-![Out-of-memory symptom](../images/example_bad_barrier_latency.png)
+![An example of extremely high latency](../images/example_bad_barrier_latency.png)
 
 Instead of solely addressing the memory problem, we recommend investigating why the barrier is getting stuck. This issue could be caused by heavy streaming jobs, sudden impact of input traffic, or even some temporary issues.
 
