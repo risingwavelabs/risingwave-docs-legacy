@@ -14,8 +14,6 @@ import "./styles.css"; // MDX elements are wrapped through the MDX pragma. In so
 // with Head/Helmet) we need to unwrap those elements.
 import DefaultButton from "@theme/DefaultButton";
 import LightButton from "@theme/LightButton";
-import NotifyButton from "@theme/NotifyButton";
-import Admonition from "@theme/Admonition";
 import Capsule from "@theme/Capsule";
 import OutlinedCard from "@theme/OutlinedCard";
 import ResponsiveGrid from "@theme/ResponsiveGrid";
@@ -71,10 +69,8 @@ const MDXComponents = {
   h6: (props) => <Heading as="h6" {...props} />,
 
   // TODO(rc): should move these to `components` and import before using in MDX
-  notifyButton: NotifyButton,
   defaultButton: DefaultButton,
   lightButton: LightButton,
-  admonition: Admonition,
   voteNotify: Capsule,
   card: OutlinedCard,
   grid: ResponsiveGrid,
