@@ -60,10 +60,7 @@ If it is your first time starting Superset and the webpage asks for a username a
 
 The following UI page should appear.
 
-<img
-src={require('../images/supersetui.png').default}
-alt="Superset UI"
-/>
+![Superset UI](../images/supersetui.png)
 
 ### Connect to RisingWave
 
@@ -77,10 +74,7 @@ alt="Superset UI"
 
 5. Select **Test Connection** then **Connect**.
 
-<img
-src={require('../images/supersetdb.png').default}
-alt="Add database in Superset"
-/>
+![Add database in Superset](../images/supersetdb.png)
 
 ## Create a dashboard
 
@@ -129,9 +123,6 @@ To create a dashboard based on the table `t`:
 
 6. Click **Update chart**. The query results will be rendered into a line chart.
 
-<img
-src={require('../images/superset-dashboard.png').default}
-alt="Create a dashboard in Superset"
-/>
+![Create a dashboard in Superset](../images/superset-dashboard.png)
 
 For more details on creating dashboards, see the [Creating your first dashboard](https://superset.apache.org/docs/creating-charts-dashboards/creating-your-first-dashboard#creating-charts-in-explore-view) guide.

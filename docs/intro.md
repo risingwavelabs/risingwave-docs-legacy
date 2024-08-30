@@ -78,10 +78,7 @@ Note that RisingWave does not use the PostgreSQL engine internally, which result
 
 RisingWave aims to help simplify event-driven architecture. You can think of RisingWave as a unified system that combines event streaming, stream processing, storage, and serving capabilities. Developers can express intricate stream-processing logic through cascaded materialized views. Additionally, it allows users to persist data directly within the system, eliminating the need to deliver results to external databases for storage and query serving.
 
-<img
-  src={require('./images/stream_processing_with_and_without_rw.jpeg').default}
-  alt="Stream Processing With And Without RisingWave"
-/>
+![Stream Processing With And Without RisingWave](./images/stream_processing_with_and_without_rw.jpeg)
 
 <LightButton text="See the architecture" doc="architecture"/>
 <LightButton text="Access the source code" url="https://github.com/risingwavelabs/risingwave"/>

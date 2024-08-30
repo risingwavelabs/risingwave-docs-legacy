@@ -32,7 +32,7 @@ CREATE SINK sink2 INTO wide_d (v2, k) AS
       type = 'append-only',
       force_append_only = 'true',
   );
-CREATE SINK sink3 INTO wide_d (v3,k) AS 
+CREATE SINK sink3 INTO wide_d (v3,k) AS
   SELECT v3, k FROM d3
   with (
       type = 'append-only',
@@ -89,7 +89,7 @@ with (
 The example above and the following SQL with left join operation are completely equivalent.
 
 ```sql
-CREATE MATERIALIZED VIEW wide_fact AS 
+CREATE MATERIALIZED VIEW wide_fact AS
 SELECT fact.pk, d1.v v1, d2.v v2, d3.v v3
 FROM fact
 LEFT JOIN d1 ON fact.k1 = d1.pk
@@ -99,9 +99,6 @@ LEFT JOIN d3 ON fact.k3 = d3.pk
 
 But maintaining wide table with table sinks can save the resources and achieve high efficiency.
 
-<img
-  src={require('../images/maintain_wide_table_with_table_sink.drawio.png').default}
-  alt="The streaming state when maintain wide table with table sinks"
-/>
+![The streaming state when maintain wide table with table sinks](../images/maintain_wide_table_with_table_sink.drawio.png)
 
 Furthermore, for the large dimension table, we can use [Temporal Join](/sql/query-syntax/query-syntax-join-clause.md) as the partial join to reduce the streaming state and improve performance.

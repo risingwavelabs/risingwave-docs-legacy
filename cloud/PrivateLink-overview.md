@@ -25,10 +25,7 @@ Azure Private Link integration is currently in development and will be available
 
 The diagram below depicts a high-level overview of how PrivateLink service works. Both all three platforms share the same pattern of network structure so that you can configure them in the same way automatically.
 
-<img
-src={require('./images/PrivateLink-diagram.png').default}
-alt="VPC connection diagram"
-/>
+![VPC connection diagram](./images/PrivateLink-diagram.png)
 
 On the **RisingWave Cloud** side, RisingWave Cloud will create an endpoint (specifically an AWS VPC endpoint, GCP Private Service Connect endpoint, or Azure private endpoint) and bind it with one running RisingWave project.
 

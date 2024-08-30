@@ -19,7 +19,4 @@ Experience intuitive and effortless stream processing with RisingWave Cloud. Sig
 <br/>
 <br/>
 
-<img
-  src={require('../images/cloud-overview.png').default}
-  alt="RisingWave Cloud Overview"
-/>
+![RisingWave Cloud Overview](../images/cloud-overview.png)

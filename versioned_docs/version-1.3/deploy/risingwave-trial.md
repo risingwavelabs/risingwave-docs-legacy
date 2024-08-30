@@ -186,10 +186,7 @@ Do not move the extracted files or folders. This could cause issues when startin
 
     1. Uncomment `use connector-node` in the risedev.yml file like below.
 
-    <img
-    src={require('../images/uncomment-connector-node.png').default}
-    alt="Edit risedev.yml file for connector node"
-    />
+    ![Edit risedev.yml file for connector node](../images/uncomment-connector-node.png)
 
   The connector node will now be enabled when you run RisingWave.
 

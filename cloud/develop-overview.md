@@ -52,10 +52,7 @@ To check your current version, go to [**Projects**](https://cloud.risingwave.com
 
 Select the version of the corresponding docs when using the RisingWave user docs.
 
-<img
-  src={require('./images/select-docs-version.gif').default}
-  alt="Select docs version"
-/>
+![Select docs version](./images/select-docs-version.gif)
 
 </ResponsiveGrid>
 

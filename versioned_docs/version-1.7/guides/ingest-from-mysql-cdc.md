@@ -17,7 +17,7 @@ You can ingest CDC data from MySQL in two ways:
 - Using the native MySQL CDC connector in RisingWave
 
   With this connector, RisingWave can connect to MySQL databases directly to obtain data from the binlog without starting additional services.
-  
+
 - Using a CDC tool and a message broker
 
   You can use a CDC tool and then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave.
@@ -100,42 +100,21 @@ See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connec
 If your MySQL is hosted on AWS RDS, the configuration process is different. We will use a standard class MySQL instance without Multi-AZ deployment for illustration.
 
 1. Turn on binary logging and choose a non-zero value for the **Retention period**.
-<img
-  src={require('../images/ret-period.png').default}
-  alt="Set retention period to a nonzero value"
-/>
+![Set retention period to a nonzero value](../images/ret-period.png)
 
 2. Create a parameter group for MySQL instances. We created a parameter group named MySQL-CDC for the instance that runs MySQL 5.7.x.
-<img
-  src={require('../images/parameter-group.png').default}
-  alt="Create a parameter group"
-/>
+![Create a parameter group](../images/parameter-group.png)
 
 3. Click the MySQL-CDC parameter group to edit the values of **binlog_format** to **ROW** and **binlog_row_image** to **full**.
-<img
-  src={require('../images/binlog-format.png').default}
-  alt="Set binlog_format to row"
-/>
-<img
-  src={require('../images/binlog-row.png').default}
-  alt="Set binlog_row_image to full"
-/>
+![Set binlog_format to row](../images/binlog-format.png)
+![Set binlog_row_image to full](../images/binlog-row.png)
 
 4. Modify your RDS instance and apply the modified parameter group to your database.
-<img
-  src={require('../images/modify-RDS.png').default}
-  alt="Select modify"
-/>
-<img
-  src={require('../images/apply-to-database.png').default}
-  alt="Apply changes to database"
-/>
+![Select modify](../images/modify-RDS.png)
+![Apply changes to database](../images/apply-to-database.png)
 
 5. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save the changes. Remember to reboot your MySQL instance.
-<img
-  src={require('../images/save-changes.png').default}
-  alt="Save changes made to MySQL RDS instance"
-/>
+![Save changes made to MySQL RDS instance](../images/save-changes.png)
 
 </TabItem>
 </Tabs>
@@ -156,7 +135,7 @@ Syntax for creating a CDC table. Note that a primary key is required.
 CREATE TABLE [ IF NOT EXISTS ] table_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
-) 
+)
 WITH (
    connector='mysql-cdc',
    connector_parameter='value', ...
@@ -214,7 +193,7 @@ Data is in Debezium JSON format. [Debezium](https://debezium.io) is a log-based 
 
 ## Examples
 
-### Create a single CDC table 
+### Create a single CDC table
 
 The following example creates a table in RisingWave that reads CDC data from the `orders` table in MySQL. When connecting to a specific table in MySQL, use the `CREATE TABLE` command.
 
@@ -257,9 +236,9 @@ CREATE SOURCE mysql_mydb WITH (
 );
 ```
 
-With the source created, you can create multiple CDC tables that ingest data from different tables in the upstream database without needing to specify the database connection parameters again. 
+With the source created, you can create multiple CDC tables that ingest data from different tables in the upstream database without needing to specify the database connection parameters again.
 
-For instance, the following CDC table in RisingWave ingests data from table `t1` in the database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be specified. 
+For instance, the following CDC table in RisingWave ingests data from table `t1` in the database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be specified.
 
 ```sql
 CREATE TABLE t1_rw (

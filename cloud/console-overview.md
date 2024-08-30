@@ -11,10 +11,7 @@ import OutlinedCard from "@site/src/components/OutlinedCard";
 
 It is the most intuitive and easy way to interact with RisingWave via workspace. It offers graphical tools for managing data and visualizing results.
 
-<img
-src={require('./images/console.png').default}
-alt="Console"
-/>
+![Console](./images/console.png)
 
 <DefaultButton text="Go to query console" url="https://cloud.risingwave.com/console/" block/>
 

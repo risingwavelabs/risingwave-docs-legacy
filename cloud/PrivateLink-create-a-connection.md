@@ -10,13 +10,13 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 ## Prerequisites
 
 - You need to create a project with the Standard plan or Advanced plan in RisingWave Cloud:
-  
+
   - See [Choose a project plan](/project-choose-a-project-plan.md) for more information. Please note that Trial projects do not support PrivateLink connections.
-  
+
   - The VPC you want to connect to and your project must be in the same region. If your preferred region is not available when creating a project, contact our [support team](mailto:cloud-support@risingwave-labs.com) or [sales team](mailto:sales@risingwave-labs.com).
-  
+
 - You need to set up a PrivateLink service in your VPC and make sure it runs properly. The following links might be helpful:
-  
+
   - For AWS, see [Share your services through AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html).
   - For GCP, see [GCP Published services](https://cloud.google.com/vpc/docs/about-vpc-hosted-services).
   - For Azure, see [Azure Private Link services](https://learn.microsoft.com/en-us/azure/private-link/private-link-service-overview).
@@ -35,21 +35,15 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
     You can find it in the [Amazon VPC Console](https://console.aws.amazon.com/vpc/) → **Endpoint services** → **Service name** section.
 
-    <img
-    src={require('./images/aws-endpoint-service-name.png').default}
-    alt="AWS endpoint service name"
-    />
+    ![AWS endpoint service name](./images/aws-endpoint-service-name.png)
 
     </details>
 
-    <details><summary>If you choose GCP as the platform, enter the server target URL of the service attachment.</summary> 
+    <details><summary>If you choose GCP as the platform, enter the server target URL of the service attachment.</summary>
 
     You can find it in the [Google Cloud Console](https://console.cloud.google.com/) → **Network services** → **Private Service Connect**.
 
-    <img
-    src={require('./images/gcp-service-attachment.png').default}
-    alt="GCP Service attachment"
-    />
+    ![GCP Service attachment](./images/gcp-service-attachment.png)
 
     </details>
 
@@ -57,10 +51,7 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 
     You can find it in the [Azure Portal](https://portal.azure.com/) → **Private link service** section.
 
-    <img
-    src={require('./images/azure-resource-id.png').default}
-    alt="Azure Resource id"
-    />
+    ![Azure Resource id](./images/azure-resource-id.png)
 
     </details>
 

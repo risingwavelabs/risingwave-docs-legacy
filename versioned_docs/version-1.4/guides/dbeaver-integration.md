@@ -36,10 +36,7 @@ This guide will go over how to connect DBeaver to RisingWave so you can seamless
 
     - Password: The password associated with the provided username. By default, there is no password for `root`.
 
-    <img
-    src={require('../images/dbeaver-connect-pg.png').default}
-    alt="Fill in connection settings in DBeaver"
-    />
+    ![Fill in connection settings in DBeaver](../images/dbeaver-connect-pg.png)
 
 4. Click **Test connection**. If there are no errors, click **Finish**.
 

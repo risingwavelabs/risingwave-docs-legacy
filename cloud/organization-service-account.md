@@ -24,13 +24,10 @@ This article will guide you through the process of setting up a service account 
    />
 
 3. Enter a descriptive name for your service account and write a short description.
-  
-4. Click **Confirm**. 
 
-   <img
-   src={require('./images/org-service-account.png').default}
-   alt="Service account list"
-   />
+4. Click **Confirm**.
+
+   ![Service account list](./images/org-service-account.png)
 
 ## Generate an API key
 
@@ -40,17 +37,11 @@ You can generate multiple API keys for a service account. Each API key will have
 
 1. In the account list, click the name of the service account you want to generate API keys for.
 
-  <img
-  src={require('./images/org-service-account-1.png').default}
-  alt="Service account"
-  />
+  ![Service account](./images/org-service-account-1.png)
 
 1. Select the **API Keys** tab.
 
-  <img
-  src={require('./images/org-service-account-api-empty.png').default}
-  alt="Generate API keys"
-  />
+  ![Generate API keys](./images/org-service-account-api-empty.png)
 
 3. Click **Add new API Key**.
 
@@ -62,7 +53,4 @@ You can generate multiple API keys for a service account. Each API key will have
   The secret will be shown only once. After you close the dialog, you won't be able to retrieve it. If you lose the secret, you have to generate a new API key.
   :::
 
-  <img
-  src={require('./images/org-service-account-api-key.png').default}
-  alt="Generated API key"
-  />
+  ![Generated API key](./images/org-service-account-api-key.png)

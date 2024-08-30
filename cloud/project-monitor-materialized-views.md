@@ -11,23 +11,14 @@ You can view all [materialized views](/docs/current/key-concepts/#materialized-v
 
 2. Select the **Workspace** > **Materialized Views** tab.
 
-    <img
-    src={require('./images/cluster-details-mv.png').default}
-    alt="Materilized Views in cluster details"
-    />
-    
+    ![Materilized Views in cluster details](./images/cluster-details-mv.png)
+
 3. Click on a materialized view to see the details.
 
-    You can view the direct acyclic graph of streaming executors for maintaining the materialized view. 
+    You can view the direct acyclic graph of streaming executors for maintaining the materialized view.
 
-    <img
-    src={require('./images/mv-graph.png').default}
-    alt="Direct acyclic graph"
-    />
+    ![Direct acyclic graph](./images/mv-graph.png)
 
 4. You can click **< \> SQL** to see the query defined in the materialized view (i.e. the `AS` clause).
 
-    <img
-    src={require('./images/mv-graph-sql.png').default}
-    alt="SQL details of a materialized view"
-    />
+    ![SQL details of a materialized view](./images/mv-graph-sql.png)

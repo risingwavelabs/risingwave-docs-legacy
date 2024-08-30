@@ -58,10 +58,7 @@ Set the `Connection type` as `Read` and the `Read position` as `Earliest`. Click
 
 Try sending the following messages line by line in the `Test message` text box. Set the `Message type` as `JSON`. Note that the schema of the messages matches the schema of the table we created in RisingWave.
 
-<img
-  src={require('../images/astra-send-msg.png').default}
-  alt="Send messages on Astra Streaming"
-/>
+![Send messages on Astra Streaming](../images/astra-send-msg.png)
 
 ```terminal
 {"v1":1,"v2":"name0"}
@@ -80,7 +77,7 @@ SELECT * FROM t;
 ```
 
 ```
-  v1 |  v2  
+  v1 |  v2
  ----+-------
    1 | name0
    2 | name0
