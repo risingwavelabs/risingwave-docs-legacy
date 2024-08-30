@@ -1,7 +1,7 @@
 import { useHistory, useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import React from "react";
-import "./style.css";
+import styles from "./styles.module.css";
 
 type Props = {
   text: string;
@@ -35,7 +35,7 @@ export default function LightButton({ text, doc, url, block, cloud }: Props) {
           history.push(`/cloud/${cloud}`);
         }
       }}
-      className={block ? "light block" : "light"}
+      className={block ? `${styles.light} ${styles.block}` : `${styles.light}`}
     >
       {text}
     </div>

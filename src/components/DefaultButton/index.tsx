@@ -1,7 +1,7 @@
 import { useHistory, useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import React from "react";
-import "./style.css";
+import styles from "./styles.module.css";
 
 type Props = {
   text: string;
@@ -33,7 +33,7 @@ export default function DefaultButton({ text, doc, url, block, cloud }: Props) {
           history.push(`/cloud/${cloud}`);
         }
       }}
-      className={block ? "default block" : "default"}
+      className={block ? `${styles.default} ${styles.block}` : `${styles.default}`}
     >
       {text}
     </div>
