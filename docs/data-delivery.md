@@ -163,6 +163,10 @@ When creating an `upsert` sink, note whether or not you need to specify the prim
 
 ## Sink data in parquet format
 
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
 RisingWave supports sinking data in Parquet format to file systems including S3, Google Cloud Storage (GCS), and Azure Blob Storage. This eliminates the need for complex data lake setups. Once the data is saved, the files can be queried using the batch processing engine of RisingWave through the `file_scan` API. You can also leverage third-party OLAP query engines for further data processing.
 
 Below is an example to sink data to S3:
