@@ -555,3 +555,7 @@ html.mdx-page h2 {
 [data-theme="dark"] .markdown img:not(.disabled-zoom, .icon) {
   border: 2px solid #0a3246;
 }
+
+img {
+  height: auto;
+}

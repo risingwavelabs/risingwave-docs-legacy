@@ -416,6 +416,77 @@ And this it the output of `DESCRIBE supplier;`
 (10 rows)
 ```
 
+## Automatically change schema
+
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
+RisingWave supports auto schema changes in MySQL CDC. It ensures that your RisingWave pipeline stays synchronized with any schema changes in the source database, reducing the need for manual updates and preventing inconsistencies.
+
+Currently, RisingWave supports the `ALTER TABLE` command with the following operations, and we plan to add support for additional DDL operations in future releases.
+
+- `ADD COLUMN [DEFAULT expr]`: Allows you to add a new column to an existing table. Only constant value expressions are supported for the default value.
+
+- `DROP COLUMN`: Allows you to remove an existing column from a table.
+
+To enable this feature, set `auto.schema.change = 'true'` in your MySQL CDC source configuration:
+
+```sql
+CREATE SOURCE mysql_source WITH (
+ connector = 'mysql-cdc',
+ hostname = 'localhost',
+ port = '3306',
+ username = 'root',
+ password = 'your_password',
+ database.name = 'mytest',
+ server.id = '5701',
+ auto.schema.change = 'true'
+);
+```
+
+Create a RisingWave table from the MySQL source:
+
+```sql
+CREATE TABLE rw_customers (
+    id BIGINT,
+    modified TIMESTAMP,
+    custinfo JSONB,
+    PRIMARY KEY (id)
+) FROM mysql_source TABLE 'mytest.customers';
+```
+
+Add columns to the MySQL table and observe the changes in RisingWave:
+
+```sql
+-- In MySQL:
+USE mytest;
+ALTER TABLE customers ADD COLUMN v1 VARCHAR(255);
+ALTER TABLE customers ADD COLUMN v2 DOUBLE(5,2);
+
+-- In RisingWave (after a brief pause):
+DESCRIBE rw_customers;
+```
+
+And this it the output of `DESCRIBE rw_customers;`
+
+```sql
+Name                        | Type                           | Is Hidden | Description
+----------------------------+--------------------------------+-----------+-------------
+id                          | bigint                         | false     | NULL
+modified                    | timestamp without time zone    | false     | NULL
+custinfo                    | jsonb                          | false     | NULL
+v1                          | character varying              | false     | NULL
+v2                          | double precision               | false     | NULL
+primary key id              | NULL                           | NULL      | NULL
+distribution key id         | NULL                           | NULL      | NULL
+table description rw_customers | NULL                       | NULL      | NULL
+```
+
 ## Monitor the progress of direct CDC
 
 To observe the progress of direct CDC for MySQL, use the following methods:
