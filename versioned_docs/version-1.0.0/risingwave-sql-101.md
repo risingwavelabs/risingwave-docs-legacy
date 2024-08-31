@@ -7,11 +7,11 @@ slug: /risingwave-sql-101
 
 In this guide, we will walk you through some of the most used SQL commands in RisingWave. This is a simple yet typical data processing workflow that shows how to manipulate data with RisingWave.
 
-> RisingWave uses Postgres-compatible SQL as the interface to manage and query data. For a complete list of supported SQL commands, please navigate to SQL references → Commands. 
+> RisingWave uses Postgres-compatible SQL as the interface to manage and query data. For a complete list of supported SQL commands, please navigate to SQL references → Commands.
 
 ## Before we start
 
-Ensure that you have [started and connected to RisingWave](get-started.md/#run-risingwave).
+Ensure that you have [started and connected to RisingWave](./get-started.md).
 
 ## Create a table
 
@@ -19,18 +19,18 @@ Now let's create a table to store data about taxi trips.
 
 ```sql
 CREATE TABLE taxi_trips (
-    trip_id int, 
-    taxi_id int, 
-    completed_at timestamp, 
-    distance double precision, 
+    trip_id int,
+    taxi_id int,
+    completed_at timestamp,
+    distance double precision,
     duration double precision);
 ```
 
 And let's add some data to the table.
 
 ```sql
-INSERT INTO taxi_trips VALUES 
-(1, 1001, '2022-07-01 22:00:00', 4, 6), 
+INSERT INTO taxi_trips VALUES
+(1, 1001, '2022-07-01 22:00:00', 4, 6),
 (2, 1002, '2022-07-01 22:01:00', 6, 9);
 ```
 
@@ -60,10 +60,10 @@ We can now query the average speed.
 SELECT * FROM mv_avg_speed;
 ```
 
-Here is the result we get. 
+Here is the result we get.
 
 ```
- no_of_trips | total_distance | total_duration |     avg_speed      
+ no_of_trips | total_distance | total_duration |     avg_speed
 -------------+----------------+----------------+--------------------
            2 |             10 |             15 | 0.6666666666666666
 (1 row)
@@ -81,10 +81,10 @@ As soon as we insert the new record, the materialized view `mv_avg_speed` will b
 SELECT * FROM mv_avg_speed;
 ```
 
-Here is the result we get. 
+Here is the result we get.
 
 ```
- no_of_trips | total_distance | total_duration | avg_speed 
+ no_of_trips | total_distance | total_duration | avg_speed
 -------------+----------------+----------------+-----------
            3 |             13 |             20 |      0.65
 (1 row)
@@ -100,21 +100,21 @@ Creating a materialized view from a source is similar to creating from a table.
 The following statement creates a materialized view for three columns in a connected source named `debezium_json_mysql_source`.
 
 ```sql title="To create a materialized view from a source:"
-CREATE MATERIALIZED VIEW debezium_json_mysql_mv 
-AS 
+CREATE MATERIALIZED VIEW debezium_json_mysql_mv
+AS
     SELECT COLUMN1, COLUMN2, COLUMN3 FROM debezium_json_mysql_source;
 ```
 > For details about creating a source, see [CREATE SOURCE](sql/commands/sql-create-source.md).
 
 ## Create a materialized view on materialized views
 
-With RisingWave, you can also create a materialized view from an existing materialized view. 
+With RisingWave, you can also create a materialized view from an existing materialized view.
 
 ```sql title="To create a materialized view from existing materialized views:"
 CREATE MATERIALIZED VIEW m3
-AS 
-    SELECT m1.v1 as m1v1, m1.v2 as m1v2, m2.v1, m2.v2 
-    FROM m1 
+AS
+    SELECT m1.v1 as m1v1, m1.v2 as m1v2, m2.v1, m2.v2
+    FROM m1
     INNER JOIN m2 ON m1.v1 = m2.v1;
 ```
 
