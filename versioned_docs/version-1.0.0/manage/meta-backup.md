@@ -32,7 +32,7 @@ Here's an example of how to create a new meta snapshot with `risectl`:
 risectl meta backup-meta
 ```
 
-`risectl` is included in the pre-built RisingWave binary. It can also be built from source. For details, see [Install RisingWave from the binaries](/deploy/risingwave-trial.md/?method=binaries).
+`risectl` is included in the pre-built RisingWave binary. It can also be built from source. For details, see [Install RisingWave from the binaries](../deploy/risingwave-trial.md?method=binaries).
 
 ## View existing meta snapshots
 
@@ -45,7 +45,7 @@ SELECT meta_snapshot_id FROM rw_catalog.rw_meta_snapshot;
 Example output:
 
 ```bash
- meta_snapshot_id 
+ meta_snapshot_id
 ------------------
                 3
                 4
@@ -99,13 +99,13 @@ Use the following steps to perform a time travel query.
    Example output:
 
     ```bash
-        safe_epoch    |      safe_epoch_ts      | max_committed_epoch | max_committed_epoch_ts  
+        safe_epoch    |      safe_epoch_ts      | max_committed_epoch | max_committed_epoch_ts
     ------------------+-------------------------+---------------------+-------------------------
      3603859827458048 | 2022-12-28 11:08:56.918 |    3603862776381440 | 2022-12-28 11:09:41.915
      3603898821640192 | 2022-12-28 11:18:51.922 |    3603900263432192 | 2022-12-28 11:19:13.922
     ```
 
-   Valid epochs are within range (`safe_epoch`,`max_committed_epoch`). For example, any epochs in [3603859827458048, 3603862776381440] or in [3603898821640192, 3603900263432192] are acceptable.  
+   Valid epochs are within range (`safe_epoch`,`max_committed_epoch`). For example, any epochs in [3603859827458048, 3603862776381440] or in [3603898821640192, 3603900263432192] are acceptable.
    `safe_epoch_ts` and `max_committed_epoch_ts` are human-readable equivalences.
 2. Set session config `QUERY_EPOCH`. By default, it's 0, which means disabling historical query.
 
