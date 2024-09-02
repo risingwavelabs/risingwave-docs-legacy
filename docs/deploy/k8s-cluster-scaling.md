@@ -64,9 +64,9 @@ Scale-out here refers to the process of adding more **compute nodes** to the clu
 
 ## Scale-in
 
-Scale-in here refers to the process of decreasing **compute nodes** from the cluster. By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls. 
+Scale-in here refers to the process of decreasing **compute nodes** from the cluster. By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls.
 
-1. To trigger an immediate scale-in, apply the following yaml files to decrease the number of compute nodes:
+1. Since v2.0, to trigger an immediate scale-in, apply the following yaml files to decrease the number of compute nodes:
 
   ```bash
   # If you are using risingwave-operator
