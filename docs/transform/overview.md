@@ -92,6 +92,11 @@ By following the steps outlined above, you have successfully transformed the dat
 At this point, an example where batch mode is more appropriate is when an analyst or an application needs to query how many products have higher sales volumes than a specific product.
 
 ```sql
-SELECT count(*) FROM mv_sales_summary where mv_sales_summary.id > 
+dev=> SELECT count(*) FROM mv_sales_summary where mv_sales_summary.total_sales >
     (SELECT total_sales FROM mv_sales_summary where product_id = 1);
-```
+
+----RESULT
+ count
+-------
+     2
+(1 row)```
