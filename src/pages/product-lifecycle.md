@@ -36,5 +36,4 @@ The following is a list of all features in the public preview phase:
 | [SQL Server CDC source](/docs/next/ingest-from-sqlserver-cdc/) | 2024.8    | 2.0         |
 | [MySQL CDC source (Auto schema change)](/docs/next/ingest-from-mysql-cdc/#automatically-change-schema) | 2024.8     | 2.0           |
 
-
 This table will be updated regularly to reflect the latest status of features as they progress through the release stages.

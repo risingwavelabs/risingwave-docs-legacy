@@ -2,7 +2,7 @@
 id: sink-to-elasticsearch
 title: Sink data from RisingWave to Elasticsearch
 description: Sink data from RisingWave to Elasticsearch.
-slug: /sink-to-elasticsearch 
+slug: /sink-to-elasticsearch
 ---
 You can deliver the data that has been ingested and transformed in RisingWave to Elasticsearch to serve searches or analytics.
 
@@ -24,7 +24,7 @@ The Elasticsearch sink connector in RisingWave provides at-least-once delivery s
 
 - Ensure the Elasticsearch cluster (version 7.x or 8.x) is accessible from RisingWave.
 
-- The Elastic sink connector in RisingWave relies on the connector node to work. Please ensure the connector node is enabled in RisingWave. For details, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+- The Elastic sink connector in RisingWave relies on the connector node to work. Please ensure the connector node is enabled in RisingWave. For details, see [Enable the connector node](../deploy/risingwave-trial.md?method=binaries#optional-enable-the-connector-node).
 
 ## Create a Elasticsearch sink
 
@@ -37,7 +37,7 @@ WITH (
   connector = 'elasticsearch',
   index = '<your Elasticsearch index>',
   url = 'http://<ES hostname>:<ES port>',
-  username = '<your ES username>', 
+  username = '<your ES username>',
   password = '<your password>',
   delimiter='<delimiter>'
 );
