@@ -30,7 +30,7 @@ WITH (
 | **Parameter Name**              | **Description**    |
 |--------------------------------|------------------|
 | `mongodb.url`                   | The URL of MongoDB.  |
-| `type`                        | Type identifier.  |
+| `type`                        | Defines the type of the sink. Options include `append-only` or `upsert`.  |
 | `collection.name`               | The collection name where data should be written to or read from. For sinks, the format is `db_name.collection_name`. Data can also be written to dynamic collections; see `collection.name.field` below for more information.   |
 | `collection.name.field`         | Optional. The dynamic collection name where data should be sunk to. If specified, the field value will be used as the collection name. The collection name format is the same as `collection.name`. If the field value is null or an empty string, then the `collection.name` will be used as a fallback destination.        |
 | `collection.name.field.drop`    | Optional. Controls whether the field value of `collection.name.field` should be dropped when sinking. Set this option to `true` to avoid the duplicate values of `collection.name.field` being written to the result collection.  |
