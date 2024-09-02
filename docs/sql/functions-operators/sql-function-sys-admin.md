@@ -74,7 +74,7 @@ f
 
 ## `rw_recovery_status()`
 
-Retrieves the current recovery status of the meta node. The return values can be one of `STARTING`, `RECOVERING`, or `RUNNING`.
+Retrieves the current recovery status of the cluster. The return values can be one of `STARTING`, `RECOVERING`, or `RUNNING`.
 
 ```sql title="Syntax"
 rw_recovery_status() -> varchar
