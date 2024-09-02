@@ -12,10 +12,7 @@ slug: /faq-when-to-use-risingwave
 
 RisingWave is a superset of Flink SQL in terms of capabilities. Users of Flink SQL can easily migrate to RisingWave. However, RisingWave also offers additional features that are not present in Flink SQL, such as cascading materialized views.
 
-<img
-  src={require('../images/RisingWave vs Flink.png').default}
-  alt="RisingWave vs Flink"
-/>
+![RisingWave vs Flink](../images/RisingWave vs Flink.png)
 
 RisingWave uses PostgreSQL syntax, which lowers the learning curve and makes it more accessible compared to Flink SQL. However, it's important to note that there are still some minor syntax differences between RisingWave and Flink SQL, so users may need to modify certain queries.
 
@@ -61,10 +58,7 @@ When it comes to design, streaming databases and OLAP databases optimize for dif
 
 Assuming fixed resource costs, streaming databases inherently optimize for result freshness, while OLAP databases optimize for the performance of ad-hoc queries. The diagram below illustrates the design trade-offs between streaming databases, OLAP databases, and data warehouses.
 
-<img
-  src={require('../images/tradeoff_triangle.png').default}
-  alt="Tradeoff Triangle"
-/>
+![Tradeoff Triangle](../images/tradeoff_triangle.png)
 
 ## How do materialized views in streaming databases differ from those in OLAP databases?
 

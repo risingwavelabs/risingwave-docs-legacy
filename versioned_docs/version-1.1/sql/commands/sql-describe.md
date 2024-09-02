@@ -27,18 +27,6 @@ DESCRIBE table_name;
 
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DESCRIBE'),
-        rr.NonTerminal('table_name', 'skip'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 
 
 ## Parameters

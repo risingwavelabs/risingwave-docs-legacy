@@ -89,9 +89,9 @@ We have prepared a sample project so you don't have to create it from scratch. N
 
 </details>
 
-## 3. Define your functions in Java  
+## 3. Define your functions in Java
 
-### Scalar functions   
+### Scalar functions
 
 A user-defined scalar function maps zero, one, or multiple scalar values to a new scalar value.
 
@@ -121,9 +121,9 @@ public class Gcd implements ScalarFunction {
 :::note Differences with Flink
 
 - The `ScalarFunction` is an interface instead of an abstract class.
-   
+
 - Multiple overloaded `eval` methods are not supported.
-   
+
 - Variable arguments such as `eval(Integer...)` are not supported.
 
 :::
@@ -202,11 +202,11 @@ In RisingWave, use the [`CREATE FUNCTION`](/sql/commands/sql-create-function.md)
 Here are the SQL statements for declaring the two UDFs defined in [step 3](#3-define-your-functions-in-java).
 
 ```sql
-CREATE FUNCTION gcd(int, int) RETURNS int  
-AS gcd  
+CREATE FUNCTION gcd(int, int) RETURNS int
+AS gcd
 USING LINK 'http://localhost:8815';
 
-CREATE FUNCTION series(int) RETURNS TABLE (x int)  
+CREATE FUNCTION series(int) RETURNS TABLE (x int)
 AS series
 USING LINK 'http://localhost:8815';
 ```
@@ -217,7 +217,7 @@ Once the UDFs are created in RisingWave, you can use them in SQL queries just li
 
 ```sql
 SELECT gcd(25, 15);
-SELECT * FROM series(10); 
+SELECT * FROM series(10);
 ```
 
 
@@ -227,22 +227,22 @@ The RisingWave Java UDF SDK supports the following data types:
 
 | SQL Type         | Java Type                               | Notes              |
 | ---------------- | --------------------------------------- | ------------------ |
-| BOOLEAN          | boolean, Boolean                        |                    |
-| SMALLINT         | short, Short                            |                    |
-| INT              | int, Integer                            |                    |
-| BIGINT           | long, Long                              |                    |
-| REAL             | float, Float                            |                    |
-| DOUBLE PRECISION | double, Double                          |                    |
-| DECIMAL          | BigDecimal                              |                    |
-| DATE             | java.time.LocalDate                     |                    |
-| TIME             | java.time.LocalTime                     |                    |
-| TIMESTAMP        | java.time.LocalDateTime                 |                    |
-| INTERVAL         | com.risingwave.functions.PeriodDuration |                    |
-| VARCHAR          | String                                  |                    |
-| BYTEA            | byte[]                                  |                    |
-| JSONB            | String                                  | Use `@DataTypeHint("JSONB") String` as the type. See [example](#example---jsonb).           |
-| T[]              | T'[]                                    | `T` can be any of the above SQL types. `T'` should be the corresponding Java type.|
-| STRUCT<\>         | user-defined class                      | Define a data class as the type. See [example](#example---struct-type).                     |
+| `BOOLEAN`          | `boolean`, `Boolean`                        |                    |
+| `SMALLINT`         | `short`, `Short`                            |                    |
+| `INT`              | `int`, `Integer`                            |                    |
+| `BIGINT`           | `long`, `Long`                              |                    |
+| `REAL`             | `float`, `Float`                            |                    |
+| `DOUBLE PRECISION` | `double`, `Double`                          |                    |
+| `DECIMAL`          | `BigDecimal`                              |                    |
+| `DATE`             | `java.time.LocalDate`                     |                    |
+| `TIME`             | `java.time.LocalTime`                     |                    |
+| `TIMESTAMP`        | `java.time.LocalDateTime`                 |                    |
+| `INTERVAL`         | `com.risingwave.functions.PeriodDuration` |                    |
+| `VARCHAR`          | `String`                                  |                    |
+| `BYTEA`            | `byte[]`                                  |                    |
+| `JSONB`            | `String`                                  | Use `@DataTypeHint("JSONB") String` as the type. See [example](#example---jsonb).           |
+| `T[]`              | `T'[]`                                    | `T` can be any of the above SQL types. `T'` should be the corresponding Java type.|
+| `STRUCT<>`         | user-defined class                      | Define a data class as the type. See [example](#example---struct-type).                     |
 
 #### Example - JSONB
 

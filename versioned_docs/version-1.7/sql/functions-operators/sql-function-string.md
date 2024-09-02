@@ -662,7 +662,7 @@ Alternatively, you can use the operators `~~` and `~~*` as equivalents to `LIKE`
 ### Wildcards
 
 - An underscore `_` in a pattern matches any single character.
-  
+
 - A percent sign `%` matches any sequence of zero or more characters.
 
 If the pattern does not contain `_` or `%`, then the pattern only represents the string itself. For example, the pattern 'apple' matches only the string 'apple'. In that case, `LIKE` acts like the equals operator `=`.
@@ -698,17 +698,17 @@ The `SIMILAR TO` expression returns true if the string matches the supplied pa
 
 | Operator | Description                                            |
 |----------|--------------------------------------------------------|
-| %        | Matches any sequence of zero or more characters.         |
-| _        | Matches any single character.                            |
-| \|        | Denotes alternation (either of two alternatives).       |
-| *        | Repeats the previous item zero or more times.           |
-| +        | Repeats the previous item one or more times.            |
-| ?        | Repeats the previous item zero or one time.            |
-| {m}      | Repeats the previous item exactly m times.              |
-| {m,}     | Repeats the previous item m or more times.              |
-| {m,n}    | Repeats the previous item at least m and not more than n times. |
-| ()       | Parentheses group items into a single logical item.   |
-| [...]    | A bracket expression specifies a character class. |
+| `%`        | Matches any sequence of zero or more characters.         |
+| `_`        | Matches any single character.                            |
+| `\|`        | Denotes alternation (either of two alternatives).       |
+| `*`        | Repeats the previous item zero or more times.           |
+| `+`        | Repeats the previous item one or more times.            |
+| `?`        | Repeats the previous item zero or one time.            |
+| `{m}`      | Repeats the previous item exactly m times.              |
+| `{m,}`     | Repeats the previous item m or more times.              |
+| `{m,n}`    | Repeats the previous item at least m and not more than n times. |
+| `()`       | Parentheses group items into a single logical item.   |
+| `[...]`    | A bracket expression specifies a character class. |
 
 ### Escape
 

@@ -39,7 +39,7 @@ docker compose up -d
 ```
 
 :::tip Command not found?
-The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2). 
+The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2).
 
 If you're using Compose V1, use `docker-compose` instead.
 :::
@@ -147,10 +147,7 @@ To add RisingWave as a Postgres data source:
 3. Specify the database connection parameters.
 4. Click **Save & test**.
 
-<img
-  src={require('../images/grafana-connect.png').default}
-  alt="Connecting Grafana to RisingWave"
-/>
+![Connecting Grafana to RisingWave](../images/grafana-connect.png)
 
 This example uses RisingWave’s “root” user for testing purposes. While in the production environment, it is recommended to use a dedicated read-only user when querying the database using Grafana. To do so, use the following SQL queries:
 
@@ -169,10 +166,7 @@ To create a panel:
 2. Click on **Add a new panel**.
 3. Specify the time range, data source, and query to visualize RisingWave metrics.
 
-<img
-  src={require('../images/grafana-dashboard.png').default}
-  alt="Creating a dashboard in Grafana"
-/>
+![Creating a dashboard in Grafana](../images/grafana-dashboard.png)
 
 When you finish, run the following command to disconnect RisingWave.
 

@@ -5,14 +5,15 @@ description: The most intuitive and easy way to connect to and interact with Ris
 slug: /console-overview
 ---
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+import OutlinedCard from "@site/src/components/OutlinedCard";
+
 It is the most intuitive and easy way to interact with RisingWave via workspace. It offers graphical tools for managing data and visualizing results.
 
-<img
-src={require('./images/console.png').default}
-alt="Console"
-/>
+![Console](./images/console.png)
 
-<defaultButton text="Go to query console" url="https://cloud.risingwave.com/console/" block/>
+<DefaultButton text="Go to query console" url="https://cloud.risingwave.com/console/" block/>
 
 ## Sections
 
@@ -122,7 +123,7 @@ width="800px"
 
 ## Start developing
 
-<card
+<OutlinedCard
 title="Develop with RisingWave Cloud"
 content="RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave using the console."
 cloud="develop-overview"

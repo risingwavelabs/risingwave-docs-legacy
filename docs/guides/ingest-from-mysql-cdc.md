@@ -101,42 +101,21 @@ See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connec
 The configuration process is different for AWS RDS MySQL or Aurora (MySQL-Compatible) compared to the self-hosted version. We will use a standard class AWS RDS MySQL instance without Multi-AZ deployment for illustration, but the process will be similar for Aurora.
 
 1. Turn on binary logging and choose a non-zero value for the **Retention period**.
-<img
-  src={require('../images/ret-period.png').default}
-  alt="Set retention period to a nonzero value"
-/>
+  ![Set retention period to a nonzero value](../images/ret-period.png)
 
 2. Create a parameter group for MySQL instances. We created a parameter group named MySQL-CDC for the instance that runs MySQL 5.7.x.
-<img
-  src={require('../images/parameter-group.png').default}
-  alt="Create a parameter group"
-/>
+  ![Create a parameter group](../images/parameter-group.png)
 
 3. Click the MySQL-CDC parameter group to edit the values of **binlog_format** to **ROW** and **binlog_row_image** to **full**.
-<img
-  src={require('../images/binlog-format.png').default}
-  alt="Set binlog_format to row"
-/>
-<img
-  src={require('../images/binlog-row.png').default}
-  alt="Set binlog_row_image to full"
-/>
+  ![Set binlog_format to row](../images/binlog-format.png)
+  ![Set binlog_row_image to full](../images/binlog-row.png)
 
 4. Modify your RDS instance and apply the modified parameter group to your database.
-<img
-  src={require('../images/modify-RDS.png').default}
-  alt="Select modify"
-/>
-<img
-  src={require('../images/apply-to-database.png').default}
-  alt="Apply changes to database"
-/>
+  ![Select modify](../images/modify-RDS.png)
+  ![Apply changes to database](../images/apply-to-database.png)
 
 5. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save the changes. Remember to reboot your MySQL instance.
-<img
-  src={require('../images/save-changes.png').default}
-  alt="Save changes made to MySQL RDS instance"
-/>
+  ![Save changes made to MySQL RDS instance](../images/save-changes.png)
 
 6. Ensure your MySQL users can access the tables and replications.
 
@@ -168,10 +147,10 @@ Syntax for creating a CDC table. Note that a primary key is required and must be
 CREATE TABLE [ IF NOT EXISTS ] table_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
-) 
+)
 [ INCLUDE timestamp AS column_name ]
 WITH (
-   snapshot='true' 
+   snapshot='true'
 )
 FROM source TABLE table_name;
 ```
@@ -286,9 +265,9 @@ CREATE SOURCE mysql_mydb WITH (
 );
 ```
 
-With the source created, you can create multiple CDC tables that ingest data from different tables in the upstream database without needing to specify the database connection parameters again. 
+With the source created, you can create multiple CDC tables that ingest data from different tables in the upstream database without needing to specify the database connection parameters again.
 
-For instance, the following CDC table in RisingWave ingests data from table `t1` in the database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be specified. 
+For instance, the following CDC table in RisingWave ingests data from table `t1` in the database `mydb`. When specifying the MySQL table name in the `FROM` clause after the keyword `TABLE`, the database name must also be specified.
 
 ```sql
 CREATE TABLE t1_rw (
@@ -435,7 +414,78 @@ And this it the output of `DESCRIBE supplier;`
  distribution key  | s_suppkey         |           |
  table description | supplier          |           |
 (10 rows)
-``` 
+```
+
+## Automatically change schema
+
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
+RisingWave supports auto schema changes in MySQL CDC. It ensures that your RisingWave pipeline stays synchronized with any schema changes in the source database, reducing the need for manual updates and preventing inconsistencies.
+
+Currently, RisingWave supports the `ALTER TABLE` command with the following operations, and we plan to add support for additional DDL operations in future releases.
+
+- `ADD COLUMN [DEFAULT expr]`: Allows you to add a new column to an existing table. Only constant value expressions are supported for the default value.
+
+- `DROP COLUMN`: Allows you to remove an existing column from a table.
+
+To enable this feature, set `auto.schema.change = 'true'` in your MySQL CDC source configuration:
+
+```sql
+CREATE SOURCE mysql_source WITH (
+ connector = 'mysql-cdc',
+ hostname = 'localhost',
+ port = '3306',
+ username = 'root',
+ password = 'your_password',
+ database.name = 'mytest',
+ server.id = '5701',
+ auto.schema.change = 'true'
+);
+```
+
+Create a RisingWave table from the MySQL source:
+
+```sql
+CREATE TABLE rw_customers (
+    id BIGINT,
+    modified TIMESTAMP,
+    custinfo JSONB,
+    PRIMARY KEY (id)
+) FROM mysql_source TABLE 'mytest.customers';
+```
+
+Add columns to the MySQL table and observe the changes in RisingWave:
+
+```sql
+-- In MySQL:
+USE mytest;
+ALTER TABLE customers ADD COLUMN v1 VARCHAR(255);
+ALTER TABLE customers ADD COLUMN v2 DOUBLE(5,2);
+
+-- In RisingWave (after a brief pause):
+DESCRIBE rw_customers;
+```
+
+And this it the output of `DESCRIBE rw_customers;`
+
+```sql
+Name                        | Type                           | Is Hidden | Description
+----------------------------+--------------------------------+-----------+-------------
+id                          | bigint                         | false     | NULL
+modified                    | timestamp without time zone    | false     | NULL
+custinfo                    | jsonb                          | false     | NULL
+v1                          | character varying              | false     | NULL
+v2                          | double precision               | false     | NULL
+primary key id              | NULL                           | NULL      | NULL
+distribution key id         | NULL                           | NULL      | NULL
+table description rw_customers | NULL                       | NULL      | NULL
+```
 
 ## Monitor the progress of direct CDC
 

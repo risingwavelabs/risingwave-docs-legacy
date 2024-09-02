@@ -18,17 +18,6 @@ You can start a read-only transaction by using the `BEGIN READ ONLY` or `START T
 COMMIT;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('COMMIT'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Example
 
 ```sql

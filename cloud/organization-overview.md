@@ -5,9 +5,13 @@ description: Manage your organization. Share resources with others. Collaborate 
 slug: /organization-overview
 ---
 
+<!-- MDX imports -->
+import OutlinedCard from "@site/src/components/OutlinedCard";
+import ResponsiveGrid from "@site/src/components/ResponsiveGrid";
+
 ## Concept
 
-In RisingWave Cloud, an organization serves as the central entity that owns all resources, such as accounts, projects, database objects, and VPC connections. Each organization provides all associated users with access to the same set of resources for seamless collaboration among them. When you sign up for RisingWave Cloud, an organization is automatically created for you. 
+In RisingWave Cloud, an organization serves as the central entity that owns all resources, such as accounts, projects, database objects, and VPC connections. Each organization provides all associated users with access to the same set of resources for seamless collaboration among them. When you sign up for RisingWave Cloud, an organization is automatically created for you.
 
 In an organization, you can:
 
@@ -22,7 +26,7 @@ In an organization, you can:
 
 ## Manage your organization
 
-<grid
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -30,32 +34,32 @@ In an organization, you can:
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
-<card
+<OutlinedCard
 title="Invite and manage users"
 content="Invite others to your organization and manage them. Share your projects, databases, and other resources with your team."
 cloud="manage-users"
 style={{height: "87%"}}
 />
 
-</grid>
+</ResponsiveGrid>
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
-<card
+<OutlinedCard
 title="Set up Single Sign-On (SSO)"
 content="Set up SSO for your organization so that users can log in to RisingWave Cloud using their SSO credentials."
 cloud="sso"
 style={{height: "87%"}}
 />
-  
-</grid>
 
-</grid>
+</ResponsiveGrid>
 
-<!-- 
-<grid
+</ResponsiveGrid>
+
+<!--
+<ResponsiveGrid
  container
  direction="row"
  spacing="15"
@@ -63,21 +67,21 @@ style={{height: "87%"}}
  justifyItems="stretch"
  alignItems="stretch">
 
-<grid item xs={12} sm={6} md={6}>
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
-<card
+<OutlinedCard
 title="Set up service accounts"
 content="Set up service accounts for your applications that access RisingWave Cloud using API keys."
 cloud="organization-service-account"
 style={{height: "87%"}}
 />
-  
-</grid>
 
-<grid item xs={12} sm={6} md={6}>
+</ResponsiveGrid>
+
+<ResponsiveGrid item xs={12} sm={6} md={6}>
 
 
-  
-</grid>
 
-</grid> -->
+</ResponsiveGrid>
+
+</ResponsiveGrid> -->

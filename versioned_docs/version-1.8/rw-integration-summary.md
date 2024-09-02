@@ -9,6 +9,9 @@ keywords: [kafka, confluent cloud, amazon msk, data ingestion]
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw-integration-summary/" />
 </head>
 
+<!-- MDX imports -->
+import VoteNotify from "@site/src/components/VoteNotify";
+
 We aim to minimize the hassle of integrating RisingWave with your existing data stack. With that purpose in mind, we will try to support the mainstream data formats, tools, and as many systems as possible.
 
 However, with limited resources, we cannot achieve this goal in a short period. If a connector or integration is crucial to you but has not been supported, please let us know in the [RisingWave Slack workspace](https://www.risingwave.com/slack), or by clicking the thumb-up icon in the corresponding cell on this page. We will prioritize the development based on the number of requests for each system.
@@ -36,8 +39,8 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 | Amazon MSK | Available. See [Ingest from Amazon MSK](/guides/connector-amazon-msk.md) for details. | |
 |Redpanda | Available. See [Ingest from Redpanda](/ingest/ingest-from-redpanda.md) for details. |Available. See [Sink to Kafka](/guides/create-sink-kafka.md) for details.|
 |Apache Pulsar|Available. See [Ingest from Pulsar](/ingest/ingest-from-pulsar.md) for details. | Available. See [Sink to Pulsar](/guides/sink-to-pulsar.md) for details.|
-|DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <voteNotify note="astra_streaming_sink" />|
-|StreamNative Cloud| Available| Researching <voteNotify note="streamnative_cloud_sink" />|
+|DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <VoteNotify note="astra_streaming_sink" />|
+|StreamNative Cloud| Available| Researching <VoteNotify note="streamnative_cloud_sink" />|
 |Kinesis Data Streams|Available. See [Ingest from Kinesis](/ingest/ingest-from-kinesis.md) for details.|Available. See [Sink to Kinesis](/guides/sink-to-aws-kinesis.md) for details.|
 |NATS / NATS JetStream | Available. See [Ingest from NATS JetStream](/ingest/ingest-from-nats.md) for details. | Available. See [Sink to NATS](/guides/sink-to-nats.md) for details.|
 
@@ -45,19 +48,19 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 
 |System | |Availability |
 |---|---|---|
-|Airbyte | |Researching  <voteNotify note="airbyte" /> |
-|[Census](https://www.getcensus.com/)||Researching  <voteNotify note="census" /> |
+|Airbyte | |Researching  <VoteNotify note="airbyte" /> |
+|[Census](https://www.getcensus.com/)||Researching  <VoteNotify note="census" /> |
 |dbt| |Available. For details, see [Use dbt for data transformations](/transform/use-dbt.md).|
-|Fivetran| |Researching <voteNotify note="fivetran" /> |
-|Hightouch| |Researching <voteNotify note="hightouch" />|
+|Fivetran| |Researching <VoteNotify note="fivetran" /> |
+|Hightouch| |Researching <VoteNotify note="hightouch" />|
 |Vector| |Available. |
 
 ## Query engines
 
 |System | |Availability |
 |---|---|---|
-|Apache Spark| |Researching <voteNotify note="spark" />|
-|AWS Athena| |Researching <voteNotify note="athena" />|
+|Apache Spark| |Researching <VoteNotify note="spark" />|
+|AWS Athena| |Researching <VoteNotify note="athena" />|
 |Presto| |Available. See [Presto documentation](https://prestodb.io/docs/current/connector/postgresql.html).|
 |Trino| |Available. See [Trino documentation](https://trino.io/docs/current/connector/postgresql.html).|
 |GraphQL| |Available. See this blog for details: [Query real-time data with GraphQL, Kafka and RisingWave streaming database](https://blog.det.life/query-real-time-data-with-graphql-and-streaming-database-78bba4d08c97).|
@@ -70,8 +73,8 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |---|---|----|
 |Postgres| Available. See [Ingest from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details.| Available. See [Sink to PostgreSQL](/guides/sink-to-postgres.md) for details.|
 |AWS RDS (Postgres)| Available. See [Ingest from PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md) for details. |Available. See [Sink to PostgreSQL](/guides/sink-to-postgres.md) for details.|
-|AWS Aurora (Postgres)| In progress <voteNotify note="aurora_pg_source" />|Researching <voteNotify note="aurora_pg_sink" />|
-|Citus Data| Available. See [Ingest from Citus CDC](/guides/ingest-from-citus-cdc.md). | Researching <voteNotify note="citus_sink" />|
+|AWS Aurora (Postgres)| In progress <VoteNotify note="aurora_pg_source" />|Researching <VoteNotify note="aurora_pg_sink" />|
+|Citus Data| Available. See [Ingest from Citus CDC](/guides/ingest-from-citus-cdc.md). | Researching <VoteNotify note="citus_sink" />|
 
 ### MySQL
 
@@ -79,27 +82,27 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |---|---|----|
 |MySQL | Available. See [Ingest from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink to MySQL](/guides/sink-to-mysql.md).|
 |AWS RDS (MySQL)|Available. See [Ingest from MySQL CDC](/guides/ingest-from-mysql-cdc.md) for details.| Available. See [Sink to MySQL](/guides/sink-to-mysql.md).|
-|AWS Aurora (MySQL)|In progress <voteNotify note="aurora_mysql_source" />| Researching <voteNotify note="aurora_mysql_sink" /> |
+|AWS Aurora (MySQL)|In progress <VoteNotify note="aurora_mysql_source" />| Researching <VoteNotify note="aurora_mysql_sink" /> |
 
 ### Other databases
 
 |System | Source |Sink |
 |---|---|---|
-|Apache Druid| No plan| Researching <voteNotify note="druid_sink" /> |
+|Apache Druid| No plan| Researching <VoteNotify note="druid_sink" /> |
 |Apache Pinot| No plan| Pinot supports ingesting data from Kafka, Pulsar, and Kinesis. To sink data from RisingWave to Pinot, you can use Kafka, Pulsar, or Kinesis as a sink, then ingest the data into Pinot. See [Sink Changes from RisingWave Tables to Apache Pinot](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests/pinot-sink) for a demo. |
-|AWS Redshift| No plan|Researching <voteNotify note="redshift_sink" />|
+|AWS Redshift| No plan|Researching <VoteNotify note="redshift_sink" />|
 |ClickHouse|No plan |Available. For details, see [Sink to ClickHouse](/guides/sink-to-clickhouse.md).|
-|CockroachDB| Researching <voteNotify note="cockroachdb_source" />|Available. For details, see [Sink to CockroachDB](/guides/sink-to-clickhouse.md). |
-|DataStax Astra DB & Apache Cassandra & ScyllaDB| Researching <voteNotify note="cassandra_source" /> |Available. For details, see [Sink to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).|
-|Db2| Researching <voteNotify note="db2_source" />|Researching <voteNotify note="db2_sink" /> |
+|CockroachDB| Researching <VoteNotify note="cockroachdb_source" />|Available. For details, see [Sink to CockroachDB](/guides/sink-to-clickhouse.md). |
+|DataStax Astra DB & Apache Cassandra & ScyllaDB| Researching <VoteNotify note="cassandra_source" /> |Available. For details, see [Sink to Cassandra or ScyllaDB](/guides/sink-to-cassandra.md).|
+|Db2| Researching <VoteNotify note="db2_source" />|Researching <VoteNotify note="db2_sink" /> |
 |Elasticsearch| No plan| Available. Only versions 7.x and 8.x are supported. For details, see [Sink to Elasticsearch](/guides/sink-to-elasticsearch.md).|
-|Greenplum| No plan| Researching <voteNotify note="greenplum_sink" /> |
+|Greenplum| No plan| Researching <VoteNotify note="greenplum_sink" /> |
 |Google BigQuery| No plan |Available. For details, see [Sink to Google BigQuery](/guides/sink-to-bigquery.md).|
-|MongoDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <voteNotify note="mongodb_sink" /> |
-|Oracle Database| Researching <voteNotify note="oracle_source" />|Researching <voteNotify note="oracle_sink" /> |
-|Redis|Researching <voteNotify note="redis_source" />|Available. For details, see [Sink to Redis](/guides/sink-to-redis.md).|
-|Snowflake| No plan|Researching <voteNotify note="snowflake_sink" />|
-|SQL Server| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <voteNotify note="sql_server_sink" /> |
+|MongoDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <VoteNotify note="mongodb_sink" /> |
+|Oracle Database| Researching <VoteNotify note="oracle_source" />|Researching <VoteNotify note="oracle_sink" /> |
+|Redis|Researching <VoteNotify note="redis_source" />|Available. For details, see [Sink to Redis](/guides/sink-to-redis.md).|
+|Snowflake| No plan|Researching <VoteNotify note="snowflake_sink" />|
+|SQL Server| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Researching <VoteNotify note="sql_server_sink" /> |
 |StarRocks| No plan | Available. For details, see [Sink data to StarRocks](/guides/sink-to-starrocks.md).|
 |TiDB| Available. For details, see [CDC via event streaming systems](/ingest/ingest-from-cdc.md).|Available. For details, see [Sink to TiDB](/guides/sink-to-tidb.md). |
 
@@ -108,7 +111,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |System | |Availability |
 |---|---|---|
 |Delta Lake| |Available. See [Sink to Delta Lake](/guides/sink-to-delta-lake.md)|
-|Apache Hudi| |Researching <voteNotify note="hudi" />|
+|Apache Hudi| |Researching <VoteNotify note="hudi" />|
 |Apache Iceberg| |Available. For details, see [Sink to Apache Iceberg](/guides/sink-to-iceberg.md).|
 
 ## BI and data analytic platforms
@@ -125,13 +128,13 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Looker||Available. See [Connect Looker to RisingWave](/guides/looker-integration.md) for details. |
 |Metabase ||Available. See [Connect Metabase to RisingWave](/guides/metabase-integration.md) for details.|
 |Redash || Available |
-|DataGrip | |Researching <voteNotify note="datagrip" /> |
-|PgAdmin | |Researching <voteNotify note="pgadmin" /> |
+|DataGrip | |Researching <VoteNotify note="datagrip" /> |
+|PgAdmin | |Researching <VoteNotify note="pgadmin" /> |
 
 ## Other systems
 
 |System | |Availability |
 |---|---|---|
-|Alluxio| |Researching <voteNotify note="alluxio" />|
+|Alluxio| |Researching <VoteNotify note="alluxio" />|
 |Google Cloud Storage (GCS)| | Available as source. For details, see [Ingest from Google Cloud Storage](/ingest/ingest-from-gcs.md).|
 |Supabase| |Available. For details, see [Empower Supabase with stream processing capabilities](/guides/supabase-integration.md).|
