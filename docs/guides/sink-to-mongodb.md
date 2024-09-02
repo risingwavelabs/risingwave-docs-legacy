@@ -95,6 +95,7 @@ WITH (
 ```
 
 Assuming the schema of `t2` is:
+
 | name  | type | pk  |
 |-------|------|-----|
 | id    | int  | ✔   |
