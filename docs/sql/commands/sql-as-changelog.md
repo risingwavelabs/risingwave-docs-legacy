@@ -46,10 +46,10 @@ UPDATE user_behaviors SET v2 = 100 WHERE v1 = 1;
 SELECT * FROM ss_mv;
 
 -------RESULT
-v1 v2 changelog_op
-1   1    1
-2    2    1
-2    2    2
-1    1    4
-1   100  3
+v1  v2  changelog_op
+1   1   1
+2   2   1
+2   2   2
+1   1   4
+1   100 3
 ```
