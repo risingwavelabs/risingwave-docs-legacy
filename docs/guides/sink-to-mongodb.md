@@ -101,6 +101,7 @@ Assuming the schema of `t2` is:
 | value | text |     |
 
 Given the record:
+
 | id | value   |
 |----|---------|
 | 1  | 'example of record' |
