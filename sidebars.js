@@ -399,65 +399,6 @@ const sidebars = {
               ]
             },
             {
-              type: "category",
-              label: "User-defined functions",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: "doc",
-                  id: "sql/udf/user-defined-functions",
-                  label: "Overview",
-                },
-                {
-                  type: "category",
-                  label: "External UDFs",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-python",
-                      label: "Python",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-java",
-                      label: "Java",
-                    },
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Embedded UDFs",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-python-embedded",
-                      label: "Python",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-javascript",
-                      label: "JavaScript",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-rust",
-                      label: "Rust",
-                    }
-                  ],
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/sql-udfs",
-                  label: "SQL UDFs",
-                },
-              ],
-            },
-            {
               type: "doc",
               id: "transform/use-dbt",
               label: "Use dbt for data transformations",
@@ -682,8 +623,8 @@ const sidebars = {
     {
       type: "category",
       label: "Develop",
-      collapsible: false,
-      collapsed: false,
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: "category",
@@ -967,6 +908,65 @@ const sidebars = {
             {
               type: "doc",
               id: "sql/psql-commands",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "User-defined functions",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              id: "sql/udf/user-defined-functions",
+              label: "Overview",
+            },
+            {
+              type: "category",
+              label: "External UDFs",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-python",
+                  label: "Python",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-java",
+                  label: "Java",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Embedded UDFs",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-python-embedded",
+                  label: "Python",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-javascript",
+                  label: "JavaScript",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-rust",
+                  label: "Rust",
+                }
+              ],
+            },
+            {
+              type: "doc",
+              id: "sql/udf/sql-udfs",
+              label: "SQL UDFs",
             },
           ],
         },
