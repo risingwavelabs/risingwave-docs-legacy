@@ -10,21 +10,23 @@ title: Overview
 Data transformation is a crucial step in converting raw data into valuable insights. It involves applying various operations such as filtering, aggregating, and joining data to derive meaningful information. In the upcoming section, we will delve into the techniques used in the process of transforming and querying data.
 
 ## Declare Data Transformation in SQL
+RisingWave uses Postgres-compatible SQL as the interface for declaring transformations. We are committed to making it easy to use while being powerful in expression.
 
-Easy to use: RisingWave uses Postgres-compatible SQL as the interface for declaring transformations. By aligning with PostgreSQL's syntax, functions, and data types, RisingWave eases the learning curve and enhances accessibility for users.
-Powerful: RisingWave fully supports and optimizes a variety of SQL features, including advanced features such OVER window and different kinds of JOINs. At the same time, we are also committed to expanding the expressive power of SQL, such as by adding semi-structured data types and corresponding expressions.
+**Easy to use**: By aligning with PostgreSQL's syntax, functions, and data types, RisingWave eases the learning curve and enhances accessibility for users.Even when creating stream tasks, there is no need to know many concepts related to streaming processing.
+
+**Powerful**: RisingWave fully supports and optimizes a variety of SQL features, including advanced features such OVER window and different kinds of JOINs. At the same time, we are also committed to expanding the expressive power of SQL, such as by adding semi-structured data types and corresponding expressions.
 
 ## When is Transformation Performed? Batch(On Read) v.s. Streaming(On Write)
 
 There are 2 execution modes in our system serving different analytics purposes. The results of these two modes are the same and the difference lies in the timing of data processing, whether it occurs at the time of data ingestion(on write) or when the query is executed(on read).
 
-- **Batch**: Just like traditional databases, RisingWave allows users to send `SELECT` statement to query the result. At this point, RisingWave reads the data from the current snapshot, processes it, and returns the results.
-- **Streaming**: More powerful, RisingWave allows users to predefine SQL queries with `CREATE MATERIALIZED VIEW` statement. When the base tables (in the `FROM` clause) in the query are updated, RisingWave will incrementally update the results automatically.
+**Batch**: Just like traditional databases, RisingWave allows users to send `SELECT` statement to query the result. At this point, RisingWave reads the data from the current snapshot, processes it, and returns the results.
+**Streaming**: More powerful, RisingWave allows users to predefine SQL queries with `CREATE MATERIALIZED VIEW` statement. When the base tables (in the `FROM` clause) in the query are updated, RisingWave will incrementally update the results automatically.
 
 Both modes have their unique advantages. Here are some considerations:
 
-- **Cost & Performance**: Streaming mode can pre-compute and store results, which may improve query performance since the heavy lifting is done upfront. 
-- **Flexibility**: The streaming mode is less flexible to changes in query requirements. Especially for ad-hoc queries, the batch mode is still necessary.
+**Cost & Performance**: Streaming mode can pre-compute and store results, which may improve query performance since the heavy lifting is done upfront. 
+**Flexibility**: The streaming mode is less flexible to changes in query requirements. Especially for ad-hoc queries, the batch mode is still necessary.
 
 <details>
 <summary>ad-hoc query</summary>
