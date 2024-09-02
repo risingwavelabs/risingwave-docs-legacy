@@ -35,5 +35,23 @@ The following is a list of all features in the public preview phase:
 | [Manage secrets](/docs/next/manage-secrets/)                   | 2024.7    | 2.0         |
 | [SQL Server CDC source](/docs/next/ingest-from-sqlserver-cdc/) | 2024.8    | 2.0         |
 | [MySQL CDC source (Auto schema change)](/docs/next/ingest-from-mysql-cdc/#automatically-change-schema) | 2024.8     | 2.0           |
+| [CDC Citus source](/docs/next/ingest-from-citus-cdc/)|||
+| [AWS Kinesis sink](/docs/next/sink-to-aws-kinesis/)           | 2024.  | 1.      |
+| [Cassandra sink](/docs/next/sink-to-cassandra/)               | 2024.  | 1.      |
+| [Elasticsearch sink](/docs/next/sink-to-elasticsearch/)       | 2024.  | 1.      |
+| [Iceberg sink](/docs/next/sink-to-iceberg/)                   | 2024.  | 1.      |
+| [NATS sink](/docs/next/sink-to-nats/)                         | 2024.  | 1.      |
+| [Pulsar sink](/docs/next/sink-to-pulsar/)                     | 2024.  | 1.      |
+| [Iceberg source](/docs/next/ingest-from-iceberg/)             | 2024.  | 1.      |
+| [NATS source](/docs/next/ingest-from-nats/)                   | 2024.  | 1.      |
+| [Pulsar source](/docs/next/ingest-from-pulsar/)               | 2024.  | 1.      |
+| [Append-only tables](/docs/next/sql-create-table/)            | 2024.  | 1.      |
+| [Version column](/docs/next/sql-create-table/)                | 2024.  | 1.      |
+| [SET BACKGROUND_DDL command](/docs/next/sql-set-background-ddl/) | 2024.  | 1.      |
+| [RisingWave as PostgreSQL FDW](/docs/next/risingwave-as-postgres-fdw/) | 2024.  | 1.      |
+| [AWS PrivateLink connection](/docs/next/sql-create-connection/) | 2024.  | 1.      |
+| [Schema registry name strategy](/docs/next/supported-sources-and-formats/) | 2024.  | 1.      |
+| [Emit on window close](/docs/next/emit-on-window-close/)      | 2024.  | 1.      |
+
 
 This table will be updated regularly to reflect the latest status of features as they progress through the release stages.

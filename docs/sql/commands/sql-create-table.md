@@ -101,8 +101,8 @@ The action could one of the following. A column not in the primary key can be sp
 - `DO UPDATE FULL [WITH VERSION COLUMN(col_name)]`: Replace the existing row in the table. When version column is specified, the existing row will be replaced only when the newly inserted value is greater or equal than the existing data record in the table's specified column.
 - `DO UPDATE IF NOT NULL [WITH VERSION COLUMN(col_name)]`: Only replace those fields which is not NULL in the inserted row. If version column is specified but the inserted row's version field is NULL, the version column will not take effect.
 
-:::note Beta Feature
-Version column is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 :::note
