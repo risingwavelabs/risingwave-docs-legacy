@@ -22,7 +22,7 @@ value :: type
 |Parameter        | Description     |
 |-----------------|-----------------|
 |*value*          |The value to be converted.|
-|*type*           |The data type of the returned value.<br/>For the types you can cast the value to, see [Data types](/sql/sql-data-types.md/#casts).|
+|*type*           |The data type of the returned value.<br/>For the types you can cast the value to, see [Casting](../data-types/data-type-casting.md).|
 
 
 ## Example
