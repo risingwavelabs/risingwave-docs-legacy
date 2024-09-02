@@ -20,10 +20,6 @@ The Elasticsearch sink connecter in RisingWave will perform index operations via
 This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
-:::info Public Preview
-This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
-:::
-
 :::note
 
 The Elasticsearch sink connector in RisingWave provides at-least-once delivery semantics. Events may be redelivered in case of failures.
