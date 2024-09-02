@@ -415,11 +415,6 @@ const sidebars = {
             },
             {
               type: "doc",
-              id: "transform/ad-hoc-queries",
-              label: "Ad-hoc queries",
-            },
-            {
-              type: "doc",
               id: "transform/deletes-and-updates",
               label: "Deletes and updates",
             },
@@ -1018,7 +1013,7 @@ const sidebars = {
                 },
               ],
             },
-    
+
           ],
         },
       ],
