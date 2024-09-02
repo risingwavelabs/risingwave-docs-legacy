@@ -95,12 +95,14 @@ WITH (
 ```
 
 Assuming the schema of `t2` is:
+
 | name  | type | pk  |
 |-------|------|-----|
 | id    | int  | ✔   |
 | value | text |     |
 
 Given the record:
+
 | id | value   |
 |----|---------|
 | 1  | 'example of record' |
