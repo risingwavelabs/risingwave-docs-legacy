@@ -2,7 +2,7 @@
 id: sink-to-cassandra
 title: Sink data from RisingWave to Cassandra or ScyllaDB
 description: Sink data from RisingWave to Cassandra or ScyllaDB.
-slug: /sink-to-cassandra 
+slug: /sink-to-cassandra
 ---
 You can sink data from RisingWave to [Cassandra](https://cassandra.apache.org/). As [ScyllaDB](https://www.scylladb.com/) can work as a drop-in replacement for Cassandra, it means you can sink data from RisingWave to ScyllaDB as well.
 
@@ -16,7 +16,7 @@ The Cassandra sink connector in RisingWave is currently in Beta. Please contact 
 
 - Ensure your Cassandra or ScyllaDB cluster is accessible from RisingWave.
 
-- The Cassandra sink connector in RisingWave relies on the connector node to work. Please ensure the connector node is enabled in RisingWave. For details, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+- The Cassandra sink connector in RisingWave relies on the connector node to work. Please ensure the connector node is enabled in RisingWave. For details, see [Enable the connector node](../deploy/risingwave-trial.md?method=binaries#optional-enable-the-connector-node).
 
 ## Syntax
 
@@ -31,7 +31,7 @@ WITH (
     cassandra.url = '<node1>,<node2>,<node3>',
     cassandra.keyspace = '<keyspace>',
     cassandra.table = '<cassandra_table>',
-    cassandra.datacenter = '<data_center>' 
+    cassandra.datacenter = '<data_center>'
 );
 ```
 
