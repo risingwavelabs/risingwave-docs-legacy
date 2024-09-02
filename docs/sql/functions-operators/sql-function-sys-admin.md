@@ -72,6 +72,34 @@ SELECT has_any_column_privilege('test_user', 'foo_view'::regclass, 'INSERT');
 f
 ```
 
+## `rw_recovery_status()`
+
+Retrieves the current recovery status of the meta node. The return values can be one of `STARTING`, `RECOVERING`, or `RUNNING`.
+
+```sql title="Syntax"
+rw_recovery_status() -> varchar
+```
+
+```sql title="Example"
+SELECT rw_recovery_status();
+-- RESULT
+'RUNNING'
+```
+
+## `pg_is_in_recovery()`
+
+Checks if the PostgreSQL instance is currently in recovery mode.
+
+```sql title="Syntax"
+pg_is_in_recovery() -> boolean
+```
+
+```sql title="Example"
+SELECT pg_is_in_recovery();
+----RESULT
+t
+```
+
 ## `set_config()`
 
 ```sql title="Syntax"
