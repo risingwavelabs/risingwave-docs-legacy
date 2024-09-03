@@ -16,10 +16,9 @@ The `START TRANSACTION` command is the same as the `BEGIN` command.
 
 You can end a transaction by using the `COMMIT` command.
 
-:::caution Experimental feature
 
-Read-only transactions is currently an experimental feature in RisingWave, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
-
+:::info Public Preview
+Read-only transactions is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 ## Syntax

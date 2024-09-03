@@ -92,9 +92,11 @@ Optionally, you can define a `schema.registry.name.strategy` if `schema.registry
 
 `ignore_key` can be used to ignore the key part of given messages. By default, it is `false`. If set to `true`, only the payload part of the message will be consumed. In this case, the payload must not be empty and tombstone messages cannot be handled.
 
-:::caution Beta Feature
-`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+`schema.registry.name.strategy` is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
+
+
 
 Syntax:
 

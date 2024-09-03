@@ -52,6 +52,7 @@ The following is a list of all features in the public preview phase:
 | [AWS PrivateLink connection](/docs/next/sql-create-connection/) | 2024.  | 1.      |
 | [`schema.registry.name.strategy`](/docs/next/supported-sources-and-formats/) | 2024.  | 1.      |
 | [Emit on window close](/docs/next/emit-on-window-close/)      | 2024.  | 1.      |
+|[Read-only transactions](/docs/next/sql-start-transaction)| 2024.  | 1.      |
 
 
 This table will be updated regularly to reflect the latest status of features as they progress through the release stages.
