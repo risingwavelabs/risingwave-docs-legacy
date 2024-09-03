@@ -65,7 +65,7 @@ Empty cells in CSV files will be parsed to `NULL`.
 |*without_header*| This field is only for `CSV` encode, and it indicates whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
 |*delimiter*| How RisingWave splits contents. For `JSON` encode, the delimiter is `\n`; for `CSV` encode, the delimiter can be one of `,`, `;`, `E'\t'`. |
 
-### Additional Columns
+### Additional columns
 
 |Field|Notes|
 |---|---|
