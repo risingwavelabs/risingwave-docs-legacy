@@ -9,10 +9,14 @@ keywords: [streaming database, risingwave, introduction]
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/intro/" />
 </head>
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+import LightButton from "@site/src/components/LightButton";
+
 RisingWave is a distributed SQL streaming database that enables simple, efficient, and reliable processing of streaming data.
 
 <p>
-  <defaultButton text="Get Started" doc="get-started" />
+  <DefaultButton text="Get Started" doc="get-started" />
 </p>
 
 ![RisingWave Architecture](./images/new_archi_grey.png)
@@ -56,6 +60,6 @@ RisingWave isn’t a panacea for all data engineering hurdles. It has its own se
 
 Like other stream processing systems, the primary use cases of RisingWave include monitoring, alerting, real-time dashboard reporting, streaming ETL (Extract, Transform, Load), machine learning feature engineering, and more. It has already been adopted in fields such as financial trading, manufacturing, new media, logistics, gaming, and more. Check out [Use cases](/use-cases.md).
 
-<lightButton text="See the architecture" doc="architecture"/>
-<lightButton text="Access the source code" url="https://github.com/risingwavelabs/risingwave"/>
+<LightButton text="See the architecture" doc="architecture"/>
+<LightButton text="Access the source code" url="https://github.com/risingwavelabs/risingwave"/>
 <br/>

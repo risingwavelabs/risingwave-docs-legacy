@@ -13,10 +13,7 @@ This topic walks you through the steps to ingest change streams from MongoDB to 
 
 For ingesting CDC data from MongoDB to RisingWave, you'll need to use the Debezium connector for MongoDB to convert change streams from MongoDB to Kafka topics first, and then ingest these Kafka topics into RisingWave.
 
-<img
-  src={require('../images/mongodb_cdc_into_rw.png').default}
-  alt="Ingest data from MongoDB CDC to RisingWave"
-/>
+![Ingest data from MongoDB CDC to RisingWave](../images/mongodb_cdc_into_rw.png)
 
 ## Overview of the steps
 

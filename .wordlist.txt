@@ -184,7 +184,7 @@ GCS
 gcs
 faq
 OLTP
-Napa 
+Napa
 superset
 Napa
 www
@@ -210,3 +210,6 @@ codebase
 Databricks
 SDKs
 personalization
+DefaultButton
+LightButton
+VoteNotify

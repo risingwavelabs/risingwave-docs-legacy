@@ -18,10 +18,7 @@ This guide goes through the steps to create a Kafka cluster on Upstash and to co
 
 Begin by signing up for a free Upstash Cloud account, which provides access to Kafka services. To create an account, visit [Upstash Cloud Account](https://console.upstash.com/kafka).
 
-<img
-  src={require('../images/upstash-signup.png').default}
-  alt="Sign up for Upstash Cloud"
-/>
+![Sign up for Upstash Cloud](../images/upstash-signup.png)
 
 ### Create a Kafka cluster
 
@@ -51,10 +48,7 @@ After creating your Kafka cluster, set up a Kafka topic. Upstash Kafka provides 
 
 You are now ready to connect to your Kafka cluster using various Kafka clients. These clients enable you to both produce and consume data from your Kafka topic. Therefore, you can extract real-time data from the Python Wikipedia API and feed it into a Kafka topic in Upstash.
 
-<img
-  src={require('../images/upstash-connect-interact.png').default}
-  alt="Connect and interact with your Kafka cluster"
-/>
+![Connect and interact with your Kafka cluster](../images/upstash-connect-interact.png)
 
 With these steps, you are on your way to leveraging the capabilities of Upstash Kafka and RisingWave to build stream processing applications and pipelines!
 
@@ -81,12 +75,12 @@ CREATE SOURCE wiki_source (
 )
 WITH(
   connector = 'kafka',
-  topic = '<topic-name>', 
-  properties.bootstrap.server = '<broker-url>', 
-  scan.startup.mode = 'earliest', 
-  properties.sasl.mechanism = 'SCRAM-SHA-512', 
-  properties.security.protocol = 'SASL_SSL', 
-  properties.sasl.username = '<your-username>', 
+  topic = '<topic-name>',
+  properties.bootstrap.server = '<broker-url>',
+  scan.startup.mode = 'earliest',
+  properties.sasl.mechanism = 'SCRAM-SHA-512',
+  properties.security.protocol = 'SASL_SSL',
+  properties.sasl.username = '<your-username>',
   properties.sasl.password = '<your-password>'
 ) FORMAT PLAIN ENCODE JSON;
 ```
@@ -97,7 +91,7 @@ Let's create a materialized view named `wiki_mv` based on the source `wiki_sourc
 
 ```sql
 CREATE MATERIALIZED VIEW wiki_mv AS
-SELECT  
+SELECT
   contributor,
   title,
   CAST(edit_timestamp AS TIMESTAMP) AS edit_timestamp,

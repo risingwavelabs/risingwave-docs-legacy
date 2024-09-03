@@ -64,30 +64,19 @@ Scale-out here refers to the process of adding more **compute nodes** to the clu
 
 ## Scale-in
 
-Scale-in here refers to the process of decreasing **compute nodes** from the cluster. By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls. To manually trigger immediate scale-in, use the following statement:
+Scale-in here refers to the process of decreasing **compute nodes** from the cluster. By default, there's a 5-minute delay in scale-in operations. The delay is intentional to prevent unnecessary heavy recovery operations caused by transient failures like network jitters and CPU stalls.
 
-1. Run following commands to unregister a compute node.
+1. Since v2.0, to trigger an immediate scale-in, apply the following yaml files to decrease the number of compute nodes:
 
-    ```bash
-    # Find out an worker id to unregister
-    risingwave ctl meta cluster_info
+  ```bash
+  # If you are using risingwave-operator
+  kubectl apply -f <file-with-less-replicas>.yaml # or kubectl edit RisingWave/<name>
 
-    risingwave ctl meta unregister-worker {id}
-    ```
+  # If you are not using risingwave-operator
+  kubectl scale statefulset/risingwave-compute --replicas=<number-of-replicas>
+  ```
 
-    The `risingwave` command can be found at any node of the cluster. Recommend to use `kubectl exec` to login a pod and run the command. 
-
-2. Decrease the number of compute nodes.
-
-    ```bash
-    # If you are using risingwave-operator
-    kubectl apply -f <file-with-less-replicas>.yaml # or kubectl edit RisingWave/<name>
-
-    # If you are not using risingwave-operator
-    kubectl scale statefulset/risingwave-compute --replicas=<number-of-replicas>
-    ```
-
-3. If you are using fixed parallelism, you may need to manually adjust the parallelism of the streaming jobs. For adaptive parallelism, the system will automatically adjust the streaming jobs to use less parallelism.
+2. If you are using fixed parallelism, you may need to manually adjust the parallelism of the streaming jobs. For adaptive parallelism, the system will automatically adjust the streaming jobs to use less parallelism.
 
 ## Upgrade to v1.7
 

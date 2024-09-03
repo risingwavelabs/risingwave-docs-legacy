@@ -33,10 +33,7 @@ RisingWave only supports connecting the Beekeeper Studio Community edition. The 
 
     - Password: The password associated with the provided username. By default, there is no password for `root`.
 
-    <img
-    src={require('../images/beekeeper-connection.png').default}
-    alt="Fill in connection settings in Beekeeper Studio"
-    />
+    ![Fill in connection settings in Beekeeper Studio](../images/beekeeper-connection.png)
 
 3. Click **Test**. If there are no issues, click **Connect**.
 

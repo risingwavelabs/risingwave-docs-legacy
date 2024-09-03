@@ -62,7 +62,7 @@ const sidebars = {
               "label": "Deploy on Kubernetes with Helm"
             }
           ]
-        },        
+        },
         {
           type: "doc",
           label: "Integrations",
@@ -399,75 +399,6 @@ const sidebars = {
               ]
             },
             {
-              type: "category",
-              label: "User-defined functions",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: "doc",
-                  id: "sql/udf/user-defined-functions",
-                  label: "Overview",
-                },
-                {
-                  type: "category",
-                  label: "External UDFs",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-python",
-                      label: "Python",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-java",
-                      label: "Java",
-                    },
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Embedded UDFs",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-python-embedded",
-                      label: "Python",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-javascript",
-                      label: "JavaScript",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-rust",
-                      label: "Rust",
-                    }
-                  ],
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/sql-udfs",
-                  label: "SQL UDFs",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-foreign-data",
-                  label: "Foreign data",
-                },
-              ],
-            },
-            {
-              type: "doc",
-              id: "transform/use-dbt",
-              label: "Use dbt for data transformations",
-            },
-            {
               type: "doc",
               id: "transform/multiple-table-sink",
               label: "Maintain wide table with table sinks",
@@ -491,49 +422,6 @@ const sidebars = {
               type: "doc",
               id: "transform/deletes-and-updates",
               label: "Deletes and updates",
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Visualize data",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              label: "Overview",
-              id: "guides/visualize-overview",
-            },
-            {
-              type: "doc",
-              label: "Beekeeper Studio",
-              id: "guides/beekeeper-integration",
-            },
-            {
-              type: "doc",
-              label: "DBeaver",
-              id: "guides/dbeaver-integration",
-            },
-            {
-              type: "doc",
-              label: "Grafana",
-              id: "guides/grafana-integration",
-            },
-            {
-              type: "doc",
-              label: "Looker",
-              id: "guides/looker-integration",
-            },
-            {
-              type: "doc",
-              label: "Metabase",
-              id: "guides/metabase-integration",
-            },
-            {
-              type: "doc",
-              label: "Superset",
-              id: "guides/superset-integration",
             },
           ],
         },
@@ -631,6 +519,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "MongoDB",
+                  id: "guides/sink-to-mongodb",
+                },
+                {
+                  type: "doc",
                   label: "MQTT",
                   id: "guides/sink-to-mqtt",
                 },
@@ -687,8 +580,8 @@ const sidebars = {
     {
       type: "category",
       label: "Develop",
-      collapsible: false,
-      collapsed: false,
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: "category",
@@ -977,39 +870,160 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Client libraries",
+          label: "User-defined functions",
           collapsible: true,
           collapsed: true,
-          link: {
-            type: "doc",
-            id: "dev/client-libraries-overview",
-          },
           items: [
-            // {
-            //   type: "doc",
-            //   id: "dev/java-client-libraries",
-            //   label: "Java",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/nodejs-client-libraries",
-            //   label: "Node.js",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/python-client-libraries",
-            //   label: "Python",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/go-client-libraries",
-            //   label: "Go",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/ruby-client-libraries",
-            //   label: "Ruby",
-            // },
+            {
+              type: "doc",
+              id: "sql/udf/user-defined-functions",
+              label: "Overview",
+            },
+            {
+              type: "category",
+              label: "External UDFs",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-python",
+                  label: "Python",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-java",
+                  label: "Java",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Embedded UDFs",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-python-embedded",
+                  label: "Python",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-javascript",
+                  label: "JavaScript",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-rust",
+                  label: "Rust",
+                }
+              ],
+            },
+            {
+              type: "doc",
+              id: "sql/udf/sql-udfs",
+              label: "SQL UDFs",
+            },
+          ],
+        },
+        {
+          type: "category",
+          label: "Integrations",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Overview",
+              id: "rw-integration-summary",
+            },
+            {
+              type: "doc",
+              id: "transform/use-dbt",
+              label: "Use dbt to manage pipelines",
+            },
+            {
+              type: "category",
+              label: "Client libraries",
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: "doc",
+                id: "dev/client-libraries-overview",
+              },
+              items: [
+                // {
+                //   type: "doc",
+                //   id: "dev/java-client-libraries",
+                //   label: "Java",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/nodejs-client-libraries",
+                //   label: "Node.js",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/python-client-libraries",
+                //   label: "Python",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/go-client-libraries",
+                //   label: "Go",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/ruby-client-libraries",
+                //   label: "Ruby",
+                // },
+              ],
+            },
+            {
+              type: "category",
+              label: "Visualization tools",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  label: "Overview",
+                  id: "guides/visualize-overview",
+                },
+                {
+                  type: "doc",
+                  label: "Beekeeper Studio",
+                  id: "guides/beekeeper-integration",
+                },
+                {
+                  type: "doc",
+                  label: "DBeaver",
+                  id: "guides/dbeaver-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Grafana",
+                  id: "guides/grafana-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Looker",
+                  id: "guides/looker-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Metabase",
+                  id: "guides/metabase-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Superset",
+                  id: "guides/superset-integration",
+                },
+              ],
+            },
+    
           ],
         },
       ],

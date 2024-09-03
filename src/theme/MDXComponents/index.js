@@ -10,13 +10,7 @@ import Link from "@docusaurus/Link";
 import CodeBlock from "@theme/CodeBlock";
 import Heading from "@theme/Heading";
 import Details from "@theme/Details";
-import "./styles.css"; // MDX elements are wrapped through the MDX pragma. In some cases (notably usage
-// with Head/Helmet) we need to unwrap those elements.
-import DefaultButton from "@theme/DefaultButton";
-import LightButton from "@theme/LightButton";
-import Capsule from "@theme/Capsule";
-import OutlinedCard from "@theme/OutlinedCard";
-import ResponsiveGrid from "@theme/ResponsiveGrid";
+import Admonition from "@theme/Admonition";
 
 function unwrapMDXElement(element) {
   if (element?.props?.mdxType && element?.props?.originalType) {
@@ -68,11 +62,6 @@ const MDXComponents = {
   h5: (props) => <Heading as="h5" {...props} />,
   h6: (props) => <Heading as="h6" {...props} />,
 
-  // TODO(rc): should move these to `components` and import before using in MDX
-  defaultButton: DefaultButton,
-  lightButton: LightButton,
-  voteNotify: Capsule,
-  card: OutlinedCard,
-  grid: ResponsiveGrid,
+  admonition: Admonition,
 };
 export default MDXComponents;
