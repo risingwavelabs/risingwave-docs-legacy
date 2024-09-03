@@ -12,10 +12,7 @@ This guide aims to help you identify the root causes of high latency and provide
 
 To identify barrier latency, navigate to the **Grafana dashboard (dev)** and access the **Streaming** section. From there, locate the **Barrier Latency** panel. The figure below is an example of what you will see. The latency curve in it is extremely high, indicating that the barrier is getting stuck.
 
-<img
-  src={require('../images/example_bad_barrier_latency.png').default}
-  alt="An example of extremely high latency"
-/>
+![An example of extremely high latency](../images/example_bad_barrier_latency.png)
 
 ## Diagnosis
 
@@ -37,7 +34,7 @@ Once you've pinpointed the bottleneck fragment, consider the following actions t
 
 ## Example: High latency caused by high join amplification
 
-Using low-cardinality columns as equal conditions in joins can result in high join amplification, leading to increased latency. 
+Using low-cardinality columns as equal conditions in joins can result in high join amplification, leading to increased latency.
 
 :::info
 The term "Cardinality" describes how many distinct values exist in a column. For example, "nation" often has a lower cardinality, while "user_id" often has a higher cardinality.
@@ -47,10 +44,7 @@ When using a low-cardinality column as the equal condition for a join, such as `
 
 For example, the following figure shows a materialized view with extremely high latency caused by high join amplification. You can find this panel through **Grafana dashboard (dev)** > **Streaming** > **Join Executor Matched Rows**, which indicates the number of matched rows from the opposite side in the streaming join executors.
 
-<img
-  src={require('../images/example_high_join_matched_rows.png').default}
-  alt="An example of extremely high latency"
-/>
+![An example of extremely high latency](../images/example_high_join_matched_rows.png)
 
 To solve the issue, consider rewriting the SQL query to reduce join amplification, such as using better equal conditions on the problematic join to reduce the number of matched rows. See [Maintain wide table with table sinks](/transform/multiple-table-sink.md) for details.
 

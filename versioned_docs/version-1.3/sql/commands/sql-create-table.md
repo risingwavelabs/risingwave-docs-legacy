@@ -51,7 +51,7 @@ To know when a data record is loaded to RisingWave, you can define a column that
 |-----------|-------------|
 |`table_name`    |The name of the table. If a schema name is given (for example, `CREATE TABLE <schema>.<table> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
 |`col_name`      |The name of a column.|
-|`data_type`|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
+|`data_type`|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets (`<>`). |
 |`generation_expression`| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |`watermark_clause`| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For the watermark clause to be valid, the table must be an append-only table. That is, the `APPEND ONLY` option must be specified. This restriction only applies to a table. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
 |`APPEND ONLY` | When this option is specified, the table will be created as an append-only table. An append-only table cannot have primary keys. `UPDATE` and `DELETE` statements are not valid for append-only tables. Note that append-only tables are in Beta.|
@@ -82,9 +82,9 @@ CREATE TABLE IF NOT EXISTS taxi_trips(
     distance DOUBLE PRECISION,
     duration DOUBLE PRECISION,
     fare STRUCT<
-      initial_charge DOUBLE PRECISION, 
-      subsequent_charge DOUBLE PRECISION, 
-      surcharge DOUBLE PRECISION, 
+      initial_charge DOUBLE PRECISION,
+      subsequent_charge DOUBLE PRECISION,
+      surcharge DOUBLE PRECISION,
       tolls DOUBLE PRECISION>);
 ```
 

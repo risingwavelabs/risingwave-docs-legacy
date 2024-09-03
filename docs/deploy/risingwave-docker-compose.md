@@ -19,7 +19,7 @@ This option uses a pre-defined Docker Compose configuration file to set up a Ris
 The cluster also incorporates these third-party components:
 
 - Grafana
-- Etcd/PostgreSQL/MySQL
+- PostgreSQL/MySQL
 - MinIO
 - Prometheus
 
@@ -125,19 +125,14 @@ For meta store, RisingWave uses [`postgresql`](#postgresql) as the default meta 
 
 - [SQLite](#sqlite)
 - [MySQL or MySQL-compatible storage](#mysql-or-mysql-compatible-storage)
-- [etcd](#etcd)
 
-To customize the meta store backend (except for `etcd`), you need to configure the following settings.
+To customize the meta store backend, you need to configure the following settings.
 
 - `--backend`: The meta store backend you want to use.
 - `--sql-endpoint`: The target SQL backend endpoint.
 - Some parameters that required for specified backends.
 
 You can read the specified guide for setting each backend below for more details.
-
-:::note
-In future releases, we may no longer support `etcd` as the meta store backend, so please consider using alternative options to ensure compatibility and continued support.
-:::
 
 #### PostgreSQL
 
@@ -155,7 +150,6 @@ In future releases, we may no longer support `etcd` as the meta store backend, s
 
 We have a Docker Compose configuration file that you can use after the necessary configurations: [`docker-compose-with-sqlite.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-with-sqlite.yml). In this file, meta will mount a volume for SQLite db file, which means the SQLite meta storage backend requires singleton meta component.
 
-
 #### MySQL or MySQL-compatible storage
 
 - `--backend`: Set to `mysql`.
@@ -169,14 +163,6 @@ We have a Docker Compose configuration file that you can use after the necessary
   - `--sql-username`: Username of SQL backend.
   - `--sql-password`: Password of SQL backend.
   - `--sql-database`: Database of SQL backend.
-
-#### etcd
-
-In [`docker-compose-etcd.yml`](https://github.com/risingwavelabs/risingwave/blob/main/docker/docker-compose-etcd.yml), specify the storage backend via `etcd` parameter.
-
-```bash
---etcd-endpoints etcd://<user>:<password>@<host>:<port>/<db>
-```
 
 ## Start a RisingWave cluster
 

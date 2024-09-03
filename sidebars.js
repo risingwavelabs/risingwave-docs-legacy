@@ -21,7 +21,7 @@ const sidebars = {
   MainSidebar: [
     {
       type: "category",
-      label: "About",
+      label: "Get started",
       collapsible: false,
       collapsed: false,
       items: [
@@ -33,7 +33,7 @@ const sidebars = {
         {
           type: "doc",
           id: "use-cases",
-          label: "Use cases",
+          label: "Use cases & examples",
         },
         {
           type: "doc",
@@ -102,11 +102,6 @@ const sidebars = {
           id: "get-started",
         },
         {
-          "type": "doc",
-          "id": "deploy/risingwave-docker-compose",
-          "label": "Deploy locally with Docker Compose"
-        },
-        {
           "type": "category",
           "label": "Deploy in distributed environments",
           "collapsible": true,
@@ -130,10 +125,10 @@ const sidebars = {
           ]
         },
         {
-          "type": "doc",
-          "id": "guides/install-psql-without-postgresql",
-          "label": "Install psql"
-        }
+          type: "doc",
+          label: "Integrations",
+          id: "rw-integration-summary",
+        },
       ],
     },
     {
@@ -465,75 +460,6 @@ const sidebars = {
               ]
             },
             {
-              type: "category",
-              label: "User-defined functions",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: "doc",
-                  id: "sql/udf/user-defined-functions",
-                  label: "Overview",
-                },
-                {
-                  type: "category",
-                  label: "External UDFs",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-python",
-                      label: "Python",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-java",
-                      label: "Java",
-                    },
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Embedded UDFs",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-python-embedded",
-                      label: "Python",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-javascript",
-                      label: "JavaScript",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-rust",
-                      label: "Rust",
-                    }
-                  ],
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/sql-udfs",
-                  label: "SQL UDFs",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-foreign-data",
-                  label: "Foreign data",
-                },
-              ],
-            },
-            {
-              type: "doc",
-              id: "transform/use-dbt",
-              label: "Use dbt for data transformations",
-            },
-            {
               type: "doc",
               id: "transform/multiple-table-sink",
               label: "Maintain wide table with table sinks",
@@ -557,49 +483,6 @@ const sidebars = {
               type: "doc",
               id: "transform/deletes-and-updates",
               label: "Deletes and updates",
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Visualize data",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              label: "Overview",
-              id: "guides/visualize-overview",
-            },
-            {
-              type: "doc",
-              label: "Beekeeper Studio",
-              id: "guides/beekeeper-integration",
-            },
-            {
-              type: "doc",
-              label: "DBeaver",
-              id: "guides/dbeaver-integration",
-            },
-            {
-              type: "doc",
-              label: "Grafana",
-              id: "guides/grafana-integration",
-            },
-            {
-              type: "doc",
-              label: "Looker",
-              id: "guides/looker-integration",
-            },
-            {
-              type: "doc",
-              label: "Metabase",
-              id: "guides/metabase-integration",
-            },
-            {
-              type: "doc",
-              label: "Superset",
-              id: "guides/superset-integration",
             },
           ],
         },
@@ -697,6 +580,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "MongoDB",
+                  id: "guides/sink-to-mongodb",
+                },
+                {
+                  type: "doc",
                   label: "MQTT",
                   id: "guides/sink-to-mqtt",
                 },
@@ -753,8 +641,8 @@ const sidebars = {
     {
       type: "category",
       label: "Develop",
-      collapsible: false,
-      collapsed: false,
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: "category",
@@ -1043,40 +931,194 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Client libraries",
+          label: "User-defined functions",
           collapsible: true,
           collapsed: true,
-          link: {
-            type: "doc",
-            id: "dev/client-libraries-overview",
-          },
           items: [
-            // {
-            //   type: "doc",
-            //   id: "dev/java-client-libraries",
-            //   label: "Java",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/nodejs-client-libraries",
-            //   label: "Node.js",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/python-client-libraries",
-            //   label: "Python",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/go-client-libraries",
-            //   label: "Go",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/ruby-client-libraries",
-            //   label: "Ruby",
-            // },
+            {
+              type: "doc",
+              id: "sql/udf/user-defined-functions",
+              label: "Overview",
+            },
+            {
+              type: "category",
+              label: "External UDFs",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-python",
+                  label: "Python",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-java",
+                  label: "Java",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Embedded UDFs",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-python-embedded",
+                  label: "Python",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-javascript",
+                  label: "JavaScript",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-rust",
+                  label: "Rust",
+                }
+              ],
+            },
+            {
+              type: "doc",
+              id: "sql/udf/sql-udfs",
+              label: "SQL UDFs",
+            },
           ],
+        },
+        {
+          type: "category",
+          label: "Integrations",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Overview",
+              id: "rw-integration-summary",
+            },
+            {
+              type: "doc",
+              id: "transform/use-dbt",
+              label: "Use dbt to manage pipelines",
+            },
+            {
+              type: "category",
+              label: "Client libraries",
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: "doc",
+                id: "dev/client-libraries-overview",
+              },
+              items: [
+                // {
+                //   type: "doc",
+                //   id: "dev/java-client-libraries",
+                //   label: "Java",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/nodejs-client-libraries",
+                //   label: "Node.js",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/python-client-libraries",
+                //   label: "Python",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/go-client-libraries",
+                //   label: "Go",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/ruby-client-libraries",
+                //   label: "Ruby",
+                // },
+              ],
+            },
+            {
+              type: "category",
+              label: "Visualization tools",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  label: "Overview",
+                  id: "guides/visualize-overview",
+                },
+                {
+                  type: "doc",
+                  label: "Beekeeper Studio",
+                  id: "guides/beekeeper-integration",
+                },
+                {
+                  type: "doc",
+                  label: "DBeaver",
+                  id: "guides/dbeaver-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Grafana",
+                  id: "guides/grafana-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Looker",
+                  id: "guides/looker-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Metabase",
+                  id: "guides/metabase-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Superset",
+                  id: "guides/superset-integration",
+                },
+              ],
+            },
+    
+          ],
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Reference",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "reference/architecture",
+          label: "Architecture",
+        },
+        {
+          type: "doc",
+          id: "concepts/key-concepts",
+          label: "Key concepts and terms",
+        },
+        {
+          type: "doc",
+          label: "Fault tolerance",
+          id: "reference/fault-tolerance",
+        },
+        {
+          type: "doc",
+          label: "Data persistence",
+          id: "reference/data-persistence",
+        },
+        {
+          type: "doc",
+          label: "Transactions",
+          id: "concepts/transactions",
         },
       ],
     },
@@ -1090,6 +1132,16 @@ const sidebars = {
           type: "doc",
           id: "deploy/hardware-requirements",
           label: "Hardware requirements",
+        },
+        {
+          "type": "doc",
+          "id": "guides/install-psql-without-postgresql",
+          "label": "Install psql"
+        },
+        {
+          "type": "doc",
+          "id": "deploy/risingwave-docker-compose",
+          "label": "Deploy locally with Docker Compose"
         },
         {
           type: "doc",
@@ -1131,6 +1183,11 @@ const sidebars = {
           type: "doc",
           label: "Manage secrets",
           id: "deploy/manage-secrets",
+        },
+        {
+          type: "doc",
+          label: "Tune reserved memory and cache eviction policy",
+          id: "deploy/tune-reserved-memory",
         },
         {
           type: "doc",
@@ -1188,6 +1245,31 @@ const sidebars = {
           type: "doc",
           label: "Best practices",
           id: "performance/performance-best-practices"
+        },
+      ]
+    },
+    {
+      type: "category",
+      label: "FAQ",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "faq/faq-overview"
+        },
+        {
+          type: "doc",
+          id: "faq/faq-when-to-use-risingwave"
+        },
+        {
+          type: "doc",
+          label: "RisingWave vs. Flink",
+          id: "faq/risingwave-flink-comparison",
+        },
+        {
+          type: "doc",
+          id: "faq/faq-using-risingwave"
         },
       ]
     },

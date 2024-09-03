@@ -766,17 +766,17 @@ The `SIMILAR TO` expression returns true if the string matches the supplied pa
 
 | Operator | Description                                            |
 |----------|--------------------------------------------------------|
-| %        | Matches any sequence of zero or more characters.         |
-| _        | Matches any single character.                            |
-| \|        | Denotes alternation (either of two alternatives).       |
-| *        | Repeats the previous item zero or more times.           |
-| +        | Repeats the previous item one or more times.            |
-| ?        | Repeats the previous item zero or one time.            |
-| {m}      | Repeats the previous item exactly m times.              |
-| {m,}     | Repeats the previous item m or more times.              |
-| {m,n}    | Repeats the previous item at least m and not more than n times. |
-| ()       | Parentheses group items into a single logical item.   |
-| [...]    | A bracket expression specifies a character class. |
+| `%`        | Matches any sequence of zero or more characters.         |
+| `_`        | Matches any single character.                            |
+| `\|`        | Denotes alternation (either of two alternatives).       |
+| `*`        | Repeats the previous item zero or more times.           |
+| `+`        | Repeats the previous item one or more times.            |
+| `?`        | Repeats the previous item zero or one time.            |
+| `{m}`      | Repeats the previous item exactly m times.              |
+| `{m,}`     | Repeats the previous item m or more times.              |
+| `{m,n}`    | Repeats the previous item at least m and not more than n times. |
+| `()`       | Parentheses group items into a single logical item.   |
+| `[...]`    | A bracket expression specifies a character class. |
 
 ### Escape
 

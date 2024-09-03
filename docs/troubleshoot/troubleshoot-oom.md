@@ -18,10 +18,7 @@ This guide focuses on addressing OOM issues on the compute node. If you encounte
 
 2. The Grafana metrics show memory increases unbounded, beyond the limit of `total_memory` set for the compute node. Memory settings can be found in the booting logs of the compute node. Search for the keyword “Memory outline" to locate the specific section.
 
-<img
-  src={require('../images/oom-symptom.png').default}
-  alt="Out-of-memory symptom"
-/>
+  ![Out-of-memory symptom](../images/oom-symptom.png)
 
 ## OOM when creating materialized views
 
@@ -45,10 +42,7 @@ Barriers play a vital role in our system, supporting the proper functioning of i
 
 Barrier latency can be observed from Grafana dashboard - Barrier latency panel. For example, the latency curve in the following figure is abnormal, which indicates that the barrier is getting stuck.
 
-<img
-  src={require('../images/example_bad_barrier_latency.png').default}
-  alt="An example of extremely high latency"
-/>
+![An example of extremely high latency](../images/example_bad_barrier_latency.png)
 
 Instead of solely addressing the memory problem, we recommend investigating why the barrier is getting stuck. This issue could be caused by heavy streaming jobs, sudden impact of input traffic, or even some temporary issues.
 

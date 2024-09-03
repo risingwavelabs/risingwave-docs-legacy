@@ -17,24 +17,6 @@ ALTER SOURCE current_source_name
    RENAME TO new_source_name;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('ALTER SOURCE'),
-            rr.NonTerminal('current_source_name'),
-        ),
-        rr.Sequence(
-            rr.Terminal('RENAME TO'),
-            rr.NonTerminal('new_source_name'),
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 |Parameter or clause        | Description           |
@@ -46,6 +28,6 @@ export const svg = rr.Diagram(
 ## Example
 
 ```sql
-ALTER SOURCE src 
+ALTER SOURCE src
    RENAME TO src1;
 ```

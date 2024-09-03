@@ -28,17 +28,6 @@ Read-only transactions is currently an experimental feature in RisingWave, and i
 START TRANSACTION;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('START TRANSACTION READ ONLY'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Example
 
 ```sql

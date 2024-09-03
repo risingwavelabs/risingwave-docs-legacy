@@ -27,54 +27,8 @@ WITH (
 ```
 
 :::note
-The optional `FORMAT data_format ENCODE data_encode` syntax is only used for Kafka, Kinesis, and Pulsar sinks. 
+The optional `FORMAT data_format ENCODE data_encode` syntax is only used for Kafka, Kinesis, and Pulsar sinks.
 :::
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal('CREATE SINK'),
-      rr.Optional(rr.Terminal('IF NOT EXISTS')),
-      rr.NonTerminal('sink_name', 'skip'),
-      rr.ZeroOrMore(
-      rr.Sequence(
-         rr.Terminal('FROM'),
-         rr.NonTerminal('sink_from', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('AS'),
-         rr.NonTerminal('select_query', 'skip')
-      ),
-   ),
-   ),
-   rr.Sequence(
-      rr.Terminal('WITH'),
-      rr.Terminal('('),
-      rr.Stack(
-         rr.Stack(
-            rr.Sequence(
-               rr.Terminal('connector'),
-               rr.Terminal('='),
-               rr.Terminal('\'connector_name\''),
-               rr.Terminal(','),
-            ),
-            rr.Sequence(
-               rr.Terminal('connector_parameter'),
-               rr.Terminal('='),
-               rr.Terminal('\'value\''),
-               rr.Terminal(','),
-            ),
-         ),
-      ),
-      rr.Terminal(')'),
-   ),
-   rr.Terminal(';'),
-)
-);
-
-<drawer SVG={svg} />
 
 ## Supported sinks
 

@@ -10,7 +10,7 @@ slug: /sql-explain
 
 <!--Track the implementation progress of EXPLAIN here: https://github.com/risingwavelabs/risingwave/issues/4856-->
 
-Use the `EXPLAIN` command to show the execution plan of a statement. 
+Use the `EXPLAIN` command to show the execution plan of a statement.
 
 ## Syntax
 
@@ -18,31 +18,6 @@ Use the `EXPLAIN` command to show the execution plan of a statement.
 EXPLAIN [ ( option [ , ... ] ) ] statement;
 ```
 
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('EXPLAIN'),
-        rr.Optional(
-            rr.Sequence(
-                rr.Terminal('('),
-                rr.Sequence(
-                   rr.OneOrMore(
-                      rr.NonTerminal('option'),
-                      rr.Comment('space as delimiter'),
-                   ),
-                ),
-                rr.Terminal(')'),
-            ),
-            'skip'
-        ),
-        rr.NonTerminal('statement'),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
 
 
 
@@ -115,7 +90,7 @@ The execution plan looks like this:
 (13 rows)
 ```
 
-<!-- Previous example. Before this change: https://github.com/singularity-data/risingwave/pull/4253 
+<!-- Previous example. Before this change: https://github.com/singularity-data/risingwave/pull/4253
 
 ```sql
 EXPLAIN SELECT P.name, P.city, P.state, A.id
@@ -149,7 +124,7 @@ EXPLAIN CREATE MATERIALIZED VIEW nexmark_q3 AS
      SELECT P.name, P.city, P.state, A.id
      FROM auction AS A INNER JOIN person AS P on A.seller = P.id
      WHERE A.category = 10 and (P.state = 'OR' OR P.state = 'ID' OR P.state = 'CA');
-                                                          
+
 ```
 
 The execution plan of the statement above looks like this:

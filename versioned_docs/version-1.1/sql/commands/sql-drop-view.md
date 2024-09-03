@@ -16,20 +16,6 @@ Use the `DROP VIEW` command to remove an existing view from a particular schema.
 DROP VIEW [ IF EXISTS ] view_name [ CASCADE ];
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP VIEW'),
-        rr.Optional(rr.Terminal('IF EXISTS')),
-        rr.NonTerminal('view_name'),
-        rr.Optional(rr.Terminal('CASCADE'), 'skip'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 |Parameter                  | Description           |

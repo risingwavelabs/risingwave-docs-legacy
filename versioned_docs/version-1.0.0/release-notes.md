@@ -54,11 +54,11 @@ This version was released on July 12, 2023.
   - Adds a new system catalog `pg_proc`. [#10216](https://github.com/risingwavelabs/risingwave/pull/10216)
 
   - Adds new RisingWave catalogs:
-  
+
     - `rw_table_fragments`, `rw_fragments`, `rw_actors` [#10712](https://github.com/risingwavelabs/risingwave/pull/10712)
     - `rw_worker_nodes`, `rw_parallel_units` [#10656](https://github.com/risingwavelabs/risingwave/pull/10656)
     - `rw_connections`, `rw_databases`, `rw_functions`, `rw_indexes`, `rw_materialized_views`, `rw_schemas`, `rw_sinks`, `rw_sources`, `rw_tables`, `rw_users`, `rw_views` [#10593](https://github.com/risingwavelabs/risingwave/pull/10593)
- 
+
 - Supports `GROUP BY` output alias or index. [#10305](https://github.com/risingwavelabs/risingwave/pull/10305)
 
 - Supports using scalar functions in the `FROM` clause. [#10317](https://github.com/risingwavelabs/risingwave/pull/10317)
@@ -87,7 +87,7 @@ This version was released on July 12, 2023.
     Old syntax - part 1:
 
     ```sql
-    ROW FORMAT data_format 
+    ROW FORMAT data_format
     [ MESSAGE 'message' ]
     [ ROW SCHEMA LOCATION ['location' | CONFLUENT SCHEMA REGISTRY 'schema_registry_url' ] ];
     ```
@@ -272,7 +272,7 @@ Starting from this version, we’ll respect semantic versioning conventions by u
 - Removes the message name parameter for Avro data. [#8124](https://github.com/risingwavelabs/risingwave/pull/8124)
 - Adds support for AWS PrivateLink for Kafka source connector. [#8247](https://github.com/risingwavelabs/risingwave/pull/8247)
 
-**Full Changelog**: <https://github.com/risingwavelabs/risingwave/compare/v0.1.17...v0.18.0>
+See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/v0.1.17...v0.18.0).
 
 ### Assets
 
@@ -450,7 +450,7 @@ This version was released on October 17, 2022.
 
         ```sql
         SELECT * FROM generate_series(5,1,-2);
-        generate_series 
+        generate_series
         -----------------
                        5
                        3
@@ -571,7 +571,7 @@ This version was released on July 29, 2022.
 
 - RisingWave can now sink data to Kafka topics in append-only mode and Debezium mode. [#3923](https://github.com/risingwavelabs/risingwave/pull/3923) [#3682](https://github.com/risingwavelabs/risingwave/pull/3682) [#3674](https://github.com/risingwavelabs/risingwave/pull/3674)
 - Syntax change for `CREATE SOURCE`: A parameter name is no longer wrapped by single quotation marks. [#3997](https://github.com/risingwavelabs/risingwave/pull/3997). See the example:
-  - Old: `CREATE SOURCE s1 WITH ( 'connector' = 'kafka', 'kafka.topic' = 'kafka_1_partition_topic', 'kafka.brokers' = '127.0.0.1:29092' ) ROW FORMAT json;`  
+  - Old: `CREATE SOURCE s1 WITH ( 'connector' = 'kafka', 'kafka.topic' = 'kafka_1_partition_topic', 'kafka.brokers' = '127.0.0.1:29092' ) ROW FORMAT json;`
   - New: `CREATE SOURCE s WITH ( connector = 'kafka', kafka.topic = 'kafka_1_partition_topic', kafka.brokers = '127.0.0.1:29092' ) ROW FORMAT json;`
 
 ### Assets

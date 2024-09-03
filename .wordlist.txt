@@ -184,7 +184,7 @@ GCS
 gcs
 faq
 OLTP
-Napa 
+Napa
 superset
 Napa
 www
@@ -218,4 +218,6 @@ schemas
 risingwavecloud
 Rockset
 personalization
-
+DefaultButton
+LightButton
+VoteNotify

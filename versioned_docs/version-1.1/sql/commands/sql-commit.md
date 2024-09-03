@@ -24,17 +24,6 @@ Read-only transactions is currently in Beta. Please contact us if you encounter 
 COMMIT;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('COMMIT'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Example
 
 ```sql

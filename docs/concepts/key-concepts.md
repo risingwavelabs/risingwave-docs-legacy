@@ -102,7 +102,7 @@ Change data capture refers to the process of identifying and capturing changes a
 
 ### Data persistence
 
-Data persistence means that data survives after the process that generated the data has ended. For a database to be considered persistent, it must write to non-volatile storage. This type of storage is able to retain data in the absence of a power supply. To learn about how data is persisted in RisingWave, see [Data persistence](/data-persistence.md).
+Data persistence means that data survives after the process that generated the data has ended. For a database to be considered persistent, it must write to non-volatile storage. This type of storage is able to retain data in the absence of a power supply. To learn about how data is persisted in RisingWave, see [Data persistence](/reference/data-persistence.md).
 
 ### Debezium
 

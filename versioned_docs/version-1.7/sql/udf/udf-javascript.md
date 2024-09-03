@@ -66,27 +66,27 @@ The following table shows the data type mapping between SQL and JavaScript:
 
 | SQL Type              | JavaScript Type       | Note          |
 | --------------------- | ------------- | --------------------- |
-| boolean               | boolean       |                       |
-| smallint              | number        |                       |
-| int                   | number        |                       |
-| bigint                | number        |                       |
-| real                  | number        |                       |
-| double precision      | number        |                       |
-| decimal               | [BigDecimal]  | BigDecimal is in TC39 proposal stage, implemented by QuickJS |
-| date                  | not supported yet  |                  |
-| time                  | not supported yet  |                  |
-| timestamp             | not supported yet  |                  |
-| timestamptz           | not supported yet  |                  |
-| interval              | not supported yet  |                  |
-| varchar               | string        |                       |
-| bytea                 | Uint8Array    |                       |
-| jsonb                 | null, boolean, number, string, array or object | `JSON.parse(string)`  |
-| smallint[]            | Int16Array    |                       |
-| int[]                 | Int32Array    |                       |
-| bigint[]              | BigInt64Array |                       |
-| real[]                | Float32Array  |                       |
-| double precision[]    | Float64Array  |                       |
-| others[]              | array         |                       |
-| struct<..>            | object        |                       |
+| `boolean`               | `boolean`       |                       |
+| `smallint`              | `number`        |                       |
+| `int`                   | `number`        |                       |
+| `bigint`                | `number`        |                       |
+| `real`                  | `number`        |                       |
+| `double precision`      | `number`        |                       |
+| `decimal`               | [`BigDecimal`]  | `BigDecimal` is in TC39 proposal stage, implemented by QuickJS |
+| `date`                  | not supported yet  |                  |
+| `time`                  | not supported yet  |                  |
+| `timestamp`             | not supported yet  |                  |
+| `timestamptz`           | not supported yet  |                  |
+| `interval`              | not supported yet  |                  |
+| `varchar`               | `string`        |                       |
+| `bytea`                 | `Uint8Array`    |                       |
+| `jsonb`                 | `null`, `boolean`, `number`, `string`, `array` or `object` | `JSON.parse(string)`  |
+| `smallint[]`            | `Int16Array`    |                       |
+| `int[]`                 | `Int32Array`    |                       |
+| `bigint[]`              | `BigInt64Array` |                       |
+| `real[]`                | `Float32Array`  |                       |
+| `double precision[]`    | `Float64Array`  |                       |
+| `others[]`              | `array`         |                       |
+| `struct<..>`            | `object`        |                       |
 
-[BigDecimal]: https://github.com/tc39/proposal-decimal/blob/b958a7206774e86b1d443bd6b4926ec9342a9181/bigdecimal-reference.md
+[`BigDecimal`]: https://github.com/tc39/proposal-decimal/blob/b958a7206774e86b1d443bd6b4926ec9342a9181/bigdecimal-reference.md

@@ -15,7 +15,7 @@ When it comes to crafting downtime-sensitive applications, users often have some
 
 3. How can we mitigate the impact of downtime?
 
-In this topic, we will provide answers to these questions. However, before you continue reading, we suggest that you first explore our [fault tolerance mechanism](/fault-tolerance.md) to gain a better understanding.
+In this topic, we will provide answers to these questions. However, before you continue reading, we suggest that you first explore our [fault tolerance mechanism](/reference/fault-tolerance.md) to gain a better understanding.
 
 ---
 

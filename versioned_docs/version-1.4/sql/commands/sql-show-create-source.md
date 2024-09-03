@@ -1,7 +1,7 @@
 ---
 id: sql-show-create-source
 title: SHOW CREATE SOURCE
-description: Show the query used to create the specified source. 
+description: Show the query used to create the specified source.
 slug: /sql-show-create-source
 ---
 <head>
@@ -17,18 +17,6 @@ using this command, you can verify the source's settings and troubleshoot any is
 SHOW CREATE SOURCE source_name;
 ```
 
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW CREATE SOURCE'),
-        rr.NonTerminal('source_name', 'skip'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
 
 
 ## Parameters
