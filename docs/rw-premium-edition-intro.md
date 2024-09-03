@@ -10,6 +10,7 @@ slug: /rw-premium-edition-intro
 
 This topic introduces the RisingWave Premium edition and offers a complete list of all premium features.
 
+
 ## What is RisingWave Premium?
 
 RisingWave Premium is a new edition from RisingWave Labs, tailored for enterprises with unique requirements that surpass typical stream processing workloads. This premium service combines new advanced features with the same user-friendly experience.
