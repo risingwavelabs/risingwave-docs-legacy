@@ -20,12 +20,17 @@ RisingWave uses Postgres-compatible SQL as the interface for declaring transform
 
 There are 2 execution modes in our system serving different analytics purposes. The results of these two modes are the same and the difference lies in the timing of data processing, whether it occurs at the time of data ingestion(on write) or when the query is executed(on read).
 
-**Batch**: Just like traditional databases, RisingWave allows users to send `SELECT` statement to query the result. At this point, RisingWave reads the data from the current snapshot, processes it, and returns the results.
-**Streaming**: More powerful, RisingWave allows users to predefine SQL queries with `CREATE MATERIALIZED VIEW` statement. When the base tables (in the `FROM` clause) in the query are updated, RisingWave will incrementally update the results automatically.
+**Streaming**: RisingWave allows users to predefine SQL queries with `CREATE MATERIALIZED VIEW` statement. Risingwave continuously listens changes in upstream tables(in the `FROM` clause) and incrementally update the results automatically.
+
+**Batch**: Also like traditional databases, RisingWave allows users to send `SELECT` statement to query the result. At this point, RisingWave reads the data from the current snapshot, processes it, and returns the results.
+
+![Stream processing v.s. batch processing](../images/stream_processing_vs_batch_processing.png)
+
 
 Both modes have their unique advantages. Here are some considerations:
 
 **Cost & Performance**: Streaming mode can pre-compute and store results, which may improve query performance since the heavy lifting is done upfront. 
+
 **Flexibility**: The streaming mode is less flexible to changes in query requirements. Especially for ad-hoc queries, the batch mode is still necessary.
 
 <details>
