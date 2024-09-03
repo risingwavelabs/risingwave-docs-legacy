@@ -50,7 +50,7 @@ The following is a list of all features in the public preview phase:
 | [SET BACKGROUND_DDL command](/docs/next/sql-set-background-ddl/) | 2024.  | 1.      |
 | [RisingWave as PostgreSQL FDW](/docs/next/risingwave-as-postgres-fdw/) | 2024.  | 1.      |
 | [AWS PrivateLink connection](/docs/next/sql-create-connection/) | 2024.  | 1.      |
-| [Schema registry name strategy](/docs/next/supported-sources-and-formats/) | 2024.  | 1.      |
+| [`schema.registry.name.strategy`](/docs/next/supported-sources-and-formats/) | 2024.  | 1.      |
 | [Emit on window close](/docs/next/emit-on-window-close/)      | 2024.  | 1.      |
 
 
