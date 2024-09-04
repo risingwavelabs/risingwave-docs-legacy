@@ -37,67 +37,6 @@ const sidebars = {
         },
         {
           type: "doc",
-          label: "Integrations",
-          id: "rw-integration-summary",
-        },
-        {
-          type: "doc",
-          label: "FAQ",
-          id: "rw-faq",
-        },
-        {
-          type: "category",
-          label: "Deep-dive",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              id: "architecture",
-              label: "Architecture",
-            },
-            {
-              type: "doc",
-              id: "concepts/key-concepts",
-              label: "Key concepts and terms",
-            },
-            {
-              type: "doc",
-              label: "Fault tolerance",
-              id: "fault-tolerance",
-            },
-            {
-              type: "doc",
-              label: "Data persistence",
-              id: "data-persistence",
-            },
-            {
-              type: "doc",
-              label: "Transactions",
-              id: "concepts/transactions",
-            },
-            {
-              type: "doc",
-              label: "RisingWave vs. Flink",
-              id: "risingwave-flink-comparison",
-            },
-            {
-              type: "doc",
-              id: "rw-premium-edition-intro",
-              label: "RisingWave Premium",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Get started",
-      collapsible: false,
-      collapsed: false,
-      items: [
-        {
-          type: "doc",
           label: "Quick start",
           id: "get-started",
         },
