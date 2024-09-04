@@ -191,7 +191,7 @@ SELECT approx_percentile(DOUBLE percentile [, DOUBLE relative_error]) WITHIN GRO
 - `relative_error`: Optional. Specifies the maximum allowed error in the approximation. Defaults to 0.01 (1%).
 - `percentile_column`: The column from which to calculate the percentile. Must be of a numeric type.
 
-This example calculate the 50th percentile of a numeric column with the default relative error:
+This example calculates the 50th percentile of a numeric column with the default relative error:
 
 ```sql title=Example
 SELECT approx_percentile(0.5) WITHIN GROUP (ORDER BY column1) FROM table1;
