@@ -32,7 +32,7 @@ RisingWave provides four key secret management operations:
 In addition, you can use the [`rw_secrets`](/sql/system-catalogs/rw_catalog.md) catalog to view the ID, name, owner, and access control of secret objects.
 
 :::tip Premium Edition Feature
-This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. For a complete list of premium features and more information about the premium edition, please see [RisingWave Premium Edition](/rw-premium-edition-intro.md). If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
 :::
 
 :::info Public Preview
