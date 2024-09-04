@@ -342,7 +342,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Transform & query data",
+          label: "Process data",
           collapsible: true,
           collapsed: true,
           items: [

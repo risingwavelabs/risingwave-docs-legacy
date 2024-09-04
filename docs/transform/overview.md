@@ -7,16 +7,16 @@ title: Overview
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/transform-overview/" />
 </head>
 
-Data transformation is a crucial step in converting raw data into valuable insights. It involves applying various operations such as filtering, aggregating, and joining data to derive meaningful information. In the upcoming section, we will delve into the techniques used in the process of transforming and querying data.
+Data processing is a crucial step in converting raw data into valuable insights. It involves applying various operations such as filtering, aggregating, and joining data to derive meaningful information. In the upcoming section, we will delve into the techniques used in the process of transforming and querying data.
 
-## Declare Data Transformation in SQL
-RisingWave uses Postgres-compatible SQL as the interface for declaring transformations. We are committed to making it easy to use while being powerful in expression.
+## Declare Data Processing Logic in SQL
+RisingWave uses Postgres-compatible SQL as the interface for declaring data processing. We are committed to making it easy to use while being powerful in expression.
 
 **Easy to use**: By aligning with PostgreSQL's syntax, functions, and data types, RisingWave eases the learning curve and enhances accessibility for users.Even when creating stream tasks, there is no need to know many concepts related to streaming processing.
 
 **Powerful**: RisingWave fully supports and optimizes a variety of SQL features, including advanced features such OVER window and different kinds of JOINs. At the same time, we are also committed to expanding the expressive power of SQL, such as by adding semi-structured data types and corresponding expressions.
 
-## When is Transformation Performed? Batch(On Read) v.s. Streaming(On Write)
+## When is Data Processing Performed? Batch(On Read) v.s. Streaming(On Write)
 
 There are 2 execution modes in our system serving different analytics purposes. The results of these two modes are the same and the difference lies in the timing of data processing, whether it occurs at the time of data ingestion(on write) or when the query is executed(on read).
 
