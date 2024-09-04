@@ -173,6 +173,30 @@ Returns the last value in an ordered set of values.
 last_value ( expression ORDER BY order_key ) -> same as input type
 ```
 
+---
+
+### `approx_percentile`
+
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
+Returns an approximate value of the specified percentile from a numeric column.
+
+```sql title=Syntax
+SELECT approx_percentile(DOUBLE percentile [, DOUBLE relative_error]) WITHIN GROUP (ORDER BY percentile_column) -> output_value
+```
+
+- `percentile`: The percentile to approximate. It should be between 0 and 1.
+- `relative_error`: Optional. Specifies the maximum allowed error in the approximation. Defaults to 0.01 (1%).
+- `percentile_column`: The column from which to calculate the percentile. Must be of a numeric type.
+
+This example calculate the 50th percentile of a numeric column with the default relative error:
+
+```sql title=Example
+SELECT approx_percentile(0.5) WITHIN GROUP (ORDER BY column1) FROM table1;
+```
+
 ## Aggregate functions for statistics
 
 ### `stddev_pop`
