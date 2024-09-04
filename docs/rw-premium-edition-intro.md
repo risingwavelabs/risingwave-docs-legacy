@@ -1,89 +1,63 @@
 ---
 id: rw-premium-edition-intro
-title: RisingWave Premium introduction
-description: Introduction of RisingWave Premium and a complete list of premium features.
+title: RisingWave Premium Edition
+description: Introduction of RisingWave Premium Edition and a complete list of premium features.
 slug: /rw-premium-edition-intro
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw-premium-edition-intro/" />
 </head>
 
-This topic introduces the RisingWave Premium edition and offers a complete list of all premium features.
-
+This topic introduces the RisingWave Premium Edition and offers a complete list of all premium features.
 
 ## What is RisingWave Premium?
 
-RisingWave Premium is a new edition from RisingWave Labs, tailored for enterprises with unique requirements that surpass typical stream processing workloads. This premium service combines new advanced features with the same user-friendly experience.
+The RisingWave Premium Edition is a feature-rich paid offering built on top of the open-source RisingWave Community Edition that is available from RisingWave v2.0. Designed for enterprises and organizations with mission-critical data infrastructure needs, the Premium Edition provides a suite of enterprise-grade capabilities to help users maximize the benefits of their RisingWave deployments.
 
-By this edition, we aim to provide a seamless transition for businesses self-hosting. Our comprehensive tools and premium support ensure you can confidently move your workloads to production.
+While the Premium Edition is a paid offering, it is designed to complement and enhance the open-source RisingWave Community Edition. The Community Edition will continue to be freely available under the Apache License (Version 2.0), and we remain committed to supporting the needs of our open-source community and ecosystem.
 
-## Complete list of premium features
+Both the RisingWave Community Edition and Premium Edition share the same underlying binary or container image. However, the Premium Edition features are only available to users who have purchased a license. This is managed by a dedicated license system maintained by the RisingWave team.
+
+## Premium features
 
 RisingWave Premium 1.0 is the first major release of this new edition with several high-impact features planned. The following is the initial list of premium features, which we have targeted "Premium Edition Feature" note in the documentation.
+
+### SQL and security
+
+- [Time travel queries](/transform/time-travel-query.md)
+
+- [Secret management](/deploy/manage-secrets.md)
 
 ### Schema management
 
 - Automatic schema mapping to the source tables
 
-- Automatic schema change from upstream
+- Automatic schema change for MySQL CDC
 
-- [Support AWS Glue Schema Registry](/ingest/ingest-from-kafka.md#read-schemas-from-aws-glue-schema-registry)
+- [AWS Glue Schema Registry](/ingest/ingest-from-kafka.md#read-schemas-from-aws-glue-schema-registry)
 
-- Seamless integration with Pulsar source
+### Connectors
 
-- Automatic Pulsar catalog mapping
+- [Direct SQL Server CDC source connector](/guides/ingest-from-sqlserver-cdc.md)
 
-- Auto-register Kafka sink schemas on schema registry
+- Sink to Azure SQL Database
 
-- Iceberg sink with glue catalog
+- Sink to Snowflake
 
-### Source and sink connectors
+- Sink to OpenSearch
 
-- Direct Oracle CDC
+- Sink to BigQuery
 
-- [Direct SQL Server CDC](/guides/ingest-from-sqlserver-cdc.md)
+- Sink to ClickHouse with SharedMergeTree engine
 
-- Sink to Oracle
+- Sink to Iceberg with glue catalog
 
-- Sink to Azure SQL database
-
-- Google Pub/Sub Sink
-
-- Sink into Snowflake
-
-- Redshift Sink
-
-- Sink to Rockset
-
-- Sink to DynamoDB
-
-### UDF and language enhancements
-
-- Built-in UDFs
-
-- Unlimited number of embedded JS, WASM, or Python UDFs
-
-### Maintenance and operation
-
-- [Manage user credentials like secrets](/deploy/manage-secrets.md)
-
-- New Grafana template for Observability
+### Others
 
 - [Terraform provider support](https://github.com/risingwavelabs/terraform-provider-risingwavecloud)
 
-- Automatic (Serverless) scaling on streaming jobs
-  - Based on workload metrics
-  - Based on time-range schedules
+For users who are already using these features in 1.9.x or earlier versions, rest assured that the functionality of these features will be intact if you stay on the version. If you choose to upgrade to v2.0 or later versions, an error will show up to indicate you need a license to use the features.
 
-- Automatic scaling on backfilling jobs
-
-- Automatic scaling on compaction jobs
-
-- [VPC Private link](/cloud/create-a-connection/)
-
-- Backup/Restore
-
-Our premium features will expand over time. Customers can shape our roadmap through monthly success reviews.
 
 ## Support
 
@@ -101,15 +75,6 @@ RisingWave Premium edition offers the premium support:
 | Named support engineer      | No                  | Yes                |
 | Solution engineer access    | 2 hours per month   | 8 hours per month  |
 
-
-
-## Licensing
-
-RisingWave Premium maintains the Apache 2 license of the source code. All feature development will remain in the same open repository. However, we'll offer two binary sets:
-
-- **RisingWave Open Source**: The original edition, without access to premium features.
-
-- **RisingWave Premium**: Full access to all premium features via a license key.
 
 ## Pricing
 
