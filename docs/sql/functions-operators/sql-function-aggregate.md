@@ -184,7 +184,7 @@ This feature is in the public preview stage, meaning it's nearing the final prod
 Returns an approximate value of the specified percentile from a numeric column.
 
 ```sql title=Syntax
-SELECT approx_percentile(DOUBLE percentile [, DOUBLE relative_error]) WITHIN GROUP (ORDER BY percentile_column) -> output_value
+approx_percentile(DOUBLE percentile [, DOUBLE relative_error]) WITHIN GROUP (ORDER BY percentile_column) -> output_value
 ```
 
 - `percentile`: The percentile to approximate. It should be between 0 and 1.
