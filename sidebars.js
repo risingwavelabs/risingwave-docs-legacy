@@ -353,9 +353,9 @@ const sidebars = {
             },
             {
               type: "category",
-              label: "Continuous streaming pipeline",
+              label: "SQL",
               collapsible: true,
-              collapsed: true,
+              collapsed: false,
               items: [
                 {
                   type: "doc",
@@ -367,48 +367,7 @@ const sidebars = {
                   id: "sql/syntax/sql-pattern-temporal-filters",
                   label: "Temporal filters",
                 },
-                {
-                  type: "doc",
-                  id: "transform/multiple-table-sink",
-                  label: "Maintain wide table with table sinks",
-                },
-                {
-                  type: "doc",
-                  id: "transform/watermarks",
-                  label: "Watermarks",
-                },
-                {
-                  type: "doc",
-                  id: "transform/emit-on-window-close",
-                  label: "Emit on window close",
-                },
-              ]
-            },
-            {
-              type: "category",
-              label: "Ad-hoc batch query",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: "doc",
-                  id: "transform/indexes",
-                  label: "Indexes",
-                },
-                {
-                  type: "doc",
-                  id: "transform/time-travel-queries",
-                  label: "Time travel queries",
-                },
 
-              ]
-            },
-            {
-              type: "category",
-              label: "SQL features",
-              collapsible: true,
-              collapsed: true,
-              items: [
                 {
                   type: "doc",
                   id: "sql/query-syntax/query-syntax-join-clause",
@@ -424,12 +383,37 @@ const sidebars = {
                   id: "sql/syntax/sql-pattern-topn",
                   label: "Top-N by group",
                 },
-                {
-                  type: "doc",
-                  id: "transform/deletes-and-updates",
-                  label: "Deletes and updates",
-                },
               ]
+            },
+            {
+              type: "doc",
+              id: "transform/deletes-and-updates",
+              label: "Deletes and updates",
+            },
+            {
+              type: "doc",
+              id: "transform/multiple-table-sink",
+              label: "Maintain wide table with table sinks",
+            },
+            {
+              type: "doc",
+              id: "transform/watermarks",
+              label: "Watermarks",
+            },
+            {
+              type: "doc",
+              id: "transform/emit-on-window-close",
+              label: "Emit on window close",
+            },
+            {
+              type: "doc",
+              id: "transform/indexes",
+              label: "Indexes",
+            },
+            {
+              type: "doc",
+              id: "transform/time-travel-queries",
+              label: "Time travel queries",
             },
           ],
         },
