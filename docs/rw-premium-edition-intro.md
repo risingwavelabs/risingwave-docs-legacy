@@ -70,7 +70,7 @@ RisingWave Premium edition offers the premium support:
 |                             | High - 12 hours     | High - 4 hours     |
 |                             | Medium - 24 hours   | Medium - 12 hours  |
 |                             | Low - 48 hours      | Low - 24 hours     |
-| Dedicated Slack channel     | No                  | Yes                |
+| Dedicated Slack channel      | No                  | Yes                |
 | Max technical contacts      | 2                   | 8                  |
 | Named support engineer      | No                  | Yes                |
 | Solution engineer access    | 2 hours per month   | 8 hours per month  |
