@@ -221,3 +221,4 @@ personalization
 DefaultButton
 LightButton
 VoteNotify
+SharedMergeTree
