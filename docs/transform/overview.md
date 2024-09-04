@@ -29,7 +29,7 @@ There are 2 execution modes in our system serving different analytics purposes. 
 
 Both modes have their unique advantages. Here are some considerations:
 
-**Cost & Performance**: Streaming mode can pre-compute and store results, which may improve query performance since the heavy lifting is done upfront. 
+**Cost & Performance**: Compared to traditional databases, streaming mode can pre-compute and store results. The heavy lifting is done upfront, eliminating duplicate computation over each ad hoc query, and therefore has better performance and a lower cost.
 
 **Flexibility**: The streaming mode is less flexible to changes in query requirements. Especially for ad-hoc queries, the batch mode is still necessary.
 
