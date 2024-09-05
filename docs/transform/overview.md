@@ -51,7 +51,7 @@ product_id | sales_amount
 
 You can use the following statement to create this table.
 
-```sql title="Create table and insert data"
+```sql
 CREATE TABLE sales_data (
     product_id INT,
     sales_amount INT
@@ -95,7 +95,7 @@ SELECT * FROM mv_sales_summary;
 (3 rows)
 ```
 
-Also, analysts or applications can send more flexible ad-hoc queries, such as querying how many products have higher sales volumes than a specific product
+Also, analysts or applications can send more flexible and complex ad-hoc queries, such as querying how many products have higher sales volumes than a specific product
 
 ```sql
 SELECT count(*) FROM mv_sales_summary where mv_sales_summary.total_sales >
