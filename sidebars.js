@@ -294,7 +294,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Transform & query data",
+          label: "Process data",
           collapsible: true,
           collapsed: true,
           items: [
@@ -304,51 +304,43 @@ const sidebars = {
               id: "transform/transform-overview",
             },
             {
-              type: "doc",
-              id: "sql/syntax/sql-pattern-dynamic-filters",
-              label: "Dynamic filters",
-            },
-            {
-              type: "doc",
-              id: "sql/syntax/sql-pattern-temporal-filters",
-              label: "Temporal filters",
-            },
-            {
-              type: "doc",
-              id: "transform/indexes",
-              label: "Indexes",
-            },
-            {
-              type: "doc",
-              id: "sql/query-syntax/query-syntax-join-clause",
-              label: "Joins",
-            },
-            {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-time-window",
-              label: "Time windows",
-            },
-            {
-              type: "doc",
-              id: "sql/syntax/sql-pattern-topn",
-              label: "Top-N by group",
-            },
-            {
               type: "category",
-              label: "Emit on window close",
+              label: "SQL",
               collapsible: true,
-              collapsed: true,
-              link: {
-                type: "doc",
-                id: "transform/emit-on-window-close",
-              },
+              collapsed: false,
               items: [
                 {
                   type: "doc",
-                  id: "transform/watermarks",
-                  label: "Watermarks",
+                  id: "sql/syntax/sql-pattern-dynamic-filters",
+                  label: "Dynamic filters",
+                },
+                {
+                  type: "doc",
+                  id: "sql/syntax/sql-pattern-temporal-filters",
+                  label: "Temporal filters",
+                },
+
+                {
+                  type: "doc",
+                  id: "sql/query-syntax/query-syntax-join-clause",
+                  label: "Joins",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-time-window",
+                  label: "Time windows",
+                },
+                {
+                  type: "doc",
+                  id: "sql/syntax/sql-pattern-topn",
+                  label: "Top-N by group",
                 },
               ]
+            },
+            {
+              type: "doc",
+              id: "transform/deletes-and-updates",
+              label: "Deletes and updates",
             },
             {
               type: "doc",
@@ -357,23 +349,23 @@ const sidebars = {
             },
             {
               type: "doc",
-              id: "transform/subscription",
-              label: "Subscription",
+              id: "transform/watermarks",
+              label: "Watermarks",
+            },
+            {
+              type: "doc",
+              id: "transform/emit-on-window-close",
+              label: "Emit on window close",
+            },
+            {
+              type: "doc",
+              id: "transform/indexes",
+              label: "Indexes",
             },
             {
               type: "doc",
               id: "transform/time-travel-queries",
               label: "Time travel queries",
-            },
-            {
-              type: "doc",
-              id: "transform/ad-hoc-queries",
-              label: "Ad-hoc queries",
-            },
-            {
-              type: "doc",
-              id: "transform/deletes-and-updates",
-              label: "Deletes and updates",
             },
           ],
         },
@@ -392,6 +384,11 @@ const sidebars = {
               type: "doc",
               id: "guides/risingwave-as-postgres-fdw",
               label: "RisingWave as Postgres FDW",
+            },
+            {
+              type: "doc",
+              id: "transform/subscription",
+              label: "Subscription",
             },
             {
               type: "category",
