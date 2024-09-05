@@ -21,9 +21,9 @@ RisingWave uses Postgres-compatible SQL as the interface for declaring data proc
 
 There are 2 execution modes in our system serving different analytics purposes. The results of these two modes are the same and the difference lies in the timing of data processing, whether it occurs at the time of data ingestion(on write) or when the query is executed(on read).
 
-**Streaming**: RisingWave allows users to predefine SQL queries with `CREATE MATERIALIZED VIEW` statement. Risingwave continuously listens changes in upstream tables (in the `FROM` clause) and incrementally update the results automatically.
+**Streaming**: RisingWave allows users to predefine SQL queries with [CREATE MATERIALIZED VIEW](sql/commands/sql-create-mv.md) statement. Risingwave continuously listens changes in upstream tables (in the `FROM` clause) and incrementally update the results automatically.
 
-**Ad-hoc**: Also like traditional databases, RisingWave allows users to send `SELECT` statement to query the result. At this point, RisingWave reads the data from the current snapshot, processes it, and returns the results.
+**Ad-hoc**: Also like traditional databases, RisingWave allows users to send [SELECT](/sql/commands/sql-select.md) statement to query the result. At this point, RisingWave reads the data from the current snapshot, processes it, and returns the results.
 
 ![Stream processing v.s. batch processing](../images/stream_processing_vs_batch_processing.png)
 
@@ -34,6 +34,8 @@ Both modes have their unique advantages. Here are some considerations:
 **Flexibility**: The streaming mode is less flexible to changes in query requirements. The ad-hoc query usually is created on-the-fly to fulfill immediate and specific information needs. Unlike predefined queries, ad-hoc queries are generated in real-time based on your current requirements. They are commonly used in data analysis, decision-making, and exploratory data tasks, where flexibility and quick access to information are crucial.
 
 ## Examples
+
+### Example data
 
 To illustrate, let's consider a hypothetical scenario where we have a table called `sales_data`. This table stores information about product IDs (`product_id`) and their corresponding sales amounts (`sales_amount`).
 
@@ -64,6 +66,8 @@ VALUES
     (3, 200);
 ```
 
+### Create a Materialized View to Build Continuous Streaming Pipeline
+
 Based on the `sales_data` table, we can create a materialized view called `mv_sales_summary` to calculate the total sales amount for each product.
 
 ```sql
@@ -73,7 +77,11 @@ FROM sales_data
 GROUP BY product_id;
 ```
 
-Then we can query the materialized view to retrieve the transformed data:
+By the SQL statement above, you have successfully transformed the data from the `sales_data` table into a materialized view called `mv_sales_summary`. This materialized view provides the total sales amount for each product. Utilizing materialized views allows for precomputing and storing aggregated data, which in turn improves query performance and simplifies data analysis tasks.
+
+### Ad-hoc Query on Materialized View's result
+
+Then we can directly query the materialized view to retrieve the transformed data:
 
 ```sql
 SELECT * FROM mv_sales_summary;
@@ -87,12 +95,10 @@ SELECT * FROM mv_sales_summary;
 (3 rows)
 ```
 
-By following the steps outlined above, you have successfully transformed the data from the `sales_data` table into a materialized view called `mv_sales_summary`. This materialized view provides the total sales amount for each product. Utilizing materialized views allows for precomputing and storing aggregated data, which in turn improves query performance and simplifies data analysis tasks.
-
-At this point, an example for ad-hoc query is when an analyst or an application needs to query how many products have higher sales volumes than a specific product.
+Also, analysts or applications can send more flexible ad-hoc queries, such as querying how many products have higher sales volumes than a specific product
 
 ```sql
-dev=> SELECT count(*) FROM mv_sales_summary where mv_sales_summary.total_sales >
+SELECT count(*) FROM mv_sales_summary where mv_sales_summary.total_sales >
     (SELECT total_sales FROM mv_sales_summary where product_id = 1);
 
 ----RESULT
