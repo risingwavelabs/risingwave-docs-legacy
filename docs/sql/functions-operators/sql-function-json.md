@@ -401,6 +401,38 @@ The `jsonb_populate_recordset` function in RisingWave differs from the function 
 
 :::
 
+### `jsonb_populate_map`
+
+Converts `jsonb` data into a `map` type by merging key-value pairs from the `jsonb` into the specified `map`.
+
+```sql title=Syntax
+jsonb_populate_map(map anyelement, from_json jsonb) → map
+```
+
+```sql title="Examples"
+SELECT jsonb_populate_map(
+    null::map(varchar, int),
+    '{"a": 1, "b": 2}'::jsonb
+);
+----RESULT
+{a: 1, b: 2}
+
+SELECT jsonb_populate_map(
+    MAP {'a': 1, 'b': 2},
+    '{"b": 3, "c": 4}'::jsonb
+);
+----RESULT
+{a: 1, b: 3, c: 4}
+
+-- Implicit cast (int -> varchar)
+SELECT jsonb_populate_map(
+    MAP {'a': 'a', 'b': 'b'},
+    '{"b": 3, "c": 4}'::jsonb
+);
+----RESULT
+{a: a, b: 3, c: 4}
+```
+
 ### `jsonb_set`
 
 Modifies JSONB data by replacing or inserting new values at a specified path. If the path exists, the function will replace the value with the new one. If the path does not exist and the `create_if_missing` parameter is set to `true` (which is the default), the function will add the new value.
