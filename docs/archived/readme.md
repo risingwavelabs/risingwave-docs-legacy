@@ -1,5 +1,5 @@
 # Archived Pages
 
-This directory contains pages that we are not building into our docs site but that we want to keep around for potential resurrection.
+This directory contains pages we are not including in our documentation site but want to retain for potential future use.
 
 The pages are not indexed by the sidebar.
