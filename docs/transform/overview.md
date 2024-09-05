@@ -17,11 +17,11 @@ RisingWave uses Postgres-compatible SQL as the interface for declaring data proc
 
 **Powerful**: RisingWave fully supports and optimizes a variety of SQL features, including advanced features such OVER window and different kinds of JOINs. At the same time, we are also committed to expanding the expressive power of SQL, such as by adding semi-structured data types and corresponding expressions.
 
-## When is data processing performed? Ad-hoc(on read) v.s. Streaming(on write)
+## Ad hoc (on read) vs. Streaming (on write)
 
 There are 2 execution modes in our system serving different analytics purposes. The results of these two modes are the same and the difference lies in the timing of data processing, whether it occurs at the time of data ingestion(on write) or when the query is executed(on read).
 
-**Streaming**: RisingWave allows users to predefine SQL queries with [CREATE MATERIALIZED VIEW](sql/commands/sql-create-mv.md) statement. Risingwave continuously listens changes in upstream tables (in the `FROM` clause) and incrementally update the results automatically.
+**Streaming**: RisingWave allows users to predefine SQL queries with [CREATE MATERIALIZED VIEW](sql/commands/sql-create-mv.md) statement. RisingWave continuously listens changes in upstream tables (in the `FROM` clause) and incrementally update the results automatically.
 
 **Ad-hoc**: Also like traditional databases, RisingWave allows users to send [SELECT](/sql/commands/sql-select.md) statement to query the result. At this point, RisingWave reads the data from the current snapshot, processes it, and returns the results.
 
@@ -35,7 +35,7 @@ Both modes have their unique advantages. Here are some considerations:
 
 ## Examples
 
-### Example data
+### Create a table
 
 To illustrate, let's consider a hypothetical scenario where we have a table called `sales_data`. This table stores information about product IDs (`product_id`) and their corresponding sales amounts (`sales_amount`).
 
@@ -66,7 +66,7 @@ VALUES
     (3, 200);
 ```
 
-### Create a Materialized View to Build Continuous Streaming Pipeline
+### Create a materialized view to build continuous streaming pipeline
 
 Based on the `sales_data` table, we can create a materialized view called `mv_sales_summary` to calculate the total sales amount for each product.
 
@@ -79,7 +79,7 @@ GROUP BY product_id;
 
 By the SQL statement above, you have successfully transformed the data from the `sales_data` table into a materialized view called `mv_sales_summary`. This materialized view provides the total sales amount for each product. Utilizing materialized views allows for precomputing and storing aggregated data, which in turn improves query performance and simplifies data analysis tasks.
 
-### Ad-hoc Query on Materialized View's result
+### Ad-hoc query on materialized view's result
 
 Then we can directly query the materialized view to retrieve the transformed data:
 
