@@ -17,11 +17,11 @@ RisingWave uses Postgres-compatible SQL as the interface for declaring data proc
 
 **Powerful**: RisingWave fully supports and optimizes a variety of SQL features, including advanced features such OVER window and different kinds of JOINs. At the same time, we are also committed to expanding the expressive power of SQL, such as by adding semi-structured data types and corresponding expressions.
 
-## When is data processing performed? Ad-hoc(on read) v.s. Streaming(on write)
+## Ad hoc (on read) vs. Streaming (on write)
 
 There are 2 execution modes in our system serving different analytics purposes. The results of these two modes are the same and the difference lies in the timing of data processing, whether it occurs at the time of data ingestion(on write) or when the query is executed(on read).
 
-**Streaming**: RisingWave allows users to predefine SQL queries with [CREATE MATERIALIZED VIEW](sql/commands/sql-create-mv.md) statement. Risingwave continuously listens changes in upstream tables (in the `FROM` clause) and incrementally update the results automatically.
+**Streaming**: RisingWave allows users to predefine SQL queries with [CREATE MATERIALIZED VIEW](sql/commands/sql-create-mv.md) statement. RisingWave continuously listens changes in upstream tables (in the `FROM` clause) and incrementally update the results automatically.
 
 **Ad-hoc**: Also like traditional databases, RisingWave allows users to send [SELECT](/sql/commands/sql-select.md) statement to query the result. At this point, RisingWave reads the data from the current snapshot, processes it, and returns the results.
 
@@ -35,7 +35,7 @@ Both modes have their unique advantages. Here are some considerations:
 
 ## Examples
 
-### Example data
+### Create a table
 
 To illustrate, let's consider a hypothetical scenario where we have a table called `sales_data`. This table stores information about product IDs (`product_id`) and their corresponding sales amounts (`sales_amount`).
 
