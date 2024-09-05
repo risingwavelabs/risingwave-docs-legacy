@@ -66,7 +66,7 @@ VALUES
     (3, 200);
 ```
 
-### Create a Materialized View to Build Continuous Streaming Pipeline
+### Create a materialized view to build continuous streaming pipeline
 
 Based on the `sales_data` table, we can create a materialized view called `mv_sales_summary` to calculate the total sales amount for each product.
 
@@ -79,7 +79,7 @@ GROUP BY product_id;
 
 By the SQL statement above, you have successfully transformed the data from the `sales_data` table into a materialized view called `mv_sales_summary`. This materialized view provides the total sales amount for each product. Utilizing materialized views allows for precomputing and storing aggregated data, which in turn improves query performance and simplifies data analysis tasks.
 
-### Ad-hoc Query on Materialized View's result
+### Ad-hoc query on materialized view's result
 
 Then we can directly query the materialized view to retrieve the transformed data:
 
