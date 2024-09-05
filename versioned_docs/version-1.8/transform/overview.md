@@ -7,8 +7,6 @@ title: Overview
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/transform-overview/" />
 </head>
 
-## Performing data transformation
-
 Data transformation is a crucial step in converting raw data into valuable insights. It involves applying various operations such as filtering, aggregating, and joining data to derive meaningful information. In the upcoming section, we will delve into the techniques used in the process of transforming and querying data. But first, let's provide you with a simple introduction to data transformation.
 
 ## How transformation is performed
