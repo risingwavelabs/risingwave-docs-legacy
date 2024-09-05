@@ -415,14 +415,20 @@ SELECT jsonb_populate_map(
     '{"a": 1, "b": 2}'::jsonb
 );
 ----RESULT
-{a: 1, b: 2}
+ jsonb_populate_map 
+--------------------
+ {a:1,b:2}
+(1 row)
 
 SELECT jsonb_populate_map(
     MAP {'a': 1, 'b': 2},
     '{"b": 3, "c": 4}'::jsonb
 );
 ----RESULT
-{a: 1, b: 3, c: 4}
+ jsonb_populate_map 
+--------------------
+ {a:1,b:3,c:4}
+(1 row)
 
 -- Implicit cast (int -> varchar)
 SELECT jsonb_populate_map(
@@ -430,7 +436,10 @@ SELECT jsonb_populate_map(
     '{"b": 3, "c": 4}'::jsonb
 );
 ----RESULT
-{a: a, b: 3, c: 4}
+ jsonb_populate_map 
+--------------------
+ {a:a,b:3,c:4}
+(1 row)
 ```
 
 ### `jsonb_set`
