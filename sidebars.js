@@ -42,7 +42,7 @@ const sidebars = {
         },
         {
           "type": "category",
-          "label": "Deploy in distributed environments",
+          "label": "Deploy in production",
           "collapsible": true,
           "collapsed": true,
           "items": [
@@ -63,67 +63,19 @@ const sidebars = {
             }
           ]
         },
-        {
-          type: "doc",
-          label: "Integrations",
-          id: "rw-integration-summary",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Demos",
-      collapsible: true,
-      collapsed: true,
-      items: [
-        {
-          type: "doc",
-          id: "tutorials/tutorials-overview",
-          label: "Overview",
-        },
-        {
-          type: "doc",
-          id: "tutorials/real-time-ad-performance-analysis",
-          label: "Real-time ad performance analysis",
-        },
-        {
-          type: "doc",
-          id: "tutorials/server-performance-anomaly-detection",
-          label: "Server performance anomaly detection",
-        },
-        {
-          type: "doc",
-          id: "tutorials/fast-twitter-events-processing",
-          label: "Fast Twitter events processing",
-        },
-        {
-          type: "doc",
-          id: "tutorials/clickstream-analysis",
-          label: "Clickstream analysis",
-        },
-        {
-          type: "doc",
-          id: "tutorials/live-stream-metrics-analysis",
-          label: "Live stream metrics analysis",
-        },
-        {
-          type: "doc",
-          id: "tutorials/use-risingwave-to-monitor-risingwave-metrics",
-          label: "Use RisingWave to monitor RisingWave metrics",
-        },
       ],
     },
     {
       type: "category",
       label: "Manage data",
-      collapsible: true,
+      collapsible: false,
       collapsed: false,
       items: [
         {
           type: "category",
           label: "Ingest data",
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               type: "category",
@@ -166,7 +118,7 @@ const sidebars = {
               type: "category",
               label: "Sources",
               collapsible: true,
-              collapsed: false,
+              collapsed: true,
               link: {
                 type: "generated-index",
                 title: "Sources",
@@ -576,10 +528,38 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Develop",
-      collapsible: true,
-      collapsed: true,
+      label: "Develop & reference",
+      collapsible: false,
+      collapsed: false,
       items: [
+        {
+          type: "doc",
+          id: "concepts/key-concepts",
+          label: "Glossary",
+        }, 
+        {
+          type: "category",
+          label: "Architecture",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              id: "reference/architecture",
+              label: "Overview",
+            },
+            {
+              type: "doc",
+              label: "Fault tolerance",
+              id: "reference/fault-tolerance",
+            },
+            {
+              type: "doc",
+              label: "Data persistence",
+              id: "reference/data-persistence",
+            },
+          ]
+        },
         {
           type: "category",
           label: "SQL references",
@@ -1026,39 +1006,6 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Reference",
-      collapsible: true,
-      collapsed: true,
-      items: [
-        {
-          type: "doc",
-          id: "reference/architecture",
-          label: "Architecture",
-        },
-        {
-          type: "doc",
-          id: "concepts/key-concepts",
-          label: "Key concepts and terms",
-        },
-        {
-          type: "doc",
-          label: "Fault tolerance",
-          id: "reference/fault-tolerance",
-        },
-        {
-          type: "doc",
-          label: "Data persistence",
-          id: "reference/data-persistence",
-        },
-        {
-          type: "doc",
-          label: "Transactions",
-          id: "concepts/transactions",
-        },
-      ],
-    },
-    {
-      type: "category",
       label: "Deploy & operate",
       collapsible: true,
       collapsed: true,
@@ -1166,7 +1113,7 @@ const sidebars = {
       type: "category",
       label: "Optimize performance",
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -1185,34 +1132,52 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "FAQ",
+      label: "Demos",
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: "doc",
-          id: "faq/faq-overview"
+          id: "tutorials/tutorials-overview",
+          label: "Overview",
         },
         {
           type: "doc",
-          id: "faq/faq-when-to-use-risingwave"
+          id: "tutorials/real-time-ad-performance-analysis",
+          label: "Real-time ad performance analysis",
         },
         {
           type: "doc",
-          label: "RisingWave vs. Flink",
-          id: "faq/risingwave-flink-comparison",
+          id: "tutorials/server-performance-anomaly-detection",
+          label: "Server performance anomaly detection",
         },
         {
           type: "doc",
-          id: "faq/faq-using-risingwave"
+          id: "tutorials/fast-twitter-events-processing",
+          label: "Fast Twitter events processing",
         },
-      ]
+        {
+          type: "doc",
+          id: "tutorials/clickstream-analysis",
+          label: "Clickstream analysis",
+        },
+        {
+          type: "doc",
+          id: "tutorials/live-stream-metrics-analysis",
+          label: "Live stream metrics analysis",
+        },
+        {
+          type: "doc",
+          id: "tutorials/use-risingwave-to-monitor-risingwave-metrics",
+          label: "Use RisingWave to monitor RisingWave metrics",
+        },
+      ],
     },
     {
       type: "category",
       label: "Troubleshooting",
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -1282,8 +1247,33 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "FAQ",
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          id: "faq/faq-overview"
+        },
+        {
+          type: "doc",
+          id: "faq/faq-when-to-use-risingwave"
+        },
+        {
+          type: "doc",
+          label: "RisingWave vs. Flink",
+          id: "faq/risingwave-flink-comparison",
+        },
+        {
+          type: "doc",
+          id: "faq/faq-using-risingwave"
+        },
+      ]
+    },
+    {
+      type: "category",
       label: "Releases",
-      collapsible: true,
+      collapsible: false,
       collapsed: false,
       items: [
         {
