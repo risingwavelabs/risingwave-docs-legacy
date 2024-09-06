@@ -1,9 +1,14 @@
-import lightTheme from "prism-react-renderer/themes/github/index.cjs.js";
+import { themes, PrismTheme } from 'prism-react-renderer';
+
+const base = themes.dracula;
 
 export default {
-  ...lightTheme,
+  ...base,
+  plain: {
+    backgroundColor: "#001017",
+  },
   styles: [
-    ...lightTheme.styles,
+    ...base.styles,
     {
       types: ["title"],
       style: {
@@ -38,7 +43,7 @@ export default {
     {
       types: ["operator", "unit", "rule"],
       style: {
-        color: "#393a34",
+        color: "#ebebeb",
       },
     },
     {
@@ -68,7 +73,8 @@ export default {
     {
       types: ["keyword"],
       style: {
-        color: "#508fd2",
+        color: "#6db7ff",
+        fontStyle: "normal",
       },
     },
     {
@@ -104,7 +110,7 @@ export default {
     {
       types: ["custom"],
       style: {
-        color: "#393a34",
+        color: "#ebebeb",
         fontStyle: "italic",
       },
     },
@@ -117,9 +123,9 @@ export default {
     {
       types: ["string"],
       style: {
-        color: "#393a34",
+        color: "#ebebeb",
         fontStyle: "italic",
       },
     },
   ],
-};
+} satisfies PrismTheme;
