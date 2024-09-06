@@ -146,6 +146,11 @@ const sidebars: SidebarsConfig = {
                       label: "NATS JetStream",
                       id: "ingest/ingest-from-nats",
                     },
+                    {
+                      type: "doc",
+                      label: "MQTT",
+                      id: "ingest/ingest-from-mqtt",
+                    },
                   ],
                 },
                 {
@@ -180,7 +185,7 @@ const sidebars: SidebarsConfig = {
                       id: "guides/ingest-from-citus-cdc",
                     },
                   ],
-                },                {
+                }, {
                   type: "category",
                   label: "Data lakes",
                   collapsible: true,
@@ -212,23 +217,10 @@ const sidebars: SidebarsConfig = {
                   ],
                 },
                 {
-                  type: "category",
-                  label: "More Sources",
-                  collapsible: true,
-                  collapsed: false,
-                  items: [
-                    {
-                      type: "doc",
-                      label: "MQTT",
-                      id: "ingest/ingest-from-mqtt",
-                    },
-                    {
-                      type: "doc",
-                      label: "Load generator",
-                      id: "ingest/ingest-from-datagen",
-                    },
-                  ]
-                }
+                  type: "doc",
+                  label: "Load generator",
+                  id: "ingest/ingest-from-datagen",
+                },
               ]
             },
             {
