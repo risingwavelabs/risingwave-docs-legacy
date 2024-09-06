@@ -66,7 +66,7 @@ A full outer join (or simply, full join) returns all rows when there is a match 
 <table_expression> NATURAL FULL [ OUTER ] JOIN <table_expression>;
 ```
 
-## Windows joins
+## Window joins
 
 In a regular join (that is, a join without time attributes), the join state may grow without restriction. If you only need to get windowed results of two sources, you can segment data in the sources into time windows, and join matching windows from the two sources. To create a window join, the same time window functions must be used, and the window size must be the same.
 
