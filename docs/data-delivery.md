@@ -183,7 +183,7 @@ WITH (
     s3.path = '',
     type = 'append-only',
     force_append_only='true'
-) FORMAT PLAIN ENCODE PARQUET(force_append_only='true')  
+) FORMAT PLAIN ENCODE PARQUET(force_append_only='true');  
 ```
 
 :::note
