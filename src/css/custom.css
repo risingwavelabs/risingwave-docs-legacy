@@ -8,10 +8,10 @@
 :root {
   --ifm-pre-background: red;
   --test: #98e1ff;
-  --ifm-color-primary: #0098ef;
-  --ifm-color-primary-dark: #0098ef;
-  --ifm-color-primary-darker: #0069a8;
-  --ifm-color-primary-darkest: #002c42;
+  --ifm-color-primary: #055eec;
+  --ifm-color-primary-dark: #044bbc;
+  --ifm-color-primary-darker: #03388d;
+  --ifm-color-primary-darkest: #02255e;
   --ifm-color-primary-light: #69d7fc;
   --ifm-color-primary-lighter: #98e1ff;
   --ifm-color-primary-lightest: #c4ecfc;
