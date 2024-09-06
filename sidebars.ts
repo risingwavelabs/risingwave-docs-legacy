@@ -112,15 +112,137 @@ const sidebars: SidebarsConfig = {
               items: [
                 {
                   type: "category",
-                  label: "Kafka",
+                  label: "Massage queues",
                   collapsible: true,
-                  collapsed: true,
+                  collapsed: false,
                   items: [
                     {
                       type: "doc",
                       label: "Apache Kafka",
                       id: "ingest/ingest-from-kafka",
                     },
+                    {
+                      type: "doc",
+                      label: "Apache Pulsar",
+                      id: "ingest/ingest-from-pulsar",
+                    },
+                    {
+                      type: "doc",
+                      label: "AWS Kinesis",
+                      id: "ingest/ingest-from-kinesis",
+                    },
+                    {
+                      type: "doc",
+                      label: "Google Pub/Sub",
+                      id: "ingest/ingest-from-google-pubsub",
+                    },
+                    {
+                      type: "doc",
+                      label: "Redpanda",
+                      id: "ingest/ingest-from-redpanda",
+                    },
+                    {
+                      type: "doc",
+                      label: "NATS JetStream",
+                      id: "ingest/ingest-from-nats",
+                    },
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Databases",
+                  collapsible: true,
+                  collapsed: false,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "PostgreSQL CDC",
+                      id: "guides/ingest-from-postgres-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "MySQL CDC",
+                      id: "guides/ingest-from-mysql-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "SQL Server CDC",
+                      id: "guides/ingest-from-sqlserver-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "MongoDB CDC",
+                      id: "guides/ingest-from-mongodb-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "Citus CDC",
+                      id: "guides/ingest-from-citus-cdc",
+                    },
+                  ],
+                },                {
+                  type: "category",
+                  label: "Data lakes",
+                  collapsible: true,
+                  collapsed: false,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "Apache Iceberg",
+                      id: "ingest/ingest-from-iceberg",
+                    },
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Object storages",
+                  collapsible: true,
+                  collapsed: false,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "AWS S3",
+                      id: "ingest/ingest-from-s3",
+                    },
+                    {
+                      type: "doc",
+                      label: "Google Cloud Storage",
+                      id: "ingest/ingest-from-gcs",
+                    },
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "More Sources",
+                  collapsible: true,
+                  collapsed: false,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "MQTT",
+                      id: "ingest/ingest-from-mqtt",
+                    },
+                    {
+                      type: "doc",
+                      label: "Load generator",
+                      id: "ingest/ingest-from-datagen",
+                    },
+                  ]
+                }
+              ]
+            },
+            {
+              type: "category",
+              label: "Guides for third-party SaaS platforms",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "category",
+                  label: "Kafka",
+                  collapsible: false,
+                  collapsed: false,
+                  items: [
                     {
                       type: "doc",
                       label: "Confluent Cloud",
@@ -161,51 +283,27 @@ const sidebars: SidebarsConfig = {
                 {
                   type: "category",
                   label: "PostgreSQL CDC",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [{
-                    type: "doc",
-                    label: "PostgreSQL CDC",
-                    id: "guides/ingest-from-postgres-cdc",
-                  },
-                  {
-                    type: "doc",
-                    label: "Neon CDC",
-                    id: "guides/ingest-from-neon-cdc",
-                  },
-                  {
-                    type: "doc",
-                    label: "Supabase CDC",
-                    id: "ingest/ingest-from-supabase-cdc",
-                  },
+                  collapsible: false,
+                  collapsed: false,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "Neon CDC",
+                      id: "guides/ingest-from-neon-cdc",
+                    },
+                    {
+                      type: "doc",
+                      label: "Supabase CDC",
+                      id: "ingest/ingest-from-supabase-cdc",
+                    },
                   ]
-                },
-                {
-                  type: "doc",
-                  label: "MySQL CDC",
-                  id: "guides/ingest-from-mysql-cdc",
-                },
-                {
-                  type: "doc",
-                  label: "SQL Server CDC",
-                  id: "guides/ingest-from-sqlserver-cdc",
-                },
-                {
-                  type: "doc",
-                  label: "MongoDB CDC",
-                  id: "guides/ingest-from-mongodb-cdc",
                 },
                 {
                   type: "category",
                   label: "Pulsar",
-                  collapsible: true,
-                  collapsed: true,
+                  collapsible: false,
+                  collapsed: false,
                   items: [
-                    {
-                      type: "doc",
-                      label: "Apache Pulsar",
-                      id: "ingest/ingest-from-pulsar",
-                    },
                     {
                       type: "doc",
                       label: "DataStax Astra Streaming",
@@ -213,65 +311,7 @@ const sidebars: SidebarsConfig = {
                     },
                   ]
                 },
-                {
-                  type: "doc",
-                  label: "AWS Kinesis",
-                  id: "ingest/ingest-from-kinesis",
-                },
-                {
-                  type: "doc",
-                  label: "Google Pub/Sub",
-                  id: "ingest/ingest-from-google-pubsub",
-                },
-                {
-                  type: "doc",
-                  label: "AWS S3",
-                  id: "ingest/ingest-from-s3",
-                },
-                {
-                  type: "category",
-                  label: "More Sources",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      label: "Citus CDC",
-                      id: "guides/ingest-from-citus-cdc",
-                    },
-                    {
-                      type: "doc",
-                      label: "Apache Iceberg",
-                      id: "ingest/ingest-from-iceberg",
-                    },
-                    {
-                      type: "doc",
-                      label: "Google Cloud Storage",
-                      id: "ingest/ingest-from-gcs",
-                    },
-                    {
-                      type: "doc",
-                      label: "MQTT",
-                      id: "ingest/ingest-from-mqtt",
-                    },
-                    {
-                      type: "doc",
-                      label: "NATS JetStream",
-                      id: "ingest/ingest-from-nats",
-                    },
-                    {
-                      type: "doc",
-                      label: "Redpanda",
-                      id: "ingest/ingest-from-redpanda",
-                    },
-                    {
-                      type: "doc",
-                      label: "Load generator",
-                      id: "ingest/ingest-from-datagen",
-                    },
-                  ]
-                }
-              ]
+              ],
             },
           ],
         },
