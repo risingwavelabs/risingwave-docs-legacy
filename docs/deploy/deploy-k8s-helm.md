@@ -97,7 +97,7 @@ Now start a RisingWave cluster with Helm.
   NAME                                   READY   STATUS    RESTARTS        AGE
   risingwave-compactor-8dd799db6-hdjjz   1/1     Running   1 (8m33s ago)   11m
   risingwave-compute-0                   2/2     Running   0               11m
-  risingwave-etcd-0                      1/1     Running   0               11m
+  risingwave-postgresql-0                1/1     Running   0               11m
   risingwave-frontend-7bd7b8c856-czdgd   1/1     Running   1 (8m33s ago)   11m
   risingwave-meta-0                      1/1     Running   0               11m
   risingwave-minio-5cfd8f5f64-6msqm      1/1     Running   0               11m
