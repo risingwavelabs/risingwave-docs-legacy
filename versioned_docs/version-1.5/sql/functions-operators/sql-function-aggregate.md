@@ -9,7 +9,7 @@ title: Aggregate functions
 
 Aggregate functions compute a single result from a set of input values.
 
-For details about the supported syntaxes of aggregate expressions, see [Aggregate expressions](/sql/query-syntax/query-syntax-value-exp.md/#aggregate-expressions).
+For details about the supported syntaxes of aggregate expressions, see [Aggregate expressions](../query-syntax/query-syntax-value-exp.md#aggregate-expressions).
 
 ## General-purpose aggregate functions
 
@@ -18,24 +18,24 @@ For details about the supported syntaxes of aggregate expressions, see [Aggregat
 Returns an array from input values in which each value in the set is assigned to an array element. The `ORDER BY` clause is optional and specifies the order of rows processed in the aggregation, which determines the order of the elements in the result array.
 
 ```sql title=Syntax
-array_agg ( expression [ ORDER BY [ sort_expression { ASC | DESC } ] ] ) -> output_array       
-```  
+array_agg ( expression [ ORDER BY [ sort_expression { ASC | DESC } ] ] ) -> output_array
+```
 
----  
+---
 
 ### `avg`
 
 Returns the average (arithmetic mean) of the selected values.
 
 ```bash title=Syntax
-avg ( expression ) -> see description   
-```  
+avg ( expression ) -> see description
+```
 
 Input types include smallint, int, bigint, numeric, real, and double precision.
 
 Return type is numeric for integer inputs and double precision for float point inputs.
 
----  
+---
 
 ### `bit_and`
 
@@ -45,7 +45,7 @@ Returns the bitwise AND of all non-null input values or null if no non-null valu
 bit_and ( smallint, int, or bigint ) -> same as input type
 ```
 
----  
+---
 
 ### `bit_or`
 
@@ -55,7 +55,7 @@ Returns the bitwise OR of all non-null input values or null if no non-null value
 bit_or ( smallint, int, or bigint ) -> same as input type
 ```
 
----  
+---
 
 ### `bool_and`
 
@@ -65,7 +65,7 @@ Returns true if all input values are true, otherwise false.
 bool_and ( boolean ) -> boolean
 ```
 
----  
+---
 
 ### `bool_or`
 
@@ -75,63 +75,63 @@ Returns true if at least one input value is true, otherwise false.
 bool_or ( boolean ) -> boolean
 ```
 
----  
+---
 
 ### `count`
 
 Returns the number of non-null rows.
 
 ```bash title=Syntax
-count ( expression ) -> bigint    
-```  
+count ( expression ) -> bigint
+```
 
 The input can be of any supported data type.
 
----  
+---
 
 ### `jsonb_agg`
 
 Aggregates values, including nulls, as a JSON array. The `ORDER BY` clause is optional and specifies the order of rows processed in the aggregation, which determines the order of the elements in the result array.
 
 ```bash title=Syntax
-jsonb_agg ( any_element ) -> jsonb    
+jsonb_agg ( any_element ) -> jsonb
 ```
 
----  
+---
 
 ### `jsonb_object_agg`
 
 Aggregates name/value pairs as a JSON object.
 
 ```bash title=Syntax
-jsonb_object_agg ( key "string" , value "any" ) -> jsonb   
+jsonb_object_agg ( key "string" , value "any" ) -> jsonb
 ```
 
----  
+---
 
 ### `max`
 
-Returns the maximum value in a set of values.  
+Returns the maximum value in a set of values.
 
 ```bash title=Syntax
-max ( expression ) -> same as input type    
-```  
+max ( expression ) -> same as input type
+```
 
 Input can be of any numeric, string, date/time, or interval type, or an array of these types.
 
----  
+---
 
 ### `min`
 
-Returns the minimum value in a set of values.  
+Returns the minimum value in a set of values.
 
 ```bash title=Syntax
-min ( expression ) -> same as input type  
-```  
+min ( expression ) -> same as input type
+```
 
-Input can be of any numeric, string, date/time, or interval type, or an array of these types.  
+Input can be of any numeric, string, date/time, or interval type, or an array of these types.
 
----  
+---
 
 ### `string_agg`
 
@@ -140,17 +140,17 @@ Combines non-null values into a string, separated by `delimiter_string`. The `OR
 #### Syntax
 
 ```bash title=Syntax
-string_agg ( expression, delimiter_string ) -> output_string  
+string_agg ( expression, delimiter_string ) -> output_string
 ```
 
----  
+---
 
 ### `sum`
 
 Returns the sum of all input values.
 
 ```bash title=Syntax
-sum ( expression )  
+sum ( expression )
 ```
 
 Input types include smallint, int, bigint, numeric, real, and double precision.
@@ -167,17 +167,17 @@ Calculates the population standard deviation of the input values. Returns `NULL`
 stddev_pop ( expression ) -> output_value
 ```
 
----  
+---
 
 ### `stddev_samp`
 
-Calculates the sample standard deviation of the input values. Returns `NULL` if the input contains fewer than two non-null values.  
+Calculates the sample standard deviation of the input values. Returns `NULL` if the input contains fewer than two non-null values.
 
 ```bash title=Syntax
 stddev_samp ( expression ) -> output_value
 ```
 
----  
+---
 
 ### `var_pop`
 
@@ -187,7 +187,7 @@ Calculates the population variance of the input values. Returns `NULL` if the in
 var_pop ( expression ) -> output_value
 ```
 
----  
+---
 
 ### `var_samp`
 
@@ -219,7 +219,7 @@ This example calculates the mode of the values in `column1` from `table1`.
 SELECT mode() WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
 
----  
+---
 
 ### `percentile_cont`
 
@@ -241,7 +241,7 @@ This example calculates the median (50th percentile) of the values in `column1` 
 SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
 
----  
+---
 
 ### `percentile_disc`
 
@@ -288,8 +288,8 @@ INSERT INTO items_sold VALUES ('Foo', 'L', 10),('Foo', 'M', 20),('Bar', 'M', 15)
 ```
 
 ```sql title="Get grouping results"
-SELECT brand, size, sum(sales), grouping(brand), grouping(size), grouping(brand,size), count(DISTINCT sales) 
-FROM items_sold 
+SELECT brand, size, sum(sales), grouping(brand), grouping(size), grouping(brand,size), count(DISTINCT sales)
+FROM items_sold
 GROUP BY GROUPING SETS ((brand), (size), ());
 ------RESULTS
 Bar NULL 20 0 1 1 2

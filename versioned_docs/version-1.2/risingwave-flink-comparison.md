@@ -46,10 +46,7 @@ RisingWave is an open-source distributed SQL database designed for stream proces
 
 *Apache Flink adopts a big-data style, coupled-compute-storage architecture that is optimized for scalability; RisingWave in contrast implements a cloud-native, decoupled compute-storage architecture that is optimized for cost efficiency.*
 
-<img
-  src={require('./images/architecture_comparison.png').default}
-  alt="Flink and RisingWave Architectures"
-/>
+![Flink and RisingWave Architectures](./images/architecture_comparison.png)
 
 As an open-source project born during the Hadoop-dominant big-data era, the architecture of Flink was heavily influenced by the MapReduce paradigm. Specifically, Flink achieves parallel and distributed execution by dividing a streaming task into multiple parallel instances, each processing a subset of the task's input data. While this compute-storage-coupled architecture enables Flink to achieve high parallelism and scalability, it can also result in high execution costs.
 

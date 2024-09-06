@@ -2,7 +2,7 @@
 id: sink-to-elasticsearch
 title: Sink data from RisingWave to Elasticsearch
 description: Sink data from RisingWave to Elasticsearch.
-slug: /sink-to-elasticsearch 
+slug: /sink-to-elasticsearch
 ---
 You can deliver the data that has been ingested and transformed in RisingWave to Elasticsearch to serve searches or analytics.
 
@@ -38,7 +38,7 @@ WITH (
   primary_key = '<primary key of the sink_from object>',
   index = '<your Elasticsearch index>',
   url = 'http://<ES hostname>:<ES port>',
-  username = '<your ES username>', 
+  username = '<your ES username>',
   password = '<your password>',
   delimiter='<delimiter>'
 );
@@ -97,7 +97,7 @@ ElasticSearch uses a mechanism called [dynamic field mapping](https://www.elasti
 |JSONB|object (RisingWave's Elasticsearch sink will send JSONB as a JSON string, and Elasticsearch will convert it into an object)|
 
 :::note
-Elasticsearch doesn't require users to explicitly `CREATE TABLE`. Instead, it infers the schema on-the-fly based on the first record ingested. For example, if a record contains a jsonb '{v1: 100}', v1 will be inferred as a long type. However, if the next record is '{v1: "abc"}', the ingestion will fail because "abc" is inferred as a string and the two types are incompatible.
+Elasticsearch doesn't require users to explicitly `CREATE TABLE`. Instead, it infers the schema on-the-fly based on the first record ingested. For example, if a record contains a jsonb `{v1: 100}`, v1 will be inferred as a long type. However, if the next record is `{v1: "abc"}`, the ingestion will fail because `"abc"` is inferred as a string and the two types are incompatible.
 
 This behavior should be noted, or your data may be less than it should be. In terms of monitoring, you can check out Grafana, where there is a panel for all sink write errors.
 :::

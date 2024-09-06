@@ -61,9 +61,7 @@ import TabItem from '@theme/TabItem';
 1. Install the repository RPM to point YUM at the PostgreSQL repository.
 
     Go to [Linux Downloads (Red Hat Family)](https://www.postgresql.org/download/linux/redhat/) and select your platform for the command and repository URL.
-    <img
-    src={require('../images/install_postgresql_redhat.png').default}
-    alt="Linux downloads (Red Hat family)"/>
+    ![Linux downloads (Red Hat family)](../images/install_postgresql_redhat.png)
 
 1. Install the latest client packages.
 
@@ -79,7 +77,7 @@ import TabItem from '@theme/TabItem';
 Simply run:
 
 ```
-sudo dnf install postgresql.x86_64 
+sudo dnf install postgresql.x86_64
 ```
 
 > `postgresql` represents the PostgreSQL client programs including `psql` in DNF.

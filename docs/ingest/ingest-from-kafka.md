@@ -351,6 +351,7 @@ You can specify the following configurations in the `ENCODE AVRO (...)` clause t
 - `aws.credentials.secret_access_key`: Your AWS secret access key.
 
 - `aws.credentials.role.arn`: The Amazon Resource Name (ARN) of the role to assume. For example, `arn:aws:iam::123456123456:role/MyGlueRole`.
+  - This IAM role shall be granted permissions for the action `glue:GetSchemaVersion`.
 
 **ARN to the schema**:
 

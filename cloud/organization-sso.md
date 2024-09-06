@@ -37,21 +37,22 @@ Configure the properties below on the IdP platform:
 ### Step 2: Configure SSO on RisingWave Cloud
 
 1. Go to the [**Org.**](https://cloud.risingwave.com/organization/) tab and select **SSO configuration**.
-   
+
 2. Click **Create SSO configuration**.
 
 3. Create a descriptive name for your SSO configuration. Enter the SSO URL, select the protocol and signature algorithm you used on your IdP platform, and upload the IdP certificate.
-   
+
   <img
   src={require('./images/org-sso-create.png').default}
   alt="Create SSO configuration"
   width="400"
   />
 
-  <details><summary>If you're using Okta, you can find the values here</summary>
+  <details>
+  <summary>If you're using Okta, you can find the values here</summary>
 
     1. Log in to your Okta account and navigate to the **Applications** section.
-  
+
     2. Select the SAML application you created for RisingWave Cloud.
 
     <img
@@ -59,15 +60,15 @@ Configure the properties below on the IdP platform:
     alt="Okta applications"
     width="90%"
     />
-   
+
     3. Click **View SAML setup instructions**.
-   
+
     <img
     src={require('./images/org-sso-okta-1.png').default}
     alt="Okta applications"
     width="90%"
     />
-    
+
     You can find the SSO URL and download the certificate file here.
 
     <img
@@ -75,9 +76,9 @@ Configure the properties below on the IdP platform:
     alt="Okta SAML setup instructions"
     width="90%"
     />
-   
+
   </details>
-    
+
 4. Click **Confirm** to save the configuration.
 
 5. After creation, a card with the SSO details will be added to the **SSO configuration** page. Use the `AscUrl` and `Entity ID` values from this card to fill the `IdP Single Sign-On URL` and `SP Entity ID / Issuer / Audience URI` fields on your IdP platform.
@@ -88,8 +89,9 @@ Configure the properties below on the IdP platform:
   width="350"
   />
 
-  <details><summary>If you're using Okta, you can find the settings here</summary>
-  
+  <details>
+  <summary>If you're using Okta, you can find the settings here</summary>
+
     1. In the SAML application for RisingWave Cloud, select the **General** tab.
 
     <img
@@ -97,9 +99,9 @@ Configure the properties below on the IdP platform:
     alt="General tab of the application"
     width="90%"
     />
-   
+
     2. Scroll down to the **SAML Settings** section and click **Edit**.
-   
+
     <img
     src={require('./images/org-sso-okta-4.png').default}
     alt="SAML settings"
@@ -115,7 +117,7 @@ Configure the properties below on the IdP platform:
     />
 
     4. Scroll down and click **Next**. Then, **Finish**.
-   
+
   </details>
 
 6. Switch the toggle on the card to enable the SSO configuration for your organization.

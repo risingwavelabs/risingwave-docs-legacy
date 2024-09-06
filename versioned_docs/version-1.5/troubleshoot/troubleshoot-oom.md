@@ -17,10 +17,7 @@ This guide focuses on addressing OOM issues on the compute node. If you encounte
 1. The Kubernetes shows the compute node pod suddenly restarts due to **OOM Killed (137)**.
 2. The Grafana metrics show memory increases unbounded, beyond the limit of `total_memory` set for the compute node. Memory settings can be found in the booting logs of the compute node. Search for keyword “Memory outline" to locate the specific section.
 
-<img
-  src={require('../images/oom-symptom.png').default}
-  alt="Out-of-memory symptom"
-/>
+  ![Out-of-memory symptom](../images/oom-symptom.png)
 
 ## OOM when creating materialized views
 
@@ -44,16 +41,13 @@ Barriers play a vital role in our system, supporting the proper functioning of i
 
 Barrier latency can be observed from Grafana dashboard - Barrier latency panel. For example, the latency curve in the following figure is abnormal, which indicates that the barrier is getting stuck.
 
-<img
-  src={require('../images/example_bad_barrier_latency.png').default}
-  alt="Out-of-memory symptom"
-/>
+![An example of extremely high latency](../images/example_bad_barrier_latency.png)
 
 Instead of solely addressing the memory problem, we recommend investigating why the barrier is getting stuck. This issue could be caused by heavy streaming jobs, sudden impact of input traffic, or even some temporary issues.
 
 Some tools will be helpful in troubleshooting this issue:
 
-- Observe the backpressure between fragments (actors) in Grafana. A high backpressure between 2 fragments indicates that the downstream one is not able to process the data fast enough, therefore slowing down the whole streaming job. 
+- Observe the backpressure between fragments (actors) in Grafana. A high backpressure between 2 fragments indicates that the downstream one is not able to process the data fast enough, therefore slowing down the whole streaming job.
 - Check the Await Tree Dump of all compute nodes in RisingWave Dashboard. If the barrier is stuck, the Await Tree Dump will show the barrier is waiting for a specific operation to finish. This fragment is likely to be the bottleneck of the streaming job.
 
 In either case, you can try to increase the parallelism by adding more nodes into the cluster, or check the SQL query to see if there is any room for optimization.
@@ -66,7 +60,7 @@ We have added a heap profiling utility in the RisingWave Dashboard to help you a
 
 :::info
 
-To enable memory profiling, please set the environment variable `MALLOC_CONF=prof:true` for the compute nodes. 
+To enable memory profiling, please set the environment variable `MALLOC_CONF=prof:true` for the compute nodes.
 
 :::
 

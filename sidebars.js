@@ -42,7 +42,7 @@ const sidebars = {
         },
         {
           "type": "category",
-          "label": "Deploy in distributed environments",
+          "label": "Deploy in production",
           "collapsible": true,
           "collapsed": true,
           "items": [
@@ -62,68 +62,20 @@ const sidebars = {
               "label": "Deploy on Kubernetes with Helm"
             }
           ]
-        },        
-        {
-          type: "doc",
-          label: "Integrations",
-          id: "rw-integration-summary",
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "Demos",
-      collapsible: true,
-      collapsed: true,
-      items: [
-        {
-          type: "doc",
-          id: "tutorials/tutorials-overview",
-          label: "Overview",
-        },
-        {
-          type: "doc",
-          id: "tutorials/real-time-ad-performance-analysis",
-          label: "Real-time ad performance analysis",
-        },
-        {
-          type: "doc",
-          id: "tutorials/server-performance-anomaly-detection",
-          label: "Server performance anomaly detection",
-        },
-        {
-          type: "doc",
-          id: "tutorials/fast-twitter-events-processing",
-          label: "Fast Twitter events processing",
-        },
-        {
-          type: "doc",
-          id: "tutorials/clickstream-analysis",
-          label: "Clickstream analysis",
-        },
-        {
-          type: "doc",
-          id: "tutorials/live-stream-metrics-analysis",
-          label: "Live stream metrics analysis",
-        },
-        {
-          type: "doc",
-          id: "tutorials/use-risingwave-to-monitor-risingwave-metrics",
-          label: "Use RisingWave to monitor RisingWave metrics",
         },
       ],
     },
     {
       type: "category",
       label: "Manage data",
-      collapsible: true,
+      collapsible: false,
       collapsed: false,
       items: [
         {
           type: "category",
           label: "Ingest data",
           collapsible: true,
-          collapsed: false,
+          collapsed: true,
           items: [
             {
               type: "category",
@@ -166,7 +118,7 @@ const sidebars = {
               type: "category",
               label: "Sources",
               collapsible: true,
-              collapsed: false,
+              collapsed: true,
               link: {
                 type: "generated-index",
                 title: "Sources",
@@ -342,7 +294,7 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Transform & query data",
+          label: "Process data",
           collapsible: true,
           collapsed: true,
           items: [
@@ -352,120 +304,43 @@ const sidebars = {
               id: "transform/transform-overview",
             },
             {
-              type: "doc",
-              id: "sql/syntax/sql-pattern-dynamic-filters",
-              label: "Dynamic filters",
-            },
-            {
-              type: "doc",
-              id: "sql/syntax/sql-pattern-temporal-filters",
-              label: "Temporal filters",
-            },
-            {
-              type: "doc",
-              id: "transform/indexes",
-              label: "Indexes",
-            },
-            {
-              type: "doc",
-              id: "sql/query-syntax/query-syntax-join-clause",
-              label: "Joins",
-            },
-            {
-              type: "doc",
-              id: "sql/functions-operators/sql-function-time-window",
-              label: "Time windows",
-            },
-            {
-              type: "doc",
-              id: "sql/syntax/sql-pattern-topn",
-              label: "Top-N by group",
-            },
-            {
               type: "category",
-              label: "Emit on window close",
+              label: "SQL",
               collapsible: true,
-              collapsed: true,
-              link: {
-                type: "doc",
-                id: "transform/emit-on-window-close",
-              },
+              collapsed: false,
               items: [
                 {
                   type: "doc",
-                  id: "transform/watermarks",
-                  label: "Watermarks",
+                  id: "sql/syntax/sql-pattern-dynamic-filters",
+                  label: "Dynamic filters",
+                },
+                {
+                  type: "doc",
+                  id: "sql/syntax/sql-pattern-temporal-filters",
+                  label: "Temporal filters",
+                },
+
+                {
+                  type: "doc",
+                  id: "sql/query-syntax/query-syntax-join-clause",
+                  label: "Joins",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-time-window",
+                  label: "Time windows",
+                },
+                {
+                  type: "doc",
+                  id: "sql/syntax/sql-pattern-topn",
+                  label: "Top-N by group",
                 },
               ]
             },
             {
-              type: "category",
-              label: "User-defined functions",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: "doc",
-                  id: "sql/udf/user-defined-functions",
-                  label: "Overview",
-                },
-                {
-                  type: "category",
-                  label: "External UDFs",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-python",
-                      label: "Python",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-java",
-                      label: "Java",
-                    },
-                  ],
-                },
-                {
-                  type: "category",
-                  label: "Embedded UDFs",
-                  collapsible: true,
-                  collapsed: true,
-                  items: [
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-python-embedded",
-                      label: "Python",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-javascript",
-                      label: "JavaScript",
-                    },
-                    {
-                      type: "doc",
-                      id: "sql/udf/udf-rust",
-                      label: "Rust",
-                    }
-                  ],
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/sql-udfs",
-                  label: "SQL UDFs",
-                },
-                {
-                  type: "doc",
-                  id: "sql/udf/udf-foreign-data",
-                  label: "Foreign data",
-                },
-              ],
-            },
-            {
               type: "doc",
-              id: "transform/use-dbt",
-              label: "Use dbt for data transformations",
+              id: "transform/deletes-and-updates",
+              label: "Deletes and updates",
             },
             {
               type: "doc",
@@ -474,66 +349,23 @@ const sidebars = {
             },
             {
               type: "doc",
-              id: "transform/subscription",
-              label: "Subscription",
+              id: "transform/watermarks",
+              label: "Watermarks",
+            },
+            {
+              type: "doc",
+              id: "transform/emit-on-window-close",
+              label: "Emit on window close",
+            },
+            {
+              type: "doc",
+              id: "transform/indexes",
+              label: "Indexes",
             },
             {
               type: "doc",
               id: "transform/time-travel-queries",
               label: "Time travel queries",
-            },
-            {
-              type: "doc",
-              id: "transform/ad-hoc-queries",
-              label: "Ad-hoc queries",
-            },
-            {
-              type: "doc",
-              id: "transform/deletes-and-updates",
-              label: "Deletes and updates",
-            },
-          ],
-        },
-        {
-          type: "category",
-          label: "Visualize data",
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: "doc",
-              label: "Overview",
-              id: "guides/visualize-overview",
-            },
-            {
-              type: "doc",
-              label: "Beekeeper Studio",
-              id: "guides/beekeeper-integration",
-            },
-            {
-              type: "doc",
-              label: "DBeaver",
-              id: "guides/dbeaver-integration",
-            },
-            {
-              type: "doc",
-              label: "Grafana",
-              id: "guides/grafana-integration",
-            },
-            {
-              type: "doc",
-              label: "Looker",
-              id: "guides/looker-integration",
-            },
-            {
-              type: "doc",
-              label: "Metabase",
-              id: "guides/metabase-integration",
-            },
-            {
-              type: "doc",
-              label: "Superset",
-              id: "guides/superset-integration",
             },
           ],
         },
@@ -552,6 +384,11 @@ const sidebars = {
               type: "doc",
               id: "guides/risingwave-as-postgres-fdw",
               label: "RisingWave as Postgres FDW",
+            },
+            {
+              type: "doc",
+              id: "transform/subscription",
+              label: "Subscription",
             },
             {
               type: "category",
@@ -631,6 +468,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  label: "MongoDB",
+                  id: "guides/sink-to-mongodb",
+                },
+                {
+                  type: "doc",
                   label: "MQTT",
                   id: "guides/sink-to-mqtt",
                 },
@@ -686,10 +528,38 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "Develop",
+      label: "Develop & reference",
       collapsible: false,
       collapsed: false,
       items: [
+        {
+          type: "doc",
+          id: "concepts/key-concepts",
+          label: "Glossary",
+        }, 
+        {
+          type: "category",
+          label: "Architecture",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              id: "reference/architecture",
+              label: "Overview",
+            },
+            {
+              type: "doc",
+              label: "Fault tolerance",
+              id: "reference/fault-tolerance",
+            },
+            {
+              type: "doc",
+              label: "Data persistence",
+              id: "reference/data-persistence",
+            },
+          ]
+        },
         {
           type: "category",
           label: "SQL references",
@@ -977,73 +847,160 @@ const sidebars = {
         },
         {
           type: "category",
-          label: "Client libraries",
+          label: "User-defined functions",
           collapsible: true,
           collapsed: true,
-          link: {
-            type: "doc",
-            id: "dev/client-libraries-overview",
-          },
           items: [
-            // {
-            //   type: "doc",
-            //   id: "dev/java-client-libraries",
-            //   label: "Java",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/nodejs-client-libraries",
-            //   label: "Node.js",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/python-client-libraries",
-            //   label: "Python",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/go-client-libraries",
-            //   label: "Go",
-            // },
-            // {
-            //   type: "doc",
-            //   id: "dev/ruby-client-libraries",
-            //   label: "Ruby",
-            // },
+            {
+              type: "doc",
+              id: "sql/udf/user-defined-functions",
+              label: "Overview",
+            },
+            {
+              type: "category",
+              label: "External UDFs",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-python",
+                  label: "Python",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-java",
+                  label: "Java",
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Embedded UDFs",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-python-embedded",
+                  label: "Python",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-javascript",
+                  label: "JavaScript",
+                },
+                {
+                  type: "doc",
+                  id: "sql/udf/udf-rust",
+                  label: "Rust",
+                }
+              ],
+            },
+            {
+              type: "doc",
+              id: "sql/udf/sql-udfs",
+              label: "SQL UDFs",
+            },
           ],
         },
-      ],
-    },
-    {
-      type: "category",
-      label: "Reference",
-      collapsible: true,
-      collapsed: true,
-      items: [
         {
-          type: "doc",
-          id: "reference/architecture",
-          label: "Architecture",
-        },
-        {
-          type: "doc",
-          id: "concepts/key-concepts",
-          label: "Key concepts and terms",
-        },
-        {
-          type: "doc",
-          label: "Fault tolerance",
-          id: "reference/fault-tolerance",
-        },
-        {
-          type: "doc",
-          label: "Data persistence",
-          id: "reference/data-persistence",
-        },
-        {
-          type: "doc",
-          label: "Transactions",
-          id: "concepts/transactions",
+          type: "category",
+          label: "Integrations",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: "doc",
+              label: "Overview",
+              id: "rw-integration-summary",
+            },
+            {
+              type: "doc",
+              id: "transform/use-dbt",
+              label: "Use dbt to manage pipelines",
+            },
+            {
+              type: "category",
+              label: "Client libraries",
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: "doc",
+                id: "dev/client-libraries-overview",
+              },
+              items: [
+                // {
+                //   type: "doc",
+                //   id: "dev/java-client-libraries",
+                //   label: "Java",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/nodejs-client-libraries",
+                //   label: "Node.js",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/python-client-libraries",
+                //   label: "Python",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/go-client-libraries",
+                //   label: "Go",
+                // },
+                // {
+                //   type: "doc",
+                //   id: "dev/ruby-client-libraries",
+                //   label: "Ruby",
+                // },
+              ],
+            },
+            {
+              type: "category",
+              label: "Visualization tools",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  label: "Overview",
+                  id: "guides/visualize-overview",
+                },
+                {
+                  type: "doc",
+                  label: "Beekeeper Studio",
+                  id: "guides/beekeeper-integration",
+                },
+                {
+                  type: "doc",
+                  label: "DBeaver",
+                  id: "guides/dbeaver-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Grafana",
+                  id: "guides/grafana-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Looker",
+                  id: "guides/looker-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Metabase",
+                  id: "guides/metabase-integration",
+                },
+                {
+                  type: "doc",
+                  label: "Superset",
+                  id: "guides/superset-integration",
+                },
+              ],
+            },
+          ],
         },
       ],
     },
@@ -1156,7 +1113,7 @@ const sidebars = {
       type: "category",
       label: "Optimize performance",
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -1175,34 +1132,52 @@ const sidebars = {
     },
     {
       type: "category",
-      label: "FAQ",
+      label: "Demos",
       collapsible: true,
       collapsed: true,
       items: [
         {
           type: "doc",
-          id: "faq/faq-overview"
+          id: "tutorials/tutorials-overview",
+          label: "Overview",
         },
         {
           type: "doc",
-          id: "faq/faq-when-to-use-risingwave"
+          id: "tutorials/real-time-ad-performance-analysis",
+          label: "Real-time ad performance analysis",
         },
         {
           type: "doc",
-          label: "RisingWave vs. Flink",
-          id: "faq/risingwave-flink-comparison",
+          id: "tutorials/server-performance-anomaly-detection",
+          label: "Server performance anomaly detection",
         },
         {
           type: "doc",
-          id: "faq/faq-using-risingwave"
+          id: "tutorials/fast-twitter-events-processing",
+          label: "Fast Twitter events processing",
         },
-      ]
+        {
+          type: "doc",
+          id: "tutorials/clickstream-analysis",
+          label: "Clickstream analysis",
+        },
+        {
+          type: "doc",
+          id: "tutorials/live-stream-metrics-analysis",
+          label: "Live stream metrics analysis",
+        },
+        {
+          type: "doc",
+          id: "tutorials/use-risingwave-to-monitor-risingwave-metrics",
+          label: "Use RisingWave to monitor RisingWave metrics",
+        },
+      ],
     },
     {
       type: "category",
       label: "Troubleshooting",
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: [
         {
           type: "doc",
@@ -1272,8 +1247,33 @@ const sidebars = {
     },
     {
       type: "category",
+      label: "FAQ",
+      collapsible: false,
+      collapsed: false,
+      items: [
+        {
+          type: "doc",
+          id: "faq/faq-overview"
+        },
+        {
+          type: "doc",
+          id: "faq/faq-when-to-use-risingwave"
+        },
+        {
+          type: "doc",
+          label: "RisingWave vs. Flink",
+          id: "faq/risingwave-flink-comparison",
+        },
+        {
+          type: "doc",
+          id: "faq/faq-using-risingwave"
+        },
+      ]
+    },
+    {
+      type: "category",
       label: "Releases",
-      collapsible: true,
+      collapsible: false,
       collapsed: false,
       items: [
         {

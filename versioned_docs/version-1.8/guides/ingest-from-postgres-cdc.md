@@ -19,7 +19,7 @@ You can ingest CDC data from PostgreSQL into RisingWave in two ways:
   With this connector, RisingWave can connect to PostgreSQL databases directly to obtain data from the binlog without starting additional services.
 
 - Using a CDC tool and a message broker
-  
+
   You can use a CDC tool and then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/ingest/ingest-from-cdc.md) topic.
 
 ## Set up PostgreSQL
@@ -45,7 +45,7 @@ import TabItem from '@theme/TabItem';
     Keep in mind that changing the `wal_level` requires a restart of the PostgreSQL instance and can affect database performance.
 
     :::note
-    If you choose to create multiple CDC tables without using a shared source, be sure to set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 10. 
+    If you choose to create multiple CDC tables without using a shared source, be sure to set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 10.
     :::
 
 2. Assign `REPLICATION`, `LOGIN`，and `CREATEDB` role attributes to the user.
@@ -74,9 +74,9 @@ import TabItem from '@theme/TabItem';
     Run the following statements to grant the required privileges to the user.
 
     ```sql
-    GRANT CONNECT ON DATABASE <database_name> TO <username>;   
-    GRANT USAGE ON SCHEMA <schema_name> TO <username>;  
-    GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>; 
+    GRANT CONNECT ON DATABASE <database_name> TO <username>;
+    GRANT USAGE ON SCHEMA <schema_name> TO <username>;
+    GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>;
     GRANT CREATE ON DATABASE <database_name> TO <username>;
     ```
 
@@ -111,30 +111,21 @@ Here we will use a standard class AWS RDS PostgreSQL instance without Multi-AZ d
 
 1. Check whether the `wal_level` parameter is set to `logical`. If it is `logical` then we are done. Otherwise, create a parameter group for your   Postgres instance. We created a parameter group named **pg-cdc** for the instance that is running Postgres 12. Next, click the **pg-cdc** parameter group to edit the value of `rds.logical_replication` to 1.
 
-    If you choose to create multiple CDC tables without using a shared source, set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 20 for versions 13 and later. 
+    If you choose to create multiple CDC tables without using a shared source, set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 20 for versions 13 and later.
 
     :::note
     There is a known issue regarding the WAL write-through cache of AWS Aurora PostgreSQL, which leads to data loss. This affects Aurora PostgreSQL versions 14.5, 13.8, 12.12, and 11.17. To avoid this, set the `rds.logical_wal_cache` parameter to 0.
     :::
 
-    <img
-    src={require('../images/wal-level.png').default}
-    alt="Change the wal-level for pg instance"
-    />
+    ![Change the wal-level for pg instance](../images/wal-level.png)
 
 2. Go to the **Databases** page and modify your instance to use the **pg-cdc** parameter group.
 
-    <img
-    src={require('../images/pg-cdc-parameter.png').default}
-    alt="Apply modified parameter group to pg instance"
-    />
+    ![Apply modified parameter group to pg instance](../images/pg-cdc-parameter.png)
 
 3. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save changes. Remember to reboot the Postgres instance to put the changes into effect.
 
-    <img
-    src={require('../images/modify-instances.png').default}
-    alt="Apply changes"
-    />
+    ![Apply changes](../images/modify-instances.png)
 
 4. Grant the RDS replication privileges to the user.
 
@@ -170,14 +161,14 @@ Syntax for creating a CDC table. Note that a primary key is required and must be
 CREATE TABLE [ IF NOT EXISTS ] table_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
-) 
+)
 WITH (
-    snapshot='true' 
+    snapshot='true'
 )
 FROM source TABLE table_name;
 ```
 
-To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it. 
+To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it.
 
 ### Connector parameters
 
@@ -247,9 +238,9 @@ CREATE SOURCE pg_mydb WITH (
 );
 ```
 
-With the source created, you can create multiple CDC tables that ingest data from different tables and schemas in the upstream database without needing to specify the database connection parameters again. 
+With the source created, you can create multiple CDC tables that ingest data from different tables and schemas in the upstream database without needing to specify the database connection parameters again.
 
-For instance, the following CDC table in RisingWave ingests data from table `tt3` in the schema `public`. When specifying the PostgreSQL table name in the `FROM` clause after the keyword `TABLE`, the schema name must also be specified. 
+For instance, the following CDC table in RisingWave ingests data from table `tt3` in the schema `public`. When specifying the PostgreSQL table name in the `FROM` clause after the keyword `TABLE`, the schema name must also be specified.
 
 ```sql
 CREATE TABLE tt3 (

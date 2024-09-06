@@ -11,10 +11,7 @@ import OutlinedCard from "@site/src/components/OutlinedCard";
 
 It is the most intuitive and easy way to interact with RisingWave via workspace. It offers graphical tools for managing data and visualizing results.
 
-<img
-src={require('./images/console.png').default}
-alt="Console"
-/>
+![Console](./images/console.png)
 
 <DefaultButton text="Go to query console" url="https://cloud.risingwave.com/console/" block/>
 
@@ -72,7 +69,7 @@ width="270px"
 
 The sample queries cover the most common steps in RisingWave, such as establishing a connection with a data source, processing data by defining materialized views and querying the results.
 
-See [Explore RisingWave with examples](/quickstart.md/?step=4) for details.
+See [Explore RisingWave with examples](./quickstart.md#step-4-explore-risingwave-with-examples) for details.
 
 #### Switch users
 

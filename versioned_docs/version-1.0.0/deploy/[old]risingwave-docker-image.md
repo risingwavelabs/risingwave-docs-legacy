@@ -29,7 +29,7 @@ You can find the previous releases and nightly builds on [Docker Hub](https://hu
 
 If you see the logs, you have successfully started RisingWave.
 
-<img src={require('../images/risedev_docker_image_logs.png').default} alt="RisingWave Playground Logs"/>
+![RisingWave Playground Logs](../images/risedev_docker_image_logs.png)
 
 ## Connect to RisingWave
 

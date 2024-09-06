@@ -5,7 +5,7 @@ description: Connect Beekeeper Studio to RisingWave.
 slug: /beekeeper-integration
 ---
 
-Beekeeper Studio is a modern, easy to use SQL editor and database manager. It provides a graphical user interface, allowing you to efficiently query and manage PostgreSQL, MySQL, SQL Server and more. Since RisingWave is PostgreSQL compatible, you can connect easily connect Beekeeper Studio to RisingWave. 
+Beekeeper Studio is a modern, easy to use SQL editor and database manager. It provides a graphical user interface, allowing you to efficiently query and manage PostgreSQL, MySQL, SQL Server and more. Since RisingWave is PostgreSQL compatible, you can connect easily connect Beekeeper Studio to RisingWave.
 
 :::note
 RisingWave only supports connecting the Beekeeper Studio Community edition. The Ultimate (commercial) edition is not officially tested with RisingWave and may contain bugs. Please report any issues with the Ultimate edition to the RisingWave team.
@@ -33,11 +33,8 @@ RisingWave only supports connecting the Beekeeper Studio Community edition. The 
 
     - Password: The password associated with the provided username. By default, there is no password for `root`.
 
-    <img
-    src={require('../images/beekeeper-connection.png').default}
-    alt="Fill in connection settings in Beekeeper Studio"
-    />
+    ![Fill in connection settings in Beekeeper Studio](../images/beekeeper-connection.png)
 
-3. Click **Test**. If there are no issues, click **Connect**. 
+3. Click **Test**. If there are no issues, click **Connect**.
 
 Now that the connection is established. By default, anything created in RisingWave, such as tables, sources, or materialized views, will be listed under the dev database and the public schema. Now you can leverage Beekeeper Studio's interface and studio on the RisingWave database.
