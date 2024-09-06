@@ -203,11 +203,9 @@ See [Emit on Window Close](transform/emit-on-window-close.md) for more informati
 
 ## Process-time temporal joins
 
-Process-time temporal joins are divided into two categories: append-only process-time temporal join and non-append-only process-time temporal join. Check the following instructions for their differences.
+A process-time temporal join is a join that uses the process time of the left-hand side (LHS) table to look up the right-hand side (RHS) table. The latest value at the moment of joining from the RHS table is used.
 
-### Append-only process-time temporal join
-
-An append-only temporal join is often used to widen a fact table. Its advantage is that it does not require RisingWave to maintain the join state, making it suitable for scenarios where the dimension table is not updated, or where updates to the dimension table do not affect the previously joined results. To further improve performance, you can use the index of a dimension table to form a join with the fact table.
+Different from regular joins, the changes in the RHS table are not reflected in the join result. The join result is only updated when the LHS table changes.
 
 #### Syntax
 
@@ -219,15 +217,15 @@ ON <join_conditions>;
 
 #### Notes
 
-- The left table expression is an append-only table or source.
+- The left table expression is a table or source.
 - The right table expression is a table, index or materialized view.
 - The process-time syntax `FOR SYSTEM_TIME AS OF PROCTIME()` is included in the right table expression.
 - The join type is INNER JOIN or LEFT JOIN.
-- The Join condition includes the primary key of the right table expression.
+- The Join condition includes the primary key or index key of the right table expression. Please create an index on the right table expression if necessary.
 
 #### Example
 
-If you have an append-only stream that includes messages like below:
+If you have a source that emits messages like below:
 
 | transaction_id | product_id | quantity | sale_date  | process_time        |
 |----------------|------------|----------|------------|---------------------|
@@ -235,14 +233,20 @@ If you have an append-only stream that includes messages like below:
 | 2              | 102        | 2        | 2023-06-19 | 2023-06-19 15:30:00 |
 | 3              | 101        | 1        | 2023-06-20 | 2023-06-20 11:45:00 |
 
-And a versioned table `products`:
+Assuming the data of `products` is as follows at 2023-06-18 10:15:00 (process time of transaction 1) and 2023-06-19 15:30:00 (process time of transaction 2):
 
-| id | product_name | price | valid_from          | valid_to            |
-|------------|--------------|-------|---------------------|---------------------|
-| 101        | Product A    | 20    | 2023-06-01 00:00:00 | 2023-06-15 23:59:59 |
-| 101        | Product A    | 25    | 2023-06-16 00:00:00 | 2023-06-19 23:59:59 |
-| 101        | Product A    | 22    | 2023-06-20 00:00:00 | NULL                |
-| 102        | Product B    | 15    | 2023-06-01 00:00:00 | NULL                |
+| id | product_name | price |
+|----|--------------|-------|
+| 101 | Product A    | 25    |
+| 102 | Product B    | 15    |
+
+
+At 2023-06-20 11:45:00 (process time of transaction 3):
+
+| id | product_name | price |
+|----|--------------|-------|
+| 101 | Product A    | 22    |
+| 102 | Product B    | 15    |
 
 For the same product ID, the product name or the price is updated from time to time.
 
@@ -252,7 +256,7 @@ You can use a temporal join to fetch the latest product name and price from the 
 SELECT transaction_id, product_id, quantity, sale_date, product_name, price 
 FROM sales
 JOIN products FOR SYSTEM_TIME AS OF PROCTIME()
-ON product_id = id WHERE process_time BETWEEN valid_from AND valid_to;
+ON product_id = id;
 ```
 
 | transaction_id | product_id | quantity | sale_date  | product_name | price |
@@ -261,34 +265,29 @@ ON product_id = id WHERE process_time BETWEEN valid_from AND valid_to;
 | 2              | 102        | 2        | 2023-06-19 | Product B    | 15    |
 | 3              | 101        | 1        | 2023-06-20 | Product A    | 22    |
 
-### Non-append-only process-time temporal join
+Notice that the Produce A's price is 25 at the time of transaction 1 and 22 at the time of transaction 3.
 
-Compared to the append-only temporal join, the non-append-only temporal join can accommodate non-append-only input for the left table. However, it introduces an internal state to materialize the lookup result for each left-hand side (LHS) insertion. This allows the temporal join operator to retract the join result it sends downstream when update or delete messages arrive.
+### Internal state
 
-#### Syntax
+Depending on LHS, the process-time temporal join may or may not maintain the internal state. 
 
-The non-append-only temporal join shares the same syntax as the append-only temporal join.
+- If the LHS is append-only i.e. a source, the join operator does not maintain the internal state.
+- If the LHS is non-append-only i.e. a table or materialized view, the join operator needs to maintain the internal state of lookup results in the past. This is because the historical values of the RHS table is necessary to emit a correct delete event when a LHS row is deleted.
 
-```sql
-<table_expression> [ LEFT | INNER ] JOIN <table_expression> FOR SYSTEM_TIME AS OF PROCTIME() ON <join_conditions>;
-```
-
-#### Example
-
-Now if you update the table `sales`:
+You may inspect it with the `EXPLAIN` command. For example, the following query's LHS is a source, so the join operator does not maintain the internal state.
 
 ```sql
-UPDATE sales SET quantity = quantity + 1;
+EXPLAIN CREATE MATERIALIZED VIEW mv1 AS
+select id1, a1, id2, a2 from stream, version FOR SYSTEM_TIME AS OF PROCTIME() where id1 = id2 AND a2 < 10;
 ```
 
-You will get these results:
+```
+StreamMaterialize { ... }
+└─StreamExchange { ... }
+  └─StreamTemporalJoin { type: Inner, append_only: true, predicate: stream.id1 = version.id2 AND (version.a2 < 10:Int32), output: [stream.id1, stream.a1, version.id2, version.a2, stream._row_id] }
+    ├─StreamExchange { ... }
+    │ └─StreamTableScan { table: stream, ... }
+    └─StreamExchange { ... }
+      └─StreamTableScan { table: version, ... }
+```
 
-| transaction_id | product_id | quantity | sale_date | product_name | price |
-| --- | --- | --- | --- | --- | --- |
-| 1 | 101 | 4 | 2023-06-18 | Product A | 25 |
-| 2 | 102 | 3 | 2023-06-19 | Product B | 15 |
-| 3 | 101 | 2 | 2023-06-20 | Product A | 22 |
-
-:::note
-Every time you update the left-hand side table, it will look up the latest data from the right-hand side table.
-:::
