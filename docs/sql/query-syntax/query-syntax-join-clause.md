@@ -7,6 +7,9 @@ title: Joins
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-join-clause/" />
 </head>
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 A JOIN clause, also known as a join, combines the results of two or more table expressions based on certain conditions, such as whether the values of some columns are equal.
 
 For regular equality joins on streaming queries, the temporary join results are unbounded. If the size of the join results becomes too large, query performance may get impacted. Therefore, you may want to consider time-bounded join types such as interval joins and temporal joins.
@@ -88,7 +91,6 @@ CREATE SOURCE s1 (
  WATERMARK FOR ts AS ts - INTERVAL '20' SECOND
 ) WITH (connector = 'datagen');
 
-
 CREATE SOURCE s2 (
  id int, 
  value int, 
@@ -98,6 +100,9 @@ CREATE SOURCE s2 (
 ```
 
 You can join them with the following statement:
+
+<Tabs>
+<TabItem value="emit_on_update" label="Emit on Update" default>
 
 ```sql
 CREATE MATERIALIZED VIEW window_join AS
@@ -109,6 +114,42 @@ FROM TUMBLE(s1, ts, interval '1' MINUTE)
 JOIN TUMBLE(s2, ts, interval '1' MINUTE)
 ON s1.id = s2.id and s1.window_start = s2.window_start;
 ```
+
+This query will join the two sources `s1` and `s2` based on the `id` column and the window start time. For the unclosed windows, the join result will be updated immediately when new data arrives.
+
+</TabItem>
+<TabItem value="emit_on_window_close" label="Emit on Window Close">
+
+
+```sql
+CREATE MATERIALIZED VIEW window_join AS
+SELECT s1.id AS id1,
+       s1.value AS value1,
+       s2.id AS id2,
+       s2.value AS value2
+FROM TUMBLE(s1, ts, interval '1' MINUTE)
+JOIN TUMBLE(s2, ts, interval '1' MINUTE)
+ON s1.id = s2.id and s1.window_start = s2.window_start
+EMIT ON WINDOW CLOSE;
+```
+This query will join the two sources `s1` and `s2` based on the `id` column and the window start time. The join result will be outputted only when the window closes, so unclosed windows will not be shown in the materialized view or downstream.
+
+See [Emit on Window Close](transform/emit-on-window-close.md) for more information on the `EMIT ON WINDOW CLOSE` clause.
+
+</TabItem>
+</Tabs>
+
+### State Cleaning
+
+Usually, a join operator will maintain all the existing rows for both sides in the internal state table. However, if a window join satisfies the following conditions:
+
+- Both sides are defined with watermark.
+- Both of the time window functions are defined on their watermark columns respectively.
+- The join condition includes the equality condition on the watermark columns.
+
+Then, RisingWave will automatically clean up the state for the expired windows. The example above satisfies these conditions, so the join state will be cleaned up automatically after the 1-minute watermark passes.
+
+See [Watermarks](transform/watermarks.md) for more information on watermarks.
 
 ## Interval joins
 
@@ -124,6 +165,9 @@ In an interval join, the `interval_condition` must be a watermark-based range.
 
 For example, for sources `s1` and `s2` used in the above section, you can create an interval join:
 
+<Tabs>
+<TabItem value="emit_on_update" label="Emit on Update" default>
+
 ```sql
 CREATE MATERIALIZED VIEW interval_join AS
 SELECT s1.id AS id1,
@@ -133,6 +177,29 @@ SELECT s1.id AS id1,
 FROM s1 JOIN s2
 ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1' MINUTE;
 ```
+
+This query will join the two sources `s1` and `s2` based on the `id` column and the time range. For the unclosed windows, the join result will be updated immediately when new data arrives.
+
+</TabItem>
+<TabItem value="emit_on_window_close" label="Emit on Window Close">
+
+```sql
+CREATE MATERIALIZED VIEW interval_join AS
+SELECT s1.id AS id1,
+       s1.value AS value1,
+       s2.id AS id2,
+       s2.value AS value2
+FROM s1 JOIN s2
+ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1' MINUTE
+EMIT ON WINDOW CLOSE;
+```
+
+This query will join the two sources `s1` and `s2` based on the `id` column and the time range. The join result will be outputted only when the window closes, so unclosed windows will not be shown in the materialized view or downstream.
+
+See [Emit on Window Close](transform/emit-on-window-close.md) for more information on the `EMIT ON WINDOW CLOSE` clause.
+
+</TabItem>
+</Tabs>
 
 ## Process-time temporal joins
 
