@@ -16,17 +16,10 @@ jobs:
     name: Algolia Reindex
     runs-on: ubuntu-latest
     steps:
-      - name: Prepare basic auth token
-        id: prepare
-        run: |
-          token=`echo "${{secrets.CRAWLER_USER_ID}}:${{secrets.CRAWLER_API_KEY}}" | base64`
-          echo "token=$token" >> $GITHUB_OUTPUT
       - name: Trigger reindex
         id: trigger
-        uses: fjogeleit/http-request-action@v1
-        with:
-          url: "https://crawler.algolia.com/api/1/crawlers/${{secrets.CRAWLER_ID}}/reindex"
-          method: "POST"
-          customHeaders: '{"Authorization": "Basic ${{steps.prepare.outputs.token}}", "Content-Type": "application/json"}'
+        run: |
+          out=`curl -X POST -H "Content-Type: application/json" --user ${{secrets.CRAWLER_USER_ID}}:${{secrets.CRAWLER_API_KEY}} "https://crawler.algolia.com/api/1/crawlers/${{secrets.CRAWLER_ID}}/reindex"`
+          echo "response=$out" >> $GITHUB_OUTPUT
       - name: Post triggering
         run: echo "Triggered reindex task ${{ fromJson(steps.trigger.outputs.response).taskId }}"
