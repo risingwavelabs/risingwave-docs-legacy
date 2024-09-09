@@ -21,7 +21,7 @@ RisingWave can ingest millions of events per second, continuously join and analy
   <DefaultButton text="Get Started" doc="get-started" />
 </p>
 
-![RisingWave Architecture](./images/architecture_20240904.png)
+![RisingWave Architecture](./images/architecture_20240908.png)
 
 ## When is RisingWave the perfect fit?
 
