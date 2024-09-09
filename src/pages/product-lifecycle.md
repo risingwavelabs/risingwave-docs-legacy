@@ -26,7 +26,7 @@ Below is a list of all features in the public preview phase:
 | Feature name            | Start date | Start version |
 |---------------------------|------------|---------------|
 | [Approx percentile](/docs/next/sql-function-aggregate/#approx_percentile) | 2024.8     | 2.0           |
-| [Auto schema change feature for MySQL CDC source](/docs/next/ingest-from-mysql-cdc/#automatically-change-schema) | 2024.8     | 2.0           |
+| [Auto schema change in MySQL CDC](/docs/next/ingest-from-mysql-cdc/#automatically-change-schema) | 2024.8     | 2.0           |
 | [SQL Server CDC source](/docs/next/ingest-from-sqlserver-cdc/) | 2024.8    | 2.0         |
 | [Sink data in parquet format](/docs/next/data-delivery/#sink-data-in-parquet-format) | 2024.8     | 2.0           |
 | [Time travel queries](/docs/next/time-travel-queries/)         | 2024.7    | 2.0         |
