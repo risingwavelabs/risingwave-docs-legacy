@@ -8,7 +8,9 @@
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-azure-blob/" />
 </head>
 
-Use the SQL statement below to connect RisingWave to Azure Blob Storage using Azblob connector. Azure Blob Storage, provided by Microsoft Azure, allows you to store and manage large amounts of unstructured data. Note that the Azblob connector does not guarantee the sequential reading of files or complete file reading.
+[Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/), provided by Microsoft Azure, allows you to store and manage large amounts of unstructured data.
+
+Use the SQL statement below to connect RisingWave to Azure Blob Storage using Azblob connector. Note that the Azblob connector does not guarantee the sequential reading of files or complete file reading.
 
 ## Syntax
 
@@ -44,7 +46,7 @@ FORMAT data_format ENCODE data_encode (
 |azblob.credentials.account_key|Optional. The account key for the Azure Blob Storage account.|
 |azblob.endpoint_url|Required. The URL of the Azure Blob Storage service endpoint.|
 |match_pattern|Conditional. Set to find object keys in `azblob.container_name` that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported.|
-|compression_format|Optional. This field specifies the compression format of the file being read. When set to `gzip` or `gz`, the file reader reads all files with the `.gz` suffix. When set to `None` or not defined, the file reader will automatically read and decompress `.gz` and `.gzip` files.|
+|compression_format|Optional. Specifies the compression format of the file being read. When set to `gzip` or `gz`, the file reader reads all files with the `.gz` suffix; when set to `None` or not defined, the file reader will automatically read and decompress `.gz` and `.gzip` files.|
 
 ### Other parameters
 
@@ -117,7 +119,7 @@ WITH (
 <TabItem value="parquet" label="PARQUET" default>
 
 ```sql
-CREATE TABLE t(
+CREATE SOURCE s2(
     id int,
     name varchar,
     age int
