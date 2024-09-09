@@ -29,7 +29,7 @@ The following is a list of all features in the public preview phase:
 | [Google BigQuery sink](/docs/next/sink-to-bigquery/)           | 2023.11   | 1.4         |
 | [Subscription](/docs/next/subscription)                        | 2024.5    | 1.9         |
 | [Snowflake sink](/docs/next/sink-to-snowflake/)                | 2024.5    | 1.9         |
-| [MySQL CDC source (Auto-map schema)](/docs/next/ingest-from-mysql-cdc/#automatically-map-upstream-table-schema) | 2024.6     | 1.10          |
+| Auto-map upstream table schema in [MySQL CDC](/docs/next/ingest-from-mysql-cdc/#automatically-map-upstream-table-schema) and [PostgreSQL CDC](/docs/next/ingest-from-postgres-cdc/#automatically-map-upstream-table-schema) | 2024.6     | 1.10          |
 | [Amazon DynamoDB sink](/docs/next/sink-to-dynamodb/)           | 2024.6    | 1.10        |
 | [Time travel queries](/docs/next/time-travel-queries/)         | 2024.7    | 2.0         |
 | [Manage secrets](/docs/next/manage-secrets/)                   | 2024.7    | 2.0         |
@@ -53,6 +53,8 @@ The following is a list of all features in the public preview phase:
 | [`schema.registry.name.strategy`](/docs/next/supported-sources-and-formats/) | 2024.  | 1.      |
 | [Emit on window close](/docs/next/emit-on-window-close/)      | 2024.  | 1.      |
 |[Read-only transactions](/docs/next/sql-start-transaction)| 2024.  | 1.      |
-
+| [Auto schema change in MySQL CDC](/docs/next/ingest-from-mysql-cdc/#automatically-change-schema) | 2024.8     | 2.0           |
+| [Approx percentile](/docs/next/sql-function-aggregate/#approx_percentile) | 2024.8     | 2.0           |
+| [Sink data in parquet format](/docs/next/data-delivery/#sink-data-in-parquet-format) | 2024.8     | 2.0           |
 
 This table will be updated regularly to reflect the latest status of features as they progress through the release stages.

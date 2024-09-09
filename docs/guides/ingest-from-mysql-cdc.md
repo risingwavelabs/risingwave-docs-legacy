@@ -169,7 +169,7 @@ All the fields listed below are required. Note that the value of these parameter
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| Required if creating a shared source. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
 |ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with MySQL. It accepts three values: `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.|
-|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For performance considerations, transactions involving changes to more than 4096 rows cannot be guaranteed.|
 
 The following fields are used when creating a CDC table.
 
@@ -385,6 +385,10 @@ CREATE TABLE {{ this }}  (
 ```
 
 ## Automatically map upstream table schema
+
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
 
 :::info Public Preview
 This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).

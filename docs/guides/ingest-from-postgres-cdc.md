@@ -188,7 +188,7 @@ Unless specified otherwise, the fields listed are required. Note that the value 
 |ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with Postgres. It accepts three values: `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.|
 |publication.name| Optional. Name of the publication. By default, the value is `rw_publication`. For more information, see [Multiple CDC source tables](#multiple-cdc-source-tables). |
 |publication.create.enable| Optional. By default, the value is `'true'`. If `publication.name` does not exist and this value is `'true'`, a `publication.name` will be created. If `publication.name` does not exist and this value is `'false'`, an error will be returned. |
-|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For performance considerations, transactions involving changes to more than 4096 rows cannot be guaranteed.|
 
 :::note
 RisingWave implements CDC via PostgreSQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot). RisingWave does not automatically drop inactive replication slots. You must do this manually to prevent WAL files from accumulating in the upstream PostgreSQL database.
@@ -397,6 +397,14 @@ CREATE TABLE {{ this }} (
 ```
 
 ## Automatically map upstream table schema
+
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
 
 RisingWave supports automatically mapping the upstream table schema when creating a CDC table from a PostgreSQL CDC source. Instead of defining columns individually, you can use `*` when creating a table to ingest all columns from the source table. Note that `*` cannot be used if other columns are specified in the table creation process.
 
