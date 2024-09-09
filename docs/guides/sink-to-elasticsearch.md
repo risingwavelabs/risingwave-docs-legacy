@@ -16,8 +16,8 @@ The Elasticsearch sink connecter in RisingWave will perform index operations via
 - 5mb of updates
 - 5 seconds since the last flush (assuming new actions are queued)
 
-:::note Beta Feature
-The Elasticsearch sink connector in RisingWave is currently a Beta feature that supports only versions 7.x and 8.x of Elasticsearch. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 :::note
