@@ -235,6 +235,15 @@ SELECT * FROM s;
 
 To create a cluster and set up an IAM role for the cluster, see [Getting started using Amazon MSK](https://docs.aws.amazon.com/msk/latest/developerguide/getting-started.html).
 
+RisingWave requires the following permissions to access MSK:
+
+- `kafka-cluster:Connect`
+- `kafka-cluster:DescribeTopic`
+- `kafka-cluster:DescribeGroup`
+- `kafka-cluster:AlterGroup`
+- `kafka-cluster:ReadData`
+- `kafka-cluster:WriteData`
+
 ### Access MSK in RisingWave
 
 To access MSK using IAM, you need to use the `AWS_MSK_IAM` SASL mechanism. You also need to specify the following parameters.

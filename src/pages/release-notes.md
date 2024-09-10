@@ -46,22 +46,22 @@ This version was released on July 30, 2024.
 - Supports additional metadata columns for CDC tables. [#17051](https://github.com/risingwavelabs/risingwave/pull/17051). See [Ingest data from PostgreSQL CDC](/docs/current/ingest-from-postgres-cdc/), [Ingest data from MySQL CDC](/docs/current/ingest-from-mysql-cdc/), and [Ingest data from MongoDB CDC](/docs/current/ingest-from-mongodb-cdc/).
 - Automatically maps upstream table schema when creating MySQL and PostgreSQL tables. [#16986](https://github.com/risingwavelabs/risingwave/pull/16986). See [Ingest data from PostgreSQL CDC](/docs/current/ingest-from-postgres-cdc/) and [Ingest data from MySQL CDC](/docs/current/ingest-from-mysql-cdc/).
 - Sets a network timeout for JDBC sink connections. [#17244](https://github.com/risingwavelabs/risingwave/pull/17244).
-- Enables sink decouple by default for Kafka, Kinesis, Pulsar, Google Pub/Sub, NATS, MQTT, ClickHouse sinks. [#17221](https://github.com/risingwavelabs/risingwave/pull/17221). See [Overview of data delivery](docs/current/data-delivery/#sink-decoupling).
-- Supports the `KEY ENCODE` clause when creating a sink. [#16377](https://github.com/risingwavelabs/risingwave/pull/16377). See [Sink to Kafka](docs/current/create-sink-kafka/), [Sink data from RisingWave to Google Pub/Sub](/docs/current/sink-to-google-pubsub/), [Sink to AWS Kinesis](docs/current/sink-to-aws-kinesis/), [Sink data from RisingWave to Apache Pulsar](/docs/current/sink-to-pulsar/), [Sink data from RisingWave to Redis](/docs/current/sink-to-redis/).
-- Supports `FORMAT PLAIN ENCODE AVRO` for Kafka sinks. [#17216](https://github.com/risingwavelabs/risingwave/pull/17216). See [Sink to Kafka](docs/current/create-sink-kafka/).
+- Enables sink decouple by default for Kafka, Kinesis, Pulsar, Google Pub/Sub, NATS, MQTT, ClickHouse sinks. [#17221](https://github.com/risingwavelabs/risingwave/pull/17221). See [Overview of data delivery](/docs/current/data-delivery/#sink-decoupling).
+- Supports the `KEY ENCODE` clause when creating a sink. [#16377](https://github.com/risingwavelabs/risingwave/pull/16377). See [Sink to Kafka](/docs/current/create-sink-kafka/), [Sink data from RisingWave to Google Pub/Sub](/docs/current/sink-to-google-pubsub/), [Sink to AWS Kinesis](/docs/current/sink-to-aws-kinesis/), [Sink data from RisingWave to Apache Pulsar](/docs/current/sink-to-pulsar/), [Sink data from RisingWave to Redis](/docs/current/sink-to-redis/).
+- Supports `FORMAT PLAIN ENCODE AVRO` for Kafka sinks. [#17216](https://github.com/risingwavelabs/risingwave/pull/17216). See [Sink to Kafka](/docs/current/create-sink-kafka/).
 - Supports DynamoDB sink. [#16670](https://github.com/risingwavelabs/risingwave/pull/16670). See [Sink data from RisingWave to Amazon DynamoDB](/docs/current/sink-to-dynamodb/).
 - Supports Microsoft SQL Server sinks for self-hosted SQL Server and Azure SQL. [#17154](https://github.com/risingwavelabs/risingwave/pull/17154). See [Sink data from RisingWave to SQL Server](/docs/current/sink-to-sqlserver/).
 - Supports OpenSearch sink. [#16330](https://github.com/risingwavelabs/risingwave/pull/16330). See [Sink data from RisingWave to OpenSearch](/docs/current/sink-to-opensearch/).
 - Supports checkpoint decouple for StarRocks sinks. [#16816](https://github.com/risingwavelabs/risingwave/pull/16816). See [Sink data from RisingWave to StarRocks](/docs/current/sink-to-starrocks/).
 - Supports checkpoint decouple for Delta Lake sinks. [#16777](https://github.com/risingwavelabs/risingwave/pull/16777). See [Sink data from RisingWave to Delta Lake](/docs/current/sink-to-delta-lake/).
-- Supports sinking serial types. [#16969](https://github.com/risingwavelabs/risingwave/pull/16969). See [Sink to Kafka](docs/current/create-sink-kafka/).
+- Supports sinking serial types. [#16969](https://github.com/risingwavelabs/risingwave/pull/16969). See [Sink to Kafka](/docs/current/create-sink-kafka/).
 
 #### Cluster configuration changes
 
 - Sets arrangement backfill as the default. [#14846](https://github.com/risingwavelabs/risingwave/pull/14846).
 - Supports spill hash join to avoid OOM issues. [#17122](https://github.com/risingwavelabs/risingwave/pull/17122).
 - Supports spill hash aggregation for batch queries. [#16771](https://github.com/risingwavelabs/risingwave/pull/16771).
-- Changes the algorithm that calculates the reserve memory size. [#16992](https://github.com/risingwavelabs/risingwave/pull/16992). See [FAQ](docs/current/rw-faq/#why-the-memory-usage-is-so-high).
+- Changes the algorithm that calculates the reserve memory size. [#16992](https://github.com/risingwavelabs/risingwave/pull/16992). See [FAQ](/docs/current/rw-faq/#why-the-memory-usage-is-so-high).
 
 #### Bug fixes
 
@@ -130,7 +130,7 @@ v1.9.0 was skipped due to some critical bugs.
 
 #### Cluster configuration changes
 
-- Supports using `ALTER SYSTEM` to set a system-wide default value for a session parameter. [#16062](https://github.com/risingwavelabs/risingwave/pull/16062). See [`ALTER SYSTEM`](docs/1.9/sql-alter-system/).
+- Supports using `ALTER SYSTEM` to set a system-wide default value for a session parameter. [#16062](https://github.com/risingwavelabs/risingwave/pull/16062). See [`ALTER SYSTEM`](/docs/1.9/sql-alter-system/).
 - Modifies the meaning of `streaming_rate_limit=0`, which now means pausing the snapshot read stream for backfill, and pausing source read for sources. This statement previously disabled the rate limit within the session. [#16333](https://github.com/risingwavelabs/risingwave/pull/16333). See [View and configure runtime parameters](/docs/1.9/view-configure-runtime-parameters/).
 - Supports configuring the reserved memory bytes of the compute node by using `RW_RESERVED_MEMORY_BYTES` runtime parameter and `reserved-memory-bytes` startup option.  [#16433](https://github.com/risingwavelabs/risingwave/pull/16433). See [View and configure runtime parameters](/docs/1.9/view-configure-runtime-parameters/).
 - Introduce new timeout and retry configurations for ObjectStore and deprecate ambiguous timeout configurations. [#16231](https://github.com/risingwavelabs/risingwave/pull/16231).
@@ -960,7 +960,7 @@ Starting from this version, we’ll respect semantic versioning conventions by u
 - Removes the message name parameter for Avro data. [#8124](https://github.com/risingwavelabs/risingwave/pull/8124)
 - Adds support for AWS PrivateLink for Kafka source connector. [#8247](https://github.com/risingwavelabs/risingwave/pull/8247)
 
-**Full Changelog**: <https://github.com/risingwavelabs/risingwave/compare/v0.1.17...v0.18.0>
+See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/v0.1.17...v0.18.0).
 
 ### Assets
 

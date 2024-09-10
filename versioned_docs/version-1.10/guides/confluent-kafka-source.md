@@ -17,10 +17,7 @@ This guide will go over how to set up a Kafka cluster on Confluent Cloud so you 
 
 1. Create a new cluster. Click on **Begin configuration** under the appropriate cluster type.
 
-    <img
-    src={require('../images/create-cluster.png').default}
-    alt="Create Kafka cluster on Confluent"
-    />
+    ![Create Kafka cluster on Confluent](../images/create-cluster.png)
 
 2. Select **AWS** and the appropriate **Region** and **Availability**. Click **Continue**.
 
@@ -30,10 +27,7 @@ This guide will go over how to set up a Kafka cluster on Confluent Cloud so you 
 
 1. Under **Cluster overview > Dashboard**, select **Get started** under **Produce sample data**.
 
-    <img
-    src={require('../images/produce-data.png').default}
-    alt="Start producing sample data"
-    />
+    ![Start producing sample data](../images/produce-data.png)
 
 2. Click **Add a new topic**.
 3. Name the topic and input the number of partitions.
@@ -70,20 +64,20 @@ See the [Ingest data from Kafka](/ingest/ingest-from-kafka.md) topic for more de
 ```sql
 CREATE TABLE s (
     ordertime timestamp,
- orderid int, 
- itemid varchar, 
+ orderid int,
+ itemid varchar,
     orderunits double,
- address STRUCT < city varchar, 
+ address STRUCT < city varchar,
     state varchar,
  zipcode int >
-) WITH ( 
+) WITH (
     connector = 'kafka',
     topic = 'topic_0',
  properties.bootstrap.server = 'xyz-x00xx.us-east-1.aws.confluent.cloud:9092',
-    scan.startup.mode = 'earliest', 
-    properties.security.protocol = 'SASL_SSL', 
-    properties.sasl.mechanism = 'PLAIN', 
-    properties.sasl.username = 'username', 
+    scan.startup.mode = 'earliest',
+    properties.security.protocol = 'SASL_SSL',
+    properties.sasl.mechanism = 'PLAIN',
+    properties.sasl.username = 'username',
     properties.sasl.password = 'password'
 ) FORMAT PLAIN ENCODE JSON;
 ```
@@ -91,9 +85,9 @@ CREATE TABLE s (
 We can query from the table to see the data.
 
 ```sql
-SELECT * FROM s LIMIT 10 ; 
+SELECT * FROM s LIMIT 10 ;
 
-        ordertime        | orderid |  itemid  |     orderunits      |         address          
+        ordertime        | orderid |  itemid  |     orderunits      |         address
 -------------------------+---------+----------+---------------------+--------------------------
  2017-07-11 13:10:57.470 |      69 | Item_923 | 0.34482867789025445 | (City_,State_12,79507)
  2017-12-20 04:28:50.333 |     165 | Item_749 |  1.8283880900442675 | (City_,State_,29429)
@@ -110,7 +104,4 @@ SELECT * FROM s LIMIT 10 ;
 
 We can also check the consumption progress on Confluent by click on **Topics** from the sidebar, selecting the topic we just created, and clicking on **Consumption**.
 
-<img
-src={require('../images/confluent-consumption.png').default}
-alt="Topic consumption on Confluent"
-/>
+![Topic consumption on Confluent](../images/confluent-consumption.png)

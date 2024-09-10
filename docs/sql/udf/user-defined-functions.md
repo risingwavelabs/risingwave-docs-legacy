@@ -71,10 +71,6 @@ The other two dimensions are:
 
 ## See also
 
-You may also use UDFs to query data stored in different databases
-
-- [Query foreign data](/sql/udf/udf-foreign-data.md)
-
 To learn more about the design and implementation of our user-defined functions (UDFs), we have a series of blog articles on our website, for example:
 
 - [RisingWave user-defined functions: Overview](https://risingwave.com/blog/risingwave-user-defined-functions-overview/)

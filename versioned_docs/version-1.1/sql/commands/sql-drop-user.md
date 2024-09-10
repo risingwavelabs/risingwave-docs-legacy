@@ -17,24 +17,6 @@ DROP USER [ IF EXISTS ] user_name [ , ... ];
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP USER'),
-        rr.Optional(rr.Terminal('IF EXISTS')),
-        rr.Sequence(
-           rr.OneOrMore(
-                rr.NonTerminal('user_name'),
-                rr.Terminal(','),
-           )
-        ),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 
 
 ## Parameters

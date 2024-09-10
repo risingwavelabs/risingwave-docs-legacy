@@ -108,42 +108,21 @@ See [Setting up MySQL](https://debezium.io/documentation/reference/stable/connec
 If your MySQL is hosted on AWS RDS, the configuration process is different. We will use a standard class MySQL instance without Multi-AZ deployment for illustration.
 
 1. Turn on binary logging and choose a non-zero value for the **Retention period**.
-<img
-  src={require('../images/ret-period.png').default}
-  alt="Set retention period to a nonzero value"
-/>
+  ![Set retention period to a nonzero value](../images/ret-period.png)
 
 2. Create a parameter group for MySQL instances. We created a parameter group named MySQL-CDC for the instance that runs MySQL 5.7.x.
-<img
-  src={require('../images/parameter-group.png').default}
-  alt="Create a parameter group"
-/>
+  ![Create a parameter group](../images/parameter-group.png)
 
 3. Click the MySQL-CDC parameter group to edit the values of **binlog_format** to **ROW** and **binlog_row_image** to **full**.
-<img
-  src={require('../images/binlog-format.png').default}
-  alt="Set binlog_format to row"
-/>
-<img
-  src={require('../images/binlog-row.png').default}
-  alt="Set binlog_row_image to full"
-/>
+  ![Set binlog_format to row](../images/binlog-format.png)
+  ![Set binlog_row_image to full](../images/binlog-row.png)
 
 4. Modify your RDS instance and apply the modified parameter group to your database.
-<img
-  src={require('../images/modify-RDS.png').default}
-  alt="Select modify"
-/>
-<img
-  src={require('../images/apply-to-database.png').default}
-  alt="Apply changes to database"
-/>
+  ![Select modify](../images/modify-RDS.png)
+  ![Apply changes to database](../images/apply-to-database.png)
 
 5. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save the changes. Remember to reboot your MySQL instance.
-<img
-  src={require('../images/save-changes.png').default}
-  alt="Save changes made to MySQL RDS instance"
-/>
+  ![Save changes made to MySQL RDS instance](../images/save-changes.png)
 
 </TabItem>
 </Tabs>
@@ -152,9 +131,9 @@ If your MySQL is hosted on AWS RDS, the configuration process is different. We w
 
 The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
 
-The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose).
+The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-trial.md?method=docker-compose).
 
-If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](../deploy/risingwave-trial.md?method=binaries#optional-enable-the-connector-node).
 
 ## Create a table using the native CDC connector in RisingWave
 
@@ -166,102 +145,12 @@ To ensure all data changes are captured, you must create a table and specify pri
 CREATE TABLE [ IF NOT EXISTS ] source_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
-) 
+)
 WITH (
    connector='mysql-cdc',
    <field>=<value>, ...
 );
 ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE TABLE'),
-            rr.Optional(rr.Terminal('IF NOT EXISTS')),
-            rr.NonTerminal('source_name', 'wrap')
-        ),
-        rr.Terminal('('),
-        rr.Stack(
-            rr.Sequence(
-                rr.NonTerminal('column_name', 'skip'),
-                rr.NonTerminal('data_type', 'skip'),
-                rr.Terminal('PRIMARY KEY'),
-                rr.Terminal(','),
-            ),
-            rr.ZeroOrMore(
-                rr.Sequence(
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.NonTerminal('data_type', 'skip'),
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Terminal(','),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('PRIMARY KEY'),
-                    rr.Terminal('('),
-                    rr.NonTerminal('column_name', 'skip'),
-                    rr.Optional(rr.Terminal(',')),
-                    rr.ZeroOrMore(
-                        rr.Sequence(
-                            rr.Terminal(','),
-                            rr.NonTerminal('column_name', 'skip'),
-                            rr.Optional(rr.Terminal(',')),
-                        ),
-                    ),
-                    rr.Terminal(')'),
-                ),
-            ),
-        ),
-        rr.Terminal(')'),
-        rr.Sequence(
-            rr.Terminal('WITH'),
-            rr.Terminal('('),
-            rr.Stack(
-                rr.Stack(
-                    rr.Sequence(
-                        rr.Terminal('connector'),
-                        rr.Terminal('='),
-                        rr.NonTerminal('mysql-cdc', 'skip'),
-                        rr.Terminal(','),
-                    ),
-                    rr.OneOrMore(
-                        rr.Sequence(
-                            rr.NonTerminal('field', 'skip'),
-                            rr.Terminal('='),
-                            rr.NonTerminal('value', 'skip'),
-                            rr.Terminal(','),
-                        ),
-                    ),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Stack(
-            rr.Sequence(
-                rr.Terminal('ROW FORMAT'),
-                rr.NonTerminal('data_format', 'skip'),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('MESSAGE'),
-                    rr.NonTerminal('message', 'skip'),
-                ),
-            ),
-            rr.Optional(
-                rr.Sequence(
-                    rr.Terminal('ROW SCHEMA LOCATION'),
-                    rr.NonTerminal('location', 'skip'),
-                    rr.Terminal(';'),
-                ),
-            ),
-        ),
-    )
-);
-
-<drawer SVG={svg} />
 
 Note that a primary key is required.
 

@@ -30,35 +30,23 @@ Before using the native MySQL CDC connector in RisingWave, you need to complete 
 
 1. Log in to the AWS console. Search “RDS” in services and select the **RDS** panel.
 
-	<img
-	src={require('../images/search-rds.png').default}
-	alt="Search for RDS"
-	/>
+	![Search for RDS](../images/search-rds.png)
 
 2. Create a database with **MySQL** as the **Engine type**. We recommend setting up a username and password or using other security options.
 
-	<img
-	src={require('../images/mysql-config.png').default}
-	alt="Configurations for setting up a MySQL RDS"
-	/>
+	![Configurations for setting up a MySQL RDS](../images/mysql-config.png)
 
-3. When the new instance becomes available, click on its panel. 
+3. When the new instance becomes available, click on its panel.
 
-	<img
-	src={require('../images/new-panel.png').default}
-	alt="MySQL instance panel"
-	/>
+	![MySQL instance panel](../images/new-panel.png)
 
 4. From the **Connectivity** panel, we can find the endpoint and connection port information.
 
-	<img
-	src={require('../images/connectivity.png').default}
-	alt="Endpoint and port information"
-	/>
+	![Endpoint and port information](../images/connectivity.png)
 
 ### Connect to the RDS instance from MySQL
 
-Now we can connect to the RDS instance. Make sure you have installed MySQL on your local machine, and start a MySQL prompt. Fill in the endpoint, the port, and login credentials in the connection parameters. 
+Now we can connect to the RDS instance. Make sure you have installed MySQL on your local machine, and start a MySQL prompt. Fill in the endpoint, the port, and login credentials in the connection parameters.
 
 ```terminal
 mysql -h rw-to-mysql.xxxxxx.us-east-1.rds.amazonaws.com -P 3306 -u <username> -p <password>
@@ -112,16 +100,16 @@ CREATE TABLE personnel (
 
 ### Install and launch RisingWave
 
-To install and start RisingWave locally, see the [Get started](/get-started.md) guide. We recommend running RisingWave locally for testing purposes. 
+To install and start RisingWave locally, see the [Get started](/get-started.md) guide. We recommend running RisingWave locally for testing purposes.
 
 
 ### Enable the connector node in RisingWave
 
 The native MySQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
 
-The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose). 
+The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-trial.md?method=docker-compose).
 
-If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](../deploy/risingwave-trial.md?method=binaries#optional-enable-the-connector-node).
 
 ## Create a sink
 
@@ -156,7 +144,7 @@ All WITH options are required.
 
 To sink to MySQL, make sure that RisingWave and the connector node share the same table schema. Use the following queries in RisingWave to create a table and sink.
 
-The `jdbc.url` must be accurate. The format varies slightly depending on if you are using AWS RDS MySQL or a self-hosted version of MySQL. If your MySQL is self-hosted, the `jdbc.url` would have the following format: `jdbc:mysql://127.0.0.1:3306/testdb?user=<username>&password=<password>`. 
+The `jdbc.url` must be accurate. The format varies slightly depending on if you are using AWS RDS MySQL or a self-hosted version of MySQL. If your MySQL is self-hosted, the `jdbc.url` would have the following format: `jdbc:mysql://127.0.0.1:3306/testdb?user=<username>&password=<password>`.
 
 ```sql
 CREATE TABLE personnel (

@@ -9,7 +9,7 @@ title: Aggregate functions
 
 Aggregate functions compute a single result from a set of input values.
 
-The DISTINCT option, ORDER BY clauses, and FILTER clauses can be used in aggregate expressions. The DISTINCT option cannot be used with an ORDER BY clause. For details about the supported syntax, see [Aggregate expressions](/sql/query-syntax/query-syntax-value-exp.md/#aggregate-expressions).
+The DISTINCT option, ORDER BY clauses, and FILTER clauses can be used in aggregate expressions. The DISTINCT option cannot be used with an ORDER BY clause. For details about the supported syntax, see [Aggregate expressions](../query-syntax/query-syntax-value-exp.md#aggregate-expressions).
 
 ## General-purpose aggregate functions
 
@@ -20,10 +20,10 @@ Returns an array from input values in which each value in the set is assigned to
 #### Syntax
 
 ```sql
-array_agg ( expression [ ORDER BY [ sort_expression { ASC | DESC } ] ] ) -> output_array       
-```  
+array_agg ( expression [ ORDER BY [ sort_expression { ASC | DESC } ] ] ) -> output_array
+```
 
----  
+---
 
 ### `avg`
 
@@ -32,14 +32,14 @@ Returns the average (arithmetic mean) of the selected values.
 #### Syntax
 
 ```sql
-avg ( expression ) -> see description   
-```  
+avg ( expression ) -> see description
+```
 
 Input types include smallint, int, bigint, numeric, real, and double precision.
 
 Return type is numeric for integer inputs and double precision for float point inputs.
 
----  
+---
 
 ### `bool_and`
 
@@ -51,7 +51,7 @@ Returns true if all input values are true, otherwise false.
 bool_and ( boolean ) -> boolean
 ```
 
----  
+---
 
 ### `bool_or`
 
@@ -63,7 +63,7 @@ Returns true if at least one input value is true, otherwise false.
 bool_or ( boolean ) -> boolean
 ```
 
----  
+---
 
 ### `count`
 
@@ -72,12 +72,12 @@ Returns the number of non-null rows.
 #### Syntax
 
 ```sql
-count ( expression ) -> bigint    
-```  
+count ( expression ) -> bigint
+```
 
-Input types include bool, smallint, int, bigint, numeric, real, double precision, and string.  
+Input types include bool, smallint, int, bigint, numeric, real, double precision, and string.
 
----  
+---
 
 ### `jsonb_agg`
 
@@ -86,12 +86,12 @@ Aggregates values, including nulls, as a JSON array. The `ORDER BY` clause is op
 #### Syntax
 
 ```sql
-jsonb_agg ( expression ) -> jsonb    
+jsonb_agg ( expression ) -> jsonb
 ```
 
 Currently, input types include boolean, smallint, int, bigint, real, double precision, varchar and jsonb.
 
----  
+---
 
 ### `jsonb_object_agg`
 
@@ -100,42 +100,42 @@ Aggregates name/value pairs as a JSON object.
 #### Syntax
 
 ```sql
-jsonb_object_agg ( key , value ) -> jsonb   
+jsonb_object_agg ( key , value ) -> jsonb
 ```
 
 `key`: varchar only.
 
 `value`: Currently supports null, boolean, smallint, int, bigint, real, double precision, varchar and jsonb.
 
----  
+---
 
 ### `max`
 
-Returns the maximum value in a set of values.  
+Returns the maximum value in a set of values.
 
 #### Syntax
 
 ```sql
-max ( expression ) -> same as input type    
-```  
+max ( expression ) -> same as input type
+```
 
-Input types include smallint, int, bigint, numeric, real, double precision, and string.  
+Input types include smallint, int, bigint, numeric, real, double precision, and string.
 
----  
+---
 
 ### `min`
 
-Returns the minimum value in a set of values.  
+Returns the minimum value in a set of values.
 
 #### Syntax
 
 ```sql
-min ( expression ) -> same as input type  
-```  
+min ( expression ) -> same as input type
+```
 
-Input types include smallint, int, bigint, numeric, real, double precision, and string.  
+Input types include smallint, int, bigint, numeric, real, double precision, and string.
 
----  
+---
 
 ### `string_agg`
 
@@ -144,10 +144,10 @@ Combines non-null values into a string, separated by `delimiter_string`. The `OR
 #### Syntax
 
 ```sql
-string_agg ( expression, delimiter_string ) -> output_string  
+string_agg ( expression, delimiter_string ) -> output_string
 ```
 
----  
+---
 
 ### `sum`
 
@@ -156,7 +156,7 @@ Returns the sum of all input values.
 #### Syntax
 
 ```sql
-sum ( expression )  
+sum ( expression )
 ```
 
 Input types include smallint, int, bigint, numeric, real, and double precision.
@@ -175,11 +175,11 @@ Calculates the population standard deviation of the input values. Returns `NULL`
 stddev_pop ( expression ) -> output_value
 ```
 
----  
+---
 
 ### `stddev_samp`
 
-Calculates the sample standard deviation of the input values. Returns `NULL` if the input contains fewer than two non-null values.  
+Calculates the sample standard deviation of the input values. Returns `NULL` if the input contains fewer than two non-null values.
 
 #### Syntax
 
@@ -187,7 +187,7 @@ Calculates the sample standard deviation of the input values. Returns `NULL` if 
 stddev_samp ( expression ) -> output_value
 ```
 
----  
+---
 
 ### `var_pop`
 
@@ -199,7 +199,7 @@ Calculates the population variance of the input values. Returns `NULL` if the in
 var_pop ( expression ) -> output_value
 ```
 
----  
+---
 
 ### `var_samp`
 
@@ -237,7 +237,7 @@ This example calculates the mode of the values in `column1` from `table1`.
 SELECT mode() WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
 
----  
+---
 
 ### `percentile_cont`
 
@@ -263,7 +263,7 @@ This example calculates the median (50th percentile) of the values in `column1` 
 SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY column1) FROM table1;
 ```
 
----  
+---
 
 ### `percentile_disc`
 

@@ -11,26 +11,26 @@ title: Mathematical functions and operators
 
 | Operator | Expression & Description | Example |
 | ----------- | ----------- | ----------- |
-| + | `operand1 + operand2` <br /> Addition. <br /> | 1 + 2 → 3 |
-| - | `operand1 - operand2` <br /> Subtraction. <br /> | 1 - 2 → -1 |
-| - | `- operand` <br /> Negation. <br /> | - (-1) → 1 |
-| * | `operand1 * operand2` <br /> Multiplication. <br /> | 2 * 3 → 6 |
-| / | `operand1 / operand2` <br /> Division (results are truncated for integers). <br /> | 3 / 2 → 1 <br /> 3.0 / 2 → 1.5 <br />  3 / 1.8 → 1.666... |
-| % | `operand1 * operand2` <br /> Remainder (valid for smallint/int/bigint/numeric). <br /> | 3 % 2 → 1 |
-| ^ | `operand1 ^ operand2` <br /> Exponent. <br /> | 2.0 ^ -2 → 0.25 |
-| \|\|/ | <code>\|\|/ operand</code> <br /> Cube root. <br /> | \|\|/ 27 → 3 |
-| @ | `@ operand` <br /> Absolute value. <br /> | @ -10 → 10|
-| & | `operand1 & operand2` <br /> Bitwise AND | 91 & 15 → 11 |
-| \| | <code>operand1 \| operand2</code> <br /> Bitwise OR | 32 \| 3 → 35|
-| # | `operand1 # operand2` <br /> Bitwise exclusive OR | 17 # 5 → 20 |
-| ~ | `~ operand` <br /> Bitwise NOT| ~1 → -2 |
-| << | `operand1 << operand2` <br /> Bitwise shift left | 1 << 4 → 16 |
-| >> | `operand1 >> operand2` <br /> Bitwise shift right | 8 >> 2 → 2 |
+| `+` | `operand1 + operand2` <br /> Addition. | `1 + 2 → 3` |
+| `-` | `operand1 - operand2` <br /> Subtraction. | `1 - 2 → -1` |
+| `-` | `- operand` <br /> Negation. <br /> | `- (-1) → 1` |
+| `*` | `operand1 * operand2` <br /> Multiplication. | `2 * 3 → 6` |
+| `/` | `operand1 / operand2` <br /> Division (results are truncated for integers). | `3 / 2 → 1` <br /> `3.0 / 2 → 1.5` <br /> `3 / 1.8 → 1.666` |
+| `%` | `operand1 % operand2` <br /> Remainder (valid for smallint/int/bigint/numeric). | `3 % 2 → 1` |
+| `^` | `operand1 ^ operand2` <br /> Exponent. | `2.0 ^ -2 → 0.25` |
+| `\|\|/` | <code>\|\|/ operand</code> <br /> Cube root. | `\|\|/ 27 → 3` |
+| `@` | `@ operand` <br /> Absolute value. | `@ -10 → 10` |
+| `&` | `operand1 & operand2` <br /> Bitwise AND | `91 & 15 → 11` |
+| `\|` | <code>operand1 \| operand2</code> <br /> Bitwise OR | `32 \| 3 → 35` |
+| `#` | `operand1 # operand2` <br /> Bitwise exclusive OR | `17 # 5 → 20` |
+| `~` | `~ operand` <br /> Bitwise NOT | `~1 → -2` |
+| `<<` | `operand1 << operand2` <br /> Bitwise shift left | `1 << 4 → 16` |
+| `>>` | `operand1 >> operand2` <br /> Bitwise shift right | `8 >> 2 → 2` |
 
 ## Mathematical functions
 
 | Function | Description | Example |
-| ----------- | ----------- | ----------- | 
+| ----------- | ----------- | ----------- |
 | abs ( *input_value* ) → *absolute_value* <br /> @ ( *input_value* ) → *absolute_value* | Returns the absolute value of *input_value*. The *input_value* can be type int or decimal. The return type is the same as the *input_value* type. | abs(-3) → 3 <br /> @(-3) → 3 |
 | cbrt ( *double_precision_input* ) → *double_precision_output* | Returns the cube root of the input. | cbrt(27) → 3 |
 | ceil ( *numeric_input* ) → *integer_output* <br /> ceil ( *double_precision_input* ) → *integer_output* | Returns the nearest integer greater than or equal to the argument. ceiling() can also be used as an alias for ceil(). | ceil(1.23559) → 2 <br /> ceiling(-1.23559) → -1 |

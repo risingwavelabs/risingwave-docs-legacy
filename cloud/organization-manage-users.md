@@ -17,10 +17,7 @@ An organization can have one owner and multiple member users.
 
 You can invite others to create a RisingWave Cloud account and join your organization. The invited users have **one day** to confirm and join.
 
-<img
-src={require('./images/org-invitations.png').default}
-alt="Invitations"
-/>
+![Invitations](./images/org-invitations.png)
 
 **Steps:**
 
@@ -72,10 +69,7 @@ Here, you can get a list of all users in your organization.
 
 The owner can click the trashcan icon to remove a user from the organization. Removed users will lose access to all the resources in the organization, and their accounts will be deleted.
 
-<img
-src={require('./images/org-delete-user.png').default}
-alt="Delete a user"
-/>
+![Delete a user](./images/org-delete-user.png)
 
 ## Assign ownership to another user
 
@@ -83,7 +77,4 @@ The owner can assign ownership to another user in the organization. The new owne
 
 Click the **Assign owner role** button on the user you want to assign ownership to and then confirm your decision.
 
-<img
-src={require('./images/org-assign-owner.png').default}
-alt="Assign ownership"
-/>
+![Assign ownership](./images/org-assign-owner.png)

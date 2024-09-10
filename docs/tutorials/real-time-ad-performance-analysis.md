@@ -16,10 +16,7 @@ Ad platforms and advertisers alike want to measure the performance of their ads.
 
 Click-through rate (CTR) is one of the key metrics used in digital advertising to gauge the effectiveness of ads. It is calculated as the number of clicks divided by the number of impressions. Impressions are the number of times a digital ad displays on someone's screen in an app or on a website. A high CTR means that users find the ads displayed to them useful and relevant.
 
-<img
-  src={require('../images/ctr_explained.png').default}
-  alt="Relations between click events and impressions"
-/>
+![Relations between click events and impressions](../images/ctr_explained.png)
 
 In this tutorial, you will learn how to get real-time click-through rates from ad impressions and click events with RisingWave. We have set up a demo cluster specifically for this tutorial so that you can try it out with ease.
 
@@ -46,7 +43,7 @@ docker compose up -d
 ```
 
 :::tip Command not found?
-The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2). 
+The default command-line syntax in Compose V2 starts with `docker compose`. See details in the [Docker docs](https://docs.docker.com/compose/migrate/#what-are-the-differences-between-compose-v1-and-compose-v2).
 
 If you're using Compose V1, use `docker-compose` instead.
 :::

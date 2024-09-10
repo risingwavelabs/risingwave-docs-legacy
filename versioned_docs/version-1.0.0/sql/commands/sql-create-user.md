@@ -18,28 +18,6 @@ CREATE USER user_name [ [ WITH ] option [ ... ] ];
 
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE USER'),
-            rr.NonTerminal('user_name'),
-            rr.Optional(
-               rr.Sequence(
-                  rr.Optional(rr.Terminal('WITH')),
-                  rr.OneOrMore(
-                     rr.NonTerminal('option'), rr.Comment('space as delimiter')
-                    ),
-               )
-            )
-        ),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 
 
 
@@ -65,7 +43,7 @@ export const svg = rr.Diagram(
 The following statement creates a user account with the name "user1" and password 'pAssword12345'.
 
 ```sql
-CREATE USER user1 
+CREATE USER user1
     WITH PASSWORD 'pAssword12345';
 ```
 

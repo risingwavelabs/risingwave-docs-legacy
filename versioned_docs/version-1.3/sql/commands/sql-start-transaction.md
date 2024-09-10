@@ -28,17 +28,6 @@ Read-only transactions are currently in Beta. Please contact us if you encounter
 START TRANSACTION;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('START TRANSACTION READ ONLY'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Example
 
 ```sql

@@ -94,9 +94,9 @@ Before the deployment, ensure that the following requirements are satisfied.
     :::note
     The following errors might occur if `cert-manager` is not fully initialized. Simply wait for another minute and rerun the command above.
 
-    > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "<https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s>": dial tcp 10.105.102.32:443: connect: connection refused
-
-    > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "<https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s>": dial tcp 10.105.102.32:443: connect: connection refused
+    ```
+    Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "<https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s>": dial tcp 10.105.102.32:443: connect: connection refused
+    ```
     :::
 
 1. ***Optional:*** Check if the Pods are running.
@@ -114,7 +114,7 @@ RisingWave Kubernetes Operator extends the Kubernetes with CRDs (Custom Resource
 
 The RisingWave resource is a custom resource that defines a RisingWave cluster. In [this directory](https://github.com/risingwavelabs/risingwave-operator/blob/main/docs/manifests/risingwave), you can find resource examples that deploy RisingWave with different configurations of metadata store and state backend. Based on your requirements, you can use these resource files directly or as a reference for your customization. The [stable directory](https://github.com/risingwavelabs/risingwave-operator/tree/main/docs/manifests/stable/) contains resource files that we have tested compatibility with the latest released version of the RisingWave Operator:
 
-The resource files are named using the convention of "risingwave-<meta_store>-<state_backend>.yaml". For example, `risingwave-etcd-s3.yaml` means that this manifest file uses etcd as the meta storage and AWS S3 as the state backend. The resource files whose names do not contain `etcd` means that they use memory as the meta store, which does not persist meta node data and therefore has a risk of losing data. Note that for production deployments, you should use etcd as the metadata store. Therefore, please use a resource file that contains `etcd` in its name or choose a file that is in the `/stable/` directory.
+The resource files are named using the convention of `risingwave-<meta_store>-<state_backend>.yaml`. For example, `risingwave-etcd-s3.yaml` means that this manifest file uses etcd as the meta storage and AWS S3 as the state backend. The resource files whose names do not contain `etcd` means that they use memory as the meta store, which does not persist meta node data and therefore has a risk of losing data. Note that for production deployments, you should use etcd as the metadata store. Therefore, please use a resource file that contains `etcd` in its name or choose a file that is in the `/stable/` directory.
 
 RisingWave supports using these systems or services as state backends.
 
@@ -211,30 +211,30 @@ spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
-    
+
     # Declaration of the S3 state store backend.
     s3:
       # Region of the S3 bucket.
       region: us-east-1
-      
+
       # Name of the S3 bucket.
       bucket: risingwave
-      
+
       # Credentials to access the S3 bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: s3-credentials
-        
+
         # Key of the access key ID in the secret.
         accessKeyRef: AWS_ACCESS_KEY_ID
-        
+
         # Key of the secret access key in the secret.
         secretAccessKeyRef: AWS_SECRET_ACCESS_KEY
-        
-        # Optional, set it to true when the credentials can be retrieved 
+
+        # Optional, set it to true when the credentials can be retrieved
         # with the service account token, e.g., running inside the EKS.
-        # 
-        # useServiceAccount: true 
+        #
+        # useServiceAccount: true
 ```
 
 </TabItem>
@@ -249,25 +249,25 @@ spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
-    
+
     # Declaration of the MinIO state store backend.
     minio:
       # Endpoint of the MinIO service.
       endpoint: risingwave-minio:9301
-      
+
       # Name of the MinIO bucket.
       bucket: hummock001
-      
+
       # Credentials to access the MinIO bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: minio-credentials
-        
+
         # Key of the username ID in the secret.
         usernameKeyRef: username
-        
+
         # Key of the password key in the secret.
-        passwordKeyRef: password 
+        passwordKeyRef: password
 ```
 
 </TabItem>
@@ -278,28 +278,28 @@ spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
-    
+
     # Declaration of the S3 compatible state store backend.
     s3:
       # Endpoint of the S3 compatible object storage.
       #
       # Here we use Tencent Cloud Object Store (COS) in ap-guangzhou as an example.
       endpoint: cos.ap-guangzhou.myqcloud.com
-      
+
       # Region of the S3 compatible bucket.
       region: ap-guangzhou
-      
+
       # Name of the S3 compatible bucket.
       bucket: risingwave
-      
+
       # Credentials to access the S3 compatible bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: cos-credentials
-        
+
         # Key of the access key ID in the secret.
         accessKeyRef: ACCESS_KEY_ID
-        
+
         # Key of the secret access key in the secret.
         secretAccessKeyRef: SECRET_ACCESS_KEY
 ```
@@ -314,26 +314,26 @@ spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
-    
+
     # Declaration of the Google Cloud Storage state store backend.
     azureBlob:
       # Endpoint of the Azure Blob service.
       endpoint: https://you-blob-service.blob.core.windows.net
-      
+
       # Working directory root of the Azure Blob service.
       root: risingwave
-      
+
       # Container name of the Azure Blob service.
       container: risingwave
-    
+
       # Credentials to access the Google Cloud Storage bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: gcs-credentials
-        
+
         # Key of the account name in the secret.
         accountNameRef: AccountName
-        
+
         # Key of the account name in the secret.
         accountKeyRef: AccountKey
 ```
@@ -347,23 +347,23 @@ spec:
   stateStore:
     # Prefix to objects in the object stores or directory in file system. Default to "hummock".
     dataDirectory: hummock
-    
+
     # Declaration of the Google Cloud Storage state store backend.
     gcs:
       # Name of the Google Cloud Storage bucket.
       bucket: risingwave
-      
+
       # Root directory of the Google Cloud Storage bucket.
       root: risingwave
-    
+
       # Credentials to access the Google Cloud Storage bucket.
       credentials:
         # Name of the Kubernetes secret that stores the credentials.
         secretName: gcs-credentials
-        
+
         # Key of the service account credentials in the secret.
         serviceAccountCredentialsKeyRef: ServiceAccountCredentials
-        
+
         # Optional, set it to true when the credentials can be retrieved.
         # useWorkloadIdentity: true
 ```
