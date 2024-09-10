@@ -26,7 +26,8 @@ RisingWave supports the following data types:
 |timestamp with time zone |timestamptz|Timestamp with time zone. <br/>The 'Z' stands for UTC (Coordinated Universal Time). Timestamptz values are stored in UTC. When sinking downstream, timestamptz is represented in i64 with a resolution of microseconds. | Example: `'2022-03-13 01:00:00Z'::timestamptz` |
 |interval| |Time span. <br/>Input in string format. Units include: second/seconds/s, minute/minutes/min/m, hour/hours/hr/h, day/days/d, month/months/mon, and year/years/yr/y. Units smaller than second can only be specified in a numerical format. | Examples: `interval '4 hour'` → `04:00:00` <br /> `interval '3 day'` → `3 days 00:00:00` <br /> `interval '04:00:00.1234'` → `04:00:00.1234` |
 |struct| |A struct is a column that contains nested data. For syntax and examples, see [Struct](/sql/data-types/data-type-struct.md). | |
-|array| | An array is an ordered list of zero or more elements that share the same data type including the array type. For syntax and examples, see [Array](/sql/data-types/data-type-array.md).|
+|array| | An array is an ordered list of zero or more elements that share the same data type. For syntax and examples, see [Array](/sql/data-types/data-type-array.md). | |
+|map| | A map contains key-value pairs. For syntax and examples, see [Map](/sql/data-types/data-type-map.md). | |
 |JSONB| | A (binary) JSON value that ignores semantically-insignificant whitespaces or order of object keys. For syntax and examples, see [JSONB](/sql/data-types/data-type-jsonb.md).|
 
 :::note

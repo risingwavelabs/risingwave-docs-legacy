@@ -682,18 +682,23 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "doc",
+                  id: "sql/data-types/data-type-struct",
+                  label: "Struct",
+                },
+                {
+                  type: "doc",
                   id: "sql/data-types/data-type-array",
                   label: "Array",
                 },
                 {
                   type: "doc",
-                  id: "sql/data-types/data-type-jsonb",
-                  label: "JSONB",
+                  id: "sql/data-types/data-type-map",
+                  label: "Map",
                 },
                 {
                   type: "doc",
-                  id: "sql/data-types/data-type-struct",
-                  label: "Struct",
+                  id: "sql/data-types/data-type-jsonb",
+                  label: "JSONB",
                 },
                 {
                   type: "doc",
@@ -763,6 +768,11 @@ const sidebars: SidebarsConfig = {
                 {
                   type: "doc",
                   id: "sql/functions-operators/sql-function-array",
+                  label: "Array functions and operators",
+                },
+                {
+                  type: "doc",
+                  id: "sql/functions-operators/sql-function-map",
                   label: "Array functions and operators",
                 },
                 {
