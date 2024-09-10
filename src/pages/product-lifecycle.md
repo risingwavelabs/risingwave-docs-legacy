@@ -25,6 +25,7 @@ Below is a list of all features in the public preview phase:
 
 | Feature name            | Start date | Start version |
 |---------------------------|------------|---------------|
+| [Azure Blob sink](/docs/next/sink-to-azure-blob)|2024.8|2.0|
 | [Approx percentile](/docs/next/sql-function-aggregate/#approx_percentile) | 2024.8     | 2.0           |
 | [Auto schema change in MySQL CDC](/docs/next/ingest-from-mysql-cdc/#automatically-change-schema) | 2024.8     | 2.0           |
 | [SQL Server CDC source](/docs/next/ingest-from-sqlserver-cdc/) | 2024.8    | 2.0         |

@@ -236,6 +236,11 @@ const sidebars: SidebarsConfig = {
                   items: [
                     {
                       type: "doc",
+                      label: "Azure Blob",
+                      id: "guides/ingest-from-azure-blob",
+                    },
+                    {
+                      type: "doc",
                       label: "Citus CDC",
                       id: "guides/ingest-from-citus-cdc",
                     },
@@ -408,6 +413,11 @@ const sidebars: SidebarsConfig = {
                   type: "doc",
                   label: "AWS Kinesis",
                   id: "guides/sink-to-aws-kinesis",
+                },
+                {
+                  type: "doc",
+                  label: "Azure Blob",
+                  id: "guides/sink-to-azure-blob",
                 },
                 {
                   type: "doc",
