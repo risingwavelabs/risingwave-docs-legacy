@@ -411,6 +411,11 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "doc",
+                  label: "Azure Blob",
+                  id: "guides/sink-to-azure-blob",
+                },
+                {
+                  type: "doc",
                   label: "Cassandra",
                   id: "guides/sink-to-cassandra",
                 },
