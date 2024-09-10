@@ -300,6 +300,7 @@ The `timestamptz.handling.mode` parameter controls the input format for timestam
 - `utc_string`: This format is the least ambiguous and can usually be correctly inferred without needing explicit specification.
 - `utc_without_suffix`: Allows the user to indicate that a naive timestamp is in UTC, rather than local time.
 
+
 You can set this parameter when using the `format plain | upsert | debezium encode json` command, but not when using `format debezium_mongo | canal | maxwell encode json`.
 
 ---
