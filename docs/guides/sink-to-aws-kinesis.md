@@ -8,10 +8,10 @@ slug: /sink-to-aws-kinesis
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sink-to-aws-kinesis/" />
 </head>
 
-This topic described how to sink data from RisingWave to AWS Kinesis Data Streams.
+This topic describes how to sink data from RisingWave to AWS Kinesis Data Streams.
 
-:::note Beta Feature
-The AWS Kinesis sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 ## Syntax
@@ -43,6 +43,10 @@ FORMAT data_format ENCODE data_encode [ (
 |aws.credentials.role.arn |Optional. The Amazon Resource Name (ARN) of the role to assume.|
 |aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources. |
 |primary_key| Required. The primary keys of the sink. Use ',' to delimit the primary key columns. |
+
+:::note
+In the Kinesis sink, we use [PutRecords](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecords.html) API to send multiple records in batches to achieve higher throughput. Due to the limitations of Kinesis, records might be out of order when using this API. Nevertheless, the current implementation of the Kinesis sink guarantees at-least-once delivery and eventual consistency.
+:::
 
 ## FORMAT and ENCODE options
 

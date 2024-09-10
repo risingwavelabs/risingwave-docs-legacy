@@ -31,7 +31,7 @@ We periodically update this article to keep up with the rapidly evolving landsca
 | Performance cost| High | Low |
 |Typical use cases| Streaming ETL, streaming analytics | Streaming ETL, streaming analytics, online serving|
 
-![RisingWave vs Flink](../images/RisingWave vs Flink.png)
+![RisingWave vs Flink](../images/RisingWave-vs-Flink.png)
 
 ## Introduction
 
