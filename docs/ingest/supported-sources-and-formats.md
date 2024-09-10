@@ -304,12 +304,12 @@ You can set this parameter when using the `format plain | upsert | debezium enco
 
 ---
 
-### `jsonb.handling.mode`
+#### `jsonb.handling.mode`
 
 The `jsonb.handling.mode` determines how `jsonb` data types are encoded. This parameter has two possible values:
 
-- `string`: Encodes the `jsonb` type as a string. For example, if you choose this value, `{"k": 2}` will be converted to `"{\"k\": 2}"`.
+- `string`: Encodes the `jsonb` type to a string. For example, if you set this parameter, `{"k": 2}` will be converted to `"{\"k\": 2}"`.
 
-- `dynamic`: Dynamically encodes the `jsonb` type as json type. For example, if you choose this value, `{"k": 2}` will be converted to `{"k": 2}`. Here a json object `jsonb` is encoded to a json object.
+- `dynamic`: Dynamically encodes a `jsonb` type value to a JSON type value. For example, if you set this parameter, `{"k": 2}` will be converted to `{"k": 2}`. Here the `jsonb` value is encoded to a JSON object type value.
 
-You can set this parameter in the `WITH` clause when using `ENCODE JSON`.  
+You can set this parameter in the `WITH` clause of `ENCODE JSON`.  
