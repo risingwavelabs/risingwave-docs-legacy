@@ -236,6 +236,11 @@ const sidebars: SidebarsConfig = {
                   items: [
                     {
                       type: "doc",
+                      label: "Azure Blob",
+                      id: "guides/ingest-from-azure-blob",
+                    },
+                    {
+                      type: "doc",
                       label: "Citus CDC",
                       id: "guides/ingest-from-citus-cdc",
                     },
