@@ -16,8 +16,8 @@ The Elasticsearch sink connecter in RisingWave will perform index operations via
 - 5mb of updates
 - 5 seconds since the last flush (assuming new actions are queued)
 
-:::note Beta Feature
-The Elasticsearch sink connector in RisingWave is currently a Beta feature that supports only versions 7.x and 8.x of Elasticsearch. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 :::note
@@ -104,7 +104,7 @@ ElasticSearch uses a mechanism called [dynamic field mapping](https://www.elasti
 |JSONB|object (RisingWave's Elasticsearch sink will send JSONB as a JSON string, and Elasticsearch will convert it into an object)|
 
 :::note
-Elasticsearch doesn't require users to explicitly `CREATE TABLE`. Instead, it infers the schema on-the-fly based on the first record ingested. For example, if a record contains a jsonb '{v1: 100}', v1 will be inferred as a long type. However, if the next record is '{v1: "abc"}', the ingestion will fail because "abc" is inferred as a string and the two types are incompatible.
+Elasticsearch doesn't require users to explicitly `CREATE TABLE`. Instead, it infers the schema on-the-fly based on the first record ingested. For example, if a record contains a jsonb `{v1: 100}`, v1 will be inferred as a long type. However, if the next record is `{v1: "abc"}`, the ingestion will fail because `"abc"` is inferred as a string and the two types are incompatible.
 
 This behavior should be noted, or your data may be less than it should be. In terms of monitoring, you can check out Grafana, where there is a panel for all sink write errors.
 :::

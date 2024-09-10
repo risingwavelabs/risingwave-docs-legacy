@@ -13,7 +13,7 @@ The `ALTER SOURCE` command modifies the definition of a source.
 ## Syntax
 
 ```sql
-ALTER SOURCE current_source_name 
+ALTER SOURCE current_source_name
     alter_option;
 ```
 
@@ -24,7 +24,7 @@ ALTER SOURCE current_source_name
 ### `ADD COLUMN`
 
 ```sql title=Syntax
-ALTER SOURCE source_name 
+ALTER SOURCE source_name
     ADD COLUMN col_name data_type;
 ```
 
@@ -32,11 +32,11 @@ ALTER SOURCE source_name
 |---------------------------|-----------------------|
 |**ADD COLUMN** |This clause adds a column to the specified source.|
 |*col_name* | The name of the new column you want to add to the source.|
-|*data_type* | The data type of the newly added column. With the struct data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>").|
+|*data_type* | The data type of the newly added column. With the struct data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets (`<>`).|
 
 ```sql title=Example
--- Add a column named "v3" to a source named "src1" 
-ALTER SOURCE src1 
+-- Add a column named "v3" to a source named "src1"
+ALTER SOURCE src1
     ADD COLUMN v3 int;
 ```
 
@@ -52,7 +52,7 @@ ALTER SOURCE src1
 ### `RENAME TO`
 
 ```sql title=Syntax
-ALTER SOURCE source_name 
+ALTER SOURCE source_name
     RENAME TO new_source_name;
 ```
 
@@ -63,14 +63,14 @@ ALTER SOURCE source_name
 
 ```sql title=Example
 -- Change the name of a source named "src" to "src1"
-ALTER SOURCE src 
+ALTER SOURCE src
    RENAME TO src1;
 ```
 
 ### `OWNER TO`
 
 ```sql title=Syntax
-ALTER SOURCE current_source_name 
+ALTER SOURCE current_source_name
     OWNER TO new_user;
 ```
 

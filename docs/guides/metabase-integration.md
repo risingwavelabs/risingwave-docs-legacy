@@ -20,11 +20,8 @@ Since RisingWave is compatible with PostgreSQL, you can connect Metabase to Risi
 ## Establish the connection
 
 1. Open the Metabase admin interface and click "Add a database".
-    
-<img
-src={require('../images/add-a-database.png').default}
-alt="Add a Database"
-/>
+
+  ![Add a Database](../images/add-a-database.png)
 
 2. For the database type, select "PostgreSQL" since RisingWave uses the PostgreSQL wire protocol.
 
@@ -36,24 +33,15 @@ alt="Add a Database"
   - Database name: The name of the RisingWave database you want to connect to.
   - Username: The username for accessing the database.
   - Password: The password associated with the provided username.
-    
-<img
-src={require('../images/connection-details.png').default}
-alt="Fill in the Connection Details"
-/>
-    
+
+  ![Fill in the Connection Details](../images/connection-details.png)
+
 4. Save the connection.
 
 Once connected, you will see the RisingWave database available in Metabase. You can now build dashboards, charts, and graphs on top of the real-time data in RisingWave.
 
-<img
-src={require('../images/save-the-connection.png').default}
-alt="Save the Connection"
-/>
+![Save the Connection](../images/save-the-connection.png)
 
 It should be noted that Metabase's minimum auto-refresh is 1 minute, while RisingWave typically delivers a second-level data freshness. As a workaround, you can append `#refresh=5` to the URL, such as `http://127.0.0.1:3000/dashboard/1-jaffle-shop#refresh=5`, thus setting the refresh interval to 5 seconds.
 
-<img
-src={require('../images/auto-refresh.png').default}
-alt="Auto Refresh"
-/>
+![Auto Refresh](../images/auto-refresh.png)

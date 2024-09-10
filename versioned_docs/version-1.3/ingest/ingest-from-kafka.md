@@ -8,6 +8,9 @@ slug: /ingest-from-kafka
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-kafka/" />
 </head>
 
+<!-- MDX imports -->
+import LightButton from "@site/src/components/LightButton";
+
 This topic describes how to connect RisingWave to a Kafka broker that you want to receive data from, and how to specify data formats, schemas, and security (encryption and authentication) settings.
 
 A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by using the `CREATE TABLE` command and specifying the connection settings and data format.
@@ -19,7 +22,7 @@ RisingWave supports exactly-once semantics by reading transactional messages onl
 :::tip Guided setup
 RisingWave Cloud provides an intuitive guided setup for creating a Kafka source. For more information, see [Create a source using guided setup](/cloud/manage-sources/#using-guided-setup) in the RisingWave Cloud documentation.
 
-<lightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
+<LightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
 :::
 
 ## Syntax

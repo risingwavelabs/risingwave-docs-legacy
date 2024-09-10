@@ -14,7 +14,7 @@ Since RisingWave is compatible with PostgreSQL, you can easily connect Looker to
 
 ## Prerequisites
 
-- Ensure that Looker[https://cloud.google.com/looker] is installed and accessible from the RisingWave cluster. 
+- Ensure that Looker[https://cloud.google.com/looker] is installed and accessible from the RisingWave cluster.
 
 - Install and start RisingWave. For instructions on how to get started, see the [Quick start guide](/get-started.md).
 
@@ -34,21 +34,12 @@ Since RisingWave is compatible with PostgreSQL, you can easily connect Looker to
 
     - Password: The password associated with the provided username. By default, there is no password for `root`.
 
-    <img
-    src={require('../images/looker-connection.png').default}
-    alt="Fill in connection settings in Looker"
-    />
+    ![Fill in connection settings in Looker](../images/looker-connection.png)
 
 3. Click `AUTHENTICATE` to confirm the connection is successful.
 
 4. Looker will now have access to the databases and tables in RisingWave. You can select the table you need, or fill in the query manually, then click `CONNECT` in the upper right corner. Now you can start building dashboards and charts to explore real-time data.
 
-    <img
-    src={require('../images/looker-query.png').default}
-    alt="Fill out query in Looker"
-    />
+    ![Fill out query in Looker](../images/looker-query.png)
 
-    <img
-    src={require('../images/looker-chart.png').default}
-    alt="Create dashboard in Looker"
-    />
+    ![Create dashboard in Looker](../images/looker-chart.png)

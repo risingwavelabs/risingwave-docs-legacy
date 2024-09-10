@@ -44,7 +44,7 @@ To know when a data record is loaded to RisingWave, you can define a column that
 |-----------|-------------|
 |*source_name*    |The name of the source. If a schema name is given (for example, `CREATE SOURCE <schema>.<source> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
 |*col_name*      |The name of a column.|
-|*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
+|*data_type*|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets (`<>`). |
 |*generation_expression*| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |*watermark_clause*| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
 |**WITH** clause |Specify the connector settings here if trying to store all the source data. See [Supported sources](#supported-sources) for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
@@ -59,7 +59,7 @@ Click a connector name to see the SQL syntax, options, and sample statement of c
 |[Kafka](/ingest/ingest-from-kafka.md)|3.1.0 or later versions |[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json), [Debezium AVRO](#debezium-avro), [DEBEZIUM_MONGO_JSON](#debezium-mongo-json), [Maxwell JSON](#maxwell-json), [Canal JSON](#canal-json), [Upsert JSON](#upsert-json), [Upsert AVRO](#upsert-avro), [Bytes](#bytes)|
 |[Redpanda](/ingest/ingest-from-redpanda.md)|Latest|[Avro](#avro), [JSON](#json), [protobuf](#protobuf) |
 |[Pulsar](/ingest/ingest-from-pulsar.md)| 2.8.0 or later versions|[Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json), [Maxwell JSON](#maxwell-json), [Canal JSON](#canal-json)|
-|[Astra Streaming](/guides/connector-astra-streaming.md)|Latest |[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|  
+|[Astra Streaming](/guides/connector-astra-streaming.md)|Latest |[Avro](#avro), [JSON](#json), [protobuf](#protobuf)|
 |[Kinesis](/ingest/ingest-from-kinesis.md)| Latest| [Avro](#avro), [JSON](#json), [protobuf](#protobuf), [Debezium JSON](#debezium-json), [Maxwell JSON](#maxwell-json), [Canal JSON](#canal-json)|
 |[PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md)| 10, 11, 12, 13, 14|[Debezium JSON](#debezium-json)|
 |[MySQL CDC](/guides/ingest-from-mysql-cdc.md)| 5.7, 8.0|[Debezium JSON](#debezium-json)|
@@ -179,7 +179,7 @@ RisingWave decodes JSON directly from external sources. When creating a source f
 Syntax:
 
 ```sql
-FORMAT PLAIN 
+FORMAT PLAIN
 ENCODE JSON [ (
    schema.registry = 'schema_registry_url [, ...]',
    [schema.registry.username = 'username'],

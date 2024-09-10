@@ -73,7 +73,7 @@ A stateless worker node that compacts data for the storage engine.
 
 ### Connector node
 
-The connector node is a Java component that handles consuming CDC events from upstream systems and sinking data from RisingWave to downstream systems. When running RisingWave with Docker, this node is enabled by default. If running RisingWave locally, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+The connector node is a Java component that handles consuming CDC events from upstream systems and sinking data from RisingWave to downstream systems. When running RisingWave with Docker, this node is enabled by default. If running RisingWave locally, see [Enable the connector node](./deploy/risingwave-trial.md?method=binaries#optional-enable-the-connector-node).
 
 ### Meta service
 

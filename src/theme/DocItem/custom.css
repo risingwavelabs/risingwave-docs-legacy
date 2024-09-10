@@ -1,0 +1,6 @@
+/* Note that this is a global style sheet. */
+
+/* hide theme's builtin `Edit this page` link */
+a.theme-edit-this-page {
+  display: none;
+}

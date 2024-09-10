@@ -117,9 +117,9 @@ SELECT * FROM metric_avg_30s LIMIT 5;
 ```
 
 ```
-                           metric_name                         |        metric_time        | metric_value       
+                           metric_name                         |        metric_time        | metric_value
 ---------------------------------------------------------------+---------------------------+--------------
-                        all_barrier_nums                       | 2022-11-07 21:38:00+00:00 |      0 
+                        all_barrier_nums                       | 2022-11-07 21:38:00+00:00 |      0
             etcd_debugging_mvcc_pending_events_total           | 2022-11-07 21:38:00+00:00 |      0
                  etcd_debugging_mvcc_txn_total                 | 2022-11-07 21:38:00+00:00 |      2
   etcd_debugging_snap_save_marshalling_duration_seconds_bucket | 2022-11-07 21:38:00+00:00 |      0
@@ -139,10 +139,7 @@ To add RisingWave as a Postgres data source:
 3. Specify the database connection parameters.
 4. Click **Save & test**.
 
-<img
-  src={require('../images/grafana-connect.png').default}
-  alt="Connecting Grafana to RisingWave"
-/>
+![Connecting Grafana to RisingWave](../images/grafana-connect.png)
 
 This example uses RisingWave’s “root” user for testing purposes. While in the production environment, it is recommended to use a dedicated read-only user when querying the database using Grafana. To do so, use the following SQL queries:
 
@@ -161,10 +158,7 @@ To create a panel:
 2. Click on **Add a new panel**.
 3. Specify the time range, data source, and query to visualize RisingWave metrics.
 
-<img
-  src={require('../images/grafana-dashboard.png').default}
-  alt="Creating a dashboard in Grafana"
-/>
+![Creating a dashboard in Grafana](../images/grafana-dashboard.png)
 
 When you finish, run the following command to disconnect RisingWave.
 

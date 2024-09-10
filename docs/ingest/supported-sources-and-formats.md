@@ -48,8 +48,8 @@ For data in Avro format, you must specify a message and a schema registry. For K
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-:::note Beta Feature
-`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+`schema.registry.name.strategy` is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 Note that the timestamp displayed in RisingWave may be different from the upstream system as timezone information is lost in Avro serialization.
@@ -98,9 +98,11 @@ Optionally, you can define a `schema.registry.name.strategy` if `schema.registry
 
 `ignore_key` can be used to ignore the key part of given messages. By default, it is `false`. If set to `true`, only the payload part of the message will be consumed. In this case, the payload must not be empty and tombstone messages cannot be handled.
 
-:::caution Beta Feature
-`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+`schema.registry.name.strategy` is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
+
+
 
 Syntax:
 
@@ -123,8 +125,8 @@ When consuming data in AVRO from Kafka topics, the `FORMAT` and `ENCODE` section
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-:::note Beta Feature
-`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+`schema.registry.name.strategy` is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 Syntax:
@@ -231,8 +233,8 @@ For data in protobuf format, you must specify a message (fully qualified by pack
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-:::note Beta feature
-`schema.registry.name.strategy` is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 :::info

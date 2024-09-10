@@ -8,17 +8,16 @@
 :root {
   --ifm-pre-background: red;
   --test: #98e1ff;
-  --ifm-color-primary: #0098ef;
-  --ifm-color-primary-dark: #0098ef;
-  --ifm-color-primary-darker: #0069a8;
-  --ifm-color-primary-darkest: #002c42;
+  --ifm-color-primary: #055eec;
+  --ifm-color-primary-dark: #044bbc;
+  --ifm-color-primary-darker: #03388d;
+  --ifm-color-primary-darkest: #02255e;
   --ifm-color-primary-light: #69d7fc;
   --ifm-color-primary-lighter: #98e1ff;
   --ifm-color-primary-lightest: #c4ecfc;
   --ifm-color-navy-blue-300: #98c6d9;
   --ifm-color-neutral-400: #b3b3b3;
   --ifm-color-neutral-900: #16171a;
-  --ifm-navbar-link-color: #16171a;
   --ifm-button-background-color: var(--ifm-color-primary-dark);
   --ifm-button-hover-background-color: #0179be;
   --ifm-button-color: #0179be;
@@ -36,7 +35,6 @@
   --ifm-font-family-monospace: "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
     monospace;
 
-  --doc-sidebar-width: 260px !important;
   --ifm-tabs-padding-vertical: 0.5rem !important;
   --ifm-navbar-height: 3rem;
 
@@ -53,8 +51,6 @@
   --ifm-color-primary-lighter: #c7d4f6;
   --ifm-color-primary-lightest: #233064;
   --ifm-background-color: #1f2765;
-  --ifm-navbar-link-color: #e3e3e3;
-  --ifm-heading-color: #e3e3e3;
 
   --ifm-button-background-color: linear-gradient(0deg, rgba(72, 220, 188, 0.1), rgba(72, 220, 188, 0.1)), #0a3246;
   --ifm-button-hover-background-color: #102432;
@@ -99,42 +95,6 @@ html[data-theme="dark"] {
   --ifm-card-border-color: #152c3c;
 }
 
-/* custom sidebar menu */
-.theme-doc-sidebar-container {
-  border-right: none !important;
-}
-
-.theme-doc-sidebar-item-category-level-1>div>a,
-.theme-doc-sidebar-item-category-level-1>div>a:hover {
-  color: var(--ifm-color-emphasis-700);
-  padding-top: 1.4rem;
-}
-
-.theme-doc-sidebar-item-category-level-1>div:hover {
-  background: none;
-  color: var(--ifm-color-primary);
-}
-
-.menu__link {
-  font-size: 1rem;
-}
-
-.menu__list .menu__list {
-  padding-left: 0;
-}
-
-.theme-doc-sidebar-item-category-level-2 .menu__list .menu__link {
-  padding-left: calc(var(--ifm-menu-link-padding-horizontal) + 0.5rem);
-}
-
-.theme-doc-sidebar-item-category-level-3 .menu__list .menu__link {
-  padding-left: calc(var(--ifm-menu-link-padding-horizontal) + 0.5rem * 2);
-}
-
-.theme-doc-sidebar-item-category-level-4 .menu__list .menu__link {
-  padding-left: calc(var(--ifm-menu-link-padding-horizontal) + 0.5rem * 3);
-}
-
 /* custom nav bar */
 .navbar .navbar__inner {
   display: flex;
@@ -156,18 +116,6 @@ html[data-theme="dark"] {
 
 [data-theme="dark"] .navbar--fixed-top {
   background-color: #091720f5;
-}
-
-.clean-btn {
-  --ifm-color-emphasis-200: var(--ifm-color-gray-800);
-}
-
-.clean-btn.navbar-sidebar__back {
-  color: var(--ifm-color-gray-600);
-}
-
-[data-theme="dark"] .clean-btn {
-  color: var(--ifm-color-gray-400);
 }
 
 .markdown h1:first-child {
@@ -262,22 +210,30 @@ div[role="tabpanel"] ol>li:not(.tabs__item) {
   font-size: 1.1rem;
 }
 
-/* Custom sidebar expand button */
-.menu {
-  scrollbar-width: none;
+/* Custom sidebar */
+
+.theme-doc-sidebar-menu {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+
+  font-weight: normal;
 }
 
-.menu::-webkit-scrollbar {
-  display: none;
+.theme-doc-sidebar-menu .theme-doc-sidebar-item-category-level-1>div:hover {
+  background: none;
 }
 
-.theme-doc-sidebar-menu>.theme-doc-sidebar-item-link-level-1 a {
-  color: var(--ifm-color-emphasis-700);
-  padding-top: 1.4rem;
+.theme-doc-sidebar-menu .theme-doc-sidebar-item-category-level-1>div>a {
+  font-weight: var(--ifm-font-weight-semibold);
 }
 
-.menu__list>.theme-doc-sidebar-item-category ul a {
-  font-weight: 400;
+:root {
+  --doc-sidebar-width: 300px !important;
+  --ifm-menu-link-padding-vertical: 0.3rem;
 }
 
 /* make the arrow icon of menu item without a linked index page smaller (1.5rem) */
@@ -554,4 +510,8 @@ html.mdx-page h2 {
 
 [data-theme="dark"] .markdown img:not(.disabled-zoom, .icon) {
   border: 2px solid #0a3246;
+}
+
+img {
+  height: auto;
 }

@@ -36,7 +36,7 @@ If you want your data to be persisted in your local drive or object storage, con
 
 If you see the logs, you have successfully started RisingWave.
 
-<img src={require('../images/risedev_playground_logs.png').default} alt="RisingWave Playground Logs"/>
+![RisingWave Playground Logs](../images/risedev_playground_logs.png)
 
 ## Connect to RisingWave
 
@@ -62,9 +62,6 @@ To enable the connector node:
 
 3. Uncomment `use connector-node` in the risedev.yml file like below.
 
-    <img
-    src={require('../images/uncomment-connector-node.png').default}
-    alt="Edit risedev.yml file for connector node"
-    />
+    ![Edit risedev.yml file for connector node](../images/uncomment-connector-node.png)
 
 The connector node will now be enabled when you run RisingWave.

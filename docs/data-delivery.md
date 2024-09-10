@@ -160,3 +160,32 @@ When creating an `upsert` sink, note whether or not you need to specify the prim
 - If the downstream system supports primary keys but the table in the downstream system has no primary key, then RisingWave does not allow users to create an upsert sink. A primary key must be defined in the table in the downstream system.
 
 - If the downstream system does not support primary keys, then users must define the primary key when creating an upsert sink.
+
+## Sink data in parquet format
+
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
+RisingWave supports sinking data in Parquet format to file systems including S3, Google Cloud Storage (GCS), and Azure Blob Storage. This eliminates the need for complex data lake setups. Once the data is saved, the files can be queried using the batch processing engine of RisingWave through the `file_scan` API. You can also leverage third-party OLAP query engines for further data processing.
+
+Below is an example to sink data to S3:
+
+```sql
+CREATE SINK test_file_sink FROM test 
+WITH (
+    connector = 's3',
+    s3.region_name = '{config['S3_REGION']}',
+    s3.bucket_name = '{config['S3_BUCKET']}',
+    s3.credentials.access = '{config['S3_ACCESS_KEY']}',
+    s3.credentials.secret = '{config['S3_SECRET_KEY']}',
+    s3.endpoint_url = 'https://{config['S3_ENDPOINT']}'
+    s3.path = '',
+    type = 'append-only',
+    force_append_only='true'
+) FORMAT PLAIN ENCODE PARQUET(force_append_only='true');  
+```
+
+:::note
+File sink currently supports only append-only mode, so please change the query to `append-only` and specify this explicitly after the `FORMAT ... ENCODE ...` statement.
+:::

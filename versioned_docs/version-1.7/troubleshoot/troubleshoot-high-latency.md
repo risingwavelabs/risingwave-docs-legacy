@@ -12,10 +12,7 @@ This guide aims to help you identify the root causes of high latency and provide
 
 To detect barrier latency: go to **Grafana dashboard (dev)** > **Streaming** > **Barrier Latency** panel. For example, the latency curve in the following figure is extremely high, indicating that the barrier is getting stuck.
 
-<img
-  src={require('../images/example_bad_barrier_latency.png').default}
-  alt="An example of extremely high latency"
-/>
+![An example of extremely high latency](../images/example_bad_barrier_latency.png)
 
 ## Diagnosis
 
@@ -45,9 +42,6 @@ When using a low-cardinality column as the equal condition for a join, such as `
 
 For example, the following figure shows a materialized view with extremely high latency caused by high join amplification. See the panel through **Grafana dashboard (dev)** > **Streaming** > **Join Executor Matched Rows**, which indicates the number of matched rows from the opposite side in the streaming join executors.
 
-<img
-  src={require('../images/example_high_join_matched_rows.png').default}
-  alt="An example of extremely high latency"
-/>
+![An example of extremely high latency](../images/example_high_join_matched_rows.png)
 
 To solve the issue, consider rewriting the SQL query to reduce join amplification, such as using better equal conditions on the problematic join to reduce the number of matched rows.

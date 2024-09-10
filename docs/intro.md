@@ -9,25 +9,29 @@ keywords: [streaming database, risingwave, introduction]
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/intro/" />
 </head>
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+import LightButton from "@site/src/components/LightButton";
+
 RisingWave is a Postgres-compatible SQL database engineered to offer the ***simplest*** and ***most cost-effective*** approach for **processing**, **analyzing**, and **managing** real-time event streaming data.
 
-RisingWave can ingest millions of events per second, seamlessly join and analyze live data streams with historical tables, serve ad-hoc queries in real-time, and deliver fresh, consistent results.
+RisingWave can ingest millions of events per second, continuously join and analyze live data streams with historical tables, serve ad-hoc queries in real-time, and deliver fresh, consistent results wherever needed.
 
 <p>
-  <defaultButton text="Get Started" doc="get-started" />
+  <DefaultButton text="Get Started" doc="get-started" />
 </p>
 
-![RisingWave Architecture](./images/architecture_20240814.png)
+![RisingWave Architecture](./images/architecture_20240908.png)
 
 ## When is RisingWave the perfect fit?
 
 RisingWave is the ideal solution for:
 
-- Handling real-time data sources like Kafka streams, database CDC, and more.
-- Performing complex, on-the-fly queries such as joins, aggregations, and time windowing.
-- Interactively and concurrently explore consistent, up-to-the-moment results.
-- Seamlessly send results to downstream systems.
-- Processing streaming and batch data using the same codebase.
+- Managing real-time data sources like Kafka streams, database CDC, and more.
+- Executing complex, on-the-fly queries, including joins, aggregations, and time windowing.
+- Interactively and concurrently exploring consistent, up-to-the-moment results.
+- Seamlessly delivering results to downstream systems.
+- Processing both streaming and batch data with a unified codebase.
 
 ## In what use cases does RisingWave excel?
 
@@ -74,11 +78,8 @@ Note that RisingWave does not use the PostgreSQL engine internally, which result
 
 RisingWave aims to help simplify event-driven architecture. You can think of RisingWave as a unified system that combines event streaming, stream processing, storage, and serving capabilities. Developers can express intricate stream-processing logic through cascaded materialized views. Additionally, it allows users to persist data directly within the system, eliminating the need to deliver results to external databases for storage and query serving.
 
-<img
-  src={require('./images/stream_processing_with_and_without_rw.jpeg').default}
-  alt="Stream Processing With And Without RisingWave"
-/>
+![Stream Processing With And Without RisingWave](./images/stream_processing_with_and_without_rw.jpeg)
 
-<lightButton text="See the architecture" doc="architecture"/>
-<lightButton text="Access the source code" url="https://github.com/risingwavelabs/risingwave"/>
+<LightButton text="See the architecture" doc="architecture"/>
+<LightButton text="Access the source code" url="https://github.com/risingwavelabs/risingwave"/>
 <br/>
