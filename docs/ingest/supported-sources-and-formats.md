@@ -82,7 +82,7 @@ FORMAT [ DEBEZIUM | UPSERT | PLAIN ] ENCODE AVRO (
 
 Note that the value types can only be: `null`, `boolean`, `int`, `string`, or `map`/`record`/`array` with these types.
 
-From version 1.11, Risingwave supports Avro Union type for sources. Below is an example:
+From version 2.0, Risingwave supports Avro Union type for sources. Below is an example:
 
 ```sql
 
