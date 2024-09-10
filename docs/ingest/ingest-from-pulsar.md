@@ -10,8 +10,8 @@ slug: /ingest-from-pulsar
 
 You can ingest data from Pulsar into RisingWave by using the Pulsar source connector in RisingWave.
 
-:::note Beta feature
-The Pulsar source connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 When creating a source, you can choose to persist the data from the source in RisingWave by using `CREATE TABLE` instead of `CREATE SOURCE` and specifying the connection settings and data format.

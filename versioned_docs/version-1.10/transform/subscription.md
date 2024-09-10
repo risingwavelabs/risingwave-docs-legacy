@@ -258,7 +258,7 @@ First, we need to create a table for storing the progress.
 CREATE TABLE IF NOT EXISTS subscription_progress (
     sub_name VARCHAR PRIMARY KEY,
     progress BIGINT
-);
+) ON CONFLICT OVERWRITE;
 ```
 
 Here's an example python code for retrieving and updating the consumption progress:
@@ -272,11 +272,7 @@ def get_last_progress(conn, sub_name):
 
 def update_progress(conn, sub_name, progress):
     with conn.cursor() as cur:
-        cur.execute("""
-            INSERT INTO subscription_progress (sub_name, progress)
-            VALUES (%s, %s)
-            ON CONFLICT (sub_name) DO UPDATE SET progress = %s
-        """, (sub_name, progress, progress))
+        cur.execute("INSERT INTO subscription_progress (sub_name, progress)", (sub_name, progress, progress))
         cur.execute("FLUSH")
         conn.commit()
 ```
