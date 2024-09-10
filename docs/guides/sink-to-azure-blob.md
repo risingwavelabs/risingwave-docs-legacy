@@ -12,6 +12,10 @@ This guide describes how to sink data from RisingWave to Azure Blob using the Az
 
 [Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/) is Microsoft's object storage solution that allows you to store and manage massive amounts of unstructured data.
 
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
 ## Syntax
 
 ```sql
