@@ -82,10 +82,24 @@ FORMAT [ DEBEZIUM | UPSERT | PLAIN ] ENCODE AVRO (
 
 Note that the value types can only be: `null`, `boolean`, `int`, `string`, or `map`/`record`/`array` with these types.
 
-From version 2.0, Risingwave supports Avro Union type for sources. Below is an example:
+From version 2.0, Risingwave supports Avro Union type for sources. For example, let's assume you have created a Kafka topic `avro-union-simple` and registered the Avro schema with fields containing a Union type (such as ["int", "string", "null", "boolean"]). After producing messages to this topic, you can create a source and query the data as shown below:
 
 ```sql
+CREATE SOURCE avro_union
+WITH (
+      ${RISEDEV_KAFKA_WITH_OPTIONS_COMMON},
+      topic = 'avro-union-simple'
+)
+FORMAT PLAIN ENCODE AVRO (
+      schema.registry = '${RISEDEV_SCHEMA_REGISTRY_URL}'
+);
 
+SELECT * FROM avro_union;
+----RESULT
+(,,t)
+(,2,)
+(1,,)
+NULL
 ```
 
 ### Debezium AVRO
