@@ -75,7 +75,7 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 :::note
 + Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
 
-+ Starting with version 2.0, the default value for `properties.message.timeout.ms` has changed. It's now **5 minutes** instead of 5 seconds, matching the default setting in the official Kafka library.
++ Starting with version 2.0, the default value for `properties.message.timeout.ms` has changed from 5 seconds to **5 minutes**, aligning with the default setting in the official Kafka library.
 :::
 
 ## FORMAT and ENCODE options
