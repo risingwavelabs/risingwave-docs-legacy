@@ -45,7 +45,7 @@ FORMAT data_format ENCODE data_encode [ (
 |primary_key| Required. The primary keys of the sink. Use ',' to delimit the primary key columns. |
 
 :::note
-In the Kinesis sink, we use the [PutRecords](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecords.html) API to send multiple records in batches, which helps achieve higher throughput. However, due to Kinesis limitations, the records might be delivered out of order when using this API. Despite this, the current implementation of the Kinesis sink guarantees at-least-once delivery and eventual consistency.
+In the Kinesis sink, we use [PutRecords](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecords.html) API to send multiple records in batches to achieve higher throughput. Due to the limitations of Kinesis, records might be out of order when using this API. Nevertheless, the current implementation of the Kinesis sink guarantees at-least-once delivery and eventual consistency.
 :::
 
 ## FORMAT and ENCODE options
