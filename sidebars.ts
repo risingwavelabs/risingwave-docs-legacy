@@ -1063,6 +1063,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "deploy/cluster-limit",
+          label: "Cluster limit",
+        },
+        {
+          type: "doc",
           id: "deploy/best-practices-for-managing-a-large-number-of-streaming-jobs",
           label: "Best practices for managing a large number of streaming jobs",
         },
