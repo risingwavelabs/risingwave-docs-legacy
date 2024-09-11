@@ -161,7 +161,20 @@ For data type mapping, the serial type is supported. We map the serial type to t
 
 ### JSON specific parameters
 
+#### `jsonb.handling.mode`
+
+The `jsonb.handling.mode` determines how `jsonb` data types are encoded. This parameter has two possible values:
+
+- `string`: Encodes the `jsonb` type to a string. For example, if you set this parameter, `{"k": 2}` will be converted to `"{\"k\": 2}"`.
+
+- `dynamic`: Dynamically encodes a `jsonb` type value to a JSON type value. For example, if you set this parameter, `{"k": 2}` will be converted to `{"k": 2}`. Here the `jsonb` value is encoded to a JSON object type value.
+
+You can set this parameter in the `WITH` clause of `ENCODE JSON`.  
+
+#### Note for serial types
+
 For data mapping, the serial type is supported. However, note that it is mapped into a JSON string like `"0x05fb93d677c4e000"` instead of a JSON number `431100738685689856`. This string form avoids JSON number precision issues with large int64 values, and you can still order by the fixed-length hexadecimal string to obtain the same order as the serial number (whereas variable-length string `"12"` sorts before `"7"`).
+
 
 ## Examples
 
