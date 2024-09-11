@@ -61,14 +61,15 @@ const sidebars: SidebarsConfig = {
           collapsed: true,
           items: [
             {
-              type: "category",
+              type: "doc",
+              id: "ingest/data-ingestion",
               label: "Overview",
+            },
+            {
+              type: "category",
+              label: "General features",
               collapsible: true,
               collapsed: true,
-              link: {
-                type: "doc",
-                id: "ingest/data-ingestion",
-              },
               items: [
                 {
                   type: "doc",
@@ -89,11 +90,6 @@ const sidebars: SidebarsConfig = {
                   type: "doc",
                   label: "Ingest additional source fields",
                   id: "ingest/include-clause",
-                },
-                {
-                  type: "doc",
-                  label: "Change data capture with RisingWave",
-                  id: "ingest/ingest-from-cdc",
                 },
               ]
             },
@@ -159,6 +155,11 @@ const sidebars: SidebarsConfig = {
                   collapsible: true,
                   collapsed: false,
                   items: [
+                    {
+                      type: "doc",
+                      label: "CDC overview",
+                      id: "ingest/ingest-from-cdc",
+                    },
                     {
                       type: "doc",
                       label: "PostgreSQL CDC",
