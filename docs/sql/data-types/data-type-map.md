@@ -7,20 +7,18 @@ title: Map type
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-type-map/" />
 </head>
 
-`MAP(K, V)` stores key-value pairs.
-
-Notes:
+`MAP(K, V)` stores key-value pairs. Here's what `K` and `V` represent:
 
 - `K`: The type of the Map keys. It can be string or integral types (i.e., `character varying`, `smallint`, `integer`, or `bigint`). It must not be `NULL`, and must be unique in the map.
 - `V`: The type of the Map values. It can be arbitrary type.
 
 ## Define a map
 
-Create a map with `VARCHAR` keys and `INTEGER` values. 
+To create a map with `VARCHAR` keys and `INTEGER` values, use the statement below.
 
 ```sql
 SELECT MAP {'key1': 1, 'key2': 2, 'key3': 3};
------Result
+----RESULT
 {key1:1,key2:2,key3:3}
 ```
 
@@ -44,7 +42,7 @@ Use bracket notation to access the value of a key.
 
 ```sql
 SELECT MAP {'key1': 1, 'key2': 2, 'key3': 3}['key1'];
------Result
+----RESULT
 1
 ```
 
@@ -54,11 +52,11 @@ Use `map_insert` to insert or overwrite a key-value pair into a map.
 
 ```sql
 SELECT map_insert(MAP {'key1': 1, 'key2': 2, 'key3': 3}, 'key4', 4);
------Result
+----RESULT
 {key1:1,key2:2,key3:3,key4:4}
 
 SELECT map_insert(MAP {'key1': 1, 'key2': 2, 'key3': 3}, 'key2', 4);
------Result
+----RESULT
 {key1:1,key3:3,key2:4}
 ```
 
