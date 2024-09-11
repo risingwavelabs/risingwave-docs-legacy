@@ -15,7 +15,4 @@ The meta node takes charge of managing the metadata of compute and compactor nod
 The compute nodes are responsible for ingesting data from upstream systems, parsing and running SQL queries, and delivering data to downstream systems.
 The compactor nodes handle data storage and retrieval from object storage. They also perform data compaction to optimize storage efficiency.
 
-<img
-  src={require('../images/rw_architecture.png').default}
-  alt="RisingWave Architecture"
-/>
+![RisingWave Architecture](../images/rw_architecture.png)

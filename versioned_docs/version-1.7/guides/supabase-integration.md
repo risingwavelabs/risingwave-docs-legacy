@@ -31,17 +31,11 @@ Throughout this guide, we will cover the following tasks:
 
 First, let's create two tables in Supabase. The `users` table stores user information, and the `posts` table stores posts sent by users.
 
-<img
-  src={require('../images/supabase-integration/supabase-table-visualization.png').default}
-  alt="Supabase tables"
-/>
+![Supabase tables](../images/supabase-integration/supabase-table-visualization.png)
 
 Make sure the data replication of these two tables are enabled. To learn about data replication for Supabase tables, see [Replication](https://supabase.com/docs/guides/database/replication).
 
-<img
-  src={require('../images/supabase-integration/supabase-replication.png').default}
-  alt="Enable table replication in Supabase"
-/>
+![Enable table replication in Supabase](../images/supabase-integration/supabase-replication.png)
 
 ## Ingest data into RisingWave
 
@@ -52,10 +46,10 @@ To ingest data into RisingWave in real time, you need to create two tables with 
 ```sql title="First table"
 CREATE TABLE users (
   id int8,
-  created_at TIMESTAMPTZ, 
+  created_at TIMESTAMPTZ,
   name string,
   PRIMARY KEY(id)
-) 
+)
 WITH (
   connector='postgres-cdc',
   hostname = 'db.xxxxxx.supabase.co',
@@ -72,11 +66,11 @@ WITH (
 ```sql title="Second table"
 CREATE TABLE posts (
   id int8,
-  created_at TIMESTAMPTZ, 
+  created_at TIMESTAMPTZ,
   user_id int8,
   content string,
   PRIMARY KEY(id)
-) 
+)
 WITH (
   ...... -- same as above
 );
@@ -92,7 +86,7 @@ The following SQL statement creates a materialized view in RisingWave to get the
 
 ```sql
 CREATE MATERIALIZED VIEW recent_posts AS (
-  SELECT name, content, posts.created_at as created_at FROM posts 
+  SELECT name, content, posts.created_at as created_at FROM posts
   JOIN users ON posts.user_id = users.id
   ORDER BY posts.created_at DESC LIMIT 100
 );
@@ -126,9 +120,9 @@ The following SQL statement creates a materialized view in RisingWave to get the
 
 ```sql
 CREATE MATERIALIZED VIEW user_posts_cnt AS (
-  SELECT 
+  SELECT
     users.id AS user_id,
-    COUNT(posts.id) AS cnt 
+    COUNT(posts.id) AS cnt
   FROM posts JOIN users ON users.id = posts.user_id
   GROUP BY users.id
 );
@@ -144,15 +138,12 @@ Let's sink the real-time result of the number of posts sent by users to Supabase
 
 Before we create the sink in RisingWave, we need to create the destination table `user_posts_cnt` in Supabase. The schema looks like this:
 
-<img
-  src={require('../images/supabase-integration/supabase-sink-table.png').default}
-  alt="new table for sink in supabase"
-/>
+![new table for sink in supabase](../images/supabase-integration/supabase-sink-table.png)
 
 After the table is created, we can now run the following statement in RisingWave to sink the result to the Supabase table we just created.
 
 ```sql
-CREATE SINK supabase_user_posts_cnt 
+CREATE SINK supabase_user_posts_cnt
 FROM user_posts_cnt WITH (
   connector='jdbc',
   jdbc.url='jdbc:postgresql://db.xxxxxx.supabase.co:5432/postgres?user=postgres&password=xxxxxx',

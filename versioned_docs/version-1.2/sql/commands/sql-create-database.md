@@ -17,21 +17,6 @@ CREATE DATABASE [ IF NOT EXISTS ] database_name;
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal("CREATE DATABASE"),
-      rr.Optional(rr.Terminal("IF NOT EXISTS")),
-      rr.NonTerminal("database_name", "skip"),
-      rr.Terminal(";")
-   )
-)
-);
-
-<drawer SVG={svg} />
-
 
 ## Parameters
 |Parameter or clause            | Description           |

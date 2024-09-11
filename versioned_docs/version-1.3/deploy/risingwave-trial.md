@@ -8,10 +8,13 @@ slug: /risingwave-trial
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-trial/" />
 </head>
 
-All of the options on this page are for testing purposes. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
-
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+import LightButton from "@site/src/components/LightButton";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+All of the options on this page are for testing purposes. For production deployments, please consider [RisingWave Cloud](/deploy/risingwave-cloud.md), [Kubernetes with Helm](/deploy/deploy-k8s-helm.md), or [Kubernetes with Operator](/deploy/risingwave-kubernetes.md).
 
 <Tabs queryString="method">
 
@@ -27,10 +30,10 @@ RisingWave will be started as a single-node instance. Data is stored solely in m
 
 These options are available:
 
-<lightButton text="Playground in a Web browser" doc="risingwave-trial?method=playground" />
-<lightButton text="Homebrew" doc="risingwave-trial?method=homebrew" />
-<lightButton text="Binaries" doc="risingwave-trial?method=binaries" />
-<lightButton text="Docker image" doc="risingwave-trial?method=docker" />
+<LightButton text="Playground in a Web browser" doc="risingwave-trial?method=playground" />
+<LightButton text="Homebrew" doc="risingwave-trial?method=homebrew" />
+<LightButton text="Binaries" doc="risingwave-trial?method=binaries" />
+<LightButton text="Docker image" doc="risingwave-trial?method=docker" />
 
 <br/>
 <br/>
@@ -39,7 +42,7 @@ These options are available:
 
 For advanced tests, we recommend using Docker Compose to start RisingWave as a multi-node cluster. With this option, data is persisted in storage. However, please be aware that certain critical features such as failover and resource management are not implemented in this mode. Therefore, this option is not recommended for production deployments.
 
-<lightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" />
+<LightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" />
 
 </TabItem>
 
@@ -53,7 +56,7 @@ Try out RisingWave without the need for any installation or setup with RisingWav
 RisingWave Playground is intended for quick tests only. Your data will not be persisted after a session expires. This mode has limited memory capacity to maintain overall stability, and resource-intensive operations may lead to out-of-memory (OOM) errors. Some functionality may be limited.
 :::
 
-<defaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
+<DefaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
 
 <br/>
 
@@ -183,10 +186,7 @@ Do not move the extracted files or folders. This could cause issues when startin
 
     1. Uncomment `use connector-node` in the risedev.yml file like below.
 
-    <img
-    src={require('../images/uncomment-connector-node.png').default}
-    alt="Edit risedev.yml file for connector node"
-    />
+    ![Edit risedev.yml file for connector node](../images/uncomment-connector-node.png)
 
   The connector node will now be enabled when you run RisingWave.
 
@@ -286,7 +286,7 @@ RisingWave also incorporates these third-party components:
   ```
 
   Now run the following commands to navigate to the `docker` directory.
-  
+
   ```shell
   cd docker
   ```

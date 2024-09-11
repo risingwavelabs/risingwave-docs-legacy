@@ -16,20 +16,6 @@ Use the `SHOW DATABASES` command to show all databases.
 SHOW DATABASES [ LIKE_expression ];
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW DATABASES'),
-        rr.Optional(
-            rr.NonTerminal('LIKE_expression'),
-        ),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 |Parameter or clause        | Description           |

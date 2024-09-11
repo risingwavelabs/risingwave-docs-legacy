@@ -17,33 +17,6 @@ CREATE SINK [ IF NOT EXISTS ] sink_name INTO table_name
 [FROM sink_from | AS select_query]
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal('CREATE SINK'),
-      rr.Optional(rr.Terminal('IF NOT EXISTS')),
-      rr.NonTerminal('sink_name', 'skip'),
-      rr.Terminal('INTO'),
-      rr.NonTerminal('table_name'),
-      rr.ZeroOrMore(
-      rr.Sequence(
-         rr.Terminal('FROM'),
-         rr.NonTerminal('sink_from', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('AS'),
-         rr.NonTerminal('select_query', 'skip')
-      ),
-   ),
-   ),
-   rr.Terminal(';'),
-)
-);
-
-<drawer SVG={svg} />
-
 :::note
 
 A table without a primary key can only accept the append-only sink.
@@ -73,7 +46,7 @@ CREATE source orders_s0 (
     price int,
     item_id int,
     customer_id int
-) WITH ( 
+) WITH (
     connector = 'kafka',
     topic = 'topic_0',
     ...
@@ -84,7 +57,7 @@ CREATE source orders_s1 (
     price int,
     item_id int,
     customer_id int
-) WITH ( 
+) WITH (
     connector = 'kafka',
     topic = 'topic_1',
     ...

@@ -17,17 +17,14 @@ This guide focuses on addressing OOM issues on the compute node. If you encounte
 1. The Kubernetes shows the compute node pod suddenly restarts due to **OOM Killed (137)**.
 2. The Grafana metrics show memory increases unbounded, beyond the limit of `total_memory` set for the compute node. Memory settings can be found in the booting logs of the compute node. Search for keyword “Memory outline" to locate the specific section.
 
-<img
-  src={require('../images/oom-symptom.png').default}
-  alt="Out-of-memory symptom"
-/>
+  ![Out-of-memory symptom](../images/oom-symptom.png)
 
 ## OOM when creating materialized views
 
 If OOM happens during creating a new materialized view, it might be caused by the large amount of existing data in upstream systems like Kafka. In this case, before creating or recreating a materialized view, you can reduce the traffic by specifying the rate limit:
 
 ```sql
-SET RW_STREAMING_RATE_LIMIT = <rate_limit_per_actor> 
+SET RW_STREAMING_RATE_LIMIT = <rate_limit_per_actor>
 ```
 
 Note that the limit value must be larger than the value for `stream_chunk_size` (usually 256). Otherwise the flow control executor cannot throttle the chunk.

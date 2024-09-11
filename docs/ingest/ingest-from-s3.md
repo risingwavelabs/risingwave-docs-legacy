@@ -17,7 +17,7 @@ The S3 connector does not guarantee the sequential reading of files or complete 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name 
 schema_definition
-[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
+[INCLUDE { file | offset } [AS <column_name>]]
 WITH (
    connector='s3',
    connector_parameter='value', ...
@@ -53,6 +53,7 @@ For CSV data, specify the delimiter in the `delimiter` option in `ENCODE propert
 |s3.endpoint_url| Conditional. The host URL for an S3-compatible object storage server. This allows users to use a different server instead of the standard S3 server. |
 |compression_format|Optional. This field specifies the compression format of the file being read. You can define `compression_format` in the `CREATE TABLE` statement. When set to `gzip` or `gz`, the file reader reads all files with the .gz suffix. When set to `None` or not defined, the file reader will automatically read and decompress .gz and .gzip files.|
 |match_pattern| Conditional. This field is used to find object keys in `s3.bucket_name` that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported. |
+|s3.assume_role| Optional. Specifies the ARN of an IAM role to assume when accessing S3. It allows temporary, secure access to S3 resources without sharing long-term credentials.  |
 
 :::note
 Empty cells in CSV files will be parsed to `NULL`.
@@ -64,6 +65,13 @@ Empty cells in CSV files will be parsed to `NULL`.
 |*data_encode*| Supported data encodes: `CSV`, `JSON`, `PARQUET`. |
 |*without_header*| This field is only for `CSV` encode, and it indicates whether the first line is header. Accepted values: `'true'`, `'false'`. Default: `'true'`.|
 |*delimiter*| How RisingWave splits contents. For `JSON` encode, the delimiter is `\n`; for `CSV` encode, the delimiter can be one of `,`, `;`, `E'\t'`. |
+
+### Additional columns
+
+|Field|Notes|
+|---|---|
+|*file*| Optional. The column contains the file name where current record comes from. |
+|*offset*| Optional. The column contains the corresponding bytes offset (record offset for parquet files) where current message begins|
 
 ## Examples
 
@@ -103,6 +111,8 @@ CREATE TABLE s3(
     age int,
     mark int,
 )
+INCLUDE file as file_name
+INCLUDE offset -- default column name is `_rw_s3_offset`
 WITH (
     connector = 's3',
     match_pattern = '%Ring%*.ndjson',

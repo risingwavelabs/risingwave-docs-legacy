@@ -17,22 +17,6 @@ SET TIME ZONE { time_zone | LOCAL | DEFAULT };
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SET TIME ZONE'),
-        rr.Choice(1,
-            rr.NonTerminal('time_zone'),
-            rr.Terminal('LOCAL'),
-            rr.Terminal('DEFAULT'),
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 
 
 ## Parameters

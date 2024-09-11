@@ -24,18 +24,6 @@ Use the `DESCRIBE` command to view columns in the specified table, source, or ma
 DESCRIBE relation_name;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DESCRIBE'),
-        rr.NonTerminal('relation_name', 'skip'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 | Parameter or clause | Description                                                           |
@@ -46,7 +34,7 @@ export const svg = rr.Diagram(
 
 ```sql title=Preparation
 CREATE TABLE customers (
-  customer_id BIGINT PRIMARY KEY,  
+  customer_id BIGINT PRIMARY KEY,
   name VARCHAR,
   email VARCHAR
 );

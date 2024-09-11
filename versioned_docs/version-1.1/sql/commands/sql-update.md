@@ -24,63 +24,6 @@ UPDATE table_name
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-  rr.Stack(
-    rr.Sequence(
-      rr.Terminal("UPDATE"),
-      rr.NonTerminal("table_name")
-    ),
-    rr.Sequence(
-      rr.Terminal("SET"),
-      rr.Choice(
-        1,
-        rr.OneOrMore(
-          rr.Sequence(
-            rr.NonTerminal("col_name"),
-            rr.Terminal("="),
-            rr.NonTerminal("value")
-          ),
-          ","
-        ),
-        rr.Sequence(
-          rr.Terminal("("),
-          rr.OneOrMore(
-            rr.NonTerminal("col_name"),
-            ","
-          ),
-          rr.Terminal(")"),
-          rr.Terminal("="),
-          rr.Terminal("("),
-          rr.OneOrMore(
-            rr.NonTerminal("value"),
-            ","
-          ),
-          rr.Terminal(")")
-        )
-      )
-    ),
-    rr.Optional(
-      rr.Sequence(
-        rr.Terminal("WHERE"),
-        rr.NonTerminal("condition")
-      ),
-    ),
-    rr.Sequence(
-      rr.Optional(
-      rr.Sequence(
-        rr.Terminal("RETURNING"),
-        rr.NonTerminal("col_name")
-      )
-    ),
-    rr.Terminal(";")
-    )
-  )
-);
-
-<drawer SVG={svg} />
-
 
 
 ## Parameters
@@ -101,7 +44,7 @@ The `taxi_trips` table has three records:
 SELECT * FROM taxi_trips;
 ```
 ```
- id | distance |    city     
+ id | distance |    city
 ----+----------+-------------
   1 |       16 | Yerba Buena
   2 |       23 | New York
@@ -112,8 +55,8 @@ SELECT * FROM taxi_trips;
 The following statement updates the city name from 'Yerba Buena' to 'San Francisco'. Also, it returns the value of *id* for the updated rows.
 
 ```sql
-UPDATE taxi_trips 
-SET city = 'San Francisco' 
+UPDATE taxi_trips
+SET city = 'San Francisco'
 WHERE city = 'Yerba Buena'
 RETURNING id;
 ```
@@ -121,7 +64,7 @@ RETURNING id;
 The following statement converts the distance unit from kilometer to mile.
 
 ```sql
-UPDATE taxi_trips 
+UPDATE taxi_trips
 SET distance = distance * 0.6214;
 ```
 
@@ -131,7 +74,7 @@ Let's see the result.
 SELECT * FROM taxi_trips ORDER BY id;
 ```
 ```
- id |      distance      |     city      
+ id |      distance      |     city
 ----+--------------------+---------------
   1 |             9.9424 | San Francisco
   2 |            14.2922 | New York

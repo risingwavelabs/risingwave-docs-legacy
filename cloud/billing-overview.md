@@ -1,16 +1,13 @@
 ---
 id: billing-overview
-title: Billing 
+title: Billing
 description: Manage your bills and payment methods.
 slug: /billing-overview
 ---
 
 This guide provides detailed information on the billing procedures, and how to manage your bills and payment methods. Understanding these elements will help you effectively manage your costs while using RisingWave Cloud services.
 
-<img
-   src={require('./images/billing.png').default}
-   alt="Billing"
-/>
+![Billing](./images/billing.png)
 
 ## Billing process
 
@@ -44,7 +41,7 @@ See details in [Check current spending](/billing-check-spending-details.md#check
 
 ## Reviewing and paying invoices
 
-Each month, RisingWave Cloud generates an invoice summarizing your service usage and associated charges for the previous billing period. Normally, you can expect to receive your invoice within the first few days of the new month. This invoice provides a breakdown of your usage. 
+Each month, RisingWave Cloud generates an invoice summarizing your service usage and associated charges for the previous billing period. Normally, you can expect to receive your invoice within the first few days of the new month. This invoice provides a breakdown of your usage.
 
 If there are any outstanding payments, you can settle them manually. You can also access your history invoices.
 

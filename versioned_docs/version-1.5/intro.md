@@ -9,24 +9,23 @@ keywords: [streaming database, risingwave, introduction]
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/intro/" />
 </head>
 
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+import LightButton from "@site/src/components/LightButton";
+
 RisingWave is a distributed SQL streaming database that enables simple, efficient, and reliable processing of streaming data.
 
-<rollButton text="&nbsp;&nbsp;Get Started" doc="get-started" block />
-<br/>
+<p>
+  <DefaultButton text="Get Started" doc="get-started" />
+</p>
 
-<img
-  src={require('./images/new_archi_grey.png').default}
-  alt="RisingWave Architecture"
-/>
+![RisingWave Architecture](./images/new_archi_grey.png)
 
 ## Why RisingWave for stream processing?
 
 RisingWave specializes in providing **incrementally updated, consistent materialized views** — a persistent data structure that represents the results of stream processing. RisingWave significantly reduces the complexity of building stream processing applications by allowing developers to express intricate stream processing logic through cascaded materialized views. Furthermore, it allows users to persist data directly within the system, eliminating the need to deliver results to external databases for storage and query serving.
 
-<img
-  src={require('./images/stream_processing_with_and_without_rw.jpeg').default}
-  alt="Stream Processing With And Without RisingWave"
-/>
+![Stream Processing With And Without RisingWave](./images/stream_processing_with_and_without_rw.jpeg)
 
 Compared to existing stream processing systems like [Apache Flink](https://flink.apache.org/), [Apache Spark Streaming](https://spark.apache.org/docs/latest/streaming-programming-guide.html), and [ksqlDB](https://ksqldb.io/), RisingWave stands out in two primary dimensions: Ease-of-use and cost efficiency, thanks to its [PostgreSQL](https://www.postgresql.org/)-style interaction experience and  [Snowflake](https://snowflake.com/)-like architectural design (i.e., decoupled storage and compute).
 
@@ -63,6 +62,6 @@ RisingWave isn’t a panacea for all data engineering hurdles. It has its own se
 
 Like other stream processing systems, the primary use cases of RisingWave include monitoring, alerting, real-time dashboard reporting, streaming ETL (Extract, Transform, Load), machine learning feature engineering, and more. It has already been adopted in fields such as financial trading, manufacturing, new media, logistics, gaming, and more. Check out [Use cases](/use-cases.md).
 
-<lightButton text="See the architecture" doc="architecture"/>
-<lightButton text="Access the source code" url="https://github.com/risingwavelabs/risingwave"/>
+<LightButton text="See the architecture" doc="architecture"/>
+<LightButton text="Access the source code" url="https://github.com/risingwavelabs/risingwave"/>
 <br/>

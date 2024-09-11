@@ -19,27 +19,6 @@ DROP TABLE [ IF EXISTS ] [schema_name.]table_name;
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP TABLE'),
-        rr.Optional(
-            rr.Terminal('IF EXISTS')
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.NonTerminal('schema_name'),
-                rr.Terminal('.')
-            ),
-        ),
-        rr.NonTerminal('table_name'),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 
 
 
