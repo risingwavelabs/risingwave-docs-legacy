@@ -231,7 +231,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "Guides for third-party SaaS platforms",
+              label: "Third-party SaaS platforms",
               collapsible: true,
               collapsed: true,
               items: [
