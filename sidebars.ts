@@ -212,6 +212,11 @@ const sidebars: SidebarsConfig = {
                     },
                     {
                       type: "doc",
+                      label: "Azure Blob",
+                      id: "guides/ingest-from-azure-blob",
+                    },
+                    {
+                      type: "doc",
                       label: "Google Cloud Storage",
                       id: "ingest/ingest-from-gcs",
                     },
@@ -441,6 +446,11 @@ const sidebars: SidebarsConfig = {
                   type: "doc",
                   label: "AWS Kinesis",
                   id: "guides/sink-to-aws-kinesis",
+                },
+                {
+                  type: "doc",
+                  label: "Azure Blob",
+                  id: "guides/sink-to-azure-blob",
                 },
                 {
                   type: "doc",
