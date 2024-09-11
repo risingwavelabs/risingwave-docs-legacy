@@ -406,7 +406,7 @@ The `jsonb_populate_recordset` function in RisingWave differs from the function 
 Converts `jsonb` data into a `map` type by merging key-value pairs from the `jsonb` into the specified `map`.
 
 ```sql title=Syntax
-jsonb_populate_map(map anyelement, from_json jsonb) → map
+jsonb_populate_map(map anymap, from_json jsonb) → map
 ```
 
 ```sql title="Examples"
