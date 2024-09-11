@@ -418,7 +418,6 @@ SELECT jsonb_populate_map(
  jsonb_populate_map 
 --------------------
  {a:1,b:2}
-(1 row)
 
 SELECT jsonb_populate_map(
     MAP {'a': 1, 'b': 2},
@@ -428,7 +427,6 @@ SELECT jsonb_populate_map(
  jsonb_populate_map 
 --------------------
  {a:1,b:3,c:4}
-(1 row)
 
 -- Implicit cast (int -> varchar)
 SELECT jsonb_populate_map(
