@@ -159,7 +159,7 @@
             "type": "category",
             "label": "Manage data",
             "collapsible": true,
-            "collapsed": true,
+            "collapsed": false,
             "items": [
                 {
                     "type": "category",
