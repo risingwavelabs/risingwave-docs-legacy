@@ -8,8 +8,8 @@ slug: /sql-set-background-ddl
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-set-background-ddl/" />
 </head>
 
-:::note Beta feature
-The `SET BACKGROUND_DDL` command is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 Use the `SET BACKGROUND_DDL` command to run Data Definition Language (DDL) operations, such as creating materialized views in the background.

@@ -7,7 +7,7 @@ slug: /organization-overview
 
 <!-- MDX imports -->
 import OutlinedCard from "@site/src/components/OutlinedCard";
-import ResponsiveGrid from "@site/src/components/ResponsiveGrid";
+import Grid2 from "@mui/material/Grid2";
 
 ## Concept
 
@@ -26,15 +26,9 @@ In an organization, you can:
 
 ## Manage your organization
 
-<ResponsiveGrid
- container
- direction="row"
- spacing="15"
- justifyContent="space-between"
- justifyItems="stretch"
- alignItems="stretch">
+<Grid2 container spacing={1}>
 
-<ResponsiveGrid item xs={12} sm={6} md={6}>
+<Grid2 size={{ xs: 12, sm: 6, md: 6 }}>
 
 <OutlinedCard
 title="Invite and manage users"
@@ -43,9 +37,9 @@ cloud="manage-users"
 style={{height: "87%"}}
 />
 
-</ResponsiveGrid>
+</Grid2>
 
-<ResponsiveGrid item xs={12} sm={6} md={6}>
+<Grid2 size={{ xs: 12, sm: 6, md: 6 }}>
 
 <OutlinedCard
 title="Set up Single Sign-On (SSO)"
@@ -54,20 +48,14 @@ cloud="sso"
 style={{height: "87%"}}
 />
 
-</ResponsiveGrid>
+</Grid2>
 
-</ResponsiveGrid>
+</Grid2>
 
 <!--
-<ResponsiveGrid
- container
- direction="row"
- spacing="15"
- justifyContent="space-between"
- justifyItems="stretch"
- alignItems="stretch">
+<Grid2 container spacing={1}>
 
-<ResponsiveGrid item xs={12} sm={6} md={6}>
+<Grid2 size={{ xs: 12, sm: 6, md: 6 }}>
 
 <OutlinedCard
 title="Set up service accounts"
@@ -76,12 +64,12 @@ cloud="organization-service-account"
 style={{height: "87%"}}
 />
 
-</ResponsiveGrid>
+</Grid2>
 
-<ResponsiveGrid item xs={12} sm={6} md={6}>
+<Grid2 size={{ xs: 12, sm: 6, md: 6 }}>
 
 
 
-</ResponsiveGrid>
+</Grid2>
 
-</ResponsiveGrid> -->
+</Grid2> -->

@@ -150,3 +150,4 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |Hasura| |Researching <VoteNotify note="hasura" />|
 |Liquibase| |Researching <VoteNotify note="liquibase" />|
 |Supabase| |Available. For details, see [Ingest data from Supabase CDC](/ingest/ingest-from-supabase-cdc.md) and [Sink data to Supabase](/guides/sink-to-supabase.md).|
+|Azure Blob| |Available. For details, see [Ingest data from Azure Blob](/guides/ingest-from-azure-blob.md) and [Sink data to Azure Blob](/guides/sink-to-azure-blob.md).|
