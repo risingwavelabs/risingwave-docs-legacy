@@ -427,17 +427,6 @@ SELECT jsonb_populate_map(
  jsonb_populate_map 
 --------------------
  {a:1,b:3,c:4}
-
--- Implicit cast (int -> varchar)
-SELECT jsonb_populate_map(
-    MAP {'a': 'a', 'b': 'b'},
-    '{"b": 3, "c": 4}'::jsonb
-);
-----RESULT
- jsonb_populate_map 
---------------------
- {a:a,b:3,c:4}
-(1 row)
 ```
 
 ### `jsonb_set`
