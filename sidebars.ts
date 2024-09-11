@@ -108,7 +108,7 @@ const sidebars: SidebarsConfig = {
               items: [
                 {
                   type: "category",
-                  label: "Massage queues",
+                  label: "Message queues",
                   collapsible: true,
                   collapsed: false,
                   items: [
