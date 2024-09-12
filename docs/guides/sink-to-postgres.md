@@ -115,6 +115,7 @@ All `WITH` options are required unless noted.
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |connector| Sink connector type must be `'jdbc'` for PostgresQL sink. |
 |jdbc.url | The JDBC URL of the destination database necessary for the driver to recognize and connect to the database. |
+|jdbc.query.timeout|Specifies the timeout for the query. If not set, the default is 10 minutes.|
 |table.name | The table in the destination database you want to sink to. |
 |schema.name | Optional. The schema in the destination database you want to sink to. The default value is `public`. |
 |type| Sink data type. Supported types:<ul><li> `append-only`: Sink data as INSERT operations.</li><li> `upsert`: Sink data as UPDATE and INSERT operations. </li></ul>|

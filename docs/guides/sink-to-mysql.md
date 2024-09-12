@@ -132,6 +132,7 @@ All `WITH` options are required.
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](/sql//commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |connector| Sink connector type must be `'jdbc'` for MySQL sink. |
 |jdbc.url| The JDBC URL of the destination database necessary for the driver to recognize and connect to the database.|
+|jdbc.query.timeout|Specifies the timeout for the query. If not set, the default is 10 minutes.|
 |table.name| The table in the destination database you want to sink to.|
 |type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li></ul> `upsert`: Output data as a changelog stream. |
 |primary_key| Required if `type` is `upsert`. The primary key of the downstream table. |
