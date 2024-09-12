@@ -30,7 +30,7 @@ RisingWave Premium 1.0 is the first major release of this new edition with sever
 
 ### Schema management
 
-- Automatic schema mapping to the source tables for [PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md#automatically-map-upstream-table-schema) and MySQL CDC(/guides/ingest-from-mysql-cdc.md#automatically-map-upstream-table-schema)
+- Automatic schema mapping to the source tables for [PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md#automatically-map-upstream-table-schema) and [MySQL CDC](/guides/ingest-from-mysql-cdc.md#automatically-map-upstream-table-schema)
 
 - [Automatic schema change for MySQL CDC](/guides/ingest-from-mysql-cdc.md#automatically-change-schema)
 
