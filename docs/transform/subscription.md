@@ -77,6 +77,8 @@ Below are the available choices for `since_clause`. If you don’t specify the `
 2. `since begin()` : The returned data will include the oldest incremental data available, typically starting from the beginning of the subscription's retention period.
 
 3. `since unix_ms` : Starts reading from the first time point greater than or equal to the specified `unix_ms` value. It's important to note that the `unix_ms` value should fall within the range of `now() - subscription's retention` and `now`.
+   
+4. `FULL` :  Starts consuming data from stock.
 
 ### Fetch from cursor
 
