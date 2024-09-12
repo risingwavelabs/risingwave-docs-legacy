@@ -108,7 +108,7 @@ const sidebars: SidebarsConfig = {
               items: [
                 {
                   type: "category",
-                  label: "Massage queues",
+                  label: "Message queues",
                   collapsible: true,
                   collapsed: false,
                   items: [
@@ -231,7 +231,7 @@ const sidebars: SidebarsConfig = {
             },
             {
               type: "category",
-              label: "Guides for third-party SaaS platforms",
+              label: "Third-party SaaS platforms",
               collapsible: true,
               collapsed: true,
               items: [
