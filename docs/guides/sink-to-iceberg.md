@@ -49,7 +49,7 @@ WITH (
 | warehouse.path  | Conditional. The path of the Iceberg warehouse. Currently, only S3-compatible object storage systems, such as AWS S3 and MinIO, are supported. It's required if the `catalog.type` is not `rest`.|
 | catalog.url     | Conditional. The URL of the catalog. It is required when `catalog.type` is not `storage`. |
 | primary_key     | The primary key for an upsert sink. It is only applicable to the upsert mode. |
-| commit_checkpoint_interval | Optional. You can use this parameter to decouple the downstream system’s commit from RisingWave’s commit. This means that instead of committing data to the downstream system at every barrier, RisingWave will commit data only when the specified checkpoint interval is reached. For instance, if `commit_checkpoint_interval` is set to `5`, RisingWave will commit data every five checkpoints. The default value is `1`. Note that when `commit_checkpoint_interval` is a positive integer larger than `1`, the [`sink_decouple`](/data-delivery.md#sink-decoupling) option will be enabled automatically. |
+| commit_checkpoint_interval | Optional. Decouples downstream commits from RisingWave's commits. Once specified, RisingWave will commit data only at specified checkpoint intervals, not at every barrier. For example, setting it to `5` triggers commits every five checkpoints. Default is `1`. Note that setting it to a positive integer larger than `1` will automatically enable the [`sink_decouple`](/data-delivery.md#sink-decoupling) option. |
 
 ## Data type mapping
 
