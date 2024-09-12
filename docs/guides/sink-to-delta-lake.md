@@ -43,7 +43,7 @@ WITH (
 | s3.access.key   | Required. Access key of the S3 compatible object store.|
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
 | gcs.service.account   | Required for GCS. Specifies the service account JSON file as a string.|
-| commit_checkpoint_interval | Optional. Decouples downstream commits from RisingWave's commits. Once specified, RisingWave will commit data only at specified checkpoint intervals, not at every barrier. For example, setting it to `5` triggers commits every five checkpoints. Default is `1`. Note that setting it to a positive integer larger than `1` will automatically enable the [`sink_decouple`](/data-delivery.md#sink-decoupling) option.|
+| commit_checkpoint_interval | Optional. Commit every N checkpoints (N > 0). Default value is 10. <br/>The behavior of this field also depends on the `sink_decouple` setting:<ul><li>If `sink_decouple` is true (the default), the default value of `commit_checkpoint_interval` is 10.</li> <li>If `sink_decouple` is set to false, the default value of `commit_checkpoint_interval` is 1.</li> <li>If `sink_decouple` is set to false and `commit_checkpoint_interval` is set to larger than 1, an error will occur.</li></ul>|
 
 ## Example
 

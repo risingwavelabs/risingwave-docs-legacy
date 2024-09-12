@@ -46,7 +46,7 @@ All parameters are required unless specified otherwise.
 | type | Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li><li> `upsert`: Output data as a chagelog stream. In StarRocks, Primary Key table must be selected. </li></ul> |
 | force_append_only | If `true`, forces the sink to be `append-only`, even if it cannot be. |
 | primary_key | Required if `type` is `upsert`. The primary key of the downstream table. |
-| commit_checkpoint_interval | Optional. Decouples downstream commits from RisingWave's commits. Once specified, RisingWave will commit data only at specified checkpoint intervals, not at every barrier. For example, setting it to `5` triggers commits every five checkpoints. Default is `1`. Note that setting it to a positive integer larger than `1` will automatically enable the [`sink_decouple`](/data-delivery.md#sink-decoupling) option.|
+| commit_checkpoint_interval | Optional. Commit every N checkpoints (N > 0). Default value is 10. <br/>The behavior of this field also depends on the `sink_decouple` setting:<ul><li>If `sink_decouple` is true (the default), the default value of `commit_checkpoint_interval` is 10.</li> <li>If `sink_decouple` is set to false, the default value of `commit_checkpoint_interval` is 1.</li> <li>If `sink_decouple` is set to false and `commit_checkpoint_interval` is set to larger than 1, an error will occur.</li></ul>|
 
 ## Examples
 
