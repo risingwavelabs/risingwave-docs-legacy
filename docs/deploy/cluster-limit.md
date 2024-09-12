@@ -8,27 +8,33 @@ slug: /cluster-limit
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/cluster-limit/" />
 </head>
 
-We add the cluster limit feature to enhance user experience when cluster resources are limited. This feature adds a limit on the number of actors per parallelism (i.e. CPU core). If you exceed this limit when using `CREATE MATERIALIZED VIEW`, `CREATE TABLE`, or `CREATE SINK` statements, you'll receive a warning message.
+This guide introduces the cluster limit designed to enhance user experience when cluster resources are limited. It sets a limit on the number of actors per parallelism (i.e., CPU core). Exceeding this limit when you create materialized view, table, or sink will trigger a warning message.
 
-Both a soft and hard limit are introduced:
+## Limit types
 
-- `meta_actor_cnt_per_worker_parallelism_soft_limit` (defaults to 100): if the limit is exceeded,  `CREATE MATERIALIZED VIEW/TABLE/SINK` can still succeed but an SQL notice message will be included when the statement returns. For example:
+- **Soft limit**: `meta_actor_cnt_per_worker_parallelism_soft_limit`, defaults to 100.
+  
+  If exceeding this limit, creating materialized view, table, or sink can still succeed but will generate a SQL notice message when the statement returns.
 
-- `meta_actor_cnt_per_worker_parallelism_hard_limit` (defaults to 400): if the limit is exceeded,  `CREATE MATERIALIZED VIEW/TABLE/SINK` will fail and an error message will be included when the statement returns.
+- **Hard limit**: `meta_actor_cnt_per_worker_parallelism_hard_limit`, defaults to 400.
+
+  If exceeding this limit, creating materialized view, table, or sink will fail and generate an error message when the statement returns.
 
 ## Notes
 
-- The limit will not affect existing database objects in the cluster. In other words, there will be no disruption on MVs/TABLEs/SINKs that are already created. It will only affect future `CREATE MATERIALIZED VIEW/TABLE/SINK`.
+- The limit applies only when you create new materialized view, table, or sink. Existing database objects are unaffected.
 
-- Scaling the cluster or reducing the streaming job parallelism is the preferred way to resolve the limits.
+- To resolve issues related to these limits, consider scaling the cluster or reducing the streaming job parallelism.
 
-- The default limits are subject to change in future releases.
+- Default limits may be adjusted in future releases.
 
-- If you believe it is safe for the cluster to run with the limits exceeded, there are two ways to override the behavior:
+## Override cluster limits
 
-  - Bypass the check via session variable: `SET bypass_cluster_limits TO true`.
+If it's safe for the cluster to operate with limits exceeded, you can override the default behavior using one of the following methods:
 
-  - Increase the limit via meta developer config:
+1. Bypass the limit check via session variable: `SET bypass_cluster_limits TO true`.
+
+2. Increase the limit via meta developer config:
 
   ```toml
   [meta.developer]
@@ -36,7 +42,9 @@ Both a soft and hard limit are introduced:
   meta_actor_cnt_per_worker_parallelism_hard_limit = 400
   ```
 
-  However, please keep in mind, if you bypass the check or increase the limits, the cluster could become overloaded, leading to problems with stability, availability, or performance. Please be careful and proceed at your own risk.
+:::caution
+Please be aware that once you bypass the check or increase the limits, the cluster could become overloaded, leading to issues with stability, availability, or performance.
+:::
 
 ## Examples
 
