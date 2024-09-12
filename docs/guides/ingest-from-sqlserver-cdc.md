@@ -9,7 +9,7 @@
 </head>
 
 :::tip Premium Edition Feature
-This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. For a complete list of premium features and more information about the premium edition, please see [RisingWave Premium Edition](/rw-premium-edition-intro.md). If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+This feature is exclusive to RisingWave Premium Edition that offers advanced capabilities beyond the free versions. For a full list of premium features, see [RisingWave Premium Edition](/rw-premium-edition-intro.md). If you encounter any questions, please contact sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
 :::
 
 :::info Public Preview

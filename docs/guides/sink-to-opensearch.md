@@ -9,6 +9,10 @@ This guide describes how to sink data from RisingWave to OpenSearch using the Op
 
 OpenSearch is the flexible, scalable, open-source way to build solutions for data-intensive applications. For more information about OpenSearch, see [OpenSearch official website](https://opensearch.org/).
 
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
 ## Prerequisites
 
 - Ensure the OpenSearch cluster is accessible from RisingWave.

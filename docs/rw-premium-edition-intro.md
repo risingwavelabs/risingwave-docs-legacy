@@ -30,34 +30,31 @@ RisingWave Premium 1.0 is the first major release of this new edition with sever
 
 ### Schema management
 
-- Automatic schema mapping to the source tables
+- Automatic schema mapping to the source tables for [PostgreSQL CDC](/guides/ingest-from-postgres-cdc.md#automatically-map-upstream-table-schema) and MySQL CDC(/guides/ingest-from-mysql-cdc.md#automatically-map-upstream-table-schema)
 
-- Automatic schema change for MySQL CDC
+- [Automatic schema change for MySQL CDC](/guides/ingest-from-mysql-cdc.md#automatically-change-schema)
 
 - [AWS Glue Schema Registry](/ingest/ingest-from-kafka.md#read-schemas-from-aws-glue-schema-registry)
 
 ### Connectors
 
+- [Sink to Snowflake](/guides/sink-to-snowflake.md)
+
+- [Sink to DynamoDB](/guides/sink-to-dynamodb.md)
+
+- [Sink to OpenSearch](/guides/sink-to-opensearch.md)
+
+- [Sink to BigQuery](/guides/sink-to-bigquery.md)
+
+- Sink to Shared tree on ClickHouse Cloud
+
+- [Sink to SQL Server](/guides/sink-to-sqlserver.md)
+
 - [Direct SQL Server CDC source connector](/guides/ingest-from-sqlserver-cdc.md)
 
-- Sink to Azure SQL Database
-
-- Sink to Snowflake
-
-- Sink to OpenSearch
-
-- Sink to BigQuery
-
-- Sink to ClickHouse with SharedMergeTree engine
-
-- Sink to Iceberg with glue catalog
-
-### Others
-
-- [Terraform provider support](https://github.com/risingwavelabs/terraform-provider-risingwavecloud)
+- [Sink to Iceberg with glue catalog](/guides/sink-to-iceberg.md#glue-catelogs)
 
 For users who are already using these features in 1.9.x or earlier versions, rest assured that the functionality of these features will be intact if you stay on the version. If you choose to upgrade to v2.0 or later versions, an error will show up to indicate you need a license to use the features.
-
 
 ## Support
 
@@ -75,7 +72,6 @@ RisingWave Premium edition offers the premium support:
 | Named support engineer      | No                  | Yes                |
 | Solution engineer access    | 2 hours per month   | 8 hours per month  |
 
-
 ## Pricing
 
-Pricing for RisingWave Premium will be based on the cluster size, measured in RisingWave Units (RWUs). The number of RWUs will be determined based on the scale of data ingestion, number of streaming jobs, the complexity of use case. There could be additional factors as well. Detailed pricing will be provided by the sales team. Please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for more details.
+Pricing for RisingWave Premium will be based on the cluster size, measured in RisingWave Units (RWUs). The number of RWUs will be determined based on the scale of data ingestion, number of streaming jobs, the complexity of use case. There could be additional factors as well. Please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for more details.
