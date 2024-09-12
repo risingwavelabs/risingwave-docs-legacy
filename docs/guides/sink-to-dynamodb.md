@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS movies (
 );
 ```
 
-This makes sure that the data structure in RisingWave aligns with the key definition in DynamoDB, thus preventing any further misoperations.
+This makes sure that the data structure in RisingWave aligns with the key definition in DynamoDB, thus preventing any further potential errors.
 
 ## Data type mapping
 

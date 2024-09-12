@@ -8,6 +8,9 @@ slug: /create-source-kafka
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/create-source-kafka/" />
 </head>
 
+<!-- MDX imports -->
+import LightButton from "@site/src/components/LightButton";
+
 This topic describes how to connect RisingWave to a Kafka broker that you want to receive data from, and how to specify data formats, schemas, and security (encryption and authentication) settings.
 
 A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by using the `CREATE TABLE` command and specifying the connection settings and data format.
@@ -19,13 +22,13 @@ RisingWave supports exactly-once semantics by reading transactional messages onl
 :::tip Guided setup
 RisingWave Cloud provides an intuitive guided setup for creating a Kafka source. For more information, see [Create a source using guided setup](/cloud/manage-sources/#using-guided-setup) in the RisingWave Cloud documentation.
 
-<lightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
+<LightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
 :::
 
 ## Syntax
 
 ```sql
-CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
+CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [ schema_definition ]
 WITH (
    connector='kafka',
@@ -36,65 +39,6 @@ FORMAT data_format ENCODE data_encode (
    schema_location = 'location' | confluent_schema_registry = 'schema_registry_url'
 );
 ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-   rr.Stack(
-      rr.Sequence(
-         rr.Choice(1,
-            rr.Terminal('CREATE TABLE'),
-            rr.Terminal('CREATE SOURCE')
-         ),
-         rr.Optional(rr.Terminal('IF NOT EXISTS')),
-         rr.NonTerminal('source_name', 'skip'),
-      ),
-      rr.Optional(rr.NonTerminal('schema_definition', 'skip')),
-      rr.Sequence(
-         rr.Terminal('FORMAT'),
-         rr.NonTerminal('format', 'skip')
-      ),
-      rr.Sequence(
-         rr.Terminal('ENCODE'),
-         rr.NonTerminal('encode', 'skip'),
-         rr.Optional(
-            rr.Sequence(
-               rr.Terminal('('),
-               rr.NonTerminal('encode_parameter', 'skip'),
-               rr.Terminal(')'),
-            ),
-         ),
-      ),
-      rr.Sequence(
-         rr.Terminal('WITH'),
-         rr.Terminal('('),
-         rr.Stack(
-            rr.Stack(
-               rr.Sequence(
-                  rr.Terminal('connector'),
-                  rr.Terminal('='),
-                  rr.NonTerminal('kafka', 'skip'),
-                  rr.Terminal(','),
-               ),
-               rr.OneOrMore(
-                  rr.Sequence(
-                     rr.NonTerminal('connector_parameter', 'skip'),
-                     rr.Terminal('='),
-                     rr.NonTerminal('value', 'skip'),
-                     rr.Terminal(','),
-                  ),
-               ),
-            ),
-            rr.Terminal(')'),
-         ),
-      ),
-      rr.Stack(
-         rr.Terminal(';')
-      ),
-   )
-);
-
-<drawer SVG={svg} />
 
 **schema_definition**:
 
@@ -156,7 +100,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="avro" label="Avro">
 
 ```sql
-CREATE SOURCE IF NOT EXISTS source_abc 
+CREATE SOURCE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    topic='demo_topic',
@@ -172,7 +116,7 @@ WITH (
 <TabItem value="upsert avro" label="Upsert Avro">
 
 ```sql
-CREATE TABLE IF NOT EXISTS source_abc 
+CREATE TABLE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
@@ -221,7 +165,7 @@ WITH (
 <TabItem value="pb" label="Protobuf">
 
 ```sql
-CREATE SOURCE IF NOT EXISTS source_abc 
+CREATE SOURCE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    topic='demo_topic',
@@ -301,7 +245,7 @@ If you have sources created using the old syntax and intend to migrate to v1.0.0
 :::
 
 ```sql
-CREATE TABLE table1 (PRIMARY KEY(id)) 
+CREATE TABLE table1 (PRIMARY KEY(id))
 ```
 
 ## Read schemas from Schema Registry
@@ -333,7 +277,7 @@ If you have sources created using the old syntax and intend to migrate to v1.0.0
 :::
 
 ```sql
-CREATE TABLE table1 (PRIMARY KEY(id)) 
+CREATE TABLE table1 (PRIMARY KEY(id))
 ```
 
 ## Create source with AWS PrivateLink connection

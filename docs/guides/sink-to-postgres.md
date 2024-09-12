@@ -32,17 +32,14 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 
 4. From the Connectivity panel, we can find the endpoint and connection port information.
 
-    <img
-    src={require('../images/pg-connection.png').default}
-    alt="Postgres connectivity info"
-    />
+    ![Postgres connectivity info](../images/pg-connection.png)
 
 ### Connect to the RDS instance from Postgres
 
 Now we can connect to the RDS instance. Make sure you have installed psql on your local machine, and start a psql prompt. Fill in the endpoint, the port, and login credentials in the connection parameters.
 
 ```terminal
-psql --host = pg-to-rw.xxxxxx.us-east-1.rds.amazonaws.com --port=5432 --username=awsuser --password 
+psql --host = pg-to-rw.xxxxxx.us-east-1.rds.amazonaws.com --port=5432 --username=awsuser --password
 ```
 
 For more login options, refer to the [RDS connection guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToPostgreSQLInstance.html).
@@ -118,6 +115,7 @@ All `WITH` options are required unless noted.
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |connector| Sink connector type must be `'jdbc'` for PostgresQL sink. |
 |jdbc.url | The JDBC URL of the destination database necessary for the driver to recognize and connect to the database. |
+|jdbc.query.timeout|Specifies the timeout for the operations to downstream. If not set, the default is 10 minutes.|
 |table.name | The table in the destination database you want to sink to. |
 |schema.name | Optional. The schema in the destination database you want to sink to. The default value is `public`. |
 |type| Sink data type. Supported types:<ul><li> `append-only`: Sink data as INSERT operations.</li><li> `upsert`: Sink data as UPDATE and INSERT operations. </li></ul>|

@@ -32,17 +32,14 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 
 4. From the Connectivity panel, we can find the endpoint and connection port information.
 
-    <img
-    src={require('../images/pg-connection.png').default}
-    alt="Postgres connectivity info"
-    />
+    ![Postgres connectivity info](../images/pg-connection.png)
 
 ### Connect to the RDS instance from Postgres
 
 Now we can connect to the RDS instance. Make sure you have installed psql on your local machine, and start a psql prompt. Fill in the endpoint, the port, and login credentials in the connection parameters.
 
 ```terminal
-psql --host = pg-to-rw.xxxxxx.us-east-1.rds.amazonaws.com --port=5432 --username=awsuser --password 
+psql --host = pg-to-rw.xxxxxx.us-east-1.rds.amazonaws.com --port=5432 --username=awsuser --password
 ```
 
 For more login options, refer to the [RDS connection guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ConnectToPostgreSQLInstance.html).
@@ -94,9 +91,9 @@ To install and start RisingWave locally, see the [Get started](/get-started.md) 
 
 The native PostgreSQL CDC connector is implemented by the connector node in RisingWave. The connector node handles the connections with upstream and downstream systems.
 
-The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](/deploy/risingwave-trial.md/?method=docker-compose).
+The connector node is enabled by default in this docker-compose configuration. To learn about how to start RisingWave with this configuration, see [Docker Compose](../deploy/risingwave-trial.md?method=docker-compose).
 
-If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](/deploy/risingwave-trial.md/?method=binaries#optional-enable-the-connector-node).
+If you are running RisingWave locally with the pre-built library or with the source code, the connector node needs to be started separately. To learn about how to start the connector node in this case, see [Enable the connector node](../deploy/risingwave-trial.md?method=binaries#optional-enable-the-connector-node).
 
 ## Create a sink​
 

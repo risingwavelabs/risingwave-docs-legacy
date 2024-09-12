@@ -94,9 +94,9 @@ Before the deployment, ensure that the following requirements are satisfied.
     :::note
     The following errors might occur if `cert-manager` is not fully initialized. Simply wait for another minute and rerun the command above.
 
-    > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "<https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s>": dial tcp 10.105.102.32:443: connect: connection refused
-
-    > Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "<https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s>": dial tcp 10.105.102.32:443: connect: connection refused
+    ```
+    Error from server (InternalError): Internal error occurred: failed calling webhook "webhook.cert-manager.io": failed to call webhook: Post "<https://cert-manager-webhook.cert-manager.svc:443/mutate?timeout=10s>": dial tcp 10.105.102.32:443: connect: connection refused
+    ```
     :::
 
 1. ***Optional:*** Check if the Pods are running.
@@ -114,7 +114,7 @@ RisingWave Kubernetes Operator extends the Kubernetes with CRDs (Custom Resource
 
 The RisingWave resource is a custom resource that defines a RisingWave cluster. In [this directory](https://github.com/risingwavelabs/risingwave-operator/blob/main/docs/manifests/risingwave), you can find resource examples that deploy RisingWave with different configurations of metadata store and state backend. Based on your requirements, you can use these resource files directly or as a reference for your customization. The [stable directory](https://github.com/risingwavelabs/risingwave-operator/tree/main/docs/manifests/stable/) contains resource files that we have tested compatibility with the latest released version of the RisingWave Operator:
 
-The resource files are named using the convention of "risingwave-<meta_store>-<state_backend>.yaml". For example, `risingwave-postgresql-s3.yaml` means that this manifest file uses PostgreSQL as the meta storage and AWS S3 as the state backend.
+The resource files are named using the convention of `risingwave-<meta_store>-<state_backend>.yaml`. For example, `risingwave-postgresql-s3.yaml` means that this manifest file uses PostgreSQL as the meta storage and AWS S3 as the state backend.
 
 RisingWave supports using these systems or services as state backends.
 
@@ -374,7 +374,8 @@ To customize HDFS as state backend in RisingWave, mount Hadoop configurations wi
 
 3. Then mount the Hadoop configuration files using this ConfigMap:
 
-  <details><summary>See the code example</summary>
+  <details>
+  <summary>See the code example</summary>
 
   ```yaml
   apiVersion: risingwave.risingwavelabs.com/v1alpha1

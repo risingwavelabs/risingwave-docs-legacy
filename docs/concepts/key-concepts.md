@@ -1,6 +1,6 @@
 ---
 id: key-concepts
-title: Key concepts and terms
+title: Glossary
 slug: /key-concepts
 ---
 <head>
@@ -86,7 +86,7 @@ A streaming query, also known as a streaming job, is an SQL query that operates 
 
 A view is a virtual relation that acts as an actual relation. It is not a part of the logical relational model of the database system. The query expression of the view is stored in the database system. The results of a non-materialized view are not stored in the database system and are calculated every time the view is accessed.
 
-## Glossary
+## More terms
 
 ### Avro
 
@@ -102,7 +102,7 @@ Change data capture refers to the process of identifying and capturing changes a
 
 ### Data persistence
 
-Data persistence means that data survives after the process that generated the data has ended. For a database to be considered persistent, it must write to non-volatile storage. This type of storage is able to retain data in the absence of a power supply. To learn about how data is persisted in RisingWave, see [Data persistence](/data-persistence.md).
+Data persistence means that data survives after the process that generated the data has ended. For a database to be considered persistent, it must write to non-volatile storage. This type of storage is able to retain data in the absence of a power supply. To learn about how data is persisted in RisingWave, see [Data persistence](/reference/data-persistence.md).
 
 ### Debezium
 

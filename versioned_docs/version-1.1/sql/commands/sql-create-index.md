@@ -33,63 +33,6 @@ CREATE INDEX index_name ON object_name ( index_column [ ASC | DESC ], [, ...] )
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Stack(
-        rr.Sequence(
-            rr.Terminal('CREATE INDEX'),
-            rr.NonTerminal('index_name'),
-            rr.Terminal('ON'),
-            rr.NonTerminal('object_name'),
-            rr.Terminal('('),
-            rr.OneOrMore(
-                rr.Sequence(
-                    rr.NonTerminal('index_column'),
-                    rr.Optional(
-                        rr.Choice(0,
-                            rr.Terminal('ASC'),
-                            rr.Terminal('DESC'),
-                        )
-                    ),
-                    rr.Optional(rr.Terminal(',')),
-                ),
-            ),
-            rr.Terminal(')'),
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.Terminal('INCLUDE'),
-                rr.Terminal('('),
-                rr.OneOrMore(
-                    rr.Sequence(
-                        rr.NonTerminal('include_column'),
-                        
-                    ),
-                    rr.Terminal(','),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.Terminal('DISTRIBUTED BY'),
-                rr.Terminal('('),
-                rr.OneOrMore(
-                    rr.Sequence(
-                        rr.NonTerminal('distributed_column'),
-                    ),
-                    rr.Terminal(','),
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 
 
 
@@ -150,7 +93,7 @@ If you want to speed up the query of fetching all the orders of a customer by th
 ```sql
 CREATE INDEX idx_o_custkey ON orders(o_custkey);
 
-SELECT * FROM customers JOIN orders ON c_custkey = o_custkey 
+SELECT * FROM customers JOIN orders ON c_custkey = o_custkey
 WHERE c_phone = '123456789';
 ```
 
@@ -200,7 +143,7 @@ To see the indexes of a table, run the `DESCRIBE` statement. For example:
 DESCRIBE taxi_trips;
 ```
 ```
-   Name   |               Type                
+   Name   |               Type
 ----------+-----------------------------------
  id       | Int32
  distance | Float64
@@ -216,7 +159,7 @@ CREATE INDEX ad_id_index ON ad_ctr_5min(ad_id);
 
 Alternatively, you can create a materialized view to improve query performance:
 ```sql
-CREATE MATERIALIZED VIEW ad_id_index_mv AS 
+CREATE MATERIALIZED VIEW ad_id_index_mv AS
     SELECT ad_id FROM ad_ctr_5min
     ORDER BY ad_id;
 ```

@@ -17,17 +17,11 @@ Occasionally, a streaming actor or fragment can become a bottleneck within the o
 
 When an actor or fragment performs slower than others, it back-pressures its preceding actors/fragments. Thus, to find the root of backpressure, we need to find the frontmost actors/fragments in the DAG.
 
-<img
-  src={require('../images/Streaming-performance.png').default}
-  alt="An example of extremely high latency"
-/>
+![An example of extremely high latency](../images/Streaming-performance.png)
 
 To accomplish this, refer to the Grafana dashboard and navigate to the "Streaming - Backpressure" panel. In the panel, find the channels with high backpressure and identify the frontmost one.
 
-<img
-  src={require('../images/Backpressure-panel.png').default}
-  alt="An example of extremely high latency"
-/>
+![An example of extremely high latency](../images/Backpressure-panel.png)
 
 For example, in the image above, both `15002→15001` and `15003→15002` are high. Considering backpressure can be passed to preceding fragments, the root cause is probably `15001`.
 

@@ -5,6 +5,9 @@ description: Connect to a project and interact with RisingWave.
 slug: /connect-to-a-project
 ---
 
+<!-- MDX imports -->
+import OutlinedCard from "@site/src/components/OutlinedCard";
+
 After [getting a project up and running](project-manage-projects.md#create-a-project), you need to connect to it so that you can interact with RisingWave.
 
 You can choose one of the following ways to connect to your project.
@@ -60,7 +63,7 @@ To connect with any local clients, follow the steps below:
 
 ## What's next
 
-<card
+<OutlinedCard
 title="Develop with RisingWave Cloud"
 content="RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave, in the cloud."
 cloud="develop-overview"

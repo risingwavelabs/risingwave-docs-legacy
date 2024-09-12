@@ -30,31 +30,19 @@ Before using the native MySQL CDC connector in RisingWave, you need to complete 
 
 1. Log in to the AWS console. Search “RDS” in services and select the **RDS** panel.
 
- <img
- src={require('../images/search-rds.png').default}
- alt="Search for RDS"
- />
+ ![Search for RDS](../images/search-rds.png)
 
 2. Create a database with **MySQL** as the **Engine type**. We recommend setting up a username and password or using other security options.
 
- <img
- src={require('../images/mysql-config.png').default}
- alt="Configurations for setting up a MySQL RDS"
- />
+ ![Configurations for setting up a MySQL RDS](../images/mysql-config.png)
 
 3. When the new instance becomes available, click on its panel.
 
- <img
- src={require('../images/new-panel.png').default}
- alt="MySQL instance panel"
- />
+ ![MySQL instance panel](../images/new-panel.png)
 
 4. From the **Connectivity** panel, we can find the endpoint and connection port information.
 
- <img
- src={require('../images/connectivity.png').default}
- alt="Endpoint and port information"
- />
+ ![Endpoint and port information](../images/connectivity.png)
 
 ### Connect to the RDS instance from MySQL
 
@@ -144,6 +132,7 @@ All `WITH` options are required.
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified.See [SELECT](/sql//commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |connector| Sink connector type must be `'jdbc'` for MySQL sink. |
 |jdbc.url| The JDBC URL of the destination database necessary for the driver to recognize and connect to the database.|
+|jdbc.query.timeout|Specifies the timeout for the operations to downstream. If not set, the default is 10 minutes.|
 |table.name| The table in the destination database you want to sink to.|
 |type|Data format. Allowed formats:<ul><li> `append-only`: Output data with insert operations.</li></ul> `upsert`: Output data as a changelog stream. |
 |primary_key| Required if `type` is `upsert`. The primary key of the downstream table. |

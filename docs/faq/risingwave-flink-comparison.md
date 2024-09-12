@@ -31,10 +31,7 @@ We periodically update this article to keep up with the rapidly evolving landsca
 | Performance cost| High | Low |
 |Typical use cases| Streaming ETL, streaming analytics | Streaming ETL, streaming analytics, online serving|
 
-<img
-  src={require('../images/RisingWave vs Flink.png').default}
-  alt="RisingWave vs Flink"
-/>
+![RisingWave vs Flink](../images/RisingWave-vs-Flink.png)
 
 ## Introduction
 
@@ -56,28 +53,19 @@ When developing applications using Apache Flink, users need to connect multiple 
 
 The diagram below illustrates the situation when building applications using traditional stream processing engines like Apache Flink. Developers need to manage multiple systems and handle the consistency relationships between them.
 
-<img
-  src={require('../images/stream_processing_without_risingwave.jpeg').default}
-  alt="Stream Processing Without RisingWave"
-/>
+![Stream Processing Without RisingWave](../images/stream_processing_without_risingwave.jpeg)
 
 When using RisingWave, users only need to focus on constructing materialized views and can reduce development complexity by splitting complex logic into multiple cascading materialized views. RisingWave guarantees the consistency, persistence, and high concurrent query access of materialized views. Users only need to manage a RisingWave cluster, as RisingWave ensures the consistency between different materialized views.
 
 The diagram below illustrates the situation when developing applications using the RisingWave stream database. Developers only need to manage a single system and do not need to consider any relationships between different system components.
 
-<img
-  src={require('../images/stream_processing_with_risingwave.jpeg').default}
-  alt="Stream Processing With RisingWave"
-/>
+![Stream Processing With RisingWave](../images/stream_processing_with_risingwave.jpeg)
 
 ## Architecture
 
 *Apache Flink adopts a big-data style, coupled-compute-storage architecture that is optimized for scalability; RisingWave in contrast implements a cloud-native, decoupled compute-storage architecture that is optimized for cost efficiency.*
 
-<img
-  src={require('../images/architecture_comparison.png').default}
-  alt="Flink and RisingWave Architectures"
-/>
+![Flink and RisingWave Architectures](../images/architecture_comparison.png)
 
 As an open-source project born during the Hadoop-dominant big-data era, the architecture of Flink was heavily influenced by the MapReduce paradigm. Specifically, Flink achieves parallel and distributed execution by dividing a streaming task into multiple parallel instances, each processing a subset of the task's input data. While this compute-storage-coupled architecture enables Flink to achieve high parallelism and scalability, it can also result in high execution costs.
 

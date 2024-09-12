@@ -18,17 +18,6 @@ SHOW FUNCTIONS;
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SHOW FUNCTIONS'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
-
 
 
 

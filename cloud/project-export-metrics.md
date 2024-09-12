@@ -7,6 +7,10 @@ slug: /export-metrics
 
 This article describes how to use metrics API to export metrics from a RisingWave Cloud project to various monitoring systems like Prometheus, DataDog, and InfluxDB. The metrics include all major components such as `etcd`, `frontend`, `compute`, `compactor`, and `meta`.
 
+:::tip
+By default, a newly created service account isn't given any permissions. To export metrics, you need to grant your service account the `ProjectAdmin` role. See [RBAC](organization-rbac.md#role-permissions-and-limitations) for more details.
+:::
+
 ## Step 1: Generate API key
 
 Generate the API key ID and API key secret in the Cloud Portal. See [Generate an API key](organization-service-account.md#generate-an-api-key) for details.
