@@ -91,13 +91,11 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
 
 The information presented above provides a brief overview of the data ingestion process in RisingWave. To gain a more comprehensive understanding of this process, the following topics in this section will delve deeper into the subject matter. Here is a brief introduction to what you can expect to find in each topic:
 
-- For more detailed information about the types, formats, and encoding options of sources, see [Formats and encoding](/ingest/formats-and-encode-parameters.md).
-
-- For the complete list of the sources and formats supported in RisingWave, see [Supported sources and formats](/ingest/supported-sources-and-formats.md).
-
-- To learn about how to manage schemas and ingest additional fields from sources :
-
-  - [Modify source or table schemas](/ingest/modify-schemas.md)
-  - [Ingest additional fields with INCLUDE clause](/ingest/include-clause.md)
+- Among different types of sources, we have abstracted a series of common syntax and features.
+  - For more detailed information about the types, formats, and encoding options of sources, see [Formats and encoding](/ingest/formats-and-encode-parameters.md).
+  - For the complete list of the sources and formats supported in RisingWave, see [Supported sources and formats](/ingest/supported-sources-and-formats.md).
+  - To learn about how to manage schemas and ingest additional fields from sources :
+    - [Modify source or table schemas](/ingest/modify-schemas.md)
+    - [Ingest additional fields with INCLUDE clause](/ingest/include-clause.md)
 
 - To learn about how to ingest data from a particular source, see [Data ingestion guides](/docs/current/sources).

@@ -1,25 +1,25 @@
 ---
 id: data-type-array
 slug: /data-type-array
-title: Array type
+title: ARRAY type
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-type-array/" />
 </head>
 
-An array is an ordered list of zero or more elements that share the same data type including the array type.
+An array `T[]` is an ordered list of zero or more elements that share the same data type.
 
-### Define an array
+## Define an array
 
 To define an array in a schema, append `[]` to the data type of the column when you define the schema. For example, you can use `trip_id VARCHAR[]` to create an array that stores trip IDs.
 
 You can also define a temporary array in an SQL statement in this syntax:
 
 ```sql
-Array[value1, value2, ...]
+ARRAY[value1, value2, ...]
 ```
 
-#### Examples
+### Examples
 
 The following statement defines a temporary array and retrieves the columns in it.
 
@@ -48,7 +48,7 @@ CREATE TABLE taxi (
     );
 ```
 
-### Add values to an array
+## Add values to an array
 
 To add values to an array, in the SQL statement, use ARRAY to indicate that this is an array, and then enclose the data in the array with `[]`. For example, `ARRAY ['ABCD1234', 'ABCD1235', 'ABCD1236', 'ABCD1237']`.
 
@@ -57,7 +57,7 @@ To add values to an array, in the SQL statement, use ARRAY to indicate that this
 Add values to table `x`:
 
 ```sql
-INSERT INTO x VALUES (Array[Array[1], Array[2,3]]);
+INSERT INTO x VALUES (ARRAY[ARRAY[1], ARRAY[2,3]]);
 ```
 
 Add values to table `taxi`:
@@ -74,11 +74,11 @@ INSERT INTO taxi VALUES
         );
 ```
 
-### Retrieve data in an array
+## Retrieve data in an array
 
 To retrieve data in an array, use the `ARRAY_COLUMN[RELATIVE_POSITION]` syntax. Relative positions start from 1. For example, to access `ABCD1234`, the first object in the `trip_id` array, we can specify `trip_id[1]`.
 
-#### Examples
+### Examples
 
 Retrieve the second element in array `a` from the `x` table.
 
@@ -97,11 +97,11 @@ FROM taxi;
 'ABCD1234'
 ```
 
-### Retrieve a slice of an array
+## Retrieve a slice of an array
 
 To retrieve data in an array, use the `ARRAY_COLUMN[n:m]` syntax, where `n` and `m` are integers representing indices and are both inclusive. Either `n`, `m`, or both can be omitted. Relative positions start from 1. In multidimensional arrays, arrays with unmatching dimensions are allowed.
 
-#### Examples
+### Examples
 
 Retrieve the entire array with `n` omitted.
 
@@ -119,7 +119,7 @@ SELECT array[array[1],array[2],array[3]][-21432315:134124523][1:2];
 {{1},{2}}
 ```
 
-### Differences from PostgreSQL
+## Differences from PostgreSQL
 
 In RisingWave, assume `arr` is of type T[ ][ ][ ]:
 
@@ -137,7 +137,7 @@ In PostgreSQL, a 3-dimensional array `arr` is still of type T[ ]:
 - arr[x0:x1] is interpreted as arr[x0:x1][:][:], and of type T[ ] and 3-dimensional
 - arr[x0:x1][y] is interpreted as arr[x0:x1][1:y][:], and of type T[ ] and 3-dimensional
 
-### Unnest data from an array
+## Unnest data from an array
 
 You can use the `unnest()` function to spread values in an array into separate rows.
 
@@ -149,3 +149,7 @@ SELECT unnest(array[1,2,3,4]);
       3
       4
 ```
+
+## Array functions and operators
+
+For the full list of array functions and operators, see [Array functions and operators](/sql/functions-operators/sql-function-array.md).
