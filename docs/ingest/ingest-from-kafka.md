@@ -115,6 +115,11 @@ When creating a source in RisingWave, you can specify the following Kafka parame
 Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
 :::
 
+### Specific parameters for Amazon MSK
+There are some specific parameters for Amazon Managed Streaming for Apache Kafka (MSK), please see
+[Access MSK in RisingWave](/guides/connector-amazon-msk.md#access-msk-in-risingwave) for more details.
+
+
 ## Examples
 
 Here are examples of connecting RisingWave to a Kafka broker to read data from individual topics.
