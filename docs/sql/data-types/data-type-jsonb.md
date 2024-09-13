@@ -113,4 +113,4 @@ The output shows that the `brand_bad` column contains additional double quotes. 
 
 ## JSONB functions and operators
 
-For the full list of JSON and JSONB functions and operators, see [JSON functions and operators](/sql/functions-operators/sql-function-json.md).
+For the full list of JSONB functions and operators, see [JSON functions and operators](/sql/functions-operators/sql-function-json.md).

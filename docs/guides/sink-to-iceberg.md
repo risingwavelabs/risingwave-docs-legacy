@@ -49,7 +49,7 @@ WITH (
 | warehouse.path  | Conditional. The path of the Iceberg warehouse. Currently, only S3-compatible object storage systems, such as AWS S3 and MinIO, are supported. It's required if the `catalog.type` is not `rest`.|
 | catalog.url     | Conditional. The URL of the catalog. It is required when `catalog.type` is not `storage`. |
 | primary_key     | The primary key for an upsert sink. It is only applicable to the upsert mode. |
-| commit_checkpoint_interval | Optional. Commit every N checkpoints (N > 0). If not set, it commits to Iceberg at every checkpoint. |
+| commit_checkpoint_interval | Optional. Commit every N checkpoints (N > 0). Default value is 10. <br/>The behavior of this field also depends on the `sink_decouple` setting:<ul><li>If `sink_decouple` is true (the default), the default value of `commit_checkpoint_interval` is 10.</li> <li>If `sink_decouple` is set to false, the default value of `commit_checkpoint_interval` is 1.</li> <li>If `sink_decouple` is set to false and `commit_checkpoint_interval` is set to larger than 1, an error will occur.</li></ul> |
 
 ## Data type mapping
 

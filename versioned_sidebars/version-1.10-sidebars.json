@@ -1,13 +1,11 @@
 {
-    "MainSidebar":
-    [
+    "MainSidebar": [
         {
             "type": "category",
             "label": "About",
             "collapsible": false,
             "collapsed": false,
-            "items":
-            [
+            "items": [
                 {
                     "type": "doc",
                     "id": "intro",
@@ -33,8 +31,7 @@
                     "label": "Deep-dive",
                     "collapsible": true,
                     "collapsed": true,
-                    "items":
-                    [
+                    "items": [
                         {
                             "type": "doc",
                             "id": "architecture",
@@ -74,8 +71,7 @@
             "label": "Get started",
             "collapsible": false,
             "collapsed": false,
-            "items":
-            [
+            "items": [
                 {
                     "type": "doc",
                     "label": "Quick start",
@@ -91,8 +87,7 @@
                     "label": "Deploy in distributed environments",
                     "collapsible": true,
                     "collapsed": true,
-                    "items":
-                    [
+                    "items": [
                         {
                             "type": "doc",
                             "id": "deploy/risingwave-cloud",
@@ -122,8 +117,7 @@
             "label": "Demos",
             "collapsible": true,
             "collapsed": true,
-            "items":
-            [
+            "items": [
                 {
                     "type": "doc",
                     "id": "tutorials/tutorials-overview",
@@ -165,28 +159,24 @@
             "type": "category",
             "label": "Manage data",
             "collapsible": true,
-            "collapsed": false,
-            "items":
-            [
+            "collapsed": true,
+            "items": [
                 {
                     "type": "category",
                     "label": "Ingest data",
                     "collapsible": true,
-                    "collapsed": false,
-                    "items":
-                    [
+                    "collapsed": true,
+                    "items": [
                         {
                             "type": "category",
                             "label": "Overview",
                             "collapsible": true,
                             "collapsed": true,
-                            "link":
-                            {
+                            "link": {
                                 "type": "doc",
                                 "id": "ingest/data-ingestion"
                             },
-                            "items":
-                            [
+                            "items": [
                                 {
                                     "type": "doc",
                                     "label": "Formats and encoding",
@@ -218,27 +208,23 @@
                             "type": "category",
                             "label": "Sources",
                             "collapsible": true,
-                            "collapsed": false,
-                            "link":
-                            {
+                            "collapsed": true,
+                            "link": {
                                 "type": "generated-index",
                                 "title": "Sources",
                                 "description": "Guides on ingesting data from sources supported by RisingWave.",
                                 "slug": "/sources",
-                                "keywords":
-                                [
+                                "keywords": [
                                     "sources"
                                 ]
                             },
-                            "items":
-                            [
+                            "items": [
                                 {
                                     "type": "category",
                                     "label": "Kafka",
                                     "collapsible": true,
                                     "collapsed": true,
-                                    "items":
-                                    [
+                                    "items": [
                                         {
                                             "type": "doc",
                                             "label": "Apache Kafka",
@@ -286,8 +272,7 @@
                                     "label": "PostgreSQL CDC",
                                     "collapsible": true,
                                     "collapsed": true,
-                                    "items":
-                                    [
+                                    "items": [
                                         {
                                             "type": "doc",
                                             "label": "PostgreSQL CDC",
@@ -320,8 +305,7 @@
                                     "label": "Pulsar",
                                     "collapsible": true,
                                     "collapsed": true,
-                                    "items":
-                                    [
+                                    "items": [
                                         {
                                             "type": "doc",
                                             "label": "Apache Pulsar",
@@ -354,8 +338,7 @@
                                     "label": "More Sources",
                                     "collapsible": true,
                                     "collapsed": true,
-                                    "items":
-                                    [
+                                    "items": [
                                         {
                                             "type": "doc",
                                             "label": "Citus CDC",
@@ -402,8 +385,7 @@
                     "label": "Transform & query data",
                     "collapsible": true,
                     "collapsed": true,
-                    "items":
-                    [
+                    "items": [
                         {
                             "type": "doc",
                             "label": "Overview",
@@ -449,13 +431,11 @@
                             "label": "Emit on window close",
                             "collapsible": true,
                             "collapsed": true,
-                            "link":
-                            {
+                            "link": {
                                 "type": "doc",
                                 "id": "transform/emit-on-window-close"
                             },
-                            "items":
-                            [
+                            "items": [
                                 {
                                     "type": "doc",
                                     "id": "transform/watermarks",
@@ -468,8 +448,7 @@
                             "label": "User-defined functions",
                             "collapsible": true,
                             "collapsed": true,
-                            "items":
-                            [
+                            "items": [
                                 {
                                     "type": "doc",
                                     "id": "sql/udf/user-defined-functions",
@@ -480,8 +459,7 @@
                                     "label": "External UDFs",
                                     "collapsible": true,
                                     "collapsed": true,
-                                    "items":
-                                    [
+                                    "items": [
                                         {
                                             "type": "doc",
                                             "id": "sql/udf/udf-python",
@@ -499,8 +477,7 @@
                                     "label": "Embedded UDFs",
                                     "collapsible": true,
                                     "collapsed": true,
-                                    "items":
-                                    [
+                                    "items": [
                                         {
                                             "type": "doc",
                                             "id": "sql/udf/udf-python-embedded",
@@ -562,8 +539,7 @@
                     "label": "Visualize data",
                     "collapsible": true,
                     "collapsed": true,
-                    "items":
-                    [
+                    "items": [
                         {
                             "type": "doc",
                             "label": "Overview",
@@ -606,8 +582,7 @@
                     "label": "Deliver data",
                     "collapsible": true,
                     "collapsed": true,
-                    "items":
-                    [
+                    "items": [
                         {
                             "type": "doc",
                             "id": "data-delivery",
@@ -623,8 +598,7 @@
                             "label": "Sinks",
                             "collapsible": true,
                             "collapsed": true,
-                            "items":
-                            [
+                            "items": [
                                 {
                                     "type": "doc",
                                     "label": "Amazon DynamoDB",
@@ -756,43 +730,36 @@
             "label": "Develop",
             "collapsible": false,
             "collapsed": false,
-            "items":
-            [
+            "items": [
                 {
                     "type": "category",
                     "label": "SQL references",
                     "collapsible": true,
                     "collapsed": true,
-                    "link":
-                    {
+                    "link": {
                         "type": "generated-index",
                         "title": "SQL references",
                         "slug": "/sql-references",
-                        "keywords":
-                        [
+                        "keywords": [
                             "SQL"
                         ]
                     },
-                    "items":
-                    [
+                    "items": [
                         {
                             "type": "category",
                             "label": "Commands",
                             "collapsible": true,
                             "collapsed": true,
-                            "link":
-                            {
+                            "link": {
                                 "type": "generated-index",
                                 "title": "SQL commands",
                                 "description": "Overview of the SQL commands supported by RisingWave.",
                                 "slug": "/sql-commands",
-                                "keywords":
-                                [
+                                "keywords": [
                                     "SQL, commands"
                                 ]
                             },
-                            "items":
-                            [
+                            "items": [
                                 {
                                     "type": "autogenerated",
                                     "dirName": "sql/commands"
@@ -804,19 +771,16 @@
                             "label": "Query syntax",
                             "collapsible": true,
                             "collapsed": true,
-                            "link":
-                            {
+                            "link": {
                                 "type": "generated-index",
                                 "title": "Query syntax",
                                 "description": "Syntax and usage of common query clauses.",
                                 "slug": "/query-syntax",
-                                "keywords":
-                                [
+                                "keywords": [
                                     "query, syntax"
                                 ]
                             },
-                            "items":
-                            [
+                            "items": [
                                 {
                                     "type": "doc",
                                     "id": "sql/query-syntax/query-syntax-literals",
@@ -884,8 +848,7 @@
                             "label": "Data types",
                             "collapsible": true,
                             "collapsed": true,
-                            "items":
-                            [
+                            "items": [
                                 {
                                     "type": "doc",
                                     "id": "sql/sql-data-types",
@@ -928,19 +891,16 @@
                             "label": "Functions and operators",
                             "collapsible": true,
                             "collapsed": true,
-                            "link":
-                            {
+                            "link": {
                                 "type": "generated-index",
                                 "title": "SQL functions and operators",
                                 "description": "Functions and operators that can be used in SQL queries.",
                                 "slug": "/sql-functions",
-                                "keywords":
-                                [
+                                "keywords": [
                                     "function, operator"
                                 ]
                             },
-                            "items":
-                            [
+                            "items": [
                                 {
                                     "type": "doc",
                                     "id": "sql/functions-operators/sql-function-aggregate",
@@ -1033,19 +993,16 @@
                             "label": "System catalogs",
                             "collapsible": true,
                             "collapsed": true,
-                            "link":
-                            {
+                            "link": {
                                 "type": "generated-index",
                                 "title": "System catalogs",
                                 "description": "System catalogs that can be used to query metadata.",
                                 "slug": "/system-catalogs",
-                                "keywords":
-                                [
+                                "keywords": [
                                     "catalog, system, metadata"
                                 ]
                             },
-                            "items":
-                            [
+                            "items": [
                                 {
                                     "type": "doc",
                                     "id": "sql/system-catalogs/information-schema",
@@ -1074,13 +1031,11 @@
                     "label": "Client libraries",
                     "collapsible": true,
                     "collapsed": true,
-                    "link":
-                    {
+                    "link": {
                         "type": "doc",
                         "id": "dev/client-libraries-overview"
                     },
-                    "items":
-                    []
+                    "items": []
                 }
             ]
         },
@@ -1089,8 +1044,7 @@
             "label": "Deploy & operate",
             "collapsible": true,
             "collapsed": true,
-            "items":
-            [
+            "items": [
                 {
                     "type": "doc",
                     "id": "deploy/hardware-requirements",
@@ -1175,8 +1129,7 @@
             "label": "Optimize performance",
             "collapsible": true,
             "collapsed": false,
-            "items":
-            [
+            "items": [
                 {
                     "type": "doc",
                     "id": "performance/performance-faq"
@@ -1197,8 +1150,7 @@
             "label": "Troubleshooting",
             "collapsible": true,
             "collapsed": false,
-            "items":
-            [
+            "items": [
                 {
                     "type": "doc",
                     "label": "Overview",
@@ -1214,8 +1166,7 @@
                     "label": "Performance issues",
                     "collapsible": true,
                     "collapsed": true,
-                    "items":
-                    [
+                    "items": [
                         {
                             "type": "doc",
                             "label": "High latency",
@@ -1233,8 +1184,7 @@
                     "label": "Node failure",
                     "collapsible": true,
                     "collapsed": true,
-                    "items":
-                    [
+                    "items": [
                         {
                             "type": "doc",
                             "label": "Overview",
@@ -1264,8 +1214,7 @@
             "label": "Releases",
             "collapsible": true,
             "collapsed": false,
-            "items":
-            [
+            "items": [
                 {
                     "type": "link",
                     "href": "/release-notes",
