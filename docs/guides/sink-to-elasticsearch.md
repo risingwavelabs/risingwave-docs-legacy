@@ -60,6 +60,10 @@ WITH (
 |`primary_key` |Optional. The primary keys of the sink. If the primary key has multiple columns, set a delimiter in the `delimiter` parameter below to join them. |
 | `index`         |Required if `index_column` is not set. Name of the Elasticsearch index that you want to write data to. |
 | `index_column`  |This parameter enables you to create a sink that writes to multiple indexes dynamically. The sink decides which index to write to based on a column. It is mutually exclusive with the parameter `index`. Only one of them **can and must** be set. When `index` is set, the write index of Elasticsearch is `index`. When `index_column` is set, the index of Elasticsearch is the value of this column, which must be the `string` type. Since Elasticsearch sink defaults to the first column as the key, it is not recommended to place this column as the first column.|
+|`retry_on_conflict`|Optional. Number of retry attempts after an optimistic locking conflict occurs.|
+|`batch_size_kb`|Optional. Maximum size (in kilobytes) for each request batch sent to Elasticsearch. If the data exceeds this size，the current batch will be sent.|
+|`batch_num_messages`|Optional. Maximum number of messages per request batch sent to Elasticsearch. If the number of messages exceeds this size，the current batch will be sent.|
+|`concurrent_requests`|Optional. Maximum number of concurrent threads for sending requests. |
 | `url`          | Required. URL of the Elasticsearch REST API endpoint.|
 | `username`        | Optional. `elastic` user name for accessing the Elasticsearch endpoint. It must be used with `password`.|
 | `password`       | Optional. Password for accessing the Elasticsearch endpoint. It must be used with `username`.|
