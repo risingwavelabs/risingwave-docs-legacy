@@ -36,7 +36,7 @@ WITH (
 After creating a source, no actual data ingestion will occur. Data ingestion happens when a query that references the source is submitted. 
 
 - `CREATE MATERIALIZED VIEW` or `CREATE SINK` statement will generate an **streaming ingestion** jobs. 
-The following statement will continuously ingest content from the Kafka topic and maintain it in the materialized view `mv`.
+The following statement will continuously import data from the Kafka topic and store it in the materialized view `mv`.
 
   ```SQL
   CREATE MATERIALIZED VIEW mv AS
