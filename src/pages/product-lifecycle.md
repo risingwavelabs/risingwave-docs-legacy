@@ -25,7 +25,7 @@ Below is a list of all features in the public preview phase:
 
 | Feature name            | Start date | Start version |
 |---------------------------|------------|---------------|
-| [Native map data](/docs/next/supported-sources-and-formats/#native-map-type)|2024.8|2.0|
+| [Map type](/docs/next/data-type-map)|2024.8|2.0|
 | [Azure Blob sink](/docs/next/sink-to-azure-blob)|2024.8|2.0|
 | [Approx percentile](/docs/next/sql-function-aggregate/#approx_percentile) | 2024.8     | 2.0           |
 | [Auto schema change in MySQL CDC](/docs/next/ingest-from-mysql-cdc/#automatically-change-schema) | 2024.8     | 2.0           |
