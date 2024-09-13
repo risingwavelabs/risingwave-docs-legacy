@@ -12,7 +12,7 @@ RisingWave supports a variety of data ingestion methods. To know the difference 
 - **Streaming Ingestion from External Systems**: This is tied to a stream processing task, continuously monitoring and synchronizing changes from external systems.
 - **Ad-hoc Ingestion from External Systems**: This is bound to an ad-hoc query, where RisingWave queries the current data from the external system for processing during the query.
 - **Ingest via DML Statements**: Like other databases, RisingWave allows users to directly insert and modify data in tables using DML statements (`INSERT`, `UPDATE`, `DELETE`). 
-  - Additionally, with the `INSERT ... SELECT` statement, users can transform ad-hoc ingestion data into a streaming flow to the table, affecting the downstream streaming pipeline of the table. This can also be used for bulk imports.
+  - Additionally, with the `INSERT ... SELECT` statement, users can transform ad-hoc ingestion data into a streaming flow to the table, affecting the downstream streaming pipeline of the table. This can also be used for [bulk imports](./data-ingestion.md#use-insert--select--do-bulk-ingestion).
 
 ## Ingest data from external systems
 
