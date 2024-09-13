@@ -85,10 +85,6 @@ SELECT rw_test_paid_tier();
 
 If the license key is valid, the result will be `t` (true); if invalid, the function will return an error.
 
-## Pricing
-
-Pricing for RisingWave Premium will be based on the cluster size, measured in RisingWave Units (RWUs). The number of RWUs will be determined based on the scale of data ingestion, number of streaming jobs, the complexity of use case. There could be additional factors as well. Please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for more details.
-
 ## Support
 
 RisingWave Premium edition offers the premium support:
@@ -104,3 +100,7 @@ RisingWave Premium edition offers the premium support:
 | Max technical contacts      | 2                   | 8                  |
 | Named support engineer      | No                  | Yes                |
 | Solution engineer access    | 2 hours per month   | 8 hours per month  |
+
+## Pricing
+
+Pricing for RisingWave Premium will be based on the cluster size, measured in RisingWave Units (RWUs). The number of RWUs will be determined based on the scale of data ingestion, number of streaming jobs, the complexity of use case. There could be additional factors as well. Please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for more details.
