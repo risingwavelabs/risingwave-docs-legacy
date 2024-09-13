@@ -70,15 +70,21 @@ ENCODE AVRO (
 )
 ```
 
-In addition, you can use the option `map.handling.mode` to ingest AVRO map type into JSONB.
+#### Native map type
 
-```sql title="Example
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
+You can ingest Avro map type into RisingWave map type:
+
+```sql
 FORMAT [ DEBEZIUM | UPSERT | PLAIN ] ENCODE AVRO (
-	map.handling.mode = 'jsonb'
+	map.handling.mode = 'map' | 'jsonb'
 )
 ```
 
-Note that the value types can only be: `null`, `boolean`, `int`, `string`, or `map`/`record`/`array` with these types.
+For details about native map type and related functions, see [Map type](/sql/data-types/data-type-map.md) and [Map functions and operators](/sql/functions-operators/sql-function-map.md).
 
 ### Debezium AVRO
 
@@ -89,8 +95,6 @@ When creating a source from streams in with Debezium AVRO, the schema of the sou
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see the [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy) in the Confluent documentation.
 
 `ignore_key` can be used to ignore the key part of given messages. By default, it is `false`. If set to `true`, only the payload part of the message will be consumed. In this case, the payload must not be empty and tombstone messages cannot be handled.
-
-
 
 Syntax:
 
