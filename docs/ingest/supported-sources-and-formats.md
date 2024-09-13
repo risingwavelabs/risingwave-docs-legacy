@@ -52,13 +52,11 @@ For data in Avro format, you must specify a message and a schema registry. For K
 
 Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
-Note that the timestamp displayed in RisingWave may be different from the upstream system as timezone information is lost in Avro serialization.
+Please be aware that:
 
-:::info
+- For Avro data, you cannot specify the schema in the `schema_definition` section of a `CREATE SOURCE` or `CREATE TABLE` statement.
 
-For Avro data, you cannot specify the schema in the `schema_definition` section of a `CREATE SOURCE` or `CREATE TABLE` statement.
-
-:::
+- The timestamp displayed in RisingWave may be different from the upstream system as timezone information is lost in Avro serialization.
 
 Syntax:
 
@@ -72,9 +70,9 @@ ENCODE AVRO (
 )
 ```
 
-In addition, you can use the option `map.handling.mode` to ingest AVRO map type into JSONB. For example:
+In addition, you can use the option `map.handling.mode` to ingest AVRO map type into JSONB.
 
-```sql
+```sql title="Example
 FORMAT [ DEBEZIUM | UPSERT | PLAIN ] ENCODE AVRO (
 	map.handling.mode = 'jsonb'
 )
