@@ -10,6 +10,10 @@ slug: /time-travel-queries
 
 This guide describes how to leverage the time travel feature. This feature helps access historical data at a specific time.
 
+:::tip Premium Edition Feature
+This feature is exclusive to RisingWave Premium Edition that offers advanced capabilities beyond the free versions. For a full list of premium features, see [RisingWave Premium Edition](/rw-premium-edition-intro.md). If you encounter any questions, please contact sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
 :::info Public Preview
 This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::

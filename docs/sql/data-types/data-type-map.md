@@ -12,6 +12,10 @@ title: Map type
 - `K`: The type of the Map keys. It can be string or integral types (i.e., `character varying`, `smallint`, `integer`, or `bigint`). It must not be `NULL`, and must be unique in the map.
 - `V`: The type of the Map values. It can be arbitrary type.
 
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
 ## Define a map
 
 To create a map with `VARCHAR` keys and `INTEGER` values, use the statement below.

@@ -71,7 +71,9 @@ RisingWave converts risingwave data types from/to Iceberg according to the follo
 
 Iceberg supports these types of catalogs:
 
-- Storage catalog: The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system.
+### Storage catalog
+
+The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system.
 
   ```sql title="Examples"
   create sink sink_demo_storage from t
@@ -91,7 +93,9 @@ Iceberg supports these types of catalogs:
   );
   ```
 
-- REST catalog: RisingWave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use RisingWave with Iceberg tables.
+### REST catalog
+
+RisingWave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use RisingWave with Iceberg tables.
 
   ```sql title="Examples"
   create sink sink_demo_rest from t
@@ -112,7 +116,9 @@ Iceberg supports these types of catalogs:
   );
   ```
 
-- Hive catalog: RisingWave supports the Hive catalog. You need to set `catalog.type` to `hive` to use it.
+### Hive catalog
+
+RisingWave supports the Hive catalog. You need to set `catalog.type` to `hive` to use it.
 
   ```sql title="Examples"
   create sink sink_demo_hive from t
@@ -133,7 +139,9 @@ Iceberg supports these types of catalogs:
   );
   ```
 
-- Jdbc Catalog: RisingWave supports the [JDBC catalog](https://iceberg.apache.org/docs/latest/jdbc/#configurations).
+### Jdbc catalog
+
+RisingWave supports the [JDBC catalog](https://iceberg.apache.org/docs/latest/jdbc/#configurations).
 
   ```sql title="Examples"
   create sink sink_demo_jdbc from t
@@ -156,7 +164,13 @@ Iceberg supports these types of catalogs:
   );
   ```
 
-- Glue Catalog: RisingWave supports the Glue catalog. You should use AWS S3 if you use the Glue catalog. Below are example codes for using this catalog:
+### Glue catalog
+
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
+RisingWave supports the Glue catalog. You should use AWS S3 if you use the Glue catalog. Below are example codes for using this catalog:
 
   ```sql title="Examples"
   create sink sink_test from t

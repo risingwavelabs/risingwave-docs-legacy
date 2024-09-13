@@ -12,6 +12,10 @@ This guide describes how to sink data from RisingWave to Microsoft SQL Server.
 
 You can test out this process on your own device by using the `sqlserver_sink.slt` demo in the [`integration_test directory`](https://github.com/risingwavelabs/risingwave/tree/main/integration_tests) of the RisingWave repository.
 
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
 ## Prerequisites
 
 Before sinking data from RisingWave to SQL Server, please ensure the following:
