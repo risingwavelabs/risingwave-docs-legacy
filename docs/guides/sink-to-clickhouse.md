@@ -46,7 +46,7 @@ WITH (
 | `clickhouse.password`   | Required. Password for accessing the ClickHouse server.|
 | `clickhouse.database`  | Required. Name of the ClickHouse database that you want to sink data to.|
 | `clickhouse.table`      | Required. Name of the ClickHouse table that you want to sink data to.|
-| `commit_checkpoint_interval`| Optional. Commit every N checkpoints (N > 0). If not set, it commits to ClickHouse at every checkpoint.|
+| `commit_checkpoint_interval`| Optional. Commit every N checkpoints (N > 0). Default value is 10. <br/>The behavior of this field also depends on the `sink_decouple` setting:<ul><li>If `sink_decouple` is true (the default), the default value of `commit_checkpoint_interval` is 10.</li> <li>If `sink_decouple` is set to false, the default value of `commit_checkpoint_interval` is 1.</li> <li>If `sink_decouple` is set to false and `commit_checkpoint_interval` is set to larger than 1, an error will occur.</li></ul>|
 
 ### Upsert sinks
 
