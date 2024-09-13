@@ -54,7 +54,7 @@ For specific source types, their support for Streaming Ingestion and ad-hoc inge
 
 ### Table with connector
 
-For sources that support streaming ingestion, RisingWave supports the direct creation of tables on them, which called "Table with connector"([`CREATE TABLE`](/sql/commands/sql-create-table.md))
+For sources that support streaming ingestion, RisingWave supports the direct creation of tables on them.
 
 ```SQL
 CREATE TABLE table_on_kafka (
