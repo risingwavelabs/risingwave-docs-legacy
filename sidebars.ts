@@ -20,6 +20,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "rw-premium-edition-intro",
+          label: "Choose editions",
+        },
+        {
+          type: "doc",
           label: "Quick start",
           id: "get-started",
         },
