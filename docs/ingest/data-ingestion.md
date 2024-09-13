@@ -7,7 +7,7 @@ slug: /data-ingestion
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-ingestion/" />
 </head>
 
-RisingWave supports a variety of data ingestion methods. To know the difference between stream processing and ad-hoc query, please refer to [Ad hoc (on read) vs. Streaming (on write)](/transform/overview.md#ad-hoc-on-read-vs-streaming-on-write)
+RisingWave supports a variety of data ingestion methods. To know the difference between stream processing and ad-hoc query, please refer to [Ad-hoc (on read) vs. Streaming (on write)](/transform/overview.md#ad-hoc-on-read-vs-streaming-on-write)
 
 - **Streaming Ingestion from External Systems**: This is tied to a stream processing task, continuously monitoring and synchronizing changes from external systems.
 - **Ad-hoc Ingestion from External Systems**: This is bound to an ad-hoc query, where RisingWave queries the current data from the external system for processing during the query.
