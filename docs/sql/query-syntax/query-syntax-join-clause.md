@@ -161,13 +161,10 @@ The syntax of an interval join is:
 <table_expression> JOIN <table_expression> ON <equality_join_condition> AND <interval_condition> ...;
 ```
 
-In an interval join, the `interval_condition` must be a watermark-based range.
+In an interval join, the `interval_condition` is a range condition based on the timestamps of the two table expressions, such as `s1.ts BETWEEN s2.ts [- <time_interval>] AND s2.ts [+ <time_interval>]`.
 
 For example, for sources `s1` and `s2` used in the above section, you can create an interval join:
 
-<Tabs>
-<TabItem value="emit_on_update" label="Emit on Update" default>
-
 ```sql
 CREATE MATERIALIZED VIEW interval_join AS
 SELECT s1.id AS id1,
@@ -175,31 +172,10 @@ SELECT s1.id AS id1,
        s2.id AS id2,
        s2.value AS value2
 FROM s1 JOIN s2
-ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1' MINUTE;
+ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1 minute';
 ```
 
 This query will join the two sources `s1` and `s2` based on the `id` column and the time range. For the unclosed windows, the join result will be updated immediately when new data arrive.
-
-</TabItem>
-<TabItem value="emit_on_window_close" label="Emit on Window Close">
-
-```sql
-CREATE MATERIALIZED VIEW interval_join AS
-SELECT s1.id AS id1,
-       s1.value AS value1,
-       s2.id AS id2,
-       s2.value AS value2
-FROM s1 JOIN s2
-ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1' MINUTE
-EMIT ON WINDOW CLOSE;
-```
-
-This query will join the two sources `s1` and `s2` based on the `id` column and the time range. The join result will be outputted only when the window closes, so unclosed windows will not be shown in the materialized view or downstream.
-
-See [Emit on Window Close](transform/emit-on-window-close.md) for more information on the `EMIT ON WINDOW CLOSE` clause.
-
-</TabItem>
-</Tabs>
 
 ## Process-time temporal joins
 
