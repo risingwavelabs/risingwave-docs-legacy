@@ -18,7 +18,7 @@ RisingWave supports a variety of data ingestion methods. To know the difference 
 
 ### Source
 
-In RisingWave, **Source** is the most fundamental object used to connect to data from external systems. Here is a simple example of creating a source from kafka.
+In RisingWave, **Source** is the most fundamental object used to connect to data from external systems. Here is a simple example of creating a source from Kafka.
 
 ```SQL
 CREATE SOURCE kafka_source (
@@ -35,7 +35,7 @@ WITH (
 
 After creating a source, no actual data ingestion will occur. Data ingestion happens when a query that references the source is submitted. 
 
-- `CREATE MATERIALIZED VIEW` or `CREATE SINK` statement will generate an **streaming ingestion** jobs. 
+- `CREATE MATERIALIZED VIEW` or `CREATE SINK` statement will generate **streaming ingestion** jobs. 
 The following statement will continuously import data from the Kafka topic and store it in the materialized view `mv`.
 
   ```SQL
@@ -44,7 +44,8 @@ The following statement will continuously import data from the Kafka topic and s
   FROM kafka_source;
   ```
 
-- Also, queries can be executed directly on the source, and **ad-hoc ingestion** will happened during the query's processing (more information in [directly query kafka](/ingest/ingest-from-kafka.md#query-kafka-timestamp))
+- Also, queries can be executed directly on the source, and **ad-hoc ingestion** will happen during the query's processing (more information in [directly query kafka](/ingest/ingest-from-kafka.md#query-kafka-timestamp))
+
   ```SQL
   SELECT * FROM source_name
   WHERE _rw_kafka_timestamp > now() - interval '10 minute';
@@ -68,10 +69,13 @@ WITH (
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
-The statement will create a streaming job which continuously ingests data from the Kafka topic to the table and the data will be stored in RisingWave's internal storage, which brings three benefits:
+The statement will create a streaming job that continuously ingests data from the Kafka topic to the table and the data will be stored in RisingWave's internal storage, which brings three benefits:
+
 1. **Improved ad-hoc query performance:** When users execute queries such as `SELECT * FROM table_on_kafka`, the query engine will directly access the data from RisingWave's internal storage, eliminating unnecessary network overhead and avoiding read pressure on upstream systems. Additionally, users can create [index](/transform/indexes.md) on the table to accelerate queries.
+
 2. **Allow defining primary keys:** With the help of its internal storage, RisingWave can efficiently maintain primary key constraints. Users can define a primary key on a specific column of the table and define different behaviors for primary key conflicts with [ON CONFLICT clause](/sql/commands/sql-create-table.md#pk-conflict-behavior).
-3. **Ability to handle delete/update changes**: Based on the definition of primary keys, RisingWave can efficiently process upstream synchronized delete and update operations. For systems that synchronize delete/update operations from external systems, such as database's CDC, we **do not** allow creating source on it but require a table with connector.
+
+3. **Ability to handle delete/update changes**: Based on the definition of primary keys, RisingWave can efficiently process upstream synchronized delete and update operations. For systems that synchronize delete/update operations from external systems, such as database's CDC, we **do not** allow creating a source on it but require a table with connectors.
 
 At the same time, like regular tables, tables with connectors also accept DML statements and [CREATE SINK INTO TABLE](/sql/commands/sql-create-sink-into.md), which provides greater flexibility.
 
@@ -98,7 +102,7 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
 
 ### Use `INSERT SELECT` to do bulk ingestion
 
-For sources that only support ad-hoc ingestion but not streaming ingestion such as [Iceberg source](/docs/next/ingest-from-iceberg/),  `insert ... select ...` can be used to implement bulk data import into the table, and to convert the data into a stream of changes that are synchronized downstream to the table.
+For sources that only support ad-hoc ingestion but not streaming ingestion, such as [Iceberg source](/docs/next/ingest-from-iceberg/),  `insert ... select ...` can be used to implement bulk data import into the table, and to convert the data into a stream of changes that are synchronized downstream to the table.
 
 ```SQL
 create source source_iceberg_t1
