@@ -139,7 +139,7 @@ See [Emit on Window Close](transform/emit-on-window-close.md) for more informati
 </TabItem>
 </Tabs>
 
-### State Cleaning
+### State cleaning
 
 Usually, a join operator will maintain all the existing rows for both sides in the internal state table. However, if a window join satisfies the following conditions:
 
@@ -178,7 +178,7 @@ FROM s1 JOIN s2
 ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1' MINUTE;
 ```
 
-This query will join the two sources `s1` and `s2` based on the `id` column and the time range. For the unclosed windows, the join result will be updated immediately when new data arrives.
+This query will join the two sources `s1` and `s2` based on the `id` column and the time range. For the unclosed windows, the join result will be updated immediately when new data arrive.
 
 </TabItem>
 <TabItem value="emit_on_window_close" label="Emit on Window Close">
@@ -265,7 +265,7 @@ ON product_id = id;
 | 2              | 102        | 2        | 2023-06-19 | Product B    | 15    |
 | 3              | 101        | 1        | 2023-06-20 | Product A    | 22    |
 
-Notice that the Produce A's price is 25 at the time of transaction 1 and 22 at the time of transaction 3.
+Notice that the Product A's price is 25 at the time of transaction 1 and 22 at the time of transaction 3.
 
 ### Internal state
 
