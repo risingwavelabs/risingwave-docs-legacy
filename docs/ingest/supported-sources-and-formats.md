@@ -84,7 +84,7 @@ FORMAT [ DEBEZIUM | UPSERT | PLAIN ] ENCODE AVRO (
 )
 ```
 
-For details about native map type and related functions, see [Map type](/sql/data-types/data-type-map.md) and [Map functions and operators](/sql/functions-operators/sql-function-map.md).
+Note that for `map.handling.mode = 'jsonb'`, the value types can only be: `null`, `boolean`, `int`, `string`, or `map`/`record`/`array` with these types.
 
 ### Debezium AVRO
 
