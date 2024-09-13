@@ -50,7 +50,7 @@ For data in Avro format, you must specify a message and a schema registry. For K
 
 `schema.registry` can accept multiple addresses. RisingWave will send requests to all URLs and return the first successful result.
 
-Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
+Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
 Please be aware that:
 
@@ -63,10 +63,9 @@ Syntax:
 ```sql
 FORMAT PLAIN
 ENCODE AVRO (
-   message = 'main_message',
    schema.registry = 'schema_registry_url [, ...]',
    [schema.registry.name.strategy = 'topic_name_strategy'],
-   [key.message = 'test_key']
+   [message = 'main_message'],
 )
 ```
 
@@ -109,17 +108,16 @@ When consuming data in AVRO from Kafka topics, the `FORMAT` and `ENCODE` section
 
 `schema.registry` can accept multiple addresses. RisingWave will send requests to all URLs and return the first successful result.
 
-Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
+Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
 Syntax:
 
 ```sql
 FORMAT UPSERT
 ENCODE AVRO (
-   message = 'main_message',
    schema.location = 'location' | schema.registry = 'schema_registry_url [, ...]',
    [schema.registry.name.strategy = 'topic_name_strategy'],
-   [key.message = 'test_key']
+   [message = 'main_message'],
 )
 ```
 
@@ -213,7 +211,7 @@ For data in protobuf format, you must specify a message (fully qualified by pack
 
 `schema.registry` can accept multiple addresses. RisingWave will send requests to all URLs and return the first successful result.
 
-Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
+Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
 :::info
 
@@ -235,7 +233,6 @@ ENCODE PROTOBUF (
    message = 'com.example.MyMessage',
    schema.location = 'location' | schema.registry = 'schema_registry_url [, ...]',
    [schema.registry.name.strategy = 'topic_name_strategy'],
-   [key.message = 'test_key']
 )
 ```
 
