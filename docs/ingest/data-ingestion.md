@@ -7,68 +7,78 @@ slug: /data-ingestion
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/data-ingestion/" />
 </head>
 
-RisingWave can ingest data from message queues, databases, and storage systems like AWS S3. As an SQL database, it also supports directly adding data rows with the  `INSERT` command.
+RisingWave supports a variety of data ingestion methods. To know the difference between stream processing and ad-hoc query, please refer to [Ad hoc (on read) vs. Streaming (on write)](/transform/overview.md#ad-hoc-on-read-vs-streaming-on-write)
 
-Please be aware that since RisingWave is a streaming database, it excels at ingesting and processing streaming data. Direct data insertion is meant to be used as a supplementary method, mainly for data corrections and infrequent bulk imports.
+- **Streaming Ingestion from External Systems**: This is tied to a stream processing task, continuously monitoring and synchronizing changes from external systems.
+- **Ad-hoc Ingestion from External Systems**: This is bound to an ad-hoc query, where RisingWave queries the current data from the external system for processing during the query.
+- **Ingest via DML Statements**: Like other databases, RisingWave allows users to directly insert and modify data in tables using DML statements (`INSERT`, `UPDATE`, `DELETE`). 
+  - Additionally, with the `INSERT ... SELECT` statement, users can transform ad-hoc ingestion data into a streaming flow to the table, affecting the downstream streaming pipeline of the table. This can also be used for bulk imports.
 
-## Ingest data from external sources
+## Ingest data from external systems
 
-To ingest data from external sources into RisingWave, you need to create a source ([`CREATE SOURCE`](/sql/commands/sql-create-source.md)) or a table with connector settings ([`CREATE TABLE`](/sql/commands/sql-create-table.md)) in RisingWave.
+### Source
 
-<details>
-  <summary>What's the difference between a table and a source?</summary>
-  <div>
-    <div>The table below shows the main differences between a table and a source in RisingWave.</div>
-<br/>
+In RisingWave, **Source** is the most fundamental object used to connect to data from external systems. Here is a simple example of creating a source from kafka.
 
-| Functionalities | Table | Source |
-| ----------------| ----- | ------ |
-| Data is persisted in RisingWave    | yes       | no |
-| Primary keys can be defined  | yes        | no |
-| Append-only data | yes        | yes |
-| Upsert data   | yes, but a primary key needs to be defined       | no |
-<br/>
+```SQL
+CREATE SOURCE kafka_source (
+  k int, 
+  v1 text,
+  v2 text
+)
+WITH (
+  connector = 'kafka',
+  topic = 'topic_name',
+  properties.bootstrap.server = 'message_queue:29092'
+) FORMAT PLAIN ENCODE JSON;
+```
 
-<div>As shown above, a key distinction between the two is that a table persists the ingested raw data, whereas a source does not. For example, let's consider the upstream input of 5 records: `AA`, `BB`, `CC`, `DD`, and `EE`. If a table is used, these 5 records will be persisted in RisingWave. However, if a source is used, these records will not be persisted. </div>
-<br/>
-<div>One advantage of using a table is that you can perform ad-hoc queries against the ingested raw data. </div>
-<br/>
+After creating a source, no actual data ingestion will occur. Data ingestion happens when a query that references the source is submitted. 
 
-<div>Another advantage of using a table is the ability to consume data changes. If the upstream system deletes or updates a record, this operation will be consumed by RisingWave, thereby modifying the results of the stream computation. On the other hand, a source only supports appending records and cannot handle data changes. Besides, to allow a table to accept data changes, a primary key must be specified on the table.</div>
+- `CREATE MATERIALIZED VIEW` or `CREATE SINK` statement will generate an **streaming ingestion** jobs. 
+The following statement will continuously ingest content from the Kafka topic and maintain it in the materialized view `mv`.
 
-<br/>
-<div>Apart from the above differences, here are a few points worth noting about a table:</div>
-<br/>
-<div></div>
+  ```SQL
+  CREATE MATERIALIZED VIEW mv AS
+  SELECT *
+  FROM kafka_source;
+  ```
 
-- With a `CREATE TABLE` statement, the corresponding table will be immediately created and populated with data.
-- When a materialized view is defined based on the existing table, RisingWave will start reading data from the table and perform streaming computation.
-- RisingWave's batch processing engine supports direct batch reading of the table. Users can issue ad-hoc queries against the data within the table.
+- Also, directly query can be processed on the source and an **ad-hoc ingestion** will happened during the query's processing (more information in [directly query kafka](/ingest/ingest-from-kafka.md#query-kafka-timestamp))
+  ```SQL
+  SELECT * FROM source_name
+  WHERE _rw_kafka_timestamp > now() - interval '10 minute';
+  ```
 
-And here are the points worth noting about a source:
+For specific source types, their support for Streaming Ingestion and ad-hoc ingestion varies. Please refer to the [doc](/docs/current/sources) for the specific sources.
 
-- With a `CREATE SOURCE` statement, no physical objects are created, and data is not immediately read from the source.
-- Data from the source is only read when a user creates materialized views or sinks on that source.
+### Table with connector
 
-Regardless of whether data is persisted in RisingWave, you can create materialized views to transform or analyze them.
-  </div>
-</details>
+For sources that support streaming ingestion, RisingWave supports the direct creation of tables on them, which called "Table with connector"([`CREATE TABLE`](/sql/commands/sql-create-table.md))
 
+```SQL
+CREATE TABLE table_on_kafka (
+  k int primary key, 
+  v1 text,
+  v2 text)
+WITH (
+  connector = 'kafka',
+  topic = 'topic_name',
+  properties.bootstrap.server = 'message_queue:29092'
+) FORMAT PLAIN ENCODE JSON;
+```
 
-### Supported source types
+The statement will create a streaming job which continuously ingests data from the Kafka topic to the table and the data will be stored in RisingWave's internal storage, which brings three benefits:
+1. **Improved ad-hoc query performance:** When users execute queries such as `SELECT * FROM table_on_kafka`, the query engine will directly access the data from RisingWave's internal storage, eliminating unnecessary network overhead and avoiding read pressure on upstream systems. Additionally, users can create indexes on the table to accelerate queries.
+2. **Allow defining primary keys:** With the help of its internal storage, RisingWave can efficiently maintain primary key constraints. Users can define a primary key on a specific column of the table and define different behaviors for primary key conflicts with [ON CONFLICT clause](/sql/commands/sql-create-table.md#pk-conflict-behavior).
+3. **Ability to handle delete/update changes**: Based on the definition of primary keys, RisingWave can efficiently process upstream synchronized delete and update operations. For systems that synchronize delete/update operations from external systems, such as database's CDC, we **do not** allow creating source on it but require a table with connector.
 
-A source is a connection to an external system that RisingWave can read data from. RisingWave supports these types of sources:
+At the same time, like regular tables, tables with connectors also accept DML statements and [CREATE SINK INTO TABLE](/sql/commands/sql-create-sink-into.md), which provides greater flexibility.
 
-- Event streaming systems such as Apache Kafka, Apache Pulsar, AWS Kinesis
-- Change data capture streams from databases such as MySQL, PostgreSQL, and MongoDB
-- Storage systems such as AWS S3 or S3-compatible systems
+## DML on tables
 
-To ingest data from these sources, you need to create a source or table and specify the connector settings in the `CREATE SOURCE` or `CREATE TABLE` statements.
-
-## Insert data into tables (without connectors)
-
+### Insert data into tables
 You can load data in batch to RisingWave by creating a table ([`CREATE TABLE`](/sql/commands/sql-create-table.md)) and then inserting data into it ([`INSERT`](/sql/commands/sql-insert.md)). For example, the statement below creates a table `website_visits` and inserts 5 rows of data.
-
 
 ```sql
 CREATE TABLE website_visits (
@@ -86,6 +96,29 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
   ('2023-06-13T10:04:00Z', 'user5', 'page2', 'view');
 ```
 
+### Use `insert ... select ...` do bulk ingestion
+
+For sources that only support ad-hoc ingestion but not streaming ingestion such as [Iceberg source](/docs/next/ingest-from-iceberg/),  `insert ... select ...` can be used to implement bulk data import into the table, and to convert the data into a stream of changes that are synchronized downstream to the table.
+
+```SQL
+create source source_iceberg_t1
+with (
+    connector = 'iceberg',
+    catalog.type = 'storage',
+    ...
+    database.name = 's1',
+    table.name = 't1'
+);
+
+create table t1(
+  timestamp timestamp with time zone,
+  user_id varchar,
+  page_id varchar,
+  action varchar
+);
+
+insert into t1 select * from source_iceberg_t1;
+```
 
 ## Topics in this section
 
