@@ -44,7 +44,7 @@ The following statement will continuously import data from the Kafka topic and s
   FROM kafka_source;
   ```
 
-- Also, directly query can be processed on the source and an **ad-hoc ingestion** will happened during the query's processing (more information in [directly query kafka](/ingest/ingest-from-kafka.md#query-kafka-timestamp))
+- Also, queries can be executed directly on the source, and **ad-hoc ingestion** will happened during the query's processing (more information in [directly query kafka](/ingest/ingest-from-kafka.md#query-kafka-timestamp))
   ```SQL
   SELECT * FROM source_name
   WHERE _rw_kafka_timestamp > now() - interval '10 minute';
