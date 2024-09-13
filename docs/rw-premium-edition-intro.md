@@ -56,6 +56,39 @@ RisingWave Premium 1.0 is the first major release of this new edition with sever
 
 For users who are already using these features in 1.9.x or earlier versions, rest assured that the functionality of these features will be intact if you stay on the version. If you choose to upgrade to v2.0 or later versions, an error will show up to indicate you need a license to use the features.
 
+## License key management
+
+The Premium Edition features are only available to users who have purchased a license. The license key, essentially a certificate, is a JSON Web Token (JWT) that encodes information such as the license tier and expiration time. The integrity of the license key is validated using asymmetric encryption.
+
+### Set license key
+
+The license key is treated as a system parameter and can be set in two primary ways:
+
+1. Before launching a new cluster:
+
+    - Through the `system.license_key` in the TOML configuration file
+    - Using the `RW_LICENSE_KEY` environment variable
+
+2. After the cluster is initialized, through the SQL interface with the command:
+
+    ```sql
+    ALTER SYSTEM SET license_key TO '...';
+    ```
+
+### Verify license key
+
+To check the validity of the license key, execute the SQL function:
+
+```sql
+SELECT rw_test_paid_tier();
+```
+
+If the license key is valid, the result will be `t` (true); if invalid, the function will return an error.
+
+## Pricing
+
+Pricing for RisingWave Premium will be based on the cluster size, measured in RisingWave Units (RWUs). The number of RWUs will be determined based on the scale of data ingestion, number of streaming jobs, the complexity of use case. There could be additional factors as well. Please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for more details.
+
 ## Support
 
 RisingWave Premium edition offers the premium support:
@@ -71,7 +104,3 @@ RisingWave Premium edition offers the premium support:
 | Max technical contacts      | 2                   | 8                  |
 | Named support engineer      | No                  | Yes                |
 | Solution engineer access    | 2 hours per month   | 8 hours per month  |
-
-## Pricing
-
-Pricing for RisingWave Premium will be based on the cluster size, measured in RisingWave Units (RWUs). The number of RWUs will be determined based on the scale of data ingestion, number of streaming jobs, the complexity of use case. There could be additional factors as well. Please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for more details.
