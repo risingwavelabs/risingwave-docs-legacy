@@ -65,7 +65,7 @@ In RisingWave, the subscription cursor allows you to specify a specific starting
 The syntax of creating a subscription cursor is as follows:
 
 ```sql
-DECLARE cursor_name SUBSCRIPTION CURSOR FOR subscription_name [since_clause];
+DECLARE cursor_name SUBSCRIPTION CURSOR FOR subscription_name [since_clause | FULL];
 ```
 
 The `since_clause` is used to specify the starting point for reading data. By setting this clause, you can control the range of data that is returned, allowing you to retrieve only the incremental data or data starting from a specific time or event. 
@@ -77,8 +77,8 @@ Below are the available choices for `since_clause`. If you don’t specify the `
 2. `since begin()` : The returned data will include the oldest incremental data available, typically starting from the beginning of the subscription's retention period.
 
 3. `since unix_ms` : Starts reading from the first time point greater than or equal to the specified `unix_ms` value. It's important to note that the `unix_ms` value should fall within the range of `now() - subscription's retention` and `now`.
-   
-4. `FULL` :  Starts consuming data from stock.
+
+If you specify `FULL` instead of the `since_clause`, the subsciption cursor starts consuming data from stock.
 
 ### Fetch from cursor
 
