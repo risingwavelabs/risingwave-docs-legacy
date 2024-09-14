@@ -103,4 +103,4 @@ RisingWave Premium edition offers the premium support:
 
 ## Pricing
 
-Pricing for RisingWave Premium will be based on the cluster size, measured in RisingWave Units (RWUs). The number of RWUs will be determined based on the scale of data ingestion, number of streaming jobs, the complexity of use case. There could be additional factors as well. Please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for more details.
+Pricing for RisingWave Premium will be based on the cluster size, measured in RisingWave Units (RWUs). The number of RWUs will be determined based on the scale of data ingestion, number of streaming jobs, and the complexity of use case. There could be additional factors as well. Please contact our sales at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com) for more details.
