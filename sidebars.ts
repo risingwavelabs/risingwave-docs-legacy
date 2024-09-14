@@ -21,7 +21,7 @@ const sidebars: SidebarsConfig = {
         {
           type: "doc",
           id: "rw-premium-edition-intro",
-          label: "Choose editions",
+          label: "Premium edition",
         },
         {
           type: "doc",
