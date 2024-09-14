@@ -78,7 +78,7 @@ Below are the available choices for `since_clause`. If you don’t specify the `
 
 3. `since unix_ms` : Starts reading from the first time point greater than or equal to the specified `unix_ms` value. It's important to note that the `unix_ms` value should fall within the range of `now() - subscription's retention` and `now`.
 
-If you specify `FULL` instead of the `since_clause`, the subsciption cursor starts consuming data from stock.
+If you specify `FULL` instead of the `since_clause`, the subscription cursor starts consuming data from stock.
 
 ### Fetch from cursor
 
