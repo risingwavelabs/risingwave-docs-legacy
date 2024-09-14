@@ -423,134 +423,179 @@ const sidebars: SidebarsConfig = {
               collapsed: true,
               items: [
                 {
-                  type: "doc",
-                  label: "Amazon DynamoDB",
-                  id: "guides/sink-to-dynamodb",
+                  type: "category",
+                  label: "Message queues",
+                  collapsible: true,
+                  collapsed: false,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "Apache Kafka",
+                      id: "guides/create-sink-kafka",
+                    },
+                    {
+                      type: "doc",
+                      label: "Apache Pulsar",
+                      id: "guides/sink-to-pulsar",
+                    },
+                    {
+                      type: "doc",
+                      label: "AWS Kinesis",
+                      id: "guides/sink-to-aws-kinesis",
+                    },
+                    {
+                      type: "doc",
+                      label: "NATS",
+                      id: "guides/sink-to-nats",
+                    },
+                    {
+                      type: "doc",
+                      label: "Google Pub/Sub",
+                      id: "guides/sink-to-google-pubsub",
+                    },
+                    {
+                      type: "doc",
+                      label: "MQTT",
+                      id: "guides/sink-to-mqtt",
+                    },
+                  ],
                 },
                 {
-                  type: "doc",
-                  label: "Apache Doris",
-                  id: "guides/sink-to-doris",
+                  type: "category",
+                  label: "Databases",
+                  collapsible: true,
+                  collapsed: false,
+                  items: [{
+                    type: "category",
+                    label: "Operational data",
+                    collapsible: false,
+                    collapsed: false,
+                    items: [
+                      {
+                        type: "doc",
+                        label: "PostgreSQL",
+                        id: "guides/sink-to-postgres",
+                      },
+                      {
+                        type: "doc",
+                        label: "MySQL",
+                        id: "guides/sink-to-mysql-with-jdbc",
+                      },
+                      {
+                        type: "doc",
+                        label: "MongoDB",
+                        id: "guides/sink-to-mongodb",
+                      },
+                      {
+                        type: "doc",
+                        label: "Amazon DynamoDB",
+                        id: "guides/sink-to-dynamodb",
+                      },
+                      {
+                        type: "doc",
+                        label: "Microsoft SQL Server",
+                        id: "guides/sink-to-sqlserver",
+                      },
+                      {
+                        type: "doc",
+                        label: "Redis",
+                        id: "guides/sink-to-redis",
+                      },
+                      {
+                        type: "doc",
+                        label: "Supabase",
+                        id: "guides/sink-to-supabase",
+                      },
+                      {
+                        type: "doc",
+                        label: "TiDB",
+                        id: "guides/sink-to-tidb",
+                      },
+                      {
+                        type: "doc",
+                        label: "CockroachDB",
+                        id: "guides/sink-to-cockroach",
+                      },
+                      {
+                        type: "doc",
+                        label: "Cassandra",
+                        id: "guides/sink-to-cassandra",
+                      },
+                    ],
+                  },
+                  {
+                    type: "category",
+                    label: " Analytical data",
+                    collapsible: false,
+                    collapsed: false,
+                    items: [
+                      {
+                        type: "doc",
+                        label: "ClickHouse",
+                        id: "guides/sink-to-clickhouse",
+                      },
+                      {
+                        type: "doc",
+                        label: "Apache Doris",
+                        id: "guides/sink-to-doris",
+                      },
+                      {
+                        type: "doc",
+                        label: "StarRocks",
+                        id: "guides/sink-to-starrocks",
+                      },
+                      {
+                        type: "doc",
+                        label: "Snowflake",
+                        id: "guides/sink-to-snowflake",
+                      },
+                      {
+                        type: "doc",
+                        label: "Google BigQuery",
+                        id: "guides/sink-to-bigquery",
+                      },
+                      {
+                        type: "doc",
+                        label: "Elasticsearch",
+                        id: "guides/sink-to-elasticsearch",
+                      },
+                      {
+                        type: "doc",
+                        label: "OpenSearch",
+                        id: "guides/sink-to-opensearch",
+                      },],
+                  },
+                  ],
+                }, {
+                  type: "category",
+                  label: "Data lakes",
+                  collapsible: true,
+                  collapsed: false,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "Apache Iceberg",
+                      id: "guides/sink-to-iceberg",
+                    },
+                    {
+                      type: "doc",
+                      label: "Delta Lake",
+                      id: "guides/sink-to-delta-lake",
+                    },
+                  ],
                 },
                 {
-                  type: "doc",
-                  label: "Apache Kafka",
-                  id: "guides/create-sink-kafka",
-                },
-                {
-                  type: "doc",
-                  label: "Apache Iceberg",
-                  id: "guides/sink-to-iceberg",
-                },
-                {
-                  type: "doc",
-                  label: "Apache Pulsar",
-                  id: "guides/sink-to-pulsar",
-                },
-                {
-                  type: "doc",
-                  label: "AWS Kinesis",
-                  id: "guides/sink-to-aws-kinesis",
-                },
-                {
-                  type: "doc",
-                  label: "Azure Blob",
-                  id: "guides/sink-to-azure-blob",
-                },
-                {
-                  type: "doc",
-                  label: "Cassandra",
-                  id: "guides/sink-to-cassandra",
-                },
-                {
-                  type: "doc",
-                  label: "ClickHouse",
-                  id: "guides/sink-to-clickhouse",
-                },
-                {
-                  type: "doc",
-                  label: "CockroachDB",
-                  id: "guides/sink-to-cockroach",
-                },
-                {
-                  type: "doc",
-                  label: "Delta Lake",
-                  id: "guides/sink-to-delta-lake",
-                },
-                {
-                  type: "doc",
-                  label: "Elasticsearch",
-                  id: "guides/sink-to-elasticsearch",
-                },
-                {
-                  type: "doc",
-                  label: "Google BigQuery",
-                  id: "guides/sink-to-bigquery",
-                },
-                {
-                  type: "doc",
-                  label: "Google Pub/Sub",
-                  id: "guides/sink-to-google-pubsub",
-                },
-                {
-                  type: "doc",
-                  label: "Microsoft SQL Server",
-                  id: "guides/sink-to-sqlserver",
-                },
-                {
-                  type: "doc",
-                  label: "MongoDB",
-                  id: "guides/sink-to-mongodb",
-                },
-                {
-                  type: "doc",
-                  label: "MQTT",
-                  id: "guides/sink-to-mqtt",
-                },
-                {
-                  type: "doc",
-                  label: "MySQL",
-                  id: "guides/sink-to-mysql-with-jdbc",
-                },
-                {
-                  type: "doc",
-                  label: "NATS",
-                  id: "guides/sink-to-nats",
-                },
-                {
-                  type: "doc",
-                  label: "OpenSearch",
-                  id: "guides/sink-to-opensearch",
-                },
-                {
-                  type: "doc",
-                  label: "PostgreSQL",
-                  id: "guides/sink-to-postgres",
-                },
-                {
-                  type: "doc",
-                  label: "Redis",
-                  id: "guides/sink-to-redis",
-                },
-                {
-                  type: "doc",
-                  label: "Snowflake",
-                  id: "guides/sink-to-snowflake",
-                },
-                {
-                  type: "doc",
-                  label: "StarRocks",
-                  id: "guides/sink-to-starrocks",
-                },
-                {
-                  type: "doc",
-                  label: "Supabase",
-                  id: "guides/sink-to-supabase",
-                },
-                {
-                  type: "doc",
-                  label: "TiDB",
-                  id: "guides/sink-to-tidb",
+                  type: "category",
+                  label: "Object storages",
+                  collapsible: true,
+                  collapsed: false,
+                  items: [
+                    {
+                      type: "doc",
+                      label: "Azure Blob",
+                      id: "guides/sink-to-azure-blob",
+                    },
+                  ],
                 },
               ],
             },
