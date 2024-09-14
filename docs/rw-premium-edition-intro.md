@@ -46,7 +46,7 @@ RisingWave Premium 1.0 is the first major release of this new edition with sever
 
 - [Sink to BigQuery](/guides/sink-to-bigquery.md)
 
-- Sink to SharedMergeTree Table Engine on ClickHouse Cloud
+- Sink to SharedMergeTree table engine on ClickHouse Cloud
 
 - [Sink to SQL Server](/guides/sink-to-sqlserver.md)
 
