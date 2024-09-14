@@ -62,14 +62,14 @@ The Premium Edition features are only available to users who have purchased a li
 
 ### Set license key
 
-The license key is treated as a system parameter and can be set in two primary ways:
+To set your license key:
 
 1. Before launching a new cluster:
 
-    - Through the `system.license_key` in the TOML configuration file
-    - Using the `RW_LICENSE_KEY` environment variable
+    - Add `system.license_key` to your TOML configuration file, or
+    - Set `RW_LICENSE_KEY` environment variable
 
-2. After the cluster is initialized, through the SQL interface with the command:
+2. For an existing cluster, use this SQL command:
 
     ```sql
     ALTER SYSTEM SET license_key TO '...';
@@ -77,13 +77,13 @@ The license key is treated as a system parameter and can be set in two primary w
 
 ### Verify license key
 
-To check the validity of the license key, execute the SQL function:
+To check if your license key is valid, run:
 
 ```sql
 SELECT rw_test_paid_tier();
 ```
 
-If the license key is valid, the result will be `t` (true); if invalid, the function will return an error.
+A result of `t` means the key is valid; an error message indicates an invalid key.
 
 ## Support
 
