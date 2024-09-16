@@ -71,7 +71,9 @@ A full outer join (or simply, full join) returns all rows when there is a match 
 
 ## Window joins
 
-In a regular join (that is, a join without time attributes), the join state may grow without restriction. If you only need to get windowed results of two sources, you can segment data in the sources into time windows, and join matching windows from the two sources. To create a window join, the same time window functions must be used, and the window size must be the same.
+In a regular join (that is, a join without time attributes), the join state may grow without restriction. If you only need to get windowed results of two sources, you can segment data in the sources into time windows, and join matching windows from the two sources. To create a window join, the same [time window functions](../functions-operators/sql-function-time-window.md) must be used, and the window size must be the same.
+
+![An example of tumble window join](../../images/join/window-join.png)
 
 The syntax of a window join is:
 
@@ -155,6 +157,8 @@ See [Watermarks](transform/watermarks.md) for more information on watermarks.
 
 Window joins require that the two sources have the same window type and window size. This requirement can be too strict in some scenarios. If you want to join two sources that have some time offset, you can create an interval join by specifying an accepted interval range based on watermarks.
 
+![Interval join](../../images/join/interval-join.png)
+
 The syntax of an interval join is:
 
 ```sql
@@ -180,6 +184,8 @@ This query will join the two sources `s1` and `s2` based on the `id` column and 
 ## Process-time temporal joins
 
 A process-time temporal join is a join that uses the process time of the left-hand side (LHS) table to look up the right-hand side (RHS) table. The latest value at the moment of joining from the RHS table is used.
+
+![An example of process-time temporal join](../../images/join/process-time-temporal-join.png)
 
 Different from regular joins, the changes in the RHS table are not reflected in the join result. The join result is only updated when the LHS table changes.
 
@@ -209,20 +215,26 @@ If you have a source that emits messages like below:
 | 2              | 102        | 2        | 2023-06-19 | 2023-06-19 15:30:00 |
 | 3              | 101        | 1        | 2023-06-20 | 2023-06-20 11:45:00 |
 
-Assuming the data of `products` is as follows at 2023-06-18 10:15:00 (process time of transaction 1) and 2023-06-19 15:30:00 (process time of transaction 2):
+Assuming the data of `products` is as follows at 2023-06-18 10:15:00 (process time of transaction 1) 
 
 | id | product_name | price |
 |----|--------------|-------|
 | 101 | Product A    | 25    |
 | 102 | Product B    | 15    |
 
+At 2023-06-19 15:30:00 (process time of transaction 2):
+
+| id | product_name | price |
+|----|--------------|-------|
+| 101 | Product A    | 22    |
+| 102 | Product B    | 15    |
 
 At 2023-06-20 11:45:00 (process time of transaction 3):
 
 | id | product_name | price |
 |----|--------------|-------|
 | 101 | Product A    | 22    |
-| 102 | Product B    | 15    |
+| 102 | Product B    | 18    |
 
 For the same product ID, the product name or the price is updated from time to time.
 
@@ -248,9 +260,9 @@ Notice that the Product A's price is 25 at the time of transaction 1 and 22 at t
 Depending on LHS, the process-time temporal join may or may not maintain the internal state. 
 
 - If the LHS is append-only i.e. a source, the join operator does not maintain the internal state.
-- If the LHS is non-append-only i.e. a table or materialized view, the join operator needs to maintain the internal state of lookup results in the past. This is because the historical values of the RHS table is necessary to emit a correct delete event when a LHS row is deleted.
+- If the LHS is non-append-only i.e. a table or materialized view, the join operator must maintain the internal state of previous lookup results. This is because the historical values of the RHS table are needed to emit a corresponding delete event when a row from the LHS is deleted.
 
-You may inspect it with the `EXPLAIN` command. For example, the following query's LHS is a source, so the join operator does not maintain the internal state.
+You may inspect it with the `EXPLAIN` command. For example, the following query's LHS is a source, so the join operator does not keep the internal state, as indicated by `append_only: true`.
 
 ```sql
 EXPLAIN CREATE MATERIALIZED VIEW mv1 AS
