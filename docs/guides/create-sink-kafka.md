@@ -73,7 +73,9 @@ When creating a Kafka sink in RisingWave, you can specify the following Kafka-sp
 |ssl.endpoint.identification.algorithm | properties.ssl.endpoint.identification.algorithm | str |
 
 :::note
-Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
++ Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
+
++ Starting with version 2.0, the default value for `properties.message.timeout.ms` has changed from 5 seconds to **5 minutes**, aligning with the default setting in the [official Kafka library](https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md).
 :::
 
 ## FORMAT and ENCODE options
@@ -159,7 +161,20 @@ For data type mapping, the serial type is supported. We map the serial type to t
 
 ### JSON specific parameters
 
+#### `jsonb.handling.mode`
+
+The `jsonb.handling.mode` determines how `jsonb` data types are encoded. This parameter has two possible values:
+
+- `string`: Encodes the `jsonb` type to a string. For example, if you set this parameter, `{"k": 2}` will be converted to `"{\"k\": 2}"`.
+
+- `dynamic`: Dynamically encodes a `jsonb` type value to a JSON type value. For example, if you set this parameter, `{"k": 2}` will be converted to `{"k": 2}`. Here the `jsonb` value is encoded to a JSON object type value.
+
+You can set this parameter in the `WITH` clause of `ENCODE JSON`.  
+
+#### Note for serial types
+
 For data mapping, the serial type is supported. However, note that it is mapped into a JSON string like `"0x05fb93d677c4e000"` instead of a JSON number `431100738685689856`. This string form avoids JSON number precision issues with large int64 values, and you can still order by the fixed-length hexadecimal string to obtain the same order as the serial number (whereas variable-length string `"12"` sorts before `"7"`).
+
 
 ## Examples
 

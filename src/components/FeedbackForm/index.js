@@ -25,9 +25,6 @@ export default function FeedbackForm(props) {
   return (
     <Stack width="100%">
       <div className={styles.breakLine}></div>
-      <div className={styles.communityLinkContainer}>
-        <CommunityLinkGroup />
-      </div>
 
       <form>
         <Stack direction="row" spacing={2} className={styles.rightGroupContainer}>

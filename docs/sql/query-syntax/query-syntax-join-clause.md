@@ -181,6 +181,10 @@ ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1 minute';
 
 This query will join the two sources `s1` and `s2` based on the `id` column and the time range. For the unclosed windows, the join result will be updated immediately when new data arrive.
 
+### State Cleaning
+
+Interval join‘s state cleaning is triggered only when upstream messages arrive, and it operates at the granularity of each join key. As a result, if no messages are received for a join key, the state may still hold stale data.
+
 ## Process-time temporal joins
 
 A process-time temporal join is a join that uses the process time of the left-hand side (LHS) table to look up the right-hand side (RHS) table. The latest value at the moment of joining from the RHS table is used.

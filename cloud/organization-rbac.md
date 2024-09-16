@@ -19,6 +19,8 @@ A security principal refers to an entity that is authenticated and authorized to
 
 Below are permissions and limitations for roles to ensure that each service account or user has appropriate access tailored to their responsibilities.
 
+To grant a role to your account, go to [Organization](https://www.risingwave.cloud/project/organization/service-account/) > Role management, then click **Edit roles** on the right side.
+
 | Role              | Permissions                                                                                             | Limitations                                                                                                                      |
 |-------------------|---------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | OrganizationAdmin | <ul><li>Full control over tenants and related resources.</li><li>Management of service accounts, users, invitations, and RoleBinding.</li><li>Access to all billing resources.</li></ul> | <ul><li>Cannot modify their own admin RoleBinding.</li></ul>                                                                      |

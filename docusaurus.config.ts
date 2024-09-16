@@ -187,6 +187,11 @@ const config: Config = {
           label: "GitHub",
           position: "right",
         },
+        {
+          href: "https://risingwave.com/slack",
+          label: "Slack",
+          position: "right",
+        },
       ],
     },
     footer: {
@@ -232,7 +237,7 @@ const config: Config = {
       type: "module",
       "runllm-server-address": "https://api.runllm.com",
       "runllm-assistant-id": "29",
-      "runllm-position": "TOP_RIGHT",
+      "runllm-position": "BOTTOM_RIGHT",
       "runllm-keyboard-shortcut": "disable",
       "runllm-theme-color": "#005EEC",
       "runllm-slack-community-url":

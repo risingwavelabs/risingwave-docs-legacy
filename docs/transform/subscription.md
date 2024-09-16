@@ -65,18 +65,20 @@ In RisingWave, the subscription cursor allows you to specify a specific starting
 The syntax of creating a subscription cursor is as follows:
 
 ```sql
-DECLARE cursor_name SUBSCRIPTION CURSOR FOR subscription_name [since_clause];
+DECLARE cursor_name SUBSCRIPTION CURSOR FOR subscription_name [since_clause | FULL];
 ```
 
 The `since_clause` is used to specify the starting point for reading data. By setting this clause, you can control the range of data that is returned, allowing you to retrieve only the incremental data or data starting from a specific time or event. 
 
-If you don’t specify the `since_clause`, the returned data will include both the historical data up to the time of declaration and the incremental data after declaration. If you want to specify it, here are the available choices:
+Below are the available choices for `since_clause`. If you don’t specify the `since_clause`, the returned data will just include the incremental data after declaration, which equals to the first choice below.
 
 1. `since now()/proctime()` : The returned data will include only the incremental data starting from the time of declaration.
 
 2. `since begin()` : The returned data will include the oldest incremental data available, typically starting from the beginning of the subscription's retention period.
 
 3. `since unix_ms` : Starts reading from the first time point greater than or equal to the specified `unix_ms` value. It's important to note that the `unix_ms` value should fall within the range of `now() - subscription's retention` and `now`.
+
+If you specify `FULL` instead of the `since_clause`, the subscription cursor starts consuming data from stock.
 
 ### Fetch from cursor
 
@@ -92,13 +94,13 @@ After creating a subscription cursor, you can fetch the data by the `FETCH NEXT 
 FETCH NEXT FROM cur;
 
 ----RESULT
- t1.v1 | t1.v2 | t1.v3 | t1.op | rw_timestamp  
--------+-------+-------+-------+---------------
-     1 |     1 |     1 |     4 | 1715669376304
+t1.v1 | t1.v2 | t1.v3 |    t1.op     |  rw_timestamp  
+-------+-------+-------+--------------+---------------
+     1 |     1 |     1 | UpdateDelete | 1715669376304
 (1 row)
 ```
 
-The `op` column in the result stands for the change operations. It has four options: `op = 1` (insert), `op = 2` (delete), `op = 3` (update_insert),  and `op = 4` (update_delete). For a single UPDATE statement, the subscription log will contain two separate rows: one with `update_insert` and another with `update_delete`. This is because RisingWave treats an UPDATE as a delete of the old value followed by an insert of the new value. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
+The `op` column in the result stands for the change operations. It has four options: `insert`, `update_insert`, `delete`,  and `update_delete`. For a single UPDATE statement, the subscription log will contain two separate rows: one with `update_insert` and another with `update_delete`. This is because RisingWave treats an UPDATE as a delete of the old value followed by an insert of the new value. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
 
 Note that each time `FETCH NEXT FROM cursor_name` is called, it will return one row of incremental data from the subscribed table. It does not return all the incremental data at once, but requires the user to repeatedly call this statement to fetch the data.
 
@@ -119,6 +121,21 @@ FETCH n FROM cursor_name;
 - For data with the same `rw_timestamp`, the order matches the event sequence if the data belongs to the same primary key in the subscribed materialized view or table.
 
 - For data with the same `rw_timestamp` but different primary keys, the order may not reflect the exact event sequence.
+
+### Show subscription cursors
+
+To show all subscription cursors in the current session, use the syntax below:
+
+```sql
+SHOW SUBSCRIPTION CURSORS;
+
+------RESULT
+ Name | SubscriptionName 
+------+------------------
+ cur2 | sub
+ cur  | sub
+(2 rows)
+```
 
 ### Examples
 
@@ -142,9 +159,9 @@ After creation, we can use the `FETCH NEXT FROM cursor_name`  statement to fetch
 fetch next from cur;
    
 ----RESULT
-v1 | v2 | v3 | op | rw_timestamp 
-----+----+----+----+--------------
-  1 |  1 |  1 |  1 |             
+ v1 | v2 | v3 |   op   | rw_timestamp 
+----+----+----+--------+--------------
+  1 |  1 |  1 | Insert |             
 (1 row)
 ```
 
@@ -156,16 +173,16 @@ update t1 set v3 = 10 where v1 = 1;
 fetch next from cur;
 
 ----RESULT
- t1.v1 | t1.v2 | t1.v3 | t1.op | rw_timestamp  
--------+-------+-------+-------+---------------
-     1 |     1 |     1 |     4 | 1715669376304
+ t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+-------+-------+-------+---------------+---------------
+     1 |     1 |     1 | UpdateDelete  | 1715669376304
 (1 row)
 
 fetch next from cur;
 ----RESULT
- t1.v1 | t1.v2 | t1.v3 | t1.op | rw_timestamp  
--------+-------+-------+-------+---------------
-     1 |     1 |    10 |     3 | 1715669376304
+ t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+-------+-------+-------+---------------+---------------
+     1 |     1 |    10 | UpdateInsert  | 1715669376304
 (1 row)
 ```
 
@@ -176,17 +193,17 @@ declare cur2 subscription cursor for sub since 1715669376304;
 fetch next from cur2;
 
 ----RESULT
- t1.v1 | t1.v2 | t1.v3 | t1.op | rw_timestamp  
--------+-------+-------+-------+---------------
-     1 |     1 |     1 |     4 | 1715669376304
+ t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+-------+-------+-------+---------------+---------------
+     1 |     1 |     1 | UpdateDelete  | 1715669376304
 (1 row)
 
 
 fetch next from cur2;
 ----RESULT
- t1.v1 | t1.v2 | t1.v3 | t1.op | rw_timestamp  
--------+-------+-------+-------+---------------
-     1 |     1 |    10 |     3 | 1715669376304
+ t1.v1 | t1.v2 | t1.v3 |     t1.op     |  rw_timestamp  
+-------+-------+-------+---------------+---------------
+     1 |     1 |    10 | UpdateInsert  | 1715669376304
 (1 row)
 ```
 
@@ -262,7 +279,7 @@ First, we need to create a table for storing the progress.
 CREATE TABLE IF NOT EXISTS subscription_progress (
     sub_name VARCHAR PRIMARY KEY,
     progress BIGINT
-);
+) ON CONFLICT OVERWRITE;
 ```
 
 Here's an example python code for retrieving and updating the consumption progress:
@@ -276,11 +293,7 @@ def get_last_progress(conn, sub_name):
 
 def update_progress(conn, sub_name, progress):
     with conn.cursor() as cur:
-        cur.execute("""
-            INSERT INTO subscription_progress (sub_name, progress)
-            VALUES (%s, %s)
-            ON CONFLICT (sub_name) DO UPDATE SET progress = %s
-        """, (sub_name, progress, progress))
+        cur.execute("INSERT INTO subscription_progress (sub_name, progress)", (sub_name, progress, progress))
         cur.execute("FLUSH")
         conn.commit()
 ```

@@ -86,7 +86,7 @@ This append-only versus non-append-only difference can make an impact in a few u
 
 3. Join.
 
-This is an advanced feature that is still in the experimental stage, which may or may not exist in the future version of RisingWave. Feel free to raise the question in RisingWave’s Slack channel before making a decision.
+This is an advanced feature that is still in the [public preview stage](/product-lifecycle/#features-in-the-public-preview-stage), which may or may not exist in the future version of RisingWave. Feel free to raise the question in RisingWave’s Slack channel before making a decision.
 
 ## How to monitor the progress of direct CDC
 

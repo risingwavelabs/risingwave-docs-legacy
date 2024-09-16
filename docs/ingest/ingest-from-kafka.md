@@ -115,6 +115,11 @@ When creating a source in RisingWave, you can specify the following Kafka parame
 Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
 :::
 
+### Specific parameters for Amazon MSK
+There are some specific parameters for Amazon Managed Streaming for Apache Kafka (MSK), please see
+[Access MSK in RisingWave](/guides/connector-amazon-msk.md#access-msk-in-risingwave) for more details.
+
+
 ## Examples
 
 Here are examples of connecting RisingWave to a Kafka broker to read data from individual topics.
@@ -335,7 +340,7 @@ To learn about compatibility types for Schema Registry and the changes allowed, 
 ## Read schemas from AWS Glue Schema Registry
 
 :::tip Premium Edition Feature
-This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+This feature is exclusive to RisingWave Premium Edition that offers advanced capabilities beyond the free versions. For a full list of premium features, see [RisingWave Premium Edition](/rw-premium-edition-intro.md). If you encounter any questions, please contact sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
 :::
 
 AWS Glue Schema Registry is a serverless feature of AWS Glue that allows you to centrally manage and enforce schemas for data streams, enabling data validation and compatibility checks. It helps in improving the quality of data streams by providing a central repository for managing and enforcing schemas across various AWS services and custom applications.
