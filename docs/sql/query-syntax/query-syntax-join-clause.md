@@ -7,8 +7,6 @@ title: Joins
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-join-clause/" />
 </head>
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 A JOIN clause, also known as a join, combines the results of two or more table expressions based on certain conditions, such as whether the values of some columns are equal.
 
@@ -103,9 +101,6 @@ CREATE SOURCE s2 (
 
 You can join them with the following statement:
 
-<Tabs>
-<TabItem value="emit_on_update" label="Emit on Update" default>
-
 ```sql
 CREATE MATERIALIZED VIEW window_join AS
 SELECT s1.id AS id1,
@@ -118,28 +113,6 @@ ON s1.id = s2.id and s1.window_start = s2.window_start;
 ```
 
 This query will join the two sources `s1` and `s2` based on the `id` column and the window start time. For the unclosed windows, the join result will be updated immediately when new data arrives.
-
-</TabItem>
-<TabItem value="emit_on_window_close" label="Emit on Window Close">
-
-
-```sql
-CREATE MATERIALIZED VIEW window_join AS
-SELECT s1.id AS id1,
-       s1.value AS value1,
-       s2.id AS id2,
-       s2.value AS value2
-FROM TUMBLE(s1, ts, interval '1' MINUTE)
-JOIN TUMBLE(s2, ts, interval '1' MINUTE)
-ON s1.id = s2.id and s1.window_start = s2.window_start
-EMIT ON WINDOW CLOSE;
-```
-This query will join the two sources `s1` and `s2` based on the `id` column and the window start time. The join result will be outputted only when the window closes, so unclosed windows will not be shown in the materialized view or downstream.
-
-See [Emit on Window Close](transform/emit-on-window-close.md) for more information on the `EMIT ON WINDOW CLOSE` clause.
-
-</TabItem>
-</Tabs>
 
 ### State cleaning
 
