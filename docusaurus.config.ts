@@ -36,7 +36,7 @@ const config: Config = {
           sidebarCollapsible: false,
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
-          lastVersion: "1.10",
+          lastVersion: "current",
           versions: {
             current: {
               label: "2.0",
