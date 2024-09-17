@@ -104,7 +104,7 @@ INSERT INTO website_visits (timestamp, user_id, page_id, action) VALUES
 
 ### Use `INSERT SELECT` to do bulk ingestion
 
-For sources that only support ad-hoc ingestion but not streaming ingestion, such as the [Iceberg source](/docs/next/ingest-from-iceberg/), `insert ... select ...` can be used to implement bulk data import into the table, and to convert the data into a stream of changes that are synchronized downstream to the table.
+For sources that only support ad-hoc ingestion but not streaming ingestion, such as the [Iceberg source](/ingest/ingest-from-iceberg.md), `insert ... select ...` can be used to implement bulk data import into the table, and to convert the data into a stream of changes that are synchronized downstream to the table.
 
 ```SQL
 CREATE SOURCE source_iceberg_t1

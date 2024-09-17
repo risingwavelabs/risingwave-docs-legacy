@@ -20,7 +20,7 @@ This version was released on July 30, 2024.
 - Query syntax:
 - SQL commands:
     - Supports specifying the authorization and omitting the schema name when creating a schema. [#16806](https://github.com/risingwavelabs/risingwave/pull/16806). See [`CREATE SCHEMA`](/docs/current/sql-create-schema/).
-    - Supports session window in batch and emit-on-window-close mode. [#17098](https://github.com/risingwavelabs/risingwave/pull/17098). See [Window functions (OVER clause)](/docs/current/window-functions/).
+    - Supports session window in batch and emit-on-window-close mode. [#17098](https://github.com/risingwavelabs/risingwave/pull/17098). See [Window functions (OVER clause)](/docs/current/sql-function-window-functions/).
     - Supports fetching multiple rows from a subscription cursor. [#16764](https://github.com/risingwavelabs/risingwave/pull/16764). See [Subscription](/docs/current/subscription/).
     - Supports user-defined aggregate functions for embedded Python and JavaScript UDFs. [#16874](https://github.com/risingwavelabs/risingwave/pull/16874). See [`CREATE AGGREGATE`](/docs/current/sql-create-aggregate/).
 - SQL functions & operators:
@@ -61,7 +61,7 @@ This version was released on July 30, 2024.
 - Sets arrangement backfill as the default. [#14846](https://github.com/risingwavelabs/risingwave/pull/14846).
 - Supports spill hash join to avoid OOM issues. [#17122](https://github.com/risingwavelabs/risingwave/pull/17122).
 - Supports spill hash aggregation for batch queries. [#16771](https://github.com/risingwavelabs/risingwave/pull/16771).
-- Changes the algorithm that calculates the reserve memory size. [#16992](https://github.com/risingwavelabs/risingwave/pull/16992). See [FAQ](/docs/current/rw-faq/#why-the-memory-usage-is-so-high).
+- Changes the algorithm that calculates the reserve memory size. [#16992](https://github.com/risingwavelabs/risingwave/pull/16992). See [FAQ](/docs/current/faq-using-risingwave/#why-the-memory-usage-is-so-high).
 
 #### Bug fixes
 
