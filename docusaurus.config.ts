@@ -39,12 +39,12 @@ const config: Config = {
           lastVersion: "current",
           versions: {
             current: {
-              label: "2.0",
-              path: "/current",
+              label: "next",
+              path: "/next",
               badge: false,
               banner:"unreleased",
             },
-            "2.0": {
+            2.0: {
               label: "2.0",
               path: "/current",
               badge: false,
