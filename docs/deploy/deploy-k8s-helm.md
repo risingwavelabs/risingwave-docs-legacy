@@ -119,6 +119,8 @@ You can then connect to RisingWave using a PostgreSQL client on port 4567. For e
 psql -h localhost -p 4567 -d dev -U root
 ```
 
+## Step 4: Monitor performance
+
 You can monitor the RisingWave cluster using the monitoring stack. For details, see [Monitoring a RisingWave cluster](/manage/monitor-risingwave-cluster.md).
 
 ## Optional: Resize a node
