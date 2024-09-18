@@ -9,6 +9,100 @@ slug: /release-notes
 
 This page summarizes changes in each version of RisingWave, including new features and important bug fixes.
 
+## v2.0.0
+
+This version was released on September 18, 2024.
+
+### Main changes
+
+#### **SQL features**
+
+- Query syntax:
+    - **Public preview:** Supports `AS CHANGELOG` to convert any stream into an append-only changelog. https://github.com/risingwavelabs/risingwave/pull/17132
+    - Supports time travel query to access historical data at a specific point in time. https://github.com/risingwavelabs/risingwave/pull/17665,  https://github.com/risingwavelabs/risingwave/pull/17621.
+    - Supports `CORRESPONDING` specification in set operations. https://github.com/risingwavelabs/risingwave/pull/17891
+- SQL commands:
+    - **Breaking change:** `DECLARE cursor_name SUBSCRIPTION CURSOR` is the same as `DECLARE cursor_name SUBSCRIPTION CURSOR since now()`, which will be consumed from the current time. `DECLARE cursor_name SUBSCRIPTION CURSOR FULL w`ill start consuming data from stock. The type of operation has changed to `varchar`. It is one of `Insert`, `Delete`, `UpdateInset`, or `UpdateDelete`. https://github.com/risingwavelabs/risingwave/pull/18217
+    - **Public preview:** Supports managing database credentials securely. https://github.com/risingwavelabs/risingwave/pull/17456
+    - `SHOW CURSORS` will return all query cursors in the current session. `SHOW SUBSCRIPTION CURSORS` will return all subscription cursorS and subscriptions in the current session. https://github.com/risingwavelabs/risingwave/pull/18217
+    - Allows `ALTER TABLE` on tables with generated columns. https://github.com/risingwavelabs/risingwave/pull/17652
+    - Allows dropping generated columns from tables created with a schema registry. https://github.com/risingwavelabs/risingwave/pull/17689
+    - Supports using scalar functions with list inputs as aggregate functions. https://github.com/risingwavelabs/risingwave/pull/17622
+    - Supports altering the backfill rate limit for materialized views.  https://github.com/risingwavelabs/risingwave/pull/17911
+- SQL functions & operators:
+    - **Public preview:** Supports `approx_percentile()`. https://github.com/risingwavelabs/risingwave/pull/17814, https://github.com/risingwavelabs/risingwave/pull/17873.
+    - **Public preview:** Supports native `map` type and related functions for `map`, and ingesting `AVRO MAP` type into RisingWave `map` type. https://github.com/risingwavelabs/risingwave/pull/17986
+    - **Public preview:** Supports scanning a directory of parquet files. https://github.com/risingwavelabs/risingwave/pull/17811
+    - Supports `pg_index_column_has_property()` to query index column properties. https://github.com/risingwavelabs/risingwave/pull/17275
+    - Supports continuous timestamp generation in streaming mode. https://github.com/risingwavelabs/risingwave/pull/17371
+    - Supports `acosd()`. https://github.com/risingwavelabs/risingwave/pull/9876
+    - Supports function `rw_recovery_status()` and `pg_is_in_recovery()` to retrieve the meta node status. https://github.com/risingwavelabs/risingwave/pull/17641
+- System catalog:
+    - Adds `append_only` column in RisingWave catalogs `rw_tables` and `rw_materialized_views`. https://github.com/risingwavelabs/risingwave/pull/17598
+    - Adds RisingWave catalog `rw_catalog.rw_secrets`. https://github.com/risingwavelabs/risingwave/pull/17726
+
+#### **Connectors**
+
+- **Public preview:** Supports ingesting Avro map type for source connectors. https://github.com/risingwavelabs/risingwave/pull/17980
+- **Public preview:** Supports encoding `parquet` for file source. https://github.com/risingwavelabs/risingwave/pull/17201
+- **Public preview:** Supports batch reading S3 Parquet files. https://github.com/risingwavelabs/risingwave/pull/17625, https://github.com/risingwavelabs/risingwave/pull/17673.
+- Supports AWS Glue schema registry with `aws.glue.schema_arn` parameter. https://github.com/risingwavelabs/risingwave/pull/17605
+- Supports creating tables and sources with `format upsert encode protobuf`. https://github.com/risingwavelabs/risingwave/pull/17624
+- Supports ingesting Avro Union type for source connectors. https://github.com/risingwavelabs/risingwave/pull/17485
+- Supports reading files compressed in gzip format. https://github.com/risingwavelabs/risingwave/pull/16538
+- Adds the option to use a semicolon as the delimiter for CSV encode. https://github.com/risingwavelabs/risingwave/pull/17356
+- Uses OpenDAL to connect to S3 object store state backend. https://github.com/risingwavelabs/risingwave/pull/18011
+- **Public preview:** Supports replicating DDL for MySQL CDC source. https://github.com/risingwavelabs/risingwave/pull/17876
+- Supports parameter `refresh.interval.sec` option for S3, GCS, and POSIX sources. https://github.com/risingwavelabs/risingwave/pull/18184
+- Supports parameter `group.id.prefix` for Kafka sources. https://github.com/risingwavelabs/risingwave/pull/18115
+- Validates slot name of PostgreSQL CDC sources. https://github.com/risingwavelabs/risingwave/pull/17949
+- Supports altering `backfill_rate_limit` of CDC tables. https://github.com/risingwavelabs/risingwave/pull/17989
+- **Public preview:** Supports sinking data to file systems in parquet format. https://github.com/risingwavelabs/risingwave/pull/17311
+- Supports upsert Protobuf type sinks, which requires `KEY ENCODE TEXT`. https://github.com/risingwavelabs/risingwave/pull/18024
+- Adds option `jsonb.handling.mode` under `WITH` options for sinks in JSON format. https://github.com/risingwavelabs/risingwave/pull/17693
+- **Public preview:** Supports Azure Blob sinks. https://github.com/risingwavelabs/risingwave/pull/18244
+- **Public preview:** Supports MongoDB sinks. https://github.com/risingwavelabs/risingwave/pull/17102
+- Supports Azure Blob file sources. https://github.com/risingwavelabs/risingwave/pull/18295
+- Supports glue catalog for iceberg sink and source. https://github.com/risingwavelabs/risingwave/pull/17477
+- Adds `jdbc.query.timeout` for JDBC sinks to set the timeout for queries. https://github.com/risingwavelabs/risingwave/pull/18430
+- Changes default Kafka sink message timeout from five seconds to five minutes. https://github.com/risingwavelabs/risingwave/pull/18304
+- Adds new parameters `retry_on_conflict`, `batch_size_kb`, `batch_num_messages`, and `concurrent_requests` for ElasticSearch sink.https://github.com/risingwavelabs/risingwave/pull/17867
+- Supports parameter `bigquery.retry_times` for BigQuery sink. https://github.com/risingwavelabs/risingwave/pull/17237
+- Supports parameter `bigquery.auto_create_table` for BigQuery sink. https://github.com/risingwavelabs/risingwave/pull/17393
+- Supports parameter `doris.partial_columns` for Doris sink.  https://github.com/risingwavelabs/risingwave/pull/16821
+- Supports ClickHouse sink checkpoint decouple. https://github.com/risingwavelabs/risingwave/pull/17491
+- Sets sink decouple as default for all sinks. https://github.com/risingwavelabs/risingwave/pull/18182
+- Uses S3's SQS notification to complete the import of data from Snowflake instead of the Snowflake HTTP client. https://github.com/risingwavelabs/risingwave/pull/17627
+- Ensures at-least-once delivery semantic and eventual consistency for Kinesis sink. https://github.com/risingwavelabs/risingwave/pull/17983
+- Supports backfilling by consuming a fixed snapshot of upstream table and then the upstream data epoch by epoch. https://github.com/risingwavelabs/risingwave/pull/17735
+
+#### **Installation and deployment**
+
+- Supports configuring the SQL metastore using username, password, and database separately. https://github.com/risingwavelabs/risingwave/pull/17530
+- Supports more seamless scaling-in in Kubernetes deployments. https://github.com/risingwavelabs/risingwave/pull/17802
+
+#### **Cluster configuration changes**
+
+- **Breaking change:** Refactors `streaming_rate_limit` into `source_rate_limit` and `backfill_rate_limit`. https://github.com/risingwavelabs/risingwave/pull/17796
+- **Breaking change:** Adds a default soft and hard limit on actor count per worker parallelism. When the hard limit is reached, streaming workloads will fail. https://github.com/risingwavelabs/risingwave/pull/18383
+- Introduces `batch.developer.exchange_connection_pool_size` and `streaming.developer.exchange_connection_pool_size` to configure streaming and batch remote exchange between two nodes https://github.com/risingwavelabs/risingwave/pull/17768
+- Introduces system parameter `license_key` used to enable enterprise features. https://github.com/risingwavelabs/risingwave/pull/17396
+
+#### Fixes
+
+- Deletes related cursors when deleting a subscription. https://github.com/risingwavelabs/risingwave/pull/17232
+
+### Assets
+
+- Run this version from Docker:<br/>
+`docker run -it --pull=always -p 4566:4566 -p 5691:5691 risingwavelabs/risingwave:v2.0.0-standalone single_node`
+- [Prebuilt all-in-one library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v2.0.0/risingwave-v2.0.0-x86_64-unknown-linux-all-in-one.tar.gz).
+- [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v2.0.0.zip).
+- [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v2.0.0.tar.gz).
+- [risectl - a CLI tool for managing and accessing RisingWave clusters](https://github.com/risingwavelabs/risingwave/releases/download/v2.0.0/risectl-v2.0.0-x86_64-unknown-linux.tar.gz).
+
+See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/v1.10.1...v2.0.0). 
+
 ## v1.10.0
 
 This version was released on July 30, 2024.
@@ -76,7 +170,7 @@ This version was released on July 30, 2024.
 - [Prebuilt all-in-one library for Linux](https://github.com/risingwavelabs/risingwave/releases/download/v1.9.1/risingwave-v1.9.1-x86_64-unknown-linux-all-in-one.tar.gz).
 - [Source code (zip)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.10.0.zip).
 - [Source code (tar.gz)](https://github.com/risingwavelabs/risingwave/archive/refs/tags/v1.10.0.tar.gz).
-- [risectl - a CLI tool for managing and accessing RisingWave clusters](https://github.com/risingwavelabs/risingwave/releases/download/v1.10.0/risectl-v1.9.1-x86_64-unknown-linux.tar.gz).
+- [risectl - a CLI tool for managing and accessing RisingWave clusters](https://github.com/risingwavelabs/risingwave/releases/download/v1.10.0/risectl-v1.10.0-x86_64-unknown-linux.tar.gz).
 
 See the **Full Changelog** [here](https://github.com/risingwavelabs/risingwave/compare/release-1.9...release-1.10).
 
