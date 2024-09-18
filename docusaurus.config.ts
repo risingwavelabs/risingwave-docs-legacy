@@ -44,7 +44,7 @@ const config: Config = {
               badge: false,
               banner:"unreleased",
             },
-            2.0: {
+            "2.0": {
               label: "2.0",
               path: "/current",
               badge: false,
