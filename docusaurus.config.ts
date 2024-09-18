@@ -36,13 +36,12 @@ const config: Config = {
           sidebarCollapsible: false,
           showLastUpdateAuthor: false,
           showLastUpdateTime: true,
-          lastVersion: "current",
+          lastVersion: "2.0",
           versions: {
             current: {
               label: "next",
               path: "/next",
               badge: false,
-              banner:"unreleased",
             },
             "2.0": {
               label: "2.0",
