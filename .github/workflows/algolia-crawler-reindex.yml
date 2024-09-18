@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - docusaurus.config.js
+      - docusaurus.config.ts
       - docs/**
       - sidebars.js
       - cloud/**
