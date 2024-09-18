@@ -121,7 +121,7 @@ psql -h localhost -p 4567 -d dev -U root
 
 ## Step 4: Monitor performance
 
-You can monitor the RisingWave cluster using the monitoring stack. For details, see [Monitoring a RisingWave cluster](/manage/monitor-risingwave-cluster.md).
+You can monitor the RisingWave cluster using the monitoring stack via Prometheus and Grafana. For details, see [Monitoring a RisingWave cluster](/manage/monitor-risingwave-cluster.md).
 
 ## Optional: Resize a node
 
