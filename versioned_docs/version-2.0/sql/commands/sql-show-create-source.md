@@ -1,0 +1,30 @@
+---
+id: sql-show-create-source
+title: SHOW CREATE SOURCE
+description: Show the query used to create the specified source.
+slug: /sql-show-create-source
+---
+<head>
+  <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-show-create-source/" />
+</head>
+
+Use the `SHOW CREATE SOURCE` command to see the SQL statement used to create the specified source. By
+using this command, you can verify the source's settings and troubleshoot any issues.
+
+## Syntax
+
+```sql
+SHOW CREATE SOURCE source_name;
+```
+
+
+
+## Parameters
+ |Parameter    | Description|
+|---------------|------------|
+|*source_name* |The source for which you want to show the corresponding SQL statement.|
+
+
+## See also
+
+[CREATE SOURCE](sql-create-source.md) — Create a source.
