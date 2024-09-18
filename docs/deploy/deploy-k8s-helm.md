@@ -26,27 +26,27 @@ Now start a RisingWave cluster with Helm.
 
 1. Add the RisingWave Helm chart repository:
 
-  ```bash
-  helm repo add risingwavelabs https://risingwavelabs.github.io/helm-charts/ --force-update
-  ```
+    ```bash
+    helm repo add risingwavelabs https://risingwavelabs.github.io/helm-charts/ --force-update
+    ```
 
 2. Update your Helm chart repositories to ensure that you are using the RisingWave Helm chart:
 
-  ```bash
-  helm repo update
-  ```
+    ```bash
+    helm repo update
+    ```
 
-  If you are using AWS EKS, you also need to update the local configuration for kubectl and Helm to access your EKS cluster:
+    If you are using AWS EKS, you also need to update the local configuration for kubectl and Helm to access your EKS cluster:
 
-  ```bash
-  aws eks update-kubeconfig --name <your_eks_cluster_name>
-  ```
+    ```bash
+    aws eks update-kubeconfig --name <your_eks_cluster_name>
+    ```
 
 3. Create a RisingWave namespace. We recommend creating a dedicated namespace for RisingWave resources.
 
-  ```bash
-  kubectl create namespace risingwave
-  ```
+    ```bash
+    kubectl create namespace risingwave
+    ```
 
 4. Customize your configuration for the RisingWave deployment by editing the [`values.yml`](https://github.com/risingwavelabs/helm-charts/blob/main/charts/risingwave/values.yaml) file.
 
@@ -56,9 +56,9 @@ Now start a RisingWave cluster with Helm.
 
     - **Bundled PostgreSQL and MinIO**: If you want to use `PostgreSQL` as the meta store and `MinIO` as the state store, the Helm chart for RisingWave offers the option to bundle them together. This allows for a quick and easy setup of the Helm chart. See [Configuration](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#bundled-etcdpostgresqlminio-as-stores) for more details. To enable this feature, set `tags.bundle=true`.
 
-  :::note
-  Before using the bundled `PostgreSQL` and `MinIO`, and any local stores, ensure that you have implemented the [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
-  :::
+    :::note
+    Before using the bundled `PostgreSQL` and `MinIO`, and any local stores, ensure that you have implemented the [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
+    :::
 
 5. Install the latest RisingWave Helm chart:
 
@@ -87,21 +87,21 @@ Now start a RisingWave cluster with Helm.
 
 6. Use the following command to check the deployment status:
 
-  ```bash
-  kubectl -n risingwave get pods -l app.kubernetes.io/instance=<my-risingwave>
-  ```
+    ```bash
+    kubectl -n risingwave get pods -l app.kubernetes.io/instance=<my-risingwave>
+    ```
 
-  When your status looks like below, it means the RisingWave cluster starts successfully:
+    When your status looks like below, it means the RisingWave cluster starts successfully:
 
-  ```
-  NAME                                   READY   STATUS    RESTARTS        AGE
-  risingwave-compactor-8dd799db6-hdjjz   1/1     Running   1 (8m33s ago)   11m
-  risingwave-compute-0                   2/2     Running   0               11m
-  risingwave-postgresql-0                1/1     Running   0               11m
-  risingwave-frontend-7bd7b8c856-czdgd   1/1     Running   1 (8m33s ago)   11m
-  risingwave-meta-0                      1/1     Running   0               11m
-  risingwave-minio-5cfd8f5f64-6msqm      1/1     Running   0               11m
-  ```
+    ```
+    NAME                                   READY   STATUS    RESTARTS        AGE
+    risingwave-compactor-8dd799db6-hdjjz   1/1     Running   1 (8m33s ago)   11m
+    risingwave-compute-0                   2/2     Running   0               11m
+    risingwave-postgresql-0                1/1     Running   0               11m
+    risingwave-frontend-7bd7b8c856-czdgd   1/1     Running   1 (8m33s ago)   11m
+    risingwave-meta-0                      1/1     Running   0               11m
+    risingwave-minio-5cfd8f5f64-6msqm      1/1     Running   0               11m
+    ```
 
 ## Step 3: Access RisingWave
 

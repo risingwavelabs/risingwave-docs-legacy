@@ -32,31 +32,31 @@ The RisingWave operator is now integrated with the Prometheus operator, which cr
 
 1. Check if Prometheus is collecting data from RisingWave:
 
-```bash
-kubectl get servicemonitors -A -l risingwave/name
-```
+    ```bash
+    kubectl get servicemonitors -A -l risingwave/name
+    ```
 
-The expected output is like this:
+    The expected output is like this:
 
-```
-NAMESPACE    NAME                         AGE
-monitoring   risingwave-service-monitor   119m
-```
+    ```
+    NAMESPACE    NAME                         AGE
+    monitoring   risingwave-service-monitor   119m
+    ```
 
-1. Forward the web port of Grafana to localhost .
+2. Forward the web port of Grafana to localhost.
 
-```bash
-kubectl port-forward -n monitoring svc/prometheus-grafana 3000:http-web
-```
+    ```bash
+    kubectl port-forward -n monitoring svc/prometheus-grafana 3000:http-web
+    ```
 
-The command above allows you to access Grafana from the local machine only. If you need to access Grafana from a different host, append `--address 0.0.0.0` to the command to allow Grafana to accept requests from external hosts. The complete command is:
+    The command above allows you to access Grafana from the local machine only. If you need to access Grafana from a different host, append `--address 0.0.0.0` to the command to allow Grafana to accept requests from external hosts. The complete command is:
 
-```bash
-kubectl port-forward -n monitoring svc/prometheus-grafana 3000:http-web --address 0.0.0.0
-```
+    ```bash
+    kubectl port-forward -n monitoring svc/prometheus-grafana 3000:http-web --address 0.0.0.0
+    ```
 
-1. Go to [http://localhost:3000](http://localhost:3000) if you access Grafana from a local machine, or `http://<client_address>:3000` if you access Grafana from a different host, where `<client_address>` is the IP address of the machine running the Grafana service. When prompted, enter the default credentials (username: `admin`; password: `prom-operator`).
+3. Go to [http://localhost:3000](http://localhost:3000) if you access Grafana from a local machine, or `http://<client_address>:3000` if you access Grafana from a different host, where `<client_address>` is the IP address of the machine running the Grafana service. When prompted, enter the default credentials (username: `admin`; password: `prom-operator`).
 
-1. From **Dashboards**, select **RisingWave** -> **RisingWave Dashboard**. You can edit metrics in the dashboard and add new metrics.
+4. From **Dashboards**, select **RisingWave** -> **RisingWave Dashboard**. You can edit metrics in the dashboard and add new metrics.
 
 ![RisingWave Dashboard in Grafana](../images/risingwave-grafana-k8s.png)
