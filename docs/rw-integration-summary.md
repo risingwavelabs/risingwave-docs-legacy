@@ -57,7 +57,7 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |dbt| |Available. For details, see [Use dbt for data transformations](/transform/use-dbt.md).|
 |Fivetran| |Researching <VoteNotify note="fivetran" /> |
 |Hightouch| |Researching <VoteNotify note="hightouch" />|
-|Vector| |Available. |
+|Vector| |Available in the [repository](https://github.com/risingwavelabs/vector). |
 |migrate| |Available. `migrate` is a powerful tool written in Go for managing database migrations. For details, see [its introduction and tutorial](https://github.com/risingwavelabs/migrate?tab=readme-ov-file).|
 
 ## Query engines
