@@ -125,7 +125,7 @@ All `WITH` options are required unless noted.
 
 ### Create source and materialized view
 
-You can sink data from a table, source, or materialized view in RisingWave to PostgreSQL.
+You can sink data from a table or a materialized view in RisingWave to PostgreSQL.
 
 For demonstration purposes, we'll create a source and a materialized view, and then sink data from the materialized view. If you already have a table or materialized view to sink data from, you don't need to perform this step.
 
