@@ -107,7 +107,7 @@ WITH (
 If you have an `append-only` source and want to create an `append-only` sink, set `type = append-only` in the `CREATE SINK` query.
 
 ```sql
-CREATE SINK s1_sink FROM s1_source
+CREATE SINK s1_sink FROM t1_table
 WITH (
     connector = 'deltalake',
     type = 'append-only',
@@ -120,7 +120,7 @@ WITH (
 
 #### Append-only sink from upsert table
 
-If you have a table or source that is not of type `append-only` and want to create an `append-only` sink, set `type = append-only` and set `force_append_only = true` in the `CREATE SINK` query.
+If you have a table that is not of type `append-only` and want to create an `append-only` sink, set `type = append-only` and set `force_append_only = true` in the `CREATE SINK` query.
 
 ```sql
 CREATE SINK s1_sink FROM s1_table

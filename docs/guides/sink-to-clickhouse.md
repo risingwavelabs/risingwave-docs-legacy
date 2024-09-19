@@ -122,7 +122,7 @@ WITH (
 If you have an append-only source and want to create an append-only sink, set `type = append-only` in the `CREATE SINK` SQL query.
 
 ```sql
-CREATE SINK s1_sink FROM s1_source
+CREATE SINK s1_sink FROM t1_table
 WITH (
     connector = 'clickhouse',
     type = 'append-only',
@@ -139,7 +139,7 @@ WITH (
 If you have an upsert source and want to create an append-only sink, set `type = append-only` and `force_append_only = true`. This will ignore delete messages in the upstream, and turn upstream update messages into insert messages.
 
 ```sql
-CREATE SINKs1_sink FROM s1_source
+CREATE SINKs1_sink FROM t1_table
 WITH (
     connector = 'clickhouse',
     type = 'append-only',
