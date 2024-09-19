@@ -272,7 +272,7 @@ WITH (
 If you have an append-only source and want to create an append-only sink, set `type = append-only` in the `CREATE SINK` SQL query.
 
 ```sql
-CREATE SINK s1_sink FROM s1_source
+CREATE SINK s1_sink FROM t1_table
 WITH (
     connector = 'iceberg',
     type = 'append-only',
