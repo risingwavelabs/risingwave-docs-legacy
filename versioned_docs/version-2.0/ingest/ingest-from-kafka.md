@@ -225,7 +225,8 @@ WITH (
    message = 'package.message_name',
    access_key = 'your_access_key',
    secret_key = 'your secret_key',
-   location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/demo.proto'
+   -- compiled from protoc
+   location = 'https://demo_bucket_name.s3-us-west-2.amazonaws.com/schema_descriptor.pb'
 );
 ```
 
@@ -290,14 +291,14 @@ RisingWave supports reading schemas from a Web location in `http://...`, `https:
 For Protobuf, if a schema location is specified, the schema file must be a `FileDescriptorSet`, which can be compiled from a `.proto` file with a command like this:
 
 ```shell
-protoc -I=$include_path --include_imports --descriptor_set_out=schema.pb schema.proto
+protoc -I=$include_path --include_imports --descriptor_set_out=schema_descriptor.pb schema.proto
 ```
 
 To specify a schema location, add this clause to a `CREATE SOURCE` statement.
 
 ```sql
 ENCODE data_encode (
-   schema.location = 'location'
+   schema.location = 'file://...' -- path to schema_descriptor.pb
 )
 ```
 
