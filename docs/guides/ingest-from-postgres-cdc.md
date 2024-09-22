@@ -432,7 +432,7 @@ And this it the output of `DESCRIBE supplier;`
 (10 rows)
 ```
 
-## Ingest data from a Partitioned Table
+## Ingest data from a partitioned table
 
 :::info Public Preview
 This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
@@ -448,7 +448,7 @@ CREATE PUBLICATION publication_name FOR table_name WITH (publish_via_partition_r
 
 If you let RisingWave create the publication, it will automatically set `publish_via_partition_root = true`.
 
-Please be aware that PostgreSQL does not support adding both a partitioned tableand its individual partitions to the same publication; however, it does not generate an error if attempted. If you need to ingest data from both the root table and its partitions, you should create separate publications for each. Otherwise, you will not be able to read from the table partitions. Meanwhile, in RisingWave, you should create separate sources with dedicated publication names for the partitioned table and its partitions.
+Please be aware that PostgreSQL does not support adding both a partitioned table and its individual partitions to the same publication; however, it does not generate an error if attempted. If you need to ingest data from both the root table and its partitions, you should create separate publications for each. Otherwise, you will not be able to read from the table partitions. Meanwhile, in RisingWave, you should create separate sources with dedicated publication names for the partitioned table and its partitions.
 
 ## Monitor the progress of direct CDC
 

@@ -57,5 +57,6 @@ Below is a list of all features in the public preview phase:
 | [CDC Citus source](/docs/current/ingest-from-citus-cdc/)         | 2023.5  | 0.19     |
 | [Iceberg sink](/docs/current/sink-to-iceberg/)                   | 2023.4 | 0.18      |
 | [Pulsar source](/docs/current/ingest-from-pulsar/)               | 2022.12  | 0.1     |
+| [Partitioned table](/docs/current/ingest-from-postgres-cdc)| 2024.9 | 2.0 |
 
 This table will be updated regularly to reflect the latest status of features as they progress through the release stages.
