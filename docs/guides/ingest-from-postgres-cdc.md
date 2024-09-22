@@ -432,6 +432,20 @@ And this it the output of `DESCRIBE supplier;`
 (10 rows)
 ```
 
+## Ingest data from a Partitioned Table
+
+RisingWave supports ingesting data from a partitioned table. To configure a publication for your CDC stream, note that PostgreSQL, by default, creates publications with `publish_via_partition_root = false`. This setting causes replication slot events to contain separate events for each partition, rather than for the root partitioned table.
+
+If you need to read from the partitioned table, you should explicitly set this property to `TRUE` when creating a publication. Execute the following command in your upstream PostgreSQL database:
+
+```sql
+CREATE PUBLICATION publication_name FOR table_name WITH (publish_via_partition_root = true);
+```
+
+If you let RisingWave create the publication, it will automatically set `publish_via_partition_root = true`.
+
+Please be aware that PostgreSQL does not support adding both a partitioned tableand its individual partitions to the same publication; however, it does not generate an error if attempted. If you need to ingest data from both the root table and its partitions, you should create separate publications for each. Otherwise, you will not be able to read from the table partitions. Meanwhile, in RisingWave, you should create separate sources with dedicated publication names for the partitioned table and its partitions.
+
 ## Monitor the progress of direct CDC
 
 To observe the progress of direct CDC for PostgreSQL, use the following methods:
