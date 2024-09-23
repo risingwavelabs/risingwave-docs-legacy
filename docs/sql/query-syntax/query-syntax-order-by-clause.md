@@ -1,7 +1,7 @@
 ---
 id: query-syntax-order-by-clause
 title: ORDER BY clause
-description: Use the ORDER BY clause to sort the result set of a query.
+description: Sort the result set of a query.
 slug: /query-syntax-order-by-clause
 ---
 <head>

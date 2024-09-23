@@ -2,7 +2,7 @@
 id: query-syntax-join-clause
 slug: /query-syntax-join-clause
 title: Joins
-Description: Combines the results of tables by matching column values.
+Description: Combine the results of tables by matching column values.
 
 ---
 <head>

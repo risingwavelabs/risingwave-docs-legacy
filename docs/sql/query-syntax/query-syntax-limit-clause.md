@@ -2,7 +2,7 @@
 id: query-syntax-limit-clause
 slug: /query-syntax-limit-clause
 title: LIMIT clause
-description: Restricts the number of rows fetched.
+description: Restrict the number of rows fetched.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-limit-clause/" />
