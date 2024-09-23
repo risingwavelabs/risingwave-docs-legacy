@@ -1,5 +1,5 @@
 ---
-id: PrivateLink-drop-a-connection
+id: privatelink-drop-a-connection
 title: Drop a PrivateLink connection
 description: If you no longer need to connect to a PrivateLink, you can drop the connection.
 slug: /drop-a-connection

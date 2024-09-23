@@ -155,20 +155,20 @@ const sidebarCloud: SidebarsConfig = {
           label: "PrivateLink connection",
           collapsible: true,
           collapsed: true,
-          link: { type: "doc", id: "PrivateLink-overview" },
+          link: { type: "doc", id: "privatelink-overview" },
           items: [
             {
               type: "doc",
-              id: "PrivateLink-overview",
+              id: "privatelink-overview",
               label: "Overview",
             },
             {
               type: "doc",
-              id: "PrivateLink-create-a-connection",
+              id: "privatelink-create-a-connection",
             },
             {
               type: "doc",
-              id: "PrivateLink-drop-a-connection",
+              id: "privatelink-drop-a-connection",
             },
           ],
         },

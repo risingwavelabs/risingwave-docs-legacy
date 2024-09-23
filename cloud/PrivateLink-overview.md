@@ -1,8 +1,8 @@
 ---
-id: PrivateLink-overview
+id: privatelink-overview
 title: PrivateLink connection
 description: Manage PrivateLink connections.
-slug: /PrivateLink-overview
+slug: /privatelink-overview
 ---
 
 <!-- MDX imports -->
