@@ -61,13 +61,13 @@ Follow the steps below to create a PrivateLink connection between RisingWave Clo
 5. Click **Confirm** to create the connection.
 
 :::tip
-For inquiries about PrivateLink for Confluent private Kafka clusters, please reach out to our [support team](mailto:cloud-support@risingwave-labs.com) before you proceed. We’ll guide you through the two manual steps:
+For inquiries about PrivateLink for Confluent private Kafka clusters, please reach out to our [support team](mailto:cloud-support@risingwave-labs.com) before you proceed. We will handle these manual steps:
 
 - Before provisioning a RisingWave PrivateLink, ensure the cluster's Availability Zones (AZs) are a subset of the AZs offered by RisingWave.
 
 - Manually add DNS records after provisioning the PrivateLink.
 
-We’re looking to automate this process in the future to make it even easier.
+We aim to automate this process in the future to make it even easier.
 :::
 
 ## What's next
