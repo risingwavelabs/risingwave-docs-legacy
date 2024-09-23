@@ -1,7 +1,7 @@
 ---
 id: sql-start-transaction
 title: START TRANSACTION
-description: Start a transaction.
+description: Start a read-only transaction.
 slug: /sql-start-transaction
 ---
 <head>

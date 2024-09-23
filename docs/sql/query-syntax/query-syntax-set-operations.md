@@ -2,6 +2,7 @@
 id: query-syntax-set-operations
 slug: /query-syntax-set-operations
 title: Set operations
+description: Combine query results.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-set-operations/" />

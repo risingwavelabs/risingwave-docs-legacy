@@ -1,7 +1,7 @@
 ---
 id: sql-create-secret
 title: CREATE SECRET
-description: Create a secret to store crediencials.
+description: Create a secret to store credentials.
 slug: /sql-create-secret
 ---
 <head>

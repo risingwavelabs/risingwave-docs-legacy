@@ -1,7 +1,7 @@
 ---
 id: sql-set-time-zone
 title: SET TIME ZONE
-description: Set time zone.
+description: Specify time zone as needed.
 slug: /sql-set-time-zone
 ---
 <head>

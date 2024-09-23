@@ -2,6 +2,7 @@
 id: query-syntax-where-clause
 slug: /query-syntax-where-clause
 title: WHERE clause
+description: Specifies any conditions or filters.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-where-clause/" />

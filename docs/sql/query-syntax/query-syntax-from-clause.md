@@ -2,6 +2,7 @@
 id: query-syntax-from-clause
 slug: /query-syntax-from-clause
 title: FROM clause
+description: Specifies the data source for a query.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-from-clause/" />

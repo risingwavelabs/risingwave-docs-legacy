@@ -2,6 +2,7 @@
 id: query-syntax-generated-columns
 slug: /query-syntax-generated-columns
 title: Generated columns
+description: Generated from other columns in a table or source.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-generated-columns/" />

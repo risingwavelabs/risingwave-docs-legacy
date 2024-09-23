@@ -1,7 +1,7 @@
 ---
 id: sql-create-sink
 title: CREATE SINK
-description: Create a sink.
+description: Deliver data processed in RisingWave to the sink.
 slug: /sql-create-sink
 ---
 <head>

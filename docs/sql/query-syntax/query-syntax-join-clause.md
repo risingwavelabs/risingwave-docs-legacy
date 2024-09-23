@@ -2,6 +2,8 @@
 id: query-syntax-join-clause
 slug: /query-syntax-join-clause
 title: Joins
+Description: Combines the results of tables by matching column values.
+
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-join-clause/" />

@@ -2,6 +2,7 @@
 id: query-syntax-value-exp
 slug: /query-syntax-value-exp
 title: Value expressions
+description: Represent fixed values in SQL commands.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-value-exp/" />
