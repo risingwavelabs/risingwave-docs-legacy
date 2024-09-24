@@ -118,7 +118,7 @@ All `WITH` options are required unless noted.
 |jdbc.query.timeout|Specifies the timeout for the operations to downstream. If not set, the default is 10 minutes.|
 |table.name | The table in the destination database you want to sink to. |
 |schema.name | Optional. The schema in the destination database you want to sink to. The default value is `public`. |
-|type| Sink data type. Supported types:<ul><li> `append-only`: Sink data as INSERT operations.</li><li> `upsert`: Sink data as UPDATE and INSERT operations. </li></ul>|
+|type| Sink data type. Supported types:<ul><li> `append-only`: Sink data as INSERT operations.</li><li> `upsert`: Sink data as UPDATE, INSERT and DELETE operations. </li></ul>|
 |primary_key| Required if `type` is `upsert`. The primary key of the sink, which should match the primary key of the downstream table. |
 
 ## Sink data from RisingWave to PostgreSQL
