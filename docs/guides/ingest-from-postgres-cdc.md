@@ -134,6 +134,23 @@ Here we will use a standard class AWS RDS PostgreSQL instance without Multi-AZ d
     ```
 
 </TabItem>
+<TabItem value="Google Cloud SQL" label="Google Cloud SQL">
+
+To enable logical replication on Google Cloud SQL, follow these steps:
+
+1. Go to Google Cloud Console, locate your Cloud SQL instance and set `cloudsql.logical_decoding` parameter to `On`:
+  ![Set parameter to on](../images/google-cloud-sql-1.png)
+
+2. Go to **Connections** > **Networking**, authorize the service to connect to Cloud SQL using the network CIDR：
+  ![Authorize to connect](../images/google-cloud-sql-2.png)
+
+3. For Cloud SQL PostgreSQL instance, ensure the PostgreSQL user intended for replication has the necessary permissions:
+
+  ```sql
+  ALTER ROLE postgres REPLICATION;
+  ```
+ 
+</TabItem>
 </Tabs>
 
 ## Notes about running RisingWave from binaries
