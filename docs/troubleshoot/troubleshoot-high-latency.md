@@ -60,7 +60,7 @@ hash_join_amplification: large rows matched for join key matched_rows_len=200000
 
 To address this problem, it is advisable to refactor the SQL query in order to minimize join amplification. This can be achieved by improving the equal conditions used in the problematic join, thereby reducing the number of matched rows.
 
-The downstream processing latency can spike as well, since the number of chunks going downstream will be amplified. This will turn the downstream executors into the main bottleneck. An example would be hash aggregation, where the sudden update of a large number of group keys will take a long time to be processed, since the aggregation needs to be processed for each group key. To mitigate this, you can scale the cluster resource to parallelize the processing.
+The downstream processing latency can spike as well, since the number of chunks going downstream will be amplified. This will turn the downstream executors into the main bottleneck. For example, in hash aggregation, a sudden update of numerous group keys takes a long time to process, as aggregation must occur for each key. To mitigate this, you can scale the cluster resource to parallelize the processing.
 
 ### Workaround for high join amplification
 
