@@ -114,7 +114,7 @@ When `DO UPDATE IF NOT NULL` behavior is applied, `DEFAULT` clause is not allowe
 :::
 
 :::note
-In version "1.9", "1.10" and "2.0", `DO NOTHING` and `DO UPDATE FULL` were not supported. On these versions, `DO NOTHING` could be replaced with `IGNORE`, and `DO UPDATE FULL` could be replaced with `OVERWRITE`. In subsequent versions, the syntax for `IGNORE` and `OVERWRITE` will still be supported.
+In versions 1.9, 1.10, and 2.0, `DO NOTHING` and `DO UPDATE FULL` were not supported. `DO NOTHING` was replaced by `IGNORE`, and `DO UPDATE FULL` was replaced by `OVERWRITE`. In subsequent versions, the syntax for `IGNORE` and `OVERWRITE` remains supported.
 :::
 
 ## Examples
