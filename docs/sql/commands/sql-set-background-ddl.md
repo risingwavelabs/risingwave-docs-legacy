@@ -1,7 +1,7 @@
 ---
 id: sql-set-background-ddl
 title: SET BACKGROUND_DDL
-description: Run Data Definition Language operations in the background.
+description: Run CREATE statements in the background.
 slug: /sql-set-background-ddl
 ---
 <head>
