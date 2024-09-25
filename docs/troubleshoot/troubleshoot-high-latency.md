@@ -60,9 +60,13 @@ hash_join_amplification: large rows matched for join key matched_rows_len=200000
 
 To address this problem, it is advisable to refactor the SQL query in order to minimize join amplification. This can be achieved by improving the equal conditions used in the problematic join, thereby reducing the number of matched rows.
 
+The downstream processing latency can spike as well, since the number of chunks going downstream will be amplified. This will turn the downstream executors into the main bottleneck. An example would be hash aggregation, where the sudden update of a large number of group keys will take a long time to be processed, since the aggregation needs to be processed for each group key. To mitigate this, you can scale the cluster resource to parallelize the processing.
+
 ### Workaround for high join amplification
 
-Suppose there are several join keys that can trigger high join amplification. Currently, this leads to congestion in the entire job because a single key with high join amplification produces a large number of results, and they must be processed by a single actor in the join operator. Simply scaling the process doesn't solve the problem.
+If scaling up or out the resources doesn't work, the join actor itself might be the bottleneck.
+
+Suppose there are several join keys that can trigger high join amplification. This may lead to congestion in the entire job because a single key with high join amplification produces a large number of results, and they must be processed by a single actor in the join operator.
 
 Therefore, we can split the original MV into multiple MVs by adding filtering conditions. If the data pattern and workload allow such partitioning, this approach distributes data for the same key across multiple actors.
 
