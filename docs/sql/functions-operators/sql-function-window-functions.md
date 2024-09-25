@@ -2,6 +2,7 @@
 id: sql-function-window-functions
 slug: /sql-function-window-functions
 title: Window functions
+description: Compute results for each row over a set of rows.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-window-functions/" />

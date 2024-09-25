@@ -2,6 +2,7 @@
 id: sql-function-conditional
 slug: /sql-function-conditional
 title: Conditional expressions
+description: Verify specific conditions.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-conditional/" />

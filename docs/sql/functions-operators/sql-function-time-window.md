@@ -2,6 +2,7 @@
 id: sql-function-time-window
 slug: /sql-function-time-window
 title: Time windows
+description: Group events and perform calculations.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-time-window/" />

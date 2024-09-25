@@ -2,6 +2,7 @@
 id: sql-function-logical
 slug: /sql-function-logical
 title: Logical operators
+description: Use boolean values combine statements.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-logical/" />

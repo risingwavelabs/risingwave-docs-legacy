@@ -2,6 +2,7 @@
 id: sql-function-map
 slug: /sql-function-map
 title: Map functions and operators
+description: Transform data structures with key-value mapping.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-array/" />

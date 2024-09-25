@@ -2,7 +2,7 @@
 id: sql-function-cryptographic
 slug: /sql-function-cryptographic
 title: Cryptographic functions
-description: Cryptographic functions.
+description: Perform encryption and decryption of data.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-cryptographic/" />

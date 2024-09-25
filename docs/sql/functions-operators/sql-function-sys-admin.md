@@ -2,6 +2,7 @@
 id: sql-function-sys-admin
 slug: /sql-function-sys-admin
 title: System administration functions
+description: Manage database operations and settings.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-sys-admin/" />

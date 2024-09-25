@@ -2,6 +2,7 @@
 id: sql-function-string
 slug: /sql-function-string
 title: String functions and operators
+description: Process textual data.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-string/" />

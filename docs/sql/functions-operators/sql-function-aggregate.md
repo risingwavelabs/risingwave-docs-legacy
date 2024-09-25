@@ -2,6 +2,7 @@
 id: sql-function-aggregate
 slug: /sql-function-aggregate
 title: Aggregate functions
+description: Compute a single result from a set of input values.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-aggregate/" />

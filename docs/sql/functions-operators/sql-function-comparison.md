@@ -2,6 +2,7 @@
 id: sql-function-comparison
 slug: /sql-function-comparison
 title: Comparison functions and operators
+description: Check if values are equal, greater, or less than others.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-comparison/" />

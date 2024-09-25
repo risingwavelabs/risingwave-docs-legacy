@@ -2,6 +2,7 @@
 id: sql-function-set-returning
 slug: /sql-function-set-returning
 title: Set-returning functions
+description: Return a set or table of data.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-set-returning/" />

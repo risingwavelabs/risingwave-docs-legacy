@@ -2,6 +2,7 @@
 id: sql-function-mathematical
 slug: /sql-function-mathematical
 title: Mathematical functions and operators
+description: Perform numerical calculations and analysis.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-mathematical/" />
