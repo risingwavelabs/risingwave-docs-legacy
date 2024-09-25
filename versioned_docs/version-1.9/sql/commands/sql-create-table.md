@@ -95,10 +95,10 @@ RisingWave supports generating watermarks when creating an append-only streaming
 
 The record with insert operation could introduce duplicate records with the same primary key in the table. In that case, an alternative action specified by the `ON CONFLICT` clause will be adopted. The record can come from Insert DML statement, external connectors of the table, or sinks into the table [`CREATE SINK INTO`](sql-create-sink-into.md).
 
-The action could one of the following. A column not in the primary key can be specified as the version column for `DO UPDATE FULL` and `DO UPDATE IF NOT NULL`. When version column is specified, the insert operation will take effect only when the newly inserted value is greater or equal than the exist data record in the table's specified column.
+The action could one of the following. A column not in the primary key can be specified as the version column for `OVERWRITE` and `DO UPDATE IF NOT NULL`. When version column is specified, the insert operation will take effect only when the newly inserted value is greater or equal than the exist data record in the table's specified column.
 
-- `DO NOTHING`: Ignore the newly inserted record.
-- `DO UPDATE FULL [WITH VERSION COLUMN(col_name)]`: Replace the existing row in the table. When version column is specified, the existing row will be replaced only when the newly inserted value is greater or equal than the existing data record in the table's specified column.
+- `IGNORE`: Ignore the newly inserted record.
+- `OVERWRITE [WITH VERSION COLUMN(col_name)]`: Replace the existing row in the table. When version column is specified, the existing row will be replaced only when the newly inserted value is greater or equal than the existing data record in the table's specified column.
 - `DO UPDATE IF NOT NULL [WITH VERSION COLUMN(col_name)]`: Only replace those fields which is not NULL in the inserted row. If version column is specified but the inserted row's version field is NULL, the version column will not take effect.
 
 :::note Beta Feature
