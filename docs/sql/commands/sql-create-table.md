@@ -113,6 +113,10 @@ The delete and update operation on the table cannot break the primary key constr
 When `DO UPDATE IF NOT NULL` behavior is applied, `DEFAULT` clause is not allowed on the table's columns.
 :::
 
+:::note
+In version "1.9", "1.10" and "2.0", `DO NOTHING` and `DO UPDATE FULL` were not supported. On these versions, `DO NOTHING` could be replaced with `IGNORE`, and `DO UPDATE FULL` could be replaced with `OVERWRITE`. In subsequent versions, the syntax for `IGNORE` and `OVERWRITE` will still be supported.
+:::
+
 ## Examples
 
 The statement below creates a table that has three columns.
