@@ -88,8 +88,8 @@ Except for generating a static set of values, RisingWave also supports continuou
 ```sql
 CREATE MATERIALIZED VIEW mv AS
 SELECT * FROM generate_series(
-  '2020-01-01 00:00:00',
-  now()::timestamp,
+  '2020-01-01 00:00:00'::timestamptz,
+  now(),
   interval '1 hour'
 );
 ```
