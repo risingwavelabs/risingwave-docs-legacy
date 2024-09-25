@@ -2,6 +2,7 @@
 id: rw_catalog
 slug: /rw_catalog
 title: RisingWave catalogs
+description: Metadata about different relations in the system.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/rw_catalog/" />

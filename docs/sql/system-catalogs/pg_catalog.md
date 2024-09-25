@@ -2,6 +2,7 @@
 id: pg-catalogs
 slug: /pg-catalogs
 title: PostgreSQL catalogs
+description: System catalogs and views of PostgreSQL.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/pg-catalogs/" />
