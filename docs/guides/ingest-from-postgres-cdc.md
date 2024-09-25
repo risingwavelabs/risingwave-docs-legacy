@@ -141,7 +141,7 @@ To enable logical replication on Google Cloud SQL, follow these steps:
 1. Go to Google Cloud Console, locate your Cloud SQL instance and set `cloudsql.logical_decoding` parameter to `On`:
   ![Set parameter to on](../images/google-cloud-sql-1.png)
 
-2. Go to **Connections** > **Networking**, authorize the service to connect to Cloud SQL using the network CIDR：
+2. Go to **Connections** > **Networking**, authorize RisingWave to connect to Cloud SQL using the network CIDR：
   ![Authorize to connect](../images/google-cloud-sql-2.png)
 
 3. For Cloud SQL PostgreSQL instance, ensure the PostgreSQL user intended for replication has the necessary permissions:
