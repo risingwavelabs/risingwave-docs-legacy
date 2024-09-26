@@ -46,7 +46,7 @@ WITH (
    connect_mode='<connect_mode>',
    username='<your user name>',
    password='<your password>',
-   jwt=`<your jwt>`,,
+   jwt=`<your jwt>`,
    nkey=`<your nkey>`,
 
 -- delivery parameters
