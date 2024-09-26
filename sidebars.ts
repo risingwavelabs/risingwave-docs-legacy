@@ -322,7 +322,7 @@ const sidebars: SidebarsConfig = {
                   items: [
                     {
                       type: "doc",
-                      label: "",
+                      label: "Coreflux",
                       id: "ingest/ingest-from-coreflux-broker",
                     },
                   ]
