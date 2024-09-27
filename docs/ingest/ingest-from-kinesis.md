@@ -15,7 +15,7 @@ When creating a source, you can choose to persist the data from the source in Ri
 ## Syntax
 
 ```sql
-CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
+CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [ schema_definition ]
 [INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 WITH (
@@ -62,8 +62,10 @@ For a table with primary key constraints, if a new data record with an existing 
 |aws.credentials.session_token |Optional. The session token associated with the temporary security credentials. Using this field is not recommended as RisingWave contains long-running jobs and the token may expire. Creating a [new role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html) is preferred.|
 |aws.credentials.role.arn |Optional. The Amazon Resource Name (ARN) of the role to assume.|
 |aws.credentials.role.external_id|Optional. The [external id](https://aws.amazon.com/blogs/security/how-to-use-external-id-when-granting-access-to-your-aws-resources/) used to authorize access to third-party resources. |
-|scan.startup.mode |Optional. The startup mode for Kinesis consumer. Supported modes: `earliest` (starts from the earliest offset), `latest` (starts from the latest offset), and `timestamp` (starts from a specific timestamp, specified by `scan.startup.timestamp.millis`). The default mode is `earliest`.|
+|scan.startup.mode |Optional. The startup mode for Kinesis consumer. Supported modes: `earliest` (corresponding to [starting position] `TRIM_HORIZON`), `latest` (corresponding to [starting position] `LATEST`), and `timestamp` (starts from a specific timestamp specified by `scan.startup.timestamp.millis`, corresponding to [starting position] `AT_TIMESTAMP`). The default mode is `earliest`.|
 |scan.startup.timestamp.millis |Optional. This field specifies the timestamp, represented in i64, to start consuming from. |
+
+[starting position]: https://docs.aws.amazon.com/kinesis/latest/APIReference/API_StartingPosition.html
 
 ### Other parameters
 
