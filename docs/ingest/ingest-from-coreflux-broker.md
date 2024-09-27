@@ -48,7 +48,6 @@ You can use [MQTT Explorer](http://mqtt-explorer.com/), an intuitive tool for co
 
 You are now ready to connect to your Coreflux Cloud broker using various clients. These clients allow you to both publish and subscribe to messages on your MQTT topics. For illustration, we'll use IoT data from a manufacturing scenario, such as monitoring machine performance and detecting faults. Using the Python Paho MQTT client, we will publish this data to the MQTT topic `factory/machine_data`.
 
----
 
 ## Ingest and process fata from the Coreflux Broker
 
