@@ -10,7 +10,7 @@
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, and then delivering the changes to a downstream service in real time.
 
-RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, 14, and 15 of PostgreSQL are supported.
+RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, 14, 15, and 16 of PostgreSQL are supported.
 
 You can ingest CDC data from PostgreSQL into RisingWave in two ways:
 
