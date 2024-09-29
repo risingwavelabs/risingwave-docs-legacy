@@ -39,7 +39,7 @@ For tables with primary key constraints, if you insert a new data record with an
 
 A [generated column](/sql/query-syntax/query-syntax-generated-columns.md) that is defined with non-deterministic functions cannot be specified as part of the primary key. For example, if `A1` is defined as `current_timestamp()`, then it cannot be part of the primary key.
 
-Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive. See also [Identifiers](/sql/sql-identifiers.md).
 
 The syntax for creating a table with connector settings and the supported connectors are the same as for creating a source. See [`CREATE SOURCE`](sql-create-source.md) for a full list of supported connectors and data formats.
 

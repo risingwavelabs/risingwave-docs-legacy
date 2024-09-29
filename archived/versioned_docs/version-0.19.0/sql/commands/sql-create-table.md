@@ -122,7 +122,7 @@ export const svgTwo = rr.Diagram(
 
 For tables with primary key constraints, if you insert a new data record with an existing key, the new record will overwrite the existing record.
 
-Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive. See also [Identifiers](/sql/sql-identifiers.md).
 
 If creating a materialized source, remember to include the connector settings with the `WITH` clause and to specify the data format with the `ROW FORMAT` clause. See [`CREATE SOURCE`](sql-create-source.md) for a full list of supported connectors and data formats.
 

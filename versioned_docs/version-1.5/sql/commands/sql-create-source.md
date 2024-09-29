@@ -35,7 +35,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name (
 
 A [generated column](/sql/query-syntax/query-syntax-generated-columns.md) is defined with non-deterministic functions. When the data is ingested, the function will be evaluated to generate the value of this field.
 
-Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive. See also [Identifiers](/sql/sql-identifiers.md).
 
 To know when a data record is loaded to RisingWave, you can define a column that is generated based on the processing time (`<column_name> timestamptz AS proctime()`) when creating the table or source.
 
