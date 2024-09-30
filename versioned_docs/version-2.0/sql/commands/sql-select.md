@@ -20,7 +20,7 @@ SELECT [ ALL | DISTINCT [ ON ( expression [, ...] ) ]] [ [table_name.]* [ EXCEPT
     [ WHERE condition ]
     [ GROUP BY grouping_expression [ , grouping_expression ... ] ]
     [ HAVING condition ]
-    [ ORDER BY sort_expression [ ASC | DESC ] [ , ... ] ]
+    [ ORDER BY sort_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [ , ... ] ]
     [ LIMIT count_number ]
     [ OFFSET start [ ROW | ROWS ] ];
 ```
