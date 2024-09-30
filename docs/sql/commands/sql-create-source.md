@@ -10,7 +10,7 @@ slug: /sql-create-source
 
 A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. For the full list of the sources we support, see [Supported sources](/ingest/supported-sources-and-formats.md#supported-sources).
 
-If you choose to persist the data from the source in RisingWave, use the `CREATE TABLE` command with connector settings. Or if you need to create the primary key (which is required by some formats like FORMAT UPSERT/DEBEZIUM), you have to use `CREATE TABLE` too. For more details, see [CREATE TABLE](sql-create-table.md).
+If you choose to persist the data from the source in RisingWave, use the [`CREATE TABLE`](sql-create-table.md) command with connector settings. Or if you need to create the primary key (which is required by some formats like FORMAT UPSERT/DEBEZIUM), you have to use `CREATE TABLE` too. For more details about the differences between sources and tables, see [here](/ingest/data-ingestion.md#table-with-connectors).
 
 Regardless of whether the data is persisted in RisingWave, you can create materialized views to perform analysis or data transformations.
 
@@ -97,6 +97,7 @@ For complete step-to-step guides about ingesting MySQL and PostgreSQL data using
 
 ## See also
 
+- [`Overview of data ingestion`](/ingest/data-ingestion.md)
 - [`DROP SOURCE`](sql-drop-source.md) — Remove a source.
 - [`SHOW CREATE SOURCE`](sql-show-create-source.md) — Show the SQL statement used to create a source.
 - [`ALTER SOURCE`](sql-alter-source.md) — Modify a source.

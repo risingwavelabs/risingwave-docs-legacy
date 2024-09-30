@@ -11,7 +11,7 @@ slug: /sql-create-table
 Use the `CREATE TABLE` command to create a new table. Tables consist of fixed columns and insertable rows. Rows can be added using the [`INSERT`](sql-insert.md) command. When creating a table, you can specify connector settings and data format.
 
 :::info
-If you choose not to persist the data from the source in RisingWave, use [`CREATE SOURCE`](sql-create-source.md) instead.
+If you choose not to persist the data from the source in RisingWave, use [`CREATE SOURCE`](sql-create-source.md) instead. For more details about the differences between sources and tables, see [here](/ingest/data-ingestion.md#table-with-connectors).
 :::
 
 ## Syntax
