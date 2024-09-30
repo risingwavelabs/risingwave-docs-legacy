@@ -87,7 +87,6 @@ For tables with primary key constraints, if a new data record with an existing k
 |*schema.registry*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro data, you must specify a Confluent Schema Registry or an AWS Glue Schema Registry. For Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 |*schema.registry.username*|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
 |*schema.registry.password*|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
-|*schema.registry.name.strategy*|Optional. Accepts `topic_name_strategy` (default), `record_name_strategy`, `topic_record_name_strategy`. If it is set to either `record_name_strategy` or `topic_record_name_strategy`, the `message` parameter must also be set. It can only be specified with *schema.registry*. |
 |*access_key*|Required if loading descriptors from S3. The access key ID of AWS. |
 |*secret_key*|Required if loading descriptors from S3. The secret access key of AWS. |
 |*region*|Required if loading descriptors from S3. The AWS service region. |

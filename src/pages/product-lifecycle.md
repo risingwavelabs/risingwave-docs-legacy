@@ -38,7 +38,6 @@ Below is a list of all features in the public preview phase:
 | [Version column](/docs/current/sql-create-table/)                | 2024.6  | 1.9      |
 | [Snowflake sink](/docs/current/sink-to-snowflake/)                | 2024.5    | 1.9         |
 | [Subscription](/docs/current/subscription)                        | 2024.5    | 1.9         |
-| [`schema.registry.name.strategy`](/docs/current/supported-sources-and-formats/) | 2024.4  | 1.8      |
 | [RisingWave as PostgreSQL FDW](/docs/current/risingwave-as-postgres-fdw/) | 2024.4  | 1.9      |
 | [Iceberg source](/docs/current/ingest-from-iceberg/)             | 2024.3  | 1.8     |
 | [Google BigQuery sink](/docs/current/sink-to-bigquery/)           | 2023.11   | 1.4         |

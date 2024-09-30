@@ -40,17 +40,11 @@ When a source is created, RisingWave does not ingest data immediately. RisingWav
 
 When creating a source, you need to specify the data and encoding formats in the `FORMAT` and `ENCODE` section of the `CREATE SOURCE` or `CREATE TABLE` statement. Below is the complete list of the supported formats in RisingWave.
 
-:::info Public Preview
-`schema.registry.name.strategy` is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
-:::
-
 ### Avro
 
 For data in Avro format, you must specify a message and a schema registry. For Kafka data in Avro, you need to provide a Confluent Schema Registry that RisingWave can get the schema from. For more details about using Schema Registry for Kafka data, see [Read schema from Schema Registry](/ingest/ingest-from-kafka.md#read-schemas-from-schema-registry).
 
 `schema.registry` can accept multiple addresses. RisingWave will send requests to all URLs and return the first successful result.
-
-Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
 
 Please be aware that:
 
@@ -64,7 +58,6 @@ Syntax:
 FORMAT PLAIN
 ENCODE AVRO (
    schema.registry = 'schema_registry_url [, ...]',
-   [schema.registry.name.strategy = 'topic_name_strategy'],
    [message = 'main_message'],
 )
 ```
@@ -85,8 +78,6 @@ When creating a source from streams in with Debezium AVRO, the schema of the sou
 
 `schema.registry` can accept multiple addresses. RisingWave will send requests to all URLs and return the first successful result.
 
-Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `key.message` field must also be defined. For additional details on name strategy, see the [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy) in the Confluent documentation.
-
 `ignore_key` can be used to ignore the key part of given messages. By default, it is `false`. If set to `true`, only the payload part of the message will be consumed. In this case, the payload must not be empty and tombstone messages cannot be handled.
 
 Syntax:
@@ -96,7 +87,6 @@ FORMAT DEBEZIUM
 ENCODE AVRO (
    message = 'main_message',
    schema.location = 'location' | schema.registry = 'schema_registry_url [, ...]',
-   [schema.registry.name.strategy = 'topic_name_strategy'],
    [key.message = 'test_key'],
    [ignore_key = 'true | false']
 )
@@ -108,15 +98,12 @@ When consuming data in AVRO from Kafka topics, the `FORMAT` and `ENCODE` section
 
 `schema.registry` can accept multiple addresses. RisingWave will send requests to all URLs and return the first successful result.
 
-Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. If either `record_name_strategy` or `topic_record_name_strategy` is used, the `message` field must also be defined. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
-
 Syntax:
 
 ```sql
 FORMAT UPSERT
 ENCODE AVRO (
    schema.location = 'location' | schema.registry = 'schema_registry_url [, ...]',
-   [schema.registry.name.strategy = 'topic_name_strategy'],
    [message = 'main_message'],
 )
 ```
@@ -211,8 +198,6 @@ For data in protobuf format, you must specify a message (fully qualified by pack
 
 `schema.registry` can accept multiple addresses. RisingWave will send requests to all URLs and return the first successful result.
 
-Optionally, you can define a `schema.registry.name.strategy` if `schema.registry` is set. Accepted options include `topic_name_strategy`, `record_name_strategy`, and `topic_record_name_strategy`. For additional details on name strategy, see [Subject name strategy](https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html#subject-name-strategy).
-
 :::info
 
 For protobuf data, you cannot specify the schema in the `schema_definition` section of a `CREATE SOURCE` or `CREATE TABLE` statement.
@@ -232,7 +217,6 @@ FORMAT PLAIN
 ENCODE PROTOBUF (
    message = 'com.example.MyMessage',
    schema.location = 'location' | schema.registry = 'schema_registry_url [, ...]',
-   [schema.registry.name.strategy = 'topic_name_strategy'],
 )
 ```
 
