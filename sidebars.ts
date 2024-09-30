@@ -273,11 +273,6 @@ const sidebars: SidebarsConfig = {
                     },
                     {
                       type: "doc",
-                      label: "Upstash Kafka",
-                      id: "ingest/ingest-from-upstash-kafka",
-                    },
-                    {
-                      type: "doc",
                       label: "WarpStream",
                       id: "ingest/ingest-from-warpstream",
                     },
