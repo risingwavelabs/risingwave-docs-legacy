@@ -70,15 +70,15 @@ WITH (
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
-The statement will create a streaming job that continuously ingests data from the Kafka topic to the table and the data will be stored in RisingWave's internal storage, which brings three benefits:
+The statement will create a streaming job that continuously ingests data from the Kafka topic to the table and the data will be stored in RisingWave's internal storage, which brings the following benefits:
 
 1. **Improved ad-hoc query performance:** When users execute queries such as `SELECT * FROM table_on_kafka`, the query engine will directly access the data from RisingWave's internal storage, eliminating unnecessary network overhead and avoiding read pressure on upstream systems. Additionally, users can create [indexes](/transform/indexes.md) on the table to accelerate queries.
 
 2. **Allow defining primary keys:** With the help of its internal storage, RisingWave can efficiently maintain primary key constraints. Users can define a primary key on a specific column of the table and define different behaviors for primary key conflicts with [ON CONFLICT clause](/sql/commands/sql-create-table.md#pk-conflict-behavior).
 
-3. **Ability to handle delete/update changes**: Based on the definition of primary keys, RisingWave can efficiently process upstream synchronized delete and update operations. For systems that synchronize delete/update operations from external systems, such as database's CDC, we **do not** allow creating a source on it but require a table with connectors.
+3. **Ability to handle delete/update changes**: Based on the definition of primary keys, RisingWave can efficiently process upstream synchronized delete and update operations. For systems that synchronize delete/update operations from external systems, such as database's CDC and UPSERT format messages from message queues, we **do not** allow creating a source on it but require a table with connectors.
 
-At the same time, like regular tables, tables with connectors also accept DML statements and [CREATE SINK INTO TABLE](/sql/commands/sql-create-sink-into.md), which provides greater flexibility.
+4. **Greater flexibility**: Like regular tables, you can use DML statements like [`INSERT`](/sql/commands/sql-insert.md), [`UPDATE`](/sql/commands/sql-update.md) and [`DELETE`](/sql/commands/sql-delete.md) to insert or modify data in tables with connectors, and use [CREATE SINK INTO TABLE](/sql/commands/sql-create-sink-into.md) to merge other data streams into the table.
 
 ## DML on tables
 
