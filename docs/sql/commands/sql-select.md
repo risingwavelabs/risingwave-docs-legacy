@@ -1,7 +1,7 @@
 ---
 id: sql-select
 title: SELECT
-description: Retrieve data from a table or a materialized view. 
+description: Retrieve data from a table or a materialized view.
 slug: /sql-select
 ---
 <head>
@@ -20,7 +20,7 @@ SELECT [ ALL | DISTINCT [ ON ( expression [, ...] ) ]] [ [table_name.]* [ EXCEPT
     [ WHERE condition ]
     [ GROUP BY grouping_expression [ , grouping_expression ... ] ]
     [ HAVING condition ]
-    [ ORDER BY sort_expression [ ASC | DESC ] [ , ... ] ]
+    [ ORDER BY sort_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [ , ... ] ]
     [ LIMIT count_number ]
     [ OFFSET start [ ROW | ROWS ] ];
 ```
@@ -29,8 +29,8 @@ Where `from_item` can be:
 
 ```sql
     table_name  [ [ AS ] alias [ ( column_alias_list ) ] ]
-    window_type ( table_name, col_name, interval_expression ) [ [ AS ] alias [ ( column_alias_list ) ] ] 
-    ( SELECT ) [ [ AS ] alias [ ( column_alias_list ) ] ] 
+    window_type ( table_name, col_name, interval_expression ) [ [ AS ] alias [ ( column_alias_list ) ] ]
+    ( SELECT ) [ [ AS ] alias [ ( column_alias_list ) ] ]
     from_item join_type from_item [ ON join_condition ]
 ```
 
@@ -46,7 +46,7 @@ Where `from_item` can be:
 |*alias*                    |A temporary alternative name for a table or materialized view in a query.|
 |*table_name*                    |A table or materialized view.|
 |*grouping_expression*      |<p>Values can be:</p><ul><li>Input column names</li><li>Input column expressions without subqueries or correlated columns</li></ul>|
-|**ORDER BY** clause        | The default sort order is **ASC**. Nulls options are not supported now. If the sort order is **ASC** or unspecified, nulls will be placed in front of non-null values. If the sort order is **DESC**, nulls will be placed after non-null values. This is different from the sort logic in PostgreSQL.|
+|**ORDER BY** clause        | The default sort order is **ASC**, and NULLs are considered largest. See [`ORDER BY` clause](../query-syntax/query-syntax-order-by-clause.md) for more details.|
 |*sort_expression*          |<p>Values can be:</p><ul><li>Output column names</li><li>Output column ordinal numbers</li><li>Hidden select expressions</li></ul>|
 |*count_number*                    |The number of results you want to get. |
 |**OFFSET** clause          |The `OFFSET` clause can only be used with the `LIMIT` and `ORDER BY` clauses.|
@@ -119,9 +119,9 @@ The table `company` includes the columns `company_id` and `taxi_id`, where `taxi
 The following query returns the total distance and duration of trips that are beyond the initial charge ($2.50) of each taxi from the company "Yellow Taxi" and "FabCab".
 
 ```sql
-SELECT 
-    taxi.taxi_id, 
-    sum(trips.distance) AS total_distance, 
+SELECT
+    taxi.taxi_id,
+    sum(trips.distance) AS total_distance,
     sum(trips.duration) AS total_duration
 FROM taxi_trips AS trips
 LEFT JOIN taxi ON trips.id = taxi.trip_id
