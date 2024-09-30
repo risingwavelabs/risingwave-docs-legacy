@@ -12,7 +12,7 @@ slug: /sql-set-background-ddl
 The `SET BACKGROUND_DDL` command is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
-Data Definition Language (DDL) commands, such as creating materialized views, will first **backfill** historical data from the referenced relations, which may take a long time to complete depending on how much data needs to be backfilled.
+Data Definition Language (DDL) commands, such as creating materialized views, will first **backfill** historical data from the referenced relations, and completion time varies based on the volume of data to be backfilled.
 
 You can use the `SET BACKGROUND_DDL` command to run DDL commands in the background.
 
