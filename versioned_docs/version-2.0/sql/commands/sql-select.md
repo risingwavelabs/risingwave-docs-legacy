@@ -46,7 +46,7 @@ Where `from_item` can be:
 |*alias*                    |A temporary alternative name for a table or materialized view in a query.|
 |*table_name*                    |A table or materialized view.|
 |*grouping_expression*      |<p>Values can be:</p><ul><li>Input column names</li><li>Input column expressions without subqueries or correlated columns</li></ul>|
-|**ORDER BY** clause        | The default sort order is **ASC**, and NULLs are considered largest. See [`ORDER BY` clause](../query-syntax/query-syntax-order-by-clause.md) for more details.|
+|**ORDER BY** clause        | By default, sorting is in ascending (ASC) order, with NULL values treated as the largest. For more information, see [`ORDER BY` clause](../query-syntax/query-syntax-order-by-clause.md).|
 |*sort_expression*          |<p>Values can be:</p><ul><li>Output column names</li><li>Output column ordinal numbers</li><li>Hidden select expressions</li></ul>|
 |*count_number*                    |The number of results you want to get. |
 |**OFFSET** clause          |The `OFFSET` clause can only be used with the `LIMIT` and `ORDER BY` clauses.|
