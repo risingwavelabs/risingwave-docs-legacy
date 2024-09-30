@@ -46,10 +46,6 @@ tar xvf risingwave-v1.5.0-x86_64-unknown-linux-all-in-one.tar.gz
 ./risingwave playground
 ```
 
-### From a Web browser
-
-[https://playground.risingwave.dev/](https://playground.risingwave.dev/)
-
 ## Connect to RisingWave
 
 After RisingWave is up and running, connect to it via the Postgres interactive terminal `psql`. Ensure you have `psql` installed in your environment. To learn about how to install it, see [Install `psql` without PostgreSQL](/guides/install-psql-without-full-postgres.md).
