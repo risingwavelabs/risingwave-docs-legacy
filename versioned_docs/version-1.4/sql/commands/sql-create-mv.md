@@ -17,7 +17,7 @@ CREATE MATERIALIZED VIEW [IF NOT EXISTS] mv_name AS select_query;
 ```
 
 :::tip
-`CREATE MATERIALIZED VIEW` will first **backfill** historical data from the referenced relations, and it may take a long time to complete depending on how much data needs to be backfilled.
+`CREATE MATERIALIZED VIEW` will first **backfill** historical data from the referenced relations, and completion time varies based on the volume of data to be backfilled.
 
 To perform the operations in the background, you can execute `SET BACKGROUND_DDL=true;` before running the `CREATE MATERIALIZED VIEW` statement. See details in [`SET BACKGROUND_DDL`](/sql/commands/sql-set-background-ddl.md).
 :::
