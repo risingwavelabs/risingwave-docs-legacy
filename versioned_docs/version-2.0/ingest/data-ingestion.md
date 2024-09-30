@@ -78,7 +78,9 @@ The statement will create a streaming job that continuously ingests data from th
 
 3. **Ability to handle delete/update changes**: Based on the definition of primary keys, RisingWave can efficiently process upstream synchronized delete and update operations. For systems that synchronize delete/update operations from external systems, such as database's CDC and UPSERT format messages from message queues, we **do not** allow creating a source on it but require a table with connectors.
 
-4. **Greater flexibility**: Like regular tables, you can use DML statements like [`INSERT`](/sql/commands/sql-insert.md), [`UPDATE`](/sql/commands/sql-update.md) and [`DELETE`](/sql/commands/sql-delete.md) to insert or modify data in tables with connectors, and use [CREATE SINK INTO TABLE](/sql/commands/sql-create-sink-into.md) to merge other data streams into the table.
+4. **Stronger consistency guarantee**: When using a table with connectors, all downstream jobs will be guaranteed to have a consistent view of the data persisted in the table; while for source, different jobs may see inconsistent results due to different ingestion speed or data retention in the external system.
+
+5. **Greater flexibility**: Like regular tables, you can use DML statements like [`INSERT`](/sql/commands/sql-insert.md), [`UPDATE`](/sql/commands/sql-update.md) and [`DELETE`](/sql/commands/sql-delete.md) to insert or modify data in tables with connectors, and use [CREATE SINK INTO TABLE](/sql/commands/sql-create-sink-into.md) to merge other data streams into the table.
 
 ## DML on tables
 
