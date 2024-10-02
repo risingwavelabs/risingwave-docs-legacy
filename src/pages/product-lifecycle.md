@@ -53,7 +53,6 @@ Below is a list of all features in the public preview phase:
 | [Emit on window close](/docs/current/emit-on-window-close/)      | 2023.8  | 1.1      |
 | [Read-only transactions](/docs/current/sql-start-transaction)| 2023.8  | 1.1      |
 | [AWS Kinesis sink](/docs/current/sink-to-aws-kinesis/)           | 2023.7  | 1.0     |
-| [AWS PrivateLink connection](/docs/current/sql-create-connection/) | 2023.5  | 0.19     |
 | [CDC Citus source](/docs/current/ingest-from-citus-cdc/)         | 2023.5  | 0.19     |
 | [Iceberg sink](/docs/current/sink-to-iceberg/)                   | 2023.4 | 0.18      |
 | [Pulsar source](/docs/current/ingest-from-pulsar/)               | 2022.12  | 0.1     |
