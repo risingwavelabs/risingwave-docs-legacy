@@ -145,9 +145,11 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |System | |Availability |
 |---|---|---|
 |Alluxio| |Researching <VoteNotify note="alluxio" />|
+| AWS S3 | |Available. For details, see [Ingest data from S3](/ingest/ingest-from-s3.md) and [Sink data to S3](/guides/sink-to-aws-s3.md). |
+|Azure Blob| |Available. For details, see [Ingest data from Azure Blob](/guides/ingest-from-azure-blob.md) and [Sink data to Azure Blob](/guides/sink-to-azure-blob.md).|
 |Datadog| |Researching <VoteNotify note="datadog" />|
-|Google Cloud Storage (GCS)| | Available as source. For details, see [Ingest from Google Cloud Storage](/ingest/ingest-from-gcs.md).|
+|Google Cloud Storage (GCS)| | Available. For details, see [Ingest from Google Cloud Storage](/ingest/ingest-from-gcs.md) and [Sink data to Google Cloud Storage](/guides/sink-to-google-cloud-storage.md).|
 |Hasura| |Researching <VoteNotify note="hasura" />|
 |Liquibase| |Researching <VoteNotify note="liquibase" />|
 |Supabase| |Available. For details, see [Ingest data from Supabase CDC](/ingest/ingest-from-supabase-cdc.md) and [Sink data to Supabase](/guides/sink-to-supabase.md).|
-|Azure Blob| |Available. For details, see [Ingest data from Azure Blob](/guides/ingest-from-azure-blob.md) and [Sink data to Azure Blob](/guides/sink-to-azure-blob.md).|
+| WebHDFS | |Available as sink. For details, see [Sink data to WebHDFS](/guides/sink-to-webhdfs.md)|
