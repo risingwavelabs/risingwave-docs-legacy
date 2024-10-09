@@ -453,7 +453,7 @@
                     },
                     {
                       "type": "doc",
-                      "label": "NATS",
+                      "label": "NATS and NATSJetStream",
                       "id": "guides/sink-to-nats"
                     },
                     {
