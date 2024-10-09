@@ -31,11 +31,11 @@ WITH (
 | s3.region_name        | Required. The service region. |
 | s3.bucket_name        | Required. The name of the bucket where the sink data is stored in. |
 | s3.path               | Required. The directory where the sink file is located.|
-| s3.credentials.access | Required. The access key ID of AWS. |
-| s3.credentials.secret | Required. The secret access key of AWS. |
-| type                  | Required. Defines the type of the sink. Options include `append-only` or `upsert`.|
+| s3.credentials.access | Optional. The access key ID of AWS. |
+| s3.credentials.secret | Optional. The secret access key of AWS. |
 | s3.endpoint_url       | Optional. The host URL for an S3-compatible object storage server. This allows users to use a different server instead of the standard S3 server.|
 | s3.assume_role        | Optional. Specifies the ARN of an IAM role to assume when accessing S3. It allows temporary, secure access to S3 resources without sharing long-term credentials. |
+| type                  | Required. Defines the type of the sink. Options include `append-only` or `upsert`.|
 
 ## Example
 
