@@ -15,14 +15,14 @@ You can ingest data from [Redpanda](https://redpanda.com), an event streaming pl
 
 This guide will walk you through the steps to create a Redpanda cluster on Redpanda Cloud and connect it to RisingWave for data ingestion. For more details about Redpanda, refer to the [Redpanda Documentation](https://docs.redpanda.com/current/get-started/quick-start-cloud/).
 
-### Step 1: Sign Up for Redpanda Cloud
+### Step 1: Sign up for Redpanda Cloud
 
 Begin by signing up for a free Redpanda Cloud account. You can register by visiting the [Redpanda Cloud Sign-Up Page](https://cloud.redpanda.com/sign-up).
 
 ![Sign-Up Page for Redpanda Cloud](https://github.com/user-attachments/assets/19b3908f-a97c-4162-9738-d95f7e486ed1)
 *Sign-Up for Redpanda Cloud*
 
-### Step 2: Create a Redpanda Cluster
+### Step 2: Create a Redpanda cluster
 
 Once you’ve signed up, create a new Redpanda cluster. Choose the **Serverless** cluster option, which offers a free tier for users.
 
@@ -38,7 +38,7 @@ After logging in, set up your Redpanda cluster with the following details:
 ![Filling in Redpanda Cluster Details](https://github.com/user-attachments/assets/2e73f360-afe9-4b5d-aa5f-75b1d0596ac5)
 *Filling in Redpanda Resource Group Details*
 
-### Step 3: Create a Redpanda Topic
+### Step 3: Create a Redpanda topic
 
 After setting up your cluster, the next step is to create a Redpanda topic. Redpanda simplifies this by providing default configurations for partitioning and retention policies.
 
@@ -50,7 +50,7 @@ Once the topic is created, you’re ready to ingest data.
 ![Topic Successfully Created](https://github.com/user-attachments/assets/bc6ae244-df2b-4f87-a510-cbc89e996466)
 *Topic Successfully Created*
 
-### Step 4: Connect to Redpanda Using Kafka Clients
+### Step 4: Connect to Redpanda using Kafka clients
 
 Redpanda is compatible with Kafka clients, allowing you to easily produce and consume data from Redpanda topics. For example, you can extract real-time data from external APIs (such as Aviationstack) and publish it to your Redpanda topic.
 
@@ -64,15 +64,15 @@ Grant the necessary permissions for this user to manage topics, and produce and 
 ![Granting User Permissions in Redpanda](https://github.com/user-attachments/assets/3a3c8b62-f241-477d-9a86-be6a7d79d48a)
 *Granting User Permissions in Redpanda*
 
-## Ingest Data into RisingWave
+## Ingest data into RisingWave
 
 Now that your Redpanda cluster is set up, you can ingest and process data using RisingWave.
 
-### Step 1: Create a RisingWave Cluster
+### Step 1: Create a RisingWave cluster
 
 Sign up for RisingWave Cloud and create a new RisingWave cluster using the free plan. Follow the instructions in the [RisingWave Cloud Documentation](https://docs.risingwave.com/cloud/manage-clusters/) to complete the setup.
 
-### Step 2: Create a Source in RisingWave
+### Step 2: Create a source in RisingWave
 
 After deploying the RisingWave cluster, create a source to consume data from your Redpanda topic. Use the following SQL query to set up the source:
 
@@ -102,7 +102,7 @@ WITH (
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
-### Step 3: Create a Materialized View
+### Step 3: Create a materialized view
 
 To analyze the data, create a materialized view that tracks the number of flights per airline over one-hour intervals:
 
@@ -118,7 +118,7 @@ GROUP BY airline_name, window_start, window_end
 ORDER BY total_flights DESC;
 ```
 
-### Step 4: Query the Materialized View
+### Step 4: Query the materialized view
 
 You can now query the `Airline_Flight_Counts` view to retrieve the latest data:
 
