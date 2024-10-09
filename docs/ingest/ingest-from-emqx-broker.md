@@ -8,15 +8,14 @@
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-emqx-broker/" />
 </head>
 
-# Ingest Data from EMQX to RisingWave
 
 You can ingest data from **EMQX**, a high-performance MQTT platform designed for seamless data collection, transmission, transformation, storage, and analysis between physical devices and digital systems. EMQ, a global leader in edge-cloud connectivity and data platforms, helps businesses tackle data challenges in sectors such as connected vehicles, smart factories, retail, drones, and distributed energy networks, including renewable energy grids and water systems.
 
-## Set Up the EMQX Broker
+## Set Up the EMQX broker
 
 This guide will walk you through creating an EMQX broker on **EMQX Cloud** and connecting it to **RisingWave** for data ingestion. For detailed information, please refer to the [EMQX Documentation](https://docs.emqx.com/en/).
 
-### 1. Sign Up for an EMQX Platform Account
+### 1. Sign up for an EMQX platform account
 
 Start by signing up for an [EMQX Cloud](https://accounts.emqx.com/signup?continue=https%3A%2F%2Fwww.emqx.com%2Fcn%2Fcloud) account. The platform offers a 14-day free trial to explore its services.
 
@@ -24,7 +23,7 @@ Start by signing up for an [EMQX Cloud](https://accounts.emqx.com/signup?continu
 
 *Sign up for EMQX Cloud.*
 
-### 2. Create a New Deployment
+### 2. Create a new deployment
 
 Once logged in to your EMQX Cloud account, go to the dashboard and click **New Deployment** to create a new EMQX broker.
 
@@ -44,7 +43,7 @@ Once deployed, your serverless EMQX broker is ready to use.
 
 *Serverless EMQX Cloud deployment.*
 
-### 3. Configure Authentication and Authorization
+### 3. Configure authentication and authorization
 
 To secure your broker, configure authentication and authorization. Go to the **Access Control** -> **Authentication** page and add a **username** and **password** for your clients.
 
@@ -75,13 +74,13 @@ Your broker is now ready to receive data from devices on the shop floor. Below i
 }
 ```
 
-## Ingest Data from EMQX to RisingWave
+## Ingest data from EMQX to RisingWave
 
-### 1. Create a RisingWave Cluster
+### 1. Create a RisingWave cluster
 
 Set up a RisingWave cluster on [RisingWave Cloud](https://cloud.risingwave.com/) using the free plan. Detailed setup instructions are available in the [RisingWave Cloud Documentation](https://docs.risingwave.com/cloud/manage-clusters/).
 
-### 2. Create a Source in RisingWave
+### 2. Create a source in RisingWave
 
 Once your RisingWave cluster is running, create a source to ingest data from the EMQX broker. Use the following SQL query in the RisingWave Workspace:
 
@@ -110,7 +109,7 @@ WITH (
 
 This query creates a source table that connects to the EMQX MQTT broker to retrieve data in JSON format.
 
-### 3. Query the Source
+### 3. Query the source
 
 Once the source is created, you can run queries to retrieve the ingested data. For example:
 
