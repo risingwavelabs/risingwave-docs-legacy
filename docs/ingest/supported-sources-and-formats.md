@@ -52,13 +52,14 @@ Please be aware that:
 
 - The timestamp displayed in RisingWave may be different from the upstream system as timezone information is lost in Avro serialization.
 
+- RisingWave takes [`TopicNameStrategy`](https://developer.confluent.io/courses/schema-registry/schema-subjects/#topicnamestrategy) as the default subject name strategy for the schema registry and looks for the schema with the subject name `{ topic name }-value`.
+
 Syntax:
 
 ```sql
 FORMAT PLAIN
 ENCODE AVRO (
-   schema.registry = 'schema_registry_url [, ...]',
-   [message = 'main_message'],
+    schema.registry = 'schema_registry_url [, ...]',
 )
 ```
 
@@ -66,7 +67,7 @@ You can ingest Avro map type into RisingWave [map type](/sql/data-types/data-typ
 
 ```sql
 FORMAT [ DEBEZIUM | UPSERT | PLAIN ] ENCODE AVRO (
-	map.handling.mode = 'map' | 'jsonb'
+    map.handling.mode = 'map' | 'jsonb'
 )
 ```
 
@@ -85,10 +86,9 @@ Syntax:
 ```sql
 FORMAT DEBEZIUM
 ENCODE AVRO (
-   message = 'main_message',
-   schema.location = 'location' | schema.registry = 'schema_registry_url [, ...]',
-   [key.message = 'test_key'],
-   [ignore_key = 'true | false']
+    message = 'main_message',
+    schema.registry = 'schema_registry_url [, ...]',
+    [ignore_key = 'true | false']
 )
 ```
 
@@ -104,7 +104,6 @@ Syntax:
 FORMAT UPSERT
 ENCODE AVRO (
    schema.location = 'location' | schema.registry = 'schema_registry_url [, ...]',
-   [message = 'main_message'],
 )
 ```
 
