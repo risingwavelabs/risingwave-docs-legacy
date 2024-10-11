@@ -25,6 +25,7 @@ Below is a list of all features in the public preview phase:
 
 | Feature name            | Start date | Start version |
 |---------------------------|------------|---------------|
+| [Partitioned table](/docs/current/ingest-from-postgres-cdc)| 2024.9 | 2.0 |
 | [Map type](/docs/current/data-type-map)|2024.8|2.0|
 | [Azure Blob sink](/docs/current/sink-to-azure-blob)|2024.8|2.0|
 | [Approx percentile](/docs/current/sql-function-aggregate/#approx_percentile) | 2024.8     | 2.0           |
@@ -56,6 +57,5 @@ Below is a list of all features in the public preview phase:
 | [CDC Citus source](/docs/current/ingest-from-citus-cdc/)         | 2023.5  | 0.19     |
 | [Iceberg sink](/docs/current/sink-to-iceberg/)                   | 2023.4 | 0.18      |
 | [Pulsar source](/docs/current/ingest-from-pulsar/)               | 2022.12  | 0.1     |
-| [Partitioned table](/docs/current/ingest-from-postgres-cdc)| 2024.9 | 2.0 |
 
 This table will be updated regularly to reflect the latest status of features as they progress through the release stages.
