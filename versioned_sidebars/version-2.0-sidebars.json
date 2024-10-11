@@ -274,11 +274,6 @@
                     },
                     {
                       "type": "doc",
-                      "label": "Upstash Kafka",
-                      "id": "ingest/ingest-from-upstash-kafka"
-                    },
-                    {
-                      "type": "doc",
                       "label": "WarpStream",
                       "id": "ingest/ingest-from-warpstream"
                     }
@@ -458,7 +453,7 @@
                     },
                     {
                       "type": "doc",
-                      "label": "NATS",
+                      "label": "NATS and NATSJetStream",
                       "id": "guides/sink-to-nats"
                     },
                     {

@@ -273,11 +273,6 @@ const sidebars: SidebarsConfig = {
                     },
                     {
                       type: "doc",
-                      label: "Upstash Kafka",
-                      id: "ingest/ingest-from-upstash-kafka",
-                    },
-                    {
-                      type: "doc",
                       label: "WarpStream",
                       id: "ingest/ingest-from-warpstream",
                     },
@@ -458,7 +453,7 @@ const sidebars: SidebarsConfig = {
                     },
                     {
                       type: "doc",
-                      label: "NATS",
+                      label: "NATS and NATSJetStream",
                       id: "guides/sink-to-nats",
                     },
                     {
@@ -605,8 +600,23 @@ const sidebars: SidebarsConfig = {
                   items: [
                     {
                       type: "doc",
+                      label: "AWS S3",
+                      id: "guides/sink-to-aws-s3",
+                    },
+                    {
+                      type: "doc",
                       label: "Azure Blob",
                       id: "guides/sink-to-azure-blob",
+                    },
+                    {
+                      type: "doc",
+                      label: "Google Cloud Storage",
+                      id: "guides/sink-to-google-cloud-storage",
+                    },
+                    {
+                      type: "doc",
+                      label: "WebHDFS",
+                      id: "guides/sink-to-webhdfs",
                     },
                   ],
                 },
