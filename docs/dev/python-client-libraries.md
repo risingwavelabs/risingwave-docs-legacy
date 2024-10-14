@@ -141,9 +141,9 @@ mv = rw.mv(name="test_mv",
                    GROUP BY window_start, window_end, product""")
 ```
 
-#### Subcribe changes from table / materialized view with your own handler
+#### Subscribe changes from table / materialized view with your own handler
 
-In addition to using SQL to do ad-hoc query on tables and materialized views. With `risingwave-py`, You can also subscribe subcribe changes from table / materialized view and define handler of the change events from table / materialized view for you applications. 
+In addition to using SQL to do ad-hoc query on tables and materialized views. With `risingwave-py`, You can also subscribe changes from table / materialized view and define handler of the change events from table / materialized view for you applications. 
 
 ```python
 # Write your own handler
