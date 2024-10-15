@@ -59,7 +59,8 @@ WITH (
 |AS select_query| A SELECT query that specifies the data to be output to the sink. Either this query or a FROM clause must be specified. See [SELECT](/sql/commands/sql-select.md) for the syntax and examples of the SELECT command.|
 |`primary_key` |Optional. The primary keys of the sink. If the primary key has multiple columns, set a delimiter in the `delimiter` parameter below to join them. |
 | `index`         |Required if `index_column` is not set. Name of the Elasticsearch index that you want to write data to. |
-| `index_column`  |This parameter enables you to create a sink that writes to multiple indexes dynamically. The sink decides which index to write to based on a column. It is mutually exclusive with the parameter `index`. Only one of them **can and must** be set. When `index` is set, the write index of Elasticsearch is `index`. When `index_column` is set, the index of Elasticsearch is the value of this column, which must be the `string` type. Since Elasticsearch sink defaults to the first column as the key, it is not recommended to place this column as the first column.|
+| `index_column`  |Allows writing to multiple indexes dynamically based on the column's value. This parameter is mutually exclusive with `index`. When `index` is set, the write index is `index`; When `index_column` is set, the target index is the value of this column, and it must be of `string` type. Avoiding setting this column as the first column, because the sink defaults to the first column as the key.|
+|`routing_column`|Optional. Allows setting a column as a routing key, so that it can direct writes to specific shards based on its value. |
 |`retry_on_conflict`|Optional. Number of retry attempts after an optimistic locking conflict occurs.|
 |`batch_size_kb`|Optional. Maximum size (in kilobytes) for each request batch sent to Elasticsearch. If the data exceeds this size，the current batch will be sent.|
 |`batch_num_messages`|Optional. Maximum number of messages per request batch sent to Elasticsearch. If the number of messages exceeds this size，the current batch will be sent.|
@@ -70,9 +71,9 @@ WITH (
 |`delimiter` | Optional. Delimiter for Elasticsearch ID when the sink's primary key has multiple columns.|
 
 :::note
-For versions under 8.x, there was once a parameter `type`. In Elasticsearch 6.x, users could directly set the type, but starting from 7.x, it is set to not recommended and the default value is unified to '_doc.' In version 8.x, the type has been completely removed. See [Elasticsearch's official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html) for more details.
+For versions under 8.x, there was once a parameter `type`. In Elasticsearch 6.x, users could directly set the type, but starting from 7.x, it is set to not recommended and the default value is unified to `_doc`. In version 8.x, the type has been completely removed. See [Elasticsearch's official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/removal-of-types.html) for more details.
 
-So, if you are using Elasticsearch 7.x, we set it to the official's recommended value, which is '_doc'. If you are using Elasticsearch 8.x, this parameter has been removed by the Elasticsearch official, so no setting is required.
+So, if you are using Elasticsearch 7.x, we set it to the official's recommended value, which is `_doc`. If you are using Elasticsearch 8.x, this parameter has been removed by the Elasticsearch official, so no setting is required.
 :::
 
 ### Notes about primary keys and Elasticsearch IDs
