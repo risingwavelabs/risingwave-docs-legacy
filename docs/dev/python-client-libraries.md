@@ -132,7 +132,7 @@ Event-driven applications depend on real-time data processing to react to events
 
 #### Define the processing logic in SQL
 
-In the following example, `test_mv` is created to incrementally maintain the result of defined SQL as events are ingested in to the `test` table.
+In the following example, `test_mv` is created to incrementally maintain the result of the defined SQL as events are ingested in to the `test` table.
 
 ```python
 mv = rw.mv(name="test_mv",
