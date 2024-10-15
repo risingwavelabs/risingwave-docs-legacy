@@ -201,7 +201,7 @@ threading.Thread(
 # rw.insert(table_name="test", data=df)
 ```
 
-You can refer to the `risingwave-py` [GitHub repo](https://github.com/risingwavelabs/risingwave-py) for more details.
+For more details, please refer to the `risingwave-py` [GitHub repo](https://github.com/risingwavelabs/risingwave-py).
 
 
 ## Use `psycopg2` to connect to RisingWave
