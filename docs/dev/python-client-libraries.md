@@ -102,7 +102,7 @@ rw.execute("""
 )""")
 ```
 
-See [here](https://docs.risingwave.com/docs/current/data-ingestion/) for supported sources and the SQL syntax.
+For supported sources and the SQL syntax, see [this topic](https://docs.risingwave.com/docs/current/data-ingestion/).
 
 
 ### Query from RisingWave
