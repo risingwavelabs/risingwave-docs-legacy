@@ -53,9 +53,11 @@ WITH (
 
 While RisingWave supports `append-only` sinks for all ClickHouse engines, support for `upsert` sinks is limited. Additionally, for ReplacingMergeTree engines, an `append-only` sink will not insert duplicate data.
 
-We support creating `upsert` sinks for CollapsingMergeTree and VersionedCollapsingMergeTree engines. RisingWave will transform `DELETE` into `INSERT SIGN = -1`.
+RisingWave supports `upsert` sinks for the following ClickHouse engines:
 
-We support creating `upsert` sinks for ReplacingMergeTree engine. RisingWave will transform `DELETE` into `INSERT SIGN = 1`.
+- CollapsingMergeTree: `DELETE` operations are transformed into `INSERT with SIGN = -1`.
+- VersionedCollapsingMergeTree: `DELETE` operations are transformed into `INSERT with SIGN = -1`.
+- ReplacingMergeTree: `DELETE` operations are transformed into `INSERT with SIGN = 1`.
 
 ## Examples
 
