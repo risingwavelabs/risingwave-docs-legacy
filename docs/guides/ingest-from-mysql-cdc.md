@@ -162,7 +162,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
 );
 ```
 
-Syntax for creating a CDC table based on the shared source. Note that a primary key is required and must be consistent with the upstream table.
+Below is the syntax for creating a CDC table based on the shared source. Note that a primary key is required and must be consistent with the upstream table.
 
 ```sql
 CREATE TABLE [ IF NOT EXISTS ] table_name (
