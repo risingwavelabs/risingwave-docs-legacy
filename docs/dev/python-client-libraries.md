@@ -16,7 +16,7 @@ As RisingWave is wire-compatible with PostgreSQL, you can also use third-party P
 
 [risingwave-py](https://pypi.org/project/risingwave-py/) is a RisingWave Python SDK that provides the following capabilities:
 - Interact with RisingWave via Pandas DataFrame.
-- Subscribe and process changes from RisingWave tables / materialized views.
+- Subscribe and process changes from RisingWave tables or materialized views.
 - Run [SQL commands](https://docs.risingwave.com/docs/current/sql-references/) supported in RisingWave.
 
 ### Run RisingWave
