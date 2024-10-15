@@ -47,7 +47,7 @@ WITH (
 | `clickhouse.database`  | Required. Name of the ClickHouse database that you want to sink data to.|
 | `clickhouse.table`      | Required. Name of the ClickHouse table that you want to sink data to.|
 | `commit_checkpoint_interval`| Optional. Commit every N checkpoints (N > 0). Default value is 10. <br/>The behavior of this field also depends on the `sink_decouple` setting:<ul><li>If `sink_decouple` is true (the default), the default value of `commit_checkpoint_interval` is 10.</li> <li>If `sink_decouple` is set to false, the default value of `commit_checkpoint_interval` is 1.</li> <li>If `sink_decouple` is set to false and `commit_checkpoint_interval` is set to larger than 1, an error will occur.</li></ul>|
-| `clickhouse.delete.column` | Optional. Add this parameter when using ClickHouse's ReplacingMergeTree and setting up the delete column. You can run an upsert sink using the ReplacingMergeTree engine.|
+| `clickhouse.delete.column` | Optional. You can run an upsert sink using the ReplacingMergeTree engine. When using the ReplacingMergeTree engine, you can specify the delete column with this parameter. |
 
 ### Upsert sinks
 
