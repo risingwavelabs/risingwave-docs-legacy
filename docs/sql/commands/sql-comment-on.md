@@ -1,7 +1,7 @@
 ---
 id: sql-comment-on
 title: COMMENT ON
-description: Add comments on tables or columns
+description: Add comments on tables or columns.
 slug: /sql-comment-on
 ---
 <head>

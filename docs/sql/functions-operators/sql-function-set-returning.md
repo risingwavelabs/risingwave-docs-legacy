@@ -2,6 +2,7 @@
 id: sql-function-set-returning
 slug: /sql-function-set-returning
 title: Set-returning functions
+description: Return a set or table of data.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-set-returning/" />
@@ -87,7 +88,7 @@ Except for generating a static set of values, RisingWave also supports continuou
 ```sql
 CREATE MATERIALIZED VIEW mv AS
 SELECT * FROM generate_series(
-  '2020-01-01 00:00:00',
+  '2020-01-01 00:00:00'::timestamptz,
   now(),
   interval '1 hour'
 );

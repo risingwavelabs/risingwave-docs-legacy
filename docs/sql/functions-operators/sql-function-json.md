@@ -2,6 +2,7 @@
 id: sql-function-json
 slug: /sql-function-json
 title: JSON functions and operators
+description: Parse JSON-structured data.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-json/" />
@@ -400,6 +401,34 @@ select * from jsonb_populate_recordset(
 The `jsonb_populate_recordset` function in RisingWave differs from the function in PostgreSQL. In PostgreSQL, users are required to define a **composite type** using the `CREATE TYPE` statement before using these functions. However, in RisingWave, you should use the **inline struct type** instead.
 
 :::
+
+### `jsonb_populate_map`
+
+Converts `jsonb` data into a `map` type by merging key-value pairs from the `jsonb` into the specified `map`.
+
+```sql title=Syntax
+jsonb_populate_map(map anymap, from_json jsonb) → map
+```
+
+```sql title="Examples"
+SELECT jsonb_populate_map(
+    null::map(varchar, int),
+    '{"a": 1, "b": 2}'::jsonb
+);
+----RESULT
+ jsonb_populate_map 
+--------------------
+ {a:1,b:2}
+
+SELECT jsonb_populate_map(
+    MAP {'a': 1, 'b': 2},
+    '{"b": 3, "c": 4}'::jsonb
+);
+----RESULT
+ jsonb_populate_map 
+--------------------
+ {a:1,b:3,c:4}
+```
 
 ### `jsonb_set`
 

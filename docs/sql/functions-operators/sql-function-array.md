@@ -2,6 +2,7 @@
 id: sql-function-array
 slug: /sql-function-array
 title: Array functions and operators
+description: Manage lists and collections of data.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-array/" />

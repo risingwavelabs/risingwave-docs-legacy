@@ -3,33 +3,23 @@ on:
   push:
     branches: [main]
     paths:
-      - cloud/**
+      - docusaurus.config.ts
       - docs/**
+      - sidebars.js
+      - cloud/**
+      - sidebarCloud.js
       - versioned_docs/**
       - versioned_sidebars/**
 
 jobs:
-  algolia_recrawl:
-    name: Algolia Recrawl
+  algolia_reindex:
+    name: Algolia Reindex
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - name: algolia reindex script
-        id: reindex
-        uses: ./algolia/
-        with:
-          CRAWLER_ID: ${{ secrets.CRAWLER_ID }}
-          CRAWLER_USER_ID: ${{ secrets.CRAWLER_USER_ID }}
-          CRAWLER_API_KEY: ${{ secrets.CRAWLER_API_KEY }}
-          ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-          ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
-          CRAWLER_API_BASE_URL: "https://crawler.algolia.com/api/1/"
+      - name: Trigger reindex
+        id: trigger
+        run: |
+          out=`curl -X POST -H "Content-Type: application/json" --user ${{secrets.CRAWLER_USER_ID}}:${{secrets.CRAWLER_API_KEY}} "https://crawler.algolia.com/api/1/crawlers/${{secrets.CRAWLER_ID}}/reindex"`
+          echo "response=$out" >> $GITHUB_OUTPUT
+      - name: Post triggering
+        run: echo "Triggered reindex task ${{ fromJson(steps.trigger.outputs.response).taskId }}"

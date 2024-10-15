@@ -5,10 +5,12 @@ description: Get started with RisingWave Cloud in 5 steps.
 slug: /quickstart
 ---
 
-Get started with RisingWave Cloud in 5 steps.
-
+<!-- MDX imports -->
+import OutlinedCard from "@site/src/components/OutlinedCard";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+Get started with RisingWave Cloud in 5 steps.
 
 ## Step 1: Create an account
 
@@ -36,7 +38,7 @@ Choose from the following ways to connect to your project.
 
 <TabItem value="Workspace" label="Workspace">
 
-Workspace offers graphical tools for managing data and visualizing results. It is the most intuitive and easy way to connect to and interact with RisingWave. 
+Workspace offers graphical tools for managing data and visualizing results. It is the most intuitive and easy way to connect to and interact with RisingWave.
 
 #### To connect via workspace, follow the steps below:
 
@@ -45,7 +47,7 @@ Workspace offers graphical tools for managing data and visualizing results. It i
 2. For detailed instructions on using the workspace, see [Workspace](console-overview.md).
 
 </TabItem>
- 
+
 <TabItem value="local" label="Local client">
 
 If you need to connect to the RisingWave project via local clients, you can configure the connection in multiple ways.
@@ -78,7 +80,7 @@ These demos cover the most common steps in using RisingWave, such as establishin
 
 Congrats, you are now ready to unleash the full potential of RisingWave on your own. Read [Develop with RisingWave Cloud](develop-overview.md) to start your journey.
 
-<card
+<OutlinedCard
 title="Develop with RisingWave Cloud"
 content="RisingWave Cloud leverages the superpower of RisingWave, an open-source distributed SQL database specifically designed for stream processing. Start building your real-time applications with RisingWave, in the cloud."
 cloud="develop-overview"

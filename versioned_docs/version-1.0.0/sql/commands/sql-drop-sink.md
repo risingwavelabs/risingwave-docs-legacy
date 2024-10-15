@@ -17,27 +17,6 @@ DROP SINK [ IF EXISTS ] [schema_name.]sink_name;
 ```
 
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP SINK'),
-        rr.Optional(
-            rr.Terminal('IF EXISTS')
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.NonTerminal('schema_name'),
-                rr.Terminal('.')
-            ),
-        ),
-        rr.NonTerminal('sink_name'),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 
 
 ## Parameters

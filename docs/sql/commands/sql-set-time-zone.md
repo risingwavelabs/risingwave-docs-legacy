@@ -1,7 +1,7 @@
 ---
 id: sql-set-time-zone
 title: SET TIME ZONE
-description: Set time zone.
+description: Specify time zone.
 slug: /sql-set-time-zone
 ---
 <head>
@@ -16,22 +16,6 @@ Use the `SET TIME ZONE` command to specify the time zone that should be used to 
 SET TIME ZONE { time_zone | LOCAL | DEFAULT };
 ```
 
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('SET TIME ZONE'),
-        rr.Choice(1,
-            rr.NonTerminal('time_zone'),
-            rr.Terminal('LOCAL'),
-            rr.Terminal('DEFAULT'),
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
 
 
 

@@ -7,10 +7,7 @@ slug: /review-and-pay-invoices
 
 In [**Invoices**](https://cloud.risingwave.com/billing/invoices/), you can access a detailed history of your bills, including invoice IDs, billing periods, invoice status, payment amounts, payment methods, and payment times.
 
-<img
-   src={require('./images/billing-invoices.png').default}
-   alt="Invoices"
-/>
+![Invoices](./images/billing-invoices.png)
 
 ## Review invoices
 

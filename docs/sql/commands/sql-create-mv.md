@@ -16,24 +16,9 @@ Use the `CREATE MATERIALIZED VIEW` command to create a materialized view. A mate
 CREATE MATERIALIZED VIEW [IF NOT EXISTS] mv_name AS select_query;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal("CREATE MATERIALIZED VIEW"),
-      rr.Optional(rr.Terminal('IF NOT EXISTS')),
-      rr.NonTerminal("mv_name", "skip"),
-      rr.Terminal("AS"),
-      rr.NonTerminal("select_query", "skip"),
-      rr.Terminal(";")
-   )
-)
-);
-
-<drawer SVG={svg} />
-
 :::tip
+`CREATE MATERIALIZED VIEW` will first **backfill** historical data from the referenced relations, and completion time varies based on the volume of data to be backfilled.
+
 To perform the operations in the background, you can execute `SET BACKGROUND_DDL=true;` before running the `CREATE MATERIALIZED VIEW` statement. See details in [`SET BACKGROUND_DDL`](/sql/commands/sql-set-background-ddl.md).
 :::
 
@@ -46,7 +31,7 @@ To perform the operations in the background, you can execute `SET BACKGROUND_DDL
 
 :::note
 
-Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive. See also [Identifiers](/sql/sql-identifiers.md).
 
 :::
 
@@ -60,3 +45,6 @@ The `ORDER BY` clause in the `CREATE MATERIALIZED VIEW` statement is allowed but
 Refer to this [tutorial](/tutorials/server-performance-anomaly-detection.md) for examples of creating materialized views based on external sources or existing materialized views.
 
 
+## See also
+
+- [Overview of data processing](/transform/overview.md)

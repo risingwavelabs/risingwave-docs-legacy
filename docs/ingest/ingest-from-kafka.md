@@ -8,6 +8,9 @@ slug: /ingest-from-kafka
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/ingest-from-kafka/" />
 </head>
 
+<!-- MDX imports -->
+import LightButton from "@site/src/components/LightButton";
+
 This topic describes how to connect RisingWave to a Kafka broker that you want to receive data from, and how to specify data formats, schemas, and security (encryption and authentication) settings.
 
 A source is a resource that RisingWave can read data from. You can create a source in RisingWave using the `CREATE SOURCE` command. When creating a source, you can choose to persist the data from the source in RisingWave by using the `CREATE TABLE` command and specifying the connection settings and data format.
@@ -19,13 +22,13 @@ RisingWave supports exactly-once semantics by reading transactional messages onl
 :::tip Guided setup
 RisingWave Cloud provides an intuitive guided setup for creating a Kafka source. For more information, see [Create a source using guided setup](/cloud/manage-sources/#using-guided-setup) in the RisingWave Cloud documentation.
 
-<lightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
+<LightButton text="Sign up for RisingWave Cloud" url="https://cloud.risingwave.com/auth/signup/" />
 :::
 
 ## Syntax
 
 ```sql
-CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
+CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [ schema_definition ]
 [INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
 WITH (
@@ -67,8 +70,9 @@ For tables with primary key constraints, if a new data record with an existing k
 |---|---|
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
-|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
+|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (read from low watermark) and `latest` (read from high watermark). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp.millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
+|group.id.prefix | Optional. Specify a custom group ID prefix for the source. The default prefix is `rw-consumer`. Each job (materialized view) will have a separate consumer group with a generated suffix in the group ID， so the format of the consumer group is `{group_id_prefix}-{fragment_id}`. This is used to monitor progress in external Kafka tools and for authorization purposes. RisingWave does not rely on committed offsets or join the consumer group. It only reports offsets to the group.|
 |properties.sync.call.timeout | Optional. Specify the timeout. By default, the timeout is 5 seconds.  |
 |properties.client.id|Optional. Client ID associated with the Kafka client. |
 
@@ -83,8 +87,7 @@ For tables with primary key constraints, if a new data record with an existing k
 |*schema.registry*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro data, you must specify a Confluent Schema Registry or an AWS Glue Schema Registry. For Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 |*schema.registry.username*|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
 |*schema.registry.password*|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
-|*schema.registry.name.strategy*|Optional. Accepts `topic_name_strategy` (default), `record_name_strategy`, `topic_record_name_strategy`. If it is set to either `record_name_strategy` or `topic_record_name_strategy`, the `message` parameter must also be set. It can only be specified with *schema.registry*. |
-|*access_key*|Required if loading descriptors from S3. The access key ID of AWS. | 
+|*access_key*|Required if loading descriptors from S3. The access key ID of AWS. |
 |*secret_key*|Required if loading descriptors from S3. The secret access key of AWS. |
 |*region*|Required if loading descriptors from S3. The AWS service region. |
 |*arn*|Optional. The Amazon Resource Name (ARN) of the role to assume. |
@@ -111,6 +114,11 @@ When creating a source in RisingWave, you can specify the following Kafka parame
 Set `properties.ssl.endpoint.identification.algorithm` to `none` to bypass the verification of CA certificates and resolve SSL handshake failure. This parameter can be set to either `https` or `none`. By default, it is `https`.
 :::
 
+### Specific parameters for Amazon MSK
+There are some specific parameters for Amazon Managed Streaming for Apache Kafka (MSK), please see
+[Access MSK in RisingWave](/guides/connector-amazon-msk.md#access-msk-in-risingwave) for more details.
+
+
 ## Examples
 
 Here are examples of connecting RisingWave to a Kafka broker to read data from individual topics.
@@ -126,7 +134,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="avro" label="Avro">
 
 ```sql
-CREATE SOURCE IF NOT EXISTS source_abc 
+CREATE SOURCE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    topic='demo_topic',
@@ -143,7 +151,7 @@ WITH (
 <TabItem value="upsert avro" label="Upsert Avro">
 
 ```sql
-CREATE TABLE IF NOT EXISTS source_abc 
+CREATE TABLE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    properties.bootstrap.server='localhost:9092',
@@ -205,7 +213,7 @@ WITH (
 <TabItem value="pb" label="Protobuf">
 
 ```sql
-CREATE SOURCE IF NOT EXISTS source_abc 
+CREATE SOURCE IF NOT EXISTS source_abc
 WITH (
    connector='kafka',
    topic='demo_topic',
@@ -238,7 +246,7 @@ WITH (
 
 - CSV header is not supported when creating a table with Kafka connector. Add the `without_header` option to the encode parameters.
 
-- The `delimiter` option specifies the delimiter character used in the CSV data. Set `delimiter = E'\t'` for tab-delimited data.
+- The `delimiter` option specifies the delimiter character used in the CSV data, and it can be one of `,`, `;`, `E'\t'`.
 
 </TabItem>
 <TabItem value="bytes" label="Bytes">
@@ -295,7 +303,7 @@ ENCODE data_encode (
 If a primary key also needs to be defined, use the table constraint syntax.
 
 ```sql
-CREATE TABLE table1 (PRIMARY KEY(id)) 
+CREATE TABLE table1 (PRIMARY KEY(id))
 ```
 
 ## Read schemas from Confluent Schema Registry
@@ -314,7 +322,7 @@ ENCODE data_encode (
 
 To learn more about Confluent Schema Registry and how to set up a Schema Registry, refer to the [Confluent Schema Registry documentation](https://docs.confluent.io/platform/current/schema-registry/index.html).
 
-To learn more about Karapace Schema Registry and how to get started, see [Get started with Karapace](https://aiven.io/docs/products/kafka/karapace/get-started). 
+To learn more about Karapace Schema Registry and how to get started, see [Get started with Karapace](https://aiven.io/docs/products/kafka/karapace/get-started).
 
 If a primary key also needs to be defined, use the table constraint syntax.
 
@@ -330,8 +338,8 @@ To learn about compatibility types for Schema Registry and the changes allowed, 
 
 ## Read schemas from AWS Glue Schema Registry
 
-:::note Premium Edition Feature
-This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team.
+:::tip Premium Edition Feature
+This feature is exclusive to RisingWave Premium Edition that offers advanced capabilities beyond the free versions. For a full list of premium features, see [RisingWave Premium Edition](/rw-premium-edition-intro.md). If you encounter any questions, please contact sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
 :::
 
 AWS Glue Schema Registry is a serverless feature of AWS Glue that allows you to centrally manage and enforce schemas for data streams, enabling data validation and compatibility checks. It helps in improving the quality of data streams by providing a central repository for managing and enforcing schemas across various AWS services and custom applications.
@@ -347,6 +355,7 @@ You can specify the following configurations in the `ENCODE AVRO (...)` clause t
 - `aws.credentials.secret_access_key`: Your AWS secret access key.
 
 - `aws.credentials.role.arn`: The Amazon Resource Name (ARN) of the role to assume. For example, `arn:aws:iam::123456123456:role/MyGlueRole`.
+  - This IAM role shall be granted permissions for the action `glue:GetSchemaVersion`.
 
 **ARN to the schema**:
 
@@ -643,7 +652,7 @@ This is an example of creating a materialized source authenticated with SASL/OAU
 CREATE TABLE IF NOT EXISTS source_6 (
    column1 varchar,
    column2 integer,
-)                  
+)
 WITH (
    connector='kafka',
    topic='quickstart-events',
@@ -658,10 +667,3 @@ WITH (
 </TabItem>
 
 </Tabs>
-
-
----
-
-:::note
-We have noticed that there is a frequently asked question about the Kafka source: why doesn't RisingWave accept the Kafka consumer group ID? We want to inform you that we are actively working on supporting this feature. You can look forward to using the Kafka consumer group ID with RisingWave soon.
-:::

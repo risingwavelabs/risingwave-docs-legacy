@@ -16,30 +16,6 @@ Use the `DROP SINK` command to remove a [sink](sql-create-sink.md) if you no lon
 DROP SINK [ IF EXISTS ] [schema_name.]sink_name [ CASCADE ];
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP SINK'),
-        rr.Optional(
-            rr.Terminal('IF EXISTS')
-        ),
-        rr.Optional(
-            rr.Sequence(
-                rr.NonTerminal('schema_name'),
-                rr.Terminal('.')
-            ),
-        ),
-        rr.NonTerminal('sink_name'),
-        rr.Optional(
-            rr.Terminal('CASCADE'), 'skip'
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 |Parameter                  | Description           |

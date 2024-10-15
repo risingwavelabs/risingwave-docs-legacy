@@ -23,7 +23,7 @@ You can ingest CDC data from PostgreSQL into RisingWave in two ways:
   :::
 
 - Using a CDC tool and a message broker
-  
+
   You can use a CDC tool then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/ingest/ingest-from-cdc.md) topic.
 
 ## Set up PostgreSQL
@@ -74,9 +74,9 @@ import TabItem from '@theme/TabItem';
     Run the following statements to grant the required privileges to the user.
 
     ```sql
-    GRANT CONNECT ON DATABASE <database_name> TO <username>;   
-    GRANT USAGE ON SCHEMA <schema_name> TO <username>;  
-    GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>; 
+    GRANT CONNECT ON DATABASE <database_name> TO <username>;
+    GRANT USAGE ON SCHEMA <schema_name> TO <username>;
+    GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>;
     GRANT CREATE ON DATABASE <database_name> TO <username>;
     ```
 
@@ -111,24 +111,15 @@ Here we will use a standard class instance without Multi-AZ deployment as an exa
 
 1. Check whether the `wal_level` parameter is set to `logical`. If it is `logical` then we are done. Otherwise, create a parameter group for your Postgres instance. We created a parameter group named **pg-cdc** for the instance that is running Postgres 12. Next, click the **pg-cdc** parameter group to edit the value of `rds.logical_replication` to 1.
 
-    <img
-    src={require('../images/wal-level.png').default}
-    alt="Change the wal-level for pg instance"
-    />
+    ![Change the wal-level for pg instance](../images/wal-level.png)
 
 2. Go to the **Databases** page and modify your instance to use the **pg-cdc** parameter group.
 
-    <img
-    src={require('../images/pg-cdc-parameter.png').default}
-    alt="Apply modified parameter group to pg instance"
-    />
+    ![Apply modified parameter group to pg instance](../images/pg-cdc-parameter.png)
 
 3. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save changes. Remember to reboot the Postgres instance to put the changes into effect.
 
-    <img
-    src={require('../images/modify-instances.png').default}
-    alt="Apply changes"
-    />
+    ![Apply changes](../images/modify-instances.png)
 
 4. Grant the RDS replication privileges to the user.
 
@@ -153,7 +144,7 @@ To ensure all data changes are captured, you must create a table and specify pri
  CREATE TABLE [ IF NOT EXISTS ] source_name (
     column_name data_type PRIMARY KEY , ...
     PRIMARY KEY ( column_name, ... )
- ) 
+ )
  WITH (
     connector='postgres-cdc',
     <field>=<value>, ...

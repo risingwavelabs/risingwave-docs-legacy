@@ -2,6 +2,7 @@
 id: query-syntax-with-clause
 slug: /query-syntax-with-clause
 title: WITH clause
+description: Add supplemental statements for a query.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-with-clause/" />

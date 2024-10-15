@@ -2,6 +2,7 @@
 id: query-syntax-having-clause
 slug: /query-syntax-having-clause
 title: HAVING clause
+description: Filter results based on specified conditions.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-having-clause/" />

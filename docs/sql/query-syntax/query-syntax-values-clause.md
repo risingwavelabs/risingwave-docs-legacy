@@ -2,6 +2,7 @@
 id: query-syntax-values-clause
 
 title: VALUES clause
+description: Generate one or more rows of data as a table expression.
 ---
 
 In RisingWave, the `VALUES` clause is used to generate one or more rows of data as a table expression. It is commonly used in SQL queries to create temporary tables or to insert data into a table.

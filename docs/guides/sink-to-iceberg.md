@@ -10,8 +10,8 @@ slug: /sink-to-iceberg
 
 This guide describes how to sink data from RisingWave to Apache Iceberg using the Iceberg sink connector in RisingWave. Apache Iceberg is a table format designed to support huge tables. For more information, see [Apache Iceberg](https://iceberg.apache.org).
 
-:::note Beta feature
-The Iceberg sink connector in RisingWave is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 ## Prerequisites
@@ -38,7 +38,7 @@ WITH (
 | --------------- | ---------------------------------------------------------------------- |
 | type            | Required. Allowed values: `appendonly` and `upsert`. |
 | force_append_only| Optional. If `true`, forces the sink to be `append-only`, even if it cannot be. |
-| s3.endpoint     | Optional. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be <http://${MINIO_HOST}:${MINIO_PORT>}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
+| s3.endpoint     | Optional. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be `http://${MINIO_HOST}:${MINIO_PORT}`. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
 | s3.region       | Optional. The region where the S3 bucket is hosted. Either `s3.endpoint` or `s3.region` must be specified.|
 | s3.access.key   | Required. Access key of the S3 compatible object store.|
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
@@ -49,7 +49,8 @@ WITH (
 | warehouse.path  | Conditional. The path of the Iceberg warehouse. Currently, only S3-compatible object storage systems, such as AWS S3 and MinIO, are supported. It's required if the `catalog.type` is not `rest`.|
 | catalog.url     | Conditional. The URL of the catalog. It is required when `catalog.type` is not `storage`. |
 | primary_key     | The primary key for an upsert sink. It is only applicable to the upsert mode. |
-| commit_checkpoint_interval | Optional. Commit every N checkpoints (N > 0). If not set, it commits to Iceberg at every checkpoint. |
+| commit_checkpoint_interval | Optional. Commit every N checkpoints (N > 0). Default value is 10. <br/>The behavior of this field also depends on the `sink_decouple` setting:<ul><li>If `sink_decouple` is true (the default), the default value of `commit_checkpoint_interval` is 10.</li> <li>If `sink_decouple` is set to false, the default value of `commit_checkpoint_interval` is 1.</li> <li>If `sink_decouple` is set to false and `commit_checkpoint_interval` is set to larger than 1, an error will occur.</li></ul> |
+| create_table_if_not_exists | Optional. When set to `true`, it will automatically create a table for the Iceberg sink. |
 
 ## Data type mapping
 
@@ -71,7 +72,9 @@ RisingWave converts risingwave data types from/to Iceberg according to the follo
 
 Iceberg supports these types of catalogs:
 
-- Storage catalog: The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system. 
+### Storage catalog
+
+The Storage catalog stores all metadata in the underlying file system, such as Hadoop or S3. Currently, we only support S3 as the underlying file system.
 
   ```sql title="Examples"
   create sink sink_demo_storage from t
@@ -91,7 +94,9 @@ Iceberg supports these types of catalogs:
   );
   ```
 
-- REST catalog: RisingWave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use RisingWave with Iceberg tables. 
+### REST catalog
+
+RisingWave supports the [REST catalog](https://iceberg.apache.org/concepts/catalog/#decoupling-using-the-rest-catalog), which acts as a proxy to other catalogs like Hive, JDBC, and Nessie catalog. This is the recommended approach to use RisingWave with Iceberg tables.
 
   ```sql title="Examples"
   create sink sink_demo_rest from t
@@ -112,7 +117,9 @@ Iceberg supports these types of catalogs:
   );
   ```
 
-- Hive catalog: RisingWave supports the Hive catalog. You need to set `catalog.type` to `hive` to use it. 
+### Hive catalog
+
+RisingWave supports the Hive catalog. You need to set `catalog.type` to `hive` to use it.
 
   ```sql title="Examples"
   create sink sink_demo_hive from t
@@ -133,7 +140,9 @@ Iceberg supports these types of catalogs:
   );
   ```
 
-- Jdbc Catalog: RisingWave supports the [JDBC catalog](https://iceberg.apache.org/docs/latest/jdbc/#configurations).
+### Jdbc catalog
+
+RisingWave supports the [JDBC catalog](https://iceberg.apache.org/docs/latest/jdbc/#configurations).
 
   ```sql title="Examples"
   create sink sink_demo_jdbc from t
@@ -156,7 +165,13 @@ Iceberg supports these types of catalogs:
   );
   ```
 
-- Glue Catalog: RisingWave supports the Glue catalog. You should use AWS S3 if you use the Glue catalog. Below are example codes for using this catalog:
+### Glue catalog
+
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
+RisingWave supports the Glue catalog. You should use AWS S3 if you use the Glue catalog. Below are example codes for using this catalog:
 
   ```sql title="Examples"
   create sink sink_test from t
@@ -203,7 +218,7 @@ spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.4_2.12:1.3.1,org
 
 CREATE TABLE demo.dev.`table`
 (
-  seq_id bigint, 
+  seq_id bigint,
   user_id bigint,
   user_name string
 ) TBLPROPERTIES ('format-version'='2')";
@@ -215,10 +230,10 @@ The following query creates an append-only source. For more details on creating 
 
 ```sql
 CREATE SOURCE s1_source (
-     seq_id bigint, 
+     seq_id bigint,
      user_id bigint,
      user_name varchar)
-WITH (                    
+WITH (
      connector = 'datagen',
      fields.seq_id.kind = 'sequence',
      fields.seq_id.start = '1',
@@ -236,10 +251,10 @@ Another option is to create an upsert table, which supports in-place updates. Fo
 
 ```sql
 CREATE TABLE s1_table (
-     seq_id bigint, 
+     seq_id bigint,
      user_id bigint,
      user_name varchar)
-WITH (                    
+WITH (
      connector = 'datagen',
      fields.seq_id.kind = 'sequence',
      fields.seq_id.start = '1',
@@ -258,7 +273,7 @@ WITH (
 If you have an append-only source and want to create an append-only sink, set `type = append-only` in the `CREATE SINK` SQL query.
 
 ```sql
-CREATE SINK s1_sink FROM s1_source
+CREATE SINK s1_sink FROM t1_table
 WITH (
     connector = 'iceberg',
     type = 'append-only',

@@ -2,6 +2,7 @@
 id: query-syntax-with-ordinality-clause
 slug: /query-syntax-with-ordinality-clause
 title: WITH ORDINALITY clause
+description: Add an additional integer column to the table.
 ---
 
 The `WITH ORDINALITY` clause can be used with set functions in the `FROM` clause of a query. An additional integer column will be added to the table, which numbers the rows returned by the function, starting from 1. By default, the generated column is named `ordinality`.

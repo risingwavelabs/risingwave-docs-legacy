@@ -12,10 +12,7 @@ This guide aims to help you identify the root causes of high latency and provide
 
 To identify barrier latency, navigate to the **Grafana dashboard (dev)** and access the **Streaming** section. From there, locate the **Barrier Latency** panel. The figure below is an example of what you will see. The latency curve in it is extremely high, indicating that the barrier is getting stuck.
 
-<img
-  src={require('../images/example_bad_barrier_latency.png').default}
-  alt="An example of extremely high latency"
-/>
+![An example of extremely high latency](../images/example_bad_barrier_latency.png)
 
 ## Diagnosis
 
@@ -51,10 +48,7 @@ When using a low-cardinality column as the equal condition for a join, such as `
 
 For example, the following figure shows a materialized view with extremely high latency caused by high join amplification. You can find this panel through **Grafana dashboard (dev)** > **Streaming** > **Join Executor Matched Rows**, which indicates the number of matched rows from the opposite side in the streaming join executors.
 
-<img
-  src={require('../images/example_high_join_matched_rows.png').default}
-  alt="An example of extremely high latency"
-/>
+![An example of extremely high latency](../images/example_high_join_matched_rows.png)
 
 To solve the issue, consider rewriting the SQL query to reduce join amplification, such as using better equal conditions on the problematic join to reduce the number of matched rows. See [Maintain wide table with table sinks](/transform/multiple-table-sink.md) for details.
 
@@ -66,9 +60,13 @@ hash_join_amplification: large rows matched for join key matched_rows_len=200000
 
 To address this problem, it is advisable to refactor the SQL query in order to minimize join amplification. This can be achieved by improving the equal conditions used in the problematic join, thereby reducing the number of matched rows.
 
+The downstream processing latency can spike as well, since the number of chunks going downstream will be amplified. This will turn the downstream executors into the main bottleneck. For example, in hash aggregation, a sudden update of numerous group keys takes a long time to process, as aggregation must occur for each key. To mitigate this, you can scale the cluster resource to parallelize the processing.
+
 ### Workaround for high join amplification
 
-Suppose there are several join keys that can trigger high join amplification. Currently, this leads to congestion in the entire job because a single key with high join amplification produces a large number of results, and they must be processed by a single actor in the join operator. Simply scaling the process doesn't solve the problem.
+If scaling up or out the resources doesn't work, the join actor itself might be the bottleneck.
+
+Suppose there are several join keys that can trigger high join amplification. This may lead to congestion in the entire job because a single key with high join amplification produces a large number of results, and they must be processed by a single actor in the join operator.
 
 Therefore, we can split the original MV into multiple MVs by adding filtering conditions. If the data pattern and workload allow such partitioning, this approach distributes data for the same key across multiple actors.
 

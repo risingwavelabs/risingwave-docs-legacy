@@ -14,10 +14,7 @@ Detecting performance anomalies in a large fleet of servers and responding as so
 
 A streaming system can be beneficial in this scenario. It monitors metric performance events in real time right after these events are received and instantly detects anomalies based on patterns defined in SQL queries. Once a performance issue is detected, a downstream micro-service can trigger an action to handle the issue.
 
-<img
-  src={require('../images/server_perf_architecture.png').default}
-  alt="Relations between cdn servers and devops"
-/>
+![Relations between cdn servers and devops](../images/server_perf_architecture.png)
 
 In this tutorial, you will learn how to automate anomaly detection from streams of system performance metrics with RisingWave. We have set up a demo cluster for this tutorial, so you can easily try it out.
 
@@ -163,10 +160,7 @@ Here is an example result.
 
 RisingWave supports creating materialized views based on materialized views. Materialized views used as the source are the upstream materialized views, while the materialized views created based on other materialized views are downstream materialized views. As the values of upstream materialized views change, downstream materialized views will change automatically.
 
-<img
-  src={require('../images/server_perf_mv_on_mv.png').default}
-  alt="MV on MV example"
-/>
+![MV on MV example](../images/server_perf_mv_on_mv.png)
 
 The following three materialized views use high_util_tcp_metrics as their source. The resulting materialized views include detected anomalies of different incidents. An anomaly is detected when the corresponding metric value for an incident is above or below a specific threshold.
 

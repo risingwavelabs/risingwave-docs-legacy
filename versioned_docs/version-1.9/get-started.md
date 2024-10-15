@@ -51,10 +51,6 @@ brew install risingwave
 risingwave
 ```
 
-### From a Web browser
-
-[https://playground.risingwave.dev/](https://playground.risingwave.dev/)
-
 ## Step 2: Connect to RisingWave
 
 Ensure you have `psql` installed in your environment. To learn about how to install it, see [Install `psql` without PostgreSQL](/guides/install-psql-without-full-postgres.md).

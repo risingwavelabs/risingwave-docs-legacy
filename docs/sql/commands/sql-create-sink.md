@@ -1,7 +1,7 @@
 ---
 id: sql-create-sink
 title: CREATE SINK
-description: Create a sink.
+description: Deliver data processed in RisingWave to sinks.
 slug: /sql-create-sink
 ---
 <head>
@@ -68,11 +68,10 @@ Click a sink name to see the SQL syntax, options, and sample statement of sinkin
 
 ## See also
 
-[`DROP SINK`](sql-drop-sink.md) — Remove a sink.
-
-[`SHOW CREATE SINK`](sql-show-create-sink.md) — Show the SQL statement used to create a sink.
-
-[`CREATE SINK INTO`](sql-create-sink-into.md) — Create a sink into RisingWave's table.
+- [`Overview of data delivery`](/data-delivery.md)
+- [`DROP SINK`](sql-drop-sink.md) — Remove a sink.
+- [`SHOW CREATE SINK`](sql-show-create-sink.md) — Show the SQL statement used to create a sink.
+- [`CREATE SINK INTO`](sql-create-sink-into.md) — Create a sink into RisingWave's table.
 
 :::note
 

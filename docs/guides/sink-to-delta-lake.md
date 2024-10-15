@@ -39,11 +39,11 @@ WITH (
 | --------------- | ---------------------------------------------------------------------- |
 | type            | Required. Currently, only `append-only` is supported. |
 | location        | Required. The file path that the Delta Lake table is reading data from, as specified when creating the Delta Lake table. <ul><li>For AWS, start with `s3://` or `s3a://`;</li><li>For GCS, start with `gs://`; </li><li>For local files, start with `file://`.</li></ul>|
-| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be <http://${MINIO_HOST}:${MINIO_PORT>}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html). </li></ul> |
+| s3.endpoint     | Required. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be `http://${MINIO_HOST}:${MINIO_PORT}`. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html). </li></ul> |
 | s3.access.key   | Required. Access key of the S3 compatible object store.|
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
 | gcs.service.account   | Required for GCS. Specifies the service account JSON file as a string.|
-| commit_checkpoint_interval | Optional. You can use this parameter to decouple the downstream system’s commit from RisingWave’s commit. This means that instead of committing data to the downstream system at every barrier, RisingWave will commit data only when the specified checkpoint interval is reached. For instance, if `commit_checkpoint_interval` is set to `5`, RisingWave will commit data every five checkpoints. The default value is `1`. Note that when `commit_checkpoint_interval` is a positive integer larger than `1`, the [`sink_decouple`](/data-delivery.md#sink-decoupling) option will be enabled automatically.|
+| commit_checkpoint_interval | Optional. Commit every N checkpoints (N > 0). Default value is 10. <br/>The behavior of this field also depends on the `sink_decouple` setting:<ul><li>If `sink_decouple` is true (the default), the default value of `commit_checkpoint_interval` is 10.</li> <li>If `sink_decouple` is set to false, the default value of `commit_checkpoint_interval` is 1.</li> <li>If `sink_decouple` is set to false and `commit_checkpoint_interval` is set to larger than 1, an error will occur.</li></ul>|
 
 ## Example
 
@@ -107,7 +107,7 @@ WITH (
 If you have an `append-only` source and want to create an `append-only` sink, set `type = append-only` in the `CREATE SINK` query.
 
 ```sql
-CREATE SINK s1_sink FROM s1_source
+CREATE SINK s1_sink FROM t1_table
 WITH (
     connector = 'deltalake',
     type = 'append-only',
@@ -120,7 +120,7 @@ WITH (
 
 #### Append-only sink from upsert table
 
-If you have a table or source that is not of type `append-only` and want to create an `append-only` sink, set `type = append-only` and set `force_append_only = true` in the `CREATE SINK` query.
+If you have a table that is not of type `append-only` and want to create an `append-only` sink, set `type = append-only` and set `force_append_only = true` in the `CREATE SINK` query.
 
 ```sql
 CREATE SINK s1_sink FROM s1_table

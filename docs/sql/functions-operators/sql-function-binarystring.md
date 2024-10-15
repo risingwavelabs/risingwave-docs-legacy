@@ -2,6 +2,7 @@
 id: sql-function-binarystring
 slug: /sql-function-binarystring
 title: Binary string functions and operators
+description: Handle binary data formats.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-binarystring/" />

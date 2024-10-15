@@ -2,6 +2,7 @@
 id: query-syntax-group-by-clause
 slug: /query-syntax-group-by-clause
 title: GROUP BY clause
+description: Group rows with similar values.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-group-by-clause/" />

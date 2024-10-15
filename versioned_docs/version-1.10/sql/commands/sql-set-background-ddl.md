@@ -12,7 +12,9 @@ slug: /sql-set-background-ddl
 The `SET BACKGROUND_DDL` command is currently in Beta. Please contact us if you encounter any issues or have feedback.
 :::
 
-Use the `SET BACKGROUND_DDL` command to run Data Definition Language (DDL) operations, such as creating materialized views in the background.
+Data Definition Language (DDL) commands, such as creating materialized views, will first **backfill** historical data from the referenced relations, and completion time varies based on the volume of data to be backfilled.
+
+You can use the `SET BACKGROUND_DDL` command to run DDL commands in the background.
 
 ## Syntax
 
@@ -20,13 +22,14 @@ Use the `SET BACKGROUND_DDL` command to run Data Definition Language (DDL) opera
 SET BACKGROUND_DDL = { true | false };
 ```
 
-- By default, `BACKGROUND_DDL` is set as `false` to disable it, meaning that DDL operations will execute in the foreground. The commands `CREATE MATERIALIZED VIEW ON TABLE`, `CREATE MATERIALIZED VIEW ON MATERIALIZED VIEW`, `CREATE MATERIALIZED VIEW ON SOURCE` and `CREATE SINK` will only be executed once the backfilling process is completed.
+- By default, `BACKGROUND_DDL` is set as `false` to disable it, meaning that DDL operations will execute in the foreground. The DDL commands will be blocking and only return until the backfill process is completed.
 
 - When `BACKGROUND_DDL` is set to `true`, any subsequent DDL operations will be executed in the background, allowing you to proceed with other tasks.
 
 ## Supported DDL operations
 
 - [CREATE MATERIALIZED VIEW](/sql/commands/sql-create-mv.md)
+- [CREATE SINK](/sql/commands/sql-create-sink.md)
 
 ## Persistence
 

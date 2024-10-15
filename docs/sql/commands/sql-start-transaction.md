@@ -1,14 +1,14 @@
 ---
 id: sql-start-transaction
 title: START TRANSACTION
-description: Start a transaction.
+description: Start a read-only transaction.
 slug: /sql-start-transaction
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-start-transaction/" />
 </head>
 
-RisingWave supports read-only transactions. You can use the `START TRANSACTION READ ONLY` command to start a read-only transaction. For more information about transactions in RisingWave, see [Transactions](/concepts/transactions.md).
+RisingWave supports read-only transactions. You can use the `START TRANSACTION READ ONLY` command to start a read-only transaction. For more information about transactions in RisingWave, see [Transactions](/archived/transactions.md).
 
 The `START TRANSACTION` command starts the read-write transaction mode, which is not supported yet in RisingWave. For compatibility reasons, this command will still succeed but no transaction is actually started. That is why you need to specify the `READ ONLY` option to start a transaction in read-only mode.
 
@@ -16,10 +16,9 @@ The `START TRANSACTION` command is the same as the `BEGIN` command.
 
 You can end a transaction by using the `COMMIT` command.
 
-:::caution Experimental feature
 
-Read-only transactions is currently an experimental feature in RisingWave, and its functionality is subject to change. We cannot guarantee its continued support in future releases, and it may be discontinued without notice. You may use this feature at your own risk.
-
+:::info Public Preview
+Read-only transactions is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 ## Syntax
@@ -27,17 +26,6 @@ Read-only transactions is currently an experimental feature in RisingWave, and i
 ```sql
 START TRANSACTION;
 ```
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('START TRANSACTION READ ONLY'),
-        rr.Terminal(';')
-    )
-);
-
-<drawer SVG={svg} />
 
 ## Example
 
@@ -49,6 +37,6 @@ START_TRANSACTION
 
 ## Related topics
 
-- [Transactions](/concepts/transactions.md)
+- [Transactions](/archived/transactions.md)
 - [BEGIN](/sql/commands/sql-begin.md)
 - [COMMIT](/sql/commands/sql-commit.md)

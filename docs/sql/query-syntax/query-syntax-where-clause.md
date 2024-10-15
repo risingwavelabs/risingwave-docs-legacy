@@ -2,6 +2,7 @@
 id: query-syntax-where-clause
 slug: /query-syntax-where-clause
 title: WHERE clause
+description: Specify any conditions or filters.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-where-clause/" />
@@ -33,18 +34,3 @@ GROUP BY department, job_title;
 This query results in a table with columns for department, job title, and average salary. Each row represents the average salary for a unique combination of department and job title, and only those groups with an average salary of at least $50,000 are returned.
 
 Notice that the `WHERE` clause comes before the `GROUP BY` clause in this example because the `WHERE` clause is used to filter the rows in a table before any aggregations are performed. In contrast, the `HAVING` clause filters data after aggregations are performed.
-
-<!-- Syntax diagram:
-
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal('WHERE'),
-      rr.NonTerminal('expression')
-   ),      
-)
-);
-
-<drawer SVG={svg} /> -->

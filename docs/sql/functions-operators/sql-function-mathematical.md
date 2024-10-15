@@ -2,6 +2,7 @@
 id: sql-function-mathematical
 slug: /sql-function-mathematical
 title: Mathematical functions and operators
+description: Perform numerical calculations and analysis.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/sql-function-mathematical/" />
@@ -11,21 +12,21 @@ title: Mathematical functions and operators
 
 | Operator | Expression & Description | Example |
 | ----------- | ----------- | ----------- |
-| + | `operand1 + operand2` <br /> Addition. | 1 + 2 → 3 |
-| - | `operand1 - operand2` <br /> Subtraction. | 1 - 2 → -1 |
-| - | `- operand` <br /> Negation. <br /> | - (-1) → 1 |
-| * | `operand1 * operand2` <br /> Multiplication. | 2 * 3 → 6 |
-| / | `operand1 / operand2` <br /> Division (results are truncated for integers). | 3 / 2 → 1 <br /> 3.0 / 2 → 1.5 <br />  3 / 1.8 → 1.666... |
-| % | `operand1 % operand2` <br /> Remainder (valid for smallint/int/bigint/numeric). | 3 % 2 → 1 |
-| ^ | `operand1 ^ operand2` <br /> Exponent. | 2.0 ^ -2 → 0.25 |
-| \|\|/ | <code>\|\|/ operand</code> <br /> Cube root.| \|\|/ 27 → 3 |
-| @ | `@ operand` <br /> Absolute value.  | @ -10 → 10|
-| & | `operand1 & operand2` <br /> Bitwise AND | 91 & 15 → 11 |
-| \| | <code>operand1 \| operand2</code> <br /> Bitwise OR | 32 \| 3 → 35|
-| # | `operand1 # operand2` <br /> Bitwise exclusive OR | 17 # 5 → 20 |
-| ~ | `~ operand` <br /> Bitwise NOT| ~1 → -2 |
-| << | `operand1 << operand2` <br /> Bitwise shift left | 1 << 4 → 16 |
-| >> | `operand1 >> operand2` <br /> Bitwise shift right | 8 >> 2 → 2 |
+| `+` | `operand1 + operand2` <br /> Addition. | `1 + 2 → 3` |
+| `-` | `operand1 - operand2` <br /> Subtraction. | `1 - 2 → -1` |
+| `-` | `- operand` <br /> Negation. <br /> | `- (-1) → 1` |
+| `*` | `operand1 * operand2` <br /> Multiplication. | `2 * 3 → 6` |
+| `/` | `operand1 / operand2` <br /> Division (results are truncated for integers). | `3 / 2 → 1` <br /> `3.0 / 2 → 1.5` <br /> `3 / 1.8 → 1.666` |
+| `%` | `operand1 % operand2` <br /> Remainder (valid for smallint/int/bigint/numeric). | `3 % 2 → 1` |
+| `^` | `operand1 ^ operand2` <br /> Exponent. | `2.0 ^ -2 → 0.25` |
+| `\|\|/` | <code>\|\|/ operand</code> <br /> Cube root. | `\|\|/ 27 → 3` |
+| `@` | `@ operand` <br /> Absolute value. | `@ -10 → 10` |
+| `&` | `operand1 & operand2` <br /> Bitwise AND | `91 & 15 → 11` |
+| `\|` | <code>operand1 \| operand2</code> <br /> Bitwise OR | `32 \| 3 → 35` |
+| `#` | `operand1 # operand2` <br /> Bitwise exclusive OR | `17 # 5 → 20` |
+| `~` | `~ operand` <br /> Bitwise NOT | `~1 → -2` |
+| `<<` | `operand1 << operand2` <br /> Bitwise shift left | `1 << 4 → 16` |
+| `>>` | `operand1 >> operand2` <br /> Bitwise shift right | `8 >> 2 → 2` |
 
 ## Mathematical functions
 

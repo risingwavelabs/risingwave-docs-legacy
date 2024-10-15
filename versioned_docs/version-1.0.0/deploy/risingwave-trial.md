@@ -8,10 +8,13 @@ slug: /risingwave-trial
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/risingwave-trial/" />
 </head>
 
-Select an installation or running method.
-
+<!-- MDX imports -->
+import DefaultButton from "@site/src/components/DefaultButton";
+import LightButton from "@site/src/components/LightButton";
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
+Select an installation or running method.
 
 <Tabs queryString="method">
 
@@ -24,7 +27,7 @@ RisingWave offers two running modes and several installation or running options.
 |**Purpose**|Quick tests|Advanced tests|
 |**Starts in**|A single-node instance|A full-featured, multi-node cluster|
 |**Data persistence**|Data is stored solely in memory and will not be persisted after the service is terminated.|Data is persisted in storage.|
-|**Choose a method to run RisingWave**|Try out from browser <br /><lightButton text="Playground" doc="risingwave-trial?method=playground" block />Install directly <lightButton text="Homebrew" doc="risingwave-trial?method=homebrew" block /><lightButton text="Binaries" doc="risingwave-trial?method=binaries" block />Run in container <lightButton text="Docker" doc="risingwave-trial?method=docker" block />|Set up a local cluster <lightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" block />|
+|**Choose a method to run RisingWave**|Try out from browser <br /><LightButton text="Playground" doc="risingwave-trial?method=playground" block />Install directly <LightButton text="Homebrew" doc="risingwave-trial?method=homebrew" block /><LightButton text="Binaries" doc="risingwave-trial?method=binaries" block />Run in container <LightButton text="Docker" doc="risingwave-trial?method=docker" block />|Set up a local cluster <LightButton text="Docker Compose" doc="risingwave-trial?method=docker-compose" block />|
 
 </TabItem>
 
@@ -38,7 +41,7 @@ Try out RisingWave without the need for any installation or setup with RisingWav
 RisingWave Playground is intended for quick testing purposes only. Your data will not persist after a session expires. Some functionality may be limited.
 :::
 
-<defaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
+<DefaultButton text="RisingWave Playground" url="https://playground.risingwave.dev" block/>
 
 <br/>
 
@@ -160,10 +163,7 @@ Notes about the `psql` options:
 
     1. Uncomment `use connector-node` in the risedev.yml file like below.
 
-    <img
-    src={require('../images/uncomment-connector-node.png').default}
-    alt="Edit risedev.yml file for connector node"
-    />
+    ![Edit risedev.yml file for connector node](../images/uncomment-connector-node.png)
 
   The connector node will now be enabled when you run RisingWave.
 

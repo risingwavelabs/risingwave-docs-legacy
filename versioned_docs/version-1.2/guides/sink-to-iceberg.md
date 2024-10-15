@@ -42,7 +42,7 @@ WITH (
 | --------------- | ---------------------------------------------------------------------- |
 | type            | Required. Currently only `appendonly` is supported. |
 | warehouse.path  | Required. The path of the Iceberg warehouse. Currently, only S3-compatible object store is supported, such as AWS S3, or MinIO.|
-| s3.endpoint     | Optional. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be <http://${MINIO_HOST}:${MINIO_PORT>}. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
+| s3.endpoint     | Optional. Endpoint of the S3. <ul><li>For MinIO object store backend, it should be `http://${MINIO_HOST}:${MINIO_PORT}`. </li><li>For AWS S3, refer to [S3](https://docs.aws.amazon.com/general/latest/gr/s3.html) </li></ul> |
 | s3.region       | Optional. The region where the S3 bucket is hosted. Either `s3.endpoint` or `s3.region` must be specified.|
 | s3.access.key   | Required. Access key of the S3 compatible object store.|
 | s3.secret.key   | Required. Secret key of the S3 compatible object store.|
@@ -92,7 +92,7 @@ spark-sql --packages org.apache.iceberg:iceberg-spark-runtime-3.4_2.12:1.3.1,org
     --e "drop table if exists demo.dev.`table`;
 CREATE TABLE demo.dev.`table`
 (
-  seq_id bigint, 
+  seq_id bigint,
   user_id bigint,
   user_name string
 ) TBLPROPERTIES ('format-version'='2')";
@@ -104,10 +104,10 @@ The following query creates an append-only source. For more details on creating 
 
 ```sql
 CREATE SOURCE s1_source (
-     seq_id bigint, 
+     seq_id bigint,
      user_id bigint,
      user_name varchar)
-WITH (                    
+WITH (
      connector = 'datagen',
      fields.seq_id.kind = 'sequence',
      fields.seq_id.start = '1',
@@ -125,10 +125,10 @@ Another option is to create an upsert table, which supports in-place updates. Fo
 
 ```sql
 CREATE TABLE s1_table (
-     seq_id bigint, 
+     seq_id bigint,
      user_id bigint,
      user_name varchar)
-WITH (                    
+WITH (
      connector = 'datagen',
      fields.seq_id.kind = 'sequence',
      fields.seq_id.start = '1',

@@ -16,28 +16,6 @@ Use the `DROP FUNCTION` command to remove an existing [user-defined function (UD
 DROP FUNCTION function_name [ ( argument_type [, ...] ) ] ;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-    rr.Sequence(
-        rr.Terminal('DROP FUNCTION'),
-        rr.NonTerminal('function_name'),
-        rr.Optional(
-            rr.Sequence(
-                rr.Terminal('('),
-                rr.OneOrMore(
-                    rr.NonTerminal('argument_type', 'skip'),
-                    ','
-                ),
-                rr.Terminal(')'),
-            ),
-        ),
-        rr.Terminal(';'),
-    )
-);
-
-<drawer SVG={svg} />
-
 | Parameter or clause           | Description                                           |
 |-------------------------------|-------------------------------------------------------|
 | *function_name*               | Name of the UDF you want to drop.           |
@@ -50,7 +28,7 @@ A function can be dropped using one of the following methods:
 - Full function signature:
 
     ```sql
-    DROP FUNCTION function_name ( argument_type [, ...] ); 
+    DROP FUNCTION function_name ( argument_type [, ...] );
     ```
 
 - Function name only, if it's unique in its schema:
@@ -104,7 +82,7 @@ DROP FUNCTION f1(int);
 Now, `f1(int,int)` is the only function named `f1`, you can drop it by name or full signature:
 
 ```sql
-DROP FUNCTION f1; 
+DROP FUNCTION f1;
 -- Or DROP FUNCTION f1(int,int);
 ```
 

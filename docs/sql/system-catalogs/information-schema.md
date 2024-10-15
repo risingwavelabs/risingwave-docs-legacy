@@ -2,6 +2,7 @@
 id: information-schema
 slug: /information-schema
 title: Information schema
+description: Information about objects in the current database.
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/information-schema/" />

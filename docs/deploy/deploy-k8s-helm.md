@@ -14,7 +14,7 @@ This guide walks you through the process of deploying RisingWave in a single Kub
 
 - Ensure you have Helm 3.7 + installed in your environment. For details about how to install Helm, see the [Helm documentation](https://helm.sh/docs/intro/install/).
 - Ensure you have [Kubernetes](https://kubernetes.io/) 1.24 or higher installed in your environment.
-- Ensure you allocate enough resources for the deployment, and use the recommended disks for etcd. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
+- Ensure you allocate enough resources for the deployment. For details, see [Hardware requirements](/deploy/hardware-requirements.md).
 
 ## Step 1: Start Kubernetes
 
@@ -26,27 +26,27 @@ Now start a RisingWave cluster with Helm.
 
 1. Add the RisingWave Helm chart repository:
 
-  ```bash
-  helm repo add risingwavelabs https://risingwavelabs.github.io/helm-charts/ --force-update
-  ```
+    ```bash
+    helm repo add risingwavelabs https://risingwavelabs.github.io/helm-charts/ --force-update
+    ```
 
 2. Update your Helm chart repositories to ensure that you are using the RisingWave Helm chart:
 
-  ```bash
-  helm repo update
-  ```
+    ```bash
+    helm repo update
+    ```
 
-  If you are using AWS EKS, you also need to update the local configuration for kubectl and Helm to access your EKS cluster:
+    If you are using AWS EKS, you also need to update the local configuration for kubectl and Helm to access your EKS cluster:
 
-  ```bash
-  aws eks update-kubeconfig --name <your_eks_cluster_name>
-  ```
+    ```bash
+    aws eks update-kubeconfig --name <your_eks_cluster_name>
+    ```
 
 3. Create a RisingWave namespace. We recommend creating a dedicated namespace for RisingWave resources.
 
-  ```bash
-  kubectl create namespace risingwave
-  ```
+    ```bash
+    kubectl create namespace risingwave
+    ```
 
 4. Customize your configuration for the RisingWave deployment by editing the [`values.yml`](https://github.com/risingwavelabs/helm-charts/blob/main/charts/risingwave/values.yaml) file.
 
@@ -54,11 +54,11 @@ Now start a RisingWave cluster with Helm.
 
     - **Customize state store**: The state store in RisingWave serves as a fault-tolerant storage system for preserving system state. See [Configuration](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#customize-state-store) for all the available options and [Examples](https://github.com/risingwavelabs/helm-charts/tree/main/examples/state-stores) for detailed usage of state stores.
 
-    - **Bundled etcd and MinIO**: If you want to use `etcd` as the meta store and `MinIO` as the state store, the Helm chart for RisingWave offers the option to bundle them together. This allows for a quick and easy setup of the Helm chart. See [Configuration](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#bundled-etcdminio-as-stores) for more details. To enable this feature, set `tags.bundle=true`.
+    - **Bundled PostgreSQL and MinIO**: If you want to use `PostgreSQL` as the meta store and `MinIO` as the state store, the Helm chart for RisingWave offers the option to bundle them together. This allows for a quick and easy setup of the Helm chart. See [Configuration](https://github.com/risingwavelabs/helm-charts/blob/main/docs/CONFIGURATION.md#bundled-etcdpostgresqlminio-as-stores) for more details. To enable this feature, set `tags.bundle=true`.
 
-  :::note
-  Before using the bundled `etcd` and `MinIO`, and any local stores, ensure that you have implemented the [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
-  :::
+    :::note
+    Before using the bundled `PostgreSQL` and `MinIO`, and any local stores, ensure that you have implemented the [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
+    :::
 
 5. Install the latest RisingWave Helm chart:
 
@@ -87,21 +87,21 @@ Now start a RisingWave cluster with Helm.
 
 6. Use the following command to check the deployment status:
 
-  ```bash
-  kubectl -n risingwave get pods -l app.kubernetes.io/instance=<my-risingwave>
-  ```
+    ```bash
+    kubectl -n risingwave get pods -l app.kubernetes.io/instance=<my-risingwave>
+    ```
 
-  When your status looks like below, it means the RisingWave cluster starts successfully:
+    When your status looks like below, it means the RisingWave cluster starts successfully:
 
-  ```
-  NAME                                   READY   STATUS    RESTARTS        AGE
-  risingwave-compactor-8dd799db6-hdjjz   1/1     Running   1 (8m33s ago)   11m
-  risingwave-compute-0                   2/2     Running   0               11m
-  risingwave-etcd-0                      1/1     Running   0               11m
-  risingwave-frontend-7bd7b8c856-czdgd   1/1     Running   1 (8m33s ago)   11m
-  risingwave-meta-0                      1/1     Running   0               11m
-  risingwave-minio-5cfd8f5f64-6msqm      1/1     Running   0               11m
-  ```
+    ```
+    NAME                                   READY   STATUS    RESTARTS        AGE
+    risingwave-compactor-8dd799db6-hdjjz   1/1     Running   1 (8m33s ago)   11m
+    risingwave-compute-0                   2/2     Running   0               11m
+    risingwave-postgresql-0                1/1     Running   0               11m
+    risingwave-frontend-7bd7b8c856-czdgd   1/1     Running   1 (8m33s ago)   11m
+    risingwave-meta-0                      1/1     Running   0               11m
+    risingwave-minio-5cfd8f5f64-6msqm      1/1     Running   0               11m
+    ```
 
 ## Step 3: Access RisingWave
 
@@ -119,7 +119,9 @@ You can then connect to RisingWave using a PostgreSQL client on port 4567. For e
 psql -h localhost -p 4567 -d dev -U root
 ```
 
-You can monitor the RisingWave cluster using the monitoring stack. For details, see [Monitoring a RisingWave cluster](/manage/monitor-risingwave-cluster.md).
+## Step 4: Monitor performance
+
+You can monitor the RisingWave cluster using the monitoring stack via Prometheus and Grafana. For details, see [Monitoring a RisingWave cluster](/manage/monitor-risingwave-cluster.md).
 
 ## Optional: Resize a node
 

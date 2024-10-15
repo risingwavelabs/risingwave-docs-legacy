@@ -10,7 +10,7 @@
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, and then delivering the changes to a downstream service in real time.
 
-RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, 14, and 15 of PostgreSQL are supported.
+RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, 14, 15, and 16 of PostgreSQL are supported.
 
 You can ingest CDC data from PostgreSQL into RisingWave in two ways:
 
@@ -19,7 +19,7 @@ You can ingest CDC data from PostgreSQL into RisingWave in two ways:
   With this connector, RisingWave can connect to PostgreSQL databases directly to obtain data from the binlog without starting additional services.
 
 - Using a CDC tool and a message broker
-  
+
   You can use a CDC tool and then use the Kafka, Pulsar, or Kinesis connector to send the CDC data to RisingWave. For more details, see the [Create source via event streaming systems](/ingest/ingest-from-cdc.md) topic.
 
 ## Set up PostgreSQL
@@ -45,7 +45,7 @@ import TabItem from '@theme/TabItem';
     Keep in mind that changing the `wal_level` requires a restart of the PostgreSQL instance and can affect database performance.
 
     :::note
-    If you choose to create multiple CDC tables without using a shared source, be sure to set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 10. 
+    If you choose to create multiple CDC tables without using a shared source, be sure to set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 10.
     :::
 
 2. Assign `REPLICATION`, `LOGIN`，and `CREATEDB` role attributes to the user.
@@ -74,9 +74,9 @@ import TabItem from '@theme/TabItem';
     Run the following statements to grant the required privileges to the user.
 
     ```sql
-    GRANT CONNECT ON DATABASE <database_name> TO <username>;   
-    GRANT USAGE ON SCHEMA <schema_name> TO <username>;  
-    GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>; 
+    GRANT CONNECT ON DATABASE <database_name> TO <username>;
+    GRANT USAGE ON SCHEMA <schema_name> TO <username>;
+    GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <username>;
     GRANT CREATE ON DATABASE <database_name> TO <username>;
     ```
 
@@ -111,30 +111,21 @@ Here we will use a standard class AWS RDS PostgreSQL instance without Multi-AZ d
 
 1. Check whether the `wal_level` parameter is set to `logical`. If it is `logical` then we are done. Otherwise, create a parameter group for your   Postgres instance. We created a parameter group named **pg-cdc** for the instance that is running Postgres 12. Next, click the **pg-cdc** parameter group to edit the value of `rds.logical_replication` to 1.
 
-    If you choose to create multiple CDC tables without using a shared source, set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 20 for versions 13 and later. 
+    If you choose to create multiple CDC tables without using a shared source, set `max_wal_senders` to be greater than or equal to the number of synced tables. By default, `max_wal_senders` is 20 for versions 13 and later.
 
     :::note
     There is a known issue regarding the WAL write-through cache of AWS Aurora PostgreSQL, which leads to data loss. This affects Aurora PostgreSQL versions 14.5, 13.8, 12.12, and 11.17. To avoid this, set the `rds.logical_wal_cache` parameter to 0.
     :::
 
-    <img
-    src={require('../images/wal-level.png').default}
-    alt="Change the wal-level for pg instance"
-    />
+    ![Change the wal-level for pg instance](../images/wal-level.png)
 
 2. Go to the **Databases** page and modify your instance to use the **pg-cdc** parameter group.
 
-    <img
-    src={require('../images/pg-cdc-parameter.png').default}
-    alt="Apply modified parameter group to pg instance"
-    />
+    ![Apply modified parameter group to pg instance](../images/pg-cdc-parameter.png)
 
 3. Click **Continue** and choose **Apply immediately**. Finally, click **Modify DB instance** to save changes. Remember to reboot the Postgres instance to put the changes into effect.
 
-    <img
-    src={require('../images/modify-instances.png').default}
-    alt="Apply changes"
-    />
+    ![Apply changes](../images/modify-instances.png)
 
 4. Grant the RDS replication privileges to the user.
 
@@ -142,6 +133,23 @@ Here we will use a standard class AWS RDS PostgreSQL instance without Multi-AZ d
     GRANT rds_replication TO <username>;
     ```
 
+</TabItem>
+<TabItem value="Google Cloud SQL" label="Google Cloud SQL">
+
+To enable logical replication on Google Cloud SQL, follow these steps:
+
+1. Go to Google Cloud Console, locate your Cloud SQL instance and set `cloudsql.logical_decoding` parameter to `On`:
+  ![Set parameter to on](../images/google-cloud-sql-1.png)
+
+2. Go to **Connections** > **Networking**, authorize RisingWave to connect to Cloud SQL using the network CIDR：
+  ![Authorize to connect](../images/google-cloud-sql-2.png)
+
+3. For Cloud SQL PostgreSQL instance, ensure the PostgreSQL user intended for replication has the necessary permissions:
+
+  ```sql
+  ALTER ROLE postgres REPLICATION;
+  ```
+ 
 </TabItem>
 </Tabs>
 
@@ -164,21 +172,21 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
 );
 ```
 
-Syntax for creating a CDC table based on the shared source. Note that a primary key is required and must be consistent with the upstream table.
+Please see below for the syntax for creating a CDC table based on the shared source. Note that a primary key is required and must be consistent with the upstream table. You must also specify the Postgres table name (`pg_table_name`) which you are selecting from.
 
 ```sql
 CREATE TABLE [ IF NOT EXISTS ] table_name (
    column_name data_type PRIMARY KEY , ...
    PRIMARY KEY ( column_name, ... )
-) 
+)
 [ INCLUDE timestamp AS column_name ]
 WITH (
-    snapshot='true' 
+    snapshot='true'
 )
-FROM source_name TABLE table_name;
+FROM source_name TABLE pg_table_name;
 ```
 
-To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it. 
+To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it.
 
 ### Connector parameters
 
@@ -193,11 +201,12 @@ Unless specified otherwise, the fields listed are required. Note that the value 
 |database.name| Name of the database.|
 |schema.name| Optional. Name of the schema. By default, the value is `public`. |
 |table.name| Name of the table that you want to ingest data from. |
-|slot.name| Optional. The [replication slot](https://www.postgresql.org/docs/14/logicaldecoding-explanation.html#LOGICALDECODING-REPLICATION-SLOTS) for this PostgreSQL source. By default, a unique slot name will be randomly generated. Each source should have a unique slot name.|
-|ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with Postgres. It accepts three values: `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.|
+|slot.name| Optional. The [replication slot](https://www.postgresql.org/docs/14/logicaldecoding-explanation.html#LOGICALDECODING-REPLICATION-SLOTS) for this PostgreSQL source. By default, a unique slot name will be randomly generated. Each source should have a unique slot name. Valid replication slot names must contain only lowercase letters, numbers, and underscores, and be no longer than 63 characters.|
+|ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with Postgres. Accepted values are `disabled`, `preferred`, `required`, `verify-ca`, and `verify-full`. The default value is `disabled`. <ul><li>When set to `required`, it enforces TLS for establishing a connection; </li><li>When set to `verify-ca`, it verifies that the server is trustworthy by checking the certificate chain up to the root certificate stored on the client;</li><li>When set to `verify-full`, it verifies the certificate and also ensures the server hostname matches the name in the certificate.</li></ul> |
+| ssl.root.cert | Optional. Specify the root certificate secret. You must [create secret](/deploy/manage-secrets.md#create-secrets) first and then use it here.|
 |publication.name| Optional. Name of the publication. By default, the value is `rw_publication`. For more information, see [Multiple CDC source tables](#multiple-cdc-source-tables). |
 |publication.create.enable| Optional. By default, the value is `'true'`. If `publication.name` does not exist and this value is `'true'`, a `publication.name` will be created. If `publication.name` does not exist and this value is `'false'`, an error will be returned. |
-|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For details, see [Transaction within a CDC table](/concepts/transactions.md#transactions-within-a-cdc-table).|
+|transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For performance considerations, transactions involving changes to more than 4096 rows cannot be guaranteed.|
 
 :::note
 RisingWave implements CDC via PostgreSQL replication. Inspect the current progress via the [`pg_replication_slots`](https://www.postgresql.org/docs/14/view-pg-replication-slots.html) view. Remove inactive replication slots via [`pg_drop_replication_slot()`](https://www.postgresql.org/docs/current/functions-admin.html#:~:text=pg_drop_replication_slot). RisingWave does not automatically drop inactive replication slots. You must do this manually to prevent WAL files from accumulating in the upstream PostgreSQL database.
@@ -233,7 +242,7 @@ You can see the [INCLUDE clause](/ingest/include-clause.md) for more details.
 
 #### Debezium parameters
 
-[Debezium v2.4 connector configuration properties](https://debezium.io/documentation/reference/2.4/connectors/postgresql.html#postgresql-advanced-configuration-properties) can also be specified under the `WITH` clause when creating a table or shared source. Add the prefix `debezium.` to the connector property you want to include.
+[Debezium v2.6 connector configuration properties](https://debezium.io/documentation/reference/2.6/connectors/postgresql.html#postgresql-advanced-configuration-properties) can also be specified under the `WITH` clause when creating a table or shared source. Add the prefix `debezium.` to the connector property you want to include.
 
 For instance, to skip unknown DDL statements, specify the `schema.history.internal.skip.unparseable.ddl` parameter as `debezium.schema.history.internal.skip.unparseable.ddl`.
 
@@ -297,9 +306,9 @@ CREATE SOURCE pg_mydb WITH (
 );
 ```
 
-With the source created, you can create multiple CDC tables that ingest data from different tables and schemas in the upstream database without needing to specify the database connection parameters again. 
+With the source created, you can create multiple CDC tables that ingest data from different tables and schemas in the upstream database without needing to specify the database connection parameters again.
 
-For instance, the following CDC table in RisingWave ingests data from table `tt3` in the schema `public`. When specifying the PostgreSQL table name in the `FROM` clause after the keyword `TABLE`, the schema name must also be specified. 
+For instance, the following CDC table in RisingWave ingests data from table `tt3` in the schema `public`. When specifying the PostgreSQL table name in the `FROM` clause after the keyword `TABLE`, the schema name must also be specified.
 
 ```sql
 CREATE TABLE tt3 (
@@ -407,6 +416,14 @@ CREATE TABLE {{ this }} (
 
 ## Automatically map upstream table schema
 
+:::tip Premium Edition Feature
+This feature is only available in the premium edition of RisingWave. The premium edition offers additional advanced features and capabilities beyond the free and community editions. If you have any questions about upgrading to the premium edition, please contact our sales team at [sales@risingwave-labs.com](mailto:sales@risingwave-labs.com).
+:::
+
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
 RisingWave supports automatically mapping the upstream table schema when creating a CDC table from a PostgreSQL CDC source. Instead of defining columns individually, you can use `*` when creating a table to ingest all columns from the source table. Note that `*` cannot be used if other columns are specified in the table creation process.
 
 Below is an example to create a table that ingests all columns from the upstream table from the PostgreSQL database:
@@ -431,7 +448,25 @@ And this it the output of `DESCRIBE supplier;`
  distribution key  | s_suppkey         |           |
  table description | supplier          |           |
 (10 rows)
-``` 
+```
+
+## Ingest data from a partitioned table
+
+:::info Public Preview
+This feature is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
+:::
+
+RisingWave supports ingesting data from a partitioned table. To configure a publication for your CDC stream, note that PostgreSQL, by default, creates publications with `publish_via_partition_root = false`. This setting causes replication slot events to contain separate events for each partition, rather than for the root partitioned table.
+
+If you need to read from the partitioned table, you should explicitly set this property to `TRUE` when creating a publication. Execute the following command in your upstream PostgreSQL database:
+
+```sql
+CREATE PUBLICATION publication_name FOR table_name WITH (publish_via_partition_root = true);
+```
+
+If you let RisingWave create the publication, it will automatically set `publish_via_partition_root = true`.
+
+Please be aware that PostgreSQL does not support adding both a partitioned table and its individual partitions to the same publication; however, it does not generate an error if attempted. If you need to ingest data from both the root table and its partitions, you should create separate publications for each. Otherwise, you will not be able to read from the table partitions. Meanwhile, in RisingWave, you should create separate sources with dedicated publication names for the partitioned table and its partitions.
 
 ## Monitor the progress of direct CDC
 
@@ -487,9 +522,9 @@ The Postgres connector commits offsets to the upstream database, allowing Postgr
 To check WAL accumulation on the upstream Postgres server, run this SQL query on upstream Postgres:
 
 ```sql
-SELECT slot_name, 
-       pg_wal_lsn_diff(pg_current_wal_lsn(), restart_lsn) AS raw, 
-       pg_size_pretty(pg_wal_lsn_diff(pg_current_wal_lsn(), restart_lsn)) AS replicationSlotLag, 
-       active 
+SELECT slot_name,
+       pg_wal_lsn_diff(pg_current_wal_lsn(), restart_lsn) AS raw,
+       pg_size_pretty(pg_wal_lsn_diff(pg_current_wal_lsn(), restart_lsn)) AS replicationSlotLag,
+       active
 FROM pg_replication_slots;
 ```

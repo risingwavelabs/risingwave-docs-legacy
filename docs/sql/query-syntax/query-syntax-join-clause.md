@@ -2,10 +2,13 @@
 id: query-syntax-join-clause
 slug: /query-syntax-join-clause
 title: Joins
+Description: Combine the results of tables by matching column values.
+
 ---
 <head>
   <link rel="canonical" href="https://docs.risingwave.com/docs/current/query-syntax-join-clause/" />
 </head>
+
 
 A JOIN clause, also known as a join, combines the results of two or more table expressions based on certain conditions, such as whether the values of some columns are equal.
 
@@ -66,9 +69,11 @@ A full outer join (or simply, full join) returns all rows when there is a match 
 <table_expression> NATURAL FULL [ OUTER ] JOIN <table_expression>;
 ```
 
-## Windows joins
+## Window joins
 
-In a regular join (that is, a join without time attributes), the join state may grow without restriction. If you only need to get windowed results of two sources, you can segment data in the sources into time windows, and join matching windows from the two sources. To create a window join, the same time window functions must be used, and the window size must be the same.
+In a regular join (that is, a join without time attributes), the join state may grow without restriction. If you only need to get windowed results of two sources, you can segment data in the sources into time windows, and join matching windows from the two sources. To create a window join, the same [time window functions](../functions-operators/sql-function-time-window.md) must be used, and the window size must be the same.
+
+![An example of tumble window join](../../images/join/window-join.png)
 
 The syntax of a window join is:
 
@@ -87,7 +92,6 @@ CREATE SOURCE s1 (
  ts TIMESTAMP, 
  WATERMARK FOR ts AS ts - INTERVAL '20' SECOND
 ) WITH (connector = 'datagen');
-
 
 CREATE SOURCE s2 (
  id int, 
@@ -110,9 +114,25 @@ JOIN TUMBLE(s2, ts, interval '1' MINUTE)
 ON s1.id = s2.id and s1.window_start = s2.window_start;
 ```
 
+This query will join the two sources `s1` and `s2` based on the `id` column and the window start time. For the unclosed windows, the join result will be updated immediately when new data arrives.
+
+### State cleaning
+
+Usually, a join operator will maintain all the existing rows for both sides in the internal state table. However, if a window join satisfies the following conditions:
+
+- Both sides are defined with watermark.
+- Both of the time window functions are defined on their watermark columns respectively.
+- The join condition includes the equality condition on the watermark columns.
+
+Then, RisingWave will automatically clean up the state for the expired windows. The example above satisfies these conditions, so the join state will be cleaned up automatically after the 1-minute watermark passes.
+
+See [Watermarks](transform/watermarks.md) for more information on watermarks.
+
 ## Interval joins
 
 Window joins require that the two sources have the same window type and window size. This requirement can be too strict in some scenarios. If you want to join two sources that have some time offset, you can create an interval join by specifying an accepted interval range based on watermarks.
+
+![Interval join](../../images/join/interval-join.png)
 
 The syntax of an interval join is:
 
@@ -120,7 +140,7 @@ The syntax of an interval join is:
 <table_expression> JOIN <table_expression> ON <equality_join_condition> AND <interval_condition> ...;
 ```
 
-In an interval join, the `interval_condition` must be a watermark-based range.
+In an interval join, the `interval_condition` is a range condition based on the timestamps of the two table expressions, such as `s1.ts BETWEEN s2.ts [- <time_interval>] AND s2.ts [+ <time_interval>]`.
 
 For example, for sources `s1` and `s2` used in the above section, you can create an interval join:
 
@@ -131,16 +151,22 @@ SELECT s1.id AS id1,
        s2.id AS id2,
        s2.value AS value2
 FROM s1 JOIN s2
-ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1' MINUTE;
+ON s1.id = s2.id and s1.ts between s2.ts and s2.ts + INTERVAL '1 minute';
 ```
+
+This query will join the two sources `s1` and `s2` based on the `id` column and the time range. For the unclosed windows, the join result will be updated immediately when new data arrive.
+
+### State Cleaning
+
+Interval join‘s state cleaning is triggered only when upstream messages arrive, and it operates at the granularity of each join key. As a result, if no messages are received for a join key, the state may still hold stale data.
 
 ## Process-time temporal joins
 
-Process-time temporal joins are divided into two categories: append-only process-time temporal join and non-append-only process-time temporal join. Check the following instructions for their differences.
+A process-time temporal join is a join that uses the process time of the left-hand side (LHS) table to look up the right-hand side (RHS) table. The latest value at the moment of joining from the RHS table is used.
 
-### Append-only process-time temporal join
+![An example of process-time temporal join](../../images/join/process-time-temporal-join.png)
 
-An append-only temporal join is often used to widen a fact table. Its advantage is that it does not require RisingWave to maintain the join state, making it suitable for scenarios where the dimension table is not updated, or where updates to the dimension table do not affect the previously joined results. To further improve performance, you can use the index of a dimension table to form a join with the fact table.
+Different from regular joins, the changes in the RHS table are not reflected in the join result. The join result is only updated when the LHS table changes.
 
 #### Syntax
 
@@ -152,15 +178,15 @@ ON <join_conditions>;
 
 #### Notes
 
-- The left table expression is an append-only table or source.
+- The left table expression is a table or source.
 - The right table expression is a table, index or materialized view.
 - The process-time syntax `FOR SYSTEM_TIME AS OF PROCTIME()` is included in the right table expression.
 - The join type is INNER JOIN or LEFT JOIN.
-- The Join condition includes the primary key of the right table expression.
+- The Join condition includes the primary key or index key of the right table expression. Please create an index on the right table expression if necessary.
 
 #### Example
 
-If you have an append-only stream that includes messages like below:
+If you have a source that emits messages like below:
 
 | transaction_id | product_id | quantity | sale_date  | process_time        |
 |----------------|------------|----------|------------|---------------------|
@@ -168,14 +194,26 @@ If you have an append-only stream that includes messages like below:
 | 2              | 102        | 2        | 2023-06-19 | 2023-06-19 15:30:00 |
 | 3              | 101        | 1        | 2023-06-20 | 2023-06-20 11:45:00 |
 
-And a versioned table `products`:
+Assuming the data of `products` is as follows at 2023-06-18 10:15:00 (process time of transaction 1) 
 
-| id | product_name | price | valid_from          | valid_to            |
-|------------|--------------|-------|---------------------|---------------------|
-| 101        | Product A    | 20    | 2023-06-01 00:00:00 | 2023-06-15 23:59:59 |
-| 101        | Product A    | 25    | 2023-06-16 00:00:00 | 2023-06-19 23:59:59 |
-| 101        | Product A    | 22    | 2023-06-20 00:00:00 | NULL                |
-| 102        | Product B    | 15    | 2023-06-01 00:00:00 | NULL                |
+| id | product_name | price |
+|----|--------------|-------|
+| 101 | Product A    | 25    |
+| 102 | Product B    | 15    |
+
+At 2023-06-19 15:30:00 (process time of transaction 2):
+
+| id | product_name | price |
+|----|--------------|-------|
+| 101 | Product A    | 22    |
+| 102 | Product B    | 15    |
+
+At 2023-06-20 11:45:00 (process time of transaction 3):
+
+| id | product_name | price |
+|----|--------------|-------|
+| 101 | Product A    | 22    |
+| 102 | Product B    | 18    |
 
 For the same product ID, the product name or the price is updated from time to time.
 
@@ -185,7 +223,7 @@ You can use a temporal join to fetch the latest product name and price from the 
 SELECT transaction_id, product_id, quantity, sale_date, product_name, price 
 FROM sales
 JOIN products FOR SYSTEM_TIME AS OF PROCTIME()
-ON product_id = id WHERE process_time BETWEEN valid_from AND valid_to;
+ON product_id = id;
 ```
 
 | transaction_id | product_id | quantity | sale_date  | product_name | price |
@@ -194,34 +232,29 @@ ON product_id = id WHERE process_time BETWEEN valid_from AND valid_to;
 | 2              | 102        | 2        | 2023-06-19 | Product B    | 15    |
 | 3              | 101        | 1        | 2023-06-20 | Product A    | 22    |
 
-### Non-append-only process-time temporal join
+Notice that the Product A's price is 25 at the time of transaction 1 and 22 at the time of transaction 3.
 
-Compared to the append-only temporal join, the non-append-only temporal join can accommodate non-append-only input for the left table. However, it introduces an internal state to materialize the lookup result for each left-hand side (LHS) insertion. This allows the temporal join operator to retract the join result it sends downstream when update or delete messages arrive.
+### Internal state
 
-#### Syntax
+Depending on LHS, the process-time temporal join may or may not maintain the internal state. 
 
-The non-append-only temporal join shares the same syntax as the append-only temporal join.
+- If the LHS is append-only i.e. a source, the join operator does not maintain the internal state.
+- If the LHS is non-append-only i.e. a table or materialized view, the join operator must maintain the internal state of previous lookup results. This is because the historical values of the RHS table are needed to emit a corresponding delete event when a row from the LHS is deleted.
 
-```sql
-<table_expression> [ LEFT | INNER ] JOIN <table_expression> FOR SYSTEM_TIME AS OF PROCTIME() ON <join_conditions>;
-```
-
-#### Example
-
-Now if you update the table `sales`:
+You may inspect it with the `EXPLAIN` command. For example, the following query's LHS is a source, so the join operator does not keep the internal state, as indicated by `append_only: true`.
 
 ```sql
-UPDATE sales SET quantity = quantity + 1;
+EXPLAIN CREATE MATERIALIZED VIEW mv1 AS
+select id1, a1, id2, a2 from stream, version FOR SYSTEM_TIME AS OF PROCTIME() where id1 = id2 AND a2 < 10;
 ```
 
-You will get these results:
+```
+StreamMaterialize { ... }
+└─StreamExchange { ... }
+  └─StreamTemporalJoin { type: Inner, append_only: true, predicate: stream.id1 = version.id2 AND (version.a2 < 10:Int32), output: [stream.id1, stream.a1, version.id2, version.a2, stream._row_id] }
+    ├─StreamExchange { ... }
+    │ └─StreamTableScan { table: stream, ... }
+    └─StreamExchange { ... }
+      └─StreamTableScan { table: version, ... }
+```
 
-| transaction_id | product_id | quantity | sale_date | product_name | price |
-| --- | --- | --- | --- | --- | --- |
-| 1 | 101 | 4 | 2023-06-18 | Product A | 25 |
-| 2 | 102 | 3 | 2023-06-19 | Product B | 15 |
-| 3 | 101 | 2 | 2023-06-20 | Product A | 22 |
-
-:::note
-Every time you update the left-hand side table, it will look up the latest data from the right-hand side table.
-:::

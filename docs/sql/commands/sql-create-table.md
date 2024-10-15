@@ -11,7 +11,7 @@ slug: /sql-create-table
 Use the `CREATE TABLE` command to create a new table. Tables consist of fixed columns and insertable rows. Rows can be added using the [`INSERT`](sql-insert.md) command. When creating a table, you can specify connector settings and data format.
 
 :::info
-If you choose not to persist the data from the source in RisingWave, use [`CREATE SOURCE`](sql-create-source.md) instead.
+If you choose not to persist the data from the source in RisingWave, use [`CREATE SOURCE`](sql-create-source.md) instead. For more details about the differences between sources and tables, see [here](/ingest/data-ingestion.md#table-with-connectors).
 :::
 
 ## Syntax
@@ -41,7 +41,7 @@ For tables with primary key constraints, if you insert a new data record with an
 
 A [generated column](/sql/query-syntax/query-syntax-generated-columns.md) that is defined with non-deterministic functions cannot be specified as part of the primary key. For example, if `A1` is defined as `current_timestamp()`, then it cannot be part of the primary key.
 
-Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive. See also [Identifiers](/sql/sql-identifiers.md).
 
 The syntax for creating a table with connector settings and the supported connectors are the same as for creating a source. See [`CREATE SOURCE`](sql-create-source.md) for a full list of supported connectors and data formats.
 
@@ -73,11 +73,11 @@ FORMAT upsert ENCODE AVRO (
 |-----------|-------------|
 |`table_name`    |The name of the table. If a schema name is given (for example, `CREATE TABLE <schema>.<table> ...`), then the table is created in the specified schema. Otherwise it is created in the current schema.|
 |`col_name`      |The name of a column.|
-|`data_type`|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets ("<\>"). |
+|`data_type`|The data type of a column. With the `struct` data type, you can create a nested table. Elements in a nested table need to be enclosed with angle brackets (`<>`). |
 |`DEFAULT`|The `DEFAULT` clause allows you to assign a default value to a column. This default value is used when a new row is inserted, and no explicit value is provided for that column. `default_expr` is any constant value or variable-free expression that does not reference other columns in the current table or involve subqueries. The data type of `default_expr` must match the data type of the column.|
 |`generation_expression`| The expression for the generated column. For details about generated columns, see [Generated columns](/sql/query-syntax/query-syntax-generated-columns.md).|
 |`watermark_clause`| A clause that defines the watermark for a timestamp column. The syntax is `WATERMARK FOR column_name as expr`. For the watermark clause to be valid, the table must be an append-only table. That is, the `APPEND ONLY` option must be specified. This restriction only applies to a table. For details about watermarks, refer to [Watermarks](/transform/watermarks.md).|
-|`APPEND ONLY` | When this option is specified, the table will be created as an append-only table. An append-only table cannot have primary keys. `UPDATE` and `DELETE` statements are not valid for append-only tables. Note that append-only tables is a Beta feature. |
+|`APPEND ONLY` | When this option is specified, the table will be created as an append-only table. An append-only table cannot have primary keys. `UPDATE` and `DELETE` statements are not valid for append-only tables. Note that append-only tables is in the [public preview stage](/product-lifecycle/#features-in-the-public-preview-stage). |
 |`ON CONFLICT` | Specify the alternative action when the newly inserted record brings a violation of PRIMARY KEY constraint on the table. See [PK conflict behavior](#pk-conflict-behavior) below for more information. |
 |**INCLUDE** clause | Extract fields not included in the payload as separate columns. For more details on its usage, see [`INCLUDE` clause](/ingest/include-clause.md). |
 |**WITH** clause |Specify the connector settings here if trying to store all the source data. See the [Data ingestion](/ingest/data-ingestion.md) page for the full list of supported source as well as links to specific connector pages detailing the syntax for each source. |
@@ -101,8 +101,8 @@ The action could one of the following. A column not in the primary key can be sp
 - `DO UPDATE FULL [WITH VERSION COLUMN(col_name)]`: Replace the existing row in the table. When version column is specified, the existing row will be replaced only when the newly inserted value is greater or equal than the existing data record in the table's specified column.
 - `DO UPDATE IF NOT NULL [WITH VERSION COLUMN(col_name)]`: Only replace those fields which is not NULL in the inserted row. If version column is specified but the inserted row's version field is NULL, the version column will not take effect.
 
-:::note Beta Feature
-Version column is currently in Beta. Please contact us if you encounter any issues or have feedback.
+:::info Public Preview
+`VERSION COLUMN` is in the public preview stage, meaning it's nearing the final product but is not yet fully stable. If you encounter any issues or have feedback, please contact us through our [Slack channel](https://www.risingwave.com/slack). Your input is valuable in helping us improve the feature. For more information, see our [Public preview feature list](/product-lifecycle/#features-in-the-public-preview-stage).
 :::
 
 :::note
@@ -111,6 +111,10 @@ The delete and update operation on the table cannot break the primary key constr
 
 :::note
 When `DO UPDATE IF NOT NULL` behavior is applied, `DEFAULT` clause is not allowed on the table's columns.
+:::
+
+:::note
+In versions 1.9, 1.10, and 2.0, `DO NOTHING` and `DO UPDATE FULL` were not supported. `DO NOTHING` was replaced by `IGNORE`, and `DO UPDATE FULL` was replaced by `OVERWRITE`. In subsequent versions, the syntax for `IGNORE` and `OVERWRITE` remains supported.
 :::
 
 ## Examples
@@ -133,9 +137,9 @@ CREATE TABLE IF NOT EXISTS taxi_trips(
     distance DOUBLE PRECISION,
     duration DOUBLE PRECISION,
     fare STRUCT<
-      initial_charge DOUBLE PRECISION, 
-      subsequent_charge DOUBLE PRECISION, 
-      surcharge DOUBLE PRECISION, 
+      initial_charge DOUBLE PRECISION,
+      subsequent_charge DOUBLE PRECISION,
+      surcharge DOUBLE PRECISION,
       tolls DOUBLE PRECISION>);
 ```
 

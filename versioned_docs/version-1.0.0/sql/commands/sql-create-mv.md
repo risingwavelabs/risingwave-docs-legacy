@@ -16,23 +16,6 @@ Use the `CREATE MATERIALIZED VIEW` command to create a materialized view. A mate
 CREATE MATERIALIZED VIEW [IF NOT EXISTS] mv_name AS select_query;
 ```
 
-import rr from '@theme/RailroadDiagram'
-
-export const svg = rr.Diagram(
-rr.Stack(
-   rr.Sequence(
-      rr.Terminal("CREATE MATERIALIZED VIEW"),
-      rr.Optional(rr.Terminal('IF NOT EXISTS')),
-      rr.NonTerminal("mv_name", "skip"),
-      rr.Terminal("AS"),
-      rr.NonTerminal("select_query", "skip"),
-      rr.Terminal(";")
-   )
-)
-);
-
-<drawer SVG={svg} />
-
 ## Parameters
 
 |Parameter or clause        | Description           |
@@ -42,7 +25,7 @@ rr.Stack(
 
 :::note
 
-Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive. See also [Identifiers](/sql/sql-identifiers.md).
 
 :::
 

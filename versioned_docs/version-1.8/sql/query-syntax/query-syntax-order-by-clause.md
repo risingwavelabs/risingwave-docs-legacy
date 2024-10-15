@@ -15,16 +15,16 @@ Here is the basic syntax of the `ORDER BY` clause:
 ```sql title="Syntax"
 SELECT select_list
     FROM table_expression
-    ORDER BY sort_expression1 [ASC | DESC] [NULLS { FIRST | LAST }]
-             [, sort_expression2 [ASC | DESC] [NULLS { FIRST | LAST }] ...]
+    ORDER BY sort_expression1 [ ASC | DESC ] [ NULLS { FIRST | LAST } ]
+             [, sort_expression2 [ ASC | DESC ] [ NULLS { FIRST | LAST } ] ...]
 ```
 
 ## Examples
 
-Let's assume we have a table named "employees" with columns "employee_id", "employee_name", and "salary". 
+Let's assume we have a table named "employees" with columns "employee_id", "employee_name", and "salary".
 
 ```sql title="employees"
-employee_id | employee_name | salary 
+employee_id | employee_name | salary
 -------------+---------------+--------
            2 | Bob           |  60000
            4 | David         |  55000
@@ -37,7 +37,7 @@ employee_id | employee_name | salary
 CREATE TABLE employees (
     employee_id INT,
     employee_name VARCHAR,
-    salary INT           
+    salary INT
 );
 
 INSERT INTO employees (employee_id, employee_name, salary) VALUES
@@ -56,7 +56,7 @@ FROM employees
 ORDER BY salary DESC;
 
 ----RESULT
-employee_id | employee_name | salary 
+employee_id | employee_name | salary
 -------------+---------------+--------
            5 | Eve           |  75000
            3 | Charlie       |  70000
@@ -66,4 +66,4 @@ employee_id | employee_name | salary
 (5 rows)
 ```
 
-In this example, the result set displayed the employees' details sorted by their salaries in descending order, showing the highest-paid employees first. The `ORDER BY` clause helps in arranging data in a structured and meaningful way for easier interpretation and decision-making. 
+In this example, the result set displayed the employees' details sorted by their salaries in descending order, showing the highest-paid employees first. The `ORDER BY` clause helps in arranging data in a structured and meaningful way for easier interpretation and decision-making.
