@@ -81,7 +81,7 @@ rw.insert(table_name="test", data=df)
 
 # You can provide an optional force_flush parameter and set it to True
 # if you would the inserted data to be visible in fetch query immediately.
-# Otherwise, Data will be inserted in batches asynchronusly for better performance.
+# Otherwise, data will be inserted in batches asynchronusly for better performance.
 # rw.insert(table_name="test", data=df, force_flush = True)
 ```
 
