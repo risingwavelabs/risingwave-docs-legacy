@@ -47,7 +47,7 @@ WITH (
    username='<your user name>',
    password='<your password>'
    jwt=`<your jwt>`,
-   nkey=`<your nkey>`
+   nkey=`<your nkey>`, ...
 
 -- delivery parameters
    scan.startup.mode=`startup_mode`
@@ -98,6 +98,29 @@ According to the [NATS documentation](https://docs.nats.io/running-a-nats-servic
 |`scan.startup.mode`|Optional. The offset mode that RisingWave will use to consume data. The supported modes are: <ul><li>`earliest`: Consume data from the earliest offset.</li><li>`latest`: Consume data from the latest offset.</li><li>`timestamp_millis`: Consume data from a particular UNIX timestamp, which is specified via `scan.startup.timestamp.millis`.</li></ul>If not specified, the default value `earliest` will be used.|
 |`scan.startup.timestamp.millis`|Conditional. Required when `scan.startup.mode` is `timestamp_millis`. RisingWave will start to consume data from 
 |`data_encode`| Supported encodes: `JSON`, `PROTOBUF`, `BYTES`. |
+| `consumer.deliver_subject` | Optional. Subject to deliver messages to. |
+| `consumer.durable_name` | Optional. Durable name for the consumer. |
+| `consumer.name` | Optional. Name of the consumer. |
+| `consumer.description` | Optional. Description of the consumer. |
+| `consumer.deliver_policy` | Optional. Policy on how messages are delivered. |
+| `consumer.ack_policy` | Optional. Acknowledgment policy for message processing (e.g., `None`, `All`, `Explicit`). |
+| `consumer.ack_wait.sec` | Optional. Time to wait for acknowledgment before considering a message as undelivered. |
+| `consumer.max_deliver` | Optional. Maximum number of times a message will be delivered. |
+| `consumer.filter_subject` | Optional. Filter for subjects that the consumer will process. |
+| `consumer.filter_subjects` | Optional. List of subjects that the consumer will filter on. |
+| `consumer.replay_policy` | Optional. Policy for replaying messages (e.g., `Instant`, `Original`). |
+| `consumer.rate_limit` | Optional. Rate limit for message delivery in bytes per second. |
+| `consumer.sample_frequency` | Optional. Frequency for sampling messages. |
+| `consumer.max_waiting` | Optional. Maximum number of messages that can be waiting for acknowledgment. |
+| `consumer.max_ack_pending` | Optional. Maximum number of acknowledgments that can be pending. |
+| `consumer.headers_only` | Optional. If true, only message headers will be delivered. |
+| `consumer.max_batch` | Optional. Maximum number of messages to process in a single batch. |
+| `consumer.max_bytes` | Optional. Maximum number of bytes to receive in a single batch. |
+| `consumer.max_expires.sec` | Optional. Maximum expiration time for a message in seconds. |
+| `consumer.inactive_threshold.sec` | Optional. Time in seconds before a consumer is considered inactive. |
+| `consumer.num.replicas` | Optional. Number of replicas for the consumer. |
+| `consumer.memory_storage` | Optional. If true, messages will be stored in memory. |
+| `consumer.backoff.sec` | Optional. Backoff time in seconds for retrying message delivery. |
 
 ## Examples
 
@@ -118,3 +141,38 @@ WITH
   );
 ```
 
+The parameters supported by the `async_nats` crate are all supported in the RisingWave NATS source connector.
+
+```sql
+CREATE SOURCE test_source
+WITH (
+    connector='nats',
+    server_url='{{ env_var("SERVER") }}',
+    subject='risingwave.test.source',
+    stream='risingwave-test-source',
+    scan.startup.mode='earliest',
+    connect_mode='user_and_password',
+    username='{{ env_var("USER") }}',
+    password='{{ env_var("PASSWORD") }}',
+    consumer.durable_name='risingwave-test-source',
+    consumer.description='desc-test-source',
+    consumer.ack_policy='all',
+    consumer.ack_wait=10,
+    consumer.max_deliver=10,
+    consumer.filter_subjects='demo.subject.filter.*',
+    consumer.filter_subjects='demo.subject.filter.1,demo.subject.filter.2',
+    consumer.replay_policy='instant',
+    consumer.rate_limit=100000000000,
+    consumer.sample_frequency=1000000000,
+    consumer.max_waiting=10,
+    consumer.max_ack_pending=10,
+    -- consumer.idle_heartbeat=60, not available in async_nats crate
+    consumer.max_batch=1000,
+    consumer.max_bytes=1000000000,
+    consumer.max_expires=3600,
+    consumer.inactive_threshold=10000000,
+    consumer.memory_storage='false',
+    consumer.backoff='10,30,60',
+    consumer.num_replicas=1
+) FORMAT PLAIN ENCODE JSON;
+```
