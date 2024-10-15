@@ -153,7 +153,7 @@ To ensure all data changes are captured, you must create a table and specify pri
 
 ### Syntax
 
-Syntax for creating a shared CDC source.
+Before creating a table, you need to first create a source to the upstream MySQL database using the following syntax. This source can be shared by multiple tables from the same MySQL database.
 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
