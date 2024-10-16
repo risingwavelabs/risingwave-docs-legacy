@@ -32,7 +32,7 @@ The `information_schema.tables` view contains the following columns.
 
 ## `table_constraints`
 
-The `table_constraints` view contains all constraints belonging to tables that the current user owns or has some privilege other than SELECT on.
+The `table_constraints` view contains all constraints for tables that the current user owns or has privileges other than `SELECT` on.
 
 This view assume the constraint schema is the same as the table schema, since `pg_catalog.pg_constraint` only supports primary key.
 
