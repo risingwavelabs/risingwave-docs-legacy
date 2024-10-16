@@ -110,7 +110,7 @@ According to the [NATS documentation](https://docs.nats.io/running-a-nats-servic
 | `consumer.filter_subjects` | Optional. List of subjects that the consumer will filter on. |
 | `consumer.replay_policy` | Optional. Policy for replaying messages (e.g., `Instant`, `Original`). |
 | `consumer.rate_limit` | Optional. Rate limit for message delivery in bits per second. |
-| `consumer.sample_frequency` | Optional. Frequency for sampling messages. |
+| `consumer.sample_frequency` | Optional. Frequency for sampling messages, ranging from 0 to 100. |
 | `consumer.max_waiting` | Optional. Maximum number of messages that can be waiting for acknowledgment. |
 | `consumer.max_ack_pending` | Optional. Maximum number of acknowledgments that can be pending. |
 | `consumer.headers_only` | Optional. If true, only message headers will be delivered. |
@@ -165,7 +165,7 @@ WITH (
     consumer.filter_subjects='demo.subject.filter.1,demo.subject.filter.2',
     consumer.replay_policy='instant',
     consumer.rate_limit=100000000000,
-    consumer.sample_frequency=1000000000,
+    consumer.sample_frequency=100,
     consumer.max_waiting=10,
     consumer.max_ack_pending=10,
     -- consumer.idle_heartbeat=60, not available in async_nats crate
