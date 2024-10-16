@@ -34,8 +34,6 @@ The `information_schema.tables` view contains the following columns.
 
 The `table_constraints` view contains all constraints for tables that the current user owns or has privileges other than `SELECT` on.
 
-This view assume the constraint schema is the same as the table schema, since `pg_catalog.pg_constraint` only supports primary key.
-
 The `table_constraints` view contains the following columns.
 
 |Column|Type|Description|
@@ -50,6 +48,12 @@ The `table_constraints` view contains the following columns.
 | `is_deferrable` | varchar | `YES` if the constraint is deferrable, `NO` if not. |
 | `initially_deferred` | varchar | `YES` if the constraint is deferrable and initially deferred, `NO` if not. |
 | `enforced` | varchar | `YES` if the constraint is validated and enforced, `NO` if not. |
+
+:::note Temporary Limitation
+
+This view assumes the constraint schema is the same as the table schema, since `pg_catalog.pg_constraint` only supports primary key.
+
+:::
 
 ## Views
 
