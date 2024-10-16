@@ -124,6 +124,32 @@ SELECT * FROM jsonb_each_text('{"a":"foo", "b":"bar"}'::jsonb);
 
 ```
 
+### `jsonb_exists_any`
+
+Checks if any of the strings in the specified text array exist as top-level array elements or object keys within the given JSON value.
+
+```sql title=Syntax
+jsonb_exists_any ( jsonb, text[] ) → boolean
+```
+
+```sql title=Example
+SELECT jsonb_exists_any('{"a": 1, "b": 2, "c": 3}'::jsonb, ARRAY['b', 'd']);
+------RESULT
+true
+
+SELECT jsonb_exists_any('["foo", "bar", "baz"]'::jsonb, ARRAY['baz', 'qux']);
+------RESULT
+true
+
+SELECT jsonb_exists_any('"foo"'::jsonb, ARRAY['foo', 'bar']);
+------RESULT
+true
+
+SELECT jsonb_exists_any('{"a": {"b": "c"}}'::jsonb, ARRAY['b', 'd']);
+------RESULT
+false
+```
+
 ### `jsonb_extract_path`
 
 Extracts JSON sub-object at the specified path.
