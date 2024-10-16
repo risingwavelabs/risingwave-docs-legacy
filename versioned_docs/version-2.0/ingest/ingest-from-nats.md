@@ -109,7 +109,7 @@ According to the [NATS documentation](https://docs.nats.io/running-a-nats-servic
 | `consumer.filter_subject` | Optional. Filter for subjects that the consumer will process. |
 | `consumer.filter_subjects` | Optional. List of subjects that the consumer will filter on. |
 | `consumer.replay_policy` | Optional. Policy for replaying messages (e.g., `Instant`, `Original`). |
-| `consumer.rate_limit` | Optional. Rate limit for message delivery in bytes per second. |
+| `consumer.rate_limit` | Optional. Rate limit for message delivery in bits per second. |
 | `consumer.sample_frequency` | Optional. Frequency for sampling messages. |
 | `consumer.max_waiting` | Optional. Maximum number of messages that can be waiting for acknowledgment. |
 | `consumer.max_ack_pending` | Optional. Maximum number of acknowledgments that can be pending. |
@@ -141,7 +141,7 @@ WITH
   );
 ```
 
-The parameters supported by the `async_nats` crate are all supported in the RisingWave NATS source connector.
+The parameters supported by the [`async_nats`](https://docs.rs/async-nats/latest/async_nats/jetstream/consumer/struct.Config.html) crate are all supported in the RisingWave NATS source connector.
 
 ```sql
 CREATE SOURCE test_source
