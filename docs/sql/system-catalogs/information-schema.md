@@ -24,11 +24,32 @@ The `information_schema.tables` view contains the following columns.
 
 |Column|Type|Description|
 |---|---|---|
-|`table_catalog`|varchar|Name of the current database |
+|`table_catalog`|varchar|Name of the current database. |
 |`table_schema` |varchar| Name of the schema that contains the table, view, or materialized view. The default schema for user-created objects is `public`.|
-|`table_name` | varchar|Name of the table, view, or materialized view|
+|`table_name` | varchar|Name of the table, view, or materialized view.|
 |`table_type` | varchar| Type of the table, view, or materialized view. `BASE TABLE` for a user-defined table, `VIEW` for a non-materialized view, `MATERIALIZED VIEW` for a materialized view, and `SYSTEM TABLE` for a system table.|
 |`is_insertable_into`|varchar|`YES` if the table or view is insertable into, `NO` if not. User-defined tables are always insertable, while views and materialized views are not necessarily.|
+
+## `table_constraints`
+
+The `table_constraints` view contains all constraints belonging to tables that the current user owns or has some privilege other than SELECT on.
+
+This view assume the constraint schema is the same as the table schema, since `pg_catalog.pg_constraint` only supports primary key.
+
+The `table_constraints` view contains the following columns.
+
+|Column|Type|Description|
+|---|---|---|
+| `constraint_catalog` | varchar | Name of the database that contains the constraint. |
+| `constraint_schema` | varchar | Name of the schema that contains the constraint. |
+| `constraint_name` | varchar | Name of the constraint. |
+| `table_catalog` | varchar | Name of the database that contains the table. |
+| `table_schema` | varchar | Name of the schema that contains the table. |
+| `table_name` | varchar | Name of the table. |
+| `constraint_type` | varchar | Type of the constraint: `PRIMARY KEY`(p), `UNIQUE`(u), `CHECK`(c), or `EXCLUDE`(x).  |
+| `is_deferrable` | varchar | `YES` if the constraint is deferrable, `NO` if not. |
+| `initially_deferred` | varchar | `YES` if the constraint is deferrable and initially deferred, `NO` if not. |
+| `enforced` | varchar | `YES` if the constraint is validated and enforced, `NO` if not. |
 
 ## Views
 
@@ -38,10 +59,10 @@ It contains the following columns.
 
 |Column|Type|Description|
 |---|---|---|
-|`table_catalog`| varchar | Name of the current database |
-|`table_schema`| varchar | Name of the schema that contains the view |
-|`table_name` | varchar | Name of the view |
-|`view_definition` | varchar | SQL statement that defines the view |
+|`table_catalog`| varchar | Name of the current database. |
+|`table_schema`| varchar | Name of the schema that contains the view. |
+|`table_name` | varchar | Name of the view. |
+|`view_definition` | varchar | SQL statement that defines the view. |
 
 :::note Temporary Limitation
 
