@@ -44,7 +44,8 @@ FORMAT data_format ENCODE data_encode [ (
 | `aws.credentials.role.arn`          | Conditional. ARN of the IAM role to assume for accessing DynamoDB. Must be specified when using AssumeRole.                                                        |
 | `aws.credentials.role.external_id`  | Conditional. External ID for assuming the IAM role specified in `aws.credentials.role.arn`.                                                                        |
 | `aws.profile`                       | Optional. The name of the AWS CLI profile to use for accessing DynamoDB. If specified, it overrides the default profile.                                           |
-| `dynamodb.max_batch_rows`           | Optional. Maximum number of rows to write in a single batch operation to DynamoDB. This helps optimize throughput and manage rate limits. Default value is `1024`. |
+｜ `dynamodb.max_batch_item_nums`｜ Optional. The maximum number of items in the [`BatchWriteItem`](https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_BatchWriteItem.html)operation. It must be larger than 1, and less than or equal to 25. The default is 25.｜
+｜ `dynamodb.max_future_send_nums`｜ Optional. The maximum number of concurrent write futures in DynamoDB. It must be less than 360, and the default is 256. This is derived from user-defined `max_parallelism_units` (40000 by default). If the write throughput of RisingWave exceeds the `max_parallelism_units` set in DynamoDB, an error would be reported.｜
 
 ## Partition key and sort key mapping
 
