@@ -116,6 +116,7 @@ Unless specified otherwise, the fields listed are required. Note that the value 
 |username| Username of the database.|
 |password| Password of the database. |
 |database.name| Name of the database.|
+|database.encrypt| Optional. Specify whether to enable SSL encryption. Currently, `trustServerCertificate` is enabled, regardless of the value of `database.encrypt`. |
 
 :::note
 As noted earlier, RisingWave will use the available capture instance to create a CDC table. If multiple capture instances exist, RisingWave will randomly choose one. Specifying a particular capture instance is not supported.
