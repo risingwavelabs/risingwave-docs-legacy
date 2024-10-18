@@ -299,19 +299,6 @@
                 },
                 {
                   "type": "category",
-                  "label": "Pulsar",
-                  "collapsible": false,
-                  "collapsed": false,
-                  "items": [
-                    {
-                      "type": "doc",
-                      "label": "DataStax Astra Streaming",
-                      "id": "guides/connector-astra-streaming"
-                    }
-                  ]
-                },
-                {
-                  "type": "category",
                   "label": "MQTT",
                   "collapsible": false,
                   "collapsed": false,

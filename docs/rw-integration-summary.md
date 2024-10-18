@@ -38,7 +38,6 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 | Amazon MSK | Available. See [Ingest from Amazon MSK](/guides/connector-amazon-msk.md) for details. | |
 |Apache Pulsar|Available. See [Ingest from Pulsar](/ingest/ingest-from-pulsar.md) for details. | Available. See [Sink to Pulsar](/guides/sink-to-pulsar.md) for details.|
 | Confluent Cloud | Available. See [Ingest from Confluent Cloud](/guides/confluent-kafka-source.md) for details. | |
-|DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <VoteNotify note="astra_streaming_sink" />|
 |EMQX|Available. See [Ingest from MQTT brokers](/ingest/ingest-from-mqtt.md) for details.| Available. See [Sink to MQTT brokers](/guides/sink-to-mqtt.md) for details. |
 |Google Pub/Sub|Available. See [Ingest from Google Pub/Sub](/ingest/ingest-from-google-pubsub.md) for details.| Available. See [Sink to Google Pub/Sub](/guides/sink-to-google-pubsub.md) for details. |
 |HiveMQ|Available. See [Ingest from MQTT brokers](/ingest/ingest-from-mqtt.md) for details.| Available. See [Sink to MQTT brokers](/guides/sink-to-mqtt.md) for details. |
