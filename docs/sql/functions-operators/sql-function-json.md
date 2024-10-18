@@ -92,6 +92,50 @@ SELECT jsonb_build_object(variadic array['foo', '1', '2', 'bar']);
  {"2": "bar", "foo": 1}
 ```
 
+### `jsonb_contains`
+
+Checks if the left `jsonb` value contains the right `jsonb` value. This function is similar to the `@>` operator.
+
+```sql title=Syntax
+jsonb_contains ( jsonb, jsonb ) → boolean
+```
+
+```sql title=Example
+SELECT jsonb_contains('{"a": 1, "b": 2, "c": 3}'::jsonb, '{"b": 2}'::jsonb);
+------RESULT
+true
+
+SELECT jsonb_contains('["foo", "bar", "baz"]'::jsonb, '["bar"]'::jsonb);
+------RESULT
+true
+
+SELECT jsonb_contains('{"a": {"b": "c"}}'::jsonb, '{"b": "c"}'::jsonb);
+------RESULT
+false
+```
+
+### `jsonb_contained`
+
+Checks if the left `jsonb` value is contained within the right `jsonb` value. This function is similar to the `<@` operator.
+
+```sql title=Syntax
+jsonb_contained ( jsonb, jsonb ) → boolean
+```
+
+```sql title=Example
+SELECT jsonb_contained('{"b": 2}'::jsonb, '{"a": 1, "b": 2, "c": 3}'::jsonb);
+------RESULT
+true
+
+SELECT jsonb_contained('["bar"]'::jsonb, '["foo", "bar", "baz"]'::jsonb);
+------RESULT
+true
+
+SELECT jsonb_contained('{"b": "c"}'::jsonb, '{"a": {"b": "c"}}'::jsonb);
+------RESULT
+false
+```
+
 ### `jsonb_each`
 
 Expands the top-level JSON object into a set of key-value pairs.
@@ -125,9 +169,61 @@ SELECT * FROM jsonb_each_text('{"a":"foo", "b":"bar"}'::jsonb);
 
 ```
 
+### `jsonb_exists`
+
+Checks if the specified string exists as a top-level array element or object key within the given JSON value. This function is equivalent to the `?` operator.
+
+```sql title=Syntax
+jsonb_exists ( jsonb, text ) → boolean
+```
+
+```sql title=Example
+SELECT jsonb_exists('{"a": 1, "b": 2, "c": 3}'::jsonb, 'b');
+------RESULT
+true
+
+SELECT jsonb_exists('["foo", "bar", "baz"]'::jsonb, 'bar');
+------RESULT
+true
+
+SELECT jsonb_exists('"foo"'::jsonb, 'foo');
+------RESULT
+true
+
+SELECT jsonb_exists('{"a": {"b": "c"}}'::jsonb, 'b');
+------RESULT
+false
+```
+
+### `jsonb_exists_all`
+
+Checks if all of the strings in the specified text array exist as top-level array elements or object keys within the given JSON value. This function is equivalent to the `?&` operator.
+
+```sql title=Syntax
+jsonb_exists_all ( jsonb, text[] ) → boolean
+```
+
+```sql title=Example
+SELECT jsonb_exists_all('{"a": 1, "b": 2, "c": 3}'::jsonb, ARRAY['a', 'b']);
+------RESULT
+true
+
+SELECT jsonb_exists_all('["foo", "bar", "baz"]'::jsonb, ARRAY['foo', 'bar']);
+------RESULT
+true
+
+SELECT jsonb_exists_all('{"a": {"b": "c"}}'::jsonb, ARRAY['a', 'b']);
+------RESULT
+false
+
+SELECT jsonb_exists_all('"foo"'::jsonb, ARRAY['foo', 'bar']);
+------RESULT
+false
+```
+
 ### `jsonb_exists_any`
 
-Checks if any of the strings in the specified text array exist as top-level array elements or object keys within the given JSON value.
+Checks if any of the strings in the specified text array exist as top-level array elements or object keys within the given JSON value. This function is equivalent to the `?|` operator.
 
 ```sql title=Syntax
 jsonb_exists_any ( jsonb, text[] ) → boolean
