@@ -98,6 +98,14 @@ When ingesting data from AWS S3 or GCS, the following additional fields can be i
 | file               | `varchar`    | The file the record is from.      |
 | offset             | `varchar`    | The offset in the file.           |
 
+### MQTT
+
+When ingesting data from MQTT, the following additional fields can be included
+
+| Allowed Components | Default Type | Note                              |
+|--------------------|--------------|-----------------------------------|
+| partition          | `varchar`    | The topic the record is from.     |
+
 ## Examples
 
 Here we create a table, `additional_columns`, that ingests data from a Kafka broker. Aside from the `a` column, which is part of the message payload, the additional fields `key`, `partition`, `offset`, `timestamp`, and `header`, are also added to the table.
