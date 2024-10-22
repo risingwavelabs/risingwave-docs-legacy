@@ -71,45 +71,33 @@ Grafana can also be configured to visualize and monitor data from a RisingWave C
 
 ### Add RisingWave Cloud as a Data Source in Grafana
 
-1. **Access Data Source Settings:**
-    - In Grafana, navigate to **Configuration > Data Sources** from the left-hand sidebar.
-2. **Add a New Data Source:**
-    - Click the **Add Data Source** button at the top of the page.
-3. **Select PostgreSQL:**
-    - From the list of available database integrations, choose **PostgreSQL**. RisingWave is PostgreSQL-compatible, so this option works perfectly for connecting to it.
-4. **Configure PostgreSQL Connection:**
-    
-    Fill out the following connection details based on your RisingWave Cloud cluster:
-    
+1. Access Data Source Settings. In Grafana, navigate to **Configuration > Data Sources** from the left-hand sidebar.
+2. Add a New Data Source. Click the **Add Data Source** button at the top of the page.
+3. From the list of available database integrations, choose **PostgreSQL**. RisingWave is PostgreSQL-compatible, so this option works perfectly for connecting to it.
+4. Configure PostgreSQL connection by filling in the following connection details based on your RisingWave Cloud cluster:
+
     - **Host**: Provide the hostname of your RisingWave Cloud instance. The format will typically be something like: `your-rw-cluster-host-url:4566`.
     - **Database**: Enter the database name as `dev`.
     - **User**: Use the username associated with your RisingWave Cloud cluster.
-    
     ![image.png](https://github.com/user-attachments/assets/43cb4539-9456-4b55-bcfa-0def9983aaf2)
 
-    
     - **Password**: Enter the password for the corresponding username.
     - **TLS/SSL Mode**: Set this to `verify-full` for secure connections. This will ensure that data transferred between Grafana and RisingWave is encrypted and verified.
-5. **Leave Optional Fields Blank (Unless Required):**
-    - **File System Path** and **Certificate Content** fields can be left empty.
+5. Optional fields such as **File System Path** and **Certificate Content** can be left blank.
 
 ![image.png](https://github.com/user-attachments/assets/208b401f-255f-4aca-ac2d-18d1f5fa1581)
 
-
-1. **Test the Connection:** Once you’ve entered the required fields, scroll down and click the **Save & Test** button to check the connection. If successful, Grafana will confirm that it can connect to your RisingWave Cloud instance.
+6. Test the Connection. Once you’ve entered the required fields, scroll down and click the **Save & Test** button to check the connection. If successful, Grafana will confirm that it can connect to your RisingWave Cloud instance.
 
 ![image.png](https://github.com/user-attachments/assets/ea131b9b-9e00-4e12-963e-432c597bf7ed)
 
 
-### Create Dashboards and Visualizations
+### Create dashboards and visualizations
 
 After adding RisingWave as a data source, you can now create dynamic dashboards and real-time visualizations using tables and materialized views from your RisingWave Cloud cluster.
 
-- **Start by Creating a New Dashboard**:
-    - Go to **Dashboards > New Dashboard** and select **Add New Panel**.
-- **Write Queries**:
-    - Use the Grafana query editor to write SQL queries that extract data from your RisingWave tables or materialized views. Since RisingWave is PostgreSQL-compatible, the query syntax will follow PostgreSQL standards.
-- **Visualize Data**:
-    - Choose from Grafana's wide range of visualization options (e.g. time series, bar charts, tables) to represent your data in a meaningful way.
+- Start by creating a new dashboard. Go to **Dashboards > New Dashboard** and select **Add New Panel**.
+- Use the Grafana query editor to write SQL queries that extract data from your RisingWave tables or materialized views. Since RisingWave is PostgreSQL-compatible, the query syntax will follow PostgreSQL standards.
+- Visualize data. Choose from Grafana's wide range of visualization options (e.g. time series, bar charts, tables) to represent your data in a meaningful way.
 
 With this setup, you can build real-time dashboards in Grafana, powered by the high-performance and advanced real-time data processing capabilities of RisingWave Cloud.
