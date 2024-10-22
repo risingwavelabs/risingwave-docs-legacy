@@ -1,10 +1,12 @@
 ---
 id: sink-to-nats
-title: Sink data to NATS
-description: Sink data from RisingWave to NATS.
+title: Sink data to NATS and NATS JetStream
+description: Sink data from RisingWave to NATS and NATS JetStream.
 slug: /sink-to-nats
 ---
-This guide describes how to sink data from RisingWave to NATS subjects using the NATS sink connector in RisingWave.
+This guide describes how to sink data from RisingWave to NATS subjects using the NATS sink connector in RisingWave. Both NATS and NATS JetStream are supported by this connector.
+
+[NATS](https://nats.io/) is an open source messaging system for cloud native applications. It provides a lightweight publish-subscribe architecture for high performance messaging.
 
 [NATS](https://nats.io/) is an open source messaging system for cloud native applications. It provides a lightweight publish-subscribe architecture for high performance messaging.
 
@@ -14,10 +16,10 @@ This feature is in the public preview stage, meaning it's nearing the final prod
 
 ## Prerequisites
 
-Before sinking data from RisingWave to NATS, please ensure the following:
+Before sinking data from RisingWave to NATS or NATSJetStream, please ensure the following:
 
 - The RisingWave cluster is running.
-- A NATS server is running and accessible from your RisingWave cluster.
+- A NATS or NATSJetStream server is running and accessible from your RisingWave cluster.
 - Create a NATS subject that you want to sink data to.
 - You have the permission to publish data to the NATS subject.
 

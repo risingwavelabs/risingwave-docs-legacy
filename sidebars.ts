@@ -298,19 +298,6 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: "category",
-                  label: "Pulsar",
-                  collapsible: false,
-                  collapsed: false,
-                  items: [
-                    {
-                      type: "doc",
-                      label: "DataStax Astra Streaming",
-                      id: "guides/connector-astra-streaming",
-                    },
-                  ]
-                },
-                {
-                  type: "category",
                   label: "MQTT",
                   collapsible: false,
                   collapsed: false,
@@ -453,7 +440,7 @@ const sidebars: SidebarsConfig = {
                     },
                     {
                       type: "doc",
-                      label: "NATS",
+                      label: "NATS and NATSJetStream",
                       id: "guides/sink-to-nats",
                     },
                     {
@@ -600,8 +587,23 @@ const sidebars: SidebarsConfig = {
                   items: [
                     {
                       type: "doc",
+                      label: "AWS S3",
+                      id: "guides/sink-to-aws-s3",
+                    },
+                    {
+                      type: "doc",
                       label: "Azure Blob",
                       id: "guides/sink-to-azure-blob",
+                    },
+                    {
+                      type: "doc",
+                      label: "Google Cloud Storage",
+                      id: "guides/sink-to-google-cloud-storage",
+                    },
+                    {
+                      type: "doc",
+                      label: "WebHDFS",
+                      id: "guides/sink-to-webhdfs",
                     },
                   ],
                 },

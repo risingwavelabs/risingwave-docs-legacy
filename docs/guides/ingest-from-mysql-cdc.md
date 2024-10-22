@@ -128,11 +128,11 @@ If you are running RisingWave locally from binaries and intend to use the native
 
 ## Create a table using the native CDC connector in RisingWave
 
-To ensure all data changes are captured, you must create a table and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details.
+To ensure all data changes are captured, you must create a table and specify primary keys.
 
 ### Syntax
 
-Syntax for creating a CDC source.
+Before creating a table, you need to first create a source to the upstream MySQL database using the following syntax. This source can be shared by multiple tables from the same MySQL database.
 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
@@ -141,7 +141,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
 );
 ```
 
-Syntax for creating a CDC table. Note that a primary key is required and must be consistent with the upstream table.
+Below is the syntax for creating a CDC table based on the shared source. Note that a primary key is required and must be consistent with the upstream table.
 
 ```sql
 CREATE TABLE [ IF NOT EXISTS ] table_name (
@@ -152,7 +152,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
 WITH (
    snapshot='true'
 )
-FROM source TABLE table_name;
+FROM source_name TABLE table_name;
 ```
 
 ### Connector parameters
@@ -168,7 +168,7 @@ All the fields listed below are required. Note that the value of these parameter
 |database.name| Name of the database. Note that RisingWave cannot read data from a built-in MySQL database, such as `mysql`, `sys`, etc.|
 |table.name| Name of the table that you want to ingest data from. |
 |server.id| Required if creating a shared source. A numeric ID of the database client. It must be unique across all database processes that are running in the MySQL cluster. If not specified, RisingWave will generate a random ID.|
-|ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with MySQL. It accepts three values: `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.|
+|ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with MySQL. Accepted values are `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.|
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For performance considerations, transactions involving changes to more than 4096 rows cannot be guaranteed.|
 
 The following fields are used when creating a CDC table.

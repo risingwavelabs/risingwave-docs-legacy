@@ -299,19 +299,6 @@
                 },
                 {
                   "type": "category",
-                  "label": "Pulsar",
-                  "collapsible": false,
-                  "collapsed": false,
-                  "items": [
-                    {
-                      "type": "doc",
-                      "label": "DataStax Astra Streaming",
-                      "id": "guides/connector-astra-streaming"
-                    }
-                  ]
-                },
-                {
-                  "type": "category",
                   "label": "MQTT",
                   "collapsible": false,
                   "collapsed": false,
@@ -453,7 +440,7 @@
                     },
                     {
                       "type": "doc",
-                      "label": "NATS",
+                      "label": "NATS and NATSJetStream",
                       "id": "guides/sink-to-nats"
                     },
                     {
@@ -876,7 +863,7 @@
                 {
                   "type": "doc",
                   "id": "sql/functions-operators/sql-function-map",
-                  "label": "Array functions and operators"
+                  "label": "Map functions and operators"
                 },
                 {
                   "type": "doc",

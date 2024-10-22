@@ -25,6 +25,7 @@ Below is a list of all features in the public preview phase:
 
 | Feature name            | Start date | Start version |
 |---------------------------|------------|---------------|
+| [Partitioned Postgres CDC table](/docs/current/ingest-from-postgres-cdc)| 2024.9 | 2.0 |
 | [Map type](/docs/current/data-type-map)|2024.8|2.0|
 | [Azure Blob sink](/docs/current/sink-to-azure-blob)|2024.8|2.0|
 | [Approx percentile](/docs/current/sql-function-aggregate/#approx_percentile) | 2024.8     | 2.0           |
@@ -38,7 +39,6 @@ Below is a list of all features in the public preview phase:
 | [Version column](/docs/current/sql-create-table/)                | 2024.6  | 1.9      |
 | [Snowflake sink](/docs/current/sink-to-snowflake/)                | 2024.5    | 1.9         |
 | [Subscription](/docs/current/subscription)                        | 2024.5    | 1.9         |
-| [`schema.registry.name.strategy`](/docs/current/supported-sources-and-formats/) | 2024.4  | 1.8      |
 | [RisingWave as PostgreSQL FDW](/docs/current/risingwave-as-postgres-fdw/) | 2024.4  | 1.9      |
 | [Iceberg source](/docs/current/ingest-from-iceberg/)             | 2024.3  | 1.8     |
 | [Google BigQuery sink](/docs/current/sink-to-bigquery/)           | 2023.11   | 1.4         |
@@ -53,10 +53,8 @@ Below is a list of all features in the public preview phase:
 | [Emit on window close](/docs/current/emit-on-window-close/)      | 2023.8  | 1.1      |
 | [Read-only transactions](/docs/current/sql-start-transaction)| 2023.8  | 1.1      |
 | [AWS Kinesis sink](/docs/current/sink-to-aws-kinesis/)           | 2023.7  | 1.0     |
-| [AWS PrivateLink connection](/docs/current/sql-create-connection/) | 2023.5  | 0.19     |
 | [CDC Citus source](/docs/current/ingest-from-citus-cdc/)         | 2023.5  | 0.19     |
 | [Iceberg sink](/docs/current/sink-to-iceberg/)                   | 2023.4 | 0.18      |
 | [Pulsar source](/docs/current/ingest-from-pulsar/)               | 2022.12  | 0.1     |
-| [Partitioned table](/docs/current/ingest-from-postgres-cdc)| 2024.9 | 2.0 |
 
 This table will be updated regularly to reflect the latest status of features as they progress through the release stages.

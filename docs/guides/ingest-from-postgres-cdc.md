@@ -159,11 +159,11 @@ If you are running RisingWave locally from binaries and intend to use the native
 
 ## Create a table using the native CDC connector
 
-To ensure all data changes are captured, you must create a table or source and specify primary keys. See the [`CREATE TABLE`](/sql/commands/sql-create-table.md) command for more details.
+To ensure all data changes are captured, you must create a shared source first and create tables based on that source.
 
 ### Syntax
 
-Syntax for creating a CDC source.
+Syntax for creating a shared CDC source.
 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
@@ -172,7 +172,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
 );
 ```
 
-Syntax for creating a CDC table. Note that a primary key is required and must be consistent with the upstream table.
+Please see below for the syntax for creating a CDC table based on the shared source. Note that a primary key is required and must be consistent with the upstream table. You must also specify the Postgres table name (`pg_table_name`) which you are selecting from.
 
 ```sql
 CREATE TABLE [ IF NOT EXISTS ] table_name (
@@ -183,7 +183,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
 WITH (
     snapshot='true'
 )
-FROM source TABLE table_name;
+FROM source_name TABLE pg_table_name;
 ```
 
 To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it.
@@ -202,7 +202,8 @@ Unless specified otherwise, the fields listed are required. Note that the value 
 |schema.name| Optional. Name of the schema. By default, the value is `public`. |
 |table.name| Name of the table that you want to ingest data from. |
 |slot.name| Optional. The [replication slot](https://www.postgresql.org/docs/14/logicaldecoding-explanation.html#LOGICALDECODING-REPLICATION-SLOTS) for this PostgreSQL source. By default, a unique slot name will be randomly generated. Each source should have a unique slot name. Valid replication slot names must contain only lowercase letters, numbers, and underscores, and be no longer than 63 characters.|
-|ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with Postgres. It accepts three values: `disabled`, `preferred`, and `required`. The default value is `disabled`. When set to `required`, it enforces TLS for establishing a connection.|
+|ssl.mode| Optional. The `ssl.mode` parameter determines the level of SSL/TLS encryption for secure communication with Postgres. Accepted values are `disabled`, `preferred`, `required`, `verify-ca`, and `verify-full`. The default value is `disabled`. <ul><li>When set to `required`, it enforces TLS for establishing a connection; </li><li>When set to `verify-ca`, it verifies that the server is trustworthy by checking the certificate chain up to the root certificate stored on the client;</li><li>When set to `verify-full`, it verifies the certificate and also ensures the server hostname matches the name in the certificate.</li></ul> |
+| ssl.root.cert | Optional. Specify the root certificate secret. You must [create secret](/deploy/manage-secrets.md#create-secrets) first and then use it here.|
 |publication.name| Optional. Name of the publication. By default, the value is `rw_publication`. For more information, see [Multiple CDC source tables](#multiple-cdc-source-tables). |
 |publication.create.enable| Optional. By default, the value is `'true'`. If `publication.name` does not exist and this value is `'true'`, a `publication.name` will be created. If `publication.name` does not exist and this value is `'false'`, an error will be returned. |
 |transactional| Optional. Specify whether you want to enable transactions for the CDC table that you are about to create. By default, the value is `'true'` for shared sources, and `'false'` otherwise. This feature is also supported for shared CDC sources for multi-table transactions. For performance considerations, transactions involving changes to more than 4096 rows cannot be guaranteed.|

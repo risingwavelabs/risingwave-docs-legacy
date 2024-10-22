@@ -38,7 +38,6 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 | Amazon MSK | Available. See [Ingest from Amazon MSK](/guides/connector-amazon-msk.md) for details. | |
 |Apache Pulsar|Available. See [Ingest from Pulsar](/ingest/ingest-from-pulsar.md) for details. | Available. See [Sink to Pulsar](/guides/sink-to-pulsar.md) for details.|
 | Confluent Cloud | Available. See [Ingest from Confluent Cloud](/guides/confluent-kafka-source.md) for details. | |
-|DataStax Astra Streaming| Available. See [Ingest data from DataStax Astra Streaming](/guides/connector-astra-streaming.md) for details. | Researching <VoteNotify note="astra_streaming_sink" />|
 |EMQX|Available. See [Ingest from MQTT brokers](/ingest/ingest-from-mqtt.md) for details.| Available. See [Sink to MQTT brokers](/guides/sink-to-mqtt.md) for details. |
 |Google Pub/Sub|Available. See [Ingest from Google Pub/Sub](/ingest/ingest-from-google-pubsub.md) for details.| Available. See [Sink to Google Pub/Sub](/guides/sink-to-google-pubsub.md) for details. |
 |HiveMQ|Available. See [Ingest from MQTT brokers](/ingest/ingest-from-mqtt.md) for details.| Available. See [Sink to MQTT brokers](/guides/sink-to-mqtt.md) for details. |
@@ -145,9 +144,11 @@ RisingWave can sink data to Kafka. This allows indirectly sinking data to any sy
 |System | |Availability |
 |---|---|---|
 |Alluxio| |Researching <VoteNotify note="alluxio" />|
+| AWS S3 | |Available. For details, see [Ingest data from S3](/ingest/ingest-from-s3.md) and [Sink data to S3](/guides/sink-to-aws-s3.md). |
+|Azure Blob| |Available. For details, see [Ingest data from Azure Blob](/guides/ingest-from-azure-blob.md) and [Sink data to Azure Blob](/guides/sink-to-azure-blob.md).|
 |Datadog| |Researching <VoteNotify note="datadog" />|
-|Google Cloud Storage (GCS)| | Available as source. For details, see [Ingest from Google Cloud Storage](/ingest/ingest-from-gcs.md).|
+|Google Cloud Storage (GCS)| | Available. For details, see [Ingest from Google Cloud Storage](/ingest/ingest-from-gcs.md) and [Sink data to Google Cloud Storage](/guides/sink-to-google-cloud-storage.md).|
 |Hasura| |Researching <VoteNotify note="hasura" />|
 |Liquibase| |Researching <VoteNotify note="liquibase" />|
 |Supabase| |Available. For details, see [Ingest data from Supabase CDC](/ingest/ingest-from-supabase-cdc.md) and [Sink data to Supabase](/guides/sink-to-supabase.md).|
-|Azure Blob| |Available. For details, see [Ingest data from Azure Blob](/guides/ingest-from-azure-blob.md) and [Sink data to Azure Blob](/guides/sink-to-azure-blob.md).|
+| WebHDFS | |Available as sink. For details, see [Sink data to WebHDFS](/guides/sink-to-webhdfs.md)|
