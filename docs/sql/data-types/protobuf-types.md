@@ -35,7 +35,7 @@ bytes | bytea
 enum | varchar
 message | struct. See details in [Nested messages](#nested-messages).
 repeated | array
-map | Not supported
+map | map. See details in [Map](/sql/data-types/data-type-map.md).
 google.protobuf.Struct | Not supported
 google.protobuf.Timestamp | `struct<seconds bigint, nanos int>`
 google.protobuf.Duration | `struct<seconds bigint, nanos int>`
@@ -58,4 +58,4 @@ Will be converted to `struct<id int, name varchar>` in RisingWave.
 
 ## Related topics
 
-- [CREATE SOURCE](/docs/sql/commands/sql-create-source.md)
+- [CREATE SOURCE](/sql/commands/sql-create-source.md)
