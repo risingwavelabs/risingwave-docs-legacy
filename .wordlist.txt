@@ -224,3 +224,4 @@ VoteNotify
 SharedMergeTree
 JWT
 TOML
+WebHDFS

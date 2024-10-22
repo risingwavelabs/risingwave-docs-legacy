@@ -167,7 +167,7 @@ LANGUAGE python AS gcd USING LINK 'http://localhost:8815'; -- If you are running
 CREATE FUNCTION blocking(int) RETURNS int
 LANGUAGE python AS blocking USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
 
-CREATE FUNCTION key_value(bytea) RETURNS struct<key varchar, value varchar> -- the field names must exactly match the ones in Python decorator
+CREATE FUNCTION key_value(varchar) RETURNS struct<key varchar, value varchar> -- the field names must exactly match the ones in Python decorator
 LANGUAGE python AS key_value USING LINK 'http://localhost:8815'; -- If you are running RisingWave using Docker, replace the address with 'http://host.docker.internal:8815'.
 
 CREATE FUNCTION series(int) RETURNS TABLE (x int)

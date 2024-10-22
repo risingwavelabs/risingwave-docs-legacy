@@ -36,7 +36,7 @@ For tables with primary key constraints, if you insert a new data record with an
 :::
 
 :::note
-Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive.
+Names and unquoted identifiers are case-insensitive. Therefore, you must double-quote any of these fields for them to be case-sensitive. See also [Identifiers](/sql/sql-identifiers.md).
 :::
 
 :::note

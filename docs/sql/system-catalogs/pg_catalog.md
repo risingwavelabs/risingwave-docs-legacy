@@ -40,6 +40,7 @@ RisingWave does not fully support all PostgreSQL system catalog columns.
 | [`pg_proc`](https://www.postgresql.org/docs/current/catalog-pg-proc.html)|Contains information about functions, aggregate functions, and window functions. |
 | [`pg_range`](https://www.postgresql.org/docs/current/catalog-pg-range.html)|Contains information about range types in the database. |
 | [`pg_roles`](https://www.postgresql.org/docs/current/view-pg-roles.html) | Contains information about database roles. |
+| [`pg_sequence`](https://www.postgresql.org/docs/current/catalog-pg-sequence.html)| Contains information about sequences. |
 | [`pg_sequences`](https://www.postgresql.org/docs/current/view-pg-sequences.html) | Contains information about each sequence in the database. |
 | [`pg_settings`](https://www.postgresql.org/docs/current/view-pg-settings.html) | Contains information about run-time parameters of the server.|
 |[`pg_shadow`](https://www.postgresql.org/docs/current/view-pg-shadow.html) |Contains information about database users. Specifically, it contains information about the login roles that have been created in the database, including their usernames, password hashes, and other authentication-related information. |

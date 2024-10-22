@@ -70,7 +70,7 @@ For tables with primary key constraints, if a new data record with an existing k
 |---|---|
 |topic| Required. Address of the Kafka topic. One source can only correspond to one topic.|
 |properties.bootstrap.server| Required. Address of the Kafka broker. Format: `'ip:port,ip:port'`. |
-|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (earliest offset) and `latest` (latest offset). If not specified, the default value `earliest` will be used.|
+|scan.startup.mode|Optional. The offset mode that RisingWave will use to consume data. The two supported modes are `earliest` (read from low watermark) and `latest` (read from high watermark). If not specified, the default value `earliest` will be used.|
 |scan.startup.timestamp.millis|Optional. RisingWave will start to consume data from the specified UNIX timestamp (milliseconds). If this field is specified, the value for `scan.startup.mode` will be ignored.|
 |group.id.prefix | Optional. Specify a custom group ID prefix for the source. The default prefix is `rw-consumer`. Each job (materialized view) will have a separate consumer group with a generated suffix in the group ID， so the format of the consumer group is `{group_id_prefix}-{fragment_id}`. This is used to monitor progress in external Kafka tools and for authorization purposes. RisingWave does not rely on committed offsets or join the consumer group. It only reports offsets to the group.|
 |properties.sync.call.timeout | Optional. Specify the timeout. By default, the timeout is 5 seconds.  |
@@ -87,7 +87,6 @@ For tables with primary key constraints, if a new data record with an existing k
 |*schema.registry*| Confluent Schema Registry URL. Example: `http://127.0.0.1:8081`. For Avro data, you must specify a Confluent Schema Registry or an AWS Glue Schema Registry. For Protobuf data, you must specify either a schema location or a Confluent Schema Registry but not both.|
 |*schema.registry.username*|Conditional. User name for the schema registry. It must be specified with `schema.registry.password`.|
 |*schema.registry.password*|Conditional. Password for the schema registry. It must be specified with `schema.registry.username`.|
-|*schema.registry.name.strategy*|Optional. Accepts `topic_name_strategy` (default), `record_name_strategy`, `topic_record_name_strategy`. If it is set to either `record_name_strategy` or `topic_record_name_strategy`, the `message` parameter must also be set. It can only be specified with *schema.registry*. |
 |*access_key*|Required if loading descriptors from S3. The access key ID of AWS. |
 |*secret_key*|Required if loading descriptors from S3. The secret access key of AWS. |
 |*region*|Required if loading descriptors from S3. The AWS service region. |

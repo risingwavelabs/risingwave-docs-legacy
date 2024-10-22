@@ -10,7 +10,7 @@
 
 Change Data Capture (CDC) refers to the process of identifying and capturing data changes in a database, and then delivering the changes to a downstream service in real time.
 
-RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, 14, and 15 of PostgreSQL are supported.
+RisingWave supports ingesting CDC data from PostgreSQL. Versions 10, 11, 12, 13, 14, 15, and 16 of PostgreSQL are supported.
 
 You can ingest CDC data from PostgreSQL into RisingWave in two ways:
 
@@ -155,7 +155,7 @@ CREATE SOURCE [ IF NOT EXISTS ] source_name WITH (
 );
 ```
 
-Syntax for creating a CDC table. Note that a primary key is required and must be consistent with the upstream table.
+Syntax for creating a CDC table on top of this CDC Source. Note that a primary key is required and must be consistent with the upstream table. We  must also specify the Postgres table name (`pg_table_name`) which we are selecting from.
 
 ```sql
 CREATE TABLE [ IF NOT EXISTS ] table_name (
@@ -166,7 +166,7 @@ CREATE TABLE [ IF NOT EXISTS ] table_name (
 WITH (
     snapshot='true'
 )
-FROM source TABLE table_name;
+FROM source TABLE pg_table_name;
 ```
 
 To check the progress of backfilling historical data, find the corresponding internal table using the [`SHOW INTERNAL TABLES`](/sql/commands/sql-show-internal-tables.md) command and query from it.

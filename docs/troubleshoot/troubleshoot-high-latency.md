@@ -78,7 +78,7 @@ INNER JOIN product_description
 ON orders.product_id = product_description.product_id
 ```
 
-Suppose `product_id = 1` is a hot-selling product, an update from stream `product_description` with `product_id=1` can match 100K rows from `t1`.
+Suppose `product_id = 1` is a hot-selling product, an update from stream `product_description` with `product_id=1` can match 100K rows from `orders`.
 
 We can split the MV into multiple MVs:
 

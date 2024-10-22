@@ -274,11 +274,6 @@
                     },
                     {
                       "type": "doc",
-                      "label": "Upstash Kafka",
-                      "id": "ingest/ingest-from-upstash-kafka"
-                    },
-                    {
-                      "type": "doc",
                       "label": "WarpStream",
                       "id": "ingest/ingest-from-warpstream"
                     }
@@ -304,14 +299,14 @@
                 },
                 {
                   "type": "category",
-                  "label": "Pulsar",
+                  "label": "MQTT",
                   "collapsible": false,
                   "collapsed": false,
                   "items": [
                     {
                       "type": "doc",
-                      "label": "DataStax Astra Streaming",
-                      "id": "guides/connector-astra-streaming"
+                      "label": "Coreflux",
+                      "id": "ingest/ingest-from-coreflux-broker"
                     }
                   ]
                 },
@@ -458,7 +453,7 @@
                     },
                     {
                       "type": "doc",
-                      "label": "NATS",
+                      "label": "NATS and NATSJetStream",
                       "id": "guides/sink-to-nats"
                     },
                     {
@@ -881,7 +876,7 @@
                 {
                   "type": "doc",
                   "id": "sql/functions-operators/sql-function-map",
-                  "label": "Array functions and operators"
+                  "label": "Map functions and operators"
                 },
                 {
                   "type": "doc",
