@@ -63,7 +63,7 @@ GRANT SELECT ON MATERIALIZED VIEW mv_name TO grafanareader;
 
 See the [GRANT](/sql/commands/sql-grant.md) command for more details.
 
-Now that RisingWave is added as a database, you can start creating dashboards within Grafana using the data in RisingWave. For an extensive tutorial that covers how to create dashboards in Grafana with data queried from RisingWave, check out the [Use RisingWave to monitor RisingWave metrics](/tutorials/monitor-rw-metrics.md) tutorial, which uses a demo cluster so you can easily try it out on your device.
+Now that RisingWave is added as a database, you can start creating dashboards within Grafana using the data in RisingWave. To learn about how to create dashboards in Grafana with data queried from RisingWave, check out this tutorial: [Use RisingWave to monitor RisingWave metrics](/tutorials/monitor-rw-metrics.md). It details the steps using a demo cluster, which you can try out on your device.
 
 ## Configure Grafana to read data from RisingWave Cloud
 
