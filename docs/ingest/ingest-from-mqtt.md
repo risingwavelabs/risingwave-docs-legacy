@@ -64,6 +64,7 @@ FORMAT PLAIN ENCODE data_encode; -- Format options: plain (encode BYTES and JSON
 |--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `url`              | Required. The URL of the broker to connect to, e.g., `tcp://localhost`. Must be prefixed with `tcp://`, `mqtt://`, `ssl://`, or `mqtts://` to denote the protocol. `mqtts://` and `ssl://` use native certificates if no CA is specified. |
 | `qos`              | Optional. The quality of service for publishing messages. Defaults to `at_most_once`. Options include `at_most_once`, `at_least_once`, or `exactly_once`.   |
+| `max_packet_size`              | Optional. The maximum message size for MQTT client.   |
 | `username`         | Optional. Username for the MQTT broker.                                                                                                                     |
 | `password`         | Optional. Password for the MQTT broker.                                                                                                                     |
 | `client_prefix`    | Optional. Prefix for the MQTT client ID. Defaults to "risingwave".                                                                                          |
