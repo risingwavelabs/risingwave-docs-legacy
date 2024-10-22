@@ -104,17 +104,6 @@ public class Gcd implements ScalarFunction {
 }
 ```
 
-You can transform a scalar function into an aggregate function by prefixing it with `AGGREGATE:`. This allows you to use the UDF in streaming aggregation queries.
-
-For example, the scalar function `as2` calculates the sum of an array of integers. By prefixing it with `AGGREGATE:`, you can use it as an aggregate function.
-
-```sql
-create function as2(int[]) returns bigint language sql as 'select array_sum($1)';
-select aggregate:as2(a) from (values (1), (2)) t(a);
------Result
-3
-```
-
 :::note Differences with Flink
 
 - The `ScalarFunction` is an interface instead of an abstract class.

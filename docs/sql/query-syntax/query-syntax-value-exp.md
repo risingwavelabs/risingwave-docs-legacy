@@ -27,7 +27,7 @@ aggregate_name ( [ expression [ , ... ] ] ) WITHIN GROUP ( order_by_clause ) [ F
 
 The `DISTINCT` keyword, which is only available in the second form, cannot be used together with an `ORDER BY` or `WITHIN GROUP` clause. Additionally, it's important to note that the `order_by_clause` is positioned differently in the first and fourth forms.
 
-In batch mode, `aggregate_name` can also be in the following form:
+`aggregate_name` can also be in the following form:
 
 ```sql
 AGGREGATE:function_name
