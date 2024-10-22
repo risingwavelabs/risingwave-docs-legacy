@@ -46,6 +46,7 @@ FORMAT data_format ENCODE data_encode (
 |azblob.credentials.account_key|Optional. The account key for the Azure Blob Storage account.|
 |azblob.endpoint_url|Required. The URL of the Azure Blob Storage service endpoint.|
 |match_pattern|Conditional. Set to find object keys in `azblob.container_name` that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported.|
+|recursive_scan|Optional. Determine whether to recursively scan file source.|
 |compression_format|Optional. Specifies the compression format of the file being read. When set to `gzip` or `gz`, the file reader reads all files with the `.gz` suffix; when set to `None` or not defined, the file reader will automatically read and decompress `.gz` and `.gzip` files.|
 
 ### Other parameters
