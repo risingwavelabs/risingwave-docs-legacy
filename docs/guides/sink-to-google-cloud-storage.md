@@ -49,4 +49,4 @@ WITH (
 )FORMAT PLAIN ENCODE PARQUET(force_append_only=true);
 ```
 
-For more information about encode `Parquet`, see [Sink data in parquet format](/data-delivery.md#sink-data-in-parquet-format).
+For more information about encode `Parquet` or `JSON`, see [Sink data in parquet or json encode](/data-delivery.md#sink-data-in-parquet-or-json-encode).
