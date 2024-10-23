@@ -55,6 +55,23 @@ This view assumes the constraint schema is the same as the table schema, since `
 
 :::
 
+## `schemata`
+
+The `schemata` view contains all accessible schemas in the current database for users, either by way of being the owner or having some privilege.
+
+It contains the following columns.
+
+|Column|Type|Description|
+|---|---|---|
+|`catalog_name`| varchar | Name of the database containing the schema.  |
+|`schema_name`| varchar | Name of the schema. |
+|`schema_owner` | varchar | Name of the schema owner.|
+|`default_character_set_catalog` | varchar | Name of the database that contains the schema's default character set.|
+|`default_character_set_schema`|varchar | Name of the schema containing the default character set. |
+|`default_character_set_name`|varchar |Name of the schema's default character set.|
+|`sql_path`|varchar | SQL path specification for the schema.|
+
+
 ## Views
 
 The `information_schema.views` view contains information about the views in the database.
