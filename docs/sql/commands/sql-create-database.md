@@ -13,7 +13,8 @@ Use the `CREATE DATABASE` command to create a new database.
 ## Syntax
 
 ```sql
-CREATE DATABASE [ IF NOT EXISTS ] database_name;
+CREATE DATABASE [ IF NOT EXISTS ] database_name
+    [ WITH ] [ OWNER [=] user_name ];
 ```
 
 
@@ -23,10 +24,12 @@ CREATE DATABASE [ IF NOT EXISTS ] database_name;
 |-------------------------------|-----------------------|
 |*database_name*                |The name of the database to be created.|
 |<b>IF NOT EXISTS</b> clause    |Creates a database if the database name has not already been used. Otherwise throws an error.|
+|<b>OWNER [=] user_name</b> clause|Specifies the user who owns the database to be created.|
 
 ## Example
 ```sql
-CREATE DATABASE IF NOT EXISTS travel;
+CREATE DATABASE IF NOT EXISTS travel
+    WITH OWNER = travel_admin;
 ```
 
 :::note
