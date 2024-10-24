@@ -129,7 +129,7 @@ As shown in the result, the MySQL password is hidden, ensuring no secret leaks.
 
 ## Notes for open-source deployment
 
-To use secret management, you need to set the environment variable `RW_SECRET_STORE_PRIVATE_KEY_HEX` to a hex representation of a 128-bit key (e.g. `0123456789abcdef`). This key is used to encrypt secrets in RisingWave. You **MUST NOT** lose this key, as it is required to decrypt secrets.
+To use secret management, you need to set the environment variable `RW_SECRET_STORE_PRIVATE_KEY_HEX` to a hex representation of a 128-bit key (e.g. `0123456789abcdef0123456789abcdef`). This key is used to encrypt secrets in RisingWave. You **MUST NOT** lose this key, as it is required to decrypt secrets.
 
 To specify the temporary secret file directory, set `RW_TEMP_SECRET_FILE_DIR`. This is only used with the `as file` option.
 
