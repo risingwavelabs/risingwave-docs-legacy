@@ -79,18 +79,17 @@ Grafana can also be configured to visualize and monitor data from a RisingWave C
     - **Host**: Provide the hostname of your RisingWave Cloud instance. The format will typically be something like: `your-rw-cluster-host-url:4566`.
     - **Database**: Enter the database name as `dev`.
     - **User**: Use the username associated with your RisingWave Cloud cluster.
-    ![image.png](https://github.com/user-attachments/assets/43cb4539-9456-4b55-bcfa-0def9983aaf2)
+    ![grafana step 4](../images/grafana_step_4.png)
 
     - **Password**: Enter the password for the corresponding username.
     - **TLS/SSL Mode**: Set this to `verify-full` for secure connections. This will ensure that data transferred between Grafana and RisingWave is encrypted and verified.
 5. Optional fields such as **File System Path** and **Certificate Content** can be left blank.
 
-![image.png](https://github.com/user-attachments/assets/208b401f-255f-4aca-ac2d-18d1f5fa1581)
+    ![grafana step 5](../images/grafana_step_5.png)
 
 6. Test the Connection. Once you’ve entered the required fields, scroll down and click the **Save & Test** button to check the connection. If successful, Grafana will confirm that it can connect to your RisingWave Cloud instance.
 
-![image.png](https://github.com/user-attachments/assets/ea131b9b-9e00-4e12-963e-432c597bf7ed)
-
+    ![grafana step 6](../images/grafana_step_6.png)
 
 ### Create dashboards and visualizations
 
