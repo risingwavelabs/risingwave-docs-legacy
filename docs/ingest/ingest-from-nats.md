@@ -99,7 +99,7 @@ According to the [NATS documentation](https://docs.nats.io/running-a-nats-servic
 |`scan.startup.timestamp.millis`|Conditional. Required when `scan.startup.mode` is `timestamp`. RisingWave will start to consume data from the specified UNIX timestamp.
 |`data_encode`| Supported encodes: `JSON`, `PROTOBUF`, `BYTES`. |
 | `consumer.deliver_subject` | Optional. Subject to deliver messages to. |
-| `consumer.durable_name` | Optional. Durable name for the consumer. |
+| `consumer.durable_name` | Required. Durable name for the consumer. |
 | `consumer.name` | Optional. Name of the consumer. |
 | `consumer.description` | Optional. Description of the consumer. |
 | `consumer.deliver_policy` | Optional. Policy on how messages are delivered. |
