@@ -18,7 +18,7 @@ This section provides step-by-step instructions for creating a HiveMQ broker on 
 
 To begin, sign up for a free trial of HiveMQ Cloud at [HiveMQ Cloud](http://console.hivemq.cloud/). This service offers cloud-based, enterprise-grade MQTT capabilities tailored for IoT messaging.
 
-![HiveMQ Cloud Sign-Up](https://github.com/user-attachments/assets/7b10ee6f-419c-467a-991f-af5ba0b275e4)
+![HiveMQ Cloud Sign-Up](../images/hivemq_cloud_sign_up.png)
 
 *HiveMQ Cloud Sign-Up page.*
 
@@ -29,13 +29,13 @@ After signing in, follow these steps to create a new HiveMQ cluster:
 1. Select **Create New Cluster**.
 2. Choose between **Serverless** and **Starter** cluster options. Select **Serverless** for a fast, easy setup.
 
-![HiveMQ Cloud Cluster Creation](https://github.com/user-attachments/assets/3b18a776-d083-4ecc-bd09-c9d6d11cd07f)
+![HiveMQ Cloud Cluster Creation](../images/hivemq_cloud_cluster_creation.png)
 
 *HiveMQ Cloud Cluster Creation.*
 
 Once your **Serverless** HiveMQ cluster is set up, you can publish and subscribe to IoT events within minutes.
 
-![HiveMQ Cloud Free Plans](https://github.com/user-attachments/assets/86e3ba76-c15b-4814-a839-2904562d2fb9)
+![HiveMQ Cloud Free Plans](../images/hivemq_cloud_free_plans.png)
 
 *HiveMQ Cloud Free Plans: Serverless and Starter.*
 
@@ -46,7 +46,7 @@ To securely connect and interact with the HiveMQ broker, you'll need to set up u
 - Add a **username** and **password**.
 - Assign the necessary permissions to **publish** and **subscribe** to the MQTT topics.
 
-![HiveMQ Cluster Access Management](https://github.com/user-attachments/assets/477e26ae-482e-4857-bdf0-64fc85ebb715)
+![HiveMQ Cluster Access Management](../images/hivemq_cluster_access_management.png)
 
 *HiveMQ Cluster Access Management.*
 
@@ -58,7 +58,7 @@ You'll now have access to your cluster details, which include: **Cluster name**,
 
 These details are essential for connecting to the HiveMQ broker using MQTT clients.
 
-![HiveMQ Serverless Cluster Details](https://github.com/user-attachments/assets/01a87178-b00b-4aeb-8924-0ae9f1586442)
+![HiveMQ Serverless Cluster Details](../images/hivemq_serverless_cluster_details.png)
 
 *HiveMQ Serverless Cluster Details.*
 
@@ -70,7 +70,7 @@ For detailed setup, refer to the [HiveMQ Quick Start Guide](https://docs.hivemq.
 
 To ingest data into RisingWave, you'll need to create a RisingWave cluster. Sign up for a free plan at [RisingWave Cloud](https://cloud.risingwave.com/) to explore its features. You can refer to the [RisingWave Documentation](https://docs.risingwave.com/docs/current/intro/) for comprehensive, step-by-step instructions. For further assistance or to join the community, connect with us on [Slack](https://www.risingwave.com/slack).
 
-![RisingWave Cloud Sign-Up](https://github.com/user-attachments/assets/6169861b-2659-43ef-909a-ec5b25b5152f)
+![RisingWave Cloud Sign-Up](../images/risingwave_cloud_sign_up.png)
 
 *RisingWave Cloud Sign-Up page.*
 
@@ -115,11 +115,10 @@ SELECT * FROM iot_sensor_data LIMIT 5;
 
 This query retrieves the top five records, providing a snapshot of the latest IoT data, including device IDs, timestamps, temperature, humidity, and status values.
 
-![IoT Sensor Data Query Results](https://github.com/user-attachments/assets/f91188c0-8516-480a-8d40-7baf1b9dc8b4)
+![IoT Sensor Data Query Results](../images/IoT_sensor_data_query_results.png)
 
 *Query results for IoT sensor data.*
 
 You have successfully set up a HiveMQ serverless cluster and connected it to RisingWave for real-time data ingestion and analysis. Using the RisingWave MQTT connector, you can monitor, analyze, and even perform predictive maintenance on your IoT data.
 
 Additionally, you can use the RisingWave MQTT Sink connector to send processed results back to HiveMQ. These results can be visualized using tools like Grafana, enabling you to derive deeper insights from your IoT data.
-
