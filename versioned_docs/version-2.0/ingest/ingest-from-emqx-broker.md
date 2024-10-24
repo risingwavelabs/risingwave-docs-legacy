@@ -132,4 +132,3 @@ In this guide, you successfully:
 3. Ingested shop-floor data from EMQX into RisingWave for real-time analytics.
 
 RisingWave enables real-time analytics, monitoring, predictive maintenance, and anomaly detection on data from the EMQX broker. Additionally, you can use RisingWave's MQTT Sink connector to forward the analysis results to the MQTT broker or other downstream systems, such as **Grafana**, for visualization and further insights.
-
