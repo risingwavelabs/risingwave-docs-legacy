@@ -54,6 +54,7 @@ For CSV data, specify the delimiter in the `delimiter` option in `ENCODE propert
 |compression_format|Optional. This field specifies the compression format of the file being read. You can define `compression_format` in the `CREATE TABLE` statement. When set to `gzip` or `gz`, the file reader reads all files with the .gz suffix. When set to `None` or not defined, the file reader will automatically read and decompress .gz and .gzip files.|
 |match_pattern| Conditional. This field is used to find object keys in `s3.bucket_name` that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported. |
 |s3.assume_role| Optional. Specifies the ARN of an IAM role to assume when accessing S3. It allows temporary, secure access to S3 resources without sharing long-term credentials.  |
+|refresh.interval.sec|Optional. Configure the time interval between operations of listing files. It determines the delay in discovering new files, with a default value of 60 seconds.|
 
 :::note
 Empty cells in CSV files will be parsed to `NULL`.

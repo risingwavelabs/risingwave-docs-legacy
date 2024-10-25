@@ -42,6 +42,7 @@ FORMAT data_format ENCODE data_encode (
 |match_pattern| Conditional. This field is used to find object keys in the bucket that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported. |
 |compression_format|Optional. This field specifies the compression format of the file being read. You can define `compression_format` in the `CREATE TABLE` statement. When set to `gzip` or `gz`, the file reader reads all files with the .gz suffix. When set to `None` or not defined, the file reader will automatically read and decompress .gz and .gzip files.|
 |match_pattern| Conditional. This field is used to find object keys in `gcs.bucket_name` that match the given pattern. Standard Unix-style [glob](https://en.wikipedia.org/wiki/Glob_(programming)) syntax is supported. |
+|refresh.interval.sec|Optional. Configure the time interval between operations of listing files. It determines the delay in discovering new files, with a default value of 60 seconds.|
 
 ### Other parameters
 
