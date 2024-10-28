@@ -40,7 +40,6 @@ Below is a list of all features in the public preview phase:
 | [Snowflake sink](/docs/current/sink-to-snowflake/)                | 2024.5    | 1.9         |
 | [Subscription](/docs/current/subscription)                        | 2024.5    | 1.9         |
 | [RisingWave as PostgreSQL FDW](/docs/current/risingwave-as-postgres-fdw/) | 2024.4  | 1.9      |
-| [Iceberg source](/docs/current/ingest-from-iceberg/)             | 2024.3  | 1.8     |
 | [Google BigQuery sink](/docs/current/sink-to-bigquery/)           | 2023.11   | 1.4         |
 | [SET BACKGROUND_DDL command](/docs/current/sql-set-background-ddl/) | 2023.10  | 1.3      |
 | [Decouple sinks](/docs/current/data-delivery/#sink-decoupling)    | 2023.10   | 1.3         |
