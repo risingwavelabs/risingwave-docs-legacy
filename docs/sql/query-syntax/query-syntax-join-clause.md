@@ -69,6 +69,111 @@ A full outer join (or simply, full join) returns all rows when there is a match 
 <table_expression> NATURAL FULL [ OUTER ] JOIN <table_expression>;
 ```
 
+## ASOF joins
+
+An ASOF join returns the nearest record in a reference table based on the event time or any ordered properties.
+
+RisingWave supports these ASOF join types:
+
+- Inner ASOF join matches records only when both tables have corresponding data. Here's the syntax of an inner ASOF join:
+
+  ```sql
+  SELECT A.field1 AS A_field1 
+  FROM TableA ASOF JOIN TableB 
+  ON A.field1 = B.field1 AND A.field2 <= B.field2;
+  ```
+
+- Outer ASOF join includes all records from the left table, even if there is no match in the right table. When there is no match in the right table, the columns from the right table will have NULL values. Here's the syntax of an outer ASOF join:
+
+  ```sql
+  SELECT A.field1 AS A_field1 
+  FROM TableA ASOF LEFT JOIN TableB 
+  ON A.field1 = B.field1 AND A.field2 <= B.field2;
+  ```
+
+In both types of ASOF joins, the join condition must include at least one equality condition (`=`) and one inequality condition (`>=`, `>`, `<=`, or `<`). The inequality condition applies to all data types that support inequality comparison while a time-related type is commonly used.
+
+ASOF join is currently supported for streaming operations only.
+
+For example, suppose you have two tables:
+
+- `stock_prices`: Contains stock price data at certain timestamps.
+
+  | stock_name | stock_time            | price |
+  |------------|-----------------------|-------|
+  | TSLA       | 2024-09-24 09:30:00   | 250   |
+  | TSLA       | 2024-09-24 10:30:00   | 252   |
+  | TSLA       | 2024-09-24 11:30:00   | 255   |
+  | AMZN       | 2024-09-24 09:30:00   | 3300  |
+  | AMZN       | 2024-09-24 10:30:00   | 3310  |
+  | AMZN       | 2024-09-24 11:30:00   | 3320  |
+  | GOOG       | 2024-09-24 09:30:00   | 1400  |
+  | GOOG       | 2024-09-24 10:30:00   | 1410  |
+  | GOOG       | 2024-09-24 11:30:00   | 1420  |
+
+- `market_data`: Contains market sentiment data at different timestamps.
+
+  | stock_name | market_time           | sentiment |
+  |------------|-----------------------|-----------|
+  | TSLA       | 2024-09-24 09:00:00   | 0.7       |
+  | TSLA       | 2024-09-24 10:00:00   | 0.8       |
+  | TSLA       | 2024-09-24 11:00:00   | 0.9       |
+  | AMZN       | 2024-09-24 09:00:00   | 0.6       |
+  | AMZN       | 2024-09-24 10:00:00   | 0.65      |
+  | AMZN       | 2024-09-24 11:00:00   | 0.7       |
+  | NVDA       | 2024-09-24 09:00:00   | 0.55      |
+  | NVDA       | 2024-09-24 10:00:00   | 0.6       |
+  | NVDA       | 2024-09-24 11:00:00   | 0.65      |
+
+We want to join the stock prices with the nearest preceding market sentiment for each stock price based on time. We can use an ASOF JOIN to find the latest matching record in `market_data` where the `market_time` is less than or equal to the `stock_time`:
+
+```sql
+SELECT sp.stock_name, sp.stock_time, sp.price, md.sentiment
+FROM stock_prices sp
+ASOF JOIN market_data md 
+ON sp.stock_name = md.stock_name 
+AND md.market_time <= sp.stock_time;
+```
+
+Output:
+
+| stock_name | stock_time            | price | sentiment |
+|------------|-----------------------|-------|-----------|
+| TSLA       | 2024-09-24 09:30:00   | 250   | 0.7       |
+| TSLA       | 2024-09-24 10:30:00   | 252   | 0.8       |
+| TSLA       | 2024-09-24 11:30:00   | 255   | 0.9       |
+| AMZN       | 2024-09-24 09:30:00   | 3300  | 0.6       |
+| AMZN       | 2024-09-24 10:30:00   | 3310  | 0.65      |
+| AMZN       | 2024-09-24 11:30:00   | 3320  | 0.7       |
+
+
+We can use an ASOF LEFT JOIN to output records in the left table that have no matches in the right table.
+
+```sql
+SELECT sp.stock_name, sp.stock_time, sp.price, md.sentiment
+FROM stock_prices sp
+ASOF LEFT JOIN market_data md 
+ON sp.stock_name = md.stock_name 
+AND md.market_time <= sp.stock_time;
+```
+
+Output:
+
+| stock_name | stock_time            | price | sentiment |
+|------------|-----------------------|-------|-----------|
+| TSLA       | 2024-09-24 09:30:00   | 250   | 0.7       |
+| TSLA       | 2024-09-24 10:30:00   | 252   | 0.8       |
+| TSLA       | 2024-09-24 11:30:00   | 255   | 0.9       |
+| AMZN       | 2024-09-24 09:30:00   | 3300  | 0.6       |
+| AMZN       | 2024-09-24 10:30:00   | 3310  | 0.65      |
+| AMZN       | 2024-09-24 11:30:00   | 3320  | 0.7       |
+| GOOG       | 2024-09-24 09:30:00   | 1400  | NULL      |
+| GOOG       | 2024-09-24 10:30:00   | 1410  | NULL      |
+| GOOG       | 2024-09-24 11:30:00   | 1420  | NULL      |
+
+TSLA and AMZN have matching records in `market_data`, so they show the closest preceding sentiment.
+GOOG has no corresponding data in `market_data`, so the sentiment column is NULL.
+
 ## Window joins
 
 In a regular join (that is, a join without time attributes), the join state may grow without restriction. If you only need to get windowed results of two sources, you can segment data in the sources into time windows, and join matching windows from the two sources. To create a window join, the same [time window functions](../functions-operators/sql-function-time-window.md) must be used, and the window size must be the same.
