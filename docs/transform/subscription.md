@@ -86,9 +86,9 @@ If you specify `FULL` instead of the `since_clause`, the subscription cursor sta
 FETCH from cursor function is currently only supported in the PSQL simple query mode. If you are using components like JDBC that default to the extended query mode, please manually set the mode to simple query mode.
 :::
 
-#### FETCH NEXT FROM cursor
+#### Non-blocking data fetching
 
-After creating a subscription cursor, you can fetch the data by the `FETCH NEXT FROM cursor_name` command. Then you will see a result like  below:
+After creating a subscription cursor, you can fetch the data by the `FETCH NEXT FROM cursor_name` command. It returns one row of incremental data from the subscribed table. See the example below:
 
 ```sql
 FETCH NEXT FROM cur;
@@ -100,19 +100,25 @@ t1.v1 | t1.v2 | t1.v3 |    t1.op     |  rw_timestamp
 (1 row)
 ```
 
-The `op` column in the result stands for the change operations. It has four options: `insert`, `update_insert`, `delete`,  and `update_delete`. For a single UPDATE statement, the subscription log will contain two separate rows: one with `update_insert` and another with `update_delete`. This is because RisingWave treats an UPDATE as a delete of the old value followed by an insert of the new value. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
-
-Note that each time `FETCH NEXT FROM cursor_name` is called, it will return one row of incremental data from the subscribed table. It does not return all the incremental data at once, but requires the user to repeatedly call this statement to fetch the data.
-
-This method is non-blocking. Even if the current table has no new incremental data, `FETCH NEXT FROM cursor_name` will not block, but will return an empty row. When new incremental data is generated, calling this statement again will return the latest row of data.
-
-#### FETCH n FROM cursor
-
-You also can fetch multiple rows at once from the cursor using the `FETCH n FROM cursor_name` command. `n` is the number of rows to fetch.
+You also can fetch multiple rows at once from the cursor using the `FETCH n FROM cursor_name` command. `n` is the number of rows to fetch. `FETCH NEXT` is equivalent to `FETCH 1`.
 
 ```sql
 FETCH n FROM cursor_name;
 ```
+
+The `op` column in the result stands for the change operations. It has four options: `insert`, `update_insert`, `delete`,  and `update_delete`. For a single UPDATE statement, the subscription log will contain two separate rows: one with `update_insert` and another with `update_delete`. This is because RisingWave treats an UPDATE as a delete of the old value followed by an insert of the new value. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
+
+`FETCH NEXT/n FROM cursor_name` is a non-blocking method for retrieving data. Even if no new data is available, it returns an empty row immediately. When new incremental data is generated, calling this statement again will return the latest row of data.
+
+#### Blocking data fetching
+
+The statement for fetching data from a blocking cursor is:
+
+```sql
+FETCH NEXT/n FROM cursor_name WITH (timeout = 'xx');
+```
+
+When a subscription has many values and the fetch command requests a large number of rows, the execution of the fetch statement may exceed the specified timeout. In this case, all values currently fetched will be returned.
 
 #### Order of the fetched data
 
