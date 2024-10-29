@@ -122,11 +122,15 @@ FETCH NEXT/n FROM cursor_name WITH (timeout = 'xx');
 
     If the subscription has a large number of values and the fetch operation is set to retrieve many rows, the fetch operation might exceed the specified `timeout`. In this case, it will return all values currently fetched during the timeout process.
 
+    If `timeout` is not set for the case of large data sets, it is equivalent to `timeout = u64::MAX`.
+
 2. No new data:
 
     - Previously fetched rows: If you have already fetched more than one row, the fetch statement will not block. It will return all the values that have been fetched so far.
 
     - No values available: If no values are currently available, the fetch operation will block until new data becomes available or until the specified timeout is exceeded.
+
+    If `timeout` is not set for the case of no new data, it is equivalent to `timeout = 0`.
 
 #### Order of the fetched data
 
