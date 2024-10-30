@@ -313,7 +313,7 @@ RisingWave data types marked with an asterisk indicate that while there is no co
 | DATETIME[(fsp)] <br /> Optional fractional seconds precision (fsp: 0-6). If omitted, the default precision is 0.| TIMESTAMP |
 | NUMERIC[(M[,D])] | NUMERIC |
 | DECIMAL[(M[,D])] | NUMERIC |
-| GEOMETRY, LINESTRING, POLYGON, <br />MULTIPOINT, MULTILINESTRING, <br />MULTIPOLYGON, GEOMETRYCOLLECTION | STRUCT |
+| GEOMETRY, LINESTRING, POLYGON, <br />MULTIPOINT, MULTILINESTRING, <br />MULTIPOLYGON, GEOMETRYCOLLECTION | Not Supported |
 
 Please be aware that the range of specific values varies among MySQL types and RisingWave types. Refer to the table below for detailed information.
 
