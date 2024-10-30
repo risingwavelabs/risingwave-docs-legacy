@@ -25,6 +25,7 @@ Below is a list of all features in the public preview phase:
 
 | Feature name            | Start date | Start version |
 |---------------------------|------------|---------------|
+| [ASOF join](/docs/next/query-syntax-join-clause/#asof-joins) | 2024.11 | 2.1 |
 | [Partitioned Postgres CDC table](/docs/current/ingest-from-postgres-cdc)| 2024.9 | 2.0 |
 | [Map type](/docs/current/data-type-map)|2024.8|2.0|
 | [Azure Blob sink](/docs/current/sink-to-azure-blob)|2024.8|2.0|
