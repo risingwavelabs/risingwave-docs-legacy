@@ -131,8 +131,8 @@ Use the `payload` keyword to ingest JSON data when you are unsure of the exact s
 CREATE TABLE table_include_payload (v1 int, v2 varchar)
 INCLUDE payload
 WITH (
-    connector = 'kafka',
-    topic = 'kafka_1_partition_topic',
+    connector = 's3',
+    topic = 's3_1_partition_topic',
     properties.bootstrap.server = 'message_queue:29092',
     scan.startup.mode = 'earliest'
 ) FORMAT PLAIN ENCODE JSON;

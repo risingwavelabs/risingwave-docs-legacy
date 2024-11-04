@@ -17,7 +17,7 @@ Use the SQL statement below to connect RisingWave to Azure Blob Storage using Az
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name 
 schema_definition
-[INCLUDE { file | offset } [AS <column_name>]]
+[INCLUDE { file | offset | payload } [AS <column_name>]]
 WITH (
    connector = 'azblob',
    connector_parameter = 'value', ...
@@ -111,6 +111,19 @@ WITH (
     azblob.credentials.account_key = 'xxx',
     azblob.endpoint_url = 'xxx',
     match_pattern = '%Ring%*.ndjson',
+) FORMAT PLAIN ENCODE JSON;
+```
+
+Use the `payload` keyword to ingest JSON data when you are unsure of the exact schema beforehand. Instead of defining specific column names and types at the very beginning, you can load all JSON data first and then prune and filter the data during runtime. Check the example below:
+
+```sql
+CREATE TABLE table_include_payload (v1 int, v2 varchar)
+INCLUDE payload
+WITH (
+    connector = 'azblob',
+    topic = 'azblob_1_partition_topic',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
