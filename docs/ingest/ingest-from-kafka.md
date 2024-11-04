@@ -30,7 +30,7 @@ RisingWave Cloud provides an intuitive guided setup for creating a Kafka source.
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name
 [ schema_definition ]
-[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
+[INCLUDE { header | key | offset | partition | timestamp | payload } [AS <column_name>]]
 WITH (
    connector='kafka',
    connector_parameter='value', ...
