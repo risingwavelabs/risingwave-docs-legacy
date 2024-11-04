@@ -21,7 +21,7 @@ When creating a source, you can choose to persist the data from the source in Ri
 ```sql
 CREATE {TABLE | SOURCE} [ IF NOT EXISTS ] source_name 
 [ schema_definition ]
-[INCLUDE { header | key | offset | partition | timestamp } [AS <column_name>]]
+[INCLUDE { header | key | offset | partition | timestamp | payload } [AS <column_name>]]
 WITH (
    connector='pulsar',
    connector_parameter='value', ...
@@ -151,6 +151,19 @@ WITH (
    aws.credentials.secret_access_key='aws.credentials.secret_access_key',
    scan.startup.mode='latest',
    scan.startup.timestamp.millis='140000000'
+) FORMAT PLAIN ENCODE JSON;
+```
+
+Use the `payload` keyword to ingest JSON data when you are unsure of the exact schema beforehand. Instead of defining specific column names and types at the very beginning, you can load all JSON data first and then prune and filter the data during runtime. Check the example below:
+
+```sql
+CREATE TABLE table_include_payload (v1 int, v2 varchar)
+INCLUDE payload
+WITH (
+    connector = 'pulsar',
+    topic = 'pulsar_1_partition_topic',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
 ) FORMAT PLAIN ENCODE JSON;
 ```
 
