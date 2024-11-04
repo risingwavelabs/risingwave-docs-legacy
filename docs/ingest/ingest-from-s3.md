@@ -17,7 +17,7 @@ The S3 connector does not guarantee the sequential reading of files or complete 
 ```sql
 CREATE SOURCE [ IF NOT EXISTS ] source_name 
 schema_definition
-[INCLUDE { file | offset } [AS <column_name>]]
+[INCLUDE { file | offset | payload } [AS <column_name>]]
 WITH (
    connector='s3',
    connector_parameter='value', ...
@@ -124,6 +124,20 @@ WITH (
     s3.endpoint_url = 'https://s3.us-east-1.amazonaws.com'
 ) FORMAT PLAIN ENCODE JSON;
 ```
+
+Use the `payload` keyword to ingest JSON data when you are unsure of the exact schema beforehand. Instead of defining specific column names and types at the very beginning, you can load all JSON data first and then prune and filter the data during runtime. Check the example below:
+
+```sql
+CREATE TABLE table_include_payload (v1 int, v2 varchar)
+INCLUDE payload
+WITH (
+    connector = 'kafka',
+    topic = 'kafka_1_partition_topic',
+    properties.bootstrap.server = 'message_queue:29092',
+    scan.startup.mode = 'earliest'
+) FORMAT PLAIN ENCODE JSON;
+```
+
 </TabItem>
 
 <TabItem value="parquet" label="PARQUET" default>
