@@ -86,51 +86,39 @@ If you specify `FULL` instead of the `since_clause`, the subscription cursor sta
 FETCH from cursor function is currently only supported in the PSQL simple query mode. If you are using components like JDBC that default to the extended query mode, please manually set the mode to simple query mode.
 :::
 
-#### Non-blocking data fetching
+#### Non-blocking data fetch
 
-After creating a subscription cursor, you can fetch the data using the `FETCH NEXT FROM cursor_name` or `FETCH n FROM cursor_name` command. These are non-blocking methods for retrieving data. Even if no new data is available, it returns an empty row immediately. When new incremental data is available, calling this statement again will return the latest row of data.
+```sql title="Syntax"
+FETCH NEXT/n FROM cursor_name;
+```
 
-1. `FETCH NEXT FROM cursor_name` command returns one row of incremental data from the subscribed table.
+Fetch the next row or up to N rows from the cursor. If fewer than N rows are available, it will return whatever is available immediately without waiting. This also means that if there are no rows available (i.e., the latest data has been reached), an empty result will be returned immediately.
 
-    ```sql
-    FETCH NEXT FROM cur;
+```sql title="Example"
+FETCH NEXT FROM cur;
 
-    ----RESULT
-    t1.v1 | t1.v2 | t1.v3 |    t1.op     |  rw_timestamp  
-    -------+-------+-------+--------------+---------------
-        1 |     1 |     1 | UpdateDelete | 1715669376304
-    (1 row)
-    ```
+----RESULT
+t1.v1 | t1.v2 | t1.v3 |    t1.op     |  rw_timestamp  
+-------+-------+-------+--------------+---------------
+    1 |     1 |     1 | UpdateDelete | 1715669376304
+(1 row)
+```
 
-2. `FETCH n FROM cursor_name` command returns multiple rows at once from the cursor. `n` is the number of rows to fetch. `FETCH NEXT` is equivalent to `FETCH 1`.
+The `op` column in the result indicates the type of change operations. There are four options: `insert`, `update_insert`, `delete`,  and `update_delete`. For a single UPDATE statement, the subscription log will contain two separate rows: one with `update_insert` and another with `update_delete`. This is because RisingWave treats an UPDATE as a delete of the old value followed by an insert of the new value. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
 
-    ```sql
-    FETCH n FROM cursor_name;
-    ```
+#### Blocking data fetch
 
-The `op` column in the result stands for the change operations. It has four options: `insert`, `update_insert`, `delete`,  and `update_delete`. For a single UPDATE statement, the subscription log will contain two separate rows: one with `update_insert` and another with `update_delete`. This is because RisingWave treats an UPDATE as a delete of the old value followed by an insert of the new value. As for `rw_timestamp`, it corresponds to the Unix timestamp in milliseconds when the data was written.
-
-#### Blocking data fetching
-
-When waiting for new subscription data to arrive, you can block the `FETCH` operation with an optional timeout until new data is available, instead of returning an empty result. The `timeout` value should be a string in the interval format.
-
-```sql
+```sql title="Syntax"
 FETCH NEXT/n FROM cursor_name WITH (timeout = 'xx');
 ```
 
-1. For large data sets:
+Fetch up to N rows from the cursor with a specified timeout. The `timeout` value should be a string in the interval format. In this case, the fetch statement will return when either N rows have been fetched or the timeout occurs. If the timeout occurs, whatever has been read up to that point will be returned. Here are two scenarios to trigger the timeout:
 
-    If the subscription has a large number of values and the fetch operation is set to retrieve many rows, the fetch operation might exceed the specified `timeout`. In this case, it will return all values currently fetched during the timeout process.
+1. The cursor has reached the latest data and has been waiting too long for new data to arrive.
 
-    If `timeout` is not set for the case of large data sets, it is equivalent to `timeout = u64::MAX`.
+2. At least N rows are available for the cursor to read, but retrieving all of them takes an extended period.
 
-2. No new data:
-
-    - Previously fetched rows: If you have already fetched more than one row, the fetch statement will not block. It will return all the values that have been fetched so far.
-
-    - No values available: If no values are currently available, the fetch operation will block until new data becomes available or until the specified timeout is exceeded.
-
-    If `timeout` is not set for the case of no new data, it is equivalent to `timeout = 0`.
+To avoid polling for new data frequently with the non-blocking `FETCH`, you can set a longer timeout to simulate a scenario where you want the `FETCH` to block until new data arrives.
 
 #### Order of the fetched data
 
