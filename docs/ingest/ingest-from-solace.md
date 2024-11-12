@@ -46,7 +46,9 @@ The solution involves two key steps:
 
 Create a RisingWave cluster in [RisingWave Cloud](https://cloud.risingwave.com/) using the free plan. See the [documentation of RisingWave Cloud](https://docs.risingwave.com/cloud/manage-clusters/) for instructions.
 
-Solace supports popular open protocols like AMQP, JMS, MQTT, REST, and WebSocket, and open APIs such as Paho and Qpid to enable users to interact with Solace PubSub+ event broker. We will leverage the [RisingWave MQTT connector](https://docs.risingwave.com/docs/current/ingest-from-mqtt/) to read and write data from the Solace event broker. With the RisingWave cluster up and running, navigate to the Workspace and connect to the data streams using the SQL statements to create tables, materialized views and sinks.
+> **Note**: Solace PubSub+ supports popular open protocols like AMQP, JMS, MQTT, REST, and WebSocket, and open APIs such as Paho and Qpid to enable interaction with the event broker. We will use the [RisingWave MQTT connector](https://docs.risingwave.com/docs/current/ingest-from-mqtt/) to read and write data from Solace.
+
+Once the RisingWave cluster is set up, navigate to the Workspace and connect to data streams by creating tables, materialized views, and sinks using SQL statements.
 
 ### Step 1: Create source table
 
