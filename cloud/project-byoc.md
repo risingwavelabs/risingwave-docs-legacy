@@ -94,6 +94,8 @@ import TabItem from '@theme/TabItem';
     - **Cloud DNS API** for VPC private service connect setup.
     - **Kubernetes Engine API** for provisioning the GKE cluster the data plane is hosted.
     - **Cloud Resource Manager API** for IAM provisioning.
+    - **Service Networking API** for Cloud SQL (as meta store) connection.
+    - **Cloud SQL Admin API** for Cloud SQL (as meta store) provisioning
 
 - **Required permission for BYOC environment creation/deletion**
 
