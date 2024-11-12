@@ -1131,6 +1131,11 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "doc",
+          id: "tutorials/sports-betting-position-and-risk-management",
+          label: "Sports betting position and risk management"
+        },
+        {
+          type: "doc",
           id: "tutorials/use-risingwave-to-monitor-risingwave-metrics",
           label: "Use RisingWave to monitor RisingWave metrics",
         },
