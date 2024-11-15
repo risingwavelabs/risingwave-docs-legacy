@@ -85,10 +85,10 @@ If you want to use other libraries in your Rust functions, you can manually buil
 ### Prerequisites
 
 - Ensure that you have [Rust toolchain](https://rustup.rs) (stable channel) installed on your computer.
-- Ensure that the Rust standard library for `wasm32-wasi` target is installed:
+- Ensure that the Rust standard library for `wasm32-wasip1` target is installed:
 
     ```shell
-    rustup target add wasm32-wasi
+    rustup target add wasm32-wasip1
     ```
 
 ### 1. Create a project
@@ -142,10 +142,10 @@ See the correspondence between SQL types and Rust types in the [Data type mappin
 Build your functions into a WebAssembly module:
 
 ```shell
-cargo build --release --target wasm32-wasi
+cargo build --release --target wasm32-wasip1
 ```
 
-You can find the generated WASM module at `target/wasm32-wasi/release/udf.wasm`.
+You can find the generated WASM module at `target/wasm32-wasip1/release/udf.wasm`.
 
 Optional: It is recommended to strip the binary to reduce its size:
 
@@ -154,7 +154,7 @@ Optional: It is recommended to strip the binary to reduce its size:
 cargo install wasm-tools
 
 # Strip the binary
-wasm-tools strip ./target/wasm32-wasi/release/udf.wasm > udf.wasm
+wasm-tools strip ./target/wasm32-wasip1/release/udf.wasm > udf.wasm
 ```
 
 ## 4. Declare your functions in RisingWave
