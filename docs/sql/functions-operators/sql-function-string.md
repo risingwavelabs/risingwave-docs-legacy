@@ -719,9 +719,9 @@ upper('tom') → 'TOM'
 ## `LIKE` pattern matching expressions
 
 ```sql
-string [ NOT ] { LIKE | ILIKE } pattern
+string [ NOT ] { LIKE | ILIKE } pattern [ ESCAPE 'escape_char' ]
 
-string [!]~~[*] pattern
+string [!]~~[*] pattern [ ESCAPE 'escape_char' ]
 ```
 
 The `LIKE` expression returns true if the string matches the supplied pattern. The `NOT LIKE` expression returns false if `LIKE` returns true. By using `ILIKE` instead of `LIKE`, the matching becomes case-insensitive.
@@ -738,13 +738,15 @@ If the pattern does not contain `_` or `%`, then the pattern only represents the
 
 ### Escape
 
-To match a literal underscore or percent sign without matching other characters, the respective character in pattern must be preceded by the escape character `\`. To match the escape character itself, write two escape characters: `\\`.
+To match a literal underscore or percent sign without matching other characters, the respective character in the pattern must be preceded by the escape character `\`. To match the escape character itself, write two escape characters: `\\`.
 
-:::note
+Or you can use `ESCAPE ''` to disable the escape mechanism, and you can also customize an escape character using the `ESCAPE` clause. 
 
-You can use `ESCAPE ''` to disable the escape mechanism, but specifying a custom escape character using the `ESCAPE` clause is not supported.
+Below are the characters supported to be specified as the 'escape_char':
 
-:::
+- The underscore character `'_'`.
+- An empty string `''`.
+- UTF-8 characters.
 
 ### Examples
 
