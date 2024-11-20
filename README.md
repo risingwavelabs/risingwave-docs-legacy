@@ -2,11 +2,11 @@
 
 This repository will serve as an archive for RisingWave user documentation up to version 2.0. The topics are published to the [legacy documentation site](https://legacy-docs.risingwave-labs.com/docs/current/intro/).
 
-From version 2.1 onwards, we'll use [the `risingwave-docs-new` repository](https://github.com/risingwavelabs/risingwave-docs-new) for our documentation source files. This change reflects a shift in our documentation infrastructure.
+From version 2.1 onwards, we'll use the [`risingwave-docs-new`](https://github.com/risingwavelabs/risingwave-docs-new) repository for our documentation source files. This change reflects a shift in our documentation infrastructure.
 
 # Contribute to RisingWave user docs
 
-For issues and documentation contribution, please go to the [the `risingwave-docs-new` repository](https://github.com/risingwavelabs/risingwave-docs-new).
+For issues and documentation contribution, please go to the [`risingwave-docs-new`](https://github.com/risingwavelabs/risingwave-docs-new) repository.
 
 
 # Test locally
