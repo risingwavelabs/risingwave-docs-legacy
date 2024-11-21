@@ -6,7 +6,7 @@ The latest documentation source files are in the [`risingwave-docs` repository](
 
 # Contribute to RisingWave user docs
 
-For issues and documentation contribution, please go to the [the `risingwave-docs` repository](https://github.com/risingwavelabs/risingwave-docs).
+For issues and documentation contribution, please go to the [`risingwave-docs` repository](https://github.com/risingwavelabs/risingwave-docs).
 
 
 # Test locally
