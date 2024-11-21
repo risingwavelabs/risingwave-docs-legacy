@@ -59,3 +59,20 @@ SELECT decrypt('\x9cf6a49f90b3ac816aeeeed286606fdb','my_secret_key111', 'aes-cbc
 \x48656c6c6f2c20576f726c6421
 (1 row)
 ```
+
+---
+
+### `hmac`
+
+Returns the `HMAC` result regarding the input secret, payload and hash algorithm. Please refer to [`HMAC`](https://en.wikipedia.org/wiki/HMAC) for more information in cryptography. Currently, the supported hash algorithms for `hash_algo` are `sha1` and `sha256`.
+
+```sql title=Syntax
+hmac (secret varchar, payload bytea, hash_algo varchar) -> signature bytea
+```
+
+```sql title=Example
+SELECT hmac('secret', 'payload'::bytea, 'sha256');
+----RESULT
+\xb82fcb791acec57859b989b430a826488ce2e479fdf92326bd0a2e8375a42ba4
+(1 row)
+```
